@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -86,6 +86,7 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -1191,6 +1192,23 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNameable(realLiteralExp);
 				if (result == null) result = caseElement(realLiteralExp);
 				if (result == null) result = caseVisitable(realLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.SELF_TYPE:
+			{
+				SelfType selfType = (SelfType)theEObject;
+				T result = caseSelfType(selfType);
+				if (result == null) result = caseClass(selfType);
+				if (result == null) result = caseType(selfType);
+				if (result == null) result = caseNamespace(selfType);
+				if (result == null) result = caseNamedElement(selfType);
+				if (result == null) result = caseParameterableElement(selfType);
+				if (result == null) result = caseTemplateableElement(selfType);
+				if (result == null) result = caseMonikeredElement(selfType);
+				if (result == null) result = caseNameable(selfType);
+				if (result == null) result = caseElement(selfType);
+				if (result == null) result = caseVisitable(selfType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2331,6 +2349,22 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseRealLiteralExp(RealLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Self Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Self Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSelfType(SelfType object)
+	{
 		return null;
 	}
 
