@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.7 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.8 2011/01/30 11:12:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -52,7 +53,7 @@ public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<Ope
 				ModelElementCS classifierContext = (ModelElementCS) operationContext.eContainer();
 				environmentView.addNamedElements(operationContext.getOwnedParameter());
 				environmentView.addElementsOfScope(classifierContext, scopeView);
-				environmentView.addElement("self", classifierContext);
+				environmentView.addElement(Environment.SELF_VARIABLE_NAME, classifierContext);
 			}
 		}
 		return scopeView.getOuterScope();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.6 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -20,6 +20,7 @@ import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -51,7 +52,7 @@ public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<Cl
 				environmentView.addElementsOfScope(csClassifier, scopeView);
 				String selfName = target.getSelfName();
 				if (selfName == null) {
-					selfName = "self";
+					selfName = Environment.SELF_VARIABLE_NAME;
 				}
 				environmentView.addElement(selfName, csClassifier);
 				RootCS document = getRootScopeAdapter().getTarget();

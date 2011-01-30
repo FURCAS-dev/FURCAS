@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.6 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -52,7 +53,7 @@ public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<Prop
 				StructuralFeatureCS feature = csSimpleStructuralFeatureRef.getFeature();
 				ModelElementCS classifierContext = (ModelElementCS) feature.eContainer();
 				environmentView.addElementsOfScope(classifierContext, scopeView);
-				environmentView.addElement("self", classifierContext);
+				environmentView.addElement(Environment.SELF_VARIABLE_NAME, classifierContext);
 			}
 			return scopeView.getOuterScope();
 		}

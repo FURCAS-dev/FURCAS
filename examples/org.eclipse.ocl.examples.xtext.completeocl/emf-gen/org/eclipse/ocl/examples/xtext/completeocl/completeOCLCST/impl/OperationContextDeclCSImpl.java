@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.6 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
@@ -201,7 +202,7 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	public VariableCS getResult() {
 		if (result == null) {
 			VariableCS resultVariable = EssentialOCLCSTFactory.eINSTANCE.createVariableCS();
-			resultVariable.setName("result");
+			resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
 // FIXME			resultVariable.setType(getType());
 			setResult(resultVariable);
 		}
