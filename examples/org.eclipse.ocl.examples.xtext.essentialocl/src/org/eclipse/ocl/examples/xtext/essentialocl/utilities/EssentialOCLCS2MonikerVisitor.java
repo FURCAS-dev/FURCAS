@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.3 2011/01/30 11:19:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -382,7 +383,7 @@ public class EssentialOCLCS2MonikerVisitor
 	@Override
 	public Object visitSelfExpCS(SelfExpCS object) {
 		appendExpPrefix(object);
-		context.append("self");
+		context.append(Environment.SELF_VARIABLE_NAME);
 		return true;
 	}
 
