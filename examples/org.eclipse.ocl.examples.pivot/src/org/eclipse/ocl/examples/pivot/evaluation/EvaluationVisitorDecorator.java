@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -185,16 +184,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
 	public Value visitEnumLiteralExp(EnumLiteralExp literalExp) {
         return getDelegate().visitEnumLiteralExp(literalExp);
     }
-
-    /**
-     * Delegates to my decorated visitor.
-     * 
-     * @deprecated use {@link #visit(Visitable)
-     */
-	@Deprecated
-	public Value visitExpression(OclExpression oclExpression) {
-        return getDelegate().visitExpression(oclExpression);
-	}
 
     /**
      * Delegates to my decorated visitor.

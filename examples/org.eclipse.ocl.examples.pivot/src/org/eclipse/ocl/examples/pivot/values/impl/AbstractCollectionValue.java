@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -294,6 +294,10 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
             return SetValueImpl.union(valueFactory, this, c);
         }
     }
+
+	public int intSize() {
+		return elements.size();
+	}
 
 	public CollectionValue intersection(CollectionValue c) {
         if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {

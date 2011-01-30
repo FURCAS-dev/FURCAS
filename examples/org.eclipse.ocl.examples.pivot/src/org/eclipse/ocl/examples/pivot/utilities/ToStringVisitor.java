@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -897,6 +898,12 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 	@Override
     public String visitNullLiteralExp(NullLiteralExp il) {
 		return "null"; //$NON-NLS-1$
+	}
+
+	@Override
+	public String visitOpaqueExpression(OpaqueExpression object) {
+		String body = PivotUtil.getBody(object);
+		return body != null ? body : "";
 	}
 
 	@Override

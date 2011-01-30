@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -27,6 +27,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -311,6 +313,32 @@ public class ValueFactoryImpl implements ValueFactory
 		return new TypeValueImpl(this, type);
 	}
 
+	public Object getEcoreValueOf(Value value) {
+		if (value instanceof InvalidValue) {
+			return value;		// ?? DelegateException
+		}
+		else if (value instanceof NullValue) {
+			return null;
+		}
+		else if (value instanceof CollectionValue) {
+			CollectionValue collectionValue = (CollectionValue) value;
+			List<Object> ecoreResult = new BasicEList<Object>(collectionValue.intSize());
+			for (Value elementValue : collectionValue) {
+				ecoreResult.add(getEcoreValueOf(elementValue));
+			}
+			return ecoreResult;
+		}
+		else if (value instanceof IntegerValue) {
+			return ((IntegerValue)value).asInteger();
+		}
+		else if (value instanceof RealValue) {
+			return ((RealValue)value).asDouble();
+		}
+		else {
+			return value.asObject();
+		}
+	}
+
 	public BagValue getEmptyBagValue() {
 		return emptyBagValue;
 	}
@@ -491,6 +519,25 @@ public class ValueFactoryImpl implements ValueFactory
 			}
 		}
 		return createObjectValue(object);
+	}
+
+	public Value valueOf(Object eValue, ETypedElement eFeature) {
+		if (eFeature.isMany()) {
+			Collection<?> eValues = (Collection<?>) eValue;
+			ArrayList<Value> values = new ArrayList<Value>(eValues.size());
+			for (Object eVal : eValues) {
+				values.add(valueOf(eVal));
+			}
+			boolean isOrdered = eFeature.isOrdered();
+			boolean isUnique = eFeature.isUnique();
+			return createCollectionValue(isOrdered, isUnique, values);
+		}
+		else if (eValue instanceof Value) {
+			return (Value) eValue;		
+		}
+		else {
+			return valueOf(eValue);
+		}
 	}
 }
  
