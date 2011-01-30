@@ -142,6 +142,7 @@
         <elements xsi:type="xtext:Keyword" value="InvalidType"/>
         <elements xsi:type="xtext:Keyword" value="OrderedSetType"/>
         <elements xsi:type="xtext:Keyword" value="PrimitiveType"/>
+        <elements xsi:type="xtext:Keyword" value="SelfType"/>
         <elements xsi:type="xtext:Keyword" value="SequenceType"/>
         <elements xsi:type="xtext:Keyword" value="SetType"/>
         <elements xsi:type="xtext:Keyword" value="TupleType"/>

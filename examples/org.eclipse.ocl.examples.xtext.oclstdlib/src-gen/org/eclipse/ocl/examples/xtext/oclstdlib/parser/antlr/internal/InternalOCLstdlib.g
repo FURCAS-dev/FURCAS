@@ -626,31 +626,38 @@ ruleMetaTypeName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     }
 
     |
+	kw='SelfType' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getSelfTypeKeyword_7()); 
+    }
+
+    |
 	kw='SequenceType' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_7()); 
+        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_8()); 
     }
 
     |
 	kw='SetType' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_8()); 
+        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_9()); 
     }
 
     |
 	kw='TupleType' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_9()); 
+        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_10()); 
     }
 
     |
 	kw='VoidType' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_10()); 
+        newLeafNode(kw, grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_11()); 
     }
 )
     ;

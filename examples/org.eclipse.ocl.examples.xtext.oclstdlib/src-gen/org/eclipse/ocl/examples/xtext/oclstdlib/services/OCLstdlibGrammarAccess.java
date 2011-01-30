@@ -312,18 +312,19 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInvalidTypeKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cOrderedSetTypeKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cPrimitiveTypeKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cSequenceTypeKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
-		private final Keyword cSetTypeKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cTupleTypeKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cVoidTypeKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cSelfTypeKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cSequenceTypeKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cSetTypeKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cTupleTypeKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cVoidTypeKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		
 		//MetaTypeName:
-		//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" |
+		//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
 		//	"SequenceType" | "SetType" | "TupleType" | "VoidType";
 		public ParserRule getRule() { return rule; }
 
-		//"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SequenceType"
-		//| "SetType" | "TupleType" | "VoidType"
+		//"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
+		//"SequenceType" | "SetType" | "TupleType" | "VoidType"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"AnyType"
@@ -347,17 +348,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"PrimitiveType"
 		public Keyword getPrimitiveTypeKeyword_6() { return cPrimitiveTypeKeyword_6; }
 
+		//"SelfType"
+		public Keyword getSelfTypeKeyword_7() { return cSelfTypeKeyword_7; }
+
 		//"SequenceType"
-		public Keyword getSequenceTypeKeyword_7() { return cSequenceTypeKeyword_7; }
+		public Keyword getSequenceTypeKeyword_8() { return cSequenceTypeKeyword_8; }
 
 		//"SetType"
-		public Keyword getSetTypeKeyword_8() { return cSetTypeKeyword_8; }
+		public Keyword getSetTypeKeyword_9() { return cSetTypeKeyword_9; }
 
 		//"TupleType"
-		public Keyword getTupleTypeKeyword_9() { return cTupleTypeKeyword_9; }
+		public Keyword getTupleTypeKeyword_10() { return cTupleTypeKeyword_10; }
 
 		//"VoidType"
-		public Keyword getVoidTypeKeyword_10() { return cVoidTypeKeyword_10; }
+		public Keyword getVoidTypeKeyword_11() { return cVoidTypeKeyword_11; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -2322,7 +2326,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MetaTypeName:
-	//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" |
+	//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
 	//	"SequenceType" | "SetType" | "TupleType" | "VoidType";
 	public MetaTypeNameElements getMetaTypeNameAccess() {
 		return (pMetaTypeName != null) ? pMetaTypeName : (pMetaTypeName = new MetaTypeNameElements());

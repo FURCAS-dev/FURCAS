@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.3 2011/01/30 11:10:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -149,6 +150,9 @@ public class OCLstdlibPreOrderVisitor
 		}
 		else if ("PrimitiveType".equals(metaTypeName)) {
 			type = context.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, csLibClass);
+		}
+		else if ("SelfType".equals(metaTypeName)) {
+			type = context.refreshNamedElement(SelfType.class, PivotPackage.Literals.SELF_TYPE, csLibClass);
 		}
 		else if ("SequenceType".equals(metaTypeName)) {
 			type = context.refreshNamedElement(SequenceType.class, PivotPackage.Literals.SEQUENCE_TYPE, csLibClass);

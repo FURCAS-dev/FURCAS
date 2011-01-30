@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: OCLstdlibPostOrderVisitor.java,v 1.3 2011/01/30 11:10:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -73,7 +74,7 @@ public class OCLstdlibPostOrderVisitor
 					contextVariable = PivotFactory.eINSTANCE.createVariable();
 					expressionInOcl.setContextVariable(contextVariable);
 				}
-				context.refreshName(contextVariable, "self");
+				context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 				context.setType(contextVariable, pivotClass);
 				context.putPivotElement(contextVariable);
 				if ("post".equals(stereotype)) {
@@ -82,7 +83,7 @@ public class OCLstdlibPostOrderVisitor
 						resultVariable = PivotFactory.eINSTANCE.createVariable();
 						expressionInOcl.setResultVariable(resultVariable);
 					}
-					context.refreshName(resultVariable, "result");
+					context.refreshName(resultVariable, Environment.RESULT_VARIABLE_NAME);
 					context.putPivotElement(resultVariable);
 					context.setType(resultVariable, ((Operation)pivotElement.eContainer()).getType());
 				}
