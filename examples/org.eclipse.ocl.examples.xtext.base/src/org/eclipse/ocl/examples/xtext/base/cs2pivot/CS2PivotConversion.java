@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.3 2011/01/30 11:12:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -147,10 +147,8 @@ public class CS2PivotConversion extends AbstractConversion
 		csElement.getError().add(boundMessage);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
-		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
-		invalidLiteralExp.setType(typeManager.getOclInvalidType());
-		invalidLiteralExp.setObject(csElement);
-		invalidLiteralExp.setReason(boundMessage);
+		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(
+			csElement, boundMessage, null);
 		installPivotElementInternal(csElement, invalidLiteralExp);
 		return invalidLiteralExp;
 	}
