@@ -3022,35 +3022,43 @@ rule__MetaTypeName__Alternatives
 )
 
     |(
-{ before(grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_7()); }
+{ before(grammarAccess.getMetaTypeNameAccess().getSelfTypeKeyword_7()); }
+
+	'SelfType' 
+
+{ after(grammarAccess.getMetaTypeNameAccess().getSelfTypeKeyword_7()); }
+)
+
+    |(
+{ before(grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_8()); }
 
 	'SequenceType' 
 
-{ after(grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_7()); }
+{ after(grammarAccess.getMetaTypeNameAccess().getSequenceTypeKeyword_8()); }
 )
 
     |(
-{ before(grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_8()); }
+{ before(grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_9()); }
 
 	'SetType' 
 
-{ after(grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_8()); }
+{ after(grammarAccess.getMetaTypeNameAccess().getSetTypeKeyword_9()); }
 )
 
     |(
-{ before(grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_9()); }
+{ before(grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_10()); }
 
 	'TupleType' 
 
-{ after(grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_9()); }
+{ after(grammarAccess.getMetaTypeNameAccess().getTupleTypeKeyword_10()); }
 )
 
     |(
-{ before(grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_10()); }
+{ before(grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_11()); }
 
 	'VoidType' 
 
-{ after(grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_10()); }
+{ after(grammarAccess.getMetaTypeNameAccess().getVoidTypeKeyword_11()); }
 )
 
 ;
