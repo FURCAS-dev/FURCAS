@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -92,48 +91,26 @@ public class EvaluationVisitorImpl
 		return result;
 	}
 
-	/**
-	 * Tries to fetch an operation body from where the
-	 * {@link OCLInvocationDelegate OCL invocation delegate} stores it. If nothing
-	 * is found, this method delegates to the base class implementation which then
-	 * performs the usual search in the OCL_NAMESPACE_URI annotation and the
-	 * environment's body condition cache.
-	 */
 	@Override
 	protected OCLExpression<EClassifier> getOperationBody(EOperation operation) {
-		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE
-			.getCachedOCLExpression(operation);
-		if (result == InvocationBehavior.NO_OCL_DEFINITION) {
-			result = null;
+		OCLExpression<EClassifier> result = InvocationBehavior.INSTANCE.getCachedOperationBody(operation);
+		if (result == null && InvocationBehavior.INSTANCE.hasUncompiledOperationBody(operation)) {
+			result = InvocationBehavior.INSTANCE.getOperationBody(OCL.newInstance(getEnvironment().getFactory()), operation);
 		}
-		else if (result == null) {
-			if (InvocationBehavior.INSTANCE.hasCompileableOperationBody(operation)) {
-				result = InvocationBehavior.INSTANCE.getOperationBody(
-					OCL.newInstance(getEnvironment().getFactory()), operation);
-			}
-			if (result == null) {
-				result = super.getOperationBody(operation);
-			}
+		if (result == null) {
+			result = super.getOperationBody(operation);
 		}
 		return result;
 	}
 
 	@Override
-	protected OCLExpression<EClassifier> getPropertyBody(
-			EStructuralFeature property) {
-		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE
-			.getCachedOCLExpression(property);
-		if (result == SettingBehavior.NO_OCL_DEFINITION) {
-			result = null;
+	protected OCLExpression<EClassifier> getPropertyBody(EStructuralFeature property) {
+		OCLExpression<EClassifier> result = SettingBehavior.INSTANCE.getCachedFeatureBody(property);
+		if (result == null && SettingBehavior.INSTANCE.hasUncompiledFeatureBody(property)) {
+			result = SettingBehavior.INSTANCE.getFeatureBody(OCL.newInstance(getEnvironment().getFactory()), property);
 		}
-		else if (result == null) {
-			if (SettingBehavior.INSTANCE.hasCompileableFeatureBody(property)) {
-				result = SettingBehavior.INSTANCE.getFeatureBody(
-					OCL.newInstance(getEnvironment().getFactory()), property);
-			}
-			if (result == null) {
-				result = super.getPropertyBody(property);
-			}
+		if (result == null) {
+			result = super.getPropertyBody(property);
 		}
 		return result;
 	}
