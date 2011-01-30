@@ -12,10 +12,13 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,17 +30,27 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -45,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
@@ -185,6 +199,21 @@ public class PivotUtil
 		return map;
 	}
 
+	public static String getBody(OpaqueExpression specification) {
+		List<String> bodies = specification.getBodies();
+		List<String> languages = specification.getLanguages();
+		if ((bodies == null) || (languages == null)) {
+			return null;
+		}
+		int iMax = Math.min(bodies.size(), languages.size());
+		for (int i = 0; i < iMax; i++) {
+			if (PivotConstants.OCL_LANGUAGE.equalsIgnoreCase(languages.get(i))) {
+				return bodies.get(i);
+			}
+		}
+		return null;
+	}
+
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
 		if (elements == null)
 			return null;
@@ -215,6 +244,17 @@ public class PivotUtil
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
 		return castElement;
+	}
+
+	public static Operation getReferredOperation(CallExp callExp) {
+		Operation operation;
+		if (callExp instanceof LoopExp) {
+			operation = ((LoopExp)callExp).getReferredIteration();
+		}
+		else {
+			operation = ((OperationCallExp)callExp).getReferredOperation();
+		}
+		return operation;
 	}
 
 	public static String getResourceErrorsString(Resource resource, String prefix) {
@@ -356,6 +396,44 @@ public class PivotUtil
 				oldElements.add(newElement);
 			}
 		}
+	}
+
+	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement specificationContext, String expression) {
+		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
+		try {
+			ResourceSetImpl resourceSet = new ResourceSetImpl();
+			URI uri = URI.createURI("test2.essentialocl");
+			Resource resource = resourceSet.createResource(uri);
+			TypeManagerResourceAdapter.getAdapter(resource, typeManager);
+			if (resource instanceof EvaluationContext) {
+				((EvaluationContext)resource).setSpecificationContext(specificationContext);
+			}
+			resource.load(inputStream, null);
+//				checkResourceErrors("Errors in '" + expression + "'", resource);
+			List<EObject> contents = resource.getContents();
+			int size = contents.size();
+			if (size == 0) {
+				return null;
+			}
+			if (size > 1) {
+//					logger.warn("Extra returns ignored");
+			}
+			EObject csObject = contents.get(0);
+			if (csObject instanceof Pivotable) {
+				Element pivotElement = ((Pivotable)csObject).getPivot();
+				if (pivotElement instanceof ExpressionInOcl) {
+					return (ExpressionInOcl) pivotElement;
+				}
+			}
+//				logger.warn("Non-expression ignored");
+		} catch (IOException e) {
+//				throw new ParserException("Failed to load expression", e);
+			ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
+			OclExpression invalidValueBody = typeManager.createInvalidExpression(specificationContext, "Failed to load expression", e);
+			specification.setBodyExpression(invalidValueBody);
+			return specification;
+		}			
+		return null;
 	}
 
 	public static <T extends MonikeredElement> List<T> sortByMoniker(List<T> list) {

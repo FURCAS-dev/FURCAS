@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Pivot2UMLDeclarationVisitor.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -46,6 +46,7 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -196,8 +197,8 @@ public class Pivot2UMLDeclarationVisitor
 		if (!(specification instanceof OpaqueExpression)) {
 			return null;
 		}
-		List<String> bodies = ((OpaqueExpression)specification).getBodies();
-		if ((bodies == null) || bodies.isEmpty()) {
+		String exprString = PivotUtil.getBody((OpaqueExpression)specification);
+		if (exprString == null) {
 			return null;
 		}
 //		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
@@ -207,7 +208,6 @@ public class Pivot2UMLDeclarationVisitor
 //			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
 //			eModelElement.getEAnnotations().add(oclAnnotation);
 //		}
-		String exprString = StringUtils.splice(bodies, "");
 		String stereotype = pivotConstraint.getStereotype();
 		String name = pivotConstraint.getName();
 /*		if ("invariant".equals(stereotype)) {
