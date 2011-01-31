@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-<extension-point id="com.sap.ide.cts.editor.autoEditing" name="Matching Config for AutoEdit Actions" schema="schema/autoEditConfiguration.exsd"/>
-   <extension-point id="com.sap.ide.cts.editor.folding" name="Folding config" schema="schema/folding.exsd"/>
-   <extension-point id="com.sap.ide.cts.editor.bracketMatching" name="Matching Bracket Highlighting" schema="schema/matchingBracketsConfiguration.exsd"/>
+<extension-point id="com.sap.furcas.ide.editor.autoEditing" name="Matching Config for AutoEdit Actions" schema="schema/autoEditConfiguration.exsd"/>
+   <extension-point id="com.sap.furcas.ide.editor.folding" name="Folding config" schema="schema/folding.exsd"/>
+   <extension-point id="com.sap.furcas.ide.editor.bracketMatching" name="Matching Bracket Highlighting" schema="schema/matchingBracketsConfiguration.exsd"/>
  <extension
          point="org.eclipse.ui.editors.documentProviders">
       <provider
@@ -121,7 +121,7 @@
             </separator>
          </menu>
          <action
-               class="com.sap.ide.cts.editor.action.TextBlockHouseKeepingAction"
+               class="com.sap.furcas.ide.editor.action.TextBlockHouseKeepingAction"
                enablesFor="+"
                id="com.sap.furcas.ide.editor.CleanUpTextBlocks"
                label="Clean-up TextBlocks"

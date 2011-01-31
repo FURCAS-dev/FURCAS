@@ -13,7 +13,7 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
  com.sap.emf.ocl.prepared,
  com.sap.furcas.metamodel;visibility:=reexport,
  com.sap.ocl.oppositefinder.query2,
- de.hpi.sam.bp2009.solution.queryContextScopeProvider,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider;visibility:=reexport,
  org.eclipse.ocl.examples.impactanalyzer.util
 Export-Package: com.sap.furcas.parsergenerator,
  com.sap.furcas.runtime.common.exceptions,

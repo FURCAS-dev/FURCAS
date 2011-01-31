@@ -1,5 +1,6 @@
 package com.sap.furcas.ide.editor;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -79,8 +80,10 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import com.sap.furcas.ide.editor.action.PrettyPrintAction;
 import com.sap.furcas.ide.editor.commands.CleanUpTextBlocksCommand;
 import com.sap.furcas.ide.editor.commands.ParseCommand;
+import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
 import com.sap.furcas.ide.editor.matching.CtsStaticMatcher;
@@ -108,6 +111,8 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
+import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
+import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
@@ -144,7 +149,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
 
         IConfigurationElement[] config = Platform.getExtensionRegistry()
                 .getConfigurationElementsFor(
-                        "com.sap.ide.cts.editor.bracketMatching");
+                        "com.sap.furcas.ide.editor.bracketMatching");
         if (config.length != 0) {
             IConfigurationElement e = config[0];
             String matchingType = e.getAttribute("matchingType");
@@ -689,32 +694,32 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
                         String newClass = "";
                         try {
                             //FIXME once PrettyPrinter is migrated
-//                            IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(
-//                                    /* readOnly */true);
-//                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//                            TCSExtractorPrintStream target = new TCSExtractorPrintStream(
-//                                    stream);
-//                            pp.prettyPrint(rootObject, blockInError,
-//                                    rootTemplate.getConcretesyntax(),
-//                                    rootTemplate, target);
-//                            newClass = stream.toString();
+                            IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(
+                                    /* readOnly */true);
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                            TCSExtractorPrintStream target = new TCSExtractorPrintStream(
+                                    stream);
+                            pp.prettyPrint(rootObject, blockInError,
+                                    rootTemplate.getConcreteSyntax(),
+                                    rootTemplate, target);
+                            newClass = stream.toString();
                         } catch (Exception e) {
                             e.printStackTrace();
                             newClass = "Error occurred while pretty printing: "
                                     + e.getMessage();
                         }
-//                        PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(
-//                                title, error, oldClass, newClass);
-//                        boolean startPrettyPrinter = dialog.open();
-//                        if (startPrettyPrinter) {
-//                            PrettyPrintAction action = new PrettyPrintAction(
-//                                    (MofClass) rootObject.refMetaObject(),
-//                                    rootObject, false);
-//                            action.runWithEvent(null);
-//                            rootBlock = action.getRootBlock();
-//                        } else {
-//                            rootBlock = blockInError;
-//                        }
+                        PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(
+                                title, error, oldClass, newClass);
+                        boolean startPrettyPrinter = dialog.open();
+                        if (startPrettyPrinter) {
+                            PrettyPrintAction action = new PrettyPrintAction(
+                                    rootObject.eClass(),
+                                    rootObject, false);
+                            action.runWithEvent(null);
+                            rootBlock = action.getRootBlock();
+                        } else {
+                            rootBlock = blockInError;
+                        }
                     } else {
                         rootBlock = blockInError;
                     }

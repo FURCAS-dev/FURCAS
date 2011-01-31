@@ -7,15 +7,15 @@ import generated.TCSParser;
 import java.io.IOException;
 import java.io.InputStream;
 
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistParsingHandler;
+import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.DelegationParsingObserver;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.ide.cts.editor.contentassist.CtsContentAssistParsingHandler;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
-import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
 
 public abstract class CtsContentAssistParsingHandlerTestBase extends
