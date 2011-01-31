@@ -57,6 +57,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/operatorLists"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ConcreteSyntax/tokens"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ConcreteSyntax/lexer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ConcreteSyntax/uuid"/>
       </genClasses>
       <genClasses image="false" ecoreClass="TCS.ecore#//Template">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Template/concreteSyntax"/>
@@ -120,7 +121,7 @@
       <genClasses ecoreClass="TCS.ecore#//Symbol">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Symbol/spaces"/>
       </genClasses>
-      <genClasses ecoreClass="TCS.ecore#//Keyword"/>
+      <genClasses ecoreClass="TCS.ecore#//Keyword" labelFeature="#//FURCAS/TCS/Literal/value"/>
       <genClasses ecoreClass="TCS.ecore#//OperatorList">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//OperatorList/name"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//OperatorList/priorities"/>
@@ -319,9 +320,9 @@
       <genClasses ecoreClass="TCS.ecore#//QueryPArg">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//QueryPArg/query"/>
       </genClasses>
-      <genClasses ecoreClass="TCS.ecore#//QueryByIdentifierPArg">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//QueryByIdentifierPArg/queryByIdentifier"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//QueryByIdentifierPArg/feature"/>
+      <genClasses ecoreClass="TCS.ecore#//FilterByIdentifierPArg">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FilterByIdentifierPArg/filter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FilterByIdentifierPArg/criterion"/>
       </genClasses>
       <genClasses ecoreClass="TCS.ecore#//FilterPArg">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FilterPArg/filter"/>
@@ -371,9 +372,9 @@
       </genClasses>
       <genClasses ecoreClass="TCS.ecore#//PredicateSemantic">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/as"/>
+            ecoreFeature="ecore:EAttribute TCS.ecore#//PredicateSemantic/when"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/when"/>
+            ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/as"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//PredicateSemantic/mode"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/foreachParent"/>
       </genClasses>

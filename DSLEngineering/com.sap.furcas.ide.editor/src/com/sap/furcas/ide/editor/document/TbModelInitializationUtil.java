@@ -9,6 +9,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.ide.editor.CtsActivator;
+import com.sap.furcas.ide.editor.commands.PrettyPrintCommand;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -23,6 +24,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
@@ -152,24 +154,24 @@ public class TbModelInitializationUtil {
 
         TextBlock rootBlock = null;
 
-        // TextBlockTCSExtractorStream target = new
-        // TextBlockTCSExtractorStream(tbPackage, partitionForTextBlocks,
-        // parserFactory);
-        // PrettyPrintCommand ppCommand = new PrettyPrintCommand(rootObject,
-        // syntax, target, editingDomain);
-        // try {
-        // editingDomain.getCommandStack().execute(ppCommand);
-        // } catch (ExecutionRollbackFailedException e) {
-        // CtsActivator.logError(e);
-        // } catch (Exception e) {
-        // CtsActivator.logError(e);
-        // }
-        // rootBlock = ppCommand.getResult();
-        //
-        // if (rootBlock != null) {
-        // partitionForTextBlocks.assignElement(rootBlock);
-        // TbValidationUtil.assertTextBlockConsistency(rootBlock);
-        // }
+        TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(
+                tbPackage, parserFactory);
+        PrettyPrintCommand ppCommand = new PrettyPrintCommand(rootObject,
+                syntax, target, editingDomain.getResourceSet());
+        try {
+            editingDomain.getCommandStack().execute(ppCommand);
+        } catch (Exception e) {
+            CtsActivator.logError(e);
+        }
+        Collection<?> result = ppCommand.getResult();
+        if(result.size() > 0 && result.iterator().next() instanceof TextBlock) {
+            rootBlock = (TextBlock) result.iterator().next();
+        }
+
+        if (rootBlock != null) {
+            //partitionForTextBlocks.assignElement(rootBlock);
+            TbValidationUtil.assertTextBlockConsistency(rootBlock);
+        }
 
         return rootBlock;
     }

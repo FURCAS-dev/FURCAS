@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2010-12-15 14:13:26
+// $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2011-01-10 11:20:12
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;

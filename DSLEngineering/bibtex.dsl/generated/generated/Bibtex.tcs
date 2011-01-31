@@ -18,7 +18,7 @@ syntax Bibtex {
   : "@article" "{" [
   		id ","
   		"title" "=" "{" title "}" ","  
-  		"author" "=" "{" author{refersTo='name', separator="and",
+  		"author" "=" "{" author{as='identifier', separator="and",
   			 				query="OCL:Bibtex::Author.allInstances()", filter="->select(a|a.name=?)" }
   			 				"}" 
   		]
