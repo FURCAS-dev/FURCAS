@@ -27,9 +27,9 @@ public class BenchmarkAsPluginTest extends TestCase {
     public void testStartBenchmarks() throws IOException {
         List<ActivationOption> optionList = new ArrayList<ActivationOption>();
         // TracebackStep
-//        optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
+        optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
 //        optionList.add(new ActivationOption(false, true, true, true, "Without delta propagation, TracebackSteps"));
-        optionList.add(new ActivationOption(true, false, true, true, "Without unused checks, TracebackSteps"));
+//        optionList.add(new ActivationOption(true, false, true, true, "Without unused checks, TracebackSteps"));
 //        optionList.add(new ActivationOption(true, true, true, false, "Without OperationCallExp selection, TracebackSteps"));
 //        optionList.add(new ActivationOption(false, false, true, true,
 //                "Without delta propagation, without unused checks, TracebackSteps"));
@@ -49,5 +49,11 @@ public class BenchmarkAsPluginTest extends TestCase {
                 /* verbose */ true,
                 "modifyElementaryTypesEventTrace.trace", "NgpmModel.xmi", /* noShrinking */ true,
                 /* oclId */ null /* meaning ALL */, optionList);
+//        System.out.println("Number of traceback evaluations: "+AbstractTracebackStep.tracebackExecutions);
+//        System.out.println("Number of unused proven: "+AbstractTracebackStep.provenUnused);
+//        System.out.println("Number of unused evaluations: "+UnusedEvaluationRequest.evaluations);
+//        System.out.println("Number of unused evaluationsAbortedDueToUnknownVariable: "+UnusedEvaluationRequest.evaluationsAbortedDueToUnknownVariable);
+//        System.out.println("Number of unused evaluationsSucceedingAndProvingUnused: "+UnusedEvaluationRequest.evaluationsSucceedingAndProvingUnused);
+//        System.out.println("Number of unused evaluationsSucceedingWithoutProvingUnused: "+UnusedEvaluationRequest.evaluationsSucceedingWithoutProvingUnused);
     }
 }
