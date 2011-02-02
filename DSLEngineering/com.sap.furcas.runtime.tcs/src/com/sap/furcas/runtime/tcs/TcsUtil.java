@@ -1625,8 +1625,20 @@ public class TcsUtil {
             return oclResult == null;
         } else if (oclResult.size() == 1 && propValue.equals(oclResult.iterator().next())) {
             return true;
+        } else if(propValue instanceof Collection) {
+            Collection<?> propValueColl = (Collection<?>) propValue;
+            Iterator<?> oclResultIterator = oclResult.iterator();
+            for (Iterator<?> iterator = propValueColl.iterator(); iterator
+                    .hasNext() && oclResultIterator.hasNext();) {
+                Object object = iterator.next();
+                Object oclObject = oclResultIterator.next();
+                if(!object.equals(oclObject)) {
+                    return false;
+                }
+            }
+            return true;
         } else {
-            return propValue.equals(oclResult);
+            return false;
         }
     }
 

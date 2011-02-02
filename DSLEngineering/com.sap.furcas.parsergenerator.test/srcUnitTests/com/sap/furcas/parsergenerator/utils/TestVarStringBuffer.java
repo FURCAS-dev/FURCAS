@@ -5,6 +5,8 @@ package com.sap.furcas.parsergenerator.utils;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
 import com.sap.furcas.parsergenerator.util.VarStringBuffer;
 
 /**
@@ -12,7 +14,7 @@ import com.sap.furcas.parsergenerator.util.VarStringBuffer;
  */
 public class TestVarStringBuffer {
 
-    @org.junit.Test
+    @Test
     public void testConcatUtil() throws Exception {
         VarStringBuffer buf = new VarStringBuffer();
         assertEquals(0, buf.length());
