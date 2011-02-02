@@ -28,7 +28,6 @@ import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
 import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
-import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
