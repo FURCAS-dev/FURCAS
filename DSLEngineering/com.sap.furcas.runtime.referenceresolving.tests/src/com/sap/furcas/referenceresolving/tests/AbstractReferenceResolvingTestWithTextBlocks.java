@@ -34,22 +34,18 @@ import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 
 /**
- * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
- * parser, then parse a text resource and register all reference resolving callbacks. Then, the test
- * manipulates the model produced by the parser run and observes how OCL-based property assignments get re-assigned.
+ * A test base class that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
+ * parser, then parse a text resource and register all reference resolving callbacks. 
  * 
  * @author Axel Uhl (D043530)
  * 
  */
-public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAndFactoryBasedTest {
-    
-    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
-    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
+public abstract class AbstractReferenceResolvingTestWithTextBlocks extends GeneratedParserAndFactoryBasedTest {
 
     protected static IncrementalParserFacade incrementalParserFacade;
     protected TextBlocksModelElementFactory modelFactory;
     protected Resource transientParsingResource;
-    protected EObject bibtexFile;
+    protected EObject file;
     protected static ResourceSet resourceSet;
     protected static EPackage.Registry testMetamodelPackageRegistry;
 
@@ -66,7 +62,7 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
      *            name of the language; should conform to the name of the language as specified in the mapping
      *            definition file
      */
-    public static void setupParser(File TCS, String LANGUAGE) throws Exception {
+    public static void setupParser(File TCS, String LANGUAGE, String MM_PACKAGE_URI, File... METAMODELS) throws Exception {
         GeneratedParserAndFactoryTestConfiguration testConfig = new GeneratedParserAndFactoryTestConfiguration(LANGUAGE, TCS, MM_PACKAGE_URI, METAMODELS);
         resourceSet = testConfig.getSourceConfiguration().getResourceSet();
         EditingDomain editingDomain = new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
@@ -113,16 +109,16 @@ public abstract class AbstractBibtexTestWithTextBlocks extends GeneratedParserAn
     }
 
     /**
-     * Call from an @Before operation to parse some text into the {@link #bibtexFile} attribute
+     * Call from an @Before operation to parse some text into the {@link #file} attribute
      * 
      * @param textToParse
-     *            this text is parsed using the grammar passed to {@link #setupParser(File, String)} as first argument.
+     *            this text is parsed using the grammar passed to {@link #setupParser(File, String, String, File...)} as first argument.
      */
-    protected void setupBibtexFileFromTextToParse(String textToParse) {
-        bibtexFile = parseBibtexFile(textToParse);
+    protected void setupFileFromTextToParse(String textToParse) {
+        file = parseFile(textToParse);
     }
 
-    protected EObject parseBibtexFile(String textToParse) {
+    protected EObject parseFile(String textToParse) {
         modelFactory = new EMFTextBlocksModelElementFactory();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         AbstractToken content = modelFactory.createToken("");
