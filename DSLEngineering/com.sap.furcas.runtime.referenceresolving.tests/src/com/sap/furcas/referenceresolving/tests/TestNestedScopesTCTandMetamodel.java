@@ -29,7 +29,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
  * 
  */
 
-public class TestNestedScopes extends GeneratedParserBasedTest {
+public class TestNestedScopesTCTandMetamodel extends GeneratedParserBasedTest{
 
     private static final String LANGUAGE = "NestedScopesTestSyntax";
     private static final File TCS =  new File("fixtures/NestedScopes.tcs");
