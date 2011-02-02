@@ -2,6 +2,7 @@ package org.eclipse.emf.query2.index.ui.test;
 
 import java.io.File;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query.index.Activator;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
@@ -26,7 +28,7 @@ import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.ui.Activator;
+
 
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
