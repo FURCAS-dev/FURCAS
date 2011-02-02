@@ -455,7 +455,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
             }
             if (tb.getCorrespondingModelElements().size() > 0) {
                 for (EObject element : tb.getCorrespondingModelElements()) {
-                    if (!element.eResource().equals(rootPartition)) {
+                    if (element.eResource() != null && !element.eResource().equals(rootPartition)) {
                         subNodesInOtherPartitions.add(tb);
                     }
                 }
