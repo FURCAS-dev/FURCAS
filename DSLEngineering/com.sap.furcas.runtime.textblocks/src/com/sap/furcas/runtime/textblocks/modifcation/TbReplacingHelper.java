@@ -17,7 +17,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.CoverageBean;
-import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 
