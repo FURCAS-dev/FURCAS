@@ -31,6 +31,7 @@ import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ResourceWithSize;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.EnvironmentFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
@@ -299,12 +300,17 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     }
 
     private int getModelSize(Resource resource){
-	int resourceSize = 0;
-	TreeIterator<EObject> iterator = resource.getAllContents();
-	while(iterator.hasNext()){
-	    iterator.next();
-	    resourceSize++;
-	}
+        int resourceSize;
+        if (resource instanceof ResourceWithSize) {
+            resourceSize = ((ResourceWithSize) resource).getSize();
+        } else {
+            resourceSize = 0;
+            TreeIterator<EObject> iterator = resource.getAllContents();
+            while (iterator.hasNext()) {
+                iterator.next();
+                resourceSize++;
+            }
+        }
 	return resourceSize;
     }
 
