@@ -224,7 +224,7 @@ public class UnusedEvaluationRequest {
     UnusedEvaluationRequest setInferredVariableValue(Variable variable, Object value, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         UnusedEvaluationRequest result;
         if (slots.contains(variable)) {
-            if (inferredVariableValues.containsKey(variable)) {
+            if (inferredVariableValues.containsKey(variable) && inferredVariableValues.get(variable) != value) {
                 throw new RuntimeException("Internal error: inferred two different values for variable "+variable+
                         " in what should have been the same dynamic scope: "+
                         inferredVariableValues.get(variable)+" vs. "+value);
