@@ -32,8 +32,8 @@ import org.junit.Test;
 
 public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTestWithTextBlocks {
     
-    private static final String LANGUAGE = "NestedScopesTestSyntax";
-    private static final File TCS =  new File("fixtures/NestedScopes.tcs");
+    private static final String LANGUAGE = "NestedScopes2TestSyntax";
+    private static final File TCS =  new File("fixtures/NestedScopes2.tcs");
     private static final File METAMODEL = new File("fixtures/NestedScopes.ecore");
     private static final String MM_PACKAGE_URI = "http://www.furcas.org/TCS/referenceresolving/tests/nestedScopes";
     
@@ -56,7 +56,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      */
     @Test
     @Ignore("Does not seem to work at the moment.")
-    public void  testUpateOfUsageAccordingToChangeOfDefinitionInInnerScope(){
+    public void  testUpdateOfUsageAccordingToChangeOfDefinitionInInnerScope(){
         String sample = "{ def b;" + "{ def b; use b; }" + "}";
         setupFileFromTextToParse(sample);
         
