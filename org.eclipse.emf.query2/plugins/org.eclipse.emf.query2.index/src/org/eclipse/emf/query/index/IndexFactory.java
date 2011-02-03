@@ -82,7 +82,7 @@ public class IndexFactory {
 	}
 
 	/**
-	 * Dumps the index
+	 * Dumps the indices into memory.
 	 */
 	public static void dumpIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();
@@ -92,7 +92,7 @@ public class IndexFactory {
 	}
 
 	/**
-	 * Dumps the index
+	 * Loads the dumped indices from memory.
 	 */
 	public static Index loadIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();
