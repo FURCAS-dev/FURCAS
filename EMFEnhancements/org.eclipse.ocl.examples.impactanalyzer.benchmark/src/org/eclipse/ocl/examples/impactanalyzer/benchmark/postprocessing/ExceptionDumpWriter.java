@@ -12,7 +12,7 @@ package org.eclipse.ocl.examples.impactanalyzer.benchmark.postprocessing;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.PathOptions;
 
@@ -23,7 +23,7 @@ public class ExceptionDumpWriter extends Writer {
     	super(PathOptions.getExceptionDumpFilePath(), false);
     }
 
-    public void writeDump(HashMap<String, Throwable> dumpList){
+    public void writeDump(Map<String, Throwable> dumpList){
 	for(String key : dumpList.keySet()){
 	    try {
 		writer.write(key + BREAK);

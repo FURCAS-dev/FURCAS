@@ -56,6 +56,10 @@ public class PathOptions {
 		return eventTraceFixturePath;
 	}
 
+    public static boolean isExceptionDumpFilePathDefined() {
+        return getExceptionDumpFilePath() != null && !getExceptionDumpFilePath().equals("");
+    }
+
 
 
 }
