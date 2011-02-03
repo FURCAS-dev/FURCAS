@@ -137,7 +137,7 @@ public class IndexQueryService {
 	 * <code>fromResource</code>.
 	 * <p>
 	 * The result set will never contain the <code>fromResource</code> itself
-	 * (regardless of intra-partition storage).
+	 * 
 	 * <p>
 	 * Note: <code>association</code> can also be the {@link MRI} of an object
 	 * value attribute link type.
@@ -263,7 +263,12 @@ public class IndexQueryService {
 		}
 		return result;
 	}
-
+	/**
+	 * Gets all the subtypes of the given eclass type
+	 * @param index
+	 * @param typeAsMofClass
+	 * @return collection of subtypes
+	 */
 	public static Collection<EClass> getAllSubtypes(Index index, EClass typeAsMofClass) {
 
 		Set<EClass> result = new HashSet<EClass>();

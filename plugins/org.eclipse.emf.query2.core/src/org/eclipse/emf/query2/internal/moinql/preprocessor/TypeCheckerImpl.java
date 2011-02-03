@@ -568,7 +568,7 @@ final public class TypeCheckerImpl implements TypeChecker {
 		boolean isIncluded = mqlFromEntry.isIncluded();
 
 		// copy the original partition scope in a set
-		URI[] originalPriScope = mqlFromEntry.getPartitionScope();
+		URI[] originalPriScope = mqlFromEntry.getResourceScope();
 		Set<URI> priScope = new HashSet<URI>(originalPriScope.length);
 		for (int i = 0; i < originalPriScope.length; i++) {
 			if (originalPriScope[i] == null) {

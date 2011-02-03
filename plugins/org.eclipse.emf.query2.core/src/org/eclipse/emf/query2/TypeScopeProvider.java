@@ -14,11 +14,10 @@ import org.eclipse.emf.common.util.URI;
 
 /**
  * A query scope provider can be used to dynamically calculate the scope of a
- * query. Semantically, a query scope is the union of a given set of partition
- * (identified by PRIs) and containers (identified by CRIs). The inclusive flag
- * is used to indicate if this union of partitions and containers defines the
+ * query. Semantically, a query scope is the given set of resources(URI's). The inclusive flag
+ * is used to indicate if this set of resources defines the
  * search space (if the flag is true) or if the search scope is defined by the
- * entire connection scope minus the provided union of partitions and containers
+ * entire connection scope minus the provided set of resources
  * (if the flag is false).
  * <p>
  * This interface <i>is</i> intended to be implemented by clients.
@@ -26,11 +25,11 @@ import org.eclipse.emf.common.util.URI;
 public interface TypeScopeProvider {
 
 	/**
-	 * If this returns true, the union of the partition and container scope
-	 * limits the MQL search scope. Otherwise, the union of partition and
-	 * container scope is excluded from the search scope
+	 * If this returns true, the resource scope
+	 * limits the MQL search scope. Otherwise, the resource
+	 *  scope is excluded from the search scope
 	 * 
-	 * @return true if the scope should include the partitions and containers
+	 * @return true if the scope should include the resources
 	 */
 	boolean isInclusiveScope();
 

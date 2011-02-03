@@ -148,7 +148,7 @@ public interface QueryProcessor {
 	 * 
 	 * @param scopeInclusive
 	 *            indicates whether the scope should include the provided
-	 *            resources and containers
+	 *            resources
 	 * @param resourceScope
 	 *            the resources to be considered in the scope (may be null)
 	 

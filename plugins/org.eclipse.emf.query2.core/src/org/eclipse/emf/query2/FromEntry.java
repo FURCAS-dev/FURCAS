@@ -73,10 +73,10 @@ abstract public class FromEntry extends QueryElement {
 
 	/**
 	 * Returns true if the scope of this from-entry is reduced to the included
-	 * partitions or containers.
+	 * resources.
 	 * 
 	 * @return true if the scope of this from-entry is reduced to the included
-	 *        resources.
+	 * resources.
 	 */
 	public boolean isIncluded() {
 
@@ -92,7 +92,7 @@ abstract public class FromEntry extends QueryElement {
 	 * 
 	 * @return resources of the scope of this from-entry.
 	 */
-	public URI[] getPartitionScope() {
+	public URI[] getResourceScope() {
 
 		if (scopeProvider == null) {
 			return this.resourceScope;
