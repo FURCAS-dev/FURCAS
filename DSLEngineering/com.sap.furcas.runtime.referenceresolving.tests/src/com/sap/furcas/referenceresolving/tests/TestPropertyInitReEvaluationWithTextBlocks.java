@@ -61,16 +61,16 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\"." + "author = \"Jane Doll\".";
-        setupFileFromTextToParse(textToParse);
+        setupModelFromTextToParse(textToParse);
         johnDoe = null;
         article = null;
         authorClass = null;
         articleClass = null;
-        assertNotNull(file);
-        EClass bibTexFileClass = file.eClass();
+        assertNotNull(rootElement);
+        EClass bibTexFileClass = rootElement.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) file.eGet(bibTexFileClass
+        Collection<EObject> entries = (Collection<EObject>) rootElement.eGet(bibTexFileClass
                 .getEStructuralFeature("entries"));
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -87,7 +87,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
 
     @After
     public void removeModelFromResourceSet() {
-        file.eResource().getContents().remove(file);
+        rootElement.eResource().getContents().remove(rootElement);
         resourceSet.getResources().remove(transientParsingResource);
         // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
         triggerManager.removeFromObservedResourceSets(resourceSet);
@@ -95,8 +95,8 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
     
     @Test
     public void testInitialModel() {
-        assertNotNull(file);
-        EList<?> entries = (EList<?>) (file).eGet((file).eClass().getEStructuralFeature("entries"));
+        assertNotNull(rootElement);
+        EList<?> entries = (EList<?>) (rootElement).eGet((rootElement).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
         assertEquals("BibtexWithPropertyInits", syntax.getName());
