@@ -11,10 +11,12 @@
 package org.eclipse.ocl.examples.impactanalyzer.benchmark.execution;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.PathOptions;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.ProcessingOptions;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.execution.measurements.BenchmarkMeasurements;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.postprocessing.BenchmarkResultWriter;
@@ -33,7 +35,16 @@ import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.tasks.Bench
  */
 public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
-    private HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
+    private final HashMap<String, Throwable> notExecutedDueToException;
+    private int exceptionCount = 0;
+    
+    public StandardBenchmarkExecutor() {
+        if (PathOptions.isExceptionDumpFilePathDefined()) {
+            notExecutedDueToException = new LinkedHashMap<String, Throwable>();
+        } else {
+            notExecutedDueToException = null;
+        }
+    }
 
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
@@ -64,16 +75,26 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 		BenchmarkMeasurements.reset();
 	    }
 	} catch (Exception e) {
-	    getNotExecutedDueToException().put(task.toString(), e);
+	    if (notExecutedDueToException != null) {
+	        notExecutedDueToException.put(task.toString(), e);
+	    }
+	    exceptionCount++;
 	    if (ProcessingOptions.isVerbose()) {
 		e.printStackTrace();
 	    }
 	} catch (StackOverflowError e) {
-	    getNotExecutedDueToException().put(task.toString(), e);
+            if (notExecutedDueToException != null) {
+                notExecutedDueToException.put(task.toString(), e);
+            }
+            exceptionCount++;
 	    if (ProcessingOptions.isVerbose()) {
 		e.printStackTrace();
 	    }
 	}
+    }
+    
+    public int getExceptionCount() {
+        return exceptionCount;
     }
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Long> evaluationTimeList,
@@ -94,11 +115,19 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 	additionalMeasurementInformationList.add(task.getAdditionalMeasurementInformation());
     }
 
-    public void setNotExecutedDueToException(HashMap<String, Throwable> notExecutedDueToException) {
-	this.notExecutedDueToException = notExecutedDueToException;
+    /**
+     * exceptions will only be recorded if {@link PathOptions#isExceptionDumpFilePathDefined()} returns
+     * <code>true</code>.
+     * 
+     * @return a read-only map
+     */
+    public Map<String, Throwable> getNotExecutedDueToException() {
+	return notExecutedDueToException == null ? null : Collections.unmodifiableMap(notExecutedDueToException);
     }
 
-    public HashMap<String, Throwable> getNotExecutedDueToException() {
-	return notExecutedDueToException;
+    public void clearExceptions() {
+        if (notExecutedDueToException != null) {
+            notExecutedDueToException.clear();
+        }
     }
 }
