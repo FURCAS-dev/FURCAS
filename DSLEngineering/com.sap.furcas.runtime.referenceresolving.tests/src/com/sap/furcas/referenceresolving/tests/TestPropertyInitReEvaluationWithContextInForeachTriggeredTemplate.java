@@ -60,16 +60,16 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\"." + "author = \"Jane Doll\".";
-        setupFileFromTextToParse(textToParse);
+        setupModelFromTextToParse(textToParse);
         johnDoe = null;
         article = null;
         authorClass = null;
         articleClass = null;
-        assertNotNull(file);
-        EClass bibTexFileClass = file.eClass();
+        assertNotNull(rootElement);
+        EClass bibTexFileClass = rootElement.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) file.eGet(bibTexFileClass
+        Collection<EObject> entries = (Collection<EObject>) rootElement.eGet(bibTexFileClass
                 .getEStructuralFeature("entries"));
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -86,7 +86,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
 
     @After
     public void removeModelFromResourceSet() {
-        file.eResource().getContents().remove(file);
+        rootElement.eResource().getContents().remove(rootElement);
         resourceSet.getResources().remove(transientParsingResource);
         // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
         triggerManager.removeFromObservedResourceSets(resourceSet);
@@ -94,8 +94,8 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
     
     @Test
     public void testInitialModel() {
-        assertNotNull(file);
-        EList<?> entries = (EList<?>) (file).eGet((file).eClass().getEStructuralFeature("entries"));
+        assertNotNull(rootElement);
+        EList<?> entries = (EList<?>) (rootElement).eGet((rootElement).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
         assertEquals("BibtexWithContextUsedInForeachTriggeredTemplate", syntax.getName());
@@ -130,7 +130,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
         for (EObject revenueLedger : revenues) {
             revenueLedgerArticles.add((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
             assertEquals(
-                    ((Collection<?>) file.eGet(file.eClass().getEStructuralFeature("entries"))).size(),
+                    ((Collection<?>) rootElement.eGet(rootElement.eClass().getEStructuralFeature("entries"))).size(),
                     revenueLedger.eGet(
                             revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,

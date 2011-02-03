@@ -53,17 +53,17 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractRefer
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\". humba " + "author = \"Jane Doll\". trala";
-        setupFileFromTextToParse(textToParse);
+        setupModelFromTextToParse(textToParse);
         johnDoe = null;
         janeDoll = null;
         article = null;
         authorClass = null;
         articleClass = null;
-        assertNotNull(file);
-        EClass bibTexFileClass = file.eClass();
+        assertNotNull(rootElement);
+        EClass bibTexFileClass = rootElement.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) file.eGet(bibTexFileClass
+        Collection<EObject> entries = (Collection<EObject>) rootElement.eGet(bibTexFileClass
                 .getEStructuralFeature("entries"));
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -83,8 +83,8 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractRefer
 
     @Test
     public void testInitialModel() {
-        assertNotNull(file);
-        EList<?> entries = (EList<?>) (file).eGet((file).eClass().getEStructuralFeature("entries"));
+        assertNotNull(rootElement);
+        EList<?> entries = (EList<?>) (rootElement).eGet((rootElement).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
         assertEquals("BibtexWithPropertyInitsWithContext", syntax.getName());
