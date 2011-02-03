@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.4 2010/05/29 15:31:41 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.6 2011/01/27 07:01:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,10 +26,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.ElementUtil;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.util.Nameable;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 
@@ -47,10 +50,16 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  */
 public class EnvironmentView
 {		
+	public static interface Filter 
+	{
+		public boolean filter(EObject eObject);
+	}
+	
+	protected final EStructuralFeature reference;
+
+	protected final String name;
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
-	private final EStructuralFeature reference;
-	private List<EClass> requiredAlternatives = null;
-	private final String name;
+	private List<Filter> filters = null;
 
 	public EnvironmentView(EStructuralFeature reference, String name) {
 		this.reference = reference;
@@ -58,7 +67,7 @@ public class EnvironmentView
 	}
 
 	public boolean accepts(EClass eClass) {
-		return ElementUtil.conformsTo(reference, eClass);
+		return PivotUtil.conformsTo(reference, eClass);
 	}
 
 	/**
@@ -68,100 +77,114 @@ public class EnvironmentView
 	 * @param element the element
 	 * @return the number of elements added; 1 if added, 0 if not
 	 */
-	public int addElement(String elementName, EObject element, TypeBindingsCS bindings) {
-		if ((element != null) && ((name == null) || name.equals(elementName))) {
-//			if (bindings == null) {
-//				bindings = rootBindings;
-//			}
-			if (!bindings.getBindings().isEmpty()) {
-				if (element instanceof OperationCS) {
-					element = ElementUtil.specializeOperation((OperationCS) element, bindings);
+	public int addElement(String elementName, EObject element) {
+		if (element == null) {
+			return 0;
+		}
+		if ((name != null) && !name.equals(elementName)) {
+			return 0;
+		}
+		if (filters != null) {
+			for (Filter filter : filters) {
+				if (!filter.filter(element)) {
+					return 0;
 				}
 			}
-			Object value = contentsByName.get(elementName);
-			if (value == null) {
-				contentsByName.put(elementName, element);
+		}
+		if (reference != null) {
+			EClassifier requiredType = reference.getEType();
+			if (!requiredType.isInstance(element)) {
+				return 0;
+			}
+		}
+		Object value = contentsByName.get(elementName);
+		if (value == null) {
+			contentsByName.put(elementName, element);
+		}
+		else {
+			List<EObject> values;
+			if (value instanceof EObject) {
+				values = new ArrayList<EObject>();
+				values.add((EObject) value);
+				contentsByName.put(elementName, values);
 			}
 			else {
-				List<EObject> values;
-				if (value instanceof EObject) {
-					values = new ArrayList<EObject>();
-					values.add((EObject) value);
-				}
-				else {
-					@SuppressWarnings("unchecked")
-					List<EObject> castValue = (List<EObject>)value;
-					values = castValue;
-				}
-				values.add(element);
+				@SuppressWarnings("unchecked")
+				List<EObject> castValue = (List<EObject>)value;
+				values = castValue;
 			}
-			return 1;
+			values.add(element);
 		}
-		return 0;
+		return 1;
 	}
 
-	public void addElementsOfScope(EObject element, ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(element);
+	public int addElements(Collection<? extends EObject> elements) {
+		int additions = 0;
+		if (elements != null) {
+			for (EObject element : elements) {
+				if (element instanceof Nameable) {
+					Nameable namedElement = (Nameable)element;
+					additions += addElement(namedElement.getName(), namedElement);
+				}
+			}
+		}
+		return additions;
+	}
+
+	public void addElementsOfScope(TypeManager typeManager, Element element, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
 		if (scopeAdapter != null) {
 			scopeAdapter.computeLookup(this, scopeView);
 		}
 	}
 
-	public int addNamedElement(NamedElementCS namedElement, TypeBindingsCS bindings) {
+	public void addElementsOfScope(ModelElementCS csElement, ScopeView scopeView) {
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
+		if (scopeAdapter != null) {
+			scopeAdapter.computeLookup(this, scopeView);
+		}
+	}
+
+	public void addFilter(Filter filter) {
+		if (filters == null) {
+			filters = new ArrayList<Filter>();
+		}
+		filters.add(filter);
+	}
+	
+	public int addNamedElement(Nameable namedElement) {
 		if (namedElement != null) {
-			return addElement(namedElement.getName(), namedElement, bindings);
+			return addElement(namedElement.getName(), namedElement);
 		}
 		return 0;
 	}
 
-	public int addNamedElement(EClass eClass, NamedElementCS namedElement, TypeBindingsCS bindings) {
-		if ((namedElement != null) && accepts(eClass)) {
-			if (eClass.isSuperTypeOf(namedElement.eClass())) {
-				if (requiredAlternatives != null) {
-					for (EClass requiredAlternative : requiredAlternatives) {
-						if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
-							return addNamedElement(namedElement, bindings);
-						}
-					}
-				}
-				else {				
-					return addNamedElement(namedElement, bindings);
-				}
-			}
-		}
-		return 0;
-	}
-
-	public int addNamedElements(List<? extends NamedElementCS> namedElements, TypeBindingsCS bindings) {
+	public int addNamedElements(Collection<? extends Nameable> namedElements) {
 		int additions = 0;
-		for (NamedElementCS namedElement : namedElements) {
-			additions += addElement(namedElement.getName(), namedElement, bindings);
-		}
-		return additions;
-	}
-
-	public int addNamedElements(EClass eClass, List<? extends NamedElementCS> namedElements, TypeBindingsCS bindings) {
-		int additions = 0;
-		if ((namedElements != null) && accepts(eClass)) {
-			for (NamedElementCS namedElement : namedElements) {
-				if (eClass.isSuperTypeOf(namedElement.eClass())) {
-					if (requiredAlternatives != null) {
-						for (EClass requiredAlternative : requiredAlternatives) {
-							if (requiredAlternative.isSuperTypeOf(namedElement.eClass())) {
-								additions += addElement(namedElement.getName(), namedElement, bindings);
-							}
-						}
-					}
-					else {				
-						additions += addElement(namedElement.getName(), namedElement, bindings);
-					}
-				}
+		if (namedElements != null) {
+			for (Nameable namedElement : namedElements) {
+				additions += addElement(namedElement.getName(), namedElement);
 			}
 		}
 		return additions;
 	}
 
-	public IEObjectDescription getContent() {
+	public EObject getContent() {
+		assert contentsByName.size() == 1;
+		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+			Object value = entry.getValue();
+			if (value instanceof List<?>) {
+				List<?> values = (List<?>)value;
+				value = values.get(values.size()-1);
+			}
+			if (value instanceof EObject) {
+				return (EObject) value;
+			}
+		}
+		return null;
+	}
+
+	public IEObjectDescription getDescription() {
 		assert contentsByName.size() == 1;
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
@@ -176,7 +199,7 @@ public class EnvironmentView
 		return null;
 	}
 
-	public List<IEObjectDescription> getContents() {
+	public List<IEObjectDescription> getDescriptions() {
 		List<IEObjectDescription> contents = new ArrayList<IEObjectDescription>();
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object values = entry.getValue();
@@ -192,9 +215,13 @@ public class EnvironmentView
 		return contents;
 	}
 
-	public Object getName() {
+	public String getName() {
 		return name;
 	}
+	
+//	public EStructuralFeature getReference() {
+//		return reference;
+//	}
 
 	public EClassifier getRequiredType() {
 		return reference != null ? reference.getEType() : null;
@@ -204,15 +231,10 @@ public class EnvironmentView
 		return contentsByName.size();
 	}
 
-	public void require(EClass... requiredClasses) {
-		if (requiredClasses != null) {
-			if (requiredAlternatives == null) {
-				requiredAlternatives = new ArrayList<EClass>();
-			}
-			for (EClass requiredClass : requiredClasses) {
-				requiredAlternatives.add(requiredClass);
-			}
-		}	
+	public void removeFilter(Filter filter) {
+		if (filters != null) {
+			filters.remove(filter);
+		}
 	}
 
 	@Override
@@ -222,16 +244,6 @@ public class EnvironmentView
 			s.append(reference.getName());
 			s.append(" : "); //$NON-NLS-1$
 			s.append(reference.getEType().getName());
-			if (requiredAlternatives != null) {
-				s.append(" && ("); //$NON-NLS-1$
-				String prefix = ""; //$NON-NLS-1$
-				for (EClass requiredAlternative : requiredAlternatives) {
-					s.append(prefix);
-					s.append(requiredAlternative.getName());
-					prefix = " || "; //$NON-NLS-1$
-				}
-				s.append(")"); //$NON-NLS-1$
-			}
 		}
 		s.append(" \""); //$NON-NLS-1$
 		if (name != null) {
@@ -247,4 +259,5 @@ public class EnvironmentView
 		s.append("}"); //$NON-NLS-1$
 		return s.toString();
 	}
+
 }

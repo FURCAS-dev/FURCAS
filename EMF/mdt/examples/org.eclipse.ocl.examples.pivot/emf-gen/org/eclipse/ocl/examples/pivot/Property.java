@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: Property.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isDerived <em>Is Derived</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getOpposite <em>Opposite</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getAssociation <em>Association</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isImplicit <em>Implicit</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isID <em>Is ID</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#getKeys <em>Keys</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Property#isResolveProxies <em>Is Resolve Proxies</em>}</li>
@@ -212,6 +213,33 @@ public interface Property
 	 * @generated
 	 */
 	void setAssociation(AssociationClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Implicit</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Implicit</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Implicit</em>' attribute.
+	 * @see #setImplicit(boolean)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getProperty_Implicit()
+	 * @model default="false" dataType="org.eclipse.ocl.examples.pivot.Boolean" ordered="false"
+	 * @generated
+	 */
+	boolean isImplicit();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.Property#isImplicit <em>Implicit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Implicit</em>' attribute.
+	 * @see #isImplicit()
+	 * @generated
+	 */
+	void setImplicit(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Is ID</b></em>' attribute.

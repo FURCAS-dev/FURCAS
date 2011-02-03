@@ -24,6 +24,7 @@ import org.junit.Test;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -33,10 +34,12 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTestWithTextBlocks {
+public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenceResolvingTestWithTextBlocks {
     
     private static final String LANGUAGE = "BibtexWithPropertyInits";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInits.tcs");
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
+    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     private EObject johnDoe;
     private EObject article;
@@ -45,7 +48,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE);
+        setupParser(TCS, LANGUAGE, MM_PACKAGE_URI, METAMODELS);
     }
     
     /**
@@ -58,16 +61,16 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\"." + "author = \"Jane Doll\".";
-        setupBibtexFileFromTextToParse(textToParse);
+        setupFileFromTextToParse(textToParse);
         johnDoe = null;
         article = null;
         authorClass = null;
         articleClass = null;
-        assertNotNull(bibtexFile);
-        EClass bibTexFileClass = bibtexFile.eClass();
+        assertNotNull(file);
+        EClass bibTexFileClass = file.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) bibtexFile.eGet(bibTexFileClass
+        Collection<EObject> entries = (Collection<EObject>) file.eGet(bibTexFileClass
                 .getEStructuralFeature("entries"));
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -84,7 +87,7 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
 
     @After
     public void removeModelFromResourceSet() {
-        bibtexFile.eResource().getContents().remove(bibtexFile);
+        file.eResource().getContents().remove(file);
         resourceSet.getResources().remove(transientParsingResource);
         // make sure the next parser run isn't obstructed by an already subscribed trigger manager:
         triggerManager.removeFromObservedResourceSets(resourceSet);
@@ -92,8 +95,8 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractBibtexTe
     
     @Test
     public void testInitialModel() {
-        assertNotNull(bibtexFile);
-        EList<?> entries = (EList<?>) (bibtexFile).eGet((bibtexFile).eClass().getEStructuralFeature("entries"));
+        assertNotNull(file);
+        EList<?> entries = (EList<?>) (file).eGet((file).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
         assertEquals("BibtexWithPropertyInits", syntax.getName());

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -3355,7 +3355,7 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getProperty_IsID()
+	public EAttribute getProperty_Implicit()
 	{
         return (EAttribute)getProperty().getEStructuralFeatures().get(6);
 	}
@@ -3365,9 +3365,19 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProperty_IsID()
+	{
+        return (EAttribute)getProperty().getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getProperty_Keys()
 	{
-        return (EReference)getProperty().getEStructuralFeatures().get(7);
+        return (EReference)getProperty().getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -3377,7 +3387,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getProperty_IsResolveProxies()
 	{
-        return (EAttribute)getProperty().getEStructuralFeatures().get(8);
+        return (EAttribute)getProperty().getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -3387,7 +3397,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getProperty_IsTransient()
 	{
-        return (EAttribute)getProperty().getEStructuralFeatures().get(9);
+        return (EAttribute)getProperty().getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -3397,7 +3407,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getProperty_IsUnsettable()
 	{
-        return (EAttribute)getProperty().getEStructuralFeatures().get(10);
+        return (EAttribute)getProperty().getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -3407,7 +3417,7 @@ public class PivotPackageImpl
 	 */
 	public EAttribute getProperty_IsVolatile()
 	{
-        return (EAttribute)getProperty().getEStructuralFeatures().get(11);
+        return (EAttribute)getProperty().getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -3416,7 +3426,7 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	public EReference getProperty_Class() {
-        return (EReference)getProperty().getEStructuralFeatures().get(12);
+        return (EReference)getProperty().getEStructuralFeatures().get(13);
 	}
 
 	/**

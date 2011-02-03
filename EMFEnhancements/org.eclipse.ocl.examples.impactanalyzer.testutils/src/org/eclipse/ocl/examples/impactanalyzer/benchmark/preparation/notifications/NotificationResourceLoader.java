@@ -25,14 +25,15 @@ import java.util.List;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ResourceWithSize;
+import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.XMIResourceWithSize;
 
 public class NotificationResourceLoader {
     public static final String MODEL_FIXTURE_LOCATION = "fixtures/models/";
     public static final String EVENTTRACE_FIXTURE_LOCATION = "fixtures/eventtraces/";
 
-    public static XMLResource loadModel(String path) {
+    public static ResourceWithSize loadModel(String path) {
         String resourcePath = NotificationResourceLoader.MODEL_FIXTURE_LOCATION + path;
 
         ResourceSetImpl resultRS;
@@ -43,7 +44,7 @@ public class NotificationResourceLoader {
         resultRS.eAdapters().add(adapter);
 
         InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(resourcePath);
-        XMLResource instanceResource = readResourceOutOfStream(fileStream, resultRS);
+        ResourceWithSize instanceResource = readResourceOutOfStream(fileStream, resultRS);
 
         return instanceResource;
     }
@@ -113,11 +114,12 @@ public class NotificationResourceLoader {
         return informationList;
     }
 
-    private static XMLResource readResourceOutOfStream(InputStream fileStream, ResourceSetImpl resultRS) {
-        XMLResource instanceResource = null;
+    private static ResourceWithSize readResourceOutOfStream(InputStream fileStream, ResourceSetImpl resultRS) {
+        ResourceWithSize instanceResource = null;
         try {
-            instanceResource = (XMLResource) resultRS.createResource(URI
-                    .createURI("http://de.hpi.sam.bp2009.solution.impactAnalyzer.benchmarks/test.xmi"));
+            instanceResource = new XMIResourceWithSize(
+                    URI.createURI("http://de.hpi.sam.bp2009.solution.impactAnalyzer.benchmarks/test.xmi"));
+            resultRS.getResources().add(instanceResource);
             instanceResource.load(fileStream, null);
         } catch (IOException e1) {
             // TODO Auto-generated catch block

@@ -7,7 +7,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * to the document.
  * 
  * @see com.sap.furcas.ide.editor.document.CtsHistoryDocumentProvider
- * @see com.sap.ide.cts.editor.junitcreate
+ * @see com.sap.furcas.ide.editor.junitcreate
  * 
  * @author D049157
  */

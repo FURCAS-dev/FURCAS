@@ -334,7 +334,9 @@ public class OperatorHandler {
                         for (OperatorTemplate operatorTemplate : opTemplateList) {
                             
                             if(operatorTemplate.getDisambiguateV3() != null && !synpreds.contains(operatorTemplate.getDisambiguateV3())) {
-                                rulebody.append("(");
+                                if(first) {
+                                    rulebody.append("(");
+                                }
                                 addedAtLeastOne = true;
                                 synpreds.add(operatorTemplate.getDisambiguateV3());
                                 if(!first) {
@@ -419,9 +421,9 @@ public class OperatorHandler {
                                                 "}");
                             }
                             rulebody.append(')');
-                            if (iterator2.hasNext()) {
-                                rulebody.append("\n| ");
-                            }
+//                            if (iterator2.hasNext()) {
+//                                rulebody.append("\n| ");
+//                            }
                         }
                     } else { 
                         // arity == 1, unary templates don't have a StoreRightTo attribute, because they are unary.

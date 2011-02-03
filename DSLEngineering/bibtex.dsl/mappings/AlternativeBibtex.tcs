@@ -21,7 +21,7 @@
           </elements>
         </blockSequence>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.2"/>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Entry">
@@ -30,7 +30,7 @@
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
         <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.1"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
         <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
       </elements>
@@ -47,7 +47,7 @@
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.4">
         <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Author/name"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.4" referredLiteral="#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.4" referredLiteral="#//@keywords.1"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.4">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.4">
@@ -63,8 +63,8 @@
     </templateSequence>
   </templates>
   <keywords literalRefs="#//@templates.2/@templateSequence/@elements.2" value="{"/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.4" value="}"/>
   <keywords literalRefs="#//@templates.3/@templateSequence/@elements.1 #//@templates.4/@templateSequence/@elements.1" value=":"/>
+  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.4" value="}"/>
   <keywords literalRefs="#//@templates.2/@templateSequence/@elements.0" value="DB:"/>
   <tokens name="COMMENT">
     <pattern>

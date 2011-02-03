@@ -12,16 +12,22 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: Pivot2UMLDeclarationVisitor.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
+import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
+import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -31,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -39,10 +46,12 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.uml2.uml.ParameterableElement;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 public class Pivot2UMLDeclarationVisitor
-	extends AbstractExtendingVisitor<org.eclipse.uml2.uml.Element, Pivot2UML>
+	extends AbstractExtendingVisitor<EModelElement, Pivot2UML>
 {
 	public static final Logger logger = Logger.getLogger(Pivot2UMLDeclarationVisitor.class);
 
@@ -52,8 +61,11 @@ public class Pivot2UMLDeclarationVisitor
 
 	protected void copyClassifier(org.eclipse.uml2.uml.Classifier umlClassifier, Type pivotType) {
 		copyNamedElement(umlClassifier, pivotType);
-		umlClassifier.setOwnedTemplateSignature((org.eclipse.uml2.uml.TemplateSignature)safeVisit(pivotType.getOwnedTemplateSignature()));
-//		safeVisitAll(umlClassifier.getEAnnotations(), pivotType.getOwnedAnnotations());
+		TemplateSignature pivotTemplateSignature = pivotType.getOwnedTemplateSignature();
+		if (pivotTemplateSignature != null) {
+			umlClassifier.setOwnedTemplateSignature((org.eclipse.uml2.uml.TemplateSignature)safeVisit(pivotTemplateSignature));
+		}
+		safeVisitAll(umlClassifier.getEAnnotations(), pivotType.getOwnedAnnotations());
 //		if (pivotType.eIsSet(PivotPackage.Literals.TYPE__INSTANCE_CLASS_NAME)) {
 //			umlClassifier.setInstanceClassName(pivotType.getInstanceClassName());
 //		}
@@ -91,23 +103,35 @@ public class Pivot2UMLDeclarationVisitor
 //		umlDataType.setSerializable(pivotDataType.isSerializable());
 	}
 
-/*	protected void copyDetails(EAnnotation eAnnotation, Annotation pivotAnnotation) {
-		copyModelElement(eAnnotation, pivotAnnotation);
-		safeVisitAll(eAnnotation.getEAnnotations(), pivotAnnotation.getOwnedAnnotations());
+	protected void copyDetails(EAnnotation umlAnnotation, Annotation pivotAnnotation) {
+		copyModelElement(umlAnnotation, pivotAnnotation);
+		safeVisitAll(umlAnnotation.getEAnnotations(), pivotAnnotation.getOwnedAnnotations());
 		for (Detail pivotDetail : pivotAnnotation.getOwnedDetails()) {
 			String name = pivotDetail.getName();
 			String value = StringUtils.splice(pivotDetail.getValues(), "");
-			eAnnotation.getDetails().put(name, value);
+			umlAnnotation.getDetails().put(name, value);
 		}
-	} */
+	}
 
-	protected void copyModelElement(org.eclipse.uml2.uml.Element umlElement, MonikeredElement pivotModelElement) {
+	protected void copyModelElement(EModelElement umlElement, MonikeredElement pivotModelElement) {
 		context.putCreated(pivotModelElement, umlElement);
 	}
 
 	protected void copyMultiplicityElement(org.eclipse.uml2.uml.MultiplicityElement umlMultiplicityElement, TypedMultiplicityElement pivotTypedElement) {
-		umlMultiplicityElement.setLower(pivotTypedElement.getLower().intValue());
-		umlMultiplicityElement.setUpper(pivotTypedElement.getUpper().intValue());
+		Integer lower = pivotTypedElement.getLower().intValue();
+		if (lower.equals(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER.getDefaultValue())) {
+//			umlMultiplicityElement.eUnset(UMLPackage.Literals.MULTIPLICITY_ELEMENT__LOWER);
+		}
+		else {
+			umlMultiplicityElement.setLower(lower);
+		}
+		Integer upper = pivotTypedElement.getUpper().intValue();
+		if (upper.equals(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER.getDefaultValue())) {
+//			umlMultiplicityElement.eUnset(UMLPackage.Literals.MULTIPLICITY_ELEMENT__UPPER);
+		}
+		else {
+			umlMultiplicityElement.setUpper(upper);
+		}
 		umlMultiplicityElement.setIsUnique(pivotTypedElement.isUnique());
 		umlMultiplicityElement.setIsOrdered(pivotTypedElement.isOrdered());
 	}
@@ -123,7 +147,7 @@ public class Pivot2UMLDeclarationVisitor
 		context.defer(pivotTypedElement);		// Defer type setting
 	}
 
-	public <T extends org.eclipse.uml2.uml.Element> void safeVisitAll(List<T> eObjects, List<? extends Element> pivotObjects) {
+	public <T extends EObject> void safeVisitAll(List<T> eObjects, List<? extends Element> pivotObjects) {
 		for (Element pivotObject : pivotObjects) {
 			@SuppressWarnings("unchecked")
 			T eObject = (T) safeVisit(pivotObject);
@@ -139,17 +163,17 @@ public class Pivot2UMLDeclarationVisitor
 		return null;
 	}
 
-/*	@Override
-	public EObject visitAnnotation(Annotation pivotAnnotation) {
-		EAnnotation eAnnotation = UMLFactory.eINSTANCE.createEAnnotation();
-		copyDetails(eAnnotation, pivotAnnotation);
-		eAnnotation.setSource(pivotAnnotation.getName());
-		safeVisitAll(eAnnotation.getContents(), pivotAnnotation.getOwnedContents());
+	@Override
+	public EAnnotation visitAnnotation(Annotation pivotAnnotation) {
+		EAnnotation umlAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+		copyDetails(umlAnnotation, pivotAnnotation);
+		umlAnnotation.setSource(pivotAnnotation.getName());
+		safeVisitAll(umlAnnotation.getContents(), pivotAnnotation.getOwnedContents());
 		if (!pivotAnnotation.getReferences().isEmpty()) {
 			context.defer(pivotAnnotation);
 		}
-		return eAnnotation;
-	} */
+		return umlAnnotation;
+	}
 
 	@Override
 	public org.eclipse.uml2.uml.Class visitClass(org.eclipse.ocl.examples.pivot.Class pivotClass) {
@@ -260,10 +284,11 @@ public class Pivot2UMLDeclarationVisitor
 		copyNamedElement(umlOperation, pivotOperation);
 //		safeVisitAll(umlOperation.getEAnnotations(), pivotOperation.getOwnedAnnotations());
 		context.defer(pivotOperation);		// Defer type setting
-		umlOperation.setOwnedTemplateSignature((org.eclipse.uml2.uml.TemplateSignature)safeVisit(pivotOperation.getOwnedTemplateSignature()));
+		TemplateSignature pivotTemplateSignature = pivotOperation.getOwnedTemplateSignature();
+		umlOperation.setOwnedTemplateSignature((org.eclipse.uml2.uml.TemplateSignature)safeVisit(pivotTemplateSignature));
 //		copyTemplateSignature(pivotOperation.getETypeParameters(), pivotOperation);
-//		safeVisitAll(pivotOperation.getOwnedParameters(), pivotOperation.getOwnedParameters());
-//		safeVisitAll(eOperation.getEGenericExceptions(), pivotOperation.getRaisedExceptions());
+		safeVisitAll(umlOperation.getOwnedParameters(), pivotOperation.getOwnedParameters());
+		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedExceptions());
 		for (Constraint pivotConstraint : pivotOperation.getOwnedRules()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
 		}
@@ -293,6 +318,16 @@ public class Pivot2UMLDeclarationVisitor
 		copyTypedElement(umlParameter, pivotParameter);
 		copyMultiplicityElement(umlParameter, pivotParameter);
 		return umlParameter;
+	}
+
+	@Override
+	public org.eclipse.uml2.uml.Element visitPrimitiveType(PrimitiveType pivotPrimitiveType) {
+		if (pivotPrimitiveType.getTemplateBindings().size() > 0) {
+			return null;
+		}
+		org.eclipse.uml2.uml.PrimitiveType umlPrimitiveType = UMLFactory.eINSTANCE.createPrimitiveType();
+		copyDataTypeOrEnum(umlPrimitiveType, pivotPrimitiveType);
+		return umlPrimitiveType;
 	}
 
 	@Override
@@ -326,8 +361,9 @@ public class Pivot2UMLDeclarationVisitor
 
 	@Override
 	public org.eclipse.uml2.uml.TemplateSignature visitTemplateSignature(TemplateSignature pivotTemplateSignature) {
-		org.eclipse.uml2.uml.TemplateSignature umlTemplateSignature = UMLFactory.eINSTANCE.createTemplateSignature();
-		safeVisitAll(umlTemplateSignature.getParameters(), pivotTemplateSignature.getParameters());
+		org.eclipse.uml2.uml.TemplateSignature umlTemplateSignature = UMLFactory.eINSTANCE.createRedefinableTemplateSignature();
+		safeVisitAll(umlTemplateSignature.getOwnedParameters(), pivotTemplateSignature.getOwnedParameters());
+//		safeVisitAll(umlTemplateSignature.getParameters(), pivotTemplateSignature.getParameters());
 		return umlTemplateSignature;
 	}
 
@@ -335,6 +371,7 @@ public class Pivot2UMLDeclarationVisitor
 	@Override
 	public org.eclipse.uml2.uml.ClassifierTemplateParameter visitTypeTemplateParameter(TypeTemplateParameter pivotTypeTemplateParameter) {
 		org.eclipse.uml2.uml.ClassifierTemplateParameter umlTypeParameter = UMLFactory.eINSTANCE.createClassifierTemplateParameter();
+		umlTypeParameter.setOwnedParameteredElement((ParameterableElement) safeVisit(pivotTypeTemplateParameter.getOwnedParameteredElement()));
 //		umlTypeParameter.setName(((Type) pivotTypeTemplateParameter.getParameteredElement()).getName());
 		context.putCreated(pivotTypeTemplateParameter, umlTypeParameter);
 		if (!pivotTypeTemplateParameter.getConstrainingTypes().isEmpty()) {

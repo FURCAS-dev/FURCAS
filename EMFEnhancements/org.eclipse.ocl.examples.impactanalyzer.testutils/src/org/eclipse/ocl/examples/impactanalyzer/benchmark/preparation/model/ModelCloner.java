@@ -44,42 +44,29 @@ public class ModelCloner {
 	}
 	
 	public static Resource cloneResource(Resource resourceToClone, String cloneId){
-		int resourceSize = 0;
-		TreeIterator<EObject> iterator = resourceToClone.getAllContents();
-		while (iterator.hasNext()) {
-			iterator.next();
-			resourceSize++;
-		}
-
-		//System.out.println("\t\t\tClone Resource: " + resourceToClone.getURI()
-		//		+ " Elements:" + resourceSize);
-		
 		// Compute new URI by inserting "2" before the file extension
 		URI uri = resourceToClone.getURI();
 		String ext = uri.fileExtension();
-
 		String name = "";
-
 		name = uri.trimFileExtension().lastSegment() + "." + cloneId;
-
 		uri = URI.createURI(name).resolve(uri).appendFileExtension(ext);
-		
 		ResourceSetImpl resultRS;
-	    resultRS = new ResourceSetImpl();
-	    resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-        
-	    ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
-        resultRS.eAdapters().add(adapter);
-	   
-		Resource clone = resultRS.createResource(uri);
-
+		resultRS = new ResourceSetImpl();
+	        resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+	        ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+	        resultRS.eAdapters().add(adapter);
+	        Resource clone;
+	        if (resourceToClone instanceof XMIResourceWithSize) {
+	            clone = new XMIResourceWithSize(uri, ((XMIResourceWithSize) resourceToClone));
+	            resultRS.getResources().add(clone);
+	        } else {
+	            clone = resultRS.createResource(uri);
+	        }
 		Copier copier = new Copier();
 		clone.getContents().addAll(
 				copier.copyAll(resourceToClone.getContents()));
 		copier.copyReferences();
-
 		clone = cloneXMLResourceIDs(resourceToClone, clone);
-
 		return clone;
 	}
 	

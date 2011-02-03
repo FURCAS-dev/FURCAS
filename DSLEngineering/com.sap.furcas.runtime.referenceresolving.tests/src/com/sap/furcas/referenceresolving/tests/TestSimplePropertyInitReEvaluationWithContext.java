@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.fixture.ScenarioFixtureData;
 
 /**
  * A test case that use a FURCAS mapping specification (".tcs" file) and based on this produce lexer and
@@ -24,10 +25,12 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibtexTestWithTextBlocks {
+public class TestSimplePropertyInitReEvaluationWithContext extends AbstractReferenceResolvingTestWithTextBlocks {
     
     private static final String LANGUAGE = "BibtexWithPropertyInitsWithContext";
     private static final File TCS = new File("fixtures/BibtexWithPropertyInitsWithContext.tcs");
+    private static final File[] METAMODELS = { ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL };
+    private static final String MM_PACKAGE_URI = ScenarioFixtureData.BIBTEXT_PACKAGE_URI;
 
     private EObject johnDoe;
     private EObject janeDoll;
@@ -37,7 +40,7 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
 
     @BeforeClass
     public static void setupParser() throws Exception {
-        setupParser(TCS, LANGUAGE);
+        setupParser(TCS, LANGUAGE,MM_PACKAGE_URI,METAMODELS);
     }
     
     /**
@@ -50,17 +53,17 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
     public void setupInitialModel() throws IOException, UnknownProductionRuleException {
         String textToParse = "article{" + "  Testing, \"John Doe\"," + "  year = \"2002\"" + "}" +
                              "author = \"John Doe\". humba " + "author = \"Jane Doll\". trala";
-        setupBibtexFileFromTextToParse(textToParse);
+        setupFileFromTextToParse(textToParse);
         johnDoe = null;
         janeDoll = null;
         article = null;
         authorClass = null;
         articleClass = null;
-        assertNotNull(bibtexFile);
-        EClass bibTexFileClass = bibtexFile.eClass();
+        assertNotNull(file);
+        EClass bibTexFileClass = file.eClass();
         assertEquals("BibTextFile", bibTexFileClass.getName());
         @SuppressWarnings("unchecked")
-        Collection<EObject> entries = (Collection<EObject>) bibtexFile.eGet(bibTexFileClass
+        Collection<EObject> entries = (Collection<EObject>) file.eGet(bibTexFileClass
                 .getEStructuralFeature("entries"));
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -80,8 +83,8 @@ public class TestSimplePropertyInitReEvaluationWithContext extends AbstractBibte
 
     @Test
     public void testInitialModel() {
-        assertNotNull(bibtexFile);
-        EList<?> entries = (EList<?>) (bibtexFile).eGet((bibtexFile).eClass().getEStructuralFeature("entries"));
+        assertNotNull(file);
+        EList<?> entries = (EList<?>) (file).eGet((file).eClass().getEStructuralFeature("entries"));
         assertEquals(3, entries.size());
         assertNotNull(syntax);
         assertEquals("BibtexWithPropertyInitsWithContext", syntax.getName());

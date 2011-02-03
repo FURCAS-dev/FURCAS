@@ -76,7 +76,7 @@ import org.antlr.runtime.Token;
 
 
 @members {
-   private static final String syntaxUUID = "_fgatMCs2EeCRfuBiAX4StA";
+   private static final String syntaxUUID = "_pexAkC1CEeCwaIhti0EMQw";
    public String getSyntaxUUID() {
         return syntaxUUID;
    }

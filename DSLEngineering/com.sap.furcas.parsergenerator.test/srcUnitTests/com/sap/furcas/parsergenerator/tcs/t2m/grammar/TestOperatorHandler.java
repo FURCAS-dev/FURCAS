@@ -425,6 +425,78 @@ public class TestOperatorHandler {
         return opList;
     }
     
+    @Test
+    public void testAddElementOnePriorityTwoOperatorsTwoTemplates() throws Exception {   
+        ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
+        // Class under test
+        OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
+
+        String classTemplateName = "testClassTemplate";
+        
+        /****** Main driver for expected result ****/
+        OperatorListStub opList = getMockOperatorList(list("TestOp", "OtherTestOp"));
+        Priority prio0 = opList.getPriorities().iterator().next();
+        OperatorTemplateStub template2 = new OperatorTemplateStub();
+        template2.names = list("template2");
+        prio0.getOperators().get(0).getTemplates().add(template2);
+        /******/
+        
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
+
+        assertEquals(1, writerStub.rules.size());
+        ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
+
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
+                        "  :   ( ( ret=primary_testclasstemplate((TESTOP)=>(TESTOP {opName = \"TestOp\";}((ret=template[opName, ret, firstToken]) " +
+                        "| (ret=template2[opName, ret, firstToken]))) " + 
+                        "| (OTHERTESTOP)=>(OTHERTESTOP {opName = \"OtherTestOp\";}((ret=template[opName, ret, firstToken]))))*)) " + 
+                        "{ " + 
+                        "this.setLocationAndComment(ret, firstToken); " +
+                        "ret2=ret; " + 
+                        " }  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
+
+        assertEqualTokens(expected, result.toString());
+    }
+    
+    @Test
+    public void testAddElementOnePriorityTwoOperatorsWithSyntacticPredicates() throws Exception {   
+        ANTLR3WriterStub writerStub = new ANTLR3WriterStub();
+        TemplateNamingHelper<?> namingStub = new TemplateNamingHelperStub<Object>();
+        // Class under test
+        OperatorHandler ophandler = new OperatorHandler(writerStub, namingStub, null);
+
+        String classTemplateName = "testClassTemplate";
+        
+        /****** Main driver for expected result ****/
+        OperatorListStub opList = getMockOperatorList(list("TestOp", "OtherTestOp"));
+        Priority prio0 = opList.getPriorities().iterator().next();
+        prio0.getOperators().get(0).getTemplates().get(0).setDisambiguateV3("disambiguate1");
+        OperatorTemplateStub template2 = new OperatorTemplateStub();
+        template2.disambiguateV3 = "disambiguate2";
+        template2.names = list("template2");
+        prio0.getOperators().get(0).getTemplates().add(template2);
+        /******/
+        
+        ophandler.addOperatorList(opList , classTemplateName , true, null, null);
+
+        assertEquals(1, writerStub.rules.size());
+        ClassProductionRule result = (ClassProductionRule) writerStub.rules.get(0);
+
+        String expected = "priority_0 returns[Object ret2] @init{java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1); Object semRef=null;} " + 
+                            "  :   ( ( ret=primary_testclasstemplate((TESTOP((disambiguate1)|(disambiguate2)))=>(TESTOP {opName = \"TestOp\";}((disambiguate1)=>(ret=template[opName, ret, firstToken]) " +
+                            "| (disambiguate2)=>(ret=template2[opName, ret, firstToken]))) " + 
+                            "| (OTHERTESTOP)=>(OTHERTESTOP {opName = \"OtherTestOp\";}((ret=template[opName, ret, firstToken]))))*)) " + 
+                            "{ " + 
+                            "this.setLocationAndComment(ret, firstToken); " +
+                            "ret2=ret; " + 
+                            " }  ; " +
+        "catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);}";
+
+        assertEqualTokens(expected, result.toString());
+    }
+    
     // TODO test other arities and associativities
 
     @Test

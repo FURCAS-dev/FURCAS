@@ -225,14 +225,19 @@ public class UnusedEvaluationRequest {
         UnusedEvaluationRequest result;
         if (slots.contains(variable)) {
             if (inferredVariableValues.containsKey(variable)) {
-                throw new RuntimeException("Internal error: inferred two different values for variable "+variable+
-                        " in what should have been the same dynamic scope: "+
-                        inferredVariableValues.get(variable)+" vs. "+value);
+                if (inferredVariableValues.get(variable) != value) {
+                    throw new RuntimeException("Internal error: inferred two different values for variable " + variable
+                            + " in what should have been the same dynamic scope: "
+                            + inferredVariableValues.get(variable) + " vs. " + value);
+                } else {
+                    result = this;
+                }
+            } else {
+                Map<Variable, Object> newInferredVariableValues = new HashMap<Variable, Object>(inferredVariableValues);
+                newInferredVariableValues.put(variable, value);
+                result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
+                        newInferredVariableValues, slots, inevitableVariableUsages);
             }
-            Map<Variable, Object> newInferredVariableValues = new HashMap<Variable, Object>(inferredVariableValues);
-            newInferredVariableValues.put(variable, value);
-            result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
-                    newInferredVariableValues, slots, inevitableVariableUsages);
         } else {
             result = this;
         }

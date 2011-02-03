@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g 2011-01-29 00:28:49
+// $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2011-01-10 11:20:12
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -66,15 +66,70 @@ public class BibtexLexer extends Lexer {
               return tokenFactory;
           }
        /**
-         * Removing starting/ending delimiters.
+         * Unescape string.
+         * 
+         * @param s the s
+         * @param delimLength the delim length
+         * 
+         * @return the string
          * @deprecated
          */
         public String unescapeString(String s, int delimLength) {
+            StringBuilder ret = new StringBuilder();
             // get rid of the starting and ending delimiters (e.g., '\'', '"')
            if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                     s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
             }
-            return s;
+            
+            CharacterIterator ci = new StringCharacterIterator(s);
+            char c = ci.first();
+            while(c != CharacterIterator.DONE) {
+                char tc = 0;
+                switch(c) {
+                case '\\':
+                    c = ci.next();
+                    switch(c) {
+                    case 'n':
+                        tc = '\n';
+                        break;
+                    case 'r':
+                        tc = '\r';
+                        break;
+                    case 't':
+                        tc = '\t';
+                        break;
+                    case 'b':
+                        tc = '\b';
+                        break;
+                    case 'f':
+                        tc = '\f';
+                        break;
+                    case '"':
+                        tc = '"';
+                        break;
+                    case '\'':
+                        tc = '\'';
+                        break;
+                    case '\\':
+                        tc = '\\';
+                        break;
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                        throw new RuntimeException("octal escape sequences not supported yet");
+                    default:
+                        throw new RuntimeException("unknown escape sequence: '\\" + c + "'");
+                    }
+                    break;
+                default:
+                    tc = c;
+                    break;
+                }
+                ret.append(tc);
+                c = ci.next();
+            }
+            return ret.toString();
         }
 
           public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
@@ -99,7 +154,7 @@ public class BibtexLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g"; }
+    public String getGrammarFileName() { return "C:\\dev\\furcas.emf\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g"; }
 
     // $ANTLR start "T__15"
     public final void mT__15() throws RecognitionException {
@@ -1354,9 +1409,9 @@ public class BibtexLexer extends Lexer {
 
     protected DFA16 dfa16 = new DFA16(this);
     static final String DFA16_eotS =
-        "\1\uffff\1\15\2\uffff\1\15\2\uffff\1\15\1\uffff\1\15\4\uffff\1\25"+
-        "\1\uffff\5\15\2\uffff\4\15\1\40\4\15\1\uffff\2\15\1\47\3\15\1\uffff"+
-        "\1\53\2\15\3\uffff";
+        "\1\uffff\1\15\2\uffff\1\15\2\uffff\1\15\1\uffff\1\15\4\uffff\1"+
+        "\25\1\uffff\5\15\2\uffff\4\15\1\40\4\15\1\uffff\2\15\1\47\3\15\1"+
+        "\uffff\1\53\2\15\3\uffff";
     static final String DFA16_eofS =
         "\56\uffff";
     static final String DFA16_minS =
@@ -1376,10 +1431,11 @@ public class BibtexLexer extends Lexer {
     static final String DFA16_specialS =
         "\56\uffff}>";
     static final String[] DFA16_transitionS = {
-            "\1\14\1\13\2\uffff\1\13\22\uffff\1\14\1\uffff\1\15\4\uffff\1"+
-            "\17\4\uffff\1\6\1\12\2\uffff\12\16\3\uffff\1\10\2\uffff\1\5"+
-            "\1\4\3\15\1\1\25\15\4\uffff\1\15\1\uffff\1\11\22\15\1\7\6\15"+
-            "\1\2\1\uffff\1\3\102\uffff\27\15\1\uffff\37\15\1\uffff\10\15",
+            "\1\14\1\13\2\uffff\1\13\22\uffff\1\14\1\uffff\1\15\4\uffff"+
+            "\1\17\4\uffff\1\6\1\12\2\uffff\12\16\3\uffff\1\10\2\uffff\1"+
+            "\5\1\4\3\15\1\1\25\15\4\uffff\1\15\1\uffff\1\11\22\15\1\7\6"+
+            "\15\1\2\1\uffff\1\3\102\uffff\27\15\1\uffff\37\15\1\uffff\10"+
+            "\15",
             "\1\20",
             "",
             "",
@@ -1406,8 +1462,8 @@ public class BibtexLexer extends Lexer {
             "\1\35",
             "\1\36",
             "\1\37",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\41",
             "\1\42",
             "\1\43",
@@ -1415,14 +1471,14 @@ public class BibtexLexer extends Lexer {
             "",
             "\1\45",
             "\1\46",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\50",
             "\1\51",
             "\1\52",
             "",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\54",
             "\1\55",
             "",
