@@ -23,7 +23,9 @@ Require-Bundle: org.antlr,
  com.sap.furcas.metamodel.editor,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.ide.parserfactory,
- com.sap.furcas.runtime.unparser;bundle-version="1.0.0"
+ com.sap.furcas.runtime.unparser,
+ org.eclipse.imp.metatooling,
+ org.eclipse.imp.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
