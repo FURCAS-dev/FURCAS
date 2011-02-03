@@ -20,6 +20,12 @@ import com.sap.furcas.ide.editor.matching.CtsStaticMatcher;
 public class CtsReconcilingStrategy implements IReconcilingStrategy,
 	IReconcilingStrategyExtension {
 
+    private static final String EXTENSION_POINT_FOLDING_STATIC_FOLDING_BRACKETS = "staticFoldingBrackets";
+    private static final String EXTENSION_POINT_FOLDING_TYPE_STATIC_CONFIGURABLE = "static (configurable)";
+    private static final String EXTENSION_POINT_FOLDING_TYPE_DYNAMIC_DEFAULT = "dynamic (default)";
+    private static final String EXTENSION_POINT_FOLDING_TYPE_STATIC_DEFAULT = "static (default)";
+    private static final String EXTENSION_POINT_FOLDING_TYPE = "foldingType";
+    private static final String EXTENSION_POINT_FOLDING = "com.sap.furcas.ide.editor.folding";
     private char FOLDING_START_CHAR = '{';
     private char FOLDING_END_CHAR = '}';
     private AbstractGrammarBasedEditor editor;
@@ -36,22 +42,27 @@ public class CtsReconcilingStrategy implements IReconcilingStrategy,
 	this.editor = editor;
     }
 
+    @Override
     public void setDocument(IDocument document) {
 	this.fDocument = document;
     }
 
+    @Override
     public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
 	initialReconcile();
     }
 
+    @Override
     public void reconcile(IRegion partition) {
 	initialReconcile();
     }
 
+    @Override
     public void setProgressMonitor(IProgressMonitor monitor) {
 
     }
 
+    @Override
     public void initialReconcile() {
 	fOffset = 0;
 	fRangeEnd = fDocument.getLength();
@@ -90,19 +101,19 @@ public class CtsReconcilingStrategy implements IReconcilingStrategy,
 	try {
 	    IConfigurationElement[] config = Platform.getExtensionRegistry()
 		    .getConfigurationElementsFor(
-			    "com.sap.ide.cts.editor.folding");
+			    EXTENSION_POINT_FOLDING);
 	    if (config.length != 0) {
 		IConfigurationElement e = config[0];
-		String foldingType = e.getAttribute("foldingType");
-		if (foldingType.equals("static (default)")) {
+		String foldingType = e.getAttribute(EXTENSION_POINT_FOLDING_TYPE);
+		if (foldingType.equals(EXTENSION_POINT_FOLDING_TYPE_STATIC_DEFAULT)) {
 		    recursiveStaticTokens(0);
 		}
-		if (foldingType.equals("dynamic (default)")) {
+		if (foldingType.equals(EXTENSION_POINT_FOLDING_TYPE_DYNAMIC_DEFAULT)) {
 		    recursiveTokens(0);
 		}
-		if (foldingType.equals("static (configurable)")) {
+		if (foldingType.equals(EXTENSION_POINT_FOLDING_TYPE_STATIC_CONFIGURABLE)) {
 
-		    char braces[] = e.getAttribute("staticFoldingBrackets")
+		    char braces[] = e.getAttribute(EXTENSION_POINT_FOLDING_STATIC_FOLDING_BRACKETS)
 			    .toCharArray();
 		    if (braces != null && braces.length == 3) {
 
@@ -115,7 +126,8 @@ public class CtsReconcilingStrategy implements IReconcilingStrategy,
 		}
 		cNewLines = 1;
 		Display.getDefault().asyncExec(new Runnable() {
-		    public void run() {
+		    @Override
+            public void run() {
 			editor.updateFoldingStructure(fPositions);
 		    }
 

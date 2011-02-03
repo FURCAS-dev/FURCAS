@@ -80,7 +80,7 @@ public class KeywordItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((Keyword)object).getName();
+        String label = ((Keyword)object).getValue();
         return label == null || label.length() == 0 ?
             getString("_UI_Keyword_type") :
             getString("_UI_Keyword_type") + " " + label;

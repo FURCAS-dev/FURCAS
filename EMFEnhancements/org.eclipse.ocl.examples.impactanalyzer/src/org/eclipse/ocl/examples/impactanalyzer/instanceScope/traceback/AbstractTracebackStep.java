@@ -53,8 +53,6 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 
-
-
 public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {
     /**
      * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
@@ -103,6 +101,9 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     private final String annotation;
     
     protected final OCLFactory oclFactory;
+
+    public static int tracebackExecutions = 0;
+    public static int provenUnused = 0;
 
     /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
@@ -444,6 +445,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
 
     public OperationCallExpKeyedSet traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
+        tracebackExecutions++;
         OperationCallExpKeyedSet result;
         Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
         if (isCurrentlyEvaluatingFor(key)) {
@@ -463,6 +465,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                             UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
                                     unusedEvaluationRequests, oppositeEndFinder, tracebackCache, oclFactory);
                             if (unusedEvaluationResult.hasProvenUnused()) {
+                                provenUnused++;
                                 result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
                             } else {
                                 result = performSubsequentTraceback(source,

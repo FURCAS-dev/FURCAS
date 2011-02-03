@@ -127,15 +127,13 @@ public class BenchmarkExecutionProcessor {
     }
 
     private static void dumpExceptions(BenchmarkExecutor executor) throws IOException {
-
-	System.out.println(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size()
+	System.out.println(((StandardBenchmarkExecutor) executor).getExceptionCount()
 		+ " tasks ended with exceptions");
-
-	if (PathOptions.getExceptionDumpFilePath() != null && !PathOptions.getExceptionDumpFilePath().equals("")) {
-	    if (((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size() < 200) {
+	if (PathOptions.isExceptionDumpFilePathDefined()) {
+	    if (((StandardBenchmarkExecutor) executor).getExceptionCount() < 200) {
 		ExceptionDumpWriter writer = new ExceptionDumpWriter();
 		writer.writeDump(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException());
-		((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().clear();
+		((StandardBenchmarkExecutor) executor).clearExceptions();
 		writer.close();
 		System.out.println("Exception dump file was written to " + PathOptions.getExceptionDumpFilePath());
 	    } else {

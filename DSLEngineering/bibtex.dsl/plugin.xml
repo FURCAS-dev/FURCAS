@@ -8,6 +8,34 @@
 			id="bibtex.dsl.editor.BibtexEditor" 
 			name="Bibtex Editor"> 
 		</editor> 
-	</extension> 
+	</extension>
+ <extension
+       point="com.sap.ide.cts.parser.parserFactory">
+    <configuration
+          dynamicParserFactoryClass="bibtex.dsl.parser.BibtexParserFactory"
+          languageID="bibtex">
+    </configuration>
+ </extension>
+ <extension
+       point="com.sap.furcas.ide.editor.autoEditing">
+    <configuration
+          autoEditingType="static (configurable)"
+          autoIndentBraces="{,}">
+    </configuration>
+ </extension>
+ <extension
+       point="com.sap.furcas.ide.editor.bracketMatching">
+    <configuration
+          matchingBrackets="{}[]()"
+          matchingType="configurable">
+    </configuration>
+ </extension>
+ <extension
+       point="com.sap.furcas.ide.editor.folding">
+    <configuration
+          foldingType="static (configurable)"
+          staticFoldingBrackets="{,}">
+    </configuration>
+ </extension> 
  
 </plugin> 

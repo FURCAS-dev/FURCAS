@@ -8,6 +8,8 @@ import org.antlr.runtime.Token;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistContext;
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistParsingHandler;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.test.base.StandaloneConnectionBasedTest;
 import com.sap.furcas.test.util.TcsTestHelper;

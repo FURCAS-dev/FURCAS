@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -80,7 +80,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 
 	@Override
 	public Object caseEReference(EReference eObject) {
-		Property pivotElement = converter.getCreated(Property.class, eObject);		
+//		Property pivotElement = converter.getCreated(Property.class, eObject);		
+		Property pivotElement = (Property) caseETypedElement(eObject);
+		doSwitchAll(Property.class, pivotElement.getKeys(), eObject.getEKeys());
 		Property oppositeProperty = null;
 		EReference eOpposite = eObject.getEOpposite();
 		if (eOpposite != null) {
@@ -92,38 +94,39 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 				EMap<String, String> details = oppositeRole.getDetails();
 				String oppositeName = details.get(PROPERTY_OPPOSITE_ROLE_NAME_KEY);
 				if (oppositeName != null) {
-					Property pivotOpposite = PivotFactory.eINSTANCE.createProperty();
-					pivotOpposite.setName(oppositeName);
+					oppositeProperty = PivotFactory.eINSTANCE.createProperty();
+					oppositeProperty.setName(oppositeName);
+					oppositeProperty.setImplicit(true);
 					org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();
 					Type localType = pivotElement.getFeaturingClass();
-					pivotOpposite.setType(localType);
+					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);
 					if (uniqueValue != null) {
-						pivotOpposite.setIsUnique(Boolean.valueOf(uniqueValue));
+						oppositeProperty.setIsUnique(Boolean.valueOf(uniqueValue));
 					}
 					String orderedValue = details.get(PROPERTY_OPPOSITE_ROLE_ORDERED_KEY);
 					if (orderedValue != null) {
-						pivotOpposite.setIsOrdered(Boolean.valueOf(orderedValue));
+						oppositeProperty.setIsOrdered(Boolean.valueOf(orderedValue));
 					}
 					String lowerValue = details.get(PROPERTY_OPPOSITE_ROLE_LOWER_KEY);
 					if (lowerValue != null) {
-						pivotOpposite.setLower(new BigInteger(lowerValue));
+						oppositeProperty.setLower(new BigInteger(lowerValue));
 					}
 					String upperValue = details.get(PROPERTY_OPPOSITE_ROLE_UPPER_KEY);
 					if (upperValue != null) {
-						pivotOpposite.setUpper(new BigInteger(upperValue));
+						oppositeProperty.setUpper(new BigInteger(upperValue));
 					}
-					remoteType.getOwnedAttributes().add(pivotOpposite);
+					remoteType.getOwnedAttributes().add(oppositeProperty);
+					oppositeProperty.setOpposite(pivotElement);
 				}
 			}
 		}
 		pivotElement.setOpposite(oppositeProperty);
-		doSwitchAll(Property.class, pivotElement.getKeys(), eObject.getEKeys());
-		return super.caseETypedElement(eObject);
+		return pivotElement;
 	}
 
 	@Override
-	public EObject caseETypedElement(ETypedElement eObject) {
+	public TypedElement caseETypedElement(ETypedElement eObject) {
 		TypedElement pivotElement = converter.getCreated(TypedElement.class, eObject);
 		EGenericType eType = eObject.getEGenericType();
 		if (eType != null) {
@@ -149,7 +152,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 //					error("Unresolved " + eGenericType + " in pass2");
 //				}
 			} */
-		return null;
+		return pivotElement;
 	}
 
 	@Override

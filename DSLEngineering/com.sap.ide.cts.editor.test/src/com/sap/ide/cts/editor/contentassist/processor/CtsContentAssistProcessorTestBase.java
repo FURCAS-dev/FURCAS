@@ -10,11 +10,11 @@ import java.util.List;
 import org.eclipse.jface.text.ITextViewer;
 import org.junit.BeforeClass;
 
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
+import com.sap.furcas.ide.editor.contentassist.CtsContentAssistUtil;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.test.base.ParserGenerationTestHelper;
-import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
-import com.sap.ide.cts.editor.contentassist.CtsContentAssistUtil;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 import com.sap.ide.cts.editor.contentassist.stubs.TextViewerStub;
 import com.sap.ide.cts.editor.test.util.GeneratedTextblocksBasedTest;

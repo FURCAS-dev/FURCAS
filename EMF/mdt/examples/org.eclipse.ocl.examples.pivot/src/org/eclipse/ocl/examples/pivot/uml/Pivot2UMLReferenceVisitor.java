@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLReferenceVisitor.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: Pivot2UMLReferenceVisitor.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -88,7 +88,13 @@ public class Pivot2UMLReferenceVisitor
 	public EObject visitOperation(Operation pivotOperation) {
 		org.eclipse.uml2.uml.Operation umlOperation = context.getCreated(org.eclipse.uml2.uml.Operation.class, pivotOperation);
 		safeVisitAll(umlOperation.getRaisedExceptions(), pivotOperation.getRaisedExceptions());
-		return super.visitOperation(pivotOperation);
+		Type pivotType = pivotOperation.getType();
+		if (pivotType == null) {
+			return null;				// Occurs for Operation return type
+		}
+		org.eclipse.uml2.uml.Type umlType = context.getCreated(org.eclipse.uml2.uml.Type.class, pivotType);
+		umlOperation.setType(umlType);
+		return null;
 	}
 
 	@Override

@@ -107,6 +107,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache, oclFactory);
             if (unusedResult.hasProvenUnused()) {
+                provenUnused++;
                 result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
             } else {
                 result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);

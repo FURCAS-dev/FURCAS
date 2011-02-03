@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpr
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.AbstractTracebackStep;
 import org.junit.Test;
 
 import data.classes.ClassTypeDefinition;
@@ -316,6 +317,12 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         Object invalid = OCL.newInstance().evaluate(callOnAppendCallResult, exp);
         assertFalse(invalid.equals(oldValue));
         assertTrue(result[0]);
+    }
+    
+    @Test
+    public void testPrintNumberOfTracebackExecutions() {
+        System.out.println("Number of traceback evaluations: "+AbstractTracebackStep.tracebackExecutions);
+        System.out.println("Number of unused proven: "+AbstractTracebackStep.provenUnused);
     }
 
     private Notification getNotification(int id, Resource model){

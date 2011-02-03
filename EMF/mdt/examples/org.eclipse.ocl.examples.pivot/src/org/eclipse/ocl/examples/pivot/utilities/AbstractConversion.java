@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractConversion.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: AbstractConversion.java,v 1.3 2011/01/27 07:01:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -26,6 +26,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 public abstract class AbstractConversion extends EcoreUtil
 {	// extends EcoreUtil solely to gain access to protected GEN_MODEL_PACKAGE_NS_URI
+	public static interface Predicate<T extends EObject>
+	{
+		boolean filter(T element);
+	}	
+
 	protected static <T> T basicGet(EObject eObject, EAttribute eFeature, Class<T> resultClass) {
 		if (!eObject.eIsSet(eFeature)) {
 			return null;

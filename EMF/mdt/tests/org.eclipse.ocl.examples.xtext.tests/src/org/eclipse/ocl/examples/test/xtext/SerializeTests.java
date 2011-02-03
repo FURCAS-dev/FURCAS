@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.10 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.11 2011/01/27 07:05:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -238,7 +238,7 @@ public class SerializeTests extends XtextTestCase
 		doSerialize("XMLType");
 	}
 
-//	public void testTemp() throws Exception {
-//		doSerialize("temp");
-//	}	
+	public void testOCLTestSerialize() throws Exception {
+		doSerialize("OCLTest");
+	}	
 }
