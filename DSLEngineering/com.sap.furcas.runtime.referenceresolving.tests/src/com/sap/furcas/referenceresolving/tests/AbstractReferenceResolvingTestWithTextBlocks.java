@@ -44,7 +44,7 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
     protected static IncrementalParserFacade incrementalParserFacade;
     protected TextBlocksModelElementFactory modelFactory;
     protected Resource transientParsingResource;
-    protected EObject file;
+    protected EObject rootElement;
     protected static ResourceSet resourceSet;
     protected static EPackage.Registry testMetamodelPackageRegistry;
 
@@ -108,13 +108,13 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
     }
 
     /**
-     * Call from an @Before operation to parse some text into the {@link #file} attribute
+     * Call from an @Before operation to parse some text into the {@link #rootElement} attribute
      * 
      * @param textToParse
      *            this text is parsed using the grammar passed to {@link #setupParser(File, String, String, File...)} as first argument.
      */
-    protected void setupFileFromTextToParse(String textToParse) {
-        file = parseFile(textToParse);
+    protected void setupModelFromTextToParse(String textToParse) {
+        rootElement = parseFile(textToParse);
     }
 
     protected EObject parseFile(String textToParse) {

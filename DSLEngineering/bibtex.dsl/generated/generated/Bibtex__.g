@@ -70,14 +70,14 @@ T__22 : '=' ;
 T__23 : 'author' ;
 T__24 : 'and' ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 177
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 177
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
   ;
 
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 183
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 183
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -87,20 +87,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 192
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 192
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 198
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 198
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 203
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 203
 fragment
 ALPHA
     :   'a'..'z'
@@ -112,13 +112,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 214
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 214
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 219
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 219
 NAME
     :   (
             SNAME
@@ -132,15 +132,15 @@ NAME
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 232
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 232
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 236
+    // $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 236
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 238
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 238
 fragment
 ESC
     :   '\\'!
@@ -170,7 +170,7 @@ ESC
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 267
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 267
 STRING
     :   '\''!
         (   ESC
