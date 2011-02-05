@@ -61,5 +61,12 @@
             language="Bibtex">
       </tokenColorer>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.contentProposer">
+      <proposer
+            class="com.sap.furcas.ide.editor.imp.services.FurcasContentProposer"
+            language="Bibtex">
+      </proposer>
+   </extension>
 
 </plugin>

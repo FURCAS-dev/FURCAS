@@ -63,7 +63,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
     private FurcasSourcePositionLocator sourcePositionLocator;
     private FurcasLanguageSyntaxProperties languageSyntaxProperties;
     
-    private boolean completelyItitialized;
+    private boolean completelyItitialized = false;
         
 
     public FurcasParseController(String languageID) {
@@ -242,6 +242,14 @@ public abstract class FurcasParseController extends ParseControllerBase {
     @Override
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return annotationTypeInfo;
+    }
+    
+    public EditingDomain getEditingDomain() {
+        return editingDomain;
+    }
+    
+    public ParserCollection getParserCollection() {
+        return parserCollection;
     }
 
 }
