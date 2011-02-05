@@ -666,7 +666,7 @@ public class TcsUtil {
         ETypedElement s = getStructuralFeature(p);
         if (s != null) {
             if (s instanceof EReference) {
-                if (!PropertyArgumentUtil.containsRefersToArg(p) && !PropertyArgumentUtil.containsAsArg(p)) {
+                if (!PropertyArgumentUtil.containsRefersToArg(p) && !PropertyArgumentUtil.containsAsArg(p) && !PropertyArgumentUtil.containsLookupScopePArg(p)) {
                     return false;
                 }
 
