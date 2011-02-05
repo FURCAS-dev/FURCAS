@@ -16,6 +16,15 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
+			<name>org.eclipse.imp.smapifier.SmapieBuilder</name>
+			<arguments>
+				<dictionary>
+					<key>exten</key>
+					<value>psp</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.pde.ManifestBuilder</name>
 			<arguments>
 			</arguments>
@@ -25,10 +34,23 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.imp.presentation.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.imp.metatooling.sanityChecker</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>com.sap.furcas.ide.dslproject.syntaxGenerationNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.pde.PluginNature</nature>
+		<nature>org.eclipse.imp.presentation.nature</nature>
+		<nature>org.eclipse.imp.smapifier.smapinature</nature>
+		<nature>org.eclipse.imp.metatooling.sanityNature</nature>
 	</natures>
 </projectDescription>

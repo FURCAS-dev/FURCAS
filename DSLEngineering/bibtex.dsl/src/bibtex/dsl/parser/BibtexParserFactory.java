@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2011 SAP AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     SAP AG - initial API and implementation
+ ******************************************************************************/
 package bibtex.dsl.parser;
 
 import generated.BibtexLexer;
@@ -9,10 +19,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 
-public class BibtexParserFactory extends
-        AbstractParserFactory<BibtexParser, BibtexLexer> {
+public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, BibtexLexer> {
 
-    private static final String LANGUAGE_ID = "Bibtex";
+    public static final String LANGUAGE_ID = "Bibtex";
 
     @Override
     public Class<BibtexLexer> getLexerClass() {
@@ -31,8 +40,7 @@ public class BibtexParserFactory extends
 
     @Override
     public EPackage getMetamodelPackage(ResourceSet connection) {
-        return EPackage.Registry.INSTANCE
-                .getEPackage("http://www.sap.com/furcas/examples/bibtex");
+        return EPackage.Registry.INSTANCE.getEPackage("http://www.sap.com/furcas/examples/bibtex");
     }
 
     @Override
@@ -42,7 +50,6 @@ public class BibtexParserFactory extends
 
     @Override
     public URI getSyntaxUri() {
-        return URI.createPlatformPluginURI("/bibtex.dsl/mappings/Bibtex.tcs",
-                true);
+        return URI.createPlatformPluginURI("/bibtex.dsl/mappings/Bibtex.tcs", true);
     }
 }
