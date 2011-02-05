@@ -18,9 +18,9 @@ syntax Bibtex {
   : "@article" "{" [
   		id ","
   		"title" "=" "{" title "}" ","  
-  		"author" "=" "{" author{referenceBy="name", separator="and",
-  			 					lookupScope="OCL:Bibtex::Author.allInstances()"}
-  			 		 "}" 
+  		"author" "=" "{" author{as='identifier', separator="and",
+  			 				lookupScope="OCL:Bibtex::Author.allInstances()", referenceBy="name" }
+  			 				"}" 
   		]
   	"}"
   	{{literaturedb = lookIn("OCL:#context")}}
