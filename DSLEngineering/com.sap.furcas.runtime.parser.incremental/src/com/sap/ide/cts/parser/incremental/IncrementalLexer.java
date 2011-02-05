@@ -160,17 +160,19 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             success = lexPhase(root);
             // textBlock hierarchy not changed, textBlock token contents updated
         } catch (Exception ex) {
-            Activator
-                    .logError("Unexpected Exception during incremental lexing! Check the following exception:\n"
+            TextBlock referenceVersion = getOtherVersion(root, Version.REFERENCE);
+            Activator.logError("Unexpected Exception during incremental lexing! Check the following exception:\n"
                             + "Text before:\n"
-                            + getOtherVersion(root, Version.REFERENCE)
-                                    .getCachedString()
+                            + referenceVersion == null ? "<none>" : referenceVersion.getCachedString()
                             + "\n\nText after change:\n"
                             + root.getCachedString());
             Activator.logError(ex);
+            
+            // some tokens may have already been created before the lexer crashed. Remove those.
+            TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
+            
             success = false;
             if (ex instanceof IllegalTextBlocksStateException) {
-                // TbChangeUtil.revertToVersion(root, Version.REFERENCE);
                 throw (IllegalTextBlocksStateException) ex;
             }
         }
@@ -505,8 +507,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         // the next token
         // of the current version and then back to the previous version to find
         // the next changed region
-        tok = isEOS(tok) ? tok : findNextRegion(getOtherVersion(
-                nextToken(tok, Version.CURRENT), Version.PREVIOUS))) {
+        tok = isEOS(tok) ? tok : findNextRegion(getOtherVersion(nextToken(tok, Version.CURRENT), Version.PREVIOUS))) {
             TextBlock previousParentBlock = tok.getParent();
             TextBlock currentTextBlock = getCurrentVersion(previousParentBlock);
             changedBlocks.add(currentTextBlock);
@@ -514,10 +515,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             // remove old token from current textblock it will be replaced by
             // newly lexed tokens
 
-            AbstractToken oldTokenInCurrentBlock = getOtherVersion(tok,
-                    Version.CURRENT);
-            int index = currentTextBlock.getSubNodes().indexOf(
-                    oldTokenInCurrentBlock);
+            AbstractToken oldTokenInCurrentBlock = getOtherVersion(tok, Version.CURRENT);
+            int index = currentTextBlock.getSubNodes().indexOf(oldTokenInCurrentBlock);
             // removeFromBlockConsistent(currentTextBlock,
             // oldTokenInCurrentBlock);
 
@@ -526,8 +525,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 
             // System.out.println(tok.getValue());
             while (!canStopLexing()) {
-                addTokenIfNecessaryAndUpdateOffetsAndLengths(tok,
-                        currentTextBlock, index++);
+                addTokenIfNecessaryAndUpdateOffetsAndLengths(tok, currentTextBlock, index++);
 
                 makeOffsetRelativeToBlock(tok, tok.getParent());
 
