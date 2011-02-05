@@ -1,41 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<?eclipse version="3.4"?> 
-<plugin> 
-	<extension point="org.eclipse.ui.editors"> 
-		<editor 
-			class="bibtex.dsl.editor.BibtexEditor"
-			extensions="bib" 
-			id="bibtex.dsl.editor.BibtexEditor" 
-			name="Bibtex Editor"> 
-		</editor> 
-	</extension>
- <extension
-       point="com.sap.ide.cts.parser.parserFactory">
-    <configuration
-          dynamicParserFactoryClass="bibtex.dsl.parser.BibtexParserFactory"
-          languageID="bibtex">
-    </configuration>
- </extension>
- <extension
-       point="com.sap.furcas.ide.editor.autoEditing">
-    <configuration
-          autoEditingType="static (configurable)"
-          autoIndentBraces="{,}">
-    </configuration>
- </extension>
- <extension
-       point="com.sap.furcas.ide.editor.bracketMatching">
-    <configuration
-          matchingBrackets="{}[]()"
-          matchingType="configurable">
-    </configuration>
- </extension>
- <extension
-       point="com.sap.furcas.ide.editor.folding">
-    <configuration
-          foldingType="static (configurable)"
-          staticFoldingBrackets="{,}">
-    </configuration>
- </extension> 
- 
-</plugin> 
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Textual Bibtex Editor"
+            extensions="bib"
+            class="bibtex.dsl.editor.BibtexEditor"
+            id="bibtex.dsl.editor.BibtexEditor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            languageID="Bibtex"
+            dynamicParserFactoryClass="bibtex.dsl.parser.BibtexParserFactory">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.autoEditing">
+      <configuration
+            autoIndentBraces="{,}"
+            autoEditingType="static (configurable)">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.bracketMatching">
+      <configuration
+            matchingType="configurable"
+            matchingBrackets="{}[]()">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.folding">
+      <configuration
+            foldingType="static (configurable)"
+            staticFoldingBrackets="{,}">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="bibtex.dsl.editor.BibtextParseController"
+            language="Bibtex">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="bib"
+            description="some thing"
+            language="Bibtex">
+      </language>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer
+            class="bibtex.imp.tokenColorer.BibtexTokenColorer"
+            language="Bibtex">
+      </tokenColorer>
+   </extension>
+
+</plugin>
