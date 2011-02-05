@@ -48,6 +48,7 @@ import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
+import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -84,10 +85,16 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  * 
  * Clients that want to use this editor <b>must</b> register:
  * <ul>
- *      <li>an IMP {@link Language} descriptor
+ *      <li>an IMP {@link Language} descriptor</li>
  *      <li>the {@link FurcasParseController}</li>
  *      <li>the editor itself</li>
  * </ul>
+ * 
+ * Clients that want to use this editor <b>should</b> register:
+ * <ul>
+ *      <li>the {@link FurcasContentProposer}</li>
+ * </ul>
+ * 
  * In addition, clients <b>can</b> implement and register other IMP services
  * such as the {@link ITokenColorer}.
  * 
