@@ -24,12 +24,14 @@ Require-Bundle: org.antlr,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.ide.parserfactory,
  com.sap.furcas.runtime.unparser,
- org.eclipse.imp.metatooling,
- org.eclipse.imp.runtime
+ org.eclipse.imp.metatooling;visibility:=reexport,
+ org.eclipse.imp.runtime;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
  com.sap.furcas.ide.editor.action,
  com.sap.furcas.ide.editor.deepcopy,
  com.sap.furcas.ide.editor.document,
+ com.sap.furcas.ide.editor.imp,
+ com.sap.furcas.ide.editor.imp.services,
  com.sap.furcas.ide.editor.junitcreate

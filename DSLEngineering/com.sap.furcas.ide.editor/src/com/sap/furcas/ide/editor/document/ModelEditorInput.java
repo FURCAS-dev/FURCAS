@@ -1,41 +1,18 @@
 package com.sap.furcas.ide.editor.document;
 
-import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IPersistableElement;
+import org.eclipse.ui.part.FileEditorInput;
 
-public class ModelEditorInput implements IEditorInput {
+public class ModelEditorInput extends FileEditorInput {
 
-    
     private final EObject eObject;
-    private IProject project;
 
-
-    public ModelEditorInput(EObject eObject) {
-        super();
+    public ModelEditorInput(IFile file, EObject eObject) {
+        super(file);
         this.eObject = eObject;
-    }
-
-    @Override
-    public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean exists() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public ImageDescriptor getImageDescriptor() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -51,12 +28,6 @@ public class ModelEditorInput implements IEditorInput {
     }
 
     @Override
-    public IPersistableElement getPersistable() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public String getToolTipText() {
         String uri = EcoreUtil.getURI(eObject).toString();
         return uri != null ? uri : getName();
@@ -66,12 +37,4 @@ public class ModelEditorInput implements IEditorInput {
         return eObject;
     }
 
-    public void setProject(IProject proj) {
-        this.project = proj;
-    }
-
-
-    public IProject getProject() {
-        return project;
-    }
 }

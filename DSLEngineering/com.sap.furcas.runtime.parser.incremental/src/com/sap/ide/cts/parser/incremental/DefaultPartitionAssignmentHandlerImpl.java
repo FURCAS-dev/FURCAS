@@ -104,7 +104,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 
     @Override
     public void saveAllPartitions(Map<?,?> options) throws IOException {
-        this.defaultPartition.save(options);
-        this.defaultTextBlocksPartition.save(options);
+        // It is imposible to store empty xmi resources
+        if (!this.defaultPartition.getContents().isEmpty()) {
+            this.defaultPartition.save(options);
+        }
+        if (!this.defaultTextBlocksPartition.getContents().isEmpty()) {
+            this.defaultTextBlocksPartition.save(options);
+        }
     }
 }
