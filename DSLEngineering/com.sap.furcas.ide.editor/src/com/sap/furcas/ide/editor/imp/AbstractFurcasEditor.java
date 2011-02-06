@@ -32,7 +32,6 @@ import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.services.ITokenColorer;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.provider.ExpressionsItemProviderAdapterFactory;
 import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
@@ -136,20 +135,13 @@ public class AbstractFurcasEditor extends UniversalEditor {
         }
         public EObject getCurrentRootObject() {
             return getDocumentProvider().getDocument(getEditorInput()).getRootObject();
-        }
-        public String get(int pos, int length) {
-            try {
-                return getDocumentProvider().getDocument(getEditorInput()).get(pos, length);
-            } catch (BadLocationException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        
+        }        
     }
 
     private final CtsDocumentProvider documentProvoider;
     private final EditingDomain editingDomain;
 
+    private final ConcreteSyntax syntax;
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private ParserCollection parserCollection;
 
@@ -157,9 +149,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
         this.parserFactory = parserFactory;
         this.editingDomain = createEditingDomain();
         this.documentProvoider = new CtsDocumentProvider(editingDomain);
+        this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
     }
     
-    private static AdapterFactoryEditingDomain createEditingDomain() {
+    private AdapterFactoryEditingDomain createEditingDomain() {
         // Create an adapter factory that yields item providers.
         ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
@@ -179,7 +172,12 @@ public class AbstractFurcasEditor extends UniversalEditor {
         BasicCommandStack commandStack = new BasicCommandStack();
 
         // Create the editing domain with a special command stack.
-        return new AdapterFactoryEditingDomain(adapterFactory, commandStack);
+        AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
+        
+        //add mapping resource to resource set
+        domain.loadResource(parserFactory.getSyntaxUri().toString());
+        
+        return domain;
     }
     
     /**
@@ -200,7 +198,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // create a parser/lexer combo suitable for the current editor input
         parserCollection = initializeParser();
         
-        ConcreteSyntax syntax = EditorUtil.getActiveSyntaxByName(editingDomain, wrappedInput, parserCollection.parserFactory.getLanguageId());
         if (syntax == null) {
             IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, "");
             ErrorDialog.openError(getSite().getShell(), "Error loading syntax definition", "No syntax definition for language \""
@@ -245,9 +242,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
     }
     
     private ParserCollection initializeParser() {
-        //add mapping resource to resource set
-        editingDomain.loadResource(parserFactory.getSyntaxUri().toString());
-        
         ResourceSet resourceSet = editingDomain.getResourceSet();
         Set<URI> referenceScope = getAdditionalLookupURIs();
         
@@ -282,7 +276,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
     /**
      * IMP uses this to initialize all services. We proceed with a deferred initialization to
-     * inject FURCAS specific information into our service implementations.
+     * inject FURCAS specific information into our parser service.
      * 
      * This method is called <b>after</b> {@link #init(IEditorSite, IEditorInput)}.
      */
@@ -290,6 +284,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
     public void createPartControl(Composite parent) {
         super.createPartControl(parent);
         
+        // We can retrigger the parse controller via the parser scheduler.
+        // The initialization of other serivices cannot be delayed because
+        // those are already required during super.createPartControl.
         ((FurcasParseController) fLanguageServiceManager.getParseController()).completeInit(editingDomain, new ContentProvider(), parserCollection);
         
         // re-run IMP setup procedure with our fully configured services

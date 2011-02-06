@@ -12,13 +12,11 @@ package bibtex.dsl.editor;
 
 import bibtex.dsl.parser.BibtexParserFactory;
 
-import com.sap.furcas.ide.editor.imp.services.FurcasLanguageSyntaxProperties;
-import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
+import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 
-public class BibtextParseController extends FurcasParseController {
-
-    public BibtextParseController() {
-        super(new BibtexParserFactory(), new FurcasLanguageSyntaxProperties(new BibtexParserFactory()));
+public class BibtexContentProposer extends FurcasContentProposer {
+    
+    public BibtexContentProposer() {
+        super(new BibtexParserFactory());
     }
-
 }

@@ -32,6 +32,7 @@ import com.sap.furcas.ide.editor.commands.ParseCommand;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ContentProvider;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
@@ -55,20 +56,23 @@ import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
  */
 public abstract class FurcasParseController extends ParseControllerBase {
 
-    private EditingDomain editingDomain;
-    private ContentProvider contentProvider;
-    private ParserCollection parserCollection;
+    protected EditingDomain editingDomain;
+    protected ContentProvider contentProvider;
+    protected ParserCollection parserCollection;
+    protected final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     
-    private final IAnnotationTypeInfo annotationTypeInfo;
-    private FurcasSourcePositionLocator sourcePositionLocator;
-    private FurcasLanguageSyntaxProperties languageSyntaxProperties;
+    protected final IAnnotationTypeInfo annotationTypeInfo;
+    protected FurcasSourcePositionLocator sourcePositionLocator;
+    protected ILanguageSyntaxProperties languageSyntaxProperties;
     
-    private boolean completelyItitialized = false;
+    protected boolean completelyItitialized = false;
         
 
-    public FurcasParseController(String languageID) {
-        super(languageID);
-        annotationTypeInfo = new SimpleAnnotationTypeInfo();
+    public FurcasParseController(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory, ILanguageSyntaxProperties languageSyntaxProperties) {
+        super(parserFactory.getLanguageId());
+        this.parserFactory = parserFactory;
+        this.annotationTypeInfo = new SimpleAnnotationTypeInfo();
+        this.languageSyntaxProperties = languageSyntaxProperties;
     }
     
     @SuppressWarnings("hiding")
@@ -233,9 +237,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
 
     @Override
     public ILanguageSyntaxProperties getSyntaxProperties() {
-        if (languageSyntaxProperties == null) {
-            languageSyntaxProperties = new FurcasLanguageSyntaxProperties();
-        }
         return languageSyntaxProperties;
     }
 
@@ -243,13 +244,5 @@ public abstract class FurcasParseController extends ParseControllerBase {
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return annotationTypeInfo;
     }
-    
-    public EditingDomain getEditingDomain() {
-        return editingDomain;
-    }
-    
-    public ParserCollection getParserCollection() {
-        return parserCollection;
-    }
-
+        
 }

@@ -10,53 +10,62 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp.services;
 
+import org.antlr.runtime.Lexer;
 import org.eclipse.imp.services.ILanguageSyntaxProperties;
 
+import com.sap.furcas.ide.editor.EditorUtil;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+
 /**
+ * This class <b>can</b>  be extended by clients in order to provide languge specific
+ * information to the editor. It is ok to always simply return <code>null</code>
+ * 
  * @author Stephan Erb
  *
  */
 public class FurcasLanguageSyntaxProperties implements ILanguageSyntaxProperties {
+    
+    private final ConcreteSyntax syntax;
+
+    public FurcasLanguageSyntaxProperties(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+        this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
+    }
 
     @Override
     public String getSingleLineCommentPrefix() {
-        // TODO Auto-generated method stub
-        return null;
+        return TcsUtil.getEndOfLineCommentPrefix(TcsUtil.getCommentToken(syntax));
     }
 
     @Override
     public String getBlockCommentStart() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getBlockCommentContinuation() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getBlockCommentEnd() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String[][] getFences() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getIdentifierConstituentChars() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public int[] getIdentifierComponents(String ident) {
-        // TODO Auto-generated method stub
         return null;
     }
 
