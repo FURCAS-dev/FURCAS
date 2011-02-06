@@ -1,5 +1,4 @@
 package org.eclipse.emf.query2.librarytest;
-
 /*******************************************************************************
  * Copyright (c) 2006, 2009 SAP AG and others.
  * All rights reserved. This program and the accompanying materials
@@ -14,6 +13,7 @@ package org.eclipse.emf.query2.librarytest;
 import java.util.Iterator;
 
 
+
 import library.LibraryPackage;
 
 import org.eclipse.emf.common.util.EList;
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.IndexFactory;
+
 
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
@@ -49,30 +50,32 @@ public class QueryTestCase extends Assert {
 
 	static {
 
-		System.out.println("Start indexing"); //$NON-NLS-1$
+		System.out.println("Start indexing");
 		final Counter c = new Counter();
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
+			@Override
 			public void execute(final IndexUpdater updater) {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				indexer.resourceChanged(updater, EcorePackage.eINSTANCE.eResource());
 				indexer.resourceChanged(updater, LibraryPackage.eINSTANCE.eResource());
 				final ResourceSet rs = new ResourceSetImpl();
-				Parser parser = new Parser();
-				// load the resources
+				Parser parser=new Parser();
+				//load the resources
 				parser.loadResources(rs);
 				EList<Resource> resources = rs.getResources();
-				indexer.resourceChanged(updater, resources.toArray(new Resource[0]));
-
-				// unload the resources
-				for (Iterator iterator = resources.iterator(); iterator.hasNext();) {
+				indexer.resourceChanged(updater,resources.toArray(new Resource[0]));
+				
+				//unload the resources
+				for (Iterator iterator = resources.iterator(); iterator
+						.hasNext();) {
 					Resource resource = (Resource) iterator.next();
 					resource.unload();
 				}
 			}
 		});
 
-		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files"); //$NON-NLS-1$ //$NON-NLS-2$
+		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files");
 	}
 
 	public static Index getDefaultIndexStore() {
