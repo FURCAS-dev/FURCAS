@@ -97,14 +97,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
             return null; // IMP will call us before we are done initializing
         }
         
-        try {
-            System.out.println("dry parse");
-            dryParse(contentProvider.getCurrentRootBlock());
-        } catch (SemanticParserException e) {
-            handleParseException(e);
-            return null;
-        }
-        
         ParseCommand parseCommand = new ParseCommand(contentProvider.getCurrentRootBlock(), this);
         editingDomain.getCommandStack().execute(parseCommand);
 
@@ -131,19 +123,28 @@ public abstract class FurcasParseController extends ParseControllerBase {
         if (oldBlock == null) {
             oldBlock = root;
         }
-        
-        System.out.println("incremental parse");
 
         // reset errors in modelinjector
         parserCollection.parser.getInjector().getErrorList().clear();
         // set the start token to the lexer
         parserCollection.lexer.setSource(oldBlock.getTokens().get(0));
 
+        // always call the lexer. We need lexed tokens to colorize them later on
         boolean syntacticallyCorrect = parserCollection.lexer.lex(oldBlock);
         if (!syntacticallyCorrect) {
             throw new SemanticParserException(parserCollection.incrementalParser.getErrorList(), oldBlock, null);
         }
-
+        
+        try {
+            System.out.println("dry parse");
+            dryParse(contentProvider.getCurrentRootBlock());
+        } catch (SemanticParserException e) {
+            System.out.println("dry parse failed");
+            throw e;
+        }
+        
+        // dry parse succeded. We can go ahead and actually update our model.
+        System.out.println("incremental parse");
         TextBlock newlyLexedTextBlock = TbVersionUtil.getOtherVersion(oldBlock, Version.CURRENT);
         if (newlyLexedTextBlock != null) {
             parserCollection.lexer.setCurrentTokenForParser(newlyLexedTextBlock.getTokens().get(0));
