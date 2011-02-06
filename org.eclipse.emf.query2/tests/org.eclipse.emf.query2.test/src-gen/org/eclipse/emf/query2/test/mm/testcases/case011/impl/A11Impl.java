@@ -236,9 +236,9 @@ public class A11Impl extends EObjectImpl implements A11 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (attribute1: ");
+		result.append(" (attribute1: "); //$NON-NLS-1$
 		result.append(attribute1);
-		result.append(", attribute2: ");
+		result.append(", attribute2: "); //$NON-NLS-1$
 		result.append(attribute2);
 		result.append(')');
 		return result.toString();

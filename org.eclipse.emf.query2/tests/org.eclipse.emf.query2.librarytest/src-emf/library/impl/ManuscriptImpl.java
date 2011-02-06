@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ManuscriptImpl.java,v 1.1 2010/12/07 13:18:49 akrsharma Exp $
+ * $Id: ManuscriptImpl.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library.impl;
 
@@ -301,11 +301,11 @@ public class ManuscriptImpl extends EObjectImpl implements Manuscript {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (title: ");
+		result.append(" (title: "); //$NON-NLS-1$
 		result.append(title);
-		result.append(", pages: ");
+		result.append(", pages: "); //$NON-NLS-1$
 		result.append(pages);
-		result.append(", format: ");
+		result.append(", format: "); //$NON-NLS-1$
 		result.append(format);
 		result.append(')');
 		return result.toString();

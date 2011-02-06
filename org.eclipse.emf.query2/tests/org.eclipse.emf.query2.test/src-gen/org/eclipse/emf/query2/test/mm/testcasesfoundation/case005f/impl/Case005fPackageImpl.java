@@ -577,15 +577,15 @@ public class Case005fPackageImpl extends EPackageImpl implements Case005fPackage
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a5fMigrationAttributeTypeTranslatableTextEClass, A5fMigrationAttributeTypeTranslatableText.class, "A5fMigrationAttributeTypeTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA5fMigrationAttributeTypeTranslatableText_TranslatableText(), theTextverticalizationPackage.getTranslatableText(), null, "translatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA5fMigrationAttributeTypeTranslatableText_GeneralTranslatableText(), theStructurebasedtextsPackage.getGeneralTranslatableText(), null, "generalTranslatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA5fMigrationAttributeTypeTranslatableText_SpecializedTranslatableText(), theStructurebasedtextsPackage.getSpecializedTranslatableText(), null, "specializedTranslatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a5fMigrationAttributeTypeTranslatableTextEClass, A5fMigrationAttributeTypeTranslatableText.class, "A5fMigrationAttributeTypeTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeTranslatableText_TranslatableText(), theTextverticalizationPackage.getTranslatableText(), null, "translatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeTranslatableText_GeneralTranslatableText(), theStructurebasedtextsPackage.getGeneralTranslatableText(), null, "generalTranslatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeTranslatableText_SpecializedTranslatableText(), theStructurebasedtextsPackage.getSpecializedTranslatableText(), null, "specializedTranslatableText", null, 1, 1, A5fMigrationAttributeTypeTranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(a5fMigrationAttributeTypeTextEClass, A5fMigrationAttributeTypeText.class, "A5fMigrationAttributeTypeText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA5fMigrationAttributeTypeText_TranslatableText(), theTextverticalizationfPackage.getTextF(), null, "translatableText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA5fMigrationAttributeTypeText_GeneralText(), theClassbasedtextsPackage.getGeneralText(), null, "generalText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA5fMigrationAttributeTypeText_SpecializedText(), theClassbasedtextsPackage.getSpecializedText(), null, "specializedText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a5fMigrationAttributeTypeTextEClass, A5fMigrationAttributeTypeText.class, "A5fMigrationAttributeTypeText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeText_TranslatableText(), theTextverticalizationfPackage.getTextF(), null, "translatableText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeText_GeneralText(), theClassbasedtextsPackage.getGeneralText(), null, "generalText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA5fMigrationAttributeTypeText_SpecializedText(), theClassbasedtextsPackage.getSpecializedText(), null, "specializedText", null, 1, 1, A5fMigrationAttributeTypeText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -602,61 +602,61 @@ public class Case005fPackageImpl extends EPackageImpl implements Case005fPackage
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a5fMigrationAttributeTypeTranslatableTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.A5fMigrationAttributeTypeTranslatableText",
-			 "metaObjectMofId", "48FEDD2F3CDD1BABA00F11DD8C38001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.A5fMigrationAttributeTypeTranslatableText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48FEDD2F3CDD1BABA00F11DD8C38001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeTranslatableText_TranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BA8A00F11DD8747001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BA8A00F11DD8747001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeTranslatableText_GeneralTranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BA9A00F11DD9C8E001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BA9A00F11DD9C8E001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeTranslatableText_SpecializedTranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BAAA00F11DDAAC8001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BAAA00F11DDAAC8001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a5fMigrationAttributeTypeTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.A5fMigrationAttributeTypeText",
-			 "metaObjectMofId", "48FEDD2F3CDD1BB3A00F11DD9280001558C93B47",
-			 "isStructureType", "false",
-			 "ova", "translatableText,generalText,specializedText"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.A5fMigrationAttributeTypeText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48FEDD2F3CDD1BB3A00F11DD9280001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "translatableText,generalText,specializedText" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeText_TranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BB0A00F11DDCAC2001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BB0A00F11DDCAC2001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeText_GeneralText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BB1A00F11DD9481001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BB1A00F11DD9481001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA5fMigrationAttributeTypeText_SpecializedText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48FEDD2F3CDD1BB2A00F11DD96C0001558C93B47"
+			 "ovaMofId", "48FEDD2F3CDD1BB2A00F11DD96C0001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

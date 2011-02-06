@@ -7,12 +7,9 @@
 package org.eclipse.emf.query2.syntax.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.query2.syntax.query.Import;
 import org.eclipse.emf.query2.syntax.query.QueryPackage;
 
@@ -172,7 +169,7 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (impURI: ");
+    result.append(" (impURI: "); //$NON-NLS-1$
     result.append(impURI);
     result.append(')');
     return result.toString();

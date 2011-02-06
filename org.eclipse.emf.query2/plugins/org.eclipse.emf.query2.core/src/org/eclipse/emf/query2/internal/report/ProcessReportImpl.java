@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2.report;
+package org.eclipse.emf.query2.internal.report;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -22,6 +22,10 @@ import java.util.Locale;
 import java.util.Vector;
 
 import org.eclipse.emf.query2.internal.localization.MoinLocaleProvider;
+import org.eclipse.emf.query2.report.ProcessError;
+import org.eclipse.emf.query2.report.ProcessMessages;
+import org.eclipse.emf.query2.report.ProcessReport;
+import org.eclipse.emf.query2.report.ProcessWarning;
 
 
 /**

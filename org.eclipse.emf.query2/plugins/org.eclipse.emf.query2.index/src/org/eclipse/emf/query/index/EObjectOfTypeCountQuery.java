@@ -1,4 +1,5 @@
-package org.eclipse.emf.query2.librarytest;
+package org.eclipse.emf.query.index;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,10 +33,12 @@ public class EObjectOfTypeCountQuery implements QueryInternal<Integer, Integer> 
 		return resQuery;
 	}
 
+	
 	public QueryResult<Integer> createQueryResult(QueryExecutorInternal queryExecutor, Iterable<? extends Integer> result) {
 		return new QueryResultImpl<Integer, Integer>(queryExecutor, result);
 	}
 
+	
 	public QueryResult<Integer> execute(QueryExecutorInternal queryExecutor, final GlobalTables globalTables) {
 		final Iterator<URI> resourceScope = this.getResourceScope(globalTables).iterator();
 		int size = 0;

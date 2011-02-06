@@ -631,22 +631,22 @@ public class Case003PackageImpl extends EPackageImpl implements Case003Package {
 		b3SubEClass.getESuperTypes().add(this.getB3());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.A3.class, "A3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.A3.class, "A3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(b3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.B3.class, "B3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getB3_Z(), this.getA3(), null, "Z", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case003.B3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.B3.class, "B3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getB3_Z(), this.getA3(), null, "Z", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case003.B3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(c3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.C3.class, "C3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getC3_Y(), this.getB3(), null, "Y", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case003.C3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(c3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.C3.class, "C3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getC3_Y(), this.getB3(), null, "Y", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case003.C3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(d3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.D3.class, "D3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getD3_RefD3ToY(), this.getB3(), null, "refD3ToY", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case003.D3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(d3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.D3.class, "D3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getD3_RefD3ToY(), this.getB3(), null, "refD3ToY", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case003.D3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(e3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.E3.class, "E3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(e3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.E3.class, "E3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(f3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.F3.class, "F3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(f3EClass, org.eclipse.emf.query2.test.mm.testcases.case003.F3.class, "F3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(b3SubEClass, B3Sub.class, "B3Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b3SubEClass, B3Sub.class, "B3Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -663,105 +663,105 @@ public class Case003PackageImpl extends EPackageImpl implements Case003Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.A3",
-			 "metaObjectMofId", "45F120A5727757621E6443F33C4B8AB3AB5B6AC8",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.A3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5727757621E6443F33C4B8AB3AB5B6AC8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.B3",
-			 "metaObjectMofId", "45F120A50E0D364F270A421619228C4FC691E573",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.B3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A50E0D364F270A421619228C4FC691E573", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB3_Z(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.StorageAtA3",
-			 "metaObjectMofId", "45F120A511DCF8957F674BCA1874EEC8A71CBFF1",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.StorageAtA3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A511DCF8957F674BCA1874EEC8A71CBFF1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.C3",
-			 "metaObjectMofId", "45F120A55FB34719251A43E81161B826F8EE9DF5",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.C3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A55FB34719251A43E81161B826F8EE9DF5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC3_Y(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.OrderedReferences",
-			 "metaObjectMofId", "45F120A534B5066DF8B84556310F8C169E30DDE2",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "0",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.OrderedReferences", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A534B5066DF8B84556310F8C169E30DDE2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (d3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.D3",
-			 "metaObjectMofId", "45F120A51189C4009D3C491B0FA49159EAD37E6F",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.D3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51189C4009D3C491B0FA49159EAD37E6F", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getD3_RefD3ToY(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.OrderedReferences",
-			 "metaObjectMofId", "45F120A534B5066DF8B84556310F8C169E30DDE2",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "0",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.OrderedReferences", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A534B5066DF8B84556310F8C169E30DDE2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (e3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.E3",
-			 "metaObjectMofId", "45F120A57FBE6C9026AD4BF325ADABA7B4F249BD",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.E3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A57FBE6C9026AD4BF325ADABA7B4F249BD", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (f3EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.F3",
-			 "metaObjectMofId", "45F120A542ADFA5A959A44B224769CBD4EF9F742",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.F3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A542ADFA5A959A44B224769CBD4EF9F742", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b3SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case003.B3Sub",
-			 "metaObjectMofId", "48DCF7E128F6BB208BDB11DDB7BF0019992F8D38",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case003.B3Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DCF7E128F6BB208BDB11DDB7BF0019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

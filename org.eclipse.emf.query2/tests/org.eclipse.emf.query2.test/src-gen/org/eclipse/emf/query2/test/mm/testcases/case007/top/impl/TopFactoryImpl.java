@@ -35,7 +35,7 @@ public class TopFactoryImpl extends EFactoryImpl implements TopFactory {
 	 */
 	public static TopFactory init() {
 		try {
-			TopFactory theTopFactory = (TopFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/top"); 
+			TopFactory theTopFactory = (TopFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/top"); //$NON-NLS-1$ 
 			if (theTopFactory != null) {
 				return theTopFactory;
 			}
@@ -68,7 +68,7 @@ public class TopFactoryImpl extends EFactoryImpl implements TopFactory {
 			case TopPackage.TOP_B: return createTopB();
 			case TopPackage.TOP_AREFERENCES_TOP_B: return createTopAReferencesTopB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -11,9 +11,10 @@
 package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.ecore.EcorePackage;
+
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.IndexFactory;
+
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
@@ -27,7 +28,7 @@ import org.junit.Before;
 
 public class QueryTestCase extends Assert {
 
-	private static final Index DEFAULT_INDEX = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
+	private static final Index DEFAULT_INDEX = IndexFactory.getInstance();
 
 	static {
 

@@ -423,17 +423,17 @@ public class B13Impl extends EObjectImpl implements B13 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (initializedIntegerAttribute1: ");
+		result.append(" (initializedIntegerAttribute1: "); //$NON-NLS-1$
 		result.append(initializedIntegerAttribute1);
-		result.append(", initializedStringAttribute1: ");
+		result.append(", initializedStringAttribute1: "); //$NON-NLS-1$
 		result.append(initializedStringAttribute1);
-		result.append(", initializedBooleanAttribute1: ");
+		result.append(", initializedBooleanAttribute1: "); //$NON-NLS-1$
 		result.append(initializedBooleanAttribute1);
-		result.append(", initializedDoubleAttribute1: ");
+		result.append(", initializedDoubleAttribute1: "); //$NON-NLS-1$
 		result.append(initializedDoubleAttribute1);
-		result.append(", notInitializedStringAttribute1: ");
+		result.append(", notInitializedStringAttribute1: "); //$NON-NLS-1$
 		result.append(notInitializedStringAttribute1);
-		result.append(", initializedEnumerationAttribute1: ");
+		result.append(", initializedEnumerationAttribute1: "); //$NON-NLS-1$
 		result.append(initializedEnumerationAttribute1);
 		result.append(')');
 		return result.toString();

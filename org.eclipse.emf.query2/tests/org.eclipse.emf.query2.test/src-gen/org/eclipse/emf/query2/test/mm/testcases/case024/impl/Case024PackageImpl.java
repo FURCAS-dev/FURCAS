@@ -486,10 +486,10 @@ public class Case024PackageImpl extends EPackageImpl implements Case024Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a24EClass, org.eclipse.emf.query2.test.mm.testcases.case024.A24.class, "A24", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a24EClass, org.eclipse.emf.query2.test.mm.testcases.case024.A24.class, "A24", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		EOperation op = addEOperation(a24EClass, ecorePackage.getEBoolean(), "testJmiCalls", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getA24(), "someElement", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(a24EClass, ecorePackage.getEBoolean(), "testJmiCalls", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getA24(), "someElement", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -506,15 +506,15 @@ public class Case024PackageImpl extends EPackageImpl implements Case024Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a24EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case024.A24",
-			 "metaObjectMofId", "487DF65161104E11533A11DDA0B70015588353D1",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case024.A24", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487DF65161104E11533A11DDA0B70015588353D1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

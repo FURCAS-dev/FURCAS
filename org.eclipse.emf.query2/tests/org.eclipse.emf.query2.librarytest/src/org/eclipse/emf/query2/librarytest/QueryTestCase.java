@@ -13,6 +13,7 @@ package org.eclipse.emf.query2.librarytest;
 
 import java.util.Iterator;
 
+
 import library.LibraryPackage;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,8 +22,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.IndexFactory;
+
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -32,7 +33,7 @@ import org.junit.Before;
 
 public class QueryTestCase extends Assert {
 
-	private static final Index DEFAULT_INDEX = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
+	private static final Index DEFAULT_INDEX = IndexFactory.getInstance();
 
 	private static class Counter {
 		int i = 0;
@@ -48,7 +49,7 @@ public class QueryTestCase extends Assert {
 
 	static {
 
-		System.out.println("Start indexing");
+		System.out.println("Start indexing"); //$NON-NLS-1$
 		final Counter c = new Counter();
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
@@ -71,7 +72,7 @@ public class QueryTestCase extends Assert {
 			}
 		});
 
-		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files");
+		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static Index getDefaultIndexStore() {

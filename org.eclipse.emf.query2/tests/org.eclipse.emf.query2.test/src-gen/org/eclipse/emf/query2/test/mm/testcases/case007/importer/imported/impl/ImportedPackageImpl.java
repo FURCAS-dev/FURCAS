@@ -545,13 +545,13 @@ public class ImportedPackageImpl extends EPackageImpl implements ImportedPackage
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(importedAEClass, ImportedA.class, "ImportedA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(importedAEClass, ImportedA.class, "ImportedA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(importedBEClass, ImportedB.class, "ImportedB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(importedBEClass, ImportedB.class, "ImportedB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(importedAReferencesImportedBEClass, ImportedAReferencesImportedB.class, "ImportedAReferencesImportedB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getImportedAReferencesImportedB_ImportedB(), this.getImportedB(), null, "importedB", null, 0, 1, ImportedAReferencesImportedB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getImportedAReferencesImportedB_ImportedA(), this.getImportedA(), null, "importedA", null, 0, -1, ImportedAReferencesImportedB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(importedAReferencesImportedBEClass, ImportedAReferencesImportedB.class, "ImportedAReferencesImportedB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getImportedAReferencesImportedB_ImportedB(), this.getImportedB(), null, "importedB", null, 0, 1, ImportedAReferencesImportedB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getImportedAReferencesImportedB_ImportedA(), this.getImportedA(), null, "importedA", null, 0, -1, ImportedAReferencesImportedB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -565,48 +565,48 @@ public class ImportedPackageImpl extends EPackageImpl implements ImportedPackage
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (importedAEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.importer.imported.ImportedA",
-			 "metaObjectMofId", "476118E36F91757EA96F11DCC647001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.importer.imported.ImportedA", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F91757EA96F11DCC647001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (importedBEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.importer.imported.ImportedB",
-			 "metaObjectMofId", "476118E36F91757FA96F11DC9728001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.importer.imported.ImportedB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F91757FA96F11DC9728001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getImportedAReferencesImportedB_ImportedB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.importer.imported.ImportedAReferencesImportedB",
-			 "metaObjectMofId", "476118E36F917582A96F11DC8455001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.importer.imported.ImportedAReferencesImportedB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917582A96F11DC8455001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getImportedAReferencesImportedB_ImportedA(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.importer.imported.ImportedAReferencesImportedB",
-			 "metaObjectMofId", "476118E36F917582A96F11DC8455001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.importer.imported.ImportedAReferencesImportedB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917582A96F11DC8455001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

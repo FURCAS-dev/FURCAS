@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
+
 import java.io.StringWriter;
 import java.io.Writer;
 import java.util.Collections;
@@ -24,8 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.GlobalTables;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
+
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
@@ -45,7 +45,7 @@ import org.eclipse.emf.query2.WhereEntry;
 import org.eclipse.emf.query2.WhereInt;
 import org.eclipse.emf.query2.WhereNestedReference;
 import org.eclipse.emf.query2.WhereRelationReference;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.Company.CompanyFactory;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.Company.Department;
@@ -69,7 +69,7 @@ import org.junit.Test;
  */
 public class SuiteCompanyQueryTest extends QueryTestCase {
 
-	private static final String COMPANY_MM_CONTAINER_NAME = "sap.com/tc/moin/test/company";
+	private static final String COMPANY_MM_CONTAINER_NAME = "sap.com/tc/moin/test/company"; //$NON-NLS-1$
 
 	private TestClient testClient1;
 
@@ -140,7 +140,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		} else if (query instanceof Query) {
 			return this.getMQLProcessor().execute((Query) query, context);
 		} else {
-			throw new IllegalArgumentException("unexpected query representation");
+			throw new IllegalArgumentException("unexpected query representation"); //$NON-NLS-1$
 		}
 	}
 
@@ -148,7 +148,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		return new QueryContext() {
 
 			public URI[] getResourceScope() {
-				return scopeProvider.getPartitionScope();
+				return scopeProvider.getResourceScope();
 			}
 
 			public ResourceSet getResourceSet() {
@@ -193,9 +193,9 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		this.index = getDefaultIndexStore();
 
 		try {
-			this.partitionDivAndDep = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_DivAndDep.xmi");
-			this.partitionBosses = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_Bosses.xmi");
-			this.partitionCommonEmployees = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_CommonEmployees.xmi");
+			this.partitionDivAndDep = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_DivAndDep.xmi"); //$NON-NLS-1$
+			this.partitionBosses = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_Bosses.xmi"); //$NON-NLS-1$
+			this.partitionCommonEmployees = this.testClient1.getOrCreateResourceStable("TutorialQueries_Company_CommonEmployees.xmi"); //$NON-NLS-1$
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -203,26 +203,26 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		this.globalPartitionScope = new URI[] { this.partitionDivAndDep.getURI(), this.partitionBosses.getURI(), this.partitionCommonEmployees.getURI() };
 
 		this.division1 = CompanyFactory.eINSTANCE.createDivision();
-		this.division1.setName("division1");
+		this.division1.setName("division1"); //$NON-NLS-1$
 		this.division1.setBudget(1000000);
 		this.division2 = CompanyFactory.eINSTANCE.createDivision();
-		this.division2.setName("division2");
+		this.division2.setName("division2"); //$NON-NLS-1$
 		this.division2.setBudget(2000000);
 
 		this.department11 = CompanyFactory.eINSTANCE.createDepartment();
-		this.department11.setName("department11");
+		this.department11.setName("department11"); //$NON-NLS-1$
 		this.department11.setMaxJuniors(5);
 		this.department11.setBudget(600000);
 		this.department12 = CompanyFactory.eINSTANCE.createDepartment();
-		this.department12.setName("department12");
+		this.department12.setName("department12"); //$NON-NLS-1$
 		this.department12.setMaxJuniors(5);
 		this.department12.setBudget(400000);
 		this.department21 = CompanyFactory.eINSTANCE.createDepartment();
-		this.department21.setName("department21");
+		this.department21.setName("department21"); //$NON-NLS-1$
 		this.department21.setMaxJuniors(5);
 		this.department21.setBudget(1200000);
 		this.department22 = CompanyFactory.eINSTANCE.createDepartment();
-		this.department22.setName("department22");
+		this.department22.setName("department22"); //$NON-NLS-1$
 		this.department22.setMaxJuniors(5);
 		this.department22.setBudget(800000);
 
@@ -233,47 +233,47 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 
 		this.rainerDirector = CompanyFactory.eINSTANCE.createEmployee();
 		this.rainerDirector.setAge(50);
-		this.rainerDirector.setName("Rainer");
+		this.rainerDirector.setName("Rainer"); //$NON-NLS-1$
 		this.rainerDirector.setSalary(100000);
 		this.rainerDirector.setDirected(this.division1);
 		this.rainerDirector.setDirected(this.division2);
 
 		this.meinolfDivision1Departments = CompanyFactory.eINSTANCE.createEmployee();
 		this.meinolfDivision1Departments.setAge(36);
-		this.meinolfDivision1Departments.setName("Meinolf");
+		this.meinolfDivision1Departments.setName("Meinolf"); //$NON-NLS-1$
 		this.meinolfDivision1Departments.setSalary(50000);
 		this.meinolfDivision1Departments.setManaged(this.department11);
 		this.meinolfDivision1Departments.setManaged(this.department12);
 
 		this.jensDivision2Departments = CompanyFactory.eINSTANCE.createEmployee();
 		this.jensDivision2Departments.setAge(40);
-		this.jensDivision2Departments.setName("Jens");
+		this.jensDivision2Departments.setName("Jens"); //$NON-NLS-1$
 		this.jensDivision2Departments.setSalary(70000);
 		this.jensDivision2Departments.setManaged(this.department21);
 		this.jensDivision2Departments.setManaged(this.department22);
 
 		this.boris = CompanyFactory.eINSTANCE.createEmployee();
 		this.boris.setAge(25);
-		this.boris.setName("Boris");
+		this.boris.setName("Boris"); //$NON-NLS-1$
 		this.boris.setSalary(20000);
 		this.boris.setEmployer(this.department11);
 
 		this.stefan = CompanyFactory.eINSTANCE.createEmployee();
 		this.stefan.setAge(30);
-		this.stefan.setName("Stefan");
+		this.stefan.setName("Stefan"); //$NON-NLS-1$
 		this.stefan.setSalary(30000);
 		this.stefan.setEmployer(this.department12);
 
 		this.eduardFreeLance = CompanyFactory.eINSTANCE.createFreelance();
 		this.eduardFreeLance.setAge(35);
-		this.eduardFreeLance.setName("Eduard");
+		this.eduardFreeLance.setName("Eduard"); //$NON-NLS-1$
 		this.eduardFreeLance.setSalary(40000);
 		this.eduardFreeLance.setEmployer(this.department21);
 		this.eduardFreeLance.setAssignment(100);
 
 		this.simonFreeLance = CompanyFactory.eINSTANCE.createFreelance();
 		this.simonFreeLance.setAge(40);
-		this.simonFreeLance.setName("Simon");
+		this.simonFreeLance.setName("Simon"); //$NON-NLS-1$
 		this.simonFreeLance.setSalary(40000);
 		this.simonFreeLance.setEmployer(this.department22);
 		this.simonFreeLance.setAssignment(200);
@@ -303,24 +303,24 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		URI employeeUri = EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE);
 
 		// from clause
-		FromType employees = new FromType("em", employeeUri, true);
+		FromType employees = new FromType("em", employeeUri, true); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { employees };
 
 		// select clause
-		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" });
-		SelectAlias selectEm = new SelectAlias("em");
+		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
+		SelectAlias selectEm = new SelectAlias("em"); //$NON-NLS-1$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectEm, selectEmployeeName };
 
 		// where entries
-		WhereInt whereYoung = new WhereInt("age", Operation.SMALLER, 40);
-		WhereEntry whereEmYoung = new LocalWhereEntry("em", whereYoung);
+		WhereInt whereYoung = new WhereInt("age", Operation.SMALLER, 40); //$NON-NLS-1$
+		WhereEntry whereEmYoung = new LocalWhereEntry("em", whereYoung); //$NON-NLS-1$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereEmYoung };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select em,\n       em.name\nfrom type: " + employeeUri + " withoutSubtypes as em\nwhere for em(age SMALLER 40)\n";
+		String querypp = "select em,\n       em.name\nfrom type: " + employeeUri + " withoutSubtypes as em\nwhere for em(age SMALLER 40)\n"; //$NON-NLS-1$ //$NON-NLS-2$
 		assertEquals(query.toString(), querypp);
 
 		// execute the query
@@ -334,7 +334,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesUnder40() {
 
-		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where for em(age < 40)";
+		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where for em(age < 40)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesUnder40_check(query);
@@ -362,15 +362,15 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesAsManagers() {
 
-		String query = "select em,em.name,dep.name " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep" + "  where em.managed = dep ";
+		String query = "select em,em.name,dep.name " + " from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " [" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep" + "  where em.managed = dep "; //$NON-NLS-1$ //$NON-NLS-2$
 
 		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
 		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
 		ResultSet resultSet = this.executeQuery(query, queryContext);
 
 		// verify the result set
-		URI[] resultEmployees = resultSet.getUris("em");
+		URI[] resultEmployees = resultSet.getUris("em"); //$NON-NLS-1$
 		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
 		for (URI uri : resultEmployees) {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
@@ -390,7 +390,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesUnder40_2() {
 
-		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where em.age < 40";
+		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em " + " where em.age < 40"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesUnder40_check(query);
@@ -403,7 +403,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, queryContext);
 
 		// verify the result set
-		URI[] resultEmployees = resultSet.getUris("em");
+		URI[] resultEmployees = resultSet.getUris("em"); //$NON-NLS-1$
 		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
 		for (URI uri : resultEmployees) {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
@@ -442,9 +442,9 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesWithoutBosses() {
 
-		String query1 = "select em from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null";
+		String query1 = "select em from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null"; //$NON-NLS-1$ //$NON-NLS-2$
 
-		String query2 = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null";
+		String query2 = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em where em.employer = null"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.employeesWithoutBosses_check(query1, query2);
 	}
@@ -466,25 +466,25 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void allDepartmentsAndDivisions_ast() {
 
 		// from clause
-		FromType divisisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false);
-		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false);
+		FromType divisisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false); //$NON-NLS-1$
+		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { divisisions, departments };
 
 		// select clause
-		SelectAttrs selectDivisionName = new SelectAttrs("div", new String[] { "name" });
-		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" });
+		SelectAttrs selectDivisionName = new SelectAttrs("div", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
+		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectDivisionName, selectDepartmentName };
 
 		// where entries
-		WhereRelationReference whereDivides = new WhereRelationReference("div", "department", "dep");
+		WhereRelationReference whereDivides = new WhereRelationReference("div", "department", "dep"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereDivides };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
+		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: " //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n"; //$NON-NLS-1$
 		assertEquals(query.toString(), querypp);
 
 		this.allDepartmentsAndDivisions_check(query);
@@ -496,8 +496,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void allDepartmentsAndDivisions() {
 
-		String query = "select div.name, dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div, " + "["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + " where div.department = dep";
+		String query = "select div.name, dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div, " + "[" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + " where div.department = dep"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.allDepartmentsAndDivisions_check(query);
 	}
@@ -537,14 +537,14 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "div", "name"), this.division1.getName());
-		assertEquals(resultSet.getAttribute(1, "div", "name"), this.division1.getName());
-		assertEquals(resultSet.getAttribute(2, "div", "name"), this.division2.getName());
-		assertEquals(resultSet.getAttribute(3, "div", "name"), this.division2.getName());
-		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName());
-		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName());
-		assertEquals(resultSet.getAttribute(2, "dep", "name"), this.department21.getName());
-		assertEquals(resultSet.getAttribute(3, "dep", "name"), this.department22.getName());
+		assertEquals(resultSet.getAttribute(0, "div", "name"), this.division1.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "div", "name"), this.division1.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(2, "div", "name"), this.division2.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(3, "div", "name"), this.division2.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(2, "dep", "name"), this.department21.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(3, "dep", "name"), this.department22.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -554,25 +554,25 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void allDepartmentsAndDivisions_withFeature_ast() {
 
 		// from clause
-		FromType divisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false);
-		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false);
+		FromType divisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false); //$NON-NLS-1$
+		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { divisions, departments };
 
 		// select clause
-		SelectAttrs selectDivisionName = new SelectAttrs("div", new String[] { "name" });
-		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" });
+		SelectAttrs selectDivisionName = new SelectAttrs("div", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
+		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectDivisionName, selectDepartmentName };
 
 		// where entries
-		WhereRelationReference whereDivides = new WhereRelationReference("div", "department", "dep");
+		WhereRelationReference whereDivides = new WhereRelationReference("div", "department", "dep"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereDivides };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n";
+		String querypp = "select div.name,\n       dep.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: " //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.department = dep\n"; //$NON-NLS-1$
 		assertEquals(query.toString(), querypp);
 
 		this.allDepartmentsAndDivisions_check(query);
@@ -584,8 +584,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void allDepartmentsAndDivisions_withFeature() {
 
-		String query = "select div.name, dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div, " + "["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + " where div.department = dep";
+		String query = "select div.name, dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div, " + "[" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + " where div.department = dep"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.allDepartmentsAndDivisions_check(query);
 	}
@@ -599,26 +599,26 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 
 		// sub-query: Get all divisions whose budget is more than 1.000.000
 		// Euros
-		FromType divisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false);
+		FromType divisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false); //$NON-NLS-1$
 		FromEntry[] divFromEntries = new FromEntry[] { divisions };
-		SelectAlias selectDiv = new SelectAlias("div");
+		SelectAlias selectDiv = new SelectAlias("div"); //$NON-NLS-1$
 		SelectEntry[] divSelectEntries = new SelectEntry[] { selectDiv };
-		WhereInt whereBudget = new WhereInt("budget", Operation.GREATER, 1000000);
-		WhereEntry whereDivBudget = new LocalWhereEntry("div", whereBudget);
+		WhereInt whereBudget = new WhereInt("budget", Operation.GREATER, 1000000); //$NON-NLS-1$
+		WhereEntry whereDivBudget = new LocalWhereEntry("div", whereBudget); //$NON-NLS-1$
 		WhereEntry[] divWhereEntries = new WhereEntry[] { whereDivBudget };
 		Query nestedQuery = new Query(divSelectEntries, divFromEntries, divWhereEntries);
 
 		// from clause
-		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false);
+		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { departments };
 
 		// select clause
-		SelectAlias selectDep = new SelectAlias("dep");
-		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" });
+		SelectAlias selectDep = new SelectAlias("dep"); //$NON-NLS-1$
+		SelectAttrs selectDepartmentName = new SelectAttrs("dep", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectDepartmentName, selectDep };
 
 		// where entries
-		WhereNestedReference whereDivides = new WhereNestedReference(true, "dep", "division", nestedQuery);
+		WhereNestedReference whereDivides = new WhereNestedReference(true, "dep", "division", nestedQuery); //$NON-NLS-1$ //$NON-NLS-2$
 
 		WhereEntry[] whereEntries = new WhereEntry[] { whereDivides };
 
@@ -626,9 +626,9 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select dep.name,\n       dep\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ " as dep\nwhere dep.division not  in\n       select div\n       from type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION)
-				+ " as div\n       where for div(budget GREATER 1000000)\n       \n";
+		String querypp = "select dep.name,\n       dep\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) //$NON-NLS-1$
+				+ " as dep\nwhere dep.division not  in\n       select div\n       from type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) //$NON-NLS-1$
+				+ " as div\n       where for div(budget GREATER 1000000)\n       \n"; //$NON-NLS-1$
 		assertEquals(query.toString(), querypp);
 
 		this.departmentsWithSmallDivisions_check(query);
@@ -641,8 +641,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
-				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " for div(budget > 1000000))";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div " //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " for div(budget > 1000000))"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -654,8 +654,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions_2() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
-				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget > 1000000)";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div " //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget > 1000000)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -667,8 +667,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void departmentsWithSmallDivisions_3() {
 
-		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div "
-				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget >= 1000001)";
+		String query = "select dep.name, dep " + "from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep " + "where dep.division not in " + "(select div " //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+				+ " from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div where " + " div.budget >= 1000001)"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		this.departmentsWithSmallDivisions_check(query);
 	}
@@ -714,11 +714,11 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName());
-		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName());
+		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 		// lexicographic ordering guarantees the order (because of the name)
-		assertEquals(resultSet.getUri(0, "dep"), EcoreUtil.getURI((this.department11)));
-		assertEquals(resultSet.getUri(1, "dep"), EcoreUtil.getURI((this.department12)));
+		assertEquals(resultSet.getUri(0, "dep"), EcoreUtil.getURI((this.department11))); //$NON-NLS-1$
+		assertEquals(resultSet.getUri(1, "dep"), EcoreUtil.getURI((this.department12))); //$NON-NLS-1$
 	}
 
 	/**
@@ -729,25 +729,25 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void departmentsWhichAreBiggerThanDivisions_ast() {
 
 		// from clause
-		FromType divisisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false);
-		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false);
+		FromType divisisions = new FromType("div", EcoreUtil.getURI(CompanyPackage.Literals.DIVISION), false); //$NON-NLS-1$
+		FromType departments = new FromType("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), false); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { divisisions, departments };
 
 		// select clause
-		SelectAttrs selectDivisionBudget = new SelectAttrs("div", new String[] { "budget" });
-		SelectAttrs selectDepartmentBudget = new SelectAttrs("dep", new String[] { "budget" });
+		SelectAttrs selectDivisionBudget = new SelectAttrs("div", new String[] { "budget" }); //$NON-NLS-1$ //$NON-NLS-2$
+		SelectAttrs selectDepartmentBudget = new SelectAttrs("dep", new String[] { "budget" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectDivisionBudget, selectDepartmentBudget };
 
 		// where entries
-		WhereComparisonAttrs whereBudgets = new WhereComparisonAttrs("div", "budget", Operation.SMALLER, "dep", "budget");
+		WhereComparisonAttrs whereBudgets = new WhereComparisonAttrs("div", "budget", Operation.SMALLER, "dep", "budget"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereBudgets };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select div.budget,\n       dep.budget\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.budget < dep.budget\n";
+		String querypp = "select div.budget,\n       dep.budget\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + " as div,\n     type: " //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\nwhere div.budget < dep.budget\n"; //$NON-NLS-1$
 		assertEquals(query.toString(), querypp);
 
 		this.departmentsWhichAreBiggerThanDivisions_check(query);
@@ -760,8 +760,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void departmentsWhichAreBiggerThanDivisions() {
 
-		String query = "select div.budget, dep.budget from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div, ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep where div.budget < dep.budget";
+		String query = "select div.budget, dep.budget from [" + EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div, [" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep where div.budget < dep.budget"; //$NON-NLS-1$
 
 		this.departmentsWhichAreBiggerThanDivisions_check(query);
 	}
@@ -772,8 +772,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "dep", "budget"), new Integer(this.department21.getBudget()));
-		assertEquals(resultSet.getAttribute(0, "div", "budget"), new Integer(this.division1.getBudget()));
+		assertEquals(resultSet.getAttribute(0, "dep", "budget"), new Integer(this.department21.getBudget())); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(0, "div", "budget"), new Integer(this.division1.getBudget())); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -852,14 +852,14 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName());
-		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName());
-		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName());
-		assertEquals(resultSet.getAttribute(1, "em", "name"), this.stefan.getName());
-		assertEquals(resultSet.getAttribute(2, "dep", "name"), this.department21.getName());
-		assertEquals(resultSet.getAttribute(2, "em", "name"), this.eduardFreeLance.getName());
-		assertEquals(resultSet.getAttribute(3, "dep", "name"), this.department22.getName());
-		assertEquals(resultSet.getAttribute(3, "em", "name"), this.simonFreeLance.getName());
+		assertEquals(resultSet.getAttribute(0, "dep", "name"), this.department11.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "dep", "name"), this.department12.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), this.stefan.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(2, "dep", "name"), this.department21.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(2, "em", "name"), this.eduardFreeLance.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(3, "dep", "name"), this.department22.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(3, "em", "name"), this.simonFreeLance.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -871,24 +871,24 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void deparmentsAndEmployees_ast() {
 
 		// from clause
-		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false);
-		FromEntry department = new FromFixedSet("dep", EcoreUtil.getURI(this.department11.eClass()), new URI[] { EcoreUtil.getURI((this.department11)) });
+		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false); //$NON-NLS-1$
+		FromEntry department = new FromFixedSet("dep", EcoreUtil.getURI(this.department11.eClass()), new URI[] { EcoreUtil.getURI((this.department11)) }); //$NON-NLS-1$
 		FromEntry[] fromEntries = new FromEntry[] { employees, department };
 
 		// select clause
-		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" });
+		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectEmployeeName };
 
 		// where entries
-		WhereRelationReference whereDivides = new WhereRelationReference("dep", "employee", "em");
+		WhereRelationReference whereDivides = new WhereRelationReference("dep", "employee", "em"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereDivides };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     fixedElement: " + EcoreUtil.getURI(this.department11)
-				+ " as dep\nwhere dep.employee = em\n";
+		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     fixedElement: " + EcoreUtil.getURI(this.department11) //$NON-NLS-1$ //$NON-NLS-2$
+				+ " as dep\nwhere dep.employee = em\n"; //$NON-NLS-1$
 		String querypp2 = query.toString();
 		assertEquals(querypp, querypp2);
 
@@ -902,8 +902,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void deparmentsAndEmployees() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ "] as dep in elements { " + "[" + EcoreUtil.getURI(this.department11) + "] } where dep.employee = em";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) //$NON-NLS-1$ //$NON-NLS-2$
+				+ "] as dep in elements { " + "[" + EcoreUtil.getURI(this.department11) + "] } where dep.employee = em"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		this.deparmentsAndEmployees_check(query);
 	}
@@ -914,7 +914,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName());
+		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -925,26 +925,26 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void employeesForAGivenDepartment_ast() {
 
 		// from clause
-		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false);
-		FromType departments = new FromFixedSet("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), new URI[] { EcoreUtil.getURI(this.department11),
+		FromType employees = new FromType("em", EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE), false); //$NON-NLS-1$
+		FromType departments = new FromFixedSet("dep", EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT), new URI[] { EcoreUtil.getURI(this.department11), //$NON-NLS-1$
 				EcoreUtil.getURI(this.department12) });
 		FromEntry[] fromEntries = new FromEntry[] { employees, departments };
 
 		// select clause
-		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" });
+		SelectAttrs selectEmployeeName = new SelectAttrs("em", new String[] { "name" }); //$NON-NLS-1$ //$NON-NLS-2$
 		SelectEntry[] selectEntries = new SelectEntry[] { selectEmployeeName };
 
 		// where entries
-		WhereRelationReference whereDivides = new WhereRelationReference("dep", "employee", "em");
+		WhereRelationReference whereDivides = new WhereRelationReference("dep", "employee", "em"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		WhereEntry[] whereEntries = new WhereEntry[] { whereDivides };
 
 		// the actual query
 		Query query = new Query(selectEntries, fromEntries, whereEntries);
 
 		// verify pretty-print
-		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     type: "
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\n           in elements {" + EcoreUtil.getURI(this.department11) + ",\n                        "
-				+ EcoreUtil.getURI(this.department12) + "}\nwhere dep.employee = em\n";
+		String querypp = "select em.name\nfrom type: " + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + " as em,\n     type: " //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + " as dep\n           in elements {" + EcoreUtil.getURI(this.department11) + ",\n                        " //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(this.department12) + "}\nwhere dep.employee = em\n"; //$NON-NLS-1$
 		String querypp2 = query.toString();
 		assertEquals(querypp.substring(0, 300), querypp2.substring(0, 300));
 
@@ -958,8 +958,8 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesForAGivenDepartment() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT)
-				+ "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], [" + EcoreUtil.getURI(this.department12) + "]} where dep.employee = em";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) //$NON-NLS-1$ //$NON-NLS-2$
+				+ "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], [" + EcoreUtil.getURI(this.department12) + "]} where dep.employee = em";  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 
 		this.employeesForAGivenDepartment_check(query);
 	}
@@ -971,9 +971,9 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	@Test
 	public void employeesForAGivenDepartment_2() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em where em.employer in (select dep from ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], ["
-				+ EcoreUtil.getURI(this.department12) + "]})";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em where em.employer in (select dep from [" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep in elements{[" + EcoreUtil.getURI(this.department11) + "], [" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(this.department12) + "]})"; //$NON-NLS-1$
 
 		this.employeesForAGivenDepartment_check(query);
 	}
@@ -984,15 +984,15 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// verify the result set
-		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName());
-		assertEquals(resultSet.getAttribute(1, "em", "name"), this.stefan.getName());
+		assertEquals(resultSet.getAttribute(0, "em", "name"), this.boris.getName()); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), this.stefan.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
 	public void verySpecificEmployees() {
 
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em "
-				+ " where for em(age > 35 or (name like 'S*') and not(name like '*f'))";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " //$NON-NLS-1$ //$NON-NLS-2$
+				+ " where for em(age > 35 or (name like 'S*') and not(name like '*f'))"; //$NON-NLS-1$
 
 		// execute the query
 		this.verySpecificEmployees_check(query);
@@ -1004,18 +1004,18 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// read the result
-		assertEquals(resultSet.getAttribute(0, "em", "name"), "Jens");
-		assertEquals(resultSet.getAttribute(1, "em", "name"), "Rainer");
-		assertEquals(resultSet.getAttribute(2, "em", "name"), "Simon");
-		assertEquals(resultSet.getAttribute(3, "em", "name"), "Stefan");
+		assertEquals(resultSet.getAttribute(0, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), "Rainer"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(2, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(3, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Test
 	public void employeesWhichAreDirectors() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed in (select div from ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div)";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed in (select div from [" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "] as div)"; //$NON-NLS-1$
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1025,7 +1025,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void employeesWhichAreDirectors_2() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1035,7 +1035,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void employeesWhichAreDirectors_3() {
 
 		// get directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed <> null"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesWhichAreDirectors_check(query);
@@ -1047,15 +1047,15 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// read the result
-		assertEquals(resultSet.getAttribute(0, "em", "name"), "Rainer");
+		assertEquals(resultSet.getAttribute(0, "em", "name"), "Rainer"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Test
 	public void employeesWhichAreNotDirectors() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed not in (select div from ["
-				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div)";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed not in (select div from [" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				+ EcoreUtil.getURI(CompanyPackage.Literals.DIVISION) + "]  as div)"; //$NON-NLS-1$
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1065,7 +1065,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void employeesWhichAreNotDirectors_2() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1075,7 +1075,7 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 	public void employeesWhichAreNotDirectors_3() {
 
 		// get all non-directors
-		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null";
+		String query = "select em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em " + " where em.directed = null"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		// execute the query
 		this.employeesWhichAreNotDirectors_check(query);
@@ -1087,12 +1087,12 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// read the result
-		assertEquals(resultSet.getAttribute(0, "em", "name"), "Boris");
-		assertEquals(resultSet.getAttribute(1, "em", "name"), "Eduard");
-		assertEquals(resultSet.getAttribute(2, "em", "name"), "Jens");
-		assertEquals(resultSet.getAttribute(3, "em", "name"), "Meinolf");
-		assertEquals(resultSet.getAttribute(4, "em", "name"), "Simon");
-		assertEquals(resultSet.getAttribute(5, "em", "name"), "Stefan");
+		assertEquals(resultSet.getAttribute(0, "em", "name"), "Boris"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), "Eduard"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(2, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(3, "em", "name"), "Meinolf"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(4, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(5, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	}
 

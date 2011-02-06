@@ -35,7 +35,7 @@ public class ImporterFactoryImpl extends EFactoryImpl implements ImporterFactory
 	 */
 	public static ImporterFactory init() {
 		try {
-			ImporterFactory theImporterFactory = (ImporterFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/importer"); 
+			ImporterFactory theImporterFactory = (ImporterFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/importer"); //$NON-NLS-1$ 
 			if (theImporterFactory != null) {
 				return theImporterFactory;
 			}
@@ -68,7 +68,7 @@ public class ImporterFactoryImpl extends EFactoryImpl implements ImporterFactory
 			case ImporterPackage.IMPORTER_B: return createImporterB();
 			case ImporterPackage.IMPORTER_AREFERENCES_IMPORTER_B: return createImporterAReferencesImporterB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

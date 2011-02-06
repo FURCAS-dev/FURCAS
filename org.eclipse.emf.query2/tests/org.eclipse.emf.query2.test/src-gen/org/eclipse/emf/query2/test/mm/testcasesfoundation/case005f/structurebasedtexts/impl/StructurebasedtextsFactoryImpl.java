@@ -35,7 +35,7 @@ public class StructurebasedtextsFactoryImpl extends EFactoryImpl implements Stru
 	 */
 	public static StructurebasedtextsFactory init() {
 		try {
-			StructurebasedtextsFactory theStructurebasedtextsFactory = (StructurebasedtextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/structurebasedtexts"); 
+			StructurebasedtextsFactory theStructurebasedtextsFactory = (StructurebasedtextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/structurebasedtexts"); //$NON-NLS-1$ 
 			if (theStructurebasedtextsFactory != null) {
 				return theStructurebasedtextsFactory;
 			}
@@ -67,7 +67,7 @@ public class StructurebasedtextsFactoryImpl extends EFactoryImpl implements Stru
 			case StructurebasedtextsPackage.GENERAL_TRANSLATABLE_TEXT: return createGeneralTranslatableText();
 			case StructurebasedtextsPackage.SPECIALIZED_TRANSLATABLE_TEXT: return createSpecializedTranslatableText();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

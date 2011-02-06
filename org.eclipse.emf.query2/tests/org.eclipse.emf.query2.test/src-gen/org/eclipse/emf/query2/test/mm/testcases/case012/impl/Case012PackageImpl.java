@@ -551,79 +551,79 @@ public class Case012PackageImpl extends EPackageImpl implements Case012Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(c12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.C12.class, "C12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(c12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.C12.class, "C12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		EOperation op = addEOperation(c12EClass, null, "operationInInteger", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEInt(), "inInteger", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(c12EClass, null, "operationInInteger", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEInt(), "inInteger", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInD", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "inD", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInD", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "inD", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInManyBoolean", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "inManyBoolean", 1, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInManyBoolean", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "inManyBoolean", 1, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInManyDs", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "inManyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInManyDs", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "inManyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationOutDouble", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDouble(), "outDouble", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationOutDouble", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEDouble(), "outDouble", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationOutD", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "outD", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationOutD", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "outD", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationOutManyFloat", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEFloat(), "outManyFloat", 1, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationOutManyFloat", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEFloat(), "outManyFloat", 1, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationOutManyDs", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "manyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationOutManyDs", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "manyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutLong", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getELong(), "inoutLong", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutLong", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getELong(), "inoutLong", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutLongOptional", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getELong(), "inoutLongOptional", 0, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutLongOptional", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getELong(), "inoutLongOptional", 0, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutManyLongs", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getELong(), "inoutManyLongs", 0, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutManyLongs", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getELong(), "inoutManyLongs", 0, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutManyLongsOrdered", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getELong(), "inoutManyLongsOrdered", 1, -1, !IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutManyLongsOrdered", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getELong(), "inoutManyLongsOrdered", 1, -1, !IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutD", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "inoutD", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutD", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "inoutD", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(c12EClass, null, "operationInoutManyDs", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getD12(), "inoutManyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(c12EClass, null, "operationInoutManyDs", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "inoutManyDs", 1, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(c12EClass, ecorePackage.getEInt(), "operationReturnInteger", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(c12EClass, ecorePackage.getEInt(), "operationReturnInteger", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(c12EClass, this.getD12(), "operationReturnD", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(c12EClass, this.getD12(), "operationReturnD", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(c12EClass, ecorePackage.getEInt(), "operationReturnManyInteger", 0, -1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(c12EClass, ecorePackage.getEInt(), "operationReturnManyInteger", 0, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(c12EClass, this.getD12(), "operationReturnManyDs", 0, -1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(c12EClass, this.getD12(), "operationReturnManyDs", 0, -1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(d12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.D12.class, "D12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(d12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.D12.class, "D12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(a12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.A12.class, "A12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA12_AttributeD12(), this.getD12(), null, "attributeD12", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case012.A12.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.A12.class, "A12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA12_AttributeD12(), this.getD12(), null, "attributeD12", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case012.A12.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(a12EClass, this.getD12(), "operationWithObjectParameters", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getD12(), "paramD12", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(a12EClass, this.getD12(), "operationWithObjectParameters", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getD12(), "paramD12", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a12EClass, this.getA12(), "operationWithThisAsReturnParameter", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a12EClass, this.getA12(), "operationWithThisAsReturnParameter", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a12EClass, this.getD12(), "operationGetAttributeD12", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a12EClass, this.getD12(), "operationGetAttributeD12", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.B12.class, "B12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b12EClass, org.eclipse.emf.query2.test.mm.testcases.case012.B12.class, "B12", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(b12EClass, ecorePackage.getEString(), "staticOperation1", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(b12EClass, ecorePackage.getEString(), "staticOperation1", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(b12EClass, ecorePackage.getEBoolean(), "instanceOperation1", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(b12EClass, ecorePackage.getEBoolean(), "instanceOperation1", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(b12EClass, ecorePackage.getEInt(), "staticOperation2", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(b12EClass, ecorePackage.getEInt(), "staticOperation2", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(b12EClass, ecorePackage.getEDouble(), "instanceOperation2", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(b12EClass, ecorePackage.getEDouble(), "instanceOperation2", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -640,49 +640,49 @@ public class Case012PackageImpl extends EPackageImpl implements Case012Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (c12EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case012.C12",
-			 "metaObjectMofId", "45F120A53D0DB73BB01C473B0FF4960E7A1C2DB4",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case012.C12", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A53D0DB73BB01C473B0FF4960E7A1C2DB4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (d12EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case012.D12",
-			 "metaObjectMofId", "45F120A5E75B3D64A25B49E31C419AC650C5D75D",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case012.D12", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5E75B3D64A25B49E31C419AC650C5D75D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a12EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case012.A12",
-			 "metaObjectMofId", "47A97A49D1BBA958D49311DC8EB7001558C93B47",
-			 "isStructureType", "false",
-			 "ova", "attributeD12"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case012.A12", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47A97A49D1BBA958D49311DC8EB7001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "attributeD12" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA12_AttributeD12(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "47A97A49D1BBA950D49311DC81A3001558C93B47"
+			 "ovaMofId", "47A97A49D1BBA950D49311DC81A3001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b12EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case012.B12",
-			 "metaObjectMofId", "47A97A49D1BDF34BD49311DC96B6001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case012.B12", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47A97A49D1BDF34BD49311DC96B6001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
