@@ -17,10 +17,8 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.TextBlocksModelStore;
@@ -36,7 +34,7 @@ import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 
-public class CtsContentAssistProcessor implements IContentAssistProcessor {
+public class CtsContentAssistProcessor {
 
     private final Class<? extends Lexer> lexerClass;
     private final Class<? extends ObservableInjectingParser> parserClass;
@@ -45,23 +43,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
     private Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = null;
     private CtsContentAssistParsingHandler parsingHandler = null;
     private final ResourceSet connection;
-
-    public CtsContentAssistProcessor(ResourceSet connection, Class<? extends Lexer> lexerClass,
-            Class<? extends ObservableInjectingParser> parserClass, String language) {
-        this.language = language;
-        Assert.isNotNull(connection, "moin connection is null");
-        this.lexerClass = lexerClass;
-        this.parserClass = parserClass;
-        this.syntax = getSyntax(connection, language);
-        this.connection = connection;
-
-        if (syntax == null) {
-            throw new IllegalStateException("Syntax definition model for language '" + language
-                    + "' does not exist in connection.");
-        }
-
-        initClassTemplateMap();
-    }
 
     public CtsContentAssistProcessor(ConcreteSyntax syntax, Class<? extends Lexer> lexerClass,
             Class<? extends ObservableInjectingParser> parserClass, String language) {
@@ -80,19 +61,16 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
     /**
      * offset = 0..n-1
      */
-    @Override
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
-
         try {
             int line = CtsContentAssistUtil.getLine(viewer, offset);
             int charPositionInLine = getCharPositionInLine(viewer, offset, line);
 
             return computeCompletionProposals(viewer, line, charPositionInLine);
         } catch (BadLocationException e) {
-            e.printStackTrace();
+            CtsActivator.logError(e);
         }
-
-        return null;
+        return new ICompletionProposal[0];
     }
 
     /**
@@ -119,7 +97,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                 tbModel = store.getModel();
             }
         }
-
         return computeCompletionProposals(viewer, line, charPositionInLine, tbModel);
     }
 
@@ -137,21 +114,17 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
         try {
             List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
             initParsingHandler(viewer);
-
             String prefix = "";
 
             if (!inComment(viewer, line, charPositionInLine)) {
 
                 CtsContentAssistContext context = getContext(line, charPositionInLine);
 
-                // workaround for ANTLR unlexed tokens that get parsed but start
-                // with whitespace
+                // workaround for ANTLR unlexed tokens that get parsed but start with whitespace
                 if (context != null) {
-
                     if (CtsContentAssistUtil.isContextAtWhitespace(viewer, context)) {
-                        context = getPreviousContext(context, viewer);
+                        context = getPreviousContext(context);
                     }
                 }
 
@@ -175,7 +148,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
                             curOffset, stopOffset);
 
                     results = prefixFilter(removeNullValues(results), prefix);
-
                     // end workaround
 
                 } else {
@@ -188,13 +160,12 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
                     if (CtsContentAssistUtil.isInToken(line, charPositionInLine, context.getToken())) {
 
-                        CtsContentAssistContext previousContext = getPreviousContext(context, viewer);
+                        CtsContentAssistContext previousContext = getPreviousContext(context);
 
                         // get proposals that follow previous token, and apply
                         // prefix filter
 
                         if (!isValid(previousContext)) {
-
                             results = CtsContentAssistUtil.createFirstPossibleProposals(syntax, classTemplateMap, viewer, line,
                                     charPositionInLine, context.getToken(), tbModel);
                         } else {
@@ -236,17 +207,13 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        finally {
+            CtsActivator.logError(e);
+        } finally {
             // clear transient partitions used by content assist
             //TcsUtil.clearTransientPartition(connection);
             CtsContentAssistParsingHandler.clearTransientPartition(connection);
         }
-
         return null;
-
     }
 
     private String computePrefixFromContext(int charPositionInLine, CtsContentAssistContext context) {
@@ -282,22 +249,19 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         if (context == null) {
             return false;
         }
-
         if (context.getToken() == null) {
             return false;
         }
-
         if (CtsContentAssistUtil.getCharPositionInLine(context.getToken()) == -1) {
             return false;
         }
-
         return true;
     }
 
     private void initParsingHandler(ITextViewer viewer) throws IOException, UnknownProductionRuleException,
             InvalidParserImplementationException {
         ParserFacade facade;
-        facade = new ParserFacade(getParserClass(), getLexerClass(), language);
+        facade = new ParserFacade(parserClass, lexerClass, language);
 
         String documentContents = CtsContentAssistUtil.getDocumentContents(viewer);
         InputStream in = new ByteArrayInputStream(documentContents.getBytes());
@@ -314,33 +278,20 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         delegator.addParsingObserver(parsingHandler);
 
         facade.parseProductionRule(in, modelHandler, null, null, delegator);
-
     }
 
     private void initClassTemplateMap() {
         classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
     }
 
-    private CtsContentAssistContext getPreviousContext(CtsContentAssistContext context, ITextViewer viewer) {
+    private CtsContentAssistContext getPreviousContext(CtsContentAssistContext context) {
         // get the context one offset before this context
         return getContext(CtsContentAssistUtil.getLine(context.getToken()),
                 CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
     }
 
     private CtsContentAssistContext getContext(int line, int charPositionInLine) {
-
         return parsingHandler.getFloorContext(line, charPositionInLine);
-    }
-
-    private static ConcreteSyntax getSyntax(ResourceSet connection, String language) {
-        List<ConcreteSyntax> syntaxList = TcsUtil.getSyntaxesInResourceSet(connection);
-
-        for (ConcreteSyntax syntax : syntaxList) {
-            if (syntax != null && syntax.getName() != null && syntax.getName().equals(language)) {
-                return syntax;
-            }
-        }
-        return null;
     }
 
     static boolean containsDisplayString(List<ICompletionProposal> proposals, String displayString) {
@@ -354,19 +305,15 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
     }
 
     static List<ICompletionProposal> removeDuplicates(List<ICompletionProposal> input) {
-
         if (input == null) {
             return null;
         }
-
         List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
         for (ICompletionProposal proposal : input) {
             if (!containsDisplayString(results, proposal.getDisplayString())) {
                 results.add(proposal);
             }
         }
-
         return results;
     }
 
@@ -374,15 +321,12 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         if (input == null) {
             return null;
         }
-
         List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
-
         for (ICompletionProposal proposal : input) {
             if (proposal != null) {
                 results.add(proposal);
             }
         }
-
         return results;
     }
 
@@ -390,13 +334,9 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         if (input == null) {
             return null;
         }
-
         List<ICompletionProposal> results = new ArrayList<ICompletionProposal>(input);
-
         Collections.sort(results, new CompletionProposalsComparator(prefix));
-
         return results;
-
     }
 
     static class CompletionProposalsComparator implements Comparator<ICompletionProposal> {
@@ -418,31 +358,25 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
             if (aTop && bTop) {
                 return a.getDisplayString().compareTo(b.getDisplayString());
             }
-
             if (aTop) {
                 return -1;
             }
-
             if (bTop) {
                 return 1;
             }
 
             // !aTop and !bTop
             return a.getDisplayString().compareTo(b.getDisplayString());
-
         }
-
     };
 
     static List<ICompletionProposal> prefixFilter(List<ICompletionProposal> input, String prefix) {
-
         List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
         for (ICompletionProposal proposal : input) {
             if (proposal.getDisplayString().startsWith(prefix)) {
                 results.add(proposal);
             }
         }
-
         return results;
     }
 
@@ -451,44 +385,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
             return null;
         }
         return proposalList.toArray(new ICompletionProposal[0]);
-    }
-
-    @Override
-    public IContextInformation[] computeContextInformation(ITextViewer viewer, int offset) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public char[] getCompletionProposalAutoActivationCharacters() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public char[] getContextInformationAutoActivationCharacters() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public IContextInformationValidator getContextInformationValidator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public String getErrorMessage() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    protected Class<? extends Lexer> getLexerClass() {
-        return lexerClass;
-    }
-
-    protected Class<? extends ObservableInjectingParser> getParserClass() {
-        return parserClass;
     }
 
 }

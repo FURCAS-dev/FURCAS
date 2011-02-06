@@ -10,18 +10,20 @@
  ******************************************************************************/
 package com.sap.furcas.ide.editor.imp.services;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
+import org.antlr.runtime.Lexer;
 import org.eclipse.imp.parser.IParseController;
 import org.eclipse.imp.services.IContentProposer;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
+import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
-import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 
 /**
  * {@link IContentProposer} implementation for languages defined in FURCAS.
- * This content assist implementation is generic.
  * 
  * This class is generic and does not need a language specific implementation.
  *  
@@ -29,17 +31,19 @@ import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
  *
  */
 public class FurcasContentProposer implements IContentProposer {
+    
+    private final CtsContentAssistProcessor contentProposer;
+
+    public FurcasContentProposer(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+        ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
+
+        contentProposer = new CtsContentAssistProcessor(syntax,
+                parserFactory.getLexerClass(), parserFactory.getParserClass(), parserFactory.getLanguageId());
+    }
 
     @Override
     public ICompletionProposal[] getContentProposals(IParseController controller, int offset, ITextViewer viewer) {
-        EditingDomain editingDomain = ((FurcasParseController) controller).getEditingDomain();
-        ParserCollection parserCollection = ((FurcasParseController) controller).getParserCollection();
-        
-        CtsContentAssistProcessor assist = new CtsContentAssistProcessor(editingDomain.getResourceSet(),
-                parserCollection.parserFactory.getLexerClass(), parserCollection.parserFactory.getParserClass(),
-                parserCollection.parserFactory.getLanguageId());
-        
-        return assist.computeCompletionProposals(viewer, offset);
+        return contentProposer.computeCompletionProposals(viewer, offset);
     }
 
 }
