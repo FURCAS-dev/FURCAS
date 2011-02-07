@@ -1,0 +1,92 @@
+To avoid forgetting our future plans, I wrote them down here.
+If you think these notes are too short or not expressive enough, feel free to add descriptions on your own.
+
+- implementation of the unused() function
+
+- since navigation steps might get reused (e.g. the body of an operation call) applying the scopes directly on these steps
+  will not work because there might be the scopes of the previous usage applied. Therefore building a wrapper around
+  navigation steps that handles the scopes and unused calculations seems necessary. 
+  
+- implementation of a factory for UnusedEvaluationRequest (and the nested ones)
+
+- create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
+
+- consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
+  argument/source, respectively, is false/true, respectively
+  
+- cache results of unused(...) computations in TracebackCache; this will avoid redundant computations, e.g.,
+  when a traceback run descends down the composition hierarchy of a series of CallExp, going from the
+  CallExp to the contained source expression; when applying the composition rule to the source expression,
+  the next thing to check is unused(...) for the CallExp again which traceback should have done and hence
+  cached just before descending into the source expression.
+  
+- the partial evaluator may be able to treat let variables in a special way as their value might have been inferred
+  by the traceback() function already
+  
+- scope transitions during the unused calculations can be reduced if a scope is entered and left during the same transition
+  
+- What could be really bad: when delving from an OperationCallExp into an operation body, new dynamic scopes will be created
+  for all variables that are again in scope when while tracing the body a self/parameter VariableExp is visited. This
+  will make it impossible to relate variable values inferred after popping back up through a self/parameter usage
+  to any parked UnusedEvaluationRequest in the calling expression. Example:
+  
+  	let x=... in
+  		x.op()->select(i | if x.a > 3 then
+  							 i.b
+  						   else
+  						     i.c
+  						   endif)
+  	
+  Let's assume the change event affects i.b. We'll try to partially evaluate x.a>3 to see if i.b may have been
+  unused. We're missing x. So we continue with traceback which leads us to the source expression of the select
+  iterator (x.op()). This lets traceback continue with op's body expression. Let's assume that traceback then
+  hits a "self" variable inside op's body. This throws processing back up to the "x" source expression of the
+  x.op() call. At this point, traceback infers the value for x. This could actually trigger the UnusedEvaluationRequest
+  parked for x.a>3 and would lead to successful partial evaluation of the expression which may prove unusedness
+  of the i.b expression, therefore pruning the traceback tree currently visited.
+  
+  But this may get us back into a similar problem we were facing with considering the actual call hierarchy for
+  limiting the number of OperationCallExp to consider when traceback was currently visiting an operation's body
+  only because it was tracing one particular known call. It led to the problem that caching the navigation step
+  results would have to have used the actual call hierarchy as part of the key which ended up in a combinatorial
+  explosion of different keys, leading to what seemed to be NP-like effort.
+  
+- As the Tracers add the leaving/entering scopes to the NavigationSteps, they must also add a "script" for
+  performing the necessary unused computations. 
+
+- If navigation steps are compressed manifestations of multiple traceback steps as described in the paper,
+  each traceback step could have changed the variable scope and may have required an unused check. This means
+  that there is not a single before/after dynamic scope combination and that the unused cache lookup can be
+  performed using the "before" dynamic scope combination; instead, the various unused checks that a single
+  NavigationStep has to perform need to be performed with different transformations in dynamic scope.
+  The tracers will have to record the interleaving of unused-checks to be performed and the variable scope
+  changes that happen in between. The variable scope changes are not of interest to the actual traceback
+  functionality. However, after each (implicit, because combined into one) traceback step there is an
+  unused check chain spawned off, after the variable scope changes implied by the single (implied)
+  traceback step have been applied. As the chain of unused computations also navigates along the expression
+  tree ("orthogonal" to the traceback AST navigation direction), more variable scope changes may need to be
+  performed, after each such unused navigation. Interestingly, these scope changes need to be reverted/"popped"
+  when returning from the unused computation back to the traceback evaluation. But the UnusedEvaluationRequests
+  produced while on the "unused fork" will have recorded the dynamic scope IDs of the variables that were in
+  scope when the partial evaluation was requested.
+  
+- Question: can we be sure that a scope transformation performed in an unused sequence leads to the same
+  dynamic scope IDs that will be reached by subsequent traceback scope changes? For example, if the unused
+  chain travels up in the operation call hierarchy, multiple call expressions may be visited, transitively
+  leading to an operation that later may be reached on another path in the regular traceback chain. The
+  traceback chain may have performed a different set of dynamic scope transformations. A linear counter
+  for each variable may not be enough for a correct identification of dynamic scopes. In other words: when
+  should the spawned unused checks and the trunk traceback really "independently" produce equal dynamic scope
+  IDs? Can we ever reliably assume that two paths as different as traceback and unused may use a numbering
+  scheme for the dynamic variable scopes that maps equal scopes to equal IDs?
+
+- Caching of NavigationStep results in the face of parked UnusedEvaluationRequests: if a navigate leads to
+  new UnusedEvaluationRequests being created and scheduled, this contributes to the state used during the
+  evaluation of subsequent traceback steps; these subsequent steps could infer a variable value for which
+  an UnusedEvaluationRequest was previously scheduled, which then gets triggered and proves unusedness which
+  enters an empty result set into the cache. Another evaluation for the same fromObject may currently lead to
+  a cache hit, although the set of UnusedEvaluationRequests may not necessarily be the same in this context.
+  
+- Annotate the AnnotatedEObjects again in the TracebackStep approach
+
+- We need to populate the tracebackCache with traceback results and perform a lookup in it
