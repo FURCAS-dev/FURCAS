@@ -1,15 +1,18 @@
-package org.eclipse.emf.query.index.ui;
+package org.eclipse.emf.query.index;
 
 import java.io.File;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -79,7 +82,7 @@ public class IndexFactory {
 	}
 
 	/**
-	 * Dumps the index
+	 * Dumps the indices into memory.
 	 */
 	public static void dumpIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();
@@ -89,7 +92,7 @@ public class IndexFactory {
 	}
 
 	/**
-	 * Dumps the index
+	 * Loads the dumped indices from memory.
 	 */
 	public static Index loadIndexes() {
 		long currentTimeMillis = System.currentTimeMillis();

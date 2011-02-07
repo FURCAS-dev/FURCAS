@@ -501,8 +501,8 @@ public class Case003fPackageImpl extends EPackageImpl implements Case003fPackage
 		b3fEClass.getESuperTypes().add(theTextverticalizationPackage.getTranslatableText());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(b3fEClass, B3f.class, "B3f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB3f_TextName(), ecorePackage.getEString(), "textName", null, 1, 1, B3f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(b3fEClass, B3f.class, "B3f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB3f_TextName(), ecorePackage.getEString(), "textName", null, 1, 1, B3f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -519,15 +519,15 @@ public class Case003fPackageImpl extends EPackageImpl implements Case003fPackage
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (b3fEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case003f.B3f",
-			 "metaObjectMofId", "487D5B821B76A2C152DE11DDCB02C4DEC0A80165",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case003f.B3f", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487D5B821B76A2C152DE11DDCB02C4DEC0A80165", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

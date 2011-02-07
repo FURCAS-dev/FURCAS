@@ -35,7 +35,7 @@ public class SerializationcallbackFactoryImpl extends EFactoryImpl implements Se
 	 */
 	public static SerializationcallbackFactory init() {
 		try {
-			SerializationcallbackFactory theSerializationcallbackFactory = (SerializationcallbackFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case019/serializationcallback"); 
+			SerializationcallbackFactory theSerializationcallbackFactory = (SerializationcallbackFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case019/serializationcallback"); //$NON-NLS-1$ 
 			if (theSerializationcallbackFactory != null) {
 				return theSerializationcallbackFactory;
 			}
@@ -67,7 +67,7 @@ public class SerializationcallbackFactoryImpl extends EFactoryImpl implements Se
 			case SerializationcallbackPackage.A19_SERIALIZATION: return createA19Serialization();
 			case SerializationcallbackPackage.B19_SERIALIZATION: return createB19Serialization();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

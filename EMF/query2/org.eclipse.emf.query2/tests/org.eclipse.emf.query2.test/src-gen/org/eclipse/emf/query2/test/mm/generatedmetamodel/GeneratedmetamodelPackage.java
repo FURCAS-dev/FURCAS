@@ -38,7 +38,7 @@ public interface GeneratedmetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "generatedmetamodel";
+	String eNAME = "generatedmetamodel"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -46,7 +46,7 @@ public interface GeneratedmetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/generatedmetamodel";
+	String eNS_URI = "http://sap.com/moin/generatedmetamodel"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -54,7 +54,7 @@ public interface GeneratedmetamodelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "gen";
+	String eNS_PREFIX = "gen"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

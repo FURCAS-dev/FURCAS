@@ -8,9 +8,10 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2.internal.shared;
+package org.eclipse.emf.query2;
 
 import java.io.IOException;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,8 +33,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.DirtyResourceFactory;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+
 import org.eclipse.emf.query.index.query.EReferenceQuery;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
@@ -43,8 +43,6 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.internal.index.IndexQueryService;
 
 public class EmfHelper {
 
@@ -59,7 +57,10 @@ public class EmfHelper {
 	private Map<URI, EClass> eclassCache = new HashMap<URI, EClass>();
 
 	private boolean useDirty = false;
-
+	/**
+	 * Gets the index of the current context
+	 * @return Index
+	 */
 	public Index getIndex() {
 		return index;
 	}
@@ -87,33 +88,21 @@ public class EmfHelper {
 		this.useDirty = false;
 	}
 
-	public void createDirtyIndex() {
-		this.dirtyIndex = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
-
-		if (!rs.getResources().isEmpty()) {
-			dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
-
-				
-				public void execute(IndexUpdater updater) {
-					ResourceIndexer rd = new ResourceIndexer();
-					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
-					for (int i = 0; i < array.length; i++) {
-						Resource r = array[i];
-						if (r.isLoaded() && (!r.isTrackingModification() || r.isModified())) {
-							rd.resourceChanged(updater, r);
-						}
-					}
-				}
-
-			});
-		}
-	}
-
+	/**
+	 * Creates a URI with the given uri
+	 * @param uriString
+	 * @return URI created for uriString
+	 */
 	public URI createUri(String uriString) {
 
 		return URI.createURI(uriString);
 	}
-
+	
+	/**
+	 * Returns corresponding eClass for given uri
+	 * @param uri
+	 * @return eClass for the given URI
+	 */
 	public EClass getTypeElement(URI uri) {
 
 		EClass result;
@@ -128,7 +117,11 @@ public class EmfHelper {
 
 		return this.rs.getEObject(uri, true);
 	}
-
+	/**
+	 * Returns corresponding eReference for given uri
+	 * @param uri
+	 * @return eReference for the given URI
+	 */
 	public EReference getReference(URI uri) {
 
 		EReference result = null;
@@ -138,12 +131,21 @@ public class EmfHelper {
 		}
 		return result;
 	}
-
+	/**
+	 * Gets all subtypes of the given eClass
+	 * @param typeAsMofClass
+	 * @return subtypes of given eClass as collection
+	 */
 	public Collection<EClass> getAllSubtypes(EClass typeAsMofClass) {
 
 		return IndexQueryService.getAllSubtypes(this.index, typeAsMofClass);
 	}
-
+	
+	/**
+	 * Gets the structural feature from the eClass
+	 * @param attrName, name of the structural feature
+	 * @return structural feature by name attrName in mofClass
+	 */
 	public EStructuralFeature getFeatureByName(EClass mofClass, String attrName) {
 
 		return mofClass.getEStructuralFeature(attrName);
@@ -183,7 +185,11 @@ public class EmfHelper {
 			}
 		});
 	}
-
+	
+	/**
+	 * Returns all the loaded resources of the resourceSet
+	 * @return list of resources
+	 */
 	public List<Resource> getLoadedResources() {
 
 		List<Resource> result = new ArrayList<Resource>();
@@ -194,7 +200,11 @@ public class EmfHelper {
 		}
 		return result;
 	}
-
+	/**
+	 * Gets all the elements in the given resource
+	 * @param a resource
+	 * @return elements in the given resource
+	 */
 	public List<EObject> getElementsInResource(Resource mp) {
 
 		List<EObject> result = new ArrayList<EObject>();
@@ -244,11 +254,18 @@ public class EmfHelper {
 			return this.index;
 		}
 	}
-
+	/**
+	 *Returns a list of eObjects which are referring a particular eObject(target eObject), 
+	 *usually through a backward navigation link 
+	 *
+	 */
 	public List<EObject> getReferringElementsWithTypeAndInScope(final EObject toObject, final URI endAndMetaObject,
-			final Set<URI> priScope, final Set<EClass> mrisOfTypes, final Set<URI> elements) {
+			final Set<URI> uriScope, final Set<EClass> mrisOfTypes, final Set<URI> elements) {
 
 		QueryCommandWithResult<List<EObject>> command;
+		if(this.getBackwardNavIndex()==null){
+			return null; //Null check handling has to be done in the callee.
+		}
 		this.getBackwardNavIndex().executeQueryCommand(command = new QueryCommandWithResult<List<EObject>>() {
 
 			
@@ -265,7 +282,7 @@ public class EmfHelper {
 				for (EReferenceDescriptor entry : queryResult) {
 					URI resourceURI = entry.getSourceResourceURI();
 					String fragment = entry.getSourceFragment();
-					if ((priScope == null || priScope.contains(entry.getSourceResourceURI())) && //
+					if ((uriScope == null || uriScope.contains(entry.getSourceResourceURI())) && //
 							(elements == null || elements.contains(resourceURI.appendFragment(fragment)))) {
 						Resource r = rs.getResource(resourceURI, true);
 						EObject eObject = r.getEObject(fragment);

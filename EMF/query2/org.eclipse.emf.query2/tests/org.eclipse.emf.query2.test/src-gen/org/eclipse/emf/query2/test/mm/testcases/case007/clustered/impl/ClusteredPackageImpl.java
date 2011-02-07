@@ -551,13 +551,13 @@ public class ClusteredPackageImpl extends EPackageImpl implements ClusteredPacka
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(clusteredAEClass, ClusteredA.class, "ClusteredA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(clusteredAEClass, ClusteredA.class, "ClusteredA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(clusteredBEClass, ClusteredB.class, "ClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(clusteredBEClass, ClusteredB.class, "ClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(clusteredAReferencesClusteredBEClass, ClusteredAReferencesClusteredB.class, "ClusteredAReferencesClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClusteredAReferencesClusteredB_ClusteredB(), this.getClusteredB(), null, "clusteredB", null, 0, 1, ClusteredAReferencesClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getClusteredAReferencesClusteredB_ClusteredA(), this.getClusteredA(), null, "clusteredA", null, 0, -1, ClusteredAReferencesClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(clusteredAReferencesClusteredBEClass, ClusteredAReferencesClusteredB.class, "ClusteredAReferencesClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getClusteredAReferencesClusteredB_ClusteredB(), this.getClusteredB(), null, "clusteredB", null, 0, 1, ClusteredAReferencesClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getClusteredAReferencesClusteredB_ClusteredA(), this.getClusteredA(), null, "clusteredA", null, 0, -1, ClusteredAReferencesClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -574,48 +574,48 @@ public class ClusteredPackageImpl extends EPackageImpl implements ClusteredPacka
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (clusteredAEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.ClusteredA",
-			 "metaObjectMofId", "476118E36F8F0466A96F11DCAB7A001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.ClusteredA", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F8F0466A96F11DCAB7A001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (clusteredBEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.ClusteredB",
-			 "metaObjectMofId", "476118E36F917560A96F11DCA3BC001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.ClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917560A96F11DCA3BC001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getClusteredAReferencesClusteredB_ClusteredB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.ClusteredAReferencesClusteredB",
-			 "metaObjectMofId", "476118E36F917563A96F11DCBC3B001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.ClusteredAReferencesClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917563A96F11DCBC3B001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getClusteredAReferencesClusteredB_ClusteredA(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.ClusteredAReferencesClusteredB",
-			 "metaObjectMofId", "476118E36F917563A96F11DCBC3B001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.ClusteredAReferencesClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917563A96F11DCBC3B001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

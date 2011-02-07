@@ -648,11 +648,11 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", age: ");
+		result.append(", age: "); //$NON-NLS-1$
 		result.append(age);
-		result.append(", salary: ");
+		result.append(", salary: "); //$NON-NLS-1$
 		result.append(salary);
 		result.append(')');
 		return result.toString();

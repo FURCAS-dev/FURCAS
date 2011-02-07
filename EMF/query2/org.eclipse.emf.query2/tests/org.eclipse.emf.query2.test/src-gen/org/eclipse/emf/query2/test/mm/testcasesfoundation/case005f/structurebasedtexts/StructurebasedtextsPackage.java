@@ -37,7 +37,7 @@ public interface StructurebasedtextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "structurebasedtexts";
+	String eNAME = "structurebasedtexts"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -45,7 +45,7 @@ public interface StructurebasedtextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcasesfoundation/case005f/structurebasedtexts";
+	String eNS_URI = "http://sap.com/moin/testcasesfoundation/case005f/structurebasedtexts"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface StructurebasedtextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "testcasesfoundationcase005fsbt";
+	String eNS_PREFIX = "testcasesfoundationcase005fsbt"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

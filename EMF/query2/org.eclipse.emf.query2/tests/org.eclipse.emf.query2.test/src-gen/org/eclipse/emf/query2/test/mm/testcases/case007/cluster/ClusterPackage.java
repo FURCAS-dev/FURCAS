@@ -36,7 +36,7 @@ public interface ClusterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "cluster";
+	String eNAME = "cluster"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface ClusterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case007/cluster";
+	String eNS_URI = "http://sap.com/moin/testcases/case007/cluster"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface ClusterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case007cluster";
+	String eNS_PREFIX = "case007cluster"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

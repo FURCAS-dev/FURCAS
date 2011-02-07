@@ -530,11 +530,11 @@ public class Case001fPackageImpl extends EPackageImpl implements Case001fPackage
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a1fEClass, A1f.class, "A1f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA1f_TranslatableText(), theTextverticalizationPackage.getTranslatableText(), null, "translatableText", null, 1, 1, A1f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a1fEClass, A1f.class, "A1f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA1f_TranslatableText(), theTextverticalizationPackage.getTranslatableText(), null, "translatableText", null, 1, 1, A1f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b1fEClass, B1f.class, "B1f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB1f_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, B1f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b1fEClass, B1f.class, "B1f", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB1f_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, B1f.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -551,30 +551,30 @@ public class Case001fPackageImpl extends EPackageImpl implements Case001fPackage
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a1fEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case001f.A1f",
-			 "metaObjectMofId", "45ED922CA5D2947E0EE543701D54E6B7BF726A50",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case001f.A1f", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45ED922CA5D2947E0EE543701D54E6B7BF726A50", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA1f_TranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "487D5B821B7458D052DE11DDB515C4DEC0A80165"
+			 "ovaMofId", "487D5B821B7458D052DE11DDB515C4DEC0A80165" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b1fEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case001f.B1f",
-			 "metaObjectMofId", "45ED922C4E128103DEF54D250988D90DD9621BAE",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case001f.B1f", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45ED922C4E128103DEF54D250988D90DD9621BAE", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

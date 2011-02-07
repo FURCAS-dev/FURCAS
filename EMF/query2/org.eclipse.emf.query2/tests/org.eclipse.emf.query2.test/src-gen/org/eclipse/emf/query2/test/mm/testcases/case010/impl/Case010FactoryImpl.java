@@ -35,7 +35,7 @@ public class Case010FactoryImpl extends EFactoryImpl implements Case010Factory {
 	 */
 	public static Case010Factory init() {
 		try {
-			Case010Factory theCase010Factory = (Case010Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case010"); 
+			Case010Factory theCase010Factory = (Case010Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case010"); //$NON-NLS-1$ 
 			if (theCase010Factory != null) {
 				return theCase010Factory;
 			}
@@ -71,7 +71,7 @@ public class Case010FactoryImpl extends EFactoryImpl implements Case010Factory {
 			case Case010Package.NOT_CHANGEABLE_TO_NOT_CHANGEABLE: return createNotChangeableToNotChangeable();
 			case Case010Package.NOT_CHANGEABLE_AND_NAVIGABLE_TO_NOT_CHANGEABLE_AND_NAVIGABLE: return createNotChangeableAndNavigableToNotChangeableAndNavigable();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -35,7 +35,7 @@ public class NestedOfClusteredFactoryImpl extends EFactoryImpl implements Nested
 	 */
 	public static NestedOfClusteredFactory init() {
 		try {
-			NestedOfClusteredFactory theNestedOfClusteredFactory = (NestedOfClusteredFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/clustered/nestedOfClustered"); 
+			NestedOfClusteredFactory theNestedOfClusteredFactory = (NestedOfClusteredFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/clustered/nestedOfClustered"); //$NON-NLS-1$ 
 			if (theNestedOfClusteredFactory != null) {
 				return theNestedOfClusteredFactory;
 			}
@@ -68,7 +68,7 @@ public class NestedOfClusteredFactoryImpl extends EFactoryImpl implements Nested
 			case NestedOfClusteredPackage.NESTED_OF_CLUSTERED_B: return createnestedOfClusteredB();
 			case NestedOfClusteredPackage.NESTED_OF_CLUSTERED_AREFERENCES_NESTED_OF_CLUSTERED_B: return createNestedOfClusteredAReferencesNestedOfClusteredB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -98,7 +98,7 @@ public class NestedOfClusteredFactoryImpl extends EFactoryImpl implements Nested
 	 * @generated
 	 */
 	public NestedOfClusteredAReferencesNestedOfClusteredB createNestedOfClusteredAReferencesNestedOfClusteredB() {
-		NestedOfClusteredAReferencesNestedOfClusteredB nestedOfClusteredAReferencesNestedOfClusteredB = new NestedOfClusteredAReferencesNestedOfClusteredBImpl();
+		NestedOfClusteredAReferencesNestedOfClusteredBImpl nestedOfClusteredAReferencesNestedOfClusteredB = new NestedOfClusteredAReferencesNestedOfClusteredBImpl();
 		return nestedOfClusteredAReferencesNestedOfClusteredB;
 	}
 
