@@ -1,0 +1,32 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "deployment"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"4472ED94018E"
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "landscape"
+	    quid       	"4472EDA20076"
+	    documentation 	
+|A customer may describe the system landscape in an instance of this metamodel. In particular, this describes machines, network infrastructure, as well as software components installed on each of those.
+|
+|This information can be used to determine a good configuration for a customer, given a selection of solutions that the customer wants. It may also be helpful in tracking and monitoring the landscape. Ideally, landscape configuration scripts could be generated from a selection of components and a plan as to how to distribute the components across the landscape.
+|
+|Landscape components (source: Nestle): OS, DB, Network, middle tier software, business applications (SAP, non-SAP, legacy)
+	    
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list)
+	    logical_presentations 	(list unit_reference_list))
+	(object Class_Category "cachingandreplication"
+	    quid       	"44D754AF0266"
+	    documentation 	"Talks about, depending on a specific deployment to a landscape, what to cache where and what to replicate from where to where. This will have to be based on the quantity structure of objects and calls (what will be under which amount of stress?) and on landscape information (computing power, network bandwidth, speed, latency, ...)."
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list)
+	    logical_presentations 	(list unit_reference_list)))
+    logical_presentations 	(list unit_reference_list))
