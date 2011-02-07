@@ -13,7 +13,7 @@ public class RefreshQueryView extends AbstractHandler {
 		IWorkbenchPart part = HandlerUtil.getActivePart(event);
 		if (part instanceof QueryView) {
 			QueryView view = (QueryView) part;
-			String parameter = event.getParameter("refreshDirty");
+			String parameter = event.getParameter("refreshDirty"); //$NON-NLS-1$
 			if (Boolean.valueOf(parameter)) {
 				view.refresh(true);
 			}else {

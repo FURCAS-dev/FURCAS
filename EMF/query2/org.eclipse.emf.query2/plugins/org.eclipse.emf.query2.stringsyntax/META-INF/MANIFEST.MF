@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Query2 String Syntax Core
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Name: %Query2StringSyntax_Bundle_Name
+Bundle-Vendor: %Query2StringSyntax_Bundle_Vendor
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntax;singleton:=true
 Bundle-ActivationPolicy: lazy

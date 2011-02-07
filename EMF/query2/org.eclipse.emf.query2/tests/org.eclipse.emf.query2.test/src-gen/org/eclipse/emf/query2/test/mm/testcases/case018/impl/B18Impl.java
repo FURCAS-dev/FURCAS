@@ -163,7 +163,7 @@ public class B18Impl extends B1fImpl implements B18 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (specialOnePrimitive: ");
+		result.append(" (specialOnePrimitive: "); //$NON-NLS-1$
 		result.append(specialOnePrimitive);
 		result.append(')');
 		return result.toString();

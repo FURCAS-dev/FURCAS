@@ -70,12 +70,12 @@ public class CoreQueryClientScope implements SpiFacilityQueryClientScope {
 	////        return this.conn;
 	//    }
 
-	public boolean isPartitionScopeInclusive() {
+	public boolean isResourceScopeInclusive() {
 
 		return this.partitionScopeInclusive;
 	}
 
-	public Set<URI> getPartitionsScope() {
+	public Set<URI> getResourcesScope() {
 
 		return this.partitionScope;
 	}

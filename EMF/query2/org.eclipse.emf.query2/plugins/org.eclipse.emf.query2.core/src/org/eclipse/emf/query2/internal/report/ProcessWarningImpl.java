@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2.report;
+package org.eclipse.emf.query2.internal.report;
 
 import java.text.MessageFormat;
 import java.util.Locale;
@@ -16,6 +16,8 @@ import java.util.Locale;
 import org.eclipse.emf.query2.exception.BaseRuntimeException;
 import org.eclipse.emf.query2.exception.LocalizedBaseException;
 import org.eclipse.emf.query2.exception.LocalizedString;
+import org.eclipse.emf.query2.report.ProcessMessages;
+import org.eclipse.emf.query2.report.ProcessWarning;
 
 
 /**

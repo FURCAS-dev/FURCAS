@@ -34,13 +34,13 @@ public class LibraryTransformation extends QueryTestCase {
 	@BeforeClass
 	public static void setup() {
 		if (!Platform.isRunning()) {
-			new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri("..");
+			new org.eclipse.emf.mwe.utils.StandaloneSetup().setPlatformUri(".."); //$NON-NLS-1$
 		}
 
 		Injector injector = new QueryStandaloneSetup().createInjectorAndDoEMFRegistration();
 		XtextResourceSet set = injector.getInstance(XtextResourceSet.class);
 		set.addLoadOption(XtextResource.OPTION_RESOLVE_ALL, Boolean.TRUE);
-		URI resourceURI = URI.createURI("platform:/plugin/org.eclipse.emf.query2.librarytest/data/lib.query");
+		URI resourceURI = URI.createURI("platform:/plugin/org.eclipse.emf.query2.librarytest/data/lib.query"); //$NON-NLS-1$
 		URI normalized = set.getURIConverter().normalize(resourceURI);
 		LazyLinkingResource xtextResource = (LazyLinkingResource) set.getResource(normalized, true);
 		model = (Model) xtextResource.getContents().get(0);
@@ -54,7 +54,7 @@ public class LibraryTransformation extends QueryTestCase {
 			final ResourceSet rs = new ResourceSetImpl();
 
 			Query transform = QueryTransformer.transform(query.getQuery());
-			System.out.println("\n" + query.getName() + "\n----------------------------------");
+			System.out.println("\n" + query.getName() + "\n----------------------------------"); //$NON-NLS-1$ //$NON-NLS-2$
 			System.out.println(transform.toString().trim());
 
 			long start = System.nanoTime();
@@ -62,9 +62,9 @@ public class LibraryTransformation extends QueryTestCase {
 			long end = System.nanoTime();
 
 			System.out.println(execute);
-			System.out.println("Size: " + execute.getSize());
+			System.out.println("Size: " + execute.getSize()); //$NON-NLS-1$
 			long time = end - start;
-			System.out.println("QueryTime: " + time + "ns (" + (time / 1000000000f) + "s)");
+			System.out.println("QueryTime: " + time + "ns (" + (time / 1000000000f) + "s)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 	}
 

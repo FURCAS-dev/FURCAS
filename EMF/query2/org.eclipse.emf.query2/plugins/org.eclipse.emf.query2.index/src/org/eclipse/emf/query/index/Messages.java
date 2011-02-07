@@ -1,12 +1,10 @@
 package org.eclipse.emf.query.index;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
+	public static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
+	public static String QueryIndexUI_IndexFactory_ErrorIndexingURI;
 	public static String Query2Index_AbstractMapBase_NoElementFound;
 	public static String Query2Index_AbstractMapBase_SizeCounterDiffers;
 	public static String Query2Index_IndexUpdaterImpl_ResourceAlreadyInUse;
@@ -26,8 +24,9 @@ public class Messages extends NLS {
 	public static String Query2Index_SerializationStrategyFactory_UnknownLinkType;
 	public static String Query2Index_SerializationStrategyFactory_UnsupportedValue;
 	public static String Query2Index_SingleMap_NullParameter;
+	public static String QueryIndexUI_IndexFactory_TimeTakenToDump;
+	public static String QueryIndexUI_IndexFactory_TimeTakenToLoad;
 	
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 	
 	static {
 		// initialize resource bundle
@@ -37,15 +36,8 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 	
-	public static String getString(String key, String params[]) {
-		try {
-			String value = RESOURCE_BUNDLE.getString(key);
-			if(value!=null)
-			value = NLS.bind(key,params);
-				return value;
-		} catch (MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	public static String getString(String parameterizedString, String params[]) {
+		return NLS.bind(parameterizedString, params);
 	}
 
 }

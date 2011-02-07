@@ -65,7 +65,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 			} else {
 				// fall back: URI is bundle resource uri and has to converted,
 				// or http uri
-				URL url = FileLocator.toFileURL(new URL(uri.scheme() + ":" + uri.devicePath()));
+				URL url = FileLocator.toFileURL(new URL(uri.scheme() + ":" + uri.devicePath())); //$NON-NLS-1$
 				URI urlAsUri = URI.createURI(url.toString());
 				String path = urlAsUri.toFileString();
 				if (path != null) {
@@ -124,7 +124,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 			} else {
 				archive = archiveUri.toString();
 			}
-			path = uri.scheme() + ":" + archive + uri.path();
+			path = uri.scheme() + ":" + archive + uri.path(); //$NON-NLS-1$
 		} else {
 			path = uri.toString();
 		}

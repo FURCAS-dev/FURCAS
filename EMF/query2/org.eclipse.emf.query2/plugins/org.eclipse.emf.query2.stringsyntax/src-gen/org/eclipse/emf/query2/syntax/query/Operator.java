@@ -31,7 +31,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  LESS_THEN(0, "lessThen", "<"),
+  LESS_THEN(0, "lessThen", "<"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Greater Then</b></em>' literal object.
@@ -41,7 +41,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  GREATER_THEN(1, "greaterThen", ">"),
+  GREATER_THEN(1, "greaterThen", ">"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Less Equal</b></em>' literal object.
@@ -51,7 +51,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  LESS_EQUAL(2, "lessEqual", "<="),
+  LESS_EQUAL(2, "lessEqual", "<="), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Greater Equal</b></em>' literal object.
@@ -61,7 +61,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  GREATER_EQUAL(3, "greaterEqual", ">="),
+  GREATER_EQUAL(3, "greaterEqual", ">="), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Equal</b></em>' literal object.
@@ -71,7 +71,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  EQUAL(4, "equal", "="),
+  EQUAL(4, "equal", "="), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Not Equal</b></em>' literal object.
@@ -81,7 +81,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  NOT_EQUAL(5, "notEqual", "!="),
+  NOT_EQUAL(5, "notEqual", "!="), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Like</b></em>' literal object.
@@ -91,7 +91,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  LIKE(6, "like", "like"),
+  LIKE(6, "like", "like"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Not Like</b></em>' literal object.
@@ -101,7 +101,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  NOT_LIKE(7, "notLike", "not like"),
+  NOT_LIKE(7, "notLike", "not like"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Not In</b></em>' literal object.
@@ -111,7 +111,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  NOT_IN(8, "notIn", "not in"),
+  NOT_IN(8, "notIn", "not in"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>In</b></em>' literal object.
@@ -121,7 +121,7 @@ public enum Operator implements Enumerator
    * @generated
    * @ordered
    */
-  IN(9, "in", "in");
+  IN(9, "in", "in"); //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>Less Then</b></em>' literal value.

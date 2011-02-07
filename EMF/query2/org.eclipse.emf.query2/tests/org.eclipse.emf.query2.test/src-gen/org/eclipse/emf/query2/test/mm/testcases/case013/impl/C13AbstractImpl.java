@@ -162,7 +162,7 @@ public abstract class C13AbstractImpl extends EObjectImpl implements C13Abstract
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (attribute1: ");
+		result.append(" (attribute1: "); //$NON-NLS-1$
 		result.append(attribute1);
 		result.append(')');
 		return result.toString();

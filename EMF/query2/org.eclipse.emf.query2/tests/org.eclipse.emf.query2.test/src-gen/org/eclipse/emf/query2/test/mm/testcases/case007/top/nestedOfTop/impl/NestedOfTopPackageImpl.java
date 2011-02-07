@@ -545,13 +545,13 @@ public class NestedOfTopPackageImpl extends EPackageImpl implements NestedOfTopP
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(nestedOfTopAEClass, NestedOfTopA.class, "NestedOfTopA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nestedOfTopAEClass, NestedOfTopA.class, "NestedOfTopA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(nestedOfTopBEClass, NestedOfTopB.class, "NestedOfTopB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nestedOfTopBEClass, NestedOfTopB.class, "NestedOfTopB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(nestedOfTopAReferencesNestedOfTopBEClass, NestedOfTopAReferencesNestedOfTopB.class, "NestedOfTopAReferencesNestedOfTopB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNestedOfTopAReferencesNestedOfTopB_NestedOfTopB(), this.getNestedOfTopB(), null, "nestedOfTopB", null, 0, 1, NestedOfTopAReferencesNestedOfTopB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNestedOfTopAReferencesNestedOfTopB_NestedOfTopA(), this.getNestedOfTopA(), null, "nestedOfTopA", null, 0, -1, NestedOfTopAReferencesNestedOfTopB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(nestedOfTopAReferencesNestedOfTopBEClass, NestedOfTopAReferencesNestedOfTopB.class, "NestedOfTopAReferencesNestedOfTopB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNestedOfTopAReferencesNestedOfTopB_NestedOfTopB(), this.getNestedOfTopB(), null, "nestedOfTopB", null, 0, 1, NestedOfTopAReferencesNestedOfTopB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNestedOfTopAReferencesNestedOfTopB_NestedOfTopA(), this.getNestedOfTopA(), null, "nestedOfTopA", null, 0, -1, NestedOfTopAReferencesNestedOfTopB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -565,48 +565,48 @@ public class NestedOfTopPackageImpl extends EPackageImpl implements NestedOfTopP
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (nestedOfTopAEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopA",
-			 "metaObjectMofId", "476118E36F91756CA96F11DC8F4A001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopA", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F91756CA96F11DC8F4A001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (nestedOfTopBEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopB",
-			 "metaObjectMofId", "476118E36F91756DA96F11DC847D001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F91756DA96F11DC847D001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNestedOfTopAReferencesNestedOfTopB_NestedOfTopB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopAReferencesNestedOfTopB",
-			 "metaObjectMofId", "476118E36F917570A96F11DC8278001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopAReferencesNestedOfTopB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917570A96F11DC8278001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNestedOfTopAReferencesNestedOfTopB_NestedOfTopA(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopAReferencesNestedOfTopB",
-			 "metaObjectMofId", "476118E36F917570A96F11DC8278001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.top.nestedOfTop.NestedOfTopAReferencesNestedOfTopB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F917570A96F11DC8278001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.query2.internal.index;
+package org.eclipse.emf.query2;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,7 +35,7 @@ import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query2.Messages;
+import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
 
 public class IndexQueryService {
 
@@ -44,24 +44,24 @@ public class IndexQueryService {
 	 * the following:
 	 * <p>
 	 * 1. <code>mofClasses</code> not empty (size!=0): Returns all direct
-	 * {@link MRI} instances of the specified {@link MofClass MofClasses} in the
+	 * {@link URI} instances of the specified {@link MofClass MofClasses} in the
 	 * defined scope <code>queryClientScope</code>. No instances of sub classes!
 	 * <p>
 	 * 2. <code>mofClasses</code> empty (size==0): Returns all elements of all
-	 * types within a <b>inclusive</b> partition scope defined in
+	 * types within a <b>inclusive</b> resource scope defined in
 	 * <code>queryClientScope</code>
 	 * <p>
-	 * The result contains no duplicate {@link MRI MRIs} and no
+	 * The result contains no duplicate {@link URI URIs} and no
 	 * <code>null</code> values. The element order in the returned
 	 * {@link Collection} is arbitrary.
 	 * 
 	 * @param queryClientScope
 	 *            Defines the scope for the query (e.g. ClientSpecs,
-	 *            Partitions); must not be <code>null</code>.
+	 *            resources); must not be <code>null</code>.
 	 * @param mofClasses
-	 *            Array of {@link MRI MRIs} of MofClasses for which all
+	 *            Array of {@link URI URIs} of MofClasses for which all
 	 *            instances have to be returned; must not be <code>null</code>.
-	 * @return A Collection of {@link MRI MRIs} of the specified
+	 * @return A Collection of {@link URI URIs} of the specified
 	 *         {@link MofClass MofClasses}.
 	 * @throws IllegalArgumentException
 	 *             if <code>mofClasses</code> is empty and query scope
@@ -72,10 +72,10 @@ public class IndexQueryService {
 		assert eClassUris != null;
 
 		final Set<URI> result = new HashSet<URI>();
-		final Set<URI> scope = queryClientScope.getPartitionsScope();
+		final Set<URI> scope = queryClientScope.getResourcesScope();
 		assert scope != null;
 
-		final boolean isInclusiveScope = queryClientScope.isPartitionScopeInclusive();
+		final boolean isInclusiveScope = queryClientScope.isResourceScopeInclusive();
 
 		if (scope.size() == 0 && isInclusiveScope) {
 			return Collections.emptyList();
@@ -84,7 +84,7 @@ public class IndexQueryService {
 		if (eClassUris.length == 0) { // query for EObject (i.e. reflect
 			// element)
 			if (!isInclusiveScope) {
-				throw new IllegalArgumentException("Query2Core_IndexQueryService_EObjectWithoutInclusiveScope"); //$NON-NLS-1$
+				throw new IllegalArgumentException(Messages.IndexQueryService_EObjectWithoutInclusiveScope);
 			}
 			for (URI scopeURI : scope) {
 				final EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
@@ -131,29 +131,31 @@ public class IndexQueryService {
 	}
 
 	/**
-	 * Returns all partitions that are linked from the given partition
-	 * <code>fromPri</code> by links of the given association
-	 * <code>association</code> which are stored in the partition
-	 * <code>fromPRI</code>.
+	 * Returns all resources that are linked from the given resource
+	 * <code>fromResource</code> by links of the given association
+	 * <code>association</code> which are stored in the resource
+	 * <code>fromResource</code>.
 	 * <p>
-	 * The result set will never contain the <code>fromPRI</code> itself
-	 * (regardless of intra-partition storage).
+	 * The result set will never contain the <code>fromResource</code> itself
+	 * 
 	 * <p>
 	 * Note: <code>association</code> can also be the {@link MRI} of an object
 	 * value attribute link type.
 	 * 
+	 * @param index
+	 * 			Instance of Index containing required indexes
 	 * @param queryClientScope
 	 *            Defines the scope for the query (e.g. ClientSpecs,
-	 *            Partitions); must not be <code>null</code>.
-	 * @param fromPRI
-	 *            The partition where the links are stored; must not be
+	 *            resources); must not be <code>null</code>.
+	 * @param fromResource
+	 *            The resource where the links are stored; must not be
 	 *            <code>null</code>.
-	 * @param association
+	 * @param referenceURI
 	 *            The type of the links to regard; must not be <code>null</code>
 	 *            .
-	 * @return A set of {@link PRI PRIs} or an empty set if nothing was found
+	 * @return A set of {@link URI URIs} or an empty set if nothing was found
 	 */
-	public static Set<URI> getLinkedPartitions(Index index, SpiFacilityQueryClientScope queryClientScope, URI fromResource, URI referenceUri) {
+	public static Set<URI> getLinkedResources(Index index, SpiFacilityQueryClientScope queryClientScope, URI fromResource, URI referenceUri) {
 
 		final Set<URI> result = new HashSet<URI>();
 
@@ -182,35 +184,35 @@ public class IndexQueryService {
 	 * the following:
 	 * <p>
 	 * 1. <code>mofClasses</code> not empty (size!=0): Returns all direct
-	 * {@link PRI} partitions of the specified {@link MofClass MofClasses} in
-	 * the defined scope <code>queryClientScope</code>. No partitions for
+	 * {@link URI} resources of the specified {@link MofClass MofClasses} in
+	 * the defined scope <code>queryClientScope</code>. No resources for
 	 * instances of sub classes!
 	 * <p>
-	 * 2. <code>mofClasses</code> empty (size==0): Returns all partitions of all
-	 * types within an <b>inclusive</b> partition scope defined in
+	 * 2. <code>mofClasses</code> empty (size==0): Returns all resources of all
+	 * types within an <b>inclusive</b> resource scope defined in
 	 * <code>queryClientScope</code>
 	 * <p>
-	 * The result contains no duplicate {@link PRI PRIs} and no
+	 * The result contains no duplicate {@link URI URIs} and no
 	 * <code>null</code> values. The element order in the returned {@link Set}
 	 * is arbitrary.
 	 * 
 	 * @param queryClientScope
 	 *            Defines the scope for the query (e.g. ClientSpecs,
-	 *            Partitions); must not be <code>null</code>.
+	 *           Resources); must not be <code>null</code>.
 	 * @param mofClasses
-	 *            Array of {@link MRI MRIs} of MofClasses for which all
+	 *            Array of {@link URI URIs} of MofClasses for which all
 	 *            instances have to be returned; must not be <code>null</code>.
-	 * @return A Set of {@link PRI PRIs} of the specified {@link MofClass
+	 * @return A Set of {@link URI URIs} of the specified {@link MofClass
 	 *         MofClasses}.
 	 */
-	public static Set<URI> getPartitionsOfInstances(Index index, SpiFacilityQueryClientScope queryClientScope, URI[] eClassUris) {
+	public static Set<URI> getResourcesOfInstances(Index index, SpiFacilityQueryClientScope queryClientScope, URI[] eClassUris) {
 
 		assert queryClientScope != null;
 		assert eClassUris != null;
 
 		final Set<URI> result = new HashSet<URI>();
-		final Set<URI> scope = queryClientScope.getPartitionsScope();
-		final boolean isInclusiveScope = queryClientScope.isPartitionScopeInclusive();
+		final Set<URI> scope = queryClientScope.getResourcesScope();
+		final boolean isInclusiveScope = queryClientScope.isResourceScopeInclusive();
 
 		if (scope.size() == 0 && isInclusiveScope) {
 			return Collections.emptySet();
@@ -261,7 +263,12 @@ public class IndexQueryService {
 		}
 		return result;
 	}
-
+	/**
+	 * Gets all the subtypes of the given eclass type
+	 * @param index
+	 * @param typeAsMofClass
+	 * @return collection of subtypes
+	 */
 	public static Collection<EClass> getAllSubtypes(Index index, EClass typeAsMofClass) {
 
 		Set<EClass> result = new HashSet<EClass>();
@@ -326,7 +333,7 @@ public class IndexQueryService {
 		if (o instanceof EClass)
 			return (EClass) o;
 		else
-			throw new IllegalArgumentException(Messages.getString("Query2Core_IndexQueryService_UnIdentifiableClass", new String[]{eClassUri.toString()})); //$NON-NLS-1$
+			throw new IllegalArgumentException(Messages.getString(Messages.IndexQueryService_UnIdentifiableURI, new String[]{ eClassUri.toString()}));
 	}
 
 }

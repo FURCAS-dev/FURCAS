@@ -225,13 +225,13 @@ public class TextverticalizationPackageImpl extends EPackageImpl implements Text
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(translatableTextEClass, TranslatableText.class, "TranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTranslatableText_MaxWidth(), ecorePackage.getEInt(), "maxWidth", "255", 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_OriginalText(), ecorePackage.getEString(), "originalText", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_ResType(), ecorePackage.getEString(), "resType", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_Translate(), ecorePackage.getEBoolean(), "translate", "true", 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_TransUnitId(), ecorePackage.getEString(), "transUnitId", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_ResName(), ecorePackage.getEString(), "resName", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(translatableTextEClass, TranslatableText.class, "TranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTranslatableText_MaxWidth(), ecorePackage.getEInt(), "maxWidth", "255", 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTranslatableText_OriginalText(), ecorePackage.getEString(), "originalText", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTranslatableText_ResType(), ecorePackage.getEString(), "resType", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTranslatableText_Translate(), ecorePackage.getEBoolean(), "translate", "true", 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getTranslatableText_TransUnitId(), ecorePackage.getEString(), "transUnitId", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTranslatableText_ResName(), ecorePackage.getEString(), "resName", null, 1, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -248,22 +248,22 @@ public class TextverticalizationPackageImpl extends EPackageImpl implements Text
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (this, 
 		   source, 
 		   new String[] {
-			 "textverticalization.TranslatableTextFragment", "//TranslatableTextFragment",
-			 "textverticalization.TranslatableText", "//TranslatableText"
+			 "textverticalization.TranslatableTextFragment", "//TranslatableTextFragment", //$NON-NLS-1$ //$NON-NLS-2$
+			 "textverticalization.TranslatableText", "//TranslatableText" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (translatableTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "textverticalization.TranslatableTextFragment",
-			 "metaObjectMofId", "48D4188D58380873869111DD8E220019993BAD15",
-			 "isStructureType", "true"
+			 "metamodels", "sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "textverticalization.TranslatableTextFragment", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48D4188D58380873869111DD8E220019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 	}
 

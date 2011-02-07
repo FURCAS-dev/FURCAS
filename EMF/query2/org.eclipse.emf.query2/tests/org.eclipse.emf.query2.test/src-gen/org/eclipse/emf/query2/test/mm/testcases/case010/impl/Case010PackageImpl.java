@@ -719,31 +719,31 @@ public class Case010PackageImpl extends EPackageImpl implements Case010Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, "A10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA10_ManyBsNotChangeable(), this.getB10(), this.getB10_OneANotChangeable(), "manyBsNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA10_ManyBsOrdered(), this.getB10(), null, "manyBsOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getA10_ManyBsChangeable(), this.getB10(), this.getB10_OneAChangeable(), "manyBsChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA10_Navigable(), this.getB10(), null, "navigable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, "A10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA10_ManyBsNotChangeable(), this.getB10(), this.getB10_OneANotChangeable(), "manyBsNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA10_ManyBsOrdered(), this.getB10(), null, "manyBsOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA10_ManyBsChangeable(), this.getB10(), this.getB10_OneAChangeable(), "manyBsChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA10_Navigable(), this.getB10(), null, "navigable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.A10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, "B10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getB10_OneAChangeable(), this.getA10(), this.getA10_ManyBsChangeable(), "oneAChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getB10_OneANotChangeable(), this.getA10(), this.getA10_ManyBsNotChangeable(), "oneANotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, "B10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getB10_OneAChangeable(), this.getA10(), this.getA10_ManyBsChangeable(), "oneAChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getB10_OneANotChangeable(), this.getA10(), this.getA10_ManyBsNotChangeable(), "oneANotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case010.B10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(c10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, "C10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getC10_First(), this.getC10(), null, "first", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getC10_Second(), this.getC10(), null, "second", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(c10EClass, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, "C10", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getC10_First(), this.getC10(), null, "first", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getC10_Second(), this.getC10(), null, "second", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case010.C10.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(notNavigableToNotNavigableEClass, NotNavigableToNotNavigable.class, "NotNavigableToNotNavigable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotNavigableToNotNavigable_NotNavigableFrom(), this.getA10(), null, "notNavigableFrom", null, 1, 1, NotNavigableToNotNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNotNavigableToNotNavigable_NotNavigableTo(), this.getB10(), null, "notNavigableTo", null, 1, 1, NotNavigableToNotNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(notNavigableToNotNavigableEClass, NotNavigableToNotNavigable.class, "NotNavigableToNotNavigable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNotNavigableToNotNavigable_NotNavigableFrom(), this.getA10(), null, "notNavigableFrom", null, 1, 1, NotNavigableToNotNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNotNavigableToNotNavigable_NotNavigableTo(), this.getB10(), null, "notNavigableTo", null, 1, 1, NotNavigableToNotNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(notChangeableToNotChangeableEClass, NotChangeableToNotChangeable.class, "NotChangeableToNotChangeable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotChangeableToNotChangeable_NotChangeableFromB(), this.getA10(), null, "notChangeableFromB", null, 1, 1, NotChangeableToNotChangeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNotChangeableToNotChangeable_NotChangeableFromA(), this.getB10(), null, "notChangeableFromA", null, 1, 1, NotChangeableToNotChangeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(notChangeableToNotChangeableEClass, NotChangeableToNotChangeable.class, "NotChangeableToNotChangeable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNotChangeableToNotChangeable_NotChangeableFromB(), this.getA10(), null, "notChangeableFromB", null, 1, 1, NotChangeableToNotChangeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNotChangeableToNotChangeable_NotChangeableFromA(), this.getB10(), null, "notChangeableFromA", null, 1, 1, NotChangeableToNotChangeable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(notChangeableAndNavigableToNotChangeableAndNavigableEClass, NotChangeableAndNavigableToNotChangeableAndNavigable.class, "NotChangeableAndNavigableToNotChangeableAndNavigable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableFrom(), this.getA10(), null, "notChangeableAndNavigableFrom", null, 1, 1, NotChangeableAndNavigableToNotChangeableAndNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableTo(), this.getB10(), null, "notChangeableAndNavigableTo", null, 1, 1, NotChangeableAndNavigableToNotChangeableAndNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(notChangeableAndNavigableToNotChangeableAndNavigableEClass, NotChangeableAndNavigableToNotChangeableAndNavigable.class, "NotChangeableAndNavigableToNotChangeableAndNavigable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableFrom(), this.getA10(), null, "notChangeableAndNavigableFrom", null, 1, 1, NotChangeableAndNavigableToNotChangeableAndNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableTo(), this.getB10(), null, "notChangeableAndNavigableTo", null, 1, 1, NotChangeableAndNavigableToNotChangeableAndNavigable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -760,201 +760,201 @@ public class Case010PackageImpl extends EPackageImpl implements Case010Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a10EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.A10",
-			 "metaObjectMofId", "45F120A5D3E548702DE84018177382797E661C28",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.A10", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5D3E548702DE84018177382797E661C28", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA10_ManyBsNotChangeable(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.oneToManyNotChangeable",
-			 "metaObjectMofId", "45F120A57A9FDF827396478901AEA0B83950C8A5",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.oneToManyNotChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A57A9FDF827396478901AEA0B83950C8A5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA10_ManyBsOrdered(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.oneToManyOrdered",
-			 "metaObjectMofId", "45F120A55B2570009EB141D11715BD866BAB797D",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "0",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.oneToManyOrdered", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A55B2570009EB141D11715BD866BAB797D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA10_ManyBsChangeable(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.oneToManyChangeable",
-			 "metaObjectMofId", "45F120A549F4BCE8C69B48AB095DC5A6D9B1DA5D",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.oneToManyChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A549F4BCE8C69B48AB095DC5A6D9B1DA5D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA10_Navigable(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotNavigableToNavigable",
-			 "metaObjectMofId", "45F120A504F13285A2584A761006BBCC154790E8",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotNavigableToNavigable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A504F13285A2584A761006BBCC154790E8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b10EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.B10",
-			 "metaObjectMofId", "45F120A5CAEC34922D274DA126BDB01534160893",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.B10", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5CAEC34922D274DA126BDB01534160893", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB10_OneAChangeable(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.oneToManyChangeable",
-			 "metaObjectMofId", "45F120A549F4BCE8C69B48AB095DC5A6D9B1DA5D",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.oneToManyChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A549F4BCE8C69B48AB095DC5A6D9B1DA5D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB10_OneANotChangeable(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.oneToManyNotChangeable",
-			 "metaObjectMofId", "45F120A57A9FDF827396478901AEA0B83950C8A5",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.oneToManyNotChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A57A9FDF827396478901AEA0B83950C8A5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c10EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.C10",
-			 "metaObjectMofId", "E0D953FA836C1B5203F311DEB1D30019993BAD15",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.C10", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "E0D953FA836C1B5203F311DEB1D30019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC10_First(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.hasCs",
-			 "metaObjectMofId", "E0D953FA836C1B5503F311DE82B10019993BAD15",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.hasCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "E0D953FA836C1B5503F311DE82B10019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC10_Second(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.hasCs",
-			 "metaObjectMofId", "E0D953FA836C1B5503F311DE82B10019993BAD15",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.hasCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "E0D953FA836C1B5503F311DE82B10019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotNavigableToNotNavigable_NotNavigableFrom(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotNavigableToNotNavigable",
-			 "metaObjectMofId", "45F120A5113EF389521140D4152CAF747D4BED0B",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotNavigableToNotNavigable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5113EF389521140D4152CAF747D4BED0B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotNavigableToNotNavigable_NotNavigableTo(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotNavigableToNotNavigable",
-			 "metaObjectMofId", "45F120A5113EF389521140D4152CAF747D4BED0B",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotNavigableToNotNavigable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5113EF389521140D4152CAF747D4BED0B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotChangeableToNotChangeable_NotChangeableFromB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotChangeableToNotChangeable",
-			 "metaObjectMofId", "45F120A5720DC72ADA074DBA33AA80125E198126",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotChangeableToNotChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5720DC72ADA074DBA33AA80125E198126", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotChangeableToNotChangeable_NotChangeableFromA(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotChangeableToNotChangeable",
-			 "metaObjectMofId", "45F120A5720DC72ADA074DBA33AA80125E198126",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotChangeableToNotChangeable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5720DC72ADA074DBA33AA80125E198126", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableFrom(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotChangeableAndNavigableToNotChangeableAndNavigable",
-			 "metaObjectMofId", "45F120A5310F4CC3680745512E3CFD75CDA48E56",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotChangeableAndNavigableToNotChangeableAndNavigable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5310F4CC3680745512E3CFD75CDA48E56", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNotChangeableAndNavigableToNotChangeableAndNavigable_NotChangeableAndNavigableTo(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case010.NotChangeableAndNavigableToNotChangeableAndNavigable",
-			 "metaObjectMofId", "45F120A5310F4CC3680745512E3CFD75CDA48E56",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case010.NotChangeableAndNavigableToNotChangeableAndNavigable", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5310F4CC3680745512E3CFD75CDA48E56", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

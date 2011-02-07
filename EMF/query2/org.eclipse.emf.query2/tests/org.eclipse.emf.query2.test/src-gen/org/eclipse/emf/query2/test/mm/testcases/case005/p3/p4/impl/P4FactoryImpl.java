@@ -35,7 +35,7 @@ public class P4FactoryImpl extends EFactoryImpl implements P4Factory {
 	 */
 	public static P4Factory init() {
 		try {
-			P4Factory theP4Factory = (P4Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p3/p4"); 
+			P4Factory theP4Factory = (P4Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p3/p4"); //$NON-NLS-1$ 
 			if (theP4Factory != null) {
 				return theP4Factory;
 			}
@@ -67,7 +67,7 @@ public class P4FactoryImpl extends EFactoryImpl implements P4Factory {
 			case P4Package.D5: return createD5();
 			case P4Package.ASSOCIATION2: return createAssociation2();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -37,7 +37,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 	 */
 	public static CompanyFactory init() {
 		try {
-			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/Company"); 
+			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/Company"); //$NON-NLS-1$ 
 			if (theCompanyFactory != null) {
 				return theCompanyFactory;
 			}
@@ -73,7 +73,7 @@ public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
 			case CompanyPackage.STUDENT: return createStudent();
 			case CompanyPackage.TRANSPORT: return createTransport();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

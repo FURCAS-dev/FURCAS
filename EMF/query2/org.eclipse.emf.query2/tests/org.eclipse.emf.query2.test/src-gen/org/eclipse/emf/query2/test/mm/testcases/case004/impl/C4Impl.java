@@ -267,7 +267,7 @@ public class C4Impl extends EObjectImpl implements C4 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (primitive: ");
+		result.append(" (primitive: "); //$NON-NLS-1$
 		result.append(primitive);
 		result.append(')');
 		return result.toString();

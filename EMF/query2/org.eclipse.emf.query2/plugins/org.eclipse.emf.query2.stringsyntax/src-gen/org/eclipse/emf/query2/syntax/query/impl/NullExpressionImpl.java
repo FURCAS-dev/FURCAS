@@ -7,11 +7,8 @@
 package org.eclipse.emf.query2.syntax.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.query2.syntax.query.NullExpression;
 import org.eclipse.emf.query2.syntax.query.QueryPackage;
 
@@ -171,7 +168,7 @@ public class NullExpressionImpl extends ExpressionImpl implements NullExpression
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
+    result.append(" (value: "); //$NON-NLS-1$
     result.append(value);
     result.append(')');
     return result.toString();
