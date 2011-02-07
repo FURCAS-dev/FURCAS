@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ $Id: plugin.xml,v 1.3 2011/01/30 11:18:07 ewillink Exp $
 -->
 
 <plugin>
@@ -37,5 +37,25 @@
          </describer>
       </content-type>
    </extension>
+
+  <extension point = "org.eclipse.emf.ecore.validation_delegate">
+    <delegate uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+       class = "org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.setting_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+       class = "org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory$Global" />
+  </extension>
+
+  <extension point = "org.eclipse.emf.ecore.invocation_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+       class = "org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory$Global" />
+  </extension>
+ 
+  <extension point = "org.eclipse.emf.ecore.query_delegate">
+    <factory uri = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"
+       class = "org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory$Global" />
+  </extension>
 
 </plugin>

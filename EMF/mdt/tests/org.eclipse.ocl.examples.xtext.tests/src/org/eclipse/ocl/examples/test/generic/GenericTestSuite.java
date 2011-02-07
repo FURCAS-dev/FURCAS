@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3 2011/01/30 10:59:40 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -59,7 +59,6 @@ import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -232,12 +231,12 @@ public abstract class GenericTestSuite
 	/**
 	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
 	 */
-	protected OclExpression assertInvariant(Type context, String expression) {
+	protected ExpressionInOcl assertInvariant(Type context, String expression) {
 		helper.setContext(context);
 		
 		String denormalized = denormalize(expression);		
 		try {
-			OclExpression result = getBodyExpression(helper.createInvariant(denormalized));
+			ExpressionInOcl result = helper.createInvariant(denormalized);
 			return result;
 		} catch (Exception e) {
 			fail("Parse failed: " + e.getLocalizedMessage());
@@ -563,7 +562,7 @@ public abstract class GenericTestSuite
 		try {
 			Value result = evaluate(helper, context, denormalizedExpression);
 			assertTrue(expectedResult.getClass().isInstance(result));
-			assertSame(expectedResult.size().asInteger(), ((CollectionValue) result).size().asInteger());
+			assertSame(expectedResult.intSize(), ((CollectionValue) result).intSize());
 			BooleanValue actualResult = ((CollectionValue) result).includesAll(expectedResult);
 			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult.isTrue());
 			return result;
@@ -671,7 +670,7 @@ public abstract class GenericTestSuite
 		try {
 			String document = denormalize("package %uml context %String" +
 					" inv: " + contextFreeExpression + " endpackage");
-			OclExpression expr = parse(document);
+			ExpressionInOcl expr = parse(document);
 			
 			result = check(expr, "");
 		} catch (Exception e) {
@@ -684,11 +683,11 @@ public abstract class GenericTestSuite
     protected boolean check(OCLHelper aHelper, Object context,
             String expression) throws ParserException {
         
-        Constraint constraint = aHelper.createInvariant(expression);
+    	ExpressionInOcl constraint = aHelper.createInvariant(expression);
         return ocl.check(context, constraint);
     }
 	
-	protected boolean check(OclExpression expr, Object self) {
+	protected boolean check(ExpressionInOcl expr, Object self) {
 		boolean result = false;
 		
 		try {
@@ -719,14 +718,14 @@ public abstract class GenericTestSuite
 		}
 	}
 
-	protected OclExpression createBodyCondition(Operation context, String text) {
+	protected ExpressionInOcl createBodyCondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
 		helper.setOperationContext(reflection.getOwner(context), context);
 		
-		OclExpression result = null;
+		ExpressionInOcl result = null;
 		
 		try {
-			result = getBodyExpression(helper.createBodyCondition(text));
+			result = helper.createBodyCondition(text);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Parse failed: " + e.getLocalizedMessage());
@@ -757,7 +756,7 @@ public abstract class GenericTestSuite
 		return ocl.createOCLHelper();
 	}
 	
-	protected OclExpression createInvariant(Type context, String expression) {
+	protected ExpressionInOcl createInvariant(Type context, String expression) {
 		return assertInvariant(context, expression);
 	}
 
@@ -765,14 +764,14 @@ public abstract class GenericTestSuite
 		return staticReflection.createOCL(resourceSet);
 	}
 	
-	protected OclExpression createPostcondition(Operation context, String text) {
+	protected ExpressionInOcl createPostcondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
 		helper.setOperationContext(reflection.getOwner(context), context);
 		
-		OclExpression result = null;
+		ExpressionInOcl result = null;
 		
 		try {
-			result = getBodyExpression(helper.createPostcondition(text));
+			result = helper.createPostcondition(text);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Parse failed: " + e.getLocalizedMessage());
@@ -781,14 +780,14 @@ public abstract class GenericTestSuite
 		return result;
 	}
 	
-	protected OclExpression createPrecondition(Operation context, String text) {
+	protected ExpressionInOcl createPrecondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
 		helper.setOperationContext(reflection.getOwner(context), context);
 		
-		OclExpression result = null;
+		ExpressionInOcl result = null;
 		
 		try {
-			result = getBodyExpression(helper.createPrecondition(text));
+			result = helper.createPrecondition(text);
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Parse failed: " + e.getLocalizedMessage());
@@ -873,7 +872,7 @@ public abstract class GenericTestSuite
 		try {
 			String document = denormalize("package %uml context %String" +
 					" inv: " + contextFreeExpression +" endpackage");
-			OclExpression expr = parse(document);
+			ExpressionInOcl expr = parse(document);
 			
 			result = evaluate(expr, "");
 		} catch (Exception e) {
@@ -892,7 +891,7 @@ public abstract class GenericTestSuite
         return ocl.evaluate(context, query);
     }
 	
-	protected Object evaluate(OclExpression expr) {
+	protected Object evaluate(ExpressionInOcl expr) {
 		Object result = null;
 		
 		try {
@@ -904,7 +903,7 @@ public abstract class GenericTestSuite
 		return result;
 	}
     
-	protected Object evaluate(OclExpression expr, Object self) {
+	protected Object evaluate(ExpressionInOcl expr, Object self) {
 		Object result = null;
 		
 		try {
@@ -929,10 +928,11 @@ public abstract class GenericTestSuite
 		return result;
 	}
 	
-	protected OclExpression getBodyExpression(Constraint constraint) {
-		return reflection.getBodyExpression(constraint);
-	}
-    
+//	protected ExpressionInOcl getBodyExpression(Constraint constraint) {
+//		return reflection.getBodyExpression(constraint);
+//	}
+	
+   
     /**
      * Obtains the diagnostic describing the problem in the last failed parse,
      * asserting that it is not <code>null</code>.
@@ -1035,8 +1035,8 @@ public abstract class GenericTestSuite
 	 * @param text the OCL text
 	 * @return the OCL expression
 	 */
-	protected OclExpression parse(String text) {
-		OclExpression result = parseUnvalidated(text);
+	protected ExpressionInOcl parse(String text) {
+		ExpressionInOcl result = parseUnvalidated(text);
 		validate(result);
 		
 		assertValidToString(result);
@@ -1050,8 +1050,8 @@ public abstract class GenericTestSuite
 	 * @param text the OCL text
 	 * @return the OCL constraint expression
 	 */
-	protected OclExpression parseConstraint(String text) {
-		OclExpression result = parseConstraintUnvalidated(text);
+	protected ExpressionInOcl parseConstraint(String text) {
+		ExpressionInOcl result = parseConstraintUnvalidated(text);
 		validate(result);
 		
 		assertValidToString(result);
@@ -1066,7 +1066,7 @@ public abstract class GenericTestSuite
 	 * @param text the OCL text
 	 * @return the OCL constraint expression, unvalidated
 	 */
-	protected OclExpression parseConstraintUnvalidated(String text) {
+	protected ExpressionInOcl parseConstraintUnvalidated(String text) {
 		List<Constraint> constraints;
 		Constraint constraint = null;
 		
@@ -1079,8 +1079,8 @@ public abstract class GenericTestSuite
 			fail("Parse failed (illegal argument): " + e.getLocalizedMessage());
 		}
 		
-		OclExpression result = null;
-		result = getBodyExpression(constraint);
+		ExpressionInOcl result = null;
+		result = (ExpressionInOcl) constraint.getSpecification();
 		
 		assertNotNull(result);
 		
@@ -1099,7 +1099,7 @@ public abstract class GenericTestSuite
 	 * @param text the OCL text
 	 * @return the OCL def expression
 	 */
-	protected OclExpression parseDef(String text) {
+	protected ExpressionInOcl parseDef(String text) {
 		List<Constraint> constraints ;
 		Constraint constraint = null;
 		
@@ -1112,15 +1112,10 @@ public abstract class GenericTestSuite
 			fail("Parse failed (illegal argument): " + e.getLocalizedMessage());
 		}
 		
-		OclExpression result = null;
-		result = getBodyExpression(constraint);
-		
-		validate(result);
-		
+		ExpressionInOcl result = (ExpressionInOcl) constraint.getSpecification();		
 		assertNotNull(result);
-		
-		assertValidToString(result);
-		
+		validate(result);		
+		assertValidToString(result);		
 		return result;
 	}
 
@@ -1131,8 +1126,8 @@ public abstract class GenericTestSuite
 	 *    
 	 * @return the OCL expression, unvalidated
 	 */
-	protected OclExpression parseUnvalidated(String text) {
-		OclExpression result = parseConstraintUnvalidated(text);
+	protected ExpressionInOcl parseUnvalidated(String text) {
+		ExpressionInOcl result = parseConstraintUnvalidated(text);
 		
 		// forget the constraint because it interferes with validation
 		EcoreUtil.remove(result);
@@ -1287,7 +1282,7 @@ public abstract class GenericTestSuite
 	 * @param expr the OCL expression to validate
 	 * @param env an environment to use for validation
 	 */
-	protected void validate(OclExpression expr) {
+	protected void validate(ExpressionInOcl expr) {
 		try {
 			EObject eContainer = expr.eContainer();
 			if ((eContainer != null)
@@ -1296,7 +1291,7 @@ public abstract class GenericTestSuite
 				Constraint eContainerContainer = (Constraint) eContainer.eContainer();
 				validate(eContainerContainer);
 			} else {
-				ocl.validate(expr);
+				ocl.validate(expr.getBodyExpression());
 			}
 		} catch (SemanticException e) {
 			fail("Validation failed: " + e.getLocalizedMessage());

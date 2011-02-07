@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -38,9 +38,9 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+//import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
+//import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+//import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -66,9 +66,13 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Pivot2EcoreDeclarationVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
@@ -206,15 +210,11 @@ public class Pivot2EcoreDeclarationVisitor
 		if (!(specification instanceof OpaqueExpression)) {
 			return null;
 		}
-		String exprString;
-		List<String> bodies = ((OpaqueExpression)specification).getBodies();
-		if ((bodies != null) && !bodies.isEmpty()) {
-			exprString = StringUtils.splice(bodies, "");
-		}
-		else if (specification instanceof ExpressionInOcl) {
+		String exprString = PivotUtil.getBody((OpaqueExpression) specification);
+		if ((exprString == null) && (specification instanceof ExpressionInOcl)) {
 			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), PrettyPrintExprVisitor.getNamespace(specification));
 		}
-		else {
+		if (exprString == null) {
 			return null;
 		}
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());

@@ -1,0 +1,22 @@
+Given an invocation m.(x) with only a known type for x, the choice of 
+possible types for m may be derived by searching all operations with 
+parameter type typeof(x). Eventually, this may lead to a set of 
+constraints that allows for exactly determining the type of m, almost 
+like in a Sudoku.
+
+When an operation declares an argument without specifying its type explicitly,
+from the uses of the argument in the operation definition a number of
+constraints on the argument's type can be derived. Applying to it an operation
+call requires a conforming operation to be present on the argument's type.
+Assigning the argument to some variable requires the argument's type to conform
+to the variable's type. Using the argument as an argument to some other
+operation requires that the used argument's type conforms to the invoked
+operation's argument's type. Analogously, the use of the argument in any
+association manipulation or navigation operation will establish one or more
+constraints on the type of the argument.
+
+Architecturally (compiler, tools), I'd love to implement the type inference as
+an instant event- and constraint-driven knowledge base updater. Whenever a tiny
+change is applied to the program's abstract syntax tree, the constraint solver
+should determine the new updated solution or should flag inconsistencies and
+constraint violations.

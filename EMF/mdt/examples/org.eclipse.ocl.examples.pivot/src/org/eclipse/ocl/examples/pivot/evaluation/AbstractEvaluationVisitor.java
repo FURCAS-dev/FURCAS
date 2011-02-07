@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -63,11 +62,10 @@ public abstract class AbstractEvaluationVisitor
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;
 	
-	private EvaluationEnvironment evalEnv;
-	private Environment env;
-	protected final TypeManager typeManager;
-	
-	private ModelManager modelManager;
+	protected final EvaluationEnvironment evaluationEnvironment;
+	protected final Environment environment;
+	protected final TypeManager typeManager;	
+	protected final ModelManager modelManager;
 
     private EvaluationVisitor undecoratedVisitor;
     
@@ -90,40 +88,12 @@ public abstract class AbstractEvaluationVisitor
 			EvaluationEnvironment evalEnv,
 			ModelManager modelManager) {
         super(null);
-        this.evalEnv = evalEnv;
-        this.env = env;
+        this.evaluationEnvironment = evalEnv;
+        this.environment = env;
         this.typeManager = env.getTypeManager();
         this.modelManager = modelManager;
         
         this.undecoratedVisitor = this;  // assume I have no decorator
-    }
-    
-    /**
-     * Invokes the specified additional operation on a target object.
-     * The invocation is performed in a nested evaluation environment.
-     * 
-     * @param operation the operation to invoke
-     * @param body the operation's body expression
-     * @param target the object on which to evaluate the operation body
-     * @param args the arguments to the operation call
-     */
-    protected Object call(Operation operation, OclExpression body, Value target, Value[] args) {
-    	// create a nested evaluation environment for this operation call
-    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
-    	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();
-    	
-    	// bind "self"
-    	nestedEvalEnv.add(Environment.SELF_VARIABLE_NAME, target);
-    	
-    	// add the parameter bindings to the local variables
-    	if (args.length > 0) {
-    		UMLReflection umlReflection = getEnvironment().getUMLReflection();
-    		int i = 0;
- 			for (Parameter param : umlReflection.getParameters(operation)) {
-    			nestedEvalEnv.add(umlReflection.getName(param), args[i++]);
-    		}
-    	}
-		return body.accept(nestedVisitor);
     }
 
 	public Value createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
@@ -145,12 +115,12 @@ public abstract class AbstractEvaluationVisitor
 
     // implements the interface method
 	public Environment getEnvironment() {
-		return env;
+		return environment;
 	}
     
     // implements the interface method
 	public EvaluationEnvironment getEvaluationEnvironment() {
-		return evalEnv;
+		return evaluationEnvironment;
 	}
 	
     // implements the interface method
@@ -200,13 +170,13 @@ public abstract class AbstractEvaluationVisitor
     protected OclExpression getOperationBody(Operation operation) {
     	OclExpression result = null;
     	
-    	Constraint body = env.getDefinition(operation);
+    	Constraint body = environment.getDefinition(operation);
     	if (body == null) {
-    		body = env.getBodyCondition(operation);
+    		body = environment.getBodyCondition(operation);
     	}
     	
     	if (body != null) {
-    		result = env.getUMLReflection().getSpecification(body).getBodyExpression();
+    		result = environment.getUMLReflection().getSpecification(body).getBodyExpression();
     	}
     	
     	return result;
@@ -223,13 +193,13 @@ public abstract class AbstractEvaluationVisitor
     protected OclExpression getPropertyBody(Property property) {
     	OclExpression result = null;
     	
-    	Constraint body = env.getDefinition(property);
+    	Constraint body = environment.getDefinition(property);
     	if (body == null) {
-    		body = env.getDeriveConstraint(property);
+    		body = environment.getDeriveConstraint(property);
     	}
     	
     	if (body != null) {
-    		result = env.getUMLReflection().getSpecification(body).getBodyExpression();
+    		result = environment.getUMLReflection().getSpecification(body).getBodyExpression();
     	}
     	
     	return result;
@@ -275,9 +245,13 @@ public abstract class AbstractEvaluationVisitor
 	public Object getStringValue(String value) {
 		return value;
 	}
-    
+
+	public TypeManager getTypeManager() {
+		return typeManager;
+	}
+   
     protected UMLReflection getUMLReflection() {
-        return env.getUMLReflection();
+        return environment.getUMLReflection();
     }
     
     /**
@@ -363,24 +337,6 @@ public abstract class AbstractEvaluationVisitor
 //			(value == getEnvironment().getOCLStandardLibrary().getInvalidValue());
 //	}
 
-    /**
-     * Obtains an object's value of the specified additional property.
-     * 
-     * @param property the property to navigate
-     * @param derivation the expression that computes its value
-     * @param target the object in which context to evaluate the derivation
-     * 
-     * @return the property's value
-     */
-    protected Value navigate(Property property, OclExpression derivation, Value target) {
-    	// create a nested evaluation environment for this property call
-    	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
-    	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();    	
-    	// bind "self"
-    	nestedEvalEnv.add(Environment.SELF_VARIABLE_NAME, target);
-		return derivation.accept(nestedVisitor);
-    }
-
 	/**
 	 * Checks whether the supplied value is an instance of the supplied type or
 	 * one of its super types.
@@ -457,7 +413,7 @@ public abstract class AbstractEvaluationVisitor
 	 *             <code>null</code>
 	 * 
 	 * @since 1.3
-	 */
+	 *
 	protected void setEvaluationEnvironment(
 			EvaluationEnvironment evaluationEnvironment) {
 		
@@ -466,7 +422,7 @@ public abstract class AbstractEvaluationVisitor
 		}
 
 		this.evalEnv = evaluationEnvironment;
-	}
+	} */
 
 
     /**

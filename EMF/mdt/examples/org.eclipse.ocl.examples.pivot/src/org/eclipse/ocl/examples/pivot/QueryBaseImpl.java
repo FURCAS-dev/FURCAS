@@ -13,12 +13,10 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
-
-import static org.eclipse.ocl.Environment.SELF_VARIABLE_NAME;
 
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +31,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.util.ProblemAware;
 
 /**
@@ -53,6 +53,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 	
 	private ModelManager modelManager = null;
 
+	private final ExpressionInOcl specification;
 	private final OclExpression expression;
 
 	private final Environment environment;
@@ -68,11 +69,12 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 	 *     evaluation environment to create a dynamic extent map
 	 */
 	public QueryBaseImpl(Environment environment,
-			OclExpression expr,
+			ExpressionInOcl specification,
 			ModelManager modelManager) {
 		
 		this.environment = environment;
-		this.expression = expr;
+		this.specification = specification;
+		this.expression = specification.getBodyExpression();
 		this.modelManager = modelManager;
 	}
 
@@ -80,7 +82,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		if (modelManager == null) {
 			EvaluationEnvironment myEnv = getEvaluationEnvironment();
 			
-			Object context = myEnv.getValueOf(SELF_VARIABLE_NAME);
+			Object context = myEnv.getValueOf(specification.getContextVariable());
 			
 			modelManager = myEnv.createModelManager(context);
 		}
@@ -92,7 +94,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		return expression;
 	}
 
-	public Object evaluate(Object obj) {
+	public Value evaluate(Object obj) {
 		evalProblems = null;
 		
 		if (obj == null) {
@@ -104,33 +106,40 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 
 		// can determine a more appropriate context from the context
 		//   variable of the expression, to account for stereotype constraints
-		obj = HelperUtil.getConstraintContext(
-				environment, obj, expression);
+		obj = HelperUtil.getConstraintContext(environment, obj, expression);
 		
 		// lazily create the evaluation environment, if not already done by
 		//    the client.  Initialize it with the "self" context variable
 		EvaluationEnvironment myEnv = getEvaluationEnvironment();
-		myEnv.add(SELF_VARIABLE_NAME, myEnv.getValueFactory().createObjectValue(obj));
+		ValueFactory valueFactory = myEnv.getValueFactory();
+		myEnv.add(specification.getContextVariable(), valueFactory.createObjectValue(obj));
+//		Variable resultVariable = specification.getResultVariable();
+//		if (resultVariable != null) {
+//			myEnv.add(resultVariable, null);
+//		}
 		
 		EvaluationVisitor ev =
 			environment.getFactory().createEvaluationVisitor(
 					environment, myEnv, getModelManager());
 		
-		Object result;
+		Value result;
 		
 		try {
-			result = ev.visitExpression(expression);
+			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = myEnv.getValueFactory().createInvalidValue(obj, null, evalProblems.toString(), e); 			
+			result = valueFactory.createInvalidValue(obj, null, evalProblems.toString(), e); 			
 		} finally {
-			myEnv.remove(SELF_VARIABLE_NAME);
+			myEnv.remove(specification.getContextVariable());
+//			if (resultVariable != null) {
+//				myEnv.add(resultVariable, null);
+//			}
 		}
 		
 		return result;
 	}
 
-	public Object evaluate() {
+	public Value evaluate() {
 		evalProblems = null;
 		
 		// lazily create the evaluation environment, if not already done by
@@ -139,10 +148,10 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			environment.getFactory().createEvaluationVisitor(
 					environment, getEvaluationEnvironment(), getModelManager());
 		
-		Object result;
+		Value result;
 		
 		try {
-			result = ev.visitExpression(expression);
+			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
 			result = environment.getTypeManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
@@ -159,7 +168,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			throw error;
 		}
 		
-		Object result;
+		Value result;
 		
 		if (obj == null) {
 			result = evaluate();
@@ -167,7 +176,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = evaluate(obj);
 		}
 		
-		return Boolean.TRUE.equals(result);
+		return result.isTrue();
 	}
 
 	public List<?> evaluate(List<?> objList) {

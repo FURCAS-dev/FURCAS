@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: RealValueImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -63,6 +63,10 @@ public class RealValueImpl extends AbstractValue implements RealValue
 
 	public RealValue add(RealValue right) {
 		return valueFactory.realValueOf(value.add(right.bigDecimalValue()));
+	}
+
+	public Double asDouble() {
+		return value.doubleValue();
 	}
 
 	public Object asObject() {
