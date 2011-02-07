@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -23,6 +23,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.util.ProblemAware;
 
 
@@ -60,7 +61,7 @@ class QueryImpl implements OCL.Query, ProblemAware {
 		return delegate.evaluate(objects);
 	}
 
-	public Object evaluate(Object obj) {
+	public Value evaluate(Object obj) {
 		return delegate.evaluate(obj);
 	}
 

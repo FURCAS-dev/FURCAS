@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -44,6 +44,7 @@ public interface CollectionValue extends Value, Iterable<Value>
     BooleanValue includes(Value value);	
     BooleanValue includesAll(CollectionValue c);
 	CollectionValue including(Value value);
+	int intSize();
 	CollectionValue intersection(CollectionValue c);
 	BooleanValue isEmpty();
 	Iterator<Value> iterator();

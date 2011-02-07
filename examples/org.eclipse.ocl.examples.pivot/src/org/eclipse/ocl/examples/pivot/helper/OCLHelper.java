@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: OCLHelper.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
@@ -263,7 +262,7 @@ public interface OCLHelper {
 	 * 
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 */
-	Constraint createInvariant(String expression) throws ParserException;
+    ExpressionInOcl createInvariant(String expression) throws ParserException;
 
 	/**
 	 * Creates an operation precondition constraint.  This is appropriate only
@@ -278,7 +277,7 @@ public interface OCLHelper {
 	 * 
 	 * @see #setOperationContext(Object, Object)
 	 */
-	Constraint createPrecondition(String expression) throws ParserException;
+	ExpressionInOcl createPrecondition(String expression) throws ParserException;
 
 	/**
 	 * Creates an operation postcondition constraint.  This is appropriate only
@@ -293,7 +292,7 @@ public interface OCLHelper {
 	 * 
 	 * @see #setOperationContext(Object, Object)
 	 */
-	Constraint createPostcondition(String expression) throws ParserException;
+	ExpressionInOcl createPostcondition(String expression) throws ParserException;
 
 	/**
 	 * Creates an operation body.  This is appropriate only
@@ -312,7 +311,7 @@ public interface OCLHelper {
 	 * 
 	 * @see #setOperationContext(Object, Object)
 	 */
-	Constraint createBodyCondition(String expression) throws ParserException;
+	ExpressionInOcl createBodyCondition(String expression) throws ParserException;
 
 	/**
 	 * Creates a property initial value expression.  This is appropriate only
@@ -344,7 +343,7 @@ public interface OCLHelper {
 	 * 
 	 * @see #setAttributeContext(Object, Object)
 	 */
-//	Constraint createDerivedValueExpression(String expression) throws ParserException;
+	ExpressionInOcl createDerivedValueExpression(String expression) throws ParserException;
 
 	/**
 	 * Defines an additional operation in the context classifier,

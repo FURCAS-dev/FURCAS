@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
@@ -29,18 +29,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.PivotEnvironment;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 
 /**
  * Implementation of the {@link OclMetaModel.Helper} convenience interface.
@@ -65,6 +63,8 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setEnvironment(environment);
+			((EvaluationContext)resource).setSpecificationContext(environment.getContextClassifier());
+//			((EvaluationContext)resource).setContextClassifier(environment.getContextClassifier());
 		}
 		String string = "body:\n" + expression + "\n;";
 		InputStream inputStream = new ByteArrayInputStream(string.getBytes());
@@ -94,7 +94,44 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		return null;
 	}
 
-	public Constraint createInvariant(String expression) throws ParserException {
+	public ExpressionInOcl createInvariant(String expression) throws ParserException {
+		return createSpecification("inv", expression);
+	}
+
+	public ExpressionInOcl createPrecondition(String expression)
+			throws ParserException {
+		return createSpecification("pre", expression);
+	}
+
+	public ExpressionInOcl createPostcondition(String expression)
+			throws ParserException {
+		return createSpecification("post", expression);
+	}
+
+	public ExpressionInOcl createBodyCondition(String expression)
+			throws ParserException {
+		return createSpecification("body", expression);
+	}
+
+	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(message);
+			for (Resource.Diagnostic conversionError : errors) {
+				s.append("\n");
+				s.append(conversionError.getMessage());
+			}
+			throw new SemanticException(s.toString());
+		}
+	}
+
+	public ExpressionInOcl createDerivedValueExpression(String expression)
+			throws ParserException {
+		return createSpecification("der", expression);
+	}
+
+	protected ExpressionInOcl createSpecification(String prefix, String expression) throws ParserException {
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
 		TypeManager typeManager = environment.getTypeManager();
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
@@ -102,9 +139,11 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		Resource resource = resourceSet.createResource(uri);
 		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
+			((EvaluationContext)resource).setSpecificationContext(environment.getContextClassifier());
 			((EvaluationContext)resource).setEnvironment(environment);
+//			((EvaluationContext)resource).setContextClassifier(environment.getContextClassifier());
 		}
-		String string = "inv:\n" + expression + "\n;";
+		String string = prefix + ":\n" + expression + "\n;";
 		InputStream inputStream = new ByteArrayInputStream(string.getBytes());
 		try {
 			resource.load(inputStream, null);
@@ -124,44 +163,14 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		if (csObject instanceof Pivotable) {
 			Element pivotElement = ((Pivotable)csObject).getPivot();
 			if (pivotElement instanceof ExpressionInOcl) {
-				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-				constraint.setStereotype("inv");
-				constraint.setSpecification((ExpressionInOcl) pivotElement);
-				return constraint;
+				return (ExpressionInOcl) pivotElement;
+//				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+//				constraint.setStereotype("inv");
+//				constraint.setSpecification((ExpressionInOcl) pivotElement);
+//				return constraint;
 			}
 		}
 		logger.warn("Non-expression ignored");
 		return null;
-	}
-
-	public Constraint createPrecondition(String expression)
-			throws ParserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Constraint createPostcondition(String expression)
-			throws ParserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Constraint createBodyCondition(String expression)
-			throws ParserException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
-		List<Resource.Diagnostic> errors = resource.getErrors();
-		if (errors.size() > 0) {
-			StringBuffer s = new StringBuffer();
-			s.append(message);
-			for (Resource.Diagnostic conversionError : errors) {
-				s.append("\n");
-				s.append(conversionError.getMessage());
-			}
-			throw new SemanticException(s.toString());
-		}
 	}
 }

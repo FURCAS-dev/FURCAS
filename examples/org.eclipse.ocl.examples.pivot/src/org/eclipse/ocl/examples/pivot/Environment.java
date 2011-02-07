@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: Environment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -119,7 +119,7 @@ public interface Environment {
      * 
 	 * @param env my new parent environment
 	 */
-	void setParent(Environment env);
+//	void setParent(Environment env);
 	
     /**
      * Obtains my context package, if any.  The constraints in an OCL document
