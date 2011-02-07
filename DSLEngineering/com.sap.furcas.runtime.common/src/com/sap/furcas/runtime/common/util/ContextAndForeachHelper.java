@@ -254,6 +254,8 @@ public class ContextAndForeachHelper {
      * Removes an optional leading "OCL:" prefix. Then performs all replacements of {@link #prepareOclQuery(String)} and
      * replaces a "?" (see {@link #QUERY_PARAM_NAME}) by the {@link Object#toString()} representation of
      * <code>keyValue</code>. The OCL expression string treated this way is returned.
+     * 
+     * @deprecated Use only {@link #prepareOclQuery(String)} because ? replacement is obsolete
      */
     public static String prepareOclQuery(String queryToExecute, Object keyValue) {
         String result = queryToExecute;
@@ -282,6 +284,7 @@ public class ContextAndForeachHelper {
                 result = result.substring(OCL_PREFIX.length());
             }
             if (usesContext(result)) {
+                // TODO this would accidentally catch "self" occurring in a string literal or within another identifier
                 if (result.indexOf(Environment.SELF_VARIABLE_NAME) > -1) {
                     throw new RuntimeException("OCL Query cannot contain #context and self at the same time.");
                 } else if (ContextAndForeachHelper.usesForeach(result)) {
