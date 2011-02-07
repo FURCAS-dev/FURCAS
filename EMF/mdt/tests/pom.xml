@@ -23,6 +23,9 @@
     <module>org.eclipse.ocl.examples.eventmanager.tests</module>
     <module>org.eclipse.ocl.examples.testutils</module>
     <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.company</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.tests</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testutils</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm</module>
   </modules>
 
 </project>

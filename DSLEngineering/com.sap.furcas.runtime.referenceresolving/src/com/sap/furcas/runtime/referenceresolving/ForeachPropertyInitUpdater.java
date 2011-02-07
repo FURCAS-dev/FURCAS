@@ -111,7 +111,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         super(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), metamodelPackageRegistry,
               oppositeEndFinder,
               /* expression with context; provided later in getTriggerExpressionsWithContext() */null,
-              /* notifyNewContextElements */true, getSelfKind(foreachPredicatePropertyInit.getValue()),
+              /* notifyNewContextElements */true, determineSelfKind(foreachPredicatePropertyInit.getValue()),
               ContextAndForeachHelper.getContextTag(foreachPredicatePropertyInit.getValue()));
         this.parserFactory = parserFactory;
         triggerExpressionsWithContext = new LinkedList<ExpressionWithContext>();
