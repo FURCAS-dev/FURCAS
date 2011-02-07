@@ -34,7 +34,6 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 public class EcoreHelper {
     private static EcoreHelper instance;
