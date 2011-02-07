@@ -48,7 +48,9 @@ import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
+import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
+import com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
@@ -92,6 +94,8 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  * Clients that want to use this editor <b>should</b> register:
  * <ul>
  *      <li>the {@link FurcasContentProposer}</li>
+ *      <li>the {@link FurcasTreeModelBuilder}</li>
+ *      <li>the {@link FurcasLabelProvider}</li>
  * </ul>
  * 
  * In addition, clients <b>can</b> implement and register other IMP services
@@ -285,7 +289,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         super.createPartControl(parent);
         
         // We can retrigger the parse controller via the parser scheduler.
-        // The initialization of other serivices cannot be delayed because
+        // The initialization of most other serivices cannot be delayed because
         // those are already required during super.createPartControl.
         ((FurcasParseController) fLanguageServiceManager.getParseController()).completeInit(editingDomain, new ContentProvider(), parserCollection);
         

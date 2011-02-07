@@ -26,11 +26,11 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  * @author Stephan Erb
  *
  */
-public class FurcasLanguageSyntaxProperties implements ILanguageSyntaxProperties {
+public class DefaultLanguageSyntaxProperties implements ILanguageSyntaxProperties {
     
     private final ConcreteSyntax syntax;
 
-    public FurcasLanguageSyntaxProperties(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
+    public DefaultLanguageSyntaxProperties(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
         this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
     }
 

@@ -14,6 +14,7 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.imp.editor.ModelTreeNode;
 import org.eclipse.imp.parser.ISourcePositionLocator;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -73,26 +74,49 @@ public class FurcasSourcePositionLocator implements ISourcePositionLocator {
     }
 
     @Override
-    public int getStartOffset(Object entity) {
-        DocumentNode node = (DocumentNode) entity;
-        return TbUtil.getAbsoluteOffset(node);
+     public int getStartOffset(Object entity) {
+        if (entity instanceof DocumentNode) {
+            return TbUtil.getAbsoluteOffset((DocumentNode) entity);
+        } 
+        if (entity instanceof ModelTreeNode) {
+            return getStartOffset(((ModelTreeNode) entity).getASTNode());
+        }
+        throw new AssertionError("Unknown entity type " + entity.getClass());
     }
 
     @Override
     public int getEndOffset(Object entity) {
-        DocumentNode node = (DocumentNode) entity;
-        return TbUtil.getAbsoluteOffset(node) + node.getLength() - 1;
+        if (entity instanceof DocumentNode) {
+            DocumentNode node = (DocumentNode) entity;
+            return TbUtil.getAbsoluteOffset(node) + node.getLength() - 1;
+        } 
+        if (entity instanceof ModelTreeNode) {
+            return getEndOffset(((ModelTreeNode) entity).getASTNode());
+        }
+        throw new AssertionError("Unknown entity type " + entity.getClass());
     }
 
     @Override
     public int getLength(Object entity) {
-        DocumentNode node = (DocumentNode) entity;
-        return node.getLength();
+        if (entity instanceof DocumentNode) {
+            DocumentNode node = (DocumentNode) entity;
+            return node.getLength();
+        } 
+        if (entity instanceof ModelTreeNode) {
+            return getLength(((ModelTreeNode) entity).getASTNode());
+        }
+        throw new AssertionError("Unknown entity type " + entity.getClass());
     }
 
     @Override
     public IPath getPath(Object node) {
-        return new Path("");
+        if (node instanceof DocumentNode) {
+            return new Path(((DocumentNode) node).eResource().getURI().toFileString());
+        } 
+        if (node instanceof ModelTreeNode) {
+            return getPath(((ModelTreeNode) node).getASTNode());
+        }
+        throw new AssertionError("Unknown entity type " + node.getClass());
     }
 
 }
