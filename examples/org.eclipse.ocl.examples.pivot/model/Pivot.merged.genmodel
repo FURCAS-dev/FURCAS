@@ -1021,6 +1021,9 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//SelfType"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//SequenceType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

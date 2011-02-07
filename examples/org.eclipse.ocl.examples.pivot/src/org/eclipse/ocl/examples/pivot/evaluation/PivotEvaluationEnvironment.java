@@ -13,21 +13,17 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.util.UnicodeSupport;
@@ -329,6 +325,9 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
 
     // implements the inherited specification
     public ModelManager createModelManager(Object object) {
+        if (object instanceof ObjectValue) {
+            object = ((ObjectValue) object).getObject();
+        }
         if (object instanceof EObject) {
             return new PivotModelManager(typeManager, (EObject) object);
         }
@@ -383,17 +382,17 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     } */
 
 
-    public Object callOperation(Operation operation, int opcode, Object source,
-    		Object[] args)
-    		throws IllegalArgumentException {
-    	throw new UnsupportedOperationException(getClass().getName() + ".callOperation");
-    }
+//    public Object callOperation(Operation operation, int opcode, Object source,
+//    		Object[] args)
+//    		throws IllegalArgumentException {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".callOperation");
+//    }
 
-    public Value navigateProperty(Property property, List<?> qualifiers,
-    		Object source)
-    		throws IllegalArgumentException {
-    	throw new UnsupportedOperationException(getClass().getName() + ".navigateProperty");
-    }
+//    public Value navigateProperty(Property property, List<?> qualifiers,
+//    		Object source)
+//    		throws IllegalArgumentException {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".navigateProperty");
+//    }
 
     public Value navigateAssociationClass(Type associationClass,
     		Property navigationSource, Object source)
@@ -401,31 +400,31 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
     	throw new UnsupportedOperationException(getClass().getName() + ".navigateAssociationClass");
     }
 
-    public boolean isKindOf(Object object, Type classifier) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".isKindOf");
-    }
+//    public boolean isKindOf(Object object, Type classifier) {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".isKindOf");
+//    }
 
-    public boolean isTypeOf(Object object, Type classifier) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".isTypeOf");
-    }
+//    public boolean isTypeOf(Object object, Type classifier) {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".isTypeOf");
+//    }
 
     public Type getType(Object object) {
     	throw new UnsupportedOperationException(getClass().getName() + ".getType");
     }
 
-    public Value getValue(EnumerationLiteral enumerationLiteral) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".getValue");
-    }
+//    public Value getValue(EnumerationLiteral enumerationLiteral) {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".getValue");
+//    }
 
-    @Override
-    protected Method getJavaMethodFor(Operation operation, Object receiver) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".getJavaMethodFor");
-    }
+//    @Override
+//    protected Method getJavaMethodFor(Operation operation, Object receiver) {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".getJavaMethodFor");
+//    }
 
-    @Override
-    protected Object getInvalidResult() {
-    	throw new UnsupportedOperationException(getClass().getName() + ".getInvalidResult");
-    }
+//    @Override
+//    protected Object getInvalidResult() {
+//    	throw new UnsupportedOperationException(getClass().getName() + ".getInvalidResult");
+//    }
 
 	public ValueFactory getValueFactory() {
 		return typeManager.getValueFactory();

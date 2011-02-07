@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: TypeManager.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -50,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -480,6 +481,15 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		}
 		return conformsToClass((org.eclipse.ocl.examples.pivot.Class)actualType,
 			(org.eclipse.ocl.examples.pivot.Class)requiredType);
+	}
+
+	public InvalidLiteralExp createInvalidExpression(Object object, String boundMessage, Throwable e) {
+		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
+		invalidLiteralExp.setType(getOclInvalidType());
+		invalidLiteralExp.setObject(object);
+		invalidLiteralExp.setReason(boundMessage);
+		invalidLiteralExp.setThrowable(e);
+		return invalidLiteralExp;
 	}
 
 	public Resource createResource(URI uri, String contentType) {

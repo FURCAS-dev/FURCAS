@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLBase.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -425,43 +426,6 @@ public abstract class OCLBase {
 	 * @see #isInvalid(Object)
 	 * @see #check(Object, Object)
 	 */
-	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, OclExpression expression) {
-		evaluationProblems = null;
-		
-		// can determine a more appropriate context from the context
-		// variable of the expression, to account for stereotype constraints
-		context = HelperUtil.getConstraintContext(rootEnvironment, context,
-			expression);
-
-		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		ValueFactory valueFactory = localEvalEnv.getValueFactory();
-		Value contextValue = valueFactory.valueOf(context);
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
-
-		ModelManager extents = getModelManager();
-		if (extents == null) {
-			// let the evaluation environment create one
-			extents = localEvalEnv.createModelManager(context);
-		}
-
-		EvaluationVisitor ev = environmentFactory
-			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
-
-		org.eclipse.ocl.examples.pivot.values.Value result;
-
-		try {
-			result = expression.accept(ev);
-		} catch (EvaluationHaltedException e) {
-			evaluationProblems = e.getDiagnostic();
-			result = null;
-		} finally {
-			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-		}
-		if (result == null) {
-			result = valueFactory.createInvalidValue("Java-Null value");
-		}
-		return result;
-	}
 	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, ExpressionInOcl expression) {
 		evaluationProblems = null;
 		
@@ -471,8 +435,8 @@ public abstract class OCLBase {
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
 		Value value = valueFactory.valueOf(context);
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
-//		localEvalEnv.addVariable(expression.getContextVariable(), value);
+//		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
+		localEvalEnv.add(expression.getContextVariable(), value);
 //		if ((value != null) && !value.isUndefined()) {
 //			expression.getContextVariable().setValue(value);
 //		}
@@ -493,7 +457,8 @@ public abstract class OCLBase {
 			evaluationProblems = e.getDiagnostic();
 			result = null;
 		} finally {
-			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+//			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+			localEvalEnv.remove(expression.getContextVariable());
 		}
 		if (result == null) {
 			result = valueFactory.createInvalidValue("Java-Null value");
@@ -538,7 +503,7 @@ public abstract class OCLBase {
 		ExpressionInOcl specification = rootEnvironment
 			.getUMLReflection().getSpecification(constraint);
 
-		return check(context, specification.getBodyExpression());
+		return check(context, specification);
 	}
 
 	/**
@@ -563,13 +528,13 @@ public abstract class OCLBase {
 	 * @throws IllegalArgumentException
 	 *             if the constraint expression is not boolean-valued
 	 */
-	public boolean check(Object context, OclExpression constraint) {
+	public boolean check(Object context, ExpressionInOcl specification) {
 		StandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
-		if (constraint.getType() != stdlib.getBooleanType()) {
+		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
 
-		Value result = evaluate(context, constraint);
+		Value result = evaluate(context, specification);
 		return result.isTrue();
 	}
 
@@ -605,8 +570,8 @@ public abstract class OCLBase {
 	 * 
 	 * @see #createQuery(Object)
 	 */
-	public QueryBase createQuery(OclExpression query) {
-		return new QueryBaseImpl(rootEnvironment, query, modelManager);
+	public QueryBase createQuery(ExpressionInOcl specification) {
+		return new QueryBaseImpl(rootEnvironment, specification, modelManager);
 	}
 
 	/**
@@ -629,7 +594,7 @@ public abstract class OCLBase {
 	public QueryBase createQuery(Constraint constraint) {
 		return new QueryBaseImpl(
 			rootEnvironment, rootEnvironment.getUMLReflection()
-				.getSpecification(constraint).getBodyExpression(), modelManager);
+				.getSpecification(constraint), modelManager);
 	}
 
 	/**
@@ -768,6 +733,14 @@ public abstract class OCLBase {
 		return problems;
 	}
 
+	public TypeManager getTypeManager() {
+		return rootEnvironment.getTypeManager();
+	}
+
+	public ValueFactory getValueFactory() {
+		return getTypeManager().getValueFactory();
+	}
+	
 	/**
 	 * Obtains problems, if any, occurred during evaluation of the last OCL
 	 * constraint or query expression.

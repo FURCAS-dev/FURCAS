@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.3 2011/01/27 07:01:10 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.4 2011/01/30 11:20:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -60,17 +60,34 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						return null;
 					}
 				}
-			}
-			if (pivot instanceof IterateExp) {
-				Variable result = ((IterateExp)pivot).getResult();
-				if ((environmentView.addNamedElement(result) > 0)  && (environmentView.getName() != null)) {
-					return null;
+				if (pivot instanceof IterateExp) {
+					Variable result = ((IterateExp)pivot).getResult();
+					if ((environmentView.addNamedElement(result) > 0)  && (environmentView.getName() != null)) {
+						return null;
+					}
+					environmentView.addElementsOfScope(typeManager, result.getType(), scopeView);
+					if ((environmentView.getSize() > 0)  && (environmentView.getName() != null)) {
+						return null;
+					}
 				}
-				environmentView.addElementsOfScope(typeManager, result.getType(), scopeView);
-				if ((environmentView.getSize() > 0)  && (environmentView.getName() != null)) {
-					return null;
-				}
 			}
+/*			else {
+//				EObject csParent = getParent().getTarget();
+				EObject csParent = target.eContainer();
+				if (csParent instanceof InfixExpCS) {
+					OperatorCS csOperator = target.getParent();
+					if (csOperator != null) {
+						ExpCS csSource = csOperator.getSource();
+						if (target != csSource) {									// Explicit source
+							OclExpression source = (OclExpression)csSource.getPivot();
+							Type sourceType = source != null ? source.getType() : null;
+							if (PivotConstants.COLLECTION_NAVIGATION_OPERATOR.equals(csOperator.getName()) && (sourceType instanceof CollectionType)) {
+								environmentView.addElementsOfScope(typeManager, ((CollectionType)sourceType).getElementType(), scopeView);
+							}
+						}
+					}
+				}
+			} */
 		}
 		else {
 			// Note that we only need to find the feature, which can be identified

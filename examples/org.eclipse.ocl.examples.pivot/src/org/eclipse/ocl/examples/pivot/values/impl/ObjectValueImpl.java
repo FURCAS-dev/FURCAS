@@ -12,12 +12,19 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -49,6 +56,19 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 	}
 
 	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		if (object instanceof EObject) {
+			EClass eClass = ((EObject)object).eClass();
+			Resource resource = eClass.eResource();
+			if (resource != null) {
+				Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource);
+				if (adapter != null) {
+					Type type = adapter.getCreated(Type.class, eClass);
+					if (type != null) {
+						return type;
+					}
+				}
+			}
+		}
 		return standardLibrary.getClassifierType();
 	}
 
@@ -59,6 +79,31 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	@Override
 	public String toString() {
-		return object.toString();
+		if (object instanceof ENamedElement) {
+			ENamedElement eNamedElement = (ENamedElement)object;
+			return eNamedElement.getName() + ":" + eNamedElement.eClass().getName();
+		}
+		else if (object instanceof EObject) {
+			EObject eObject = (EObject) object;
+			EClass eClass = eObject.eClass();
+			EAttribute idAttribute = eClass.getEIDAttribute();
+			if (idAttribute == null) {
+				for (EAttribute eAttribute : eClass.getEAllAttributes()) {
+					if (eAttribute.getEType() == EcorePackage.Literals.ESTRING) {
+						idAttribute = eAttribute;
+						break;
+					}
+				}
+			}
+			if (idAttribute != null) {
+				return eObject.eGet(idAttribute) + ":" + eClass.getName();
+			}
+			else {
+				return "?:" + eClass.getName();
+			}
+		}
+		else {
+			return object.toString();
+		}
 	}
 }
