@@ -1,0 +1,201 @@
+Thoughts on the semantics of associations:
+------------------------------------------
+
+An association is a construct at "M1 level" that declares a relation
+between two classes. An association is instantiated by zero or more
+links between objects. The association specifies in which direction
+these links are navigable and by its multiplicities defines how many
+links of the same association can be connected to a single object. The
+association may be defined to be "composite" meaning that when the
+composite parent is deleted then so will be the composite children
+(recursively). Furthermore, each object must have at most one
+composite parent at any time.
+
+The constraints imposed by an association on the link sets attached to
+objects are subject to the same constraint verification and
+enforcement policies than other constraints. This means in particular
+that constraints may temporarily be violated, still allowing users to
+store their objects persistently or try to serialize them into a
+message if that is still possible despite the constraint
+violations. In particular, minimum multiplicities of 1 may temporarily
+be violated specifically during the construction of object graphs.
+
+Given the definition of "Conformance" it must be permissible to use
+any object that conforms to the type of an association end in the
+respective association on that end. For example, if an association
+connects two classes A and B, then on the A end any object is
+permissible that conforms to A, roughly meaning that it needs to
+expose at least the public features that objects of type A expose.
+This means that when an object is fetched from an association it does
+not necessarily have to be of the type specified by the association
+end, but it will conform to that type.
+
+Implementation-wise this means that when navigating an association,
+depending on the representation of the links, the type conformance
+graph may need to be known in order to determine all links. For
+example, if links are stored as foreign key-like references on the
+objects on one end only, all such links on all instances of all types
+conforming to the association end's type need to be considered.
+
+Association access:
+-------------------
+
+There are two kinds of accessing associations: querying its link set
+(read access) and manipulating its link set (write access). The
+default querying operation provides an object, the association to
+navigate and the end to which to navigate. The query will then return
+all objects on the queried end that are related by the given
+association to the object provided.
+
+Discussion: Association access may be presented involving
+collections. The collections would exhibit semantics similar to the
+association ends (see JMI and live collections). Disadvantage: the
+association would not be a first-level language construct and would
+only appear through the collection mappings. Alternatively,
+association access may be realized by making multiplicity a concept
+attached to any typed element in the language, including variables,
+formal operation parameters and return types and in particular any
+expression throughout the language. This could perhaps completely
+replace the notion of a collection which then would only be a
+placeholder object with an association to the collection's element
+type.
+
+(There is a connection between generics and the way to represent
+collections in the language. Say there was a generic type Set<E>, then
+it could have an association to E that is non-composite but has
+unique=true and upperMultiplicity=*. As such, associations could be
+seen as a way to implement collections.
+
+If a variable is declared to be of, e.g., type Person[], how can it be
+initialized with a corresponding *value*? Is there a literal to
+construct a Person[] instance? The result of navigating an association
+end could be assigned to such a variable. But how would one write
+something as simple as an array construction?
+)
+
+Two statements are available for write access to associations: AddLink
+and RemoveLink. AddLink will replace an existing link if the link
+addition would violate an upper multiplicity of 1. RemoveLink is a
+no-op if the link between the objects specified on behalf of the
+association specified does not exist. In both cases (AddLink and
+RemoveLink) the types of the objects passed need to conform to the
+types of the respective association ends.
+
+Tools supporting a specific concrete syntax may allow users to specify
+an association end using shortcuts, such as an association end name,
+together with auto-completion and disambiguation features resolving
+the user specification into a fully-specified association end of a
+particular association. During runtime, there shall generally be no
+"polymorphism" for association access.
+
+Association ownership:
+----------------------
+
+A class is a namespace, and so is an association. AssociationEnds must
+be owned by their Association and not by any Namespace, even though
+they are a NamedElement. A class may choose to own associations. A
+class can explicitly expose an association end as a feature relevant
+for conformance to that class using the "AssociationEndExposure"
+association. Classes may only expose association ends if they conform
+to the opposite end's type.
+
+Associations may as well be owned by a Package namespace.
+
+The association is only known to the system if its owning namespace is
+known to the system.
+
+Associations and conformance:
+-----------------------------
+
+
+
+TODO: Readonly is a decisive factor for conformance because it implies
+that only reading operations are permitted on this association. This
+means that in a covariant "redefinition" of the association no
+manipulation of the covariantly-defined association through the more
+general APIs may take place and hence more general objects cannot be
+inserted into the specialized association.
+
+It would be intuitive to be able to use association ends in dotted
+notation even though the end has not explicitly been exposed.  This
+shall work when operating on an instance that conforms to a type of an
+association end because the instance could act as an instance on that
+side of the association.
+
+From a programmer's perspective, it probably shouldn't make a
+difference whether the association end is exposed by the class or not,
+and whether the association is owned by this class or another class or
+a package. However, from a disambiguiation and polymorphism point of
+view there are major differences. Inserting new associations later may
+fundamentally change the semantics of already existing code because
+different associations mey be used then, "hiding" already existing
+links or modifying the "wrong / unexpected" association.
+
+If an association end "b" is accessed by name in the context of a
+class A, the search for the association to navigate works as follows:
+
+ - If A exposes an association end named "b" then it is used. (Note
+   that if A does not expose an end named "b" then there cannot be a
+   class to which A conforms that exposes "b" either because in that
+   case A would need to expose an end named "b" as well in order to
+   conform. Therefore, there is no need in looking for exposed ends
+   named "b" in classes to which A conforms in case it has not been
+   found in A already.)
+
+ - If A conforms to a set of types C1..Cn (reflexively, i.e.,
+   including itself) that are all type of an association end whose
+   other end is named "b" then collect those types C1..Cn and remove
+   those from the set that have a conforming type in the set as
+   well. If the remaining classes Ci1..Cim with 1<=i1<=im<=n are types
+   of association ends of *different* associations with an end "b" on
+   the other side, this is ambiguous and considered an error.
+
+From a conformance perspective it is key whether an AssociationEnd is
+exposed by a class that conforms to the AssociationEnd's type. If the
+class exposes the end, the end is assumed to constitute a "feature" of
+the class and thus is considered to be relevant for conformance.
+Another class conforms to the class exposing an association end only
+if it exposes a "bi-conforming" association end (could be the same
+association end exposed by the class to which this class intends to
+conform). An association end is "bi-conforming" if nagivability /
+orderedness / multiplicity are equal and the two types conform
+mutually to each other.
+
+Example:
+
+class A { void a(); }
+class B { void b(); }
+class C { void b(); void c(); }
+association AtoB A a 1 <<>-> 1 B b; // A is composite parent; 1:1 assoc bidirectional
+
+In case the "a" end of the AtoB association is not exposed by B, then
+C conforms to B because B does not expose the AssociationEnd as a
+feature. This should make the following code legal:
+
+A a1 = ...;
+B b1 = ...;
+C c1 = ...;
+a1.b = c1; // c1's type C conforms to B and thus can be used as a B
+
+However, changing B's signatures by exposing the "a" end of AtoB in B
+will make C no longer conforming to B. C would need to add signature
+operations that match those induced by exposing the "a" end in B. It
+could do so by exposing the "a" end of AtoB as well. This makes C
+conform to B which in turn makes exposing the B-typed end allowed.
+
+Concrete textual syntax for expressing associations:
+
+	 ->	    unidirectionally navigable, non-composite, unnamed
+	 -Name->    unidirectionally navigable, non-composite, named
+	 <-	    unidirectionally navigable, non-composite, unnamed
+	 <-Name-    unidirectionally navigable, non-composite, named
+	 <>->	    unidirectionally navigable, composite, unnamed
+	 <>-Name->  unidirectionally navigable, composite, named
+	 <-<>	    unidirectionally navigable, composite, unnamed
+	 <-Name-<>  unidirectionally navigable, composite, named
+	 <->	    bidirectionally navigable, non-composite, unnamed
+	 <-Name->   bidirectionally navigable, non-composite, named
+	 <<>->	    bidirectionally navigable, composite, unnamed
+	 <<>-Name-> bidirectionally navigable, composite, named
+	 <-<>>	    bidirectionally navigable, composite, unnamed
+	 <-Name-<>> bidirectionally navigable, composite, named
