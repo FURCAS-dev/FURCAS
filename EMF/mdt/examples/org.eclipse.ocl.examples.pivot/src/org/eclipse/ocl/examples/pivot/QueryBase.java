@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBase.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: QueryBase.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.examples.pivot.values.Value;
 
 
 /**
@@ -58,7 +59,7 @@ public interface QueryBase {
 	 * @see #evaluate(List)
 	 * @see #resultType()
 	 */
-	public Object evaluate(Object obj);
+	public Value evaluate(Object obj);
 	
 	/**
 	 * Evaluates the query. This method is used when there is no 'self' context

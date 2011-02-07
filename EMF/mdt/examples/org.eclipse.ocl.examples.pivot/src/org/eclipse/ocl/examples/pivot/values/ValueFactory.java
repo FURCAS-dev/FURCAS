@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -82,6 +83,8 @@ public interface ValueFactory
 
 	public Value createTypeValue(Type type);
 
+	public Object getEcoreValueOf(Value result);
+
 	public BagValue getEmptyBagValue();
 	public OrderedSetValue getEmptyOrderedSetValue();
 	public SequenceValue getEmptySequenceValue();	
@@ -107,5 +110,6 @@ public interface ValueFactory
 	public StringValue stringValueOf(String value) ;
 
 	public Value valueOf(Object object);
+	public Value valueOf(Object eValue, ETypedElement eFeature);
 }
  

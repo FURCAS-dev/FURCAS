@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -249,6 +249,7 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: AbstractIteration.java,v 1.3 2011/01/30 11:07:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -68,20 +68,14 @@ public abstract class AbstractIteration<ACC extends Value> extends AbstractFeatu
 	}	
 	
 	protected Value evaluateIteration(IterationManager<ACC> iterationManager) {
-		try {
-			for ( ; iterationManager.hasCurrent(); iterationManager.advance()) {
-				// evaluate the body of the expression in this environment
-				Value resultVal = updateAccumulator(iterationManager);
-				if (resultVal != null) {
-					return resultVal;
-				}
+		for ( ; iterationManager.hasCurrent(); iterationManager.advance()) {
+			// evaluate the body of the expression in the nested environment
+			Value resultVal = updateAccumulator(iterationManager);
+			if (resultVal != null) {
+				return resultVal;
 			}
-			return resolveTerminalValue(iterationManager);			
 		}
-		finally {
-			// remove the iterators from the environment			
-			iterationManager.removeIterators();
-		}
+		return resolveTerminalValue(iterationManager);			
 	}
 
 

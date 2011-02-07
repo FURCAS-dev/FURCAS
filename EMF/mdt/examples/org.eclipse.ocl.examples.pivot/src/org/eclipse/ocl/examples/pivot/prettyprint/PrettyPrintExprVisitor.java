@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -337,6 +338,17 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 			if (lowerPrecedence) {
 				delegate.append(")");
 			}
+		}
+		return null;
+	}
+
+	@Override
+	public Object visitParameter(Parameter object) {
+		delegate.appendName(object);
+		Type type = object.getType();
+		if (type != null) {
+			delegate.append(" : ");
+			delegate.safeVisit(type);
 		}
 		return null;
 	}

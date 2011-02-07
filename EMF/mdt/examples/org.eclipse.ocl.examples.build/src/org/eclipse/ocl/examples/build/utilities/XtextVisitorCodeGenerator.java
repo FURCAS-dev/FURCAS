@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: XtextVisitorCodeGenerator.java,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: XtextVisitorCodeGenerator.java,v 1.3 2011/02/02 18:51:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -33,6 +33,7 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GenerateXtextVisitors;
+import org.eclipse.ocl.examples.build.acceleo.MyGenerateXtextVisitors;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 /**
@@ -93,9 +94,10 @@ public class XtextVisitorCodeGenerator extends AbstractWorkflowComponent
 			arguments.add(visitorBaseClassName);
 			arguments.add(ecoreFile);
 			EObject ecoreModel = ecoreResource.getContents().get(0);
-			GenerateXtextVisitors acceleo = new GenerateXtextVisitors(ecoreModel, folder, arguments);
+			GenerateXtextVisitors acceleo = new MyGenerateXtextVisitors(ecoreModel, folder, arguments);
 			log.info("Generating to ' " + folder + "'");
-			acceleo.generate(null);
+			EMF2MWEMonitorAdapter monitor = new EMF2MWEMonitorAdapter(arg1);
+			acceleo.generate(monitor);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			throw e;

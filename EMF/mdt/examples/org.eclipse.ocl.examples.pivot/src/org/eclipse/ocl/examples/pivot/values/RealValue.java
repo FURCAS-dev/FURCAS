@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: RealValue.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -20,6 +20,7 @@ public interface RealValue extends NumericValue
 {
 	RealValue abs();
 	RealValue add(RealValue right);
+	Double asDouble();
 	RealValue divide(RealValue right);
 	IntegerValue floor();
 	RealValue max(RealValue right);

@@ -14,7 +14,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -142,32 +142,20 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
     }
 	
     // implements the interface method
-	public Environment
-	createOperationContext(
-			Environment parent,
-			Operation operation) {
-		
-		Environment result =
-			createEnvironment(parent);
-		
+	public Environment createOperationContext(Environment parent, Operation operation) {		
+		Environment result = createEnvironment(parent);		
 		if (result instanceof AbstractEnvironment) {
-			((AbstractEnvironment) result)
-				.setContextOperation(operation);
+			((AbstractEnvironment) result).setContextOperation(operation);
 		}
-		
-        UMLReflection uml = parent.getUMLReflection();
-		OCLFactory oclFactory = parent.getOCLFactory();
-		
-        for (Parameter next : parent.getUMLReflection().getParameters(operation)) {
+		OCLFactory oclFactory = parent.getOCLFactory();		
+        for (Parameter next : operation.getOwnedParameters()) {
 			// ensure that we use the OCL primitive types wherever possible
 			Variable var = oclFactory.createVariable();
-			uml.setName(var, uml.getName(next));
-			uml.setType(var, TypeUtil.resolveType(result, uml.getOCLType(next)));
-			var.setRepresentedParameter(next);
-			
+			var.setName(next.getName());
+			var.setType(next.getType());
+			var.setRepresentedParameter(next);		
 			result.addElement(var.getName(), var, true);
-		}
-		
+		}	
 		return result;
 	}
 	

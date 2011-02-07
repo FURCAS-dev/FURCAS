@@ -1,6 +1,9 @@
 [comment encoding = UTF-8 /]
 [module generateOclCommon('http://www.eclipse.org/ocl/3.1.0/Pivot','http://www.eclipse.org/emf/2002/Ecore')/]
 
+[query public getRootPackage(elem : Package) : Package =
+if elem.nestingPackage->notEmpty() then elem.nestingPackage.getRootPackage() else elem endif/]
+
 [query public getSignature(elem : NamedElement) : String = 
 let parent : EObject = elem.eContainer() in
 if not parent.oclIsUndefined() then parent.oclAsType(NamedElement).getSignature() + '::' + elem.name
@@ -71,6 +74,8 @@ InvalidType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createInvalidType()
 OrderedSetType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createOrderedSetType(); // [type.moniker/]
 [elseif (type.oclIsTypeOf(PrimitiveType))]
 PrimitiveType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createPrimitiveType(); // [type.moniker/]
+[elseif (type.oclIsTypeOf(SelfType))]
+SelfType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createSelfType(); // [type.moniker/]
 [elseif (type.oclIsTypeOf(SequenceType))]
 SequenceType [type.getSymbolName()/] = PivotFactory.eINSTANCE.createSequenceType(); // [type.moniker/]
 [elseif (type.oclIsTypeOf(SetType))]
@@ -299,7 +304,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 }
 [/if]
 [for (superClass : Class | type.superClass)]
-[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]);
+[if (type._package.getRootPackage() = superClass._package.getRootPackage())]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.moniker/]
+[/if]
 [/for]
 [for (property : Property | type.ownedAttribute->sortedBy(name))]
 { // [property.getSignature()/] [property.moniker/]

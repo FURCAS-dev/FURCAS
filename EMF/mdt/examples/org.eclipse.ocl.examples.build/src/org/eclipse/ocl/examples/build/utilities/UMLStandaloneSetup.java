@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLStandaloneSetup.java,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: UMLStandaloneSetup.java,v 1.3 2011/02/02 18:50:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -96,7 +97,8 @@ public class UMLStandaloneSetup extends StandaloneSetup
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(path + "/profiles/")); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(path + "/metamodels/")); //$NON-NLS-1$
 		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(path + "/libraries/")); //$NON-NLS-1$
-		registry.put(Ecore2XMLPackage.eNS_URI, Ecore2XMLPackage.eINSTANCE);
+		EPackage.Registry registry2 = registry;		// Workaround JDT invisible class anomally
+		registry2.put(Ecore2XMLPackage.eNS_URI, Ecore2XMLPackage.eINSTANCE);
 		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Ecore/5", URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0"));
 		UMLPlugin.getEPackageNsURIToProfileLocationMap().put("http://www.eclipse.org/uml2/schemas/Standard/1", URI.createURI("pathmap://UML_PROFILES/Standard.profile.uml#_0"));
 	}

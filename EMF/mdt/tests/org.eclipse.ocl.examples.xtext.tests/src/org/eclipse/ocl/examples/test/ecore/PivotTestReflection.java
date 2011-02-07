@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestReflection.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: PivotTestReflection.java,v 1.3 2011/01/30 10:59:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -55,7 +55,7 @@ import org.eclipse.ocl.examples.test.generic.TestReflection;
 public class PivotTestReflection extends PivotReflectionImpl implements TestReflection,
 TestReflection.Static
 {
-	public static final String PLUGIN_ID = "org.eclipse.ocl.ecore.tests";
+	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
 
 	public static OCL createOCL() {
 		OCL newInstance = OCL.newInstance();
