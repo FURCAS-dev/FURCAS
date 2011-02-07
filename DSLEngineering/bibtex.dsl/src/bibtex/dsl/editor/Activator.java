@@ -1,8 +1,7 @@
-package bibtex.dsl.editor; 
+package bibtex.dsl.editor;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin; 
-import org.osgi.framework.BundleContext; 
-
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -13,7 +12,7 @@ public class Activator extends AbstractUIPlugin {
     private static Activator plugin;
 
     public Activator() {
-    
+
     }
 
     @Override

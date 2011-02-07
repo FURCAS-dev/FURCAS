@@ -68,5 +68,19 @@
             language="Bibtex">
       </proposer>
    </extension>
+   <extension
+         point="org.eclipse.imp.runtime.modelTreeBuilder">
+      <treeBuilder
+            class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
+            language="Bibtex">
+      </treeBuilder>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.labelProvider">
+      <labelProvider
+            class="bibtex.imp.treeModelBuilder.BibtexLabelProvider"
+            language="Bibtex">
+      </labelProvider>
+   </extension>
 
 </plugin>
