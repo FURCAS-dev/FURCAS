@@ -193,6 +193,8 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // create a temporary opposite end finder that knows about the static resources in the workspace
         QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(editingDomain.getResourceSet(), getAdditionalLookupURIs());
         OppositeEndFinder temporaryOppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        // FIXME: at the moment this oppositeEnd finder does not work: it is unable to locate
+        // textblocks within our current project. Investigation needed!
         
         ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain, temporaryOppositeEndFinder, parserFactory);
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
@@ -254,7 +256,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         ANTLRIncrementalLexerAdapter lexer = new ANTLRIncrementalLexerAdapter(new ANTLRLexerAdapter(parserFactory.createLexer(/*input*/null), reuseStrategy),
                 modelAdapter, editingDomain);
 
-        // FIXME: inject model adapter instead of hiding the initialization internally and then extracting it!
+        // TODO: inject model adapter instead of hiding the initialization internally and then extracting it!
         ObservableInjectingParser parser = parserFactory.createParser(parserFactory.createIncrementalTokenStream(lexer), resourceSet, referenceScope, referenceScope);
 
         ITextBlocksTokenStream tokenStream = (ITextBlocksTokenStream) parser.getTokenStream();
