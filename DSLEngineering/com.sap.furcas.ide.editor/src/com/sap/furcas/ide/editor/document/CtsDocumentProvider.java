@@ -18,18 +18,24 @@ import org.eclipse.ui.texteditor.AbstractDocumentProvider;
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.CtsAnnotationModel;
 import com.sap.furcas.ide.editor.commands.CleanUpTextBlocksCommand;
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 
 public class CtsDocumentProvider extends AbstractDocumentProvider {
 
     private final EditingDomain editingDomain;
+    private final ConcreteSyntax syntax;
+    private final PartitionAssignmentHandler partitionHandler;
 
-    public CtsDocumentProvider(EditingDomain editingDomain) {
+    public CtsDocumentProvider(ConcreteSyntax syntax, EditingDomain editingDomain, PartitionAssignmentHandler partitionHandler) {
         super();
+        this.syntax = syntax;
         this.editingDomain = editingDomain;
+        this.partitionHandler = partitionHandler;
     }
 
     @Override
@@ -64,7 +70,7 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
                 // only the case if the rootBlock was at least lexable
                 monitor.beginTask("Cleaning up textblocks.", 100);
                 CleanUpTextBlocksCommand cleanUpCommand = new CleanUpTextBlocksCommand(ctsDocument.getRootBlock());
-                getEditingDomain().getCommandStack().execute(cleanUpCommand);
+                editingDomain.getCommandStack().execute(cleanUpCommand);
                 TextBlock newRoot = cleanUpCommand.getNewRootBlock();
                 ctsDocument.setRootBlock(newRoot);
                 monitor.worked(50);
@@ -80,8 +86,8 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
             //
             final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
             saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-            ctsDocument.getPartitionHandler().saveAllPartitions(saveOptions);
-            ((BasicCommandStack) getEditingDomain().getCommandStack()).saveIsDone();
+            partitionHandler.saveAllPartitions(saveOptions);
+            ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
 
             fireElementDirtyStateChanged(element, false);
             monitor.done();
@@ -101,12 +107,12 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
     @Override
     protected IAnnotationModel createAnnotationModel(Object element) {
         ModelEditorInput modelEditorInput = (ModelEditorInput) element;
-        return new CtsAnnotationModel(modelEditorInput.getEObject());
+        return new CtsAnnotationModel(modelEditorInput.getRootObject());
     }
 
     @Override
     protected IDocument createDocument(Object element) {
-        return new CtsDocument(((ModelEditorInput) element),getEditingDomain());
+        return new CtsDocument(((ModelEditorInput) element), syntax, editingDomain);
     }
 
     @Override
@@ -114,10 +120,6 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         return null;
     }
 
-    public EditingDomain getEditingDomain() {
-        return editingDomain;
-    }
-    
     @Override
     public CtsDocument getDocument(Object element) {
         return (CtsDocument) super.getDocument(element);

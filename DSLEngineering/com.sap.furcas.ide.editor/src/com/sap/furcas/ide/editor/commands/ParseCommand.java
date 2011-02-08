@@ -2,6 +2,7 @@ package com.sap.furcas.ide.editor.commands;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 
+import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
@@ -31,7 +32,8 @@ public class ParseCommand extends AbstractCommand {
         } catch (SemanticParserException e) {
             parseException = e;
         } catch (Exception e) {
-            e.printStackTrace();
+            CtsActivator.logError(e);
+            throw new RuntimeException(e);
         }
     }
 

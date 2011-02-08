@@ -3,29 +3,26 @@ package com.sap.furcas.ide.editor.document;
 import java.io.ByteArrayOutputStream;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.AbstractDocument;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
+import org.eclipse.ui.PartInitException;
 
 import com.sap.furcas.ide.editor.CtsActivator;
-import com.sap.furcas.ide.editor.action.PrettyPrintAction;
 import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
 import com.sap.furcas.ide.editor.recovery.TbRecoverUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
+import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
 import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
-import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
-import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
-import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
@@ -39,54 +36,30 @@ public class CtsDocument extends AbstractDocument {
     private static final String DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED = "Document was not completely initialized. Call completeInit() to finish the initialization";
     private boolean completelyItitialized = false;
 
-    private EObject rootObject;
+    private final EObject rootObject;
     private TextBlock rootBlock;
     
-    private ConcreteSyntax syntax;
+    private final ConcreteSyntax syntax;
     private final EditingDomain editingDomain;
-    private final PartitionAssignmentHandler partitionHandler;
     
     /**
      * Creates a new empty document.
      */
-    public CtsDocument(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
+    public CtsDocument(ModelEditorInput editorInput, ConcreteSyntax syntax, EditingDomain editingDomain) {
 	super();
-        this.partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
-	Resource defaultResource = modelEditorInput.getEObject().eResource();
-	this.partitionHandler.setDefaultPartition(defaultResource);
         this.editingDomain = editingDomain;
-        
+        this.syntax = syntax;
+        this.rootObject = editorInput.getRootObject();
+        this.rootBlock = editorInput.getRootBlock();
 	completeInitialization();
     }
 
     /**
      * The document will be usable and completely initialized after this method was called.
      */
-    public void completeInit(ConcreteSyntax concreteSyntax, ParserCollection parserCollection) {
-	syntax = concreteSyntax;
-        ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
-
-	//TODO this needs to be done on a specifically designated sub element
-	EObject inputObject = partitionHandler.getDefaultPartition().getContents().iterator().next();
-	if (inputObject instanceof TextBlock) {
-	    if (TbUtil.isTextBlockOfType(rootTemplate, (TextBlock) inputObject)) {
-		rootBlock = (TextBlock) inputObject;
-		if (rootBlock.getCorrespondingModelElements().size() > 0) {
-		    rootObject = rootBlock.getCorrespondingModelElements().iterator().next();
-		}
-	    }
-	} else {
-	    rootObject = inputObject;
-	    rootBlock = determineRootBlockForRootObject(concreteSyntax, rootTemplate, inputObject, parserCollection);
-	}
-
-	if (rootBlock == null) {
-	    MessageDialog.openError(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
-		    "Initialization Failed", "Failed to initialize document. Consult the error log for further information!");
-	    return;
-	}
-	
-        TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter, /*fail silently*/ false);
+    public void completeInit(ParserCollection parserCollection) throws PartInitException {
+        
+        validateAndMigrateTextBlocksModel(parserCollection);
 
 	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(editingDomain, rootBlock, parserCollection.parser.getInjector().getModelAdapter());
 	setTextStore(textBlocksModelStore);
@@ -94,88 +67,78 @@ public class CtsDocument extends AbstractDocument {
 
 	completelyItitialized = true;
 
-	//synchronize all tokens with values from model
+	// synchronize all tokens with values from model
 	textBlocksModelStore.expandToEditableVersion();
 	getTracker().set(rootBlock.getCachedString());
 
-	//enable usage of cached string for get() operations as it is faster.
+	// enable usage of cached string for get() operations as it is faster.
 	((TextBlocksModelStore)getStore()).getModel().setUsecache(true);
     }
 
-
-    /**
-     * Get a corresponding root TextBlock for the given rootObject.
-     * If no TextBlock does exist yet, a new one is created.
-     */
-    private TextBlock determineRootBlockForRootObject(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
-	    EObject inputObject, ParserCollection parserCollection) {
-
-	TextblocksPackage tbPackage = TextblocksPackage.eINSTANCE;
-	TextBlock rootBlock = null;
-	try {
-	  //note: ensure that if exists the textblock partition belonging to the model partition is loaded
-            //into the resource set
-	    rootBlock = TbModelInitializationUtil.getRootBlockForRootObject(inputObject, parserCollection.oppositeEndFinder, rootTemplate);
-	} catch (TextBlockMappingBrokenException e) {
-	    TextBlock blockInError = e.getBlock();
-	    rootBlock = recoverBrokenTextBlockMapping(inputObject, blockInError, rootTemplate, parserCollection);
-	}
-
-	if (rootBlock == null) {
-	    // no root node found, so create a new one
-	    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(inputObject, tbPackage, concreteSyntax, editingDomain, parserCollection.parserFactory);
-	    partitionHandler.assignToDefaultTextBlocksPartition(rootBlock);
-	}
-	return rootBlock;
+    private void validateAndMigrateTextBlocksModel(ParserCollection parserCollection) throws PartInitException {
+        ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
+        if (rootBlock.getType() == null) {
+            boolean success = recoverBrokenTextBlockMapping(parserCollection, rootTemplate);
+            if (success && !TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
+                throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model.");
+            }
+        } else if (!TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
+            throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType().getParseRule()));
+        }
+        
+        TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer,
+                parserCollection.shortPrettyPrinter, /*fail silently*/false);
+        
+        try {
+            TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
+            TbValidationUtil.assertCacheIsUpToDate(rootBlock);
+        } catch (IllegalTextBlocksStateException e) {
+            throw new PartInitException("TextBlock model is invalid", e);
+        }
     }
     
+    
+    /**
+     * FIXME: Is that what we want?
+     */
+    private boolean recoverBrokenTextBlockMapping(ParserCollection parserCollection, ClassTemplate rootTemplate) throws PartInitException {
+        // might be a valid textblock but with a broken reference to the mapping
+        // but might also be a TextBlock of the wrong type...
+        if (TbRecoverUtil.recoverTextBlockFromBrokenMapping(rootBlock, rootTemplate, parserCollection.incrementalParser, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter)) {
+            return true; // now recovered!
+        } else {    
+            String title = "Mapping Link Recovery Failed";
+            String error = "The link from the current document to the mapping definition is broken." + "The recovery failed!\n"
+            + "You have two options: \n" +
+            " a) Click OK and the model will be pretty printed. The old textual view will be replaced. \n" +
+            " b) Click Cancel to keep the texutal view but to force the recreation of all model elements defined in this view  upon changes to this document.";
+            String oldTextualView = rootBlock.getCachedString();
+            String newTextualView = prettyPrintToString(rootTemplate);
+            PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(title, error, oldTextualView, newTextualView);
+            boolean prettyPrintAccepted = dialog.open();
 
-    private static TextBlock recoverBrokenTextBlockMapping(EObject rootObject, TextBlock blockInError, ClassTemplate rootTemplate, ParserCollection parserCollection) {
-        assert blockInError.getType() == null : "Mapping which is supposed to be broken is still valid.";
-        TextBlock rootBlock = null;
-
-        // might be a valid textblock but with a broken reference to the
-        // mapping
-        boolean recoverLink = MessageDialog.openQuestion(CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow()
-                .getShell(), "Mapping Link Broken", "The link from the current document to the mapping definition is broken."
-                + "Would you like to try to recover this connection?\n"
-                + "Otherwise this will cause all elements in defined in the"
-                + "document to be re-created upon changes to the document!");
-        if (recoverLink) {
-            if (!TbRecoverUtil.recoverTextBlockFromBrokenMapping(blockInError, rootTemplate, parserCollection.incrementalParser, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter)) {
-                String title = "Mapping Link Recovery Failed";
-                String error = "The link from the current document to the mapping definition is broken." + "Recovery failed!\n"
-                        + "This will cause all elements in defined in the"
-                        + "document to be re-created upon changes to the document!";
-                String oldClass = blockInError.getCachedString();
-                String newClass = "";
-                try {
-                    IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(/*readOnly*/true);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
-                    pp.prettyPrint(rootObject, blockInError, rootTemplate.getConcreteSyntax(), rootTemplate, target);
-                    newClass = stream.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    newClass = "Error occurred while pretty printing: " + e.getMessage();
-                }
-                PrettyPrintPreviewDialog dialog = new PrettyPrintPreviewDialog(title, error, oldClass, newClass);
-                boolean startPrettyPrinter = dialog.open();
-                if (startPrettyPrinter) {
-                    PrettyPrintAction action = new PrettyPrintAction(rootObject.eClass(), rootObject, false);
-                    action.runWithEvent(null);
-                    rootBlock = action.getRootBlock();
-                } else {
-                    rootBlock = blockInError;
-                }
+            if (prettyPrintAccepted) {
+                rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserCollection.parserFactory);
             } else {
-                rootBlock = blockInError;
+                // unaltered
             }
-        } else {
-            // just do nothing then
-            rootBlock = blockInError;
+            return false;
+        } 
+    }
+
+    private String prettyPrintToString(ClassTemplate rootTemplate) {
+        String newTextualView = "";
+        try {
+            IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(/*readOnly*/true);
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
+            pp.prettyPrint(rootObject, rootBlock, rootTemplate.getConcreteSyntax(), rootTemplate, target);
+            newTextualView = stream.toString();
+        } catch (Exception e) {
+            CtsActivator.logError(e);
+            newTextualView = "Error occurred while pretty printing: " + e.getMessage();
         }
-        return rootBlock;
+        return newTextualView;
     }
 
     @Override
@@ -203,13 +166,6 @@ public class CtsDocument extends AbstractDocument {
 	return rootObject;
     }
 
-    public void setRootObject(EObject rootObject) {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
-	this.rootObject = rootObject;
-    }
-
     public TextBlock getRootBlock() {
 	if (!completelyItitialized) {
 	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
@@ -217,7 +173,7 @@ public class CtsDocument extends AbstractDocument {
 	return rootBlock;
     }
 
-    public void setRootBlock(TextBlock rootBlock) {
+    /*package*/ void setRootBlock(TextBlock rootBlock) {
 	if (!completelyItitialized) {
 	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
 	}
@@ -243,16 +199,11 @@ public class CtsDocument extends AbstractDocument {
 	return completelyItitialized;
     }
 
-    public ConcreteSyntax getSyntax() {
-	return syntax;
-    }
-
-    public void reduceToMinimalState() {
+    /*package*/ void reduceToMinimalState() {
+        if (!completelyItitialized) {
+            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
+        }
 	((TextBlocksModelStore) getStore()).reduceToMinimalState();
-    }
-
-    public PartitionAssignmentHandler getPartitionHandler() {
-        return partitionHandler;
     }
 
 }

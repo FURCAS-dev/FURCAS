@@ -16,10 +16,7 @@ public class MessageHelper {
         if (template.getNames() != null && template.getNames().size() > 0) {
             return QualifiedNamesHelper.getQualifiedString(template.getNames());
         } else if (template.getMetaReference() != null) {
-            // FIXME unknown method?
-//            EList<String> nameList = template.getMetaReference().getQualifiedName();
-//            return QualifiedNamesHelper.getQualifiedString(nameList);
-            throw new RuntimeException("Migration TODO");
+            return QualifiedNamesHelper.getQualifiedString(TcsUtil.getQualifiedName(template.getMetaReference()));
         } else {
             return "<Bug: template without name or reference>";
         }

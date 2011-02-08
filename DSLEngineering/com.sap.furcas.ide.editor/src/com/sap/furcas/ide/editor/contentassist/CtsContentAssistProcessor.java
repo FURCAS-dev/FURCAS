@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -42,7 +41,6 @@ public class CtsContentAssistProcessor {
     private final ConcreteSyntax syntax;
     private Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = null;
     private CtsContentAssistParsingHandler parsingHandler = null;
-    private final ResourceSet connection;
 
     public CtsContentAssistProcessor(ConcreteSyntax syntax, Class<? extends Lexer> lexerClass,
             Class<? extends ObservableInjectingParser> parserClass, String language) {
@@ -51,9 +49,6 @@ public class CtsContentAssistProcessor {
         this.parserClass = parserClass;
         this.syntax = syntax;
         Assert.isNotNull(syntax, "ConcreteSyntax is null");
-
-        this.connection = syntax.eResource().getResourceSet();
-        Assert.isNotNull(connection, "moin connection is null");
 
         initClassTemplateMap();
     }
@@ -208,10 +203,6 @@ public class CtsContentAssistProcessor {
 
         } catch (Exception e) {
             CtsActivator.logError(e);
-        } finally {
-            // clear transient partitions used by content assist
-            //TcsUtil.clearTransientPartition(connection);
-            CtsContentAssistParsingHandler.clearTransientPartition(connection);
         }
         return null;
     }

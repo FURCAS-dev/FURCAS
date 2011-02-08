@@ -24,7 +24,7 @@ public class CtsHistoryDocumentProvider extends CtsDocumentProvider {
 
     @Override
     protected CtsDocument createDocumentFactoryMethod(Object element) {
-	CtsDocument document = new CtsHistoryDocument(((ModelEditorInput) element), getEditingDomain());
+	CtsDocument document = new CtsHistoryDocument(((ModelEditorInput) element), editingDomain);
 	return document;
     }
 
