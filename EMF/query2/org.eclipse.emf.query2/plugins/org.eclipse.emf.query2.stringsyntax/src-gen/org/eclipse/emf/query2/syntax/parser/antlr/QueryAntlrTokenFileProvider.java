@@ -4,12 +4,13 @@
 package org.eclipse.emf.query2.syntax.parser.antlr;
 
 import java.io.InputStream;
+
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class QueryAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.tokens"); //$NON-NLS-1$
 	}
 }

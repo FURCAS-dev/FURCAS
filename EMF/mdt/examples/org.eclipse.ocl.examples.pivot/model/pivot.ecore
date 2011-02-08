@@ -851,6 +851,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" ordered="false"
         lowerBound="1" eType="#//Real"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="SendSignalAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
         lowerBound="1" eType="#//Signal"/>

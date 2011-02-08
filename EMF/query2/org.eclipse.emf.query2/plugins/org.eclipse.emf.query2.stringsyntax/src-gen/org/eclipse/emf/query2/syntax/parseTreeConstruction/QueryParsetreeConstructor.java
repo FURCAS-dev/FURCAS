@@ -8,6 +8,7 @@ import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
 import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
 
+import org.eclipse.emf.query2.syntax.Messages;
 import org.eclipse.emf.query2.syntax.services.QueryGrammarAccess;
 
 import com.google.inject.Inject;
@@ -120,8 +121,8 @@ protected class Model_ImportsAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("imports",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("imports");
+		if((value = eObjectConsumer.getConsumable("imports",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("imports"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getImportRule().getType().getClassifier())) {
@@ -166,8 +167,8 @@ protected class Model_DefaultQueryAssignment_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("defaultQuery",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("defaultQuery");
+		if((value = eObjectConsumer.getConsumable("defaultQuery",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("defaultQuery"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMQLqueryRule().getType().getClassifier())) {
@@ -212,8 +213,8 @@ protected class Model_NamedQueriesAssignment_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("namedQueries",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("namedQueries");
+		if((value = eObjectConsumer.getConsumable("namedQueries",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("namedQueries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getNamedQueryRule().getType().getClassifier())) {
@@ -321,8 +322,8 @@ protected class Import_ImpURIAssignment_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("impURI",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("impURI");
+		if((value = eObjectConsumer.getConsumable("impURI",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("impURI"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0();
@@ -394,8 +395,8 @@ protected class NamedQuery_NameAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getNamedQueryAccess().getNameIDTerminalRuleCall_0_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getNamedQueryAccess().getNameIDTerminalRuleCall_0_0();
@@ -450,8 +451,8 @@ protected class NamedQuery_QueryAssignment_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("query",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("query");
+		if((value = eObjectConsumer.getConsumable("query",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("query"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMQLqueryRule().getType().getClassifier())) {
@@ -561,8 +562,8 @@ protected class MQLquery_FromEntriesAssignment_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("fromEntries",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("fromEntries");
+		if((value = eObjectConsumer.getConsumable("fromEntries",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("fromEntries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getFromEntryRule().getType().getClassifier())) {
@@ -652,8 +653,8 @@ protected class MQLquery_FromEntriesAssignment_2_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("fromEntries",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("fromEntries");
+		if((value = eObjectConsumer.getConsumable("fromEntries",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("fromEntries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getFromEntryRule().getType().getClassifier())) {
@@ -722,8 +723,8 @@ protected class MQLquery_SelectEntriesAssignment_4 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("selectEntries",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("selectEntries");
+		if((value = eObjectConsumer.getConsumable("selectEntries",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("selectEntries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSelectEntryRule().getType().getClassifier())) {
@@ -813,8 +814,8 @@ protected class MQLquery_SelectEntriesAssignment_5_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("selectEntries",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("selectEntries");
+		if((value = eObjectConsumer.getConsumable("selectEntries",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("selectEntries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSelectEntryRule().getType().getClassifier())) {
@@ -905,8 +906,8 @@ protected class MQLquery_WhereEntryAssignment_6_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("whereEntry",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("whereEntry");
+		if((value = eObjectConsumer.getConsumable("whereEntry",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("whereEntry"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getWhereEntryRule().getType().getClassifier())) {
@@ -992,8 +993,8 @@ protected class SelectEntry_SelectAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("select",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("select");
+		if((value = eObjectConsumer.getConsumable("select",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("select"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSelectEntryAccess().getSelectFromEntryCrossReference_0_0().getType().getClassifier())) {
@@ -1073,8 +1074,8 @@ protected class SelectEntry_AttributeAssignment_1_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("attribute",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("attribute");
+		if((value = eObjectConsumer.getConsumable("attribute",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("attribute"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getSelectEntryAccess().getAttributeEAttributeCrossReference_1_1_0().getType().getClassifier())) {
@@ -1153,8 +1154,8 @@ protected class FromEntry_TypeAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
+		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getFromEntryAccess().getTypeEClassCrossReference_0_0().getType().getClassifier())) {
@@ -1214,8 +1215,8 @@ protected class FromEntry_WithoutsubtypesAssignment_1_0 extends AssignmentToken 
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("withoutsubtypes",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypes");
+		if((value = eObjectConsumer.getConsumable("withoutsubtypes",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypes"); //$NON-NLS-1$
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getFromEntryAccess().getWithoutsubtypesWithoutsubtypesKeyword_1_0_0();
@@ -1292,8 +1293,8 @@ protected class FromEntry_WithoutsubtypesTypesAssignment_1_1_1 extends Assignmen
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("withoutsubtypesTypes",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypesTypes");
+		if((value = eObjectConsumer.getConsumable("withoutsubtypesTypes",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypesTypes"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_1_0().getType().getClassifier())) {
@@ -1374,8 +1375,8 @@ protected class FromEntry_WithoutsubtypesTypesAssignment_1_1_2_1 extends Assignm
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("withoutsubtypesTypes",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypesTypes");
+		if((value = eObjectConsumer.getConsumable("withoutsubtypesTypes",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("withoutsubtypesTypes"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_2_1_0().getType().getClassifier())) {
@@ -1460,8 +1461,8 @@ protected class FromEntry_AliasAssignment_3 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("alias",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("alias");
+		if((value = eObjectConsumer.getConsumable("alias",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("alias"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getFromEntryAccess().getAliasIDTerminalRuleCall_3_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getFromEntryAccess().getAliasIDTerminalRuleCall_3_0();
@@ -1494,8 +1495,8 @@ protected class FromEntry_ScopeClauseAssignment_4 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("scopeClause",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("scopeClause");
+		if((value = eObjectConsumer.getConsumable("scopeClause",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("scopeClause"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getScopeClauseRule().getType().getClassifier())) {
@@ -1693,8 +1694,8 @@ protected class ResourceScope_NotInAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("notIn",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("notIn");
+		if((value = eObjectConsumer.getConsumable("notIn",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("notIn"); //$NON-NLS-1$
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getResourceScopeAccess().getNotInNotKeyword_0_0();
@@ -1793,8 +1794,8 @@ protected class ResourceScope_UrisAssignment_4 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("uris",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris");
+		if((value = eObjectConsumer.getConsumable("uris",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_4_0();
@@ -1872,8 +1873,8 @@ protected class ResourceScope_UrisAssignment_5_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("uris",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris");
+		if((value = eObjectConsumer.getConsumable("uris",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0();
@@ -1969,8 +1970,8 @@ protected class ElementScope_NotInAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("notIn",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("notIn");
+		if((value = eObjectConsumer.getConsumable("notIn",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("notIn"); //$NON-NLS-1$
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getElementScopeAccess().getNotInNotKeyword_0_0();
@@ -2069,8 +2070,8 @@ protected class ElementScope_UrisAssignment_4 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("uris",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris");
+		if((value = eObjectConsumer.getConsumable("uris",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_4_0();
@@ -2148,8 +2149,8 @@ protected class ElementScope_UrisAssignment_5_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("uris",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris");
+		if((value = eObjectConsumer.getConsumable("uris",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("uris"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0();
@@ -2312,9 +2313,9 @@ protected class WhereEntry_OrWhereEntryEntriesAction_1_0 extends ActionToken  {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		Object val = eObjectConsumer.getConsumable("entries", false);
+		Object val = eObjectConsumer.getConsumable("entries", false); //$NON-NLS-1$
 		if(val == null) return null;
-		if(!eObjectConsumer.isConsumedWithLastConsumtion("entries")) return null;
+		if(!eObjectConsumer.isConsumedWithLastConsumtion("entries")) return null; //$NON-NLS-1$
 		return createEObjectConsumer((EObject) val);
 	}
 }
@@ -2386,8 +2387,8 @@ protected class WhereEntry_EntriesAssignment_1_1_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("entries",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("entries");
+		if((value = eObjectConsumer.getConsumable("entries",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("entries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getAndWhereEntryRule().getType().getClassifier())) {
@@ -2540,9 +2541,9 @@ protected class AndWhereEntry_AndWhereEntryEntriesAction_1_0 extends ActionToken
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		Object val = eObjectConsumer.getConsumable("entries", false);
+		Object val = eObjectConsumer.getConsumable("entries", false); //$NON-NLS-1$
 		if(val == null) return null;
-		if(!eObjectConsumer.isConsumedWithLastConsumtion("entries")) return null;
+		if(!eObjectConsumer.isConsumedWithLastConsumtion("entries")) return null; //$NON-NLS-1$
 		return createEObjectConsumer((EObject) val);
 	}
 }
@@ -2614,8 +2615,8 @@ protected class AndWhereEntry_EntriesAssignment_1_1_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("entries",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("entries");
+		if((value = eObjectConsumer.getConsumable("entries",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("entries"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getConcreteWhereEntryRule().getType().getClassifier())) {
@@ -2935,8 +2936,8 @@ protected class ExpressionWhereEntry_LhsAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("lhs",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("lhs");
+		if((value = eObjectConsumer.getConsumable("lhs",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("lhs"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getAliasAttributeExpressionRule().getType().getClassifier())) {
@@ -2980,8 +2981,8 @@ protected class ExpressionWhereEntry_OperatorAssignment_1 extends AssignmentToke
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("operator",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operator");
+		if((value = eObjectConsumer.getConsumable("operator",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operator"); //$NON-NLS-1$
 		if(enumLitSerializer.isValid(obj.getEObject(), grammarAccess.getExpressionWhereEntryAccess().getOperatorOperatorEnumRuleCall_1_0(), value, null)) { 
 			type = AssignmentType.ENUM_RULE_CALL;
 			element = grammarAccess.getExpressionWhereEntryAccess().getOperatorOperatorEnumRuleCall_1_0();
@@ -3014,8 +3015,8 @@ protected class ExpressionWhereEntry_RhsAssignment_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("rhs",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("rhs");
+		if((value = eObjectConsumer.getConsumable("rhs",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("rhs"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpressionRule().getType().getClassifier())) {
@@ -3100,8 +3101,8 @@ protected class AliasAttributeExpression_AliasAssignment_0 extends AssignmentTok
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("alias",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("alias");
+		if((value = eObjectConsumer.getConsumable("alias",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("alias"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getAliasAttributeExpressionAccess().getAliasFromEntryCrossReference_0_0().getType().getClassifier())) {
@@ -3181,8 +3182,8 @@ protected class AliasAttributeExpression_AttributeAssignment_1_1 extends Assignm
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("attribute",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("attribute");
+		if((value = eObjectConsumer.getConsumable("attribute",false)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("attribute"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getAliasAttributeExpressionAccess().getAttributeEStructuralFeatureCrossReference_1_1_0().getType().getClassifier())) {
@@ -3575,8 +3576,8 @@ protected class ReplacableValue_ValueAssignment extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getReplacableValueRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0();
@@ -3620,8 +3621,8 @@ protected class DoubleExpression_ValueAssignment extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getDoubleExpressionRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getDoubleExpressionAccess().getValueSIGNED_DOUBLETerminalRuleCall_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getDoubleExpressionAccess().getValueSIGNED_DOUBLETerminalRuleCall_0();
@@ -3665,8 +3666,8 @@ protected class LongExpression_ValueAssignment extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getLongExpressionRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLongExpressionAccess().getValueSINGED_LONGTerminalRuleCall_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getLongExpressionAccess().getValueSINGED_LONGTerminalRuleCall_0();
@@ -3710,8 +3711,8 @@ protected class StringExpression_ValueAssignment extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getStringExpressionRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getStringExpressionAccess().getValueSTRINGTerminalRuleCall_0(), value, null)) {
 			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getStringExpressionAccess().getValueSTRINGTerminalRuleCall_0();
@@ -3755,8 +3756,8 @@ protected class NullExpression_ValueAssignment extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getNullExpressionRule().getType().getClassifier())
 			return null;
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getNullExpressionAccess().getValueNullKeyword_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getNullExpressionAccess().getValueNullKeyword_0();
@@ -3828,8 +3829,8 @@ protected class BooleanExpression_TrueAssignment_0 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("true",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("true");
+		if((value = eObjectConsumer.getConsumable("true",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("true"); //$NON-NLS-1$
 		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getBooleanExpressionAccess().getTrueTrueKeyword_0_0();
@@ -3944,8 +3945,8 @@ protected class QueryExpression_ValueAssignment_1 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null; //$NON-NLS-1$
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value"); //$NON-NLS-1$
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMQLqueryRule().getType().getClassifier())) {

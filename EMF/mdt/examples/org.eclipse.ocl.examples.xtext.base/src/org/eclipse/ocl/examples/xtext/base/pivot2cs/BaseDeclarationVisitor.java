@@ -12,14 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.4 2011/01/30 11:12:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -37,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -74,8 +72,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		csElement.setStereotype(object.getStereotype());
 		ValueSpecification specification = object.getSpecification();
 		if (specification instanceof OpaqueExpression) {
-			List<String> bodies = ((OpaqueExpression)specification).getBodies();
-			csElement.setExprString(StringUtils.splice(bodies, "\n"));
+			String body = PivotUtil.getBody((OpaqueExpression)specification);
+			csElement.setExprString(body);
 		}
 	}
 

@@ -35,7 +35,7 @@ public class TranslatabletextsFactoryImpl extends EFactoryImpl implements Transl
 	 */
 	public static TranslatabletextsFactory init() {
 		try {
-			TranslatabletextsFactory theTranslatabletextsFactory = (TranslatabletextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case019/translatabletexts"); 
+			TranslatabletextsFactory theTranslatabletextsFactory = (TranslatabletextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case019/translatabletexts"); //$NON-NLS-1$ 
 			if (theTranslatabletextsFactory != null) {
 				return theTranslatabletextsFactory;
 			}
@@ -66,7 +66,7 @@ public class TranslatabletextsFactoryImpl extends EFactoryImpl implements Transl
 		switch (eClass.getClassifierID()) {
 			case TranslatabletextsPackage.A19_TRANSLATABLE_TEXT: return createA19TranslatableText();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

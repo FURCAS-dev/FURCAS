@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryImpl.java,v 1.1 2010/12/07 13:18:49 akrsharma Exp $
+ * $Id: LibraryImpl.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library.impl;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link library.impl.LibraryImpl#getBooks <em>Books</em>}</li>
  *   <li>{@link library.impl.LibraryImpl#getLocation <em>Location</em>}</li>
+ *   <li>{@link library.impl.LibraryImpl#getCapacity <em>Capacity</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +67,26 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 * @ordered
 	 */
 	protected String location = LOCATION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCapacity()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int CAPACITY_EDEFAULT = 100000;
+
+	/**
+	 * The cached value of the '{@link #getCapacity() <em>Capacity</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCapacity()
+	 * @generated
+	 * @ordered
+	 */
+	protected int capacity = CAPACITY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,6 +145,27 @@ public class LibraryImpl extends EObjectImpl implements Library {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getCapacity() {
+		return capacity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCapacity(int newCapacity) {
+		int oldCapacity = capacity;
+		capacity = newCapacity;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, LibraryPackage.LIBRARY__CAPACITY, oldCapacity, capacity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -145,6 +187,8 @@ public class LibraryImpl extends EObjectImpl implements Library {
 				return getBooks();
 			case LibraryPackage.LIBRARY__LOCATION:
 				return getLocation();
+			case LibraryPackage.LIBRARY__CAPACITY:
+				return getCapacity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -165,6 +209,9 @@ public class LibraryImpl extends EObjectImpl implements Library {
 			case LibraryPackage.LIBRARY__LOCATION:
 				setLocation((String)newValue);
 				return;
+			case LibraryPackage.LIBRARY__CAPACITY:
+				setCapacity((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -183,6 +230,9 @@ public class LibraryImpl extends EObjectImpl implements Library {
 			case LibraryPackage.LIBRARY__LOCATION:
 				setLocation(LOCATION_EDEFAULT);
 				return;
+			case LibraryPackage.LIBRARY__CAPACITY:
+				setCapacity(CAPACITY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,6 +249,8 @@ public class LibraryImpl extends EObjectImpl implements Library {
 				return books != null && !books.isEmpty();
 			case LibraryPackage.LIBRARY__LOCATION:
 				return LOCATION_EDEFAULT == null ? location != null : !LOCATION_EDEFAULT.equals(location);
+			case LibraryPackage.LIBRARY__CAPACITY:
+				return capacity != CAPACITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -213,8 +265,10 @@ public class LibraryImpl extends EObjectImpl implements Library {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (location: ");
+		result.append(" (location: "); //$NON-NLS-1$
 		result.append(location);
+		result.append(", capacity: "); //$NON-NLS-1$
+		result.append(capacity);
 		result.append(')');
 		return result.toString();
 	}

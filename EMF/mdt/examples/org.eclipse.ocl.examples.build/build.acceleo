@@ -21,7 +21,7 @@
 	<target name="post.gather.bin.parts">
 		<acceleoCompiler 
 			sourceFolders="${target.folder}" 
-			dependencies="${target.folder}/../org.eclipse.ocl.examples.xtext.oclstdlib;${target.folder}/../org.eclipse.ocl.examples.xtext.essentialocl;${target.folder}/../org.eclipse.xtext.common.types;${target.folder}/../org.eclipse.ocl.examples.xtext.completeocl;${target.folder}/../org.eclipse.ocl.examples.xtext.oclinecore;${target.folder}/../org.eclipse.ocl.examples.common;${target.folder}/../lpg.runtime.java 2.0.17;${target.folder}/../org.eclipse.ocl.examples.library;${target.folder}/../org.eclipse.ocl.examples.pivot;">
+			dependencies="${target.folder}/../org.eclipse.emf.ecore.xmi;${target.folder}/../org.eclipse.emf.ecore;${target.folder}/../org.eclipse.emf.common;${target.folder}/../org.eclipse.ocl.examples.xtext.oclstdlib;${target.folder}/../org.eclipse.ocl.examples.xtext.essentialocl;${target.folder}/../org.eclipse.ocl.examples.xtext.base;${target.folder}/../org.eclipse.ocl.examples.pivot;${target.folder}/../org.eclipse.xtext.common.types;${target.folder}/../org.eclipse.ocl.examples.xtext.completeocl;${target.folder}/../org.eclipse.ocl.examples.xtext.oclinecore;${target.folder}/../org.eclipse.ocl.examples.library;">
 		</acceleoCompiler>
 	</target>	
 

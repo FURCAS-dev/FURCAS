@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -21,6 +21,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -65,6 +65,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
@@ -208,9 +209,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
+					pivotElement.setImplementation(new EObjectOperation(eObject, specification));
 				}
 			}				
 		}
@@ -286,6 +289,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, EClassifier eClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
+		Map<String, Constraint> constraintMap = null;
 		EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
@@ -299,8 +303,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				String value = entry.getValue();
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 				specification.getBodies().add(value);
+				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				constraints.add(constraint);
+				if (constraintMap == null) {
+					constraintMap = new HashMap<String, Constraint>();
+				}
+				constraintMap.put(entry.getKey(), constraint);
 			}				
 		}
 		EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
@@ -315,7 +324,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				String[] constraintNames = constraintNameList.split(" ");
 				for (String constraintName : constraintNames) {
 					if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
-						Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+						Constraint constraint = null;
+						if (constraintMap != null) {
+							constraint = constraintMap.get(constraintName);
+						}
+						if (constraint == null) {
+							constraint = PivotFactory.eINSTANCE.createConstraint();
+						}
 						constraint.setStereotype("invariant");
 						constraint.setName(constraintName);
 						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
@@ -411,9 +426,14 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
+					pivotElement.setImplementation(new EObjectProperty(eObject, specification));
+				}
+				else {
+					pivotElement.setImplementation(new EObjectProperty(eObject, null));
 				}
 			}				
 		}

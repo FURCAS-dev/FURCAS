@@ -57,6 +57,8 @@ public class [javaClass/] extends XMLResourceImpl
 		[for (ownedType : Type | pkg.ownedType->sortedBy(name))]
 		[if (ownedType.name = 'Boolean')]
 		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getBooleanType(); // [ownedType.moniker/]
+		[elseif (ownedType.name = 'Classifier')]
+		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getClassifierType(); // [ownedType.moniker/]
 		[elseif (ownedType.name = 'Integer')]
 		PrimitiveType [ownedType.getSymbolName()/] = standardLibrary.getIntegerType(); // [ownedType.moniker/]
 		[elseif (ownedType.name = 'Real')]

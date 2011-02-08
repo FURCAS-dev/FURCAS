@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -64,6 +65,8 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 
 	public StandardLibrary getStandardLibrary();
 
+	public TypeManager getTypeManager();
+
 	public ValueFactory getValueFactory();
     
     /**
@@ -77,10 +80,4 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
      * @param decorator the decorator that is not decorated/
      */
 	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor);
-
-    /**
-     * @deprecated use {@link #visit(Visitable)
-     */
-	@Deprecated
-	public Value visitExpression(OclExpression expression);
 }

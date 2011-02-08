@@ -485,7 +485,7 @@ public class P2PackageImpl extends EPackageImpl implements P2Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(b5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p1.p2.B5.class, "B5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p1.p2.B5.class, "B5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -499,15 +499,15 @@ public class P2PackageImpl extends EPackageImpl implements P2Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (b5EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p1.p2.B5",
-			 "metaObjectMofId", "45F120A5FA3643F132744D6D39AC932BA8E7A660",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p1.p2.B5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5FA3643F132744D6D39AC932BA8E7A660", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

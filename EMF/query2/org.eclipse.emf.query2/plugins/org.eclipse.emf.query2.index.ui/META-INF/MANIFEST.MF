@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %Bundle-Name
+Bundle-Name: %Query2IndexUI_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.index.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.emf.query.index.ui.Activator
@@ -13,4 +13,4 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.emf.query.index.ui
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: %Query2IndexUI_Bundle_Vendor

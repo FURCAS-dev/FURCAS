@@ -34,7 +34,7 @@ public enum E8 implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL1(0, "label1", "label1"),
+	LABEL1(0, "label1", "label1"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label2</b></em>' literal object.
@@ -44,7 +44,7 @@ public enum E8 implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LABEL2(1, "label2", "label2");
+	LABEL2(1, "label2", "label2");  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Label1</b></em>' literal value.

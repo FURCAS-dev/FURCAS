@@ -27,70 +27,15 @@ public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
           return tokenFactory;
       }
    /**
-     * Unescape string.
-     * 
-     * @param s the s
-     * @param delimLength the delim length
-     * 
-     * @return the string
+     * Removing starting/ending delimiters.
      * @deprecated
      */
     public String unescapeString(String s, int delimLength) {
-        StringBuilder ret = new StringBuilder();
         // get rid of the starting and ending delimiters (e.g., '\'', '"')
        if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                 s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
         }
-        
-        CharacterIterator ci = new StringCharacterIterator(s);
-        char c = ci.first();
-        while(c != CharacterIterator.DONE) {
-            char tc = 0;
-            switch(c) {
-            case '\\':
-                c = ci.next();
-                switch(c) {
-                case 'n':
-                    tc = '\n';
-                    break;
-                case 'r':
-                    tc = '\r';
-                    break;
-                case 't':
-                    tc = '\t';
-                    break;
-                case 'b':
-                    tc = '\b';
-                    break;
-                case 'f':
-                    tc = '\f';
-                    break;
-                case '"':
-                    tc = '"';
-                    break;
-                case '\'':
-                    tc = '\'';
-                    break;
-                case '\\':
-                    tc = '\\';
-                    break;
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                    throw new RuntimeException("octal escape sequences not supported yet");
-                default:
-                    throw new RuntimeException("unknown escape sequence: '\\" + c + "'");
-                }
-                break;
-            default:
-                tc = c;
-                break;
-            }
-            ret.append(tc);
-            c = ci.next();
-        }
-        return ret.toString();
+        return s;
     }
 
       public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
@@ -125,14 +70,14 @@ T__22 : '=' ;
 T__23 : 'author' ;
 T__24 : 'and' ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 290
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 177
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
   ;
 
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 296
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 183
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -142,20 +87,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 305
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 192
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 311
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 198
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 316
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 203
 fragment
 ALPHA
     :   'a'..'z'
@@ -167,13 +112,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 327
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 214
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 332
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 219
 NAME
     :   (
             SNAME
@@ -187,15 +132,15 @@ NAME
         )
     ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 345
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 232
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 349
+    // $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 236
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 351
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 238
 fragment
 ESC
     :   '\\'!
@@ -225,7 +170,7 @@ ESC
         )
     ;
 
-// $ANTLR src "C:\dev\furcas.emf\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 380
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 267
 STRING
     :   '\''!
         (   ESC

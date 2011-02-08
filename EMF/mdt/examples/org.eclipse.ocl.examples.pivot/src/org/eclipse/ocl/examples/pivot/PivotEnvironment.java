@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: PivotEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -73,13 +73,8 @@ public class PivotEnvironment extends AbstractEnvironment {
         names.set(1, EcorePackage.eINSTANCE.getName());
         OCL_PACKAGES.put(names, EcorePackage.eINSTANCE);
     } */
-    
-	/**
-	 * The registry for package lookups.
-	 */
-	private EPackage.Registry registry;
 	
-	private EnvironmentFactory factory;
+	private final EnvironmentFactory factory;
 	
 	private TypeResolver typeResolver;
 
@@ -91,13 +86,13 @@ public class PivotEnvironment extends AbstractEnvironment {
 	 * Initializes me with a package registry for package look-ups.
 	 * 
 	 * @param reg a package registry
-	 */
+	 *
 	public PivotEnvironment(EPackage.Registry reg, TypeManager typeManager) {
 		registry = reg;
 		typeResolver = createTypeResolver();
 		this.typeManager = typeManager;
 		uml = new PivotReflectionImpl(typeManager);
-	}
+	} */
 	
     /**
      * Initializes me with a package registry and a resource in which I am
@@ -111,6 +106,25 @@ public class PivotEnvironment extends AbstractEnvironment {
 		typeResolver = createTypeResolver(resource);
 	} */
 
+	/**
+	 * Initializes me with an environment factory from which package registry
+	 * and opposite end finder (if any) are obtained consistently, and from a
+	 * resource in which I am persisted (and from which I load myself if it
+	 * already has content).
+	 * 
+	 * @param reg
+	 *            a package registry
+	 * @param resource
+	 *            a resource, which may or may not already have content
+	 * @since 3.1
+	 */
+	protected PivotEnvironment(PivotEnvironmentFactory factory, Resource resource) {
+		this.factory = factory;
+		this.typeManager = factory.getTypeManager();
+		this.typeResolver = createTypeResolver(resource);
+		this.uml = new PivotReflectionImpl(typeManager);
+	}
+
     /**
      * Initializes me with a parent environment, from which I inherit such things
      * as a package registry and a resource.
@@ -119,53 +133,15 @@ public class PivotEnvironment extends AbstractEnvironment {
      */
 	protected PivotEnvironment(PivotEnvironment parent) {		
 		super(parent);
-		if (parent != null) {
-			registry = parent.registry;
-			typeResolver = parent.typeResolver;
-			typeManager = parent.typeManager;
-			uml = parent.uml;
-		} else {
-			registry = EPackage.Registry.INSTANCE;
-			typeResolver = createTypeResolver();
-		}
+		factory = parent.factory;
+		typeResolver = parent.typeResolver;
+		typeManager = parent.typeManager;
+		uml = parent.uml;
 	}
 
     // implements the inherited specification
 	public EnvironmentFactory getFactory() {
-		if (factory != null) {
-			return factory;
-		}
-		
-		if (getInternalParent() != null) {
-			factory = getInternalParent().getFactory();
-			if (factory != null) {
-				return factory;
-			}
-		}
-		
-		// obtain a reasonable default factory
-		if (registry == EPackage.Registry.INSTANCE) {
-			factory = PivotEnvironmentFactory.INSTANCE;
-		} else {
-			factory = new PivotEnvironmentFactory(registry, null);
-		}
-		
 		return factory;
-	}
-	
-	/**
-	 * Sets the factory that created me.  This method should only be invoked
-	 * by that factory.
-	 * 
-	 * @param factory my originating factory
-	 */
-	protected void setFactory(EnvironmentFactory factory) {
-		this.factory = factory;
-	}
-	
-    // implements the inherited specification
-	public void setParent(Environment env) {
-		super.setParent((PivotEnvironment) env);
 	}
 	
     // implements the inherited specification

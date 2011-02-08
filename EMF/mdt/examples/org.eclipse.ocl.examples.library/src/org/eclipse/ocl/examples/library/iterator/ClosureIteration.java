@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.3 2011/01/30 11:07:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -73,7 +73,6 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 		}
 		else {
 			evaluateIteration(new IterationManager<CollectionValue.Accumulator>(iterationManager, bodyVal));
-			iterationManager.restore();
 			return null;
 		}
 	}

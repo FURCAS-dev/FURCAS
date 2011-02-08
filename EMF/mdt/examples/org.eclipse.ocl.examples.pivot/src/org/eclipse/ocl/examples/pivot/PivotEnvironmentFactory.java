@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotEnvironmentFactory.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: PivotEnvironmentFactory.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -68,18 +68,14 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	
     // implements the inherited specification
     public PivotEnvironment createEnvironment() {
-//    	throw new UnsupportedOperationException(getClass().getName() + ".createEnvironment");
-		PivotEnvironment result = new PivotEnvironment(registry, typeManager);
-		result.setFactory(this);
+		PivotEnvironment result = new PivotEnvironment(this, null);
 		return result;
 	}
 	
     // implements the inherited specification
     public PivotEnvironment loadEnvironment(Resource resource) {
-    	throw new UnsupportedOperationException(getClass().getName() + ".loadEnvironment");
-//		PivotEnvironment result = new PivotEnvironment(registry, resource);
-//		result.setFactory(this);
-//		return result;
+    	PivotEnvironment result = new PivotEnvironment(this, resource);
+		return result;
 	}
 	
     /**
@@ -131,11 +127,10 @@ public class PivotEnvironmentFactory extends AbstractEnvironmentFactory {
 	public PivotEnvironment createEnvironment(Environment parent) {
 		if (!(parent instanceof PivotEnvironment)) {
 			throw new IllegalArgumentException(
-				"Parent environment must be an Ecore environment: " + parent); //$NON-NLS-1$
+				"Parent environment must be a Pivot environment: " + parent); //$NON-NLS-1$
 		}
 		
 		PivotEnvironment result = new PivotEnvironment((PivotEnvironment) parent);
-		result.setFactory(this);
 		return result;
 	}
 

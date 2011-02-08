@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -276,7 +276,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment
 
     // implements the interface method
 	public boolean addElement(String name, Variable elem, boolean isExplicit) {
-
+		// FIXME this is now redundant
 		if (name == null) {
 			name = generateName();
 			while (lookup(name) != null) {
@@ -305,7 +305,7 @@ public abstract class AbstractEnvironment extends AbstractBasicEnvironment
      * @param isExplicit whether it is an explicit or implicit variable
      */
 	protected void addedVariable(String name, Variable variable, boolean isExplicit) {
-		getResource().getContents().add(variable);
+//		getResource().getContents().add(variable);
 	}
 
     // implements the interface method

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.internal.bql.api.SpiAnd;
 import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiAttributeInModelElement;
@@ -49,7 +50,6 @@ import org.eclipse.emf.query2.internal.messages.BugMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.QueryResultSetImpl;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * The cluster evaluator provides the functionalty to evaluate a nested model element cluster expression.

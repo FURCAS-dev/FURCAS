@@ -16,6 +16,9 @@
 
   <modules>
     <module>org.eclipse.ocl.examples.eventmanager</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.util</module>
+    <module>org.eclipse.ocl.examples.impactanalyzer.ui</module>
   </modules>
 
 </project>

@@ -5,13 +5,12 @@ package org.eclipse.emf.query2.syntax.parser.antlr;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.TokenSource;
+import org.eclipse.emf.query2.syntax.services.QueryGrammarAccess;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
-
-import org.eclipse.emf.query2.syntax.services.QueryGrammarAccess;
 
 public class QueryParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	
@@ -22,7 +21,7 @@ public class QueryParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 	protected IParseResult parse(String ruleName, CharStream in) {
 		TokenSource tokenSource = createLexer(in);
 		XtextTokenStream tokenStream = createTokenStream(tokenSource);
-		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		org.eclipse.emf.query2.syntax.parser.antlr.internal.InternalQueryParser parser = createParser(tokenStream);
 		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
 		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
@@ -42,7 +41,7 @@ public class QueryParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "Model"; //$NON-NLS-1$
 	}
 	
 	public QueryGrammarAccess getGrammarAccess() {

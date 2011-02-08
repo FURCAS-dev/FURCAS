@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -878,7 +878,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 	 * <tt>T</tt> or <tt>T2</tt>) against the source type of the operation or
 	 * the type of the actual argument, as appropriate.
 	 * 
-	 * @param env
+	 * @param environment
 	 *            the OCL environment
 	 * @param owner
 	 *            the operation source type
@@ -1162,7 +1162,7 @@ public abstract class AbstractTypeChecker implements TypeChecker {
 	 * Obtains the implicit root class specified as an option in the
 	 * environment, if it is specified and it is a class.
 	 * 
-	 * @param env
+	 * @param environment
 	 *            the current environment
 	 * @return the implicit root class, if any
 	 */

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Testutils
+Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.testutils
+Bundle-Version: 3.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.ocl.examples.impactanalyzer.testmodel.ngpm,
+ org.eclipse.ocl.ecore,
+ org.eclipse.ocl.examples.impactanalyzer.testmodel.company,
+ org.eclipse.ocl.examples.impactanalyzer.util,
+ org.junit4;bundle-version="4.8.1",
+ org.eclipse.ocl.examples.testutils
+Export-Package: org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model,
+ org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications,
+ org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl,
+ org.eclipse.ocl.examples.impactanalyzer.testutils
