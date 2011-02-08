@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.14 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: LoadTests.java,v 1.15 2011/02/08 17:57:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -188,7 +189,7 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
-		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
+//		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource resource = doLoad_Concrete("oclstdlib", "oclstdlib");
 		checkSignatures(resource);
 	}
@@ -214,10 +215,12 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Names_ocl() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad("Names", "ocl");
 	}	
 
 	public void testLoad_RoyalAndLoyal_ocl() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doLoad("RoyalAndLoyal", "ocl");
 	}	
 }

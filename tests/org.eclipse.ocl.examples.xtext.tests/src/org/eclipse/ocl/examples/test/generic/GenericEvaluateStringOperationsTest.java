@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericEvaluateStringOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -30,6 +30,20 @@ public abstract class GenericEvaluateStringOperationsTest
 //        helper.setContext(getMetaclass(denormalize("%Package")));
         helper.setContext(getMetaclass("Classifier"));
     }
+
+	public void testStringAt() {
+		assertQueryEquals(null, "t", "'test'.at(1)");
+		assertQueryEquals(null, "e", "'test'.at(2)");
+		assertQueryEquals(null, "t", "'test'.at(4)");
+		// out of bounds
+		assertQueryInvalid(null, "'test'.at(0)");
+		assertQueryInvalid(null, "'test'.at(5)");
+		assertQueryInvalid(null, "''.at(1)");
+		// invalid
+		assertQueryInvalid(null, "let s : String = invalid in s.at(1)");
+		// null
+		assertQueryInvalid(null, "let s : String = null in s.at(1)");
+	}
 
 	public void testStringCharacters() {
 		assertQueryEquals(null, new String[] {}, "''.characters()");
@@ -122,17 +136,24 @@ public abstract class GenericEvaluateStringOperationsTest
 	}
 
 	public void testStringIndexOf() {
-		assertQueryEquals(null, "t", "'test'.indexOf(1)");
-		assertQueryEquals(null, "e", "'test'.indexOf(2)");
-		assertQueryEquals(null, "t", "'test'.indexOf(4)");
+		assertQueryEquals(null, 1, "'test'.indexOf('t')");
+		assertQueryEquals(null, 1, "'test'.indexOf('te')");
+		assertQueryEquals(null, 2, "'test'.indexOf('es')");
+		assertQueryEquals(null, 3, "'test'.indexOf('st')");
+		assertQueryEquals(null, 5, "'tesla'.indexOf('a')");
 		// out of bounds
-		assertQueryInvalid(null, "'test'.indexOf(0)");
-		assertQueryInvalid(null, "'test'.indexOf(5)");
-		assertQueryInvalid(null, "''.indexOf(1)");
+		assertQueryEquals(null, 0, "'test'.indexOf('xyzzy')");
+		assertQueryEquals(null, 0, "'test'.indexOf('est2')");
+		// empty
+		assertQueryEquals(null, 1, "'test'.indexOf('')");
+		assertQueryEquals(null, 0, "''.indexOf('')");
+		assertQueryEquals(null, 0, "''.indexOf('t')");
 		// invalid
-		assertQueryInvalid(null, "let s : String = invalid in s.indexOf(1)");
+		assertQueryInvalid(null, "let s : String = invalid in 'test'.indexOf(s)");
+		assertQueryInvalid(null, "let s : String = invalid in s.indexOf('s')");
 		// null
-		assertQueryInvalid(null, "let s : String = null in s.indexOf(1)");
+		assertQueryInvalid(null, "let s : String = null in 'test'.indexOf(s)");
+		assertQueryInvalid(null, "let s : String = null in s.indexOf('s')");
 	}
 
 	public void testStringLessThan() {
