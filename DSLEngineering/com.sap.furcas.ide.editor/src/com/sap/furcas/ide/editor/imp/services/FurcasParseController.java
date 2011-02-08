@@ -196,7 +196,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             return null; // IMP will call us before we are done initializing
         }
         final VersionedTextBlockNavigator navigator = new VersionedTextBlockNavigator(Version.CURRENT);
-        final int regionEnd = region.getOffset() + region.getLength() - 1;
+        final int regionEnd = region.getOffset() + region.getLength();
         
         return new Iterator<AbstractToken>() {
             
@@ -205,7 +205,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
             @Override
             public boolean hasNext() {
                 AbstractToken nextToken = TbNavigationUtil.nextToken(currentToken);
-                return nextToken != null && TbUtil.getAbsoluteOffset(nextToken) + nextToken.getLength() < regionEnd;
+                return nextToken != null && TbUtil.getAbsoluteOffset(nextToken) + nextToken.getLength() <= regionEnd;
             }
             @Override
             public AbstractToken next() {
