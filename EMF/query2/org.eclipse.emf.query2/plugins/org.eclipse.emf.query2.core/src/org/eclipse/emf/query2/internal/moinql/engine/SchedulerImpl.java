@@ -101,7 +101,7 @@ final public class SchedulerImpl implements Scheduler {
 	 */
 	private int thresholdForNumberOfElementsInPartitionForOptimization;
 
-	private EmfHelper emfHelper;
+	private final EmfHelper emfHelper;
 
 	//    public MQLSchedulerImpl( CoreConnection _conn, SpiFacilityQueryLanguage memFQL, MQLAuxServices mqlAuxServices, Set<DataAreaDescriptor> sessionRelevantDataAreas ) {
 	//
@@ -123,7 +123,8 @@ final public class SchedulerImpl implements Scheduler {
 	/* Public methods */
 	/* ---------------- */
 
-	public InternalQuery schedule(InternalQuery internalQuery, boolean schedulingWanted, boolean globalScopeIncluded,
+	@Override
+    public InternalQuery schedule(InternalQuery internalQuery, boolean schedulingWanted, boolean globalScopeIncluded,
 			URI[] globalPartitionScope, URI[] globalContainerScope, int _thresholdForNumberOfRelevantPartitionsForOptimization,
 			int _thresholdForNumberOfElementsInPartitionForOptimization) throws QueryExecutionException {
 
@@ -1881,8 +1882,10 @@ final public class SchedulerImpl implements Scheduler {
 						for (int i = 0, n = connectedElements.size(); i < n; i++) {
 							EObject connectedElement = connectedElements.get(i);
 							// get the partition
-							URI dependentPRI = connectedElement.eResource().getURI();
-							dependentScope.add(dependentPRI);
+							if(connectedElement.eResource() != null) {
+							    URI dependentPRI = connectedElement.eResource().getURI();
+							    dependentScope.add(dependentPRI);
+							}
 						}
 					}
 				}
