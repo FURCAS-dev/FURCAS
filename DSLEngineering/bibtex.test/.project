@@ -18,6 +18,5 @@
 	</buildSpec>
 	<natures>
 		<nature>com.sap.mi.fwk.dcfwk.MoinNature</nature>
-		<nature>org.eclipse.pde.PluginNature</nature>
 	</natures>
 </projectDescription>

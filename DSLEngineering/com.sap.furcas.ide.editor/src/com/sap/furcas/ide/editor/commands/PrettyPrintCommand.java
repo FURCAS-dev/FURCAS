@@ -1,11 +1,7 @@
 package com.sap.furcas.ide.editor.commands;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -14,58 +10,53 @@ import com.sap.furcas.unparser.PrettyPrinter;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream;
 
-
 public class PrettyPrintCommand extends AbstractCommand {
 
-	private final EObject refObject;
-	private final ConcreteSyntax syntax;
-	private final TextBlockTCSExtractorStream target;
-	private TextBlock result;
+    private final EObject modelElement;
+    private final ConcreteSyntax syntax;
+    private final TextBlockTCSExtractorStream target;
+    
+    private TextBlock result;
+    private SyntaxAndModelMismatchException prettyPrintException;
 
+    public PrettyPrintCommand(EObject modelElement, ConcreteSyntax syntax, TextBlockTCSExtractorStream target) {
+        super("Pretty Print");
+        this.modelElement = modelElement;
+        this.syntax = syntax;
+        this.target = target;
+    }
 
-	public PrettyPrintCommand(EObject refObject, ConcreteSyntax syntax,
-			TextBlockTCSExtractorStream target, ResourceSet con) {
-		super("Pretty Print Full");
-		this.refObject = refObject;
-		this.syntax = syntax;
-		this.target = target;
-	}
+    @Override
+    public boolean canExecute() {
+        return true;
+    }
 
-	@Override
-	public boolean canExecute() {
-		return true;
-	}
+    @Override
+    public void execute() {
+        try {
+            PrettyPrinter prettyPrinter = new PrettyPrinter();
+            prettyPrinter.prettyPrint(modelElement, syntax, target);
 
-	@Override
-	public void execute() {
-		try {
-		    	PrettyPrinter prettyPrinter = new PrettyPrinter();
-		    	prettyPrinter.prettyPrint(refObject, syntax, target);
+            result = target.getPrintedResultRootBlock();
+        } catch (SyntaxAndModelMismatchException e) {
+            prettyPrintException = e;
+        } catch (Exception e) {
+            CtsActivator.logError(e);
+            throw new RuntimeException(e);
+        }
+    }
 
-			result = target.getPrintedResultRootBlock();
-		} catch (SyntaxAndModelMismatchException e) {
-			CtsActivator.logError(e);
-			result = null;
-		}
-	}
+    public TextBlock getPrintedResultRootBlock() {
+        return result;
+    }
 
-	@Override
-
-//	public Collection<PartitionOperation> getAffectedPartitions() {
-//		Partitionable partitionable = refObject;
-//		PRI pri = partitionable.get___Partition().getPri();
-//		PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
-//		return Collections.singleton(editOperation);
-//	}
-
-	public Collection<?> getResult() {
-		return Collections.singleton(result);
-	}
+    public SyntaxAndModelMismatchException getPrettyPrintException() {
+        return prettyPrintException;
+    }
 
     @Override
     public void redo() {
-        // TODO Auto-generated method stub
-        
+
     }
 
 }

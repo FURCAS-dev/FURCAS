@@ -16,10 +16,6 @@ import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 
 public class TbValidationUtil {
 
-	/**
-	 * checks for
-	 * @param currentTextBlock
-	 */
 	public static void assertTextBlockConsistency(TextBlock currentTextBlock) {
 	    if (currentTextBlock.getOffset() < 0) {
 	        throw new IllegalTextBlocksStateException("TextBlock offset is negative: " +  currentTextBlock.getOffset(), currentTextBlock);
@@ -58,8 +54,7 @@ public class TbValidationUtil {
 	}
 	
 	public static void assertTextBlockConsistencyRecursive(TextBlock currentTextBlock) {
-		for(TextBlock subBlock : currentTextBlock.getSubBlocks())
-		{
+		for(TextBlock subBlock : currentTextBlock.getSubBlocks()) {
 			assertTextBlockConsistencyRecursive(subBlock);
 		}
 		assertTextBlockConsistency(currentTextBlock);
@@ -80,8 +75,7 @@ public class TbValidationUtil {
 	    }
 	}
 
-	public static boolean hasGap(AbstractToken abstractToken,
-			TextBlock currentTextBlock) {
+	public static boolean hasGap(AbstractToken abstractToken, TextBlock currentTextBlock) {
 		return (TbUtil.getAbsoluteOffset(abstractToken) + abstractToken.getLength()) != TbUtil.getAbsoluteOffset(currentTextBlock); 
 	}
 

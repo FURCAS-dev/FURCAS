@@ -6,35 +6,43 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+
 public class ModelEditorInput extends FileEditorInput {
 
-    private final EObject eObject;
-
-    public ModelEditorInput(IFile file, EObject eObject) {
+    private final EObject rootObject;
+    private final TextBlock rootBlock;
+    
+    public ModelEditorInput(IFile file, EObject rootObject, TextBlock rootBlock) {
         super(file);
-        this.eObject = eObject;
+        this.rootObject = rootObject;
+        this.rootBlock = rootBlock;
     }
 
     @Override
     public String getName() {
-        EStructuralFeature nameFeat = eObject.eClass().getEStructuralFeature("name");
-        if(nameFeat != null && eObject.eGet(nameFeat) != null) {
-            return (String) eObject.eGet(nameFeat);
-        } else if(EcoreUtil.getID(eObject) != null) {
-            return EcoreUtil.getID(eObject);
+        EStructuralFeature nameFeat = rootObject.eClass().getEStructuralFeature("name");
+        if(nameFeat != null && rootObject.eGet(nameFeat) != null) {
+            return (String) rootObject.eGet(nameFeat);
+        } else if(EcoreUtil.getID(rootObject) != null) {
+            return EcoreUtil.getID(rootObject);
         } else {
-            return eObject.toString();
+            return rootObject.toString();
         }
     }
 
     @Override
     public String getToolTipText() {
-        String uri = EcoreUtil.getURI(eObject).toString();
+        String uri = EcoreUtil.getURI(rootObject).toString();
         return uri != null ? uri : getName();
     }
 
-    public EObject getEObject() {
-        return eObject;
+    public EObject getRootObject() {
+        return rootObject;
+    }
+    
+    public TextBlock getRootBlock() {
+        return rootBlock;
     }
 
 }

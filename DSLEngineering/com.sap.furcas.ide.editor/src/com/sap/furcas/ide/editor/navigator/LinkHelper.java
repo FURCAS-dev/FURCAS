@@ -110,7 +110,7 @@ public class LinkHelper implements ILinkHelper {
     public IStructuredSelection findSelection(IEditorInput anInput) {
 	if (anInput instanceof ModelEditorInput) {
 	    ModelEditorInput mei = (ModelEditorInput) anInput;
-	    return new StructuredSelection(mei.getEObject());
+	    return new StructuredSelection(mei.getRootObject());
 	}
 	return null;
     }

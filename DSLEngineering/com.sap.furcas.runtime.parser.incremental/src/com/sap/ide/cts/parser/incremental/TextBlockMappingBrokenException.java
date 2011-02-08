@@ -4,9 +4,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 public class TextBlockMappingBrokenException extends Exception {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 9219821413600357353L;
     private final TextBlock block; 
     
@@ -14,7 +11,7 @@ public class TextBlockMappingBrokenException extends Exception {
 	this.block = block;
     }
     
-    public TextBlock getBlock() {
+    public TextBlock getBlockInError() {
         return block;
     }
 }

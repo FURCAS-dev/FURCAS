@@ -14,13 +14,10 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -31,7 +28,6 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.services.ITokenColorer;
-import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.expressions.provider.ExpressionsItemProviderAdapterFactory;
 import org.eclipse.ocl.types.provider.TypesItemProviderAdapterFactory;
@@ -40,13 +36,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.FileEditorInput;
 
-import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
+import com.sap.furcas.ide.editor.document.ModelEditorInputLoader;
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
@@ -67,6 +62,7 @@ import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
+import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
@@ -142,21 +138,19 @@ public class AbstractFurcasEditor extends UniversalEditor {
         }        
     }
 
-    private final CtsDocumentProvider documentProvoider;
-    private final EditingDomain editingDomain;
+    
+    private CtsDocumentProvider documentProvoider;
+    private EditingDomain editingDomain;
 
-    private final ConcreteSyntax syntax;
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private ParserCollection parserCollection;
 
+    
     public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
         this.parserFactory = parserFactory;
-        this.editingDomain = createEditingDomain();
-        this.documentProvoider = new CtsDocumentProvider(editingDomain);
-        this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
     }
     
-    private AdapterFactoryEditingDomain createEditingDomain() {
+    private static AdapterFactoryEditingDomain createEditingDomain(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
         // Create an adapter factory that yields item providers.
         ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
@@ -185,69 +179,74 @@ public class AbstractFurcasEditor extends UniversalEditor {
     }
     
     /**
-     * Transform the editor input into a {@link ModelEditorInput}.
+     * Initialize the editor by transform the editor input into a {@link ModelEditorInput}.
      * The IMP editor will never see the original one, but only the one built here.
      * 
      * This method is called <b>before</b> {@link #createPartControl(Composite)}.
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        IEditorInput wrappedInput = createModelEditorInput(input);
-        if (wrappedInput == null) {
-            return; // errors already handled
-        }
-        // pass input to the IMP editor
-        super.init(site, wrappedInput);
+        editingDomain = createEditingDomain(parserFactory);
+        ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
+        validateEditorState(syntax, parserFactory);
+        
+        // create a temporary opposite end finder that knows about the static resources in the workspace
+        QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(editingDomain.getResourceSet(), getAdditionalLookupURIs());
+        OppositeEndFinder temporaryOppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+        
+        ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain, temporaryOppositeEndFinder, parserFactory);
+        ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
+        
+        PartitionAssignmentHandler partitionHandler = setupPartitioning(modelEditorInput, editingDomain);
 
         // create a parser/lexer combo suitable for the current editor input
-        parserCollection = initializeParser();
+        parserCollection = createParserCollection(editingDomain, getAdditionalLookupURIs(), parserFactory, partitionHandler);
+
+        documentProvoider = new CtsDocumentProvider(syntax, editingDomain, partitionHandler);
+        super.init(site, modelEditorInput);
         
+        CtsDocument document = getDocumentProvider().getDocument(modelEditorInput);
+        document.completeInit(parserCollection);
+    }
+
+    private static void validateEditorState(ConcreteSyntax syntax, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) throws PartInitException {
         if (syntax == null) {
-            IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, "");
-            ErrorDialog.openError(getSite().getShell(), "Error loading syntax definition", "No syntax definition for language \""
-                    + parserCollection.parserFactory.getLanguageId() + "\" found. Make sure the editor project"
-                    + "is correctly referenced and the mapping model is available.", status);
-            return;
+            String message = "Error loading syntax definition: No syntax definition for language \""
+                    + parserFactory.getLanguageId() + "\" found. Make sure the editor project"
+                    + "is correctly referenced and the mapping model is available.";
+            throw new PartInitException(message);
         }
-        if (!isParserConsistentToMapping(syntax, parserCollection.parserFactory)) {
-            IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, "");
-            ErrorDialog.openError(getSite().getShell(), "Inconsistency between mapping and parser",
-                    "Loaded parser class: " + parserCollection.parserFactory.getParserClass().getCanonicalName() +
-                    " is not consistent with mapping: " + EcoreUtil.getURI(syntax), status);
-            return;
+        if (!isParserConsistentToMapping(syntax, parserFactory)) {
+            String message = "Inconsistency between mapping and parser: " +
+                    "Loaded parser class: " + parserFactory.getParserClass().getCanonicalName() +
+                    " is not consistent with mapping: " + EcoreUtil.getURI(syntax);
+            throw new PartInitException(message);
         }
-
-        CtsDocument document = getDocumentProvider().getDocument(wrappedInput);
-        document.completeInit(syntax, parserCollection);
     }
 
-    private IEditorInput createModelEditorInput(IEditorInput input) {
-        IEditorInput wrappedInput = input;
-        try {
-            if(input instanceof FileEditorInput) {
-                Resource r = editingDomain.loadResource(URI.createFileURI(((FileEditorInput)input).getPath().toOSString()).toString());
-                if(r.getErrors().size() > 0) {
-                    CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath() + r.getErrors()));
-                    return null;
-                }
-                wrappedInput = new ModelEditorInput(((FileEditorInput) input).getFile(), r.getContents().iterator().next());
-            } else {
-                CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Unknown editor input type: " + input));
-            }
-        } catch (Exception e) {
-            CtsActivator.getDefault().getLog().log(new Status(Status.ERROR, CtsActivator.PLUGIN_ID, "Could not load resource: " + ((FileEditorInput)input).getPath(), e));
-        }
-        return wrappedInput;
-    }
-    
     private static boolean isParserConsistentToMapping(ConcreteSyntax syntax, ParserFactory<?, ?> parserFactory) {
         String id = parserFactory.getSyntaxUUID();
         return id == null || EcoreUtil.getURI(syntax).equals(id);
     }
+
+    private static PartitionAssignmentHandler setupPartitioning(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
+        PartitionAssignmentHandler partitionHandler = new DefaultPartitionAssignmentHandlerImpl();
+        partitionHandler.setDefaultPartition(modelEditorInput.getRootObject().eResource());
+        
+        if (modelEditorInput.getRootBlock().eResource() == null) {
+            // might be a completely new textblock
+            partitionHandler.assignToDefaultTextBlocksPartition(modelEditorInput.getRootBlock());
+        }
+
+        // make sure that the editing domain knows both of them
+        editingDomain.getResourceSet().getResources().add(modelEditorInput.getRootObject().eResource());
+        editingDomain.getResourceSet().getResources().add(modelEditorInput.getRootBlock().eResource());
+        
+        return partitionHandler;
+    }
     
-    private ParserCollection initializeParser() {
+    private static ParserCollection createParserCollection(EditingDomain editingDomain, Set<URI> referenceScope, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, PartitionAssignmentHandler partitionHandler) {
         ResourceSet resourceSet = editingDomain.getResourceSet();
-        Set<URI> referenceScope = getAdditionalLookupURIs();
         
         EMFModelAdapter modelAdapter = new EMFModelAdapter(parserFactory.getMetamodelPackage(resourceSet), resourceSet, referenceScope);
 
@@ -259,8 +258,8 @@ public class AbstractFurcasEditor extends UniversalEditor {
         ObservableInjectingParser parser = parserFactory.createParser(parserFactory.createIncrementalTokenStream(lexer), resourceSet, referenceScope, referenceScope);
 
         ITextBlocksTokenStream tokenStream = (ITextBlocksTokenStream) parser.getTokenStream();
-        ParserTextBlocksHandler textBlocksHandler = new ParserTextBlocksHandler(tokenStream, resourceSet, parserFactory.getMetamodelUri(resourceSet), TcsUtil.getSyntaxPartitions(resourceSet, parserFactory.getLanguageId()),
-                referenceScope, referenceScope);
+        ParserTextBlocksHandler textBlocksHandler = new ParserTextBlocksHandler(tokenStream, resourceSet, parserFactory.getMetamodelUri(resourceSet),
+                TcsUtil.getSyntaxPartitions(resourceSet, parserFactory.getLanguageId()), referenceScope, referenceScope);
         parser.setObserver(textBlocksHandler);
 
         lexer.setModelInjector(parser.getInjector());
@@ -269,7 +268,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(resourceSet, referenceScope);
         OppositeEndFinder oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         
-        PartitionAssignmentHandler partitionHandler = getDocumentProvider().getDocument(getEditorInput()).getPartitionHandler();
         MappingLinkRecoveringIncrementalParser incrementalParser = new MappingLinkRecoveringIncrementalParser(editingDomain, parserFactory, lexer, parser,
                 reuseStrategy, referenceScope, oppositeEndFinder, partitionHandler);
 
@@ -306,6 +304,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
     /**
      * This method should be overridden if additional URIs should be added to
      * the lookup scope of the parser.
+     * 
+     * TODO: this seems very very broken: What if resources show up at runtime?
+     * Furthermore, should this somehow happen automagically?
+     * 
      */
     protected Set<URI> getAdditionalLookupURIs() {
         return Collections.emptySet();

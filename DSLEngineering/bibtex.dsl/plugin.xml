@@ -49,7 +49,7 @@
    <extension
          point="org.eclipse.imp.runtime.languageDescription">
       <language
-            extensions="bib"
+            extensions="bib,bib.textblocks"
             description="some thing"
             language="Bibtex">
       </language>

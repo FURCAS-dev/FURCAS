@@ -47,7 +47,7 @@ public interface PartitionAssignmentHandler {
          * @return the default model {@link Resource}
          */
         Resource getDefaultPartition();
-
+        
         /**
          * Saves all handled partitions.
          * 
