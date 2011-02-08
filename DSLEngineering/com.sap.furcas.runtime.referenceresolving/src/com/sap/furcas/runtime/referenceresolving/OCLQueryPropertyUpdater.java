@@ -366,8 +366,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * The caller is responsible to perform it if this method returns <code>true</code>.
      */
     private boolean shallUpdateReferencingTokenInTextBlockModel(LexedToken token, String newValue) {
-        // TODO implement OCLQueryPropertyUpdater.shallUpdateReferencingTokenInTextBlockModel
-        return true;
+        return token.eResource().isModified();
     }
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {
