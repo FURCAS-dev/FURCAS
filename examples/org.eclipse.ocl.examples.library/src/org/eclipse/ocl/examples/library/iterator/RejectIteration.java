@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: RejectIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: RejectIteration.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -37,10 +37,10 @@ public class RejectIteration extends AbstractIteration<CollectionValue.Accumulat
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = stdlib.isOrdered(sourceType);
-		boolean isUnique = stdlib.isUnique(sourceType);
+		boolean isOrdered = typeManager.isOrdered(sourceType);
+		boolean isUnique = typeManager.isUnique(sourceType);
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, isUnique);
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));

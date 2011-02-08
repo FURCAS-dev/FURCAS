@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StringIndexOfOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: StringIndexOfOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
@@ -34,14 +34,24 @@ public class StringIndexOfOperation extends AbstractBinaryOperation
 		if (leftString == null) {
 			return valueFactory.createInvalidValue(left, null, "non-string indexOf source", null);
 		}
-		Integer rightInteger = right.asInteger();
-		if (rightInteger == null) {
-			return valueFactory.createInvalidValue(right, null, "non-integer indexOf argument", null);
+		String rightString = right.asString();
+		if (rightString == null) {
+			return valueFactory.createInvalidValue(right, null, "non-string indexOf argument", null);
 		}
-		int index = rightInteger -1;
-		if ((index < 0) || (leftString.length() <= index)) {
-			return valueFactory.createInvalidValue(right, null, "out of range indexOf argument", null);
+		if (leftString.length() <= 0) {
+			return valueFactory.integerValueOf(0);
 		}
-		return valueFactory.stringValueOf(leftString.substring(index, index+1));
+		else if (rightString.length() <= 0) {
+			return valueFactory.integerValueOf(1);
+		}
+		else {
+			int index = leftString.indexOf(rightString);
+			if (index >= 0) {
+				return valueFactory.integerValueOf(index+1);
+			}
+			else {
+				return valueFactory.integerValueOf(0);
+			}
+		}
 	}
 }
