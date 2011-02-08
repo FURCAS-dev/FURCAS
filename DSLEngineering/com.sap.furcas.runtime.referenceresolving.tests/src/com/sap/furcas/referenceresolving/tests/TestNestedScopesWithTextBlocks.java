@@ -24,7 +24,6 @@ import java.util.Collection;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -147,7 +146,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * usage is also renamed since it was directly bound to this definition).
      */
     @Test
-    @Ignore("Does not seem to work at the moment.")
     public void testUpdateOfUsageAccordingToChangeOfDefinitionInInnerScope() {
         String sample = "{ def b;" + "{ def b; use b; }" + "}";
         setupModelFromTextToParse(sample);
