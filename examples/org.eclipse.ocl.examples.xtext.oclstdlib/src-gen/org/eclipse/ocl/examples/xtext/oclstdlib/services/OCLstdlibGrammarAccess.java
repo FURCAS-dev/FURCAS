@@ -2665,7 +2665,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 	//
 	//Model returns ContextCS:
-	//	name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";";
+	//	ownedExpression=ExpCS;
 	public EssentialOCLGrammarAccess.ModelElements getModelAccess() {
 		return gaEssentialOCL.getModelAccess();
 	}
@@ -2753,7 +2753,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLUnrestrictedIdentifier:
-	//	"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
+	//	"e" | "E";
 	public EssentialOCLGrammarAccess.EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
 		return gaEssentialOCL.getEssentialOCLUnrestrictedIdentifierAccess();
 	}

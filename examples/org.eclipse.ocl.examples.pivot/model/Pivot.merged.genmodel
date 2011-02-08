@@ -527,9 +527,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//Feature/implementation"/>
       </genFeatures>
-      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//Feature/featuringClass"/>
-      </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false">
       <ecoreClass href="pivot.ecore#//TypedMultiplicityElement"/>
@@ -1021,9 +1018,6 @@
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
-      <ecoreClass href="pivot.ecore#//SelfType"/>
-    </genClasses>
-    <genClasses xsi:type="genmodel:GenClass">
       <ecoreClass href="pivot.ecore#//SequenceType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">
@@ -1075,6 +1069,15 @@
       <ecoreClass href="pivot.ecore#//UnlimitedNaturalLiteralExp"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="pivot.ecore#//UnlimitedNaturalLiteralExp/unlimitedNaturalSymbol"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//UnspecifiedType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//UnspecifiedType/lowerBound"/>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//UnspecifiedType/upperBound"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

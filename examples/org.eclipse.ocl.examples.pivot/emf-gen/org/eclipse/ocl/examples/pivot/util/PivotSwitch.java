@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
@@ -86,7 +85,6 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -109,6 +107,7 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -129,7 +128,7 @@ import org.eclipse.ocl.examples.pivot.VoidType;
  * @see org.eclipse.ocl.examples.pivot.PivotPackage
  * @generated
  */
-public class PivotSwitch<T> {
+public class PivotSwitch<T> extends Switch<T> {
 
 	/**
 	 * The cached model package
@@ -153,14 +152,17 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage)
+	{
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -170,28 +172,7 @@ public class PivotSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage)
-		{
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else
-		{
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID)
 		{
@@ -1195,23 +1176,6 @@ public class PivotSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PivotPackage.SELF_TYPE:
-			{
-				SelfType selfType = (SelfType)theEObject;
-				T result = caseSelfType(selfType);
-				if (result == null) result = caseClass(selfType);
-				if (result == null) result = caseType(selfType);
-				if (result == null) result = caseNamespace(selfType);
-				if (result == null) result = caseNamedElement(selfType);
-				if (result == null) result = caseParameterableElement(selfType);
-				if (result == null) result = caseTemplateableElement(selfType);
-				if (result == null) result = caseMonikeredElement(selfType);
-				if (result == null) result = caseNameable(selfType);
-				if (result == null) result = caseElement(selfType);
-				if (result == null) result = caseVisitable(selfType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PivotPackage.SEND_SIGNAL_ACTION:
 			{
 				SendSignalAction sendSignalAction = (SendSignalAction)theEObject;
@@ -1503,6 +1467,21 @@ public class PivotSwitch<T> {
 				if (result == null) result = caseNameable(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseElement(unlimitedNaturalLiteralExp);
 				if (result == null) result = caseVisitable(unlimitedNaturalLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.UNSPECIFIED_TYPE:
+			{
+				UnspecifiedType unspecifiedType = (UnspecifiedType)theEObject;
+				T result = caseUnspecifiedType(unspecifiedType);
+				if (result == null) result = caseType(unspecifiedType);
+				if (result == null) result = caseNamedElement(unspecifiedType);
+				if (result == null) result = caseParameterableElement(unspecifiedType);
+				if (result == null) result = caseTemplateableElement(unspecifiedType);
+				if (result == null) result = caseMonikeredElement(unspecifiedType);
+				if (result == null) result = caseNameable(unspecifiedType);
+				if (result == null) result = caseElement(unspecifiedType);
+				if (result == null) result = caseVisitable(unspecifiedType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2353,22 +2332,6 @@ public class PivotSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Self Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Self Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSelfType(SelfType object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Sequence Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2530,6 +2493,22 @@ public class PivotSwitch<T> {
 	 * @generated
 	 */
 	public T caseUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unspecified Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unspecified Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnspecifiedType(UnspecifiedType object)
+	{
 		return null;
 	}
 
@@ -3115,6 +3094,7 @@ public class PivotSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

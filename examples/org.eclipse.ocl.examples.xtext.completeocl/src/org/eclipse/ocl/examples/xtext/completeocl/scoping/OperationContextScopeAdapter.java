@@ -12,20 +12,16 @@
  *
  * </copyright>
  *
- * $Id: OperationContextScopeAdapter.java,v 1.8 2011/01/30 11:12:08 ewillink Exp $
+ * $Id: OperationContextScopeAdapter.java,v 1.9 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView.Filter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -40,7 +36,22 @@ public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<Ope
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if ((containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRES) 
+		if (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__OPERATION) {
+			Filter filter = new OperationContextFilter(target);
+			try {
+				environmentView.addFilter(filter);
+				return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+			}
+			finally {
+				environmentView.removeFilter(filter);
+			}
+		}
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
+			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+		}
+		return scopeView.getOuterScope();
+
+		/*		if ((containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__PRES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__BODIES) 
 		 || (containmentFeature == CompleteOCLCSTPackage.Literals.OPERATION_CONTEXT_DECL_CS__POSTS)) {
 			OperationRefCS csOperationRef = target.getOperation();
@@ -55,7 +66,7 @@ public class OperationContextScopeAdapter extends ModelElementCSScopeAdapter<Ope
 				environmentView.addElementsOfScope(classifierContext, scopeView);
 				environmentView.addElement(Environment.SELF_VARIABLE_NAME, classifierContext);
 			}
-		}
-		return scopeView.getOuterScope();
+		} 
+		return scopeView.getOuterScope(); */
 	}
 }

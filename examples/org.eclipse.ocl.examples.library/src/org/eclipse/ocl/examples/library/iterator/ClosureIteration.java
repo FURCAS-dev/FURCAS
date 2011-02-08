@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.3 2011/01/30 11:07:31 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.4 2011/02/08 17:47:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.library.AbstractIteration;
@@ -24,7 +27,8 @@ import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -44,9 +48,9 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = stdlib.isOrdered(sourceType);
+		boolean isOrdered = typeManager.isOrdered(sourceType);
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, true);
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
@@ -84,7 +88,8 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 			bodyType = ((CollectionType)bodyType).getElementType();
 		}
 		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
-		if (!typeManager.conformsTo(bodyType, iteratorType)) {
+		Map<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
+		if (!typeManager.conformsTo(bodyType, iteratorType, bindings)) {
 			return new ValidationWarning(OCLMessages.WarningNonConformingBodyType, bodyType, iteratorType);
 		}
 		return null;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.5 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -66,7 +66,11 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.library.JavaComparisonOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOrEqualOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaLessThanOrEqualOperation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
@@ -171,7 +175,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Operation caseEOperation(EOperation eObject) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -290,7 +297,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
 		Map<String, Constraint> constraintMap = null;
-		EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -358,19 +368,31 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (instanceClass != null) {
 			try {
 				Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
-				Operation operation = PivotFactory.eINSTANCE.createOperation();
-				operation.setName(PivotConstants.LESS_THAN_OPERATOR);
-				operation.setImplementation(new JavaLessThanOperation(declaredMethod));
-				Parameter parameter = PivotFactory.eINSTANCE.createParameter();
-				parameter.setName("that");
-				parameter.setType(pivotElement);
-				operation.getOwnedParameters().add(parameter);
-				operation.setType(converter.getTypeManager().getBooleanType());
-				pivotElement.getOwnedOperations().add(operation);
+				List<Operation> ownedOperations = pivotElement.getOwnedOperations();
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
 
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	protected Operation createJavaComparisonOperation(String operator, JavaComparisonOperation javaOperation) {
+		Operation operation = PivotFactory.eINSTANCE.createOperation();
+		operation.setName(operator);
+		operation.setImplementation(javaOperation);
+		Parameter parameter = PivotFactory.eINSTANCE.createParameter();
+		parameter.setName("that");
+		parameter.setType(converter.getTypeManager().getOclAnyType());
+		operation.getOwnedParameters().add(parameter);
+		operation.setType(converter.getTypeManager().getBooleanType());
+		return operation;
 	}
 
 	protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {
@@ -403,7 +425,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected void copyStructuralFeature(Property pivotElement, EStructuralFeature eObject, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

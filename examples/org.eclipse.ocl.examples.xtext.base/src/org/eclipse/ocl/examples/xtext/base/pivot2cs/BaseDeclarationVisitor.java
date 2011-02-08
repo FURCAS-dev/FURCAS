@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.4 2011/01/30 11:12:40 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -97,7 +98,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 				}
 			}));
 		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
-		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses()));
+		final Class classifierType = context.getTypeManager().getClassifierType();
+		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
+			new Pivot2CS.Predicate<Type>()
+			{
+				public boolean filter(Type element) {
+					return element != classifierType;
+				}
+			}));
 		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());
 		context.refreshQualifiers(csElement.getQualifier(), "interface", object.isInterface());
 		context.setScope(savedScope);
@@ -161,7 +169,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			csElement.setOwnedTemplateSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters(), null));
-		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions()));
+		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions(), null));
 		return csElement;
 	}
 

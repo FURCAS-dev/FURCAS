@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EObjectOperation.java,v 1.1 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EObjectOperation.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -55,7 +55,7 @@ public class EObjectOperation implements CallableImplementation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		if (!(specification instanceof ExpressionInOcl) && (specification instanceof OpaqueExpression)) {
 			Operation operation = PivotUtil.getReferredOperation(callExp);
-			String string = "body:\n" + PivotUtil.getBody((OpaqueExpression) specification) + "\n;";
+			String string = PivotUtil.getBody((OpaqueExpression) specification);
 			specification = PivotUtil.resolveSpecification(evaluationVisitor.getTypeManager(), operation, string);
 		}
 		if (specification instanceof ExpressionInOcl) {

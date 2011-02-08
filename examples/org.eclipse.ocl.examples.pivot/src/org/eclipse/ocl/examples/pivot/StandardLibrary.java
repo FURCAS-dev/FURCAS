@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
+
+import java.util.Map;
 
 import org.eclipse.ocl.Environment;
 
@@ -31,9 +33,12 @@ import org.eclipse.ocl.Environment;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public interface StandardLibrary {
-
+public interface StandardLibrary
+{
+	@Deprecated
 	boolean conformsTo(Type firstType, Type secondType);
+	
+	boolean conformsTo(Type firstType, Type secondType, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions);
 	
     /**
      * Obtains the single instance of the {@link AnyType} metatype, named

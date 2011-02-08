@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.3 2011/01/30 11:20:05 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.4 2011/02/08 17:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -35,6 +35,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	private PivotEnvironment environment = null;
 	private NamedElement specificationContext = null;
 	
+	public EssentialOCLCSResource() {
+		super();
+	}
+
 	public CS2Pivot createCS2Pivot(
 			Map<? extends Resource, ? extends Resource> cs2pivotResourceMap,
 			TypeManager typeManager) {

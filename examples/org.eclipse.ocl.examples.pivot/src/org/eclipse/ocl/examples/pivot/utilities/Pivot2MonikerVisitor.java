@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
@@ -26,9 +27,12 @@ import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
+import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
@@ -41,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -56,6 +61,7 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -86,11 +92,19 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		roleNames.put(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, "i");
 */	}
 	
+	protected final Map<TemplateParameter, ParameterableElement> templateBindings;
+	
 	public Pivot2MonikerVisitor(Abstract2Moniker context) {
 		super(context);
+		templateBindings = null;
 		if (!initialized) {
 			initialize();
 		}
+	}
+
+	public Pivot2MonikerVisitor(Abstract2Moniker context, Map<TemplateParameter, ParameterableElement> templateBindings) {
+		super(context);
+		this.templateBindings = templateBindings;
 	}
 
 	public void appendExpPrefix(NamedElement object) {
@@ -131,6 +145,21 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		context.append(ANNOTATION_QUOTE);
 		context.append(String.valueOf(object.getName()));
 		context.append(ANNOTATION_QUOTE);
+		Object container = object.eContainer().eGet(object.eContainingFeature());
+		if (container instanceof List<?>) {
+			int index = 0;
+			for (Object element : (List<?>)container) {
+				if (element == object) {
+					break;
+				}
+				if ((element instanceof Annotation) && (((Annotation)element).getName().equals(object.getName()))) {
+					index++;
+				}
+			}
+			if (index > 0) {
+				context.append(index);
+			}
+		}
 		return true;
 	}
 
@@ -144,7 +173,19 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitClass(org.eclipse.ocl.examples.pivot.Class object) {
 		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
-		if (owningTemplateParameter != null) {			
+		if (owningTemplateParameter != null) {		
+			if (templateBindings != null) {
+				ParameterableElement parameterableElement = templateBindings.get(owningTemplateParameter);
+				if (parameterableElement != null) {
+					if (parameterableElement == object) {
+						context.append(OVERFLOW_MARKER);
+					}
+					else {
+						context.appendElement(parameterableElement);
+					}
+					return true;
+				}
+			}
 			TemplateableElement owningTemplateElement = owningTemplateParameter.getSignature().getTemplate();
 			if (!context.hasEmitted(owningTemplateParameter)/* || !context.isTemplateParameter(owningTemplateParameter)*/) {
 				context.appendElement(owningTemplateElement);
@@ -190,13 +231,70 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	}
 
 	@Override
+	public Object visitCompleteOperation(CompleteOperation object) {
+		context.appendElement(object.getModel());
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		context.append(0);
+		return true;
+	}
+
+	@Override
+	public Object visitCompletePackage(CompletePackage object) {
+		context.appendElement(object.getModel());
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		context.append(0);
+		return true;
+	}
+
+	@Override
+	public Object visitCompleteProperty(CompleteProperty object) {
+		context.appendElement(object.getModel());
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		context.append(0);
+		return true;
+	}
+
+	@Override
+	public Object visitCompleteType(CompleteType object) {
+		context.appendElement(object.getModel());
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		context.append(0);
+		return true;
+	}
+
+	@Override
 	public Object visitConstraint(Constraint object) {
 		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
 		context.append(object.getStereotype());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		String name = object.getName();
-		if (name != null) {
-			context.append(name);
+		Object container = object.eContainer().eGet(object.eContainingFeature());
+		if (container instanceof List<?>) {		
+			int index = 0;
+			String name2 = object.getName();
+			for (Object content : (List<?>)container) {
+				if (content == object) {
+					break;
+				}
+				if (content instanceof Constraint) {
+					Constraint sibling = (Constraint) content;
+					if (sibling.getStereotype().equals(object.getStereotype())) {
+						String name1 = sibling.getName();
+						if (name1 != name2) {
+							if ((name1 == null) || !name1.equals(name2)) {
+								break;
+							}
+						}
+						index++;
+					}
+				}
+			}
+			context.append(MONIKER_OPERATOR_SEPARATOR);
+			if (name2 != null) {
+				context.append(name2);
+			}
+			if (index != 0) {
+				context.append(MONIKER_OPERATOR_SEPARATOR);
+				context.append(index);
+			}
 		}
 		return true;
 	}
@@ -278,19 +376,43 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitOperation(Operation object) {
-		List<TemplateBinding> templateBindings = object.getTemplateBindings();
-		if (!templateBindings.isEmpty()) {
-			context.appendElement((Element) object.eContainer());
-			TemplateSignature signature = templateBindings.get(0).getSignature();
-			if (signature != null) {
-				context.appendElement(signature.getTemplate());
+		TemplateParameter owningTemplateParameter = object.getOwningTemplateParameter();
+		if (owningTemplateParameter != null) {			// FIXME does this happen ?
+			TemplateableElement owningTemplateElement = owningTemplateParameter.getSignature().getTemplate();
+			if (!context.hasEmitted(owningTemplateParameter)/* || !context.isTemplateParameter(owningTemplateParameter)*/) {
+				context.appendElement(owningTemplateElement);
+				context.append(TEMPLATE_PARAMETER_PREFIX);
 			}
+			context.appendName(object);
+		}
+		else if (!object.getTemplateBindings().isEmpty()) {
+			Operation templateableOperation = PivotUtil.getUnspecializedTemplateableElement(object);
+			context.appendParent(templateableOperation, MONIKER_SCOPE_SEPARATOR);
+//			context.append(((MonikeredElement) templateableClass.eContainer()).getMoniker());
+//			context.append(SCOPE_SEPARATOR);
+			context.appendName(object);
+			context.appendTemplateBindings(object);
+			context.appendParameters(object, null);
 			return true;
 		}
-		context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
-		context.appendName(object);
-		context.appendTemplateParameters(object);
-		context.appendParameters(object);
+
+			
+			
+			
+			
+//			context.appendElement((Element) object.eContainer());
+//			TemplateSignature signature = templateBindings.get(0).getSignature();
+//			if (signature != null) {
+//				context.appendElement(signature.getTemplate());
+//			}
+//			return true;
+//		}
+		else {
+			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
+			context.appendName(object);
+			context.appendTemplateParameters(object);
+			context.appendParameters(object, null);
+		}
 		return true;
 	}
 
@@ -412,6 +534,12 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.append(unlimitedNaturalSymbol.toString());
 		}
 		return true;
+	}
+
+	@Override
+	public Object visitUnspecifiedType(UnspecifiedType object) {
+		// TODO Auto-generated method stub
+		return super.visitUnspecifiedType(object);
 	}
 
 	@Override

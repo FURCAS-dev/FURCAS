@@ -298,9 +298,6 @@
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_WRVdUCvMEeCGccmRVhzx9A" name="SelfType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
-    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrIgHEd-aGOJuUCcZBA" name="SequenceType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqogHEd-aGOJuUCcZBA" name="SetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_ASveEIq1Ed-VzsYvPRGeYg" name="Signal">

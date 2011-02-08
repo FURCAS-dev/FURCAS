@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -39,8 +39,8 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public class TupleValueImpl extends AbstractValue implements TupleValue
 {
     private final TupleType type;
-
     private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
+    private final int hashCode;			// FIXME just for debugging
 
     /**
      * Initializes me with a map of part values.
@@ -51,10 +51,11 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     public TupleValueImpl(ValueFactory valueFactory, TupleType type, Map<? extends TypedElement, Value> values) {
 		super(valueFactory);
         this.type = type;
-
         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
+        this.hashCode = computeHashCode();
+//        System.out.println(this + " : " + getTupleType().getMoniker() + " @* " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
     
     /**
@@ -70,11 +71,19 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
+        this.hashCode = computeHashCode();
+//        System.out.println(this + " : " + getTupleType().getMoniker() + " @2 " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
 
 	public Object asObject() {
 		return parts;
 	}
+	
+    private int computeHashCode() {
+        int typeHashCode = type.hashCode();
+		int partsHashCode = parts.hashCode();
+		return 37 * typeHashCode + 17 * partsHashCode;
+    }
 
     // implements the inherited specification
     public TupleType getTupleType() {
@@ -113,9 +122,10 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     // overrides the inherited implementation
     @Override
     public int hashCode() {
-        int typeHashCode = type.hashCode();
-		int partsHashCode = parts.hashCode();
-		return 37 * typeHashCode + 17 * partsHashCode;
+//        int typeHashCode = type.hashCode();
+//		int partsHashCode = parts.hashCode();
+//		return 37 * typeHashCode + 17 * partsHashCode;
+		return hashCode;
     }
     
     @Override

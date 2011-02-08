@@ -68,9 +68,7 @@
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_Y4z6QMpCEd-ZL8lMORCEkg" name="instanceClassName" type="_-0G3sMpAEd-ZL8lMORCEkg" lower="0"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_OD6CsMpBEd-ZL8lMORCEkg" name="Element" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_LhCA0B1EEeCzDcYDg75xng" name="Feature" isAbstract="true">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_SqvOcB1EEeCzDcYDg75xng" name="featuringClass" type="_V3s5sMpCEd-ZL8lMORCEkg" lower="0" isReadOnly="true" isDerived="true"/>
-      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_LhCA0B1EEeCzDcYDg75xng" name="Feature" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Interface" xmi:id="_gp2QsN9WEd-5RuvZBdnt0A" name="Nameable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_P4PuIMpBEd-ZL8lMORCEkg" name="NamedElement" clientDependency="#_yvKQQN9WEd-5RuvZBdnt0A" isAbstract="true">
         <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -83,6 +81,11 @@
       </ownedMember>
       <ownedMember xmi:type="cmof:Interface" xmi:id="_h0T4sN9WEd-5RuvZBdnt0A" name="Pivotable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-0G3sMpAEd-ZL8lMORCEkg" name="String"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_gqL8MDAZEeCQxbz5jr7q5g" name="Type" isAbstract="true"/>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_jyLn4DAZEeCQxbz5jr7q5g" name="UnspecifiedType" superClass="_gqL8MDAZEeCQxbz5jr7q5g">
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_teCpMDAZEeCQxbz5jr7q5g" name="lowerBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_2kURMDAZEeCQxbz5jr7q5g" name="upperBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
+      </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_ReAs0MimEd-sJIf4tYBt-g" name="MDT_OCL_Monikers">
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_xJoxEMimEd-sJIf4tYBt-g" name="Boolean"/>
@@ -254,7 +257,7 @@
     <Ecore:EReference xmi:id="_PafA0BEeEeCsy5gumoi3HA" isTransient="true"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EReference xmi:id="_aRlrEB1EEeCzDcYDg75xng" isTransient="true" base_Property="_SqvOcB1EEeCzDcYDg75xng" isResolveProxies="false"/>
+    <Ecore:EReference xmi:id="_aRlrEB1EEeCzDcYDg75xng" isTransient="true" isResolveProxies="false"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EReference xmi:id="_Z87C0B_aEeCxNNh5B6u04A" isTransient="true" isVolatile="true" base_Property="_MrWfEB_aEeCxNNh5B6u04A" isResolveProxies="false"/>

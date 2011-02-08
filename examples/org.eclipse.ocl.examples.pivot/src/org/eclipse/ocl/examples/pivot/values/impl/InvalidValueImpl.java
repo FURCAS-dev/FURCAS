@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -69,9 +69,20 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 			StringBuffer s =  new StringBuffer();
 			s.append("Invalid: ");
 			s.append(reason);
+			if (value != null) {
+				s.append(" for \"");
+				s.append(value);
+				s.append("\"");
+			}
+			if (expression != null) {
+				s.append(" at \"");
+				s.append(expression);
+				s.append("\"");
+			}
 			if (throwable != null) {
-				s.append(" : ");
+				s.append(" because \"");
 				s.append(throwable);
+				s.append("\"");
 			}
 			message = s.toString();
 		}
