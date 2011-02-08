@@ -12,9 +12,10 @@
  *
  * </copyright>
  *
- * $Id: InvCS.java,v 1.1 2010/04/13 06:38:25 ewillink Exp $
+ * $Id: InvCS.java,v 1.3 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
+
 
 
 /**
@@ -27,5 +28,5 @@ package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
  * @model
  * @generated
  */
-public interface InvCS extends NamedConstraintCS {
+public interface InvCS extends ContextConstraintCS {
 } // InvCS

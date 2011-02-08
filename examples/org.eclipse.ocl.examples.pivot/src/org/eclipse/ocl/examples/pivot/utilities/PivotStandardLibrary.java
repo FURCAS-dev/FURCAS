@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.3 2011/01/27 07:00:17 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -93,7 +93,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof PrimitiveType) {
 				booleanType = (PrimitiveType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("Boolean is not a PrimitiveType");
 			}		
 		}
@@ -106,7 +106,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
 				classifierType = (org.eclipse.ocl.examples.pivot.Class) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("Classifier is not a Class");
 			}		
 		}
@@ -127,7 +127,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof PrimitiveType) {
 				integerType = (PrimitiveType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("Integer is not a PrimitiveType");
 			}		
 		}
@@ -148,7 +148,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof AnyType) {
 				oclAnyType = (AnyType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("OclAny is not an AnyType");
 			}		
 		}
@@ -161,7 +161,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof InvalidType) {
 				oclInvalidType = (InvalidType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("OclInvalid is not an InvalidType");
 			}		
 		}
@@ -178,7 +178,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof VoidType) {
 				oclVoidType = (VoidType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("OclVoid is not a VoidType");
 			}		
 		}
@@ -219,7 +219,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof PrimitiveType) {
 				realType = (PrimitiveType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("Real is not a PrimitiveType");
 			}		
 		}
@@ -229,6 +229,8 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	public Type getRequiredLibraryType(String typeName) {
 		Type type = getLibraryType(typeName);
 		if (type == null) {
+			nameToLibraryTypeMap = null;
+			type = getLibraryType(typeName);	// FIXME just a debug retry
 			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
 				logger.error("No OCL Standard Library available");
 			}
@@ -263,7 +265,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof PrimitiveType) {
 				stringType = (PrimitiveType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("String is not a PrimitiveType");
 			}		
 		}
@@ -293,7 +295,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			if (type instanceof PrimitiveType) {
 				unlimitedNaturalType = (PrimitiveType) type;
 			}
-			else {
+			else if (type != null) {
 				logger.error("UnlimitedNatural is not a PrimitiveType");
 			}		
 		}

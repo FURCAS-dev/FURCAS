@@ -270,9 +270,6 @@
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
         eType="#//CallableImplementation" transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClass" ordered="false"
-        eType="#//Class" changeable="false" volatile="true" transient="true" derived="true"
-        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
@@ -550,7 +547,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" ordered="false"
         lowerBound="1" eType="#//Real"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelfType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="SendSignalAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
         lowerBound="1" eType="#//Signal"/>
@@ -730,6 +726,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
         ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" ordered="false"
+        lowerBound="1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedValueExp" eSuperTypes="#//OclExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true"

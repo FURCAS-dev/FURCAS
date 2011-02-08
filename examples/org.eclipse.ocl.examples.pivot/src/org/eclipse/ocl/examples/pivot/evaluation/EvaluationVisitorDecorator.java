@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorDecorator.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EvaluationVisitorDecorator.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -35,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
@@ -45,8 +44,8 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.AbstractVisitor2;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -64,7 +63,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  * 
  * @author Christian W. Damus (cdamus)
  */
-public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value> implements EvaluationVisitor {
+public abstract class EvaluationVisitorDecorator extends AbstractExtendingVisitor<Value, Object> implements EvaluationVisitor {
 
     private final EvaluationVisitor delegate;
     
@@ -113,13 +112,6 @@ public abstract class EvaluationVisitorDecorator extends AbstractVisitor2<Value>
     public ModelManager getModelManager() {
         return getDelegate().getModelManager();
     }
-
-    /**
-     * Delegates to my decorated visitor.
-     */
-	public StandardLibrary getStandardLibrary() {
-        return getDelegate().getStandardLibrary();
-	}
 
     /**
      * Delegates to my decorated visitor.

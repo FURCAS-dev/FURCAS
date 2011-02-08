@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -374,15 +374,17 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return castElement;
 	}
 
-	protected <T extends ElementCS> List<T> visitReferences(Class<T> csClass, List<? extends EObject> eObjects) {
+	protected <T extends ElementCS, V extends EObject> List<T> visitReferences(Class<T> csClass, List<? extends V> eObjects, Pivot2CS.Predicate<V> predicate) {
 		List<T> csElements = new ArrayList<T>();
-		for (EObject eObject : eObjects) {
-			T csElement = visitReference(csClass, eObject);
-			if (csElement != null) {
-				csElements.add(csElement);
-			}
-			else {
-				assert csElement != null;
+		for (V eObject : eObjects) {
+			if ((predicate == null) || predicate.filter(eObject)) {
+				T csElement = visitReference(csClass, eObject);
+				if (csElement != null) {
+					csElements.add(csElement);
+				}
+				else {
+					assert csElement != null;
+				}
 			}
 		}
 		return csElements;

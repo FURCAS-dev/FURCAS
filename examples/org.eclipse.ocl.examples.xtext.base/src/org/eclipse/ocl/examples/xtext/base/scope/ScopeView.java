@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeView.java,v 1.2 2010/05/21 20:06:44 ewillink Exp $
+ * $Id: ScopeView.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -21,7 +21,7 @@ import java.util.Collections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 
@@ -39,22 +39,22 @@ public interface ScopeView extends IScope
      */
     final ScopeView NULLSCOPEVIEW = new ScopeView()
     {
-		public IEObjectDescription computeLookup(EnvironmentView environmentView) {
-			return null;
+		public int computeLookups(EnvironmentView environmentView) {
+			return 0;
 		}
 		
 		public void computeLookupWithParents(EnvironmentView environmentView) {
 		}
 		
-    	public Iterable<IEObjectDescription> getAllContents() {
-    		return Collections.emptyList();
-    	}
+//    	public Iterable<IEObjectDescription> getAllContents() {
+//    		return Collections.emptyList();
+//    	}
 		
-		public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
-			return Collections.emptyList();
-		}
+//		public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
+//			return Collections.emptyList();
+//		}
 
-		public TypeBindingsCS getBindings() {
+		public EObject getChild() {
 			return null;
 		}
 
@@ -62,17 +62,17 @@ public interface ScopeView extends IScope
 			return null;
 		}
 
-		public IEObjectDescription getContentByEObject(EObject object) {
-			return null;
-		}
+//		public IEObjectDescription getContentByEObject(EObject object) {
+//			return null;
+//		}
 
-		public IEObjectDescription getContentByName(String name) {
-			return null;
-		}
+//		public IEObjectDescription getContentByName(String name) {
+//			return null;
+//		}
 
-		public Iterable<IEObjectDescription> getContents() {
-			return Collections.emptyList();
-		}
+//		public Iterable<IEObjectDescription> getContents() {
+//			return Collections.emptyList();
+//		}
 
 		public ScopeView getOuterScope() {
 			return NULLSCOPEVIEW;
@@ -90,16 +90,36 @@ public interface ScopeView extends IScope
 			return null;
 		}
 
-		public ScopeView getUnqualifiedOuterScope(TypeBindingsCS bindings) {
+		public ScopeView getUnqualifiedOuterScope() {
 			return NULLSCOPEVIEW;
+		}
+
+		public IEObjectDescription getSingleElement(QualifiedName name) {
+			return null;
+		}
+
+		public Iterable<IEObjectDescription> getElements(QualifiedName name) {
+	   		return Collections.emptyList();
+		}
+
+		public IEObjectDescription getSingleElement(EObject object) {
+			return null;
+		}
+
+		public Iterable<IEObjectDescription> getElements(EObject object) {
+	   		return Collections.emptyList();
+		}
+
+		public Iterable<IEObjectDescription> getAllElements() {
+	   		return Collections.emptyList();
 		}
     };
 
-    IEObjectDescription computeLookup(EnvironmentView environmentView);
+    int computeLookups(EnvironmentView environmentView);
 
     void computeLookupWithParents(EnvironmentView environmentView);
 
-    TypeBindingsCS getBindings();
+	EObject getChild();
 
 	EStructuralFeature getContainmentFeature();
 
@@ -111,5 +131,5 @@ public interface ScopeView extends IScope
 	
 	EReference getTargetReference();
 
-	ScopeView getUnqualifiedOuterScope(TypeBindingsCS bindings);
+	ScopeView getUnqualifiedOuterScope();
 }

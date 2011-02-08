@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3 2011/01/30 10:59:40 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.4 2011/02/08 17:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -205,7 +205,8 @@ public abstract class GenericTestSuite
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
         }	   
 	}
-     protected void assertSemanticErrorQuery(String expression,
+     
+    protected void assertSemanticErrorQuery(String expression,
     		 String messageTemplate, String... bindings) {
     	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		 expression, messageTemplate, bindings);	   

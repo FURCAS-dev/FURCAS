@@ -3604,7 +3604,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-
 rule__NUMBER_LITERAL__Alternatives_2_0
     @init {
 		int stackSize = keepStackSize();
@@ -11210,7 +11209,6 @@ finally {
 
 
 
-
 rule__NUMBER_LITERAL__Group__0
     @init {
 		int stackSize = keepStackSize();
@@ -18047,7 +18045,6 @@ rule__WildcardTypeRefCS__SuperAssignment_2_1_1
 finally {
 	restoreStackSize(stackSize);
 }
-
 
 
 rule__PrimitiveTypeCS__NameAssignment

@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
+
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
 
 /**
@@ -855,10 +857,12 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->intersection(Set{4})");
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->intersection(Bag{4})");
 
-		assertQueryInvalid(null, "let s : Set(Integer) = invalid in Set{4}->intersection(s)");
-		assertQueryInvalid(null, "let s : Set(Integer) = invalid in Bag{4}->intersection(s)");
-		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Set{4}->intersection(b)");
-		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in Bag{4}->intersection(b)");
+		assertSemanticErrorQuery("let s : Set(Integer) = invalid in Set{4}->intersection(s)",
+			OCLMessages.ErrorUnresolvedOperationName, "intersection");
+		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Set{4}->intersection(s)");
+		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Bag{4}->intersection(s)");
+		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Set{4}->intersection(b)");
+		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Bag{4}->intersection(b)");
 		// invalid collection element
 		assertQueryInvalid(null, "Set{3, 4}->intersection(Set{invalid})");
 		assertQueryInvalid(null, "Set{3, invalid}->intersection(Bag{4})");
@@ -870,10 +874,10 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->intersection(Set{4})");
 		assertQueryInvalid(null, "let b : Bag(Integer) = null in b->intersection(Bag{4})");
 
-		assertQueryInvalid(null, "let s : Set(Integer) = null in Set{4}->intersection(s)");
-		assertQueryInvalid(null, "let s : Set(Integer) = null in Bag{4}->intersection(s)");
-		assertQueryInvalid(null, "let b : Bag(Integer) = null in Set{4}->intersection(b)");
-		assertQueryInvalid(null, "let b : Bag(Integer) = null in Bag{4}->intersection(b)");
+		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = null in Set{4}->intersection(s)");
+		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = null in Bag{4}->intersection(s)");
+		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = null in Set{4}->intersection(b)");
+		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = null in Bag{4}->intersection(b)");
 		// null collection element
 		assertQueryResults(null, "Set{2, null}", "Set{2, 3, null}->intersection(Set{2, 4, null})");
 		assertQueryResults(null, "Set{2, null}", "Set{2, 3, null}->intersection(Bag{2, 4, null})");

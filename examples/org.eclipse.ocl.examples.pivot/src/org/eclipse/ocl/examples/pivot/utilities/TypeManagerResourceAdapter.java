@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManagerResourceAdapter.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: TypeManagerResourceAdapter.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -55,6 +55,9 @@ public class TypeManagerResourceAdapter implements Adapter
 	public TypeManagerResourceAdapter(Resource resource, TypeManager typeManager) {
 		this.resource = resource;
 		this.typeManager = typeManager;
+		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
+			+ " " + resource.getClass().getSimpleName() + " " + resource.hashCode() + " " + resource.getURI()
+			+ " " + typeManager.getClass().getSimpleName() + "@" + typeManager.hashCode());		
 	}
 
 	public Resource getTarget() {

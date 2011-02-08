@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.5 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.7 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +48,7 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * @generated
 	 * @ordered
 	 */
-	protected TypeCS type;
+	protected Type type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,11 +75,13 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * @generated
 	 */
 	@Override
-	public TypeCS getType() {
-		if (type != null && type.eIsProxy()) {
+	public Type getType() {
+		if (type != null && ((EObject)type).eIsProxy())
+		{
 			InternalEObject oldType = (InternalEObject)type;
-			type = (TypeCS)eResolveProxy(oldType);
-			if (type != oldType) {
+			type = (Type)eResolveProxy(oldType);
+			if (type != oldType)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE, oldType, type));
 			}
@@ -92,7 +94,7 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeCS basicGetType() {
+	public Type basicGetType() {
 		return type;
 	}
 
@@ -101,8 +103,9 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(TypeCS newType) {
-		TypeCS oldType = type;
+	public void setType(Type newType)
+	{
+		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE, oldType, type));
@@ -115,7 +118,8 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -130,9 +134,10 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				setType((TypeCS)newValue);
+				setType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,9 +150,10 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
-				setType((TypeCS)null);
+				setType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -160,7 +166,8 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case BaseCSTPackage.TYPED_TYPE_REF_CS__TYPE:
 				return type != null;
 		}
@@ -168,13 +175,7 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	}
 
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		try {
-			signature.appendElement(getType(), typeBindings);
-//			signature.appendElement(basicGetType(), typeBindings);
-			signature.appendTypeArguments(getTypeArguments(), typeBindings);
-		} catch (Exception e) {
-			signature.append(e.getMessage());
-		}
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return visitor.visitTypedTypeRefCS(this);
 	}
 } //TypedTypeRefCSImpl

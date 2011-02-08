@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.6 2010/05/22 19:02:26 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.8 2011/02/08 17:46:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InitCS;
@@ -58,7 +58,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(BodyCS ele) {
-		String name = ele.getConstraintName();
+		String name = ele.getName();
 		return name != null ? "body " + name : "body";
 	}
 
@@ -67,15 +67,11 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		return ele.getClassifier().getClassifier().getName();
+		return ele.getClassifier().getName();
 	}
 
 	protected String text(CompleteOCLDocumentCS ele) {
 		return "Complete OCL document";
-	}
-
-	protected String text(ConstraintCS ele) {
-		return "";
 	}
 
 	protected String image(DefCS ele) {
@@ -85,7 +81,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	protected String text(DefCS ele) {
 		StringBuffer s = new StringBuffer();
 		s.append("def ");
-		appendOptionalString(s, ele.getConstraintName());
+		appendOptionalString(s, ele.getName());
 		s.append(": ");
 		appendString(s, ele.getConstrainedName());
 		List<VariableCS> parameters = ele.getParameters();
@@ -96,13 +92,13 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 				s.append(prefix);
 //				appendName(s, csVariable);
 //				s.append(" : ");
-				appendType(s, csVariable.getType());
+				appendType(s, csVariable.getOwnedType());
 				prefix = ", ";
 			}
 			s.append(")");
 		}
 		s.append(" : ");
-		appendType(s, ele.getType());
+		appendType(s, ele.getOwnedType());
 		return s.toString();
 	}
 
@@ -127,7 +123,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(InvCS ele) {
-		String name = ele.getConstraintName();
+		String name = ele.getName();
 		return name != null ? "inv " + name : "inv";
 	}
 
@@ -137,17 +133,17 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(OperationContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
-		OperationCS operation = ele.getOperation().getOperation();
-		appendName(s, operation.getOwner());
+		Operation operation = ele.getOperation();
+		appendName(s, PivotUtil.getFeaturingClass(operation));
 		s.append("::");
 		appendName(s, operation);
 		s.append("(");
 		String prefix = "";
-		for (ParameterCS csParameter : operation.getParameters()) {
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 //			appendName(s, csParameter);
 //			s.append(" : ");
-			appendType(s, csParameter.getType());
+			appendType(s, parameter.getType());
 			prefix = ", ";
 		}
 		s.append(")");
@@ -161,7 +157,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PackageDeclarationCS ele) {
-		return ele.getPackage().getSignature();
+		return ele.getPackage().getMoniker();
 	}
 
 	protected String image(PostCS ele) {
@@ -169,7 +165,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PostCS ele) {
-		String name = ele.getConstraintName();
+		String name = ele.getName();
 		return name != null ? "post " + name : "post";
 	}
 
@@ -178,7 +174,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PreCS ele) {
-		String name = ele.getConstraintName();
+		String name = ele.getName();
 		return name != null ? "pre " + name : "pre";
 	}
 
@@ -188,8 +184,8 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(PropertyContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
-		StructuralFeatureCS feature = ele.getProperty().getFeature();
-		appendName(s, feature.getOwner());
+		Property feature = ele.getProperty();
+		appendName(s, PivotUtil.getFeaturingClass(feature));
 		s.append("::");
 		appendName(s, feature);
 		s.append(" : ");

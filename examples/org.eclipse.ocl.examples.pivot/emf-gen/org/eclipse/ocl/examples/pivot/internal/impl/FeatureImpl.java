@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: FeatureImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: FeatureImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getImplementationClass <em>Implementation Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl#isStatic <em>Is Static</em>}</li>
  * </ul>
  * </p>
@@ -157,18 +156,6 @@ public abstract class FeatureImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
-	{
-		// TODO: implement this method to return the 'Featuring Class' reference
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public boolean isStatic() {
 		return (eFlags & IS_STATIC_EFLAG) != 0;
@@ -233,8 +220,6 @@ public abstract class FeatureImpl
 				return getImplementationClass();
 			case PivotPackage.FEATURE__IMPLEMENTATION:
 				return getImplementation();
-			case PivotPackage.FEATURE__FEATURING_CLASS:
-				return getFeaturingClass();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -385,8 +370,6 @@ public abstract class FeatureImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.FEATURE__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case PivotPackage.FEATURE__FEATURING_CLASS:
-				return getFeaturingClass() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

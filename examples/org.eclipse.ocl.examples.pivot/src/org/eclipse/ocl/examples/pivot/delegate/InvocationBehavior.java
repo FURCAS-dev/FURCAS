@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvocationBehavior.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: InvocationBehavior.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -95,8 +95,7 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 			if (expression == null) {
 				return null;
 			}
-			String string = "body:\n" + expression + "\n;";
-			specification = PivotUtil.resolveSpecification(typeManager, operation, string);
+			specification = PivotUtil.resolveSpecification(typeManager, operation, expression);
 		}
 		if (specification instanceof ExpressionInOcl) {
 			return (ExpressionInOcl) specification;

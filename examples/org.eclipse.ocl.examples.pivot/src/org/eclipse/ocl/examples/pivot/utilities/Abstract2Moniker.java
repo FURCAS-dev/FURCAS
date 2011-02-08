@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
@@ -33,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -139,21 +141,21 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 	}
 	
-	public void appendParameters(Operation operation) {
+	public void appendParameters(Operation operation, Map<TemplateParameter, ParameterableElement> templateBindings) {
 		s.append(PARAMETER_PREFIX);
 		String prefix = ""; //$NON-NLS-1$
 		if (operation instanceof Iteration) {
 			Iteration iteration = (Iteration)operation;
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
-				appendElement(parameter.getType());
+				appendType(parameter.getType(), templateBindings);
 				prefix = PARAMETER_SEPARATOR;
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
 				prefix = ITERATOR_SEPARATOR;
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
-					appendElement(parameter.getType());
+					appendType(parameter.getType(), templateBindings);
 					prefix = PARAMETER_SEPARATOR;
 				}
 			}
@@ -161,7 +163,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 		}
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
-			appendElement(parameter.getType());
+			appendType(parameter.getType(), templateBindings);
 			prefix = PARAMETER_SEPARATOR;
 		}
 		s.append(PARAMETER_SUFFIX);
@@ -270,6 +272,31 @@ public abstract class Abstract2Moniker implements PivotConstants
 			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
 		}
 		append(TUPLE_SIGNATURE_SUFFIX);
+	}
+	
+	public void appendType(Type type, Map<TemplateParameter, ParameterableElement> templateBindings) {
+		if (toString().length() >= MONIKER_OVERFLOW_LIMIT) {
+			append(OVERFLOW_MARKER);
+		}
+		else if (type == null) {
+			append(NULL_MARKER);	
+		}
+		else if (templateBindings != null) {
+			Pivot2MonikerVisitor savedPivotVisitor = pivotVisitor;
+			try {
+				pivotVisitor = new Pivot2MonikerVisitor(this, templateBindings);
+				type.accept(pivotVisitor);
+			}
+			finally {
+				pivotVisitor = savedPivotVisitor;
+			}
+		}
+		else {
+			if (pivotVisitor == null) {
+				pivotVisitor = new Pivot2MonikerVisitor(this);
+			}
+			type.accept(pivotVisitor);
+		}
 	}
 
 	protected void emittedTemplateParameter(TemplateParameter templateParameter) {

@@ -25,7 +25,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 }
 
 type Classifier conformsTo OclAny {
-	operation allInstances() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
 }
 
 type Collection<T> : CollectionType conformsTo OclAny {
@@ -101,7 +101,7 @@ type NonUniqueCollection<T> : CollectionType conformsTo Collection<T> {
 type OclAny : AnyType {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation oclAsSet() : Set<OclAny> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
+	operation oclAsSet<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
 	operation oclAsType<T>(type : Classifier) : T => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInState(statespec : OclState) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation';
 	operation oclIsInvalid() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation';
@@ -109,7 +109,7 @@ type OclAny : AnyType {
 	operation oclIsNew() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 	operation oclIsTypeOf(type : Classifier) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
 	operation oclIsUndefined() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation';
-	operation oclType() : OclSelf => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType<OclSelf>() : OclSelf => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
@@ -125,9 +125,6 @@ type OclMessage conformsTo OclAny {
 	operation result() : OclAny => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 	operation isOperationCall() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 	operation isSignalSent() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
-}
-
-type OclSelf : SelfType conformsTo OclAny {
 }
 
 type OclState conformsTo OclAny {

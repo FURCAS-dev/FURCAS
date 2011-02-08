@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -36,7 +35,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
-public interface EvaluationVisitor extends Visitor<Value, Value> {
+public interface EvaluationVisitor extends Visitor<Value, Object> {
 
 	EvaluationVisitor createNestedVisitor();
 	
@@ -62,8 +61,6 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 	 * @return the model manager
 	 */
 	public ModelManager getModelManager();
-
-	public StandardLibrary getStandardLibrary();
 
 	public TypeManager getTypeManager();
 
