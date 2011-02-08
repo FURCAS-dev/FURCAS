@@ -150,7 +150,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         this.parserFactory = parserFactory;
     }
     
-    private static AdapterFactoryEditingDomain createEditingDomain(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
+    private static AdapterFactoryEditingDomain createEditingDomain(ConcreteSyntax syntax) {
         // Create an adapter factory that yields item providers.
         ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
@@ -172,8 +172,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // Create the editing domain with a special command stack.
         AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
         
-        //add mapping resource to resource set
-        domain.loadResource(parserFactory.getSyntaxUri().toString());
+        domain.getResourceSet().getResources().add(syntax.eResource());
         
         return domain;
     }
@@ -186,9 +185,10 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        editingDomain = createEditingDomain(parserFactory);
         ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
         validateEditorState(syntax, parserFactory);
+        
+        editingDomain = createEditingDomain(syntax);
         
         // create a temporary opposite end finder that knows about the static resources in the workspace
         QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(editingDomain.getResourceSet(), getAdditionalLookupURIs());
