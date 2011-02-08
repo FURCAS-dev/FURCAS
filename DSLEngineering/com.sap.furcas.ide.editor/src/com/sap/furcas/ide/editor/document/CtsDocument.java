@@ -21,6 +21,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorPrintStream;
 import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 
@@ -118,7 +119,11 @@ public class CtsDocument extends AbstractDocument {
             boolean prettyPrintAccepted = dialog.open();
 
             if (prettyPrintAccepted) {
-                rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserCollection.parserFactory);
+                try {
+                    rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserCollection.parserFactory);
+                } catch (SyntaxAndModelMismatchException e) {
+                    throw new PartInitException("Failed to pretty print " + rootObject, e);
+                }
             } else {
                 // unaltered
             }
