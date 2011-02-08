@@ -38,6 +38,7 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
 
 /**
  * Helper class that transforms a {@link IEditorInput} into a {@link ModelEditorInput}
@@ -124,7 +125,11 @@ public class ModelEditorInputLoader {
         TextBlock rootBlock = findRootBlockForRootObject(rootObject, rootTemplate);
         if (rootBlock == null) {
             // no suitable node found, so create a new one
-            rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserFactory);
+            try {
+                rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserFactory);
+            } catch (SyntaxAndModelMismatchException e) {
+                throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
+            }
         }
         return rootBlock;
     }
