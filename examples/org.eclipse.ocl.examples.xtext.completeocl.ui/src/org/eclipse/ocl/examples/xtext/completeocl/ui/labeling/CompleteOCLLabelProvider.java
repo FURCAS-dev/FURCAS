@@ -12,16 +12,17 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.7 2011/01/24 21:15:09 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.8 2011/02/08 17:46:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
@@ -66,7 +67,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(ClassifierContextDeclCS ele) {
-		return ele.getClassifier().getClassifier().getName();
+		return ele.getClassifier().getName();
 	}
 
 	protected String text(CompleteOCLDocumentCS ele) {
@@ -132,22 +133,22 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(OperationContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
-		OperationCS operation = ele.getOperation().getOperation();
-		appendName(s, operation.getOwningClass());
+		Operation operation = ele.getOperation();
+		appendName(s, PivotUtil.getFeaturingClass(operation));
 		s.append("::");
 		appendName(s, operation);
 		s.append("(");
 		String prefix = "";
-		for (ParameterCS csParameter : operation.getOwnedParameter()) {
+		for (Parameter parameter : operation.getOwnedParameters()) {
 			s.append(prefix);
 //			appendName(s, csParameter);
 //			s.append(" : ");
-			appendType(s, csParameter.getOwnedType());
+			appendType(s, parameter.getType());
 			prefix = ", ";
 		}
 		s.append(")");
 		s.append(" : ");
-		appendType(s, operation.getOwnedType());
+		appendType(s, operation.getType());
 		return s.toString();
 	}
 
@@ -183,12 +184,12 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 
 	protected String text(PropertyContextDeclCS ele) {
 		StringBuffer s = new StringBuffer();
-		StructuralFeatureCS feature = ele.getProperty().getFeature();
-		appendName(s, feature.getOwner());
+		Property feature = ele.getProperty();
+		appendName(s, PivotUtil.getFeaturingClass(feature));
 		s.append("::");
 		appendName(s, feature);
 		s.append(" : ");
-		appendType(s, feature.getOwnedType());
+		appendType(s, feature.getType());
 		return s.toString();
 	}
 }
