@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: EssentialOCLCSScopeAdapter.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetVariableCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 
 public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, P extends MonikeredElement> extends BaseCSScopeAdapter<CS, P>
 {	
@@ -52,6 +53,10 @@ public abstract class EssentialOCLCSScopeAdapter<CS extends MonikeredElementCS, 
 		else if (csElement instanceof TupleTypeCS) {			
 			TupleTypeCS tupleType = (TupleTypeCS)csElement;
 			return (Type) tupleType.getPivot();
+		}
+		else if (csElement instanceof TypeNameExpCS) {
+			TypeNameExpCS typeNameExpCS = (TypeNameExpCS)csElement;
+			return typeNameExpCS.getElement();
 		}
 //		else if (csElement instanceof NameExpCS) {
 //			return getLibraryType(((NameExpCS)csElement).getNamedElement());

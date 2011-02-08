@@ -16,22 +16,8 @@
     <type metamodel="//@metamodelDeclarations.3">
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST#//ContextCS"/>
     </type>
-    <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="name" operator="=">
-        <terminal xsi:type="xtext:Alternatives">
-          <elements xsi:type="xtext:Keyword" value="body"/>
-          <elements xsi:type="xtext:Keyword" value="der"/>
-          <elements xsi:type="xtext:Keyword" value="init"/>
-          <elements xsi:type="xtext:Keyword" value="inv"/>
-          <elements xsi:type="xtext:Keyword" value="post"/>
-          <elements xsi:type="xtext:Keyword" value="pre"/>
-        </terminal>
-      </elements>
-      <elements xsi:type="xtext:Keyword" value=":"/>
-      <elements xsi:type="xtext:Assignment" feature="ownedExpression" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.47"/>
-      </elements>
-      <elements xsi:type="xtext:Keyword" value=";"/>
+    <alternatives xsi:type="xtext:Assignment" feature="ownedExpression" operator="=">
+      <terminal xsi:type="xtext:RuleCall" rule="//@rules.47"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:TerminalRule" name="DOUBLE_QUOTED_STRING">
@@ -263,12 +249,6 @@
     <alternatives xsi:type="xtext:Alternatives">
       <elements xsi:type="xtext:Keyword" value="e"/>
       <elements xsi:type="xtext:Keyword" value="E"/>
-      <elements xsi:type="xtext:Keyword" value="body"/>
-      <elements xsi:type="xtext:Keyword" value="der"/>
-      <elements xsi:type="xtext:Keyword" value="init"/>
-      <elements xsi:type="xtext:Keyword" value="inv"/>
-      <elements xsi:type="xtext:Keyword" value="post"/>
-      <elements xsi:type="xtext:Keyword" value="pre"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="EssentialOCLPrefixOperator">

@@ -83,110 +83,24 @@ ruleModel returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
-(
-(
-		lv_name_0_1=	'body' 
-    {
-        newLeafNode(lv_name_0_1, grammarAccess.getModelAccess().getNameBodyKeyword_0_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_1, null);
-	    }
-
-    |		lv_name_0_2=	'der' 
-    {
-        newLeafNode(lv_name_0_2, grammarAccess.getModelAccess().getNameDerKeyword_0_0_1());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_2, null);
-	    }
-
-    |		lv_name_0_3=	'init' 
-    {
-        newLeafNode(lv_name_0_3, grammarAccess.getModelAccess().getNameInitKeyword_0_0_2());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_3, null);
-	    }
-
-    |		lv_name_0_4=	'inv' 
-    {
-        newLeafNode(lv_name_0_4, grammarAccess.getModelAccess().getNameInvKeyword_0_0_3());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_4, null);
-	    }
-
-    |		lv_name_0_5=	'post' 
-    {
-        newLeafNode(lv_name_0_5, grammarAccess.getModelAccess().getNamePostKeyword_0_0_4());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_5, null);
-	    }
-
-    |		lv_name_0_6=	'pre' 
-    {
-        newLeafNode(lv_name_0_6, grammarAccess.getModelAccess().getNamePreKeyword_0_0_5());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getModelRule());
-	        }
-       		setWithLastConsumed($current, "name", lv_name_0_6, null);
-	    }
-
-)
-
-)
-)	otherlv_1=':' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getModelAccess().getColonKeyword_1());
-    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getOwnedExpressionExpCSParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getOwnedExpressionExpCSParserRuleCall_0()); 
 	    }
-		lv_ownedExpression_2_0=ruleExpCS		{
+		lv_ownedExpression_0_0=ruleExpCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		set(
        			$current, 
        			"ownedExpression",
-        		lv_ownedExpression_2_0, 
+        		lv_ownedExpression_0_0, 
         		"ExpCS");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_3=';' 
-    {
-    	newLeafNode(otherlv_3, grammarAccess.getModelAccess().getSemicolonKeyword_3());
-    }
 )
 ;
 
@@ -296,48 +210,6 @@ ruleEssentialOCLUnrestrictedIdentifier returns [AntlrDatatypeRuleToken current=n
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getEKeyword_1()); 
-    }
-
-    |
-	kw='body' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getBodyKeyword_2()); 
-    }
-
-    |
-	kw='der' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getDerKeyword_3()); 
-    }
-
-    |
-	kw='init' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getInitKeyword_4()); 
-    }
-
-    |
-	kw='inv' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getInvKeyword_5()); 
-    }
-
-    |
-	kw='post' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getPostKeyword_6()); 
-    }
-
-    |
-	kw='pre' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getPreKeyword_7()); 
     }
 )
     ;

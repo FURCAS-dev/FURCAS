@@ -18,64 +18,20 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Alternatives cNameAlternatives_0_0 = (Alternatives)cNameAssignment_0.eContents().get(0);
-		private final Keyword cNameBodyKeyword_0_0_0 = (Keyword)cNameAlternatives_0_0.eContents().get(0);
-		private final Keyword cNameDerKeyword_0_0_1 = (Keyword)cNameAlternatives_0_0.eContents().get(1);
-		private final Keyword cNameInitKeyword_0_0_2 = (Keyword)cNameAlternatives_0_0.eContents().get(2);
-		private final Keyword cNameInvKeyword_0_0_3 = (Keyword)cNameAlternatives_0_0.eContents().get(3);
-		private final Keyword cNamePostKeyword_0_0_4 = (Keyword)cNameAlternatives_0_0.eContents().get(4);
-		private final Keyword cNamePreKeyword_0_0_5 = (Keyword)cNameAlternatives_0_0.eContents().get(5);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOwnedExpressionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOwnedExpressionExpCSParserRuleCall_2_0 = (RuleCall)cOwnedExpressionAssignment_2.eContents().get(0);
-		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cOwnedExpressionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedExpressionExpCSParserRuleCall_0 = (RuleCall)cOwnedExpressionAssignment.eContents().get(0);
 		
 		////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 		//
 		//Model returns ContextCS:
-		//	name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";";
+		//	ownedExpression=ExpCS;
 		public ParserRule getRule() { return rule; }
 
-		//name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";"
-		public Group getGroup() { return cGroup; }
-
-		//name=("body" | "der" | "init" | "inv" | "post" | "pre")
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-
-		//"body" | "der" | "init" | "inv" | "post" | "pre"
-		public Alternatives getNameAlternatives_0_0() { return cNameAlternatives_0_0; }
-
-		//"body"
-		public Keyword getNameBodyKeyword_0_0_0() { return cNameBodyKeyword_0_0_0; }
-
-		//"der"
-		public Keyword getNameDerKeyword_0_0_1() { return cNameDerKeyword_0_0_1; }
-
-		//"init"
-		public Keyword getNameInitKeyword_0_0_2() { return cNameInitKeyword_0_0_2; }
-
-		//"inv"
-		public Keyword getNameInvKeyword_0_0_3() { return cNameInvKeyword_0_0_3; }
-
-		//"post"
-		public Keyword getNamePostKeyword_0_0_4() { return cNamePostKeyword_0_0_4; }
-
-		//"pre"
-		public Keyword getNamePreKeyword_0_0_5() { return cNamePreKeyword_0_0_5; }
-
-		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-
 		//ownedExpression=ExpCS
-		public Assignment getOwnedExpressionAssignment_2() { return cOwnedExpressionAssignment_2; }
+		public Assignment getOwnedExpressionAssignment() { return cOwnedExpressionAssignment; }
 
 		//ExpCS
-		public RuleCall getOwnedExpressionExpCSParserRuleCall_2_0() { return cOwnedExpressionExpCSParserRuleCall_2_0; }
-
-		//";"
-		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
+		public RuleCall getOwnedExpressionExpCSParserRuleCall_0() { return cOwnedExpressionExpCSParserRuleCall_0; }
 	}
 
 	public class NUMBER_LITERALElements extends AbstractParserRuleElementFinder {
@@ -201,18 +157,12 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cEKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
 		private final Keyword cEKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cBodyKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cDerKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cInitKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cInvKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cPostKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cPreKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		
 		//EssentialOCLUnrestrictedIdentifier:
-		//	"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
+		//	"e" | "E";
 		public ParserRule getRule() { return rule; }
 
-		//"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre"
+		//"e" | "E"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"e"
@@ -220,24 +170,6 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"E"
 		public Keyword getEKeyword_1() { return cEKeyword_1; }
-
-		//"body"
-		public Keyword getBodyKeyword_2() { return cBodyKeyword_2; }
-
-		//"der"
-		public Keyword getDerKeyword_3() { return cDerKeyword_3; }
-
-		//"init"
-		public Keyword getInitKeyword_4() { return cInitKeyword_4; }
-
-		//"inv"
-		public Keyword getInvKeyword_5() { return cInvKeyword_5; }
-
-		//"post"
-		public Keyword getPostKeyword_6() { return cPostKeyword_6; }
-
-		//"pre"
-		public Keyword getPreKeyword_7() { return cPreKeyword_7; }
 	}
 
 	public class EssentialOCLPrefixOperatorElements extends AbstractParserRuleElementFinder {
@@ -2268,7 +2200,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	////generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 	//
 	//Model returns ContextCS:
-	//	name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";";
+	//	ownedExpression=ExpCS;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -2362,7 +2294,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLUnrestrictedIdentifier:
-	//	"e" | "E" | "body" | "der" | "init" | "inv" | "post" | "pre";
+	//	"e" | "E";
 	public EssentialOCLUnrestrictedIdentifierElements getEssentialOCLUnrestrictedIdentifierAccess() {
 		return (pEssentialOCLUnrestrictedIdentifier != null) ? pEssentialOCLUnrestrictedIdentifier : (pEssentialOCLUnrestrictedIdentifier = new EssentialOCLUnrestrictedIdentifierElements());
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingArgCSImpl.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: NavigatingArgCSImpl.java,v 1.3 2011/02/08 17:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -560,5 +560,11 @@ public class NavigatingArgCSImpl extends ModelElementCSImpl implements Navigatin
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitNavigatingArgCS(this);
+	}
+
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		setRole(null);
 	}
 } //NavigatingArgCSImpl

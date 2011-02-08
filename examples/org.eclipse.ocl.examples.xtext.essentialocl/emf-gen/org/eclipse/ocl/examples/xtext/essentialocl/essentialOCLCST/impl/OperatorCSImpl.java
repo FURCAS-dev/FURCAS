@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperatorCSImpl.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: OperatorCSImpl.java,v 1.3 2011/02/08 17:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -247,5 +247,12 @@ public abstract class OperatorCSImpl extends NamedElementCSImpl implements Opera
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitOperatorCS(this);
+	}
+
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		setParent(null);
+		setSource(null);
 	}
 } //OperatorCSImpl

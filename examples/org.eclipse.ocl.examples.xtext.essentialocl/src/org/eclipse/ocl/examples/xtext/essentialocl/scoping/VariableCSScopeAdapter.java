@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: VariableCSScopeAdapter.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -45,11 +44,5 @@ public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableC
 			environmentView.addElementsOfScope(typeManager, libType, scopeView);
 			return scopeView.getOuterScope();
 		}
-	}
-
-	@Override
-	public Type getLibraryType(ElementCS csElement) {
-		// TODO Auto-generated method stub
-		return super.getLibraryType(csElement);
 	}
 }

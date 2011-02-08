@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.3 2011/01/30 11:20:05 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.4 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -50,10 +50,10 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			Variable contextVariable = pivot.getContextVariable();
 			if (contextVariable != null) {
 				environmentView.addNamedElement(contextVariable);
-				if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+				if (!environmentView.hasFinalResult()) {
 					Type type = contextVariable.getType();
 					environmentView.addElementsOfScope(typeManager, type, scopeView);
-					if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+					if (!environmentView.hasFinalResult()) {
 						environmentView.addElementsOfScope(typeManager, type.getPackage(), scopeView);
 					}
 				}
@@ -69,7 +69,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				}				
 			}
 		}
-		if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+		if (!environmentView.hasFinalResult()) {
 			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
 		}
 		return super.computeLookup(environmentView, scopeView);

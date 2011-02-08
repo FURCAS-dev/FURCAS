@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.7 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.8 2011/02/08 17:44:57 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, DOCUMENTATION, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
@@ -21,7 +21,7 @@ import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.eco
 import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore"
 //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
 Model returns ContextCS:
-	name=('body' | 'der' | 'init' | 'inv' | 'post' | 'pre') ':' ownedExpression=ExpCS ';';
+	ownedExpression=ExpCS;
 
 terminal DOUBLE_QUOTED_STRING:
 	'"' ('\\' ('b' | 't' | 'n' | 'f' | 'r' | 'u' | '"' | "'" | '\\') | !('\\' | '"'))* '"';
@@ -72,13 +72,7 @@ EssentialOCLReservedKeyword:
 
 EssentialOCLUnrestrictedIdentifier:
 	'e'
-	| 'E'
-	| 'body'
-	| 'der'
-	| 'init'
-	| 'inv'
-	| 'post'
-	| 'pre';
+	| 'E';
 
 EssentialOCLPrefixOperator:
 	'-' | 'not';

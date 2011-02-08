@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -59,7 +59,7 @@ public class EssentialOCLPostOrderVisitor
 	  
 	@Override
 	public Continuation<?> visitBinaryOperatorCS(BinaryOperatorCS csBinaryOperator) {
-		csBinaryOperator.setArgument(null);
+		csBinaryOperator.setArgument(null);		// FIXME now done by resetPivot
 		return super.visitBinaryOperatorCS(csBinaryOperator);
 	}
 
@@ -93,7 +93,7 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitExpCS(ExpCS csExp) {
-		csExp.setParent(null);
+		csExp.setParent(null);		// FIXME now done by resetPivot
 		return null;
 	}
 
@@ -150,8 +150,8 @@ public class EssentialOCLPostOrderVisitor
 
 	@Override
 	public Continuation<?> visitOperatorCS(OperatorCS csOperator) {
-		csOperator.setSource(null);
-		csOperator.setParent(null);
+		csOperator.setSource(null);		// FIXME now done by resetPivot
+		csOperator.setParent(null);		// FIXME now done by resetPivot
 		return null;
 	}
 

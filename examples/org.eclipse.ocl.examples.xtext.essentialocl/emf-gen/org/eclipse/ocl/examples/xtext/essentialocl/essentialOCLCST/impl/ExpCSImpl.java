@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpCSImpl.java,v 1.4 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: ExpCSImpl.java,v 1.5 2011/02/08 17:44:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -162,5 +162,11 @@ public class ExpCSImpl extends MonikeredElementCSImpl implements ExpCS {
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(EssentialOCLCSVisitor.class).visitExpCS(this);
+	}
+
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		setParent(null);
 	}
 } //OclExpressionCSImpl

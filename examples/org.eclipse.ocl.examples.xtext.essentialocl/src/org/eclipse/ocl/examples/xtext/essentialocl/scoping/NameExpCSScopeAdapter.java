@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
@@ -35,20 +38,28 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 {
 	private static final class NoOperations implements EnvironmentView.Filter
 	{
-		public boolean filter(EObject eObject) {
+		public int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1, EObject match2, Map<TemplateParameter, ParameterableElement> bindings2) {
+			return 0;
+		}
+
+		public boolean matches(EnvironmentView environmentView, EObject eObject) {
 			return !(eObject instanceof Operation);
 		}
 	}
 
-	private static final class OperationsOnly implements EnvironmentView.Filter
+/*	private static final class OperationsOnly implements EnvironmentView.Filter
 	{
-		public boolean filter(EObject eObject) {
+		public int compareMatches(EObject reference, EObject candidate) {
+			return PivotUtil.compareOperationMatches(reference, candidate);
+		}
+
+		public boolean matches(EnvironmentView environmentView, EObject eObject) {
 			return eObject instanceof Operation;
 		}
-	}
+	} */
 
 	private static EnvironmentView.Filter noOperationsFilter = new NoOperations();
-	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
+//	private static EnvironmentView.Filter operationsOnlyFilter = new OperationsOnly();
 	
 	public NameExpCSScopeAdapter(TypeManager typeManager, NameExpCS csElement) {
 		super(typeManager, csElement, OclExpression.class);
@@ -69,7 +80,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			}
 			EObject eContainer = target.eContainer();
 			if (eContainer instanceof NavigatingExpCS) {
-				environmentView.addFilter(operationsOnlyFilter);
+//				environmentView.addFilter(operationsOnlyFilter);
 			}
 			else {	// FIXME IndexedExpCS fpor Associations
 				environmentView.addFilter(noOperationsFilter);
