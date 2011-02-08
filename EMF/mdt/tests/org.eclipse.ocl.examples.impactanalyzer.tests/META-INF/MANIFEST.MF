@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: de.hpi.sam.bp2009.moin.impactAnalyzer.tests
 Bundle-SymbolicName: org.eclipse.ocl.examples.impactanalyzer.tests
-Bundle-Version: 0.1.0
+Bundle-Version: 3.1.0.qualifier
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.examples.eventmanager,
  org.eclipse.ocl.ecore,
