@@ -60,39 +60,32 @@ public class LinkHelper implements ILinkHelper {
 			.getDocument(editorInput);
 		boolean found = false;
 		if (doc.isCompletelyItitialized()) {
-		    for (EObject documentNode : docNodes) {
-			TextBlock parentBlock = null;
-			if (documentNode instanceof AbstractToken) {
-			    parentBlock = ((AbstractToken) documentNode)
-				    .getParent();
-			} else {
-			    parentBlock = (TextBlock) documentNode;
-			}
-			if (TbUtil
-				.isAncestorOf(doc.getRootBlock(), parentBlock)) {
-			    found = true;
-			    int absoluteOffsetTok = TbUtil
-				    .getAbsoluteOffsetWithoutBlanks(parentBlock);
-			    int length = TbUtil
-				    .getLengthWithoutStartingBlanks(parentBlock);
-			    Annotation a = editorsToAnnotation.get(ctsEditor);
-			    if (a == null) {
-				a = new Annotation(ANNOTATION_HIGHLIGHT_TYPE,
-					false, "Selection from tree");
-				editorsToAnnotation.put(ctsEditor, a);
-			    } else {
-				documentProvider
-					.getAnnotationModel(editorInput)
-					.removeAnnotation(a);
-			    }
-			    Position pos = new Position(absoluteOffsetTok,
-				    length);
-			    documentProvider.getAnnotationModel(editorInput)
-				    .addAnnotation(a, pos);
-			    // ((AbstractGrammarBasedEditor)editor).selectAndReveal();
-			}
+		    if (docNodes != null) {
+                        for (EObject documentNode : docNodes) {
+                            TextBlock parentBlock = null;
+                            if (documentNode instanceof AbstractToken) {
+                                parentBlock = ((AbstractToken) documentNode).getParent();
+                            } else {
+                                parentBlock = (TextBlock) documentNode;
+                            }
+                            if (TbUtil.isAncestorOf(doc.getRootBlock(), parentBlock)) {
+                                found = true;
+                                int absoluteOffsetTok = TbUtil.getAbsoluteOffsetWithoutBlanks(parentBlock);
+                                int length = TbUtil.getLengthWithoutStartingBlanks(parentBlock);
+                                Annotation a = editorsToAnnotation.get(ctsEditor);
+                                if (a == null) {
+                                    a = new Annotation(ANNOTATION_HIGHLIGHT_TYPE, false, "Selection from tree");
+                                    editorsToAnnotation.put(ctsEditor, a);
+                                } else {
+                                    documentProvider.getAnnotationModel(editorInput).removeAnnotation(a);
+                                }
+                                Position pos = new Position(absoluteOffsetTok, length);
+                                documentProvider.getAnnotationModel(editorInput).addAnnotation(a, pos);
+                                // ((AbstractGrammarBasedEditor)editor).selectAndReveal();
+                            }
 
-		    }
+                        }
+                    }
 		    if (!found) {
 			Annotation a = editorsToAnnotation.get(ctsEditor);
 			if (a != null) {

@@ -275,9 +275,11 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         .navigateOppositePropertyWithBackwardScope(
                 TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property);
         Collection<LexedToken> result = new HashSet<LexedToken>();
-        for (EObject eo : textBlockDocumentingExecutionOfQuery) {
-            if (eo instanceof LexedToken) {
-                result.add((LexedToken) eo);
+        if (textBlockDocumentingExecutionOfQuery != null) {
+            for (EObject eo : textBlockDocumentingExecutionOfQuery) {
+                if (eo instanceof LexedToken) {
+                    result.add((LexedToken) eo);
+                }
             }
         }
         return result;

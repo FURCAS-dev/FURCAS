@@ -2,6 +2,7 @@ package com.sap.furcas.referenceresolving.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;
@@ -135,6 +136,23 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
     public void testChangeAuthorName() {
         johnDoe.eSet(authorClass.getEStructuralFeature("name"), "John Dough");
         assertEquals("Where John Dough wrote it", article.eGet(articleClass.getEStructuralFeature("location")));
+    }
+    
+    /**
+     * Tests that updating an author's name does not trigger the property init through the
+     * impact analysis in case the author hasn't been created using concrete syntax and
+     * therefore no text block exists for the property init's execution.
+     */
+    @Test
+    public void testChangeAuthorNameForAuthorNotCreatedByConcreteSyntax() {
+        EObject newAuthor = authorClass.getEPackage().getEFactoryInstance().create(authorClass);
+        johnDoe.eResource().getContents().add(newAuthor);
+        EObject newAuthorsArticle = articleClass.getEPackage().getEFactoryInstance().create(articleClass);
+        @SuppressWarnings("unchecked")
+        EList<EObject> articleList = (EList<EObject>) newAuthor.eGet(authorClass.getEStructuralFeature("articles"));
+        articleList.add(newAuthorsArticle);
+        newAuthor.eSet(authorClass.getEStructuralFeature("name"), "The New Author");
+        assertNull(newAuthorsArticle.eGet(articleClass.getEStructuralFeature("location")));
     }
     
     @Test

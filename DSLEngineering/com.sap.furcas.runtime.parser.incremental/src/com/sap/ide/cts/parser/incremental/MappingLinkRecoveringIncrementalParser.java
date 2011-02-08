@@ -228,7 +228,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private TextBlockDefinition getTbDef(Template t) {
             Collection<EObject> tbDefs = oppositeEndFinder.
             	navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, t);
-            if (!tbDefs.isEmpty()) {
+            if (tbDefs != null && !tbDefs.isEmpty()) {
                 if (tbDefs.size() == 1) {
                     return (TextBlockDefinition) tbDefs.iterator().next();
                 } else {
