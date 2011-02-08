@@ -19,7 +19,7 @@ syntax Bibtex {
   		id ","
   		"title" "=" "{" title "}" ","  
   		"author" "=" "{" author{as='identifier', separator="and",
-  			 				query="OCL:Bibtex::Author.allInstances()", filter="->select(a|a.name=?)" }
+  			 				lookupScope="OCL:Bibtex::Author.allInstances()", referenceBy="name" }
   			 				"}" 
   		]
   	"}"

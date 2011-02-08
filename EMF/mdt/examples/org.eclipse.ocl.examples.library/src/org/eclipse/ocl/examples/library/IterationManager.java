@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationManager.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: IterationManager.java,v 1.3 2011/01/30 11:07:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -34,16 +34,13 @@ import org.eclipse.ocl.examples.pivot.values.Value;
 public class IterationManager<ACC extends Value>
 {
 	private class ValueIterator
-	{
-		@SuppressWarnings("unused")
+	{		// FIXME Make this a delegating value so that evalEnv can update in place
 		private final VariableDeclaration variable;
-		private final String name;
 		private Iterator<Value> javaIter;
 		private Value value = null;
 
 		public ValueIterator(VariableDeclaration variable) {
 			this.variable = variable;
-			this.name = variable.getName();
 			reset();
 		}
 		
@@ -61,7 +58,8 @@ public class IterationManager<ACC extends Value>
 			}
 			else {
 				value = javaIter.next();
-				restore();
+				evaluationVisitor.getEvaluationEnvironment().replace(variable, value);
+//				System.out.println(name + " = " + value);
 			}
 			return value;
 		}
@@ -70,15 +68,6 @@ public class IterationManager<ACC extends Value>
 			javaIter = collectionValue.iterator();
 			return next();
 		}
-		
-		public void restore() {
-			evaluationVisitor.getEvaluationEnvironment().replace(name, value);
-//			System.out.println(name + " = " + value);
-		}
-
-		public void remove() {
-			evaluationVisitor.getEvaluationEnvironment().remove(name);
-		}
 	}
 	
 	private final int depth;
@@ -86,23 +75,23 @@ public class IterationManager<ACC extends Value>
 	private final CollectionValue collectionValue;
 	private final OclExpression body;
 	private ACC accumulatorValue;
-	private final String accumulatorName;
+	private final VariableDeclaration accumulatorVariable;
 	private final List<Parameter> referredIterators;
 	private final List<ValueIterator> iterators;
 	
 	public IterationManager(EvaluationVisitor evaluationVisitor, LoopExp iteratorExp,
 			CollectionValue collectionValue, ACC accumulatorValue) {
 		this.depth = 0;
-		this.evaluationVisitor = evaluationVisitor;
+		this.evaluationVisitor = evaluationVisitor.createNestedVisitor();
 		this.collectionValue = collectionValue;
 		this.body = iteratorExp.getBody();
 		this.accumulatorValue = accumulatorValue;
 		if (iteratorExp instanceof IterateExp) {
-			this.accumulatorName = ((IterateExp)iteratorExp).getResult().getRepresentedParameter().getName();
-			getEvaluationEnvironment().add(accumulatorName, accumulatorValue);
+			this.accumulatorVariable = ((IterateExp)iteratorExp).getResult().getRepresentedParameter();
+			getEvaluationEnvironment().add(accumulatorVariable, accumulatorValue);
 		}
 		else {
-			this.accumulatorName = null;
+			this.accumulatorVariable = null;
 		}
 		this.referredIterators = iteratorExp.getReferredIteration().getOwnedIterators();
 		this.iterators = new ArrayList<ValueIterator>(referredIterators.size());
@@ -122,7 +111,7 @@ public class IterationManager<ACC extends Value>
 			this.collectionValue = evaluationVisitor.getValueFactory().createSequenceValue(value);
 		}
 		this.accumulatorValue = iterationManager.accumulatorValue;
-		this.accumulatorName = iterationManager.accumulatorName;
+		this.accumulatorVariable = iterationManager.accumulatorVariable;
 		this.referredIterators = iterationManager.referredIterators;
 		this.iterators = new ArrayList<ValueIterator>(referredIterators.size());
 		for (Parameter referredIterator : referredIterators) {
@@ -196,32 +185,18 @@ public class IterationManager<ACC extends Value>
 		return depth == 0;
 	}
 
-	protected void removeIterators() {
-		for (ValueIterator iterator : iterators) {
-			iterator.remove();
-		}
-		if (accumulatorName != null) {
-			getEvaluationEnvironment().remove(accumulatorName);
-		}
-	}
-
+	/**
+	 * Associate a new value with the accumulator.
+	 * <p>
+	 * This is only used by an "iterate" where the accumulator takes on arbitrary
+	 * values. Other iterations have an updating accumulator value.
+	 * 
+	 * @param accumulatorValue
+	 */
 	public void replaceAccumulator(ACC accumulatorValue) {
 		this.accumulatorValue = accumulatorValue;
-		if (accumulatorName != null) {
-			getEvaluationEnvironment().replace(accumulatorName, accumulatorValue);
-		}
-	}
-	
-	/**
-	 * Restores the current values of the specified iterators to the
-	 * current evaluation environment.
-	 * 
-	 * @param iterators the iterators to resume
-	 * @param values the iterator values to restore
-	 */
-	public void restore() {
-		for (ValueIterator iterator : iterators) {
-			iterator.restore();
+		if (accumulatorVariable != null) {
+			getEvaluationEnvironment().replace(accumulatorVariable, accumulatorValue);
 		}
 	}
 

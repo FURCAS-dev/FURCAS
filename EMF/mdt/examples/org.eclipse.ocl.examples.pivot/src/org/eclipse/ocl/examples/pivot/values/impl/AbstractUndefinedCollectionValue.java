@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedCollectionValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: AbstractUndefinedCollectionValue.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -161,6 +161,10 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 
 	public OrderedCollectionValue insertAt(int index, Value object) {
 		return toInvalidValue();
+	}
+
+	public int intSize() {
+		return 0;
 	}
 
 	public CollectionValue intersection(CollectionValue c) {

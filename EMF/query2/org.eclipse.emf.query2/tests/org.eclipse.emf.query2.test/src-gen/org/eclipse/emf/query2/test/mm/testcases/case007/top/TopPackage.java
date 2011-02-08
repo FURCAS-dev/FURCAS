@@ -36,7 +36,7 @@ public interface TopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "top";
+	String eNAME = "top"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface TopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case007/top";
+	String eNS_URI = "http://sap.com/moin/testcases/case007/top"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface TopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case007top";
+	String eNS_PREFIX = "case007top"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

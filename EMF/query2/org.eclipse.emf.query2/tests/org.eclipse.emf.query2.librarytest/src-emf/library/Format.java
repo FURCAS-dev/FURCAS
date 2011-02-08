@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Format.java,v 1.1 2010/12/07 13:18:53 akrsharma Exp $
+ * $Id: Format.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library;
 
@@ -30,7 +30,7 @@ public enum Format implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	HARDCOVER(0, "hardcover", "hardcover"),
+	HARDCOVER(0, "hardcover", "hardcover"),  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Softcover</b></em>' literal object.
@@ -40,7 +40,7 @@ public enum Format implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SOFTCOVER(1, "softcover", "softcover");
+	SOFTCOVER(1, "softcover", "softcover");//$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Hardcover</b></em>' literal value.

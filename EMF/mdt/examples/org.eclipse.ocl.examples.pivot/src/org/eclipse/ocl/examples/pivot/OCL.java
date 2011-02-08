@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCL.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -168,8 +168,8 @@ public class OCL extends OCLBase {
 	 * </p>
 	 */
     @Override
-    public Query createQuery(OclExpression query) {
-    	return new QueryImpl(super.createQuery(query), this);
+    public Query createQuery(ExpressionInOcl specification) {
+    	return new QueryImpl(super.createQuery(specification), this);
     }
     
     /**

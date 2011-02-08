@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -68,6 +68,9 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 	public Object caseEClass(EClass eObject) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
 		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
+		if (pivotElement.getSuperClasses().isEmpty()) {
+			pivotElement.getSuperClasses().add(converter.getTypeManager().getClassifierType());
+		}
 		return null;
 	}
 

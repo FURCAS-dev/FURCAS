@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -63,6 +63,13 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
+
+	public static Ecore2Pivot findAdapter(Resource resource) {
+		if (resource == null) {
+			return null;
+		}
+		return PivotUtil.getAdapter(Ecore2Pivot.class, resource);
+	}
 
 	public static Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
 		if (resource == null) {
@@ -200,6 +207,9 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	}
 
 	public <T extends Element> T getCreated(Class<T> requiredClass, EObject eObject) {
+		if (pivotRoot == null) {
+			getPivotRoot();
+		}
 		Element element = createMap.get(eObject);
 		if (element == null) {
 			return null;
@@ -541,6 +551,6 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	}
 
 	public void setTarget(Notifier newTarget) {
-		assert newTarget == ecoreResource;
+		assert (newTarget == null) || (newTarget == ecoreResource);
 	}
 }

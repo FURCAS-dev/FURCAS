@@ -734,29 +734,29 @@ public class D4Impl extends EObjectImpl implements D4 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (attributeBoolean: ");
+		result.append(" (attributeBoolean: "); //$NON-NLS-1$
 		result.append(attributeBoolean);
-		result.append(", attributeBooleanOptional: ");
+		result.append(", attributeBooleanOptional: "); //$NON-NLS-1$
 		result.append(attributeBooleanOptional);
-		result.append(", attributeDouble: ");
+		result.append(", attributeDouble: "); //$NON-NLS-1$
 		result.append(attributeDouble);
-		result.append(", attributeDoubleOptional: ");
+		result.append(", attributeDoubleOptional: "); //$NON-NLS-1$
 		result.append(attributeDoubleOptional);
-		result.append(", attributeFloat: ");
+		result.append(", attributeFloat: "); //$NON-NLS-1$
 		result.append(attributeFloat);
-		result.append(", attributeFloatOptional: ");
+		result.append(", attributeFloatOptional: "); //$NON-NLS-1$
 		result.append(attributeFloatOptional);
-		result.append(", attributeInteger: ");
+		result.append(", attributeInteger: "); //$NON-NLS-1$
 		result.append(attributeInteger);
-		result.append(", attributeIntegerOptional: ");
+		result.append(", attributeIntegerOptional: "); //$NON-NLS-1$
 		result.append(attributeIntegerOptional);
-		result.append(", attributeLong: ");
+		result.append(", attributeLong: "); //$NON-NLS-1$
 		result.append(attributeLong);
-		result.append(", attributeLongOptional: ");
+		result.append(", attributeLongOptional: "); //$NON-NLS-1$
 		result.append(attributeLongOptional);
-		result.append(", attributeString: ");
+		result.append(", attributeString: "); //$NON-NLS-1$
 		result.append(attributeString);
-		result.append(", attributeStringOptional: ");
+		result.append(", attributeStringOptional: "); //$NON-NLS-1$
 		result.append(attributeStringOptional);
 		result.append(')');
 		return result.toString();

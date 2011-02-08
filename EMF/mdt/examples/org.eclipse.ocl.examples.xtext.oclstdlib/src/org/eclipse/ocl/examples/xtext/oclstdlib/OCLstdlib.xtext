@@ -10,43 +10,32 @@
  * Contributors:
  *     E.D.Willink - initial API and implementation
  *
- * </copyright>
+ * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.6 2010/08/17 18:53:32 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.8 2011/01/30 11:10:09 ewillink Exp $
  */
-grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib hidden(WS, ML_COMMENT, SL_COMMENT)
+grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
+import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
 import "platform:/resource/org.eclipse.ocl.examples.xtext.oclstdlib/model/OCLstdlibCST.ecore"
+import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
-Library returns LibDocumentCS:
-    'library' name=Identifier
-	(imports+=LibImportCS)*
-	'{' (packages+=LibPackageCS)* '}'
+Library returns LibRootPackageCS:
+    ('library' | 'module') name=Name
+	(':' nsPrefix=Identifier '=' nsURI=SINGLE_QUOTED_STRING)?
+	(ownedImport+=ImportCS)*
+	'{' (ownedNestedPackage+=PackageCS
+		| ('precedence' (ownedPrecedence+=PrecedenceCS)+ ';')
+	    | ownedType+=ClassifierCS
+		| ownedAnnotation+=AnnotationElementCS)*
+	'}'
 ;
 
-terminal DOUBLE_QUOTED_STRING:
-	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
-;
-
-terminal SINGLE_QUOTED_STRING :
-	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
-; 
-	
-terminal ID :
-	(('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*)
-| 	("_" SINGLE_QUOTED_STRING)
-;
-
-terminal ML_COMMENT	: '/*' -> '*/';
-terminal SL_COMMENT : '--' !('\n'|'\r')* ('\r'? '\n')?;
-terminal WS			: (' '|'\t'|'\r'|'\n')+;
-
-terminal INT:											// String to allow diverse re-use
-	('0'..'9')+
-;
+terminal ML_SINGLE_QUOTED_STRING	: "/'" -> "'/";
 
 LOWER returns ecore::EInt:
 	INT
@@ -59,109 +48,228 @@ UPPER returns ecore::EInt:
 Identifier:
 	ID
 |	RestrictedKeywords
+|	PrimitiveTypeIdentifier
+|	CollectionTypeIdentifier
+|	EssentialOCLReservedKeyword
 ;
 
 RestrictedKeywords:
 	'conformsTo'
+|	'documentation'
 |	'extends'
 |	'import'
+|	'inv'
 |	'iteration'
+|	'left'
 |	'library'
 |	'operation'
 |	'package'
+|	'post'
+|	'pre'
+|	'precedence'
 |	'property'
+|	'right'
+|	'static'
 |	'super'
 |	'type'
+|	'Tuple'
+;
+
+MetaTypeName:
+	'AnyType'
+|	'BagType'
+|	'Class'
+|	'CollectionType'
+|	'InvalidType'
+|	'OrderedSetType'
+|	'PrimitiveType'
+|	'SelfType'
+|	'SequenceType'
+|	'SetType'
+|	'TupleType'
+|	'VoidType'
 ;
 
 Name:
 	Identifier
 |	DOUBLE_QUOTED_STRING
+|	EssentialOCLReservedKeyword
+|	RestrictedKeywords
+|	MetaTypeName
 ;
 
-LibImportCS returns base::ImportCS :
-	'import' (name=Identifier ':')? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
+AccumulatorCS returns LibAccumulatorCS:
+	name=Identifier ':' ownedType=TypedRefCS
 ;
 
-LibClassCS returns LibClassCS:
-	'type' name=Identifier
-	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
-	 ('conformsTo' conformsTo+=LibTypedRefCS (',' conformsTo+=LibTypedRefCS)*)?
-	'{' (operations+=(LibIterationCS|LibOperationCS) | structuralFeatures+=LibPropertyCS)* '}'
+AnnotationCS returns base::AnnotationCS:
+	'annotation' name=(Identifier|SINGLE_QUOTED_STRING)
+	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
+	(('{' ownedAnnotation+=AnnotationElementCS '}')
+	|';'
+	)
 ;
 
-LibClassifierCS returns base::ClassifierCS:
-	LibClassCS 
+AnnotationElementCS returns base::AnnotationElementCS:
+	AnnotationCS | DocumentationCS
+;
+
+ClassCS returns LibClassCS:
+	'type' name=Name
+	(ownedTemplateSignature=TemplateSignatureCS)?
+	(':' metaTypeName=MetaTypeName)?
+	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
+	'{' (ownedOperation+=OperationCS
+	   | ownedProperty+=LibPropertyCS
+	   | ownedConstraint+=InvCS
+	   | ownedAnnotation+=AnnotationElementCS)* '}'
+;
+
+ClassifierCS returns base::ClassifierCS:
+	ClassCS 
+;
+
+DetailCS returns base::DetailCS:
+	name=(Name|SINGLE_QUOTED_STRING) '=' value+=(SINGLE_QUOTED_STRING|ML_SINGLE_QUOTED_STRING)*
+;
+
+DocumentationCS returns base::DocumentationCS:
+	{base::DocumentationCS} 'documentation' value=SINGLE_QUOTED_STRING?
+	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
+	 ';'
+;
+
+ImportCS returns base::ImportCS :
+	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING]
+;
+
+InvCS returns LibConstraintCS:
+	stereotype='inv' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
 ;
 
 LibIterationCS returns LibIterationCS:
 	'iteration' name=Name
-	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
-	 '(' parameters+=LibParameterCS (',' parameters+=LibParameterCS)* ')'
-	 ':' type=LibTypedRefCS
-	'=>' class=SINGLE_QUOTED_STRING
-//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
-	 ';'
+	(ownedTemplateSignature=TemplateSignatureCS)?
+	'(' ownedIterator+=IteratorCS (',' ownedIterator+=IteratorCS)*
+	(';' ownedAccumulator+=AccumulatorCS (',' ownedAccumulator+=AccumulatorCS)*)?
+	('|' ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)?
+	')'
+	':' ownedType=TypedRefCS
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	(('{' (ownedAnnotation+=AnnotationElementCS
+	     | ownedConstraint+=PostCS
+	     | ownedConstraint+=PreCS)* '}')
+	|';'
+	)
+;
+
+IteratorCS returns LibIteratorCS:
+	name=Identifier ':' ownedType=TypedRefCS
+;
+
+OperationCS returns base::OperationCS:
+	LibIterationCS|LibOperationCS
 ;
 
 LibOperationCS returns LibOperationCS:
-	'operation' name=Name
-	 ('<' typeParameters+=LibTypeParameterCS (',' typeParameters+=LibTypeParameterCS)* '>')?
-	 '(' (parameters+=LibParameterCS (',' parameters+=LibParameterCS)*)? ')'
-	 ':' type=LibTypedRefCS
-	'=>' class=SINGLE_QUOTED_STRING
-//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
-	 ';'
+	(static?='static')? 'operation' name=Name
+	(ownedTemplateSignature=TemplateSignatureCS)?
+	'(' (ownedParameter+=ParameterCS (',' ownedParameter+=ParameterCS)*)? ')'
+	':' ownedType=TypedRefCS
+	('precedence' '=' precedence=[pivot::Precedence|Name])?
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	(('{' (ownedAnnotation+=AnnotationElementCS
+	     | ownedConstraint+=PostCS
+	     | ownedConstraint+=PreCS)* '}')
+	|';'
+	)
 ;
 
-LibPackageCS returns LibPackageCS:
-	'package' name=Identifier '{'
-		(subpackages+=LibPackageCS | classifiers+=LibClassifierCS)*
+PackageCS returns base::PackageCS:
+	'package' name=Name
+	(':' nsPrefix=Identifier '=' nsURI=SINGLE_QUOTED_STRING)?
+	'{'
+		(ownedNestedPackage+=PackageCS
+	   | ownedType+=ClassifierCS
+	   | ownedAnnotation+=AnnotationElementCS)*
 	'}'
 ;
 
-LibParameterCS returns base::ParameterCS:
-	name=Identifier ':' type=LibTypedRefCS
+ParameterCS returns base::ParameterCS:
+	name=Identifier ':' ownedType=TypedRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?
 ;
 
 LibPropertyCS returns LibPropertyCS:
-	'property' name=Name
-	':' type=LibTypedRefCS
-	'=>' class=SINGLE_QUOTED_STRING
-//	'=>' class=[ecore::EJavaClass|DOUBLE_QUOTED_STRING]
-	';'
+	(static?='static')? 'property' name=Name
+	':' ownedType=TypedRefCS
+	('=>' implementation=[types::JvmType|SINGLE_QUOTED_STRING])?
+	(	('{' (ownedAnnotation+=AnnotationElementCS)* '}')
+	|	';'
+	)
 ;
 
-LibQualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	namespace=[base::NamespaceCS|Identifier]
-	('<' typeArguments+=LibTypeRefCS (',' typeArguments+=LibTypeRefCS)* '>')?	
-	'::' element=LibTypedRefCS
+PostCS returns LibConstraintCS:
+	stereotype='post' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
 ;
 
-LibTypeParameterCS returns base::TypeParameterCS:
+PreCS returns LibConstraintCS:
+	stereotype='pre' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
+;
+
+PrecedenceCS returns PrecedenceCS:
+	('left'|rightAssociative?='right') ':' name=Name
+;	
+
+QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
+	namespace=[pivot::Namespace|Name]
+	(ownedTemplateBinding=TemplateBindingCS)?
+	'::' element=TypedRefCS
+;
+
+TemplateBindingCS returns base::TemplateBindingCS:
+	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
+;
+
+TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
+	ownedActualParameter=TypeRefCS	
+;
+
+TemplateSignatureCS returns base::TemplateSignatureCS:
+	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
+;
+
+LibTupleCS returns base::TupleTypeCS:
+	{base::TupleTypeCS} name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
+;
+
+LibTuplePartCS returns base::TuplePartCS:
+	name=Identifier ':' ownedType=TypedRefCS
+;
+
+TypeParameterCS returns base::TypeParameterCS:
 	name=Identifier
-	( ('extends' extends+=LibTypedRefCS ('&&' extends+=LibTypedRefCS)*)
-	| ('super' super=LibTypedRefCS)
+	( ('extends' ownedExtends+=TypedRefCS ('&&' ownedExtends+=TypedRefCS)*)
+	| ('super' ownedSuper=TypedRefCS)
 	)?
 ;
 
-LibTypeRefCS returns base::TypeRefCS:
-	LibTypedRefCS | LibWildcardTypeRefCS
+TypeRefCS returns base::TypeRefCS:
+	TypedRefCS | WildcardTypeRefCS
 ;
 
-LibTypedRefCS returns base::TypedRefCS:
-	LibQualifiedTypeRefCS | LibTypedTypeRefCS
+TypedRefCS returns base::TypedRefCS:
+	LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS
 ;
 
-LibTypedTypeRefCS returns base::TypedTypeRefCS:
-	type=[base::TypeCS|Identifier]
-	('<' typeArguments+=LibTypeRefCS (',' typeArguments+=LibTypeRefCS)* '>')?	
+TypedTypeRefCS returns base::TypedTypeRefCS:
+	type=[pivot::Type|Name]
+	(ownedTemplateBinding=TemplateBindingCS)?
 ;
 
-LibWildcardTypeRefCS returns base::WildcardTypeRefCS:
+WildcardTypeRefCS returns base::WildcardTypeRefCS:
 	{base::WildcardTypeRefCS} '?'
-	( ('extends' extends=LibTypedRefCS)
-	| ('super' super=LibTypedRefCS)
+	( ('extends' extends=TypedRefCS)
+	| ('super' super=TypedRefCS)
 	)?
 ;

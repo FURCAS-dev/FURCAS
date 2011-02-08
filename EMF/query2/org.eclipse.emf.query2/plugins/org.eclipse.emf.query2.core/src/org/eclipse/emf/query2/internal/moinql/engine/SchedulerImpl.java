@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.QueryExecutionException;
 import org.eclipse.emf.query2.internal.fql.SpiFacilityQueryLanguage;
 import org.eclipse.emf.query2.internal.fql.SpiFqlFromTypeCategory;
@@ -60,7 +61,6 @@ import org.eclipse.emf.query2.internal.moinql.ast.VirtualAtomicEntryReference;
 import org.eclipse.emf.query2.internal.moinql.ast.WithEntry;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 
 /**

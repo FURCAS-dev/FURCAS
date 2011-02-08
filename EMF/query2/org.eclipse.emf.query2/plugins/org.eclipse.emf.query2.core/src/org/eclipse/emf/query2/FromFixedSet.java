@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.URI;
 
 /**
  * This type of from-entry is defined per qualified MOF name and allows the
- * provision of a fixed set of model elements by means of their {@link MRI}.
+ * provision of a fixed set of model elements by means of their {@link URI}.
  */
 final public class FromFixedSet extends FromType {
 

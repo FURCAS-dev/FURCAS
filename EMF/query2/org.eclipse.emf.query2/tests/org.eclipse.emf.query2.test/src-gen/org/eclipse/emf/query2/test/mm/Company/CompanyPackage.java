@@ -39,7 +39,7 @@ public interface CompanyPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "Company";
+	String eNAME = "Company"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -47,7 +47,7 @@ public interface CompanyPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/Company";
+	String eNS_URI = "http://sap.com/moin/Company"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -55,7 +55,7 @@ public interface CompanyPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "company";
+	String eNS_PREFIX = "company"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

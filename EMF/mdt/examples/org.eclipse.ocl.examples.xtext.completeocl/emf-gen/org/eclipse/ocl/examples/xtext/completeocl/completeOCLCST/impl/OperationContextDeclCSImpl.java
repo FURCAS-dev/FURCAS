@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCSImpl.java,v 1.5 2010/05/24 08:58:29 ewillink Exp $
+ * $Id: OperationContextDeclCSImpl.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -26,14 +26,15 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
@@ -152,7 +153,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	public NotificationChain basicSetOperation(OperationRefCS newOperation, NotificationChain msgs) {
 		OperationRefCS oldOperation = operation;
 		operation = newOperation;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, oldOperation, newOperation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -165,7 +167,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 */
 	public void setOperation(OperationRefCS newOperation) {
-		if (newOperation != operation) {
+		if (newOperation != operation)
+		{
 			NotificationChain msgs = null;
 			if (operation != null)
 				msgs = ((InternalEObject)operation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION, null, msgs);
@@ -184,7 +187,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 */
 	public EList<VariableCS> getParameters() {
-		if (parameters == null) {
+		if (parameters == null)
+		{
 			parameters = new EObjectContainmentEList<VariableCS>(VariableCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS);
 		}
 		return parameters;
@@ -198,8 +202,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	public VariableCS getResult() {
 		if (result == null) {
 			VariableCS resultVariable = EssentialOCLCSTFactory.eINSTANCE.createVariableCS();
-			resultVariable.setName("result");
-			resultVariable.setType(getType());
+			resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
+// FIXME			resultVariable.setType(getType());
 			setResult(resultVariable);
 		}
 		return result;
@@ -210,10 +214,12 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetResult(VariableCS newResult, NotificationChain msgs) {
+	public NotificationChain basicSetResult(VariableCS newResult, NotificationChain msgs)
+	{
 		VariableCS oldResult = result;
 		result = newResult;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, oldResult, newResult);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -225,8 +231,10 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setResult(VariableCS newResult) {
-		if (newResult != result) {
+	public void setResult(VariableCS newResult)
+	{
+		if (newResult != result)
+		{
 			NotificationChain msgs = null;
 			if (result != null)
 				msgs = ((InternalEObject)result).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__RESULT, null, msgs);
@@ -245,7 +253,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 */
 	public EList<PreCS> getPres() {
-		if (pres == null) {
+		if (pres == null)
+		{
 			pres = new EObjectContainmentEList<PreCS>(PreCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PRES);
 		}
 		return pres;
@@ -257,7 +266,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 */
 	public EList<PostCS> getPosts() {
-		if (posts == null) {
+		if (posts == null)
+		{
 			posts = new EObjectContainmentEList<PostCS>(PostCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__POSTS);
 		}
 		return posts;
@@ -269,7 +279,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 * @generated
 	 */
 	public EList<BodyCS> getBodies() {
-		if (bodies == null) {
+		if (bodies == null)
+		{
 			bodies = new EObjectContainmentEList<BodyCS>(BodyCS.class, this, CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__BODIES);
 		}
 		return bodies;
@@ -282,7 +293,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
 				return basicSetOperation(null, msgs);
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
@@ -306,7 +318,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
 				return getOperation();
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
@@ -331,7 +344,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
 				setOperation((OperationRefCS)newValue);
 				return;
@@ -365,7 +379,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
 				setOperation((OperationRefCS)null);
 				return;
@@ -395,7 +410,8 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__OPERATION:
 				return operation != null;
 			case CompleteOCLCSTPackage.OPERATION_CONTEXT_DECL_CS__PARAMETERS:
@@ -412,8 +428,9 @@ public class OperationContextDeclCSImpl extends FeatureContextDeclCSImpl impleme
 		return super.eIsSet(featureID);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void getSignature(Signature signature, TypeBindingsCS typeBindings) {
-		signature.appendElement(getOperation(), typeBindings);
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitOperationContextDeclCS(this);
 	}
 } //OperationContextDeclCSImpl

@@ -29,12 +29,12 @@ import org.eclipse.emf.query2.test.setup.TestClient;
 @SuppressWarnings("nls")
 public class ModelDataInstantiator {
 
-	private static final String PART_PREFIX = "generatedMM_instances";
+	private static final String PART_PREFIX = "generatedMM_instances"; //$NON-NLS-1$
 
 	// by definition the 5th attribute has an emptyString value
 	private static final int EMPTY_STRING_ATTR_NUM = 5;
 
-	static public String partitionNameAppendix = ".xmi";
+	static public String partitionNameAppendix = ".xmi"; //$NON-NLS-1$
 
 	private TestClient testClient;
 
@@ -154,15 +154,15 @@ public class ModelDataInstantiator {
 				 * (which itself is invoked by Java Reflection)
 				 */
 
-				tmpClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + testClassNr);
+				tmpClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + testClassNr); //$NON-NLS-1$
 				tmpElements[testClassNr][instNr] = GeneratedmetamodelFactory.eINSTANCE.create(tmpClass);
 				className = calculateClassName(testClassNr, instNr, false);
-				((EObject) tmpElements[testClassNr][instNr]).eSet(tmpClass.getEStructuralFeature("name"), className);
+				((EObject) tmpElements[testClassNr][instNr]).eSet(tmpClass.getEStructuralFeature("name"), className); //$NON-NLS-1$
 
-				tmpSubClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelSubClass" + testClassNr);
+				tmpSubClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelSubClass" + testClassNr); //$NON-NLS-1$
 				tmpSubElements[testClassNr][instNr] = GeneratedmetamodelFactory.eINSTANCE.create(tmpSubClass);
 				className = calculateClassName(testClassNr, instNr, true);
-				((EObject) tmpSubElements[testClassNr][instNr]).eSet(tmpSubClass.getEStructuralFeature("name"), className);
+				((EObject) tmpSubElements[testClassNr][instNr]).eSet(tmpSubClass.getEStructuralFeature("name"), className); //$NON-NLS-1$
 
 				/*
 				 * set attribute values
@@ -174,14 +174,14 @@ public class ModelDataInstantiator {
 					dblAttr = calculateDoubleAttr(testClassNr, instNr, attrNr);
 					stringAttr = calculateStringAttr(testClassNr, instNr, attrNr, false);
 
-					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke(
+					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke( //$NON-NLS-1$
 							tmpElements[testClassNr][instNr], intAttr);
-					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke(
+					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke( //$NON-NLS-1$
 							tmpElements[testClassNr][instNr], dblAttr);
-					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke(
+					tmpElements[testClassNr][instNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke( //$NON-NLS-1$
 							tmpElements[testClassNr][instNr], stringAttr);
 
-					stringAttrMV = (Collection) tmpElements[testClassNr][instNr].getClass().getMethod("getAttrStringMultiValued" + attrNr,
+					stringAttrMV = (Collection) tmpElements[testClassNr][instNr].getClass().getMethod("getAttrStringMultiValued" + attrNr, //$NON-NLS-1$
 							(Class[]) null).invoke(tmpElements[testClassNr][instNr], (Object[]) null);
 
 					/*
@@ -198,11 +198,11 @@ public class ModelDataInstantiator {
 
 					stringAttr = calculateStringAttr(testClassNr, instNr, attrNr, true);
 
-					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke(
+					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke( //$NON-NLS-1$
 							tmpSubElements[testClassNr][instNr], intAttr);
-					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke(
+					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke( //$NON-NLS-1$
 							tmpSubElements[testClassNr][instNr], dblAttr);
-					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke(
+					tmpSubElements[testClassNr][instNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke( //$NON-NLS-1$
 							tmpSubElements[testClassNr][instNr], stringAttr);
 				}
 
@@ -212,7 +212,7 @@ public class ModelDataInstantiator {
 
 				Object[] structFields = new Object[2];
 				structFields[0] = testClassNr;
-				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValueField3structValue";
+				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValueField3structValue";   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 
 				structAttrInStructAttr = gpackage1.createStructInStructTp();
 				structAttrInStructAttr.setField1((Integer) structFields[0]);
@@ -221,7 +221,7 @@ public class ModelDataInstantiator {
 				structFields = new Object[3];
 
 				structFields[0] = testClassNr;
-				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValue";
+				structFields[1] = "ModelClass" + testClassNr + "Inst" + instNr + "structValue"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				structFields[2] = structAttrInStructAttr;
 
 				structAttr = gpackage1.createStructTp();
@@ -229,7 +229,7 @@ public class ModelDataInstantiator {
 				structAttr.setField2((String) structFields[1]);
 				structAttr.setField3((StructInStructTp) structFields[2]);
 
-				tmpElements[testClassNr][instNr].getClass().getMethod("setAttrStruct", new Class[] { StructTp.class }).invoke(
+				tmpElements[testClassNr][instNr].getClass().getMethod("setAttrStruct", new Class[] { StructTp.class }).invoke( //$NON-NLS-1$
 						tmpElements[testClassNr][instNr], structAttr);
 
 				/*
@@ -238,7 +238,7 @@ public class ModelDataInstantiator {
 
 				enumAttr = EnumTp.LABEL1;
 
-				tmpElements[testClassNr][instNr].getClass().getMethod("setAttrEnum", new Class[] { EnumTp.class }).invoke(
+				tmpElements[testClassNr][instNr].getClass().getMethod("setAttrEnum", new Class[] { EnumTp.class }).invoke( //$NON-NLS-1$
 						tmpElements[testClassNr][instNr], enumAttr);
 
 				/*
@@ -248,14 +248,14 @@ public class ModelDataInstantiator {
 					// we put all object values as instances of TestClass0
 					int ovaNr = 0;
 
-					tmpObjValClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + ovaNr);
+					tmpObjValClass = (EClass) GeneratedmetamodelPackage.eINSTANCE.getEClassifier("ModelClass" + ovaNr); //$NON-NLS-1$
 					// create object value
 					tmpObjValAttribute[testClassNr][instNr][ovaNr] = gpackage1.create(tmpObjValClass);
 					// calculate object valued attribute name for current class
 					className = calculateObjectValuedAttrName(testClassNr, instNr, ovaNr, false);
 					// assign object value to attribute
 					((EObject) tmpObjValAttribute[testClassNr][instNr][ovaNr])
-							.eSet(tmpObjValClass.getEStructuralFeature("name"), className);
+							.eSet(tmpObjValClass.getEStructuralFeature("name"), className); //$NON-NLS-1$
 
 					/*
 					 * create attribute values object-valued attributes
@@ -264,17 +264,17 @@ public class ModelDataInstantiator {
 					for (int attrNr = 0; attrNr < this.attrSize; attrNr++) {
 						intAttr = calculateIntAttr(testClassNr, instNr, attrNr);
 						dblAttr = calculateDoubleAttr(testClassNr, instNr, attrNr);
-						stringAttr = className + "strValue" + attrNr;
+						stringAttr = className + "strValue" + attrNr; //$NON-NLS-1$
 
-						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke(
+						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrInt" + attrNr, intClass).invoke( //$NON-NLS-1$
 								tmpObjValAttribute[testClassNr][instNr][ovaNr], intAttr);
-						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke(
+						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrDouble" + attrNr, doubleClass).invoke( //$NON-NLS-1$
 								tmpObjValAttribute[testClassNr][instNr][ovaNr], dblAttr);
-						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke(
+						tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod("setAttrString" + attrNr, stringClass).invoke( //$NON-NLS-1$
 								tmpObjValAttribute[testClassNr][instNr][ovaNr], stringAttr);
 
 						stringAttrMV = (Collection) tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getMethod(
-								"getAttrStringMultiValued" + attrNr, (Class[]) null).invoke(tmpObjValAttribute[testClassNr][instNr][ovaNr],
+								"getAttrStringMultiValued" + attrNr, (Class[]) null).invoke(tmpObjValAttribute[testClassNr][instNr][ovaNr], //$NON-NLS-1$
 								(Object[]) null);
 
 						/*
@@ -282,11 +282,11 @@ public class ModelDataInstantiator {
 						 */
 
 						for (int in = 0; in < 10; in++) {
-							stringAttrMV.add(className + "strMultiValued" + attrNr + "Value" + in);
+							stringAttrMV.add(className + "strMultiValued" + attrNr + "Value" + in); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 					}
 
-					tmpElements[testClassNr][instNr].getClass().getInterfaces()[0].getMethod("setAttrObjectValued" + (ovaNr),
+					tmpElements[testClassNr][instNr].getClass().getInterfaces()[0].getMethod("setAttrObjectValued" + (ovaNr), //$NON-NLS-1$
 							tmpObjValAttribute[testClassNr][instNr][ovaNr].getClass().getInterfaces()[0]).invoke(
 							tmpElements[testClassNr][instNr], tmpObjValAttribute[testClassNr][instNr][ovaNr]);
 				}
@@ -317,7 +317,7 @@ public class ModelDataInstantiator {
 						EObject o1 = (EObject) tmpElements[testClassNrA][instNr];
 						EObject o2 = (EObject) tmpElements[testClassNrB][instNr];
 
-						String featureName = "reference" + testClassNrA + "x" + testClassNrB;
+						String featureName = "reference" + testClassNrA + "x" + testClassNrB;  //$NON-NLS-1$//$NON-NLS-2$
 						EList feature = (EList) o1.eGet(o1.eClass().getEStructuralFeature(featureName));
 						feature.add(tmpElements[testClassNrB][instNr]);
 						feature.add(tmpSubElements[testClassNrB][instNr]);
@@ -337,7 +337,7 @@ public class ModelDataInstantiator {
 				EObject o1 = (EObject) tmpElements[testClassNrA][0];
 				EObject o2 = (EObject) tmpElements[testClassNrA][instNr];
 
-				String featureName = "reference" + testClassNrA + "xRefElement";
+				String featureName = "reference" + testClassNrA + "xRefElement";  //$NON-NLS-1$//$NON-NLS-2$
 				EList feature = (EList) o1.eGet(o1.eClass().getEStructuralFeature(featureName));
 				feature.add(o2);
 
@@ -397,7 +397,7 @@ public class ModelDataInstantiator {
 
 	static public String calculateClassName(int testClassNr, int instNr, boolean subClass) {
 
-		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr;     //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$//$NON-NLS-5$
 	}
 
 	static public int calculateIntAttr(int testClassNr, int instNr, int attrNr) {
@@ -413,19 +413,19 @@ public class ModelDataInstantiator {
 	static public String calculateStringAttr(int testClassNr, int instNr, int attrNr, boolean subClass) {
 
 		if (attrNr == EMPTY_STRING_ATTR_NUM) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
-		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strValue" + attrNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strValue" + attrNr; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 	}
 
 	static public String calculateMultiValuedStringAttr(int testClassNr, int instNr, int attrNr, int valueNr, boolean subClass) {
 
-		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strMultiValued" + attrNr + "Value" + valueNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "strMultiValued" + attrNr + "Value" + valueNr;      //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$//$NON-NLS-4$//$NON-NLS-5$//$NON-NLS-6$ //$NON-NLS-7$
 	}
 
 	static public String calculateObjectValuedAttrName(int testClassNr, int instNr, int attrNr, boolean subClass) {
 
-		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "attrObjValued" + attrNr;
+		return "Model" + (subClass ? "Sub" : "") + "Class" + testClassNr + "Inst" + instNr + "attrObjValued" + attrNr; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$
 	}
 
 	static public int calculatePartitionForClassNr(int testClassNr, int _partSize) {

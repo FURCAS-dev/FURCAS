@@ -59,6 +59,10 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         this.selfKind = selfKind;
         this.contextTag = contextTag;
     }
+    
+    protected SelfKind getSelfKind() {
+        return selfKind;
+    }
 
     /**
      * This default implementation re-evaluates the {@link #triggerExpression} on each element reported as affected and
@@ -152,6 +156,8 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
             throw new RuntimeException("Unknown self kind: "+selfKind);
         }
     }
+    
+    
 
     private Set<EObject> getElementToUpdateFromForeachElement(EObject self) throws ParserException {
         Set<EObject> result = new HashSet<EObject>();
@@ -209,39 +215,59 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      */
     private Set<EObject> getElementsToUpdateFromContextElement(EObject contextElement) {
         Set<EObject> result = new HashSet<EObject>();
+        Set<TextBlock> textBlocks = getTextBlocksInWhichSequenceElementWasExecuted(contextElement, true);
+        for (TextBlock tb : textBlocks) {
+            result.add(tb.getCorrespondingModelElements().get(0));
+        }
+        return result;
+    }
+
+    /**
+     * We know the {@link #getSequenceElement() sequence element} in which the OCL expression was used that contains the
+     * <code>#context</code> sub-expression. We also know the <code>contextElement</code> and from it can determine the
+     * {@link TextBlock} that documents the creation of the context element. From {@link #contextTag} we know if/which
+     * context tag was used. We need to find a path of text blocks to a text block documenting the execution of the
+     * template containing the {@link #getSequenceElement() sequence element} containing the OCL expression.
+     * 
+     * @param context
+     *            pass <code>true</code> if <code>element</code> is not the element produced by the template in which
+     *            the property is to update but if <code>#context</code> was used in the OCL expression, thus referring
+     *            to the element produced by the next-outer {@link ContextTemplate}.
+     */
+    protected Set<TextBlock> getTextBlocksInWhichSequenceElementWasExecuted(EObject element, boolean context) {
+        Set<TextBlock> textBlocks = new HashSet<TextBlock>();
         Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
         .navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), contextElement);
+                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
         for (EObject eo : textBlockDocumentingCreationOfContextElement) {
             if (eo instanceof TextBlock) {
                 TextBlock textBlock = (TextBlock) eo;
                 Template template = textBlock.getType().getParseRule();
-                if (template instanceof ContextTemplate) {
-                    ContextTemplate contextTemplate = (ContextTemplate) template;
-                    if (contextTemplate.getContextTags() != null
-                            && contextTemplate.getContextTags().getTags().contains(contextTag)) {
-                        // the contextTemplate has the expected tag (e.g., "context(X)" if the
-                        // usage was "#context(X)")
-                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression =
-                            getSubordinateTextBlocksLeadingTo(textBlock, getSequenceElement().getParentTemplate());
-                        for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
-                            // add the first element from correspondingModelElements because that's the one
-                            // actually immediately created by the template holding the sequence element with
-                            // the OCL expression
-                            if (!tb.getCorrespondingModelElements().isEmpty()
-                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
-                                            tb.getParentAltChoices(), getSequenceElement())) {
-                                result.add(tb.getCorrespondingModelElements().get(0));
-                            }
+                if (!context
+                        || (template instanceof ContextTemplate
+                                && ((ContextTemplate) template).getContextTags() != null && ((ContextTemplate) template)
+                                .getContextTags().getTags().contains(contextTag))) {
+                    // either no #context was used, or the contextTemplate has the expected tag (e.g., "context(X)" if the
+                    // usage was "#context(X)")
+                    Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression =
+                        getSubordinateTextBlocksLeadingTo(textBlock, getSequenceElement().getParentTemplate());
+                    for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
+                        // add the first element from correspondingModelElements because that's the one
+                        // actually immediately created by the template holding the sequence element with
+                        // the OCL expression
+                        if (!tb.getCorrespondingModelElements().isEmpty()
+                                && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
+                                        tb.getParentAltChoices(), getSequenceElement())) {
+                            textBlocks.add(tb);
                         }
                     }
                 }
             }
         }
-        return result;
+        return textBlocks;
     }
 
-    private Set<TextBlock> getSubordinateTextBlocksLeadingTo(TextBlock textBlock, Template templateHoldingSequenceElement) {
+    protected Set<TextBlock> getSubordinateTextBlocksLeadingTo(TextBlock textBlock, Template templateHoldingSequenceElement) {
         if (textBlock.getType().getParseRule() == templateHoldingSequenceElement) {
             return Collections.singleton(textBlock);
         } else {
@@ -266,7 +292,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * {@link #getContextElement() context element} is used; otherwise the
      * {@link #getModelElement()} call is used.
      */
-    protected static SelfKind getSelfKind(String oclExpression) {
+    protected static SelfKind determineSelfKind(String oclExpression) {
         if (ContextAndForeachHelper.usesContext(oclExpression)) {
             return SelfKind.CONTEXT;
         } else if (ContextAndForeachHelper.usesForeach(oclExpression)) {

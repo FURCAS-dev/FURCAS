@@ -249,6 +249,7 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
 	@Override
 	public void registerPackages(ResourceSet resourceSet) {
     super.registerPackages(resourceSet);
+    resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
     resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.EcorePackage.eINSTANCE);
     // TODO If you need additional package registrations, do them here. The following line is an example for UML.
     // resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);

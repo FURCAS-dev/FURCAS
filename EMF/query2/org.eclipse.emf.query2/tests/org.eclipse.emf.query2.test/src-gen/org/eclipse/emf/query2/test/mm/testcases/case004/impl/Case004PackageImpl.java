@@ -1204,80 +1204,80 @@ public class Case004PackageImpl extends EPackageImpl implements Case004Package {
 		f4SubEClass.getESuperTypes().add(this.getF4());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, "A4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getA4_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_OnePrimitiveOptional(), ecorePackage.getEString(), "onePrimitiveOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_OnePrimitiveNotChangeable(), ecorePackage.getEString(), "onePrimitiveNotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitive(), ecorePackage.getEString(), "manyPrimitive", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveDouble(), ecorePackage.getEDouble(), "manyPrimitiveDouble", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveUnique(), ecorePackage.getEString(), "manyPrimitiveUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveOptional(), ecorePackage.getEString(), "manyPrimitiveOptional", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveNotChangeable(), ecorePackage.getEString(), "manyPrimitiveNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveOrdered(), ecorePackage.getEString(), "manyPrimitiveOrdered", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveOrderedUnique(), ecorePackage.getEString(), "manyPrimitiveOrderedUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getA4_ManyPrimitiveOrderedNotChangeable(), ecorePackage.getEString(), "manyPrimitiveOrderedNotChangeable", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getA4_OneBChangeable(), this.getB4(), null, "oneBChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_OneBNotChangeable(), this.getB4(), null, "oneBNotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_OneBOptional(), this.getB4(), null, "oneBOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_ManyBs(), this.getB4(), null, "manyBs", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_ManyBsUnique(), this.getB4(), null, "manyBsUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_ManyBsNotUnique(), this.getB4(), null, "manyBsNotUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_ManyBsOrdered(), this.getB4(), null, "manyBsOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getA4_ManyBsOrderedUnique(), this.getB4(), null, "manyBsOrderedUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getA4_ManyBsNotOrdered(), this.getB4(), null, "manyBsNotOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA4_ManyBsNotChangeable(), this.getB4(), null, "manyBsNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, "A4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getA4_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_OnePrimitiveOptional(), ecorePackage.getEString(), "onePrimitiveOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_OnePrimitiveNotChangeable(), ecorePackage.getEString(), "onePrimitiveNotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitive(), ecorePackage.getEString(), "manyPrimitive", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveDouble(), ecorePackage.getEDouble(), "manyPrimitiveDouble", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveUnique(), ecorePackage.getEString(), "manyPrimitiveUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveOptional(), ecorePackage.getEString(), "manyPrimitiveOptional", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveNotChangeable(), ecorePackage.getEString(), "manyPrimitiveNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveOrdered(), ecorePackage.getEString(), "manyPrimitiveOrdered", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveOrderedUnique(), ecorePackage.getEString(), "manyPrimitiveOrderedUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA4_ManyPrimitiveOrderedNotChangeable(), ecorePackage.getEString(), "manyPrimitiveOrderedNotChangeable", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_OneBChangeable(), this.getB4(), null, "oneBChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_OneBNotChangeable(), this.getB4(), null, "oneBNotChangeable", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_OneBOptional(), this.getB4(), null, "oneBOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBs(), this.getB4(), null, "manyBs", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsUnique(), this.getB4(), null, "manyBsUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsNotUnique(), this.getB4(), null, "manyBsNotUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsOrdered(), this.getB4(), null, "manyBsOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsOrderedUnique(), this.getB4(), null, "manyBsOrderedUnique", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsNotOrdered(), this.getB4(), null, "manyBsNotOrdered", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA4_ManyBsNotChangeable(), this.getB4(), null, "manyBsNotChangeable", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case004.A4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b4HasConstantEClass, B4HasConstant.class, "B4HasConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b4HasConstantEClass, B4HasConstant.class, "B4HasConstant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(c4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, "C4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getC4_Primitive(), ecorePackage.getEString(), "primitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getC4_Complex(), this.getB4(), null, "complex", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(c4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, "C4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getC4_Primitive(), ecorePackage.getEString(), "primitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getC4_Complex(), this.getB4(), null, "complex", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.C4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(d4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, "D4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getD4_AttributeBoolean(), ecorePackage.getEBoolean(), "attributeBoolean", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeBooleanOptional(), ecorePackage.getEBooleanObject(), "attributeBooleanOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeDouble(), ecorePackage.getEDouble(), "attributeDouble", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeDoubleOptional(), ecorePackage.getEDoubleObject(), "attributeDoubleOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeFloat(), ecorePackage.getEFloat(), "attributeFloat", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeFloatOptional(), ecorePackage.getEFloatObject(), "attributeFloatOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeInteger(), ecorePackage.getEInt(), "attributeInteger", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeIntegerOptional(), ecorePackage.getEIntegerObject(), "attributeIntegerOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeLong(), ecorePackage.getELong(), "attributeLong", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeLongOptional(), ecorePackage.getELongObject(), "attributeLongOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeString(), ecorePackage.getEString(), "attributeString", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getD4_AttributeStringOptional(), ecorePackage.getEString(), "attributeStringOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(d4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, "D4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeBoolean(), ecorePackage.getEBoolean(), "attributeBoolean", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeBooleanOptional(), ecorePackage.getEBooleanObject(), "attributeBooleanOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeDouble(), ecorePackage.getEDouble(), "attributeDouble", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeDoubleOptional(), ecorePackage.getEDoubleObject(), "attributeDoubleOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeFloat(), ecorePackage.getEFloat(), "attributeFloat", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeFloatOptional(), ecorePackage.getEFloatObject(), "attributeFloatOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeInteger(), ecorePackage.getEInt(), "attributeInteger", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeIntegerOptional(), ecorePackage.getEIntegerObject(), "attributeIntegerOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeLong(), ecorePackage.getELong(), "attributeLong", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeLongOptional(), ecorePackage.getELongObject(), "attributeLongOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeString(), ecorePackage.getEString(), "attributeString", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getD4_AttributeStringOptional(), ecorePackage.getEString(), "attributeStringOptional", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case004.D4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.B4.class, "B4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB4_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.B4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.B4.class, "B4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB4_OnePrimitive(), ecorePackage.getEString(), "onePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.B4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(f4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, "F4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getF4_OneC(), this.getC4(), null, "oneC", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getF4_ManyCs(), this.getC4(), null, "manyCs", null, 0, 6, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getF4_ManyCsOrdered(), this.getC4(), null, "manyCsOrdered", null, 2, 6, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(f4EClass, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, "F4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getF4_OneC(), this.getC4(), null, "oneC", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getF4_ManyCs(), this.getC4(), null, "manyCs", null, 0, 6, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getF4_ManyCsOrdered(), this.getC4(), null, "manyCsOrdered", null, 2, 6, org.eclipse.emf.query2.test.mm.testcases.case004.F4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(a4SubEClass, A4Sub.class, "A4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a4SubEClass, A4Sub.class, "A4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(d4SubEClass, D4Sub.class, "D4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(d4SubEClass, D4Sub.class, "D4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(c4SubEClass, C4Sub.class, "C4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(c4SubEClass, C4Sub.class, "C4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(f4SubEClass, F4Sub.class, "F4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(f4SubEClass, F4Sub.class, "F4Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(hasCsEClass, hasCs.class, "hasCs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(gethasCs_F(), this.getF4(), null, "f", null, 1, 1, hasCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(gethasCs_C(), this.getC4(), null, "c", null, 1, -1, hasCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(hasCsEClass, hasCs.class, "hasCs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(gethasCs_F(), this.getF4(), null, "f", null, 1, 1, hasCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(gethasCs_C(), this.getC4(), null, "c", null, 1, -1, hasCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(composesCsEClass, composesCs.class, "composesCs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getcomposesCs_MyF(), this.getF4(), null, "myF", null, 1, 1, composesCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getcomposesCs_MyCs(), this.getC4(), null, "myCs", null, 1, -1, composesCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(composesCsEClass, composesCs.class, "composesCs", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getcomposesCs_MyF(), this.getF4(), null, "myF", null, 1, 1, composesCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getcomposesCs_MyCs(), this.getC4(), null, "myCs", null, 1, -1, composesCs.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(composesBEClass, composesB.class, "composesB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getcomposesB_MyB(), this.getB4(), null, "myB", null, 1, 1, composesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getcomposesB_MyF(), this.getF4(), null, "myF", null, 1, 1, composesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(composesBEClass, composesB.class, "composesB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getcomposesB_MyB(), this.getB4(), null, "myB", null, 1, 1, composesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getcomposesB_MyF(), this.getF4(), null, "myF", null, 1, 1, composesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(composesCsOrderedEClass, composesCsOrdered.class, "composesCsOrdered", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getcomposesCsOrdered_MyF(), this.getF4(), null, "myF", null, 1, 1, composesCsOrdered.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getcomposesCsOrdered_MyCsOrdered(), this.getC4(), null, "myCsOrdered", null, 1, -1, composesCsOrdered.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(composesCsOrderedEClass, composesCsOrdered.class, "composesCsOrdered", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getcomposesCsOrdered_MyF(), this.getF4(), null, "myF", null, 1, 1, composesCsOrdered.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getcomposesCsOrdered_MyCsOrdered(), this.getC4(), null, "myCsOrdered", null, 1, -1, composesCsOrdered.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1294,282 +1294,282 @@ public class Case004PackageImpl extends EPackageImpl implements Case004Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a4EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.A4",
-			 "metaObjectMofId", "45F120A5BFE73C9EE91342E2330BAC6ECFF5FD7B",
-			 "isStructureType", "false",
-			 "ova", "oneBChangeable,oneBNotChangeable,oneBOptional,manyBs,manyBsUnique,manyBsNotUnique,manyBsOrdered,manyBsOrderedUnique,manyBsNotOrdered,manyBsNotChangeable"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.A4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5BFE73C9EE91342E2330BAC6ECFF5FD7B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "oneBChangeable,oneBNotChangeable,oneBOptional,manyBs,manyBsUnique,manyBsNotUnique,manyBsOrdered,manyBsOrderedUnique,manyBsNotOrdered,manyBsNotChangeable" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_OneBChangeable(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A59E053A7CCB9140B33D738C63376B7BDB"
+			 "ovaMofId", "45F120A59E053A7CCB9140B33D738C63376B7BDB" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_OneBNotChangeable(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A5EB2E83B38E4644363B9CAE099F6033F7"
+			 "ovaMofId", "45F120A5EB2E83B38E4644363B9CAE099F6033F7" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_OneBOptional(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A551FC35AC82334CAF1519B5ED9DDD2096"
+			 "ovaMofId", "45F120A551FC35AC82334CAF1519B5ED9DDD2096" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBs(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A57DA8BB49CF5B47983FA1A45F5E91D2DE"
+			 "ovaMofId", "45F120A57DA8BB49CF5B47983FA1A45F5E91D2DE" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsUnique(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A565D45E9A88DD4BA315E19173DF06DF60"
+			 "ovaMofId", "45F120A565D45E9A88DD4BA315E19173DF06DF60" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsNotUnique(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A5693C70876E9E495D119EF9800F569335"
+			 "ovaMofId", "45F120A5693C70876E9E495D119EF9800F569335" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsOrdered(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A543274D5F28604E88142CF00FFE5DBC62"
+			 "ovaMofId", "45F120A543274D5F28604E88142CF00FFE5DBC62" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsOrderedUnique(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48074A15595702700C7E11DDA61E001558C93B47"
+			 "ovaMofId", "48074A15595702700C7E11DDA61E001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsNotOrdered(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A5227DAD86E98C4A3F2D48AD7E8D700E98"
+			 "ovaMofId", "45F120A5227DAD86E98C4A3F2D48AD7E8D700E98" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA4_ManyBsNotChangeable(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A51D4A8A489392435B217AD4287C995D41"
+			 "ovaMofId", "45F120A51D4A8A489392435B217AD4287C995D41" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b4HasConstantEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.B4HasConstant",
-			 "metaObjectMofId", "45F120A5ECBF600F9C974CE028E99F7E71D897B9",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.B4HasConstant", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5ECBF600F9C974CE028E99F7E71D897B9", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c4EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.C4",
-			 "metaObjectMofId", "45F120A5D3165AD162A141EB0547FC4EA865B99D",
-			 "isStructureType", "false",
-			 "ova", "complex"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.C4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5D3165AD162A141EB0547FC4EA865B99D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "complex" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC4_Complex(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4761229E3CA757E0A97511DCBB6F001558C93B47"
+			 "ovaMofId", "4761229E3CA757E0A97511DCBB6F001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (d4EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.D4",
-			 "metaObjectMofId", "45F120A51C4DF4D33B9E466C1A02AC4DB4284CCF",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.D4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51C4DF4D33B9E466C1A02AC4DB4284CCF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b4EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.B4",
-			 "metaObjectMofId", "45F120A5CE8778345E6E45142026DF2289212782",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.B4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5CE8778345E6E45142026DF2289212782", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (f4EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.F4",
-			 "metaObjectMofId", "45F120A57E4CF493F2554D201E5B9259CB1A21D7",
-			 "isStructureType", "false",
-			 "ova", "oneC,manyCs,manyCsOrdered"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.F4", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A57E4CF493F2554D201E5B9259CB1A21D7", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "oneC,manyCs,manyCsOrdered" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getF4_OneC(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A51A63D23BE4E54B8621B9EEB51955EEB3"
+			 "ovaMofId", "45F120A51A63D23BE4E54B8621B9EEB51955EEB3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getF4_ManyCs(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A538562EABE12843AB3230C31F8795F1E7"
+			 "ovaMofId", "45F120A538562EABE12843AB3230C31F8795F1E7" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getF4_ManyCsOrdered(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F574532E5DE60511534D7226BCA43F235EFDF9"
+			 "ovaMofId", "45F574532E5DE60511534D7226BCA43F235EFDF9" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a4SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.A4Sub",
-			 "metaObjectMofId", "48DBA8AC5C55CFB08B1311DDAB760019992F8D38",
-			 "isStructureType", "false",
-			 "ova", "oneBChangeable,oneBNotChangeable,oneBOptional,manyBs,manyBsUnique,manyBsNotUnique,manyBsOrdered,manyBsOrderedUnique,manyBsNotOrdered,manyBsNotChangeable"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.A4Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DBA8AC5C55CFB08B1311DDAB760019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "oneBChangeable,oneBNotChangeable,oneBOptional,manyBs,manyBsUnique,manyBsNotUnique,manyBsOrdered,manyBsOrderedUnique,manyBsNotOrdered,manyBsNotChangeable" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (d4SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.D4Sub",
-			 "metaObjectMofId", "48DBA8AC5C5644E08B1311DDA6FA0019992F8D38",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.D4Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DBA8AC5C5644E08B1311DDA6FA0019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c4SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.C4Sub",
-			 "metaObjectMofId", "48DCF7E128F905108BDB11DDB1C40019992F8D38",
-			 "isStructureType", "false",
-			 "ova", "complex"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.C4Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DCF7E128F905108BDB11DDB1C40019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "complex" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (f4SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.F4Sub",
-			 "metaObjectMofId", "48DCF7E128F905118BDB11DDB8780019992F8D38",
-			 "isStructureType", "false",
-			 "ova", "oneC,manyCs,manyCsOrdered"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.F4Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DCF7E128F905118BDB11DDB8780019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "oneC,manyCs,manyCsOrdered" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (gethasCs_F(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.hasCs",
-			 "metaObjectMofId", "45F120A5E076DC0D97AA4A8F163B8EF194C6281F",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.hasCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5E076DC0D97AA4A8F163B8EF194C6281F", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (gethasCs_C(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.hasCs",
-			 "metaObjectMofId", "45F120A5E076DC0D97AA4A8F163B8EF194C6281F",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.hasCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5E076DC0D97AA4A8F163B8EF194C6281F", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesCs_MyF(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesCs",
-			 "metaObjectMofId", "45F5408B488ADA49AEFE4ECB2315B0BC92517FC7",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F5408B488ADA49AEFE4ECB2315B0BC92517FC7", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesCs_MyCs(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesCs",
-			 "metaObjectMofId", "45F5408B488ADA49AEFE4ECB2315B0BC92517FC7",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesCs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F5408B488ADA49AEFE4ECB2315B0BC92517FC7", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesB_MyB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesB",
-			 "metaObjectMofId", "45F5408B0CC203861ACB47432D8EF68CCD4F5E39",
-			 "storedEnd", "1",
-			 "compositeEnd", "1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F5408B0CC203861ACB47432D8EF68CCD4F5E39", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesB_MyF(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesB",
-			 "metaObjectMofId", "45F5408B0CC203861ACB47432D8EF68CCD4F5E39",
-			 "storedEnd", "1",
-			 "compositeEnd", "1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F5408B0CC203861ACB47432D8EF68CCD4F5E39", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesCsOrdered_MyF(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesCsOrdered",
-			 "metaObjectMofId", "45F56B677CF18E3395C244F203B9EB5C2158434A",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesCsOrdered", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F56B677CF18E3395C244F203B9EB5C2158434A", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getcomposesCsOrdered_MyCsOrdered(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case004.composesCsOrdered",
-			 "metaObjectMofId", "45F56B677CF18E3395C244F203B9EB5C2158434A",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case004.composesCsOrdered", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F56B677CF18E3395C244F203B9EB5C2158434A", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 
