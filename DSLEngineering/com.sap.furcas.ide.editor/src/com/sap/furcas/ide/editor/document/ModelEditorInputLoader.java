@@ -40,6 +40,8 @@ import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 /**
+ * Helper class that transforms a {@link IEditorInput} into a {@link ModelEditorInput}
+ * 
  * @author Stephan Erb
  *
  */
@@ -59,7 +61,6 @@ public class ModelEditorInputLoader {
 
     /**
      * Transform the given editor input to a {@link ModelEditorInput}.
-     * Resources are loaded directly into the {@link EditingDomain}.   
      */
     public ModelEditorInput loadEditorInput(IEditorInput input) throws PartInitException {
         if (!(input instanceof FileEditorInput)) {
@@ -158,8 +159,8 @@ public class ModelEditorInputLoader {
     }
 
     /**
-     * TODO: We can relax this in the future. 
-     * For now we want to crash early in order to find as many bugs as possible.
+     * TODO: We can relax this in the future.  For now we want to crash early
+     * in order to find as many bugs as possible.
      */
     private TextBlock selectBlockFromResults(EObject rootObject, Collection<TextBlock> rootBlocks, Collection<TextBlock> rootBlocksWithBrokenMapping) throws PartInitException {
         if (rootBlocks.size() == 0 && rootBlocksWithBrokenMapping.size() == 0) {

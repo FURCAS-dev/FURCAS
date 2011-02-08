@@ -4,10 +4,20 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
+/**
+ * {@link IEditorInput} as used by the {@link AbstractFurcasEditor}.
+ * It inherits from {@link FileEditorInput} to be compatible with the
+ * IMP editor base class. 
+ * 
+ * @author Stephan Erb
+ *
+ */
 public class ModelEditorInput extends FileEditorInput {
 
     private final EObject rootObject;

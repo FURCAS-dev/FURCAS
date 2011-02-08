@@ -15,10 +15,9 @@ import com.sap.furcas.unparser.extraction.textblocks.TextBlockTCSExtractorStream
 
 
 /**
- * Util classes required to get a corresponding rootBlock for an existing
- * rootObject.
+ * Util classes helping to create TextBlock models for an existing rootObject.
  * 
- * @author D049157
+ * @author Stephan Erb
  * 
  */
 public class TbModelInitializationUtil {
