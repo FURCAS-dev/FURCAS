@@ -62,7 +62,7 @@ protected class ThisRootNode extends RootToken {
 			case 28: return new TypedRefCS_Alternatives(this, this, 28, inst);
 			case 29: return new TypedTypeRefCS_Group(this, this, 29, inst);
 			case 30: return new WildcardTypeRefCS_Group(this, this, 30, inst);
-			case 31: return new Model_Group(this, this, 31, inst);
+			case 31: return new Model_OwnedExpressionAssignment(this, this, 31, inst);
 			case 32: return new PrimitiveTypeCS_NameAssignment(this, this, 32, inst);
 			case 33: return new CollectionTypeCS_Group(this, this, 33, inst);
 			case 34: return new TupleTypeCS_Group(this, this, 34, inst);
@@ -9469,129 +9469,20 @@ protected class WildcardTypeRefCS_SuperAssignment_2_1_1 extends AssignmentToken 
  * //generate essentialOCLCST "http://www.eclipse.org/ocl/3.0.0/EssentialOCLCST"
  * 
  * Model returns ContextCS:
- * 	name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";";
+ * 	ownedExpression=ExpCS;
  *
  **/
 
-// name=("body" | "der" | "init" | "inv" | "post" | "pre") ":" ownedExpression=ExpCS ";"
-protected class Model_Group extends GroupToken {
-	
-	public Model_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getModelAccess().getGroup();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Model_SemicolonKeyword_3(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getModelRule().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// name=("body" | "der" | "init" | "inv" | "post" | "pre")
-protected class Model_NameAssignment_0 extends AssignmentToken  {
-	
-	public Model_NameAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getNameAssignment_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNameBodyKeyword_0_0_0(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNameBodyKeyword_0_0_0();
-			return obj;
-		}
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNameDerKeyword_0_0_1(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNameDerKeyword_0_0_1();
-			return obj;
-		}
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNameInitKeyword_0_0_2(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNameInitKeyword_0_0_2();
-			return obj;
-		}
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNameInvKeyword_0_0_3(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNameInvKeyword_0_0_3();
-			return obj;
-		}
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNamePostKeyword_0_0_4(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNamePostKeyword_0_0_4();
-			return obj;
-		}
-		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getModelAccess().getNamePreKeyword_0_0_5(), value, null)) {
-			type = AssignmentType.KEYWORD;
-			element = grammarAccess.getModelAccess().getNamePreKeyword_0_0_5();
-			return obj;
-		}
-		return null;
-	}
-
-}
-
-// ":"
-protected class Model_ColonKeyword_1 extends KeywordToken  {
-	
-	public Model_ColonKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getModelAccess().getColonKeyword_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Model_NameAssignment_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 // ownedExpression=ExpCS
-protected class Model_OwnedExpressionAssignment_2 extends AssignmentToken  {
+protected class Model_OwnedExpressionAssignment extends AssignmentToken  {
 	
-	public Model_OwnedExpressionAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Model_OwnedExpressionAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getOwnedExpressionAssignment_2();
+		return grammarAccess.getModelAccess().getOwnedExpressionAssignment();
 	}
 
     @Override
@@ -9604,13 +9495,15 @@ protected class Model_OwnedExpressionAssignment_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getModelRule().getType().getClassifier())
+			return null;
 		if((value = eObjectConsumer.getConsumable("ownedExpression",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedExpression");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getModelAccess().getOwnedExpressionExpCSParserRuleCall_2_0(); 
+				element = grammarAccess.getModelAccess().getOwnedExpressionExpCSParserRuleCall_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -9622,34 +9515,10 @@ protected class Model_OwnedExpressionAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_ColonKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, consumed);
 		}	
 	}	
 }
-
-// ";"
-protected class Model_SemicolonKeyword_3 extends KeywordToken  {
-	
-	public Model_SemicolonKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getModelAccess().getSemicolonKeyword_3();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Model_OwnedExpressionAssignment_2(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 
 /************ end Rule Model ****************/
 
