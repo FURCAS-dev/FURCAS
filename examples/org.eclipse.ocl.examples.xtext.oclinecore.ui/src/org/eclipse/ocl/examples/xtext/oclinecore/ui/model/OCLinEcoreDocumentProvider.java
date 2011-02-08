@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.9 2011/01/24 21:56:22 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.10 2011/02/08 17:49:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -136,7 +136,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		IDocument document = getDocument(element);
 		String loadIsEcore = loadedAsMap.get(document);
 		String saveIsEcore = saveAsMap.get(document);
-		if (!loadIsEcore.equals(saveIsEcore)) {
+		if ((loadIsEcore != null) && !loadIsEcore.equals(saveIsEcore)) {
 			return true;		// Causes Save to do SaveAs
 		}
 		return super.isDeleted(element);
@@ -210,8 +210,6 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					}
 					// FIXME general extensibility
 				}
-				loadedAsMap.put(document, persistAs);
-				saveAsMap.put(document, persistAs);
 //				
 				ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
 //				csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
@@ -252,6 +250,8 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 				resourceSet.getResources().remove(xmiResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
 			}
+			loadedAsMap.put(document, persistAs);
+			saveAsMap.put(document, persistAs);
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
 		}
