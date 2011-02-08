@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PostCSImpl.java,v 1.3 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: PostCSImpl.java,v 1.4 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
@@ -32,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  *
  * @generated
  */
-public class PostCSImpl extends ExpConstraintCSImpl implements PostCS {
+public class PostCSImpl extends ContextConstraintCSImpl implements PostCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCSImpl.java,v 1.6 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: PackageDeclarationCSImpl.java,v 1.7 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -22,11 +22,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -41,6 +43,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.PackageDeclarationCSImpl#getContexts <em>Contexts</em>}</li>
  * </ul>
@@ -50,14 +53,24 @@ import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
  */
 public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements PackageDeclarationCS {
 	/**
-	 * The cached value of the '{@link #getPackage() <em>Package</em>}' containment reference.
+	 * The cached value of the '{@link #getNamespace() <em>Namespace</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNamespace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Namespace> namespace;
+
+	/**
+	 * The cached value of the '{@link #getPackage() <em>Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPackage()
 	 * @generated
 	 * @ordered
 	 */
-	protected PackageRefCS package_;
+	protected org.eclipse.ocl.examples.pivot.Package package_;
 
 	/**
 	 * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
@@ -93,7 +106,31 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageRefCS getPackage() {
+	public EList<Namespace> getNamespace()
+	{
+		if (namespace == null)
+		{
+			namespace = new EObjectResolvingEList<Namespace>(Namespace.class, this, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAMESPACE);
+		}
+		return namespace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public org.eclipse.ocl.examples.pivot.Package getPackage() {
+		if (package_ != null && ((EObject)package_).eIsProxy())
+		{
+			InternalEObject oldPackage = (InternalEObject)package_;
+			package_ = (org.eclipse.ocl.examples.pivot.Package)eResolveProxy(oldPackage);
+			if (package_ != oldPackage)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, oldPackage, package_));
+			}
+		}
 		return package_;
 	}
 
@@ -102,15 +139,9 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetPackage(PackageRefCS newPackage, NotificationChain msgs) {
-		PackageRefCS oldPackage = package_;
-		package_ = newPackage;
-		if (eNotificationRequired())
-		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, oldPackage, newPackage);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public org.eclipse.ocl.examples.pivot.Package basicGetPackage()
+	{
+		return package_;
 	}
 
 	/**
@@ -118,19 +149,12 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackage(PackageRefCS newPackage) {
-		if (newPackage != package_)
-		{
-			NotificationChain msgs = null;
-			if (package_ != null)
-				msgs = ((InternalEObject)package_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, null, msgs);
-			if (newPackage != null)
-				msgs = ((InternalEObject)newPackage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, null, msgs);
-			msgs = basicSetPackage(newPackage, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, newPackage, newPackage));
+	public void setPackage(org.eclipse.ocl.examples.pivot.Package newPackage)
+	{
+		org.eclipse.ocl.examples.pivot.Package oldPackage = package_;
+		package_ = newPackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE, oldPackage, package_));
 	}
 
 	/**
@@ -155,8 +179,6 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
-			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				return basicSetPackage(null, msgs);
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				return ((InternalEList<?>)getContexts()).basicRemove(otherEnd, msgs);
 		}
@@ -172,8 +194,11 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID)
 		{
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAMESPACE:
+				return getNamespace();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				return getPackage();
+				if (resolve) return getPackage();
+				return basicGetPackage();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				return getContexts();
 		}
@@ -190,8 +215,12 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID)
 		{
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAMESPACE:
+				getNamespace().clear();
+				getNamespace().addAll((Collection<? extends Namespace>)newValue);
+				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				setPackage((PackageRefCS)newValue);
+				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
 				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				getContexts().clear();
@@ -210,8 +239,11 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	public void eUnset(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAMESPACE:
+				getNamespace().clear();
+				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
-				setPackage((PackageRefCS)null);
+				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
 				return;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:
 				getContexts().clear();
@@ -229,6 +261,8 @@ public class PackageDeclarationCSImpl extends MonikeredElementCSImpl implements 
 	public boolean eIsSet(int featureID) {
 		switch (featureID)
 		{
+			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__NAMESPACE:
+				return namespace != null && !namespace.isEmpty();
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__PACKAGE:
 				return package_ != null;
 			case CompleteOCLCSTPackage.PACKAGE_DECLARATION_CS__CONTEXTS:

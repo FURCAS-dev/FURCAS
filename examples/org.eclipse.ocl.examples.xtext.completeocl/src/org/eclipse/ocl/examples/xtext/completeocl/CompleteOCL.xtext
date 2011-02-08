@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.7 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.8 2011/02/08 17:53:05 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -43,8 +43,8 @@ UnrestrictedName returns ecore::EString:
 	| 'init'
 	| 'inv'
 	//|	'package'
-	//|	'post'
-	//|	'pre'
+	|	'post'
+	|	'pre'
 	//|	'static'
 ;
 
@@ -64,10 +64,10 @@ BodyCS returns BodyCS:
 	'body' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
-	'context' (selfName=UnrestrictedName ':')? classifier=ClassifierRefCS (invs+=InvCS | defs+=DefCS)*;
-
-ClassifierRefCS returns base::ClassifierRefCS:
-	QualifiedClassifierRefCS | SimpleClassifierRefCS;
+	'context' (selfName=UnrestrictedName ':')?
+	(namespace+=[pivot::Namespace|Identifier] '::')*
+	classifier=[pivot::Type|Identifier]
+	(rules+=InvCS | rules+=DefCS)*;
 
 ContextDeclCS returns ContextDeclCS:
 	PropertyContextDeclCS
@@ -75,7 +75,7 @@ ContextDeclCS returns ContextDeclCS:
 	| OperationContextDeclCS;
 
 DefCS returns DefCS:
-	(static?='static')? 'def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
+	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
 	('(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
 	':' (ownedType=TypeExpCS)? '=' ownedExpression=ExpCS;
 
@@ -92,19 +92,16 @@ InvCS returns InvCS:
 	stereotype='inv' (name=UnrestrictedName ('(' ownedReason=ExpCS ')')?)? ':' ownedExpression=ExpCS;
 
 OperationContextDeclCS returns OperationContextDeclCS:
-	'context' operation=OperationRefCS '('
+	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
+	operation=[pivot::Operation|Identifier] '(' 
 	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
 	')' ':' (ownedType=TypeExpCS)?
-	((pres+=PreCS) | (posts+=PostCS) | (bodies+=BodyCS))*;
-
-OperationRefCS returns base::OperationRefCS:
-	QualifiedOperationRefCS | SimpleOperationRefCS;
+	((rules+=PreCS) | (rules+=PostCS) | (rules+=BodyCS))*;
 
 PackageDeclarationCS returns PackageDeclarationCS:
-	'package' package=PackageRefCS (contexts+=ContextDeclCS)* 'endpackage';
-
-PackageRefCS returns base::PackageRefCS:
-	QualifiedPackageRefCS | SimplePackageRefCS;
+	'package' (namespace+=[pivot::Namespace|Identifier] '::')*
+	package=[pivot::Package|Identifier]
+	(contexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns essentialocl::VariableCS:
 	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
@@ -116,39 +113,9 @@ PreCS returns PreCS:
 	stereotype='pre' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
 
 PropertyContextDeclCS returns PropertyContextDeclCS:
-	'context' property=PropertyRefCS ':' ownedType=TypeExpCS
-	((init=InitCS (der=DerCS)?)? | (der=DerCS (init=InitCS)?));
-
-PropertyRefCS returns base::StructuralFeatureRefCS:
-	QualifiedPropertyRefCS | SimplePropertyRefCS;
-
-QualifiedClassifierRefCS returns base::QualifiedClassifierRefCS:
-	namespace=[pivot::Namespace|Identifier]
-	'::' element=ClassifierRefCS;
-
-QualifiedOperationRefCS returns base::QualifiedOperationRefCS:
-	namespace=[pivot::Namespace|Identifier]
-	'::' element=OperationRefCS;
-
-QualifiedPropertyRefCS returns base::QualifiedStructuralFeatureRefCS:
-	namespace=[pivot::Namespace|Identifier]
-	'::' element=PropertyRefCS;
-
-QualifiedPackageRefCS returns base::QualifiedPackageRefCS:
-	namespace=[pivot::Namespace|Identifier]
-	'::' element=PackageRefCS;
-
-SimpleClassifierRefCS returns base::SimpleClassifierRefCS:
-	classifier=[base::ClassifierCS|Identifier];
-
-SimpleOperationRefCS returns base::SimpleOperationRefCS:
-	operation=[base::OperationCS|Identifier];
-
-SimplePackageRefCS returns base::SimplePackageRefCS:
-	package=[base::PackageCS|Identifier];
-
-SimplePropertyRefCS returns base::SimpleStructuralFeatureRefCS:
-	feature=[base::StructuralFeatureCS|Identifier];
+	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
+	property=[pivot::Property|Identifier] ':' ownedType=TypeExpCS
+	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides

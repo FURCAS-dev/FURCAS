@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: CompleteOCLCSVisitor.java,v 1.2 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: CompleteOCLCSVisitor.java,v 1.3 2011/02/08 17:53:06 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.completeocl.util;
 
@@ -32,6 +32,7 @@ public interface CompleteOCLCSVisitor<R, C> extends org.eclipse.ocl.examples.xte
 	R visitBodyCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS object);
 	R visitClassifierContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS object);
 	R visitCompleteOCLDocumentCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS object);
+	R visitContextConstraintCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS object);
 	R visitContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS object);
 	R visitDefCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS object);
 	R visitDerCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS object);

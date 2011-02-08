@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: PostCS.java,v 1.2 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: PostCS.java,v 1.3 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
 
 
 /**
@@ -29,5 +28,5 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraint
  * @model
  * @generated
  */
-public interface PostCS extends ExpConstraintCS {
+public interface PostCS extends ContextConstraintCS {
 } // PostCS

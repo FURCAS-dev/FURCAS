@@ -12,15 +12,12 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.5 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.6 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -37,6 +34,15 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
+			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+		}
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__NAMESPACE) {
+			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+		}
+		return scopeView.getOuterScope();
+
+		
+/*		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
 			return scopeView.getOuterScope();
 		}
 		if ((containmentFeature == null)
@@ -53,6 +59,6 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 		else {
 			return scopeView.getOuterScope();
 		}
-		return scopeView.getOuterScope();
+		return scopeView.getOuterScope(); */
 	}
 }

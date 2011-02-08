@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefCSImpl.java,v 1.3 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: DefCSImpl.java,v 1.4 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +49,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConst
  *
  * @generated
  */
-public class DefCSImpl extends ExpConstraintCSImpl implements DefCS {
+public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	/**
 	 * The default value of the '{@link #isStatic() <em>Static</em>}' attribute.
 	 * <!-- begin-user-doc -->

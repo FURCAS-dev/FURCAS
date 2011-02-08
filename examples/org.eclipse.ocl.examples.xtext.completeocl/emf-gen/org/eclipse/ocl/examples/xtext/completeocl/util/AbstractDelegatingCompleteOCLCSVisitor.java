@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingCompleteOCLCSVisitor.java,v 1.2 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: AbstractDelegatingCompleteOCLCSVisitor.java,v 1.3 2011/02/08 17:53:06 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.completeocl.util;
 
@@ -51,6 +51,10 @@ public abstract class AbstractDelegatingCompleteOCLCSVisitor<R, C, D extends Com
 
 	public R visitCompleteOCLDocumentCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS object) {
 		return delegate.visitCompleteOCLDocumentCS(object);
+	}
+
+	public R visitContextConstraintCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS object) {
+		return delegate.visitContextConstraintCS(object);
 	}
 
 	public R visitContextDeclCS(org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS object) {
