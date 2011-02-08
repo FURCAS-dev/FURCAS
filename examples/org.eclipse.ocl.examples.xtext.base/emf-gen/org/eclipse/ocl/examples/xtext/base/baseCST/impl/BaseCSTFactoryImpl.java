@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
@@ -47,21 +46,15 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
@@ -134,18 +127,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
-			case BaseCSTPackage.QUALIFIED_CLASSIFIER_REF_CS: return createQualifiedClassifierRefCS();
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS: return createQualifiedOperationRefCS();
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS: return createQualifiedPackageRefCS();
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS: return createQualifiedStructuralFeatureRefCS();
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS: return createQualifiedTypeRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
-			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS: return createSimpleClassifierRefCS();
-			case BaseCSTPackage.SIMPLE_OPERATION_REF_CS: return createSimpleOperationRefCS();
-			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS: return createSimplePackageRefCS();
-			case BaseCSTPackage.SIMPLE_STRUCTURAL_FEATURE_REF_CS: return createSimpleStructuralFeatureRefCS();
 			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
 			case BaseCSTPackage.TEMPLATE_SIGNATURE_CS: return createTemplateSignatureCS();
@@ -406,46 +391,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifiedClassifierRefCS createQualifiedClassifierRefCS() {
-		QualifiedClassifierRefCSImpl qualifiedClassifierRefCS = new QualifiedClassifierRefCSImpl();
-		return qualifiedClassifierRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedOperationRefCS createQualifiedOperationRefCS() {
-		QualifiedOperationRefCSImpl qualifiedOperationRefCS = new QualifiedOperationRefCSImpl();
-		return qualifiedOperationRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedPackageRefCS createQualifiedPackageRefCS() {
-		QualifiedPackageRefCSImpl qualifiedPackageRefCS = new QualifiedPackageRefCSImpl();
-		return qualifiedPackageRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedStructuralFeatureRefCS createQualifiedStructuralFeatureRefCS() {
-		QualifiedStructuralFeatureRefCSImpl qualifiedStructuralFeatureRefCS = new QualifiedStructuralFeatureRefCSImpl();
-		return qualifiedStructuralFeatureRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public QualifiedTypeRefCS createQualifiedTypeRefCS() {
 		QualifiedTypeRefCSImpl qualifiedTypeRefCS = new QualifiedTypeRefCSImpl();
 		return qualifiedTypeRefCS;
@@ -481,46 +426,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
 		return rootPackageCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleClassifierRefCS createSimpleClassifierRefCS() {
-		SimpleClassifierRefCSImpl simpleClassifierRefCS = new SimpleClassifierRefCSImpl();
-		return simpleClassifierRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleOperationRefCS createSimpleOperationRefCS() {
-		SimpleOperationRefCSImpl simpleOperationRefCS = new SimpleOperationRefCSImpl();
-		return simpleOperationRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimplePackageRefCS createSimplePackageRefCS() {
-		SimplePackageRefCSImpl simplePackageRefCS = new SimplePackageRefCSImpl();
-		return simplePackageRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleStructuralFeatureRefCS createSimpleStructuralFeatureRefCS() {
-		SimpleStructuralFeatureRefCSImpl simpleStructuralFeatureRefCS = new SimpleStructuralFeatureRefCSImpl();
-		return simpleStructuralFeatureRefCS;
 	}
 
 	/**

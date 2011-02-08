@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -135,6 +136,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	@Override
 	public ScopeAdapter visitTypeTemplateParameter(TypeTemplateParameter pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);
+	}
+
+	@Override
+	public ScopeAdapter visitUnspecifiedType(UnspecifiedType pivotElement) {
+		return pivotElement.getLowerBound().accept(this);
 	}
 
 	@Override

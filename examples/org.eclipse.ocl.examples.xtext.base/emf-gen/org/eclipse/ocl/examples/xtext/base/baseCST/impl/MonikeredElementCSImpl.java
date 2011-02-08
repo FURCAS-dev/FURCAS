@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: MonikeredElementCSImpl.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -165,5 +165,11 @@ public abstract class MonikeredElementCSImpl extends ModelElementCSImpl implemen
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return visitor.visitMonikeredElementCS(this);
+	}
+
+	@Override
+	public void resetPivot() {
+		super.resetPivot();
+		resetMoniker();
 	}
 } //NameableElementCSImpl

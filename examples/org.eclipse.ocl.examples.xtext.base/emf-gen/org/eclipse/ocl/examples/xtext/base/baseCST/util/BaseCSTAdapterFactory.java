@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTAdapterFactory.java,v 1.4 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: BaseCSTAdapterFactory.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
@@ -50,29 +49,18 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -190,11 +178,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createClassifierCSAdapter();
 			}
 			@Override
-			public Adapter caseClassifierRefCS(ClassifierRefCS object)
-			{
-				return createClassifierRefCSAdapter();
-			}
-			@Override
 			public Adapter caseCollectionTypeRefCS(CollectionTypeRefCS object)
 			{
 				return createCollectionTypeRefCSAdapter();
@@ -280,19 +263,9 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createOperationCSAdapter();
 			}
 			@Override
-			public Adapter caseOperationRefCS(OperationRefCS object)
-			{
-				return createOperationRefCSAdapter();
-			}
-			@Override
 			public Adapter casePackageCS(PackageCS object)
 			{
 				return createPackageCSAdapter();
-			}
-			@Override
-			public Adapter casePackageRefCS(PackageRefCS object)
-			{
-				return createPackageRefCSAdapter();
 			}
 			@Override
 			public Adapter caseParameterCS(ParameterCS object)
@@ -315,29 +288,9 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createPrimitiveTypeRefCSAdapter();
 			}
 			@Override
-			public Adapter caseQualifiedClassifierRefCS(QualifiedClassifierRefCS object)
-			{
-				return createQualifiedClassifierRefCSAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedOperationRefCS(QualifiedOperationRefCS object)
-			{
-				return createQualifiedOperationRefCSAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedPackageRefCS(QualifiedPackageRefCS object)
-			{
-				return createQualifiedPackageRefCSAdapter();
-			}
-			@Override
 			public <E extends ElementCS> Adapter caseQualifiedRefCS(QualifiedRefCS<E> object)
 			{
 				return createQualifiedRefCSAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS object)
-			{
-				return createQualifiedStructuralFeatureRefCSAdapter();
 			}
 			@Override
 			public Adapter caseQualifiedTypeRefCS(QualifiedTypeRefCS object)
@@ -365,34 +318,9 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createRootPackageCSAdapter();
 			}
 			@Override
-			public Adapter caseSimpleClassifierRefCS(SimpleClassifierRefCS object)
-			{
-				return createSimpleClassifierRefCSAdapter();
-			}
-			@Override
-			public Adapter caseSimpleOperationRefCS(SimpleOperationRefCS object)
-			{
-				return createSimpleOperationRefCSAdapter();
-			}
-			@Override
-			public Adapter caseSimplePackageRefCS(SimplePackageRefCS object)
-			{
-				return createSimplePackageRefCSAdapter();
-			}
-			@Override
-			public Adapter caseSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS object)
-			{
-				return createSimpleStructuralFeatureRefCSAdapter();
-			}
-			@Override
 			public Adapter caseStructuralFeatureCS(StructuralFeatureCS object)
 			{
 				return createStructuralFeatureCSAdapter();
-			}
-			@Override
-			public Adapter caseStructuralFeatureRefCS(StructuralFeatureRefCS object)
-			{
-				return createStructuralFeatureRefCSAdapter();
 			}
 			@Override
 			public Adapter caseTemplateBindingCS(TemplateBindingCS object)
@@ -610,20 +538,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createClassifierCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS <em>Classifier Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS
-	 * @generated
-	 */
-	public Adapter createClassifierRefCSAdapter() {
 		return null;
 	}
 
@@ -872,20 +786,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS <em>Operation Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS
-	 * @generated
-	 */
-	public Adapter createOperationRefCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS <em>Package CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -896,20 +796,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPackageCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS <em>Package Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS
-	 * @generated
-	 */
-	public Adapter createPackageRefCSAdapter() {
 		return null;
 	}
 
@@ -970,48 +856,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS <em>Qualified Classifier Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedClassifierRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS <em>Qualified Operation Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedOperationRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS <em>Qualified Package Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedPackageRefCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS <em>Qualified Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1022,20 +866,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQualifiedRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS <em>Qualified Structural Feature Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedStructuralFeatureRefCSAdapter() {
 		return null;
 	}
 
@@ -1112,62 +942,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS <em>Simple Classifier Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS
-	 * @generated
-	 */
-	public Adapter createSimpleClassifierRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS <em>Simple Operation Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS
-	 * @generated
-	 */
-	public Adapter createSimpleOperationRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS <em>Simple Package Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS
-	 * @generated
-	 */
-	public Adapter createSimplePackageRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS <em>Simple Structural Feature Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS
-	 * @generated
-	 */
-	public Adapter createSimpleStructuralFeatureRefCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS <em>Structural Feature CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1178,20 +952,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStructuralFeatureCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS <em>Structural Feature Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS
-	 * @generated
-	 */
-	public Adapter createStructuralFeatureRefCSAdapter() {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.3 2011/01/30 11:12:40 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
@@ -765,6 +766,9 @@ public class CS2PivotConversion extends AbstractConversion
 	public Operation resolveOperationCall(NamedElementCS csOperator, OperationCallExp pivotElement) {
 		OclExpression sourceExpression = pivotElement.getSource();
 		Type sourceType = sourceExpression.getType();
+		if (sourceType instanceof UnspecifiedType) {
+			sourceType = ((UnspecifiedType)sourceType).getLowerBound();
+		}
 		String operator = pivotElement.getName();
 		Operation operation;
 		List<OclExpression> arguments = pivotElement.getArguments();
@@ -774,10 +778,28 @@ public class CS2PivotConversion extends AbstractConversion
 		else {
 			OclExpression argumentExpression = arguments.get(0);
 			Type rightType = argumentExpression.getType();
+			if (rightType instanceof UnspecifiedType) {
+				rightType = ((UnspecifiedType)rightType).getLowerBound();
+			}
 			operation = typeManager.resolveOperation(sourceType, operator, rightType);
 		}
 		if (operation == null) {
 			addBadExpressionError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
+		}
+		else {
+			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParametersAsBindings(operation);
+			if (bindings != null) {
+				for (TemplateParameter templateParameter : bindings.keySet()) {
+					ParameterableElement parameterableElement = templateParameter.getParameteredElement();
+					if ((parameterableElement instanceof NamedElement) && "OclSelf".equals(((NamedElement)parameterableElement).getName())) {
+						bindings.put(templateParameter, sourceType);
+					}
+				}
+			}
+			bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
+			if (bindings != null) {
+				operation = typeManager.getSpecializedOperation(operation, bindings);
+			}
 		}
 		pivotElement.setReferredOperation(operation);
 		return operation;

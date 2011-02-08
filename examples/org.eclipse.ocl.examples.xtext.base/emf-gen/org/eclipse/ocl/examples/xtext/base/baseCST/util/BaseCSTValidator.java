@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
@@ -52,29 +51,18 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -184,8 +172,6 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateClassCSRef((ClassCSRef)value, diagnostics, context);
 			case BaseCSTPackage.CLASSIFIER_CS:
 				return validateClassifierCS((ClassifierCS)value, diagnostics, context);
-			case BaseCSTPackage.CLASSIFIER_REF_CS:
-				return validateClassifierRefCS((ClassifierRefCS)value, diagnostics, context);
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS:
 				return validateCollectionTypeRefCS((CollectionTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.CONSTRAINT_CS:
@@ -220,12 +206,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateNamespaceCS((NamespaceCS)value, diagnostics, context);
 			case BaseCSTPackage.OPERATION_CS:
 				return validateOperationCS((OperationCS)value, diagnostics, context);
-			case BaseCSTPackage.OPERATION_REF_CS:
-				return validateOperationRefCS((OperationRefCS)value, diagnostics, context);
 			case BaseCSTPackage.PACKAGE_CS:
 				return validatePackageCS((PackageCS)value, diagnostics, context);
-			case BaseCSTPackage.PACKAGE_REF_CS:
-				return validatePackageRefCS((PackageRefCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETER_CS:
 				return validateParameterCS((ParameterCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETERABLE_ELEMENT_CS:
@@ -234,16 +216,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateParameterizedTypeRefCS((ParameterizedTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_CLASSIFIER_REF_CS:
-				return validateQualifiedClassifierRefCS((QualifiedClassifierRefCS)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS:
-				return validateQualifiedOperationRefCS((QualifiedOperationRefCS)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS:
-				return validateQualifiedPackageRefCS((QualifiedPackageRefCS)value, diagnostics, context);
 			case BaseCSTPackage.QUALIFIED_REF_CS:
 				return validateQualifiedRefCS((QualifiedRefCS<?>)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS:
-				return validateQualifiedStructuralFeatureRefCS((QualifiedStructuralFeatureRefCS)value, diagnostics, context);
 			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS:
 				return validateQualifiedTypeRefCS((QualifiedTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
@@ -254,18 +228,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateRootCS((RootCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_PACKAGE_CS:
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
-			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS:
-				return validateSimpleClassifierRefCS((SimpleClassifierRefCS)value, diagnostics, context);
-			case BaseCSTPackage.SIMPLE_OPERATION_REF_CS:
-				return validateSimpleOperationRefCS((SimpleOperationRefCS)value, diagnostics, context);
-			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS:
-				return validateSimplePackageRefCS((SimplePackageRefCS)value, diagnostics, context);
-			case BaseCSTPackage.SIMPLE_STRUCTURAL_FEATURE_REF_CS:
-				return validateSimpleStructuralFeatureRefCS((SimpleStructuralFeatureRefCS)value, diagnostics, context);
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS:
 				return validateStructuralFeatureCS((StructuralFeatureCS)value, diagnostics, context);
-			case BaseCSTPackage.STRUCTURAL_FEATURE_REF_CS:
-				return validateStructuralFeatureRefCS((StructuralFeatureRefCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATE_BINDING_CS:
 				return validateTemplateBindingCS((TemplateBindingCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATE_PARAMETER_CS:
@@ -381,16 +345,6 @@ public class BaseCSTValidator extends EObjectValidator
 	public boolean validateClassifierCS(ClassifierCS classifierCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(classifierCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateClassifierRefCS(ClassifierRefCS classifierRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(classifierRefCS, diagnostics, context);
 	}
 
 	/**
@@ -568,29 +522,9 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateOperationRefCS(OperationRefCS operationRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(operationRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validatePackageCS(PackageCS packageCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(packageCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePackageRefCS(PackageRefCS packageRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(packageRefCS, diagnostics, context);
 	}
 
 	/**
@@ -638,49 +572,9 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateQualifiedClassifierRefCS(QualifiedClassifierRefCS qualifiedClassifierRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedClassifierRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedOperationRefCS(QualifiedOperationRefCS qualifiedOperationRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedOperationRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedPackageRefCS(QualifiedPackageRefCS qualifiedPackageRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedPackageRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateQualifiedRefCS(QualifiedRefCS<?> qualifiedRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(qualifiedRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS qualifiedStructuralFeatureRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedStructuralFeatureRefCS, diagnostics, context);
 	}
 
 	/**
@@ -828,59 +722,9 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSimpleClassifierRefCS(SimpleClassifierRefCS simpleClassifierRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(simpleClassifierRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimpleOperationRefCS(SimpleOperationRefCS simpleOperationRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(simpleOperationRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimplePackageRefCS(SimplePackageRefCS simplePackageRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(simplePackageRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS simpleStructuralFeatureRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(simpleStructuralFeatureRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateStructuralFeatureCS(StructuralFeatureCS structuralFeatureCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(structuralFeatureCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateStructuralFeatureRefCS(StructuralFeatureRefCS structuralFeatureRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(structuralFeatureRefCS, diagnostics, context);
 	}
 
 	/**

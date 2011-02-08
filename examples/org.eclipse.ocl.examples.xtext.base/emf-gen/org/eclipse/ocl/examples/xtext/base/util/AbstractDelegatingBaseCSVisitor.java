@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -93,10 +93,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitClassifierCS(object);
 	}
 
-	public R visitClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS object) {
-		return delegate.visitClassifierRefCS(object);
-	}
-
 	public R visitCollectionTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS object) {
 		return delegate.visitCollectionTypeRefCS(object);
 	}
@@ -157,16 +153,8 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitOperationCS(object);
 	}
 
-	public R visitOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS object) {
-		return delegate.visitOperationRefCS(object);
-	}
-
 	public R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object) {
 		return delegate.visitPackageCS(object);
-	}
-
-	public R visitPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS object) {
-		return delegate.visitPackageRefCS(object);
 	}
 
 	public R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object) {
@@ -179,22 +167,6 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
 		return delegate.visitPrimitiveTypeRefCS(object);
-	}
-
-	public R visitQualifiedClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS object) {
-		return delegate.visitQualifiedClassifierRefCS(object);
-	}
-
-	public R visitQualifiedOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS object) {
-		return delegate.visitQualifiedOperationRefCS(object);
-	}
-
-	public R visitQualifiedPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS object) {
-		return delegate.visitQualifiedPackageRefCS(object);
-	}
-
-	public R visitQualifiedStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS object) {
-		return delegate.visitQualifiedStructuralFeatureRefCS(object);
 	}
 
 	public R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object) {
@@ -213,28 +185,8 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitRootPackageCS(object);
 	}
 
-	public R visitSimpleClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS object) {
-		return delegate.visitSimpleClassifierRefCS(object);
-	}
-
-	public R visitSimpleOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS object) {
-		return delegate.visitSimpleOperationRefCS(object);
-	}
-
-	public R visitSimplePackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS object) {
-		return delegate.visitSimplePackageRefCS(object);
-	}
-
-	public R visitSimpleStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS object) {
-		return delegate.visitSimpleStructuralFeatureRefCS(object);
-	}
-
 	public R visitStructuralFeatureCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS object) {
 		return delegate.visitStructuralFeatureCS(object);
-	}
-
-	public R visitStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS object) {
-		return delegate.visitStructuralFeatureRefCS(object);
 	}
 
 	public R visitTemplateBindingCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS object) {

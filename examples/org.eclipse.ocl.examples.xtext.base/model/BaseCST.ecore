@@ -52,9 +52,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifier" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ClassifierRefCS" abstract="true" eSuperTypes="#//ModelElementCS">
-    <eOperations name="getClassifier" eType="#//ClassifierCS"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeRefCS" eSuperTypes="#//TypedTypeRefCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintCS" eSuperTypes="#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotype" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -123,9 +120,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedException" upperBound="-1"
         eType="#//TypedRefCS" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OperationRefCS" abstract="true" eSuperTypes="#//ModelElementCS">
-    <eOperations name="getOperation" eType="#//OperationCS"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageCS" eSuperTypes="#//NamespaceCS">
     <eOperations name="getClassifier" eType="#//ClassifierCS">
       <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -136,9 +130,6 @@
         eType="#//PackageCS" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsPrefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nsURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PackageRefCS" abstract="true" eSuperTypes="#//MonikeredElementCS">
-    <eOperations name="getPackage" eType="#//PackageCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterCS" eSuperTypes="#//TypedElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//OperationCS"
@@ -153,24 +144,6 @@
         containment="true" eOpposite="#//TemplateBindingCS/owningTemplateBindableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeRefCS" eSuperTypes="#//TypedRefCS #//NamedElementCS"/>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedClassifierRefCS">
-    <eGenericSuperTypes eClassifier="#//ClassifierRefCS"/>
-    <eGenericSuperTypes eClassifier="#//QualifiedRefCS">
-      <eTypeArguments eClassifier="#//ClassifierRefCS"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedOperationRefCS">
-    <eGenericSuperTypes eClassifier="#//OperationRefCS"/>
-    <eGenericSuperTypes eClassifier="#//QualifiedRefCS">
-      <eTypeArguments eClassifier="#//OperationRefCS"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedPackageRefCS">
-    <eGenericSuperTypes eClassifier="#//PackageRefCS"/>
-    <eGenericSuperTypes eClassifier="#//QualifiedRefCS">
-      <eTypeArguments eClassifier="#//PackageRefCS"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedRefCS" abstract="true" interface="true"
       eSuperTypes="#//ModelElementCS">
     <eTypeParameters name="E">
@@ -180,12 +153,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" containment="true">
       <eGenericType eTypeParameter="#//QualifiedRefCS/E"/>
     </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedStructuralFeatureRefCS">
-    <eGenericSuperTypes eClassifier="#//StructuralFeatureRefCS"/>
-    <eGenericSuperTypes eClassifier="#//QualifiedRefCS">
-      <eTypeArguments eClassifier="#//StructuralFeatureRefCS"/>
-    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedTypeRefCS">
     <eGenericSuperTypes eClassifier="#//ParameterizedTypeRefCS"/>
@@ -223,27 +190,11 @@
       <details key="TestConstraint" value="true"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleClassifierRefCS" eSuperTypes="#//ClassifierRefCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" eType="#//ClassifierCS"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleOperationRefCS" eSuperTypes="#//OperationRefCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//OperationCS"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimplePackageRefCS" eSuperTypes="#//PackageRefCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="package" eType="#//PackageCS"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleStructuralFeatureRefCS" eSuperTypes="#//StructuralFeatureRefCS">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//StructuralFeatureCS"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureCS" abstract="true"
       eSuperTypes="#//FeatureCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//ClassCS"
         eOpposite="#//ClassCS/ownedProperty"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StructuralFeatureRefCS" abstract="true"
-      eSuperTypes="#//ModelElementCS">
-    <eOperations name="getFeature" eType="#//StructuralFeatureCS"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateBindingCS" eSuperTypes="#//ModelElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningTemplateBindableElement"

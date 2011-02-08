@@ -12,13 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
@@ -31,18 +29,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -130,26 +120,6 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	}
 
 	@Override
-	public ScopeCSAdapter visitQualifiedClassifierRefCS(QualifiedClassifierRefCS eObject) {
-		return new QualifiedRefCSScopeAdapter<QualifiedClassifierRefCS, Type>(context, eObject, Type.class);
-	}
-
-	@Override
-	public ScopeCSAdapter visitQualifiedOperationRefCS(QualifiedOperationRefCS eObject) {
-		return new QualifiedRefCSScopeAdapter<QualifiedOperationRefCS, Operation>(context, eObject, Operation.class);
-	}
-
-	@Override
-	public ScopeCSAdapter visitQualifiedPackageRefCS(QualifiedPackageRefCS eObject) {
-		return new QualifiedRefCSScopeAdapter<QualifiedPackageRefCS, org.eclipse.ocl.examples.pivot.Package>(context, eObject, org.eclipse.ocl.examples.pivot.Package.class);
-	}
-
-	@Override
-	public ScopeCSAdapter visitQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS eObject) {
-		return new QualifiedRefCSScopeAdapter<QualifiedStructuralFeatureRefCS, Property>(context, eObject, Property.class);
-	}
-
-	@Override
 	public ScopeCSAdapter visitQualifiedTypeRefCS(QualifiedTypeRefCS eObject) {
 		return new QualifiedRefCSScopeAdapter<QualifiedTypeRefCS, Type>(context, eObject, Type.class);
 	}
@@ -167,26 +137,6 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	@Override
 	public ScopeCSAdapter visitRootPackageCS(RootPackageCS eObject) {
 		return new RootPackageCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitSimpleClassifierRefCS(SimpleClassifierRefCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitSimpleOperationRefCS(SimpleOperationRefCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitSimplePackageRefCS(SimplePackageRefCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS eObject) {
-		return new EmptyCSScopeAdapter(context, eObject);
 	}
 
 	@Override

@@ -12,16 +12,24 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 /**
  * A ModelElementCSScopeAdapter provides the basic behaviour for a family of derived
@@ -65,5 +73,52 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 		@SuppressWarnings("unchecked")
 		P castPivot = (P) pivot;
 		return castPivot;
+	}
+
+	/**
+	 * Return the scope in which to resolve an element following a list of namespaces.
+	 */
+	protected ScopeView getNamespaceScope(EnvironmentView environmentView,
+			ScopeView scopeView, List<Namespace> namespaces) {
+		int namespaceCount = namespaces.size();
+		if (namespaceCount > 0) {
+			ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
+			if (scopeAdapter != null) {
+				return scopeAdapter.computeLookup(environmentView, scopeView);
+			}				
+			return null;
+		}
+		return scopeView.getOuterScope();
+	}
+
+	/**
+	 * Return the scope in which to resolve a member of a list of namespaces.
+	 * <p>
+	 * This code assumes that the calling context attempts to resolve namespaces
+	 * from the outer most, so that the first proxy denotes the next namespace to resolve.
+	 */
+	protected ScopeView getNextNamespaceScope(EnvironmentView environmentView,
+			ScopeView scopeView, EList<Namespace> namespaces) {
+		// FIXME Use this for all namespace lists and all nested qualified names
+		InternalEList<Namespace> internalNamespaces = (InternalEList<Namespace>)namespaces;
+		int iMax = internalNamespaces.size();
+		for (int i = 0; i < iMax; i++) {
+			Namespace namespace = internalNamespaces.basicGet(i);
+			if (namespace.eIsProxy()) {
+				if (i <= 0) {
+					return scopeView.getOuterScope();
+				}
+				else {
+					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, internalNamespaces.get(iMax-1));
+					if (scopeAdapter != null) {
+						return scopeAdapter.computeLookup(environmentView, scopeView);
+					}
+					else {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
@@ -92,6 +93,42 @@ public class CS2Moniker
 
 	public CS2Moniker(MonikeredElementCS target) {
 		super(target);
+	}
+
+	public void appendConstraintCS(ConstraintCS csConstraint) {
+		String csConstraintStereotype = csConstraint.getStereotype();
+		append(csConstraintStereotype);
+		Object container = csConstraint.eContainer().eGet(csConstraint.eContainingFeature());
+		if (container instanceof List<?>) {
+			int index = 0;
+			String name2 = csConstraint.getName();
+			for (Object content : (List<?>)container) {
+				if (content == csConstraint) {
+					break;
+				}
+				if (content instanceof ConstraintCS) {
+					ConstraintCS sibling = (ConstraintCS) content;
+					String siblingStereotype = sibling.getStereotype();
+					if ((siblingStereotype != null) && siblingStereotype.equals(csConstraintStereotype)) {
+						String name1 = sibling.getName();
+						if (name1 != name2) {
+							if ((name1 == null) || !name1.equals(name2)) {
+								break;
+							}
+						}
+						index++;
+					}
+				}
+			}
+			append(MONIKER_OPERATOR_SEPARATOR);
+			if (name2 != null) {
+				append(name2);
+			}
+			if (index != 0) {
+				append(MONIKER_OPERATOR_SEPARATOR);
+				append(index);
+			}
+		}
 	}
 
 	public void appendElementCS(VisitableCS csVisitable) {

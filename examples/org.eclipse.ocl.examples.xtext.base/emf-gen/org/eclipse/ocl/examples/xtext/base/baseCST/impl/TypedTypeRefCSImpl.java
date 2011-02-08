@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.6 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.7 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -74,6 +74,7 @@ public class TypedTypeRefCSImpl extends ParameterizedTypeRefCSImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Type getType() {
 		if (type != null && ((EObject)type).eIsProxy())
 		{

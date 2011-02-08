@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -49,9 +49,9 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 					}
 				}
 				else {
-					if (environmentView.addNamedElement(namespace) > 0) {
-						EcoreUtil.resolveAll(namespace);
-					}
+//					if (environmentView.addNamedElement(namespace) > 0) {
+//						EcoreUtil.resolveAll(namespace);
+//					}
 					environmentView.addElement(importName, namespace);
 				}
 			}

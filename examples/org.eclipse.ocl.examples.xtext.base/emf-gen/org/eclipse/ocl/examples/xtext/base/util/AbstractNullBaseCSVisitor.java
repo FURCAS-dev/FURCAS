@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullBaseCSVisitor.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: AbstractNullBaseCSVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -70,10 +70,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitClassifierCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS object) {
-		return null;
-	}
-
-	public R visitClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS object) {
 		return null;
 	}
 
@@ -137,15 +133,7 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS object) {
-		return null;
-	}
-
 	public R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object) {
-		return null;
-	}
-
-	public R visitPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS object) {
 		return null;
 	}
 
@@ -158,22 +146,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS object) {
 		return null;
 	}
 
@@ -193,27 +165,7 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitSimpleClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS object) {
-		return null;
-	}
-
-	public R visitSimpleOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS object) {
-		return null;
-	}
-
-	public R visitSimplePackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS object) {
-		return null;
-	}
-
-	public R visitSimpleStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS object) {
-		return null;
-	}
-
 	public R visitStructuralFeatureCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS object) {
-		return null;
-	}
-
-	public R visitStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS object) {
 		return null;
 	}
 

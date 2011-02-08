@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeView.java,v 1.3 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: ScopeView.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -39,8 +39,8 @@ public interface ScopeView extends IScope
      */
     final ScopeView NULLSCOPEVIEW = new ScopeView()
     {
-		public IEObjectDescription computeLookup(EnvironmentView environmentView) {
-			return null;
+		public int computeLookups(EnvironmentView environmentView) {
+			return 0;
 		}
 		
 		public void computeLookupWithParents(EnvironmentView environmentView) {
@@ -115,7 +115,7 @@ public interface ScopeView extends IScope
 		}
     };
 
-    IEObjectDescription computeLookup(EnvironmentView environmentView);
+    int computeLookups(EnvironmentView environmentView);
 
     void computeLookupWithParents(EnvironmentView environmentView);
 

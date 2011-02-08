@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -22,6 +22,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
@@ -38,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
@@ -45,18 +47,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -111,6 +105,21 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 		context.append(ANNOTATION_QUOTE);
 		context.append(String.valueOf(object.getName()));
 		context.append(ANNOTATION_QUOTE);
+		Object container = object.eContainer().eGet(object.eContainingFeature());
+		if (container instanceof List<?>) {
+			int index = 0;
+			for (Object element : (List<?>)container) {
+				if (element == object) {
+					break;
+				}
+				if ((element instanceof AnnotationCS) && (((AnnotationCS)element).getName().equals(object.getName()))) {
+					index++;
+				}
+			}
+			if (index > 0) {
+				context.append(index);
+			}
+		}
 		return true;
 	}
 
@@ -144,11 +153,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	@Override
 	public Object visitConstraintCS(ConstraintCS csConstraint) {
 		context.appendParentCS(csConstraint, MONIKER_SCOPE_SEPARATOR);
-		context.append(csConstraint.getStereotype());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		if (csConstraint.getName() != null) {
-			context.appendNameCS(csConstraint);
-		}
+		context.appendConstraintCS(csConstraint);
 		return true;
 	}
 
@@ -170,6 +175,15 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	public Object visitEnumerationLiteralCS(EnumerationLiteralCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
+		return true;
+	}
+
+	@Override
+	public Object visitImportCS(ImportCS object) {
+		context.appendNameCS(object);
+		context.append(" : '");
+		context.append(object.getUri());
+		context.append("'");
 		return true;
 	}
 
@@ -228,38 +242,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	}
 
 	@Override
-	public Object visitQualifiedClassifierRefCS(QualifiedClassifierRefCS object) {
-		context.appendElementCS(object.getElement());
-//		context.appendTemplateBinding(object);
-		return true;
-	}
-
-	@Override
-	public Object visitQualifiedOperationRefCS(QualifiedOperationRefCS object) {
-		context.appendElementCS(object.getElement());
-//		context.appendTemplateBinding(object.get);
-		return true;
-	}
-
-	@Override
-	public Object visitQualifiedPackageRefCS(QualifiedPackageRefCS object) {
-		context.appendElementCS(object.getElement());
-		return true;
-	}
-
-//	@Override
-//	public <E extends ElementCS> Object visitQualifiedRefCS(QualifiedRefCS<E> object) {
-//		context.appendElement(object.getElement());
-//		return true;
-//	}
-
-	@Override
-	public Object visitQualifiedStructuralFeatureRefCS(QualifiedStructuralFeatureRefCS object) {
-		context.appendElementCS(object.getElement());
-		return true;
-	}
-
-	@Override
 	public Object visitQualifiedTypeRefCS(QualifiedTypeRefCS object) {
 		context.appendElementCS(object.getElement());
 		context.appendTemplateBindingsCS(object);
@@ -296,30 +278,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 		}
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
-		return true;
-	}
-
-	@Override
-	public Object visitSimpleClassifierRefCS(SimpleClassifierRefCS object) {
-		context.appendElementCS(object.getClassifier());
-		return true;
-	}
-
-	@Override
-	public Object visitSimpleOperationRefCS(SimpleOperationRefCS object) {
-		context.appendElementCS(object.getOperation());
-		return true;
-	}
-
-	@Override
-	public Object visitSimplePackageRefCS(SimplePackageRefCS object) {
-		context.appendElementCS(object.getPackage());
-		return true;
-	}
-
-	@Override
-	public Object visitSimpleStructuralFeatureRefCS(SimpleStructuralFeatureRefCS object) {
-		context.appendElementCS(object.getFeature());
 		return true;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.8 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.9 2011/02/08 17:43:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -38,7 +38,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
@@ -57,29 +56,18 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -159,13 +147,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * @generated
 	 */
 	private EClass classifierCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass classifierRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -291,21 +272,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass operationRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass packageCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass packageRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -340,35 +307,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass qualifiedClassifierRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass qualifiedOperationRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass qualifiedPackageRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass qualifiedRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass qualifiedStructuralFeatureRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -410,42 +349,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simpleClassifierRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simpleOperationRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simplePackageRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simpleStructuralFeatureRefCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass structuralFeatureCSEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass structuralFeatureRefCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -836,15 +740,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getClassifierRefCS() {
-		return classifierRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCollectionTypeRefCS() {
 		return collectionTypeRefCSEClass;
 	}
@@ -1195,15 +1090,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOperationRefCS() {
-		return operationRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getPackageCS() {
 		return packageCSEClass;
 	}
@@ -1245,15 +1131,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	public EAttribute getPackageCS_NsURI()
 	{
 		return (EAttribute)packageCSEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPackageRefCS() {
-		return packageRefCSEClass;
 	}
 
 	/**
@@ -1316,33 +1193,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getQualifiedClassifierRefCS() {
-		return qualifiedClassifierRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getQualifiedOperationRefCS() {
-		return qualifiedOperationRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getQualifiedPackageRefCS() {
-		return qualifiedPackageRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getQualifiedRefCS() {
 		return qualifiedRefCSEClass;
 	}
@@ -1363,15 +1213,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 */
 	public EReference getQualifiedRefCS_Element() {
 		return (EReference)qualifiedRefCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getQualifiedStructuralFeatureRefCS() {
-		return qualifiedStructuralFeatureRefCSEClass;
 	}
 
 	/**
@@ -1474,78 +1315,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimpleClassifierRefCS() {
-		return simpleClassifierRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleClassifierRefCS_Classifier() {
-		return (EReference)simpleClassifierRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimpleOperationRefCS() {
-		return simpleOperationRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleOperationRefCS_Operation() {
-		return (EReference)simpleOperationRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimplePackageRefCS() {
-		return simplePackageRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimplePackageRefCS_Package() {
-		return (EReference)simplePackageRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimpleStructuralFeatureRefCS() {
-		return simpleStructuralFeatureRefCSEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimpleStructuralFeatureRefCS_Feature() {
-		return (EReference)simpleStructuralFeatureRefCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getStructuralFeatureCS() {
 		return structuralFeatureCSEClass;
 	}
@@ -1567,15 +1336,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	public EAttribute getStructuralFeatureCS_Default()
 	{
 		return (EAttribute)structuralFeatureCSEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getStructuralFeatureRefCS() {
-		return structuralFeatureRefCSEClass;
 	}
 
 	/**
@@ -1966,8 +1726,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEReference(classifierCSEClass, CLASSIFIER_CS__OWNED_CONSTRAINT);
 		createEAttribute(classifierCSEClass, CLASSIFIER_CS__QUALIFIER);
 
-		classifierRefCSEClass = createEClass(CLASSIFIER_REF_CS);
-
 		collectionTypeRefCSEClass = createEClass(COLLECTION_TYPE_REF_CS);
 
 		constraintCSEClass = createEClass(CONSTRAINT_CS);
@@ -2022,15 +1780,11 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEReference(operationCSEClass, OPERATION_CS__OWNED_PARAMETER);
 		createEReference(operationCSEClass, OPERATION_CS__OWNED_EXCEPTION);
 
-		operationRefCSEClass = createEClass(OPERATION_REF_CS);
-
 		packageCSEClass = createEClass(PACKAGE_CS);
 		createEReference(packageCSEClass, PACKAGE_CS__OWNED_TYPE);
 		createEReference(packageCSEClass, PACKAGE_CS__OWNED_NESTED_PACKAGE);
 		createEAttribute(packageCSEClass, PACKAGE_CS__NS_PREFIX);
 		createEAttribute(packageCSEClass, PACKAGE_CS__NS_URI);
-
-		packageRefCSEClass = createEClass(PACKAGE_REF_CS);
 
 		parameterCSEClass = createEClass(PARAMETER_CS);
 		createEReference(parameterCSEClass, PARAMETER_CS__OWNER);
@@ -2042,17 +1796,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		primitiveTypeRefCSEClass = createEClass(PRIMITIVE_TYPE_REF_CS);
 
-		qualifiedClassifierRefCSEClass = createEClass(QUALIFIED_CLASSIFIER_REF_CS);
-
-		qualifiedOperationRefCSEClass = createEClass(QUALIFIED_OPERATION_REF_CS);
-
-		qualifiedPackageRefCSEClass = createEClass(QUALIFIED_PACKAGE_REF_CS);
-
 		qualifiedRefCSEClass = createEClass(QUALIFIED_REF_CS);
 		createEReference(qualifiedRefCSEClass, QUALIFIED_REF_CS__NAMESPACE);
 		createEReference(qualifiedRefCSEClass, QUALIFIED_REF_CS__ELEMENT);
-
-		qualifiedStructuralFeatureRefCSEClass = createEClass(QUALIFIED_STRUCTURAL_FEATURE_REF_CS);
 
 		qualifiedTypeRefCSEClass = createEClass(QUALIFIED_TYPE_REF_CS);
 
@@ -2069,23 +1815,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		rootPackageCSEClass = createEClass(ROOT_PACKAGE_CS);
 
-		simpleClassifierRefCSEClass = createEClass(SIMPLE_CLASSIFIER_REF_CS);
-		createEReference(simpleClassifierRefCSEClass, SIMPLE_CLASSIFIER_REF_CS__CLASSIFIER);
-
-		simpleOperationRefCSEClass = createEClass(SIMPLE_OPERATION_REF_CS);
-		createEReference(simpleOperationRefCSEClass, SIMPLE_OPERATION_REF_CS__OPERATION);
-
-		simplePackageRefCSEClass = createEClass(SIMPLE_PACKAGE_REF_CS);
-		createEReference(simplePackageRefCSEClass, SIMPLE_PACKAGE_REF_CS__PACKAGE);
-
-		simpleStructuralFeatureRefCSEClass = createEClass(SIMPLE_STRUCTURAL_FEATURE_REF_CS);
-		createEReference(simpleStructuralFeatureRefCSEClass, SIMPLE_STRUCTURAL_FEATURE_REF_CS__FEATURE);
-
 		structuralFeatureCSEClass = createEClass(STRUCTURAL_FEATURE_CS);
 		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNER);
 		createEAttribute(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__DEFAULT);
-
-		structuralFeatureRefCSEClass = createEClass(STRUCTURAL_FEATURE_REF_CS);
 
 		templateBindingCSEClass = createEClass(TEMPLATE_BINDING_CS);
 		createEReference(templateBindingCSEClass, TEMPLATE_BINDING_CS__OWNING_TEMPLATE_BINDABLE_ELEMENT);
@@ -2187,7 +1919,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		classifierCSEClass.getESuperTypes().add(this.getTypeCS());
 		classifierCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
 		classifierCSEClass.getESuperTypes().add(this.getParameterableElementCS());
-		classifierRefCSEClass.getESuperTypes().add(this.getModelElementCS());
 		collectionTypeRefCSEClass.getESuperTypes().add(this.getTypedTypeRefCS());
 		constraintCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		dataTypeCSEClass.getESuperTypes().add(this.getClassifierCS());
@@ -2210,43 +1941,17 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		namespaceCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		operationCSEClass.getESuperTypes().add(this.getFeatureCS());
 		operationCSEClass.getESuperTypes().add(this.getTemplateableElementCS());
-		operationRefCSEClass.getESuperTypes().add(this.getModelElementCS());
 		packageCSEClass.getESuperTypes().add(this.getNamespaceCS());
-		packageRefCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
 		parameterCSEClass.getESuperTypes().add(this.getTypedElementCS());
 		parameterableElementCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
 		parameterizedTypeRefCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		primitiveTypeRefCSEClass.getESuperTypes().add(this.getTypedRefCS());
 		primitiveTypeRefCSEClass.getESuperTypes().add(this.getNamedElementCS());
-		g1 = createEGenericType(this.getClassifierRefCS());
-		qualifiedClassifierRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getQualifiedRefCS());
-		EGenericType g2 = createEGenericType(this.getClassifierRefCS());
-		g1.getETypeArguments().add(g2);
-		qualifiedClassifierRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getOperationRefCS());
-		qualifiedOperationRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getQualifiedRefCS());
-		g2 = createEGenericType(this.getOperationRefCS());
-		g1.getETypeArguments().add(g2);
-		qualifiedOperationRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getPackageRefCS());
-		qualifiedPackageRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getQualifiedRefCS());
-		g2 = createEGenericType(this.getPackageRefCS());
-		g1.getETypeArguments().add(g2);
-		qualifiedPackageRefCSEClass.getEGenericSuperTypes().add(g1);
 		qualifiedRefCSEClass.getESuperTypes().add(this.getModelElementCS());
-		g1 = createEGenericType(this.getStructuralFeatureRefCS());
-		qualifiedStructuralFeatureRefCSEClass.getEGenericSuperTypes().add(g1);
-		g1 = createEGenericType(this.getQualifiedRefCS());
-		g2 = createEGenericType(this.getStructuralFeatureRefCS());
-		g1.getETypeArguments().add(g2);
-		qualifiedStructuralFeatureRefCSEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getParameterizedTypeRefCS());
 		qualifiedTypeRefCSEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(this.getQualifiedRefCS());
-		g2 = createEGenericType(this.getParameterizedTypeRefCS());
+		EGenericType g2 = createEGenericType(this.getParameterizedTypeRefCS());
 		g1.getETypeArguments().add(g2);
 		qualifiedTypeRefCSEClass.getEGenericSuperTypes().add(g1);
 		referenceCSEClass.getESuperTypes().add(this.getStructuralFeatureCS());
@@ -2254,12 +1959,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		rootCSEClass.getESuperTypes().add(this.getModelElementCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getPackageCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getRootCS());
-		simpleClassifierRefCSEClass.getESuperTypes().add(this.getClassifierRefCS());
-		simpleOperationRefCSEClass.getESuperTypes().add(this.getOperationRefCS());
-		simplePackageRefCSEClass.getESuperTypes().add(this.getPackageRefCS());
-		simpleStructuralFeatureRefCSEClass.getESuperTypes().add(this.getStructuralFeatureRefCS());
 		structuralFeatureCSEClass.getESuperTypes().add(this.getFeatureCS());
-		structuralFeatureRefCSEClass.getESuperTypes().add(this.getModelElementCS());
 		templateBindingCSEClass.getESuperTypes().add(this.getModelElementCS());
 		templateParameterCSEClass.getESuperTypes().add(this.getNamedElementCS());
 		templateParameterSubstitutionCSEClass.getESuperTypes().add(this.getModelElementCS());
@@ -2307,10 +2007,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEAttribute(getClassifierCS_InstanceClassName(), ecorePackage.getEString(), "instanceClassName", null, 0, 1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getClassifierCS_OwnedConstraint(), this.getConstraintCS(), null, "ownedConstraint", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClassifierCS_Qualifier(), ecorePackage.getEString(), "qualifier", null, 0, -1, ClassifierCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(classifierRefCSEClass, ClassifierRefCS.class, "ClassifierRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(classifierRefCSEClass, this.getClassifierCS(), "getClassifier", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionTypeRefCSEClass, CollectionTypeRefCS.class, "CollectionTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2370,10 +2066,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getOperationCS_OwnedParameter(), this.getParameterCS(), this.getParameterCS_Owner(), "ownedParameter", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getOperationCS_OwnedException(), this.getTypedRefCS(), null, "ownedException", null, 0, -1, OperationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(operationRefCSEClass, OperationRefCS.class, "OperationRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(operationRefCSEClass, this.getOperationCS(), "getOperation", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(packageCSEClass, PackageCS.class, "PackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPackageCS_OwnedType(), this.getClassifierCS(), this.getClassifierCS_Owner(), "ownedType", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPackageCS_OwnedNestedPackage(), this.getPackageCS(), null, "ownedNestedPackage", null, 0, -1, PackageCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2382,10 +2074,6 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		EOperation op = addEOperation(packageCSEClass, this.getClassifierCS(), "getClassifier", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(packageRefCSEClass, PackageRefCS.class, "PackageRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(packageRefCSEClass, this.getPackageCS(), "getPackage", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(parameterCSEClass, ParameterCS.class, "ParameterCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getParameterCS_Owner(), this.getOperationCS(), this.getOperationCS_OwnedParameter(), "owner", null, 0, 1, ParameterCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2399,18 +2087,10 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		initEClass(primitiveTypeRefCSEClass, PrimitiveTypeRefCS.class, "PrimitiveTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(qualifiedClassifierRefCSEClass, QualifiedClassifierRefCS.class, "QualifiedClassifierRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(qualifiedOperationRefCSEClass, QualifiedOperationRefCS.class, "QualifiedOperationRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		initEClass(qualifiedPackageRefCSEClass, QualifiedPackageRefCS.class, "QualifiedPackageRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(qualifiedRefCSEClass, QualifiedRefCS.class, "QualifiedRefCS", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getQualifiedRefCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, 1, QualifiedRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		g1 = createEGenericType(qualifiedRefCSEClass_E);
 		initEReference(getQualifiedRefCS_Element(), g1, null, "element", null, 0, 1, QualifiedRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(qualifiedStructuralFeatureRefCSEClass, QualifiedStructuralFeatureRefCS.class, "QualifiedStructuralFeatureRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(qualifiedTypeRefCSEClass, QualifiedTypeRefCS.class, "QualifiedTypeRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -2427,25 +2107,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		initEClass(rootPackageCSEClass, RootPackageCS.class, "RootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(simpleClassifierRefCSEClass, SimpleClassifierRefCS.class, "SimpleClassifierRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSimpleClassifierRefCS_Classifier(), this.getClassifierCS(), null, "classifier", null, 0, 1, SimpleClassifierRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(simpleOperationRefCSEClass, SimpleOperationRefCS.class, "SimpleOperationRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSimpleOperationRefCS_Operation(), this.getOperationCS(), null, "operation", null, 0, 1, SimpleOperationRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(simplePackageRefCSEClass, SimplePackageRefCS.class, "SimplePackageRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSimplePackageRefCS_Package(), this.getPackageCS(), null, "package", null, 0, 1, SimplePackageRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(simpleStructuralFeatureRefCSEClass, SimpleStructuralFeatureRefCS.class, "SimpleStructuralFeatureRefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSimpleStructuralFeatureRefCS_Feature(), this.getStructuralFeatureCS(), null, "feature", null, 0, 1, SimpleStructuralFeatureRefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(structuralFeatureCSEClass, StructuralFeatureCS.class, "StructuralFeatureCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getStructuralFeatureCS_Owner(), this.getClassCS(), this.getClassCS_OwnedProperty(), "owner", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getStructuralFeatureCS_Default(), ecorePackage.getEString(), "default", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(structuralFeatureRefCSEClass, StructuralFeatureRefCS.class, "StructuralFeatureRefCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		addEOperation(structuralFeatureRefCSEClass, this.getStructuralFeatureCS(), "getFeature", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(templateBindingCSEClass, TemplateBindingCS.class, "TemplateBindingCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateBindingCS_OwningTemplateBindableElement(), this.getParameterizedTypeRefCS(), this.getParameterizedTypeRefCS_OwnedTemplateBinding(), "owningTemplateBindableElement", null, 0, 1, TemplateBindingCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

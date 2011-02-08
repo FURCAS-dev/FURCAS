@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -68,7 +68,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				environmentView.addNamedElements(pivot.getOwnedOperations());
 				environmentView.addNamedElements(pivot.getOwnedAttributes());
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
-				if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
 					addInheritedContents(environmentView, pivot, scopeView);
 //				if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters

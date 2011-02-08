@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: BaseCSVisitor.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: BaseCSVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -55,7 +55,6 @@ public interface BaseCSVisitor<R, C>
 	R visitClassCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS object);
 	R visitClassCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef object);
 	R visitClassifierCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS object);
-	R visitClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS object);
 	R visitCollectionTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS object);
 	R visitConstraintCS(org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS object);
 	R visitDataTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS object);
@@ -71,26 +70,15 @@ public interface BaseCSVisitor<R, C>
 	R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object);
 	R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object);
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);
-	R visitOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS object);
 	R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object);
-	R visitPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS object);
 	R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object);
 	R visitParameterizedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS object);
 	R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object);
-	R visitQualifiedClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedClassifierRefCS object);
-	R visitQualifiedOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedOperationRefCS object);
-	R visitQualifiedPackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedPackageRefCS object);
-	R visitQualifiedStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS object);
 	R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object);
 	R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object);
 	R visitReferenceCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef object);
 	R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object);
-	R visitSimpleClassifierRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleClassifierRefCS object);
-	R visitSimpleOperationRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleOperationRefCS object);
-	R visitSimplePackageRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimplePackageRefCS object);
-	R visitSimpleStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS object);
 	R visitStructuralFeatureCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS object);
-	R visitStructuralFeatureRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS object);
 	R visitTemplateBindingCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS object);
 	R visitTemplateParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS object);
 	R visitTemplateParameterSubstitutionCS(org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS object);

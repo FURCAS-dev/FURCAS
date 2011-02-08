@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -131,8 +131,8 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 
 	@Override
 	public Continuation<?> visitConstraintCS(ConstraintCS csConstraint) {
-		@SuppressWarnings("unused")
 		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csConstraint);
+		pivotElement.setStereotype(csConstraint.getStereotype());
 		return null;
 	}
 

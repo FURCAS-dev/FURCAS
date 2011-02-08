@@ -12,15 +12,17 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.3 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -66,30 +68,25 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		this.targetReference = scopeView.getTargetReference();
 	}
 	
-	public IEObjectDescription computeLookup(EnvironmentView environmentView) {
-		ScopeView outerScope = scopeAdapter.computeLookup(environmentView, this);
-		int size = environmentView.getSize();
-		if ((size == 0) || (environmentView.getName() == null)) {
-			if (outerScope != null) {
-				return outerScope.computeLookup(environmentView);
+	public final int computeLookups(EnvironmentView environmentView) {
+		ScopeView aScope = this;
+		while ((aScope != null) && !environmentView.hasFinalResult()) {
+			ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
+			if (aScopeAdapter == null) {
+				break;					// The NULLSCOPEVIEW
 			}
-//			scopeAdapter.computeLookup(environmentView, this);
-			return null;
+			@SuppressWarnings("unused")
+			EObject aTarget = aScopeAdapter.getTarget();
+			aScope = aScopeAdapter.computeLookup(environmentView, aScope);
 		}
-		else if (size == 1) {
-			return environmentView.getDescription();
-		}
-		else {
-			List<IEObjectDescription> contents = environmentView.getDescriptions();
-			// FIXME error for ambiguous
-			return contents.get(0);
-		}
+		return environmentView.resolveDuplicates();
 	}
 
 	public void computeLookupWithParents(EnvironmentView environmentView) {
+		// FIXME THis is not a usefully distinct functionality
 		ScopeView outerScope = scopeAdapter.computeLookup(environmentView, this);
 		if (outerScope != null) {
-			if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+			if (!environmentView.hasFinalResult()) {
 				outerScope.computeLookupWithParents(environmentView);
 			}
 		}
@@ -97,7 +94,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
-		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, null);
 		computeLookupWithParents(environmentView);
 		return environmentView.getDescriptions();
 	}
@@ -119,11 +116,39 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 //	}
 
 	@Override
+	public Iterable<IEObjectDescription> getElements(QualifiedName name) {
+		if (name == null)
+			throw new NullPointerException("name"); //$NON-NLS-1$
+		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
+		int size = computeLookups(environmentView);
+		if (size <= 0) {
+			return null;
+		}
+		else if (size == 1) {
+			return Collections.singletonList(environmentView.getDescription());
+		}
+		else {
+			List<IEObjectDescription> contents = environmentView.getDescriptions();
+			return contents;
+		}
+	}
+
+	@Override
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(targetReference, name.toString());
-		return computeLookup(environmentView);
+		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
+		int size = computeLookups(environmentView);
+		if (size <= 0) {
+			return null;
+		}
+		else if (size == 1) {
+			return environmentView.getDescription();
+		}
+		else {
+			return null;
+//			return environmentView.getDescriptions().get(0);
+		}
 	}
 
 	@Deprecated
@@ -143,6 +168,10 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return targetReference;
 	}
 
+	private TypeManager getTypeManager() {
+		return scopeAdapter.getTypeManager();
+	}
+
 	public ScopeView getUnqualifiedOuterScope() {
 		for (ScopeAdapter parent = scopeAdapter.getParent(); parent != null; parent = parent.getParent()) {
 			EObject target = parent.getTarget();
@@ -156,7 +185,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
-		EnvironmentView environmentView = new EnvironmentView(targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, null);
 		scopeAdapter.computeLookup(environmentView, this);
 		return environmentView.getDescriptions();
 	}

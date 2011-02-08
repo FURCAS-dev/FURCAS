@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.4 2011/01/24 20:59:31 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -217,42 +217,6 @@ public interface BaseCSTFactory extends EFactory {
 	PrimitiveTypeRefCS createPrimitiveTypeRefCS();
 
 	/**
-	 * Returns a new object of class '<em>Qualified Classifier Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Classifier Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedClassifierRefCS createQualifiedClassifierRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Qualified Operation Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Operation Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedOperationRefCS createQualifiedOperationRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Qualified Package Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Package Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedPackageRefCS createQualifiedPackageRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Qualified Structural Feature Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Structural Feature Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedStructuralFeatureRefCS createQualifiedStructuralFeatureRefCS();
-
-	/**
 	 * Returns a new object of class '<em>Qualified Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,42 +251,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	RootPackageCS createRootPackageCS();
-
-	/**
-	 * Returns a new object of class '<em>Simple Classifier Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Classifier Ref CS</em>'.
-	 * @generated
-	 */
-	SimpleClassifierRefCS createSimpleClassifierRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Simple Operation Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Operation Ref CS</em>'.
-	 * @generated
-	 */
-	SimpleOperationRefCS createSimpleOperationRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Simple Package Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Package Ref CS</em>'.
-	 * @generated
-	 */
-	SimplePackageRefCS createSimplePackageRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Simple Structural Feature Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Structural Feature Ref CS</em>'.
-	 * @generated
-	 */
-	SimpleStructuralFeatureRefCS createSimpleStructuralFeatureRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding CS</em>'.

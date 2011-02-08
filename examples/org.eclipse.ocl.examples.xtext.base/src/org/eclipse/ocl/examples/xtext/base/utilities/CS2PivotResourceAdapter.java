@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -86,19 +86,23 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 	public Map<Resource, Resource> computeCS2PivotResourceMap(Resource csResource, TypeManager typeManager) {
 		ResourceSet pivotResourceSet = typeManager.getTarget();
 		Map<Resource,Resource> cs2pivotResourceMap = new HashMap<Resource,Resource>();
-		for (Resource acsResource : csResource.getResourceSet().getResources()) {
-			URI uri = acsResource.getURI();
-			List<EObject> contents = acsResource.getContents();
-//			if (!"java".equals(uri.scheme())) { //$NON-NLS-1$
-			if ((contents.size() > 0) && (contents.get(0) instanceof ModelElementCS)) { //$NON-NLS-1$
-				URI pivotURI = uri.appendFileExtension("pivot");
-				Resource pivotResource = pivotResourceSet.getResource(pivotURI, false);
-				if (pivotResource == null) {
-					pivotResource = pivotResourceSet.createResource(pivotURI);
+	//	ResourceSet csResourceSet = csResource.getResourceSet();
+	//	if (csResourceSet != null) {
+//		for (Resource acsResource : csResourceSet.getResources()) {
+			Resource acsResource = csResource;
+				URI uri = acsResource.getURI();
+				List<EObject> contents = acsResource.getContents();
+	//			if (!"java".equals(uri.scheme())) { //$NON-NLS-1$
+				if ((contents.size() > 0) && (contents.get(0) instanceof ModelElementCS)) { //$NON-NLS-1$
+					URI pivotURI = uri.appendFileExtension("pivot");
+					Resource pivotResource = pivotResourceSet.getResource(pivotURI, false);
+					if (pivotResource == null) {
+						pivotResource = pivotResourceSet.createResource(pivotURI);
+					}
+					cs2pivotResourceMap.put(acsResource, pivotResource);
 				}
-				cs2pivotResourceMap.put(acsResource, pivotResource);
-			}
-		}
+	//		}
+	//	}
 		return cs2pivotResourceMap;
 	}
 	
