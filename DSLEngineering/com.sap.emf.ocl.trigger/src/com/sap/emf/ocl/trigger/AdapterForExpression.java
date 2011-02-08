@@ -85,8 +85,9 @@ public class AdapterForExpression extends AdapterImpl {
     public void notifyChanged(Notification msg) {
         ImpactAnalyzer ia = getImpactAnalyzer();
         Collection<EObject> affectedContextObjects = ia.getContextObjects(msg);
-        if (affectedContextObjects )
-        triggerableToNotify.notify(expression, affectedContextObjects, oppositeEndFinder, msg);
+        if (!affectedContextObjects.isEmpty()) {
+            triggerableToNotify.notify(expression, affectedContextObjects, oppositeEndFinder, msg);
+        }
     }
 
 }
