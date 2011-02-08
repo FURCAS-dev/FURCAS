@@ -65,11 +65,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
     }
     
     @Override
-    public Resource getDefaultTextBlocksPartition() {
-        return defaultTextBlocksPartition;
-    }
-
-    @Override
     public void saveAllPartitions(Map<?, ?> options) throws IOException {
         // It is imposible to store empty xmi resources
         if (!this.defaultPartition.getContents().isEmpty()) {
