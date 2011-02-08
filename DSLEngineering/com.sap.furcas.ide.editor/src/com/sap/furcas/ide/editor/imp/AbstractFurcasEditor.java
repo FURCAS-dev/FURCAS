@@ -295,7 +295,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
-        fParserScheduler.schedule(/*schedule_delay*/ 100);
+        fParserScheduler.schedule();
     }
     
     @Override
