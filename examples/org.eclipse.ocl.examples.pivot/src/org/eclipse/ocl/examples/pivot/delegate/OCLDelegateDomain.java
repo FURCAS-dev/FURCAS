@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLDelegateDomain.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLDelegateDomain.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -62,7 +62,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_LPG = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_PIVOT = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
 
 	protected final String uri;
 	protected final EPackage ePackage;

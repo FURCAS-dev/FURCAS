@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotReflectionImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: PivotReflectionImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -29,6 +29,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
@@ -162,7 +163,7 @@ public class PivotReflectionImpl implements UMLReflection {
     
     public Type getOwningClassifier(Object feature) {
         if (feature instanceof Feature) {
-            return ((Feature) feature).getFeaturingClass();
+            return PivotUtil.getFeaturingClass((Feature) feature);
         }
         return null;
     }

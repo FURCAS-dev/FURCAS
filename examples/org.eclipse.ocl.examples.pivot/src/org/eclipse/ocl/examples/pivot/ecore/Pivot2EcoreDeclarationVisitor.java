@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -218,10 +218,10 @@ public class Pivot2EcoreDeclarationVisitor
 			return null;
 		}
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
-		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation == null) {
 			oclAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
+			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 			eModelElement.getEAnnotations().add(oclAnnotation);
 		}
 		String stereotype = pivotConstraint.getStereotype();

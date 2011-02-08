@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SettingBehavior.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: SettingBehavior.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -93,9 +93,7 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 			if (expression == null) {
 				return null;
 			}
-			String string = "der:\n" + expression + "\n;";
-			ExpressionInOcl resolvedSpecification = PivotUtil.resolveSpecification(typeManager, property, string);
-			specification = resolvedSpecification;
+			specification = PivotUtil.resolveSpecification(typeManager, property, expression);
 		}
 		if (specification instanceof ExpressionInOcl) {
 			return (ExpressionInOcl) specification;

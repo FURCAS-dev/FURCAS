@@ -12,20 +12,20 @@
  *
  * </copyright>
  *
- * $Id: JavaLessThanOperation.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: JavaLessThanOrEqualOperation.java,v 1.1 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
 import java.lang.reflect.Method;
 
-public class JavaLessThanOperation extends JavaComparisonOperation
+public class JavaLessThanOrEqualOperation extends JavaComparisonOperation
 {
-	public JavaLessThanOperation(Method method) {
+	public JavaLessThanOrEqualOperation(Method method) {
 		super(method);
 	}
 
 	@Override
 	protected boolean evaluateComparison(Integer result) {
-		return result.intValue() < 0;
+		return result.intValue() <= 0;
 	}
 }

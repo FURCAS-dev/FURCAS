@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -79,7 +79,6 @@ import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -101,7 +100,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return false;
 	} */
 	
-	protected final ValueFactory valueFactory;;
 	
 	/**
 	 * Constructor
@@ -115,17 +113,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			EvaluationEnvironment evalEnv,
 			ModelManager modelManager) {
 		super(env, evalEnv, modelManager);
-		this.valueFactory = evalEnv.getValueFactory();
 	}
 
 	public EvaluationVisitor createNestedVisitor() {
 		EnvironmentFactory factory = environment.getFactory();
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
 		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
-	}
-
-	public ValueFactory getValueFactory() {
-		return valueFactory;
 	}
 
 	public Object getValueOfVariable(VariableDeclaration variable) {
@@ -220,6 +213,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return valueFactory.booleanValueOf(value);
 	}
 
+	@Override
+	public Value visitCollectionItem(CollectionItem item) {
+		throw new UnsupportedOperationException("evaluation of CollectionItem"); //$NON-NLS-1$
+	}
+
 	/**
 	 * Callback for a CollectionLiteralExp visit.
 	 */
@@ -292,27 +290,27 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					// evaluate first value
 					Value firstVal = first.accept(getUndecoratedVisitor());
 					if (firstVal == null) {
-						return createInvalidValue(first, cl, "Invalid first element", null);
+						return valueFactory.createInvalidValue(first, cl, "Invalid first element", null);
 					}
 					Value lastVal = last.accept(getUndecoratedVisitor());
 					if (lastVal == null) {
-						return createInvalidValue(last, cl, "Invalid last element", null);
+						return valueFactory.createInvalidValue(last, cl, "Invalid last element", null);
 					}
 					IntegerValue firstInteger = firstVal.asIntegerValue();
 					if (firstInteger == null) {
-						return createInvalidValue(firstVal, cl, "Non integer first element", null);
+						return valueFactory.createInvalidValue(firstVal, cl, "Non integer first element", null);
 					}
 					IntegerValue lastInteger = lastVal.asIntegerValue();
 					if (lastInteger == null) {
-						return createInvalidValue(lastVal, cl, "Non integer last element", null);
+						return valueFactory.createInvalidValue(lastVal, cl, "Non integer last element", null);
 					}
 					Integer firstInt = firstInteger.asInteger();
 					if (firstInt == null) {
-						return createInvalidValue(firstInteger, cl, "Out of range first element", null);
+						return valueFactory.createInvalidValue(firstInteger, cl, "Out of range first element", null);
 					}
 					Integer lastInt = lastInteger.asInteger();
 					if (lastInt == null) {
-						return createInvalidValue(lastInteger, cl, "Out of range last element", null);
+						return valueFactory.createInvalidValue(lastInteger, cl, "Out of range last element", null);
 					}
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
@@ -330,6 +328,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 		} // end of not-simple range case
 	} // end of Set, OrderedSet, Bag Literals
+
+	@Override
+	public Value visitCollectionRange(CollectionRange range) {
+		throw new UnsupportedOperationException("evaluation of CollectionRange"); //$NON-NLS-1$
+	}
 
 	/**
 	 * Callback for an EnumLiteralExp visit. Get the referred enum literal and
@@ -419,12 +422,23 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		nestedVisitor.getEvaluationEnvironment().add(variable, value);
 		return expression.accept(nestedVisitor);
 	}
-
 	
 	@Override
     public Value visitMessageExp(MessageExp m) {
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
-	}
+/*        T targetResult = safeVisit(messageExp.getTarget());        
+        List<T> argumentResults;
+        List<OclExpression> arguments = messageExp.getArguments();       
+        if (arguments.isEmpty()) {
+            argumentResults = Collections.emptyList();
+        } else {
+            argumentResults = new java.util.ArrayList<T>(arguments.size());
+            for (OclExpression qual : arguments) {
+                argumentResults.add(safeVisit(qual));
+            }
+        }        
+        return handleMessageExp(messageExp, targetResult, argumentResults);
+*/	}
 
 	@Override
     public Value visitNullLiteralExp(NullLiteralExp nullLiteralExp) {
@@ -620,5 +634,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		else {
 			return valueFactory.createInvalidValue(null, variableExp, "Undefined variable", null);
 		}
+	}
+
+	public Value visiting(Visitable visitable) {
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
+		return null;
 	}
 }
