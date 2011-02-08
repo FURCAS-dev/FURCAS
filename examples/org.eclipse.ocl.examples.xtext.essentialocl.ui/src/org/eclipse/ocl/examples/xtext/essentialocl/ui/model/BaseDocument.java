@@ -12,10 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.2 2011/01/24 21:30:14 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.3 2011/02/08 17:50:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -29,7 +33,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import com.google.inject.Inject;
 
-public class BaseDocument extends XtextDocument
+public class BaseDocument extends XtextDocument implements ConsoleContext
 {
 	@Inject
 	public BaseDocument(DocumentTokenSource tokenSource, ITextEditComposer composer) {
@@ -37,18 +41,31 @@ public class BaseDocument extends XtextDocument
 	}
 
 	protected BaseCSResource resource2;
-	
-	@Override
-	public void setInput(XtextResource resource) {
-		this.resource2 = (BaseCSResource) resource;
-		super.setInput(resource);
+
+	private EObject context;
+    private Map<String, EClassifier> parameters;
+
+	protected RootCSScopeAdapter getDocumentScopeAdapter() {
+		if (!resource2.getContents().isEmpty()) {
+			ElementCS csElement = (ElementCS) resource2.getContents().get(0);
+			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
+			if (scopeAdapter != null) {
+				return scopeAdapter.getRootScopeAdapter();
+			}
+		}
+		return null;
+	}
+
+    public EObject getOCLContext() {
+        return context;
+    }
+
+    public Map<String, EClassifier> getOCLParameters() {
+		return parameters;
 	}
 
 	@Override
 	public <T> T modify(IUnitOfWork<T, XtextResource> work) {
-//		if (DocumentScopeAdapter.WORK.isActive()) {
-//			DocumentScopeAdapter.WORK.println("+ModifyWork " + work.getClass().getName() + " on " + Thread.currentThread().getName());
-//		}
 		RootCSScopeAdapter documentScopeAdapter = getDocumentScopeAdapter();
 		try {
 			if (documentScopeAdapter != null) {
@@ -60,35 +77,20 @@ public class BaseDocument extends XtextDocument
 			if (documentScopeAdapter != null) {
 				documentScopeAdapter.endModification();
 			}
-//			if (DocumentScopeAdapter.WORK.isActive()) {
-//				DocumentScopeAdapter.WORK.println("-ModifyWork " + work.getClass().getName() + " on " + Thread.currentThread().getName());
-//			}
 		}
 	}
+	
+	@Override
+	public void setInput(XtextResource resource) {
+		this.resource2 = (BaseCSResource) resource;
+		super.setInput(resource);
+	}
 
-/*	@Override
-	public <T> T readOnly(IUnitOfWork<T, XtextResource> work) {
-		if (DocumentScopeAdapter.WORK.isActive()) {
-			DocumentScopeAdapter.WORK.println("+ReadOnlyWork " + work.getClass().getName() + " on " + Thread.currentThread().getName());
-		}
-		try {
-			return super.readOnly(work);
-		}
-		finally {
-			if (DocumentScopeAdapter.WORK.isActive()) {
-				DocumentScopeAdapter.WORK.println("-ReadOnlyWork " + work.getClass().getName() + " on " + Thread.currentThread().getName());
-			}
-		}
-	} */
+	public void setOCLContext(EObject context) {
+        this.context = context;
+    }
 
-	protected RootCSScopeAdapter getDocumentScopeAdapter() {
-		if (!resource2.getContents().isEmpty()) {
-			ElementCS csElement = (ElementCS) resource2.getContents().get(0);
-			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
-			if (scopeAdapter != null) {
-				return scopeAdapter.getRootScopeAdapter();
-			}
-		}
-		return null;
+	public void setOCLParameters(Map<String, EClassifier> parameters) {
+		this.parameters = parameters;
 	}
 }
