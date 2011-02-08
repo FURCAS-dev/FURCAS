@@ -5429,48 +5429,6 @@ ruleEssentialOCLUnrestrictedIdentifier returns [AntlrDatatypeRuleToken current=n
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getEKeyword_1()); 
     }
-
-    |
-	kw='body' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getBodyKeyword_2()); 
-    }
-
-    |
-	kw='der' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getDerKeyword_3()); 
-    }
-
-    |
-	kw='init' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getInitKeyword_4()); 
-    }
-
-    |
-	kw='inv' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getInvKeyword_5()); 
-    }
-
-    |
-	kw='post' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getPostKeyword_6()); 
-    }
-
-    |
-	kw='pre' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getEssentialOCLUnrestrictedIdentifierAccess().getPreKeyword_7()); 
-    }
 )
     ;
 
