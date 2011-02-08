@@ -3,38 +3,44 @@
 syntax Bibtex {
 
   -- place templates here (at least one main template)
-  primitiveTemplate identifier for EString default using NAME:
-    value = "%token%";
+  primitiveTemplate identifier for EString default using NAME
+  : value = "%token%"
+  ;
         
   primitiveTemplate integerSymbol for EInt default using INT:
         value = "Integer.valueOf(%token%)";
         
   template LiteratureDb main context
-  : name "Entries:" "{" entries "}"
-  		 "Authors:"	"{" author "}"
+  : name <newline>
+  	"Entries:" "{" entries "}" <newline>
+  	"Authors:"	"{" author "}" 
   ;
   
   template Entry
-  : "@article" "{" [
-  		id ","
-  		"title" "=" "{" title "}" ","  
-  		"author" "=" "{" author{referenceBy="name", separator="and",
+  : "@article" "{" 
+  		id "," <newline>
+  		<tab> "title" "=" "{" title "}" "," <newline>
+  		<tab> "author" "=" "{" author{referenceBy="name", separator="and",
   			 					lookupScope="OCL:Bibtex::Author.allInstances()"}
-  			 		 "}" 
-  		]
+  			 		 "}" <newline> 
+  		
   	"}"
   	{{literaturedb = lookIn("OCL:#context")}}
   ;
   
   template Author
-  :
-  	name
+  : name
   	{{literaturedb = lookIn("OCL:#context")}}
   ;
  
   -- place keywords here (optional, seldom used)
 
   -- place symbols here (optional)
+        symbols {
+                coma            = ",";
+                lcurly          = "{";
+                rcurly          = "}";
+        }
 
   -- place operatorLists here (optional)
 

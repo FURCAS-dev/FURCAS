@@ -26,7 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see Bibtex.BibtexPackage#getEntry()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL uniqueID='self.literaturedb.entries->select(e | e.id = self.id)->size() = 1'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueID'"
  * @generated
  */
 public interface Entry extends EObject {
@@ -112,7 +113,7 @@ public interface Entry extends EObject {
      * @return the value of the '<em>Literaturedb</em>' reference.
      * @see #setLiteraturedb(LiteratureDb)
      * @see Bibtex.BibtexPackage#getEntry_Literaturedb()
-     * @model
+     * @model required="true"
      * @generated
      */
     LiteratureDb getLiteraturedb();

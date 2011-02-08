@@ -12,11 +12,13 @@ import Bibtex.BibtexPackage;
 import Bibtex.Entry;
 import Bibtex.LiteratureDb;
 
+import Bibtex.util.BibtexValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -98,6 +100,15 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
 
         // Initialize created meta-data
         theBibtexPackage.initializePackageContents();
+
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theBibtexPackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return BibtexValidator.INSTANCE;
+                 }
+             });
 
         // Mark meta-data to indicate it can't be changed
         theBibtexPackage.freeze();
@@ -309,15 +320,73 @@ public class BibtexPackageImpl extends EPackageImpl implements BibtexPackage {
         initEAttribute(getEntry_Title(), ecorePackage.getEString(), "title", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getEntry_Id(), ecorePackage.getEString(), "id", "", 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getEntry_Author(), this.getAuthor(), this.getAuthor_Publications(), "author", null, 0, -1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getEntry_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 0, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEntry_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 1, 1, Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(authorEClass, Author.class, "Author", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAuthor_Name(), ecorePackage.getEString(), "name", null, 1, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getAuthor_Publications(), this.getEntry(), this.getEntry_Author(), "publications", null, 0, -1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAuthor_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 0, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAuthor_Literaturedb(), this.getLiteratureDb(), null, "literaturedb", null, 1, 1, Author.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Create resource
         createResource(eNS_URI);
+
+        // Create annotations
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
+        // http://www.eclipse.org/emf/2002/Ecore/OCL
+        createOCLAnnotations();
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEcoreAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore";		
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL",
+             "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL"
+           });			
+        addAnnotation
+          (literatureDbEClass, 
+           source, 
+           new String[] {
+             "constraints", "uniqueName"
+           });			
+        addAnnotation
+          (entryEClass, 
+           source, 
+           new String[] {
+             "constraints", "uniqueID"
+           });
+    }
+
+    /**
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore/OCL</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createOCLAnnotations() {
+        String source = "http://www.eclipse.org/emf/2002/Ecore/OCL";			
+        addAnnotation
+          (literatureDbEClass, 
+           source, 
+           new String[] {
+             "uniqueName", "LiteratureDb.allInstances().name.entries->select(db | db.name = self.name)->size() = 1"
+           });			
+        addAnnotation
+          (entryEClass, 
+           source, 
+           new String[] {
+             "uniqueID", "self.literaturedb.entries->select(e | e.id = self.id)->size() = 1"
+           });	
     }
 
 } //BibtexPackageImpl

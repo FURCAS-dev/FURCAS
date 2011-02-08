@@ -84,7 +84,7 @@ public interface Author extends EObject {
      * @return the value of the '<em>Literaturedb</em>' reference.
      * @see #setLiteraturedb(LiteratureDb)
      * @see Bibtex.BibtexPackage#getAuthor_Literaturedb()
-     * @model
+     * @model required="true"
      * @generated
      */
     LiteratureDb getLiteraturedb();
