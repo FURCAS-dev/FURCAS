@@ -28,7 +28,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor,
  lpg.runtime,
  bibtex.metamodel.edit;bundle-version="1.0.0",
- org.eclipse.emf.edit.ui;bundle-version="2.6.0"
+ org.eclipse.emf.edit.ui;bundle-version="2.6.0",
+ bibtex.metamodel.editor;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: bibtex.dsl.editor
 Bundle-Activator: bibtex.dsl.editor.Activator
