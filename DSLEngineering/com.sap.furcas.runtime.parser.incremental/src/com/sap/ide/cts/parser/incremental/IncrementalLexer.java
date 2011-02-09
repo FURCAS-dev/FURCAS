@@ -478,30 +478,16 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
         // first create a new version of the tree
         // TODO: this should be enhanced by only creating new versions of
         // changed regions and re-using the old untouched rest.
-        // boolean moinLoggingWasEnabled = false;
-        // if (ParsingTextblocksActivator.getDefault() != null) {
-        // moinLoggingWasEnabled = ParsingTextblocksActivator.getDefault()
-        // .isMoinLoggingEnabled(root.get___Connection());
-        // }
-        // if (moinLoggingWasEnabled) {
-        // ParsingTextblocksActivator.getDefault().disableMoinLogging(
-        // root.get___Connection());
-        // }
+
         TextBlock currentRoot = getOtherVersion(root, Version.CURRENT);
         if (currentRoot == null) {
-            currentRoot = (TextBlock) TbUtil.createNewCopy(root,
-                    Version.CURRENT, true, shortPrettyPrinter);
+            currentRoot = (TextBlock) TbUtil.createNewCopy(root, Version.CURRENT, true, shortPrettyPrinter);
         } else {
             // TODO fix possibly incomplete textblocks to be able to reuse or
-            // recreate them for
-            // current version
+            // recreate them for current version
             TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
-            currentRoot = (TextBlock) TbUtil.createNewCopy(root,
-                    Version.CURRENT, true, shortPrettyPrinter);
+            currentRoot = (TextBlock) TbUtil.createNewCopy(root, Version.CURRENT, true, shortPrettyPrinter);
         }
-        // if (moinLoggingWasEnabled) {
-        // ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
-        // }
         for (AbstractToken tok = findNextRegion(root); !isEOS(tok);
         // as we are now at the right edge of the last section we need to go to
         // the next token

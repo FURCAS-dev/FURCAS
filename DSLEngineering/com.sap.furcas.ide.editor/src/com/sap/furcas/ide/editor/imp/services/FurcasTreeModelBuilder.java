@@ -1,7 +1,6 @@
 package com.sap.furcas.ide.editor.imp.services;
 import org.eclipse.imp.services.base.TreeModelBuilderBase;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 
 /**
@@ -18,10 +17,16 @@ public class FurcasTreeModelBuilder extends TreeModelBuilderBase {
     @Override
     public void visitTree(Object astNode) {
         TextBlock node = (TextBlock) astNode;
-        for (DocumentNode childNode : node.getSubBlocks()) {
-            pushSubItem(childNode);
+        for (TextBlock childNode : node.getSubBlocks()) {
+            Boolean empty = childNode.getReferencedElements().isEmpty() && 
+                            childNode.getCorrespondingModelElements().isEmpty();
+            if (!empty) {
+                pushSubItem(childNode);
+            }
             visitTree(childNode);
-            popSubItem();
+            if (!empty) {
+                popSubItem();
+            }
         }
     }
 
