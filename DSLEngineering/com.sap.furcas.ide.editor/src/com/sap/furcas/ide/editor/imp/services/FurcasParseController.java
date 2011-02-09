@@ -130,9 +130,12 @@ public abstract class FurcasParseController extends ParseControllerBase {
         parserCollection.lexer.setSource(oldBlock.getTokens().get(0));
 
         // always call the lexer. We need lexed tokens to colorize them later on
-        boolean syntacticallyCorrect = parserCollection.lexer.lex(oldBlock);
-        if (!syntacticallyCorrect) {
-            throw new SemanticParserException(parserCollection.incrementalParser.getErrorList(), oldBlock, null);
+        synchronized (contentProvider.getLockObject()) {
+            // run synchronized: While we are lexing, the user may simulatenously alter the PREVIOUS version
+            boolean syntacticallyCorrect = parserCollection.lexer.lex(oldBlock);
+            if (!syntacticallyCorrect) {
+                throw new SemanticParserException(parserCollection.incrementalParser.getErrorList(), oldBlock, null);
+            }
         }
         
         try {
@@ -198,19 +201,30 @@ public abstract class FurcasParseController extends ParseControllerBase {
         final VersionedTextBlockNavigator navigator = new VersionedTextBlockNavigator(Version.CURRENT);
         final int regionEnd = region.getOffset() + region.getLength();
         
+        /* The parser may invalidate our tokens between hasNext() and next().
+         * To prevent this, we assume that our caller sticks to the protocol
+         * and only calls next() after having called hasNext(). 
+         */
         return new Iterator<AbstractToken>() {
             
-            private AbstractToken currentToken = navigator.getFloorToken(contentProvider.getCurrentRootBlock(), region.getOffset());
+            private AbstractToken nextToken;
             
             @Override
             public boolean hasNext() {
-                AbstractToken nextToken = TbNavigationUtil.nextToken(currentToken);
+                if (nextToken == null) {
+                    nextToken = navigator.getFloorToken(contentProvider.getCurrentRootBlock(), region.getOffset());
+                } else {
+                    nextToken = TbNavigationUtil.nextToken(nextToken);
+                }
                 return nextToken != null && TbUtil.getAbsoluteOffset(nextToken) + nextToken.getLength() <= regionEnd;
             }
+            
             @Override
             public AbstractToken next() {
-                currentToken = TbNavigationUtil.nextToken(currentToken);
-                return currentToken;
+                if (nextToken == null) {
+                    throw new IndexOutOfBoundsException();
+                }
+                return nextToken;
             }
             @Override
             public void remove() {

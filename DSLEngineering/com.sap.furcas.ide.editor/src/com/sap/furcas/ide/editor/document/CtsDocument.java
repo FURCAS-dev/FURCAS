@@ -7,6 +7,9 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.text.AbstractDocument;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
+import org.eclipse.jface.text.DocumentRewriteSession;
+import org.eclipse.jface.text.DocumentRewriteSessionType;
+import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.ui.PartInitException;
 
 import com.sap.furcas.ide.editor.CtsActivator;
@@ -28,12 +31,18 @@ import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 /**
  * A document implementation that is responsible for presenting a text blocks
  * model as an eclipse document to work on.
+ * 
+ * This document is synchronized. Background reconcilers can use {@link #getLockObject()} in order
+ * to synchronize them on the content of this document.
  *
  * @author C5106462
  *
  */
-public class CtsDocument extends AbstractDocument {
+public class CtsDocument extends AbstractDocument implements ISynchronizable {
 
+    private final Object internalLockObject = new Object();
+    private Object lockObject;
+    
     private static final String DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED = "Document was not completely initialized. Call completeInit() to finish the initialization";
     private boolean completelyItitialized = false;
 
@@ -42,6 +51,7 @@ public class CtsDocument extends AbstractDocument {
     
     private final ConcreteSyntax syntax;
     private final EditingDomain editingDomain;
+
     
     /**
      * Creates a new empty document.
@@ -146,24 +156,6 @@ public class CtsDocument extends AbstractDocument {
         return newTextualView;
     }
 
-    @Override
-    public synchronized void replace(int pos, int length, String text) throws BadLocationException {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
-	// TODO remove synchronization once a better solution has been found
-	super.replace(pos, length, text);
-    }
-
-    @Override
-    public synchronized String get(int pos, int length) throws BadLocationException {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
-	// TODO remove synchronization once a better solution has been found
-	return super.get(pos, length);
-    }
-
     public EObject getRootObject() {
 	if (!completelyItitialized) {
 	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
@@ -209,6 +201,108 @@ public class CtsDocument extends AbstractDocument {
             throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
         }
 	((TextBlocksModelStore) getStore()).reduceToMinimalState();
+    }
+        
+    @Override
+    public void setLockObject(Object lockObject) {
+        this.lockObject = lockObject;
+    }
+
+    @Override
+    public Object getLockObject() {
+        return lockObject == null ? internalLockObject : lockObject;
+    }
+    
+    @SuppressWarnings("deprecation")
+    @Override
+    public void startSequentialRewrite(boolean normalized) {
+        synchronized (getLockObject()) {
+            super.startSequentialRewrite(normalized);
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void stopSequentialRewrite() {
+        synchronized (getLockObject()) {
+            super.stopSequentialRewrite();
+        }
+    }
+    
+    @Override
+    public DocumentRewriteSession startRewriteSession(DocumentRewriteSessionType sessionType) {
+        synchronized (getLockObject()) {
+            return super.startRewriteSession(sessionType);
+        }
+    }
+    
+    @Override
+    public void stopRewriteSession(DocumentRewriteSession session) {
+        synchronized (getLockObject()) {
+            super.stopRewriteSession(session);
+        }
+    }
+
+    @Override
+    public String get() {
+        synchronized (getLockObject()) {
+            return super.get();
+        }
+    }
+
+    @Override
+    public String get(int offset, int length) throws BadLocationException {
+        if (!completelyItitialized) {
+            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
+        }
+        synchronized (getLockObject()) {
+            return super.get(offset, length);
+        }
+    }
+
+    @Override
+    public char getChar(int offset) throws BadLocationException {
+        synchronized (getLockObject()) {
+            return super.getChar(offset);
+        }
+    }
+
+    @Override
+    public long getModificationStamp() {
+        synchronized (getLockObject()) {
+            return super.getModificationStamp();
+        }
+    }
+
+    @Override
+    public void replace(int offset, int length, String text) throws BadLocationException {
+        if (!completelyItitialized) {
+            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
+        }
+        synchronized (getLockObject()) {
+            super.replace(offset, length, text);
+        }
+    }
+
+    @Override
+    public void replace(int offset, int length, String text, long modificationStamp) throws BadLocationException {
+        synchronized (getLockObject()) {
+            super.replace(offset, length, text, modificationStamp);
+        }
+    }
+
+    @Override
+    public void set(String text) {
+        synchronized (getLockObject()) {
+            super.set(text);
+        }
+    }
+
+    @Override
+    public void set(String text, long modificationStamp) {
+        synchronized (getLockObject()) {
+            super.set(text, modificationStamp);
+        }
     }
 
 }
