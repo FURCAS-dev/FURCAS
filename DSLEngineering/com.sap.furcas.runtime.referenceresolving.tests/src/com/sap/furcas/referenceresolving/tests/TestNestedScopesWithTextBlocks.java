@@ -158,7 +158,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Usage", bUsageInnerScope.eClass().getName());
         assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),bDefinitionOuterScope);
 
-        renameEStructuralFeature(definitionInnerScope, "b", RenameOn.MODEL);
+        renameDefinition(definitionInnerScope, "b", RenameOn.MODEL);
         assertEquals("b", definitionInnerScope.eGet(definitionInnerScope.eClass().getEStructuralFeature("name")));
 
         assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),
@@ -179,7 +179,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EObject bUsage = getStatementNonNestingLevelM(4, 0);
 
         assertSame(bDefinition, bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")));
-        renameEStructuralFeature(bDefinition, "d", RenameOn.MODEL);
+        renameDefinition(bDefinition, "d", RenameOn.MODEL);
         assertSame(bDefinition, bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")));
 
     }
@@ -204,7 +204,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Usage", bUsage.eClass().getName());
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
 
-        renameEStructuralFeature(bDefinition, "a", RenameOn.MODEL);
+        renameDefinition(bDefinition, "a", RenameOn.MODEL);
 
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
 
@@ -225,7 +225,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EObject aUsage = getStatementNonNestingLevelM(2, 1);
 
         assertSame(aDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
-        renameEStructuralFeature(bDefinition, "a", RenameOn.MODEL);
+        renameDefinition(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
 
     }
@@ -276,9 +276,9 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         return definitions;
     }
 
-    private void renameEStructuralFeature(EObject statement, String newValue, RenameOn method) {
+    private void renameDefinition(EObject definition, String newValue, RenameOn method) {
         if (method == RenameOn.MODEL) {
-            statement.eSet(statement.eClass().getEStructuralFeature("name"), newValue);
+            definition.eSet(definition.eClass().getEStructuralFeature("name"), newValue);
         }
     }
 
