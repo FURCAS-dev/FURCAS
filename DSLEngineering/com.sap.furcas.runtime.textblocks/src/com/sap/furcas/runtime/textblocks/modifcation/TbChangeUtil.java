@@ -48,28 +48,31 @@ public class TbChangeUtil {
 		return currentVersion;
 	}
 	
-	/**
-	 * Revert the textblocks model by delete all newer versions. 
-	 * 
-	 * 
-	 * @return Returns the (old) newest version of the rootBlock
-	 */
-	public static DocumentNode revertToVersion(DocumentNode rootBlock, Version revertToVersion) {
-		DocumentNode currentVersion =  TbVersionUtil.getOtherVersion(rootBlock, revertToVersion);
-		
-		for (DocumentNode otherVersion : new ArrayList<DocumentNode>(
-				currentVersion.getOtherVersions())) {
-			if(isNewer(otherVersion.getVersion(), revertToVersion)) {
-				EcoreUtil.delete(otherVersion);
-			}
-		}
-		if(currentVersion instanceof TextBlock) {
-			for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
-				revertToVersion(subNode, revertToVersion);
-			}
-		}
-		return currentVersion;
-	}
+    /**
+     * Revert the textblocks model by delete all newer versions. 
+     * 
+     * @return Returns the (old) newest version of the rootBlock
+     */
+    public static DocumentNode revertToVersion(DocumentNode rootBlock, Version revertToVersion) {
+        DocumentNode currentVersion = TbVersionUtil.getOtherVersion(rootBlock, revertToVersion);
+
+        for (DocumentNode outdatedVersion : new ArrayList<DocumentNode>(currentVersion.getOtherVersions())) {
+            if (isNewer(outdatedVersion.getVersion(), revertToVersion)) {
+                // A simple delete does not work here. It only deletes from 
+                // enclosing entities but not from other versions that still reference us. 
+                for (DocumentNode remainingVersion : new ArrayList<DocumentNode>(outdatedVersion.getOtherVersions())) {
+                    remainingVersion.getOtherVersions().remove(outdatedVersion);
+                }
+                EcoreUtil.delete(outdatedVersion);
+            }
+        }
+        if (currentVersion instanceof TextBlock) {
+            for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
+                revertToVersion(subNode, revertToVersion);
+            }
+        }
+        return currentVersion;
+    }
 
 
 	/**
