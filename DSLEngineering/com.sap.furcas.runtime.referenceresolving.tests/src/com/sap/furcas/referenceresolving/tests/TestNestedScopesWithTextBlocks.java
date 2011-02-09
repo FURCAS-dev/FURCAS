@@ -243,7 +243,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Definition", aDefinition.eClass().getName());
 
         EcoreUtil.delete(aDefinition);
-
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
     }
 
