@@ -1,0 +1,15 @@
+Hugo
+
+Entries: {
+
+	@article {id,
+		title = { "Nix" },
+		author = { Paul }
+	}
+	 -- @article {id,
+	 -- 	title = { "title" },
+	 -- 	author = { Paul and Boss and Gott }
+	 -- }
+}
+
+Authors: { Paul Hugo The Boss Hoss }

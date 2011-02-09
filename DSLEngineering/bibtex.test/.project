@@ -6,17 +6,23 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.sap.mi.fwk.MoinConstraintChecker</name>
+			<name>org.eclipse.pde.ManifestBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.pde.ManifestBuilder</name>
+			<name>org.eclipse.pde.SchemaBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.emf.query2.index.ui.queryIndexBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.sap.mi.fwk.dcfwk.MoinNature</nature>
+		<nature>org.eclipse.pde.PluginNature</nature>
+		<nature>org.eclipse.emf.query2.index.ui.queryIndexNature</nature>
 	</natures>
 </projectDescription>

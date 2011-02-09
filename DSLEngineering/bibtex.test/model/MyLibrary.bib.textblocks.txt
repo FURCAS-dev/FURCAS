@@ -1,0 +1,6 @@
+MyLibrary 
+
+Entries: {
+	@article {id, title = { "title" }, author = { } }			
+} 
+Authors: { Puh }
