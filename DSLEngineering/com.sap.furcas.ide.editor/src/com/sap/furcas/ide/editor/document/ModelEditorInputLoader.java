@@ -15,7 +15,6 @@ import java.util.HashSet;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
@@ -70,9 +69,9 @@ public class ModelEditorInputLoader {
         }
 
         IFile file = ((FileEditorInput) input).getFile();
-        IPath path = ((FileEditorInput) input).getPath();
-
-        Resource resource = editingDomain.loadResource(URI.createFileURI(path.toOSString()).toString());
+        URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), /*encode*/ true);
+        
+        Resource resource = editingDomain.getResourceSet().getResource(uri, /*load*/ true);
         validateResource(resource);
 
         ModelEditorInput modelInput;
