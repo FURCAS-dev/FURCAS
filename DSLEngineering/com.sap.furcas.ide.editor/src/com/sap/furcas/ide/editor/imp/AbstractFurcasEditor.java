@@ -14,17 +14,21 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.services.ITokenColorer;
@@ -36,6 +40,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.FileEditorInput;
 
 import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.document.CtsDocument;
@@ -135,19 +140,47 @@ public class AbstractFurcasEditor extends UniversalEditor {
         }
         public EObject getCurrentRootObject() {
             return getDocumentProvider().getDocument(getEditorInput()).getRootObject();
-        }        
+        } 
+        public Object getLockObject() {
+            return getDocumentProvider().getDocument(getEditorInput()).getLockObject();
+        }   
     }
 
     
+    private final EditingDomain editingDomain;
+    private final ConcreteSyntax syntax;
     private CtsDocumentProvider documentProvoider;
-    private EditingDomain editingDomain;
 
     private final AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
     private ParserCollection parserCollection;
 
     
     public AbstractFurcasEditor(AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
+        this.syntax = EditorUtil.loadConcreteSyntax(parserFactory);
+        validateEditorState(syntax, parserFactory);
+        
+        this.editingDomain = createEditingDomain(syntax);
         this.parserFactory = parserFactory;
+    }
+    
+    private static void validateEditorState(ConcreteSyntax syntax, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) {
+        if (syntax == null) {
+            String message = "Error loading syntax definition: No syntax definition for language \""
+                    + parserFactory.getLanguageId() + "\" found. Make sure the editor project"
+                    + "is correctly referenced and the mapping model is available.";
+            throw new RuntimeException(message);
+        }
+        if (!isParserConsistentToMapping(syntax, parserFactory)) {
+            String message = "Inconsistency between mapping and parser: " +
+                    "Loaded parser class: " + parserFactory.getParserClass().getCanonicalName() +
+                    " is not consistent with mapping: " + EcoreUtil.getURI(syntax);
+            throw new RuntimeException(message);
+        }
+    }
+
+    private static boolean isParserConsistentToMapping(ConcreteSyntax syntax, ParserFactory<?, ?> parserFactory) {
+        String id = parserFactory.getSyntaxUUID();
+        return id == null || EcoreUtil.getURI(syntax).equals(id);
     }
     
     private static AdapterFactoryEditingDomain createEditingDomain(ConcreteSyntax syntax) {
@@ -185,17 +218,22 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        ConcreteSyntax syntax = EditorUtil.loadConcreteSyntax(parserFactory);
-        validateEditorState(syntax, parserFactory);
-        
-        editingDomain = createEditingDomain(syntax);
-        
+        // FIXME part of the crude  hack.
+        IFile file = ((FileEditorInput) input).getFile();
+        Resource resource = new ResourceSetImpl().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true),true);
+
         // create a temporary opposite end finder that knows about the static resources in the workspace
         QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(editingDomain.getResourceSet(), getAdditionalLookupURIs());
-        OppositeEndFinder temporaryOppositeEndFinder = new Query2OppositeEndFinder(queryContext);
-        // FIXME: at the moment this oppositeEnd finder does not work: it is unable to locate
-        // textblocks within our current project. Investigation needed!
+        QueryContext context = queryContext.getBackwardScopeQueryContext(resource);
         
+        // FIXME: Crude hack: Unable to find textblocks if we do not load all resources manually!
+        for (URI uri : context.getResourceScope()) {
+            if (uri.fileExtension().equals(DefaultPartitionAssignmentHandlerImpl.TEXTBLOCKS_PARTITION_EXTENSION)) {
+                editingDomain.getResourceSet().getResource(uri, true);
+            }
+        }
+        
+        OppositeEndFinder temporaryOppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain, temporaryOppositeEndFinder, parserFactory);
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
         
@@ -209,26 +247,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         
         CtsDocument document = getDocumentProvider().getDocument(modelEditorInput);
         document.completeInit(parserCollection);
-    }
-
-    private static void validateEditorState(ConcreteSyntax syntax, AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer>  parserFactory) throws PartInitException {
-        if (syntax == null) {
-            String message = "Error loading syntax definition: No syntax definition for language \""
-                    + parserFactory.getLanguageId() + "\" found. Make sure the editor project"
-                    + "is correctly referenced and the mapping model is available.";
-            throw new PartInitException(message);
-        }
-        if (!isParserConsistentToMapping(syntax, parserFactory)) {
-            String message = "Inconsistency between mapping and parser: " +
-                    "Loaded parser class: " + parserFactory.getParserClass().getCanonicalName() +
-                    " is not consistent with mapping: " + EcoreUtil.getURI(syntax);
-            throw new PartInitException(message);
-        }
-    }
-
-    private static boolean isParserConsistentToMapping(ConcreteSyntax syntax, ParserFactory<?, ?> parserFactory) {
-        String id = parserFactory.getSyntaxUUID();
-        return id == null || EcoreUtil.getURI(syntax).equals(id);
     }
 
     private static PartitionAssignmentHandler setupPartitioning(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
@@ -319,5 +337,5 @@ public class AbstractFurcasEditor extends UniversalEditor {
     public boolean isDirty() {
         return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
     }
-    
+
 }
