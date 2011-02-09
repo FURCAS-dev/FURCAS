@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmentHandler {
 
-    private static final String TEXTBLOCKS_PARTITION_EXTENSION = "textblocks";
+    public static final String TEXTBLOCKS_PARTITION_EXTENSION = "textblocks";
     private Resource defaultPartition;
     private Resource defaultTextBlocksPartition;
 
