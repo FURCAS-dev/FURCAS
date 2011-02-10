@@ -230,8 +230,12 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
 
     }
 
+    /**
+     * Tests that if a usage was not bound to a definition before a rename, Impact analysis performs a
+     * fresh lookup. It then should set the reference based on the lookup result.
+     */
     @Test
-    @Ignore("Fails due to a bug within IA")
+    @Ignore("first assertion fails when executed with after other testcases")
     public void testCorrectBindingIfElementWasNotBoundBeforeRename() {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
@@ -244,6 +248,10 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
 
         EcoreUtil.delete(aDefinition);
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+        
+        renameDefinition(bDefinition, "a", RenameOn.MODEL);
+        assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+        
     }
 
     private EObject getStatementNonNestingLevelM(int n, int m) {
