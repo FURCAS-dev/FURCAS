@@ -235,7 +235,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * fresh lookup. It then should set the reference based on the lookup result.
      */
     @Test
-    //@Ignore("first assertion fails when executed with after other testcases")
+    @Ignore("first assertion fails when executed with after other testcases")
     public void testCorrectBindingIfElementWasNotBoundBeforeRename() {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
