@@ -68,9 +68,8 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
@@ -107,34 +106,6 @@ public class XtextTestCase extends TestCase
 			}
 //			super.append(event);
 		}
-	}
-
-	public static void assertNoCSErrors(String message, Resource resource) {		
-		StringBuffer s = gatherCSErrors(null, resource.getContents());
-		if (s != null) {
-			fail(message + s.toString());
-		}
-	}
-
-	private static StringBuffer gatherCSErrors(StringBuffer s, List<? extends EObject> eObjects) {
-		for (EObject eObject : eObjects) {
-			if (eObject instanceof ModelElementCS) {
-				List<String> errors = ((ModelElementCS)eObject).getError();
-				if (errors.size() > 0) {
-					if (s == null) {
-						s = new StringBuffer();
-					}
-					for (String e : errors) {
-						s.append("\n");
-						s.append(eObject.eClass().getName());
-						s.append(": ");
-						s.append(e);
-					}
-				}
-			}
-			s = gatherCSErrors(s, eObject.eContents());
-		}
-		return s;
 	}
 
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {

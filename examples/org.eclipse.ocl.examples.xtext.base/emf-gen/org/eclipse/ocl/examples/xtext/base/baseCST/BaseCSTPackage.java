@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.7 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.8 2011/02/11 20:59:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -148,22 +148,13 @@ public interface BaseCSTPackage extends EPackage {
 	int MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = ELEMENT_CS_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_CS__ERROR = ELEMENT_CS_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Model Element CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 4;
+	int MODEL_ELEMENT_CS_FEATURE_COUNT = ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl <em>Monikered Element CS</em>}' class.
@@ -201,15 +192,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MONIKERED_ELEMENT_CS__ERROR = MODEL_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -295,15 +277,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAMED_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_ELEMENT_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -760,15 +733,6 @@ public interface BaseCSTPackage extends EPackage {
 	int ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_ELEMENT_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,15 +794,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANNOTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION_CS__ERROR = ANNOTATION_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -920,15 +875,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_ELEMENT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_ELEMENT_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1039,15 +985,6 @@ public interface BaseCSTPackage extends EPackage {
 	int FEATURE_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CS__ERROR = TYPED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1154,15 +1091,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRUCTURAL_FEATURE_CS__ERROR = FEATURE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1289,15 +1217,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_CS__ERROR = STRUCTURAL_FEATURE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1444,15 +1363,6 @@ public interface BaseCSTPackage extends EPackage {
 	int NAMESPACE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1505,15 +1415,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PACKAGE_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_CS__ERROR = NAMESPACE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1606,15 +1507,6 @@ public interface BaseCSTPackage extends EPackage {
 	int BOUND_DOCUMENT_CS__ORIGINAL_XMI_ID = PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_DOCUMENT_CS__ERROR = PACKAGE_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1703,15 +1595,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASSIFIER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASSIFIER_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1811,15 +1694,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_CS__ERROR = CLASSIFIER_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1975,15 +1849,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPE_REF_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_REF_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2029,15 +1894,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPED_REF_CS__ORIGINAL_XMI_ID = TYPE_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_REF_CS__ERROR = TYPE_REF_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2081,15 +1937,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETERIZED_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERIZED_TYPE_REF_CS__ERROR = TYPED_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2144,15 +1991,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPED_TYPE_REF_CS__ORIGINAL_XMI_ID = PARAMETERIZED_TYPE_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_TYPE_REF_CS__ERROR = PARAMETERIZED_TYPE_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2218,15 +2056,6 @@ public interface BaseCSTPackage extends EPackage {
 	int COLLECTION_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_TYPE_REF_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE_REF_CS__ERROR = TYPED_TYPE_REF_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2288,15 +2117,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONSTRAINT_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2369,15 +2189,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_TYPE_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_CS__ERROR = CLASSIFIER_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2488,15 +2299,6 @@ public interface BaseCSTPackage extends EPackage {
 	int DETAIL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DETAIL_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2558,15 +2360,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int DOCUMENTATION_CS__ORIGINAL_XMI_ID = ANNOTATION_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENTATION_CS__ERROR = ANNOTATION_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2639,15 +2432,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ENUMERATION_CS__ORIGINAL_XMI_ID = CLASSIFIER_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_CS__ERROR = CLASSIFIER_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2758,15 +2542,6 @@ public interface BaseCSTPackage extends EPackage {
 	int ENUMERATION_LITERAL_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUMERATION_LITERAL_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2828,15 +2603,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMPORT_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IMPORT_CS__ERROR = NAMESPACE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2909,15 +2675,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LIBRARY_CS__ORIGINAL_XMI_ID = NAMESPACE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIBRARY_CS__ERROR = NAMESPACE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2999,15 +2756,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATION_CS__ORIGINAL_XMI_ID = FEATURE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CS__ERROR = FEATURE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3154,15 +2902,6 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETER_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_CS__ERROR = TYPED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3280,15 +3019,6 @@ public interface BaseCSTPackage extends EPackage {
 	int PARAMETERABLE_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETERABLE_ELEMENT_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3332,15 +3062,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PRIMITIVE_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPED_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_TYPE_REF_CS__ERROR = TYPED_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3397,15 +3118,6 @@ public interface BaseCSTPackage extends EPackage {
 	int QUALIFIED_REF_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_REF_CS__ERROR = MODEL_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3458,15 +3170,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUALIFIED_TYPE_REF_CS__ORIGINAL_XMI_ID = PARAMETERIZED_TYPE_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_TYPE_REF_CS__ERROR = PARAMETERIZED_TYPE_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3539,15 +3242,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CS__ORIGINAL_XMI_ID = STRUCTURAL_FEATURE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERENCE_CS__ERROR = STRUCTURAL_FEATURE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3722,15 +3416,6 @@ public interface BaseCSTPackage extends EPackage {
 	int ROOT_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_CS__ERROR = MODEL_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Owned Import</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3793,15 +3478,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = PACKAGE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROOT_PACKAGE_CS__ERROR = PACKAGE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3912,15 +3588,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATE_BINDING_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_BINDING_CS__ERROR = MODEL_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Owning Template Bindable Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3973,15 +3640,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4047,15 +3705,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__ORIGINAL_XMI_ID = MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION_CS__ERROR = MODEL_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Owning Template Binding</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4108,15 +3757,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPLATE_SIGNATURE_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATE_SIGNATURE_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4182,15 +3822,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TEMPLATEABLE_ELEMENT_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEMPLATEABLE_ELEMENT_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4253,15 +3884,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_PART_CS__ORIGINAL_XMI_ID = TYPED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_PART_CS__ERROR = TYPED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4382,15 +4004,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TUPLE_TYPE_CS__ORIGINAL_XMI_ID = NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_TYPE_CS__ERROR = NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4454,15 +4067,6 @@ public interface BaseCSTPackage extends EPackage {
 	int TYPE_CS__ORIGINAL_XMI_ID = MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_CS__ERROR = MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4506,15 +4110,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_PARAMETER_CS__ORIGINAL_XMI_ID = TEMPLATE_PARAMETER_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_PARAMETER_CS__ERROR = TEMPLATE_PARAMETER_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -4596,15 +4191,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int WILDCARD_TYPE_REF_CS__ORIGINAL_XMI_ID = TYPE_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WILDCARD_TYPE_REF_CS__ERROR = TYPE_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -5139,17 +4725,6 @@ public interface BaseCSTPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getModelElementCS_OriginalXmiId();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getError <em>Error</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Error</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getError()
-	 * @see #getModelElementCS()
-	 * @generated
-	 */
-	EAttribute getModelElementCS_Error();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef <em>Model Element CS Ref</em>}'.
@@ -6362,14 +5937,6 @@ public interface BaseCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MODEL_ELEMENT_CS__ORIGINAL_XMI_ID = eINSTANCE.getModelElementCS_OriginalXmiId();
-
-		/**
-		 * The meta object literal for the '<em><b>Error</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT_CS__ERROR = eINSTANCE.getModelElementCS_Error();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSRefImpl <em>Model Element CS Ref</em>}' class.
