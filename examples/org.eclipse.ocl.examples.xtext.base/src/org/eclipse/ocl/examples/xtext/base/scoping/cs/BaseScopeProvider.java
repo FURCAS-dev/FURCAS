@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeProvider.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseScopeProvider.java,v 1.3 2011/02/11 20:00:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -29,17 +29,19 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 /**
  * This class contains custom scoping description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping
- * on how and when to use it 
- *
+ * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping on
+ * how and when to use it
+ * 
  */
-public class BaseScopeProvider extends AbstractDeclarativeScopeProvider
-{
-	public static final TracingOption LOOKUP = new TracingOption("org.eclipse.ocl.examples.xtext.base", "lookup");  //$NON-NLS-1$//$NON-NLS-2$
+public class BaseScopeProvider
+		extends AbstractDeclarativeScopeProvider {
+
+	public static final TracingOption LOOKUP = new TracingOption(
+		"org.eclipse.ocl.examples.xtext.base", "lookup"); //$NON-NLS-1$//$NON-NLS-2$
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
-		ElementCS csElement = (ElementCS)context;
+		ElementCS csElement = (ElementCS) context;
 		ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 		if (scopeAdapter == null) {
 			return null;

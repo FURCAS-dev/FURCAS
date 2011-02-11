@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseFragmentProvider.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseFragmentProvider.java,v 1.3 2011/02/11 20:00:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,15 +26,20 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 {
 	@Override
 	public EObject getEObject(Resource resource, String fragment, Fallback fallback) {
-		CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
-		if (converter != null) {
-			Resource pivotResource = converter.getPivotResource(resource);
-			if (pivotResource != null) {
-				EObject eObject = pivotResource.getEObject(fragment);
-				if (eObject != null) {
-					return eObject;
+		try {
+			CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+			if (converter != null) {
+				Resource pivotResource = converter.getPivotResource(resource);
+				if (pivotResource != null) {
+					EObject eObject = pivotResource.getEObject(fragment);
+					if (eObject != null) {
+						return eObject;
+					}
 				}
 			}
+		}
+		catch (IllegalArgumentException e) {
+			// Maybe it's a CS URI after all.
 		}
 		return super.getEObject(resource, fragment, fallback);
 	}

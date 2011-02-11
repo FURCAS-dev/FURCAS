@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotLinker.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: CS2PivotLinker.java,v 1.5 2011/02/11 20:00:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -32,8 +32,8 @@ public class CS2PivotLinker extends LazyLinker
 	@Override
 	protected void afterModelLinked(EObject model, IDiagnosticConsumer diagnosticsConsumer) {
 		Resource eResource = model.eResource();		// FIXME Try to do a narrower refresh
-		System.out.println(Thread.currentThread().getName() + " afterModelLinked " + getClass().getSimpleName() + "@" + hashCode()
-			+ " " + eResource.getClass().getSimpleName() + "@" + eResource.hashCode() + " " + eResource.getURI());		
+//		System.out.println(Thread.currentThread().getName() + " afterModelLinked " + getClass().getSimpleName() + "@" + hashCode()
+//			+ " " + eResource.getClass().getSimpleName() + "@" + eResource.hashCode() + " " + eResource.getURI());		
 		if ((eResource instanceof BaseCSResource) && eResource.getErrors().isEmpty()) {
 //			System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
 			BaseCSResource csResource = (BaseCSResource) eResource;

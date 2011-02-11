@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.3 2011/02/11 20:00:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -28,8 +28,10 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -37,16 +39,19 @@ import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.diagnostics.Diagnostic;
+import org.eclipse.xtext.diagnostics.DiagnosticMessage;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -67,13 +72,50 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager);
 		EPackage getEPackage();
 	}
-
+	
 	private static Map<EPackage, Factory> factoryMap = new HashMap<EPackage, Factory>();
 	
 	public static void addFactory(Factory factory) {
 		factoryMap.put(factory.getEPackage(), factory);
 	}
 
+	public static abstract class UnresolvedProxyMessageProvider
+	{
+		protected final EReference eReference;
+		
+		public UnresolvedProxyMessageProvider(EReference eReference) {
+			this.eReference = eReference;
+		}
+		public EReference getEReference() {
+			return eReference;
+		}
+		
+		public abstract String getMessage(EObject context, String linkText);
+	}
+	
+	private static Map<EReference, UnresolvedProxyMessageProvider> unresolvedProxyMessageProviderMap = new HashMap<EReference, UnresolvedProxyMessageProvider>();
+	
+	public static void addUnresolvedProxyMessageProvider(UnresolvedProxyMessageProvider unresolvedProxyMessageProvider) {
+		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
+	}
+
+	public static DiagnosticMessage getUnresolvedProxyMessage(EReference eReference, EObject csContext, String linkText) {
+		String message = getUnresolvedProxyText(eReference, csContext, linkText);
+		return new DiagnosticMessage(message, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
+	}	
+
+	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
+		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
+		if (unresolvedProxyMessageProvider != null) {
+			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
+		}
+		else {
+			String messageTemplate = "Couldn't resolve reference to {0} '{1}'.";
+			EClass referenceType = eReference.getEReferenceType();
+			return NLS.bind(messageTemplate, referenceType.getName(), linkText);
+		}
+	}	
+	
 	public static CS2Pivot findAdapter(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
@@ -239,7 +281,12 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public boolean isAdapterForType(Object type) {
-		return type == CS2Pivot.class;
+		if (type instanceof Class<?>) {
+			return ((Class<?>)type).isAssignableFrom(getClass());
+		}
+		else {
+			return false;
+		}
 	}
 
 	public void notifyChanged(Notification notification) {
@@ -291,8 +338,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		assert newTarget == typeManager.getPivotResourceSet();
 	}
 	
-	public void update(ProblemHandler problemHandler) {
-		CS2PivotConversion conversion = new CS2PivotConversion(this, problemHandler);
+	public void update() {
+		CS2PivotConversion conversion = new CS2PivotConversion(this);
 		conversion.update(getCSResources());
 	}
 }
