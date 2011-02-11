@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
+ * $Id: ModelElementCS.java,v 1.3 2011/02/11 20:59:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getPivot <em>Pivot</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getOriginalXmiId <em>Original Xmi Id</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS#getError <em>Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,21 +107,5 @@ public interface ModelElementCS extends ElementCS, Pivotable {
 	 * @generated
 	 */
 	void setOriginalXmiId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Error</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Error</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Error</em>' attribute list.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getModelElementCS_Error()
-	 * @model unique="false" transient="true"
-	 * @generated
-	 */
-	EList<String> getError();
 
 } // ModelElementCS

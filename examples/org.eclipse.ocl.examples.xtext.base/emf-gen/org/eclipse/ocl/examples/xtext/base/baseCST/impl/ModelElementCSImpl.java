@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: ModelElementCSImpl.java,v 1.3 2011/02/11 20:59:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -44,7 +43,6 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getOwnedAnnotation <em>Owned Annotation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getPivot <em>Pivot</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getOriginalXmiId <em>Original Xmi Id</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ModelElementCSImpl#getError <em>Error</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,16 +88,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * @ordered
 	 */
 	protected String originalXmiId = ORIGINAL_XMI_ID_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getError() <em>Error</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getError()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> error;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -182,20 +170,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<String> getError()
-	{
-		if (error == null)
-		{
-			error = new EDataTypeEList<String>(String.class, this, BaseCSTPackage.MODEL_ELEMENT_CS__ERROR);
-		}
-		return error;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID)
@@ -221,8 +195,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 				return getPivot();
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return getOriginalXmiId();
-			case BaseCSTPackage.MODEL_ELEMENT_CS__ERROR:
-				return getError();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -247,10 +219,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId((String)newValue);
 				return;
-			case BaseCSTPackage.MODEL_ELEMENT_CS__ERROR:
-				getError().clear();
-				getError().addAll((Collection<? extends String>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -273,9 +241,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				setOriginalXmiId(ORIGINAL_XMI_ID_EDEFAULT);
 				return;
-			case BaseCSTPackage.MODEL_ELEMENT_CS__ERROR:
-				getError().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -295,8 +260,6 @@ public abstract class ModelElementCSImpl extends ElementCSImpl implements ModelE
 				return pivot != null;
 			case BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID:
 				return ORIGINAL_XMI_ID_EDEFAULT == null ? originalXmiId != null : !ORIGINAL_XMI_ID_EDEFAULT.equals(originalXmiId);
-			case BaseCSTPackage.MODEL_ELEMENT_CS__ERROR:
-				return error != null && !error.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

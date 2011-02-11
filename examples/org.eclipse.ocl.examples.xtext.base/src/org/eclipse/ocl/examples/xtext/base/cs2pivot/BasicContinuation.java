@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicContinuation.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BasicContinuation.java,v 1.3 2011/02/11 20:59:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -21,9 +21,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 /**
  * A BasicContinuation defines a conversion activity that needs to be performed once
@@ -54,7 +57,10 @@ public abstract class BasicContinuation<T> implements Continuation<T>
 
 	public void addError(String message) {
 		if (csElement instanceof ModelElementCS) {
-			((ModelElementCS)csElement).getError().add(message);
+			ModelElementCS csModelElement = (ModelElementCS) csElement;
+			INode node = NodeModelUtils.getNode(csModelElement);
+			Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, message);
+			csModelElement.eResource().getErrors().add(resourceDiagnostic);
 		}
 		else {
 			logger.error(message);
