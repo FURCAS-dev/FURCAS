@@ -46,7 +46,7 @@
     </eOperations>
     <eOperations name="operationParsingToSemanticError" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self->oclIsInvalid()"/>
+        <details key="body" value="self->at(1)"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="operationParsingToSyntacticError" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
