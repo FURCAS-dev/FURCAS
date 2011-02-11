@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.3 2011/02/11 20:00:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -33,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
@@ -42,8 +41,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
@@ -117,7 +116,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			return valueFactory.createCollectionValue(true, isUnique, result);
 		}
 
-		public Type getType(StandardLibrary standardLibrary, Type staticType) {
+		public Type getType(TypeManager typeManager, Type staticType) {
 			return staticType;
 		}
 
@@ -199,10 +198,10 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			type = (Type) templateParameterSubstitutions.get(templateParameter);
 		}
 		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
+		if (operation == null) {
+			return new ValidationWarning(OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type);
+		}
 		try {
-			if (operation == null) {
-				return new ValidationWarning(OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type);
-			}
 			CallableImplementation implementation = typeManager.getImplementation(operation);
 			if (implementation == null) {
 				return new ValidationWarning("Failed to load '" + operation.getImplementationClass() + "'");

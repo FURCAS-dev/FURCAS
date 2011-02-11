@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLFactory.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLFactory.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
-import java.util.List;
 
 /**
  * Interface for a factory of OCl Abstract Syntax elements.
@@ -110,7 +109,7 @@ public interface OCLFactory {
 	 * @return the new tuple type
 	 * @generated NOT
 	 */
-	TupleType createTupleType(List<? extends TypedElement> parts);
+//	TupleType createTupleType(List<? extends TypedElement> parts);
 
 	/**
 	 * Returns a new object of class '<em>Type Type</em>'.

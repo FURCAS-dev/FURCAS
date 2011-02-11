@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -373,7 +373,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 				append("Collection {");//$NON-NLS-1$
 				break;
 		}
-        boolean isFirst = false;
+        boolean isFirst = true;
 		for (CollectionLiteralPart part : cl.getParts()) {
 			if (!isFirst) {
 				append(", ");

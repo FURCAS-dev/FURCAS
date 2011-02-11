@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -75,6 +75,7 @@ public interface PivotConstants
 	static final String WILDCARD_NAME = "wildcard";
 	
 	static final String OCL_LANGUAGE = "OCL";
+	static final String OCL_SELF_NAME = "OclSelf";
 	
 	public static Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }

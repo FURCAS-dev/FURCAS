@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.1 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.2 2011/02/11 20:00:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -44,13 +45,15 @@ class OperationFilter implements EnvironmentView.Filter
 {
 	protected final TypeManager typeManager;
 	private final NavigatingExpCS csNavigatingExp;
+	private final Type oclSelfType;
 	private final int iterators;
 	private final int accumulators;
 	private final int expressions;
 	
-	public OperationFilter(TypeManager typeManager, NavigatingExpCS csNavigatingExp) {
+	public OperationFilter(TypeManager typeManager, NavigatingExpCS csNavigatingExp, Type oclSelfType) {
 		this.typeManager = typeManager;
 		this.csNavigatingExp = csNavigatingExp;
+		this.oclSelfType = oclSelfType;
 		int accumulators = 0;
 		int iterators = 0;
 		int expressions = 0;
@@ -79,6 +82,22 @@ class OperationFilter implements EnvironmentView.Filter
 				(Operation)match2, bindings2);	// FIXME Debugging
 		}
 		return comparison;
+	}
+
+	protected void installBindings(EnvironmentView environmentView, EObject eObject,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		for (TemplateParameter templateParameter : bindings.keySet()) {
+			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
+			if (parameteredElement instanceof NamedElement) {
+				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
+					if (bindings.get(templateParameter) == null) {
+						bindings.put(templateParameter, oclSelfType);
+						break;
+					}
+				}
+			}
+		}
+		environmentView.setBindings(eObject, bindings);
 	}
 
 	public boolean matches(EnvironmentView environmentView, EObject eObject) {
@@ -122,11 +141,7 @@ class OperationFilter implements EnvironmentView.Filter
 //				}
 			}
 			if (bindings != null) {
-//				Map<TemplateParameter, ParameterableElement> resolvedBindings = new HashMap<TemplateParameter, ParameterableElement>();
-//				for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
-//					resolvedBindings.put(templateParameter, bindings.get(templateParameter));
-//				}
-				environmentView.setBindings(eObject, bindings);
+				installBindings(environmentView, eObject, bindings);
 			}
 			return true;
 		}
@@ -142,42 +157,36 @@ class OperationFilter implements EnvironmentView.Filter
 			if (expressions != candidateParameters.size()) {
 				return false;
 			}
-//			if (expressions > 0) {
-				ExpCS csSource = csNavigatingExp.getParent().getSource();
-				OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
-				Type sourceType = source.getType();
-				if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
-					sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
-				}			
-				Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
-//				PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
-				TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
-				if (templateSignature != null) {
-					for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
-						if (bindings == null) {
-							bindings = new HashMap<TemplateParameter, ParameterableElement>();
-						}
-						bindings.put(templateParameter, null);
+			ExpCS csSource = csNavigatingExp.getParent().getSource();
+			OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
+			Type sourceType = source.getType();
+			if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
+				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+			}			
+			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
+//			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
+			TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+					if (bindings == null) {
+						bindings = new HashMap<TemplateParameter, ParameterableElement>();
 					}
+					bindings.put(templateParameter, null);
 				}
-				for (int i = 0; i < expressions; i++) {
-					Parameter candidateParameter = candidateParameters.get(i);
-					NavigatingArgCS csExpression = csNavigatingExp.getArgument().get(i);
-					OclExpression expression = PivotUtil.getPivot(OclExpression.class, csExpression);
-					Type candidateType = candidateParameter.getType();
-					Type expressionType = expression.getType();
-					if (!typeManager.conformsTo(expressionType, candidateType, bindings)) {
-						return false;
-					}
+			}
+			for (int i = 0; i < expressions; i++) {
+				Parameter candidateParameter = candidateParameters.get(i);
+				NavigatingArgCS csExpression = csNavigatingExp.getArgument().get(i);
+				OclExpression expression = PivotUtil.getPivot(OclExpression.class, csExpression);
+				Type candidateType = candidateParameter.getType();
+				Type expressionType = expression.getType();
+				if (!typeManager.conformsTo(expressionType, candidateType, bindings)) {
+					return false;
 				}
-				if (bindings != null) {
-//					Map<TemplateParameter, ParameterableElement> resolvedBindings = new HashMap<TemplateParameter, ParameterableElement>();
-//					for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
-//						resolvedBindings.put(templateParameter, bindings.get(templateParameter));
-//					}
-					environmentView.setBindings(eObject, bindings);
-				}
-//			}
+			}
+			if (bindings != null) {
+				installBindings(environmentView, eObject, bindings);
+			}
 			return true;
 		}
 		else {

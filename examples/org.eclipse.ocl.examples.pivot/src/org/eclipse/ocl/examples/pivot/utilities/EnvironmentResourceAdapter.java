@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentResourceAdapter.java,v 1.1 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EnvironmentResourceAdapter.java,v 1.2 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -22,8 +22,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.PivotEnvironment;
-import org.eclipse.ocl.lpg.ProblemHandler;
 
 /**
  * A EnvironmentResourceAdapter enhances the Resource to idenify its environment.
@@ -65,10 +63,6 @@ public class EnvironmentResourceAdapter implements Adapter
 
 	public PivotEnvironment getEnvironment() {
 		return environment;
-	}
-
-	public ProblemHandler getProblemHandler() {
-		return environment != null ? environment.getProblemHandler() : null;
 	}
 	
 //	public TypeManager getTypeManager() {

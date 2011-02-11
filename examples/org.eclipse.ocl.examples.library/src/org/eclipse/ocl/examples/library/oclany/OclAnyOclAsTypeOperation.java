@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.4 2011/02/11 20:00:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -41,13 +41,13 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		if (sourceType == null) {
 			return null;
 		}
-		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0); // FIXME cast
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
 		if (typeVal == null) {
 			return valueFactory.createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = typeVal.getType();
-		if (typeManager.conformsTo(sourceType, argType)) {
+		if (typeManager.conformsTo(sourceType, argType, null)) {
 			return evaluateConforming(evaluationVisitor, sourceVal, argType);
 		}
 		else {

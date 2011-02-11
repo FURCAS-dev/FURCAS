@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.4 2011/02/08 17:44:58 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.5 2011/02/11 20:00:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -20,13 +20,12 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
-import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 
 public class EssentialOCLCSResource extends LazyLinkingResource
@@ -51,10 +50,6 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 
 	public PivotEnvironment getEnvironment() {
 		return environment;
-	}
-
-	public ProblemHandler getProblemHandler() {
-		return environment != null ? environment.getProblemHandler() : null;
 	}
 	
 	public NamedElement getSpecificationContext() {

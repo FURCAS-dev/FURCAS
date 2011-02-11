@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvocationBehavior.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: InvocationBehavior.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -21,12 +21,11 @@ import org.eclipse.emf.ecore.EOperation.Internal.InvocationDelegate;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @since 3.0
@@ -54,6 +53,24 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 		return eOperation.getEContainingClass().getEPackage();
 	}
 
+	/**
+	 * Return the operation body associated with operation, if necessary using
+	 * <code>ocl</code> to create the relevant parsing environment for a textual
+	 * definition.
+	 * @throws OCLDelegateException 
+	 */
+	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, Operation operation) throws OCLDelegateException {
+		Constraint constraint = getConstraintForStereotype(operation, UMLReflection.BODY);
+		if (constraint != null) {
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, operation, constraint);
+			if (expressionInOcl != null) {
+				return expressionInOcl;
+			}
+		}
+		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
+		throw new OCLDelegateException(message);
+	}
+
 	@Override
 	public InvocationDelegate.Factory getFactory(DelegateDomain delegateDomain, EOperation eOperation) {
 		InvocationDelegate.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
@@ -71,35 +88,5 @@ public class InvocationBehavior extends AbstractDelegatedBehavior<EOperation, In
 
 	public Class<InvocationDelegate.Factory.Registry> getRegistryClass() {
 		return InvocationDelegate.Factory.Registry.class;
-	}
-
-	/**
-	 * Return the operation body associated with operation, if necessary using
-	 * <code>ocl</code> to create the relevant parsing environment for a textual
-	 * definition.
-	 */
-	public ExpressionInOcl getSpecification(TypeManager typeManager, Operation operation) {
-		ValueSpecification specification = null;
-		for (Constraint constraint : operation.getOwnedRules()) {
-			String stereotype = constraint.getStereotype();
-			if (UMLReflection.BODY.equals(stereotype)) {
-				specification = constraint.getSpecification();
-				break;
-			}
-		}
-		if (specification == null) {
-			return null;
-		}
-		if (specification instanceof OpaqueExpression ){
-			String expression = PivotUtil.getBody((OpaqueExpression)specification);
-			if (expression == null) {
-				return null;
-			}
-			specification = PivotUtil.resolveSpecification(typeManager, operation, expression);
-		}
-		if (specification instanceof ExpressionInOcl) {
-			return (ExpressionInOcl) specification;
-		}
-		return null;
 	}
 }

@@ -13,10 +13,10 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.Iterator;
 import java.util.List;
@@ -24,7 +24,13 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.EvaluationHaltedException;
+import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.ProblemAware;
+import org.eclipse.ocl.examples.pivot.QueryBase;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
@@ -33,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.util.ProblemAware;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,8 +47,8 @@ import org.eclipse.ocl.util.ProblemAware;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.QueryImpl#getModelManager <em>Extent Map</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.QueryImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.utilities.QueryImpl#getModelManager <em>Extent Map</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.utilities.QueryImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationBehavior.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: ValidationBehavior.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -22,10 +22,12 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @since 3.0
@@ -46,6 +48,21 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 	public EPackage getEPackage(EClassifier eClassifier) {
 		return eClassifier.getEPackage();
 	}
+	
+	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
+		Resource ecoreMetaModel = eClassifier.eResource();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
+		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
+		Constraint constraint = PivotUtil.getNamedElement(type.getOwnedRules(), constraintName);
+		if (constraint != null) {
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, type, constraint);
+			if (expressionInOcl != null) {
+				return expressionInOcl;
+			}
+		}
+		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+		throw new OCLDelegateException(message);
+	}
 
 	@Override
 	public ValidationDelegate.Factory getFactory(DelegateDomain delegateDomain, EClassifier eClassifier) {
@@ -56,23 +73,6 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 
 	public Class<ValidationDelegate.Factory> getFactoryClass() {
 		return ValidationDelegate.Factory.class;
-	}
-	
-	/**
-	 * @since 3.1
-	 */
-	public ExpressionInOcl getInvariant(EClassifier eClassifier, String constraintName, OCL ocl) {
-		TypeManager typeManager = ocl.getEnvironment().getTypeManager();
-		Resource ecoreMetaModel = eClassifier.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
-		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
-		for (Constraint constraint : type.getOwnedRules()) {
-			String name = constraint.getName();
-			if (constraintName.equals(name)) {
-				return (ExpressionInOcl) constraint.getSpecification();
-			}
-		}
-		return null;
 	}
 
 	public String getName() {
