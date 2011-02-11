@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLSettingDelegateFactory.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLSettingDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -45,6 +45,7 @@ public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLSettingDelegateFactory
 	{
+		@Override
 		public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 			EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);

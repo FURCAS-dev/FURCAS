@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -38,9 +38,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-//import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-//import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-//import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;

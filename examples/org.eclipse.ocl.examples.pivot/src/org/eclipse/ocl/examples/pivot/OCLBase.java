@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: OCLBase.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -25,19 +25,14 @@ import java.util.List;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.QueryBaseImpl;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * <p>
@@ -247,86 +242,6 @@ public abstract class OCLBase {
 	}
 
 	/**
-	 * Return an analyzer configured ready to parse an input string.
-	 * 
-	 * @param input the input to parse
-	 * @return an analyzer
-	 * @since 3.0
-	 *
-	public OCLAnalyzer createAnalyzer(String input) {
-		OCLAnalyzer analyzer;
-		if (parserRepairCount != 0) {
-			OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(
-				rootEnvironment, input.toCharArray());
-			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
-			parser.setDefaultRepairCount(parserRepairCount);
-			lexer.lexer(parser.getIPrsStream());
-			analyzer = new OCLAnalyzer(
-				parser);
-		} else {
-			analyzer = new OCLAnalyzer(
-				rootEnvironment, input);
-		}
-		return analyzer;
-	} */
-
-	/**
-	 * Parses an OCL document, returning the constraints parsed from it. This
-	 * <code>OCL</code> instance remembers these constraints; they can be
-	 * retrieved later via the {@link #getConstraints()} method.
-	 * 
-	 * @param input
-	 *            an OCL document as either a string or a stream
-	 * @return the constraints parsed from the document
-	 * 
-	 * @throws ParserException
-	 *             on failure to parse, either because of a syntactic or
-	 *             semantic problem or because of an I/O failure
-	 * 
-	 * @see #getConstraints()
-	 */
-	public List<Constraint> parse(OCLInput input) throws ParserException {
-		throw new UnsupportedOperationException(getClass().getName() + ".parse");
-/*		String inputString = input.getContentAsString();
-		OCLAnalyzer analyzer = createAnalyzer(inputString);
-
-		// clear out old diagnostics
-		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment,
-			ProblemHandler.class);
-		if (ph != null) {
-			ph.beginParse();
-		}
-
-		List<Constraint> result = new java.util.ArrayList<Constraint>();
-		analyzer.parseOCLDocument(result);
-
-		constraints.addAll(result);
-
-		List<EObject> resContents = rootEnvironment.getTypeResolver()
-			.getResource().getContents();
-		for (Constraint ct : result) {
-			EObject constraintEObject = (EObject) ct;
-
-			if (constraintEObject.eResource() == null) {
-				resContents.add(constraintEObject);
-			}
-		}
-
-		if (ph != null) {
-			ph.endParse();
-
-			try {
-				problems = OCLUtil.checkForErrors(ph);
-			} catch (ParserException e) {
-				problems = e.getDiagnostic();
-				throw e;
-			}
-		}
-
-		return result; */
-	}
-
-	/**
 	 * Obtains all of the constraints parsed hitherto by this OCL instance.
 	 * These accumulate with every document that is parsed.
 	 * 
@@ -431,7 +346,7 @@ public abstract class OCLBase {
 		
 		// can determine a more appropriate context from the context
 		// variable of the expression, to account for stereotype constraints
-		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
+//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
 		Value value = valueFactory.valueOf(context);
@@ -456,9 +371,9 @@ public abstract class OCLBase {
 		} catch (EvaluationHaltedException e) {
 			evaluationProblems = e.getDiagnostic();
 			result = null;
-		} finally {
+//		} finally {
 //			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-			localEvalEnv.remove(expression.getContextVariable());
+//			localEvalEnv.remove(expression.getContextVariable());
 		}
 		if (result == null) {
 			result = valueFactory.createInvalidValue("Java-Null value");
@@ -500,8 +415,7 @@ public abstract class OCLBase {
 	 * @see #evaluate(Object, OCLExpression)
 	 */
 	public boolean check(Object context, Constraint constraint) {
-		ExpressionInOcl specification = rootEnvironment
-			.getUMLReflection().getSpecification(constraint);
+		ExpressionInOcl specification = (ExpressionInOcl) constraint.getSpecification();
 
 		return check(context, specification);
 	}
@@ -593,8 +507,7 @@ public abstract class OCLBase {
 	 */
 	public QueryBase createQuery(Constraint constraint) {
 		return new QueryBaseImpl(
-			rootEnvironment, rootEnvironment.getUMLReflection()
-				.getSpecification(constraint), modelManager);
+			rootEnvironment, (ExpressionInOcl) constraint.getSpecification(), modelManager);
 	}
 
 	/**

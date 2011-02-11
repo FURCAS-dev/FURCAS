@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
@@ -51,15 +52,18 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
@@ -100,6 +104,19 @@ public class PivotUtil
 		}
 	}
 
+	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(message);
+			for (Resource.Diagnostic conversionError : errors) {
+				s.append("\n");
+				s.append(conversionError.getMessage());
+			}
+			throw new SemanticException(s.toString());
+		}
+	}
+
 	public static boolean conformsTo(EStructuralFeature eStructuralFeature, EClassifier contentType) {
 		if (eStructuralFeature == null) {			// Wildcard match all
 			return true;
@@ -115,6 +132,50 @@ public class PivotUtil
 			return false;
 		}
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
+	}
+
+	/**
+	 * Create an Xtext resource containing the parsed expression within
+	 * a typeContext and supervised by a typeManager.
+	 * 
+	 * Provided an EssentialOCL resource registration has been made the
+	 * created resource named internal.essentialocl may be cast to an
+	 * XtextResource. Semantic errors may be found at the Resource.errors
+	 * and may be converted to ParseExceptions by invoking
+	 * checkResourceErrors.
+	 * 
+	 * @param typeManager the overall type / meta-model domain
+	 * @param typeContext the type that provides the scope of expression
+	 * @param expression to be parsed
+	 * @return the Xtext resource which may be cast to XtextResource
+	 * 
+	 * @throws IOException if reasource loading fails
+	 */
+	public static Resource createXtextResource(TypeManager typeManager,
+			NamedElement typeContext, String expression) throws IOException {
+		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(INTERNAL_URI);
+		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
+		if (resource instanceof EvaluationContext) {
+			((EvaluationContext)resource).setSpecificationContext(typeContext);
+		}
+		resource.load(inputStream, null);
+		return resource;
+	}
+
+	public static Type findTypeOf(EClassifier eClass) {
+		Resource resource = eClass.eResource();
+		if (resource != null) {
+			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource);
+			if (adapter != null) {
+				Type type = adapter.getCreated(Type.class, eClass);
+				if (type != null) {
+					return type;
+				}
+			}
+		}
+		return null;
 	}
 
 	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
@@ -269,16 +330,20 @@ public class PivotUtil
 	}
 
 	public static org.eclipse.ocl.examples.pivot.Class getFeaturingClass(Feature feature) {
+		org.eclipse.ocl.examples.pivot.Class owner = null;
 		if (feature instanceof Property) {
-			return ((Property)feature).getClass_();
+			owner = ((Property)feature).getClass_();
 		}
 		else if (feature instanceof Operation) {
 			if (feature instanceof Operation) {
 				feature = getUnspecializedTemplateableElement((Operation)feature);
 			}
-			return ((Operation)feature).getClass_();
+			owner = ((Operation)feature).getClass_();
 		}
-		return null;
+		if (owner instanceof CompleteType) {
+			owner = (org.eclipse.ocl.examples.pivot.Class)((CompleteType)owner).getModel(); // FIXME cast
+		}
+		return owner;
 	}
 
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
@@ -481,41 +546,37 @@ public class PivotUtil
 		}
 	}
 
-	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement specificationContext, String expression) {
-		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
+	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement contextClassifier, String expression) throws ParserException {
 		try {
-			ResourceSetImpl resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.createResource(INTERNAL_URI);
-			TypeManagerResourceAdapter.getAdapter(resource, typeManager);
-			if (resource instanceof EvaluationContext) {
-				((EvaluationContext)resource).setSpecificationContext(specificationContext);
-			}
-			resource.load(inputStream, null);
-//				checkResourceErrors("Errors in '" + expression + "'", resource);
-			List<EObject> contents = resource.getContents();
-			int size = contents.size();
-			if (size == 0) {
-				return null;
-			}
-			if (size > 1) {
-				logger.warn("Extra returns ignored");
-			}
-			EObject csObject = contents.get(0);
-			if (csObject instanceof Pivotable) {
-				Element pivotElement = ((Pivotable)csObject).getPivot();
-				if (pivotElement instanceof ExpressionInOcl) {
-					return (ExpressionInOcl) pivotElement;
-				}
-			}
-			logger.warn("Non-expression ignored");
+			Resource resource = createXtextResource(typeManager, contextClassifier, expression);
+			checkResourceErrors("Errors in '" + expression + "'", resource);
+			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
-			OclExpression invalidValueBody = typeManager.createInvalidExpression(specificationContext, "Failed to load expression", e);
+			OclExpression invalidValueBody = typeManager.createInvalidExpression(contextClassifier, "Failed to load expression", e);
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
 		}			
-		return null;
+	}
+
+	public static ExpressionInOcl getExpressionInOcl(Resource resource) throws ParserException {
+		List<EObject> contents = resource.getContents();
+		int size = contents.size();
+		if (size == 0) {
+			return null;
+		}
+		if (size > 1) {
+			throw new ParserException("Extra returns ignored");
+		}
+		EObject csObject = contents.get(0);
+		if (csObject instanceof Pivotable) {
+			Element pivotElement = ((Pivotable)csObject).getPivot();
+			if (pivotElement instanceof ExpressionInOcl) {
+				return (ExpressionInOcl) pivotElement;
+			}
+		}
+		throw new ParserException("Non-expression ignored");
 	}
 
 	public static <T extends MonikeredElement> List<T> sortByMoniker(List<T> list) {

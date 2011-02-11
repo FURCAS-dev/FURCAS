@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EObjectOperation.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: EObjectOperation.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
@@ -56,7 +57,11 @@ public class EObjectOperation implements CallableImplementation
 		if (!(specification instanceof ExpressionInOcl) && (specification instanceof OpaqueExpression)) {
 			Operation operation = PivotUtil.getReferredOperation(callExp);
 			String string = PivotUtil.getBody((OpaqueExpression) specification);
-			specification = PivotUtil.resolveSpecification(evaluationVisitor.getTypeManager(), operation, string);
+			try {
+				specification = PivotUtil.resolveSpecification(evaluationVisitor.getTypeManager(), operation, string);
+			} catch (ParserException e) {
+				return evaluationVisitor.getValueFactory().createInvalidValue(sourceValue, callExp, "parse failure", e);
+			}
 		}
 		if (specification instanceof ExpressionInOcl) {
 			ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;

@@ -12,10 +12,10 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +33,13 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
@@ -74,13 +81,9 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 			}
 			
 			if (next instanceof Environment) {
-				Environment env =
-					(Environment) next;
-				UMLReflection uml = env.getUMLReflection();
-                
-				if (uml.isClassifier(abstractSyntaxElement)
-						|| uml.isOperation(abstractSyntaxElement)
-						|| uml.isProperty(abstractSyntaxElement)) {
+				if ((abstractSyntaxElement instanceof Type)
+						|| (abstractSyntaxElement instanceof Operation)
+						|| (abstractSyntaxElement instanceof Property)) {
 					
 					return (Environment) next;
 				}

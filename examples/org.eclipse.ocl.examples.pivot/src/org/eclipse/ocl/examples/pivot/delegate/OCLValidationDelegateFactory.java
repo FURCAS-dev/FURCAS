@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegateFactory.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLValidationDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -81,6 +81,7 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLValidationDelegateFactory
 	{
+		@Override
 		public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 			ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				classifier, ValidationDelegate.Factory.Registry.class, null);

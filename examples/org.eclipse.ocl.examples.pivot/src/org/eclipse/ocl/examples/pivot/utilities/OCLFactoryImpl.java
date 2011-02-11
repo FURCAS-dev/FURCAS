@@ -12,11 +12,47 @@
  *
  * </copyright>
  *
- * $Id: OCLFactoryImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLFactoryImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.pivot.utilities;
 
-import java.util.List;
+import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
+import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.LetExp;
+import org.eclipse.ocl.examples.pivot.MessageExp;
+import org.eclipse.ocl.examples.pivot.MessageType;
+import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OCLFactory;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.RealLiteralExp;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
+import org.eclipse.ocl.examples.pivot.Signal;
+import org.eclipse.ocl.examples.pivot.StateExp;
+import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
+import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
+import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
+import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.VariableExp;
+
 
 /**
  * Implementation of the {@link OCLFactory} API for the Ecore binding.
@@ -89,7 +125,7 @@ public class OCLFactoryImpl implements OCLFactory {
         return result;
     }
 
-    public TupleType createTupleType(List<? extends TypedElement> parts) {
+/*    public TupleType createTupleType(List<? extends TypedElement> parts) {
         TupleType result = PivotFactory.eINSTANCE.createTupleType();
         if (!parts.isEmpty()) {
             Environment env =
@@ -101,7 +137,7 @@ public class OCLFactoryImpl implements OCLFactory {
             }
         }      
         return result;
-    }
+    } */
 
     public AssociationClassCallExp createAssociationClassCallExp() {
         return PivotFactory.eINSTANCE.createAssociationClassCallExp();

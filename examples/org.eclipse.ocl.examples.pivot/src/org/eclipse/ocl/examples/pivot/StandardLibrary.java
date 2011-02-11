@@ -12,15 +12,11 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import java.util.Map;
-
-import org.eclipse.ocl.Environment;
-
-
 
 /**
  * A representation of the OCL Standard Library, which is the set of singleton
@@ -41,36 +37,12 @@ public interface StandardLibrary
 	boolean conformsTo(Type firstType, Type secondType, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions);
 	
     /**
-     * Obtains the single instance of the {@link AnyType} metatype, named
-     * <tt>OclAny</tt>.
+     * Obtains the generic instance of the {@link BagType} metatype, named
+     * <tt>Bag(T)</tt>.
      * 
-     * @return the <tt>OclAny</tt> type (an instance of {@link AnyType})
+     * @return the <tt>Bag(T)</tt> type (an instance of {@link BagType})
      */
-	AnyType getOclAnyType();
-	
-    /**
-     * Obtains the single instance of the {@link ClassifierType} metatype, named
-     * <tt>Classifier</tt>.
-     * 
-     * @return the <tt>Classifier</tt> type (an instance of {@link Classifoer})
-     */
-	org.eclipse.ocl.examples.pivot.Class getClassifierType();
-	
-    /**
-     * Obtains the single instance of the {@link VoidType} metatype, named
-     * <tt>OclVoid</tt>.
-     * 
-     * @return the <tt>OclVoid</tt> type (an instance of {@link VoidType})
-     */
-	VoidType getOclVoidType();
-	
-    /**
-     * Obtains the single instance of the {@link InvalidType} metatype, named
-     * <tt>OclInvalid</tt>.
-     * 
-     * @return the <tt>OclInvalid</tt> type (an instance of {@link InvalidType})
-     */
-	InvalidType getOclInvalidType();
+	BagType getBagType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -81,20 +53,20 @@ public interface StandardLibrary
 	PrimitiveType getBooleanType();
 	
     /**
-     * Obtains the instance of the {@link PrimitiveType} metatype, named
-     * <tt>String</tt>.
+     * Obtains the single instance of the {@link ClassifierType} metatype, named
+     * <tt>Classifier</tt>.
      * 
-     * @return the <tt>String</tt> type (an instance of {@link PrimitiveType})
+     * @return the <tt>Classifier</tt> type (an instance of {@link Classifoer})
      */
-	PrimitiveType getStringType();
+	org.eclipse.ocl.examples.pivot.Class getClassifierType();
 	
     /**
-     * Obtains the instance of the {@link PrimitiveType} metatype, named
-     * <tt>Real</tt>.
+     * Obtains the generic instance of the {@link CollectionType} metatype, named
+     * <tt>Collection(T)</tt>.
      * 
-     * @return the <tt>Real</tt> type (an instance of {@link PrimitiveType})
+     * @return the <tt>Collection(T)</tt> type (an instance of {@link CollectionType})
      */
-	PrimitiveType getRealType();
+	CollectionType getCollectionType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named
@@ -103,15 +75,22 @@ public interface StandardLibrary
      * @return the <tt>Integer</tt> type (an instance of {@link PrimitiveType})
      */
 	PrimitiveType getIntegerType();
-    
+	
     /**
-     * Obtains the instance of the {@link PrimitiveType} metatype,
-     * named <tt>UnlimitedNatural</tt>.
+     * Obtains the single instance of the {@link AnyType} metatype, named
+     * <tt>OclAny</tt>.
      * 
-     * @return the <tt>UnlimitedNatural</tt> type (an instance of
-     *     {@link PrimitiveType})
+     * @return the <tt>OclAny</tt> type (an instance of {@link AnyType})
      */
-	PrimitiveType getUnlimitedNaturalType();
+	AnyType getOclAnyType();
+	
+    /**
+     * Obtains the single instance of the {@link InvalidType} metatype, named
+     * <tt>OclInvalid</tt>.
+     * 
+     * @return the <tt>OclInvalid</tt> type (an instance of {@link InvalidType})
+     */
+	InvalidType getOclInvalidType();
 	
     /**
      * Obtains the generic instance of the {@link MessageType} metatype, named
@@ -122,12 +101,12 @@ public interface StandardLibrary
 	Type getOclMessageType();
 	
     /**
-     * Obtains the generic instance of the {@link SetType} metatype, named
-     * <tt>Set(T)</tt>.
+     * Obtains the single instance of the {@link VoidType} metatype, named
+     * <tt>OclVoid</tt>.
      * 
-     * @return the <tt>Set(T)</tt> type (an instance of {@link SetType})
+     * @return the <tt>OclVoid</tt> type (an instance of {@link VoidType})
      */
-	SetType getSetType();
+	VoidType getOclVoidType();
 	
     /**
      * Obtains the generic instance of the {@link OrderedSetType} metatype, named
@@ -137,13 +116,15 @@ public interface StandardLibrary
      */
 	OrderedSetType getOrderedSetType();
 	
+	Type getPivotType(String className);
+	
     /**
-     * Obtains the generic instance of the {@link BagType} metatype, named
-     * <tt>Bag(T)</tt>.
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
+     * <tt>Real</tt>.
      * 
-     * @return the <tt>Bag(T)</tt> type (an instance of {@link BagType})
+     * @return the <tt>Real</tt> type (an instance of {@link PrimitiveType})
      */
-	BagType getBagType();
+	PrimitiveType getRealType();
 	
     /**
      * Obtains the generic instance of the {@link SequenceType} metatype, named
@@ -154,33 +135,29 @@ public interface StandardLibrary
 	SequenceType getSequenceType();
 	
     /**
-     * Obtains the generic instance of the {@link CollectionType} metatype, named
-     * <tt>Collection(T)</tt>.
+     * Obtains the generic instance of the {@link SetType} metatype, named
+     * <tt>Set(T)</tt>.
      * 
-     * @return the <tt>Collection(T)</tt> type (an instance of {@link CollectionType})
+     * @return the <tt>Set(T)</tt> type (an instance of {@link SetType})
      */
-	CollectionType getCollectionType();
+	SetType getSetType();
 	
-	Type getPivotType(String className);
+    /**
+     * Obtains the instance of the {@link PrimitiveType} metatype, named
+     * <tt>String</tt>.
+     * 
+     * @return the <tt>String</tt> type (an instance of {@link PrimitiveType})
+     */
+	PrimitiveType getStringType();
     
     /**
-     * Obtains a generic instance of the {@link AnyType} metatype that represents
-     * the type parameter of generic types and operations, named <tt>T</tt>.
+     * Obtains the instance of the {@link PrimitiveType} metatype,
+     * named <tt>UnlimitedNatural</tt>.
      * 
-     * @return the <tt>T</tt> type parameter (an instance of {@link AnyType})
+     * @return the <tt>UnlimitedNatural</tt> type (an instance of
+     *     {@link PrimitiveType})
      */
-	@Deprecated
-    Type getT();
-    
-    /**
-     * Obtains a generic instance of the {@link AnyType} metatype that represents
-     * another type parameter of generic operations (particularly certain
-     * OCL {@link #getCollection() Collection} operations), named <tt>T2</tt>.
-     * 
-     * @return the <tt>T2</tt> type parameter (an instance of {@link AnyType})
-     */
-	@Deprecated
-    Type getT2();
+	PrimitiveType getUnlimitedNaturalType();
 	
 	boolean isOrdered(Type sourceType);
 
