@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
+ * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.4 2011/02/11 20:10:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -155,6 +155,8 @@ public abstract class GenericEvaluateCollectionOperationsTest
 	public void testCollectionAt() {
 		assertQueryEquals(null, "a", "Sequence{'a', 'b'}->at(1)");
 		assertQueryEquals(null, "b", "OrderedSet{'a', 'b'}->at(2)");
+		assertQueryEquals(null, -3, "Sequence{-3..-1}->at(1)");
+		assertQueryEquals(null, -3, "Sequence{-1..-3}->at(3)");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(String) = invalid in s->at(1)");
 		assertQueryInvalid(null, "let o : OrderedSet(String) = invalid in o->at(1)");
@@ -173,6 +175,9 @@ public abstract class GenericEvaluateCollectionOperationsTest
 
 		assertQueryInvalid(null, "Sequence{'a'}->at(2)");
 		assertQueryInvalid(null, "OrderedSet{'a'}->at(2)");
+		
+		assertQueryInvalid(null, "Sequence{-1..-3}->at(0)");
+		assertQueryInvalid(null, "Sequence{-1..-3}->at(4)");
 	}
 
 	public void testCollectionCount() {
@@ -196,11 +201,20 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count(-(-4))");
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count(4.0)");
 		assertQueryEquals(null, 1, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count('test')");
+		assertQueryEquals(null, 1, "Sequence{-4..-1}->count(-4)");
+		assertQueryEquals(null, 1, "Sequence{-1..-4}->count(-4)");
+		assertQueryEquals(null, 1, "Sequence{-4..-1}->count(-1)");
+		assertQueryEquals(null, 1, "Sequence{-1..-4}->count(-1)");
 
 		assertQueryEquals(null, 0, "Sequence{3, 'test', 4.0, 4, 4.0, 'test'}->count(0)");
 		assertQueryEquals(null, 0, "Bag{3, 'test', 4.0, 4, 4.0, 'test'}->count(0)");
 		assertQueryEquals(null, 0, "Set{3, 'test', 4.0, 4, 4.0, 'test'}->count(0)");
 		assertQueryEquals(null, 0, "OrderedSet{3, 'test', 4.0, 4, 4.0, 'test'}->count(0)");
+		assertQueryEquals(null, 0, "Sequence{-4..-1}->count(-5)");
+		assertQueryEquals(null, 0, "Sequence{-1..-4}->count(-5)");
+		assertQueryEquals(null, 0, "Sequence{-4..-1}->count(0)");
+		assertQueryEquals(null, 0, "Sequence{-1..-4}->count(0)");
+		assertQueryEquals(null, 0, "Sequence{-1..-4}->count('x')");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(Integer) = invalid in s->count(0)");
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->count(0)");
@@ -721,6 +735,9 @@ public abstract class GenericEvaluateCollectionOperationsTest
 		assertQueryResults(null, "OrderedSet{'a', 'b', 'c'}", "OrderedSet{'a', 'b'}->including('c')");
 		assertQueryResults(null, "OrderedSet{1..2,3..4}", "OrderedSet{1..4}->including(4)");
 		assertQueryResults(null, "Sequence{1..2,3..4,4}", "Sequence{1..4}->including(4)");
+		assertQueryResults(null, "Sequence{1..5}", "Sequence{1..4}->including(5)");
+		assertQueryResults(null, "Sequence{1..3,4,6}", "Sequence{1..4}->including(6)");
+		assertQueryResults(null, "Sequence{1..4,0}", "Sequence{1..4}->including(0)");
 		assertQueryResults(null, "Set{1..9}", "Set{1..4,6,7..9}->including(5)");
 		// invalid collection
 		assertQueryInvalid(null, "let s : Sequence(String) = invalid in s->including('a')");
