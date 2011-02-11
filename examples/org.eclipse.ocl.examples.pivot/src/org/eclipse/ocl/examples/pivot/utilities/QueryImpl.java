@@ -13,30 +13,35 @@
  *
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: QueryImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.pivot;
+package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.OCLBase;
+import org.eclipse.ocl.examples.pivot.OCLUtil;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.ProblemAware;
+import org.eclipse.ocl.examples.pivot.QueryBase;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.util.ProblemAware;
-
 
 /**
  * Implementation of the {@link OCLBase.QueryBase} convenience interface.
  * 
  * @author Christian W. Damus (cdamus)
  */
-class QueryImpl implements OCL.Query, ProblemAware {
+public class QueryImpl implements OCL.Query, ProblemAware {
     private final QueryBase delegate;
     private final OCL ocl;
     
-    QueryImpl(QueryBase delegate, OCL ocl) {
+    public QueryImpl(QueryBase delegate, OCL ocl) {
         this.delegate = delegate;
         this.ocl = ocl;
     }

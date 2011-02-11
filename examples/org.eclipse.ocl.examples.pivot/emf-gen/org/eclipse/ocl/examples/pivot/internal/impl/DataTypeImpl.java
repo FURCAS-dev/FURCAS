@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataTypeImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: DataTypeImpl.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -384,5 +384,4 @@ public class DataTypeImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitDataType(this);
 	}
-
 } //DataTypeImpl

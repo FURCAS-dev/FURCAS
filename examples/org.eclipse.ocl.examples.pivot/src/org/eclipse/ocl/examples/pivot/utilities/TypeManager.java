@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: TypeManager.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -55,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
@@ -230,8 +231,8 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	public TypeManager(ResourceSet pivotResourceSet) {
 		this.pivotResourceSet = pivotResourceSet;
 		pivotResourceSet.eAdapters().add(this);
-		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
-			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + pivotResourceSet.hashCode());		
+//		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
+//			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + pivotResourceSet.hashCode());		
 	}
 
 	public Namespace addGlobalNamespace(String name, Namespace namespace) {
@@ -974,6 +975,12 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //	public Set<Map.Entry<String, org.eclipse.ocl.examples.pivot.Package>> getPackages1() {
 //		return packageMap.entrySet();
 //	}
+
+	public <T extends NamedElement> T getPivotOfEcore(Class<T> pivotClass, EObject eObject) {
+		Resource ecoreMetaModel = eObject.eResource();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, this);
+		return ecore2Pivot.getCreated(pivotClass, eObject);
+	}
 
 	public ResourceSet getPivotResourceSet() {
 		return pivotResourceSet;

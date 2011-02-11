@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -191,8 +191,7 @@ public abstract class AbstractEvaluationVisitor
 			return null;
 		}
 		OclExpression body = ((ExpressionInOcl)specification).getBodyExpression();
-		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(
-				getEnvironment().getUMLReflection().getStereotype(constraint));
+		boolean isBoolean = BOOLEAN_CONSTRAINTS.contains(constraint.getStereotype());
 		
 		if (body == null) {
 			throw new IllegalArgumentException("constraint has no body expression"); //$NON-NLS-1$

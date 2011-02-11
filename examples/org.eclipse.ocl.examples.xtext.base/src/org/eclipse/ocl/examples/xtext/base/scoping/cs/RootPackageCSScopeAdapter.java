@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.4 2011/02/11 20:00:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;

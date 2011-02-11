@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -270,16 +270,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			}		
 		}
 		return stringType;
-	}
-
-	@Deprecated
-	public Type getT() {
-		throw new UnsupportedOperationException(getClass().getName() + ".getT");
-	}
-
-	@Deprecated
-	public Type getT2() {
-		throw new UnsupportedOperationException(getClass().getName() + ".getT2");
 	}
 
 	public Type getTupleType() {

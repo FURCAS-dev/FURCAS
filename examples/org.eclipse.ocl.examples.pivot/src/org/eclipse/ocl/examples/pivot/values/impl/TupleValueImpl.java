@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -21,12 +21,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -115,7 +114,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         return result;
     }
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return type;
 	}
 
@@ -162,13 +161,13 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     }
     
     private String toString(Object o) {
-        if (o instanceof String) {
+        /*if (o instanceof String) {
             return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
         } else if (o instanceof NullValue) {
             return o.toString();
         } else if (o instanceof CollectionValue) {
             return toString((CollectionValue) o);
-        } else if (o == null) {
+        } else*/ if (o == null) {
             return "null"; //$NON-NLS-1$
         } else {
             return o.toString();
