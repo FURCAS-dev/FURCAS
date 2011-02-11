@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.5 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.6 2011/02/11 20:59:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -90,7 +90,6 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.xtext.diagnostics.AbstractDiagnostic;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
@@ -102,36 +101,6 @@ public class CS2PivotConversion extends AbstractConversion
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
 	public static final TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
 
-	public static class ValidationDiagnostic extends AbstractDiagnostic
-	{
-		protected final INode node;
-		protected final String message;
-		
-		public ValidationDiagnostic(INode node, String message) {
-			this.node = node;
-			this.message = message;
-		}
-
-		@Override
-		public String getCode() {
-			return "FIXME-ValidationDiagnostic-CODE";
-		}
-
-		@Override
-		public String[] getData() {
-			return null;
-		}		
-
-		public String getMessage() {
-			return message;
-		}
-
-		@Override
-		protected INode getNode() {
-			return node;
-		}
-	}
-	
 	protected final CS2Pivot converter;
 	protected final TypeManager typeManager;
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
@@ -173,7 +142,9 @@ public class CS2PivotConversion extends AbstractConversion
 	 */
 	public OclExpression addBadExpressionError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
-		csElement.getError().add(boundMessage);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(
@@ -195,7 +166,9 @@ public class CS2PivotConversion extends AbstractConversion
 
 	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
-		csElement.getError().add(boundMessage);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidType invalidType = typeManager.getOclInvalidType();
@@ -211,7 +184,10 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
 	 */
 	public void addWarning(ModelElementCS csElement, String message, Object... bindings) {
-		csElement.getError().add(NLS.bind(message, bindings));
+		String boundMessage = NLS.bind(message, bindings);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 	}
 
 	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {

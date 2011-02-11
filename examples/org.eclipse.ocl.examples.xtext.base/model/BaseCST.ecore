@@ -95,8 +95,6 @@
         transient="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="originalXmiId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="error" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ModelElementCSRef" eSuperTypes="#//ElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//ModelElementCS"/>
