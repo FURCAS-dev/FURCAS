@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.3 2011/02/11 20:00:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
-import org.eclipse.ocl.ecore.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
