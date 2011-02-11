@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.6 2011/01/24 22:28:25 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.7 2011/02/11 20:59:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -201,15 +201,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_ACCUMULATOR_CS__ORIGINAL_XMI_ID = BaseCSTPackage.PARAMETER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ACCUMULATOR_CS__ERROR = BaseCSTPackage.PARAMETER_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -335,15 +326,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_CLASS_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CLASS_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CLASS_CS__ERROR = BaseCSTPackage.CLASS_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -490,15 +472,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_CONSTRAINT_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CONSTRAINT_CS__ERROR = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -587,15 +560,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_ITERATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.OPERATION_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATION_CS__ERROR = BaseCSTPackage.OPERATION_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -769,15 +733,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_ITERATOR_CS__ORIGINAL_XMI_ID = BaseCSTPackage.PARAMETER_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ITERATOR_CS__ERROR = BaseCSTPackage.PARAMETER_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -893,15 +848,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int LIB_OPERATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.OPERATION_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_OPERATION_CS__ERROR = BaseCSTPackage.OPERATION_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1075,15 +1021,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_PROPERTY_CS__ORIGINAL_XMI_ID = BaseCSTPackage.ATTRIBUTE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_PROPERTY_CS__ERROR = BaseCSTPackage.ATTRIBUTE_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1228,15 +1165,6 @@ public interface OCLstdlibCSTPackage
 	int LIB_ROOT_PACKAGE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.ROOT_PACKAGE_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_ROOT_PACKAGE_CS__ERROR = BaseCSTPackage.ROOT_PACKAGE_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1362,15 +1290,6 @@ public interface OCLstdlibCSTPackage
 	 * @ordered
 	 */
 	int PRECEDENCE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRECEDENCE_CS__ERROR = BaseCSTPackage.NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
