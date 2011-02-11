@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLScopeVisitor.java,v 1.3 2011/02/08 17:53:06 ewillink Exp $
+ * $Id: CompleteOCLScopeVisitor.java,v 1.4 2011/02/11 20:00:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -21,14 +21,12 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.ClassifierContextScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLDocumentScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.ContextConstraintScopeAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.scoping.DefScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.OperationContextScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.PackageDeclarationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.PropertyContextScopeAdapter;
