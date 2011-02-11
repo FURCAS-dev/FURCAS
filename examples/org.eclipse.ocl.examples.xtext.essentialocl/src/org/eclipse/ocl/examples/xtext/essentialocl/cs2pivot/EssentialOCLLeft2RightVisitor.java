@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.4 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.5 2011/02/11 20:00:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -378,7 +379,9 @@ public class EssentialOCLLeft2RightVisitor
 			}
 			Precedence parentPrecedence = typeManager.getInfixPrecedence(csParent.getName());
 			Precedence unaryPrecedence = typeManager.getPrefixPrecedence(csOperator.getName());
-			if ((parentPrecedence != null) && (parentPrecedence.getOrder().compareTo(unaryPrecedence.getOrder()) >= 0)) {
+			int parentOrder = parentPrecedence != null ? parentPrecedence.getOrder().intValue() : -1;
+			int unaryOrder = unaryPrecedence != null ? unaryPrecedence.getOrder().intValue() : -1;
+			if (unaryOrder < parentOrder) {
 				break;
 			}
 			OperatorCS csGrandParent = csParent.getParent();
@@ -399,42 +402,17 @@ public class EssentialOCLLeft2RightVisitor
 				setSource(csOperator, csParent);
 				setSource(csParent, csExp);
 			}
-			else if (csOperator == ((BinaryOperatorCS) csParent).getArgument()) {
-				if (csGrandParent instanceof BinaryOperatorCS) {
-					if (csGrandParent.getSource() == csParent) {
-						setSource(csOperator, null);			// Avoid a transient loop
-						setSource(csGrandParent, csExp);		
-						setSource(csOperator, csGrandParent);
-					}
-				}
-			}
+//			else if (csOperator == ((BinaryOperatorCS) csParent).getArgument()) {
+//				if (csGrandParent instanceof BinaryOperatorCS) {
+//					if (csGrandParent.getSource() == csParent) {
+//						setSource(csOperator, null);			// Avoid a transient loop
+//						setSource(csGrandParent, csExp);		
+//						setSource(csOperator, csGrandParent);
+//					}
+//				}
+//			}
 			else {
 				break;
-			}
-		}
-	}
-
-	/**
-	 * Following the assignment of csElement's pivot, perform an ascent to resolve as
-	 * many outstanding binary operator arguments as possible.
-	 */
-	protected void resolveBinaryOperationArguments(BinaryOperatorCS csOperator, ExpCS csElement) {
-		if (csElement instanceof PrefixExpCS) {
-			csElement = ((PrefixExpCS)csElement).getOwnedOperator().get(0);
-		}
-		for (OperatorCS csParent = csOperator;
-				(csParent instanceof BinaryOperatorCS)
-			 && (((BinaryOperatorCS)csParent).getArgument() == csElement);
-				csElement = csElement.getParent(), csParent = csElement.getParent()) {
-			OclExpression expression = PivotUtil.getPivot(OclExpression.class, csParent);
-			if ((expression instanceof OperationCallExp) && (expression.getType() == null)) {		// FIXME Avoid the need to bypass NavigationOperator reresolution
-				OperationCallExp operationCallExp = (OperationCallExp)expression;
-				OclExpression arg = PivotUtil.getPivot(OclExpression.class, csElement);
-				context.refreshList(operationCallExp.getArguments(), Collections.singletonList(arg));
-				Operation operation = context.resolveOperationCall(csParent, operationCallExp);
-				if (operation != null) {
-					context.setType(operationCallExp, operation.getType());
-				}
 			}
 		}
 	}
@@ -444,35 +422,6 @@ public class EssentialOCLLeft2RightVisitor
 		context.setType(expression, enumerationLiteral.getEnumeration());
 		expression.setReferredEnumLiteral(enumerationLiteral);
 		return expression;
-	}
-
-	/**
-	 * Build an expression tree top down, left to right.
-	 */
-	protected void resolveExpression(ExpCS csExp) {
-		if (csExp instanceof NavigationOperatorCS) {
-			NavigationOperatorCS csOperator = (NavigationOperatorCS)csExp;
-			resolveExpression(csOperator.getSource());
-			context.refreshExpTree(OclExpression.class, csOperator);
-			// FIXME polymorphise wrt BinaryOperator
-			resolveBinaryOperationArguments(csOperator, csOperator.getArgument());
-		}
-		else if (csExp instanceof BinaryOperatorCS) {
-			BinaryOperatorCS csOperator = (BinaryOperatorCS)csExp;
-			resolveExpression(csOperator.getSource());
-			context.refreshExpTree(OclExpression.class, csOperator);
-			ExpCS csArgument = csOperator.getArgument();
-			resolveExpression(csArgument);
-			resolveBinaryOperationArguments(csOperator, csArgument);
-		}
-		else if (csExp instanceof UnaryOperatorCS) {
-			UnaryOperatorCS csOperator = (UnaryOperatorCS)csExp;
-			resolveExpression(csOperator.getSource());
-			context.refreshExpTree(OclExpression.class, csOperator);
-		}
-		else {
-			context.refreshExpTree(OclExpression.class, csExp);
-		}
 	}
 
 	protected void resolveIterationAccumulators(NavigatingExpCS csNavigatingExp, LoopExp expression) {
@@ -681,10 +630,10 @@ public class EssentialOCLLeft2RightVisitor
 			navigationExp = iteratorExp;
 		}
 		navigationExp.setSource(source);
-		OperatorCS csOperator = csElement.getParent();
-		if ((csOperator != null) && (csOperator.getSource() != csElement)) {
-			context.reusePivotElement(csOperator, navigationExp);
-		}
+//		OperatorCS csOperator = csElement.getParent();
+//		if ((csOperator != null) && (csOperator.getSource() != csElement)) {
+//			context.reusePivotElement(csOperator, navigationExp);
+//		}
 		return navigationExp;
 	}
 
@@ -740,7 +689,7 @@ public class EssentialOCLLeft2RightVisitor
 		//
 		NamedElement namedElement = csNamedExp.getNamedElement();
 		if (namedElement.eIsProxy()) {
-			return context.addBadExpressionError(csNamedExp, OCLMessages.ErrorUnresolvedOperationName, csNamedExp);
+			return context.addBadProxyError(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT, csNamedExp);
 		}
 		else if (namedElement instanceof Operation) {
 			Operation operation = (Operation)namedElement;
@@ -843,15 +792,6 @@ public class EssentialOCLLeft2RightVisitor
 		}
 	}
 
-	protected Type resolveSelfType(OclExpression expression) {
-		if (expression instanceof TypeExp) {		// FIXME Is this fundamentally necessary
-			return ((TypeExp)expression).getReferredType();
-		}
-		else {
-			return expression.getType();
-		}
-	}
-
 	protected TypeExp resolveTypeExp(ExpCS csExp, Type type) {
 		TypeExp expression = context.refreshExpression(TypeExp.class, PivotPackage.Literals.TYPE_EXP, csExp);
 		context.setType(expression, typeManager.getClassifierType());
@@ -924,14 +864,19 @@ public class EssentialOCLLeft2RightVisitor
 	}
 	  
 	@Override
-	public MonikeredElement visitBinaryOperatorCS(BinaryOperatorCS csBinaryOperator) {
-		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csBinaryOperator);
-		context.refreshName(expression, csBinaryOperator.getName());
-		ExpCS csSource = csBinaryOperator.getSource();
-		if (csSource != null) {
-			OclExpression pivotChild = PivotUtil.getPivot(OclExpression.class, csSource);
-			expression.setSource(pivotChild);
-		}
+	public MonikeredElement visitBinaryOperatorCS(BinaryOperatorCS csOperator) {
+		OclExpression source = context.refreshExpTree(OclExpression.class, csOperator.getSource());
+		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
+		context.refreshName(expression, csOperator.getName());
+		expression.setSource(source);
+		OclExpression argument = context.refreshExpTree(OclExpression.class, csOperator.getArgument());
+//		if (expression.getType() == null) {
+			context.refreshList(expression.getArguments(), Collections.singletonList(argument));
+			Operation operation = context.resolveOperationCall(csOperator, expression);
+			if (operation != null) {
+				context.setType(expression, operation.getType());
+			}
+//		}
 		return expression;
 	}
 
@@ -1043,12 +988,12 @@ public class EssentialOCLLeft2RightVisitor
 		Resource resource = csContext.eResource();
 		if (resource instanceof EvaluationContext) {	
 			NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
+			Type contextType =  null;
 			if (specificationContext instanceof Type) {
-				context.setType(contextVariable, (Type) specificationContext);
+				contextType = (Type) specificationContext;
 			}
 			else if (specificationContext instanceof Feature) {
-				Type contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
-				context.setType(contextVariable, contextType);
+				contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
 				if (specificationContext instanceof Operation) {
 					context.setType(contextVariable, contextType);
 			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
@@ -1060,7 +1005,11 @@ public class EssentialOCLLeft2RightVisitor
 			        }					
 				}
 			}
-		}
+			if (contextType instanceof CompleteType) {
+				contextType = ((CompleteType)contextType).getModel();
+			}
+			context.setType(contextVariable, contextType);
+			}
 		context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 		pivotElement.setContextVariable(contextVariable);
 		context.putPivotElement(contextVariable);
@@ -1130,13 +1079,9 @@ public class EssentialOCLLeft2RightVisitor
 			csRoot = csParent;
 		}
 		//
-		//	Build the corresponding AST.
+		//	Build the corresponding AST and reuse as the Infix node.
 		//
-		resolveExpression(csRoot);		
-		//
-		//	Map the infix CS to the root of the AS tree.
-		//
-		OclExpression pivot = PivotUtil.getPivot(OclExpression.class, csRoot);
+		OclExpression pivot = context.refreshExpTree(OclExpression.class, csRoot);		
 		context.reusePivotElement(csInfixExp, pivot);
 		return pivot;
 	}
@@ -1227,7 +1172,7 @@ public class EssentialOCLLeft2RightVisitor
 		else {
 			NamedElement element = csNameExp.getElement();
 			if (element.eIsProxy()) {
-				return context.addBadExpressionError(csNameExp, OCLMessages.ErrorUnresolvedName, csNameExp);
+				return context.addBadProxyError(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT, csNameExp);
 			}
 			else if (element instanceof VariableDeclaration) {
 				return resolveVariableExp(csNameExp, (VariableDeclaration)element);
@@ -1268,16 +1213,17 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	@Override
-	public OclExpression visitNavigationOperatorCS(NavigationOperatorCS csNavigationOperator) {
+	public OclExpression visitNavigationOperatorCS(NavigationOperatorCS csOperator) {
+		context.refreshExpTree(OclExpression.class, csOperator.getSource());
 		OclExpression navigatingExp;
-		ExpCS argument = csNavigationOperator.getArgument();
+		ExpCS argument = csOperator.getArgument();
 		if (argument instanceof NavigatingExpCS) {
 			navigatingExp = resolveOperation((NavigatingExpCS) argument);
 		}
 		else {
 			navigatingExp = resolvePropertyNavigation((NamedExpCS) argument);
 		}
-		context.reusePivotElement(csNavigationOperator, navigatingExp);
+		context.reusePivotElement(csOperator, navigatingExp);
 		return navigatingExp;
 	}
 
@@ -1332,7 +1278,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		else {
 			initializePrefixOperators(csPrefixExp, null);
-			resolveExpression(csRoot);		
+			context.refreshExpTree(OclExpression.class, csRoot);		
 		}
 		OclExpression pivotElement = PivotUtil.getPivot(OclExpression.class, csRoot);
 		context.reusePivotElement(csPrefixExp, pivotElement);
@@ -1407,15 +1353,12 @@ public class EssentialOCLLeft2RightVisitor
 	}
 
 	@Override
-	public MonikeredElement visitUnaryOperatorCS(UnaryOperatorCS csUnaryOperator) {
-		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csUnaryOperator);
-		context.refreshName(expression, csUnaryOperator.getName());
-		ExpCS csSource = csUnaryOperator.getSource();
-		if (csSource != null) {
-			OclExpression pivotChild = context.refreshExpTree(OclExpression.class, csSource);
-			expression.setSource(pivotChild);
-		}
-		Operation operation = context.resolveOperationCall(csUnaryOperator, expression);
+	public MonikeredElement visitUnaryOperatorCS(UnaryOperatorCS csOperator) {
+		OclExpression source = context.refreshExpTree(OclExpression.class, csOperator.getSource());
+		OperationCallExp expression = context.refreshExpression(OperationCallExp.class, PivotPackage.Literals.OPERATION_CALL_EXP, csOperator);
+		context.refreshName(expression, csOperator.getName());
+		expression.setSource(source);
+		Operation operation = context.resolveOperationCall(csOperator, expression);
 		if (operation != null) {
 			context.setType(expression, operation.getType());
 		}

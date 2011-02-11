@@ -12,14 +12,16 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.3 2011/02/11 20:00:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -27,7 +29,8 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 {	
@@ -35,7 +38,8 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 	{
 		private Factory() {
 			BaseCS2Pivot.FACTORY.getClass();
-			CS2Pivot.addFactory(this);
+			addFactory(this);
+			addUnresolvedProxyMessageProvider(new NameExpCSUnresolvedProxyMessageProvider());			
 		}
 
 		public EssentialOCLLeft2RightVisitor createLeft2RightVisitor(CS2PivotConversion converter) {
@@ -60,6 +64,25 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 	}
 
 	public static CS2Pivot.Factory FACTORY = new Factory();
+	
+	private static final class NameExpCSUnresolvedProxyMessageProvider extends UnresolvedProxyMessageProvider
+	{		
+		private NameExpCSUnresolvedProxyMessageProvider() {
+			super(EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT);
+		}
+		
+		@Override
+		public String getMessage(EObject context, String linkText) {
+			String messageTemplate;
+			if (context.eContainer() instanceof NavigatingExpCS) {
+				messageTemplate = OCLMessages.ErrorUnresolvedOperationName;
+			}
+			else {
+				messageTemplate = OCLMessages.ErrorUnresolvedPropertyName;
+			}
+			return NLS.bind(messageTemplate, linkText);
+		}
+	}
 		
 	public EssentialOCLCS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		super(cs2pivotResourceMap, typeManager);
