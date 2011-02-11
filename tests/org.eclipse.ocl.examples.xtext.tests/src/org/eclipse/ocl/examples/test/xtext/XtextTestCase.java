@@ -50,10 +50,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
-import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
-import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -66,6 +62,10 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -409,7 +409,7 @@ public class XtextTestCase extends TestCase
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
 		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
 
-        String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
+        String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
         EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
             new OCLInvocationDelegateFactory.Global());
         EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.15 2011/02/08 17:57:13 ewillink Exp $
+ * $Id: LoadTests.java,v 1.16 2011/02/11 20:11:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
