@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.7 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.8 2011/02/11 20:59:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -330,15 +330,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int OPERATOR_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATOR_CS__ERROR = BaseCSTPackage.NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -419,15 +410,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_OPERATOR_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_OPERATOR_CS__ERROR = OPERATOR_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -511,15 +493,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int EXP_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CS__ERROR = BaseCSTPackage.MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -572,15 +545,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LITERAL_EXP_CS__ERROR = EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -637,15 +601,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PRIMITIVE_LITERAL_EXP_CS__ERROR = LITERAL_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -698,15 +653,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -770,15 +716,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_EXP_CS__ERROR = LITERAL_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -853,15 +790,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int COLLECTION_LITERAL_PART_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MONIKERED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_LITERAL_PART_CS__ERROR = BaseCSTPackage.MONIKERED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -923,15 +851,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_TYPE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COLLECTION_TYPE_CS__ERROR = BaseCSTPackage.NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1005,15 +924,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONTEXT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT_CS__ERROR = BaseCSTPackage.NAMED_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1107,15 +1017,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAMED_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMED_EXP_CS__ERROR = EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1180,15 +1081,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECORATED_NAMED_EXP_CS__ERROR = NAMED_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1250,15 +1142,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__ERROR = BaseCSTPackage.CONSTRAINT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1351,15 +1234,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int IF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IF_EXP_CS__ERROR = EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1439,15 +1313,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDEX_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDEX_EXP_CS__ERROR = DECORATED_NAMED_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1531,15 +1396,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INFIX_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFIX_EXP_CS__ERROR = EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1612,15 +1468,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int INVALID_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1673,15 +1520,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LET_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_EXP_CS__ERROR = EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1766,15 +1604,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int VARIABLE_CS__ORIGINAL_XMI_ID = BaseCSTPackage.NAMED_ELEMENT_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_CS__ERROR = BaseCSTPackage.NAMED_ELEMENT_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1855,15 +1684,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int LET_VARIABLE_CS__ORIGINAL_XMI_ID = VARIABLE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LET_VARIABLE_CS__ERROR = VARIABLE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1966,15 +1786,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID = NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_NAMED_EXP_CS__ERROR = NAMED_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2027,15 +1838,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAME_EXP_CS__ORIGINAL_XMI_ID = SIMPLE_NAMED_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_EXP_CS__ERROR = SIMPLE_NAMED_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2108,15 +1910,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAVIGATING_ARG_CS__ORIGINAL_XMI_ID = BaseCSTPackage.MODEL_ELEMENT_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_ARG_CS__ERROR = BaseCSTPackage.MODEL_ELEMENT_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Navigating Exp</b></em>' container reference.
@@ -2209,15 +2002,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NAVIGATING_EXP_CS__ORIGINAL_XMI_ID = DECORATED_NAMED_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATING_EXP_CS__ERROR = DECORATED_NAMED_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2298,15 +2082,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NAVIGATION_OPERATOR_CS__ORIGINAL_XMI_ID = BINARY_OPERATOR_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_OPERATOR_CS__ERROR = BINARY_OPERATOR_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2390,15 +2165,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NESTED_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NESTED_EXP_CS__ERROR = EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2462,15 +2228,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int NULL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NULL_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2523,15 +2280,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2605,15 +2353,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREFIX_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PREFIX_EXP_CS__ERROR = EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2698,15 +2437,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int SELF_EXP_CS__ORIGINAL_XMI_ID = EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SELF_EXP_CS__ERROR = EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2770,15 +2500,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int STRING_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2840,15 +2561,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_EXP_CS__ERROR = LITERAL_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -2922,15 +2634,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TUPLE_LITERAL_PART_CS__ORIGINAL_XMI_ID = VARIABLE_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TUPLE_LITERAL_PART_CS__ERROR = VARIABLE_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3015,15 +2718,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int TYPE_LITERAL_EXP_CS__ORIGINAL_XMI_ID = LITERAL_EXP_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_LITERAL_EXP_CS__ERROR = LITERAL_EXP_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3085,15 +2779,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int TYPE_NAME_EXP_CS__ORIGINAL_XMI_ID = BaseCSTPackage.TYPED_REF_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPE_NAME_EXP_CS__ERROR = BaseCSTPackage.TYPED_REF_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -3178,15 +2863,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int UNARY_OPERATOR_CS__ORIGINAL_XMI_ID = OPERATOR_CS__ORIGINAL_XMI_ID;
 
 	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNARY_OPERATOR_CS__ERROR = OPERATOR_CS__ERROR;
-
-	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3267,15 +2943,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__ORIGINAL_XMI_ID = PRIMITIVE_LITERAL_EXP_CS__ORIGINAL_XMI_ID;
-
-	/**
-	 * The feature id for the '<em><b>Error</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP_CS__ERROR = PRIMITIVE_LITERAL_EXP_CS__ERROR;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
