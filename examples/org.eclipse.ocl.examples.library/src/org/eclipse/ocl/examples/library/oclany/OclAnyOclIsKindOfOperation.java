@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclIsKindOfOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: OclAnyOclIsKindOfOperation.java,v 1.4 2011/02/11 20:00:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -44,6 +44,6 @@ public class OclAnyOclIsKindOfOperation extends AbstractOperation
 			return valueFactory.createInvalidValue(argVal, operationCall, "Type required", null);
 		}
 		Type argType = argTypeValue.getType();
-		return valueFactory.booleanValueOf(typeManager.conformsTo(sourceType, argType));
+		return valueFactory.booleanValueOf(typeManager.conformsTo(sourceType, argType, null));
 	}
 }
