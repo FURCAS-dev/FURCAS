@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.3 2011/02/11 20:10:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -27,9 +27,9 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -116,7 +116,7 @@ public abstract class GenericIteratorsTest
         // shortest form
         assertQueryEquals(pkg1, expected, "nestedPackage->select(name <> 'bob')");
 
-        Value expected2 = valueFactory.valueOf(reflection.getNestedPackages(pkg1));
+        Value expected2 = valueFactory.createSetOf(bob, pkg2, pkg3);
         assertQueryEquals(pkg1, expected2, "nestedPackage->select(true)");
     }
 
