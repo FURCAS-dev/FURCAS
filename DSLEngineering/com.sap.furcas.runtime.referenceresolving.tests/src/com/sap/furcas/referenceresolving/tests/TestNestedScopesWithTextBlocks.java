@@ -234,7 +234,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * fresh lookup. It then should set the reference based on the lookup result.
      */
     @Test
-    // @Ignore("first assertion fails when executed with after other testcases")
     public void testCorrectBindingIfElementWasNotBoundBeforeRename() {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
@@ -246,20 +245,8 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Definition", aDefinition.eClass().getName());
 
         EcoreUtil.delete(aDefinition);
-        //-------------------------------------------------------------------------------------------------
-        // this assertion fails, if test is run together with other tests, because after the deletion
-        // of "def a" the usage is unexpectedly bound to "def b" and the second assertion evaluates to true
-        //EXPECTED BEHAVIOR: pass assertion!
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
-        //this assertion evaluates to true, if the test is run together with other testcases.
-        //instead of being unbound, the usage is bound to the definition "def b". this behavior is
-        //unexpected!
-        //EXPECTED BEHAVIOR: fail assertion!
-        //assertSame(bDefinition,aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
-        //-------------------------------------------------------------------------------------------------
-        
-        //TODO: uncomment these lines after problem is solved!
         renameDefinition(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
