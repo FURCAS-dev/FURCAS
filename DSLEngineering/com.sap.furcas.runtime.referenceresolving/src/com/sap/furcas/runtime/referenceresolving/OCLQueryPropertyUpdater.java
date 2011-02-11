@@ -222,8 +222,12 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
             OppositeEndFinder oppositeEndFinder, Notification change) {
         for (EObject eo : affectedContextObjects) {
             for (LexedToken token : getTokens(eo)) {
+                boolean shallUpdateReferencingTokenInTextBlockModel = shallUpdateReferencingTokenInTextBlockModel(token);
                 if (!isResolved(eo)) {
-                    resolve(eo, token);
+                    if (shallUpdateReferencingTokenInTextBlockModel) {
+                        token.getReferencedElements().clear();
+                    }
+                    resolve(eo, token, shallUpdateReferencingTokenInTextBlockModel);
                 } else {
                     if (expression == lookupScopeExp) {
                         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
@@ -243,13 +247,13 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                                         // resolved element still in scope; update token if desired
                                         String newTokenValue = getNewTokenValue(ocl, (EObject) oldValue);
                                         if (token != null
-                                                && shallUpdateReferencingTokenInTextBlockModel(token, newTokenValue)) {
+                                                && shallUpdateReferencingTokenInTextBlockModel) {
                                             token.setValue(newTokenValue);
                                         }
                                     } else {
                                         // element to which identifier resolved so far is no longer in scope;
                                         // resolve again, now based on modified scope
-                                        resolve(eo, token);
+                                        resolve(eo, token, shallUpdateReferencingTokenInTextBlockModel);
                                     }
                                 }
                             } catch (ParserException e) {
@@ -277,7 +281,8 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         Collection<LexedToken> result = new HashSet<LexedToken>();
         if (textBlockDocumentingExecutionOfQuery != null) {
             for (EObject eo : textBlockDocumentingExecutionOfQuery) {
-                if (eo instanceof LexedToken) {
+                // TODO uncomment the following once the referencedElements are correctly set by the DelayedReferencesHelper
+                if (eo instanceof LexedToken /* && ((LexedToken) eo).getReferencedElements().contains(element) */) {
                     result.add((LexedToken) eo);
                 }
             }
@@ -333,8 +338,9 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * 
      * If the {@link #lookupScopeExp} evaluates to <code>invalid</code>, resolution fails; the property
      * is not updated.
+     * @param shallUpdateReferencingTokenInTextBlockModel TODO
      */
-    private void resolve(EObject eo, LexedToken token) {
+    private void resolve(EObject eo, LexedToken token, boolean shallUpdateReferencingTokenInTextBlockModel) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
         Object newValue = ocl.evaluate(eo, lookupScopeExp);
         if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
@@ -345,6 +351,9 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                 String referenceBy = (String) ocl.evaluate(o, referenceByExp);
                 if (prepostfixed.equals(referenceBy)) {
                     eo.eSet(getPropertyToUpdate(), o);
+                    if (shallUpdateReferencingTokenInTextBlockModel && o instanceof EObject) {
+                        token.getReferencedElements().add((EObject) o);
+                    }
                     break;
                 }
             }
@@ -359,16 +368,15 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                 && ((List<?>) element.eGet(getPropertyToUpdate())).get(getPosition()) != null
                 || element.eGet(getPropertyToUpdate()) != null;
     }
-    
+
     /**
-     * Determines if the <code>token</code> shall be updated with the <code>newValue</code>.
-     * This can be decided, e.g., based on user preferences regarding whether other text block
-     * models shall become dirty just because of such an update. Dirty state of the token's
-     * resource may be one aspect influencing the decision. The update is not performed here.
-     * The caller is responsible to perform it if this method returns <code>true</code>.
+     * Determines if the <code>token</code> shall be updated. This can be decided, e.g., based on user preferences
+     * regarding whether other text block models shall become dirty just because of such an update. Dirty state of the
+     * token's resource may be one aspect influencing the decision. The update is not performed here. The caller is
+     * responsible to perform it if this method returns <code>true</code>.
      */
-    private boolean shallUpdateReferencingTokenInTextBlockModel(LexedToken token, String newValue) {
-        return token.eResource().isModified();
+    private boolean shallUpdateReferencingTokenInTextBlockModel(LexedToken token) {
+        return !token.eResource().isTrackingModification() || token.eResource().isModified();
     }
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {
