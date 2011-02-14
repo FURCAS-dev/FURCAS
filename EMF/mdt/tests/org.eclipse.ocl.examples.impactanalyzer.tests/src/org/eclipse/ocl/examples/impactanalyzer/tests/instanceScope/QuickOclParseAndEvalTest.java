@@ -311,6 +311,15 @@ public class QuickOclParseAndEvalTest extends TestCase
   }
 
   @Test
+  public void testParseAndEvaluateOclExpressionWithOperationCallOnNullValue() throws ParserException
+  {
+    param.setOwnedTypeDefinition(null);
+    OCLExpression expression2 = oclHelper.createQuery("self.ownedTypeDefinition.getInnermost()");
+    Object result = ocl.evaluate(param, expression2);
+    assertEquals(ocl.getEnvironment().getOCLStandardLibrary().getInvalid(), result);
+  }
+
+  @Test
   public void testParseAndEvaluateOclExpressionWithPropertyCallOnNullValue() throws ParserException
   {
     param.setOwnedTypeDefinition(null);

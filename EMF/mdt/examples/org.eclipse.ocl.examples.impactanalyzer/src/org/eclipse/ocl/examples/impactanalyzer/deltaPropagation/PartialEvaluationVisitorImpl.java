@@ -32,14 +32,13 @@ import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EvaluationEnvironmentWithHiddenOpposites;
+import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.utilities.VisitorExtension;
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerPlugin;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
@@ -89,10 +88,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @author Axel Uhl
  * 
  */
-public class PartialEvaluationVisitorImpl
-        extends
-        EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
-        implements VisitorExtension<Object> {
+public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
     private org.eclipse.ocl.ecore.OCLExpression sourceExpression;
     private Object valueOfSourceExpression;
 

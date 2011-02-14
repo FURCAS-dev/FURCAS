@@ -9,6 +9,6 @@
   </parent>
   <groupId>com.sap.dsl</groupId>
   <artifactId>org.eclipse.ocl.examples.impactanalyzer</artifactId>
-  <version>1.0.0</version>
+  <version>3.1.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
 </project>
