@@ -144,10 +144,9 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      *            method; otherwise, the <code>inTextBlock</code> argument is used to compute the result
      */
     protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
-        // Collection<TextBlock> inTextBlocks = getTextBlocksInChosenAlternativeForInjectorAction(injectorAction);
         switch (selfKind) {
         case SELF:
-            return Collections.singleton(self);
+            return getElementsToUpdateFromSelf(self); // TODO enable this once the test has proven that the other won't work
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
@@ -173,30 +172,32 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
                         TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
-        Helper oclHelper = ocl.createOCLHelper();
-        for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
-            ForEachContext foreachContext = (ForEachContext) eo;
-            ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
-            oclHelper.setContext(self.eClass());
-            if (propInit.getPredicateSemantic().isEmpty()) {
-                // no when-clause; foreach produces an element in all cases
-                result.add(foreachContext.getResultModelElement());
-            } else {
-                // now check which when-clause is chosen for the current foreach-element self
-                for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
-                    if (whenClause.getWhen() == null
-                            || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
-                        // now we know the when-clause; determine template for when-clause and check if
-                        // it contains injectorAction
-                        Template t = whenClause.getAs();
-                        if (EcoreUtil.isAncestor(t, getSequenceElement())) {
-                            // yes, the self object led to the injector action firing because
-                            // we excluded #foreach being nested inside semantic predicates which
-                            // would be the only way to create alternatives without concrete-syntactical
-                            // disambiguation. Remember that templates called by foreach(...) must not
-                            // make concrete-syntactical contributions.
-                            result.add(foreachContext.getResultModelElement());
-                            break; // continue with the next ForEachContext element
+        if (foreachContextsUsingSelfAsForeachElement != null) {
+            Helper oclHelper = ocl.createOCLHelper();
+            for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
+                ForEachContext foreachContext = (ForEachContext) eo;
+                ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
+                oclHelper.setContext(self.eClass());
+                if (propInit.getPredicateSemantic().isEmpty()) {
+                    // no when-clause; foreach produces an element in all cases
+                    result.add(foreachContext.getResultModelElement());
+                } else {
+                    // now check which when-clause is chosen for the current foreach-element self
+                    for (PredicateSemantic whenClause : propInit.getPredicateSemantic()) {
+                        if (whenClause.getWhen() == null
+                                || (Boolean) ocl.evaluate(self, oclHelper.createQuery(whenClause.getWhen()))) {
+                            // now we know the when-clause; determine template for when-clause and check if
+                            // it contains injectorAction
+                            Template t = whenClause.getAs();
+                            if (EcoreUtil.isAncestor(t, getSequenceElement())) {
+                                // yes, the self object led to the injector action firing because
+                                // we excluded #foreach being nested inside semantic predicates which
+                                // would be the only way to create alternatives without concrete-syntactical
+                                // disambiguation. Remember that templates called by foreach(...) must not
+                                // make concrete-syntactical contributions.
+                                result.add(foreachContext.getResultModelElement());
+                                break; // continue with the next ForEachContext element
+                            }
                         }
                     }
                 }
@@ -204,6 +205,28 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         }
         return result;
     }
+
+    /**
+     * Obtains the text blocks documenting the execution of {@link #getSequenceElement()}. If its
+     * {@link TextBlock#getCorrespondingModelElements()} contains <code>element</code> then
+     * <code>element</code> will be returned as the single element of a collection. Otherwise,
+     * an empty collection is returned.
+     */
+    private Set<EObject> getElementsToUpdateFromSelf(EObject element) {
+        Set<EObject> corresponding = new HashSet<EObject>();
+        Set<TextBlock> textBlocks = getTextBlocksInWhichSequenceElementWasExecuted(element, /* #context */ false);
+        for (TextBlock tb : textBlocks) {
+            corresponding.add(tb.getCorrespondingModelElements().get(0));
+        }
+        Set<EObject> result;
+        if (corresponding.contains(element)) {
+            result = Collections.singleton(element);
+        } else {
+            result = Collections.emptySet();
+        }
+        return result;
+    }
+
 
     /**
      * We know the {@link #getSequenceElement() sequence element} in which the OCL expression was used
@@ -237,28 +260,31 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     protected Set<TextBlock> getTextBlocksInWhichSequenceElementWasExecuted(EObject element, boolean context) {
         Set<TextBlock> textBlocks = new HashSet<TextBlock>();
         Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
-        .navigateOppositePropertyWithBackwardScope(
-                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
-        for (EObject eo : textBlockDocumentingCreationOfContextElement) {
-            if (eo instanceof TextBlock) {
-                TextBlock textBlock = (TextBlock) eo;
-                Template template = textBlock.getType().getParseRule();
-                if (!context
-                        || (template instanceof ContextTemplate
-                                && ((ContextTemplate) template).getContextTags() != null && ((ContextTemplate) template)
-                                .getContextTags().getTags().contains(contextTag))) {
-                    // either no #context was used, or the contextTemplate has the expected tag (e.g., "context(X)" if the
-                    // usage was "#context(X)")
-                    Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression =
-                        getSubordinateTextBlocksLeadingTo(textBlock, getSequenceElement().getParentTemplate());
-                    for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
-                        // add the first element from correspondingModelElements because that's the one
-                        // actually immediately created by the template holding the sequence element with
-                        // the OCL expression
-                        if (!tb.getCorrespondingModelElements().isEmpty()
-                                && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
-                                        tb.getParentAltChoices(), getSequenceElement())) {
-                            textBlocks.add(tb);
+                .navigateOppositePropertyWithBackwardScope(
+                        TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
+        if (textBlockDocumentingCreationOfContextElement != null) {
+            for (EObject eo : textBlockDocumentingCreationOfContextElement) {
+                if (eo instanceof TextBlock) {
+                    TextBlock textBlock = (TextBlock) eo;
+                    Template template = textBlock.getType().getParseRule();
+                    if (!context
+                            || (template instanceof ContextTemplate
+                                    && ((ContextTemplate) template).getContextTags() != null && ((ContextTemplate) template)
+                                    .getContextTags().getTags().contains(contextTag))) {
+                        // either no #context was used, or the contextTemplate has the expected tag (e.g., "context(X)"
+                        // if the
+                        // usage was "#context(X)")
+                        Set<TextBlock> textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression = getSubordinateTextBlocksLeadingTo(
+                                textBlock, getSequenceElement().getParentTemplate());
+                        for (TextBlock tb : textBlocksForSubordinateExecutionsOfSequenceElementHoldingTheOCLExpression) {
+                            // add the first element from correspondingModelElements because that's the one
+                            // actually immediately created by the template holding the sequence element with
+                            // the OCL expression
+                            if (!tb.getCorrespondingModelElements().isEmpty()
+                                    && TcsUtil.wasExecuted((ContextTemplate) tb.getType().getParseRule(),
+                                            tb.getParentAltChoices(), getSequenceElement())) {
+                                textBlocks.add(tb);
+                            }
                         }
                     }
                 }

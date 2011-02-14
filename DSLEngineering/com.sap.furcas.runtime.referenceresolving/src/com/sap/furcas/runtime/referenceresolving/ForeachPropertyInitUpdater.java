@@ -239,7 +239,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             // during its creation
             Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
-            if (!textBlocks.isEmpty()) {
+            if (textBlocks != null && !textBlocks.isEmpty()) {
                 TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
                 if (foreachWasExecutedFor(textBlock)) {
                     // TODO this would be the place where to identify changes and carefully replace/remove/add only single elements
