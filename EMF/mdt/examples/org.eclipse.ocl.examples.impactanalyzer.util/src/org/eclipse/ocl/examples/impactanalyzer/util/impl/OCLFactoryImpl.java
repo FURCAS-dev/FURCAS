@@ -8,19 +8,25 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.impactanalyzer.impl;
+package org.eclipse.ocl.examples.impactanalyzer.util.impl;
 
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 
 public class OCLFactoryImpl implements OCLFactory {
 
     public OCL createOCL(EcoreEnvironmentFactory environmentFactory) {
-        return OCL.newInstance(environmentFactory);
+    	if (!(environmentFactory instanceof EcoreEnvironmentFactoryWithScopedExtentMap)) {
+    		throw new IllegalArgumentException("Inconsistent environment factory type. "+
+    				"Expected EcoreEnvironmentFactoryWithScopedExtentMap but found "+
+    				environmentFactory.getClass().getName());
+    	}
+        return OCL.newInstance((EcoreEnvironmentFactoryWithScopedExtentMap) environmentFactory);
     }
 
     public OCL createOCL(OppositeEndFinder oppositeEndFinder) {

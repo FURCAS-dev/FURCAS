@@ -31,8 +31,8 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
-import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
+import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.Test;
 
 import data.classes.Association;
@@ -504,6 +504,51 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         // as impacted object. However, the change affects the ->select clause after allInstances(), so
         // all context objects of type ClassTypeDefinition are affected. That's what we want to assert now:
         assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
+    }
+
+    /**
+     * The ->select lets only classes pass whose name is 'Bob'. Therefore, a class named 'Alice'
+     * should not be produced by any context.
+     */
+    @Test
+    public void testFindContextElementsForResultForAllInstances() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
+                .getBodyExpression();
+        r.getContents().add(exp);
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Alice");
+        r.getContents().add(cl1);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd.setClazz(cl1);
+        r.getContents().add(ctd);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        Collection<EObject> contexts = ia.getContextObjects(cl1);
+        assertTrue(contexts.isEmpty());
+    }
+
+    /**
+     * The ->select lets only classes pass whose name is 'Bob'. Therefore, a class named 'Bob'
+     * should be produced by all possible contexts
+     */
+    @Test
+    public void testFindAllContextElementsForResultForAllInstances() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
+                .getBodyExpression();
+        r.getContents().add(exp);
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Bob");
+        r.getContents().add(cl1);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd.setClazz(cl1);
+        r.getContents().add(ctd);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        Collection<EObject> contexts = ia.getContextObjects(cl1);
+        assertTrue(!contexts.isEmpty());
+        assertTrue(contexts.contains(ctd));
     }
 
     /**

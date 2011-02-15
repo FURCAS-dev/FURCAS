@@ -21,10 +21,10 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.InstanceScopeAnalysis;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 
@@ -143,6 +143,13 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         return instanceScopeAnalysis.getContextObjects(event, notifyOnNewContextElements);
     }
 
+    public Collection<EObject> getContextObjects(EObject evaluationResult) {
+        if (instanceScopeAnalysis == null) {
+            instanceScopeAnalysis = createInstanceScopeAnalysis();
+        }
+        return instanceScopeAnalysis.getContextObjects(evaluationResult);
+    }
+    
     protected InstanceScopeAnalysis createInstanceScopeAnalysis() {
         if (filtersyn == null) {
             createFilterForExpression();
