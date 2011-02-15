@@ -183,7 +183,6 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameterCSAccess().getGroup_2(), "rule__ParameterCS__Group_2__0");
 					put(grammarAccess.getParameterCSAccess().getGroup_2_1(), "rule__ParameterCS__Group_2_1__0");
 					put(grammarAccess.getParameterCSAccess().getGroup_3(), "rule__ParameterCS__Group_3__0");
-					put(grammarAccess.getQualifiedTypeRefCSAccess().getGroup(), "rule__QualifiedTypeRefCS__Group__0");
 					put(grammarAccess.getReferenceCSAccess().getGroup(), "rule__ReferenceCS__Group__0");
 					put(grammarAccess.getReferenceCSAccess().getGroup_3(), "rule__ReferenceCS__Group_3__0");
 					put(grammarAccess.getReferenceCSAccess().getGroup_4(), "rule__ReferenceCS__Group_4__0");
@@ -203,6 +202,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1_0_2(), "rule__TypeParameterCS__Group_1_0_2__0");
 					put(grammarAccess.getTypeParameterCSAccess().getGroup_1_1(), "rule__TypeParameterCS__Group_1_1__0");
 					put(grammarAccess.getTypedTypeRefCSAccess().getGroup(), "rule__TypedTypeRefCS__Group__0");
+					put(grammarAccess.getTypedTypeRefCSAccess().getGroup_0(), "rule__TypedTypeRefCS__Group_0__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup(), "rule__WildcardTypeRefCS__Group__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2_0(), "rule__WildcardTypeRefCS__Group_2_0__0");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2_1(), "rule__WildcardTypeRefCS__Group_2_1__0");
@@ -402,9 +402,6 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameterCSAccess().getQualifierAssignment_2_1_0_3(), "rule__ParameterCS__QualifierAssignment_2_1_0_3");
 					put(grammarAccess.getParameterCSAccess().getOwnedAnnotationAssignment_3_1(), "rule__ParameterCS__OwnedAnnotationAssignment_3_1");
 					put(grammarAccess.getPrimitiveTypeRefCSAccess().getNameAssignment(), "rule__PrimitiveTypeRefCS__NameAssignment");
-					put(grammarAccess.getQualifiedTypeRefCSAccess().getNamespaceAssignment_0(), "rule__QualifiedTypeRefCS__NamespaceAssignment_0");
-					put(grammarAccess.getQualifiedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1(), "rule__QualifiedTypeRefCS__OwnedTemplateBindingAssignment_1");
-					put(grammarAccess.getQualifiedTypeRefCSAccess().getElementAssignment_3(), "rule__QualifiedTypeRefCS__ElementAssignment_3");
 					put(grammarAccess.getReferenceCSAccess().getQualifierAssignment_0_0(), "rule__ReferenceCS__QualifierAssignment_0_0");
 					put(grammarAccess.getReferenceCSAccess().getQualifierAssignment_0_1(), "rule__ReferenceCS__QualifierAssignment_0_1");
 					put(grammarAccess.getReferenceCSAccess().getNameAssignment_2(), "rule__ReferenceCS__NameAssignment_2");
@@ -444,8 +441,9 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_0_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_0_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedExtendsAssignment_1_0_2_1(), "rule__TypeParameterCS__OwnedExtendsAssignment_1_0_2_1");
 					put(grammarAccess.getTypeParameterCSAccess().getOwnedSuperAssignment_1_1_1(), "rule__TypeParameterCS__OwnedSuperAssignment_1_1_1");
-					put(grammarAccess.getTypedTypeRefCSAccess().getTypeAssignment_0(), "rule__TypedTypeRefCS__TypeAssignment_0");
-					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_1(), "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_1");
+					put(grammarAccess.getTypedTypeRefCSAccess().getNamespaceAssignment_0_0(), "rule__TypedTypeRefCS__NamespaceAssignment_0_0");
+					put(grammarAccess.getTypedTypeRefCSAccess().getTypeAssignment_1(), "rule__TypedTypeRefCS__TypeAssignment_1");
+					put(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingAssignment_2(), "rule__TypedTypeRefCS__OwnedTemplateBindingAssignment_2");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getExtendsAssignment_2_0_1(), "rule__WildcardTypeRefCS__ExtendsAssignment_2_0_1");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getSuperAssignment_2_1_1(), "rule__WildcardTypeRefCS__SuperAssignment_2_1_1");
 					put(grammarAccess.getModelAccess().getOwnedExpressionAssignment(), "rule__Model__OwnedExpressionAssignment");

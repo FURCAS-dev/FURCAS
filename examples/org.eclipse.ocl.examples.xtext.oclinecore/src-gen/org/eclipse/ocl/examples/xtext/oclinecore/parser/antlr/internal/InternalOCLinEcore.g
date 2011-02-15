@@ -4036,85 +4036,6 @@ rulePrimitiveTypeRefCS returns [EObject current=null]
 
 
 
-// Entry rule entryRuleQualifiedTypeRefCS
-entryRuleQualifiedTypeRefCS returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getQualifiedTypeRefCSRule()); }
-	 iv_ruleQualifiedTypeRefCS=ruleQualifiedTypeRefCS 
-	 { $current=$iv_ruleQualifiedTypeRefCS.current; } 
-	 EOF 
-;
-
-// Rule QualifiedTypeRefCS
-ruleQualifiedTypeRefCS returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		{ 
-		  /* */ 
-		}
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getQualifiedTypeRefCSRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getNamespaceNamespaceCrossReference_0_0()); 
-	    }
-		ruleUnrestrictedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
-	    }
-		lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"ownedTemplateBinding",
-        		lv_ownedTemplateBinding_1_0, 
-        		"TemplateBindingCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?	otherlv_2='::' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getQualifiedTypeRefCSAccess().getColonColonKeyword_2());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getQualifiedTypeRefCSAccess().getElementTypedRefCSParserRuleCall_3_0()); 
-	    }
-		lv_element_3_0=ruleTypedRefCS		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getQualifiedTypeRefCSRule());
-	        }
-       		set(
-       			$current, 
-       			"element",
-        		lv_element_3_0, 
-        		"TypedRefCS");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
 // Entry rule entryRuleReferenceCS
 entryRuleReferenceCS returns [EObject current=null] 
 	:
@@ -5148,11 +5069,11 @@ ruleTypedRefCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getTypedRefCSAccess().getQualifiedTypeRefCSParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_0()); 
     }
-    this_QualifiedTypeRefCS_0=ruleQualifiedTypeRefCS
+    this_PrimitiveTypeRefCS_0=rulePrimitiveTypeRefCS
     { 
-        $current = $this_QualifiedTypeRefCS_0.current; 
+        $current = $this_PrimitiveTypeRefCS_0.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -5161,24 +5082,11 @@ ruleTypedRefCS returns [EObject current=null]
 	  /* */ 
 	}
     { 
-        newCompositeNode(grammarAccess.getTypedRefCSAccess().getPrimitiveTypeRefCSParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getTypedRefCSAccess().getTypedTypeRefCSParserRuleCall_1()); 
     }
-    this_PrimitiveTypeRefCS_1=rulePrimitiveTypeRefCS
+    this_TypedTypeRefCS_1=ruleTypedTypeRefCS
     { 
-        $current = $this_PrimitiveTypeRefCS_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-	{ 
-	  /* */ 
-	}
-    { 
-        newCompositeNode(grammarAccess.getTypedRefCSAccess().getTypedTypeRefCSParserRuleCall_2()); 
-    }
-    this_TypedTypeRefCS_2=ruleTypedTypeRefCS
-    { 
-        $current = $this_TypedTypeRefCS_2.current; 
+        $current = $this_TypedTypeRefCS_1.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -5202,7 +5110,7 @@ ruleTypedTypeRefCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(((
 (
 		{ 
 		  /* */ 
@@ -5213,7 +5121,29 @@ ruleTypedTypeRefCS returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getTypeTypeCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getNamespaceNamespaceCrossReference_0_0_0()); 
+	    }
+		ruleUnrestrictedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='::' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getTypedTypeRefCSAccess().getColonColonKeyword_0_1());
+    }
+)*(
+(
+		{ 
+		  /* */ 
+		}
+		{
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTypedTypeRefCSRule());
+	        }
+        }
+		{ 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getTypeTypeCrossReference_1_0()); 
 	    }
 		ruleUnrestrictedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -5223,16 +5153,16 @@ ruleTypedTypeRefCS returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypedTypeRefCSAccess().getOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0()); 
 	    }
-		lv_ownedTemplateBinding_1_0=ruleTemplateBindingCS		{
+		lv_ownedTemplateBinding_3_0=ruleTemplateBindingCS		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedTypeRefCSRule());
 	        }
        		set(
        			$current, 
        			"ownedTemplateBinding",
-        		lv_ownedTemplateBinding_1_0, 
+        		lv_ownedTemplateBinding_3_0, 
         		"TemplateBindingCS");
 	        afterParserOrEnumRuleCall();
 	    }

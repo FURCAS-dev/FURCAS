@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullOCLstdlibCSVisitor.java,v 1.4 2011/02/11 20:59:23 ewillink Exp $
+ * $Id: AbstractNullOCLstdlibCSVisitor.java,v 1.5 2011/02/15 10:37:08 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
@@ -41,10 +41,6 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 	    super(context);
 	}	
 
-	public R visitLibAccumulatorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS object) {
-		return null;
-	}
-
 	public R visitLibClassCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS object) {
 		return null;
 	}
@@ -57,10 +53,6 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitLibIteratorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS object) {
-		return null;
-	}
-
 	public R visitLibOperationCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS object) {
 		return null;
 	}
@@ -70,6 +62,10 @@ public abstract class AbstractNullOCLstdlibCSVisitor<R, C>
 	}
 
 	public R visitLibRootPackageCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS object) {
+		return null;
+	}
+
+	public R visitMetaTypeName(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName object) {
 		return null;
 	}
 

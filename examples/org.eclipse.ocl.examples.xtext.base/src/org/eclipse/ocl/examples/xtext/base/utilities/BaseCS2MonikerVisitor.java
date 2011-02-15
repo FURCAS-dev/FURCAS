@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.4 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -39,14 +39,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -58,6 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
@@ -187,6 +187,30 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	}
 
 	@Override
+	public Object visitLambdaTypeCS(LambdaTypeCS object) {
+		context.appendNameCS(object);
+		context.appendTemplateParametersCS(object);
+		context.append(MONIKER_OPERATOR_SEPARATOR);
+		TypeRefCS contextType = object.getOwnedContextType();
+		if (contextType != null) {
+			context.appendElementCS(contextType);
+		}
+		context.append(PARAMETER_PREFIX);
+		String prefix = ""; //$NON-NLS-1$
+		for (TypedRefCS csParameterType : object.getOwnedParameterType()) {
+			context.append(prefix);
+			context.appendElementCS(csParameterType);
+			prefix = PARAMETER_SEPARATOR;
+		}
+		context.append(PARAMETER_SUFFIX);
+		TypeRefCS resultType = object.getOwnedResultType();
+		if (resultType != null) {
+			context.appendElementCS(resultType);
+		}
+		return true;
+	}
+
+	@Override
 	public Object visitModelElementCSRef(ModelElementCSRef object) {
 		context.appendElementCS(object.getRef());
 		return true;
@@ -237,13 +261,6 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 	@Override
 	public Object visitPrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
 		context.appendNameCS(object);
-		return true;
-	}
-
-	@Override
-	public Object visitQualifiedTypeRefCS(QualifiedTypeRefCS object) {
-		context.appendElementCS(object.getElement());
-		context.appendTemplateBindingsCS(object);
 		return true;
 	}
 
@@ -442,7 +459,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Object
 		TemplateParameterSubstitutionCS csTemplateParameterSubstitution = (TemplateParameterSubstitutionCS)object.eContainer();
 		TemplateBindingCS csTemplateBinding = csTemplateParameterSubstitution.getOwningTemplateBinding();
 		int index = csTemplateBinding.getOwnedParameterSubstitution().indexOf(csTemplateParameterSubstitution);
-		ParameterizedTypeRefCS csTemplateBindableElement = csTemplateBinding.getOwningTemplateBindableElement();
+		TypedTypeRefCS csTemplateBindableElement = csTemplateBinding.getOwningTemplateBindableElement();
 		Type type = csTemplateBindableElement.getType();
 		TemplateSignature ownedTemplateSignature = type.getOwnedTemplateSignature();
 		context.appendElement(type);

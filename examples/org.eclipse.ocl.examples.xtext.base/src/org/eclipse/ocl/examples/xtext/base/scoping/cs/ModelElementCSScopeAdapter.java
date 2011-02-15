@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -109,7 +109,7 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 					return scopeView.getOuterScope();
 				}
 				else {
-					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, internalNamespaces.get(iMax-1));
+					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, internalNamespaces.get(i-1));
 					if (scopeAdapter != null) {
 						return scopeAdapter.computeLookup(environmentView, scopeView);
 					}

@@ -2555,50 +2555,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNamePrimitiveTypeIdentifierParserRuleCall_0() { return cNamePrimitiveTypeIdentifierParserRuleCall_0; }
 	}
 
-	public class QualifiedTypeRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedTypeRefCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNamespaceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0.eContents().get(1);
-		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
-		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementTypedRefCSParserRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
-		
-		//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-		//	namespace=[pivot::Namespace|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS;
-		public ParserRule getRule() { return rule; }
-
-		//namespace=[pivot::Namespace|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS
-		public Group getGroup() { return cGroup; }
-
-		//namespace=[pivot::Namespace|UnrestrictedName]
-		public Assignment getNamespaceAssignment_0() { return cNamespaceAssignment_0; }
-
-		//[pivot::Namespace|UnrestrictedName]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0() { return cNamespaceNamespaceCrossReference_0_0; }
-
-		//UnrestrictedName
-		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_1; }
-
-		//ownedTemplateBinding=TemplateBindingCS?
-		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
-
-		//TemplateBindingCS
-		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0; }
-
-		//"::"
-		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
-
-		//element=TypedRefCS
-		public Assignment getElementAssignment_3() { return cElementAssignment_3; }
-
-		//TypedRefCS
-		public RuleCall getElementTypedRefCSParserRuleCall_3_0() { return cElementTypedRefCSParserRuleCall_3_0; }
-	}
-
 	public class ReferenceCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReferenceCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -3257,57 +3213,77 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	public class TypedRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedRefCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cQualifiedTypeRefCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPrimitiveTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cTypedTypeRefCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cPrimitiveTypeRefCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTypedTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TypedRefCS returns base::TypedRefCS:
-		//	QualifiedTypeRefCS / *| CollectionTypeRefCS* / | PrimitiveTypeRefCS | TypedTypeRefCS;
+		//	PrimitiveTypeRefCS / *| CollectionTypeRefCS* / | TypedTypeRefCS;
 		public ParserRule getRule() { return rule; }
 
-		//QualifiedTypeRefCS / *| CollectionTypeRefCS* / | PrimitiveTypeRefCS | TypedTypeRefCS
+		//PrimitiveTypeRefCS / *| CollectionTypeRefCS* / | TypedTypeRefCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//QualifiedTypeRefCS
-		public RuleCall getQualifiedTypeRefCSParserRuleCall_0() { return cQualifiedTypeRefCSParserRuleCall_0; }
-
 		//PrimitiveTypeRefCS
-		public RuleCall getPrimitiveTypeRefCSParserRuleCall_1() { return cPrimitiveTypeRefCSParserRuleCall_1; }
+		public RuleCall getPrimitiveTypeRefCSParserRuleCall_0() { return cPrimitiveTypeRefCSParserRuleCall_0; }
 
 		//TypedTypeRefCS
-		public RuleCall getTypedTypeRefCSParserRuleCall_2() { return cTypedTypeRefCSParserRuleCall_2; }
+		public RuleCall getTypedTypeRefCSParserRuleCall_1() { return cTypedTypeRefCSParserRuleCall_1; }
 	}
 
 	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeTypeCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeTypeUnrestrictedNameParserRuleCall_0_0_1 = (RuleCall)cTypeTypeCrossReference_0_0.eContents().get(1);
-		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cNamespaceAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_0_0_0 = (CrossReference)cNamespaceAssignment_0_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeTypeUnrestrictedNameParserRuleCall_1_0_1 = (RuleCall)cTypeTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cOwnedTemplateBindingAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0 = (RuleCall)cOwnedTemplateBindingAssignment_2.eContents().get(0);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
+		//	(namespace+=[pivot::Namespace|UnrestrictedName] "::")* //	(namespace+=NamespaceRefCS '::')*
+		//
 		//	type=[pivot::Type|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS?;
 		public ParserRule getRule() { return rule; }
 
+		//(namespace+=[pivot::Namespace|UnrestrictedName] "::")* //	(namespace+=NamespaceRefCS '::')*
+		//
 		//type=[pivot::Type|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS?
 		public Group getGroup() { return cGroup; }
 
-		//type=[pivot::Type|UnrestrictedName]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//(namespace+=[pivot::Namespace|UnrestrictedName] "::")*
+		public Group getGroup_0() { return cGroup_0; }
 
-		//[pivot::Type|UnrestrictedName]
-		public CrossReference getTypeTypeCrossReference_0_0() { return cTypeTypeCrossReference_0_0; }
+		//namespace+=[pivot::Namespace|UnrestrictedName]
+		public Assignment getNamespaceAssignment_0_0() { return cNamespaceAssignment_0_0; }
+
+		//[pivot::Namespace|UnrestrictedName]
+		public CrossReference getNamespaceNamespaceCrossReference_0_0_0() { return cNamespaceNamespaceCrossReference_0_0_0; }
 
 		//UnrestrictedName
-		public RuleCall getTypeTypeUnrestrictedNameParserRuleCall_0_0_1() { return cTypeTypeUnrestrictedNameParserRuleCall_0_0_1; }
+		public RuleCall getNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_1() { return cNamespaceNamespaceUnrestrictedNameParserRuleCall_0_0_0_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_0_1() { return cColonColonKeyword_0_1; }
+
+		//type=[pivot::Type|UnrestrictedName]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//[pivot::Type|UnrestrictedName]
+		public CrossReference getTypeTypeCrossReference_1_0() { return cTypeTypeCrossReference_1_0; }
+
+		//UnrestrictedName
+		public RuleCall getTypeTypeUnrestrictedNameParserRuleCall_1_0_1() { return cTypeTypeUnrestrictedNameParserRuleCall_1_0_1; }
 
 		//ownedTemplateBinding=TemplateBindingCS?
-		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
+		public Assignment getOwnedTemplateBindingAssignment_2() { return cOwnedTemplateBindingAssignment_2; }
 
 		//TemplateBindingCS
-		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0; }
+		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0; }
 	}
 
 	public class WildcardTypeRefCSElements extends AbstractParserRuleElementFinder {
@@ -3397,7 +3373,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	private PackageCSElements pPackageCS;
 	private ParameterCSElements pParameterCS;
 	private PrimitiveTypeRefCSElements pPrimitiveTypeRefCS;
-	private QualifiedTypeRefCSElements pQualifiedTypeRefCS;
 	private ReferenceCSElements pReferenceCS;
 	private ReferenceCSRefElements pReferenceCSRef;
 	private StructuralFeatureCSElements pStructuralFeatureCS;
@@ -3771,16 +3746,6 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrimitiveTypeRefCSAccess().getRule();
 	}
 
-	//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	//	namespace=[pivot::Namespace|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS;
-	public QualifiedTypeRefCSElements getQualifiedTypeRefCSAccess() {
-		return (pQualifiedTypeRefCS != null) ? pQualifiedTypeRefCS : (pQualifiedTypeRefCS = new QualifiedTypeRefCSElements());
-	}
-	
-	public ParserRule getQualifiedTypeRefCSRule() {
-		return getQualifiedTypeRefCSAccess().getRule();
-	}
-
 	//ReferenceCS returns base::ReferenceCS:
 	//	(qualifier+="static" | qualifier+="definition")* "property" name=UnrestrictedName ("#" opposite=ReferenceCSRef)? (":"
 	//	ownedType=TypedRefCS ("[" (lower=LOWER (".." upper=UPPER)? | multiplicity=("*" | "+" | "?")) "]")?)? ("="
@@ -3881,7 +3846,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedRefCS returns base::TypedRefCS:
-	//	QualifiedTypeRefCS / *| CollectionTypeRefCS* / | PrimitiveTypeRefCS | TypedTypeRefCS;
+	//	PrimitiveTypeRefCS / *| CollectionTypeRefCS* / | TypedTypeRefCS;
 	public TypedRefCSElements getTypedRefCSAccess() {
 		return (pTypedRefCS != null) ? pTypedRefCS : (pTypedRefCS = new TypedRefCSElements());
 	}
@@ -3891,6 +3856,8 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
+	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::")* //	(namespace+=NamespaceRefCS '::')*
+	//
 	//	type=[pivot::Type|UnrestrictedName] ownedTemplateBinding=TemplateBindingCS?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return (pTypedTypeRefCS != null) ? pTypedTypeRefCS : (pTypedTypeRefCS = new TypedTypeRefCSElements());

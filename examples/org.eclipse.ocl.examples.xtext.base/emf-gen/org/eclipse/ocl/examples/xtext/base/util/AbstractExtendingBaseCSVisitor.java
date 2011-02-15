@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingBaseCSVisitor.java,v 1.4 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: AbstractExtendingBaseCSVisitor.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -113,6 +113,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitNamedElementCS(object);
 	}
 
+	public R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object) {
+		return visitNamedElementCS(object);
+	}
+
 	public R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object) {
 		return visitNamedElementCS(object);
 	}
@@ -133,6 +137,10 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitMonikeredElementCS(object);
 	}
 
+	public R visitNamespaceRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS object) {
+		return visitElementCS(object);
+	}
+
 	public R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object) {
 		return visitTypedElementCS(object);
 	}
@@ -145,16 +153,8 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 		return visitTypedElementCS(object);
 	}
 
-	public R visitParameterizedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS object) {
-		return visitTypedRefCS(object);
-	}
-
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
 		return visitTypedRefCS(object);
-	}
-
-	public R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object) {
-		return visitParameterizedTypeRefCS(object);
 	}
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {
@@ -214,7 +214,7 @@ public abstract class AbstractExtendingBaseCSVisitor<R, C>
 	}
 
 	public R visitTypedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS object) {
-		return visitParameterizedTypeRefCS(object);
+		return visitTypedRefCS(object);
 	}
 
 	public R visitWildcardTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS object) {

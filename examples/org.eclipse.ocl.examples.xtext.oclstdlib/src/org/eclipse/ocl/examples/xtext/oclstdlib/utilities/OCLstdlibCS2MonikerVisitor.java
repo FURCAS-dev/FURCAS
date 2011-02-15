@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.3 2011/02/11 20:00:48 ewillink Exp $
+ * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.4 2011/02/15 10:37:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
@@ -54,7 +55,9 @@ public class OCLstdlibCS2MonikerVisitor
 
 	@Override
 	public Object visitLibClassCS(LibClassCS object) {
-		if (PrimitiveType.class.getSimpleName().equals(object.getMetaTypeName())) {
+		MetaTypeName metaType = object.getMetaTypeName();
+		if ((metaType != null) && PrimitiveType.class.getSimpleName().equals(metaType.getName())) {
+//		if (object.getMetaType() instanceof PrimitiveType) {
 			context.appendNameCS(object);
 			return true;
 		}

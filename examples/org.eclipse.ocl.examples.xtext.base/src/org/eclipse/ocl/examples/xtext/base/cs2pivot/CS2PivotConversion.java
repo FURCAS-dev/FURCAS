@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.6 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.7 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -45,8 +45,6 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -58,8 +56,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -72,7 +68,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -145,8 +140,6 @@ public class CS2PivotConversion extends AbstractConversion
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
 		csElement.eResource().getErrors().add(resourceDiagnostic);
-		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
-		csElement.eResource().getErrors().add(diagnostic);
 		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(
 			csElement, boundMessage, null);
 		installPivotElementInternal(csElement, invalidLiteralExp);
@@ -357,8 +350,8 @@ public class CS2PivotConversion extends AbstractConversion
 //		else {
 			csTemplateBindings = new ArrayList<TemplateBindingCS>();
 //		}
-		if (csElement instanceof ParameterizedTypeRefCS) {
-			ParameterizedTypeRefCS csTemplateableElement = (ParameterizedTypeRefCS)csElement;
+		if (csElement instanceof TypedTypeRefCS) {
+			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
 			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);
@@ -784,46 +777,11 @@ public class CS2PivotConversion extends AbstractConversion
 		return pivotElement;
 	}
 
-	public Operation resolveOperationCall(NamedElementCS csOperator, OperationCallExp pivotElement) {
-		OclExpression sourceExpression = pivotElement.getSource();
-		Type sourceType = sourceExpression.getType();
-		if (sourceType instanceof UnspecifiedType) {
-			sourceType = ((UnspecifiedType)sourceType).getLowerBound();
+	public void resolveNamespaces(List<Namespace> namespaces) {
+		for (Namespace namespace : namespaces) {
+			@SuppressWarnings("unused")
+			Namespace dummy = namespace;	// Resolves the proxies from the outside.
 		}
-		String operator = pivotElement.getName();
-		Operation operation;
-		List<OclExpression> arguments = pivotElement.getArguments();
-		if (arguments.isEmpty()) {
-			operation = typeManager.resolveOperation(sourceType, operator);
-		}
-		else {
-			OclExpression argumentExpression = arguments.get(0);
-			Type rightType = argumentExpression.getType();
-			if (rightType instanceof UnspecifiedType) {
-				rightType = ((UnspecifiedType)rightType).getLowerBound();
-			}
-			operation = typeManager.resolveOperation(sourceType, operator, rightType);
-		}
-		if (operation == null) {
-			addBadExpressionError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
-		}
-		else {
-			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParametersAsBindings(operation);
-			if (bindings != null) {
-				for (TemplateParameter templateParameter : bindings.keySet()) {
-					ParameterableElement parameterableElement = templateParameter.getParameteredElement();
-					if ((parameterableElement instanceof NamedElement) && "OclSelf".equals(((NamedElement)parameterableElement).getName())) {
-						bindings.put(templateParameter, sourceType);
-					}
-				}
-			}
-			bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
-			if (bindings != null) {
-				operation = typeManager.getSpecializedOperation(operation, bindings);
-			}
-		}
-		pivotElement.setReferredOperation(operation);
-		return operation;
 	}
 
 	/**

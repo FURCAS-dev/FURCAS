@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -56,13 +56,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS.Factory;
 
 public class Pivot2CSConversion extends AbstractConversion implements PivotConstants
@@ -173,8 +173,8 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 //		else {
 			csTemplateBindings = new ArrayList<TemplateBindingCS>();
 //		}
-		if (csElement instanceof ParameterizedTypeRefCS) {
-			ParameterizedTypeRefCS csTemplateableElement = (ParameterizedTypeRefCS)csElement;
+		if (csElement instanceof TypedTypeRefCS) {
+			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
 			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);

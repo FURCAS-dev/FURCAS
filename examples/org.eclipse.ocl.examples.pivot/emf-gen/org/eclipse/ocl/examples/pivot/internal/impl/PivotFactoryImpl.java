@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.5 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -188,6 +189,7 @@ public class PivotFactoryImpl
 			case PivotPackage.ITERATE_EXP: return (EObject)createIterateExp();
 			case PivotPackage.ITERATION: return (EObject)createIteration();
 			case PivotPackage.ITERATOR_EXP: return (EObject)createIteratorExp();
+			case PivotPackage.LAMBDA_TYPE: return (EObject)createLambdaType();
 			case PivotPackage.LET_EXP: return (EObject)createLetExp();
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
@@ -780,6 +782,17 @@ public class PivotFactoryImpl
 	{
 		IteratorExpImpl iteratorExp = new IteratorExpImpl();
 		return iteratorExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LambdaType createLambdaType()
+	{
+		LambdaTypeImpl lambdaType = new LambdaTypeImpl();
+		return lambdaType;
 	}
 
 	/**

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -41,9 +41,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -56,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
@@ -314,6 +317,32 @@ public class PivotUtil
 		return map;
 	}
 
+	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> bindings,
+			Type argumentType, LambdaType lambdaType) {
+		Type resultType = lambdaType.getResultType();
+		TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
+		if (resultTemplateParameter != null) {
+			if (bindings == null) {
+				bindings = new HashMap<TemplateParameter, ParameterableElement>();
+			}
+			bindings.put(resultTemplateParameter, argumentType);
+		}
+		// FIXME There is much more to do
+		// FIXME Conflict checking
+		return bindings;
+	}
+
+	public static Type getBehavioralType(Type type) {
+		if (type instanceof DataType) {
+			DataType dataType = (DataType)type;
+			Type behavioralType = dataType.getBehavioralType();
+			if (behavioralType != null) {
+				return behavioralType;
+			}
+		}
+		return type;
+	}
+
 	public static String getBody(OpaqueExpression specification) {
 		List<String> bodies = specification.getBodies();
 		List<String> languages = specification.getLanguages();
@@ -378,12 +407,26 @@ public class PivotUtil
 		return castElement;
 	}
 
+	public static Feature getReferredFeature(CallExp callExp) {
+		Feature feature = null;
+		if (callExp instanceof LoopExp) {
+			feature = ((LoopExp)callExp).getReferredIteration();
+		}
+		else if (callExp instanceof OperationCallExp) {
+			feature = ((OperationCallExp)callExp).getReferredOperation();
+		}
+		else if (callExp instanceof PropertyCallExp) {
+			feature = ((PropertyCallExp)callExp).getReferredProperty();
+		}
+		return feature;
+	}
+
 	public static Operation getReferredOperation(CallExp callExp) {
-		Operation operation;
+		Operation operation = null;
 		if (callExp instanceof LoopExp) {
 			operation = ((LoopExp)callExp).getReferredIteration();
 		}
-		else {
+		else if (callExp instanceof OperationCallExp) {
 			operation = ((OperationCallExp)callExp).getReferredOperation();
 		}
 		return operation;
@@ -488,6 +531,9 @@ public class PivotUtil
 		}
 		TemplateBinding templateBinding = templateBindings.get(templateBindings.size()-1);		// FIXME ordering so that most derived is last
 		TemplateSignature templateSignature = templateBinding.getSignature();
+		if (templateSignature == null) {
+			return null;
+		}
 		TemplateableElement unspecializedTemplate = templateSignature.getTemplate();
 		if (!unspecializedTemplate.getClass().isAssignableFrom(templateableElement.getClass())) {
 			if ((templateableElement instanceof Operation) && (unspecializedTemplate instanceof org.eclipse.ocl.examples.pivot.Class)) {

@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -26,10 +25,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -47,9 +46,9 @@ import org.eclipse.ocl.examples.xtext.base.scoping.cs.DataTypeCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.EnumCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.LambdaTypeCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.OperationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.PackageCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scoping.cs.QualifiedRefCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ReferenceCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.RootPackageCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.TemplateBindingCSScopeAdapter;
@@ -105,6 +104,11 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	}
 
 	@Override
+	public ScopeCSAdapter visitLambdaTypeCS(LambdaTypeCS eObject) {
+		return new LambdaTypeCSScopeAdapter(context, eObject);
+	}
+
+	@Override
 	public ScopeCSAdapter visitOperationCS(OperationCS eObject) {
 		return new OperationCSScopeAdapter(context, eObject);
 	}
@@ -117,11 +121,6 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	@Override
 	public ScopeCSAdapter visitParameterCS(ParameterCS eObject) {
 		return new EmptyCSScopeAdapter(context, eObject);
-	}
-
-	@Override
-	public ScopeCSAdapter visitQualifiedTypeRefCS(QualifiedTypeRefCS eObject) {
-		return new QualifiedRefCSScopeAdapter<QualifiedTypeRefCS, Type>(context, eObject, Type.class);
 	}
 
 	@Override

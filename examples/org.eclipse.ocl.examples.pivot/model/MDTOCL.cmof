@@ -23,6 +23,7 @@
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_zKEaoBNLEeCpr6XKiuQP7w" name="DataType">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_1oqkABNLEeCpr6XKiuQP7w" name="isSerializable" type="_rfGIcBNKEeCpr6XKiuQP7w" default="true"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_Dc17IDjTEeCGIMjC1C-wtw" name="behavioralType" type="_qClRsBNLEeCpr6XKiuQP7w" lower="0"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_D6aAwBNLEeCpr6XKiuQP7w" name="EnumerationLiteral">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_GNF1EBNLEeCpr6XKiuQP7w" name="value" type="_BIn1oBNLEeCpr6XKiuQP7w" lower="0" default="0"/>

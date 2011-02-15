@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: BaseCSVisitor.java,v 1.4 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: BaseCSVisitor.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -64,17 +64,17 @@ public interface BaseCSVisitor<R, C>
 	R visitEnumerationCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS object);
 	R visitEnumerationLiteralCS(org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS object);
 	R visitImportCS(org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS object);
+	R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object);
 	R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object);
 	R visitModelElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS object);
 	R visitModelElementCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef object);
 	R visitMonikeredElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS object);
 	R visitNamedElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS object);
+	R visitNamespaceRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS object);
 	R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object);
 	R visitPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS object);
 	R visitParameterCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS object);
-	R visitParameterizedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS object);
 	R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object);
-	R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object);
 	R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object);
 	R visitReferenceCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef object);
 	R visitRootPackageCS(org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS object);

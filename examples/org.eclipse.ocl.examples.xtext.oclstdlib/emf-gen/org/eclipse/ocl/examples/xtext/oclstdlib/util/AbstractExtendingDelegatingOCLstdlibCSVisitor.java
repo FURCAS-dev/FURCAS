@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.4 2011/02/11 20:59:23 ewillink Exp $
+ * $Id: AbstractExtendingDelegatingOCLstdlibCSVisitor.java,v 1.5 2011/02/15 10:37:08 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
@@ -44,10 +44,6 @@ public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D exte
 		return delegate.visiting(visitable);
 	}
 
-	public R visitLibAccumulatorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS object) {
-		return delegate.visitParameterCS(object);
-	}
-
 	public R visitLibClassCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS object) {
 		return delegate.visitClassCS(object);
 	}
@@ -60,10 +56,6 @@ public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D exte
 		return delegate.visitOperationCS(object);
 	}
 
-	public R visitLibIteratorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS object) {
-		return delegate.visitParameterCS(object);
-	}
-
 	public R visitLibOperationCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS object) {
 		return delegate.visitOperationCS(object);
 	}
@@ -74,6 +66,10 @@ public abstract class AbstractExtendingDelegatingOCLstdlibCSVisitor<R, C, D exte
 
 	public R visitLibRootPackageCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS object) {
 		return delegate.visitRootPackageCS(object);
+	}
+
+	public R visitMetaTypeName(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName object) {
+		return visiting(object);
 	}
 
 	public R visitPrecedenceCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS object) {

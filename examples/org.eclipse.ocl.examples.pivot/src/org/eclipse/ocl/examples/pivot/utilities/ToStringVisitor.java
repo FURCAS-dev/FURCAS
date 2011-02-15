@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -48,6 +48,7 @@ import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -57,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -203,14 +205,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		}
 	}
 
-	protected void appendQualifiedName(NamedElement parent, String separator, NamedElement child) {
-		if (parent != null) {
-			appendQualifiedName(parent);
-			append(separator);
-		}
-		appendName(child);
-	}
-
 	protected void appendOperationSignature(Operation operation) {
 		appendName(operation);
 		append("(");
@@ -240,6 +234,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			append(" ");
 			appendName(operation.getType());
 		}
+	}
+
+	protected void appendQualifiedName(NamedElement parent, String separator, NamedElement child) {
+		if (parent != null) {
+			appendQualifiedName(parent);
+			append(separator);
+		}
+		appendName(child);
 	}
 
 	protected void appendPropertySignature(Property property) {
@@ -280,6 +282,16 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 				append(">");
 			}
 		}
+	}
+
+	protected void appendType(Type type) {
+		if ((type != null)
+				 && (type.eClass() == PivotPackage.Literals.CLASS)	// i.e. by pass AnyType, PrimitiveType, ...
+				 && (type.eContainer() instanceof NamedElement)) {
+			appendQualifiedName((NamedElement) type.eContainer());
+			append("::");
+		}
+		appendName(type);
 	}
 
 	@Override
@@ -658,6 +670,26 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		safeVisit(callExp.getBody());
 		append(")");//$NON-NLS-1$
 		return null;        
+	}
+
+	@Override
+	public String visitLambdaType(LambdaType lambda) {
+		appendName(lambda);
+		append(" ");
+		appendType(lambda.getContextType());
+		appendTemplateSignature(lambda.getOwnedTemplateSignature());
+		append("(");
+		boolean isFirst = true;
+		for (Type parameterType : lambda.getParameterTypes()) {
+			if (!isFirst) {
+				append(",");
+			}
+			appendType(parameterType);
+			isFirst = false;
+		}
+		append(") : ");
+		appendType(lambda.getResultType());
+		return null;
 	}
 
 	/**

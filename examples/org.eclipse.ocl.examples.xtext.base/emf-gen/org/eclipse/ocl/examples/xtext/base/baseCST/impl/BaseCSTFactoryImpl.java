@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -40,13 +40,14 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -121,13 +122,14 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.ENUMERATION_CS: return createEnumerationCS();
 			case BaseCSTPackage.ENUMERATION_LITERAL_CS: return createEnumerationLiteralCS();
 			case BaseCSTPackage.IMPORT_CS: return createImportCS();
+			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF: return createModelElementCSRef();
+			case BaseCSTPackage.NAMESPACE_REF_CS: return createNamespaceRefCS();
 			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS: return createQualifiedTypeRefCS();
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
@@ -330,6 +332,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LambdaTypeCS createLambdaTypeCS()
+	{
+		LambdaTypeCSImpl lambdaTypeCS = new LambdaTypeCSImpl();
+		return lambdaTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LibraryCS createLibraryCS() {
 		LibraryCSImpl libraryCS = new LibraryCSImpl();
 		return libraryCS;
@@ -343,6 +356,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public ModelElementCSRef createModelElementCSRef() {
 		ModelElementCSRefImpl modelElementCSRef = new ModelElementCSRefImpl();
 		return modelElementCSRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamespaceRefCS createNamespaceRefCS()
+	{
+		NamespaceRefCSImpl namespaceRefCS = new NamespaceRefCSImpl();
+		return namespaceRefCS;
 	}
 
 	/**
@@ -384,16 +408,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public PrimitiveTypeRefCS createPrimitiveTypeRefCS() {
 		PrimitiveTypeRefCSImpl primitiveTypeRefCS = new PrimitiveTypeRefCSImpl();
 		return primitiveTypeRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedTypeRefCS createQualifiedTypeRefCS() {
-		QualifiedTypeRefCSImpl qualifiedTypeRefCS = new QualifiedTypeRefCSImpl();
-		return qualifiedTypeRefCS;
 	}
 
 	/**

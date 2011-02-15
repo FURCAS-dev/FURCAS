@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -44,20 +44,19 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -192,6 +191,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateFeatureCS((FeatureCS)value, diagnostics, context);
 			case BaseCSTPackage.IMPORT_CS:
 				return validateImportCS((ImportCS)value, diagnostics, context);
+			case BaseCSTPackage.LAMBDA_TYPE_CS:
+				return validateLambdaTypeCS((LambdaTypeCS)value, diagnostics, context);
 			case BaseCSTPackage.LIBRARY_CS:
 				return validateLibraryCS((LibraryCS)value, diagnostics, context);
 			case BaseCSTPackage.MODEL_ELEMENT_CS:
@@ -204,6 +205,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateNamedElementCS((NamedElementCS)value, diagnostics, context);
 			case BaseCSTPackage.NAMESPACE_CS:
 				return validateNamespaceCS((NamespaceCS)value, diagnostics, context);
+			case BaseCSTPackage.NAMESPACE_REF_CS:
+				return validateNamespaceRefCS((NamespaceRefCS)value, diagnostics, context);
 			case BaseCSTPackage.OPERATION_CS:
 				return validateOperationCS((OperationCS)value, diagnostics, context);
 			case BaseCSTPackage.PACKAGE_CS:
@@ -212,14 +215,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateParameterCS((ParameterCS)value, diagnostics, context);
 			case BaseCSTPackage.PARAMETERABLE_ELEMENT_CS:
 				return validateParameterableElementCS((ParameterableElementCS)value, diagnostics, context);
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS:
-				return validateParameterizedTypeRefCS((ParameterizedTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 				return validatePrimitiveTypeRefCS((PrimitiveTypeRefCS)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_REF_CS:
-				return validateQualifiedRefCS((QualifiedRefCS<?>)value, diagnostics, context);
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS:
-				return validateQualifiedTypeRefCS((QualifiedTypeRefCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS:
 				return validateReferenceCS((ReferenceCS)value, diagnostics, context);
 			case BaseCSTPackage.REFERENCE_CS_REF:
@@ -452,6 +449,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLambdaTypeCS(LambdaTypeCS lambdaTypeCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(lambdaTypeCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateLibraryCS(LibraryCS libraryCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(libraryCS, diagnostics, context);
@@ -512,6 +519,16 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateNamespaceRefCS(NamespaceRefCS namespaceRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(namespaceRefCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateOperationCS(OperationCS operationCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(operationCS, diagnostics, context);
@@ -552,39 +569,9 @@ public class BaseCSTValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateParameterizedTypeRefCS(ParameterizedTypeRefCS parameterizedTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(parameterizedTypeRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validatePrimitiveTypeRefCS(PrimitiveTypeRefCS primitiveTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint(primitiveTypeRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedRefCS(QualifiedRefCS<?> qualifiedRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedRefCS, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateQualifiedTypeRefCS(QualifiedTypeRefCS qualifiedTypeRefCS, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint(qualifiedTypeRefCS, diagnostics, context);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTAdapterFactory.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTAdapterFactory.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -42,20 +42,19 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -228,6 +227,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createImportCSAdapter();
 			}
 			@Override
+			public Adapter caseLambdaTypeCS(LambdaTypeCS object)
+			{
+				return createLambdaTypeCSAdapter();
+			}
+			@Override
 			public Adapter caseLibraryCS(LibraryCS object)
 			{
 				return createLibraryCSAdapter();
@@ -258,6 +262,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createNamespaceCSAdapter();
 			}
 			@Override
+			public Adapter caseNamespaceRefCS(NamespaceRefCS object)
+			{
+				return createNamespaceRefCSAdapter();
+			}
+			@Override
 			public Adapter caseOperationCS(OperationCS object)
 			{
 				return createOperationCSAdapter();
@@ -278,24 +287,9 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 				return createParameterableElementCSAdapter();
 			}
 			@Override
-			public Adapter caseParameterizedTypeRefCS(ParameterizedTypeRefCS object)
-			{
-				return createParameterizedTypeRefCSAdapter();
-			}
-			@Override
 			public Adapter casePrimitiveTypeRefCS(PrimitiveTypeRefCS object)
 			{
 				return createPrimitiveTypeRefCSAdapter();
-			}
-			@Override
-			public <E extends ElementCS> Adapter caseQualifiedRefCS(QualifiedRefCS<E> object)
-			{
-				return createQualifiedRefCSAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedTypeRefCS(QualifiedTypeRefCS object)
-			{
-				return createQualifiedTypeRefCSAdapter();
 			}
 			@Override
 			public Adapter caseReferenceCS(ReferenceCS object)
@@ -687,6 +681,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS <em>Lambda Type CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS
+	 * @generated
+	 */
+	public Adapter createLambdaTypeCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS <em>Library CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -772,6 +781,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS <em>Namespace Ref CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS
+	 * @generated
+	 */
+	public Adapter createNamespaceRefCSAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS <em>Operation CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -828,20 +852,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS <em>Parameterized Type Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS
-	 * @generated
-	 */
-	public Adapter createParameterizedTypeRefCSAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS <em>Primitive Type Ref CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -852,34 +862,6 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPrimitiveTypeRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS <em>Qualified Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedRefCSAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS <em>Qualified Type Ref CS</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS
-	 * @generated
-	 */
-	public Adapter createQualifiedTypeRefCSAdapter() {
 		return null;
 	}
 
