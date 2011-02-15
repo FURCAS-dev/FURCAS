@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="Stylesheet" type="text/css" href="../doc.css" />
+<title>Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</title>
+</head>
+<body>
+<h1>Incrementally Re-Evaluating OCL Expressions Using the Impact Analyzer</h1>
+<p>
+When Ecore metamodels use many OCL invariants and the models constrained by these invariants
+grow large, re-evaluating the invariants becomes a performance challenge. As OCL expressions
+can navigate freely across resource boundaries, changes to a model element in one resource
+can easily affect invariants for model elements in other resources. To reliably catch all
+invalidated constraints after a change it would be necessary to re-evaluate all invariants
+on all their context objects regardless their resource. This does not scale sufficiently well.
+</p><p>
+The <a href="../../javadoc/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html">
+<em class="CodeName">ImpactAnalyzerFactory</em></a>
+interface allows tool builders to efficiently determine a much smaller set of model elements
+on which re-evaluation of expressions is necessary after a change.
+</p><p>
+Given an <a href="../../javadoc/org/eclipse/ocl/ecore/OCLExpression.html">
+OCL expression</a>, the factory can be used to create an
+impact analyzer as follows:
+<pre class="Code">
+    final OCLExpression e = ...;
+    final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
+    			e,      // the expression to re-evaluate incrementally
+    			false,  // whether to re-evaluate when new context objects appear
+    			OCLFactory.INSTANCE);
+</pre>
+The impact analyzer obtained this way can create a change notification filter which
+can then be used to register for notifications that indicate a change which may affect
+the value of the expression. Consider the following example: 
+<pre class="Code">
+    ResourceSet myResourceSet = ...;
+    EventFilter filter = impactAnalyzer.createFilterForExpression();
+    EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(myResourceSet);
+    eventManager.subscribe(filter, new AdapterImpl() {
+        public void notifyChanged(Notification notification) {
+            Collection&lt;EObject&gt; valueMayHaveChangedOn = impactAnalyzer.getContextObjects(notification);
+            for (EObject eo : valueMayHaveChangedOn) {
+            	// ... perform some re-evaluation action of e for context eo here
+            }
+        }
+    });
+</pre>
+</p><p>
+The <a href="../../javadoc/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html">
+event manager factory</a> and the <a href="../../javadoc/org/eclipse/ocl/examples/eventmanager/EventManager.html">
+event managers</a> it produces lay the scalable foundation for the
+re-evaluation process. Even if it has to manage many subscriptions, its performance does not
+degrade as it would if the change notification filters were evaluated one after the other.
+With this it becomes possible to register many OCL expressions for change impact analysis
+as shown above. As described in more detail in the Javadoc, event managers may be re-used,
+temporarily deactivated and new ones may be created specifically upon request. This way
+it is possible to have several event managers, e.g., listening for changes during different
+phases of a model's life cycle without having to create and initialize the event managers
+again and again.
+</p>
+
+<h2>Using the Impact Analyzer in EMF Editors</h2>
+<p>
+The <code>org.eclipse.ocl.examples.impactanalyzer.ui</code> package provides experimental support
+for embedding the impact analyzer in EMF editors. Adding the lines
+<pre class="Code">
+    @SuppressWarnings("unused") // not read; just used to avoid GC from collecting re-validator 
+    private Revalidator revalidator;
+</pre>
+to the field declarations of an editor class, and adding the lines
+<pre class="Code">
+    revalidator = new Revalidator(editingDomain, OCLFactory.INSTANCE, DefaultOppositeEndFinder.getInstance(),
+                                  MyMetamodelEcorePackage.eINSTANCE);
+</pre>
+at the end of the editor class's <code>createModel()</code> method turns on this experimental
+support for the respective editors. Consequently, changes in the editor's <code>ResourceSet</code>
+will trigger the re-evaluation of the affected invariants on the set of context objects
+determined by the impact analyzer. Error markers of successfully validated constraints will
+be removed, markers for invalid constraints are produced. As is obvious also from the
+<code>examples</code> part of the package name, this is not yet production-ready code. It
+may change or disappear without notice.
+</p>
+
+<h2>Algorithm Outline</h2>
+<p>
+The basic idea on which the impact analyzer's algorithm is based is this: take the EMF
+change notification and see which elementary subexpressions, such as property call expressions,
+are immediately affected by the change. From these pairs of <em>(subexpression, model element)</em>
+it is possible to walk the expression tree and navigate "backwards" from the model element
+to the candidates for the <code>self</code> variable for which the subexpression
+may evaluate to the model element indicated by the notification.
+Recursive operation calls and general <code>-&gt;iterate(...)</code> expressions complicate
+matters and lead to a recursive algorithm for the impact analysis.
+</p>
+<p>
+It is permissible to use calls to OCL-specified operations. The impact analyzer will trace
+changes considering the called operation's body expression.
+</p>
+<p>
+The use of <code>allInstances</code> inside an expression may be nasty for analyzing the
+impact of a change because then it may no longer be possible to trace the change back to
+the possible values for <code>self</code>. In those cases the impact analyzer will simply
+"give up" and return a collection of all instances of the expression's context type and
+its subtypes. 
+</p>
+
+<h2>Known Limitations</h2>
+<p>
+The current implementation does <em>not</em> yet handle derived properties
+specified by an OCL expression.
+</p>
+
+<h2>Impact Analyzer Configuration, Scopes</h2>
+<p>
+The impact analyzer can be created in several different configurations as explained in
+detail in the <a href="../../javadoc/org/eclipse/ocl/examples/impactanalyzer/ImpactAnalyzerFactory.html">Javadocs</a>.
+Particularly noteworthy is the relationship between the <a href="../../javadoc/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html">
+<em class="CodeName">OppositeEndFinder</em></a> and the way an <code>allInstance</code> expression
+is evaluated. Both depend on a notion of lookup <em>scope</em>. EMF does not provide any
+particular rules or conventions in this regard other than assuming that what has been
+loaded into a <code>ResourceSet</code> is what tools can see. While this is a working
+procedure for forward navigation, it doesn't help in defining a scope for <code>allInstances</code>
+and reverse navigation when there is no explicit opposite property.
+</p>
+<p>
+For this purpose, MDT OCL has introduced the <a href="../../javadoc/org/eclipse/ocl/ecore/opposites/OppositeEndFinder.html">
+<em class="CodeName">OppositeEndFinder</em></a> interface through which reverse navigations
+of references and <code>allInstances</code> lookups can be performed. Its default implementation
+is based on the EMF default which is to consider the contents of a <code>ResourceSet</code> the
+universe. Other implementations are possible, however, such as one that uses
+EMF Query2 to perform the necessary lookups.
+</p>
+<p>
+A default OCL evaluator will always use the current <code>ResourceSet</code> to determine
+the set of all instances of a type. If a client has used an opposite end finder that implements
+a certain lookup strategy then the default <code>allInstances</code> evaluation is most likely
+inconsistent with the scope definitions of that opposite end finder. To avoid such problems,
+a <a href="../../javadoc/org/eclipse/ocl/examples/impactanalyzer/util/OCL.html">
+specific OCL factory</a> can create OCL instances that ensure consistency between
+opposite navigation and <code>allInstances</code> evaluation.
+</p>
+<p>
+Other configuration options (see <a href="../../javadoc/org/eclipse/ocl/examples/impactanalyzer/configuration/ActivationOption.html">
+<em class="CodeName">ActivationOption</em></a>) concern the specific algorithm used for tracing back
+from a change notification to the set of context objects for which the expression
+may have changed its value. The default selection has proven to be the fastest for a set
+of benchmarks. However, mileage may vary, and we'd like to encourage users to experiment
+also with the non-default configurations.
+</p>
+</body>
+</html>
