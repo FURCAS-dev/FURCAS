@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
+ * $Id: Property.java,v 1.4 2011/02/15 19:58:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -56,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property
-		extends TypedElement, Feature, MultiplicityElement, ParameterableElement {
+		extends Feature, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.
