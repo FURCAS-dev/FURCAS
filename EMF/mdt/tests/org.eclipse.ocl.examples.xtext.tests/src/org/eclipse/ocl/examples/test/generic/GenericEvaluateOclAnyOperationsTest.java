@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -110,36 +110,36 @@ public abstract class GenericEvaluateOclAnyOperationsTest
 	
 	public void testGreaterThanInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid > 0", OCLMessages.ErrorUnresolvedOperationCall, ">");
-//		assertSemanticErrorQuery("0 > invalid", OCLMessages.ErrorUnresolvedOperationCall, ">");
+		assertSemanticErrorQuery("invalid > 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
+//		assertSemanticErrorQuery("0 > invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > invalid");
-		assertSemanticErrorQuery("invalid > invalid", OCLMessages.ErrorUnresolvedOperationCall, ">");
+		assertSemanticErrorQuery("invalid > invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
 	}
 //    protected void assertBadQuery(Class<?> exception, int severity,
 //   		 String expression, String messageTemplate, String... bindings) {
 
 	public void testGreaterThanNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null > 0", OCLMessages.ErrorUnresolvedOperationCall, ">");
-//		assertSemanticErrorQuery("0 > null", OCLMessages.ErrorUnresolvedOperationCall, ">");
+		assertSemanticErrorQuery("null > 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
+//		assertSemanticErrorQuery("0 > null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > null");
-		assertSemanticErrorQuery("null > null", OCLMessages.ErrorUnresolvedOperationCall, ">");
+		assertSemanticErrorQuery("null > null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OPERATOR);
 	}
 
 	public void testGreaterThanOrEqualInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid >= 0", OCLMessages.ErrorUnresolvedOperationCall, ">=");
-//		assertSemanticErrorQuery("0 >= invalid", OCLMessages.ErrorUnresolvedOperationCall, ">=");
+		assertSemanticErrorQuery("invalid >= 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
+//		assertSemanticErrorQuery("0 >= invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= invalid");
-		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.ErrorUnresolvedOperationCall, ">=");
+		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 	}
 
 	public void testGreaterThanOrEqualNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null >= 0", OCLMessages.ErrorUnresolvedOperationCall, ">=");
-//		assertSemanticErrorQuery("0 >= null", OCLMessages.ErrorUnresolvedOperationCall, ">=");
+		assertSemanticErrorQuery("null >= 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
+//		assertSemanticErrorQuery("0 >= null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= null");
-		assertSemanticErrorQuery("null >= null", OCLMessages.ErrorUnresolvedOperationCall, ">=");
+		assertSemanticErrorQuery("null >= null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 	}
 
 	public void testLessThanInvalid() {
@@ -160,18 +160,18 @@ public abstract class GenericEvaluateOclAnyOperationsTest
 
 	public void testLessThanOrEqualInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid <= 0", OCLMessages.ErrorUnresolvedOperationCall, "<=");
-//		assertSemanticErrorQuery("0 <= invalid", OCLMessages.ErrorUnresolvedOperationCall, "<=");
+		assertSemanticErrorQuery("invalid <= 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
+//		assertSemanticErrorQuery("0 <= invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= invalid");
-		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.ErrorUnresolvedOperationCall, "<=");
+		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 	}
 
 	public void testLessThanOrEqualNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null <= 0", OCLMessages.ErrorUnresolvedOperationCall, "<=");
-//		assertSemanticErrorQuery("0 <= null", OCLMessages.ErrorUnresolvedOperationCall, "<=");
+		assertSemanticErrorQuery("null <= 0", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
+//		assertSemanticErrorQuery("0 <= null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= null");
-		assertSemanticErrorQuery("null <= null", OCLMessages.ErrorUnresolvedOperationCall, "<=");
+		assertSemanticErrorQuery("null <= null", OCLMessages.ErrorUnresolvedOperationCall, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 	}
 
 	public void testNotEqualInvalid() {

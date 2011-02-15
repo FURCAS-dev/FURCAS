@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -23,8 +23,42 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
-import org.eclipse.ocl.examples.xtext.base.util.Signature;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,13 +74,16 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * @generated
 	 */
 	public static BaseCSTFactory init() {
-		try {
-			BaseCSTFactory theBaseCSTFactory = (BaseCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.0.0/BaseCST"); //$NON-NLS-1$ 
-			if (theBaseCSTFactory != null) {
+		try
+		{
+			BaseCSTFactory theBaseCSTFactory = (BaseCSTFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/ocl/3.1.0/BaseCST"); //$NON-NLS-1$ 
+			if (theBaseCSTFactory != null)
+			{
 				return theBaseCSTFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new BaseCSTFactoryImpl();
@@ -69,34 +106,38 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
+			case BaseCSTPackage.ANNOTATION_CS: return createAnnotationCS();
+			case BaseCSTPackage.ATTRIBUTE_CS: return createAttributeCS();
 			case BaseCSTPackage.ATTRIBUTE_CS_REF: return createAttributeCSRef();
-			case BaseCSTPackage.BOUND_CLASS_CS: return createBoundClassCS();
-			case BaseCSTPackage.BOUND_CLASSIFIER_CS: return createBoundClassifierCS();
 			case BaseCSTPackage.BOUND_DOCUMENT_CS: return createBoundDocumentCS();
-			case BaseCSTPackage.BOUND_OPERATION_CS: return createBoundOperationCS();
+			case BaseCSTPackage.CLASS_CS: return createClassCS();
 			case BaseCSTPackage.CLASS_CS_REF: return createClassCSRef();
 			case BaseCSTPackage.COLLECTION_TYPE_REF_CS: return createCollectionTypeRefCS();
+			case BaseCSTPackage.CONSTRAINT_CS: return createConstraintCS();
+			case BaseCSTPackage.DATA_TYPE_CS: return createDataTypeCS();
 			case BaseCSTPackage.DETAIL_CS: return createDetailCS();
-			case BaseCSTPackage.ENUM_LITERAL_CS: return createEnumLiteralCS();
+			case BaseCSTPackage.DOCUMENTATION_CS: return createDocumentationCS();
+			case BaseCSTPackage.ENUMERATION_CS: return createEnumerationCS();
+			case BaseCSTPackage.ENUMERATION_LITERAL_CS: return createEnumerationLiteralCS();
 			case BaseCSTPackage.IMPORT_CS: return createImportCS();
+			case BaseCSTPackage.LAMBDA_TYPE_CS: return createLambdaTypeCS();
 			case BaseCSTPackage.LIBRARY_CS: return createLibraryCS();
 			case BaseCSTPackage.MODEL_ELEMENT_CS_REF: return createModelElementCSRef();
+			case BaseCSTPackage.NAMESPACE_REF_CS: return createNamespaceRefCS();
+			case BaseCSTPackage.OPERATION_CS: return createOperationCS();
 			case BaseCSTPackage.PACKAGE_CS: return createPackageCS();
 			case BaseCSTPackage.PARAMETER_CS: return createParameterCS();
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS: return createPrimitiveTypeRefCS();
-			case BaseCSTPackage.QUALIFIED_CLASSIFIER_REF_CS: return createQualifiedClassifierRefCS();
-			case BaseCSTPackage.QUALIFIED_OPERATION_REF_CS: return createQualifiedOperationRefCS();
-			case BaseCSTPackage.QUALIFIED_PACKAGE_REF_CS: return createQualifiedPackageRefCS();
-			case BaseCSTPackage.QUALIFIED_STRUCTURAL_FEATURE_REF_CS: return createQualifiedStructuralFeatureRefCS();
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS: return createQualifiedTypeRefCS();
+			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
-			case BaseCSTPackage.SIMPLE_CLASSIFIER_REF_CS: return createSimpleClassifierRefCS();
-			case BaseCSTPackage.SIMPLE_OPERATION_REF_CS: return createSimpleOperationRefCS();
-			case BaseCSTPackage.SIMPLE_PACKAGE_REF_CS: return createSimplePackageRefCS();
-			case BaseCSTPackage.SIMPLE_STRUCTURAL_FEATURE_REF_CS: return createSimpleStructuralFeatureRefCS();
-			case BaseCSTPackage.TYPE_BINDING_CS: return createTypeBindingCS();
-			case BaseCSTPackage.TYPE_BINDINGS_CS: return createTypeBindingsCS();
+			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
+			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
+			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
+			case BaseCSTPackage.TEMPLATE_SIGNATURE_CS: return createTemplateSignatureCS();
+			case BaseCSTPackage.TUPLE_PART_CS: return createTuplePartCS();
+			case BaseCSTPackage.TUPLE_TYPE_CS: return createTupleTypeCS();
 			case BaseCSTPackage.TYPE_PARAMETER_CS: return createTypeParameterCS();
 			case BaseCSTPackage.TYPED_TYPE_REF_CS: return createTypedTypeRefCS();
 			case BaseCSTPackage.WILDCARD_TYPE_REF_CS: return createWildcardTypeRefCS();
@@ -111,10 +152,12 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * @generated
 	 */
 	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case BaseCSTPackage.SIGNATURE:
-				return createSignatureFromString(eDataType, initialValue);
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BaseCSTPackage.ITERATOR_KIND:
+				return createIteratorKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -126,13 +169,37 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * @generated
 	 */
 	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case BaseCSTPackage.SIGNATURE:
-				return convertSignatureToString(eDataType, instanceValue);
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case BaseCSTPackage.ITERATOR_KIND:
+				return convertIteratorKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AnnotationCS createAnnotationCS()
+	{
+		AnnotationCSImpl annotationCS = new AnnotationCSImpl();
+		return annotationCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AttributeCS createAttributeCS()
+	{
+		AttributeCSImpl attributeCS = new AttributeCSImpl();
+		return attributeCS;
 	}
 
 	/**
@@ -150,26 +217,6 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoundClassCS createBoundClassCS() {
-		BoundClassCSImpl boundClassCS = new BoundClassCSImpl();
-		return boundClassCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BoundClassifierCS createBoundClassifierCS() {
-		BoundClassifierCSImpl boundClassifierCS = new BoundClassifierCSImpl();
-		return boundClassifierCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BoundDocumentCS createBoundDocumentCS() {
 		BoundDocumentCSImpl boundDocumentCS = new BoundDocumentCSImpl();
 		return boundDocumentCS;
@@ -180,9 +227,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BoundOperationCS createBoundOperationCS() {
-		BoundOperationCSImpl boundOperationCS = new BoundOperationCSImpl();
-		return boundOperationCS;
+	public ClassCS createClassCS() {
+		ClassCSImpl classCS = new ClassCSImpl();
+		return classCS;
 	}
 
 	/**
@@ -210,6 +257,28 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ConstraintCS createConstraintCS()
+	{
+		ConstraintCSImpl constraintCS = new ConstraintCSImpl();
+		return constraintCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataTypeCS createDataTypeCS()
+	{
+		DataTypeCSImpl dataTypeCS = new DataTypeCSImpl();
+		return dataTypeCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DetailCS createDetailCS() {
 		DetailCSImpl detailCS = new DetailCSImpl();
 		return detailCS;
@@ -220,9 +289,32 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumLiteralCS createEnumLiteralCS() {
-		EnumLiteralCSImpl enumLiteralCS = new EnumLiteralCSImpl();
-		return enumLiteralCS;
+	public DocumentationCS createDocumentationCS()
+	{
+		DocumentationCSImpl documentationCS = new DocumentationCSImpl();
+		return documentationCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnumerationCS createEnumerationCS()
+	{
+		EnumerationCSImpl enumerationCS = new EnumerationCSImpl();
+		return enumerationCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EnumerationLiteralCS createEnumerationLiteralCS()
+	{
+		EnumerationLiteralCSImpl enumerationLiteralCS = new EnumerationLiteralCSImpl();
+		return enumerationLiteralCS;
 	}
 
 	/**
@@ -233,6 +325,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public ImportCS createImportCS() {
 		ImportCSImpl importCS = new ImportCSImpl();
 		return importCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LambdaTypeCS createLambdaTypeCS()
+	{
+		LambdaTypeCSImpl lambdaTypeCS = new LambdaTypeCSImpl();
+		return lambdaTypeCS;
 	}
 
 	/**
@@ -253,6 +356,28 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	public ModelElementCSRef createModelElementCSRef() {
 		ModelElementCSRefImpl modelElementCSRef = new ModelElementCSRefImpl();
 		return modelElementCSRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NamespaceRefCS createNamespaceRefCS()
+	{
+		NamespaceRefCSImpl namespaceRefCS = new NamespaceRefCSImpl();
+		return namespaceRefCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OperationCS createOperationCS()
+	{
+		OperationCSImpl operationCS = new OperationCSImpl();
+		return operationCS;
 	}
 
 	/**
@@ -290,49 +415,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public QualifiedClassifierRefCS createQualifiedClassifierRefCS() {
-		QualifiedClassifierRefCSImpl qualifiedClassifierRefCS = new QualifiedClassifierRefCSImpl();
-		return qualifiedClassifierRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedOperationRefCS createQualifiedOperationRefCS() {
-		QualifiedOperationRefCSImpl qualifiedOperationRefCS = new QualifiedOperationRefCSImpl();
-		return qualifiedOperationRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedPackageRefCS createQualifiedPackageRefCS() {
-		QualifiedPackageRefCSImpl qualifiedPackageRefCS = new QualifiedPackageRefCSImpl();
-		return qualifiedPackageRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedStructuralFeatureRefCS createQualifiedStructuralFeatureRefCS() {
-		QualifiedStructuralFeatureRefCSImpl qualifiedStructuralFeatureRefCS = new QualifiedStructuralFeatureRefCSImpl();
-		return qualifiedStructuralFeatureRefCS;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public QualifiedTypeRefCS createQualifiedTypeRefCS() {
-		QualifiedTypeRefCSImpl qualifiedTypeRefCS = new QualifiedTypeRefCSImpl();
-		return qualifiedTypeRefCS;
+	public ReferenceCS createReferenceCS()
+	{
+		ReferenceCSImpl referenceCS = new ReferenceCSImpl();
+		return referenceCS;
 	}
 
 	/**
@@ -350,9 +436,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleClassifierRefCS createSimpleClassifierRefCS() {
-		SimpleClassifierRefCSImpl simpleClassifierRefCS = new SimpleClassifierRefCSImpl();
-		return simpleClassifierRefCS;
+	public RootPackageCS createRootPackageCS()
+	{
+		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
+		return rootPackageCS;
 	}
 
 	/**
@@ -360,9 +447,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleOperationRefCS createSimpleOperationRefCS() {
-		SimpleOperationRefCSImpl simpleOperationRefCS = new SimpleOperationRefCSImpl();
-		return simpleOperationRefCS;
+	public TemplateBindingCS createTemplateBindingCS() {
+		TemplateBindingCSImpl templateBindingCS = new TemplateBindingCSImpl();
+		return templateBindingCS;
 	}
 
 	/**
@@ -370,9 +457,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimplePackageRefCS createSimplePackageRefCS() {
-		SimplePackageRefCSImpl simplePackageRefCS = new SimplePackageRefCSImpl();
-		return simplePackageRefCS;
+	public TemplateParameterSubstitutionCS createTemplateParameterSubstitutionCS() {
+		TemplateParameterSubstitutionCSImpl templateParameterSubstitutionCS = new TemplateParameterSubstitutionCSImpl();
+		return templateParameterSubstitutionCS;
 	}
 
 	/**
@@ -380,9 +467,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleStructuralFeatureRefCS createSimpleStructuralFeatureRefCS() {
-		SimpleStructuralFeatureRefCSImpl simpleStructuralFeatureRefCS = new SimpleStructuralFeatureRefCSImpl();
-		return simpleStructuralFeatureRefCS;
+	public TemplateSignatureCS createTemplateSignatureCS() {
+		TemplateSignatureCSImpl templateSignatureCS = new TemplateSignatureCSImpl();
+		return templateSignatureCS;
 	}
 
 	/**
@@ -390,9 +477,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeBindingCS createTypeBindingCS() {
-		TypeBindingCSImpl typeBindingCS = new TypeBindingCSImpl();
-		return typeBindingCS;
+	public TuplePartCS createTuplePartCS()
+	{
+		TuplePartCSImpl tuplePartCS = new TuplePartCSImpl();
+		return tuplePartCS;
 	}
 
 	/**
@@ -400,9 +488,10 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeBindingsCS createTypeBindingsCS() {
-		TypeBindingsCSImpl typeBindingsCS = new TypeBindingsCSImpl();
-		return typeBindingsCS;
+	public TupleTypeCS createTupleTypeCS()
+	{
+		TupleTypeCSImpl tupleTypeCS = new TupleTypeCSImpl();
+		return tupleTypeCS;
 	}
 
 	/**
@@ -440,8 +529,11 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Signature createSignatureFromString(EDataType eDataType, String initialValue) {
-		return (Signature)super.createFromString(eDataType, initialValue);
+	public IteratorKind createIteratorKindFromString(EDataType eDataType, String initialValue)
+	{
+		IteratorKind result = IteratorKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		return result;
 	}
 
 	/**
@@ -449,8 +541,9 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertSignatureToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
+	public String convertIteratorKindToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

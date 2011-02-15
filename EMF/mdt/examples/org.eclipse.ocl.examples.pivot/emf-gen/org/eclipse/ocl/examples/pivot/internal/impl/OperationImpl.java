@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -71,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getUpper <em>Upper</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementationClass <em>Implementation Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getFeaturingClass <em>Featuring Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
@@ -380,16 +379,6 @@ public class OperationImpl
 		upper = newUpper;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.OPERATION__UPPER, oldUpper, upper));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
-	{
-		return getClass_();
 	}
 
 	/**
@@ -1071,8 +1060,6 @@ public class OperationImpl
 				return getImplementationClass();
 			case PivotPackage.OPERATION__IMPLEMENTATION:
 				return getImplementation();
-			case PivotPackage.OPERATION__FEATURING_CLASS:
-				return getFeaturingClass();
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -1292,8 +1279,6 @@ public class OperationImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.OPERATION__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case PivotPackage.OPERATION__FEATURING_CLASS:
-				return getFeaturingClass() != null;
 			case PivotPackage.OPERATION__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.OPERATION__TEMPLATE_PARAMETER:
@@ -1345,7 +1330,6 @@ public class OperationImpl
 			{
 				case PivotPackage.OPERATION__IMPLEMENTATION_CLASS: return PivotPackage.FEATURE__IMPLEMENTATION_CLASS;
 				case PivotPackage.OPERATION__IMPLEMENTATION: return PivotPackage.FEATURE__IMPLEMENTATION;
-				case PivotPackage.OPERATION__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
 				default: return -1;
 			}
 		}
@@ -1408,7 +1392,6 @@ public class OperationImpl
 			{
 				case PivotPackage.FEATURE__IMPLEMENTATION_CLASS: return PivotPackage.OPERATION__IMPLEMENTATION_CLASS;
 				case PivotPackage.FEATURE__IMPLEMENTATION: return PivotPackage.OPERATION__IMPLEMENTATION;
-				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.OPERATION__FEATURING_CLASS;
 				default: return -1;
 			}
 		}

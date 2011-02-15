@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DataType.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: DataType.java,v 1.3 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -29,6 +29,7 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#isSerializable <em>Is Serializable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralType <em>Behavioral Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,4 +66,30 @@ public interface DataType
 	 * @generated
 	 */
 	void setIsSerializable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Behavioral Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Behavioral Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Behavioral Type</em>' reference.
+	 * @see #setBehavioralType(Type)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getDataType_BehavioralType()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	Type getBehavioralType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.DataType#getBehavioralType <em>Behavioral Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Behavioral Type</em>' reference.
+	 * @see #getBehavioralType()
+	 * @generated
+	 */
+	void setBehavioralType(Type value);
 } // DataType

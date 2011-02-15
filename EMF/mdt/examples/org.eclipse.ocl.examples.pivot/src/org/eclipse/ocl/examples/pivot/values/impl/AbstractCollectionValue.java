@@ -12,16 +12,14 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.TupleType;
@@ -31,15 +29,13 @@ import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public abstract class AbstractCollectionValue<C extends Collection<Value>>
-	extends AbstractValue
-	implements CollectionValue
+	extends AbstractedCollectionValue
 {
 	protected final C elements;
 	
@@ -60,43 +56,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 //	protected boolean add(C values, Value value) {
 //		return values.add(value);
 //	}
-
-    @Override
-    public BagValue asBagValue() {
-        return valueFactory.createBagValue(elements);
-    }
-
-	public Collection<Value> asCollection() {
-		return elements;
-	}
-
-	public List<Value> asList() {
-		return new ArrayList<Value>(elements);
-	}
-
-	@Override
-	public CollectionValue asCollectionValue() {
-		return this;
-	}
-
-	public Object asObject() {
-		return elements;
-	}
-
-    @Override
-	public OrderedSetValue asOrderedSetValue() {
-        return valueFactory.createOrderedSetValue(elements);
-    }
-
-    @Override
-    public SequenceValue asSequenceValue() {
-        return valueFactory.createSequenceValue(elements);
-    }
-
-    @Override
-    public SetValue asSetValue() {
-        return valueFactory.createSetValue(elements);
-    }
 
     /**
      * Implementation of the OCL
@@ -168,6 +127,11 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 	}
 
 	@Override
+	protected Collection<Value> getElements() {
+		return elements;
+	}
+
+	@Override
 	public int hashCode() {
 		return elements.hashCode();
 	}
@@ -195,8 +159,17 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return valueFactory.getTrue();
     }
 
-	public BooleanValue isEmpty() {
-		return valueFactory.booleanValueOf(elements.size() == 0);
+	public int intSize() {
+		return elements.size();
+	}
+
+	public CollectionValue intersection(CollectionValue c) {
+        if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
+            return SetValueImpl.intersection(valueFactory, this, c);
+        }
+        else {
+            return BagValueImpl.intersection(valueFactory, this, c);
+        }
 	}
 
 	public Iterator<Value> iterator() {
@@ -227,10 +200,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 		}
     }
 
-	public BooleanValue notEmpty() {
-		return valueFactory.booleanValueOf(elements.size() != 0);
-	}
-
     public Set<TupleValue> product(CollectionValue c, TupleType tupleType) {   	
     	Set<TupleValue> result = new HashSet<TupleValue>();		
         for (Value next1 : this) {
@@ -241,10 +210,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return result;
     }
 
-	public IntegerValue size() {
-		return valueFactory.integerValueOf(elements.size());
-	}
-
 	public Value sum(BinaryOperation binaryOperation, Value zero) {
 		Value result = zero;
         for (Value element : elements) {
@@ -252,33 +217,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         }
         return result;
     }
-
-	@Override
-	public String toString() {
-		StringBuffer s = new StringBuffer();
-		toString(s, 100);
-		return s.toString();
-	}
-
-	@Override
-	public void toString(StringBuffer s, int lengthLimit) {
-		s.append("{");
-		boolean isFirst = true;
-		for (Value element : elements) {
-			if (!isFirst) {
-				s.append(",");
-			}
-			if (s.length() < lengthLimit) {
-				element.toString(s, lengthLimit-1);
-			}
-			else {
-				s.append("...");
-				break;
-			}
-			isFirst = false;
-		}
-		s.append("}");		
-	}
 
     public CollectionValue union(CollectionValue c) {
         if (this instanceof BagValue || c instanceof BagValue) {
@@ -294,17 +232,4 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
             return SetValueImpl.union(valueFactory, this, c);
         }
     }
-
-	public int intSize() {
-		return elements.size();
-	}
-
-	public CollectionValue intersection(CollectionValue c) {
-        if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
-            return SetValueImpl.intersection(valueFactory, this, c);
-        }
-        else {
-            return BagValueImpl.intersection(valueFactory, this, c);
-        }
-	}
 }

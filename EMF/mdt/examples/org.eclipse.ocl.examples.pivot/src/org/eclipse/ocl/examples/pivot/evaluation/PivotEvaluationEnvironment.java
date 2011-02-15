@@ -13,20 +13,18 @@
  *
  * </copyright>
  *
- * $Id: PivotEvaluationEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: PivotEvaluationEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.util.UnicodeSupport;
 
 /**
  * Implementation of the {@link EvaluationEnvironment} for evaluation of OCL
@@ -265,7 +263,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
      * @param associationClass
      *            the association class that it references
      * @return the reference in question
-     */
+     *
     private EReference getAssociationClassReference(EObject context,
             org.eclipse.ocl.examples.pivot.Class associationClass) {
         EReference result = null;
@@ -284,7 +282,7 @@ public class PivotEvaluationEnvironment extends AbstractEvaluationEnvironment {
         }
 
         return result;
-    }
+    } */
 
     /* implements the inherited specification
     public Tuple<Operation, Property> createTuple(Type type,

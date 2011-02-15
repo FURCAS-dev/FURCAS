@@ -50,13 +50,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EcoreUtil.UnresolvedProxyCrossReferencer;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegateFactory;
-import org.eclipse.ocl.ecore.delegate.OCLSettingDelegateFactory;
-import org.eclipse.ocl.ecore.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -66,11 +63,14 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
@@ -107,34 +107,6 @@ public class XtextTestCase extends TestCase
 			}
 //			super.append(event);
 		}
-	}
-
-	public static void assertNoCSErrors(String message, Resource resource) {		
-		StringBuffer s = gatherCSErrors(null, resource.getContents());
-		if (s != null) {
-			fail(message + s.toString());
-		}
-	}
-
-	private static StringBuffer gatherCSErrors(StringBuffer s, List<? extends EObject> eObjects) {
-		for (EObject eObject : eObjects) {
-			if (eObject instanceof ModelElementCS) {
-				List<String> errors = ((ModelElementCS)eObject).getError();
-				if (errors.size() > 0) {
-					if (s == null) {
-						s = new StringBuffer();
-					}
-					for (String e : errors) {
-						s.append("\n");
-						s.append(eObject.eClass().getName());
-						s.append(": ");
-						s.append(e);
-					}
-				}
-			}
-			s = gatherCSErrors(s, eObject.eContents());
-		}
-		return s;
 	}
 
 	public static void assertNoDiagnosticErrors(String message, XtextResource xtextResource) {
@@ -344,6 +316,9 @@ public class XtextTestCase extends TestCase
 		if ((pivotElement instanceof TemplateableElement) && (((TemplateableElement)pivotElement).getTemplateBindings().size() > 0)) {
 			return false;
 		}
+		if (pivotElement instanceof LambdaType) {
+			return false;
+		}
 		if (pivotElement instanceof TupleType) {
 			return false;
 		}
@@ -409,7 +384,7 @@ public class XtextTestCase extends TestCase
 //		uriMap.put(platformOCLstdlibURI, projectOCLstdlibURI);
 		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, new OCLstdlib.Loader());
 
-        String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
+        String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
         EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
             new OCLInvocationDelegateFactory.Global());
         EStructuralFeature.Internal.SettingDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,

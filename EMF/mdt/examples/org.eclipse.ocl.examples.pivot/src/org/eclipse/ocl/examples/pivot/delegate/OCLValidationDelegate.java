@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -29,9 +29,9 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -64,11 +64,11 @@ public class OCLValidationDelegate implements ValidationDelegate
 			throw new OCLDelegateException(message);
 		}
 		Value result = ocl.evaluate(object, query);
-		if (result.isInvalid()) {
+		if ((result == null) || result.isInvalid()) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraint);
 			throw new OCLDelegateException(message);
 		}
-		if ((result == null) /* || ocl.isInvalid(result) */) {
+		if (result.isNull()) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraint);
 			throw new OCLDelegateException(message);
 		}
@@ -79,32 +79,34 @@ public class OCLValidationDelegate implements ValidationDelegate
 		return result.isTrue();
 	}
 
+	@Override
 	public String toString() {
 		return "<" + delegateDomain.getURI() + ":validate> " + eClassifier.getEPackage().getName() + "::" + eClassifier.getName(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, EOperation invariant, String expression) {
-		OCL ocl = delegateDomain.getOCL();
-		TypeManager typeManager = ocl.getEnvironment().getTypeManager();
+		TypeManager typeManager = delegateDomain.getOCL().getTypeManager();
 		Resource ecoreMetaModel = invariant.eResource();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
 		Operation operation = ecore2Pivot.getCreated(Operation.class, invariant);
-		ExpressionInOcl query = InvocationBehavior.INSTANCE.getSpecification(typeManager, operation);
+		ExpressionInOcl query = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
 		return check(eObject, invariant.getName(), query);
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraint, String expression) {
-		ExpressionInOcl query = ValidationBehavior.INSTANCE.getInvariant(eClass,
-			constraint, delegateDomain.getOCL());
+		TypeManager typeManager = delegateDomain.getOCL().getTypeManager();
+		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(
+			typeManager, eClass, constraint);
 		return check(eObject, constraint, query);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraint, String expression) {
-		ExpressionInOcl query = ValidationBehavior.INSTANCE.getInvariant(
-			eDataType, constraint, delegateDomain.getOCL());
+		TypeManager typeManager = delegateDomain.getOCL().getTypeManager();
+		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(
+			typeManager, eDataType, constraint);
 		return check(value, constraint, query);
 	}
 }

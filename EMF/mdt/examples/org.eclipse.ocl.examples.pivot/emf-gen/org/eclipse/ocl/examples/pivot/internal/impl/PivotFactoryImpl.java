@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.5 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,12 +39,12 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
 import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -59,6 +59,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -78,7 +79,6 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.SelfType;
 import org.eclipse.ocl.examples.pivot.SendSignalAction;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -98,6 +98,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
@@ -188,6 +189,7 @@ public class PivotFactoryImpl
 			case PivotPackage.ITERATE_EXP: return (EObject)createIterateExp();
 			case PivotPackage.ITERATION: return (EObject)createIteration();
 			case PivotPackage.ITERATOR_EXP: return (EObject)createIteratorExp();
+			case PivotPackage.LAMBDA_TYPE: return (EObject)createLambdaType();
 			case PivotPackage.LET_EXP: return (EObject)createLetExp();
 			case PivotPackage.LIBRARY: return (EObject)createLibrary();
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
@@ -206,7 +208,6 @@ public class PivotFactoryImpl
 			case PivotPackage.PROPERTY: return (EObject)createProperty();
 			case PivotPackage.PROPERTY_CALL_EXP: return (EObject)createPropertyCallExp();
 			case PivotPackage.REAL_LITERAL_EXP: return (EObject)createRealLiteralExp();
-			case PivotPackage.SELF_TYPE: return (EObject)createSelfType();
 			case PivotPackage.SEND_SIGNAL_ACTION: return (EObject)createSendSignalAction();
 			case PivotPackage.SEQUENCE_TYPE: return (EObject)createSequenceType();
 			case PivotPackage.SET_TYPE: return (EObject)createSetType();
@@ -226,6 +227,7 @@ public class PivotFactoryImpl
 			case PivotPackage.TYPE_EXP: return (EObject)createTypeExp();
 			case PivotPackage.TYPE_TEMPLATE_PARAMETER: return (EObject)createTypeTemplateParameter();
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP: return (EObject)createUnlimitedNaturalLiteralExp();
+			case PivotPackage.UNSPECIFIED_TYPE: return (EObject)createUnspecifiedType();
 			case PivotPackage.UNSPECIFIED_VALUE_EXP: return (EObject)createUnspecifiedValueExp();
 			case PivotPackage.VARIABLE: return (EObject)createVariable();
 			case PivotPackage.VARIABLE_EXP: return (EObject)createVariableExp();
@@ -787,6 +789,17 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LambdaType createLambdaType()
+	{
+		LambdaTypeImpl lambdaType = new LambdaTypeImpl();
+		return lambdaType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public LetExp createLetExp() {
 		LetExpImpl letExp = new LetExpImpl();
 		return letExp;
@@ -908,17 +921,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SelfType createSelfType()
-	{
-		SelfTypeImpl selfType = new SelfTypeImpl();
-		return selfType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SequenceType createSequenceType() {
 		SequenceTypeImpl sequenceType = new SequenceTypeImpl();
 		return sequenceType;
@@ -1033,6 +1035,17 @@ public class PivotFactoryImpl
 	public UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp() {
 		UnlimitedNaturalLiteralExpImpl unlimitedNaturalLiteralExp = new UnlimitedNaturalLiteralExpImpl();
 		return unlimitedNaturalLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public UnspecifiedType createUnspecifiedType()
+	{
+		UnspecifiedTypeImpl unspecifiedType = new UnspecifiedTypeImpl();
+		return unspecifiedType;
 	}
 
 	/**

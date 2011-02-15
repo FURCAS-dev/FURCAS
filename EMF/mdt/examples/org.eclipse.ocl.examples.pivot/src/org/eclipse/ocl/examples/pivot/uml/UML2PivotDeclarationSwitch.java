@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2PivotDeclarationSwitch.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: UML2PivotDeclarationSwitch.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -48,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
@@ -192,7 +192,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, umlOperation);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = umlOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = umlOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -303,7 +303,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, org.eclipse.uml2.uml.Classifier umlClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
-		EAnnotation oclAnnotation = umlClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = umlClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

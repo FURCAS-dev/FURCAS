@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Feature.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: Feature.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Feature#getImplementationClass <em>Implementation Class</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.Feature#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.Feature#getFeaturingClass <em>Featuring Class</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,20 +89,5 @@ public interface Feature
 	 * @generated
 	 */
 	void setImplementation(CallableImplementation value);
-
-	/**
-	 * Returns the value of the '<em><b>Featuring Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Featuring Class</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Featuring Class</em>' reference.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getFeature_FeaturingClass()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	org.eclipse.ocl.examples.pivot.Class getFeaturingClass();
 
 } // Feature

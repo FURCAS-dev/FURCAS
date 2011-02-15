@@ -14,24 +14,28 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.math.BigInteger;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
-import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
+import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteIteration;
+import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -42,16 +46,21 @@ import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -68,32 +77,59 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.VoidType;
+import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 /**
- * Converts an OCL expression to a string for debugging.  This is not intended
- * to be used by client applications as an AST-to-text transformation.
+ * Converts an OCL expression to a string for debugging. This is not intended to
+ * be used by client applications as an AST-to-text transformation.
  * 
  * @author Edith Schonberg (edith)
  * @author Christian W. Damus (cdamus)
  * @author Edward Willink (ewillink)
  */
-public class ToStringVisitor extends AbstractVisitor2<String>
+public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 {
 	/**
 	 * Indicates where a required element in the AST was <code>null</code>, so
-	 * that it is evident in the debugger that something was missing.  We don't
+	 * that it is evident in the debugger that something was missing. We don't
 	 * want just <code>"null"</code> because that would look like the OclVoid
 	 * literal.
 	 */
 	protected static String NULL_PLACEHOLDER = "\"<null>\""; //$NON-NLS-1$
+
+	/**
+	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
+	 * environment.
+	 * 
+	 * @param env
+	 *            an OCL environment
+	 * 
+	 * @return the corresponding instance
+	 */
+	@Deprecated
+	public static ToStringVisitor getInstance(Environment env) {
+		return new ToStringVisitor();
+	}
+
+	/**
+	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
+	 * expression or other typed element.
+	 * 
+	 * @param element
+	 *            an OCL expression or other typed element such as a variable
+	 * 
+	 * @return the corresponding instance
+	 */
+	@Deprecated
+	public static ToStringVisitor getInstance(TypedElement element) {
+		return new ToStringVisitor();
+	}
 
 	protected StringBuffer result = new StringBuffer();
 
@@ -103,887 +139,927 @@ public class ToStringVisitor extends AbstractVisitor2<String>
 	public ToStringVisitor() {
 		super(null);
 	}
-	
-	/**
-	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * environment.
+
+	/*
+	 * protected List<? extends EObject> getConstrainedElements(Constraint
+	 * constraint) { if (uml == null) { return Collections.emptyList(); } else {
+	 * return uml.getConstrainedElements(constraint); } }
 	 * 
-	 * @param env an OCL environment
+	 * protected String getStereotype(Constraint constraint) { return (uml ==
+	 * null)? null : uml.getStereotype(constraint); }
 	 * 
-	 * @return the corresponding instance
+	 * @Override protected ExpressionInOcl getSpecification(Constraint
+	 * constraint) { return (uml == null)? null :
+	 * uml.getSpecification(constraint); }
 	 */
-	@Deprecated
-	public static ToStringVisitor getInstance(Environment env) {	
-		return new ToStringVisitor();
-	}
-	
-	/**
-	 * Obtains an instance of the <tt>toString()</tt> visitor for the specified
-	 * expression or other typed element.
-	 * 
-	 * @param element an OCL expression or other typed element such as a variable
-	 * 
-	 * @return the corresponding instance
-	 */
-	@Deprecated
-	public static 
-	ToStringVisitor getInstance(TypedElement element) {	
-		return new ToStringVisitor();
-	}
-	
-	/**
-	 * Null-safe access to the name of a named element.
-	 * 
-	 * @param named a named element or <code>null</code>
-	 * @return a name, or the null placeholder if the named element or its name
-	 *    be <code>null</code>.  i.e., <code>null</code> is never returned
-	 */
-	protected String getName(NamedElement named) {
-		return (named == null)? NULL_PLACEHOLDER : named.getName();
-	}
-	
-	/**
-	 * Null-safe access to the name of a named element.
-	 * 
-	 * @param named a named element or <code>null</code>
-	 * @return a name, or the null placeholder if the named element or its name
-	 *    be <code>null</code>.  i.e., <code>null</code> is never returned
-	 */
-	protected String getName(EObject eContainer, String separator, NamedElement named) {
-		if (eContainer instanceof NamedElement) {
-			return getName(eContainer.eContainer(), "::", (NamedElement) eContainer) + separator + getName(named);
+
+	protected void append(Number number) {
+		if (number != null) {
+			result.append(number.toString());
 		}
 		else {
-			return getName(named);
+			result.append(NULL_PLACEHOLDER);
 		}
 	}
-    
-    /**
-     * Null-safe access to the qualified name of a named element.
-     * 
-     * @param named a named element or <code>null</code>
-     * @return a qualified name, or the null placeholder if the named element
-     *    or its name be <code>null</code>.  i.e., <code>null</code> is never
-     *    returned
-     */
-    protected String getQualifiedName(NamedElement named) {
-        StringBuffer result = new StringBuffer();       
-        getQualifiedName(result, named);        
-        return result.toString();
-     }
-    
-    /**
-     * Helper for the {@link #getQualifiedName(Object)}.
-     */
-    private void getQualifiedName(StringBuffer buf, NamedElement namedElement) {
-        EObject container = namedElement.eContainer();
-        if (container instanceof NamedElement) {
-            getQualifiedName(buf, (NamedElement) container);         
-            buf.append("::"); //$NON-NLS-1$
-        }       
-        buf.append(namedElement.getName());
-        if (namedElement instanceof TemplateableElement) {
-        	TemplateableElement templateableElement = (TemplateableElement)namedElement;
-			appendTemplateBindings(buf, templateableElement.getTemplateBindings());
-    		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
-    		if (templateSignature != null) {
-            	appendTemplateSignature(buf, templateSignature);
-    		}
-        }
-    }
 
-	/**
-	 * Callback for an OperationCallExp visit.
-	 * 
-	 * Look at the source to determine operator ( -> or . )
-	 * @param oc the operation call expression
-	 * @return string
-	 */
-    @Override
-    protected String handleOperationCallExp(OperationCallExp oc,
-            String sourceResult, List<String> argumentResults) {
-        
-//		OclExpression source = oc.getSource();
-//		Type sourceType = source != null ? source.getType() : null;
-		Operation oper = oc.getReferredOperation();
-		
-		result.append(sourceResult);
-		if (oper != null) {
-			result.append(oper.getFeaturingClass() instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-			result.append(getName(oper));
+	protected void append(String string) {
+		if (string != null) {
+			result.append(string);
 		}
 		else {
-			result.append(PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-			result.append(getName(oc));
+			result.append(NULL_PLACEHOLDER);
 		}
-        result.append('(');
-        for (Iterator<String> iter = argumentResults.iterator(); iter.hasNext();) {
-			result.append(iter.next());
-			if (iter.hasNext()) {
-				result.append(", ");//$NON-NLS-1$
-            }
+	}
+
+	protected void appendAtPre(FeatureCallExp mpc) {
+		if (mpc.isPre()) {
+			append("@pre"); //$NON-NLS-1$
 		}
-		result.append(')');
-        maybeAtPre(oc);
-        return null;
 	}
 
-	/**
-	 * Callback for an EnumLiteralExp visit.  
-	 * @param el the enumeration literal expresion
-	 * @return the enumeration literal toString()
-	 */
-	@Override
-    public String visitEnumLiteralExp(EnumLiteralExp el) {
-		EnumerationLiteral l = el.getReferredEnumLiteral();
-		return getQualifiedName(l);
-	}
-
-	/**
-	 * Callback for a VariableExp visit.
-	 * @param v the variable expression
-	 * @return the variable name
-	 */
-	@Override
-    public String visitVariableExp(VariableExp v) {
-		VariableDeclaration vd = v.getReferredVariable();
-		String result = (vd == null) ? null : vd.getName();
-		
-		if (result == null) {
-			result = NULL_PLACEHOLDER;
-		}
-		
-		return result;
-	}
-
-	/**
-	 * Callback for an AssociationEndCallExp visit. 
-	 * @param pc the property call expression
-	 * @return string source.ref
-	 */
-    @Override
-    protected String handlePropertyCallExp(PropertyCallExp pc,
-            String sourceResult, List<String> qualifierResults) {
-		Property property = pc.getReferredProperty();
-
-        if (sourceResult == null) {
-			// if we are the qualifier of an association class call, then
-			//   we just return our name, because our source is null (implied)
-			return getName(property);
-		}
-		
-		result.append(sourceResult);	//$NON-NLS-1$
-		result.append(property.getFeaturingClass() instanceof CollectionType ? PivotConstants.COLLECTION_NAVIGATION_OPERATOR : PivotConstants.OBJECT_NAVIGATION_OPERATOR);
-		result.append(getName(property));	//$NON-NLS-1$
-		maybeAtPre(pc);
-		
-		if (!qualifierResults.isEmpty()) {
-			result.append('[');
-			
-			for (Iterator<String> iter = qualifierResults.iterator(); iter.hasNext();) {
-				result.append(iter.next());
-				
-				if (iter.hasNext()) {
-					result.append(", "); //$NON-NLS-1$
-				}
-			}
-			
-			result.append(']');
-		}
-		return null;
-	}
-
-	/**
-	 * Callback for an AssociationClassCallExp visit. 
-	 * @param ac the association class expression
-	 * @return string source.ref
-	 */
-    @Override
-    protected String handleAssociationClassCallExp(
-            AssociationClassCallExp ac,
-            String sourceResult, List<String> qualifierResults) {
-
-		Type ref = ac.getReferredAssociationClass();
-		String name = initialLower(getName(ref));
-		
-		result.append(sourceResult + "." + name);	//$NON-NLS-1$
-		maybeAtPre(ac);
-		
-		if (!qualifierResults.isEmpty()) {
-			result.append('[').append(qualifierResults.get(0)).append(']');
-		}
-		return null;
-	}
-	
-	protected String initialLower(String name) {
-		if (name == null || name.length() == 0) {
-			return name;
-		}
-		
-		StringBuffer result = new StringBuffer(name);
-		result.setCharAt(0, Character.toLowerCase(result.charAt(0)));
-		return result.toString();
-	}
-
-	/**
-	 * Callback for the Variable visit.
-	 * @param vd the variable declaration
-	 * @return string
-	 */
-    @Override
-    protected String handleVariable(Variable vd, String initResult) {
-		String varName = vd.getName();
-		
-		if (varName == null) {
-			varName = NULL_PLACEHOLDER;
-		}
-		
-		Type type = vd.getType();
-		String result = varName;
-
-		if (type != null) {
-			result += " : " + getName(type);//$NON-NLS-1$
-		}
-        
-        if (vd.getInitExpression() != null) {
-			result += " = " + initResult;//$NON-NLS-1$
-        }
-        
-		return result;
-	}
-
-	/**
-	 * Callback for an IfExp visit.
-	 * @param ifExp an IfExp
-     * @return the string representation
-	 */
-    @Override
-    protected String handleIfExp(IfExp ifExp, String conditionResult, String thenResult, String elseResult) {
-        StringBuffer result = new StringBuffer();
-        
-        result.append("if ").append(conditionResult); //$NON-NLS-1$
-        result.append(" then ").append(thenResult); //$NON-NLS-1$
-        result.append(" else ").append(elseResult); //$NON-NLS-1$
-        result.append(" endif"); //$NON-NLS-1$
-        
-        return result.toString();
-	}
-
-	@Override
-	public String visitTupleType(TupleType object) {
-		super.visitTupleType(object);
-		result.append("{");
-		String prefix = "";
-		for (TypedElement part : object.getOwnedAttributes()) {
-			result.append(prefix);
-			result.append(getName(part));
-			prefix = ",";
-		}
-		result.append("}");
-		return result.toString();
-	}
-
-	@Override
-    public String visitTypeExp(TypeExp t) {
-		return getQualifiedName(t.getReferredType());
-	}
-	
-	@Override
-    public String visitStateExp(StateExp s) {
-		return getName(s);
-	}
-
-	/**
-	 * Callback for an UnspecifiedValueExp visit.
-	 * @param uv - UnspecifiedValueExp
-	 * @return the string representation
-	 */
-	@Override
-    public String visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
-		StringBuffer result = new StringBuffer();
-		result.append("?"); //$NON-NLS-1$
-		if (uv.getType() != null && !(uv.getType() instanceof VoidType)) {
-			result.append(" : "); //$NON-NLS-1$
-			result.append(getName(uv.getType()));
-		}
-
-		return result.toString();
-	}
-
-	/**
-	 * Callback for an IntegerLiteralExp visit. 
-	 * @param il -- integer literal expression 
-	 * @return String
-	 */
-	@Override
-    public String visitIntegerLiteralExp(IntegerLiteralExp il) {
-    	BigInteger value = il.getIntegerSymbol();
-    	if (value == null) {
-    		return NULL_PLACEHOLDER;
-    	}
-        return value.toString();
-	}
-    
-    /**
-     * Callback for an UnlimitedNaturalLiteralExp visit. 
-     * @param unl -- unlimited natural literal expression 
-     * @return String
-     */
-    @Override
-    public String visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unl) {
-    	BigInteger value = unl.getUnlimitedNaturalSymbol();
-    	if (value == null) {
-    		return NULL_PLACEHOLDER;
-    	}
-    	if (value.signum() < 0) {
-            return "*"; //$NON-NLS-1$
-        }
-        return value.toString();
-    }
-    
-
-	/**
-	 * Callback for a RealLiteralExp visit.
-	 * @param rl -- real literal expression
-	 * @return the value of the real literal as a java.lang.Double.
-	 */
-	@Override
-    public String visitRealLiteralExp(RealLiteralExp rl) {
-		return (rl.getRealSymbol() == null)? NULL_PLACEHOLDER
-				: rl.getRealSymbol().toString();
-	}
-
-	/**
-	 * Callback for a StringLiteralExp visit.
-	 * @param sl -- string literal expression
-	 * @return the value of the string literal as a java.lang.String.
-	 */
-	@Override
-    public String visitStringLiteralExp(StringLiteralExp sl) {
-		return "'" + ((sl.getStringSymbol() == null)? NULL_PLACEHOLDER //$NON-NLS-1$
-				: sl.getStringSymbol()) + "'";//$NON-NLS-1$
-	}
-
-	/**
-	 * Callback for a BooleanLiteralExp visit.
-	 * @param bl -- boolean literal expression
-	 * @return the value of the boolean literal as a java.lang.Boolean.
-	 */
-	@Override
-    public String visitBooleanLiteralExp(BooleanLiteralExp bl) {
-    	boolean value = bl.isBooleanSymbol();
-		return Boolean.toString(value);
-	}
-
-	/**
-	 * Callback for LetExp visit.
-	 * @param letExp a let expression
-     * @return the string representation
-	 */
-    @Override
-    protected String handleLetExp(LetExp letExp, String variableResult,
-            String inResult) {
-        
-        StringBuffer result = new StringBuffer();
-		result.append("let ").append(variableResult); //$NON-NLS-1$
-        result.append(" in ").append(inResult); //$NON-NLS-1$
-        
-		return result.toString();
-
-	}
-
-	/**
-	 *  Callback for an IterateExp visit.
-	 * @param callExp an iterate expression
-     * @return the string representation
-	 */
-    @Override
-    protected String handleIterateExp(IterateExp callExp,
-            String sourceResult, List<String> variableResults,
-            String resultResult, String bodyResult) {
-        
-        StringBuffer result = new StringBuffer();
-        
-        String name = callExp.getReferredIteration().getName();
-        result.append(sourceResult).append("->").append(name).append("("); //$NON-NLS-1$
-        
-		for (Iterator<String> iter = variableResults.iterator(); iter.hasNext();) {
-			result.append(iter.next());
-			if (iter.hasNext()) {
-				result.append(", ");//$NON-NLS-1$
-            }
-		}
-        
-		result.append("; ").append(resultResult).append(" | ");//$NON-NLS-2$//$NON-NLS-1$
-
-		result.append(bodyResult).append(')');
-
-		return result.toString();
-	}
-
-	/**
-	 * Callback for an IteratorExp visit.
-	 * @param callExp an iterator expression
-     * @return the string representation
-	 */
-    @Override
-    protected String handleIteratorExp(IteratorExp callExp,
-            String sourceResult, List<String> variableResults, String bodyResult) {
-        
-        StringBuffer result = new StringBuffer();
-
-        String name = callExp.getReferredIteration().getName();
-        result.append(sourceResult).append("->").append(name).append('('); //$NON-NLS-1$
-        
-        for (Iterator<String> iter = variableResults.iterator(); iter.hasNext();) {
-            result.append(iter.next());
-            if (iter.hasNext()) {
-                result.append(", ");//$NON-NLS-1$
-            }
-        }
-        
-        result.append(" | ").append(bodyResult).append(')');//$NON-NLS-1$
-
-        return result.toString();
-	}
-
-	/**
-	 * Callback for a CollectionLiteralExp visit.
-	 * @param cl collection literal expression
-	 * @return String
-	 */
-    @Override
-    protected String handleCollectionLiteralExp(CollectionLiteralExp cl,
-            List<String> partResults) {
-        
-        StringBuffer result = new StringBuffer();
-        
-		// construct the appropriate collection from the parts
-		// based on the collection kind.
-		CollectionKind kind = cl.getKind();
-
-		switch (kind) {
-		case SET:
-			result.append("Set {");//$NON-NLS-1$
-			break;
-		case ORDERED_SET:
-            result.append("OrderedSet {");//$NON-NLS-1$
-			break;
-		case BAG:
-            result.append("Bag {");//$NON-NLS-1$
-			break;
-		case SEQUENCE:
-            result.append("Sequence {");//$NON-NLS-1$
-			break;
-		default:
-            result.append("Collection {");//$NON-NLS-1$
-			break;
-		}
-
-		for (Iterator<String> iter = partResults.iterator(); iter.hasNext();) {
-			result.append(iter.next());
-			if (iter.hasNext()) {
-				result.append(", "); //$NON-NLS-1$
-            }
-		}
-        
-		result.append('}');
-        
-        return result.toString();
-	}
-    
-    @Override
-    protected String handleCollectionItem(CollectionItem item,
-            String itemResult) {
-        return itemResult;
-    }
-    
-    @Override
-    protected String handleCollectionRange(CollectionRange range,
-            String firstResult, String lastResult) {
-        return firstResult + ".." + lastResult; //$NON-NLS-1$
-    }
-
-	/**
-	 * Callback for a TupleLiteralExp visit.
-	 * @param literalExp tuple literal expression
-     * @return the string representation
-	 */
-    @Override
-    protected String handleTupleLiteralExp(TupleLiteralExp literalExp,
-            List<String> partResults) {
-        
-		// construct the appropriate collection from the parts
-		// based on the collection kind.
-		StringBuffer result = new StringBuffer();
-        result.append("Tuple{");//$NON-NLS-1$
-        
-		for (Iterator<String> iter = partResults.iterator(); iter.hasNext();) {
-			result.append(iter.next());
-            
-			if (iter.hasNext()) {
-				result.append(", ");//$NON-NLS-1$
-            }
-		}
-        
-		result.append('}');
-        
-        return result.toString();
-	}
-	
-    @Override
-    protected String handleTupleLiteralPart(TupleLiteralPart part,
-            String valueResult) {
-        
-		String varName = part.getName();
-		Type type = part.getType();
-        
-		StringBuffer result = new StringBuffer();
-        
-        result.append(varName);
-
-		if (type != null) {
-			result.append(" : ").append(getName(type));//$NON-NLS-1$
-		}
-		
-		if (valueResult != null) {
-			result.append(" = ").append(valueResult);//$NON-NLS-1$
-		}
-		
-		return result.toString();
-	}
-	
-    @Override
-    protected String handleMessageExp(MessageExp messageExp,
-            String targetResult, List<String> argumentResults) {
-		StringBuffer result = new StringBuffer();
-		
-		result.append(targetResult);
-		
-		result.append((messageExp.getType() instanceof CollectionType)?
-            "^^" : "^");  //$NON-NLS-1$//$NON-NLS-2$
-	
-		if (messageExp.getCalledOperation() != null) {
-			result.append(getName(messageExp.getCalledOperation().getOperation()));
-		} else if (messageExp.getSentSignal() != null) {
-			result.append(getName(messageExp.getSentSignal().getSignal()));
-		}
-		
-		result.append('(');
-		
-		for (Iterator<String> iter = argumentResults.iterator(); iter.hasNext();) {
-			result.append(iter.next());
-			
-			if (iter.hasNext()) {
-				result.append(", ");  //$NON-NLS-1$
-			}
-		}
-		
-		result.append(')');
-		
-		return result.toString();
-	}
-
-	/**
-     * Renders an ExpressionInOcl with its context variables and body.
-	 */
-	@Override
-    public String visitExpressionInOcl(ExpressionInOcl expression) {
-		return safeVisit(expression.getBodyExpression());
-	}
-
-    /**
-     * Renders a constraint with its context and expression.
-     */
-    @Override
-    public String visitConstraint(Constraint constraint) {
-        StringBuffer result = new StringBuffer();
-        List<? extends EObject> constrained = constraint.getConstrainedElements();
-        
-        if (!constrained.isEmpty()) {
-            EObject elem = constrained.get(0);
-            
-            result.append("context "); //$NON-NLS-1$
-            if (elem instanceof Type) {
-                result.append(getName((NamedElement) elem));
-            } else if (elem instanceof Operation) {
-                Operation oper = (Operation) elem;
-                appendOperationSignature(result, oper);
-            } else if (elem instanceof Property) {
-                Property prop = (Property) elem;
-                appendPropertySignature(result, prop);
-            }
-            
-            result.append(' ');
-        }
-        
-        String stereo = constraint.getStereotype();
-        if (UMLReflection.PRECONDITION.equals(stereo)) {
-            result.append("pre: "); //$NON-NLS-1$
-        } else if (UMLReflection.POSTCONDITION.equals(stereo)) {
-            result.append("post: "); //$NON-NLS-1$
-        } else if (UMLReflection.BODY.equals(stereo)) {
-            result.append("body: "); //$NON-NLS-1$
-        } else if (UMLReflection.INITIAL.equals(stereo)) {
-            result.append("init: "); //$NON-NLS-1$
-        } else if (UMLReflection.DERIVATION.equals(stereo)) {
-            result.append("derive: "); //$NON-NLS-1$
-        } else if (UMLReflection.POSTCONDITION.equals(stereo)) {
-            result.append("def: "); //$NON-NLS-1$
-            
-            EObject elem = constrained.get(1);
-            
-            if (elem instanceof Operation) {
-                Operation oper = (Operation) elem;
-                appendOperationSignature(result, oper);
-            } else if (elem instanceof Property) {
-                Property prop = (Property) elem;
-                appendPropertySignature(result, prop);
-            }
-            
-            result.append(" = "); //$NON-NLS-1$
-        } else {
-            result.append("inv "); //$NON-NLS-1$
-            String name = getName(constraint);
-			if (name != null) {
-				result.append(name);
-			}
-            result.append(": "); //$NON-NLS-1$
-        }
-        
-        result.append(safeVisit(constraint.getSpecification()));
-        
-        return result.toString();
-    }
-
-/*	protected List<? extends EObject> getConstrainedElements(Constraint constraint) {
-		if (uml == null) {
-			return Collections.emptyList();
+	protected void appendName(NamedElement object) {
+		if (object == null) {
+			result.append(NULL_PLACEHOLDER);
 		}
 		else {
-			return uml.getConstrainedElements(constraint);
+			result.append(object.getName());
 		}
 	}
-	
-	protected String getStereotype(Constraint constraint) {
-		return (uml == null)? null : uml.getStereotype(constraint);
+
+	protected void appendQualifiedName(NamedElement object) {
+		if (object == null) {
+			result.append(NULL_PLACEHOLDER);
+		}
+		else {
+			EObject container = object.eContainer();
+			if (container instanceof NamedElement) {
+				appendQualifiedName((NamedElement) container);
+				append("::"); //$NON-NLS-1$
+			}
+			appendName(object);
+			if (object instanceof TemplateableElement) {
+				TemplateableElement templateableElement = (TemplateableElement) object;
+				appendTemplateBindings(templateableElement.getTemplateBindings());
+				appendTemplateSignature(templateableElement.getOwnedTemplateSignature());
+			}
+		}
 	}
-	
-	@Override
-    protected ExpressionInOcl getSpecification(Constraint constraint) {
-		return (uml == null)? null : uml.getSpecification(constraint);
-	} */
-	
-	private void appendOperationSignature(StringBuffer buf, Operation operation) {
-		buf.append(getName(operation)).append('(');
-		
+
+	protected void appendOperationSignature(Operation operation) {
+		appendName(operation);
+		append("(");
 		boolean comma = false;
-		for (java.util.Iterator<Parameter> iter = operation.getOwnedParameters().iterator(); iter.hasNext();) {
+		for (java.util.Iterator<Parameter> iter = operation
+			.getOwnedParameters().iterator(); iter.hasNext();) {
 			Parameter parm = iter.next();
-			
+
 			if (comma) {
-				buf.append(", "); //$NON-NLS-1$
+				append(", "); //$NON-NLS-1$
 			} else {
 				comma = true;
 			}
-			
-			buf.append(getName(parm)).append(" : "); //$NON-NLS-1$
-			
+
+			appendName(parm);
+			append(" : "); //$NON-NLS-1$
+
 			if (parm.getType() != null) {
-				buf.append(getName(parm.getType()));
+				appendName(parm.getType());
 			} else {
-				buf.append("OclVoid"); //$NON-NLS-1$
+				append("OclVoid"); //$NON-NLS-1$
 			}
 		}
-		
-		buf.append(") :"); //$NON-NLS-1$
+
+		append(") :"); //$NON-NLS-1$
 		if (operation.getType() != null) {
-			buf.append(' ').append(getName(operation.getType()));
+			append(" ");
+			appendName(operation.getType());
 		}
 	}
-	
-/*	protected Type getType(Object typedElement) {
-		return (uml == null)? null : TypeUtil.resolveType(env, uml.getOCLType(typedElement));
-	}
-	
-	protected List<Parameter> getParameters(Operation operation) {
-		return (uml == null)? null : uml.getParameters(operation);
-	} */
 
-	private void appendPropertySignature(StringBuffer buf, Property property) {
-		buf.append(getName(property));
+	protected void appendQualifiedName(NamedElement parent, String separator, NamedElement child) {
+		if (parent != null) {
+			appendQualifiedName(parent);
+			append(separator);
+		}
+		appendName(child);
+	}
+
+	protected void appendPropertySignature(Property property) {
+		appendName(property);
 		if (property.getType() != null) {
-			buf.append(" : ").append(getName(property.getType())); //$NON-NLS-1$
+			append(" : ");
+			appendName(property.getType()); //$NON-NLS-1$
 		}
 	}
 
-	private void appendTemplateBindings(StringBuffer buf, List<TemplateBinding> templateBindings) {
+	protected void appendTemplateBindings(List<TemplateBinding> templateBindings) {
 		if (templateBindings.size() > 0) {
-			buf.append("(");
+			append("<");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
-				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
-					buf.append(prefix);
-					buf.append(getName((NamedElement) templateParameterSubstitution.getActual()));
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding
+					.getParameterSubstitutions()) {
+					append(prefix);
+					safeVisit(templateParameterSubstitution.getActual());
 					prefix = ",";
 				}
 			}
-			buf.append(")");
+			append(">");
 		}
 	}
 
-	private void appendTemplateSignature(StringBuffer buf, TemplateSignature templateSignature) {
-		List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
-		if (!templateParameters.isEmpty()) {
-			buf.append("<");
-			String prefix = ""; //$NON-NLS-1$
-			for (TemplateParameter templateParameter : templateParameters) {
-				buf.append(prefix);
-				buf.append(getName((NamedElement) templateParameter.getParameteredElement()));
-				prefix = ",";
-			}
-			buf.append(">");
-		}
-	}
-
-	private void maybeAtPre(FeatureCallExp mpc) {
-		if (mpc.isPre()) {
-			result.append("@pre"); //$NON-NLS-1$
-		}
-	}
-
-	@Override
-	public String safeVisit(Visitable v) {
-		StringBuffer savedResult = result;
-		result = new StringBuffer();
-		String nestedResult = super.safeVisit(v);
-		if (nestedResult == null) {				// FIXME Eliminate tjis hybrid protocol
-			nestedResult = result.toString();
-		}
-		result = savedResult;
-		return nestedResult;
-	}
-
-	@Override
-	public String visitClass(org.eclipse.ocl.examples.pivot.Class cls) {		
-		EObject eContainer = cls.eContainer();
-		if (cls.getOwningTemplateParameter() != null) {
-			result.append(getName(eContainer, "::", cls));
-		}
-		else {
-			result.append(getName(eContainer, "::", cls));
-			List<TemplateBinding> templateBindings = cls.getTemplateBindings();
-			if (templateBindings.size() > 0) {
-				appendTemplateBindings(result, templateBindings);
-			}
-    		TemplateSignature templateSignature = cls.getOwnedTemplateSignature();
-    		if (templateSignature != null) {
-            	appendTemplateSignature(result, templateSignature);
-    		}
-		}
-		return null;
-	}
-
-	@Override
-	public String visitEnumerationLiteral(EnumerationLiteral el) {
-		result.append(getName(el.eContainer(), "::", el));
-		return null;
-	}
-
-	@Override
-    public String visitInvalidLiteralExp(InvalidLiteralExp il) {
-		return "invalid"; //$NON-NLS-1$
-	}
-
-	@Override
-    public String visitNullLiteralExp(NullLiteralExp il) {
-		return "null"; //$NON-NLS-1$
-	}
-
-	@Override
-	public String visitOpaqueExpression(OpaqueExpression object) {
-		String body = PivotUtil.getBody(object);
-		return body != null ? body : "";
-	}
-
-	@Override
-	public String visitOperation(Operation operation) {
-		result.append(getName(operation.eContainer(), ".", operation));
-		List<TemplateBinding> templateBindings = operation.getTemplateBindings();
-		if (templateBindings.size() > 0) {
-			appendTemplateBindings(result, templateBindings);
-		}
-		TemplateSignature templateSignature = operation.getOwnedTemplateSignature();
+	protected void appendTemplateSignature(TemplateSignature templateSignature) {
 		if (templateSignature != null) {
-        	appendTemplateSignature(result, templateSignature);
-		}
-		result.append('(');
-		boolean isFirst = true;
-		for (Parameter parameter : operation.getOwnedParameters()) {
-			if (!isFirst) {
-				result.append(',');
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			if (!templateParameters.isEmpty()) {
+				append("<");
+				String prefix = ""; //$NON-NLS-1$
+				for (TemplateParameter templateParameter : templateParameters) {
+					append(prefix);
+					safeVisit(templateParameter.getParameteredElement());
+					prefix = ",";
+				}
+				append(">");
 			}
-			Type type = parameter.getType();
-			result.append(getName(type));
-			isFirst = false;
 		}
-		result.append(')');
-		return null;
 	}
 
-	@Override
-	public String visitPackage(org.eclipse.ocl.examples.pivot.Package pkg) {
-		return getName(pkg.eContainer(), "::", pkg);
-	}
-
-	@Override
-	public String visitParameter(Parameter parameter) {
-		return getName(parameter.eContainer(), ".", parameter);
-	}
-
-	@Override
-	public String visitPrecedence(Precedence precedence) {
-		return precedence.getName();
-	}
-
-	@Override
-	public String visitProperty(Property property) {
-		return getName(property.eContainer(), ".", property);
-	}
-	
-	@Override
-	public String visitTemplateBinding(TemplateBinding object) {
-//		s.append(getQualifiedName(object.getFormal(), "/", (NamedElement) object.getActual()));
-		appendTemplateBindings(result, Collections.singletonList(object));
-		return null;
-	}
-
-	@Override
-	public String visitTemplateParameter(TemplateParameter object) {
-		return getName(object.getSignature().getTemplate(), ".", (NamedElement) object.getParameteredElement());
-	}
-
-	@Override
-	public String visitTemplateParameterSubstitution(TemplateParameterSubstitution object) {
-		result.append(getName((NamedElement) object.getFormal().getParameteredElement()));
-		result.append("/");
-		result.append((NamedElement) object.getActual());
-		return null;
-	}
-
-	@Override
-	public String visitTemplateSignature(TemplateSignature object) {
-//		s.append(getQualifiedName(object.getFormal(), "/", (NamedElement) object.getActual()));
-		appendTemplateSignature(result, object);
-		return null;
-	}
-
-	public String visiting(Visitable visitable) {
-		return (visitable == null)? NULL_PLACEHOLDER : visitable.getClass().getName();
+	protected void appendType(Type type) {
+		if ((type != null)
+				 && (type.eClass() == PivotPackage.Literals.CLASS)	// i.e. by pass AnyType, PrimitiveType, ...
+				 && (type.eContainer() instanceof NamedElement)) {
+			appendQualifiedName((NamedElement) type.eContainer());
+			append("::");
+		}
+		appendName(type);
 	}
 
 	@Override
 	public String toString() {
 		return result.toString();
+	}
+
+	/**
+	 * Callback for an AssociationClassCallExp visit.
+	 * 
+	 * @param ac
+	 *            the association class expression
+	 * @return string source.ref
+	 */
+	@Override
+	public String visitAssociationClassCallExp(AssociationClassCallExp ac) {
+		safeVisit(ac.getSource());
+		append("."); //$NON-NLS-1$
+		appendName(ac.getReferredAssociationClass()); //$NON-NLS-1$
+		appendAtPre(ac);
+        List<OclExpression> qualifiers = ac.getQualifiers();
+		if (!qualifiers.isEmpty()) {
+			append("[");
+			safeVisit(qualifiers.get(0));
+			append("]");
+		}
+		return null;
+	}
+
+	/**
+	 * Callback for a BooleanLiteralExp visit.
+	 * 
+	 * @param bl
+	 *            -- boolean literal expression
+	 * @return the value of the boolean literal as a java.lang.Boolean.
+	 */
+	@Override
+	public String visitBooleanLiteralExp(BooleanLiteralExp bl) {
+		append(Boolean.toString(bl.isBooleanSymbol()));
+		return null;
+	}
+
+	@Override
+	public String visitClass(org.eclipse.ocl.examples.pivot.Class cls) {
+		TemplateParameter owningTemplateParameter = cls.getOwningTemplateParameter();
+		if (owningTemplateParameter != null) {
+			appendName(cls);
+		}
+		else {
+			appendQualifiedName(cls.getPackage(), "::", cls);
+			appendTemplateBindings(cls.getTemplateBindings());
+			appendTemplateSignature(cls.getOwnedTemplateSignature());
+		}
+		return null;
+	}
+    
+    /**
+     * Visits the item's item expression.
+     * 
+     * Returns the result of {@link #handleCollectionItem(CollectionItem, Object)}
+     */
+    @Override
+	public String visitCollectionItem(CollectionItem item) {
+    	safeVisit(item.getItem());  	
+        return null;
+    }
+
+    /**
+     * Visits the collection literal's parts.
+     * 
+     * Returns the result of {@link #handleCollectionLiteralExp(CollectionLiteralExp, List)}.
+     */
+	@Override
+	public String visitCollectionLiteralExp(CollectionLiteralExp cl) {
+		// construct the appropriate collection from the parts
+		// based on the collection kind.
+		switch (cl.getKind()) {
+			case SET :
+				append("Set {");//$NON-NLS-1$
+				break;
+			case ORDERED_SET :
+				append("OrderedSet {");//$NON-NLS-1$
+				break;
+			case BAG :
+				append("Bag {");//$NON-NLS-1$
+				break;
+			case SEQUENCE :
+				append("Sequence {");//$NON-NLS-1$
+				break;
+			default :
+				append("Collection {");//$NON-NLS-1$
+				break;
+		}
+        boolean isFirst = true;
+		for (CollectionLiteralPart part : cl.getParts()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(part);
+			isFirst = false;
+		}
+		append("}");
+		return null;
+	}
+    
+    /**
+     * Visits the range's first and last expressions.
+     * 
+     * Returns the result of {@link #handleCollectionRange(CollectionRange, Object, Object)}.
+     */
+    @Override
+	public String visitCollectionRange(CollectionRange range) {
+        safeVisit(range.getFirst());
+        append(" .. ");
+        safeVisit(range.getLast());
+        return null;
+    }
+
+	@Override
+	public String visitCollectionType(CollectionType object) {
+		appendName(object);
+		appendTemplateBindings(object.getTemplateBindings());
+		appendTemplateSignature(object.getOwnedTemplateSignature());
+		return null;
+	}
+
+	@Override
+	public String visitCompleteIteration(CompleteIteration object) {
+		safeVisit(object.getModel());
+		return null;
+	}
+
+	@Override
+	public String visitCompleteOperation(CompleteOperation object) {
+		safeVisit(object.getModel());
+		return null;
+	}
+
+	@Override
+	public String visitCompletePackage(CompletePackage object) {
+		safeVisit(object.getModel());
+		return null;
+	}
+
+	@Override
+	public String visitCompleteProperty(CompleteProperty object) {
+		safeVisit(object.getModel());
+		return null;
+	}
+
+	@Override
+	public String visitCompleteType(CompleteType object) {
+		safeVisit(object.getModel());
+		return null;
+	}
+
+	/**
+	 * Renders a constraint with its context and expression.
+	 */
+	@Override
+	public String visitConstraint(Constraint constraint) {
+		List<? extends EObject> constrained = constraint.getConstrainedElements();
+		if (!constrained.isEmpty()) {
+			EObject elem = constrained.get(0);
+			append("context "); //$NON-NLS-1$
+			if (elem instanceof Type) {
+				appendName((NamedElement) elem);
+			} else if (elem instanceof Operation) {
+				Operation oper = (Operation) elem;
+				appendOperationSignature(oper);
+			} else if (elem instanceof Property) {
+				Property prop = (Property) elem;
+				appendPropertySignature(prop);
+			}
+			append(" ");
+		}
+
+		String stereo = constraint.getStereotype();
+		append(stereo); //$NON-NLS-1$
+		String name = constraint.getName();
+		if (name != null) {
+			append(" "); //$NON-NLS-1$
+			append(name);
+		}
+		append(": "); //$NON-NLS-1$
+/* FIXME def context
+		EObject elem = constrained.get(1);
+		if (elem instanceof Operation) {
+			appendOperationSignature((Operation) elem);
+		} else if (elem instanceof Property) {
+			appendPropertySignature((Property) elem);
+		}
+		append(" = "); //$NON-NLS-1$
+*/
+		safeVisit(constraint.getSpecification());
+		return null;
+	}
+
+	/**
+	 * Callback for an EnumLiteralExp visit.
+	 * 
+	 * @param el
+	 *            the enumeration literal expresion
+	 * @return the enumeration literal toString()
+	 */
+	@Override
+	public String visitEnumLiteralExp(EnumLiteralExp el) {
+		appendQualifiedName(el.getReferredEnumLiteral());
+		return null;
+	}
+
+	@Override
+	public String visitEnumerationLiteral(EnumerationLiteral el) {
+		appendQualifiedName(el.getEnumeration(), "::", el);
+		return null;
+	}
+
+	/**
+	 * Renders an ExpressionInOcl with its context variables and body.
+	 */
+	@Override
+	public String visitExpressionInOcl(ExpressionInOcl expression) {
+		return safeVisit(expression.getBodyExpression());
+	}
+
+    /**
+     * Visits the expressions context variable, its parameter variables (if any),
+     * its result variable (if any), and finally its body expression.
+     * 
+     * Returns the result of
+     * {@link #handleExpressionInOCL(ExpressionInOCL, Object, Object, List, Object)}.
+     *
+    @Override
+	public T visitExpressionInOcl(ExpressionInOcl expression) {
+        T contextResult = safeVisit(expression.getContextVariable());
+        
+        Variable resultVar = expression.getResultVariable();
+        T resultResult = safeVisit(resultVar);
+        
+        List<T> parameterResults;
+        List<Variable> parameters = expression.getParameterVariables();
+        
+        if (parameters.isEmpty()) {
+            parameterResults = Collections.emptyList();
+        } else {
+            parameterResults = new java.util.ArrayList<T>(parameters.size());
+            for (Variable iterVar : parameters) {
+                parameterResults.add(safeVisit(iterVar));
+            }
+        }
+        
+        T bodyResult = safeVisit(expression.getBodyExpression());
+        
+        return handleExpressionInOcl(expression, contextResult, resultResult,
+            parameterResults, bodyResult);
+    } */
+
+	/**
+	 * Callback for an IfExp visit.
+	 * 
+	 * @param ifExp
+	 *            an IfExp
+	 * @return the string representation
+	 */
+	@Override
+	public String visitIfExp(IfExp ifExp) {
+		append("if ");  //$NON-NLS-1$
+		safeVisit(ifExp.getCondition());
+		append(" then "); //$NON-NLS-1$
+		safeVisit(ifExp.getThenExpression());
+		append(" else "); //$NON-NLS-1$
+		safeVisit(ifExp.getElseExpression());
+		append(" endif"); //$NON-NLS-1$
+		return null;
+	}
+
+	/**
+	 * Callback for an IntegerLiteralExp visit.
+	 * 
+	 * @param il
+	 *            -- integer literal expression
+	 * @return String
+	 */
+	@Override
+	public String visitIntegerLiteralExp(IntegerLiteralExp il) {
+		append(il.getIntegerSymbol());
+		return null;
+	}
+
+	@Override
+	public String visitInvalidLiteralExp(InvalidLiteralExp il) {
+		append("invalid");
+		return null;
+	}
+
+	/**
+	 * Callback for an IterateExp visit.
+	 * 
+	 * @param callExp
+	 *            an iterate expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitIterateExp(IterateExp callExp) {
+		safeVisit(callExp.getSource());
+		append("->");
+		appendName(callExp.getReferredIteration());
+		append("("); //$NON-NLS-1$
+		boolean isFirst = true;
+		for (Variable variable : callExp.getIterators()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(variable);
+			isFirst = false;
+		}
+		append("; ");
+		safeVisit(callExp.getResult());
+		append(" | ");
+		safeVisit(callExp.getBody());
+		append(")");//$NON-NLS-1$
+		return null;        
+	}
+
+	@Override
+	public String visitIteration(Iteration iteration) {
+		appendQualifiedName(iteration.getClass_(), ".", iteration);
+		appendTemplateBindings(iteration.getTemplateBindings());
+		appendTemplateSignature(iteration.getOwnedTemplateSignature());
+		append("(");
+		boolean isFirst = true;
+		for (Parameter parameter : iteration.getOwnedIterators()) {
+			if (!isFirst) {
+				append(", ");
+			}
+			appendQualifiedName(parameter.getType());
+			isFirst = false;
+		}
+		isFirst = true;
+		for (Parameter parameter : iteration.getOwnedAccumulators()) {
+			if (!isFirst) {
+				append(", ");
+			}
+			else {
+				append("; ");
+			}
+			appendQualifiedName(parameter.getType());
+			isFirst = false;
+		}
+		append(")");
+		return null;
+	}
+
+	/**
+	 * Callback for an IteratorExp visit.
+	 * 
+	 * @param callExp
+	 *            an iterator expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitIteratorExp(IteratorExp callExp) {
+		safeVisit(callExp.getSource());
+		append("->");
+		appendName(callExp.getReferredIteration());
+		append("("); //$NON-NLS-1$
+		boolean isFirst = true;
+		for (Variable variable : callExp.getIterators()) {
+			if (!isFirst) {
+				append(", ");
+			}
+            safeVisit(variable);
+			isFirst = false;
+		}
+		append(" | ");
+		safeVisit(callExp.getBody());
+		append(")");//$NON-NLS-1$
+		return null;        
+	}
+
+	@Override
+	public String visitLambdaType(LambdaType lambda) {
+		appendName(lambda);
+		append(" ");
+		appendType(lambda.getContextType());
+		appendTemplateSignature(lambda.getOwnedTemplateSignature());
+		append("(");
+		boolean isFirst = true;
+		for (Type parameterType : lambda.getParameterTypes()) {
+			if (!isFirst) {
+				append(",");
+			}
+			appendType(parameterType);
+			isFirst = false;
+		}
+		append(") : ");
+		appendType(lambda.getResultType());
+		return null;
+	}
+
+	/**
+	 * Callback for LetExp visit.
+	 * 
+	 * @param letExp
+	 *            a let expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitLetExp(LetExp letExp) {
+		append("let "); //$NON-NLS-1$
+		safeVisit(letExp.getVariable());
+		append(" in "); //$NON-NLS-1$
+		safeVisit(letExp.getIn());
+		return null;
+	}
+	
+    /**
+     * Visits the message expression's target and then its arguments.
+     * Returns the result of {@link #handleMessageExp(MessageExp, Object, List)}.
+     */
+	@Override
+	public String visitMessageExp(MessageExp messageExp) {
+		safeVisit(messageExp.getTarget());
+		append((messageExp.getType() instanceof CollectionType) ? "^^" : "^"); //$NON-NLS-1$//$NON-NLS-2$
+		if (messageExp.getCalledOperation() != null) {
+			appendName(messageExp.getCalledOperation().getOperation());
+		} else if (messageExp.getSentSignal() != null) {
+			appendName(messageExp.getSentSignal().getSignal());
+		}
+		append("(");
+		String prefix = "";
+		for (OclExpression argument : messageExp.getArguments()) {
+			append(prefix);
+            safeVisit(argument);
+            prefix = ", "; //$NON-NLS-1$
+		}
+		append(")");
+		return null;
+	}
+
+	@Override
+	public String visitNullLiteralExp(NullLiteralExp il) {
+		append("null");
+		return null;
+	}
+
+	@Override
+	public String visitOpaqueExpression(OpaqueExpression object) {
+		String body = PivotUtil.getBody(object);
+		if (body != null) {
+			append(body);
+		}
+		return null;
+	}
+
+	@Override
+	public String visitOperation(Operation operation) {
+		appendQualifiedName(operation.getClass_(), ".", operation);
+		appendTemplateBindings(operation.getTemplateBindings());
+		appendTemplateSignature(operation.getOwnedTemplateSignature());
+		append("(");
+		boolean isFirst = true;
+		for (Parameter parameter : operation.getOwnedParameters()) {
+			if (!isFirst) {
+				append(",");
+			}
+			appendQualifiedName(parameter.getType());
+			isFirst = false;
+		}
+		append(")");
+		return null;
+	}
+
+	/**
+	 * Callback for an OperationCallExp visit.
+	 * 
+	 * Look at the source to determine operator ( -> or . )
+	 * 
+	 * @param oc
+	 *            the operation call expression
+	 * @return string
+	 */
+	@Override
+	public String visitOperationCallExp(OperationCallExp oc) {
+        safeVisit(oc.getSource());
+		Operation oper = oc.getReferredOperation();
+		if (oper != null) {
+			append(PivotUtil.getFeaturingClass(oper) instanceof CollectionType
+					? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+					: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			appendName(oper);
+		} else {
+			append(PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+			appendName(oc);
+		}
+		append("(");
+		String prefix = "";//$NON-NLS-1$
+		for (OclExpression argument : oc.getArguments()) {
+			append(prefix);
+			safeVisit(argument);
+			prefix = ", ";//$NON-NLS-1$
+		}
+		append(")");
+		appendAtPre(oc);
+		return null;
+	}
+
+	@Override
+	public String visitPackage(org.eclipse.ocl.examples.pivot.Package pkg) {
+		appendQualifiedName(pkg.getNestingPackage(), "::", pkg);
+		return null;
+	}
+
+	@Override
+	public String visitParameter(Parameter parameter) {
+		appendQualifiedName((NamedElement) parameter.eContainer(), ".", parameter);
+		return null;
+	}
+
+	@Override
+	public String visitPrecedence(Precedence precedence) {
+		appendName(precedence);
+		return null;
+	}
+
+	@Override
+	public String visitPrimitiveType(PrimitiveType object) {
+		appendName(object);
+		return null;
+	}
+
+	@Override
+	public String visitProperty(Property property) {
+		appendQualifiedName(property.getClass_(), ".", property);
+		return null;
+	}
+
+	/**
+	 * Callback for an AssociationEndCallExp visit.
+	 * 
+	 * @param pc
+	 *            the property call expression
+	 * @return string source.ref
+	 */
+	@Override
+	public String visitPropertyCallExp(PropertyCallExp pc) {
+        // source is null when the property call expression is an
+        //    association class navigation qualifier
+		safeVisit(pc.getSource());
+		Property property = pc.getReferredProperty();
+		result
+			.append(PivotUtil.getFeaturingClass(property) instanceof CollectionType
+				? PivotConstants.COLLECTION_NAVIGATION_OPERATOR
+				: PivotConstants.OBJECT_NAVIGATION_OPERATOR);
+		appendName(property);
+		appendAtPre(pc);
+        List<OclExpression> qualifiers = pc.getQualifiers();
+		if (!qualifiers.isEmpty()) {
+			append("["); //$NON-NLS-1$
+			String prefix = ""; //$NON-NLS-1$
+			for (OclExpression qualifier : qualifiers) {
+				append(prefix);
+				safeVisit(qualifier);
+				prefix = ", "; //$NON-NLS-1$
+			}
+			append("]");
+		}
+		return null;
+	}
+
+	/**
+	 * Callback for a RealLiteralExp visit.
+	 * 
+	 * @param rl
+	 *            -- real literal expression
+	 * @return the value of the real literal as a java.lang.Double.
+	 */
+	@Override
+	public String visitRealLiteralExp(RealLiteralExp rl) {
+		append(rl.getRealSymbol());
+		return null;
+	}
+
+	@Override
+	public String visitStateExp(StateExp s) {
+		appendName(s);
+		return null;
+	}
+
+	/**
+	 * Callback for a StringLiteralExp visit.
+	 * 
+	 * @param sl
+	 *            -- string literal expression
+	 * @return the value of the string literal as a java.lang.String.
+	 */
+	@Override
+	public String visitStringLiteralExp(StringLiteralExp sl) {
+		append("'");
+		append(sl.getStringSymbol());
+		append("'");
+		return null;
+	}
+
+	@Override
+	public String visitTemplateBinding(TemplateBinding object) {
+		// s.append(getQualifiedName(object.getFormal(), "/", (NamedElement)
+		// object.getActual()));
+		appendTemplateBindings(Collections.singletonList(object));
+		return null;
+	}
+
+	@Override
+	public String visitTemplateParameter(TemplateParameter object) {
+		appendName((NamedElement) object.getSignature().getTemplate());
+		append(".");
+		appendName((NamedElement) object.getParameteredElement());
+		return null;
+	}
+
+	@Override
+	public String visitTemplateParameterSubstitution(
+			TemplateParameterSubstitution object) {
+		appendName((NamedElement) object.getFormal().getParameteredElement());
+		append("/");
+		appendName((NamedElement) object.getActual());
+		return null;
+	}
+
+	@Override
+	public String visitTemplateSignature(TemplateSignature object) {
+		// s.append(getQualifiedName(object.getFormal(), "/", (NamedElement)
+		// object.getActual()));
+		appendTemplateSignature(object);
+		return null;
+	}
+
+	/**
+	 * Callback for a TupleLiteralExp visit.
+	 * 
+	 * @param literalExp
+	 *            tuple literal expression
+	 * @return the string representation
+	 */
+	@Override
+	public String visitTupleLiteralExp(TupleLiteralExp literalExp) {
+		append("Tuple{");//$NON-NLS-1$
+		String prefix = "";
+		for (TupleLiteralPart part : literalExp.getParts()) {
+			append(prefix);
+            safeVisit(part);
+			prefix = ", ";//$NON-NLS-1$
+		}
+		append("}");
+		return null;
+	}
+	
+    /**
+     * Visits the tuple literal part's value, if any.
+     */
+	@Override
+	public String visitTupleLiteralPart(TupleLiteralPart part) {
+		appendName(part);
+		Type type = part.getType();
+		if (type != null) {
+			append(" : ");
+			appendName(type);
+		}
+		OclExpression initExpression = part.getInitExpression();
+		if (initExpression != null) {
+			append(" = ");
+			safeVisit(initExpression);
+		}
+		return null;
+	}
+
+	@Override
+	public String visitTupleType(TupleType object) {
+		super.visitTupleType(object);
+		append("{");
+		String prefix = "";
+		for (TypedElement part : object.getOwnedAttributes()) {
+			append(prefix);
+			appendName(part);
+			prefix = ",";
+		}
+		append("}");
+		return null;
+	}
+
+	@Override
+	public String visitTypeExp(TypeExp t) {
+		appendQualifiedName(t.getReferredType());
+		return null;
+	}
+
+	/**
+	 * Callback for an UnlimitedNaturalLiteralExp visit.
+	 * 
+	 * @param unl
+	 *            -- unlimited natural literal expression
+	 * @return String
+	 */
+	@Override
+	public String visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unl) {
+		BigInteger symbol = unl.getUnlimitedNaturalSymbol();
+		if (symbol.signum() < 0) {
+			append("*");
+		}
+		else {
+			append(symbol);
+		}
+		return null;
+	}
+
+	/**
+	 * Callback for an UnspecifiedValueExp visit.
+	 * 
+	 * @param uv
+	 *            - UnspecifiedValueExp
+	 * @return the string representation
+	 */
+	@Override
+	public String visitUnspecifiedValueExp(UnspecifiedValueExp uv) {
+		append("?"); //$NON-NLS-1$
+		if (uv.getType() != null && !(uv.getType() instanceof VoidType)) {
+			append(" : "); //$NON-NLS-1$
+			appendName(uv.getType());
+		}
+		return null;
+	}
+
+    /**
+     * Visits the variable's initialization expression (if any).
+     * Returns the result of {@link #handleVariable(Variable, Object)}.
+     */
+	@Override
+	public String visitVariable(Variable variable) {
+		appendName(variable);
+		Type type = variable.getType();
+		if (type != null) {
+			append(" : ");
+			safeVisit(type);
+		}
+		OclExpression initExpression = variable.getInitExpression();
+		if (initExpression != null) {
+			append(" = ");
+			safeVisit(initExpression);
+		}
+		return null;
+	}
+
+	/**
+	 * Callback for a VariableExp visit.
+	 * 
+	 * @param v
+	 *            the variable expression
+	 * @return the variable name
+	 */
+	@Override
+	public String visitVariableExp(VariableExp v) {
+		appendName(v.getReferredVariable());
+		return null;
+	}
+
+	public String visiting(Visitable visitable) {
+		return (visitable == null)
+			? NULL_PLACEHOLDER
+			: visitable.getClass().getName();
 	}
 } // ToStringVisitorImpl

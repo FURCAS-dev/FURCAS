@@ -12,19 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PropertyContextScopeAdapter.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
+ * $Id: PropertyContextScopeAdapter.java,v 1.8 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedStructuralFeatureRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.SimpleStructuralFeatureRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
@@ -41,21 +35,11 @@ public class PropertyContextScopeAdapter extends ModelElementCSScopeAdapter<Prop
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.PROPERTY_CONTEXT_DECL_CS__PROPERTY) {
-			return scopeView.getOuterScope();
+			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
 		}
-		else {
-			StructuralFeatureRefCS csStructuralFeatureRef = target.getProperty();
-			while (csStructuralFeatureRef instanceof QualifiedStructuralFeatureRefCS) {
-				csStructuralFeatureRef = ((QualifiedStructuralFeatureRefCS)csStructuralFeatureRef).getElement();
-			}
-			if (csStructuralFeatureRef instanceof SimpleStructuralFeatureRefCS) {
-				SimpleStructuralFeatureRefCS csSimpleStructuralFeatureRef = (SimpleStructuralFeatureRefCS)csStructuralFeatureRef;
-				StructuralFeatureCS feature = csSimpleStructuralFeatureRef.getFeature();
-				ModelElementCS classifierContext = (ModelElementCS) feature.eContainer();
-				environmentView.addElementsOfScope(classifierContext, scopeView);
-				environmentView.addElement(Environment.SELF_VARIABLE_NAME, classifierContext);
-			}
-			return scopeView.getOuterScope();
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
+			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 		}
+		return scopeView.getOuterScope();
 	}
 }

@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.1 2011/01/30 10:59:40 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.2 2011/02/11 20:10:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -53,14 +53,14 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateDomain;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
@@ -73,9 +73,12 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
+import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.test.generic.GenericTestSuite;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 import company.CompanyPackage;
@@ -133,7 +136,7 @@ public class DelegatesTest extends GenericTestSuite
 		EssentialOCLStandaloneSetup.doSetup();
 		OCLstdlib.install();
 
-		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI;
+		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
 		if (!eclipseIsRunning) {		// Install the 'plugin' registrations
 			EOperation.Internal.InvocationDelegate.Factory.Registry.INSTANCE.put(oclDelegateURI,
 				new OCLInvocationDelegateFactory.Global());
@@ -212,6 +215,12 @@ public class DelegatesTest extends GenericTestSuite
 				return super.createQueryDelegate(context, parameters, expression);
 			}});
 		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);			
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		PivotEnvironmentFactory.getGlobalRegistryInstance().getTypeManager().getPivotResourceSet().getResources().clear();
+		super.tearDown();
 	}
 
 	protected void initModel(String testModelName) {
@@ -348,7 +357,7 @@ public class DelegatesTest extends GenericTestSuite
 		validateWithoutError(joe);
 	}
 
-	public void doTest_operationInvocation(String modelName) {
+	public void doTest_operationInvocation(String modelName) throws InvocationTargetException {
 		initModel(modelName);
 		EObject amy = employee("Amy");
 
@@ -365,7 +374,7 @@ public class DelegatesTest extends GenericTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
 		String n = "n";
 		String expression = "self.employees->select(employee | employee.manager <> null and employee.manager.name = n)";
@@ -373,11 +382,16 @@ public class DelegatesTest extends GenericTestSuite
 		Map<String, EClassifier> parameters = new HashMap<String, EClassifier>();
 		parameters.put(n, EcorePackage.Literals.ESTRING);
 
-		QueryDelegate delegate = factory.createQueryDelegate(companyClass,
-			parameters, expression);
-
+		QueryDelegate delegate = factory.createQueryDelegate(companyClass, parameters, expression);
 		executeWithException(delegate, amy, null,
-			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+			OCLMessages.WrongContextClassifier_ERROR_, getType(amy), getType(acme));
+
+		executeWithException(delegate, acme, null,
+			OCLMessages.MismatchedArgumentCount_ERROR_, 0, 1);
+		Map<String, Object> badArguments = new HashMap<String, Object>();
+		badArguments.put(n, amy);
+		executeWithException(delegate, acme, badArguments,
+			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(EcorePackage.Literals.ESTRING));
 
 		Map<String, Object> arguments = new HashMap<String, Object>();
 		arguments.put(n, "Amy");
@@ -389,7 +403,7 @@ public class DelegatesTest extends GenericTestSuite
 		assertTrue(amyReports.contains(employee("Fred")));
 
 		executeWithException(delegate, employee("Bob"), null,
-			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+			OCLMessages.WrongContextClassifier_ERROR_, getType(amy), getType(acme));
 
 		arguments = new HashMap<String, Object>();
 		arguments.put(n, "Bob");
@@ -400,7 +414,7 @@ public class DelegatesTest extends GenericTestSuite
 		assertTrue(bobReports.contains(employee("Sally")));
 
 		executeWithException(delegate, employee("Sally"), null,
-			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+			OCLMessages.WrongContextClassifier_ERROR_, getType(amy), getType(acme));
 
 		arguments = new HashMap<String, Object>();
 		arguments.put(n, "Sally");
@@ -413,7 +427,7 @@ public class DelegatesTest extends GenericTestSuite
 		initModel(modelName);
 
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
-			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI);
+			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
 		String okName = "ok";
 		String badName = "xyzzy";
@@ -427,14 +441,14 @@ public class DelegatesTest extends GenericTestSuite
 		//	Syntax error in expression
 		//
 		delegate = factory.createQueryDelegate(companyClass, null, "n=");
-		executeWithException(delegate, amy, null,
-			"2:2:2:2 \"relationalNotLetCS\" expected after \"=\"");
+		executeWithException(delegate, amy, null, getErrorsInMessage("'n='") + 
+			getBoundMessage("extraneous input ''{0}'' expecting {1}", "'='", "EOF"));
 		//
 		//	Undeclared variable
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
-		executeWithException(delegate, acme, null,
-			OCLMessages.UnrecognizedVar_ERROR_, badName);
+		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
+			getBoundMessage(OCLMessages.ErrorUnresolvedPropertyName, "'" + badName + "'"));
 		//
 		//	Definition of undeclared variable
 		//
@@ -443,21 +457,21 @@ public class DelegatesTest extends GenericTestSuite
 		bindings.put(okName, "xx");
 		bindings.put(badName, Integer.valueOf(123));
 		executeWithException(delegate, acme, bindings,
-			OCLMessages.ExtraArg_ERROR_, badName);
+			OCLMessages.MismatchedArgumentCount_ERROR_, 2, 1);
 		//
 		//	Mis-definition of context
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, "self");
 		delegate.prepare();
 		executeWithException(delegate, amy, okBindings,
-			OCLMessages.WrongContextClassifier_ERROR_, amy.eClass().getName(), acme.eClass().getName());
+			OCLMessages.WrongContextClassifier_ERROR_, getType(amy), getType(acme));
 		//
 		//	Mis-definition of variable
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, "self");
 		delegate.prepare();
 		executeWithException(delegate, acme, okBindings,
-			OCLMessages.TypeConformanceInit_ERROR_, okName);
+			OCLMessages.MismatchedArgumentType_ERROR_, okName, "UnlimitedNatural", "String");
 	}
 
 	public void test_allInstances() {
@@ -488,22 +502,28 @@ public class DelegatesTest extends GenericTestSuite
 	public void test_attributeDefinedWithoutDerivation() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		getWithException(badClassInstance, "attributeDefinedWithoutDerivation",
-			OCLMessages.MissingDerivationForSettingDelegate_ERROR_, "modelWithErrors::BadClass.attributeDefinedWithoutDerivation");
+		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivation");
+		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		getWithException(badClassInstance, eStructuralFeature.getName(),
+			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
 
 	public void test_attributeDefinedWithoutDerivationBody() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		getWithException(badClassInstance, "attributeDefinedWithoutDerivationBody",
-			OCLMessages.MissingDerivationForSettingDelegate_ERROR_, "modelWithErrors::BadClass.attributeDefinedWithoutDerivationBody");
+		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeDefinedWithoutDerivationBody");
+		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		getWithException(badClassInstance, eStructuralFeature.getName(),
+			getBoundMessage(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property));
 	}
 
 	public void test_attributeEvaluatingToInvalid() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		getWithException(badClassInstance, "attributeEvaluatingToInvalid",
-			OCLMessages.EvaluationResultIsInvalid_ERROR_, "modelWithErrors::BadClass.attributeEvaluatingToInvalid");
+		EStructuralFeature eStructuralFeature = getStructuralFeature(badClassClass, "attributeEvaluatingToInvalid");
+		Property property = typeManager.getPivotOfEcore(Property.class, eStructuralFeature);
+		getWithException(badClassInstance, eStructuralFeature.getName(),
+			getBoundMessage(OCLMessages.EvaluationResultIsInvalid_ERROR_, property));
 	}
 
 	public void test_attributeEvaluatingToNull() {
@@ -517,28 +537,31 @@ public class DelegatesTest extends GenericTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeEvaluatingToWrongType",
-			OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean");
+			getBoundMessage(OCLMessages.InitOrDerConstraintConformance_ERROR_, "String", "attributeEvaluatingToWrongType", "Boolean"));
 	}
 
 	public void test_attributeParsingToLexicalError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToLexicalError",
-			OCLMessages.OCLParseErrorCodes_LEX_ERROR, "2:2", "\"#\"");
+			getErrorsInMessage("gh##jk") +
+			getBoundMessage("no viable alternative at input ''{0}''", "gh"));
 	}
 
 	public void test_attributeParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
-			OCLMessages.OperationNotFound_ERROR_, "and(Integer)", "String");
+			getErrorsInMessage("'5' and 6") +
+			getBoundMessage(OCLMessages.ErrorUnresolvedOperationCall, "and"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSyntacticError",
-			OCLMessages.OCLParseErrorCodes_DELETION, "2:9:2:12", "\"null\"");
+			getErrorsInMessage("invalid null") +
+			getBoundMessage("no viable alternative at input ''{0}''", "null"));
 	}
 
 	/**
@@ -701,25 +724,31 @@ public class DelegatesTest extends GenericTestSuite
 	public void test_operationDefinedWithoutBody() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		invokeWithException(badClassInstance, "operationDefinedWithoutBody",
-			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, "modelWithErrors::BadClass.operationDefinedWithoutBody");
+		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBody");
+		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		invokeWithException(badClassInstance, eOperation.getName(),
+			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
 	}
 
 	public void test_operationDefinedWithoutBodyBody() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		invokeWithException(badClassInstance, "operationDefinedWithoutBodyBody",
-			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, "modelWithErrors::BadClass.operationDefinedWithoutBodyBody");
+		EOperation eOperation = getOperation(badClassClass, "operationDefinedWithoutBodyBody");
+		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		invokeWithException(badClassInstance, eOperation.getName(),
+			OCLMessages.MissingBodyForInvocationDelegate_ERROR_, operation);
 	}
 
 	public void test_operationEvaluatingToInvalid() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
-		invokeWithException(badClassInstance, "operationEvaluatingToInvalid",
-			OCLMessages.EvaluationResultIsInvalid_ERROR_, "modelWithErrors::BadClass.operationEvaluatingToInvalid");
+		EOperation eOperation = getOperation(badClassClass, "operationEvaluatingToInvalid");
+		Operation operation = typeManager.getPivotOfEcore(Operation.class, eOperation);
+		invokeWithException(badClassInstance, eOperation.getName(),
+			OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
 	}
 
-	public void test_operationEvaluatingToNull() {
+	public void test_operationEvaluatingToNull() throws InvocationTargetException {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		EOperation operation = getOperation(badClassInstance.eClass(), "operationEvaluatingToNull");
@@ -733,12 +762,12 @@ public class DelegatesTest extends GenericTestSuite
 			OCLMessages.BodyConditionConformance_ERROR_, "operationEvaluatingToWrongType", "Integer", "Boolean");
 	}
 
-	public void test_operationInvocation() {
+	public void test_operationInvocation() throws InvocationTargetException {
 		doTest_operationInvocation(COMPANY_XMI);
 		assertEquals(!eclipseIsRunning, usedLocalRegistry);
 	}
 
-	public void test_operationInvocation_registered() {
+	public void test_operationInvocation_registered() throws InvocationTargetException {
 		initPackageRegistrations();
 		doTest_operationInvocation(COMPANY_XMI);
 		assertFalse(usedLocalRegistry);
@@ -748,21 +777,21 @@ public class DelegatesTest extends GenericTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToLexicalError",
-			OCLMessages.OCLParseErrorCodes_DELETION, "2:1:2:2", "\"@@\"");
+			getErrorsInMessage("'@@'") + getBoundMessage("no viable alternative at input ''{0}''", "'@'"));
 	}
 
 	public void test_operationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			OCLMessages.OperationNotFound_ERROR_, "oclIsInvalid()", "Set(BadClass)");
+			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.ErrorUnresolvedOperationName, "'at'"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSyntacticError",
-			OCLMessages.OCLParseErrorCodes_DELETION, "2:5:2:6", "\"in\"");
+			getErrorsInMessage("'let in'") + getBoundMessage("no viable alternative at input ''{0}''", "'in'"));
 	}
 
 	/**
@@ -772,16 +801,24 @@ public class DelegatesTest extends GenericTestSuite
 	 * @throws ParserException 
 	 */
 	public void test_operationDefinedInStdlibBodyRemainsNull() throws ParserException {
-//		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
-		OclExpression expr = (OclExpression) helper.createQuery("'abc'.oclAsType(String)");
-		assertTrue(expr instanceof OperationCallExp);
-		OperationCallExp oce = (OperationCallExp) expr;
+		ExpressionInOcl expr = helper.createQuery("'abc'.oclAsType(String)");
+		OperationCallExp oce = (OperationCallExp) expr.getBodyExpression();
 		Operation o = oce.getReferredOperation();
-		ExpressionInOcl body = InvocationBehavior.INSTANCE.getSpecification(typeManager, o);
-		assertNull(body);
+		try {
+			@SuppressWarnings("unused")
+			ExpressionInOcl body = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, o);
+			fail("Expected to catch OCLDelegateException");
+		}
+		catch (OCLDelegateException e) {		
+		}
 		// and again, now reading from cache
-		ExpressionInOcl bodyStillNull = InvocationBehavior.INSTANCE.getSpecification(typeManager, o);
-		assertTrue(bodyStillNull == null);
+		try {
+			@SuppressWarnings("unused")
+			ExpressionInOcl bodyStillNull = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, o);
+			fail("Expected to catch OCLDelegateException");
+		}
+		catch (OCLDelegateException e) {		
+		}
 	}
 	
 	/**
@@ -886,51 +923,44 @@ public class DelegatesTest extends GenericTestSuite
 	public void test_validationEvaluatingToInvalid() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToInvalid"), null);
-		String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, "evaluatingToInvalid");
-		validateWithError("evaluatingToInvalid", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"evaluatingToInvalid", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("evaluatingToInvalid", badClassInstance, null,
+			OCLMessages.ValidationResultIsInvalid_ERROR_, "evaluatingToInvalid");
 	}
 	
 	public void test_validationEvaluatingToNull() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToNull"), null);
-		String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, "evaluatingToNull");
-		validateWithError("evaluatingToNull", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"evaluatingToNull", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("evaluatingToNull", badClassInstance, null,
+			OCLMessages.ValidationResultIsNull_ERROR_, "evaluatingToNull");
 	}
 	
 	public void test_validationEvaluatingToWrongType() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationEvaluatingToWrongType"), null);
-		String message = NLS.bind(OCLMessages.InvariantConstraintBoolean_ERROR_, "ValidationEvaluatingToWrongType");
-		validateWithError("evaluatingToWrongType", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"evaluatingToWrongType", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("evaluatingToWrongType", badClassInstance, null,
+			OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, "evaluatingToWrongType");
 	}
 	
 	public void test_validationParsingToLexicalError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToLexicalError"), null);
-		String message = NLS.bind(OCLMessages.OCLParseErrorCodes_INVALID_TOKEN, "1:4", "\"'part\"");
-		validateWithError("parsingToLexicalError", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"parsingToLexicalError", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("parsingToLexicalError", badClassInstance, "'part",
+			"mismatched character ''{0}'' expecting ''{1}''", "<EOF>", "'");
 	}
 	
 	public void test_validationParsingToSemanticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
-		String message = NLS.bind(OCLMessages.OperationNotFound_ERROR_, "not()", "String");
-		validateWithError("parsingToSemanticError", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"parsingToSemanticError", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("parsingToSemanticError", badClassInstance, "not '5'",
+			OCLMessages.ErrorUnresolvedOperationCall, "not");
 	}
 	
 	public void test_validationParsingToSyntacticError() {
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSyntacticError"), null);
-		String message = NLS.bind(OCLMessages.OCLParseErrorCodes_INVALID_TOKEN, "2:1:2:4", "\"else\"");
-		validateWithError("parsingToSyntacticError", "_UI_ConstraintDelegateException_diagnostic", badClassInstance,
-			"parsingToSyntacticError", EObjectValidator.getObjectLabel(badClassInstance, context), message);
+		validateWithDelegationError("parsingToSyntacticError", badClassInstance, "else", 
+			"no viable alternative at input ''{0}''", "else");
 	}
-
 	void add(EObject owner, EStructuralFeature feature, Object value) {
 		this.<EList<Object>> get(owner, feature).add(value);
 	}
@@ -999,10 +1029,23 @@ public class DelegatesTest extends GenericTestSuite
 		return null;
 	}
 
-	public void getWithException(EObject eObject, String featureName, String messageTemplate, Object... bindings) {
+	public EStructuralFeature getStructuralFeature(EClass eClass, String name) {
+		for (EStructuralFeature eStructuralFeature : eClass.getEStructuralFeatures()) {
+			if (name.equals(eStructuralFeature.getName())) {
+				return eStructuralFeature;
+			}
+		}
+		fail("Expected to find structural feature: " + name);
+		return null;
+	}
+
+	protected Type getType(EObject eObject) {
+		return valueFactory.valueOf(eObject).getType(typeManager, null);
+	}
+
+	public void getWithException(EObject eObject, String featureName, String expectedMessage) {
 		EClass eClass = eObject.eClass();
 		EAttribute eAttribute = (EAttribute) eClass.getEStructuralFeature(featureName);
-		String expectedMessage = NLS.bind(messageTemplate, bindings);
 		try {
 			@SuppressWarnings("unused")
 			Object object = get(eObject, eAttribute);
@@ -1013,16 +1056,16 @@ public class DelegatesTest extends GenericTestSuite
 	}	
 
 	@SuppressWarnings("unchecked")
-	<T> T invoke(EObject target, EOperation operation, Object... arguments) {
-		try {
+	<T> T invoke(EObject target, EOperation operation, Object... arguments) throws InvocationTargetException {
+//		try {
 			return (T) target.eInvoke(operation, (arguments.length == 0)
 				? ECollections.<Object> emptyEList()
 				: new BasicEList.UnmodifiableEList<Object>(arguments.length,
 					arguments));
-		} catch (InvocationTargetException ite) {
-			fail("Failed to invoke operation: " + ite.getLocalizedMessage());
-			return null;
-		}
+//		} catch (InvocationTargetException ite) {
+//			fail("Failed to invoke operation: " + ite.getLocalizedMessage());
+//			return null;
+//		}
 	}
 
 	public void invokeWithException(EObject eObject, String name,
@@ -1034,9 +1077,10 @@ public class DelegatesTest extends GenericTestSuite
 				try {
 					@SuppressWarnings("unused")
 					Object object = invoke(eObject, eOperation);
-					fail("Expected to catch OCLDelegateException: " + expectedMessage);
-				} catch (OCLDelegateException e) {
-					assertEquals("OCLDelegateException: ", expectedMessage, e.getLocalizedMessage());
+					fail("Expected to catch InvocationTargetException: " + expectedMessage);
+				} catch (InvocationTargetException e) {
+					Throwable cause = e.getCause();
+					assertEquals("OCLDelegateException: ", expectedMessage, cause.getLocalizedMessage());
 					return;
 				}
 			}
@@ -1064,7 +1108,7 @@ public class DelegatesTest extends GenericTestSuite
 			fail("Expected to catch InvocationTargetException: " + expectedMessage);
 		} catch (InvocationTargetException e) {
 			Throwable cause = e.getCause();
-			assertEquals(cause + ": ", expectedMessage, cause.getLocalizedMessage());
+			assertEquals(cause.getClass().getSimpleName() + ": ", expectedMessage, cause.getLocalizedMessage());
 		}
 	}
 
@@ -1139,5 +1183,30 @@ public class DelegatesTest extends GenericTestSuite
 		String messageTemplate = EcorePlugin.INSTANCE.getString(errorKey);
 		String message = NLS.bind(messageTemplate, bindings);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+	}
+
+	protected void validateWithDelegationError(String constraintName, EObject eObject, String source, String messageTemplate, Object... bindings) {
+		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
+		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
+		List<Diagnostic> diagnostics = validation.getChildren();
+		assertEquals("Validation of '" + constraintName + "' child count:", 1, diagnostics.size());
+		Diagnostic diagnostic = diagnostics.get(0);
+		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
+		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
+		String messageTemplate1 = EcorePlugin.INSTANCE.getString("_UI_ConstraintDelegateException_diagnostic");
+		String objectLabel = EObjectValidator.getObjectLabel(eObject, context);
+		String message1 = getBoundMessage(messageTemplate1, constraintName, objectLabel, "");
+		String message2 = getErrorsInMessage(source);
+		String message3 = NLS.bind(messageTemplate, bindings);
+		String message = message1 + message2 + message3;
+		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
+	}
+
+	protected String getBoundMessage(String messageTemplate, Object... bindings) {
+		return NLS.bind(messageTemplate, bindings);
+	}
+
+	protected String getErrorsInMessage(String source) {
+		return source != null ? NLS.bind("Errors in ''{0}''\n", source) : "";
 	}
 }

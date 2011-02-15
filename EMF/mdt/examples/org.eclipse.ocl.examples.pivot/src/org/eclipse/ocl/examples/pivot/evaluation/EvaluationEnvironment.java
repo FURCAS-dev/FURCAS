@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -28,8 +28,6 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.util.Adaptable;
 
 /**
  * The evaluation environment keeps track of the current values of variables

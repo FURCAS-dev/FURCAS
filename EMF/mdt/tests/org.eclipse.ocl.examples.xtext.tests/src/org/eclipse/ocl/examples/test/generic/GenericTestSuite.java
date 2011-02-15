@@ -15,11 +15,13 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3 2011/01/30 10:59:40 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.5 2011/02/11 20:10:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
 
+import java.awt.Choice;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,9 +29,7 @@ import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ListIterator;
 
 import junit.framework.TestCase;
@@ -49,22 +49,22 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -74,11 +74,8 @@ import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
-import org.eclipse.ocl.helper.Choice;
-import org.eclipse.ocl.helper.ChoiceKind;
-import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
 
 /**
  * Default test framework.
@@ -169,43 +166,58 @@ public abstract class GenericTestSuite
     protected void assertBadInvariant(Class<?> exception, int severity,
    		 String expression, String messageTemplate, String... bindings) {
 		String denormalized = denormalize(expression);
+		Resource resource = null;
         try {
-        	helper.createInvariant(denormalized);
+    		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
+    		TypeManager typeManager = environment.getTypeManager();
+    		Type contextClassifier = environment.getContextClassifier();
+			resource = PivotUtil.createXtextResource(typeManager, contextClassifier, expression);
+			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
         	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
-        	Diagnostic diagnostic = getDiagnostic();
+        	Resource.Diagnostic diagnostic = getDiagnostic(resource);
 			assertNoException(diagnostic, ClassCastException.class);
         	assertNoException(diagnostic, NullPointerException.class);
-        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+//        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
         	String expectedMessage = NLS.bind(messageTemplate, bindings);
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
-        }	   
+        } catch (IOException e) {
+			fail(e.getMessage());
+		}	   
     }
 	 
 	/**
 	 * Assert that an expression cannot be used as a query, because an exception is thrown
 	 * with a diagnostic of severity containing a message that is the result of messageTemplate
 	 * resolved by bindings.
+	 * @throws IOException 
 	 */
      protected void assertBadQuery(Class<?> exception, int severity,
     		 String expression, String messageTemplate, Object... bindings) {
 		String denormalized = denormalize(expression);
-        try {
-        	@SuppressWarnings("unused")
-			ExpressionInOcl query = helper.createQuery(denormalized);
+		Resource resource = null;
+		try {
+    		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
+    		TypeManager typeManager = environment.getTypeManager();
+    		Type contextClassifier = environment.getContextClassifier();
+			resource = PivotUtil.createXtextResource(typeManager, contextClassifier, expression);
+			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
         	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
-        	Diagnostic diagnostic = getDiagnostic();
-			assertNoException(diagnostic, ClassCastException.class);
-        	assertNoException(diagnostic, NullPointerException.class);
-        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+        	Resource.Diagnostic diagnostic = getDiagnostic(resource);
+//			assertNoException(diagnostic, ClassCastException.class);
+//        	assertNoException(diagnostic, NullPointerException.class);
+//        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
         	String expectedMessage = NLS.bind(messageTemplate, bindings);
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
-        }	   
+        } catch (IOException e) {
+			fail(e.getMessage());
+		}	   
 	}
-     protected void assertSemanticErrorQuery(String expression,
+     
+    protected void assertSemanticErrorQuery(String expression,
     		 String messageTemplate, String... bindings) {
     	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		 expression, messageTemplate, bindings);	   
@@ -218,11 +230,11 @@ public abstract class GenericTestSuite
 	 * @param choices a collection of {@link Choice}s
 	 * @param kind the kind of choice to find
 	 * @param name the name of the choice to find
-	 */
+	 *
 	protected void assertChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
 		assertNotNull("Choice not found: " + name + ", " + kind, //$NON-NLS-2$
 			findChoice(choices, kind, name));
-	}
+	} */
 	
 	protected void assertInvalid(Value value) {
 		assertTrue("Expected invalid", value.isInvalid());
@@ -283,13 +295,15 @@ public abstract class GenericTestSuite
 	 * 
 	 * @since 1.2
 	 */
-    protected void assertNoException(Diagnostic diagnostic, java.lang.Class<? extends Throwable> excType) {
-    	if (excType.isInstance(diagnostic.getException())) {
-    		fail("Diagnostic signals a(n) " + excType.getSimpleName());
-    	}
-    	
-    	for (Diagnostic nested : diagnostic.getChildren()) {
-    		assertNoException(nested, excType);
+    protected void assertNoException(Resource.Diagnostic diagnostic, java.lang.Class<? extends Throwable> excType) {
+    	if (diagnostic instanceof ExceptionDiagnostic) {
+	    	if (excType.isInstance(((ExceptionDiagnostic)diagnostic).getException())) {
+	    		fail("Diagnostic signals a(n) " + excType.getSimpleName());
+	    	}
+	    	
+//	    	for (Diagnostic nested : diagnostic.getChildren()) {
+//	    		assertNoException(nested, excType);
+//	    	}
     	}
     }
 	
@@ -300,11 +314,11 @@ public abstract class GenericTestSuite
 	 * @param choices a collection of {@link Choice}s
 	 * @param kind the kind of choice not to find
 	 * @param name the name of the choice not to find
-	 */
+	 *
 	protected void assertNotChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
 		assertNull("Choice found: " + name + ", " + kind, //$NON-NLS-2$
 			findChoice(choices, kind, name));
-	}
+	} */
 	
 	/**
 	 * Assert that an expression can be parsed as a query for a context and return the query.
@@ -745,11 +759,12 @@ public abstract class GenericTestSuite
 	}
 
 	protected void createDocument(String text) {
-		try {
-			ocl.parse(new OCLInput(text));
-        } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage());
-        }
+		throw new UnsupportedOperationException();
+//		try {
+//			ocl.parse(new OCLInput(text));
+//        } catch (Exception e) {
+//            fail("Failed to parse: " + e.getLocalizedMessage());
+//        }
 	}
 
 	protected OCLHelper createHelper() {
@@ -915,7 +930,7 @@ public abstract class GenericTestSuite
 		return result;
 	}
 	
-	protected Choice findChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
+/*	protected Choice findChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
 		Choice result = null;
 		
 		for (Choice c : choices) {
@@ -926,7 +941,7 @@ public abstract class GenericTestSuite
 		}
 		
 		return result;
-	}
+	} */
 	
 //	protected ExpressionInOcl getBodyExpression(Constraint constraint) {
 //		return reflection.getBodyExpression(constraint);
@@ -939,8 +954,10 @@ public abstract class GenericTestSuite
      * 
      * @return the diagnostic
      */
-    protected Diagnostic getDiagnostic() {
-    	OCLProblemHandler handler = (OCLProblemHandler) OCLUtil.getAdapter(
+    protected Resource.Diagnostic getDiagnostic(Resource resource) {
+    	org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic = resource.getErrors().get(0);
+		return diagnostic;
+/*    	OCLProblemHandler handler = (OCLProblemHandler) OCLUtil.getAdapter(
     		ocl.getEnvironment(), ProblemHandler.class);
     	
     	Diagnostic result = handler.getDiagnostic();
@@ -950,7 +967,7 @@ public abstract class GenericTestSuite
     	
     	assertNotNull("No diagnostic", result);
     	
-    	return result;
+    	return result; */
     }
 	
 //    protected Type getEcoreBigDecimal() {
@@ -1067,7 +1084,8 @@ public abstract class GenericTestSuite
 	 * @return the OCL constraint expression, unvalidated
 	 */
 	protected ExpressionInOcl parseConstraintUnvalidated(String text) {
-		List<Constraint> constraints;
+		throw new UnsupportedOperationException();
+/*		List<Constraint> constraints;
 		Constraint constraint = null;
 		
 		try {
@@ -1086,7 +1104,7 @@ public abstract class GenericTestSuite
 		
 		assertValidToString(result);
 		
-		return result;
+		return result; */
 	}
 	
 	/**
@@ -1100,7 +1118,8 @@ public abstract class GenericTestSuite
 	 * @return the OCL def expression
 	 */
 	protected ExpressionInOcl parseDef(String text) {
-		List<Constraint> constraints ;
+		throw new UnsupportedOperationException();
+/*		List<Constraint> constraints ;
 		Constraint constraint = null;
 		
 		try {
@@ -1116,7 +1135,7 @@ public abstract class GenericTestSuite
 		assertNotNull(result);
 		validate(result);		
 		assertValidToString(result);		
-		return result;
+		return result; */
 	}
 
 	/**
@@ -1141,8 +1160,8 @@ public abstract class GenericTestSuite
 	 * Create a Resource to register a binding-dependent pkg for access with a given nsPrefix and nsUri.
 	 */
 	protected org.eclipse.ocl.examples.pivot.Package registerPackage(org.eclipse.ocl.examples.pivot.Package pkg, String nsPrefix, String nsUri) {
-        reflection.setNsPrefix(pkg, nsPrefix);
-        reflection.setNsURI(pkg, nsUri);
+		pkg.setNsPrefix(nsPrefix);
+        pkg.setNsURI(nsUri);
 		Resource resource = new ResourceImpl(URI.createURI(nsUri));
         resource.getContents().add(pkg);
         resourceSet.getResources().add(resource);					// FIXME UML needs this

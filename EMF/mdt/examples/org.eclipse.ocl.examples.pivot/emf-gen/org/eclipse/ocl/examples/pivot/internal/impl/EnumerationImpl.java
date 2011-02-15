@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: EnumerationImpl.java,v 1.3 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -233,6 +234,9 @@ public class EnumerationImpl
 				return getSubClasses();
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				return isSerializable();
+			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
+				if (resolve) return getBehavioralType();
+				return basicGetBehavioralType();
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return getOwnedLiterals();
 		}
@@ -314,6 +318,9 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
 				return;
+			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)newValue);
+				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
 				getOwnedLiterals().addAll((Collection<? extends EnumerationLiteral>)newValue);
@@ -388,6 +395,9 @@ public class EnumerationImpl
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
+			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)null);
+				return;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiterals().clear();
 				return;
@@ -442,6 +452,8 @@ public class EnumerationImpl
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.ENUMERATION__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
+			case PivotPackage.ENUMERATION__BEHAVIORAL_TYPE:
+				return behavioralType != null;
 			case PivotPackage.ENUMERATION__OWNED_LITERAL:
 				return ownedLiterals != null && !ownedLiterals.isEmpty();
 		}

@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: PostCSImpl.java,v 1.2 2010/05/03 05:58:23 ewillink Exp $
+ * $Id: PostCSImpl.java,v 1.4 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
+import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS;
  *
  * @generated
  */
-public class PostCSImpl extends NamedConstraintCSImpl implements PostCS {
+public class PostCSImpl extends ContextConstraintCSImpl implements PostCS {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,4 +51,9 @@ public class PostCSImpl extends NamedConstraintCSImpl implements PostCS {
 		return CompleteOCLCSTPackage.Literals.POST_CS;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
+		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitPostCS(this);
+	}
 } //PostCSImpl
