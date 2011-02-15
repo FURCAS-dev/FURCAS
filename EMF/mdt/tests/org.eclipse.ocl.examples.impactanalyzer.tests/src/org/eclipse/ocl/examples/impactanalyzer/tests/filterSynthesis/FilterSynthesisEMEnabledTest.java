@@ -23,8 +23,8 @@ import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
-import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.tests.helper.ExampleApp;
+import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.Test;
 
 import company.CompanyFactory;

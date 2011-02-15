@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.4 2011/02/15 19:58:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -368,7 +368,9 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 
 	@Override
 	public Object visitStringLiteralExp(StringLiteralExp object) {
+		delegate.append("'");
 		delegate.append(object.getStringSymbol());
+		delegate.append("'");
 		return null;
 	}
 

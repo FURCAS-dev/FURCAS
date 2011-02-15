@@ -26,11 +26,11 @@ import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.AbstractPathCache;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.InstanceScopeAnalysis;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 public class TracebackStepCache extends AbstractPathCache<TracebackStep> {

@@ -33,11 +33,11 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfoImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 
