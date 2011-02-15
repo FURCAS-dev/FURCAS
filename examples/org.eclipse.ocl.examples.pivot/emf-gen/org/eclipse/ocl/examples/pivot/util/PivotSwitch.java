@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -56,6 +56,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -757,6 +758,24 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNameable(iteratorExp);
 				if (result == null) result = caseElement(iteratorExp);
 				if (result == null) result = caseVisitable(iteratorExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.LAMBDA_TYPE:
+			{
+				LambdaType lambdaType = (LambdaType)theEObject;
+				T result = caseLambdaType(lambdaType);
+				if (result == null) result = caseDataType(lambdaType);
+				if (result == null) result = caseClass(lambdaType);
+				if (result == null) result = caseType(lambdaType);
+				if (result == null) result = caseNamespace(lambdaType);
+				if (result == null) result = caseNamedElement(lambdaType);
+				if (result == null) result = caseParameterableElement(lambdaType);
+				if (result == null) result = caseTemplateableElement(lambdaType);
+				if (result == null) result = caseMonikeredElement(lambdaType);
+				if (result == null) result = caseNameable(lambdaType);
+				if (result == null) result = caseElement(lambdaType);
+				if (result == null) result = caseVisitable(lambdaType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2116,6 +2135,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIteratorExp(IteratorExp object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaType(LambdaType object)
 	{
 		return null;
 	}

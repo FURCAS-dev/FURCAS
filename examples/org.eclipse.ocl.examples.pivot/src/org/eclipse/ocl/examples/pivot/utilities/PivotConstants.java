@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -31,7 +31,7 @@ public interface PivotConstants
 	static final String NULL_MARKER = "<<null-element>>"; //$NON-NLS-1$
 	static final String OVERFLOW_MARKER = "##"; //$NON-NLS-1$
 	static final String MONIKER_PART_SEPARATOR = "@"; //$NON-NLS-1$
-	static final String MONIKER_SCOPE_SEPARATOR = "|"; //"::"; //$NON-NLS-1$
+	static final String MONIKER_SCOPE_SEPARATOR = "!"; //"::"; //$NON-NLS-1$
 	static final String MONIKER_OPERATOR_SEPARATOR = "~"; //$NON-NLS-1$
 	static final String PARAMETER_PREFIX = "("; //$NON-NLS-1$
 	static final String PARAMETER_SEPARATOR = ","; //$NON-NLS-1$

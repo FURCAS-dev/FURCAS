@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: DataTypeImpl.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: DataTypeImpl.java,v 1.4 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -30,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 
 /**
@@ -40,6 +43,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DataTypeImpl#isSerializable <em>Is Serializable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.DataTypeImpl#getBehavioralType <em>Behavioral Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -67,6 +71,15 @@ public class DataTypeImpl
 	 * @ordered
 	 */
 	protected static final int IS_SERIALIZABLE_EFLAG = 1 << 11;
+	/**
+	 * The cached value of the '{@link #getBehavioralType() <em>Behavioral Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBehavioralType()
+	 * @generated
+	 * @ordered
+	 */
+	protected Type behavioralType;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,6 +121,49 @@ public class DataTypeImpl
 		if (newIsSerializable) eFlags |= IS_SERIALIZABLE_EFLAG; else eFlags &= ~IS_SERIALIZABLE_EFLAG;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DATA_TYPE__IS_SERIALIZABLE, oldIsSerializable, newIsSerializable));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type getBehavioralType()
+	{
+		if (behavioralType != null && ((EObject)behavioralType).eIsProxy())
+		{
+			InternalEObject oldBehavioralType = (InternalEObject)behavioralType;
+			behavioralType = (Type)eResolveProxy(oldBehavioralType);
+			if (behavioralType != oldBehavioralType)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE, oldBehavioralType, behavioralType));
+			}
+		}
+		return behavioralType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Type basicGetBehavioralType()
+	{
+		return behavioralType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBehavioralType(Type newBehavioralType)
+	{
+		Type oldBehavioralType = behavioralType;
+		behavioralType = newBehavioralType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE, oldBehavioralType, behavioralType));
 	}
 
 	/**
@@ -162,6 +218,9 @@ public class DataTypeImpl
 				return getSubClasses();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
+				if (resolve) return getBehavioralType();
+				return basicGetBehavioralType();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -242,6 +301,9 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
 				return;
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -313,6 +375,9 @@ public class DataTypeImpl
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)null);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -365,6 +430,8 @@ public class DataTypeImpl
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.DATA_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
+			case PivotPackage.DATA_TYPE__BEHAVIORAL_TYPE:
+				return behavioralType != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

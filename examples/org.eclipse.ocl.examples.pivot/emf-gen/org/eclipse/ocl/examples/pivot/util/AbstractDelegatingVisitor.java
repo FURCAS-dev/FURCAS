@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: AbstractDelegatingVisitor.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -211,6 +211,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 
 	public R visitIteratorExp(org.eclipse.ocl.examples.pivot.IteratorExp object) {
 		return delegate.visitIteratorExp(object);
+	}
+
+	public R visitLambdaType(org.eclipse.ocl.examples.pivot.LambdaType object) {
+		return delegate.visitLambdaType(object);
 	}
 
 	public R visitLetExp(org.eclipse.ocl.examples.pivot.LetExp object) {

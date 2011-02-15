@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: CollectionTypeImpl.java,v 1.3 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -173,6 +173,9 @@ public class CollectionTypeImpl
 				return getSubClasses();
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				return isSerializable();
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
+				if (resolve) return getBehavioralType();
+				return basicGetBehavioralType();
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				if (resolve) return getElementType();
 				return basicGetElementType();
@@ -255,6 +258,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				setIsSerializable((Boolean)newValue);
 				return;
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)newValue);
+				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)newValue);
 				return;
@@ -328,6 +334,9 @@ public class CollectionTypeImpl
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				setIsSerializable(IS_SERIALIZABLE_EDEFAULT);
 				return;
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
+				setBehavioralType((Type)null);
+				return;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				setElementType((Type)null);
 				return;
@@ -382,6 +391,8 @@ public class CollectionTypeImpl
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COLLECTION_TYPE__IS_SERIALIZABLE:
 				return ((eFlags & IS_SERIALIZABLE_EFLAG) != 0) != IS_SERIALIZABLE_EDEFAULT;
+			case PivotPackage.COLLECTION_TYPE__BEHAVIORAL_TYPE:
+				return behavioralType != null;
 			case PivotPackage.COLLECTION_TYPE__ELEMENT_TYPE:
 				return elementType != null;
 		}

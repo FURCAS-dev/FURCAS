@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.2 2011/02/15 10:38:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -134,8 +134,8 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
 			result = valueFactory.createInvalidValue(obj, null, evalProblems.toString(), e); 			
-		} finally {
-			myEnv.remove(specification.getContextVariable());
+//		} finally {
+//			myEnv.remove(specification.getContextVariable());
 //			if (resultVariable != null) {
 //				myEnv.add(resultVariable, null);
 //			}

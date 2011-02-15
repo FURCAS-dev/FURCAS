@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.5 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.6 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -377,7 +377,27 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
 				ownedOperations.add(createJavaComparisonOperation(
 					PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
-
+				if ((instanceClass == Boolean.class) || (instanceClass == boolean.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
+				}
+				else if ((instanceClass == Byte.class) || (instanceClass == byte.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
 			} catch (Exception e) {
 			}
 		}

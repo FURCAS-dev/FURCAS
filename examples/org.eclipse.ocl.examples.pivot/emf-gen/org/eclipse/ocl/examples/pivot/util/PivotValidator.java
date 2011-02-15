@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -380,6 +381,8 @@ public class PivotValidator
 				return validateIteration((Iteration)value, diagnostics, context);
 			case PivotPackage.ITERATOR_EXP:
 				return validateIteratorExp((IteratorExp)value, diagnostics, context);
+			case PivotPackage.LAMBDA_TYPE:
+				return validateLambdaType((LambdaType)value, diagnostics, context);
 			case PivotPackage.LET_EXP:
 				return validateLetExp((LetExp)value, diagnostics, context);
 			case PivotPackage.LIBRARY:
@@ -1620,6 +1623,16 @@ public class PivotValidator
 	public boolean validateIteratorExp(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)iteratorExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLambdaType(LambdaType lambdaType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)lambdaType, diagnostics, context);
 	}
 
 	/**

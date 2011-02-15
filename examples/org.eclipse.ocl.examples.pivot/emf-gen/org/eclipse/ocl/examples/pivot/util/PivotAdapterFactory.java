@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotAdapterFactory.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: PivotAdapterFactory.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -366,6 +367,11 @@ public class PivotAdapterFactory
 			public Adapter caseIteratorExp(IteratorExp object)
 			{
 				return createIteratorExpAdapter();
+			}
+			@Override
+			public Adapter caseLambdaType(LambdaType object)
+			{
+				return createLambdaTypeAdapter();
 			}
 			@Override
 			public Adapter caseLetExp(LetExp object)
@@ -1202,6 +1208,21 @@ public class PivotAdapterFactory
 	 * @generated
 	 */
 	public Adapter createIteratorExpAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.pivot.LambdaType <em>Lambda Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.pivot.LambdaType
+	 * @generated
+	 */
+	public Adapter createLambdaTypeAdapter()
 	{
 		return null;
 	}
