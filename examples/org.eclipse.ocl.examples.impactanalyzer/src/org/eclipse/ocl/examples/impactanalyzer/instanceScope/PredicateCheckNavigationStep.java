@@ -138,7 +138,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         // evaluate whether the source object would have passed the iterator's body before the change
 
         Boolean resultPre = positive;
-        if (!(atPre == null)) {
+        if (atPre != null) {
             PartialEvaluatorImpl evalPre = partialEvaluatorFactory.createPartialEvaluator(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, (CallExp) exp, sourceObjects);
@@ -153,28 +153,34 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         // evaluate whether the source object passes the iterator's body after the change
 
         PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
-        Boolean resultPost;
-        try {
-            Object result = evalPost.evaluate(null, (CallExp) exp, sourceObjects);
-            if (result instanceof Collection<?>) {
-                if (((Collection<?>) result).isEmpty()) {
-                    resultPost = false;
-                } else {
-                    resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
-                }
-            } else {
-                resultPost = sourceObjects.contains(result);
-            }
-        } catch (ValueNotFoundException vnfe) {
-            // be conservative about undefined situations
-            resultPost = positive;
-        } catch (ClassCastException cce) {
-            throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
-        }
+        Boolean resultPost = positive;
+		if (atPre == null || resultPre != positive) {
+			try {
+				Object result = evalPost.evaluate(null, (CallExp) exp,
+						sourceObjects);
+				if (result instanceof Collection<?>) {
+					if (((Collection<?>) result).isEmpty()) {
+						resultPost = false;
+					} else {
+						resultPost = sourceObjects
+								.contains(((Collection<?>) result).iterator()
+										.next());
+					}
+				} else {
+					resultPost = sourceObjects.contains(result);
+				}
+			} catch (ValueNotFoundException vnfe) {
+				// be conservative about undefined situations
+				resultPost = positive;
+			} catch (ClassCastException cce) {
+				throw new RuntimeException(
+						"The result of the iterator expression's body is not of type Boolean.");
+			}
+		}
         // if the source object fulfills the condition before or after the change event
         // or accesses an undefined variable before or after the change event
         // it passes this navigation step
-        return resultPre == positive || resultPost == positive;
+        return (atPre != null && resultPre == positive) || resultPost == positive;
     }
 
     @Override

@@ -50,8 +50,14 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), getTargetType(),
-                oppositeEndFinder)) {
+        Notifier allInstancesLookupContext;
+        if (changeEvent != null && changeEvent.getNotifier() != null) {
+        	allInstancesLookupContext = (Notifier) changeEvent.getNotifier();
+        } else {
+        	allInstancesLookupContext = fromObject.getAnnotatedObject();
+        }
+        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances(allInstancesLookupContext,
+        		getTargetType(), oppositeEndFinder)) {
             result.add(annotateEObject(fromObject, roi));
         }
         return result;

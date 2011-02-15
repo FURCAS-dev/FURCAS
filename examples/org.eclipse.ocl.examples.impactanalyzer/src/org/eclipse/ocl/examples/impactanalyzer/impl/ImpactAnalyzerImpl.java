@@ -143,6 +143,13 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         return instanceScopeAnalysis.getContextObjects(event, notifyOnNewContextElements);
     }
 
+    public Collection<EObject> getContextObjects(EObject evaluationResult) {
+        if (instanceScopeAnalysis == null) {
+            instanceScopeAnalysis = createInstanceScopeAnalysis();
+        }
+        return instanceScopeAnalysis.getContextObjects(evaluationResult);
+    }
+    
     protected InstanceScopeAnalysis createInstanceScopeAnalysis() {
         if (filtersyn == null) {
             createFilterForExpression();
