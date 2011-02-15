@@ -37,6 +37,16 @@ public class OCL {
     public static org.eclipse.ocl.ecore.OCL newInstance() {
         return org.eclipse.ocl.ecore.OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap());
     }
+
+	/**
+	 * Constructs an OCL instance that uses the provided factory's opposite end
+	 * finder and registry, yet uses the non-default {@link ExtentMap} which
+	 * defines <code>allInstances</code> results consistently with the opposite
+	 * end finder being used.
+	 */
+    public static org.eclipse.ocl.ecore.OCL newInstance(EcoreEnvironmentFactoryWithScopedExtentMap factory) {
+        return org.eclipse.ocl.ecore.OCL.newInstance(factory);
+    }
     
     /**
      * Constructs the OCL instance so that metamodel lookups are performed with the <code>registry</code>

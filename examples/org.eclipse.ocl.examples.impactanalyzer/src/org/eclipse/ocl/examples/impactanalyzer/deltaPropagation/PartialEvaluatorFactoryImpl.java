@@ -12,8 +12,8 @@ package org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 public class PartialEvaluatorFactoryImpl implements PartialEvaluatorFactory {
 

@@ -23,11 +23,11 @@ import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.SemanticIdentity;
 import org.eclipse.ocl.utilities.PredefinedType;
 

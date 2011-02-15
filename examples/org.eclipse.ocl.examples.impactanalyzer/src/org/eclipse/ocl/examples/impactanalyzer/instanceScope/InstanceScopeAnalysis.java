@@ -53,7 +53,6 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactoryImpl;
@@ -62,6 +61,7 @@ import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisIm
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStep;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStepCache;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.utilities.PredefinedType;
 
