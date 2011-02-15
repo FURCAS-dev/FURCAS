@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.5 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.6 2011/02/15 10:37:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -86,18 +86,20 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 							if (type instanceof CollectionType) {		// collection->collection-operation(name...
 								environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
 							}
-//							else {										// object.oclAsSet()->collection-operation
-//								Type setType = typeManager.getSetType(type);
-//								environmentView.addElementsOfScope(typeManager, setType, scopeView);
-//							}
 						}
-//						else {
-//							environmentView.addElementsOfScope(typeManager, type, scopeView);					
-//							if (type instanceof CollectionType) {
-//								environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
-//							}
-//						}
 					}
+				}
+			}
+			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ITERATOR) {			// Happens during save
+				CallExp pivot = getPivot();
+				if (pivot instanceof LoopExp) {
+					environmentView.addNamedElements(((LoopExp)pivot).getIterators());
+				}
+			}
+			else if (((NavigatingArgCS)fromArgument).getRole() == NavigationRole.ACCUMULATOR) {
+				CallExp pivot = getPivot();
+				if (pivot instanceof IterateExp) {
+					environmentView.addNamedElement(((IterateExp)pivot).getResult());
 				}
 			}
 		}

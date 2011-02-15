@@ -12,17 +12,16 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.3 2011/02/15 10:37:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.Collections;
 
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor;
@@ -54,7 +53,10 @@ public class EssentialOCLPreOrderVisitor
 			if (!super.canExecute()) {
 				return false;
 			}
-			TypedRefCS csTypedRef = csElement.getOwnedType();
+			TypedRefCS csTypedRef = csElement.getOwnedType();			
+			if (csTypedRef == null) {
+				return true;
+			}
 			if (csTypedRef instanceof TypedTypeRefCSImpl) {
 				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csTypedRef).basicGetType();
 				if (unspecializedPivotElement == null) {
@@ -95,10 +97,11 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			for (Namespace namespace : csElement.getNamespace()) {
-				@SuppressWarnings("unused")
-				Namespace dummy = namespace;	// Resolves the proxies from the outside.
-			}
+			context.resolveNamespaces(csElement.getNamespace());
+//			for (Namespace namespace : csElement.getNamespace()) {
+//				@SuppressWarnings("unused")
+//				Namespace dummy = namespace;	// Resolves the proxies from the outside.
+//			}
 			return null;
 		}
 	}
@@ -111,10 +114,11 @@ public class EssentialOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			for (Namespace namespace : csElement.getNamespace()) {
-				@SuppressWarnings("unused")
-				Namespace dummy = namespace;	// Resolves the proxies from the outside.
-			}
+			context.resolveNamespaces(csElement.getNamespace());
+//			for (Namespace namespace : csElement.getNamespace()) {
+//				@SuppressWarnings("unused")
+//				Namespace dummy = namespace;	// Resolves the proxies from the outside.
+//			}
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				context.addBadExpressionError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
@@ -131,15 +135,8 @@ public class EssentialOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitCollectionTypeCS(CollectionTypeCS csCollectionType) {
-		if (csCollectionType.getOwnedType() != null) {
-			return new CollectionTypeContinuation(context, csCollectionType);
-		}
-		else {
-			TypeManager typeManager = context.getTypeManager();
-			Type type = typeManager.getLibraryType(csCollectionType.getName());
-			context.reusePivotElement(csCollectionType, type);
-			return null;
-		}
+		// Must at least wait till library types defined
+		return new CollectionTypeContinuation(context, csCollectionType);
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.4 2011/02/11 20:00:46 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.5 2011/02/15 10:37:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -63,7 +63,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 					type = source.getType();
 				}
 				if (target.getArgument() instanceof NavigatingExpCS) {
-					filter = new OperationFilter(typeManager, (NavigatingExpCS)target.getArgument(), type);
+					filter = new OperationFilter(typeManager, type, (NavigatingExpCS)target.getArgument());
 					environmentView.addFilter(filter);
 				}
 //				if (source instanceof TypeExp) {
