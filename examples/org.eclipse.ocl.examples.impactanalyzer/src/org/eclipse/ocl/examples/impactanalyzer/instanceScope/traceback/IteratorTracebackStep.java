@@ -147,7 +147,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             }
         }
         boolean resultPost = acceptIfPredicateTrue;
-        if (resultPre != acceptIfPredicateTrue) {
+        if (atPre == null || resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
             PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
@@ -163,7 +163,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             // or accesses an undefined variable before or after the change event
             // it passes this navigation step
         }
-        return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
+        return (atPre != null && resultPre == acceptIfPredicateTrue) || resultPost == acceptIfPredicateTrue;
     }
 
     private boolean isSourceInResult(EObject sourceObject, Object result) {
