@@ -24,11 +24,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.RealLiteralExp;
 import org.eclipse.ocl.ecore.StringLiteralExp;
 import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 
 

@@ -11,8 +11,8 @@
 package org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation;
 
 
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 /**
  * A partial evaluator which doesn't attempt to perform <code>allInstances()</code> requests

@@ -20,10 +20,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 

@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.impactanalyzer.instanceScope;
 import java.util.Stack;
 
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 public class IntegerLiteralExpTracer extends AbstractTracer<IntegerLiteralExp> {
