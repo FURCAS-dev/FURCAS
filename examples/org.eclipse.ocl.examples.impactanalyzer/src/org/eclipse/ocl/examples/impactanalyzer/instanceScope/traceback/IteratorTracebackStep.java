@@ -92,6 +92,13 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         }
     }
 
+    /**
+	 * @param changeEvent
+	 *            if <code>null</code>, the evaluation will happen on the model
+	 *            as-is; otherwise, it will take place on the state the model
+	 *            was in before the change described by <code>changeEvent</code> took
+	 *            place
+	 */
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
@@ -114,6 +121,13 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         }
     }
 
+	/**
+	 * @param atPre
+	 *            if <code>null</code>, the evaluation will only happen on the model
+	 *            as-is; otherwise, it will also take place on the state the model
+	 *            was in before the change described by <code>atPre</code> took
+	 *            place
+	 */
     private boolean evaluatePredicate(EObject sourceObject, Notification atPre) {
         Collection<EObject> sourceCollection = Collections.singleton(sourceObject);
         // evaluate whether the source object would have passed the iterator's body before the change
