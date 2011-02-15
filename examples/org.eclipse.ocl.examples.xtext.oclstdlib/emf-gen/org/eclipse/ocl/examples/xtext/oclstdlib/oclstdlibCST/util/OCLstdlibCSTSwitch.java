@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTSwitch.java,v 1.4 2011/02/08 17:50:59 ewillink Exp $
+ * $Id: OCLstdlibCSTSwitch.java,v 1.5 2011/02/15 10:37:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
@@ -44,12 +43,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
@@ -124,22 +122,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OCLstdlibCSTPackage.LIB_ACCUMULATOR_CS:
-			{
-				LibAccumulatorCS libAccumulatorCS = (LibAccumulatorCS)theEObject;
-				T result = caseLibAccumulatorCS(libAccumulatorCS);
-				if (result == null) result = caseParameterCS(libAccumulatorCS);
-				if (result == null) result = caseTypedElementCS(libAccumulatorCS);
-				if (result == null) result = caseNamedElementCS(libAccumulatorCS);
-				if (result == null) result = caseMonikeredElementCS(libAccumulatorCS);
-				if (result == null) result = caseNameable(libAccumulatorCS);
-				if (result == null) result = caseModelElementCS(libAccumulatorCS);
-				if (result == null) result = caseElementCS(libAccumulatorCS);
-				if (result == null) result = casePivotable(libAccumulatorCS);
-				if (result == null) result = caseVisitableCS(libAccumulatorCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OCLstdlibCSTPackage.LIB_CLASS_CS:
 			{
 				LibClassCS libClassCS = (LibClassCS)theEObject;
@@ -192,22 +174,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(libIterationCS);
 				if (result == null) result = casePivotable(libIterationCS);
 				if (result == null) result = caseVisitableCS(libIterationCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case OCLstdlibCSTPackage.LIB_ITERATOR_CS:
-			{
-				LibIteratorCS libIteratorCS = (LibIteratorCS)theEObject;
-				T result = caseLibIteratorCS(libIteratorCS);
-				if (result == null) result = caseParameterCS(libIteratorCS);
-				if (result == null) result = caseTypedElementCS(libIteratorCS);
-				if (result == null) result = caseNamedElementCS(libIteratorCS);
-				if (result == null) result = caseMonikeredElementCS(libIteratorCS);
-				if (result == null) result = caseNameable(libIteratorCS);
-				if (result == null) result = caseModelElementCS(libIteratorCS);
-				if (result == null) result = caseElementCS(libIteratorCS);
-				if (result == null) result = casePivotable(libIteratorCS);
-				if (result == null) result = caseVisitableCS(libIteratorCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -267,6 +233,15 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OCLstdlibCSTPackage.META_TYPE_NAME:
+			{
+				MetaTypeName metaTypeName = (MetaTypeName)theEObject;
+				T result = caseMetaTypeName(metaTypeName);
+				if (result == null) result = caseVisitableCS(metaTypeName);
+				if (result == null) result = caseNameable(metaTypeName);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OCLstdlibCSTPackage.PRECEDENCE_CS:
 			{
 				PrecedenceCS precedenceCS = (PrecedenceCS)theEObject;
@@ -283,21 +258,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Lib Accumulator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Lib Accumulator CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLibAccumulatorCS(LibAccumulatorCS object) {
-		return null;
 	}
 
 	/**
@@ -347,21 +307,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Lib Iterator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Lib Iterator CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLibIteratorCS(LibIteratorCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Lib Operation CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -403,6 +348,22 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLibRootPackageCS(LibRootPackageCS object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Meta Type Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Meta Type Name</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMetaTypeName(MetaTypeName object)
+	{
 		return null;
 	}
 
@@ -600,21 +561,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTypedElementCS(TypedElementCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameter CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameter CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameterCS(ParameterCS object) {
 		return null;
 	}
 

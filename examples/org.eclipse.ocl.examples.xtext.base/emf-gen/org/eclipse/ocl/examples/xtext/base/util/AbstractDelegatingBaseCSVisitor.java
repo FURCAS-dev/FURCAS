@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.4 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: AbstractDelegatingBaseCSVisitor.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -129,6 +129,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitImportCS(object);
 	}
 
+	public R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object) {
+		return delegate.visitLambdaTypeCS(object);
+	}
+
 	public R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object) {
 		return delegate.visitLibraryCS(object);
 	}
@@ -149,6 +153,10 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitNamedElementCS(object);
 	}
 
+	public R visitNamespaceRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS object) {
+		return delegate.visitNamespaceRefCS(object);
+	}
+
 	public R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object) {
 		return delegate.visitOperationCS(object);
 	}
@@ -161,16 +169,8 @@ public abstract class AbstractDelegatingBaseCSVisitor<R, C, D extends BaseCSVisi
 		return delegate.visitParameterCS(object);
 	}
 
-	public R visitParameterizedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS object) {
-		return delegate.visitParameterizedTypeRefCS(object);
-	}
-
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
 		return delegate.visitPrimitiveTypeRefCS(object);
-	}
-
-	public R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object) {
-		return delegate.visitQualifiedTypeRefCS(object);
 	}
 
 	public R visitReferenceCS(org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS object) {

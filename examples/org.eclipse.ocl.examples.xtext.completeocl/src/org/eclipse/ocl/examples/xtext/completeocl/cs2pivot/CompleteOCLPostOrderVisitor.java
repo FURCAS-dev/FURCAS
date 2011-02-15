@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.3 2011/02/08 17:53:06 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.4 2011/02/15 10:37:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -33,10 +33,8 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.Continuation;
-import org.eclipse.ocl.examples.xtext.base.cs2pivot.SingleContinuation;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
@@ -52,18 +50,18 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 public class CompleteOCLPostOrderVisitor
 	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPostOrderVisitor>
 {
-	protected static class ConstraintCSCompletion extends SingleContinuation<ContextConstraintCS>
-	{
-		public ConstraintCSCompletion(CS2PivotConversion context, ContextConstraintCS csElement) {
-			super(context, null, null, csElement);
-		}
+//	protected static class ConstraintCSCompletion extends SingleContinuation<ContextConstraintCS>
+//	{
+//		public ConstraintCSCompletion(CS2PivotConversion context, ContextConstraintCS csElement) {
+//			super(context, null, null, csElement);
+//		}
 
-		@Override
-		public BasicContinuation<?> execute() {
-			context.visitLeft2Right(csElement);
-			return null;
-		}
-	}
+//		@Override
+//		public BasicContinuation<?> execute() {
+//			context.visitLeft2Right(csElement);
+//			return null;
+//		}
+//	}
 
 	public CompleteOCLPostOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPostOrderVisitor(context), context);
@@ -153,11 +151,11 @@ public class CompleteOCLPostOrderVisitor
 				pivotSpecification.setBodyExpression(expression);
 				context.setType(pivotSpecification, expression.getType());
 			}
-			return new ConstraintCSCompletion(context, csConstraint);
+//			return new ConstraintCSCompletion(context, csConstraint);
 		}
-		else {
+//		else {
 			return null;
-		}
+//		}
 	}
 
 	@Override
@@ -215,10 +213,10 @@ public class CompleteOCLPostOrderVisitor
 				pivotSpecification.setBodyExpression(expression);
 				context.setType(pivotSpecification, expression.getType());
 			}
-			return new ConstraintCSCompletion(context, csConstraint);
+//			return new ConstraintCSCompletion(context, csConstraint);
 		}
-		else {
+//		else {
 			return null;
-		}
+//		}
 	}
 }

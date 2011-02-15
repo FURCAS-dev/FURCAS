@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.3 2011/02/08 17:53:06 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.4 2011/02/15 10:37:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -21,12 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -153,16 +151,9 @@ public class CompleteOCLPreOrderVisitor
 		super(new EssentialOCLPreOrderVisitor(context), context);
 	}
 
-	public void resolveNamespaces(EList<Namespace> namespace2) {
-		for (Namespace namespace : namespace2) {
-			@SuppressWarnings("unused")
-			Namespace dummy = namespace;	// Resolves the proxies from the outside.
-		}
-	}
-
 	@Override
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
-		resolveNamespaces(object.getNamespace());
+		context.resolveNamespaces(object.getNamespace());
 		Type element = object.getClassifier();
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -178,14 +169,14 @@ public class CompleteOCLPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitOperationContextDeclCS(OperationContextDeclCS object) {
-		resolveNamespaces(object.getNamespace());
+		context.resolveNamespaces(object.getNamespace());
 		// Must wait till parameters have types before resolving operation name
 		return new CompleteOperationContentContinuation(context, object);
 	}
 
 	@Override
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS object) {
-		resolveNamespaces(object.getNamespace());
+		context.resolveNamespaces(object.getNamespace());
 		org.eclipse.ocl.examples.pivot.Package element = object.getPackage();
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -198,12 +189,13 @@ public class CompleteOCLPreOrderVisitor
 //		pivotElement.setNsPrefix(element.getNsPrefix());
 //		pivotElement.setNsURI(element.getNsURI());
 		context.installPivotElement(object, pivotElement);
+		context.getTypeManager().addOrphanPackage(pivotElement);
 		return new CompletePackageContentContinuation(context, object);
 	}
 
 	@Override
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS object) {
-		resolveNamespaces(object.getNamespace());
+		context.resolveNamespaces(object.getNamespace());
 		Property element = object.getProperty();
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());

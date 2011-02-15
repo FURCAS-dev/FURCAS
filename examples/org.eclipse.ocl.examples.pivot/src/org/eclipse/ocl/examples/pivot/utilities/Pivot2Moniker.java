@@ -12,15 +12,17 @@
  *
  * </copyright>
  *
- * $Id: Pivot2Moniker.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: Pivot2Moniker.java,v 1.3 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 
 public class Pivot2Moniker extends Abstract2Moniker
 {
@@ -39,13 +41,13 @@ public class Pivot2Moniker extends Abstract2Moniker
 		super(target);
 	}
 
-	public void appendTemplateArguments(List<? extends ParameterableElement> templateArguments) {
+	public void appendTemplateArguments(List<? extends ParameterableElement> templateArguments, Map<TemplateParameter, ParameterableElement> templateBindings) {
 		if (!templateArguments.isEmpty()) {
 			append(TEMPLATE_BINDING_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
 			for (ParameterableElement templateArgument : templateArguments) {
 				append(prefix);
-				appendElement(templateArgument);
+				appendElement(templateArgument, templateBindings);
 				prefix = TEMPLATE_BINDING_SEPARATOR;
 			}
 			append(TEMPLATE_BINDING_SUFFIX);

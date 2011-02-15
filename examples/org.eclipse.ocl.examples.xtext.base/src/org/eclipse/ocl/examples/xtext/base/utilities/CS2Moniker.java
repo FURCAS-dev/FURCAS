@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -35,12 +35,12 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
@@ -216,7 +216,7 @@ public class CS2Moniker
 		append(roleName);
 	}
 
-	public void appendTemplateBindingsCS(ParameterizedTypeRefCS typeRef) {
+	public void appendTemplateBindingsCS(TypedTypeRefCS typeRef) {
 		TemplateBindingCS templateBinding = typeRef.getOwnedTemplateBinding();
 		if (templateBinding != null) {
 			append(TEMPLATE_BINDING_PREFIX);

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -163,6 +163,15 @@ public interface BaseCSTFactory extends EFactory {
 	ImportCS createImportCS();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Type CS</em>'.
+	 * @generated
+	 */
+	LambdaTypeCS createLambdaTypeCS();
+
+	/**
 	 * Returns a new object of class '<em>Library CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -179,6 +188,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	ModelElementCSRef createModelElementCSRef();
+
+	/**
+	 * Returns a new object of class '<em>Namespace Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Namespace Ref CS</em>'.
+	 * @generated
+	 */
+	NamespaceRefCS createNamespaceRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Operation CS</em>'.
@@ -215,15 +233,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	PrimitiveTypeRefCS createPrimitiveTypeRefCS();
-
-	/**
-	 * Returns a new object of class '<em>Qualified Type Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Qualified Type Ref CS</em>'.
-	 * @generated
-	 */
-	QualifiedTypeRefCS createQualifiedTypeRefCS();
 
 	/**
 	 * Returns a new object of class '<em>Reference CS</em>'.

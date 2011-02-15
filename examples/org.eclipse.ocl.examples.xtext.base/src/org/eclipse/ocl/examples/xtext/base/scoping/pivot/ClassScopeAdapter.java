@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -56,7 +56,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 			unspecializedPivot = target;
 			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
 		}
-		environmentView.addNamedElements( unspecializedPivot.getOwnedOperations());
+		environmentView.addNamedElements(unspecializedPivot.getOwnedOperations());
 		environmentView.addNamedElements(unspecializedPivot.getOwnedAttributes());
 		if (!environmentView.hasFinalResult()) {
 //			if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters

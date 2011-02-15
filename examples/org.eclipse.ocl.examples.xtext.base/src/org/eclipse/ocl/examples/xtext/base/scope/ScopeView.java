@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeView.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: ScopeView.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -39,10 +39,6 @@ public interface ScopeView extends IScope
      */
     final ScopeView NULLSCOPEVIEW = new ScopeView()
     {
-		public int computeLookups(EnvironmentView environmentView) {
-			return 0;
-		}
-		
 		public void computeLookupWithParents(EnvironmentView environmentView) {
 		}
 		
@@ -90,10 +86,6 @@ public interface ScopeView extends IScope
 			return null;
 		}
 
-		public ScopeView getUnqualifiedOuterScope() {
-			return NULLSCOPEVIEW;
-		}
-
 		public IEObjectDescription getSingleElement(QualifiedName name) {
 			return null;
 		}
@@ -115,8 +107,6 @@ public interface ScopeView extends IScope
 		}
     };
 
-    int computeLookups(EnvironmentView environmentView);
-
     void computeLookupWithParents(EnvironmentView environmentView);
 
 	EObject getChild();
@@ -130,6 +120,4 @@ public interface ScopeView extends IScope
 	EObject getTarget();
 	
 	EReference getTargetReference();
-
-	ScopeView getUnqualifiedOuterScope();
 }

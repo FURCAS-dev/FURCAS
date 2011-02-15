@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
@@ -28,6 +29,7 @@ import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -68,6 +70,17 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 		return new EmptyScopeAdapter(context, pivotElement);
 	}
 	
+	@Override
+	public ScopeAdapter visitDataType(DataType pivotElement) {
+		Type behavioralType = pivotElement.getBehavioralType();
+		if (behavioralType != null) {
+			return behavioralType.accept(this);
+		}
+		else {
+			return super.visitDataType(pivotElement);
+		}
+	}
+
 	@Override
 	public ScopeAdapter visitEnumeration(org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
 		return new EnumerationScopeAdapter(context, pivotElement);
