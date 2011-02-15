@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseCSScopeAdapter.java,v 1.3 2011/02/15 10:36:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
@@ -198,11 +197,11 @@ public abstract class BaseCSScopeAdapter<CS extends MonikeredElementCS, P extend
 			String name = primitiveTypeRefCS.getName();
 			return typeManager.getLibraryType(name);
 		}
-		else if (csElement instanceof QualifiedTypeRefCS) {
-			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;
-			TypedRefCS type = qualifiedTypeRefCS.getElement();
-			return getLibraryType(type);
-		}
+//		else if (csElement instanceof QualifiedTypeRefCS) {
+//			QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)csElement;
+//			TypedRefCS type = qualifiedTypeRefCS.getElement();
+//			return getLibraryType(type);
+//		}
 		else if (csElement instanceof TypedTypeRefCS) {
 	//		TypeBindingsCS nestedBindings = bindings;
 			TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)csElement;

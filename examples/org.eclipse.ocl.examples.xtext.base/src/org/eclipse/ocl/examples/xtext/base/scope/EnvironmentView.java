@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.8 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.9 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -29,14 +29,15 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -77,7 +78,6 @@ public class EnvironmentView {
 
 	protected final TypeManager typeManager;
 	protected final EStructuralFeature reference;
-
 	protected final String name;
 
 	private final Map<String, Object> contentsByName = new HashMap<String, Object>(); // Single
@@ -214,6 +214,25 @@ public class EnvironmentView {
 		return additions;
 	}
 
+	public int computeLookups(Type type) {
+		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(typeManager, type);
+		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(null);
+		return computeLookups(innerScopeView);
+	}
+	
+	public int computeLookups(ScopeView aScope) {
+		while ((aScope != null) && !hasFinalResult()) {
+			ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
+			if (aScopeAdapter == null) {
+				break;					// The NULLSCOPEVIEW
+			}
+			@SuppressWarnings("unused")
+			EObject aTarget = aScopeAdapter.getTarget();
+			aScope = aScopeAdapter.computeLookup(this, aScope);
+		}
+		return resolveDuplicates();
+	}
+
 	public EObject getContent() {
 		assert contentsSize == 1;
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
@@ -237,24 +256,12 @@ public class EnvironmentView {
 				List<?> values = (List<?>) value;
 				value = values.get(values.size() - 1);
 			}
+			if ((templateBindings != null) && (value instanceof Operation)) {
+				Map<TemplateParameter, ParameterableElement> map = templateBindings.get(value);
+				value = typeManager.getSpecializedOperation((Operation)value, map);
+			}
 			if (value instanceof EObject) {
-				EObject eObject = (EObject) value;
-				if (templateBindings != null) {
-					Map<TemplateParameter, ParameterableElement> map = templateBindings.get(eObject);
-					if (map != null) {
-						if (eObject instanceof Iteration) {
-							Iteration unspecializedIteration = (Iteration) eObject;
-							Iteration specializedIteration = typeManager.getSpecializedOperation(unspecializedIteration, map);
-							eObject = specializedIteration;
-						}
-						else if (eObject instanceof Operation) {
-							Operation unspecializedOperation = (Operation) eObject;
-							Operation specializedOperation = typeManager.getSpecializedOperation(unspecializedOperation, map);
-							eObject = specializedOperation;
-						}
-					}
-				}
-				return EObjectDescription.create(entry.getKey(), eObject);
+				return EObjectDescription.create(entry.getKey(), (EObject) value);
 			}
 		}
 		return null;
@@ -281,14 +288,28 @@ public class EnvironmentView {
 		return name;
 	}
 
-	// public EStructuralFeature getReference() {
-	// return reference;
-	// }
+	public EStructuralFeature getReference() {
+		return reference;
+	}
 
 	public EClassifier getRequiredType() {
 		return reference != null
 			? reference.getEType()
 			: null;
+	}
+
+	public EObject getResolvedContent() {
+		EObject eObject = getContent();
+		if (eObject == null) {
+			return null;
+		}
+		if (templateBindings != null) {
+			Map<TemplateParameter, ParameterableElement> map = templateBindings.get(eObject);
+			if ((map != null) && (eObject instanceof Operation)) {
+				eObject = typeManager.getSpecializedOperation((Operation) eObject, map);
+			}
+		}
+		return eObject;
 	}
 
 	public int getSize() {

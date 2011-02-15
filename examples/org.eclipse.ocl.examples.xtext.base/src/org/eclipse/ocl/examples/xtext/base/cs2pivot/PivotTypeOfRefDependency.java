@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: PivotTypeOfRefDependency.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: PivotTypeOfRefDependency.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 
 public class PivotTypeOfRefDependency extends AbstractDependency<TypedRefCS>
 {
@@ -30,8 +30,8 @@ public class PivotTypeOfRefDependency extends AbstractDependency<TypedRefCS>
 
 	@Override
 	public boolean canExecute() {
-		if (element instanceof ParameterizedTypeRefCS) {
-			Type type = ((ParameterizedTypeRefCS)element).getPivot();
+		if (element instanceof TypedTypeRefCS) {
+			Element type = ((TypedTypeRefCS)element).getPivot();
 			return type != null;
 		}
 		Element pivot = element.getPivot();

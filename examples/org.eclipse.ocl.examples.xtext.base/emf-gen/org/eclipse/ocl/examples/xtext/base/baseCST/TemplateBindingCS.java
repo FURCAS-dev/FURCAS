@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateBindingCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
+ * $Id: TemplateBindingCS.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TemplateBindingCS extends ModelElementCS {
 	/**
 	 * Returns the value of the '<em><b>Owning Template Bindable Element</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getOwnedTemplateBinding <em>Owned Template Binding</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Template Bindable Element</em>' container reference isn't clear,
@@ -46,13 +46,13 @@ public interface TemplateBindingCS extends ModelElementCS {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Template Bindable Element</em>' container reference.
-	 * @see #setOwningTemplateBindableElement(ParameterizedTypeRefCS)
+	 * @see #setOwningTemplateBindableElement(TypedTypeRefCS)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTemplateBindingCS_OwningTemplateBindableElement()
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS#getOwnedTemplateBinding
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS#getOwnedTemplateBinding
 	 * @model opposite="ownedTemplateBinding" transient="false"
 	 * @generated
 	 */
-	ParameterizedTypeRefCS getOwningTemplateBindableElement();
+	TypedTypeRefCS getOwningTemplateBindableElement();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS#getOwningTemplateBindableElement <em>Owning Template Bindable Element</em>}' container reference.
@@ -62,7 +62,7 @@ public interface TemplateBindingCS extends ModelElementCS {
 	 * @see #getOwningTemplateBindableElement()
 	 * @generated
 	 */
-	void setOwningTemplateBindableElement(ParameterizedTypeRefCS value);
+	void setOwningTemplateBindableElement(TypedTypeRefCS value);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Parameter Substitution</b></em>' containment reference list.

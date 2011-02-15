@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -33,10 +32,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -200,8 +199,8 @@ public class ElementUtil
 	}
 
 	public static boolean isSpecialization(TemplateBindingCS csTemplateBinding) {
-		ParameterizedTypeRefCS csParameterizedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
-		Type type = csParameterizedTypeRef.getPivot();
+		TypedTypeRefCS csTypedTypeRef = csTemplateBinding.getOwningTemplateBindableElement();
+		Element type = csTypedTypeRef.getPivot();
 		for (TemplateParameterSubstitutionCS csTemplateParameterSubstitution : csTemplateBinding.getOwnedParameterSubstitution()) {
 			ParameterableElementCS ownedActualParameter = csTemplateParameterSubstitution.getOwnedActualParameter();
 			if (ownedActualParameter instanceof WildcardTypeRefCS) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.4 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
@@ -67,23 +66,9 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		this.containmentFeature = scopeView.getContainmentFeature();
 		this.targetReference = scopeView.getTargetReference();
 	}
-	
-	public final int computeLookups(EnvironmentView environmentView) {
-		ScopeView aScope = this;
-		while ((aScope != null) && !environmentView.hasFinalResult()) {
-			ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
-			if (aScopeAdapter == null) {
-				break;					// The NULLSCOPEVIEW
-			}
-			@SuppressWarnings("unused")
-			EObject aTarget = aScopeAdapter.getTarget();
-			aScope = aScopeAdapter.computeLookup(environmentView, aScope);
-		}
-		return environmentView.resolveDuplicates();
-	}
 
 	public void computeLookupWithParents(EnvironmentView environmentView) {
-		// FIXME THis is not a usefully distinct functionality
+		// FIXME This is not a usefully distinct functionality
 		ScopeView outerScope = scopeAdapter.computeLookup(environmentView, this);
 		if (outerScope != null) {
 			if (!environmentView.hasFinalResult()) {
@@ -120,7 +105,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
 		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
-		int size = computeLookups(environmentView);
+		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
 		}
@@ -138,7 +123,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
 		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
-		int size = computeLookups(environmentView);
+		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
 		}
@@ -170,17 +155,6 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	private TypeManager getTypeManager() {
 		return scopeAdapter.getTypeManager();
-	}
-
-	public ScopeView getUnqualifiedOuterScope() {
-		for (ScopeAdapter parent = scopeAdapter.getParent(); parent != null; parent = parent.getParent()) {
-			EObject target = parent.getTarget();
-			if (!(target instanceof QualifiedRefCS)) {
-				EStructuralFeature eContainingFeature = target.eContainingFeature();
-				return new BaseScopeView(parent, target, eContainingFeature, targetReference);
-			}
-		}
-		return ScopeView.NULLSCOPEVIEW;
 	}
 
 	@Override

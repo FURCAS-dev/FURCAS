@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: VisitableCS.java,v 1.4 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: VisitableCS.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 

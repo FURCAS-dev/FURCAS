@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
@@ -56,6 +55,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
@@ -193,11 +193,6 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	@Override
-	public Continuation<?> visitParameterizedTypeRefCS(ParameterizedTypeRefCS csParameterizedTypeRef) {
-		return null;
-	}
-
-	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
 		return null;
 	}
@@ -244,6 +239,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 		Type pivotType = ownedType != null ? PivotUtil.getPivot(Type.class, ownedType) : null;
 		context.setType(pivotElement, pivotType);
 		context.refreshPivotList(Constraint.class, pivotElement.getOwnedRules(), csTypedElement.getOwnedConstraint());
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTypedTypeRefCS(TypedTypeRefCS object) {
 		return null;
 	}
 }

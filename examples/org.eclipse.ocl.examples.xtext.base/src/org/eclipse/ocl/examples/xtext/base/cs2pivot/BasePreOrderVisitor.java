@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -21,13 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -49,15 +47,13 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
@@ -68,7 +64,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.impl.QualifiedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.TypedTypeRefCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.AbstractExtendingBaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
@@ -116,6 +111,48 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 	}
 	
+	protected static class LambdaContinuation extends SingleContinuation<LambdaTypeCS>
+	{
+		public LambdaContinuation(CS2PivotConversion context, LambdaTypeCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return false;
+			}
+			if (csElement.getOwnedContextType().getPivot() == null) {
+				return false;
+			}
+			if (csElement.getOwnedResultType().getPivot() == null) {
+				return false;
+			}
+			for (TypedRefCS csParameterType : csElement.getOwnedParameterType()) {
+				if (csParameterType.getPivot() == null) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			LambdaType pivotLambdaType = context.refreshNamedElement(LambdaType.class, PivotPackage.Literals.LAMBDA_TYPE, csElement);
+			pivotLambdaType.setContextType(PivotUtil.getPivot(Type.class, csElement.getOwnedContextType()));
+			pivotLambdaType.setResultType(PivotUtil.getPivot(Type.class, csElement.getOwnedResultType()));
+			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterType();
+			List<Type> newPivotParameterTypes = new ArrayList<Type>();
+			for (TypedRefCS csParameterType : csParameterTypes) {
+				Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
+				newPivotParameterTypes.add(parameterType);
+			}
+			context.refreshList(pivotLambdaType.getParameterTypes(), newPivotParameterTypes);
+			context.getTypeManager().addOrphanType(pivotLambdaType);
+			return null;
+		}
+	}
+	
 	public static class OperationContinuation<T extends OperationCS> extends SingleContinuation<T>
 	{
 		public OperationContinuation(CS2PivotConversion context, T csElement) {
@@ -154,55 +191,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
 			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
 			return null;
-		}
-	}
-	
-	protected static class QualifiedTypeRefElementContinuation extends SingleContinuation<QualifiedTypeRefCS>
-	{
-		public QualifiedTypeRefElementContinuation(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
-			super(context, null, null, csElement, new PivotDependency(csElement.getElement()));
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			Type type = PivotUtil.getPivot(Type.class, csElement.getElement());
-			context.reusePivotElement(csElement, type);
-			return null;
-		}
-	}
-	
-	protected static class QualifiedTypeRefNamespaceContinuation extends SingleContinuation<QualifiedTypeRefCS>
-	{
-		public QualifiedTypeRefNamespaceContinuation(CS2PivotConversion context, QualifiedTypeRefCS csElement) {
-			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
-		}
-
-		@Override
-		public boolean canExecute() {
-			if (!super.canExecute()) {
-				return false;
-			}
-			EObject csContainer = csElement.eContainer();
-			if (csContainer instanceof QualifiedTypeRefCSImpl) {
-				Namespace namespace = ((QualifiedTypeRefCSImpl)csContainer).basicGetNamespace();
-				if (namespace.eIsProxy()) {
-					return false;
-				}
-			}
-			return true;
-		}
-
-		@Override
-		public BasicContinuation<?> execute() {
-			Namespace namespace = csElement.getNamespace();
-			if (namespace.eIsProxy()) {
-				InvalidType badType = context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedNamespaceName, ElementUtil.getText(csElement));
-				csElement.setNamespace(badType);
-				return null;
-			}
-			else {
-				return new QualifiedTypeRefElementContinuation(context, csElement);
-			}
 		}
 	}
 
@@ -251,12 +239,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			if (!super.canExecute()) {
 				return false;
 			}
-			ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
-			if (csParameterizedTypeRef.eContainer() instanceof QualifiedTypeRefCSImpl) {	// FIXME Cleanup with a ResolvableElement interface
-				if (((QualifiedTypeRefCSImpl)csParameterizedTypeRef.eContainer()).basicGetNamespace().eIsProxy()) {
-					return false;
-				}
-			}
+			TypedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();
 			if (csParameterizedTypeRef instanceof TypedTypeRefCSImpl) {
 				Type unspecializedPivotElement = ((TypedTypeRefCSImpl)csParameterizedTypeRef).basicGetType();
 				if (unspecializedPivotElement == null) {
@@ -282,8 +265,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		public BasicContinuation<?> execute() {
 			boolean isSpecialization = ElementUtil.isSpecialization(csElement);
 			if (isSpecialization) {
-				ParameterizedTypeRefCS csParameterizedTypeRef = csElement.getOwningTemplateBindableElement();				
-				TypedTypeRefCS csTypedTypeRef = (TypedTypeRefCS)csParameterizedTypeRef;
+				TypedTypeRefCS csTypedTypeRef = csElement.getOwningTemplateBindableElement();				
 				@SuppressWarnings("unused")
 				Type pivotType = (Type) context.specializeTemplates(csTypedTypeRef);
 			}
@@ -356,8 +338,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			@Override
 			public boolean canExecute() {
 				boolean isSpecialization = false;
-				ParameterizedTypeRefCS csParameterizedTypeRef = element.getOwningTemplateBindableElement();
-				Type type = csParameterizedTypeRef.getPivot();
+				TypedTypeRefCS csTypedTypeRef = element.getOwningTemplateBindableElement();
+				Element type = csTypedTypeRef.getPivot();
 				if (type == null) {
 					return false;
 				}
@@ -391,9 +373,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			if (csTemplateBinding == null) {
 				return new Dependency[] {typeDependency};
 			}
-			else if (csTemplateBinding.getOwningTemplateBindableElement() instanceof QualifiedRefCS) {
-				return new Dependency[] {typeDependency};
-			}
 			else {
 				return new Dependency[] {typeDependency, new TemplateBindingPivotDependency(csTemplateBinding)};
 			}
@@ -408,19 +387,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			if (!super.canExecute()) {
 				return false;
 			}
-			EObject csContainer = csElement.eContainer();
-			if (csContainer instanceof QualifiedTypeRefCSImpl) {
-				Namespace namespace = ((QualifiedTypeRefCSImpl)csContainer).basicGetNamespace();
-				if (namespace.eIsProxy()) {
-					return false;
-				}
-			}
+			context.resolveNamespaces(csElement.getNamespace());
 			return true;
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Type pivotType = csElement.getType();
+			Element pivotType = csElement.getType();
 			if (pivotType.eIsProxy()) {
 				Type badType = context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement);
 				csElement.setType(badType);
@@ -577,6 +550,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
+	public Continuation<?> visitLambdaTypeCS(LambdaTypeCS csLambdaType) {
+		return new LambdaContinuation(context, csLambdaType);
+	}
+
+	@Override
 	public Continuation<?> visitModelElementCS(ModelElementCS csModelElement) {
 		return null;
 	}
@@ -612,11 +590,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	@Override
-	public Continuation<?> visitQualifiedTypeRefCS(QualifiedTypeRefCS csQualifiedTypeRef) {
-		return new QualifiedTypeRefNamespaceContinuation(context, csQualifiedTypeRef);
-	}
-
-	@Override
 	public Continuation<?> visitReferenceCSRef(ReferenceCSRef object) {
 		return null;
 	}
@@ -648,9 +621,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	public Continuation<?> visitTemplateBindingCS(TemplateBindingCS csTemplateBinding) {
 		if (csTemplateBinding.getOwnedParameterSubstitution().isEmpty()) {
 			return null;
-		}
-		else if (csTemplateBinding.getOwningTemplateBindableElement() instanceof QualifiedRefCS) {
-			return null;		// Only leaf bindings need specialization (of all hierarchical bindings)
 		}
 		else {
 			return new TemplateBindingContinuation(context, csTemplateBinding);

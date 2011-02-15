@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullBaseCSVisitor.java,v 1.4 2011/02/11 20:59:26 ewillink Exp $
+ * $Id: AbstractNullBaseCSVisitor.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -109,6 +109,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitLambdaTypeCS(org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS object) {
+		return null;
+	}
+
 	public R visitLibraryCS(org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS object) {
 		return null;
 	}
@@ -129,6 +133,10 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
+	public R visitNamespaceRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS object) {
+		return null;
+	}
+
 	public R visitOperationCS(org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS object) {
 		return null;
 	}
@@ -141,15 +149,7 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 		return null;
 	}
 
-	public R visitParameterizedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS object) {
-		return null;
-	}
-
 	public R visitPrimitiveTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS object) {
-		return null;
-	}
-
-	public R visitQualifiedTypeRefCS(org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS object) {
 		return null;
 	}
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: EnumerationScopeAdapter.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -29,6 +29,9 @@ public class EnumerationScopeAdapter extends AbstractPivotScopeAdapter<org.eclip
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		environmentView.addElements(target.getOwnedLiterals());
+		if (!environmentView.hasFinalResult()) {
+			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType(), scopeView);
+		}	// FIXME Use ClassScopeAdapter.addInheritedContents consistently
 		return scopeView.getOuterScope();
 	}
 }

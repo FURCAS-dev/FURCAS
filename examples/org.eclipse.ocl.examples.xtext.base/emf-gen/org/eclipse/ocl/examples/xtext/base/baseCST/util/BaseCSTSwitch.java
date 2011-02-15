@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -41,20 +41,19 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.QualifiedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
@@ -257,7 +256,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				CollectionTypeRefCS collectionTypeRefCS = (CollectionTypeRefCS)theEObject;
 				T result = caseCollectionTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypedTypeRefCS(collectionTypeRefCS);
-				if (result == null) result = caseParameterizedTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypedRefCS(collectionTypeRefCS);
 				if (result == null) result = caseTypeRefCS(collectionTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(collectionTypeRefCS);
@@ -402,6 +400,24 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.LAMBDA_TYPE_CS:
+			{
+				LambdaTypeCS lambdaTypeCS = (LambdaTypeCS)theEObject;
+				T result = caseLambdaTypeCS(lambdaTypeCS);
+				if (result == null) result = caseNamedElementCS(lambdaTypeCS);
+				if (result == null) result = caseTypedRefCS(lambdaTypeCS);
+				if (result == null) result = caseTemplateableElementCS(lambdaTypeCS);
+				if (result == null) result = caseNameable(lambdaTypeCS);
+				if (result == null) result = caseTypeRefCS(lambdaTypeCS);
+				if (result == null) result = caseModelElementCS(lambdaTypeCS);
+				if (result == null) result = caseParameterableElementCS(lambdaTypeCS);
+				if (result == null) result = caseMonikeredElementCS(lambdaTypeCS);
+				if (result == null) result = caseElementCS(lambdaTypeCS);
+				if (result == null) result = casePivotable(lambdaTypeCS);
+				if (result == null) result = caseVisitableCS(lambdaTypeCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.LIBRARY_CS:
 			{
 				LibraryCS libraryCS = (LibraryCS)theEObject;
@@ -474,6 +490,15 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case BaseCSTPackage.NAMESPACE_REF_CS:
+			{
+				NamespaceRefCS namespaceRefCS = (NamespaceRefCS)theEObject;
+				T result = caseNamespaceRefCS(namespaceRefCS);
+				if (result == null) result = caseElementCS(namespaceRefCS);
+				if (result == null) result = caseVisitableCS(namespaceRefCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case BaseCSTPackage.OPERATION_CS:
 			{
 				OperationCS operationCS = (OperationCS)theEObject;
@@ -533,21 +558,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case BaseCSTPackage.PARAMETERIZED_TYPE_REF_CS:
-			{
-				ParameterizedTypeRefCS parameterizedTypeRefCS = (ParameterizedTypeRefCS)theEObject;
-				T result = caseParameterizedTypeRefCS(parameterizedTypeRefCS);
-				if (result == null) result = caseTypedRefCS(parameterizedTypeRefCS);
-				if (result == null) result = caseTypeRefCS(parameterizedTypeRefCS);
-				if (result == null) result = caseParameterableElementCS(parameterizedTypeRefCS);
-				if (result == null) result = caseMonikeredElementCS(parameterizedTypeRefCS);
-				if (result == null) result = caseModelElementCS(parameterizedTypeRefCS);
-				if (result == null) result = caseElementCS(parameterizedTypeRefCS);
-				if (result == null) result = casePivotable(parameterizedTypeRefCS);
-				if (result == null) result = caseVisitableCS(parameterizedTypeRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case BaseCSTPackage.PRIMITIVE_TYPE_REF_CS:
 			{
 				PrimitiveTypeRefCS primitiveTypeRefCS = (PrimitiveTypeRefCS)theEObject;
@@ -562,34 +572,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				if (result == null) result = caseElementCS(primitiveTypeRefCS);
 				if (result == null) result = casePivotable(primitiveTypeRefCS);
 				if (result == null) result = caseVisitableCS(primitiveTypeRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.QUALIFIED_REF_CS:
-			{
-				QualifiedRefCS<?> qualifiedRefCS = (QualifiedRefCS<?>)theEObject;
-				T result = caseQualifiedRefCS(qualifiedRefCS);
-				if (result == null) result = caseModelElementCS(qualifiedRefCS);
-				if (result == null) result = caseElementCS(qualifiedRefCS);
-				if (result == null) result = casePivotable(qualifiedRefCS);
-				if (result == null) result = caseVisitableCS(qualifiedRefCS);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.QUALIFIED_TYPE_REF_CS:
-			{
-				QualifiedTypeRefCS qualifiedTypeRefCS = (QualifiedTypeRefCS)theEObject;
-				T result = caseQualifiedTypeRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseParameterizedTypeRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseQualifiedRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseTypedRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseTypeRefCS(qualifiedTypeRefCS);
-				if (result == null) result = caseParameterableElementCS(qualifiedTypeRefCS);
-				if (result == null) result = caseMonikeredElementCS(qualifiedTypeRefCS);
-				if (result == null) result = caseModelElementCS(qualifiedTypeRefCS);
-				if (result == null) result = caseElementCS(qualifiedTypeRefCS);
-				if (result == null) result = casePivotable(qualifiedTypeRefCS);
-				if (result == null) result = caseVisitableCS(qualifiedTypeRefCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -828,7 +810,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 			{
 				TypedTypeRefCS typedTypeRefCS = (TypedTypeRefCS)theEObject;
 				T result = caseTypedTypeRefCS(typedTypeRefCS);
-				if (result == null) result = caseParameterizedTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypedRefCS(typedTypeRefCS);
 				if (result == null) result = caseTypeRefCS(typedTypeRefCS);
 				if (result == null) result = caseParameterableElementCS(typedTypeRefCS);
@@ -1135,6 +1116,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lambda Type CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lambda Type CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLambdaTypeCS(LambdaTypeCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Library CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1226,6 +1223,22 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Namespace Ref CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Namespace Ref CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamespaceRefCS(NamespaceRefCS object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operation CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1286,21 +1299,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameterized Type Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameterized Type Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameterizedTypeRefCS(ParameterizedTypeRefCS object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Primitive Type Ref CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1312,36 +1310,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePrimitiveTypeRefCS(PrimitiveTypeRefCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Qualified Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <E extends ElementCS> T caseQualifiedRefCS(QualifiedRefCS<E> object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Qualified Type Ref CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Qualified Type Ref CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQualifiedTypeRefCS(QualifiedTypeRefCS object) {
 		return null;
 	}
 

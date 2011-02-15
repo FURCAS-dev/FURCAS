@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.3 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.4 2011/02/15 10:36:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -56,7 +56,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
-				environmentView.addNamedElement(typeManager.getBagTypeType());
+				environmentView.addNamedElement(typeManager.getBagTypeType());			// FIXME Are these necessary?				
 				environmentView.addNamedElement(typeManager.getCollectionTypeType());
 				environmentView.addNamedElement(typeManager.getOrderedSetTypeType());
 				environmentView.addNamedElement(typeManager.getSequenceTypeType());
