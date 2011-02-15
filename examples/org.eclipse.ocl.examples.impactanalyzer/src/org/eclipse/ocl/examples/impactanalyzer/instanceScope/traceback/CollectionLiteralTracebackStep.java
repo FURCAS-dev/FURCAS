@@ -19,10 +19,10 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
 

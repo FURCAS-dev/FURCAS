@@ -31,9 +31,9 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 
 

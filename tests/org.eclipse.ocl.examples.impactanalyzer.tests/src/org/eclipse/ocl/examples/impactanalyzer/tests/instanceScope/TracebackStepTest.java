@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
-import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
+import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.Test;
 
 import data.classes.ClassesFactory;

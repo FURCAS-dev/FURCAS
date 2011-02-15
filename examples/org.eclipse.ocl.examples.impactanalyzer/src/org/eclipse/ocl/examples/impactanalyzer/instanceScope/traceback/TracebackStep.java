@@ -14,9 +14,9 @@ package org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 
 

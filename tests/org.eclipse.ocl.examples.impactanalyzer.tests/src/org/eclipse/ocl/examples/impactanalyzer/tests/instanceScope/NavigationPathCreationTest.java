@@ -25,14 +25,14 @@ import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
-import org.eclipse.ocl.examples.impactanalyzer.impl.OCLFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.PathCache;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.Test;
 
 

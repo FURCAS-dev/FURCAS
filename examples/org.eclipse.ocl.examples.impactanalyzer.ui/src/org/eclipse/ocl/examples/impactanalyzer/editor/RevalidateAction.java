@@ -37,7 +37,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ui.PlatformUI;
 
 
