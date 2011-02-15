@@ -79,6 +79,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
+    private final OCLExpression expression;
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
@@ -118,6 +119,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
         checkConstructorArgs(expression, exprContext, filterSynthesizer);
         context = exprContext;
         this.oclFactory = oclFactory;
+        this.expression = expression;
         partialEvaluatorForAllInstancesDeltaPropagation = partialEvaluator;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
@@ -215,16 +217,8 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
         } else {
             resultCollection = new HashSet<EObject>();
         }
-        TracebackCache cacheForNavigationSteps;
-        org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cacheForTracebackSteps;
-        if (configuration.isTracebackStepISAActive()) {
-            cacheForTracebackSteps = new org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache(
-                    configuration, tracebackStepCache.getUnusedEvaluationRequestFactory());
-            cacheForNavigationSteps = null;
-        } else {
-            cacheForNavigationSteps = new TracebackCache();
-            cacheForTracebackSteps = null;
-        }
+        TracebackCache cacheForNavigationSteps = createNavigationStepCache();
+        org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cacheForTracebackSteps = createTracebackStepCache();
         for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
             for (AnnotatedEObject sourceElement : getSourceElement(event, attributeOrAssociationEndCall)) {
                 // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we
@@ -247,6 +241,61 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
             }
         }
         return resultCollection;
+    }
+
+	private org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache createTracebackStepCache() {
+		org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cacheForTracebackSteps;
+        if (configuration.isTracebackStepISAActive()) {
+            cacheForTracebackSteps = new org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache(
+                    configuration, tracebackStepCache.getUnusedEvaluationRequestFactory());
+        } else {
+            cacheForTracebackSteps = null;
+        }
+		return cacheForTracebackSteps;
+	}
+
+	private TracebackCache createNavigationStepCache() {
+		TracebackCache cacheForNavigationSteps;
+        if (configuration.isTracebackStepISAActive()) {
+            cacheForNavigationSteps = null;
+        } else {
+            cacheForNavigationSteps = new TracebackCache();
+        }
+		return cacheForNavigationSteps;
+	}
+
+	/**
+	 * Determines a superset of the set of context objects for which the overall
+	 * {@link #expression} managed by this instance scope analysis results in
+	 * <code>evaluationResult</code>. The result is always a valid collection,
+	 * never <code>null</code>, but possibly empty.
+	 * 
+	 * @param evaluationResult
+	 *            has to be a non-<code>null</code> {@link EObject} because
+	 *            backwards navigation is not easily possible for
+	 *            primitive-typed values and is impossible from
+	 *            <code>null</code> values for now.
+	 */
+    public Collection<EObject> getContextObjects(EObject evaluationResult) {
+        Iterable<AnnotatedEObject> annotatedResults;
+		AnnotatedEObject startObject = createStartObject(evaluationResult);
+		if (configuration.isTracebackStepISAActive()) {
+	        TracebackCache cache = createNavigationStepCache();
+	        NavigationStep step = getNavigationStepsToSelfForExpression(
+	                expression, context);
+	        Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(startObject);
+	        annotatedResults = step.navigate(sourceElementAsSet, cache, /* notification */ null);
+		} else {
+			org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cache = createTracebackStepCache();
+	        TracebackStep step = getTracebackStepForExpression(expression, context);
+	        annotatedResults = step.traceback(startObject,
+	        		/* pending unused evaluation requests */ null, cache, /* notification */ null);
+		}
+		Set<EObject> result = new HashSet<EObject>();
+		for (AnnotatedEObject annotatedResult : annotatedResults) {
+			result.add(annotatedResult.getAnnotatedObject());
+		}
+		return result;
     }
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
@@ -522,7 +571,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
         // also see the ASCII arts in AssociationEndCallExpTracer.traceback
         if (attributeOrAssociationEndCall instanceof PropertyCallExp) {
             if (sourceType.isInstance(changeEvent.getNotifier())) {
-                result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
+                result.add(createStartObject((EObject) changeEvent.getNotifier()));
             }
         } else {
 	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
@@ -530,6 +579,10 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
 	}
         return result;
     }
+
+	private AnnotatedEObject createStartObject(EObject eObject) {
+		return new AnnotatedEObject(eObject, "<start>");
+	}
 
     protected Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
         Collection<Object> result = new HashSet<Object>();

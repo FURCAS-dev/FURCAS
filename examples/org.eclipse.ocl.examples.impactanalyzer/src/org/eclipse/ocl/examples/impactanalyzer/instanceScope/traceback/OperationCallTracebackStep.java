@@ -164,14 +164,33 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         }
     }
 
+	/**
+	 * @param changeEvent
+	 *            if not <code>null</code>, and the event has a non-
+	 *            <code>null</code> {@link Notification#getNotifier() notifier},
+	 *            this notifier will be used as the lookup context in case an
+	 *            <code>allInstances</code> operation call needs to be traced
+	 *            back by computing all context instances of the overall
+	 *            expression; otherwise, the <code>source</code> object will be
+	 *            used as the lookup context for <code>allInstances</code>
+	 *            lookup
+	 */
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+            org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache tracebackCache,
+            Notification changeEvent) {
         OperationCallExpKeyedSet result;
         if (allInstancesClass != null) {
             FlatSet preResult = new FlatSet();
-            for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
-                    oppositeEndFinder)) {
+            Notifier allInstancesLookupContext;
+            if (changeEvent != null && changeEvent.getNotifier() != null) {
+            	allInstancesLookupContext = (Notifier) changeEvent.getNotifier();
+            } else {
+            	allInstancesLookupContext = source.getAnnotatedObject();
+            }
+            for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances(
+            		allInstancesLookupContext, allInstancesClass, oppositeEndFinder)) {
                 preResult.add(annotateEObject(source, roi));
             }
             result = preResult;
