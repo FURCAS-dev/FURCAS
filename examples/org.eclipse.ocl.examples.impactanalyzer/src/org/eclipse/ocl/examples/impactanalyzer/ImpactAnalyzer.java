@@ -59,13 +59,13 @@ public interface ImpactAnalyzer {
 
 	/**
 	 * For a change notification <tt>event</tt> calculates a superset of the set of context objects
-	 * for which <tt>expression</tt> may have changed its value due to the changed indicated by the event.
-	 * As implies by "superset," the result set may contain context elements for which the expression's
+	 * for which <tt>expression</tt> may have changed its value due to the change indicated by the event.
+	 * As implied by "superset," the result set may contain context elements for which the expression's
 	 * value may happen to not have changed.
 	 * 
 	 * @param event
 	 *            the event to calculate for
-	 * @return all relevant context objects
+	 * @return all relevant context objects; always a valid collection, never <code>null</code>
 	 */
 	Collection<EObject> getContextObjects(Notification event);
 }
