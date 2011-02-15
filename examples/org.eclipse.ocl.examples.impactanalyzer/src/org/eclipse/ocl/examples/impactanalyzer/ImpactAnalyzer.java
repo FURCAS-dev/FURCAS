@@ -68,4 +68,19 @@ public interface ImpactAnalyzer {
 	 * @return all relevant context objects; always a valid collection, never <code>null</code>
 	 */
 	Collection<EObject> getContextObjects(Notification event);
+
+	/**
+	 * Determines a superset of the set of context objects for which the overall
+	 * {@link #expression} managed by this instance scope analysis results in
+	 * <code>evaluationResult</code> or a collection containing
+	 * <code>evaluationResult</code>. The result is always a valid collection,
+	 * never <code>null</code>, but possibly empty.
+	 * 
+	 * @param evaluationResult
+	 *            has to be a non-<code>null</code> {@link EObject} because
+	 *            backwards navigation is not easily possible for
+	 *            primitive-typed values and is impossible from
+	 *            <code>null</code> values for now.
+	 */
+    public Collection<EObject> getContextObjects(EObject evaluationResult);
 }

@@ -267,6 +267,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
 	/**
 	 * Determines a superset of the set of context objects for which the overall
 	 * {@link #expression} managed by this instance scope analysis results in
+	 * <code>evaluationResult</code> or a collection containing
 	 * <code>evaluationResult</code>. The result is always a valid collection,
 	 * never <code>null</code>, but possibly empty.
 	 * 
@@ -280,16 +281,16 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
         Iterable<AnnotatedEObject> annotatedResults;
 		AnnotatedEObject startObject = createStartObject(evaluationResult);
 		if (configuration.isTracebackStepISAActive()) {
+			org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cache = createTracebackStepCache();
+	        TracebackStep step = getTracebackStepForExpression(expression, context);
+	        annotatedResults = step.traceback(startObject,
+	        		/* pending unused evaluation requests */ null, cache, /* notification */ null);
+		} else {
 	        TracebackCache cache = createNavigationStepCache();
 	        NavigationStep step = getNavigationStepsToSelfForExpression(
 	                expression, context);
 	        Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(startObject);
 	        annotatedResults = step.navigate(sourceElementAsSet, cache, /* notification */ null);
-		} else {
-			org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache cache = createTracebackStepCache();
-	        TracebackStep step = getTracebackStepForExpression(expression, context);
-	        annotatedResults = step.traceback(startObject,
-	        		/* pending unused evaluation requests */ null, cache, /* notification */ null);
 		}
 		Set<EObject> result = new HashSet<EObject>();
 		for (AnnotatedEObject annotatedResult : annotatedResults) {
