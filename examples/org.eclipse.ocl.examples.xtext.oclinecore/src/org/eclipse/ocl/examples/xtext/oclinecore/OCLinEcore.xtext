@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore.xtext,v 1.8 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcore.xtext,v 1.9 2011/02/15 10:36:44 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -272,12 +272,6 @@ PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
 	name=PrimitiveTypeIdentifier
 ;
 
-QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	namespace=[pivot::Namespace|UnrestrictedName]
-	(ownedTemplateBinding=TemplateBindingCS)?
-	'::' element=TypedRefCS
-;
-
 ReferenceCS returns base::ReferenceCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'property' name=UnrestrictedName
@@ -339,10 +333,12 @@ TypeRefCS returns base::TypeRefCS:
 ;
 
 TypedRefCS returns base::TypedRefCS:
-	QualifiedTypeRefCS | PrimitiveTypeRefCS /*| CollectionTypeRefCS*/ | TypedTypeRefCS
+	PrimitiveTypeRefCS /*| CollectionTypeRefCS*/ | TypedTypeRefCS
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
+//	(namespace+=NamespaceRefCS '::')*
+	(namespace+=[pivot::Namespace|UnrestrictedName] '::')*
 	type=[pivot::Type|UnrestrictedName]
 	(ownedTemplateBinding=TemplateBindingCS)?
 ;

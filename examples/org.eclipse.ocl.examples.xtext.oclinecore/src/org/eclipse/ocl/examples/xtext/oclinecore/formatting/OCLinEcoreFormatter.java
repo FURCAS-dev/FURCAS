@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.6 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.7 2011/02/15 10:36:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
@@ -34,7 +34,6 @@ import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAcces
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ParameterCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.PostconditionConstraintCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.PreconditionConstraintCSElements;
-import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.QualifiedTypeRefCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.ReferenceCSElements;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreGrammarAccess.TemplateSignatureCSElements;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
@@ -207,10 +206,6 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 			c.setNoSpace().around(a.getCommaKeyword_2_1_1());
 			setBraces(c, a.getLeftCurlyBracketKeyword_3_0(), a.getRightCurlyBracketKeyword_3_2());
 		    c.setIndentation(a.getLeftSquareBracketKeyword_1_2_0(), a.getRightSquareBracketKeyword_1_2_2());
-	    }
-	    {
-	    	QualifiedTypeRefCSElements a = f.getQualifiedTypeRefCSAccess();
-		    c.setNoSpace().around(a.getColonColonKeyword_2());
 	    }
 	    {
 			TemplateSignatureCSElements a = f.getTemplateSignatureCSAccess();
