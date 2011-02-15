@@ -507,6 +507,51 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
     }
 
     /**
+     * The ->select lets only classes pass whose name is 'Bob'. Therefore, a class named 'Alice'
+     * should not be produced by any context.
+     */
+    @Test
+    public void testFindContextElementsForResultForAllInstances() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
+                .getBodyExpression();
+        r.getContents().add(exp);
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Alice");
+        r.getContents().add(cl1);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd.setClazz(cl1);
+        r.getContents().add(ctd);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        Collection<EObject> contexts = ia.getContextObjects(cl1);
+        assertTrue(contexts.isEmpty());
+    }
+
+    /**
+     * The ->select lets only classes pass whose name is 'Bob'. Therefore, a class named 'Bob'
+     * should be produced by all possible contexts
+     */
+    @Test
+    public void testFindAllContextElementsForResultForAllInstances() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
+                .getBodyExpression();
+        r.getContents().add(exp);
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Bob");
+        r.getContents().add(cl1);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd.setClazz(cl1);
+        r.getContents().add(ctd);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        Collection<EObject> contexts = ia.getContextObjects(cl1);
+        assertTrue(!contexts.isEmpty());
+        assertTrue(contexts.contains(ctd));
+    }
+
+    /**
      * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
      */
     @Test
