@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -28,6 +28,8 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -37,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -335,7 +338,15 @@ public class ValueFactoryImpl implements ValueFactory
 			return ((RealValue)value).asDouble();
 		}
 		else {
-			return value.asObject();
+			Object object = value.asObject();
+			if (object instanceof PivotObjectImpl) {
+				EObject target = ((PivotObjectImpl)object).getTarget();
+				if (target instanceof EEnumLiteral) {
+					return ((EEnumLiteral)target).getInstance();
+				}
+				return target;
+			}
+			return object;
 		}
 	}
 

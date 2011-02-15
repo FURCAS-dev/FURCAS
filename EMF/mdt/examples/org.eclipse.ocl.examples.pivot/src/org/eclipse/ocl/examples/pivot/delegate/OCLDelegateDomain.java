@@ -12,17 +12,16 @@
  * 
  * </copyright>
  *
- * $Id: OCLDelegateDomain.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLDelegateDomain.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -62,7 +61,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * <p>
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
-	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_LPG = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	public static final String OCL_DELEGATE_URI_PIVOT = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL/Pivot"; //$NON-NLS-1$
 
 	protected final String uri;
 	protected final EPackage ePackage;
@@ -83,16 +83,19 @@ public class OCLDelegateDomain implements DelegateDomain
 		this.uri = delegateURI;
 		this.ePackage = ePackage;
 		Resource res = ePackage.eResource();
-		ResourceSet resourceSet = res.getResourceSet();
-		PivotEnvironmentFactory envFactory;
-		if (res != null && resourceSet != null) {
-			// it's a dynamic package. Use the local package registry
-			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-			envFactory = new PivotEnvironmentFactory(packageRegistry, new TypeManager());
-			DelegateResourceAdapter.getAdapter(res);
-		} else {
+		PivotEnvironmentFactory envFactory = null;
+		if (res != null) {
+			ResourceSet resourceSet = res.getResourceSet();
+			if (resourceSet != null) {
+				// it's a dynamic package. Use the local package registry
+				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+				envFactory = new PivotEnvironmentFactory(packageRegistry, null);
+				DelegateResourceAdapter.getAdapter(res);
+			}
+		}
+		if (envFactory == null) {
 			// the shared instance uses the static package registry
-			envFactory = PivotEnvironmentFactory.INSTANCE;
+			envFactory = PivotEnvironmentFactory.getGlobalRegistryInstance();
 		}
 		this.ocl = OCL.newInstance(envFactory);
 	}

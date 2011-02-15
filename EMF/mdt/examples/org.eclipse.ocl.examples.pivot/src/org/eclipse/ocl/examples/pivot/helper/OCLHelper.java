@@ -12,25 +12,20 @@
  *
  * </copyright>
  *
- * $Id: OCLHelper.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: OCLHelper.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.OCLBase;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.helper.Choice;
-import org.eclipse.ocl.helper.ConstraintKind;
-
 
 /**
  * A utility object that provides OCL syntax completion suggestions for OCL
@@ -79,7 +74,7 @@ public interface OCLHelper {
 	 * 
 	 * @return my context classifier (never <code>null</code>)
 	 */
-	Type getContextClassifier();
+//	Type getContextClassifier();
 	
 	/**
 	 * Sets the operation context of the OCL expression for which syntax or
@@ -101,7 +96,7 @@ public interface OCLHelper {
 	 * @return my context operation, or <code>null</code> if there is only a
 	 *     classifier or attribute context
 	 */
-	Operation getContextOperation();
+//	Operation getContextOperation();
 	
 	/**
 	 * Sets the attribute context of the OCL expression for which syntax or
@@ -123,7 +118,7 @@ public interface OCLHelper {
 	 * @return my context attribute, or <code>null</code> if there is only a
 	 *     classifier or operation context
 	 */
-	Property getContextAttribute();
+//	Property getContextAttribute();
     
     /**
      * Sets the classifier context implied by the specified instance.  The
@@ -376,23 +371,6 @@ public interface OCLHelper {
 	 * @throws ParserException if the <code>expression</code> fails to parse
 	 */
 //	Property defineAttribute(String defExpression) throws ParserException;
-    
-    /**
-     * Obtains syntax completion choices for the specified fragment of an OCL
-     * expression given that it is intended for a constraint of the specified
-     * kind.  The choices returned (if any) will be appropriate for
-     * appending to the end of the specified text in the context of this kind
-     * of constraint.
-     *
-     * @param constraintType the kind of constraint that is being composed,
-     *      or <code>null</code> to indicate completions for a query expression
-     * @param txt a partial OCL expression for which to seek choices that
-     *      could be appended to it
-     * @return a list of {@link Choice}s, possibly empty.  The ordering of the
-     *      list may or may not indicate relative relevance or frequency of
-     *      a choice
-     */
-    List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt);
     
     /**
      * Obtains problems, if any, found in parsing the last OCL constraint or

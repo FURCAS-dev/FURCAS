@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: IntegerValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: IntegerValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -108,8 +108,8 @@ public class IntegerValueImpl extends AbstractValue implements IntegerValue
 		return value.equals(((IntegerValue)obj).bigIntegerValue());
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
-		return value.signum() >= 0 ? standardLibrary.getUnlimitedNaturalType() : standardLibrary.getIntegerType();
+	public Type getType(TypeManager typeManager, Type staticType) {
+		return value.signum() >= 0 ? typeManager.getUnlimitedNaturalType() : typeManager.getIntegerType();
 	}
 
 	@Override

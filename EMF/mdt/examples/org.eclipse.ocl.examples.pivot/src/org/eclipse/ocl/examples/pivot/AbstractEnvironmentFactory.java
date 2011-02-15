@@ -14,20 +14,20 @@
  *   
  * </copyright>
  *
- * $Id: AbstractEnvironmentFactory.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: AbstractEnvironmentFactory.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
-import java.lang.Class;
-import java.util.List;
-
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
 import org.eclipse.ocl.examples.pivot.evaluation.TracingEvaluationVisitor;
-import org.eclipse.ocl.util.Adaptable;
-
 
 /**
  * Partial implementation of the {@link EnvironmentFactory} interface, useful
@@ -92,22 +92,13 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	}
 
     // implements the interface method
-    public Environment
+/*    public Environment
     createPackageContext(
             Environment parent,
             List<String> pathname) {
 		org.eclipse.ocl.examples.pivot.Package contextPackage = lookupPackage(pathname);        
         return (contextPackage == null)? null : createPackageContext(parent, contextPackage);
-    }
-	
-    /**
-     * Looks up the package identified by the specified qualified name by
-     * whatever means is appropriate to the particular environment implementation.
-     * 
-     * @param pathname the qualified name of the package to find
-     * @return the matching package, or <code>null</code> if none is found
-     */
-	protected abstract org.eclipse.ocl.examples.pivot.Package lookupPackage(List<String> pathname);
+    } */
 	
     // implements the interface method
 	public Environment
@@ -118,15 +109,11 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
         Environment result =
             createEnvironment(parent);
         
-        // in case it corresponds to an OCL primitive type
-        UMLReflection uml = parent.getUMLReflection();
-        context = uml.asOCLType(context);
-
         Variable self = parent.getOCLFactory().createVariable();
-        uml.setName(self, Environment.SELF_VARIABLE_NAME);
-        uml.setType(self, context);
+        self.setName(Environment.SELF_VARIABLE_NAME);
+        self.setType(context);
         
-        result.addElement(self.getName(), self, true);
+//        result.addElement(self.getName(), self, true);
         result.setSelfVariable(self);
         
         return result;
@@ -232,7 +219,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
      * 
      * @see #isEvaluationTracingEnabled()
      */
-    protected void setEvaluationTracingEnabled(boolean b) {
+    public void setEvaluationTracingEnabled(boolean b) {
         traceEvaluation = b;
     }
 
@@ -247,7 +234,7 @@ public abstract class AbstractEnvironmentFactory implements EnvironmentFactory, 
 	 * @since 1.2
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T getAdapter(Class<T> adapterType) {
+	public <T> T getAdapter(java.lang.Class<T> adapterType) {
 		T result;
 		
 		if (adapterType.isAssignableFrom(getClass())) {

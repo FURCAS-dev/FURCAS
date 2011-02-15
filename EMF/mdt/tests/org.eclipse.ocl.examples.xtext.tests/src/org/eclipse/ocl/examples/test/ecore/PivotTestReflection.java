@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestReflection.java,v 1.3 2011/01/30 10:59:40 ewillink Exp $
+ * $Id: PivotTestReflection.java,v 1.4 2011/02/11 20:10:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.ecore;
 
@@ -37,22 +37,21 @@ import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ObjectUtil;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
-import org.eclipse.ocl.examples.pivot.PivotReflectionImpl;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.test.generic.TestReflection;
 
 @SuppressWarnings("nls")
-public class PivotTestReflection extends PivotReflectionImpl implements TestReflection,
+public class PivotTestReflection /*extends PivotReflectionImpl*/ implements TestReflection,
 TestReflection.Static
 {
 	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
@@ -69,9 +68,10 @@ TestReflection.Static
 	 * Map of %Key to value for denormalizing OCL test code.
 	 */
 	private Map<String, String> normalizers = null;
+    protected final TypeManager typeManager;
 
 	public PivotTestReflection(TypeManager typeManager) {
-		super(typeManager);
+		this.typeManager = typeManager;
 	}
 
 	public void addSupertype(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class superClass) {
@@ -220,7 +220,7 @@ TestReflection.Static
 	public Property getAttribute(Type classifier, String name, Type type) {
 		if (!(classifier instanceof org.eclipse.ocl.examples.pivot.Class))
 			return null;
-		Property feature = ObjectUtil.getNamedElement(((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedAttributes(), name);
+		Property feature = PivotUtil.getNamedElement(((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedAttributes(), name);
 		if (feature == null)
 			return null;
 		// check type

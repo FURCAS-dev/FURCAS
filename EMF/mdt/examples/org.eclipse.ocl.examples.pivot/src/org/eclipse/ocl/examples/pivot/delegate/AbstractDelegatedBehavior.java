@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -26,6 +26,14 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * A basic implementation of a delegated behavior.
@@ -48,6 +56,16 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		}
 		return delegatedBehaviors;
 	};
+
+	public Constraint getConstraintForStereotype(NamedElement namedElement, String name) {
+		for (Constraint constraint : namedElement.getOwnedRules()) {
+			String stereotype = constraint.getStereotype();
+			if (name.equals(stereotype)) {
+				return constraint;
+			}
+		}
+		return null;
+	}
 	
 	public List<DelegateDomain> getDelegateDomains(E eObject) {
 		EPackage ePackage = getEPackage(eObject);
@@ -99,6 +117,24 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		return null;
 	}
 
+	protected ExpressionInOcl getExpressionInOcl(TypeManager typeManager, NamedElement namedElement, Constraint constraint) {
+		ValueSpecification valueSpecification = constraint.getSpecification();
+		if (valueSpecification instanceof ExpressionInOcl) {
+			return (ExpressionInOcl) valueSpecification;
+		}
+		else if (valueSpecification instanceof OpaqueExpression ){
+			String expression = PivotUtil.getBody((OpaqueExpression)valueSpecification);
+			if (expression != null) {
+				try {
+					return PivotUtil.resolveSpecification(typeManager, namedElement, expression);
+				} catch (ParserException e) {
+					throw new OCLDelegateException(e.getLocalizedMessage(), e);
+				}
+			}
+		}
+		return null;
+	}
+
 	public void setDelegates(EPackage ePackage, List<String> delegateURIs) {
 		final String name = getName();
 		EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
@@ -123,6 +159,7 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 		}
 	}
 
+	@Override
 	public String toString() {
 		return getName() + " => " + getFactoryClass().getName(); //$NON-NLS-1$
 	}

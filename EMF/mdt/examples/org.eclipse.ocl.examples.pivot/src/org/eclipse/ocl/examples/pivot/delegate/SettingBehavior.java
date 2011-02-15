@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SettingBehavior.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: SettingBehavior.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -21,12 +21,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Internal.SettingDelegate;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @since 3.0
@@ -50,6 +49,26 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 		return eStructuralFeature.getEContainingClass().getEPackage();
 	}
 
+	/**
+	 * Return the feature body associated with structuralFeature, if necessary using ocl to
+	 * create the relevant parsing environment for a textual definition..
+	 * @throws OCLDelegateException 
+	 */
+	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, Property property) throws OCLDelegateException {
+		Constraint constraint = getConstraintForStereotype(property, UMLReflection.DERIVATION);
+		if (constraint == null) {
+			constraint = getConstraintForStereotype(property, UMLReflection.INITIAL);
+		}
+		if (constraint != null) {
+			ExpressionInOcl expressionInOcl = getExpressionInOcl(typeManager, property, constraint);
+			if (expressionInOcl != null) {
+				return expressionInOcl;
+			}
+		}
+		String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, property);
+		throw new OCLDelegateException(message);
+	}
+
 	@Override
 	public SettingDelegate.Factory getFactory(DelegateDomain delegateDomain, EStructuralFeature eStructuralFeature) {
 		SettingDelegate.Factory.Registry registry = DelegateResourceSetAdapter.getRegistry(
@@ -67,39 +86,5 @@ public class SettingBehavior extends AbstractDelegatedBehavior<EStructuralFeatur
 
 	public Class<SettingDelegate.Factory.Registry> getRegistryClass() {
 		return SettingDelegate.Factory.Registry.class;
-	}
-
-	/**
-	 * Return the feature body associated with structuralFeature, if necessary using ocl to
-	 * create the relevant parsing environment for a textual definition..
-	 */
-	public ExpressionInOcl getSpecification(TypeManager typeManager, Property property) {
-		ValueSpecification specification = null;
-		for (Constraint constraint : property.getOwnedRules()) {
-			String stereotype = constraint.getStereotype();
-			if (UMLReflection.DERIVATION.equals(stereotype)) {
-				specification = constraint.getSpecification();
-				break;
-			}
-			if (UMLReflection.INITIAL.equals(stereotype)) {
-				specification = constraint.getSpecification();				
-			}
-		}
-		if (specification == null) {
-			return null;
-		}
-		if (specification instanceof OpaqueExpression ){
-			String expression = PivotUtil.getBody((OpaqueExpression)specification);
-			if (expression == null) {
-				return null;
-			}
-			String string = "der:\n" + expression + "\n;";
-			ExpressionInOcl resolvedSpecification = PivotUtil.resolveSpecification(typeManager, property, string);
-			specification = resolvedSpecification;
-		}
-		if (specification instanceof ExpressionInOcl) {
-			return (ExpressionInOcl) specification;
-		}
-		return null;
 	}
 }

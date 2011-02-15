@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -40,8 +40,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -50,19 +54,25 @@ import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.PropertyCallExp;
+import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
 {	
+	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
 	private static final Logger logger = Logger.getLogger(PivotUtil.class);
 
 	/**
@@ -97,6 +107,18 @@ public class PivotUtil
 		}
 	}
 
+	public static void checkResourceErrors(String message, Resource resource) throws ParserException {
+		List<Resource.Diagnostic> errors = resource.getErrors();
+		if (errors.size() > 0) {
+			StringBuffer s = new StringBuffer();
+			s.append(message);
+			for (Resource.Diagnostic conversionError : errors) {
+				s.append("\n");
+				s.append(conversionError.getMessage());
+			}
+			throw new SemanticException(s.toString());
+		}
+	}
 
 	public static boolean conformsTo(EStructuralFeature eStructuralFeature, EClassifier contentType) {
 		if (eStructuralFeature == null) {			// Wildcard match all
@@ -113,6 +135,50 @@ public class PivotUtil
 			return false;
 		}
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
+	}
+
+	/**
+	 * Create an Xtext resource containing the parsed expression within
+	 * a typeContext and supervised by a typeManager.
+	 * 
+	 * Provided an EssentialOCL resource registration has been made the
+	 * created resource named internal.essentialocl may be cast to an
+	 * XtextResource. Semantic errors may be found at the Resource.errors
+	 * and may be converted to ParseExceptions by invoking
+	 * checkResourceErrors.
+	 * 
+	 * @param typeManager the overall type / meta-model domain
+	 * @param typeContext the type that provides the scope of expression
+	 * @param expression to be parsed
+	 * @return the Xtext resource which may be cast to XtextResource
+	 * 
+	 * @throws IOException if reasource loading fails
+	 */
+	public static Resource createXtextResource(TypeManager typeManager,
+			NamedElement typeContext, String expression) throws IOException {
+		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(INTERNAL_URI);
+		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
+		if (resource instanceof EvaluationContext) {
+			((EvaluationContext)resource).setSpecificationContext(typeContext);
+		}
+		resource.load(inputStream, null);
+		return resource;
+	}
+
+	public static Type findTypeOf(EClassifier eClass) {
+		Resource resource = eClass.eResource();
+		if (resource != null) {
+			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource);
+			if (adapter != null) {
+				Type type = adapter.getCreated(Type.class, eClass);
+				if (type != null) {
+					return type;
+				}
+			}
+		}
+		return null;
 	}
 
 	public static <T> T getAdapter(Class<T> adapterClass, List<Adapter> eAdapters) {
@@ -158,23 +224,75 @@ public class PivotUtil
 		return list != null ? list : Collections.<TemplateParameter>emptyList();
 	}
 
-	public static List<TemplateParameter> getAllTemplateParameters(TemplateableElement templateableElement) {
-		List<TemplateParameter> list = null;
-		for (EObject eObject = templateableElement; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof TemplateableElement) {
-				TemplateSignature ownedTemplateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
-				if (ownedTemplateSignature != null) {
-					List<TemplateParameter> templateParameters = ownedTemplateSignature.getParameters();
-					if (templateParameters.size() > 0) {
-						if (list == null) {
-							list = new ArrayList<TemplateParameter>();
-						}
-						list.addAll(templateParameters);
+	public static List<List<TemplateParameter>> getAllTemplateParameterLists(EObject eObject) {
+		List<List<TemplateParameter>> result = null;
+		EObject eContainer = eObject.eContainer();
+		if (eContainer != null) {
+			result = getAllTemplateParameterLists(eContainer);
+		}
+		if (eObject instanceof TemplateableElement) {
+			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				if (templateParameters.size() > 0) {
+					if (result == null) {
+						result = new ArrayList<List<TemplateParameter>>();
+					}
+					result.add(templateParameters);
+				}
+			}
+		}
+		return result;
+	}
+
+	public static List<TemplateParameter> getAllTemplateParameters(EObject eObject) {
+		List<TemplateParameter> result = null;
+		EObject eContainer = eObject.eContainer();
+		if (eContainer != null) {
+			result = getAllTemplateParameters(eContainer);
+		}
+		if (eObject instanceof TemplateableElement) {
+			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateSignature templateSignature = unspecializedTemplateableElement.getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				if (templateParameters.size() > 0) {
+					if (result == null) {
+						result = new ArrayList<TemplateParameter>();
+					}
+					result.addAll(templateParameters);
+				}
+			}
+		}
+		return result;
+	}
+
+	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParametersAsBindings(EObject eObject) {
+		if (eObject instanceof TemplateableElement) {
+			eObject = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+		}
+		Map<TemplateParameter, ParameterableElement> result = null;
+		EObject eContainer = eObject.eContainer();
+		if (eContainer != null) {
+			result = getAllTemplateParametersAsBindings(eContainer);
+		}
+		if (eObject instanceof TemplateableElement) {
+//			TemplateableElement unspecializedTemplateableElement = getUnspecializedTemplateableElement((TemplateableElement)eObject);
+			TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
+			if (templateSignature != null) {
+				List<TemplateParameter> templateParameters = templateSignature.getParameters();
+				if (templateParameters.size() > 0) {
+					if (result == null) {
+						result = new HashMap<TemplateParameter, ParameterableElement>();
+					}
+					for (TemplateParameter templateParameter : templateSignature.getParameters()) {
+						result.put(templateParameter, null);
 					}
 				}
 			}
 		}
-		return list;
+		return result;
 	}
 
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> map,
@@ -199,6 +317,32 @@ public class PivotUtil
 		return map;
 	}
 
+	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> bindings,
+			Type argumentType, LambdaType lambdaType) {
+		Type resultType = lambdaType.getResultType();
+		TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
+		if (resultTemplateParameter != null) {
+			if (bindings == null) {
+				bindings = new HashMap<TemplateParameter, ParameterableElement>();
+			}
+			bindings.put(resultTemplateParameter, argumentType);
+		}
+		// FIXME There is much more to do
+		// FIXME Conflict checking
+		return bindings;
+	}
+
+	public static Type getBehavioralType(Type type) {
+		if (type instanceof DataType) {
+			DataType dataType = (DataType)type;
+			Type behavioralType = dataType.getBehavioralType();
+			if (behavioralType != null) {
+				return behavioralType;
+			}
+		}
+		return type;
+	}
+
 	public static String getBody(OpaqueExpression specification) {
 		List<String> bodies = specification.getBodies();
 		List<String> languages = specification.getLanguages();
@@ -212,6 +356,23 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static org.eclipse.ocl.examples.pivot.Class getFeaturingClass(Feature feature) {
+		org.eclipse.ocl.examples.pivot.Class owner = null;
+		if (feature instanceof Property) {
+			owner = ((Property)feature).getClass_();
+		}
+		else if (feature instanceof Operation) {
+			if (feature instanceof Operation) {
+				feature = getUnspecializedTemplateableElement((Operation)feature);
+			}
+			owner = ((Operation)feature).getClass_();
+		}
+		if (owner instanceof CompleteType) {
+			owner = (org.eclipse.ocl.examples.pivot.Class)((CompleteType)owner).getModel(); // FIXME cast
+		}
+		return owner;
 	}
 
 	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
@@ -246,12 +407,26 @@ public class PivotUtil
 		return castElement;
 	}
 
+	public static Feature getReferredFeature(CallExp callExp) {
+		Feature feature = null;
+		if (callExp instanceof LoopExp) {
+			feature = ((LoopExp)callExp).getReferredIteration();
+		}
+		else if (callExp instanceof OperationCallExp) {
+			feature = ((OperationCallExp)callExp).getReferredOperation();
+		}
+		else if (callExp instanceof PropertyCallExp) {
+			feature = ((PropertyCallExp)callExp).getReferredProperty();
+		}
+		return feature;
+	}
+
 	public static Operation getReferredOperation(CallExp callExp) {
-		Operation operation;
+		Operation operation = null;
 		if (callExp instanceof LoopExp) {
 			operation = ((LoopExp)callExp).getReferredIteration();
 		}
-		else {
+		else if (callExp instanceof OperationCallExp) {
 			operation = ((OperationCallExp)callExp).getReferredOperation();
 		}
 		return operation;
@@ -339,6 +514,16 @@ public class PivotUtil
 //		return (org.eclipse.ocl.examples.pivot.Class)unspecializedClass;
 //	}
 
+	public static Operation getUnspecializedOperation(org.eclipse.ocl.examples.pivot.Class unspecializedTemplate,
+			Operation anOperation) {
+		for (Operation operation : unspecializedTemplate.getOwnedOperations()) {
+			if (operation.getName().equals(anOperation.getName())) {
+				return operation;			// FIXME overload resolution etc
+			}	// this is only invoked when specializing an untemplated operation of a templated collection
+		}
+		return null;
+	}
+
 	public static <T extends TemplateableElement> T getUnspecializedTemplateableElement(T templateableElement) {
 		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
 		if (templateBindings.size() <= 0) {
@@ -346,8 +531,17 @@ public class PivotUtil
 		}
 		TemplateBinding templateBinding = templateBindings.get(templateBindings.size()-1);		// FIXME ordering so that most derived is last
 		TemplateSignature templateSignature = templateBinding.getSignature();
+		if (templateSignature == null) {
+			return null;
+		}
+		TemplateableElement unspecializedTemplate = templateSignature.getTemplate();
+		if (!unspecializedTemplate.getClass().isAssignableFrom(templateableElement.getClass())) {
+			if ((templateableElement instanceof Operation) && (unspecializedTemplate instanceof org.eclipse.ocl.examples.pivot.Class)) {
+				unspecializedTemplate = getUnspecializedOperation((org.eclipse.ocl.examples.pivot.Class)unspecializedTemplate, (Operation) templateableElement);
+			}
+		}
 		@SuppressWarnings("unchecked")
-		T unspecializedTemplateableElement = (T) templateSignature.getTemplate();
+		T unspecializedTemplateableElement = (T) unspecializedTemplate;
 		return unspecializedTemplateableElement;
 	}
 
@@ -398,42 +592,37 @@ public class PivotUtil
 		}
 	}
 
-	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement specificationContext, String expression) {
-		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
+	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement contextClassifier, String expression) throws ParserException {
 		try {
-			ResourceSetImpl resourceSet = new ResourceSetImpl();
-			URI uri = URI.createURI("test2.essentialocl");
-			Resource resource = resourceSet.createResource(uri);
-			TypeManagerResourceAdapter.getAdapter(resource, typeManager);
-			if (resource instanceof EvaluationContext) {
-				((EvaluationContext)resource).setSpecificationContext(specificationContext);
-			}
-			resource.load(inputStream, null);
-//				checkResourceErrors("Errors in '" + expression + "'", resource);
-			List<EObject> contents = resource.getContents();
-			int size = contents.size();
-			if (size == 0) {
-				return null;
-			}
-			if (size > 1) {
-//					logger.warn("Extra returns ignored");
-			}
-			EObject csObject = contents.get(0);
-			if (csObject instanceof Pivotable) {
-				Element pivotElement = ((Pivotable)csObject).getPivot();
-				if (pivotElement instanceof ExpressionInOcl) {
-					return (ExpressionInOcl) pivotElement;
-				}
-			}
-//				logger.warn("Non-expression ignored");
+			Resource resource = createXtextResource(typeManager, contextClassifier, expression);
+			checkResourceErrors("Errors in '" + expression + "'", resource);
+			return getExpressionInOcl(resource);
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
-			OclExpression invalidValueBody = typeManager.createInvalidExpression(specificationContext, "Failed to load expression", e);
+			OclExpression invalidValueBody = typeManager.createInvalidExpression(contextClassifier, "Failed to load expression", e);
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
 		}			
-		return null;
+	}
+
+	public static ExpressionInOcl getExpressionInOcl(Resource resource) throws ParserException {
+		List<EObject> contents = resource.getContents();
+		int size = contents.size();
+		if (size == 0) {
+			return null;
+		}
+		if (size > 1) {
+			throw new ParserException("Extra returns ignored");
+		}
+		EObject csObject = contents.get(0);
+		if (csObject instanceof Pivotable) {
+			Element pivotElement = ((Pivotable)csObject).getPivot();
+			if (pivotElement instanceof ExpressionInOcl) {
+				return (ExpressionInOcl) pivotElement;
+			}
+		}
+		throw new ParserException("Non-expression ignored");
 	}
 
 	public static <T extends MonikeredElement> List<T> sortByMoniker(List<T> list) {

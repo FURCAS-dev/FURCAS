@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: InvalidValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: InvalidValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -69,9 +69,20 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 			StringBuffer s =  new StringBuffer();
 			s.append("Invalid: ");
 			s.append(reason);
+			if (value != null) {
+				s.append(" for \"");
+				s.append(value);
+				s.append("\"");
+			}
+			if (expression != null) {
+				s.append(" at \"");
+				s.append(expression);
+				s.append("\"");
+			}
 			if (throwable != null) {
-				s.append(" : ");
+				s.append(" because \"");
 				s.append(throwable);
+				s.append("\"");
 			}
 			message = s.toString();
 		}
@@ -86,7 +97,7 @@ public class InvalidValueImpl extends AbstractUndefinedCollectionValue implement
 		return throwable;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return staticType; // standardLibrary.getInvalidType();
 	}
 

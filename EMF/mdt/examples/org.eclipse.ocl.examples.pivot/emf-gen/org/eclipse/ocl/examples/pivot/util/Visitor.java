@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: Visitor.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
+ * $Id: Visitor.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -85,6 +85,7 @@ public interface Visitor<R, C>
 	R visitIterateExp(org.eclipse.ocl.examples.pivot.IterateExp object);
 	R visitIteration(org.eclipse.ocl.examples.pivot.Iteration object);
 	R visitIteratorExp(org.eclipse.ocl.examples.pivot.IteratorExp object);
+	R visitLambdaType(org.eclipse.ocl.examples.pivot.LambdaType object);
 	R visitLetExp(org.eclipse.ocl.examples.pivot.LetExp object);
 	R visitLibrary(org.eclipse.ocl.examples.pivot.Library object);
 	R visitLiteralExp(org.eclipse.ocl.examples.pivot.LiteralExp object);
@@ -114,7 +115,6 @@ public interface Visitor<R, C>
 	R visitProperty(org.eclipse.ocl.examples.pivot.Property object);
 	R visitPropertyCallExp(org.eclipse.ocl.examples.pivot.PropertyCallExp object);
 	R visitRealLiteralExp(org.eclipse.ocl.examples.pivot.RealLiteralExp object);
-	R visitSelfType(org.eclipse.ocl.examples.pivot.SelfType object);
 	R visitSendSignalAction(org.eclipse.ocl.examples.pivot.SendSignalAction object);
 	R visitSequenceType(org.eclipse.ocl.examples.pivot.SequenceType object);
 	R visitSetType(org.eclipse.ocl.examples.pivot.SetType object);
@@ -137,6 +137,7 @@ public interface Visitor<R, C>
 	R visitTypedElement(org.eclipse.ocl.examples.pivot.TypedElement object);
 	R visitTypedMultiplicityElement(org.eclipse.ocl.examples.pivot.TypedMultiplicityElement object);
 	R visitUnlimitedNaturalLiteralExp(org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object);
+	R visitUnspecifiedType(org.eclipse.ocl.examples.pivot.UnspecifiedType object);
 	R visitUnspecifiedValueExp(org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object);
 	R visitValueSpecification(org.eclipse.ocl.examples.pivot.ValueSpecification object);
 	R visitVariable(org.eclipse.ocl.examples.pivot.Variable object);

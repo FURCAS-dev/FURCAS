@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -34,7 +34,6 @@ public interface CollectionValue extends Value, Iterable<Value>
 	Collection<Value> asCollection();	
 	List<Value> asList();
     IntegerValue count(Value value);
-    CollectionValue createNew();
 	BooleanValue excludes(Value value);	
 	BooleanValue excludesAll(CollectionValue c);
 	CollectionValue excluding(Value value);
