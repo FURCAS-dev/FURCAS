@@ -1,10 +1,10 @@
 package org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope;
 
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerImpl;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.InstanceScopeAnalysis;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 public class ImpactAnalyzerImplWithPublicInstanceScopeAnalysis extends ImpactAnalyzerImpl {
