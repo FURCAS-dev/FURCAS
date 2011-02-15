@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibClassCS.java,v 1.4 2011/01/24 22:28:25 ewillink Exp $
+ * $Id: LibClassCS.java,v 1.5 2011/02/15 10:37:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
@@ -34,32 +34,33 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
  * @model
  * @generated
  */
-public interface LibClassCS extends ClassCS
-{
+public interface LibClassCS
+		extends ClassCS {
+
 	/**
-	 * Returns the value of the '<em><b>Meta Type Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Meta Type Name</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Meta Type Name</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Meta Type Name</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Type Name</em>' attribute.
-	 * @see #setMetaTypeName(String)
+	 * @return the value of the '<em>Meta Type Name</em>' reference.
+	 * @see #setMetaTypeName(MetaTypeName)
 	 * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage#getLibClassCS_MetaTypeName()
-	 * @model
+	 * @model transient="true"
 	 * @generated
 	 */
-	String getMetaTypeName();
+	MetaTypeName getMetaTypeName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS#getMetaTypeName <em>Meta Type Name</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Type Name</em>' attribute.
+	 * @param value the new value of the '<em>Meta Type Name</em>' reference.
 	 * @see #getMetaTypeName()
 	 * @generated
 	 */
-	void setMetaTypeName(String value);
+	void setMetaTypeName(MetaTypeName value);
 
 } // LibClassCS

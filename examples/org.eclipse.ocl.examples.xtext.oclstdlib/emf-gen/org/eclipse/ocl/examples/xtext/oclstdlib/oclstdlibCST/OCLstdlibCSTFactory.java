@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactory.java,v 1.3 2011/01/24 22:28:25 ewillink Exp $
+ * $Id: OCLstdlibCSTFactory.java,v 1.4 2011/02/15 10:37:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -37,15 +37,6 @@ public interface OCLstdlibCSTFactory
 	 * @generated
 	 */
 	OCLstdlibCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Lib Accumulator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Lib Accumulator CS</em>'.
-	 * @generated
-	 */
-	LibAccumulatorCS createLibAccumulatorCS();
 
 	/**
 	 * Returns a new object of class '<em>Lib Class CS</em>'.
@@ -75,15 +66,6 @@ public interface OCLstdlibCSTFactory
 	LibIterationCS createLibIterationCS();
 
 	/**
-	 * Returns a new object of class '<em>Lib Iterator CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Lib Iterator CS</em>'.
-	 * @generated
-	 */
-	LibIteratorCS createLibIteratorCS();
-
-	/**
 	 * Returns a new object of class '<em>Lib Operation CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -109,6 +91,15 @@ public interface OCLstdlibCSTFactory
 	 * @generated
 	 */
 	LibRootPackageCS createLibRootPackageCS();
+
+	/**
+	 * Returns a new object of class '<em>Meta Type Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Meta Type Name</em>'.
+	 * @generated
+	 */
+	MetaTypeName createMetaTypeName();
 
 	/**
 	 * Returns a new object of class '<em>Precedence CS</em>'.

@@ -233,15 +233,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cStaticKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
 		private final Keyword cSuperKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
 		private final Keyword cTypeKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cTupleKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cLambdaKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cTupleKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
 		
 		//RestrictedKeywords:
 		//	"conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" | "operation" |
-		//	"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Tuple";
+		//	"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Lambda" | "Tuple";
 		public ParserRule getRule() { return rule; }
 
 		//"conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" | "operation" |
-		//"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Tuple"
+		//"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Lambda" | "Tuple"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"conformsTo"
@@ -298,70 +299,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//"type"
 		public Keyword getTypeKeyword_17() { return cTypeKeyword_17; }
 
+		//"Lambda"
+		public Keyword getLambdaKeyword_18() { return cLambdaKeyword_18; }
+
 		//"Tuple"
-		public Keyword getTupleKeyword_18() { return cTupleKeyword_18; }
-	}
-
-	public class MetaTypeNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MetaTypeName");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cAnyTypeKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cBagTypeKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cClassKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cCollectionTypeKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cInvalidTypeKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cOrderedSetTypeKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cPrimitiveTypeKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cSelfTypeKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
-		private final Keyword cSequenceTypeKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cSetTypeKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cTupleTypeKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cVoidTypeKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		
-		//MetaTypeName:
-		//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
-		//	"SequenceType" | "SetType" | "TupleType" | "VoidType";
-		public ParserRule getRule() { return rule; }
-
-		//"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
-		//"SequenceType" | "SetType" | "TupleType" | "VoidType"
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//"AnyType"
-		public Keyword getAnyTypeKeyword_0() { return cAnyTypeKeyword_0; }
-
-		//"BagType"
-		public Keyword getBagTypeKeyword_1() { return cBagTypeKeyword_1; }
-
-		//"Class"
-		public Keyword getClassKeyword_2() { return cClassKeyword_2; }
-
-		//"CollectionType"
-		public Keyword getCollectionTypeKeyword_3() { return cCollectionTypeKeyword_3; }
-
-		//"InvalidType"
-		public Keyword getInvalidTypeKeyword_4() { return cInvalidTypeKeyword_4; }
-
-		//"OrderedSetType"
-		public Keyword getOrderedSetTypeKeyword_5() { return cOrderedSetTypeKeyword_5; }
-
-		//"PrimitiveType"
-		public Keyword getPrimitiveTypeKeyword_6() { return cPrimitiveTypeKeyword_6; }
-
-		//"SelfType"
-		public Keyword getSelfTypeKeyword_7() { return cSelfTypeKeyword_7; }
-
-		//"SequenceType"
-		public Keyword getSequenceTypeKeyword_8() { return cSequenceTypeKeyword_8; }
-
-		//"SetType"
-		public Keyword getSetTypeKeyword_9() { return cSetTypeKeyword_9; }
-
-		//"TupleType"
-		public Keyword getTupleTypeKeyword_10() { return cTupleTypeKeyword_10; }
-
-		//"VoidType"
-		public Keyword getVoidTypeKeyword_11() { return cVoidTypeKeyword_11; }
+		public Keyword getTupleKeyword_19() { return cTupleKeyword_19; }
 	}
 
 	public class NameElements extends AbstractParserRuleElementFinder {
@@ -371,13 +313,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDOUBLE_QUOTED_STRINGTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cEssentialOCLReservedKeywordParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cRestrictedKeywordsParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cMetaTypeNameParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Name:
-		//	Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords | MetaTypeName;
+		//	Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords;
 		public ParserRule getRule() { return rule; }
 
-		//Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords | MetaTypeName
+		//Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Identifier
@@ -391,9 +332,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 		//RestrictedKeywords
 		public RuleCall getRestrictedKeywordsParserRuleCall_3() { return cRestrictedKeywordsParserRuleCall_3; }
-
-		//MetaTypeName
-		public RuleCall getMetaTypeNameParserRuleCall_4() { return cMetaTypeNameParserRuleCall_4; }
 	}
 
 	public class AccumulatorCSElements extends AbstractParserRuleElementFinder {
@@ -405,7 +343,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedTypeTypedRefCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
 		
-		//AccumulatorCS returns LibAccumulatorCS:
+		//AccumulatorCS returns base::ParameterCS:
 		//	name=Identifier ":" ownedType=TypedRefCS;
 		public ParserRule getRule() { return rule; }
 
@@ -557,7 +495,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cMetaTypeNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cMetaTypeNameMetaTypeNameParserRuleCall_3_1_0 = (RuleCall)cMetaTypeNameAssignment_3_1.eContents().get(0);
+		private final CrossReference cMetaTypeNameMetaTypeNameCrossReference_3_1_0 = (CrossReference)cMetaTypeNameAssignment_3_1.eContents().get(0);
+		private final RuleCall cMetaTypeNameMetaTypeNameNameParserRuleCall_3_1_0_1 = (RuleCall)cMetaTypeNameMetaTypeNameCrossReference_3_1_0.eContents().get(1);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cConformsToKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cOwnedSuperTypeAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
@@ -579,12 +518,12 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//ClassCS returns LibClassCS:
-		//	"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=MetaTypeName)? ("conformsTo"
+		//	"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=[MetaTypeName|Name])? ("conformsTo"
 		//	ownedSuperType+=TypedRefCS ("," ownedSuperType+=TypedRefCS)*)? "{" (ownedOperation+=OperationCS |
 		//	ownedProperty+=LibPropertyCS | ownedConstraint+=InvCS | ownedAnnotation+=AnnotationElementCS)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=MetaTypeName)? ("conformsTo"
+		//"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=[MetaTypeName|Name])? ("conformsTo"
 		//ownedSuperType+=TypedRefCS ("," ownedSuperType+=TypedRefCS)*)? "{" (ownedOperation+=OperationCS |
 		//ownedProperty+=LibPropertyCS | ownedConstraint+=InvCS | ownedAnnotation+=AnnotationElementCS)* "}"
 		public Group getGroup() { return cGroup; }
@@ -604,17 +543,20 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//TemplateSignatureCS
 		public RuleCall getOwnedTemplateSignatureTemplateSignatureCSParserRuleCall_2_0() { return cOwnedTemplateSignatureTemplateSignatureCSParserRuleCall_2_0; }
 
-		//(":" metaTypeName=MetaTypeName)?
+		//(":" metaTypeName=[MetaTypeName|Name])?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//":"
 		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
 
-		//metaTypeName=MetaTypeName
+		//metaTypeName=[MetaTypeName|Name]
 		public Assignment getMetaTypeNameAssignment_3_1() { return cMetaTypeNameAssignment_3_1; }
 
-		//MetaTypeName
-		public RuleCall getMetaTypeNameMetaTypeNameParserRuleCall_3_1_0() { return cMetaTypeNameMetaTypeNameParserRuleCall_3_1_0; }
+		//[MetaTypeName|Name]
+		public CrossReference getMetaTypeNameMetaTypeNameCrossReference_3_1_0() { return cMetaTypeNameMetaTypeNameCrossReference_3_1_0; }
+
+		//Name
+		public RuleCall getMetaTypeNameMetaTypeNameNameParserRuleCall_3_1_0_1() { return cMetaTypeNameMetaTypeNameNameParserRuleCall_3_1_0_1; }
 
 		//("conformsTo" ownedSuperType+=TypedRefCS ("," ownedSuperType+=TypedRefCS)*)?
 		public Group getGroup_4() { return cGroup_4; }
@@ -1118,7 +1060,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOwnedTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOwnedTypeTypedRefCSParserRuleCall_2_0 = (RuleCall)cOwnedTypeAssignment_2.eContents().get(0);
 		
-		//IteratorCS returns LibIteratorCS:
+		//IteratorCS returns base::ParameterCS:
 		//	name=Identifier ":" ownedType=TypedRefCS;
 		public ParserRule getRule() { return rule; }
 
@@ -1139,6 +1081,92 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 		//TypedRefCS
 		public RuleCall getOwnedTypeTypedRefCSParserRuleCall_2_0() { return cOwnedTypeTypedRefCSParserRuleCall_2_0; }
+	}
+
+	public class LambdaTypeCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LambdaTypeCS");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cNameLambdaKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
+		private final Assignment cOwnedContextTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOwnedContextTypeTypedRefCSParserRuleCall_1_0 = (RuleCall)cOwnedContextTypeAssignment_1.eContents().get(0);
+		private final Assignment cOwnedTemplateSignatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedTemplateSignatureTemplateSignatureCSParserRuleCall_2_0 = (RuleCall)cOwnedTemplateSignatureAssignment_2.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cOwnedParameterTypeAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cOwnedParameterTypeTypedRefCSParserRuleCall_4_0_0 = (RuleCall)cOwnedParameterTypeAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cOwnedParameterTypeAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cOwnedParameterTypeTypedRefCSParserRuleCall_4_1_1_0 = (RuleCall)cOwnedParameterTypeAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cColonKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cOwnedResultTypeAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cOwnedResultTypeTypedRefCSParserRuleCall_7_0 = (RuleCall)cOwnedResultTypeAssignment_7.eContents().get(0);
+		
+		//LambdaTypeCS returns base::LambdaTypeCS:
+		//	name="Lambda" ownedContextType=TypedRefCS ownedTemplateSignature=TemplateSignatureCS? "("
+		//	(ownedParameterType+=TypedRefCS ("," ownedParameterType+=TypedRefCS)*)? ")" ":" ownedResultType=TypedRefCS;
+		public ParserRule getRule() { return rule; }
+
+		//name="Lambda" ownedContextType=TypedRefCS ownedTemplateSignature=TemplateSignatureCS? "("
+		//(ownedParameterType+=TypedRefCS ("," ownedParameterType+=TypedRefCS)*)? ")" ":" ownedResultType=TypedRefCS
+		public Group getGroup() { return cGroup; }
+
+		//name="Lambda"
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//"Lambda"
+		public Keyword getNameLambdaKeyword_0_0() { return cNameLambdaKeyword_0_0; }
+
+		//ownedContextType=TypedRefCS
+		public Assignment getOwnedContextTypeAssignment_1() { return cOwnedContextTypeAssignment_1; }
+
+		//TypedRefCS
+		public RuleCall getOwnedContextTypeTypedRefCSParserRuleCall_1_0() { return cOwnedContextTypeTypedRefCSParserRuleCall_1_0; }
+
+		//ownedTemplateSignature=TemplateSignatureCS?
+		public Assignment getOwnedTemplateSignatureAssignment_2() { return cOwnedTemplateSignatureAssignment_2; }
+
+		//TemplateSignatureCS
+		public RuleCall getOwnedTemplateSignatureTemplateSignatureCSParserRuleCall_2_0() { return cOwnedTemplateSignatureTemplateSignatureCSParserRuleCall_2_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+
+		//(ownedParameterType+=TypedRefCS ("," ownedParameterType+=TypedRefCS)*)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//ownedParameterType+=TypedRefCS
+		public Assignment getOwnedParameterTypeAssignment_4_0() { return cOwnedParameterTypeAssignment_4_0; }
+
+		//TypedRefCS
+		public RuleCall getOwnedParameterTypeTypedRefCSParserRuleCall_4_0_0() { return cOwnedParameterTypeTypedRefCSParserRuleCall_4_0_0; }
+
+		//("," ownedParameterType+=TypedRefCS)*
+		public Group getGroup_4_1() { return cGroup_4_1; }
+
+		//","
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+
+		//ownedParameterType+=TypedRefCS
+		public Assignment getOwnedParameterTypeAssignment_4_1_1() { return cOwnedParameterTypeAssignment_4_1_1; }
+
+		//TypedRefCS
+		public RuleCall getOwnedParameterTypeTypedRefCSParserRuleCall_4_1_1_0() { return cOwnedParameterTypeTypedRefCSParserRuleCall_4_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
+
+		//":"
+		public Keyword getColonKeyword_6() { return cColonKeyword_6; }
+
+		//ownedResultType=TypedRefCS
+		public Assignment getOwnedResultTypeAssignment_7() { return cOwnedResultTypeAssignment_7; }
+
+		//TypedRefCS
+		public RuleCall getOwnedResultTypeTypedRefCSParserRuleCall_7_0() { return cOwnedResultTypeTypedRefCSParserRuleCall_7_0; }
 	}
 
 	public class OperationCSElements extends AbstractParserRuleElementFinder {
@@ -1756,50 +1784,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 	}
 
-	public class QualifiedTypeRefCSElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedTypeRefCS");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNamespaceAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cNamespaceNamespaceCrossReference_0_0 = (CrossReference)cNamespaceAssignment_0.eContents().get(0);
-		private final RuleCall cNamespaceNamespaceNameParserRuleCall_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0.eContents().get(1);
-		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
-		private final Keyword cColonColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cElementAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cElementTypedRefCSParserRuleCall_3_0 = (RuleCall)cElementAssignment_3.eContents().get(0);
-		
-		//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-		//	namespace=[pivot::Namespace|Name] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS;
-		public ParserRule getRule() { return rule; }
-
-		//namespace=[pivot::Namespace|Name] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS
-		public Group getGroup() { return cGroup; }
-
-		//namespace=[pivot::Namespace|Name]
-		public Assignment getNamespaceAssignment_0() { return cNamespaceAssignment_0; }
-
-		//[pivot::Namespace|Name]
-		public CrossReference getNamespaceNamespaceCrossReference_0_0() { return cNamespaceNamespaceCrossReference_0_0; }
-
-		//Name
-		public RuleCall getNamespaceNamespaceNameParserRuleCall_0_0_1() { return cNamespaceNamespaceNameParserRuleCall_0_0_1; }
-
-		//ownedTemplateBinding=TemplateBindingCS?
-		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
-
-		//TemplateBindingCS
-		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0; }
-
-		//"::"
-		public Keyword getColonColonKeyword_2() { return cColonColonKeyword_2; }
-
-		//element=TypedRefCS
-		public Assignment getElementAssignment_3() { return cElementAssignment_3; }
-
-		//TypedRefCS
-		public RuleCall getElementTypedRefCSParserRuleCall_3_0() { return cElementTypedRefCSParserRuleCall_3_0; }
-	}
-
 	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1812,6 +1796,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_2_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
+		////NamespaceRefCS returns base::NamespaceRefCS:
+		//
+		////	ref=[pivot::Namespace|Name]
+		//
+		////	(ownedTemplateBinding=TemplateBindingCS)?
+		//
+		////;
+		//
 		//TemplateBindingCS returns base::TemplateBindingCS:
 		//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 		//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
@@ -1909,61 +1901,57 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	public class LibTupleCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LibTupleCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cTupleTypeCSAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Keyword cNameTupleKeyword_1_0 = (Keyword)cNameAssignment_1.eContents().get(0);
-		private final Keyword cLessThanSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Assignment cOwnedPartsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
-		private final RuleCall cOwnedPartsLibTuplePartCSParserRuleCall_3_0_0 = (RuleCall)cOwnedPartsAssignment_3_0.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Keyword cCommaKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cOwnedPartsLibTuplePartCSParserRuleCall_3_1_1_0 = (RuleCall)cOwnedPartsAssignment_3_1_1.eContents().get(0);
-		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cNameTupleKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
+		private final Keyword cLessThanSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cOwnedPartsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cOwnedPartsLibTuplePartCSParserRuleCall_2_0_0 = (RuleCall)cOwnedPartsAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cOwnedPartsLibTuplePartCSParserRuleCall_2_1_1_0 = (RuleCall)cOwnedPartsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LibTupleCS returns base::TupleTypeCS:
-		//	{base::TupleTypeCS} name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">";
+		//	name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">";
 		public ParserRule getRule() { return rule; }
 
-		//{base::TupleTypeCS} name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">"
+		//name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">"
 		public Group getGroup() { return cGroup; }
 
-		//{base::TupleTypeCS}
-		public Action getTupleTypeCSAction_0() { return cTupleTypeCSAction_0; }
-
 		//name="Tuple"
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 
 		//"Tuple"
-		public Keyword getNameTupleKeyword_1_0() { return cNameTupleKeyword_1_0; }
+		public Keyword getNameTupleKeyword_0_0() { return cNameTupleKeyword_0_0; }
 
 		//"<"
-		public Keyword getLessThanSignKeyword_2() { return cLessThanSignKeyword_2; }
+		public Keyword getLessThanSignKeyword_1() { return cLessThanSignKeyword_1; }
 
 		//(ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 
 		//ownedParts+=LibTuplePartCS
-		public Assignment getOwnedPartsAssignment_3_0() { return cOwnedPartsAssignment_3_0; }
+		public Assignment getOwnedPartsAssignment_2_0() { return cOwnedPartsAssignment_2_0; }
 
 		//LibTuplePartCS
-		public RuleCall getOwnedPartsLibTuplePartCSParserRuleCall_3_0_0() { return cOwnedPartsLibTuplePartCSParserRuleCall_3_0_0; }
+		public RuleCall getOwnedPartsLibTuplePartCSParserRuleCall_2_0_0() { return cOwnedPartsLibTuplePartCSParserRuleCall_2_0_0; }
 
 		//("," ownedParts+=LibTuplePartCS)*
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 
 		//","
-		public Keyword getCommaKeyword_3_1_0() { return cCommaKeyword_3_1_0; }
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 
 		//ownedParts+=LibTuplePartCS
-		public Assignment getOwnedPartsAssignment_3_1_1() { return cOwnedPartsAssignment_3_1_1; }
+		public Assignment getOwnedPartsAssignment_2_1_1() { return cOwnedPartsAssignment_2_1_1; }
 
 		//LibTuplePartCS
-		public RuleCall getOwnedPartsLibTuplePartCSParserRuleCall_3_1_1_0() { return cOwnedPartsLibTuplePartCSParserRuleCall_3_1_1_0; }
+		public RuleCall getOwnedPartsLibTuplePartCSParserRuleCall_2_1_1_0() { return cOwnedPartsLibTuplePartCSParserRuleCall_2_1_1_0; }
 
 		//">"
-		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
+		public Keyword getGreaterThanSignKeyword_3() { return cGreaterThanSignKeyword_3; }
 	}
 
 	public class LibTuplePartCSElements extends AbstractParserRuleElementFinder {
@@ -2095,56 +2083,80 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedRefCS");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cLibTupleCSParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cQualifiedTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cTypedTypeRefCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cTypedTypeRefCSParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cLambdaTypeCSParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//TypedRefCS returns base::TypedRefCS:
-		//	LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS;
+		//	LibTupleCS | TypedTypeRefCS | LambdaTypeCS;
 		public ParserRule getRule() { return rule; }
 
-		//LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS
+		//LibTupleCS | TypedTypeRefCS | LambdaTypeCS
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LibTupleCS
 		public RuleCall getLibTupleCSParserRuleCall_0() { return cLibTupleCSParserRuleCall_0; }
 
-		//QualifiedTypeRefCS
-		public RuleCall getQualifiedTypeRefCSParserRuleCall_1() { return cQualifiedTypeRefCSParserRuleCall_1; }
-
 		//TypedTypeRefCS
-		public RuleCall getTypedTypeRefCSParserRuleCall_2() { return cTypedTypeRefCSParserRuleCall_2; }
+		public RuleCall getTypedTypeRefCSParserRuleCall_1() { return cTypedTypeRefCSParserRuleCall_1; }
+
+		//LambdaTypeCS
+		public RuleCall getLambdaTypeCSParserRuleCall_2() { return cLambdaTypeCSParserRuleCall_2; }
 	}
 
 	public class TypedTypeRefCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedTypeRefCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cTypeTypeCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
-		private final RuleCall cTypeTypeNameParserRuleCall_0_0_1 = (RuleCall)cTypeTypeCrossReference_0_0.eContents().get(1);
-		private final Assignment cOwnedTemplateBindingAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0 = (RuleCall)cOwnedTemplateBindingAssignment_1.eContents().get(0);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cNamespaceAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final CrossReference cNamespaceNamespaceCrossReference_0_0_0 = (CrossReference)cNamespaceAssignment_0_0.eContents().get(0);
+		private final RuleCall cNamespaceNamespaceNameParserRuleCall_0_0_0_1 = (RuleCall)cNamespaceNamespaceCrossReference_0_0_0.eContents().get(1);
+		private final Keyword cColonColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cTypeTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeTypeNameParserRuleCall_1_0_1 = (RuleCall)cTypeTypeCrossReference_1_0.eContents().get(1);
+		private final Assignment cOwnedTemplateBindingAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0 = (RuleCall)cOwnedTemplateBindingAssignment_2.eContents().get(0);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
+		//	(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
+		//
 		//	type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
 		public ParserRule getRule() { return rule; }
 
+		//(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
+		//
 		//type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?
 		public Group getGroup() { return cGroup; }
 
-		//type=[pivot::Type|Name]
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//(namespace+=[pivot::Namespace|Name] "::")*
+		public Group getGroup_0() { return cGroup_0; }
 
-		//[pivot::Type|Name]
-		public CrossReference getTypeTypeCrossReference_0_0() { return cTypeTypeCrossReference_0_0; }
+		//namespace+=[pivot::Namespace|Name]
+		public Assignment getNamespaceAssignment_0_0() { return cNamespaceAssignment_0_0; }
+
+		//[pivot::Namespace|Name]
+		public CrossReference getNamespaceNamespaceCrossReference_0_0_0() { return cNamespaceNamespaceCrossReference_0_0_0; }
 
 		//Name
-		public RuleCall getTypeTypeNameParserRuleCall_0_0_1() { return cTypeTypeNameParserRuleCall_0_0_1; }
+		public RuleCall getNamespaceNamespaceNameParserRuleCall_0_0_0_1() { return cNamespaceNamespaceNameParserRuleCall_0_0_0_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_0_1() { return cColonColonKeyword_0_1; }
+
+		//type=[pivot::Type|Name]
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+
+		//[pivot::Type|Name]
+		public CrossReference getTypeTypeCrossReference_1_0() { return cTypeTypeCrossReference_1_0; }
+
+		//Name
+		public RuleCall getTypeTypeNameParserRuleCall_1_0_1() { return cTypeTypeNameParserRuleCall_1_0_1; }
 
 		//ownedTemplateBinding=TemplateBindingCS?
-		public Assignment getOwnedTemplateBindingAssignment_1() { return cOwnedTemplateBindingAssignment_1; }
+		public Assignment getOwnedTemplateBindingAssignment_2() { return cOwnedTemplateBindingAssignment_2; }
 
 		//TemplateBindingCS
-		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_1_0; }
+		public RuleCall getOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0() { return cOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0; }
 	}
 
 	public class WildcardTypeRefCSElements extends AbstractParserRuleElementFinder {
@@ -2210,7 +2222,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private UPPERElements pUPPER;
 	private IdentifierElements pIdentifier;
 	private RestrictedKeywordsElements pRestrictedKeywords;
-	private MetaTypeNameElements pMetaTypeName;
 	private NameElements pName;
 	private AccumulatorCSElements pAccumulatorCS;
 	private AnnotationCSElements pAnnotationCS;
@@ -2223,6 +2234,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private InvCSElements pInvCS;
 	private LibIterationCSElements pLibIterationCS;
 	private IteratorCSElements pIteratorCS;
+	private LambdaTypeCSElements pLambdaTypeCS;
 	private OperationCSElements pOperationCS;
 	private LibOperationCSElements pLibOperationCS;
 	private PackageCSElements pPackageCS;
@@ -2231,7 +2243,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private PostCSElements pPostCS;
 	private PreCSElements pPreCS;
 	private PrecedenceCSElements pPrecedenceCS;
-	private QualifiedTypeRefCSElements pQualifiedTypeRefCS;
 	private TemplateBindingCSElements pTemplateBindingCS;
 	private TemplateParameterSubstitutionCSElements pTemplateParameterSubstitutionCS;
 	private TemplateSignatureCSElements pTemplateSignatureCS;
@@ -2316,7 +2327,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RestrictedKeywords:
 	//	"conformsTo" | "documentation" | "extends" | "import" | "inv" | "iteration" | "left" | "library" | "operation" |
-	//	"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Tuple";
+	//	"package" | "post" | "pre" | "precedence" | "property" | "right" | "static" | "super" | "type" | "Lambda" | "Tuple";
 	public RestrictedKeywordsElements getRestrictedKeywordsAccess() {
 		return (pRestrictedKeywords != null) ? pRestrictedKeywords : (pRestrictedKeywords = new RestrictedKeywordsElements());
 	}
@@ -2325,19 +2336,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getRestrictedKeywordsAccess().getRule();
 	}
 
-	//MetaTypeName:
-	//	"AnyType" | "BagType" | "Class" | "CollectionType" | "InvalidType" | "OrderedSetType" | "PrimitiveType" | "SelfType" |
-	//	"SequenceType" | "SetType" | "TupleType" | "VoidType";
-	public MetaTypeNameElements getMetaTypeNameAccess() {
-		return (pMetaTypeName != null) ? pMetaTypeName : (pMetaTypeName = new MetaTypeNameElements());
-	}
-	
-	public ParserRule getMetaTypeNameRule() {
-		return getMetaTypeNameAccess().getRule();
-	}
-
 	//Name:
-	//	Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords | MetaTypeName;
+	//	Identifier | DOUBLE_QUOTED_STRING | EssentialOCLReservedKeyword | RestrictedKeywords;
 	public NameElements getNameAccess() {
 		return (pName != null) ? pName : (pName = new NameElements());
 	}
@@ -2346,7 +2346,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getNameAccess().getRule();
 	}
 
-	//AccumulatorCS returns LibAccumulatorCS:
+	//AccumulatorCS returns base::ParameterCS:
 	//	name=Identifier ":" ownedType=TypedRefCS;
 	public AccumulatorCSElements getAccumulatorCSAccess() {
 		return (pAccumulatorCS != null) ? pAccumulatorCS : (pAccumulatorCS = new AccumulatorCSElements());
@@ -2378,7 +2378,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ClassCS returns LibClassCS:
-	//	"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=MetaTypeName)? ("conformsTo"
+	//	"type" name=Name ownedTemplateSignature=TemplateSignatureCS? (":" metaTypeName=[MetaTypeName|Name])? ("conformsTo"
 	//	ownedSuperType+=TypedRefCS ("," ownedSuperType+=TypedRefCS)*)? "{" (ownedOperation+=OperationCS |
 	//	ownedProperty+=LibPropertyCS | ownedConstraint+=InvCS | ownedAnnotation+=AnnotationElementCS)* "}";
 	public ClassCSElements getClassCSAccess() {
@@ -2454,7 +2454,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getLibIterationCSAccess().getRule();
 	}
 
-	//IteratorCS returns LibIteratorCS:
+	//IteratorCS returns base::ParameterCS:
 	//	name=Identifier ":" ownedType=TypedRefCS;
 	public IteratorCSElements getIteratorCSAccess() {
 		return (pIteratorCS != null) ? pIteratorCS : (pIteratorCS = new IteratorCSElements());
@@ -2462,6 +2462,17 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIteratorCSRule() {
 		return getIteratorCSAccess().getRule();
+	}
+
+	//LambdaTypeCS returns base::LambdaTypeCS:
+	//	name="Lambda" ownedContextType=TypedRefCS ownedTemplateSignature=TemplateSignatureCS? "("
+	//	(ownedParameterType+=TypedRefCS ("," ownedParameterType+=TypedRefCS)*)? ")" ":" ownedResultType=TypedRefCS;
+	public LambdaTypeCSElements getLambdaTypeCSAccess() {
+		return (pLambdaTypeCS != null) ? pLambdaTypeCS : (pLambdaTypeCS = new LambdaTypeCSElements());
+	}
+	
+	public ParserRule getLambdaTypeCSRule() {
+		return getLambdaTypeCSAccess().getRule();
 	}
 
 	//OperationCS returns base::OperationCS:
@@ -2550,16 +2561,14 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrecedenceCSAccess().getRule();
 	}
 
-	//QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	//	namespace=[pivot::Namespace|Name] ownedTemplateBinding=TemplateBindingCS? "::" element=TypedRefCS;
-	public QualifiedTypeRefCSElements getQualifiedTypeRefCSAccess() {
-		return (pQualifiedTypeRefCS != null) ? pQualifiedTypeRefCS : (pQualifiedTypeRefCS = new QualifiedTypeRefCSElements());
-	}
-	
-	public ParserRule getQualifiedTypeRefCSRule() {
-		return getQualifiedTypeRefCSAccess().getRule();
-	}
-
+	////NamespaceRefCS returns base::NamespaceRefCS:
+	//
+	////	ref=[pivot::Namespace|Name]
+	//
+	////	(ownedTemplateBinding=TemplateBindingCS)?
+	//
+	////;
+	//
 	//TemplateBindingCS returns base::TemplateBindingCS:
 	//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 	//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
@@ -2592,7 +2601,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LibTupleCS returns base::TupleTypeCS:
-	//	{base::TupleTypeCS} name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">";
+	//	name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">";
 	public LibTupleCSElements getLibTupleCSAccess() {
 		return (pLibTupleCS != null) ? pLibTupleCS : (pLibTupleCS = new LibTupleCSElements());
 	}
@@ -2633,7 +2642,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedRefCS returns base::TypedRefCS:
-	//	LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS;
+	//	LibTupleCS | TypedTypeRefCS | LambdaTypeCS;
 	public TypedRefCSElements getTypedRefCSAccess() {
 		return (pTypedRefCS != null) ? pTypedRefCS : (pTypedRefCS = new TypedRefCSElements());
 	}
@@ -2643,6 +2652,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
+	//	(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
+	//
 	//	type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return (pTypedTypeRefCS != null) ? pTypedTypeRefCS : (pTypedTypeRefCS = new TypedTypeRefCSElements());

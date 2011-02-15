@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OCLstdlibCSVisitor.java,v 1.4 2011/02/11 20:59:23 ewillink Exp $
+ * $Id: OCLstdlibCSVisitor.java,v 1.5 2011/02/15 10:37:08 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
 
@@ -29,13 +29,12 @@ package	org.eclipse.ocl.examples.xtext.oclstdlib.util;
  */
 public interface OCLstdlibCSVisitor<R, C> extends org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor<R, C>
 {
-	R visitLibAccumulatorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibAccumulatorCS object);
 	R visitLibClassCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS object);
 	R visitLibConstraintCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS object);
 	R visitLibIterationCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS object);
-	R visitLibIteratorCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIteratorCS object);
 	R visitLibOperationCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS object);
 	R visitLibPropertyCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS object);
 	R visitLibRootPackageCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS object);
+	R visitMetaTypeName(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName object);
 	R visitPrecedenceCS(org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS object);
 }

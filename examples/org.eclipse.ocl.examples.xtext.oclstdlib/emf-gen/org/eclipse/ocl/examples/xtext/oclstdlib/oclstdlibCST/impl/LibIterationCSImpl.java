@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LibIterationCSImpl.java,v 1.4 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: LibIterationCSImpl.java,v 1.5 2011/02/15 10:37:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -73,6 +73,7 @@ public class LibIterationCSImpl
 	 * @ordered
 	 */
 	protected EList<ParameterCS> ownedIterator;
+
 	/**
 	 * The cached value of the '{@link #getOwnedAccumulator() <em>Owned Accumulator</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -147,8 +148,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getOwnedIterator()
-	{
+	public EList<ParameterCS> getOwnedIterator() {
 		if (ownedIterator == null)
 		{
 			ownedIterator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR);
@@ -161,8 +161,7 @@ public class LibIterationCSImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParameterCS> getOwnedAccumulator()
-	{
+	public EList<ParameterCS> getOwnedAccumulator() {
 		if (ownedAccumulator == null)
 		{
 			ownedAccumulator = new EObjectContainmentEList<ParameterCS>(ParameterCS.class, this, OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ACCUMULATOR);
@@ -176,8 +175,8 @@ public class LibIterationCSImpl
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-	{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
 		switch (featureID)
 		{
 			case OCLstdlibCSTPackage.LIB_ITERATION_CS__OWNED_ITERATOR:
