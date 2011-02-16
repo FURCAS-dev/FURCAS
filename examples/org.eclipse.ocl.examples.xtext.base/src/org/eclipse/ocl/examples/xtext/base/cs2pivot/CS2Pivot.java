@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.3 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.4 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -210,7 +211,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 					assert moniker != null;
 					MonikeredElementCS oldMonikeredElement = map.get(moniker);
 					if (monikeredElement instanceof NamedElementCS) {
-						if (oldMonikeredElement instanceof NamedElementCS) {
+						if ((oldMonikeredElement instanceof NamedElementCS) && !(oldMonikeredElement instanceof PrimitiveTypeRefCS)) {
 							logger.warn("Duplicate CS '" + moniker + "'");
 						}
 						else {
