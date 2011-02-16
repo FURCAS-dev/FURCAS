@@ -104,6 +104,34 @@ public class ResultSetImpl implements ResultSet {
 		// put a lexicographical sort on the result set
 		this.lexicographicSort();
 	}
+	
+	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet,
+			Map<String, Integer> _aliasToPosition, List<Map<String, Integer>> _attrsToPosition,boolean sortingRequired) {
+
+		//        this.conn = (CoreConnection) _conn;
+		this.emfHelper = _emfHelper;
+		this.resultSet = _resultSet;
+		this.aliasToPosition = _aliasToPosition;
+		this.attrsToPosition = _attrsToPosition;
+		this.resultSetSize = (_resultSet == null ? 0 : _resultSet.getSize());
+
+		// construct the column types
+		this.columnTypes = new ColumnType[selectEntries.size()];
+
+		int j = 0;
+		for (Iterator<SelectEntry> iter = selectEntries.iterator(); iter.hasNext(); j++) {
+			this.columnTypes[j] = iter.next().getColumnType();
+		}
+
+		// because original aliases might have disappeared during query processing, 
+		// we add them here and give them the same value as the "new" alias
+		this.addOriginalAliases();
+
+		// put a lexicographical sort on the result set
+		if(sortingRequired)
+			this.lexicographicSort();
+	}
+
 
 	/**
 	 * this method makes sure that all originally used aliases are also given a

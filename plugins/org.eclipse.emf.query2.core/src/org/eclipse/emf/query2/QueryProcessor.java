@@ -47,6 +47,7 @@ public interface QueryProcessor {
 	 */
 	ResultSet execute(Query query, QueryContext scopeProvider) throws QueryExecutionException, QueryFormatException;
 
+	
 	/**
 	 * Identical to {@link #execute(Query)}, but this method allows the query
 	 * in concrete syntax format. The {@link TypeScopeProvider} makes it
