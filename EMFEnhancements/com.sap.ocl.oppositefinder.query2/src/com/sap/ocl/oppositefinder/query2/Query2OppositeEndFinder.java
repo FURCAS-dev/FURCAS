@@ -109,25 +109,23 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     }
 
     @Override
-    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
-        if (target instanceof EObject) {
-            EObject etarget = target;
-            Collection<EObject> result = null;
-            if (property instanceof EReference && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass())
-                    || ((EClass) (property).getEType()).equals(EcorePackage.eINSTANCE.getEObject()))) {
-                QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
-                ResourceSet rs = etarget.eResource().getResourceSet();
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject etarget) {
+        Collection<EObject> result = null;
+        if (property instanceof EReference
+                && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass()) || ((EClass) (property).getEType())
+                        .equals(EcorePackage.eINSTANCE.getEObject()))) {
+            QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
+            ResourceSet rs = etarget.eResource().getResourceSet();
+            if (rs == null) {
+                rs = queryContext.getResourceSet();
                 if (rs == null) {
-                    rs = queryContext.getResourceSet();
-                    if (rs == null) {
-                        rs = new ResourceSetImpl();
-                    }
+                    rs = new ResourceSetImpl();
                 }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs, IndexFactory.getInstance());
             }
-            return result;
+            result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs,
+                    IndexFactory.getInstance());
         }
-        throw new IllegalArgumentException();
+        return result;
     }
 
     @Override
