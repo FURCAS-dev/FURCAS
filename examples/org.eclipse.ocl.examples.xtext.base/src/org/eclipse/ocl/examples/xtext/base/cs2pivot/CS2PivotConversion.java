@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.7 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.8 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -339,6 +339,18 @@ public class CS2PivotConversion extends AbstractConversion
 			preOrderVisitorMap.put(ePackage, preOrderVisitor);
 		}
 		return preOrderVisitor;
+	}
+
+	public boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
+		if (qualifiers.contains(trueString)) {
+			return true;
+		}
+		else if (qualifiers.contains(falseString)) {
+			return false;
+		}
+		else {
+			return defaultValue;
+		}
 	}
 
 	protected List<TemplateBindingCS> getTemplateBindings(ElementCS csElement) {
@@ -756,7 +768,7 @@ public class CS2PivotConversion extends AbstractConversion
 		T pivotElement = refreshNamedElement(pivotClass, pivotEClass, csTypedElement);
 		List<String> qualifiers = csTypedElement.getQualifier();
 		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
-		pivotElement.setIsUnique(qualifiers.contains("unique"));
+		pivotElement.setIsUnique(getQualifier(qualifiers, "unique", "!unique", true));
 		String multiplicity = csTypedElement.getMultiplicity();
 		if (multiplicity == null) {
 			pivotElement.setLower(BigInteger.valueOf(csTypedElement.getLower()));

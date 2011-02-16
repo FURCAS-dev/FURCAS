@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.3 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.4 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -402,7 +402,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 				TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 				if ((csTemplateBinding != null) && ElementUtil.isSpecialization(csTemplateBinding)) {
 					TemplateBinding pivotTemplateBinding = PivotUtil.getPivot(TemplateBinding.class, csTemplateBinding);
-					pivotType = (Type) pivotTemplateBinding.getBoundElement();
+					pivotType = pivotTemplateBinding.getBoundElement();
 				}
 				context.installPivotElement(csElement, pivotType);
 			}
@@ -602,7 +602,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		pivotElement.setIsDerived(qualifiers.contains("derived"));
 		pivotElement.setIsID(qualifiers.contains("id"));
 		pivotElement.setIsReadOnly(qualifiers.contains("readonly"));
-		pivotElement.setIsResolveProxies(qualifiers.contains("resolve"));
+		pivotElement.setIsResolveProxies(context.getQualifier(qualifiers, "resolve", "!resolve", true));
 		pivotElement.setIsStatic(qualifiers.contains("static"));
 		pivotElement.setIsTransient(qualifiers.contains("transient"));
 		pivotElement.setIsUnsettable(qualifiers.contains("unsettable"));
@@ -615,7 +615,6 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 		return null;
 	}
-
 
 	@Override
 	public Continuation<?> visitTemplateBindingCS(TemplateBindingCS csTemplateBinding) {
