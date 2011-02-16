@@ -18,7 +18,6 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
@@ -160,8 +159,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         renameDefinition(definitionInnerScope, "b", RenameOn.MODEL);
         assertEquals("b", definitionInnerScope.eGet(definitionInnerScope.eClass().getEStructuralFeature("name")));
 
-        assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),
-                definitionInnerScope);
+        assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),definitionInnerScope);
 
     }
 
@@ -228,13 +226,13 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
 
     }
-
+     
     /**
      * Tests that if a usage was not bound to a definition before a rename, Impact analysis performs a
      * fresh lookup. It then should set the reference based on the lookup result.
      */
     @Test
-    public void testCorrectBindingIfElementWasNotBoundBeforeRename() {
+    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant1() {
         String sample = "{ def a;" + "{ def b; use a; }" + "}";
         setupModelFromTextToParse(sample);
 
@@ -249,6 +247,30 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         
         renameDefinition(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+        
+    }
+    
+    /**
+     * Variant of testCorrectBindingIfElementWasNotBoundBeforeRename1 that
+     * check that a rename operation does not accidentally trigger the binding
+     * of a usage to a wrong definition.
+     */
+    @Test
+    public void testCorrectBindingIfElementWasNotBoundBeforeRenameVariant2() {
+        String sample = "{ def a;" + "{ def b; use a; }" + "}";
+        setupModelFromTextToParse(sample);
+
+        EObject aDefinition = getStatementNonNestingLevelM(1, 0);
+        EObject bDefinition = getStatementNonNestingLevelM(1, 1);
+        EObject aUsage = getStatementNonNestingLevelM(2, 1);
+
+        assertEquals("Definition", aDefinition.eClass().getName());
+
+        EcoreUtil.delete(aDefinition);
+        assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+        
+        renameDefinition(bDefinition, "c", RenameOn.MODEL);
+        assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
     }
 
@@ -268,23 +290,11 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         return (EObject) statmentsInBlockM.toArray()[n - 1];
     }
 
-    private Collection<EObject> collectAllElementsOfType(Collection<?> statements, String type) {
-        ArrayList<EObject> definitions = new ArrayList<EObject>();
-        for (Object object : statements) {
-            EObject statement = (EObject) object;
-            if (statement.eClass().getName().equals(type)) {
-                definitions.add(statement);
-            } else if (statement.eClass().getName().equals("Block")) {
-                Collection<?> statementsOfInnerBlock = (Collection<?>) statement.eGet(statement.eClass().getEStructuralFeature("statementsInBlock"));
-                definitions.addAll((ArrayList<EObject>) collectAllElementsOfType(statementsOfInnerBlock, type));
-            }
-        }
-        return definitions;
-    }
-
     private void renameDefinition(EObject definition, String newValue, RenameOn method) {
         if (method == RenameOn.MODEL) {
             definition.eSet(definition.eClass().getEStructuralFeature("name"), newValue);
+        }else if (method == RenameOn.TEXTBLOCK){
+            //TODO:yet to be implemented
         }
     }
 
