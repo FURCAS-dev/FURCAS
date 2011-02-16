@@ -12,16 +12,26 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLOutlineTreeProvider.java,v 1.2 2011/01/24 21:30:14 ewillink Exp $
+ * $Id: EssentialOCLOutlineTreeProvider.java,v 1.3 2011/02/16 08:43:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.outline;
 
+import org.eclipse.ocl.examples.pivot.CollectionItem;
+import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class EssentialOCLOutlineTreeProvider extends DefaultOutlineTreeProvider {
-	
+public class EssentialOCLOutlineTreeProvider extends DefaultOutlineTreeProvider
+{
+	protected void _createChildren(IOutlineNode parentNode, Constraint constraint) {
+		createChildren(parentNode, constraint.getSpecification());
+	}
+
+	protected void _createNode(IOutlineNode parentNode, CollectionItem collectionItem) {
+		createNode(parentNode, collectionItem.getItem());
+	}
 }

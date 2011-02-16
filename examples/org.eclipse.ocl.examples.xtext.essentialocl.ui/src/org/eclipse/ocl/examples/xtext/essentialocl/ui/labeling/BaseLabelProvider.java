@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.2 2011/01/24 21:30:14 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.3 2011/02/16 08:43:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -83,6 +83,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
@@ -98,7 +99,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -125,42 +125,34 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected void appendMultiplicity(StringBuffer s, TypedMultiplicityElement ele) {
-//		String multiplicity = ele.getMultiplicity();
-//		if (multiplicity != null) {
-//			s.append("[");
-//			s.append(multiplicity);
-//			s.append("]");
-//		}
-//		else {
-			int lower = ele.getLower().intValue();
-			int upper = ele.getUpper().intValue();
-			if ((lower != 1) || (upper != 1)) {
-				s.append("[");
-				if (upper < 0) {
-					if (lower == 1) {
-						s.append("+");
-					}
-					else {
-						if (lower != 0) {
-							s.append(lower);
-							s.append("..");
-						}
-						s.append("*");
-					}
-				}
-				else if ((lower == 0) && (upper == 1)) {
-					s.append("?");
+		int lower = ele.getLower().intValue();
+		int upper = ele.getUpper().intValue();
+		if ((lower != 1) || (upper != 1)) {
+			s.append("[");
+			if (upper < 0) {
+				if (lower == 1) {
+					s.append("+");
 				}
 				else {
-					s.append(lower);
-					if (lower != upper) {
+					if (lower != 0) {
+						s.append(lower);
 						s.append("..");
-						s.append(upper);
 					}
+					s.append("*");
 				}
-				s.append("]");
 			}
-//		}
+			else if ((lower == 0) && (upper == 1)) {
+				s.append("?");
+			}
+			else {
+				s.append(lower);
+				if (lower != upper) {
+					s.append("..");
+					s.append(upper);
+				}
+			}
+			s.append("]");
+		}
 	}
 
 	protected void appendName(StringBuffer s, NamedElement element) {
@@ -407,9 +399,9 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionLiteralPart.gif";
 	}
 
-	protected String text(CollectionLiteralPart ele) {
-		return null;
-	}
+//	protected String text(CollectionLiteralPart ele) {
+//		return null;
+//	}
 
 	protected String image(CollectionRange ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/CollectionRange.gif";
@@ -431,8 +423,42 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return s.toString();
 	}
 
+//	protected String image(Constraint ele) {
+//		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif";
+//	}
 	protected String image(Constraint ele) {
-		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif";
+		String stereotype = ele.getStereotype();
+		if ("body".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
+		}
+		else if ("derivation".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
+		}
+		else if ("initial".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
+		}
+		else if ("invariant".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
+		}
+		else if ("postcondition".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
+		}
+		else if ("precondition".equals(stereotype)) {
+			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
+		}
+		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";
+	}
+
+	public String text(Constraint ele) {
+		StringBuffer s = new StringBuffer();
+		s.append("<");
+		appendString(s, ele.getStereotype());
+		s.append("> ");
+		String name = ele.getName();
+		if (name != null) {
+			s.append(name);
+		}	
+		return s.toString();
 	}
 
 	protected String text(DataType ele) {
@@ -500,6 +526,10 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 
 	protected String image(EnumerationLiteral ele) {
 		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif";
+	}
+
+	protected String text(EnumerationLiteral ele) {
+		return ele.getName();
 	}
 
 	protected String image(ExpressionInOcl ele) {
@@ -666,7 +696,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String image(PropertyCallExp ele) {
-		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/PropertyCallExp.gif";
+		return "/org.eclipse.ocl.edit/icons/full/obj16/PropertyCallExp.gif";
 	}
 
 	protected String image(RealLiteralExp ele) {
@@ -709,7 +739,11 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleLiteralPart.gif";
 	}
 
-	protected String image(TupleTypeCS ele) {
+	protected String text(TupleLiteralPart ele) {
+		return ele.getName();
+	}
+
+	protected String image(TupleType ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/TupleType.gif";
 	}
 
@@ -723,11 +757,11 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/TypeExp.gif";
 	}
 
-	protected String text(TypeRefCS ele) {
-		StringBuffer s = new StringBuffer();
-		appendType(s, ele);
-		return s.toString();
-	}
+//	protected String text(TypeRefCS ele) {
+//		StringBuffer s = new StringBuffer();
+//		appendType(s, ele);
+//		return s.toString();
+//	}
 
 	protected String image(UnlimitedNaturalLiteralExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/UnlimitedNaturalLiteralExp.gif";
