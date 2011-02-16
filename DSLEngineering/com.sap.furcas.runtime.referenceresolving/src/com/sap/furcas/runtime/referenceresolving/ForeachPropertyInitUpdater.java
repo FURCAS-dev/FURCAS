@@ -422,60 +422,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         return result;
     }
 
-    /*
-     * This code copied from DelayedReferencesHelper:
-     * 
-     * private Object setReference(ObservableInjectingParser parser, Object foreachElement, String ruleName) throws
-     * Exception { // TODO need to determine and set context element
-     * 
-     * // invoke the parser to execute the template Method methodToCall = parser.getClass().getMethod(ruleName); //
-     * parser.reset(); if (!Modifier.isFinal(methodToCall.getModifiers())) { throw new
-     * UnknownProductionRuleException(ruleName + " is not a production rule in generated Parser."); } boolean
-     * originalResolveProxiesValue = parser.isResolveProxies(); parser.setResolveProxies(false);
-     * DelegationParsingObserver delegator = new DelegationParsingObserver(); IParsingObserver originalObserver =
-     * parser.getObserver(); if (originalObserver != null) { delegator.addParsingObserver(originalObserver); }
-     * delegator.addParsingObserver(new ForeachParsingObserver((TextBlock) reference.getTextBlock()));
-     * parser.setObserver(delegator);
-     * 
-     * IModelElementProxy proxyForContextElement = null; if (reference.getContextElement() instanceof
-     * IModelElementProxy) { proxyForContextElement = (IModelElementProxy) reference.getContextElement(); } else {
-     * proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement()); }
-     * 
-     * parser.setCurrentForeachElement(foreachElement);
-     * 
-     * if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
-     * parser.addContext(proxyForContextElement); if (proxyForContextElement.getRealObject() != null &&
-     * reference.getContextElement() instanceof EObject) {
-     * parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement, reference.getContextElement(), // no
-     * creation context element needs to be provided here because the proxy has just been created and has not been //
-     * added to any other context null); } } else { parser.getCurrentContextStack().push(proxyForContextElement); // the
-     * Context object was already created elsewhere } if (reference.hasContext() && foreachElement instanceof EObject) {
-     * ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(foreachElement); if
-     * (parser.getContextManager().getContextForElement(foreachElement) == null) { parser.addContext(proxyForNext);
-     * parser.getContextManager().notifyProxyResolvedWith(proxyForNext, foreachElement, // no creation context element
-     * needs to be provided here because the proxy has just been created and has not been // added to any other context
-     * null); } else { parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created
-     * elsewhere } } try { Object parseReturn = methodToCall.invoke(parser); if (parseReturn == null) { throw new
-     * ModelElementCreationException("Unable to create model element using parse rule " + ruleName + ". Parse errors: "
-     * + parser.getInjector().getErrorList()); } // add the parsed part to the object // first try to resolve if there
-     * is a model element that already // exists and can be reused // EObject candidate =
-     * findCandidateFromProxy((EObject) // reference.getModelElement(), // reference.getPropertyName(), parseReturn,
-     * (EObject) // reference.getElementForSelf(),//(EObject) next, // (ForeachPredicatePropertyInit)
-     * reference.getQueryElement(), // (TextBlock) reference.getTextBlock()); if (reusableResultElement != null) { //
-     * element already exists so we can reuse it reference.setRealValue(reusableResultElement); ((ModelElementProxy)
-     * parseReturn).setRealObject(reusableResultElement); return; } else {
-     * reference.setRealValue(injector.createOrResolve(parseReturn, null, null)); // by default use partition of
-     * reference.getModelElement if (reference.getModelElement() instanceof EObject && reference.getRealValue()
-     * instanceof EObject) { ((EObject) reference.getModelElement()).eResource().getContents().add((EObject)
-     * reference.getRealValue()); } modelAdapter.set(reference.getModelElement(), reference.getPropertyName(),
-     * reference.getRealValue()); if (reference.getTextBlock() != null) { addForEachContext((TextBlock)
-     * reference.getTextBlock(), (EObject) reference.getModelElement(), (EObject) foreachElement,
-     * (ForeachPredicatePropertyInit) reference.getQueryElement(), (EObject) reference.getRealValue(), ((EObject)
-     * reference.getModelElement()).eResource() .getResourceSet()); } } } finally { if (reference.hasContext() &&
-     * foreachElement instanceof EObject) { parser.leaveContext(); } parser.getCurrentContextStack().pop();
-     * parser.setObserver(originalObserver); parser.setResolveProxies(originalResolveProxiesValue); } }
-     */
-
     /**
      * Determines for an {@link EObject} result of the foreach base expression which template to use to produce the
      * element. If there is no {@link PredicateSemantic} associated, use the <code>foreachElement</code>'s type and the
