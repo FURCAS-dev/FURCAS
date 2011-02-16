@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLOutlineTreeProvider.java,v 1.2 2011/01/24 21:15:09 ewillink Exp $
+ * $Id: CompleteOCLOutlineTreeProvider.java,v 1.3 2011/02/16 08:43:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.outline;
 
-import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.outline.EssentialOCLOutlineTreeProvider;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class CompleteOCLOutlineTreeProvider extends DefaultOutlineTreeProvider {
+public class CompleteOCLOutlineTreeProvider extends EssentialOCLOutlineTreeProvider {
 	
 }
