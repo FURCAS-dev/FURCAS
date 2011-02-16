@@ -153,7 +153,11 @@ public class QueryProcessorImpl implements QueryProcessor {
 	private AuxServices mqlAuxServices;
 
 	private final Index index;
-
+	/**
+	 * Sorting of the resultset can be enabled or disabled.Sorting disabled by default
+	 */
+	private boolean isSortingNeeded=false;
+	
 	/**
 	 * The data areas relevant for the session
 	 */
@@ -278,6 +282,13 @@ public class QueryProcessorImpl implements QueryProcessor {
 		// }
 
 	}
+	
+	public QueryProcessorImpl(Index index,boolean isSortingNeeded) {
+		this(index);
+		this.isSortingNeeded = isSortingNeeded;
+	}
+	
+	
 
 	/*
 	 * The scheduler uses certain thresholds to perform a certain optimization.
@@ -285,6 +296,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 * purposes
 	 */
 
+	
 	public void turnOffOptimizationForElementsDuringScheduling() {
 
 		this.thresholdForNumberOfElementsInPartitionForOptimization = 0;
@@ -446,12 +458,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 * Execution method
 	 */
 	private ResultSet executeInternal(final PreparedQuery preparedQuery, final EmfHelper emfHelper, final boolean schedulingWanted, final boolean globalScopeIncluded,
-			final QueryContext scopeProvider, final URI[] globalContainerScope, final int numberOfResults) throws QueryExecutionException {
+			final QueryContext scopeProvider, final URI[] globalContainerScope, final int numberOfResults,final boolean isSortingNeeded) throws QueryExecutionException {
 		QueryCommandWithResult<ResultSet> command = new QueryCommandWithResult<ResultSet>() {
 
 			public void execute(QueryExecutor queryExecutor) {
 				this.setResult(executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded, scopeProvider.getResourceScope(), globalContainerScope,
-						numberOfResults));
+						numberOfResults,isSortingNeeded));
 			}
 		};
 		emfHelper.getIndex().executeQueryCommand(command);
@@ -463,7 +475,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 */
 
 	private ResultSet executeSecuredInternal(PreparedQuery preparedQuery, EmfHelper emfHelper, boolean schedulingWanted, boolean globalScopeIncluded, URI[] globalPartitionScope,
-			URI[] globalContainerScope, int numberOfResults) throws QueryExecutionException {
+			URI[] globalContainerScope, int numberOfResults,boolean isSortingNeeded) throws QueryExecutionException {
 
 		
 
@@ -503,7 +515,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 				/* execute the internal query */
 				InterpreterImpl interpreter = new InterpreterImpl(emfHelper, this.memoryFQLProcessor, this, this.mqlAuxServices);
-				result = interpreter.execute(internalQuery, this.maxResultSetSize, numberOfResults);
+				result = interpreter.execute(internalQuery, this.maxResultSetSize, numberOfResults,isSortingNeeded);
 			} finally {
 				// we're done. Release
 				// this.syncManager.releaseReadLock( );
@@ -560,7 +572,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 			throw new QueryExecutionException(e, ApiMessages.MQL_PREPROCESSOR_PROBLEM);
 		}
 
-		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context, globalContainerScope, numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context, globalContainerScope, numberOfResults,isSortingNeeded);
 	}
 
 	/*
@@ -664,7 +676,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 		EmfHelper emfHelper = this.getEmfHelper(scopeProvider);
 		PreparedQuery preparedQuery = this.prepareInternal(query, scopeProvider, emfHelper);
-		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider, null, numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider, null, numberOfResults,isSortingNeeded);
 	}
 
 	// public QueryScopeProvider getGlobalQueryScopeProvider() {

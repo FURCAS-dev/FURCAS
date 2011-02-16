@@ -30,6 +30,6 @@ public interface Interpreter {
 	 * maxResultSetSize defines when the execution aborts with an
 	 * MQLExecutionException.
 	 */
-	ResultSet execute(InternalQuery internalQuery, int maxResultSetSize, int numberOfRequestedRows) throws QueryExecutionException;
+	ResultSet execute(InternalQuery internalQuery, int maxResultSetSize, int numberOfRequestedRows,boolean isSortingNeeded) throws QueryExecutionException;
 
 }
