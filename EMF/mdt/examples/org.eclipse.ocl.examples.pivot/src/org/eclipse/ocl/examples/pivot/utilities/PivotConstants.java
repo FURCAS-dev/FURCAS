@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -31,7 +31,7 @@ public interface PivotConstants
 	static final String NULL_MARKER = "<<null-element>>"; //$NON-NLS-1$
 	static final String OVERFLOW_MARKER = "##"; //$NON-NLS-1$
 	static final String MONIKER_PART_SEPARATOR = "@"; //$NON-NLS-1$
-	static final String MONIKER_SCOPE_SEPARATOR = "|"; //"::"; //$NON-NLS-1$
+	static final String MONIKER_SCOPE_SEPARATOR = "!"; //"::"; //$NON-NLS-1$
 	static final String MONIKER_OPERATOR_SEPARATOR = "~"; //$NON-NLS-1$
 	static final String PARAMETER_PREFIX = "("; //$NON-NLS-1$
 	static final String PARAMETER_SEPARATOR = ","; //$NON-NLS-1$
@@ -52,7 +52,10 @@ public interface PivotConstants
 
 	static final String COLLECTION_NAVIGATION_OPERATOR = "->";
 	static final String OBJECT_NAVIGATION_OPERATOR = ".";
+	static final String GREATER_THAN_OPERATOR = ">";
+	static final String GREATER_THAN_OR_EQUAL_OPERATOR = ">=";
 	static final String LESS_THAN_OPERATOR = "<";
+	static final String LESS_THAN_OR_EQUAL_OPERATOR = "<=";
 	
 	static final String MONIKER_IF_EXP = "if";
 	static final String MONIKER_INVALID_LITERAL_EXP = "invalid";
@@ -72,6 +75,7 @@ public interface PivotConstants
 	static final String WILDCARD_NAME = "wildcard";
 	
 	static final String OCL_LANGUAGE = "OCL";
+	static final String OCL_SELF_NAME = "OclSelf";
 	
 	public static Map<EStructuralFeature,String> roleNames = new HashMap<EStructuralFeature,String>();
 }

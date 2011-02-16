@@ -12,27 +12,28 @@
  * 
  * </copyright>
  *
- * $Id: OCLQueryDelegate.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLQueryDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.util.QueryDelegate;
-import org.eclipse.ocl.LookupException;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * An implementation of a query delegate for OCL expressions.
@@ -43,11 +44,8 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 public class OCLQueryDelegate implements QueryDelegate
 {
 	protected final OCLDelegateDomain delegateDomain;
-	protected final Type context;
-	protected final Map<String, Variable> variables;
-	protected final String expression;
-
-	private ExpressionInOcl query = null;
+	protected final Operation operation;
+	private ExpressionInOcl specification = null;
 
 	/**
 	 * Initializes me with my domain, context, variables, and expression.
@@ -64,13 +62,9 @@ public class OCLQueryDelegate implements QueryDelegate
 	 * @throws ParserException
 	 *             if the expression is invalid
 	 */
-	public OCLQueryDelegate(OCLDelegateDomain delegateDomain,
-			Type context, Map<String, Variable> variables,
-			String expression) {
+	public OCLQueryDelegate(OCLDelegateDomain delegateDomain, Operation operation) {
 		this.delegateDomain = delegateDomain;
-		this.context = context;
-		this.variables = variables;
-		this.expression = expression;
+		this.operation = operation;
 	}
 
 	/**
@@ -83,20 +77,23 @@ public class OCLQueryDelegate implements QueryDelegate
 	 */
 	public void prepare() throws InvocationTargetException {
 		OCL ocl = delegateDomain.getOCL();
-		OCLHelper helper = ocl.createOCLHelper();
-		helper.setContext(context);
-
-		if (variables != null) {
-			// install variables with specified names and types
-			Environment environment = helper.getEnvironment();
-			for (Map.Entry<String, Variable> entry : variables.entrySet()) {
-				environment.addElement(entry.getKey(), entry.getValue(), true);
-			}
-		}
-
+		TypeManager typeManager = ocl.getEnvironment().getTypeManager();
 		try {
-			query = helper.createQuery(expression);
-		} catch (ParserException e) {
+			specification = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
+			if (specification == null) {
+				String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, getOperationName());
+				throw new OCLDelegateException(message);
+//				expression = ocl.getTypeManager().createInvalidExpression(target, message);
+//				return null;
+			}
+//			else {
+//				expression = specification.getBodyExpression();
+//				if (expression == null) {
+//					String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, getOperationName());
+//					expression = ocl.getTypeManager().createInvalidExpression(specification, message);
+//				}
+//			}
+		} catch (OCLDelegateException e) {
 			throw new InvocationTargetException(e);
 		}
 	}
@@ -120,56 +117,74 @@ public class OCLQueryDelegate implements QueryDelegate
 	 */
 	public Object execute(Object target, Map<String, ?> arguments)
 			throws InvocationTargetException {
-		if (query == null) {
+		if (specification == null) {
 			prepare();
 		}
-		OCL ocl = delegateDomain.getOCL();
-		OCL.Query oclQuery = ocl.createQuery(query);
-
-		EvaluationEnvironment evalEnv = oclQuery.getEvaluationEnvironment();
-		Environment env = ocl.getEnvironment();
-		Type contextType = evalEnv.getType(target);
-		TypeManager typeManager = evalEnv.getTypeManager();
-		if (!typeManager.conformsTo(context, contextType)) {
-			String message = OCLMessages.bind(OCLMessages.WrongContextClassifier_ERROR_,
-				contextType.getName(), context.getName());
-			throw new InvocationTargetException(new ParserException(message));
-		}
-		if (variables != null) {
-			// check variables defined
-			for (Map.Entry<String, Variable> entry : variables.entrySet()) {
-				String key = entry.getKey();
-				if ((arguments == null) || !arguments.containsKey(key)) {
-					String message = OCLMessages.bind(OCLMessages.BadArg_ERROR_, key);
-					throw new InvocationTargetException(new ParserException(message));
-				}
+		try {
+			OCL ocl = delegateDomain.getOCL();
+			TypeManager typeManager = ocl.getTypeManager();
+			ValueFactory valueFactory = typeManager.getValueFactory();
+			Value targetValue = valueFactory.valueOf(target);
+			Type targetType = targetValue.getType(typeManager, null);
+			Type requiredType = PivotUtil.getFeaturingClass(operation);
+			if (!typeManager.conformsTo(targetType, requiredType, null)) {
+				String message = NLS.bind(OCLMessages.WrongContextClassifier_ERROR_, targetType, requiredType);
+				throw new OCLDelegateException(message);
 			}
-		}
-		if (arguments != null) {
-			ValueFactory valueFactory = evalEnv.getValueFactory();
-			// bind values to variable names
-			for (Map.Entry<String, ?> entry : arguments.entrySet()) {
-				String key = entry.getKey();
-				Variable variable = variables != null ? variables.get(key) : null;
-				Type variableType = variable != null ? variable.getType() : null;
-				if (variableType == null) {
-					String message = OCLMessages.bind(OCLMessages.ExtraArg_ERROR_, key);
-					throw new InvocationTargetException(new LookupException(message));
-				}
-				Value newValue = valueFactory.valueOf(entry.getValue());
-				Type valueType = evalEnv.getType(newValue);
-				if (!typeManager.conformsTo(valueType, variableType)) {
-					String message = OCLMessages.bind(OCLMessages.TypeConformanceInit_ERROR_, key);
-					throw new InvocationTargetException(new ParserException(message));
-				}
-				evalEnv.replace(variable, newValue);
+			List<Parameter> parameters = operation.getOwnedParameters();
+			int argCount = arguments != null ? arguments.size() : 0;
+			if (parameters.size() != argCount) {
+				String message = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, argCount, parameters.size());
+				throw new OCLDelegateException(message);
 			}
+			OCL.Query query = ocl.createQuery(specification);
+			EvaluationEnvironment env = query.getEvaluationEnvironment();
+			for (Parameter parameter : parameters) {
+				// bind arguments to parameter names
+				String name = parameter.getName();
+				@SuppressWarnings("null")
+				Object object = arguments.get(name);
+				if ((object == null) && !arguments.containsKey(name)) {
+					String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
+					throw new OCLDelegateException(message);
+				}
+				Value value = valueFactory.valueOf(object);
+				targetType = value.getType(typeManager, null);
+				requiredType = parameter.getType();
+				if (!typeManager.conformsTo(targetType, requiredType, null)) {
+					String message = NLS.bind(OCLMessages.MismatchedArgumentType_ERROR_, new Object[]{name, targetType, requiredType});
+					throw new OCLDelegateException(message);
+				}
+				env.add(parameter, value);
+			}
+			Value result = query.evaluate(target);
+			if (result.isInvalid()) {
+				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getOperationName());
+				throw new OCLDelegateException(message);
+			}
+	//		if ((result == null) /* || ocl.isInvalid(result) */) {
+	//			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
+	//			throw new OCLDelegateException(message);
+	//		}
+	//		return converter.convert(ocl, result);
+			return valueFactory.getEcoreValueOf(result);
 		}
-		return oclQuery.evaluate(target);
+		catch (OCLDelegateException e) {
+			throw new InvocationTargetException(e);
+		}
+	}
+	
+	public String getOperationName() {
+		return operation.getClass_().getPackage().getName() + "::" + operation.getClass_().getName() + "." + operation.getName();  //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	@Override
 	public String toString() {
-		return "<" + delegateDomain.getURI() + ":query> " + expression; //$NON-NLS-1$ //$NON-NLS-2$
+		if (specification != null) {
+			return "<" + delegateDomain.getURI() + ":query> " + specification; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		else {
+			return "<" + delegateDomain.getURI() + ":query> " /*+ expression*/; //$NON-NLS-1$ //$NON-NLS-2$
+		}
 	}
 }

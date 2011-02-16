@@ -755,126 +755,107 @@ public class DelayedReferencesHelper {
         return result;
     }
     
-	private boolean setDelayedReferenceWithSemanticDisambiguate(
-			DelayedReference reference, IModelAdapter modelAdapter,
-			ContextManager contextManager, Object contextElement,
-			ObservableInjectingParser parser) {
-		try {
-			Iterator<SemanticDisambRuleData> dataIt = reference.getSemRulData()
-					.iterator();
-			boolean resultFound = false;
-			while (dataIt.hasNext()) {
-				SemanticDisambRuleData nextRuleData = dataIt.next();
-				int beginRef = nextRuleData.getOcl().indexOf("${");
-				String flattenOCL = appendFlattenToOclQuery(nextRuleData
-						.getOcl());
-				if (beginRef >= 0) {
-					String semReference = nextRuleData.getOcl()
-							.substring(
-									beginRef,
-									nextRuleData.getOcl().indexOf('}',
-											beginRef + 1) + 1);
-					String replacedBy;
-					// TODO support other types than string
-					if (isBasicType(reference.getSemanticObject())) {
-                        replacedBy = "'"
-								+ reference.getSemanticObject().toString()
-								+ "'";
+    private boolean setDelayedReferenceWithSemanticDisambiguate(DelayedReference reference, IModelAdapter modelAdapter,
+            ContextManager contextManager, Object contextElement, ObservableInjectingParser parser) {
+        try {
+            Iterator<SemanticDisambRuleData> dataIt = reference.getSemRulData().iterator();
+            boolean resultFound = false;
+            while (dataIt.hasNext()) {
+                SemanticDisambRuleData nextRuleData = dataIt.next();
+                int beginRef = nextRuleData.getOcl().indexOf("${");
+                String flattenOCL = appendFlattenToOclQuery(nextRuleData.getOcl());
+                if (beginRef >= 0) {
+                    String semReference = nextRuleData.getOcl().substring(beginRef,
+                            nextRuleData.getOcl().indexOf('}', beginRef + 1) + 1);
+                    String replacedBy;
+                    // TODO support other types than string
+                    if (isBasicType(reference.getSemanticObject())) {
+                        replacedBy = "'" + reference.getSemanticObject().toString() + "'";
                     } else {
                         replacedBy = "?";
                     }
-					String replacedOCL = nextRuleData.getOcl().replaceAll(
-							Pattern.quote(semReference), replacedBy);
-					if (replacedOCL.contains("#source")) {
+                    String replacedOCL = nextRuleData.getOcl().replaceAll(Pattern.quote(semReference), replacedBy);
+                    if (replacedOCL.contains("#source")) {
                         replacedOCL = replacedOCL.replace("#source", "self");
                     }
-					flattenOCL = appendFlattenToOclQuery(replacedOCL);
-				}
+                    flattenOCL = appendFlattenToOclQuery(replacedOCL);
+                }
 
-				// evaluate the predicate by OCL, return value is a list of
-				// objects
-				Object currentContextElement;
-				if (nextRuleData.getOcl().contains("#source")
-						&& reference.isSemanticDisambiguatedOperatorRule()) {
-					if (reference.getOpTemplateLefthand() instanceof ModelElementProxy) {
-                        currentContextElement = ((ModelElementProxy) reference
-								.getOpTemplateLefthand()).getRealObject();
+                // evaluate the predicate by OCL, return value is a list of
+                // objects
+                Object currentContextElement;
+                if (nextRuleData.getOcl().contains("#source") && reference.isSemanticDisambiguatedOperatorRule()) {
+                    if (reference.getOpTemplateLefthand() instanceof ModelElementProxy) {
+                        currentContextElement = ((ModelElementProxy) reference.getOpTemplateLefthand()).getRealObject();
                     } else {
-                        currentContextElement = reference
-								.getOpTemplateLefthand();
+                        currentContextElement = reference.getOpTemplateLefthand();
                     }
-				} else {
+                } else {
                     currentContextElement = contextElement;
                 }
-				Collection<?> result = modelAdapter.evaluateOCLQuery(
-						currentContextElement, null, flattenOCL, currentContextElement);
-				// if there is no result it will be null
-				if (result.isEmpty()) {
-					resultFound = false;
-				} else {
-					Iterator<?> resultIt = result.iterator();
-					// loop over the results to handle them one by one
-					boolean ruleFound = false;
-					while (resultIt.hasNext()) {
-						Object nextResult = resultIt.next();
-						if (nextResult instanceof Boolean) {
-							if (((Boolean) nextResult).booleanValue()) {
-								if (ruleFound) {
-									reportProblem(
-											"The semantic disambiguate matches more than one rule",
-											reference.getToken());
-									return false;
-								}
-								ruleFound = true;
-								resultFound = true;
-								setReferenceForSemanticDisambiguatedRule(
-										parser, reference,
-										nextRuleData.getRule(), modelAdapter);
-							}
-						} else {
-							reportProblem(
-									"The rule "
-											+ nextRuleData.getRule()
-											+ " has a semantic disambiguate which does not evaluate to a bool value",
-									reference.getToken());
-							return false;
-						}
-					}
-				}
-			}
-			if (!resultFound) {
-				reportProblem(
-						"The semantic disambiguate did not match any rule",
-						reference.getToken());
-				return false;
-			}
-		} catch (IllegalAccessException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (SecurityException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (IllegalArgumentException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (UnknownProductionRuleException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (NoSuchMethodException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (InvocationTargetException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (ModelElementCreationException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		} catch (ModelAdapterException e) {
-			reportProblem(e.getMessage(), reference.getToken());
-			return false;
-		}
-		return true;
-	}
+                Collection<?> result = modelAdapter.evaluateOCLQuery(currentContextElement, null, flattenOCL,
+                        currentContextElement);
+                // if there is no result it will be null
+                if (result.isEmpty()) {
+                    resultFound = false;
+                } else {
+                    Iterator<?> resultIt = result.iterator();
+                    // loop over the results to handle them one by one
+                    boolean ruleFound = false;
+                    while (resultIt.hasNext()) {
+                        Object nextResult = resultIt.next();
+                        if (nextResult instanceof Boolean) {
+                            if (((Boolean) nextResult).booleanValue()) {
+                                if (ruleFound) {
+                                    reportProblem("The semantic disambiguate matches more than one rule",
+                                            reference.getToken());
+                                    return false;
+                                }
+                                ruleFound = true;
+                                resultFound = true;
+                                setReferenceForSemanticDisambiguatedRule(parser, reference, nextRuleData.getRule(),
+                                        modelAdapter);
+                            }
+                        } else {
+                            reportProblem("The rule " + nextRuleData.getRule()
+                                    + " has a semantic disambiguate which does not evaluate to a bool value",
+                                    reference.getToken());
+                            return false;
+                        }
+                    }
+                }
+            }
+            if (!resultFound) {
+                reportProblem("The semantic disambiguate did not match any rule", reference.getToken());
+                return false;
+            }
+        } catch (IllegalAccessException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (SecurityException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (IllegalArgumentException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (UnknownProductionRuleException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (NoSuchMethodException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (InvocationTargetException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (ModelElementCreationException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        } catch (ModelAdapterException e) {
+            reportProblem(e.getMessage(), reference.getToken());
+            return false;
+        }
+        return true;
+    }
 
 	// TODO support the other basic types as well
 	private boolean isBasicType(Object ref) {

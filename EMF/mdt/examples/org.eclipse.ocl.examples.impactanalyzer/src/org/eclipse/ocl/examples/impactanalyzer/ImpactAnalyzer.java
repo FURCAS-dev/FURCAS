@@ -59,13 +59,28 @@ public interface ImpactAnalyzer {
 
 	/**
 	 * For a change notification <tt>event</tt> calculates a superset of the set of context objects
-	 * for which <tt>expression</tt> may have changed its value due to the changed indicated by the event.
-	 * As implies by "superset," the result set may contain context elements for which the expression's
+	 * for which <tt>expression</tt> may have changed its value due to the change indicated by the event.
+	 * As implied by "superset," the result set may contain context elements for which the expression's
 	 * value may happen to not have changed.
 	 * 
 	 * @param event
 	 *            the event to calculate for
-	 * @return all relevant context objects
+	 * @return all relevant context objects; always a valid collection, never <code>null</code>
 	 */
 	Collection<EObject> getContextObjects(Notification event);
+
+	/**
+	 * Determines a superset of the set of context objects for which the overall
+	 * {@link #expression} managed by this instance scope analysis results in
+	 * <code>evaluationResult</code> or a collection containing
+	 * <code>evaluationResult</code>. The result is always a valid collection,
+	 * never <code>null</code>, but possibly empty.
+	 * 
+	 * @param evaluationResult
+	 *            has to be a non-<code>null</code> {@link EObject} because
+	 *            backwards navigation is not easily possible for
+	 *            primitive-typed values and is impossible from
+	 *            <code>null</code> values for now.
+	 */
+    public Collection<EObject> getContextObjects(EObject evaluationResult);
 }

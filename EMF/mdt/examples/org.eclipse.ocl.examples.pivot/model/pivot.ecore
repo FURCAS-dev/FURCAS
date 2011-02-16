@@ -306,6 +306,8 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSerializable" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavioralType" ordered="false"
+        eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Detail" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
@@ -360,7 +362,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement #//NamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement">
     <eAnnotations source="duplicates">
       <contents xsi:type="ecore:EAttribute" name="isStatic" ordered="false" lowerBound="1"
           eType="#//Boolean">
@@ -371,9 +373,6 @@
         eType="#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
         eType="#//CallableImplementation" transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClass" ordered="false"
-        eType="#//Class" changeable="false" volatile="true" transient="true" derived="true"
-        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FeatureCallExp" abstract="true" eSuperTypes="#//CallExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPre" ordered="false"
@@ -413,6 +412,14 @@
         upperBound="-1" eType="#//Parameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//LoopExp"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LambdaType" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextType" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterType" ordered="false"
+        upperBound="-1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultType" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExp" eSuperTypes="#//OclExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="in" ordered="false" lowerBound="1"
         eType="#//OclExpression" containment="true"/>
@@ -608,7 +615,7 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//Namespace #//ParameterableElement #//TemplateableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//Namespace #//ParameterableElement #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An operation is owned by a class and may be invoked in the context of objects that are instances of that class. It is a typed element and a multiplicity element.&#xD;&#xA;Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -767,7 +774,7 @@
       <details key="documentation" value="A primitive type is a data type implemented by the underlying infrastructure and made available for modeling."/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//TypedElement #//Feature #//MultiplicityElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//Feature #//ParameterableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="A property is a typed element that represents an attribute of a class.&#xD;&#xA;Property specializes ParameterableElement to specify that a property can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template."/>
     </eAnnotations>
@@ -851,7 +858,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="realSymbol" ordered="false"
         lowerBound="1" eType="#//Real"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SelfType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="SendSignalAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
         lowerBound="1" eType="#//Signal"/>
@@ -1212,6 +1218,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNaturalLiteralExp" eSuperTypes="#//NumericLiteralExp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
         ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedType" eSuperTypes="#//Type">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" ordered="false"
+        lowerBound="1" eType="#//Type"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedValueExp" eSuperTypes="#//OclExpression"/>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true"

@@ -12,56 +12,87 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.7 2011/01/30 11:12:40 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.9 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 
 /**
- * An EnvironmentView provides a selective view of the environment visible at some CST node.
+ * An EnvironmentView provides a selective view of the environment visible at
+ * some CST node.
  * 
- * The selection corresponds to an Environment lookup method as defined by the OCL specification
- * computed in accordance with the the Inherited Attributes.
+ * The selection corresponds to an Environment lookup method as defined by the
+ * OCL specification computed in accordance with the the Inherited Attributes.
  * 
- * The selective view is normally for just the single name required by the lookUp, but may be
- * for all names when a Completion Assist is required.
+ * The selective view is normally for just the single name required by the
+ * lookUp, but may be for all names when a Completion Assist is required.
  * 
- * The EnvironmentView is computed on demand, rather than cached, since only small parts of
- * the overall environment are needed and caches may not remain valid for long given the rapid
- * recreation of CST nodes that occurs while editing.
+ * The EnvironmentView is computed on demand, rather than cached, since only
+ * small parts of the overall environment are needed and caches may not remain
+ * valid for long given the rapid recreation of CST nodes that occurs while
+ * editing.
  */
-public class EnvironmentView
-{		
-	public static interface Filter 
+public class EnvironmentView {
+
+	public static interface Filter
 	{
-		public boolean filter(EObject eObject);
+		/**
+		 * Return -ve if match1 is inferior to match2, +ve if match2 is inferior to match1, or
+		 * zero if both matches are of equal validity.
+		 */
+		int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1, EObject match2, Map<TemplateParameter, ParameterableElement> bindings2);
+
+		/**
+		 * Return true if the filter accepts eObject as a candidate for
+		 * inclusion in the EnvironmentView.
+		 * 
+		 * @param eObject
+		 */
+		boolean matches(EnvironmentView environmentView, EObject eObject);
 	}
-	
+
+	protected final TypeManager typeManager;
 	protected final EStructuralFeature reference;
-
 	protected final String name;
-	private final Map<String, Object> contentsByName = new HashMap<String, Object>();		// Single EObject or List<EObject>
-	private List<Filter> filters = null;
 
-	public EnvironmentView(EStructuralFeature reference, String name) {
+	private final Map<String, Object> contentsByName = new HashMap<String, Object>(); // Single
+																						// EObject
+																						// or
+																						// List<EObject>
+	private Map<EObject, Map<TemplateParameter, ParameterableElement>> templateBindings = null;
+
+	private int contentsSize = 0; // Deep size of contentsByName;
+
+	private List<Filter> matchers = null;	// Prevailing filters for matching
+	private Set<Filter> resolvers = null;	// Successful filters for resolving
+
+	public EnvironmentView(TypeManager typeManager, EStructuralFeature reference, String name) {
+		this.typeManager = typeManager;
 		this.reference = reference;
 		this.name = name;
 	}
@@ -73,8 +104,10 @@ public class EnvironmentView
 	/**
 	 * Add an element with an elementName to the view
 	 * 
-	 * @param elementName name of element
-	 * @param element the element
+	 * @param elementName
+	 *            name of element
+	 * @param element
+	 *            the element
 	 * @return the number of elements added; 1 if added, 0 if not
 	 */
 	public int addElement(String elementName, EObject element) {
@@ -84,9 +117,9 @@ public class EnvironmentView
 		if ((name != null) && !name.equals(elementName)) {
 			return 0;
 		}
-		if (filters != null) {
-			for (Filter filter : filters) {
-				if (!filter.filter(element)) {
+		if (matchers != null) {
+			for (Filter filter : matchers) {
+				if (!filter.matches(this, element)) {
 					return 0;
 				}
 			}
@@ -97,23 +130,33 @@ public class EnvironmentView
 				return 0;
 			}
 		}
-		Object value = contentsByName.get(elementName);
-		if (value == null) {
-			contentsByName.put(elementName, element);
+		if (matchers != null) {
+			if (resolvers == null) {
+				resolvers = new HashSet<Filter>();
+			}
+			resolvers.addAll(matchers);
 		}
-		else {
+		Object value = contentsByName.get(elementName);
+		if (value == element) {
+			;	// Already present
+		} else if (value == null) {
+			contentsByName.put(elementName, element);
+			contentsSize++;
+		} else {
 			List<EObject> values;
 			if (value instanceof EObject) {
 				values = new ArrayList<EObject>();
 				values.add((EObject) value);
 				contentsByName.put(elementName, values);
-			}
-			else {
+			} else {
 				@SuppressWarnings("unchecked")
-				List<EObject> castValue = (List<EObject>)value;
+				List<EObject> castValue = (List<EObject>) value;
 				values = castValue;
 			}
-			values.add(element);
+			if (!values.contains(element)) {
+				values.add(element);
+				contentsSize++;
+			}
 		}
 		return 1;
 	}
@@ -123,15 +166,17 @@ public class EnvironmentView
 		if (elements != null) {
 			for (EObject element : elements) {
 				if (element instanceof Nameable) {
-					Nameable namedElement = (Nameable)element;
-					additions += addElement(namedElement.getName(), namedElement);
+					Nameable namedElement = (Nameable) element;
+					additions += addElement(namedElement.getName(),
+						namedElement);
 				}
 			}
 		}
 		return additions;
 	}
 
-	public void addElementsOfScope(TypeManager typeManager, Element element, ScopeView scopeView) {
+	public void addElementsOfScope(TypeManager typeManager, Element element,
+			ScopeView scopeView) {
 		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
 		if (scopeAdapter != null) {
 			scopeAdapter.computeLookup(this, scopeView);
@@ -146,12 +191,12 @@ public class EnvironmentView
 	}
 
 	public void addFilter(Filter filter) {
-		if (filters == null) {
-			filters = new ArrayList<Filter>();
+		if (matchers == null) {
+			matchers = new ArrayList<Filter>();
 		}
-		filters.add(filter);
+		matchers.add(filter);
 	}
-	
+
 	public int addNamedElement(Nameable namedElement) {
 		if (namedElement != null) {
 			return addElement(namedElement.getName(), namedElement);
@@ -169,13 +214,32 @@ public class EnvironmentView
 		return additions;
 	}
 
+	public int computeLookups(Type type) {
+		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(typeManager, type);
+		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(null);
+		return computeLookups(innerScopeView);
+	}
+	
+	public int computeLookups(ScopeView aScope) {
+		while ((aScope != null) && !hasFinalResult()) {
+			ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
+			if (aScopeAdapter == null) {
+				break;					// The NULLSCOPEVIEW
+			}
+			@SuppressWarnings("unused")
+			EObject aTarget = aScopeAdapter.getTarget();
+			aScope = aScopeAdapter.computeLookup(this, aScope);
+		}
+		return resolveDuplicates();
+	}
+
 	public EObject getContent() {
-		assert contentsByName.size() == 1;
+		assert contentsSize == 1;
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
 			if (value instanceof List<?>) {
-				List<?> values = (List<?>)value;
-				value = values.get(values.size()-1);
+				List<?> values = (List<?>) value;
+				value = values.get(values.size() - 1);
 			}
 			if (value instanceof EObject) {
 				return (EObject) value;
@@ -185,12 +249,16 @@ public class EnvironmentView
 	}
 
 	public IEObjectDescription getDescription() {
-		assert contentsByName.size() == 1;
+		assert contentsSize == 1;
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
 			if (value instanceof List<?>) {
-				List<?> values = (List<?>)value;
-				value = values.get(values.size()-1);
+				List<?> values = (List<?>) value;
+				value = values.get(values.size() - 1);
+			}
+			if ((templateBindings != null) && (value instanceof Operation)) {
+				Map<TemplateParameter, ParameterableElement> map = templateBindings.get(value);
+				value = typeManager.getSpecializedOperation((Operation)value, map);
 			}
 			if (value instanceof EObject) {
 				return EObjectDescription.create(entry.getKey(), (EObject) value);
@@ -204,11 +272,12 @@ public class EnvironmentView
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object values = entry.getValue();
 			if (values instanceof EObject) {
-				contents.add(EObjectDescription.create(entry.getKey(), (EObject) values));
-			}
-			else if (values instanceof List<?>) {
-				for (Object value : (List<?>)values) {
-					contents.add(EObjectDescription.create(entry.getKey(), (EObject) value));
+				contents.add(EObjectDescription.create(entry.getKey(),
+					(EObject) values));
+			} else if (values instanceof List<?>) {
+				for (Object value : (List<?>) values) {
+					contents.add(EObjectDescription.create(entry.getKey(),
+						(EObject) value));
 				}
 			}
 		}
@@ -218,23 +287,103 @@ public class EnvironmentView
 	public String getName() {
 		return name;
 	}
-	
-//	public EStructuralFeature getReference() {
-//		return reference;
-//	}
+
+	public EStructuralFeature getReference() {
+		return reference;
+	}
 
 	public EClassifier getRequiredType() {
-		return reference != null ? reference.getEType() : null;
+		return reference != null
+			? reference.getEType()
+			: null;
+	}
+
+	public EObject getResolvedContent() {
+		EObject eObject = getContent();
+		if (eObject == null) {
+			return null;
+		}
+		if (templateBindings != null) {
+			Map<TemplateParameter, ParameterableElement> map = templateBindings.get(eObject);
+			if ((map != null) && (eObject instanceof Operation)) {
+				eObject = typeManager.getSpecializedOperation((Operation) eObject, map);
+			}
+		}
+		return eObject;
 	}
 
 	public int getSize() {
-		return contentsByName.size();
+		return contentsSize;
+	}
+
+	/**
+	 * Return true once the EnvironmentView has accumulated sufficient results
+	 * to satisfy the lookup criterion for which it was created. i.e. any result
+	 * for a non-null name, all results for a null name.
+	 */
+	public boolean hasFinalResult() {
+		if (contentsSize == 0) {
+			return false; // Not thing found is not a final result
+		}
+		if (getName() == null) {
+			return false; // No name means search full hierarchy
+		}
+		return true;
 	}
 
 	public void removeFilter(Filter filter) {
-		if (filters != null) {
-			filters.remove(filter);
+		if (matchers != null) {
+			matchers.remove(filter);
 		}
+	}
+
+	public int resolveDuplicates() {
+		if ((contentsSize > 1) && (resolvers != null) && (getName() != null)) {
+			int newSize = 0;
+			for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
+				Object value = entry.getValue();
+				if (value instanceof List<?>) {
+					@SuppressWarnings("unchecked")
+					List<EObject> values = (List<EObject>) value;
+					for (Filter filter : resolvers) {
+						for (int i = 0; i < values.size()-1;) {
+							EObject reference = values.get(i);
+							Map<TemplateParameter, ParameterableElement> referenceBindings = templateBindings != null ? templateBindings.get(reference) : null;
+							for (int j = i + 1; j < values.size();) {
+								EObject candidate = values.get(j);
+								Map<TemplateParameter, ParameterableElement> candidateBindings = templateBindings != null ? templateBindings.get(candidate) : null;
+								int verdict = filter.compareMatches(reference, referenceBindings, candidate, candidateBindings);
+								if (verdict == 0) {
+									j++;
+								} else if (verdict < 0) {
+									values.remove(i);
+									reference = null;
+									break;
+								} else {
+									values.remove(j);
+									candidate = null;
+								}
+							}
+							if (reference != null) {
+								i++;
+							}
+						}
+					}
+					newSize += values.size();
+				} else {
+					newSize++;
+				}
+			}
+			contentsSize = newSize;
+		}
+		return getSize();
+	}
+
+	public void setBindings(EObject eObject, Map<TemplateParameter, ParameterableElement> bindings) {
+		if (templateBindings == null) {
+			templateBindings = new HashMap<EObject, Map<TemplateParameter, ParameterableElement>>();
+		}
+		templateBindings.put(eObject, bindings);
 	}
 
 	@Override
@@ -254,10 +403,14 @@ public class EnvironmentView
 		for (String contentName : contentsByName.keySet()) {
 			s.append(prefix);
 			s.append(contentName);
+			Object content = contentsByName.get(contentName);
+			if (content instanceof List<?>) {
+				s.append("*");
+				s.append(((List<?>) content).size());
+			}
 			prefix = ","; //$NON-NLS-1$
 		}
 		s.append("}"); //$NON-NLS-1$
 		return s.toString();
 	}
-
 }

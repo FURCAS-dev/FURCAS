@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: EvaluationContext.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EvaluationContext.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotEnvironment;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 
 public interface EvaluationContext
 {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 /**
  * <copyright>
@@ -28,14 +28,14 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.math.BigDecimal;
 
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
@@ -69,8 +69,8 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 		throw new UnsupportedOperationException(getClass().getName()+ ".doubleValue");
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
-		return standardLibrary.getUnlimitedNaturalType();
+	public Type getType(TypeManager typeManager, Type staticType) {
+		return typeManager.getUnlimitedNaturalType();
 	}
 
 	@Override

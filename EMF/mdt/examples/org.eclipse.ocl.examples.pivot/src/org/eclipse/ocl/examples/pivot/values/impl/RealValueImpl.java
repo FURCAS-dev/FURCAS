@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealValueImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
+ * $Id: RealValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -123,8 +123,8 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return valueFactory.integerValueOf(value.setScale(0, RoundingMode.FLOOR).toBigInteger());
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
-		return standardLibrary.getRealType();
+	public Type getType(TypeManager typeManager, Type staticType) {
+		return typeManager.getRealType();
 	}
 
 	@Override

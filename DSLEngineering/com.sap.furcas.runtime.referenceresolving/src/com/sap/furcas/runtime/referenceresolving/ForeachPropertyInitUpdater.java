@@ -27,9 +27,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 import com.sap.emf.ocl.trigger.AbstractTriggerable;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
@@ -200,6 +200,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private ImpactAnalyzer getImpactAnalyzerForBaseExpression() {
+        // TODO fetch the existing impact analyzer for the base expression created by the superclass 
         if (impactAnalyzerForBaseExpression == null) {
             impactAnalyzerForBaseExpression = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(baseForeachExpression, /* notifyOnNewContextElements */ false,
                     getOppositeEndFinder(), OCLFactory.INSTANCE);

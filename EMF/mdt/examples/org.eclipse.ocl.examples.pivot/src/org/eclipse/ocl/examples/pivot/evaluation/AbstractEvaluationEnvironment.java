@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -21,17 +21,17 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.pivot.Adaptable;
+import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.options.Option;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.options.Option;
-import org.eclipse.ocl.util.Adaptable;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,

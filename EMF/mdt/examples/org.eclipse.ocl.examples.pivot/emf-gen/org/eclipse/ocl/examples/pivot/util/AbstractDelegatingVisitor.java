@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingVisitor.java,v 1.3 2011/01/30 11:05:01 ewillink Exp $
+ * $Id: AbstractDelegatingVisitor.java,v 1.6 2011/02/15 19:58:28 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -213,6 +213,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 		return delegate.visitIteratorExp(object);
 	}
 
+	public R visitLambdaType(org.eclipse.ocl.examples.pivot.LambdaType object) {
+		return delegate.visitLambdaType(object);
+	}
+
 	public R visitLetExp(org.eclipse.ocl.examples.pivot.LetExp object) {
 		return delegate.visitLetExp(object);
 	}
@@ -329,10 +333,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 		return delegate.visitRealLiteralExp(object);
 	}
 
-	public R visitSelfType(org.eclipse.ocl.examples.pivot.SelfType object) {
-		return delegate.visitSelfType(object);
-	}
-
 	public R visitSendSignalAction(org.eclipse.ocl.examples.pivot.SendSignalAction object) {
 		return delegate.visitSendSignalAction(object);
 	}
@@ -419,6 +419,10 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 
 	public R visitUnlimitedNaturalLiteralExp(org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp object) {
 		return delegate.visitUnlimitedNaturalLiteralExp(object);
+	}
+
+	public R visitUnspecifiedType(org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
+		return delegate.visitUnspecifiedType(object);
 	}
 
 	public R visitUnspecifiedValueExp(org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {

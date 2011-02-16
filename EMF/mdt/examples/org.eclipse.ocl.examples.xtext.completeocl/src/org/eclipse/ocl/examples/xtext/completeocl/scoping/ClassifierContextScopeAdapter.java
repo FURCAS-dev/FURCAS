@@ -12,26 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ClassifierContextScopeAdapter.java,v 1.7 2011/01/30 11:12:08 ewillink Exp $
+ * $Id: ClassifierContextScopeAdapter.java,v 1.8 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
-import java.util.Iterator;
-
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ModelElementCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 
 public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<ClassifierContextDeclCS, Type>
 {
@@ -43,6 +35,15 @@ public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<Cl
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
+			return getNamespaceScope(environmentView, scopeView, target.getNamespace());
+		}
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.CONTEXT_DECL_CS__NAMESPACE) {
+			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+		}
+		return scopeView.getOuterScope();
+
+		
+/*		if (containmentFeature == CompleteOCLCSTPackage.Literals.CLASSIFIER_CONTEXT_DECL_CS__CLASSIFIER) {
 			return scopeView.getOuterScope();
 		}
 		else {
@@ -71,6 +72,6 @@ public class ClassifierContextScopeAdapter extends ModelElementCSScopeAdapter<Cl
 				}
 			}
 			return scopeView.getOuterScope();
-		}
+		} */
 	}
 }

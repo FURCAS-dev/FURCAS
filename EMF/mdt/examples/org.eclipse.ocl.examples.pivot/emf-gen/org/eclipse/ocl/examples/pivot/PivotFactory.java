@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.4 2011/01/30 11:05:02 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.6 2011/02/15 10:38:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -461,6 +461,15 @@ public interface PivotFactory
 	IteratorExp createIteratorExp();
 
 	/**
+	 * Returns a new object of class '<em>Lambda Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lambda Type</em>'.
+	 * @generated
+	 */
+	LambdaType createLambdaType();
+
+	/**
 	 * Returns a new object of class '<em>Let Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -569,15 +578,6 @@ public interface PivotFactory
 	RealLiteralExp createRealLiteralExp();
 
 	/**
-	 * Returns a new object of class '<em>Self Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Self Type</em>'.
-	 * @generated
-	 */
-	SelfType createSelfType();
-
-	/**
 	 * Returns a new object of class '<em>Sequence Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -684,6 +684,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	UnlimitedNaturalLiteralExp createUnlimitedNaturalLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Unspecified Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unspecified Type</em>'.
+	 * @generated
+	 */
+	UnspecifiedType createUnspecifiedType();
 
 	/**
 	 * Returns a new object of class '<em>Unspecified Value Exp</em>'.

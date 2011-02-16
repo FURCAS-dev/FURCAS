@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ElementValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -53,10 +53,9 @@ public class ElementValueImpl<E extends Element> extends AbstractValue implement
 		return element;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		EClass eClass = element.eClass();
-		return standardLibrary.getPivotType(eClass.getName());
-//		return standardLibrary.getClassifierType();
+		return typeManager.getPivotType(eClass.getName());
 	}
 
 	@Override

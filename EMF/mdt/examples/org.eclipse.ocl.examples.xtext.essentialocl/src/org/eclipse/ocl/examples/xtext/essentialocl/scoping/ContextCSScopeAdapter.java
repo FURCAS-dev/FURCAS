@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.3 2011/01/30 11:20:05 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.6 2011/02/15 10:37:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -50,10 +50,10 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			Variable contextVariable = pivot.getContextVariable();
 			if (contextVariable != null) {
 				environmentView.addNamedElement(contextVariable);
-				if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+				if (!environmentView.hasFinalResult()) {
 					Type type = contextVariable.getType();
 					environmentView.addElementsOfScope(typeManager, type, scopeView);
-					if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+					if (!environmentView.hasFinalResult()) {
 						environmentView.addElementsOfScope(typeManager, type.getPackage(), scopeView);
 					}
 				}
@@ -64,12 +64,16 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			if (resource instanceof EvaluationContext) {
 				NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
 				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
-				if (scopeAdapter != null) {
-					scopeAdapter.computeLookup(environmentView, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+				if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
+					ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+					environmentView.computeLookups(ruleScopeView);
+//					return scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+//					return scopeAdapter.computeLookup(environmentView, scopeView);
+//					scopeAdapter.computeLookup(environmentView, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 				}				
 			}
 		}
-		if ((environmentView.getSize() == 0) || (environmentView.getName() == null)) {
+		if (!environmentView.hasFinalResult()) {
 			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
 		}
 		return super.computeLookup(environmentView, scopeView);

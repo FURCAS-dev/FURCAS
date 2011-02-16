@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -52,7 +52,9 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -254,19 +256,19 @@ public class CompleteTypeImpl
 		CompleteIteration dynamicIteration = dynamicIterationMap.get(staticIteration);
 		if ((dynamicIteration == null)
 			&& !dynamicIterationMap.containsKey(staticIteration)) {
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
+			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
+//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
 			List<Type> staticCompleteIteratorTypes = new ArrayList<Type>();
 			for (Parameter staticIterator : staticIteration.getCompleteIterators()) {
-				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType(), templateParameterSubstitutions));
+				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType(), bindings));
 			}
 			List<Type> staticCompleteAccumulatorTypes = new ArrayList<Type>();
 			for (Parameter staticAccumulator : staticIteration.getCompleteAccumulators()) {
-				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType(), templateParameterSubstitutions));
+				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType(), bindings));
 			}
 			List<Type> staticCompleteParameterTypes = new ArrayList<Type>();
 			for (Parameter staticParameter : staticIteration.getCompleteParameters()) {
-				staticCompleteParameterTypes.add(resolveType(staticParameter.getType(), templateParameterSubstitutions));
+				staticCompleteParameterTypes.add(resolveType(staticParameter.getType(), bindings));
 			}
 			Set<CompleteIteration> dynamicIterations = findIterationsOrNull(
 				this, staticIteration.getName(), staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
@@ -281,11 +283,15 @@ public class CompleteTypeImpl
 						if (conformantIteration == null) {
 							conformantIteration = completeIteration;
 						}
-						else if (conformsTo(completeIteration.getModel().getFeaturingClass(), conformantIteration.getModel().getFeaturingClass())) {
-							conformantIteration = completeIteration;
-						}
-						else if (!conformsTo(conformantIteration.getModel().getFeaturingClass(), completeIteration.getModel().getFeaturingClass())) {
-							ok = false;
+						else {
+							org.eclipse.ocl.examples.pivot.Class completeClass = PivotUtil.getFeaturingClass(completeIteration.getModel());
+							org.eclipse.ocl.examples.pivot.Class conformantClass = PivotUtil.getFeaturingClass(conformantIteration.getModel());
+							if (conformsTo(completeClass, conformantClass)) {
+								conformantIteration = completeIteration;
+							}
+							else if (!conformsTo(conformantClass, completeClass)) {
+								ok = false;
+							}
 						}
 					}
 					if (ok) {
@@ -329,12 +335,13 @@ public class CompleteTypeImpl
 		if ((dynamicOperation == null)
 			&& !dynamicOperationMap.containsKey(staticOperation)) {
 			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
+			PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, staticOperation.getModel());
 			List<Type> staticCompleteTypes = new ArrayList<Type>();
 			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
 				staticCompleteTypes.add(resolveType(staticParameter.getType(), templateParameterSubstitutions));
 			}
 			Set<CompleteOperation> dynamicOperations = findOperationsOrNull(
-				this, staticOperation.getName(), staticCompleteTypes);
+				this, staticOperation.getName(), staticCompleteTypes, templateParameterSubstitutions);
 			if ((dynamicOperations != null) && (dynamicOperations.size() == 1)) {
 				dynamicOperation = dynamicOperations.iterator().next();
 			}
@@ -343,8 +350,8 @@ public class CompleteTypeImpl
 		return dynamicOperation;
 	}
 
-	private Type resolveType(Type type, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
-		TemplateParameter templateParameter = type.getOwningTemplateParameter();
+	private Type resolveType(Type type, Map<TemplateParameter, ParameterableElement> bindings) {
+/*		TemplateParameter templateParameter = type.getOwningTemplateParameter();
 		if ((templateParameter != null) && (templateParameterSubstitutions != null)) {
 			ParameterableElement parameterableElement = templateParameterSubstitutions.get(templateParameter);
 			if (parameterableElement instanceof Type) {
@@ -356,8 +363,10 @@ public class CompleteTypeImpl
 			else {
 				return type;
 			}
-		}
-		return completeEnvironment.getCompleteType(type);
+		} */
+		TypeManager typeManager = ((CompleteEnvironmentManager) completeEnvironment).getTypeManager();
+		Type specializedType = typeManager.getSpecializedType(type, bindings);
+		return completeEnvironment.getCompleteType(specializedType); 
 	}
 
 	private Set<CompleteIteration> findIterationsOrNull(CompleteType completeType,
@@ -367,7 +376,7 @@ public class CompleteTypeImpl
 		int staticIteratorsSize = staticCompleteIteratorTypes.size();
 		Set<CompleteIteration> list = null;
 		for (CompleteIteration dynamicIteration : completeType.getCompleteIterations(operationName)) {
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
+//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
 			List<Parameter> dynamicIterators = dynamicIteration.getCompleteIterators();
 			if (staticIteratorsSize == dynamicIterators.size()) {
 				boolean gotIt = true;
@@ -405,9 +414,8 @@ public class CompleteTypeImpl
 	}
 
 	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeType,
-			String operationName, List<Type> staticCompleteTypes) {
+			String operationName, List<Type> staticCompleteTypes, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
 		int staticParametersSize = staticCompleteTypes.size();
-		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
 		Set<CompleteOperation> list = null;
 		for (CompleteOperation dynamicOperation : completeType.getCompleteOperations(operationName)) {
 			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
@@ -432,7 +440,7 @@ public class CompleteTypeImpl
 		if (list == null) {
 			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
 				Set<CompleteOperation> superOperations = findOperationsOrNull(
-					completeSuperType, operationName, staticCompleteTypes);
+					completeSuperType, operationName, staticCompleteTypes, templateParameterSubstitutions);
 				if (superOperations != null) {
 					if (list == null) {
 						list = superOperations;

@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OperationContextDeclCS.java,v 1.4 2010/05/16 19:26:03 ewillink Exp $
+ * $Id: OperationContextDeclCS.java,v 1.5 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationRefCS;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 
 /**
@@ -31,9 +31,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getResult <em>Result</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getPres <em>Pres</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getPosts <em>Posts</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getBodies <em>Bodies</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,30 +40,30 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  */
 public interface OperationContextDeclCS extends FeatureContextDeclCS {
 	/**
-	 * Returns the value of the '<em><b>Operation</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Operation</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operation</em>' containment reference.
-	 * @see #setOperation(OperationRefCS)
+	 * @return the value of the '<em>Operation</em>' reference.
+	 * @see #setOperation(Operation)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOperationContextDeclCS_Operation()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	OperationRefCS getOperation();
+	Operation getOperation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getOperation <em>Operation</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS#getOperation <em>Operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operation</em>' containment reference.
+	 * @param value the new value of the '<em>Operation</em>' reference.
 	 * @see #getOperation()
 	 * @generated
 	 */
-	void setOperation(OperationRefCS value);
+	void setOperation(Operation value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
@@ -109,53 +106,5 @@ public interface OperationContextDeclCS extends FeatureContextDeclCS {
 	 * @generated
 	 */
 	void setResult(VariableCS value);
-
-	/**
-	 * Returns the value of the '<em><b>Pres</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Pres</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pres</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOperationContextDeclCS_Pres()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PreCS> getPres();
-
-	/**
-	 * Returns the value of the '<em><b>Posts</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PostCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Posts</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Posts</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOperationContextDeclCS_Posts()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<PostCS> getPosts();
-
-	/**
-	 * Returns the value of the '<em><b>Bodies</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Bodies</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Bodies</em>' containment reference list.
-	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getOperationContextDeclCS_Bodies()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<BodyCS> getBodies();
 
 } // OperationContextDeclCS
