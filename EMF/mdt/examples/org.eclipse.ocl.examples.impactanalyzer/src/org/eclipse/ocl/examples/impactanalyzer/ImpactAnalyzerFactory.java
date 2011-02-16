@@ -18,6 +18,7 @@ import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 

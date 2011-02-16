@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
@@ -30,6 +29,7 @@ import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -92,6 +92,13 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         }
     }
 
+    /**
+	 * @param changeEvent
+	 *            if <code>null</code>, the evaluation will happen on the model
+	 *            as-is; otherwise, it will take place on the state the model
+	 *            was in before the change described by <code>changeEvent</code> took
+	 *            place
+	 */
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
@@ -114,6 +121,13 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         }
     }
 
+	/**
+	 * @param atPre
+	 *            if <code>null</code>, the evaluation will only happen on the model
+	 *            as-is; otherwise, it will also take place on the state the model
+	 *            was in before the change described by <code>atPre</code> took
+	 *            place
+	 */
     private boolean evaluatePredicate(EObject sourceObject, Notification atPre) {
         Collection<EObject> sourceCollection = Collections.singleton(sourceObject);
         // evaluate whether the source object would have passed the iterator's body before the change
@@ -133,7 +147,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             }
         }
         boolean resultPost = acceptIfPredicateTrue;
-        if (resultPre != acceptIfPredicateTrue) {
+        if (atPre == null || resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
             PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
@@ -149,7 +163,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             // or accesses an undefined variable before or after the change event
             // it passes this navigation step
         }
-        return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
+        return (atPre != null && resultPre == acceptIfPredicateTrue) || resultPost == acceptIfPredicateTrue;
     }
 
     private boolean isSourceInResult(EObject sourceObject, Object result) {

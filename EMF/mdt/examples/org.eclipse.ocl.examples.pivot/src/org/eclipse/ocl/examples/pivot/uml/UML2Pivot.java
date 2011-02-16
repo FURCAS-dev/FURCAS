@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -43,8 +43,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIException;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -56,16 +57,21 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class UML2Pivot extends AbstractConversion implements Adapter, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(UML2Pivot.class);
+
+	// FIXME this is a prehistoric value
+	private static final String OCL_STANDARD_LIBRARY_NS_URI = "http://www.eclipse.org/ocl/1.1.0/oclstdlib.uml"; //$NON-NLS-1$
 
 	public static UML2Pivot getAdapter(Resource resource, TypeManager typeManager) {
 		if (resource == null) {
@@ -95,6 +101,53 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 		}
 		UML2Pivot conversion = getAdapter(ecoreResource, typeManager);
 		return conversion.getPivotRoot();
+	}
+
+	/**
+	 * Initialize registries to support OCL and UML usage. This method is
+	 * intended for initialization of standalone behaviors for which plugin extension
+	 * registrations have not been applied.
+	 *<p> 
+	 * A null resourceSet may be provided to initialize the global package registry
+	 * and global URI mapping registry.
+	 *<p> 
+	 * A non-null resourceSet may be provided to identify specific package
+	 * and global URI mapping registries.
+	 *<p> 
+	 * The locations of the org.eclipse.ocl.uml and org.eclipse.uml2.uml.resources
+	 * plugins must be identified by the correspondingly named Java properties.
+	 * A standalone application command line might do this by incorporating
+	 * 
+	 * <p><tt>-Dorg.eclipse.ocl.uml=C:/Eclipse/plugins/org.eclipse.ocl.uml</tt>
+	 * <br><tt>-Dorg.eclipse.uml2.uml.resources=C:/Eclipse/plugins/org.eclipse.uml2.uml.resources</tt>
+	 * <p>
+	 * This method is used to configure the ResourceSet used to load the OCL Standard Library.
+
+	 * @param resourceSet to be initialized or null for global initialization
+	 * @return a failure reason, null if successful
+	 * 
+	 * @since 3.0
+	 */
+	public static String initialize(ResourceSet resourceSet) {
+		String oclLocation = System.getProperty("org.eclipse.ocl.uml"); //$NON-NLS-1$
+		if (oclLocation == null)
+			return "'org.eclipse.ocl.uml' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		String resourcesLocation = System.getProperty("org.eclipse.uml2.uml.resources"); //$NON-NLS-1$
+		if (resourcesLocation == null)
+			return "'org.eclipse.uml2.uml.resources' property not defined; use the launch configuration to define it"; //$NON-NLS-1$
+		Resource.Factory.Registry resourceFactoryRegistry = resourceSet != null
+			? resourceSet.getResourceFactoryRegistry()
+			: Resource.Factory.Registry.INSTANCE;
+		resourceFactoryRegistry.getExtensionToFactoryMap().put(
+			UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		Map<URI, URI> uriMap = resourceSet != null
+			? resourceSet.getURIConverter().getURIMap()
+			: URIConverter.URI_MAP;		
+		uriMap.put(URI.createURI(OCL_STANDARD_LIBRARY_NS_URI), URI.createFileURI(oclLocation + "/model/oclstdlib.uml")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), URI.createFileURI(resourcesLocation + "/profiles/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), URI.createFileURI(resourcesLocation + "/metamodels/")); //$NON-NLS-1$
+		uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), URI.createFileURI(resourcesLocation + "/libraries/")); //$NON-NLS-1$
+		return null;
 	}
 
 /*	public static Ecore2Pivot createConverter(TypeManager typeManager, Resource ecoreResource) {
@@ -226,7 +279,7 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 	}
 
 	protected void copyProperty(Property pivotElement, org.eclipse.uml2.uml.Property umlProperty, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = umlProperty.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = umlProperty.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);

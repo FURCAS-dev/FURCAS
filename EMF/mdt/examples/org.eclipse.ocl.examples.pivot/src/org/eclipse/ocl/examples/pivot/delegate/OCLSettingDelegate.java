@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLSettingDelegate.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLSettingDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -20,15 +20,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
-import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -41,23 +40,16 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	protected final OCLDelegateDomain delegateDomain;
 	private Property property;
 	private ExpressionInOcl specification;
-//	private ValueConverter converter;
 
 	/**
 	 * Initializes me with my structural feature.
 	 * 
 	 * @param structuralFeature
 	 *            the structural feature that I handle
-	 * 
-	 * @throws ParserException
-	 *             if the structural feature's OCL derivation is invalid
 	 */
 	public OCLSettingDelegate(OCLDelegateDomain delegateDomain, EStructuralFeature structuralFeature) {
 		super(structuralFeature);
 		this.delegateDomain = delegateDomain;
-//		this.converter = structuralFeature.isMany()
-//			? ValueConverter.LIST
-//			: ValueConverter.VERBATIM;
 	}
 
 	@Override
@@ -71,37 +63,19 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
 				property = ecore2Pivot.getCreated(Property.class, eStructuralFeature);
 			}
-			specification = SettingBehavior.INSTANCE.getSpecification(typeManager, property);
-			if (specification == null) {
-				String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, getFeatureName());
-				throw new OCLDelegateException(message);
-//				expression = ocl.getTypeManager().createInvalidExpression(owner, message);
-//				return null;
-			}
-//			else {
-//				expression = specification.getBodyExpression();
-//				if (expression == null) {
-//					String message = NLS.bind(OCLMessages.MissingDerivationForSettingDelegate_ERROR_, getFeatureName());
-//					expression = ocl.getTypeManager().createInvalidExpression(specification, message);
-//				}
-//			}
+			specification = SettingBehavior.INSTANCE.getExpressionInOcl(typeManager, property);
 		}
 		OCL.Query query = ocl.createQuery(specification);
 		Value result = query.evaluate(owner);
 		if (result.isInvalid()) {
-			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, getFeatureName());
+			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 			throw new OCLDelegateException(message);
 		}
 //		if ((result == null) /* || ocl.isInvalid(result) */) {
 //			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getFeatureName());
 //			throw new OCLDelegateException(message);
 //		}
-//		return converter.convert(ocl, result);
 		return valueFactory.getEcoreValueOf(result);
-	}
-	
-	public String getFeatureName() {
-		return eStructuralFeature.getEContainingClass().getEPackage().getName() + "::" + eStructuralFeature.getEContainingClass().getName() + "." + eStructuralFeature.getName();  //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 	@Override
@@ -111,6 +85,14 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 
 	@Override
 	public String toString() {
-		return "<" + delegateDomain.getURI() + ":setting> " + getFeatureName(); //$NON-NLS-1$ //$NON-NLS-2$
+		if (property != null) {
+			return "<" + delegateDomain.getURI() + ":setting> " + property; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		else {
+			String name = eStructuralFeature.getEContainingClass().getEPackage().getName()
+			+ "::" + eStructuralFeature.getEContainingClass().getName()
+			+ "." + eStructuralFeature.getName();
+			return "<" + delegateDomain.getURI() + ":setting> " + name; //$NON-NLS-1$ //$NON-NLS-2$
+		}
 	}
 }

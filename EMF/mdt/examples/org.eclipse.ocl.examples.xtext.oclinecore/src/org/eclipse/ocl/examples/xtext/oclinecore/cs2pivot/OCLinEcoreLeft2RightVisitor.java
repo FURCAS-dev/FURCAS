@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.4 2011/01/30 11:11:50 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.5 2011/02/08 17:43:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -57,7 +57,7 @@ public class OCLinEcoreLeft2RightVisitor
 		EObject eContainer = csConstraint.eContainer();
 		if (eContainer instanceof FeatureCS) {
 			Feature contextFeature = PivotUtil.getPivot(Feature.class, (FeatureCS)eContainer);
-			context.setType(contextVariable, contextFeature.getFeaturingClass());
+			context.setType(contextVariable, PivotUtil.getFeaturingClass(contextFeature));
 		}
 //		if (eContainer instanceof OperationCS) {
 //			Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);

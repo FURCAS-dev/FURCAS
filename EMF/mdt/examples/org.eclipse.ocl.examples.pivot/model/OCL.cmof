@@ -290,6 +290,18 @@
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolsIgHEd-aGOJuUCcZBA" name="InvalidType">
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
     </ownedMember>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_lpw0oDaoEeCb2LlOxMIQ5w" name="LambdaType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_FWVUEDapEeCb2LlOxMIQ5w" name="contextType">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_lpw0ojaoEeCb2LlOxMIQ5w" name="parameterType" upper="*" lower="0">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_pgRzMDaoEeCb2LlOxMIQ5w" name="resultType">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
+    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoluIgHEd-aGOJuUCcZBA" name="MessageType">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcoluogHEd-aGOJuUCcZBA" name="referredSignal" type="_ASveEIq1Ed-VzsYvPRGeYg" lower="0"/>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcolvIgHEd-aGOJuUCcZBA" name="referredOperation" lower="0">
@@ -298,9 +310,6 @@
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrogHEd-aGOJuUCcZBA" name="OrderedSetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
-    <ownedMember xmi:type="cmof:Class" xmi:id="_WRVdUCvMEeCGccmRVhzx9A" name="SelfType">
-      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
-    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolrIgHEd-aGOJuUCcZBA" name="SequenceType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcolqogHEd-aGOJuUCcZBA" name="SetType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
     <ownedMember xmi:type="cmof:Class" xmi:id="_ASveEIq1Ed-VzsYvPRGeYg" name="Signal">

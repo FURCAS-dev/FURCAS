@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PruneSuperClasses.java,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: PruneSuperClasses.java,v 1.3 2011/02/15 19:58:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -94,7 +94,7 @@ public class PruneSuperClasses extends WorkflowComponentWithModelSlot
 						List<EClass> superTypes = new ArrayList<EClass>(eSuperTypes);
 						Set<EClass> superSuperTypes = new HashSet<EClass>();
 						for (EClass superType : superTypes) {
-							superSuperTypes.addAll(superType.getESuperTypes());
+							superSuperTypes.addAll(superType.getEAllSuperTypes());
 						}
 						superTypes.removeAll(superSuperTypes);
 						Orderer orderer = new Orderer(orderedNames, superTypes);

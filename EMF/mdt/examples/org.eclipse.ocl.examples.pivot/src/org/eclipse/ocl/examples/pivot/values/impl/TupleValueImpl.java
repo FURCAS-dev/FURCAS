@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -21,12 +21,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -39,8 +38,8 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public class TupleValueImpl extends AbstractValue implements TupleValue
 {
     private final TupleType type;
-
     private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
+    private final int hashCode;			// FIXME just for debugging
 
     /**
      * Initializes me with a map of part values.
@@ -51,10 +50,11 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     public TupleValueImpl(ValueFactory valueFactory, TupleType type, Map<? extends TypedElement, Value> values) {
 		super(valueFactory);
         this.type = type;
-
         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
+        this.hashCode = computeHashCode();
+//        System.out.println(this + " : " + getTupleType().getMoniker() + " @* " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
     
     /**
@@ -70,11 +70,19 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
+        this.hashCode = computeHashCode();
+//        System.out.println(this + " : " + getTupleType().getMoniker() + " @2 " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
 
 	public Object asObject() {
 		return parts;
 	}
+	
+    private int computeHashCode() {
+        int typeHashCode = type.hashCode();
+		int partsHashCode = parts.hashCode();
+		return 37 * typeHashCode + 17 * partsHashCode;
+    }
 
     // implements the inherited specification
     public TupleType getTupleType() {
@@ -106,16 +114,17 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         return result;
     }
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return type;
 	}
 
     // overrides the inherited implementation
     @Override
     public int hashCode() {
-        int typeHashCode = type.hashCode();
-		int partsHashCode = parts.hashCode();
-		return 37 * typeHashCode + 17 * partsHashCode;
+//        int typeHashCode = type.hashCode();
+//		int partsHashCode = parts.hashCode();
+//		return 37 * typeHashCode + 17 * partsHashCode;
+		return hashCode;
     }
     
     @Override
@@ -152,13 +161,13 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     }
     
     private String toString(Object o) {
-        if (o instanceof String) {
+        /*if (o instanceof String) {
             return "'" + (String) o + "'"; //$NON-NLS-1$ //$NON-NLS-2$
         } else if (o instanceof NullValue) {
             return o.toString();
         } else if (o instanceof CollectionValue) {
             return toString((CollectionValue) o);
-        } else if (o == null) {
+        } else*/ if (o == null) {
             return "null"; //$NON-NLS-1$
         } else {
             return o.toString();

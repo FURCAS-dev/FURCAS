@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationCS.java,v 1.3 2010/05/09 10:37:45 ewillink Exp $
+ * $Id: PackageDeclarationCS.java,v 1.5 2011/02/08 17:53:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
+import org.eclipse.ocl.examples.pivot.Namespace;
+import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getNamespace <em>Namespace</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getContexts <em>Contexts</em>}</li>
  * </ul>
@@ -37,32 +38,48 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.PackageRefCS;
  * @model
  * @generated
  */
-public interface PackageDeclarationCS extends ElementCS {
+public interface PackageDeclarationCS extends MonikeredElementCS {
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Namespace</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Namespace}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Namespace</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Namespace</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Namespace()
+	 * @model
+	 * @generated
+	 */
+	EList<Namespace> getNamespace();
+
+	/**
+	 * Returns the value of the '<em><b>Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' containment reference.
-	 * @see #setPackage(PackageRefCS)
+	 * @return the value of the '<em>Package</em>' reference.
+	 * @see #setPackage(org.eclipse.ocl.examples.pivot.Package)
 	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getPackageDeclarationCS_Package()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	PackageRefCS getPackage();
+	org.eclipse.ocl.examples.pivot.Package getPackage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS#getPackage <em>Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' containment reference.
+	 * @param value the new value of the '<em>Package</em>' reference.
 	 * @see #getPackage()
 	 * @generated
 	 */
-	void setPackage(PackageRefCS value);
+	void setPackage(org.eclipse.ocl.examples.pivot.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.

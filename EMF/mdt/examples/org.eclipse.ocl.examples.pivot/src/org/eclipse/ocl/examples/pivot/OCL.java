@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: OCL.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -20,9 +20,10 @@ package org.eclipse.ocl.examples.pivot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelperImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.QueryImpl;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -100,7 +101,7 @@ public class OCL extends OCLBase {
      * @return the new <code>OCL</code>
      */
 	public static OCL newInstance() {
-		return new OCL(PivotEnvironmentFactory.INSTANCE);
+		return new OCL(PivotEnvironmentFactory.getGlobalRegistryInstance());
 	}
 	
     /**

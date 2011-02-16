@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.3 2011/01/30 11:12:40 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.7 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,6 +32,7 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -45,8 +45,6 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
@@ -58,12 +56,11 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
@@ -71,7 +68,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -87,12 +83,12 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.lpg.ProblemHandler.Severity;
+import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class CS2PivotConversion extends AbstractConversion
@@ -101,7 +97,6 @@ public class CS2PivotConversion extends AbstractConversion
 	public static final TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
 
 	protected final CS2Pivot converter;
-	protected final ProblemHandler problemHandler;
 	protected final TypeManager typeManager;
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
@@ -125,37 +120,48 @@ public class CS2PivotConversion extends AbstractConversion
 	// CS -> pivot pairs with possibly divergent monikers
 	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
 	
-	public CS2PivotConversion(CS2Pivot converter, ProblemHandler problemHandler) {
+	public CS2PivotConversion(CS2Pivot converter) {
 		this.converter = converter;
-		this.problemHandler = problemHandler;
 		this.typeManager = converter.getTypeManager();
 	}
 
 	public void addDiagnostic(ModelElementCS csElement, Diagnostic diagnostic) {
-		csElement.getError().add(diagnostic.getMessage());
+//		csElement.getError().add(diagnostic.getMessage());
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, diagnostic.getMessage());
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 	}
-
-//	public void addError(ModelElementCS csElement, String message) {
-//		csElement.getError().add(message);
-//	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addError(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
 	 */
 	public OclExpression addBadExpressionError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
-		csElement.getError().add(boundMessage);
-		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
-		csElement.eResource().getErrors().add(diagnostic);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(
 			csElement, boundMessage, null);
 		installPivotElementInternal(csElement, invalidLiteralExp);
 		return invalidLiteralExp;
 	}
 
+	public OclExpression addBadProxyError(EReference eReference, ModelElementCS csElement) {
+		String linkText = ElementUtil.getText(csElement);
+		String message = CS2Pivot.getUnresolvedProxyText(eReference, csElement, linkText);
+//		csElement.getError().add(message);
+//		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), message, "xyzzy");		// FIXME
+//		csElement.eResource().getErrors().add(diagnostic);
+		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(csElement, message, null);
+		installPivotElementInternal(csElement, invalidLiteralExp);
+		return invalidLiteralExp;
+	}
+
 	public InvalidType addBadTypeError(ModelElementCS csElement, String message, Object... bindings) {
 		String boundMessage = NLS.bind(message, bindings);
-		csElement.getError().add(boundMessage);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), boundMessage, "xyzzy");		// FIXME
 		csElement.eResource().getErrors().add(diagnostic);
 		InvalidType invalidType = typeManager.getOclInvalidType();
@@ -171,32 +177,39 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addWarning(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
 	 */
 	public void addWarning(ModelElementCS csElement, String message, Object... bindings) {
-		csElement.getError().add(NLS.bind(message, bindings));
+		String boundMessage = NLS.bind(message, bindings);
+		INode node = NodeModelUtils.getNode(csElement);
+		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
+		csElement.eResource().getErrors().add(resourceDiagnostic);
 	}
 
 	public boolean checkForNoErrors(Collection<? extends Resource> csResources) {
-		boolean hasNoErrors = true;
 		for (Resource csResource : csResources) {
-			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
+			if (!csResource.getErrors().isEmpty()) {
+				return false;
+			}
+		}
+		return true;
+/*			for (Iterator<EObject> it = csResource.getAllContents(); it.hasNext(); ) {
 				EObject eObject = it.next();
 				if (eObject instanceof ModelElementCS) {
 					ModelElementCS csElement = (ModelElementCS)eObject;
 					for (String error : csElement.getError()) {
 						ICompositeNode node = NodeModelUtils.getNode(csElement);
 						hasNoErrors = false;
-						int offset = node.getOffset();
-						int length = node.getLength();
-						if (problemHandler != null) {				// FIXME Why null/why this check interactively
-							problemHandler.analyzerProblem(Severity.ERROR, error, "CS2Pivot", offset, offset+length);
-						}
-						else {
-							logger.error(error);
-						}
+//						int offset = node.getOffset();
+//						int length = node.getLength();
+//						if (problemHandler != null) {				// FIXME Why null/why this check interactively
+//							problemHandler.analyzerProblem(ProblemHandler.Severity.ERROR, error, "CS2Pivot", offset, offset+length);
+//						}
+//						else {
+//							logger.error(error);
+//						}
 					}
 				}
 			}
 		}
-		return hasNoErrors;
+		return hasNoErrors; */
 	}
 
 	public void checkMonikers() {
@@ -204,9 +217,11 @@ public class CS2PivotConversion extends AbstractConversion
 			MonikeredElementCS csElement = entry.getKey();
 			MonikeredElement element = entry.getValue();
 			String csMoniker = csElement.getMoniker();
-			String moniker = element.getMoniker();
-			assert csMoniker.equals(moniker) : "\n" + csElement.eClass().getName() + ": '" + csMoniker + "'\n"
-			 + element.eClass().getName() + ": '" + moniker + "'";
+			if (element.eResource() != null) {		// FIXME Find a tighter way to reject pivot orphaned by parent invalidity
+				String moniker = element.getMoniker();
+				assert csMoniker.equals(moniker) : "\n" + csElement.eClass().getName() + ": '" + csMoniker + "'\n"
+				 + element.eClass().getName() + ": '" + moniker + "'";
+			}
 		}
 //		debugCheckQueue.clear();
 	}
@@ -335,8 +350,8 @@ public class CS2PivotConversion extends AbstractConversion
 //		else {
 			csTemplateBindings = new ArrayList<TemplateBindingCS>();
 //		}
-		if (csElement instanceof ParameterizedTypeRefCS) {
-			ParameterizedTypeRefCS csTemplateableElement = (ParameterizedTypeRefCS)csElement;
+		if (csElement instanceof TypedTypeRefCS) {
+			TypedTypeRefCS csTemplateableElement = (TypedTypeRefCS)csElement;
 			TemplateBindingCS csTemplateBinding = csTemplateableElement.getOwnedTemplateBinding();
 			if (csTemplateBinding != null) {
 				csTemplateBindings.add(csTemplateBinding);
@@ -762,25 +777,11 @@ public class CS2PivotConversion extends AbstractConversion
 		return pivotElement;
 	}
 
-	public Operation resolveOperationCall(NamedElementCS csOperator, OperationCallExp pivotElement) {
-		OclExpression sourceExpression = pivotElement.getSource();
-		Type sourceType = sourceExpression.getType();
-		String operator = pivotElement.getName();
-		Operation operation;
-		List<OclExpression> arguments = pivotElement.getArguments();
-		if (arguments.isEmpty()) {
-			operation = typeManager.resolveOperation(sourceType, operator);
+	public void resolveNamespaces(List<Namespace> namespaces) {
+		for (Namespace namespace : namespaces) {
+			@SuppressWarnings("unused")
+			Namespace dummy = namespace;	// Resolves the proxies from the outside.
 		}
-		else {
-			OclExpression argumentExpression = arguments.get(0);
-			Type rightType = argumentExpression.getType();
-			operation = typeManager.resolveOperation(sourceType, operator, rightType);
-		}
-		if (operation == null) {
-			addBadExpressionError(csOperator, OCLMessages.ErrorUnresolvedOperationCall, csOperator);
-		}
-		pivotElement.setReferredOperation(operation);
-		return operation;
 	}
 
 	/**

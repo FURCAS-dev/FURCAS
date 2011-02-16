@@ -30,9 +30,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -83,24 +83,41 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
         helper = ocl.createOCLHelper();
     }
 
-    /**
-     * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
-     * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
-     * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
-     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
-     * 
-     * A {@link DefaultOppositeEndFinder} is used for hidden opposite navigation.
-     */
+	/**
+	 * Taking a {@link Notification} object such that an evaluation will be
+	 * based on the state *before* the notification. For example, if the
+	 * notification indicates the removal of a reference from an element
+	 * <tt>e1</tt> to an element <tt>e2</tt> across reference <tt>r</tt> then
+	 * when during partial evaluation <tt>r</tt> is traversed starting from
+	 * <tt>e1</tt> then <tt>e2</tt> will show in the results although in the
+	 * current version of the model it would not.
+	 * <p>
+	 * 
+	 * A {@link DefaultOppositeEndFinder} is used for hidden opposite
+	 * navigation.
+	 * 
+	 * @param atPre
+	 *            if <code>null</code>, the constructor behaves the same as
+	 *            {@link #PartialEvaluatorImpl(OCLFactory)}
+	 */
     public PartialEvaluatorImpl(Notification atPre, OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactory(atPre), oclFactory);
     }
-    
-    /**
-     * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
-     * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
-     * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
-     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
-     */
+
+	/**
+	 * Taking a {@link Notification} object such that an evaluation will be
+	 * based on the state *before* the notification. For example, if the
+	 * notification indicates the removal of a reference from an element
+	 * <tt>e1</tt> to an element <tt>e2</tt> across reference <tt>r</tt> then
+	 * when during partial evaluation <tt>r</tt> is traversed starting from
+	 * <tt>e1</tt> then <tt>e2</tt> will show in the results although in the
+	 * current version of the model it would not.
+	 * <p>
+	 * 
+	 * @param atPre
+	 *            if <code>null</code>, the constructor behaves the same as
+	 *            {@link #PartialEvaluatorImpl(OCLFactory, OppositeEndFinder)}
+	 */
     public PartialEvaluatorImpl(Notification atPre, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
         this(new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder), oclFactory);
     }

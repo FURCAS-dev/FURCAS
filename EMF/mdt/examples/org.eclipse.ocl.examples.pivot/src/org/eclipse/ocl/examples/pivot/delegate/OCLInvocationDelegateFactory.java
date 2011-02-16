@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLInvocationDelegateFactory.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: OCLInvocationDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -45,6 +45,7 @@ public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
 	 */
 	public static class Global extends OCLInvocationDelegateFactory
 	{
+		@Override
 		public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 			EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
 				operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);

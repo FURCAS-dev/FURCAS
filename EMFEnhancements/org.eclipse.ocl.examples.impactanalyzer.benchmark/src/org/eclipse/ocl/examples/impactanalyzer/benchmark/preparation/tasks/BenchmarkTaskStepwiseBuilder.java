@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.postprocessing.ResultDescriptionWriter;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 
 /**

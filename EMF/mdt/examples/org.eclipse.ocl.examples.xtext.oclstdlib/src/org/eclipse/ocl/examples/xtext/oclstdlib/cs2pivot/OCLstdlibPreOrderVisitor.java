@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.3 2011/01/30 11:10:09 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.5 2011/02/15 10:37:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -20,24 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
-import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
-import org.eclipse.ocl.examples.pivot.PrimitiveType;
-import org.eclipse.ocl.examples.pivot.SelfType;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
-import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
@@ -50,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLPreOrder
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
@@ -128,49 +121,16 @@ public class OCLstdlibPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitLibClassCS(LibClassCS csLibClass) {
-		String metaTypeName = csLibClass.getMetaTypeName();
-		org.eclipse.ocl.examples.pivot.Class type;
-		if ((metaTypeName == null) || "Class".equals(metaTypeName)) {
-			type = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, csLibClass);
+		EClass eClass = null;
+		MetaTypeName metaType = csLibClass.getMetaTypeName();
+		if ((metaType != null) && !metaType.eIsProxy()) {
+			String metaTypeName = metaType.getName();
+			eClass = (EClass) EcoreUtils.getNamedElement(PivotPackage.eINSTANCE.getEClassifiers(), metaTypeName);
 		}
-		else if ("AnyType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(AnyType.class, PivotPackage.Literals.ANY_TYPE, csLibClass);
+		if (eClass == null) {
+			eClass = PivotPackage.Literals.CLASS;
 		}
-		else if ("BagType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(BagType.class, PivotPackage.Literals.BAG_TYPE, csLibClass);
-		}
-		else if ("CollectionType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(CollectionType.class, PivotPackage.Literals.COLLECTION_TYPE, csLibClass);
-		}
-		else if ("InvalidType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(InvalidType.class, PivotPackage.Literals.INVALID_TYPE, csLibClass);
-		}
-		else if ("OrderedSetType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(OrderedSetType.class, PivotPackage.Literals.ORDERED_SET_TYPE, csLibClass);
-		}
-		else if ("PrimitiveType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(PrimitiveType.class, PivotPackage.Literals.PRIMITIVE_TYPE, csLibClass);
-		}
-		else if ("SelfType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(SelfType.class, PivotPackage.Literals.SELF_TYPE, csLibClass);
-		}
-		else if ("SequenceType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(SequenceType.class, PivotPackage.Literals.SEQUENCE_TYPE, csLibClass);
-		}
-		else if ("SetType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(SetType.class, PivotPackage.Literals.SET_TYPE, csLibClass);
-		}
-		else if ("TupleType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csLibClass);
-		}
-		else if ("VoidType".equals(metaTypeName)) {
-			type = context.refreshNamedElement(VoidType.class, PivotPackage.Literals.VOID_TYPE, csLibClass);
-		}
-		else {
-			logger.warn("Unsupported metaTypeName '" + metaTypeName + "'");
-			type = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
-				PivotPackage.Literals.CLASS, csLibClass);
-		}
+		Type type = context.refreshNamedElement((Class<Type>)eClass.getInstanceClass(), eClass, csLibClass);
 		Continuation<?> continuation = super.visitLibClassCS(csLibClass);
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,

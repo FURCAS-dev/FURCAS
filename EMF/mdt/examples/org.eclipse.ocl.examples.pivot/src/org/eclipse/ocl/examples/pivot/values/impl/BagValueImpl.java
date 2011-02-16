@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: BagValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -25,8 +25,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -118,10 +118,6 @@ public class BagValueImpl
         return this;
     }
 
-	public BagValue createNew() {
-		return new BagValueImpl(valueFactory);
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof BagValueImpl)) {
@@ -159,7 +155,7 @@ public class BagValueImpl
 	    return CollectionKind.BAG;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return staticType; // standardLibrary.getBagType();
 	}
 

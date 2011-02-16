@@ -16,29 +16,15 @@
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLUtil.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
-import java.lang.Class;
 import java.lang.ref.Reference;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.ocl.LookupException;
-import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.lpg.AbstractBasicEnvironment;
-import org.eclipse.ocl.lpg.BasicEnvironment;
-import org.eclipse.ocl.lpg.BasicEnvironment2;
-import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.parser.OCLProblemHandler;
-import org.eclipse.ocl.util.Adaptable;
-import org.eclipse.ocl.util.ProblemAware;
-
-
 
 /**
  * Miscellaneous utilities for use by the OCL parser/interpreter and by clients.
@@ -49,10 +35,7 @@ import org.eclipse.ocl.util.ProblemAware;
  */
 public final class OCLUtil {
     /** Use weak references as the keys to avoid memory leaks. */
-	private static final Map<Environment, Reference<BasicEnvironment2>> environments = new java.util.WeakHashMap<Environment, Reference<BasicEnvironment2>>();
-
-    /** Use weak references as the keys to avoid memory leaks. */
-	private static final Map<Environment, Reference<TypeChecker>> typesCheckerEnvironments = new java.util.WeakHashMap<Environment, Reference<TypeChecker>>();
+	private static final Map<Environment, Reference<BasicEnvironment>> environments = new java.util.WeakHashMap<Environment, Reference<BasicEnvironment>>();
    
 	// prevent instantiation
 	private OCLUtil() {
@@ -85,7 +68,7 @@ public final class OCLUtil {
 	@SuppressWarnings("unchecked")
 	public static <T> T getAdapter(
 	        Environment env,
-			Class<T> adapterType) {
+	        java.lang.Class<T> adapterType) {
 	    
 		T result;
 		
@@ -98,56 +81,8 @@ public final class OCLUtil {
 		}
 		
 		if (result == null) {
-			if (adapterType == TypeChecker.class) {
-				result = (T) getTypeChecker(env);
-			} else if (adapterType == BasicEnvironment.class) {
+			if (adapterType == BasicEnvironment.class) {
 				result = (T) getBasicEnvironment(env);
-			} else if (adapterType == BasicEnvironment2.class) {
-				result = (T) getBasicEnvironment(env);
-			} else if (adapterType == ProblemHandler.class) {
-				result = (T) getAdapter(env, BasicEnvironment.class).getProblemHandler();
-			} else if (adapterType == Environment.Lookup.class) {
-			    final PivotEnvironment _env = (PivotEnvironment) env;
-			    
-				result = (T) new Environment.Lookup() {
-				    public org.eclipse.ocl.examples.pivot.Package tryLookupPackage(List<String> names)
-                        throws LookupException {
-                        
-                        return _env.lookupPackage(names);
-                    }
-    
-                    public Type tryLookupClassifier(List<String> names)
-						throws LookupException {
-						
-						return _env.lookupClassifier(names);
-					}
-
-                    public Operation tryLookupOperation(Type owner, String name,
-                            List<? extends TypedElement> args)
-                        throws LookupException {
-                        
-                        return _env.lookupOperation(owner, name, args);
-                    }
-
-                    public Property tryLookupProperty(Type owner, String name)
-                        throws LookupException {
-                        
-                        return _env.lookupProperty(owner, name);
-                    }
-
-                    public Type tryLookupAssociationClassReference(Type owner,
-                            String name)
-                        throws LookupException {
-                        
-                        return _env.lookupAssociationClassReference(owner, name);
-                    }
-
-                    public Signal tryLookupSignal(Type owner, String name,
-                            List<? extends TypedElement> args)
-                        throws LookupException {
-                        
-                        return _env.lookupSignal(owner, name, args);
-                    }};
 			}
 		}
 		
@@ -162,11 +97,11 @@ public final class OCLUtil {
 	 * @param env the environment for which to define an external adapter
 	 * @return the external adapter
 	 */
-	private static BasicEnvironment2 getBasicEnvironment(
+	private static BasicEnvironment getBasicEnvironment(
 	        final Environment env) {
 	    
-	    BasicEnvironment2 result = null;
-	    Reference<BasicEnvironment2> ref = environments.get(env);
+	    BasicEnvironment result = null;
+	    Reference<BasicEnvironment> ref = environments.get(env);
 	    
 	    if (ref != null) {
 	        result = ref.get();
@@ -176,7 +111,7 @@ public final class OCLUtil {
 	        result = new AbstractBasicEnvironment(null) {
                 @SuppressWarnings("unchecked")
                 @Override
-                public <T> T getAdapter(Class<T> adapterType) {
+                public <T> T getAdapter(java.lang.Class<T> adapterType) {
                     if (adapterType == Environment.class) {
                         return (T) env;  // the reverse adaptation
                     } else {
@@ -185,37 +120,10 @@ public final class OCLUtil {
                 }
             };
             
-            environments.put(env, new java.lang.ref.WeakReference<BasicEnvironment2>(result));
+            environments.put(env, new java.lang.ref.WeakReference<BasicEnvironment>(result));
 	    }
 	    
 	    return result;
-	}
-	
-	/**
-	 * Creates and caches a suitable {@link TypeChecker} from an Environment .
-	 * This method will be called in case of the environment doesn't adapt to
-	 * {@link TypeChecker}.
-	 * 
-	 * @param env
-	 *            the Environment associated to the {@link TypeChecker}
-	 * @return the TypeChecker
-	 */
-	private static TypeChecker getTypeChecker(Environment env) {
-
-		TypeChecker result = null;
-
-		Reference<TypeChecker> ref = typesCheckerEnvironments.get(env);
-
-		if (ref != null) {
-			result = (TypeChecker) ref.get();
-		}
-
-		if (result == null) {
-			result = new OCLTypeChecker(env);
-			typesCheckerEnvironments.put(env,
-				new java.lang.ref.WeakReference<TypeChecker>(result));
-		}
-		return result;
 	}
 
 	/**
@@ -235,7 +143,7 @@ public final class OCLUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T getAdapter(EnvironmentFactory factory,
-			Class<T> adapterType) {
+			java.lang.Class<T> adapterType) {
 		T result;
 		
 		if (factory instanceof Adaptable) {
@@ -244,23 +152,7 @@ public final class OCLUtil {
 			result = (T) factory;
 		} else {
 			result = null;
-		}
-		
-		if (result == null) {
-			if (adapterType == EnvironmentFactory.Lookup.class) {
-			    final EnvironmentFactory _factory = (EnvironmentFactory) factory;
-			    
-				result = (T) new EnvironmentFactory.Lookup() {
-					public Environment tryCreatePackageContext(
-							Environment parent,
-							List<String> pathname)
-						throws LookupException {
-						
-						return _factory.createPackageContext(parent, pathname);
-					}};
-			}
-		}
-		
+		}		
 		return result;
 	}
 
@@ -276,7 +168,7 @@ public final class OCLUtil {
 	 *     if this evaluation environment does not adapt to it
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T getAdapter(EvaluationEnvironment env, Class<T> adapterType) {
+	public static <T> T getAdapter(EvaluationEnvironment env, java.lang.Class<T> adapterType) {
 	    
 		T result;
 		
@@ -307,8 +199,8 @@ public final class OCLUtil {
 	 */
 	public static Diagnostic checkForErrors(Environment env)
 			throws SyntaxException, SemanticException {
-		
-		return checkForErrors(getAdapter(env, ProblemHandler.class));
+		throw new UnsupportedOperationException();
+//		return checkForErrors(getAdapter(env, ProblemHandler.class));
 	}
 
 	/**
@@ -325,8 +217,8 @@ public final class OCLUtil {
 	 */
 	public static Diagnostic checkForErrors(ProblemHandler problemHandler)
 			throws SyntaxException, SemanticException {
-		
-		Diagnostic result = null;
+		throw new UnsupportedOperationException();		
+/*		Diagnostic result = null;
 		
 		if (problemHandler instanceof OCLProblemHandler) {
 			result = ((OCLProblemHandler) problemHandler).getDiagnostic();
@@ -343,7 +235,7 @@ public final class OCLUtil {
 			}
 		}
 		
-		return result;
+		return result; */
 	}
     
     /**
@@ -383,7 +275,8 @@ public final class OCLUtil {
 	 */
 	public static Diagnostic checkForErrorsOrWarnings(ProblemHandler problemHandler)
 			throws SyntaxException, SemanticException {
-		
+		throw new UnsupportedOperationException();
+/*		
 		Diagnostic result = null;
 		
 		if (problemHandler instanceof OCLProblemHandler) {
@@ -401,7 +294,7 @@ public final class OCLUtil {
 			}
 		}
 		
-		return result;
+		return result; */
 	}
 	
 	/**

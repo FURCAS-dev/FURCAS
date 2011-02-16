@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.8 2011/01/30 11:10:09 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.10 2011/02/15 10:37:10 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -72,22 +72,8 @@ RestrictedKeywords:
 |	'static'
 |	'super'
 |	'type'
+|	'Lambda'
 |	'Tuple'
-;
-
-MetaTypeName:
-	'AnyType'
-|	'BagType'
-|	'Class'
-|	'CollectionType'
-|	'InvalidType'
-|	'OrderedSetType'
-|	'PrimitiveType'
-|	'SelfType'
-|	'SequenceType'
-|	'SetType'
-|	'TupleType'
-|	'VoidType'
 ;
 
 Name:
@@ -95,10 +81,9 @@ Name:
 |	DOUBLE_QUOTED_STRING
 |	EssentialOCLReservedKeyword
 |	RestrictedKeywords
-|	MetaTypeName
 ;
 
-AccumulatorCS returns LibAccumulatorCS:
+AccumulatorCS returns base::ParameterCS:
 	name=Identifier ':' ownedType=TypedRefCS
 ;
 
@@ -117,7 +102,7 @@ AnnotationElementCS returns base::AnnotationElementCS:
 ClassCS returns LibClassCS:
 	'type' name=Name
 	(ownedTemplateSignature=TemplateSignatureCS)?
-	(':' metaTypeName=MetaTypeName)?
+	(':' metaTypeName=[MetaTypeName|Name])?
 	('conformsTo' ownedSuperType+=TypedRefCS (',' ownedSuperType+=TypedRefCS)*)?
 	'{' (ownedOperation+=OperationCS
 	   | ownedProperty+=LibPropertyCS
@@ -163,8 +148,15 @@ LibIterationCS returns LibIterationCS:
 	)
 ;
 
-IteratorCS returns LibIteratorCS:
+IteratorCS returns base::ParameterCS:
 	name=Identifier ':' ownedType=TypedRefCS
+;
+
+LambdaTypeCS returns base::LambdaTypeCS:
+	name='Lambda' ownedContextType=TypedRefCS
+	(ownedTemplateSignature=TemplateSignatureCS)?
+	'(' (ownedParameterType+=TypedRefCS (',' ownedParameterType+=TypedRefCS)*)? ')'
+	':' ownedResultType=TypedRefCS
 ;
 
 OperationCS returns base::OperationCS:
@@ -221,11 +213,10 @@ PrecedenceCS returns PrecedenceCS:
 	('left'|rightAssociative?='right') ':' name=Name
 ;	
 
-QualifiedTypeRefCS returns base::QualifiedTypeRefCS:
-	namespace=[pivot::Namespace|Name]
-	(ownedTemplateBinding=TemplateBindingCS)?
-	'::' element=TypedRefCS
-;
+//NamespaceRefCS returns base::NamespaceRefCS:
+//	ref=[pivot::Namespace|Name]
+//	(ownedTemplateBinding=TemplateBindingCS)?
+//;
 
 TemplateBindingCS returns base::TemplateBindingCS:
 	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
@@ -240,7 +231,7 @@ TemplateSignatureCS returns base::TemplateSignatureCS:
 ;
 
 LibTupleCS returns base::TupleTypeCS:
-	{base::TupleTypeCS} name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
+	name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
 ;
 
 LibTuplePartCS returns base::TuplePartCS:
@@ -259,10 +250,12 @@ TypeRefCS returns base::TypeRefCS:
 ;
 
 TypedRefCS returns base::TypedRefCS:
-	LibTupleCS | QualifiedTypeRefCS | TypedTypeRefCS
+	LibTupleCS | TypedTypeRefCS | LambdaTypeCS
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
+//	(namespace+=NamespaceRefCS '::')*
+	(namespace+=[pivot::Namespace|Name] '::')*
 	type=[pivot::Type|Name]
 	(ownedTemplateBinding=TemplateBindingCS)?
 ;

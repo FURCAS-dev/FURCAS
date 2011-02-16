@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -21,14 +21,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-
-
 
 public class ObjectValueImpl extends AbstractValue implements ObjectValue
 {
@@ -55,21 +52,14 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 		return object;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		if (object instanceof EObject) {
-			EClass eClass = ((EObject)object).eClass();
-			Resource resource = eClass.eResource();
-			if (resource != null) {
-				Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource);
-				if (adapter != null) {
-					Type type = adapter.getCreated(Type.class, eClass);
-					if (type != null) {
-						return type;
-					}
-				}
+			Type type = PivotUtil.findTypeOf(((EObject)object).eClass());
+			if (type != null) {
+				return type;
 			}
 		}
-		return standardLibrary.getClassifierType();
+		return typeManager.getClassifierType();
 	}
 
 	@Override

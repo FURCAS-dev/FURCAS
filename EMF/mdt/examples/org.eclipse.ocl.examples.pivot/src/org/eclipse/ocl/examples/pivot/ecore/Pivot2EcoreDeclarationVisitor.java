@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -38,9 +38,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-//import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-//import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-//import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -218,10 +215,10 @@ public class Pivot2EcoreDeclarationVisitor
 			return null;
 		}
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
-		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation == null) {
 			oclAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI);
+			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 			eModelElement.getEAnnotations().add(oclAnnotation);
 		}
 		String stereotype = pivotConstraint.getStereotype();
