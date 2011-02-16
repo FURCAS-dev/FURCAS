@@ -380,7 +380,9 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * responsible to perform it if this method returns <code>true</code>.
      */
     private boolean shallUpdateReferencingTokenInTextBlockModel(LexedToken token) {
-        return !token.eResource().isTrackingModification() || token.eResource().isModified();
+        // TODO Stephan's comment: only the short-PP should update tokens. Does everyone agree?
+        // return !token.eResource().isTrackingModification() || token.eResource().isModified();
+        return false;
     }
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {
