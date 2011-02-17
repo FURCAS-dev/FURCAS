@@ -8,7 +8,7 @@
 		<property name="checkoutLocation" value="../.." />
 		<property name="targetPlatform" value="${eclipse.home}" />
 
-		<property name="sourcesLocation" value="${checkoutLocation}/plugins/" />
+		<property name="sourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/plugins/" />
 
 
 		<echo message="Source code location ${sourcesLocation}" />
