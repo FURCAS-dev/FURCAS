@@ -8,7 +8,8 @@
 		<property name="checkoutLocation" value="../.." />
 		<property name="targetPlatform" value="${eclipse.home}" />
 
-		<property name="sourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/plugins/" />
+		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/plugins/" />
+		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/examples/" />
 
 
 		<echo message="Source code location ${sourcesLocation}" />
@@ -27,9 +28,11 @@
 		<mkdir dir="${output}" />
 
 		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation">
-			<fileset dir="${sourcesLocation}" defaultexcludes="true">
+			<fileset dir="${pluginsSourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
-				<exclude name="**/test/**" />
+			</fileset>
+			<fileset dir="${examplesSourcesLocation}" defaultexcludes="true">
+				<include name="**/*.java" />
 			</fileset>
 		</javadoc>
 	</target>
