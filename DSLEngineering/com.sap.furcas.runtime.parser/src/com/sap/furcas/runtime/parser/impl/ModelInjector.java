@@ -64,11 +64,10 @@ public class ModelInjector extends AbstractModelInjector implements IModelInject
      * @see com.sap.mi.textual.grammar.IModelInjector#createModelElementProxy(java.lang.String, boolean, boolean)
      */
     @Override
-    public Object createOrResolve(Object proxyObject, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken) throws ModelElementCreationException {
+    public Object createOrResolve(ModelElementProxy proxy, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken) throws ModelElementCreationException {
         if (getModelAdapter() == null) {
             throw new IllegalStateException("Cannot use ModelInjector when ModelAdapter is set to null");
         }
-        ModelElementProxy proxy = (ModelElementProxy) proxyObject;
         try {           
 
             Map<String, List<Object>> attributes = proxy.getAttributeMap();

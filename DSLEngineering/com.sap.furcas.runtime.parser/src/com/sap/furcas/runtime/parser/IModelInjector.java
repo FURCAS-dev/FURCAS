@@ -11,6 +11,7 @@ package com.sap.furcas.runtime.parser;
 import java.util.List;
 
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
@@ -38,7 +39,7 @@ public interface IModelInjector extends IInjectionHelper {
      * @return
      * @throws ModelElementCreationException
      */
-    Object createOrResolve(Object proxy, ANTLR3LocationToken firstToken,
+    Object createOrResolve(ModelElementProxy proxy, ANTLR3LocationToken firstToken,
 	    ANTLR3LocationToken lastToken) throws ModelElementCreationException;
 
     /**
