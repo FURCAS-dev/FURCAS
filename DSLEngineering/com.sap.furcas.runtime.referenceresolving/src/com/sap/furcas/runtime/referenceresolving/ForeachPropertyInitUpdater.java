@@ -272,10 +272,10 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
             if (textBlocks != null && !textBlocks.isEmpty()) {
+                // TODO can it happen that the same element is represented in multiple syntaxes using the same foreach predicate?
                 TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
                 if (foreachWasExecutedFor(textBlock)) {
-                    // TODO this would be the place where to identify changes and carefully replace/remove/add only
-                    // single elements
+                    // TODO this would be the place where to identify changes and carefully replace/remove/add only single elements
                     Collection<Object> newFeatureValue = new BasicEList<Object>();
                     for (Object foreachElement : foreachElements) {
                         EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate,
@@ -405,8 +405,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
-            parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model
-                                                       // updaters
+            parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model updaters
             addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn);
             return parseReturn;
         } catch (Exception e) {
