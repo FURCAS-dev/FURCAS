@@ -193,18 +193,19 @@
 			<fileset dir="${project.javadoc.directory}"/>
 		</delete>
 
-		<!-- copy zip packages -->
+		<echo>Copying zip packages</echo>
 		<copy todir="${build.drop.directory}">
 			<fileset dir="${packages.directory}">
 				<filename name="*.zip" />
 			</fileset>
 		</copy>
-		<!-- genereate md5 checksums -->
+
+		<echo>Generating md5 checksums</echo>
 		<checksum algorithm="MD5" fileext=".md5" format="MD5SUM">
 			<fileset dir="${build.drop.directory}" />
 		</checksum>
 
-		<!-- copy testresults -->
+		<echo>Copying Test Results</echo>
 		<mkdir dir="${build.drop.directory}/testresults" />
 		<copy todir="${build.drop.directory}/testresults">
 			<fileset dir="${testresults.directory}">
@@ -212,12 +213,12 @@
 			</fileset>
 		</copy>
 
-		<!-- copy javadoc -->
-		<copy todir="${project.javadoc.directory}">
+		<echo>Unzipping javadoc</echo>
+		<unzip dest="${project.javadoc.directory}">
 			<fileset dir="${javadoc.directory}">
-				<filename name="**/*" />
+				<filename name="*-javadoc.zip" />
 			</fileset>
-		</copy>
+		</unzip>
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
