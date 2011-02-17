@@ -296,6 +296,7 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 			SpiAttributeExpression attributeExpression) {
 
 		List<EObject> result = new ArrayList<EObject>();
+		EObject[] results;
 
 		// filter for the partition, the types, and the element set
 		for (URI pri : priScope) {
@@ -353,8 +354,12 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 				// }
 			}
 		}
-
-		return result.toArray(new EObject[result.size()]);
+		//Explicitly setting the result to null, after copying results to an array object
+		results = new EObject[result.size()];
+		result.toArray(results);
+		result = null;
+		return  results;
+		//return result.toArray(new EObject[result.size()]);
 	}
 
 	private static Map<EClass, URI> typeUris = new WeakHashMap<EClass, URI>(256);
