@@ -32,7 +32,7 @@
 				<cs:property key="targets" value="create.javadoc" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="checkoutLocation" value="${buckminster.workspace}" />
+				<cs:property key="checkoutLocation" value="${checkout.location}" />
 				<cs:property key="output" value="${buckminster.output}/javadoc/" />
 				<cs:property key="targetPlatform" value="${targetPlatformPath}" />
 			</cs:properties>
