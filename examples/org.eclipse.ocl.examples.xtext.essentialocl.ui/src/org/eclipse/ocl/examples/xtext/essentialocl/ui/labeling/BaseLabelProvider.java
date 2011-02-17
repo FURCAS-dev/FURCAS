@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.3 2011/02/16 08:43:51 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.4 2011/02/17 17:48:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -376,7 +376,12 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
-		return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
+		if (ele.getOwningTemplateParameter() != null) {
+			return "/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif";
+		}
+		else {
+			return "/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif";
+		}
 	}
 
 	protected String text(org.eclipse.ocl.examples.pivot.Class ele) {

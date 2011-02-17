@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLabelProvider.java,v 1.6 2011/02/16 08:43:53 ewillink Exp $
+ * $Id: OCLinEcoreLabelProvider.java,v 1.7 2011/02/17 17:48:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
 
@@ -64,7 +64,12 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 
 	@Override
 	protected String image(org.eclipse.ocl.examples.pivot.Class ele) {
-		return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif";
+		if (ele.getOwningTemplateParameter() != null) {
+			return "/org.eclipse.emf.ecore.edit/icons/full/obj16/ETypeParameter.gif";
+		}
+		else {
+			return "/org.eclipse.emf.ecore.edit/icons/full/obj16/EClass.gif";
+		}
 	}
 
 	protected String image(OCLinEcoreConstraintCS ele) {
