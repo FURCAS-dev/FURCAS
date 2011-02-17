@@ -147,7 +147,7 @@ public class DelayedReferencesHelper {
                     if (!(next instanceof Boolean) || ((Boolean) next).booleanValue()) {
                         // look if there are possible when/as constructs
                         PredicateSemantic activePredicateSemantic = getActivePredicateFromWhenAsClauses(reference, modelAdapter,
-                                contextElement);
+                                contextElement, next);
                         Template tmpl = getTemplateFromPredicateSemantic(activePredicateSemantic, reference);
                         String ruleName = null;
                         if (activePredicateSemantic == null) {
@@ -180,6 +180,7 @@ public class DelayedReferencesHelper {
                                     ((TextBlock) reference.getTextBlock()).getForEachContext())) {
                                 if (fec.getForeachPedicatePropertyInit().equals(reference.getQueryElement())
                                         && reference.getModelElement().equals(fec.getSourceModelElement())) {
+                                    // FIXME !!! If multiple results, this deletes the previously created element !!!
                                     if (fec.getContextElement() != next) {
                                         // element was responsible for creating
                                         // this result but
@@ -468,10 +469,10 @@ public class DelayedReferencesHelper {
     }
 
     private PredicateSemantic getActivePredicateFromWhenAsClauses(DelayedReference reference, IModelAdapter modelAdapter,
-            Object contextElement) throws ModelAdapterException {
+            Object contextElement, Object currentForeachElement) throws ModelAdapterException {
         for (PredicateSemantic nextPred : reference.getPredicateActionList()) {
             if (nextPred.getWhen() != null) {
-                Collection<?> resultBool = modelAdapter.evaluateOCLQuery(reference.getModelElement(),
+                Collection<?> resultBool = modelAdapter.evaluateOCLQuery(currentForeachElement,
                         reference.getKeyValue(), nextPred.getWhen(), contextElement);
                 if (resultBool.size() == 1) {
                     Iterator<?> resIt = resultBool.iterator();

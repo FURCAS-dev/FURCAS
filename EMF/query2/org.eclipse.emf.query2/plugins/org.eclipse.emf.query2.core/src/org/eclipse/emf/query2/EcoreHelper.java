@@ -81,13 +81,27 @@ public class EcoreHelper {
      */
     public Collection<EObject> reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, Index index) {
         boolean unique;
-        if (forwardReference.getEOpposite() != null) {
+        EReference opposite = forwardReference.getEOpposite();
+        if (opposite != null) {
             unique = forwardReference.getEOpposite().isUnique();
         } else {
             unique = false;
         }
         Collection<EObject> result = createEList(unique);
-        reverseNavigate(from, forwardReference, scope, rs, result, index);
+        if (opposite != null) {
+            if (opposite.isMany()) {
+                for (Object o : ((Collection<?>) from.eGet(opposite))) {
+                    result.add((EObject) o);
+                }
+            } else {
+                EObject singleResult = (EObject) from.eGet(opposite);
+                if (singleResult != null) {
+                    result.add(singleResult);
+                }
+            }
+        } else {
+            reverseNavigate(from, forwardReference, scope, rs, result, index);
+        }
         return result;
     }
 
@@ -128,26 +142,30 @@ public class EcoreHelper {
      * @param rs used to resolve the element URIs resulting from the query
      */
     public void reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, Collection<EObject> result, Index index) {
-        if (forwardReference.isContainment()) { // TODO this can be written much shorter using feature IDs
-            EObject container = from.eContainer();
-            if (container != null) {
-                if ((forwardReference.isMany() && ((Collection<?>) container.eGet(forwardReference)).contains(from))
-                        || (!forwardReference.isMany() && container == from)) {
-                    result.add(container);
+        if (from.eResource() != null) { // no way to find anything by query2 if not in a resource
+            if (forwardReference.isContainment()) { // TODO this can be written much shorter using feature IDs
+                EObject container = from.eContainer();
+                if (container != null) {
+                    if ((forwardReference.isMany() && ((Collection<?>) container.eGet(forwardReference)).contains(from))
+                            || (!forwardReference.isMany() && container == from)) {
+                        result.add(container);
+                    }
                 }
-            }
-        } else {
-            EClass owningType = getOwningType(forwardReference);
-            SelectEntry select = new SelectAlias("target");
-            FromFixedSet fromFromElement = new FromFixedSet("source", EcoreUtil.getURI(from.eClass()), new URI[] { EcoreUtil.getURI(from) });
-            FromType fromTarget = new FromType("target", EcoreUtil.getURI(owningType), /* _withoutSubtypes */ false);
-            WhereEntry where = new WhereRelationReference(/* _leftAlias */ "target", /* _featureName */ forwardReference.getName(),
-                    /* _rightAlias */ "source");
-            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { fromFromElement, fromTarget },
-                    new WhereEntry[] { where });
-            final ResultSet resultSet = getQueryProcessor(index).execute(query, scope);
-            for (int i = 0; i < resultSet.getSize(); i++) {
-                result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
+            } else {
+                EClass owningType = getOwningType(forwardReference);
+                SelectEntry select = new SelectAlias("target");
+                FromFixedSet fromFromElement = new FromFixedSet("source", EcoreUtil.getURI(from.eClass()),
+                        new URI[] { EcoreUtil.getURI(from) });
+                FromType fromTarget = new FromType("target", EcoreUtil.getURI(owningType), /* _withoutSubtypes */false);
+                WhereEntry where = new WhereRelationReference(/* _leftAlias */"target", /* _featureName */
+                        forwardReference.getName(),
+                        /* _rightAlias */"source");
+                Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { fromFromElement, fromTarget },
+                        new WhereEntry[] { where });
+                final ResultSet resultSet = getQueryProcessor(index).execute(query, scope);
+                for (int i = 0; i < resultSet.getSize(); i++) {
+                    result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
+                }
             }
         }
     }

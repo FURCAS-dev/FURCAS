@@ -115,7 +115,10 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                 && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass()) || ((EClass) (property).getEType())
                         .equals(EcorePackage.eINSTANCE.getEObject()))) {
             QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
-            ResourceSet rs = etarget.eResource().getResourceSet();
+            ResourceSet rs = null;
+            if (etarget.eResource() != null) {
+                rs = etarget.eResource().getResourceSet();
+            }
             if (rs == null) {
                 rs = queryContext.getResourceSet();
                 if (rs == null) {
