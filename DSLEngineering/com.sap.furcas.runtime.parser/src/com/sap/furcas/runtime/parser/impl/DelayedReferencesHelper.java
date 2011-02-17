@@ -128,7 +128,7 @@ public class DelayedReferencesHelper {
                         if (fec.getForeachPedicatePropertyInit() != null
                                 && fec.getForeachPedicatePropertyInit().equals(reference.getQueryElement())
                                 && reference.getModelElement().equals(fec.getSourceModelElement())) {
-                            // delete element and fec
+                            // delete element and fec; this also removes them from the resultModelElement reference of the ForeachContext 
                             EcoreUtil.delete(fec.getResultModelElement(), true);
                             EcoreUtil.delete(fec, true);
                         }
@@ -148,7 +148,7 @@ public class DelayedReferencesHelper {
                                 modelAdapter, contextElement, singleForeachResult);
                         Template tmpl = getTemplateFromPredicateSemantic(activePredicateSemantic, reference);
                         ModelElementProxy foreachTargetElement = produceForOneForeachResult(reference, modelAdapter,
-                                contextElement, parser, reusableElementsByForeachElement, singleForeachResult, activePredicateSemantic, tmpl);
+                                contextElement, parser, singleForeachResult, activePredicateSemantic, tmpl);
                         updateForeachContexts(reference, reusableElementsByForeachElement, singleForeachResult, tmpl);
                         if (foreachTargetElement != null) {
                             producedResults.add(foreachTargetElement);
@@ -175,14 +175,13 @@ public class DelayedReferencesHelper {
      *            the current foreach-expression's result to produce an element for
      * @param activePredicateSemantic TODO
      * @param tmpl TODO
-     * 
      * @return <code>false</code> in case the foreach-result to be handled is not properly typed or doesn't match any
      *         existing predicate semantics so that no production rule can be identified; <code>true</code> in case of
      *         successful production.
      */
     private ModelElementProxy produceForOneForeachResult(DelayedReference reference, IModelAdapter modelAdapter,
             Object contextElement, ObservableInjectingParser parser,
-            HashMap<EObject, EObject> reusableElementsByForeachElement, Object singleForeachResult, PredicateSemantic activePredicateSemantic, Template tmpl) throws ModelAdapterException,
+            Object singleForeachResult, PredicateSemantic activePredicateSemantic, Template tmpl) throws ModelAdapterException,
             SyntaxElementException, NoSuchMethodException, UnknownProductionRuleException, IllegalAccessException,
             InvocationTargetException, ModelElementCreationException {
         ModelElementProxy foreachTargetElement = null;
