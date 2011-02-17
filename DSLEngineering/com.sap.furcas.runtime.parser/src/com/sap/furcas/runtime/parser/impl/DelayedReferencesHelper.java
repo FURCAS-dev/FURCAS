@@ -121,6 +121,7 @@ public class DelayedReferencesHelper {
             }
             Collection<?> result = evaluateForeachOcl((EObject) reference.getModelElement(), reference, modelAdapter, contextElement);
             if (result.isEmpty()) {
+                // TODO hopefully this can be consolidated with a generalized updateForeachContexts which deletes ForeachContexts no longer needed
                 // we need to delete all elements created for this foreach
                 if (reference.getTextBlock() != null) {
                     for (ForEachContext fec : new ArrayList<ForEachContext>(
@@ -154,6 +155,11 @@ public class DelayedReferencesHelper {
                             producedResults.add(foreachTargetElement);
                             setReference(reference, singleForeachResult, modelAdapter,
                                     reusableElementsByForeachElement.get(singleForeachResult), foreachTargetElement);
+                            if (reference.getTextBlock() != null) {
+                                addForEachContext((TextBlock) reference.getTextBlock(), (EObject) reference.getModelElement(),
+                                        (EObject) singleForeachResult, (ForeachPredicatePropertyInit) reference.getQueryElement(),
+                                        (EObject) reference.getRealValue());
+                            }
                         }
                     }
                 }
@@ -378,11 +384,6 @@ public class DelayedReferencesHelper {
                         .add((EObject) reference.getRealValue());
             }
             modelAdapter.set(reference.getModelElement(), reference.getPropertyName(), reference.getRealValue());
-            if (reference.getTextBlock() != null) {
-                addForEachContext((TextBlock) reference.getTextBlock(), (EObject) reference.getModelElement(),
-                        (EObject) singleForeachResult, (ForeachPredicatePropertyInit) reference.getQueryElement(),
-                        (EObject) reference.getRealValue());
-            }
         }
     }
 
