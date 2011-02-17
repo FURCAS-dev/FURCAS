@@ -1,7 +1,7 @@
 <project name="javadoc-project">
 	<target name="create.javadoc">
 
-		<property name="projectName" value="MDT/OCL" />
+		<property name="projectName" value="MDT-OCL" />
 
 		<!-- workspace defaults -->
 		<property name="output" value="./javadoc" />
@@ -34,6 +34,12 @@
 			<fileset dir="${examplesSourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
 			</fileset>
+			<tag name="generated" description="Generated"></tag>
+			<tag name="model" description="Model"></tag>
+			<tag name="ordered" description="Ordered"></tag>
 		</javadoc>
+		
+		<!-- Compress the output javadoc in a zip file --> 
+		<zip destfile="${output}/${projectName}-javadoc.zip" basedir="${output}"></zip>
 	</target>
 </project>
