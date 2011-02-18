@@ -33,6 +33,10 @@
 			</fileset>
 			<fileset dir="${examplesSourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
+				<exclude name="**/org/eclipse/ocl/examples/build/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/editor/ocl/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/editor/ui/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/project/**"/>
 			</fileset>
 			<tag name="generated" description="Generated"></tag>
 			<tag name="model" description="Model"></tag>
