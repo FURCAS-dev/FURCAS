@@ -10,8 +10,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -27,14 +25,14 @@ public class EditorUtil {
         return TcsUtil.getSyntaxByName(resourceSet, parserFactory.getLanguageId());
     }
 
-    public static AbstractGrammarBasedEditor getCurrentEditor() {
-        IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-        if(activeEditor instanceof AbstractGrammarBasedEditor) {
-            return (AbstractGrammarBasedEditor) activeEditor;
-        } else {
-            return null;
-        }
-    }
+//    public static AbstractGrammarBasedEditor getCurrentEditor() {
+//        IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+//        if(activeEditor instanceof AbstractGrammarBasedEditor) {
+//            return (AbstractGrammarBasedEditor) activeEditor;
+//        } else {
+//            return null;
+//        }
+//    }
 
     public static class SimpleListContentProvider implements IStructuredContentProvider {
 

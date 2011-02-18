@@ -20,7 +20,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
-import com.sap.furcas.ide.editor.document.TextBlocksModelStore;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.IModelAdapter;
@@ -87,10 +86,7 @@ public class CtsContentAssistProcessor {
         TextBlocksModel tbModel = null;
         IDocument doc = viewer.getDocument();
         if (doc instanceof CtsDocument) {
-            TextBlocksModelStore store = ((CtsDocument) doc).getTextBlocksModelStore();
-            if (store != null) {
-                tbModel = store.getModel();
-            }
+            tbModel = new TextBlocksModel(((CtsDocument) doc).getRootBlock(), /*modelAdapter*/ null);
         }
         return computeCompletionProposals(viewer, line, charPositionInLine, tbModel);
     }

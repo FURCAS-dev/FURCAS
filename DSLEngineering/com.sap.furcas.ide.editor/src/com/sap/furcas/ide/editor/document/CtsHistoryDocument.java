@@ -1,6 +1,5 @@
 package com.sap.furcas.ide.editor.document;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * CtsDocument enabled to snapshot model versions on save and to log any changes
@@ -11,13 +10,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  * 
  * @author D049157
  */
-public class CtsHistoryDocument extends CtsDocument {
+//public class CtsHistoryDocument extends CtsDocument {
 
 //    private DocumentHistory history;
 
-    public CtsHistoryDocument(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
-	super(modelEditorInput, editingDomain);
-    }
+//    public CtsHistoryDocument(ModelEditorInput modelEditorInput, EditingDomain editingDomain) {
+//	super(modelEditorInput, editingDomain);
+//    }
 
 //    @Override
 //    public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
@@ -58,4 +57,4 @@ public class CtsHistoryDocument extends CtsDocument {
 //	setAndActivateDocumentHistory(history, new NullProgressMonitor());
 //    }
 
-}
+//}

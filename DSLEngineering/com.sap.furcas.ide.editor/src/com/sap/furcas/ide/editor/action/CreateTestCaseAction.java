@@ -8,7 +8,6 @@ import org.eclipse.swt.dnd.Transfer;
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.DialogsImages;
 import com.sap.furcas.ide.editor.document.CtsDocument;
-import com.sap.furcas.ide.editor.document.CtsHistoryDocument;
 
 public class CreateTestCaseAction extends Action {
 
@@ -26,7 +25,7 @@ public class CreateTestCaseAction extends Action {
 
     @Override
     public void run() {
-	assert document instanceof CtsHistoryDocument : "Document not a CtsHistoryDocument";
+//	assert document instanceof CtsHistoryDocument : "Document not a CtsHistoryDocument";
 
 //	CreateTestCaseDialog diag = CreateTestCaseDialog.createDialog();
 //	int result = diag.open();
