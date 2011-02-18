@@ -26,7 +26,7 @@ public class DummyModelInjector extends AbstractModelInjector implements IModelI
 	}
 
 	@Override
-	public Object createOrResolve(Object proxy, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken) {
+	public Object createOrResolve(ModelElementProxy proxy, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken) {
 		return null;
 	}
 

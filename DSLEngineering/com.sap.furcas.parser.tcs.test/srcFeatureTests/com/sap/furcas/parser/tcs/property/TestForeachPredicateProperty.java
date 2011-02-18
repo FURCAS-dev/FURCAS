@@ -58,8 +58,10 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
 
     @Before
     public void initializeModel() throws Exception {
-        String sample = "article{" + "  Testing, \"John Doe\"," + "}" + "author = \"John Doe\"."
-                + "author = \"Jane Doll\".";
+        String sample = "article{ Testing, \"John Doe\", }" +
+                        "article{ Second, \"John Doe\", }" +
+                        "author = \"John Doe\"." +
+                        "author = \"Jane Doll\".";
 
         ModelParsingResult parsingResult = parsingHelper.parseString(sample, /*expected errors*/ 0);
 
@@ -71,7 +73,7 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         
         @SuppressWarnings("unchecked")
         Collection<EObject> entries = (Collection<EObject>) bibTexFile.eGet(bibTexFileClass.getEStructuralFeature("entries"));
-        assertEquals(3, entries.size());
+        assertEquals(4, entries.size());
 
         for (EObject entry : entries) {
             if (entry.eClass().getName().equals("Author")) {
@@ -84,11 +86,12 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         }
 
     }
-    
+
     /**
-     * Since the sample code has two authors (John Doe, Jane Doll) and one article (written by John Doe),
-     * the Jane Doll object should <em>not</em> contain a RevenueLedger model element. Since the article is written by John Doe,
-     * the John Doe object should contain <em>one</em> RevenueLedger model element, which's revenueInEUR should be set to "John Doe".length() = 8.
+     * Since the sample code has two authors (John Doe, Jane Doll) and two articles (written by John Doe), the Jane Doll
+     * object should <em>not</em> contain a RevenueLedger model element. Since the article is written by John Doe, the
+     * John Doe object should contain <em>two</em> RevenueLedger model elements, which's revenueInEUR should be set to
+     * "John Doe".length() = 8.
      */
     @Test
     public void testForeachPredicatePropertyInits() {
@@ -97,15 +100,18 @@ public class TestForeachPredicateProperty extends GeneratedParserBasedTest {
         Collection<?> janesRevenueLedgers = (Collection<?>) janeDoll.eGet( janeDoll.eClass().getEStructuralFeature("revenues"));
         assertEquals(0, janesRevenueLedgers.size());
         
-        // According to the example, only one RevenueLedger model element should have been created for author John Doe.
-        Collection<?> johnsRevenueLedgers = (Collection<?>) johnDoe.eGet(johnDoe.eClass().getEStructuralFeature("revenues"));
-        assertEquals(1, johnsRevenueLedgers.size());
+        // According to the example, two RevenueLedger model element should have been created for author John Doe
+        // because he's author of two articles
+        @SuppressWarnings("unchecked")
+        Collection<EObject> johnsRevenueLedgers = (Collection<EObject>) johnDoe.eGet(johnDoe.eClass().getEStructuralFeature("revenues"));
+        assertEquals(2, johnsRevenueLedgers.size());
 
         // According to the TCS file revenueInEUR should be set to the length of the author's name.
-        EObject revenueLedger = (EObject) johnsRevenueLedgers.toArray()[0];
-        int revenueInEUR = (Integer) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("revenueInEUR"));
-        assertEquals("John Doe".length(), revenueInEUR);
-
+        for (EObject revenueLedger : johnsRevenueLedgers) {
+            int revenueInEUR = (Integer) revenueLedger.eGet(revenueLedger.eClass()
+                    .getEStructuralFeature("revenueInEUR"));
+            assertEquals("John Doe".length(), revenueInEUR);
+        }
     }
 
 }
