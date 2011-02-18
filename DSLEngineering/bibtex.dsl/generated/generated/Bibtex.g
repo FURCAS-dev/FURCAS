@@ -76,7 +76,7 @@ import org.antlr.runtime.Token;
 
 
 @members {
-   private static final String syntaxUUID = "_3vAlgDJEEeCD2P2_bQqizw";
+   private static final String syntaxUUID = "_niep8DuvEeCqvp8BAwtcLw";
    public String getSyntaxUUID() {
         return syntaxUUID;
    }
@@ -129,11 +129,11 @@ org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
   ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.0");}( temp=identifier {setProperty(ret, "name", temp);
-setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");}'Entries:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");}( temp=bibtex_entry {setProperty(ret, "entries", temp);
+setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");}{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");}'Entries:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");} LCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");}(({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4/@blockSequence/@elements.0");}( temp=bibtex_entry {setProperty(ret, "entries", temp);
 setParent(temp,ret,"entries");} ( temp=bibtex_entry {setProperty(ret, "entries", temp);
-setParent(temp,ret,"entries");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");}'Authors:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");}( temp=bibtex_author {setProperty(ret, "author", temp);
+setParent(temp,ret,"entries");})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");} RCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");}{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");}'Authors:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");} LCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.9");}( temp=bibtex_author {setProperty(ret, "author", temp);
 setParent(temp,ret,"author");} ( temp=bibtex_author {setProperty(ret, "author", temp);
-setParent(temp,ret,"author");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");}'}'{_afterSeqEl();})
+setParent(temp,ret,"author");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.10");} RCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.11");}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -148,9 +148,9 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");}'@article'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");}(({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.0");}( temp=identifier {setProperty(ret, "id", temp);
-setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1");}','{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2");}'title'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.5");}( temp=identifier {setProperty(ret, "title", temp);
-setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7");}','{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8");}'author'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11");}( temp=identifier {setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");} ({_enterSepSeq();}({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=identifier {setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12");}'}'{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");}'@article'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");} LCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");}( temp=identifier {setProperty(ret, "id", temp);
+setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");} COMA {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");}'title'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.5");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.6");} LCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.7");}( temp=identifier {setProperty(ret, "title", temp);
+setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.8");} RCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.9");} COMA {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.10");}'author'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.11");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.12");} LCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13");}( temp=identifier {setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)");} ({_enterSepSeq();}({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.13/@propertyArgs.1/@separatorSequence/@elements.0");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=identifier {setOclRef(ret, "author", null, temp, "OCL:self.literaturedb.author->select(name = ?)");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.14");} RCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.15");} RCURLY {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.16");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -177,6 +177,24 @@ catch [Exception e] {handleExceptionInTemplateRule(e, firstToken, ret);} finally
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
+  ;
+
+
+COMA
+  :
+  ','
+  ;
+
+
+LCURLY
+  :
+  '{'
+  ;
+
+
+RCURLY
+  :
+  '}'
   ;
 
 

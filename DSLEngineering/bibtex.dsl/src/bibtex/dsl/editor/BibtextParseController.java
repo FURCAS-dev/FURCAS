@@ -12,8 +12,8 @@ package bibtex.dsl.editor;
 
 import bibtex.dsl.parser.BibtexParserFactory;
 
+import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.DefaultLanguageSyntaxProperties;
-import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
 
 public class BibtextParseController extends FurcasParseController {
 

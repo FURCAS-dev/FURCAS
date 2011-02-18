@@ -59,12 +59,9 @@ import org.antlr.runtime.BitSet;
 import org.antlr.runtime.IntStream;
 import org.antlr.runtime.RecognitionException;}
 
-T__15 : 'Entries:' ;
-T__16 : '{' ;
-T__17 : '}' ;
-T__18 : 'Authors:' ;
-T__19 : '@article' ;
-T__20 : ',' ;
+T__18 : 'Entries:' ;
+T__19 : 'Authors:' ;
+T__20 : '@article' ;
 T__21 : 'title' ;
 T__22 : '=' ;
 T__23 : 'author' ;
@@ -78,6 +75,27 @@ COMMENT
 
 
 // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 183
+COMA
+  :
+  ','
+  ;
+
+
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 189
+LCURLY
+  :
+  '{'
+  ;
+
+
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 195
+RCURLY
+  :
+  '}'
+  ;
+
+
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 201
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -87,20 +105,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 192
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 210
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 198
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 216
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 203
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 221
 fragment
 ALPHA
     :   'a'..'z'
@@ -112,13 +130,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 214
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 232
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 219
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 237
 NAME
     :   (
             SNAME
@@ -132,15 +150,15 @@ NAME
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 232
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 250
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 236
+    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 254
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 238
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 256
 fragment
 ESC
     :   '\\'!
@@ -170,7 +188,7 @@ ESC
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 267
+// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/Bibtex.g" 285
 STRING
     :   '\''!
         (   ESC

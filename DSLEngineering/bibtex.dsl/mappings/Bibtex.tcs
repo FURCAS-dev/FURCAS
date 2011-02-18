@@ -12,56 +12,59 @@
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
         <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/name"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.6"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.7"/>
-      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
-        <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/entries"/>
-      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:CustomSeparator" parentTemplate="#//@templates.2" name="newline"/>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.2"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.4"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.7"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@symbols.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.2">
+        <blockSequence>
+          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
+            <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/entries"/>
+          </elements>
+        </blockSequence>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@symbols.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:CustomSeparator" parentTemplate="#//@templates.2" name="newline"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.0"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@symbols.1"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
         <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//LiteratureDb/author"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.2" referredLiteral="#//@symbols.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:CustomSeparator" parentTemplate="#//@templates.2" name="newline"/>
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.sap.com/furcas/examples/bibtex#//Entry">
     <textBlockDefinition/>
     <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.3"/>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.7"/>
-      <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.3">
-        <blockSequence>
-          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
-            <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
-          </elements>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.0"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.8"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.7"/>
-          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
-            <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
-          </elements>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.2"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.5"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.9"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.8"/>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.7"/>
-          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
-            <propertyArgs xsi:type="com.sap.furcas.TCS:ReferenceByPArg" referenceBy="name"/>
-            <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
-              <separatorSequence>
-                <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.1"/>
-              </separatorSequence>
-            </propertyArgs>
-            <propertyArgs xsi:type="com.sap.furcas.TCS:LookupScopePArg" query="OCL:Bibtex::Author.allInstances()"/>
-            <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/author"/>
-          </elements>
-          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.2"/>
-        </blockSequence>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.5"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/id"/>
       </elements>
-      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.0"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.3"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
+        <propertyReference strucfeature="ecore:EAttribute http://www.sap.com/furcas/examples/bibtex#//Entry/title"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.0"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.4"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.1"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.3">
+        <propertyArgs xsi:type="com.sap.furcas.TCS:ReferenceByPArg" referenceBy="name"/>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
+          <separatorSequence>
+            <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@keywords.6"/>
+          </separatorSequence>
+        </propertyArgs>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:LookupScopePArg" query="OCL:self.literaturedb.author"/>
+        <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/author"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.2"/>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.3" referredLiteral="#//@symbols.2"/>
       <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.3">
         <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context">
           <propertyReference strucfeature="ecore:EReference http://www.sap.com/furcas/examples/bibtex#//Entry/literaturedb"/>
@@ -82,16 +85,25 @@
       </elements>
     </templateSequence>
   </templates>
-  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2" value="title"/>
-  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0" value="and"/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.4 #//@templates.2/@templateSequence/@elements.8 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12 #//@templates.3/@templateSequence/@elements.3" value="}"/>
+  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.7" value="Authors:"/>
+  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.10" value="author"/>
+  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.2" value="Entries:"/>
+  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.4" value="title"/>
+  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.5 #//@templates.3/@templateSequence/@elements.11" value="="/>
   <keywords literalRefs="#//@templates.3/@templateSequence/@elements.0" value="@article"/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.5" value="Authors:"/>
-  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7" value=","/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.1" value="Entries:"/>
-  <keywords literalRefs="#//@templates.2/@templateSequence/@elements.2 #//@templates.2/@templateSequence/@elements.6 #//@templates.3/@templateSequence/@elements.1 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10" value="{"/>
-  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3 #//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9" value="="/>
-  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8" value="author"/>
+  <keywords literalRefs="#//@templates.3/@templateSequence/@elements.13/@propertyArgs.1/@separatorSequence/@elements.0" value="and"/>
+  <symbols name="coma" literalRefs="#//@templates.3/@templateSequence/@elements.3 #//@templates.3/@templateSequence/@elements.9" value=",">
+    <spaces>leftNone</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
+  <symbols name="lcurly" literalRefs="#//@templates.2/@templateSequence/@elements.3 #//@templates.2/@templateSequence/@elements.8 #//@templates.3/@templateSequence/@elements.1 #//@templates.3/@templateSequence/@elements.6 #//@templates.3/@templateSequence/@elements.12" value="{">
+    <spaces>leftSpace</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
+  <symbols name="rcurly" literalRefs="#//@templates.2/@templateSequence/@elements.5 #//@templates.2/@templateSequence/@elements.10 #//@templates.3/@templateSequence/@elements.8 #//@templates.3/@templateSequence/@elements.14 #//@templates.3/@templateSequence/@elements.15" value="}">
+    <spaces>leftSpace</spaces>
+    <spaces>rightSpace</spaces>
+  </symbols>
   <tokens name="COMMENT">
     <pattern>
       <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern">
