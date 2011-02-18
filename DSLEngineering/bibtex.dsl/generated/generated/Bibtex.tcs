@@ -1,30 +1,28 @@
---specify your DSL grammar rules here ...
-
 syntax Bibtex {
-
-  -- place templates here (at least one main template)
+ 
   primitiveTemplate identifier for EString default using NAME
   : value = "%token%"
   ;
         
-  primitiveTemplate integerSymbol for EInt default using INT:
-        value = "Integer.valueOf(%token%)";
+  primitiveTemplate integerSymbol for EInt default using INT
+  : value = "Integer.valueOf(%token%)"
+  ;
         
   template LiteratureDb main context
   : name <newline>
-  	"Entries:" "{" entries "}" <newline>
-  	"Authors:"	"{" author "}" 
-  ;
+  	"Entries:" "{" [entries] "}" <newline>
+  	"Authors:"	"{" author "}" <newline>
+  ; 
   
-  template Entry
+  template Entry 
   : "@article" "{" 
-  		id "," <newline>
-  		<tab> "title" "=" "{" title "}" "," <newline>
-  		<tab> "author" "=" "{" author{referenceBy="name", separator="and",
-  			 					lookupScope="OCL:Bibtex::Author.allInstances()"}
-  			 		 "}" <newline> 
+  		id ","
+  		"title" "=" "{" title "}" ","
+  		"author" "=" "{" author{referenceBy="name", separator="and",
+  			 					lookupScope="OCL:self.literaturedb.author"}
+  			 		 "}"
   		
-  	"}"
+  	"}" 
   	{{literaturedb = lookIn("OCL:#context")}}
   ;
   
@@ -37,9 +35,9 @@ syntax Bibtex {
 
   -- place symbols here (optional)
         symbols {
-                coma            = ",";
-                lcurly          = "{";
-                rcurly          = "}";
+                coma            = "," : leftNone, rightSpace;
+                lcurly          = "{" : leftSpace, rightSpace;
+                rcurly          = "}" : leftSpace, rightSpace;
         }
 
   -- place operatorLists here (optional)
