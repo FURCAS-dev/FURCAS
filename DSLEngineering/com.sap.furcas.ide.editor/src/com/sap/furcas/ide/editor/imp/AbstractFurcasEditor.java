@@ -17,7 +17,6 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -47,16 +46,15 @@ import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.CtsDocumentProvider;
 import com.sap.furcas.ide.editor.document.ModelEditorInput;
 import com.sap.furcas.ide.editor.document.ModelEditorInputLoader;
+import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
-import com.sap.furcas.ide.editor.imp.services.FurcasParseController;
 import com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.provider.TextblocksItemProviderAdapterFactory;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.util.EcoreHelper;
@@ -65,7 +63,6 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.furcas.runtime.tcs.TcsUtil;
-import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.incremental.DefaultPartitionAssignmentHandlerImpl;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
@@ -80,10 +77,6 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
 
 /**
  * Base class for language specific FURCAS editors. <p>
- * 
- * The editor is backed by the TextBlocks model and supports incremental parsing.
- * It is based on IMP and extends it by injecting a {@link CtsDocument}
- * via a custom {@link CtsDocumentProvider}. <p>
  * 
  * Clients that want to use this editor <b>must</b> register:
  * <ul>
@@ -106,6 +99,24 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
  * 
  */
 public class AbstractFurcasEditor extends UniversalEditor {
+    
+    /* Implementation notes:
+     * 
+     * The editor is backed by the TextBlocks model and supports incremental parsing.
+     * It is based on IMP and extends it by injecting a {@link CtsDocument}
+     * via a custom {@link CtsDocumentProvider}.
+     *  
+     * The {@link CtsDocument} contains the text presented to the user.
+     * It is edited directly within the UI thread. The {@link FurcasParserController}
+     * serves as a reconciler for this document. It is started automatically when document
+     * has been altered. It reparses the document and creates/modifies the domain model
+     * and the TextBlocks model accordingly. Reconciling happens in a background thread.
+     * 
+     * All support classes, such as the Outline View ({@link FurcasTreeModelBuilder} and
+     * {@link FurcasLabelProvider}) or the {@link FurcasSourcePositionLocator} operate on
+     * the TextBlocks model. When required those navigate into the domain model. 
+     * 
+     */
 
     /**
      * Make it easier to pass these parser related objects around
@@ -134,16 +145,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
      * Make it easy to extract the editor content without directly depending on the editor. 
      */
     public class ContentProvider {
-        public TextBlock getCurrentRootBlock() {
-            TextBlock rootBlock = getDocumentProvider().getDocument(getEditorInput()).getRootBlock();
-            return (TextBlock) TbUtil.getNewestVersion(rootBlock);
+        public CtsDocument getDocument() {
+            return getDocumentProvider().getDocument(getEditorInput());
         }
-        public EObject getCurrentRootObject() {
-            return getDocumentProvider().getDocument(getEditorInput()).getRootObject();
-        } 
-        public Object getLockObject() {
-            return getDocumentProvider().getDocument(getEditorInput()).getLockObject();
-        }   
     }
 
     
@@ -206,7 +210,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
         AdapterFactoryEditingDomain domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack);
         
         domain.getResourceSet().getResources().add(syntax.eResource());
-        
         return domain;
     }
     
@@ -325,9 +328,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
      * This method should be overridden if additional URIs should be added to
      * the lookup scope of the parser.
      * 
-     * TODO: this seems very very broken: What if resources show up at runtime?
-     * Furthermore, should this somehow happen automagically?
-     * 
+     * By default, all resources in all dependent projects are sources.
+     * If new resources are saved in a projects, those are included automatically
+     * in the next parse run.
      */
     protected Set<URI> getAdditionalLookupURIs() {
         return Collections.emptySet();

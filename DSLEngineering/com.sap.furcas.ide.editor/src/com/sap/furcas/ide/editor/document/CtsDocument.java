@@ -1,20 +1,23 @@
 package com.sap.furcas.ide.editor.document;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.text.AbstractDocument;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultLineTracker;
-import org.eclipse.jface.text.DocumentRewriteSession;
-import org.eclipse.jface.text.DocumentRewriteSessionType;
+import org.eclipse.jface.text.DocumentEvent;
+import org.eclipse.jface.text.GapTextStore;
+import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.ui.PartInitException;
 
 import com.sap.furcas.ide.editor.CtsActivator;
 import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
+import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
 import com.sap.furcas.ide.editor.recovery.TbRecoverUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -22,6 +25,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.tcs.MessageHelper;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.validation.IllegalTextBlocksStateException;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
 import com.sap.furcas.unparser.SyntaxAndModelMismatchException;
@@ -30,27 +34,36 @@ import com.sap.furcas.unparser.textblocks.IncrementalTextBlockPrettyPrinter;
 
 /**
  * A document implementation that is responsible for presenting a text blocks
- * model as an eclipse document to work on.
+ * model as an eclipse document to work on.<p>
  * 
  * This document is synchronized. Background reconcilers can use {@link #getLockObject()} in order
- * to synchronize them on the content of this document.
+ * to synchronize them on the content of this document. This is required as users typing within
+ * the editor modify this document from within the UI thread.<p>
+ * 
+ * This documents implements a buffer for document changes, meaning that the underlying
+ * TextBlocksModel is not instantly updated. Clients have to call {@link #flushUserEditsToTextBlocskModel()}
+ * to apply the buffered changes to the underlying model. The reverse operation is 
+ * {@link #refreshContentFromTextBlocksModel()}.
  *
  * @author C5106462
+ * @author Stephan Erb
  *
  */
 public class CtsDocument extends AbstractDocument implements ISynchronizable {
-
+    
     private final Object internalLockObject = new Object();
     private Object lockObject;
     
-    private static final String DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED = "Document was not completely initialized. Call completeInit() to finish the initialization";
     private boolean completelyItitialized = false;
 
-    private final EObject rootObject;
+    private EObject rootObject;
+    private TextBlocksModel model;
     private TextBlock rootBlock;
     
     private final ConcreteSyntax syntax;
     private final EditingDomain editingDomain;
+    
+    private final Collection<DocumentEvent> bufferedChanges = new ArrayList<DocumentEvent>(); 
 
     
     /**
@@ -62,6 +75,9 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         this.syntax = syntax;
         this.rootObject = editorInput.getRootObject();
         this.rootBlock = editorInput.getRootBlock();
+        
+        setTextStore(new GapTextStore());
+        setLineTracker(new DefaultLineTracker());
 	completeInitialization();
     }
 
@@ -69,21 +85,26 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * The document will be usable and completely initialized after this method was called.
      */
     public void completeInit(ParserCollection parserCollection) throws PartInitException {
-        
         validateAndMigrateTextBlocksModel(parserCollection);
 
-	TextBlocksModelStore textBlocksModelStore = new TextBlocksModelStore(editingDomain, rootBlock, parserCollection.parser.getInjector().getModelAdapter());
-	setTextStore(textBlocksModelStore);
-	setLineTracker(new DefaultLineTracker());
-
-	completelyItitialized = true;
-
-	// synchronize all tokens with values from model
-	textBlocksModelStore.expandToEditableVersion();
-	getTracker().set(rootBlock.getCachedString());
-
-	// enable usage of cached string for get() operations as it is faster.
-	((TextBlocksModelStore)getStore()).getModel().setUsecache(true);
+        model = new TextBlocksModel(rootBlock, parserCollection.parser.getInjector().getModelAdapter(), editingDomain);
+        expandToEditableVersion();
+        refreshContentFromTextBlocksModel();
+        // enable usage of cached string for get() operations as it is faster.
+        // FIXME: re-enable  once we know the non-cached stuff works
+        model.setUsecache(false); 
+        
+        addDocumentListener(new IDocumentListener() {
+            @Override
+            public void documentChanged(DocumentEvent event) {
+                synchronized (getLockObject()) {
+                    bufferedChanges.add(event);
+                }
+            }
+            @Override
+            public void documentAboutToBeChanged(DocumentEvent event) { }
+        });
+        completelyItitialized = true;
     }
 
     private void validateAndMigrateTextBlocksModel(ParserCollection parserCollection) throws PartInitException {
@@ -108,10 +129,6 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         }
     }
     
-    
-    /**
-     * FIXME: Is that what we want?
-     */
     private boolean recoverBrokenTextBlockMapping(ParserCollection parserCollection, ClassTemplate rootTemplate) throws PartInitException {
         // might be a valid textblock but with a broken reference to the mapping
         // but might also be a TextBlock of the wrong type...
@@ -157,32 +174,23 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     }
 
     public EObject getRootObject() {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
 	return rootObject;
     }
 
     public TextBlock getRootBlock() {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
 	return rootBlock;
     }
 
-    /*package*/ void setRootBlock(TextBlock rootBlock) {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
+    /**
+     * Updates {@link #getRootBlock()} and {@link #getRootObject()}. 
+     */
+    public void setModelContent(TextBlock newRootBlock) {
+        this.rootBlock = newRootBlock;
+	for (EObject root : newRootBlock.getCorrespondingModelElements()) {
+	    rootObject = root;
+	    break;
 	}
-	this.rootBlock = rootBlock;
-	((TextBlocksModelStore) getStore()).setRootTextBlock(rootBlock);
-    }
-
-    public TextBlocksModelStore getTextBlocksModelStore() {
-	if (!completelyItitialized) {
-	    throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-	}
-	return (TextBlocksModelStore) getStore();
+	model.setRootTextBlock(rootBlock);
     }
 
     /**
@@ -195,114 +203,51 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     public boolean isCompletelyItitialized() {
 	return completelyItitialized;
     }
-
-    /*package*/ void reduceToMinimalState() {
-        if (!completelyItitialized) {
-            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-        }
-	((TextBlocksModelStore) getStore()).reduceToMinimalState();
-    }
         
     @Override
     public void setLockObject(Object lockObject) {
         this.lockObject = lockObject;
     }
 
+    /**
+     * Returns a lock object for synchronization<p>
+     * 
+     * It is required that each information exchange from the
+     * document content to the TextBlocksModel is synchronized, as the
+     * first is modified from within the UI thread and the later by the {@link FurcasParseController}
+     * from within a background thread. 
+     */
     @Override
     public Object getLockObject() {
         return lockObject == null ? internalLockObject : lockObject;
     }
     
-    @SuppressWarnings("deprecation")
-    @Override
-    public void startSequentialRewrite(boolean normalized) {
+    public void flushUserEditsToTextBlocskModel() {
+        Collection<DocumentEvent> events = new ArrayList<DocumentEvent>();
         synchronized (getLockObject()) {
-            super.startSequentialRewrite(normalized);
+            events.addAll(bufferedChanges);
+            bufferedChanges.clear();
+        }
+        for (DocumentEvent event : events) {
+            model.replace(event.getOffset(), event.getLength(), event.getText());
         }
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void stopSequentialRewrite() {
+    public void refreshContentFromTextBlocksModel() {
+        String text = model.get(0, model.getLength());
         synchronized (getLockObject()) {
-            super.stopSequentialRewrite();
+            if (!bufferedChanges.isEmpty()) {
+                CtsActivator.logWarning("Overwriting user edits when refreshing the document content. User might get confused");
+                bufferedChanges.clear();
+            }
+            getStore().set(text);
+            getTracker().set(text);
         }
-    }
-    
-    @Override
-    public DocumentRewriteSession startRewriteSession(DocumentRewriteSessionType sessionType) {
-        synchronized (getLockObject()) {
-            return super.startRewriteSession(sessionType);
-        }
-    }
-    
-    @Override
-    public void stopRewriteSession(DocumentRewriteSession session) {
-        synchronized (getLockObject()) {
-            super.stopRewriteSession(session);
-        }
+
     }
 
-    @Override
-    public String get() {
-        synchronized (getLockObject()) {
-            return super.get();
-        }
-    }
-
-    @Override
-    public String get(int offset, int length) throws BadLocationException {
-        if (!completelyItitialized) {
-            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-        }
-        synchronized (getLockObject()) {
-            return super.get(offset, length);
-        }
-    }
-
-    @Override
-    public char getChar(int offset) throws BadLocationException {
-        synchronized (getLockObject()) {
-            return super.getChar(offset);
-        }
-    }
-
-    @Override
-    public long getModificationStamp() {
-        synchronized (getLockObject()) {
-            return super.getModificationStamp();
-        }
-    }
-
-    @Override
-    public void replace(int offset, int length, String text) throws BadLocationException {
-        if (!completelyItitialized) {
-            throw new RuntimeException(DOCUMENT_WAS_NOT_COMPLETELY_INITIALIZED);
-        }
-        synchronized (getLockObject()) {
-            super.replace(offset, length, text);
-        }
-    }
-
-    @Override
-    public void replace(int offset, int length, String text, long modificationStamp) throws BadLocationException {
-        synchronized (getLockObject()) {
-            super.replace(offset, length, text, modificationStamp);
-        }
-    }
-
-    @Override
-    public void set(String text) {
-        synchronized (getLockObject()) {
-            super.set(text);
-        }
-    }
-
-    @Override
-    public void set(String text, long modificationStamp) {
-        synchronized (getLockObject()) {
-            super.set(text, modificationStamp);
-        }
+    public void expandToEditableVersion() {
+        model.doShortPrettyPrintToEditableVersion();
     }
 
 }

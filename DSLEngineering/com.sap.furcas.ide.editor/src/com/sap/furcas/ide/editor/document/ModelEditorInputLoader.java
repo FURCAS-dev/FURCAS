@@ -126,7 +126,7 @@ public class ModelEditorInputLoader {
             // no suitable node found, so create a new one
             try {
                 rootBlock = TbModelInitializationUtil.initilizeTextBlocksFromModel(rootObject, syntax, editingDomain, parserFactory);
-            } catch (SyntaxAndModelMismatchException e) {
+           } catch (SyntaxAndModelMismatchException e) {
                 throw new PartInitException("Model does not (fully) conform to syntax " + syntax.getName() + ": \n\n" + e.getCause().getMessage(), e);
             }
         }
@@ -177,8 +177,7 @@ public class ModelEditorInputLoader {
             return rootBlocksWithBrokenMapping.iterator().next();
         }
         IStatus status = new Status(IStatus.WARNING, CtsActivator.PLUGIN_ID, "Unable to open editor without user intervention: "
-                + "Found several TextBlocks for " + rootObject + " . Cannot defer which one is the desired one."
-                + "You have to manually open the editor on the desired TextBlocks model.");
+                + "Found several TextBlocks for " + rootObject + " . Cannot defer which one is the desired one.");
         throw new PartInitException(status);
     }
 

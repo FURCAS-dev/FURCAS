@@ -16,6 +16,9 @@ public class FurcasTreeModelBuilder extends TreeModelBuilderBase {
 
     @Override
     public void visitTree(Object astNode) {
+        if (astNode == null) {
+            return;
+        }
         TextBlock node = (TextBlock) astNode;
         for (TextBlock childNode : node.getSubBlocks()) {
             Boolean empty = childNode.getReferencedElements().isEmpty() && 
