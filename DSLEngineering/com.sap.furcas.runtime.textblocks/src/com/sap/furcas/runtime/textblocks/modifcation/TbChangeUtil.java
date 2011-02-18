@@ -26,28 +26,29 @@ import com.sap.furcas.runtime.textblocks.shortprettyprint.ShortPrettyPrinter;
  */
 public class TbChangeUtil {
 
-	/**
-	 * Clean up the textblocks model, i.e., delete all other versions except the
-	 * current one and store remaining elements as reference version; 
-	 * 
-	 * 
-	 * @return Returns the (new) reference version of the rootBlock
-	 */
-	public static DocumentNode cleanUp(DocumentNode rootBlock) {
-	    DocumentNode currentVersion =  getNewestVersion(rootBlock);
-		for (DocumentNode oldVersion : new ArrayList<DocumentNode>(currentVersion.getOtherVersions())) {
-			currentVersion.getOtherVersions().remove(oldVersion);
-			EcoreUtil.delete(oldVersion);
-		}
-		if(currentVersion instanceof TextBlock) {
-			for (DocumentNode subNode : ((TextBlock) currentVersion).getSubNodes()) {
-				cleanUp(subNode);
-			}
-		}
-		makeReferenceVersion(currentVersion);
-		return currentVersion;
-	}
-	
+    /**
+     * Clean up the textblocks model, i.e., delete all other versions except the
+     * current one and store remaining elements as reference version; 
+     * 
+     * @return Returns the (new) reference version of the rootBlock
+     */
+    public static DocumentNode cleanUp(DocumentNode rootBlock) {
+        DocumentNode currentVersion = getNewestVersion(rootBlock);
+        for (DocumentNode oldVersion : new ArrayList<DocumentNode>(currentVersion.getOtherVersions())) {
+            currentVersion.getOtherVersions().remove(oldVersion);
+            if (TbNavigationUtil.isUltraRoot(oldVersion)) {
+                EcoreUtil.delete(oldVersion);
+            }
+        }
+        if (currentVersion instanceof TextBlock) {
+            for (DocumentNode subNode : ((TextBlock) currentVersion).getSubNodes()) {
+                cleanUp(subNode);
+            }
+        }
+        makeReferenceVersion(currentVersion);
+        return currentVersion;
+    }
+
     /**
      * Revert the textblocks model by delete all newer versions. 
      * 
@@ -63,7 +64,9 @@ public class TbChangeUtil {
                 for (DocumentNode remainingVersion : new ArrayList<DocumentNode>(outdatedVersion.getOtherVersions())) {
                     remainingVersion.getOtherVersions().remove(outdatedVersion);
                 }
-                EcoreUtil.delete(outdatedVersion);
+                if (TbNavigationUtil.isUltraRoot(outdatedVersion)) {
+                    EcoreUtil.delete(outdatedVersion);
+                }
             }
         }
         if (currentVersion instanceof TextBlock) {
@@ -105,6 +108,7 @@ public class TbChangeUtil {
 	public static void makeReferenceVersion(DocumentNode currentVersion) {
 		currentVersion.setVersion(Version.REFERENCE);
 		currentVersion.setRelexingNeeded(false);
+		currentVersion.setChildrenChanged(false);
 		if(currentVersion instanceof TextBlock) {
 			for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
 				makeReferenceVersion(subNode);

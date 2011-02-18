@@ -658,8 +658,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                             }
                         }
                         if (correspondingNew.size() > 0) {
-                            oldVersion.eResource().getContents()
-                                    .add(newVersion);
+                            partitionHandler.assignToDefaultTextBlocksPartition(newVersion);
                         }
 
                     } else {
