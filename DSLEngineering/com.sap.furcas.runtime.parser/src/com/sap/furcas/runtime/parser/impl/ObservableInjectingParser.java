@@ -287,9 +287,9 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      */
     public final Object createOrResolve(Object object, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken) {
         Object result = null;
-        IModelElementProxy proxy = (IModelElementProxy) object;
+        ModelElementProxy proxy = (ModelElementProxy) object;
         try {
-            result = injector.createOrResolve(proxy, firstToken, lastToken);
+            result = injector.createOrResolve((ModelElementProxy) proxy, firstToken, lastToken);
         } catch (ModelElementCreationException e) {
             injector.addError(new ParsingError(e.getMessage(), createTextLocationBetween(firstToken, lastToken)));
         }
