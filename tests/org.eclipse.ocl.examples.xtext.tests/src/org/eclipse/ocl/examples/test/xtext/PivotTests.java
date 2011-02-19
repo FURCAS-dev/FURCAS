@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.4 2011/02/11 21:00:36 ewillink Exp $
+ * $Id: PivotTests.java,v 1.5 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -44,6 +44,7 @@ import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 /**
  * Tests.

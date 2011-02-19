@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.3 2011/02/19 12:03:52 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.4 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 /**
  * Tests.

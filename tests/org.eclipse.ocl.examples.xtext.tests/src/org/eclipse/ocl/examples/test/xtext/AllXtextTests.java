@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.3 2011/02/19 12:04:36 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.4 2011/02/19 18:50:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -63,6 +63,7 @@ public class AllXtextTests
 //		result.addTestSuite(LoadTests.class);
 //		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
+		result.addTestSuite(EditTests.class);
 		return result;
 	}
 
