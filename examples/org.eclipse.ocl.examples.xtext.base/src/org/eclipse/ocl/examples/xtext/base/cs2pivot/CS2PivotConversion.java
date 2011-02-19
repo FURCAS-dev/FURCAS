@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.8 2011/02/16 08:43:10 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.9 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -98,6 +98,7 @@ public class CS2PivotConversion extends AbstractConversion
 
 	protected final CS2Pivot converter;
 	protected final TypeManager typeManager;
+	protected final Map<Pivotable, org.eclipse.ocl.examples.pivot.Package> oldCS2PivotMap = new HashMap<Pivotable, org.eclipse.ocl.examples.pivot.Package>();
 	protected final Map<String, MonikeredElementCS> moniker2CSmap = new HashMap<String, MonikeredElementCS>();
 	
 	/**
@@ -224,10 +225,6 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}
 //		debugCheckQueue.clear();
-	}
-	
-	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
-		converter.declareAlias(pivotElement, csElement);
 	}
 
 	protected void diagnoseContinuationFailure(List<BasicContinuation<?>> continuations) {
@@ -591,6 +588,41 @@ public class CS2PivotConversion extends AbstractConversion
 		converter.putPivotElement(pivotElement.getMoniker(), pivotElement);
 	}
 
+	protected void refreshComments(Element pivotElement, ElementCS csElement) {
+		ICompositeNode node = NodeModelUtils.getNode(csElement);
+		if (node != null) {
+			List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
+			if (documentationNodes != null) {
+				List<String> documentationStrings = new ArrayList<String>();
+				for (ILeafNode documentationNode : documentationNodes) {
+					String text = documentationNode.getText();
+					documentationStrings.add(text.substring(3, text.length()-3).trim());
+				}
+				List<Comment> ownedComments = pivotElement.getOwnedComments();
+				int iMax = Math.min(documentationStrings.size(), ownedComments.size());
+				int i = 0;
+				for (; i < iMax; i++) {
+					String string = documentationStrings.get(i);
+					String trimmedString = trimString(string);
+					Comment comment = ownedComments.get(i);
+					if (!trimmedString.equals(comment.getBody())) {
+						comment.setBody(trimmedString);
+					}
+				}
+				for ( ; i < documentationStrings.size(); i++) {
+					String string = documentationStrings.get(i);
+					String trimmedString = trimString(string);
+					Comment comment = PivotFactory.eINSTANCE.createComment();
+					comment.setBody(trimmedString);
+					ownedComments.add(comment);
+				}
+				while (i < ownedComments.size()) {
+					ownedComments.remove(ownedComments.size()-1);
+				}
+			}
+		}
+	}
+
 	public <T extends MonikeredElement> T refreshExpTree(Class<T> pivotClass, ModelElementCS csElement) {
 		if (csElement == null) {
 			return null;
@@ -681,38 +713,33 @@ public class CS2PivotConversion extends AbstractConversion
 		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
 		installPivotElement(csElement, pivotElement);
 		refreshName(pivotElement, csElement.getName());
-		ICompositeNode node = NodeModelUtils.getNode(csElement);
-		if (node != null) {
-			List<ILeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
-			if (documentationNodes != null) {
-				List<String> documentationStrings = new ArrayList<String>();
-				for (ILeafNode documentationNode : documentationNodes) {
-					String text = documentationNode.getText();
-					documentationStrings.add(text.substring(3, text.length()-3).trim());
-				}
-				List<Comment> ownedComments = pivotElement.getOwnedComments();
-				int iMax = Math.min(documentationStrings.size(), ownedComments.size());
-				int i = 0;
-				for (; i < iMax; i++) {
-					String string = documentationStrings.get(i);
-					String trimmedString = trimString(string);
-					Comment comment = ownedComments.get(i);
-					if (!trimmedString.equals(comment.getBody())) {
-						comment.setBody(trimmedString);
-					}
-				}
-				for ( ; i < documentationStrings.size(); i++) {
-					String string = documentationStrings.get(i);
-					String trimmedString = trimString(string);
-					Comment comment = PivotFactory.eINSTANCE.createComment();
-					comment.setBody(trimmedString);
-					ownedComments.add(comment);
-				}
-				while (i < ownedComments.size()) {
-					ownedComments.remove(ownedComments.size()-1);
-				}
-			}
+		refreshComments(pivotElement, csElement);
+		return pivotElement;
+	}
+
+	public <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(Class<T> pivotClass, EClass pivotEClass, PackageCS csElement) {
+		String moniker;
+		T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
+		if (pivotElement == null) {
+			pivotElement = (T)oldCS2PivotMap.get(csElement);
 		}
+		if (pivotElement == null) {
+			pivotElement = converter.getTypeManager().createPackage(pivotClass, pivotEClass, csElement.getName());
+			moniker = pivotElement.getMoniker();
+			logger.trace("Created " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		else {
+			moniker = pivotElement.getMoniker();
+//			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
+			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
+			refreshName(pivotElement, csElement.getName());
+		}
+		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
+			throw new ClassCastException();
+		}
+		converter.putPivotElement(moniker, pivotElement);
+		installPivotElement(csElement, pivotElement);
+		refreshComments(pivotElement, csElement);
 		return pivotElement;
 	}
 	
@@ -787,6 +814,22 @@ public class CS2PivotConversion extends AbstractConversion
 			pivotElement.setUpper(BigInteger.valueOf(1));
 		}
 		return pivotElement;
+	}
+
+	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
+		for (Resource csResource : csResources) {
+			for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
+				EObject eObject = tit.next();
+				if (eObject instanceof Pivotable) {	// FIXME try to keep pivots
+					Pivotable pivotable = (Pivotable)eObject;
+					Element pivot = pivotable.getPivot();
+					if (pivot instanceof org.eclipse.ocl.examples.pivot.Package) {
+						oldCS2PivotMap.put(pivotable, (org.eclipse.ocl.examples.pivot.Package)pivot);
+					}
+					pivotable.resetPivot();
+				}				
+			}
+		}
 	}
 
 	public void resolveNamespaces(List<Namespace> namespaces) {
@@ -1025,6 +1068,7 @@ public class CS2PivotConversion extends AbstractConversion
 	 * @param csResources 
 	 */
 	public boolean update(Collection<? extends Resource> csResources) {
+		resetPivotMappings(csResources);
 		debugCheckMap.clear();
 		debugOtherMap.clear();
 		List<BasicContinuation<?>> continuations = new ArrayList<BasicContinuation<?>>();
@@ -1035,11 +1079,9 @@ public class CS2PivotConversion extends AbstractConversion
 			visitInPreOrder(csResource.getContents(), continuations);
 		}
 		//
-		//	Put all orphan root pivot elements in their resources and ensure
-		//	that aliases are defined before monikers are created.
+		//	Put all orphan root pivot elements in their resources.
 		//
 		for (Resource csResource : csResources) {
-			converter.refreshAliasMap(csResource);
 			installRootContents(csResource);
 		}
 		//

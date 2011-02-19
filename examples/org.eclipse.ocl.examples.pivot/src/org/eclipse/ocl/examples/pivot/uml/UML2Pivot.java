@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.6 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -410,7 +410,6 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
-			UMLAliasCreator.refreshPackageAliases(umlResource);			
 			Resource pivotResource = importObjects(umlResource.getContents(), umlResource.getURI());
 			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(umlResource);
 			if (ecoreAdapter != null) {
@@ -437,8 +436,7 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = PivotFactory.eINSTANCE.createPackage();
-		pivotRoot.setName(ecoreURI.lastSegment());
+		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment());
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {

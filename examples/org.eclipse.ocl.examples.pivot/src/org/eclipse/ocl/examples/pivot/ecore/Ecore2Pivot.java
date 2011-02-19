@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -293,7 +293,6 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
-			EcoreAliasCreator.refreshPackageAliases(ecoreResource);			
 			Resource pivotResource = importObjects(ecoreResource.getContents(), ecoreResource.getURI());
 			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
 			if (ecoreAdapter != null) {
@@ -320,8 +319,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
 		Resource pivotResource = typeManager.createResource(ecoreURI, PivotPackage.eCONTENT_TYPE);
-		pivotRoot = PivotFactory.eINSTANCE.createPackage();
-		pivotRoot.setName(ecoreURI.lastSegment());
+		pivotRoot = typeManager.createPackage(ecoreURI.lastSegment());
 		pivotResource.getContents().add(pivotRoot);
 		List<org.eclipse.ocl.examples.pivot.Package> packages = pivotRoot.getNestedPackages();
 		for (EObject eObject : ecoreContents) {
@@ -398,6 +396,9 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
+		if (eNamedElement != null) {
+			castElement.setName(eNamedElement.getName());
+		}
 		return castElement;
 	}
 	
