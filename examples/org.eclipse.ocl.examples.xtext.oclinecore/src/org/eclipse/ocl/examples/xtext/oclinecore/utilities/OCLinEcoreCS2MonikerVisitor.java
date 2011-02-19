@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCS2MonikerVisitor.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreCS2MonikerVisitor.java,v 1.4 2011/02/19 12:00:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.utilities;
 
@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPack
 import org.eclipse.ocl.examples.xtext.oclinecore.util.AbstractExtendingDelegatingOCLinEcoreCSVisitor;
 
 public class OCLinEcoreCS2MonikerVisitor
-	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Object, CS2Moniker, EssentialOCLCSVisitor<Object, CS2Moniker>>
+	extends AbstractExtendingDelegatingOCLinEcoreCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -46,6 +46,6 @@ public class OCLinEcoreCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public OCLinEcoreCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 }

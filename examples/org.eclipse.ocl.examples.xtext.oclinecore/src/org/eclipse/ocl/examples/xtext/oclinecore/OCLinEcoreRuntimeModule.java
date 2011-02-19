@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,15 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.7 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.8 2011/02/19 12:00:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
+import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
+import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
@@ -31,6 +33,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.service.SingletonBinding;
 import org.eclipse.xtext.validation.CompositeEValidator;
 
 /**
@@ -40,6 +43,12 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 {
 	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
 		return NoEObjectCompositeEValidator.class;
+	}
+	
+	@Override
+	@SingletonBinding
+	public Class<? extends Diagnostician> bindDiagnostician() {
+		return PivotDiagnostician.class;
 	}
 
 	// Reference value to text serialisation.
