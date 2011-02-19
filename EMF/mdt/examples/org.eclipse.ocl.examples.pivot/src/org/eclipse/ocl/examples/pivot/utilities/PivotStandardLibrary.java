@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.5 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.6 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -94,7 +94,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				booleanType = (PrimitiveType) type;
 			}
 			else if (type != null) {
-				logger.error("Boolean is not a PrimitiveType");
+				throw new IllegalStateException("Boolean is not a PrimitiveType");
 			}		
 		}
 		return booleanType;
@@ -107,7 +107,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				classifierType = (org.eclipse.ocl.examples.pivot.Class) type;
 			}
 			else if (type != null) {
-				logger.error("Classifier is not a Class");
+				throw new IllegalStateException("Classifier is not a Class");
 			}		
 		}
 		return classifierType;
@@ -128,7 +128,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				integerType = (PrimitiveType) type;
 			}
 			else if (type != null) {
-				logger.error("Integer is not a PrimitiveType");
+				throw new IllegalStateException("Integer is not a PrimitiveType");
 			}		
 		}
 		return integerType;
@@ -149,7 +149,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				oclAnyType = (AnyType) type;
 			}
 			else if (type != null) {
-				logger.error("OclAny is not an AnyType");
+				throw new IllegalStateException("OclAny is not an AnyType");
 			}		
 		}
 		return oclAnyType;
@@ -162,7 +162,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				oclInvalidType = (InvalidType) type;
 			}
 			else if (type != null) {
-				logger.error("OclInvalid is not an InvalidType");
+				throw new IllegalStateException("OclInvalid is not an InvalidType");
 			}		
 		}
 		return oclInvalidType;
@@ -179,7 +179,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				oclVoidType = (VoidType) type;
 			}
 			else if (type != null) {
-				logger.error("OclVoid is not a VoidType");
+				throw new IllegalStateException("OclVoid is not a VoidType");
 			}		
 		}
 		return oclVoidType;
@@ -220,7 +220,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				realType = (PrimitiveType) type;
 			}
 			else if (type != null) {
-				logger.error("Real is not a PrimitiveType");
+				throw new IllegalStateException("Real is not a PrimitiveType");
 			}		
 		}
 		return realType;
@@ -232,10 +232,10 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			nameToLibraryTypeMap = null;
 			type = getLibraryType(typeName);	// FIXME just a debug retry
 			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
-				logger.error("No OCL Standard Library available");
+				throw new IllegalStateException("No OCL Standard Library available");
 			}
 			else {
-				logger.error("No '" + typeName + "' type in the OCL Standard Library");
+				throw new IllegalStateException("No '" + typeName + "' type in the OCL Standard Library");
 			}
 		}
 		return type;
@@ -266,7 +266,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				stringType = (PrimitiveType) type;
 			}
 			else if (type != null) {
-				logger.error("String is not a PrimitiveType");
+				throw new IllegalStateException("String is not a PrimitiveType");
 			}		
 		}
 		return stringType;
@@ -286,7 +286,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 				unlimitedNaturalType = (PrimitiveType) type;
 			}
 			else if (type != null) {
-				logger.error("UnlimitedNatural is not a PrimitiveType");
+				throw new IllegalStateException("UnlimitedNatural is not a PrimitiveType");
 			}		
 		}
 		return unlimitedNaturalType;

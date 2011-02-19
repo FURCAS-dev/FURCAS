@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotConstants.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: PivotConstants.java,v 1.7 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -29,6 +29,7 @@ public interface PivotConstants
 	static final String ITERATOR_SEPARATOR = ";"; //$NON-NLS-1$
 	static final String ACCUMULATOR_SEPARATOR = "|"; //$NON-NLS-1$
 	static final String NULL_MARKER = "<<null-element>>"; //$NON-NLS-1$
+	static final String NULL_ROOT = "$null$"; //$NON-NLS-1$
 	static final String OVERFLOW_MARKER = "##"; //$NON-NLS-1$
 	static final String MONIKER_PART_SEPARATOR = "@"; //$NON-NLS-1$
 	static final String MONIKER_SCOPE_SEPARATOR = "!"; //"::"; //$NON-NLS-1$

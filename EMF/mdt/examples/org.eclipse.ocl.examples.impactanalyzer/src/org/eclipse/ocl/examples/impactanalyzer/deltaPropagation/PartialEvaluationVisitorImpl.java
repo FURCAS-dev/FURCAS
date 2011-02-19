@@ -39,6 +39,7 @@ import org.eclipse.ocl.ecore.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ecore.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerPlugin;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;

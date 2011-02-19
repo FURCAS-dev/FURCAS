@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.4 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.5 2011/02/19 12:00:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -70,7 +70,7 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 
 public class EssentialOCLCS2MonikerVisitor
-	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Object, CS2Moniker, BaseCSVisitor<Object, CS2Moniker>>
+	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Boolean, CS2Moniker, BaseCSVisitor<Boolean, CS2Moniker>>
 	implements PivotConstants {
 
 	private static final class Factory implements CS2Moniker.Factory
@@ -94,7 +94,7 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@SuppressWarnings("unchecked")
 	public EssentialOCLCS2MonikerVisitor(CS2Moniker context) {
-		super((BaseCSVisitor<Object, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
+		super((BaseCSVisitor<Boolean, CS2Moniker>) context.getVisitor(BaseCSTPackage.eINSTANCE), context);
 	}
 
 	protected void appendExpPrefix(ElementCS object) {
@@ -228,28 +228,28 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitBooleanLiteralExpCS(BooleanLiteralExpCS object) {
+	public Boolean visitBooleanLiteralExpCS(BooleanLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(object.getName());
 		return true;
 	}
 
 	@Override
-	public Object visitCollectionLiteralExpCS(CollectionLiteralExpCS object) {
+	public Boolean visitCollectionLiteralExpCS(CollectionLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.appendNameCS(object.getOwnedType());
 		return true;
 	}
 
 	@Override
-	public Object visitCollectionLiteralPartCS(CollectionLiteralPartCS object) {
+	public Boolean visitCollectionLiteralPartCS(CollectionLiteralPartCS object) {
 		context.appendParentCS(object, MONIKER_PART_SEPARATOR);
 		context.appendIndex(object);
 		return true;
 	}
 
 	@Override
-	public Object visitCollectionTypeCS(CollectionTypeCS object) {
+	public Boolean visitCollectionTypeCS(CollectionTypeCS object) {
 		Type specializedPivotType = PivotUtil.getPivot(Type.class, object);
 		Type unspecializedPivotType = PivotUtil.getUnspecializedTemplateableElement(specializedPivotType);
 		context.appendParent(unspecializedPivotType, MONIKER_SCOPE_SEPARATOR);
@@ -264,41 +264,41 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitContextCS(ContextCS object) {
+	public Boolean visitContextCS(ContextCS object) {
 		context.append(MONIKER_ROOT_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitIfExpCS(IfExpCS object) {
+	public Boolean visitIfExpCS(IfExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_IF_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitInfixExpCS(InfixExpCS object) {
+	public Boolean visitInfixExpCS(InfixExpCS object) {
 		appendExpPrefix(object);
 		context.append("infix");
 		return true;
 	}
 
 	@Override
-	public Object visitInvalidLiteralExpCS(InvalidLiteralExpCS object) {
+	public Boolean visitInvalidLiteralExpCS(InvalidLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_INVALID_LITERAL_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitLetExpCS(LetExpCS object) {
+	public Boolean visitLetExpCS(LetExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_LET_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitLetVariableCS(LetVariableCS object) {
+	public Boolean visitLetVariableCS(LetVariableCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		LetExpCS csLetExp = object.getLetExpression();
 		for (LetVariableCS csVariable : csLetExp.getVariable()) {
@@ -318,84 +318,84 @@ public class EssentialOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitNameExpCS(NameExpCS object) {
+	public Boolean visitNameExpCS(NameExpCS object) {
 		appendExpPrefix(object);
 		appendNameExpCSName(object);
 		return true;
 	}
 
 	@Override
-	public Object visitNavigatingArgCS(NavigatingArgCS object) {
+	public Boolean visitNavigatingArgCS(NavigatingArgCS object) {
 		appendExpPrefix(object);
 		context.append("navarg");		
 		return true;
 	}
 
 	@Override
-	public Object visitNavigatingExpCS(NavigatingExpCS object) {
+	public Boolean visitNavigatingExpCS(NavigatingExpCS object) {
 		appendExpPrefix(object);
 		context.append("navexp");
 		return true;
 	}
 
 	@Override
-	public Object visitNavigationOperatorCS(NavigationOperatorCS object) {
+	public Boolean visitNavigationOperatorCS(NavigationOperatorCS object) {
 		appendExpPrefix(object);
 		context.append("navop");		
 		return true;
 	}
 
 	@Override
-	public Object visitNestedExpCS(NestedExpCS object) {
+	public Boolean visitNestedExpCS(NestedExpCS object) {
 		appendExpPrefix(object);
 		context.append("nested");		
 		return true;
 	}
 
 	@Override
-	public Object visitNullLiteralExpCS(NullLiteralExpCS object) {
+	public Boolean visitNullLiteralExpCS(NullLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_NULL_LITERAL_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitNumberLiteralExpCS(NumberLiteralExpCS object) {
+	public Boolean visitNumberLiteralExpCS(NumberLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(object.getName().toString());
 		return true;
 	}
 
 	@Override
-	public Object visitOperatorCS(OperatorCS object) {
+	public Boolean visitOperatorCS(OperatorCS object) {
 		appendExpPrefix(object);
 		context.appendNameCS(object);
 		return true;
 	}
 
 	@Override
-	public Object visitPrefixExpCS(PrefixExpCS object) {
+	public Boolean visitPrefixExpCS(PrefixExpCS object) {
 		appendExpPrefix(object);
 		context.append("prefix");
 		return true;
 	}
 
 	@Override
-	public Object visitSelfExpCS(SelfExpCS object) {
+	public Boolean visitSelfExpCS(SelfExpCS object) {
 		appendExpPrefix(object);
 		context.append(Environment.SELF_VARIABLE_NAME);
 		return true;
 	}
 
 	@Override
-	public Object visitStringLiteralExpCS(StringLiteralExpCS object) {
+	public Boolean visitStringLiteralExpCS(StringLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_STRING_LITERAL_EXP);
 		return true;
 	}
 
 	@Override
-	public Object visitTupleLiteralExpCS(TupleLiteralExpCS object) {
+	public Boolean visitTupleLiteralExpCS(TupleLiteralExpCS object) {
 		appendExpPrefix(object);
 		List<TupleLiteralPartCS> parts = new ArrayList<TupleLiteralPartCS>(object.getOwnedParts());
 		Collections.sort(parts, new Comparator<TupleLiteralPartCS>()
@@ -404,45 +404,32 @@ public class EssentialOCLCS2MonikerVisitor
 				return o1.getName().compareTo(o2.getName());
 			}
 		});
-/*		context.append(TUPLE_SIGNATURE_PREFIX);
-		String prefix = "";
-		for (TupleLiteralPartCS part : parts) {
-			context.append(prefix);
-			context.appendNameCS(part);
-			context.append(TUPLE_SIGNATURE_TYPE_SEPARATOR);
-			TypeRefCS type = part.getOwnedType();
-			if (type != null) {
-				context.appendElementCS(type);
-			}
-			prefix = TUPLE_SIGNATURE_PART_SEPARATOR;
-		}
-		context.append(TUPLE_SIGNATURE_SUFFIX); */
 		context.append(MONIKER_TUPLE_LITERAL_EXP);		
 		return true;
 	}
 
 	@Override
-	public Object visitTupleLiteralPartCS(TupleLiteralPartCS object) {
+	public Boolean visitTupleLiteralPartCS(TupleLiteralPartCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
 
 	@Override
-	public Object visitTypeLiteralExpCS(TypeLiteralExpCS object) {
+	public Boolean visitTypeLiteralExpCS(TypeLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(((Type) object.getOwnedType().getPivot()).getName());
 		return true;
 	}
 
 	@Override
-	public Object visitTypeNameExpCS(TypeNameExpCS object) {
+	public Boolean visitTypeNameExpCS(TypeNameExpCS object) {
 		context.append(((MonikeredElement) object.getPivot()).getMoniker());
 		return true;
 	}
 
 	@Override
-	public Object visitUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS object) {
+	public Boolean visitUnlimitedNaturalLiteralExpCS(UnlimitedNaturalLiteralExpCS object) {
 		appendExpPrefix(object);
 		context.append(MONIKER_UNLIMITED_NATURAL_LITERAL_EXP);
 		return true;

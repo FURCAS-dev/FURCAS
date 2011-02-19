@@ -112,6 +112,7 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [iteration.getSymbolName()/].setOwnedTemplateSignature([iteration.ownedTemplateSignature.getSymbolName()/]);
 [/if]
 [iteration.getSymbolName()/].setName("[iteration.name/]");
+//[iteration.getSymbolName()/].setMoniker("[iteration.moniker/]");
 [iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.moniker/]
 [emitMultiplicityElement(iteration)/]
 [for (parameter : Parameter | iteration.ownedIterator)]
@@ -139,6 +140,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
 [/if]
 [operation.getSymbolName()/].setName("[operation.name/]");
+//[operation.getSymbolName()/].setMoniker("[operation.moniker/]");
 [operation.getSymbolName()/].setType([operation.type.getSymbolName()/]);  // [operation.type.moniker/]
 [emitMultiplicityElement(operation)/]
 [for (parameter : Parameter | operation.ownedParameter)]
@@ -158,6 +160,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 // [pkg.getSignature()/]
 //
 [pkg.getSymbolName()/].setName("[pkg.name/]");
+[pkg.getSymbolName()/].setMoniker("[pkg.moniker/]");
 [if (pkg.nsPrefix <> null)]
 [pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
 [/if]
@@ -176,6 +179,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [template public emitParameter(parameter : Parameter)]
 Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter();
 [parameter.getSymbolName()/].setName("[parameter.name/]");
+//[parameter.getSymbolName()/].setMoniker("[parameter.moniker/]");
 [parameter.getSymbolName()/].setType([parameter.type.getSymbolName()/]);  // [parameter.type.moniker/]
 [emitMultiplicityElement(parameter)/]
 [parameter.eContainer().getSymbolName()/].getOwnedParameters().add([parameter.getSymbolName()/]);
@@ -264,6 +268,7 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 // [type.getSignature()/] [type.moniker/]
 //
 [type.getSymbolName()/].setName("[type.name/]");
+//[type.getSymbolName()/].setMoniker("[type.moniker/]");
 [if (type.oclIsKindOf(CollectionType))]
 [type.getSymbolName()/].setElementType([type.oclAsType(CollectionType).elementType.getSymbolName()/]);
 [/if]

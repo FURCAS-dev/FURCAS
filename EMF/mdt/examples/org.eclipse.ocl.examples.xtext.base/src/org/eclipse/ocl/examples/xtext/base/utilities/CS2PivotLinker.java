@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotLinker.java,v 1.5 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: CS2PivotLinker.java,v 1.6 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.xtext.diagnostics.IDiagnosticConsumer;
 import org.eclipse.xtext.linking.lazy.LazyLinker;
 
@@ -38,13 +36,6 @@ public class CS2PivotLinker extends LazyLinker
 //			System.out.println("Starting to refreshPivotMappings for " + eResource.getURI());
 			BaseCSResource csResource = (BaseCSResource) eResource;
 			CS2PivotResourceAdapter resourceAdapter = CS2PivotResourceAdapter.getAdapter(csResource, null);
-			for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
-				EObject eObject = tit.next();
-				if (eObject instanceof Pivotable) {	// FIXME try to keep pivots
-					((Pivotable)eObject).resetPivot();
-				}
-				
-			}
 			resourceAdapter.refreshPivotMappings();
 //			System.out.println("Finished refreshPivotMappings for " + eResource.getURI());
 		}

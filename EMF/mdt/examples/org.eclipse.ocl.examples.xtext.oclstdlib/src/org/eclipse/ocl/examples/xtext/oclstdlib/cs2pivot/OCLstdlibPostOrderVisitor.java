@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPostOrderVisitor.java,v 1.3 2011/01/30 11:10:09 ewillink Exp $
+ * $Id: OCLstdlibPostOrderVisitor.java,v 1.4 2011/02/16 16:43:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -113,7 +113,7 @@ public class OCLstdlibPostOrderVisitor
 //		pivotElement.setIsStatic(csIteration.isStatic());
 		JvmType implementation = csIteration.getImplementation();
 		if (implementation != null) {
-			pivotElement.setImplementationClass(implementation.getCanonicalName());
+			pivotElement.setImplementationClass(implementation.getIdentifier());
 		}
 		return super.visitLibIterationCS(csIteration);
 	}
@@ -125,7 +125,7 @@ public class OCLstdlibPostOrderVisitor
 		pivotElement.setIsStatic(csOperation.isStatic());
 		JvmType implementation = csOperation.getImplementation();
 		if (implementation != null) {
-			pivotElement.setImplementationClass(implementation.getCanonicalName());
+			pivotElement.setImplementationClass(implementation.getIdentifier());
 		}
 		return super.visitLibOperationCS(csOperation);
 	}
@@ -136,7 +136,7 @@ public class OCLstdlibPostOrderVisitor
 		pivotElement.setIsStatic(csProperty.isStatic());
 		JvmType implementation = csProperty.getImplementation();
 		if (implementation != null) {
-			pivotElement.setImplementationClass(implementation.getCanonicalName());
+			pivotElement.setImplementationClass(implementation.getIdentifier());
 		}
 		return super.visitLibPropertyCS(csProperty);
 	}

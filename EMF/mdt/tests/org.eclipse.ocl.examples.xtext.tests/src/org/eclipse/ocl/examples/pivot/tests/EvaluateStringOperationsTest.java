@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2009,2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2009,2011 Eclipse Modeling Project and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateStringOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
+ * $Id: EvaluateStringOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.test.generic;
+package org.eclipse.ocl.examples.pivot.tests;
+
 
 /**
  * Tests for String operations.
  */
 @SuppressWarnings("nls")
-public abstract class GenericEvaluateStringOperationsTest
-	extends GenericTestSuite {
-
+public class EvaluateStringOperationsTest extends PivotTestSuite
+{
     @Override
     protected void setUp() {
         super.setUp();

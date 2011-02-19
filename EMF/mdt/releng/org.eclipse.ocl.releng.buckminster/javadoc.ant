@@ -1,0 +1,49 @@
+<project name="javadoc-project">
+	<target name="create.javadoc">
+
+		<property name="projectName" value="MDT-OCL" />
+
+		<!-- workspace defaults -->
+		<property name="output" value="./javadoc" />
+		<property name="checkoutLocation" value="../.." />
+		<property name="targetPlatform" value="${eclipse.home}" />
+
+		<property name="pluginsSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/plugins/" />
+		<property name="examplesSourcesLocation" value="${checkoutLocation}/org.eclipse.mdt/org.eclipse.ocl/examples/" />
+
+
+		<echo message="Source code location ${sourcesLocation}" />
+		<echo message="Javadoc output location ${output}" />
+		<echo message="Target platform path ${targetPlatform}" />
+
+		<!-- Define classpath -->
+		<path id="javadoc-classpath">
+			<fileset dir="${targetPlatform}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+
+		<!-- Prepare dirs -->
+		<delete dir="${output}" />
+		<mkdir dir="${output}" />
+
+		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation">
+			<fileset dir="${pluginsSourcesLocation}" defaultexcludes="true">
+				<include name="**/*.java" />
+			</fileset>
+			<fileset dir="${examplesSourcesLocation}" defaultexcludes="true">
+				<include name="**/*.java" />
+				<exclude name="**/org/eclipse/ocl/examples/build/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/editor/ocl/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/editor/ui/**"/>
+				<exclude name="**/org/eclipse/ocl/examples/project/**"/>
+			</fileset>
+			<tag name="generated" description="Generated"></tag>
+			<tag name="model" description="Model"></tag>
+			<tag name="ordered" description="Ordered"></tag>
+		</javadoc>
+		
+		<!-- Compress the output javadoc in a zip file --> 
+		<zip destfile="${output}/${projectName}-javadoc.zip" basedir="${output}"></zip>
+	</target>
+</project>

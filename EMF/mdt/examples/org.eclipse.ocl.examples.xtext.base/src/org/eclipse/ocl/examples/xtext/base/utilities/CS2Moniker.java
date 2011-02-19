@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 

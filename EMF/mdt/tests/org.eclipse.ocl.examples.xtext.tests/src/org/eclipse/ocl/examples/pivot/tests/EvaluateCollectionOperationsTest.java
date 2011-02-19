@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010 Eclipse Modeling Project and others.
+ * Copyright (c) 2010,2011 Eclipse Modeling Project and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,10 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateCollectionOperationsTest.java,v 1.4 2011/02/11 20:10:13 ewillink Exp $
+ * $Id: EvaluateCollectionOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.test.generic;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 
@@ -24,8 +24,8 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  * Tests for collection operations.
  */
 @SuppressWarnings("nls")
-public abstract class GenericEvaluateCollectionOperationsTest
-	extends GenericTestSuite {
+public class EvaluateCollectionOperationsTest extends PivotTestSuite
+{
 
     @Override
     protected void setUp() {

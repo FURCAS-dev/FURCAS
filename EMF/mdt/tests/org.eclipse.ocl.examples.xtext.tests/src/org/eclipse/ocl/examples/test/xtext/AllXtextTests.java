@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2002, 2009 IBM Corporation and others.
+ * Copyright (c) 2002,2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.3 2011/02/19 12:04:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -25,12 +25,12 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
-import org.eclipse.ocl.examples.test.ecore.EvaluateBooleanOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateCollectionOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateNumericOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateOclAnyOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.EvaluateStringOperationsTest;
-import org.eclipse.ocl.examples.test.ecore.IteratorsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateBooleanOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateCollectionOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateNumericOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateOclAnyOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateStringOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
 
 /**
  * Tests for the Xtext editor support.

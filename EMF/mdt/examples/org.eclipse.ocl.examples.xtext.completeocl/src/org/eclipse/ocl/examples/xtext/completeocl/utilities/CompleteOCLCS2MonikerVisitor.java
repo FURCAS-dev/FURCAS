@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.3 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.4 2011/02/19 12:00:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -23,7 +23,6 @@ import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2Moniker;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
@@ -34,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.util.EssentialOCLCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCS2MonikerVisitor;
 
 public class CompleteOCLCS2MonikerVisitor
-	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Object, CS2Moniker, EssentialOCLCSVisitor<Object, CS2Moniker>>
+	extends AbstractExtendingDelegatingCompleteOCLCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -54,11 +53,11 @@ public class CompleteOCLCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public CompleteOCLCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
 	@Override
-	public Object visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
+	public Boolean visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
 		context.append(object.getClassifier().getMoniker());
 		Object container = object.eContainer().eGet(object.eContainingFeature());
 		if (container instanceof List<?>) {
@@ -80,13 +79,7 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitCompleteOCLDocumentCS(CompleteOCLDocumentCS object) {
-		// TODO Auto-generated method stub
-		return super.visitCompleteOCLDocumentCS(object);
-	}
-
-	@Override
-	public Object visitContextConstraintCS(ContextConstraintCS object) {
+	public Boolean visitContextConstraintCS(ContextConstraintCS object) {
 		context.appendElement(object.getContextDecl().getPivot());
 		context.append(MONIKER_SCOPE_SEPARATOR);
 		context.appendConstraintCS(object);
@@ -94,7 +87,7 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitOperationContextDeclCS(OperationContextDeclCS object) {
+	public Boolean visitOperationContextDeclCS(OperationContextDeclCS object) {
 		context.append(object.getOperation().getMoniker());
 		Object container = object.eContainer().eGet(object.eContainingFeature());
 		if (container instanceof List<?>) {
@@ -116,7 +109,7 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitPackageDeclarationCS(PackageDeclarationCS object) {
+	public Boolean visitPackageDeclarationCS(PackageDeclarationCS object) {
 		context.append(object.getPackage().getMoniker());
 		Object container = object.eContainer().eGet(object.eContainingFeature());
 		if (container instanceof List<?>) {
@@ -138,7 +131,7 @@ public class CompleteOCLCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitPropertyContextDeclCS(PropertyContextDeclCS object) {
+	public Boolean visitPropertyContextDeclCS(PropertyContextDeclCS object) {
 		context.append(object.getProperty().getMoniker());
 		Object container = object.eContainer().eGet(object.eContainingFeature());
 		if (container instanceof List<?>) {

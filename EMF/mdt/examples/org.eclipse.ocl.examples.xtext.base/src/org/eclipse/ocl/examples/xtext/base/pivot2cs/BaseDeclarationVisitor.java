@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.5 2011/02/08 17:43:58 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.6 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -207,7 +207,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		else {
 			ReferenceCS csElement = context.refreshStructuralFeature(ReferenceCS.class, BaseCSTPackage.Literals.REFERENCE_CS, object);
 			context.refreshQualifiers(csElement.getQualifier(), "composes", object.isComposite());
-			context.refreshQualifiers(csElement.getQualifier(), "resolve", object.isResolveProxies());
+			context.refreshQualifiers(csElement.getQualifier(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
 				if (!opposite.isImplicit()) {
