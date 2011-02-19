@@ -12,9 +12,9 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.3 2011/02/19 12:00:36 ewillink Exp $
  */
-package org.eclipse.ocl.examples.xtext.base.cs2pivot;
+package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,8 +30,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -41,15 +39,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.diagnostics.Diagnostic;
-import org.eclipse.xtext.diagnostics.DiagnosticMessage;
-import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
@@ -59,66 +50,29 @@ import org.eclipse.xtext.nodemodel.INode;
  * and their corresponding Pivot Resources creating a CS2PivotConversion
  * to update.
  */
-public class CS2Pivot extends AbstractConversion implements Adapter
+public class Pivot2CS extends AbstractConversion implements Adapter
 {	
-	private static final Logger logger = Logger.getLogger(CS2Pivot.class);
+	private static final Logger logger = Logger.getLogger(Pivot2CS.class);
 
 	public static interface Factory {
-		BaseCSVisitor<MonikeredElement, CS2PivotConversion> createLeft2RightVisitor(CS2PivotConversion cs2PivotConversion);
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPostOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<Continuation<?>, CS2PivotConversion> createPreOrderVisitor(CS2PivotConversion converter);
-		BaseCSVisitor<ScopeCSAdapter, TypeManager> createScopeVisitor(TypeManager typeManager);
-		EPackage getEPackage();
+		BaseDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter);
+		BaseReferenceVisitor createReferenceVisitor(Pivot2CSConversion converter);
+		EClass[] getEClasses();
 	}
-	
-	private static Map<EPackage, Factory> factoryMap = new HashMap<EPackage, Factory>();
+
+	private static Map<EClass, Factory> factoryMap = new HashMap<EClass, Factory>();
 	
 	public static void addFactory(Factory factory) {
-		factoryMap.put(factory.getEPackage(), factory);
+		for (EClass eClass : factory.getEClasses()) {
+			factoryMap.put(eClass, factory);
+		}
 	}
 
-	public static abstract class UnresolvedProxyMessageProvider
-	{
-		protected final EReference eReference;
-		
-		public UnresolvedProxyMessageProvider(EReference eReference) {
-			this.eReference = eReference;
-		}
-		public EReference getEReference() {
-			return eReference;
-		}
-		
-		public abstract String getMessage(EObject context, String linkText);
-	}
-	
-	private static Map<EReference, UnresolvedProxyMessageProvider> unresolvedProxyMessageProviderMap = new HashMap<EReference, UnresolvedProxyMessageProvider>();
-	
-	public static void addUnresolvedProxyMessageProvider(UnresolvedProxyMessageProvider unresolvedProxyMessageProvider) {
-		unresolvedProxyMessageProviderMap.put(unresolvedProxyMessageProvider.getEReference(), unresolvedProxyMessageProvider);
-	}
-
-	public static DiagnosticMessage getUnresolvedProxyMessage(EReference eReference, EObject csContext, String linkText) {
-		String message = getUnresolvedProxyText(eReference, csContext, linkText);
-		return new DiagnosticMessage(message, Severity.ERROR, Diagnostic.LINKING_DIAGNOSTIC);
-	}	
-
-	public static String getUnresolvedProxyText(EReference eReference, EObject csContext, String linkText) {
-		UnresolvedProxyMessageProvider unresolvedProxyMessageProvider = unresolvedProxyMessageProviderMap.get(eReference);
-		if (unresolvedProxyMessageProvider != null) {
-			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
-		}
-		else {
-			String messageTemplate = "Couldn't resolve reference to {0} '{1}'.";
-			EClass referenceType = eReference.getEReferenceType();
-			return NLS.bind(messageTemplate, referenceType.getName(), linkText);
-		}
-	}	
-	
-	public static CS2Pivot findAdapter(ResourceSet resourceSet) {
+	public static Pivot2CS findAdapter(ResourceSet resourceSet) {
 		if (resourceSet == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(CS2Pivot.class, resourceSet);
+		return PivotUtil.getAdapter(Pivot2CS.class, resourceSet);
 	}
 
 	public static List<ILeafNode> getDocumentationNodes(ICompositeNode node) {
@@ -168,29 +122,27 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	/**
 	 * The pivot element for CS monikers
 	 */
-	protected Map<String, MonikeredElementCS> moniker2PivotCSMap = null;
-
-	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>>();
-
-	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
+	protected Map<String, MonikeredElementCS> moniker2PivotCSMap1 = null;
+	
+	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.typeManager = typeManager;
 		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	
-	public CS2Pivot(CS2Pivot aConverter) {
+	public Pivot2CS(Pivot2CS aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
 		this.typeManager = aConverter.typeManager;
 		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 	}
 
-	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
-		if (moniker2PivotCSMap == null) {
-			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
-		}
-		return moniker2PivotCSMap;
-	}
+//	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
+//		if (moniker2PivotCSMap == null) {
+//			moniker2PivotCSMap = computeMoniker2CSMap(getCSResources());
+//		}
+//		return moniker2PivotCSMap;
+//	}
 
 	public Map<String, MonikeredElementCS> computeMoniker2CSMap(Collection<? extends Resource> csResources) {
 		Map<String, MonikeredElementCS> map = new HashMap<String, MonikeredElementCS>();
@@ -203,7 +155,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 					assert moniker != null;
 					MonikeredElementCS oldMonikeredElement = map.get(moniker);
 					if (monikeredElement instanceof NamedElementCS) {
-						if ((oldMonikeredElement instanceof NamedElementCS) && !(oldMonikeredElement instanceof PrimitiveTypeRefCS)) {
+						if (oldMonikeredElement instanceof NamedElementCS) {
 							logger.warn("Duplicate CS '" + moniker + "'");
 						}
 						else {
@@ -223,8 +175,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		return cs2pivotResourceMap.keySet();
 	}
 
-	public Factory getFactory(EPackage ePackage) {
-		return factoryMap.get(ePackage);
+	public Factory getFactory(EClass eClass) {
+		return factoryMap.get(eClass);
 	}
 
 	public Set<String> getMonikers() {
@@ -240,25 +192,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public Collection<? extends Resource> getPivotResources() {
-		return typeManager.getPivotResourceSet().getResources();//cs2pivotResourceMap.values();
-	}
-
-	public BaseCSVisitor<ScopeCSAdapter, TypeManager> getScopeVisitor(EPackage ePackage) {
-		BaseCSVisitor<ScopeCSAdapter, TypeManager> scopeVisitor = scopeVisitorMap.get(ePackage);
-		if ((scopeVisitor == null) && !scopeVisitorMap.containsKey(ePackage)) {
-			Factory factory = getFactory(ePackage);
-			if (factory != null) {
-				scopeVisitor = factory.createScopeVisitor(typeManager);
-				if (scopeVisitor == null) {
-					logger.error("No Scope Visitor created for " + ePackage.getName());
-				}
-			}
-			else {
-				logger.error("No Scope Visitor Factory registered for " + ePackage.getName());
-			}
-			scopeVisitorMap.put(ePackage, scopeVisitor);
-		}
-		return scopeVisitor;
+		return cs2pivotResourceMap.values();
 	}
 
 	public Notifier getTarget() {
@@ -270,12 +204,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 
 	public boolean isAdapterForType(Object type) {
-		if (type instanceof Class<?>) {
-			return ((Class<?>)type).isAssignableFrom(getClass());
-		}
-		else {
-			return false;
-		}
+		return type == Pivot2CS.class;
 	}
 
 	public void notifyChanged(Notification notification) {
@@ -289,6 +218,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		}
 		return oldElement;
 	}
+
+//	public void refreshAliasMap(Resource csResource) {
+//		Resource pivotResource = cs2pivotResourceMap.get(csResource);
+//		AliasAdapter.getAdapter(pivotResource).refreshMap(aliasMap);
+//	}
 
 	/**
 	 * Reset all the CS monikers for test purposes.
@@ -323,7 +257,15 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 	
 	public void update() {
-		CS2PivotConversion conversion = new CS2PivotConversion(this);
+		Pivot2CSConversion conversion = new Pivot2CSConversion(this);
 		conversion.update(getCSResources());
+	}
+
+	public BaseDeclarationVisitor createDefaultDeclarationVisitor(Pivot2CSConversion conversion) {
+		return new BaseDeclarationVisitor(conversion);
+	}
+
+	public BaseReferenceVisitor createDefaultReferenceVisitor(Pivot2CSConversion conversion) {
+		return new BaseReferenceVisitor(conversion);
 	}
 }

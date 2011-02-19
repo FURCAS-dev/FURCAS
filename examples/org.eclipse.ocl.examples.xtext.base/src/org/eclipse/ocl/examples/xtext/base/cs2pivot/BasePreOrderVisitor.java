@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.4 2011/02/16 08:43:10 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -566,9 +566,8 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPackageCS(PackageCS csPackage) {
-		org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class,
+		org.eclipse.ocl.examples.pivot.Package pivotElement = context.refreshPackage(org.eclipse.ocl.examples.pivot.Package.class,
 			PivotPackage.Literals.PACKAGE, csPackage);
-		context.declareAlias(pivotElement, csPackage);
 		String newNsPrefix = csPackage.getNsPrefix();
 		String oldNsPrefix = pivotElement.getNsPrefix();
 		if ((newNsPrefix != oldNsPrefix) && ((newNsPrefix == null) || !newNsPrefix.equals(oldNsPrefix))) {

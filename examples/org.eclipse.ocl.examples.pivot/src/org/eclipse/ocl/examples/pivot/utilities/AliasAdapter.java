@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AliasAdapter.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: AliasAdapter.java,v 1.3 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,10 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -36,8 +34,6 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public class AliasAdapter extends AdapterImpl
 {
-	private static final Logger logger = Logger.getLogger(AliasAdapter.class);
-
 	public static interface Creator
 	{
 		Map<EObject, String> computeAliasMap(Resource resource);
@@ -47,48 +43,6 @@ public class AliasAdapter extends AdapterImpl
 		EObject getAliasTarget(EObject eObject);
 	}
 
-	public static abstract class AbstractCreator implements Creator
-	{
-		public Map<EObject, String> computeAliasMap(Resource resource) {
-			Map<EObject, String> aliasMap = null;
-			for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) { // FIXME just packages
-				EObject eObject = tit.next();
-				String newAlias = getAlias(eObject);
-				if (newAlias != null) {
-					if (aliasMap == null) {
-						aliasMap = new HashMap<EObject, String>();
-					}
-					EObject target = getAliasTarget(eObject);
-					String oldAlias = aliasMap.get(target);
-					if (oldAlias == null) {
-						aliasMap.put(target, newAlias);
-					}
-					else {
-						logger.warn("Conflicting aliases '" + newAlias + "' and '" + oldAlias + "'");
-					}
-				}
-			}
-			return aliasMap;
-		}
-
-		public EObject getAliasTarget(EObject eObject) {
-			return eObject;
-		}
-		
-		public void refreshAliases(Resource resource) {
-			Map<EObject, String> aliasMap = computeAliasMap(resource);
-			if (aliasMap != null) {
-				AliasAdapter adapter = getAdapter(resource);
-				adapter.refreshMap(aliasMap);
-			}		
-		}
-		
-		public void refreshAliases(Collection<? extends Resource> resources) {
-			for (Resource resource : resources) {
-				refreshAliases(resource);
-			}
-		}
-	}
 
 	public static AliasAdapter findAdapter(Resource resource) {
 		if (resource == null) {
@@ -121,10 +75,6 @@ public class AliasAdapter extends AdapterImpl
 
 	private Map<EObject, String> aliasMap = new HashMap<EObject, String>();
 
-//	public String getAlias(EObject eObject) {
-//		return aliasMap.get(eObject);
-//	}
-
 	public Map<EObject, String> getAliasMap() {
 		return aliasMap;
 	}
@@ -132,14 +82,5 @@ public class AliasAdapter extends AdapterImpl
 	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == AliasAdapter.class;
-	}
-
-//	public String putAlias(EObject eObject, String alias) {
-//		assert eObject.eResource() == target;
-//		return aliasMap.put(eObject, alias);
-//	}
-	
-	public void refreshMap(Map<EObject, String> map) {
-		aliasMap = map;
 	}
 }

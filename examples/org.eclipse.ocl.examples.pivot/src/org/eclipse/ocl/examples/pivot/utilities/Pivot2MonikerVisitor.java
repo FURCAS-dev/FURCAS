@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.4 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -432,14 +432,10 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitPackage(org.eclipse.ocl.examples.pivot.Package object) {
-		String alias = AliasAdapter.getAlias(object);
-		if (alias != null) {
-			context.append(alias);
+		if (!object.hasMoniker()) {
+			throw new IllegalStateException("No moniker has been configured for " + object);
 		}
-		else {
-			context.appendParent(object, MONIKER_SCOPE_SEPARATOR);
-			context.appendName(object);
-		}
+		context.append(object.getMoniker());
 		return true;
 	}
 
