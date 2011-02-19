@@ -19,7 +19,6 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IteratorExp;
@@ -31,6 +30,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
+import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.Tuple.Pair;
@@ -130,31 +130,11 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
         return helper;
     }
 
-    /**
-     * Evaluates <tt>e</tt>, assuming <tt>valueOfSourceExpression</tt> is the value to which
-     * {@link CallExp#getSource() e's source expression} evaluates. This means that during <tt>e</tt>'s
-     * evaluation the evaluator won't attempt to evaluate the source expression but uses the
-     * value provided in <tt>valueOfSourceExpression</tt> instead.<p>
-     * 
-     * @param context a value for <tt>self</tt> can optionally be provided here. If <tt>null</tt> is
-     * specified, a {@link ValueNotFoundException} will be thrown upon trying to fetch the <tt>self</tt>
-     * value.
-     * @throws ValueNotFoundException in case a variable is accessed that hasn't previously been defined. This
-     * can happen during partial evaluation when a variable would have been defined by a superior expression
-     * of which <tt>e</tt> is only a subexpression.
-     */
     public Object evaluate(Object context, CallExp e, Object valueOfSourceExpression) {
         factory.setExpressionValue((OCLExpression) e.getSource(), valueOfSourceExpression);
         return ocl.evaluate(context, e);
     }
 
-    /**
-     * Performs a normal OCL evaluation of expression <code>c</code>. If the context object is not currently known, it's ok to
-     * pass <code>null</code> for <code>context</code>. The evaluation may fail with a {@link ValueNotFoundException} in case a
-     * variable that is accessed hasn't been defined yet. The <code>e</code> expression may therefore be some subexpression of a
-     * containing expression. To set variable values for the initial evaluation scope, use {@link #getOcl()}.
-     * {@link OCL#getEvaluationEnvironment()}.{@link EvaluationEnvironment#add(String, Object)}.
-     */
     public Object evaluate(Object context, OCLExpression e) {
         return ocl.evaluate(context, e);
     }

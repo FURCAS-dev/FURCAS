@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivat
  * the default configuration doesn't work well for your case, you may try different configuration options.
  * See {@link OptimizationActivation} and {@link ActivationOption} for details.
  * 
+ * @author Axel Uhl
  */
 public interface ImpactAnalyzer {
 

@@ -20,8 +20,12 @@ import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivat
 import org.eclipse.ocl.examples.impactanalyzer.impl.ImpactAnalyzerFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
-
-
+/**
+ * Used to create {@link ImpactAnalyzer} objects. A default factory can be
+ * obtained using the {@link #INSTANCE} field.
+ * 
+ * @author Axel Uhl
+ */
 public interface ImpactAnalyzerFactory {
     static final ImpactAnalyzerFactory INSTANCE = new ImpactAnalyzerFactoryImpl();
 
