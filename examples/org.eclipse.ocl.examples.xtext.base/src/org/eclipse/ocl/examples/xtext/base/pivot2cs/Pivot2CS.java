@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.3 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -33,15 +33,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -127,11 +124,6 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	 */
 	protected Map<String, MonikeredElementCS> moniker2PivotCSMap1 = null;
 	
-	/**
-	 * The new pivot element to alias map.
-	 */
-	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
-	
 	public Pivot2CS(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.typeManager = typeManager;
@@ -178,10 +170,6 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 		}
 		return map;
 	}	
-
-	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
-		aliasMap.put(pivotElement, AliasAdapter.getAlias(csElement));
-	}
 
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();

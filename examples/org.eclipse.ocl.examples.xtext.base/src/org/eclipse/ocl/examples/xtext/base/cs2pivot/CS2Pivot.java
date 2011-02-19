@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.4 2011/02/16 08:43:10 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -35,15 +35,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
-import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
-import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
@@ -172,11 +169,6 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	 * The pivot element for CS monikers
 	 */
 	protected Map<String, MonikeredElementCS> moniker2PivotCSMap = null;
-	
-	/**
-	 * The new pivot element to alias map.
-	 */
-	protected final Map<EObject, String> aliasMap = new HashMap<EObject, String>();
 
 	private final Map<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>> scopeVisitorMap = new HashMap<EPackage, BaseCSVisitor<ScopeCSAdapter, TypeManager>>();
 
@@ -226,10 +218,6 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		}
 		return map;
 	}	
-
-	public void declareAlias(Namespace pivotElement, PackageCS csElement) {
-		aliasMap.put(pivotElement, AliasAdapter.getAlias(csElement));
-	}
 
 	public Collection<? extends Resource> getCSResources() {
 		return cs2pivotResourceMap.keySet();
@@ -300,11 +288,6 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 			assert oldElement == pivotElement;
 		}
 		return oldElement;
-	}
-
-	public void refreshAliasMap(Resource csResource) {
-		Resource pivotResource = cs2pivotResourceMap.get(csResource);
-		AliasAdapter.getAdapter(pivotResource).refreshMap(aliasMap);
 	}
 
 	/**
