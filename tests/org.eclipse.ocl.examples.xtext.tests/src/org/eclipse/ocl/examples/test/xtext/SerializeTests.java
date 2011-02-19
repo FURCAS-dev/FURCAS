@@ -12,34 +12,19 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.12 2011/02/08 17:57:13 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.13 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.ENamedElement;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs.OCLinEcorePivot2CS;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.xtext.resource.XtextResource;
 
 /**
@@ -48,68 +33,23 @@ import org.eclipse.xtext.resource.XtextResource;
 public class SerializeTests extends XtextTestCase
 {
 	public XtextResource doSerialize(String stem) throws Exception {
-		String inputName = stem + ".ecore";
-		String pivotName = stem + ".ecore.pivot";
-		String outputName = stem + ".serialized.oclinecore";
-		URI inputURI = getProjectFileURI(inputName);
-		URI pivotURI = getProjectFileURI(pivotName);
-		URI outputURI = getProjectFileURI(outputName);
 		//
 		//	Load as Ecore
 		//
-		Resource ecoreResource = resourceSet.getResource(inputURI, true);
-		mapOwnURI(ecoreResource);
-//		List<String> conversionErrors = new ArrayList<String>();
-//		RootPackageCS documentCS = Ecore2OCLinEcore.importFromEcore(resourceSet, null, ecoreResource);
-//		Resource eResource = documentCS.eResource();
-		assertNoResourceErrors("Load failed", ecoreResource);
-//		Resource xtextResource = resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
-//		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI);
-//		xtextResource.getContents().add(documentCS);
+		String inputName = stem + ".ecore";
+		URI inputURI = getProjectFileURI(inputName);
+		Resource ecoreResource = loadEcore(inputURI);
 		//
 		//	Ecore to Pivot
 		//		
 		TypeManager typeManager = new TypeManager();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
-		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
-		Resource pivotResource = pivotRoot.eResource();
-		assertNoResourceErrors("Normalisation failed", pivotResource);
-		assertNoValidationErrors("Normalisation invalid", pivotResource);
+		Resource pivotResource = getPivotFromEcore(typeManager, ecoreResource);
 		//
 		//	Pivot to CS
 		//		
-		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
-//		csResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("cs", new EcoreResourceFactoryImpl());
-//		csResourceSet.getPackageRegistry().put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
-//		Resource csResource = csResourceSet.createResource(uri);
-//		URI oclinecoreURI = ecoreResource.getURI().appendFileExtension("oclinecore");
-		XtextResource xtextResource = (XtextResource) resourceSet.createResource(outputURI, OCLinEcoreCSTPackage.eCONTENT_TYPE);
-		Map<Resource, Resource> cs2PivotResourceMap = new HashMap<Resource, Resource>();
-		cs2PivotResourceMap.put(xtextResource, pivotResource);
-		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
-		pivot2cs.update();
-		assertNoResourceErrors("Conversion failed", xtextResource);
-//		csResource.save(null);
-		//
-		//	CS save and reload
-		//		
-//		pivotResource.setURI(pivotURI);
-		pivotResource.save(null);
-		
-		
-		assertNoDiagnosticErrors("Concrete Syntax validation failed", xtextResource);
-		try {
-			xtextResource.save(null);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			String xmiName = stem + ".serialized.oclinecore.xmi";
-			URI xmiURI = getProjectFileURI(xmiName);
-			Resource xmiResource = resourceSet.createResource(xmiURI);
-			xmiResource.getContents().addAll(xtextResource.getContents());
-			xmiResource.save(null);
-			fail(e.toString());
-		}
+		String outputName = stem + ".serialized.oclinecore";
+		URI outputURI = getProjectFileURI(outputName);
+		XtextResource xtextResource = savePivotAsCS(typeManager, pivotResource, outputURI);
 		resourceSet.getResources().clear();
 		BaseCSResource xtextResource2 = (BaseCSResource) resourceSet.getResource(outputURI, true);
 		assertNoResourceErrors("Reload failed", xtextResource2);
@@ -117,58 +57,21 @@ public class SerializeTests extends XtextTestCase
 		//
 		//	CS to Pivot
 		//	
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource2, typeManager);
-		Resource pivotResource2 = adapter.getPivotResource(xtextResource2);
-		assertNoUnresolvedProxies("Unresolved proxies", pivotResource2);
 		String pivotName2 = stem + "2.ecore.pivot";
 		URI pivotURI2 = getProjectFileURI(pivotName2);
-		pivotResource2.setURI(pivotURI2);
-		pivotResource2.save(null);
+		Resource pivotResource2 = savePivotFromCS(typeManager, xtextResource2, pivotURI2);
 		//
 		//	Pivot to Ecore
 		//		
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource2));
-		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
-		if (outputObjects.size() == 1) {
-			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
-		}
 		String inputName2 = stem + "2.ecore";
-		URI inputURI2 = getProjectFileURI(inputName2);
-		Resource ecoreResource2 = resourceSet.createResource(inputURI2);
-		ecoreResource2.getContents().addAll(outputObjects);
-		assertNoResourceErrors("Ecore2Pivot failed", ecoreResource2);
-		ecoreResource2.save(null);
-		assertNoValidationErrors("Ecore2Pivot invalid", ecoreResource2);
+		URI ecoreURI2 = getProjectFileURI(inputName2);
+		Resource ecoreResource2 = savePivotAsEcore(typeManager, pivotResource2, ecoreURI2);
 		//
 		//
 		//
 //		assertSameModel(pivotResource, pivotResource2);
-		assertSameModel(ecoreResource, ecoreResource2);
-		
+		assertSameModel(ecoreResource, ecoreResource2);		
 		return xtextResource;
-	}
-
-	/**
-	 * Some example files have inconsistent self references so map the URI back to
-	 * the resource.
-	 */
-	public void mapOwnURI(Resource resource) {
-		List<EObject> contents = resource.getContents();
-		if (contents.size() == 1) {
-			EObject root = contents.get(0);
-			if (root instanceof EPackage) {
-				EPackage rootPackage = (EPackage) root;
-				String nsURI = rootPackage.getNsURI();
-				if (nsURI != null) {
-					Map<URI, Resource> uriResourceMap = ((ResourceSetImpl)resourceSet).getURIResourceMap();
-					if (uriResourceMap == null) {
-						uriResourceMap = new HashMap<URI, Resource>();
-						((ResourceSetImpl)resourceSet).setURIResourceMap(uriResourceMap);
-					}
-					uriResourceMap.put(URI.createURI(nsURI), resource);
-				}
-			}
-		}
 	}
 	
 	public void testBug320689Serialize() throws Exception {
