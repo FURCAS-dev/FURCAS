@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenericFruitTestSuite.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericFruitTestSuite.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -20,6 +20,7 @@ package org.eclipse.ocl.examples.test.generic;
 import java.util.ListIterator;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 
 /**
  * Generic extended test framework for tests using the Fruit meta-model.
@@ -27,7 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class GenericFruitTestSuite
-	extends GenericTestSuite {
+	extends PivotTestSuite {
     
     protected static interface InitEnvironment {
     	void init();
