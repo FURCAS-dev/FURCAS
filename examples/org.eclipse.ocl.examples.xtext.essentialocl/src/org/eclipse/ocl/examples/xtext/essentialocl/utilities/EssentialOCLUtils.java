@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLUtils.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLUtils.java,v 1.3 2011/02/19 12:00:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -87,6 +87,9 @@ public class EssentialOCLUtils	// FIXME Find some extensible instantiation echan
 	 */
 	public static ElementCS getPivotingChildCS(ElementCS csElement) {
 //		assert csElement == getPivotedCS(csElement);
+		if (csElement == null) {
+			return csElement;
+		}
 		if (csElement instanceof ExpCS) {
 			OperatorCS operator = ((ExpCS) csElement).getParent();
 			if ((operator instanceof NavigationOperatorCS) && (csElement != operator.getSource())) {
