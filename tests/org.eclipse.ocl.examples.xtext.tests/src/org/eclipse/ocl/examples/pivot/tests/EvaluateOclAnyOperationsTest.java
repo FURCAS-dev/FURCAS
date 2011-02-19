@@ -12,10 +12,10 @@
  *
  * </copyright>
  *
- * $Id: GenericEvaluateOclAnyOperationsTest.java,v 1.3 2011/02/08 17:57:13 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.test.generic;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
@@ -25,9 +25,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  * Tests for OclAny operations.
  */
 @SuppressWarnings("nls")
-public abstract class GenericEvaluateOclAnyOperationsTest
-	extends GenericTestSuite {
-
+public class EvaluateOclAnyOperationsTest extends PivotTestSuite
+{
 	org.eclipse.ocl.examples.pivot.Package pkg1;
 	org.eclipse.ocl.examples.pivot.Package pkg2;
 	org.eclipse.ocl.examples.pivot.Package pkg3;
@@ -53,7 +52,7 @@ public abstract class GenericEvaluateOclAnyOperationsTest
         //   pkg5
         //    george
 
-        pkg1 = reflection.createPackage("pkg1");
+        pkg1 = typeManager.createPackage("pkg1");
 /*        pkg2 = reflection.createNestedPackage(pkg1, "pkg2");
         jim = reflection.createNestedPackage(pkg2, "jim");
         bob = reflection.createNestedPackage(pkg1, "bob");

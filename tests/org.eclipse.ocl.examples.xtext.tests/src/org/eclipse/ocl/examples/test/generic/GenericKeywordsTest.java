@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2010 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericKeywordsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: GenericKeywordsTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -21,6 +21,7 @@ package org.eclipse.ocl.examples.test.generic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.tests.PivotTestSuite;
 
 /**
  * Tests for usages of model features whose names coincide with "keywords"
@@ -30,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.Type;
  */
 @SuppressWarnings("nls")
 public abstract class GenericKeywordsTest
-	extends GenericTestSuite {
+	extends PivotTestSuite {
 
     org.eclipse.ocl.examples.pivot.Package smalltalk;
     org.eclipse.ocl.examples.pivot.Class collection;
@@ -46,62 +47,62 @@ public abstract class GenericKeywordsTest
 
         // create a little test model for a Smalltalk-like collection class that
         // defines operations corresponding to OCL iterators
-        smalltalk = reflection.createPackage("Smalltalk");
+        smalltalk = typeManager.createPackage("Smalltalk");
         registerPackage(smalltalk, "st", "foo://smalltalk");
 
-        org.eclipse.ocl.examples.pivot.Class object = reflection.createOwnedClass(smalltalk, "Object", false);
-        collection = reflection.createOwnedClass(smalltalk, "Collection", false);
-        block = reflection.createOwnedClass(smalltalk, "Block", false);
-        clazz = reflection.createOwnedClass(smalltalk, "Class", false);
-        property = reflection.createOwnedClass(smalltalk, "Property", false);
-        constraint = reflection.createOwnedClass(smalltalk, "Constraint", false);
-        reflection.addSupertype(constraint, object);
-        reflection.addSupertype(property, object);
-        reflection.addSupertype(clazz, object);
-        reflection.addSupertype(block, object);
-        reflection.addSupertype(collection, object);
+        org.eclipse.ocl.examples.pivot.Class object = createOwnedClass(smalltalk, "Object", false);
+        collection = createOwnedClass(smalltalk, "Collection", false);
+        block = createOwnedClass(smalltalk, "Block", false);
+        clazz = createOwnedClass(smalltalk, "Class", false);
+        property = createOwnedClass(smalltalk, "Property", false);
+        constraint = createOwnedClass(smalltalk, "Constraint", false);
+        addSupertype(constraint, object);
+        addSupertype(property, object);
+        addSupertype(clazz, object);
+        addSupertype(block, object);
+        addSupertype(collection, object);
 
-        org.eclipse.ocl.examples.pivot.Enumeration visibilityKind = reflection.createOwnedEnumeration(smalltalk, "VisibilityKind");
-        reflection.createOwnedLiteral(visibilityKind, "public");
-        reflection.createOwnedLiteral(visibilityKind, "protected");
-        reflection.createOwnedLiteral(visibilityKind, "package");
-        reflection.createOwnedLiteral(visibilityKind, "private");
+        org.eclipse.ocl.examples.pivot.Enumeration visibilityKind = createOwnedEnumeration(smalltalk, "VisibilityKind");
+        createOwnedLiteral(visibilityKind, "public");
+        createOwnedLiteral(visibilityKind, "protected");
+        createOwnedLiteral(visibilityKind, "package");
+        createOwnedLiteral(visibilityKind, "private");
         
-        reflection.createOwnedAttribute(clazz, "name", reflection.getUMLString());
-        reflection.createOwnedAttribute(clazz, "visibility", visibilityKind);
-        reflection.createOwnedReference(clazz, "package", object);
-        reflection.createOwnedAttribute(property, "isUnique", reflection.getUMLBoolean());
-        reflection.createOwnedAttribute(property, "upper", reflection.getUMLInteger());
-        reflection.createOwnedReference(constraint, "context", clazz);
+        createOwnedAttribute(clazz, "name", typeManager.getStringType());
+        createOwnedAttribute(clazz, "visibility", visibilityKind);
+        createOwnedReference(clazz, "package", object);
+        createOwnedAttribute(property, "isUnique", typeManager.getBooleanType());
+        createOwnedAttribute(property, "upper", typeManager.getIntegerType());
+        createOwnedReference(constraint, "context", clazz);
         
         EList<String> names = new BasicEList<String>(1);
         EList<Type> types = new BasicEList<Type>(1);
 
         names.add("object");
         types.add(object);
-        reflection.createOwnedOperation(block, "context",
+        createOwnedOperation(block, "context",
         	names, types, clazz, true);
 
         names.set(0, "block");
         types.set(0, block);
-        reflection.createOwnedOperation(collection, "isUnique",
-        	names, types, reflection.getUMLBoolean(), true);
-        reflection.createOwnedOperation(collection, "select", 
+        createOwnedOperation(collection, "isUnique",
+        	names, types, typeManager.getBooleanType(), true);
+        createOwnedOperation(collection, "select", 
         	names, types, collection, true);
 
         names.clear();
         types.clear();
-        reflection.createOwnedOperation(collection, "isEmpty",
-        	names, types, reflection.getUMLBoolean(), true);
+        createOwnedOperation(collection, "isEmpty",
+        	names, types, typeManager.getBooleanType(), true);
 
         // create some qualified classifier and package names that need
         // escaping of one or more segments. Likewise state names
-        org.eclipse.ocl.examples.pivot.Package nested = reflection.createNestedPackage(smalltalk, "runtime");
-        org.eclipse.ocl.examples.pivot.Package contextPackage = reflection.createNestedPackage(nested, "context");
+        org.eclipse.ocl.examples.pivot.Package nested = createNestedPackage(smalltalk, "runtime");
+        org.eclipse.ocl.examples.pivot.Package contextPackage = createNestedPackage(nested, "context");
 
-        reflection.createOwnedClass(contextPackage, "language", false);
-        elseClass = reflection.createOwnedClass(contextPackage, "else", false);
-        reflection.createOwnedOperation(elseClass, "doIt",
+        createOwnedClass(contextPackage, "language", false);
+        elseClass = createOwnedClass(contextPackage, "else", false);
+        createOwnedOperation(elseClass, "doIt",
         	null, null, null, false);
     }
 

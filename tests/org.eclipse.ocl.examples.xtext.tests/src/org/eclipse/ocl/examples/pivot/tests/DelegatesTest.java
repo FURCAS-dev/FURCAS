@@ -14,9 +14,9 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.2 2011/02/11 20:10:13 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
-package org.eclipse.ocl.examples.test.ecore;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -77,7 +77,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.test.generic.GenericTestSuite;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.osgi.util.NLS;
 
@@ -89,7 +88,7 @@ import company.CompanyPackage;
  * Tests for the OCL delegate implementations.
  */
 @SuppressWarnings("nls")
-public class DelegatesTest extends GenericTestSuite
+public class DelegatesTest extends PivotTestSuite
 {
 	protected static final String COMPANY_XMI = "/model/Company.xmi";	
 	protected static final String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
@@ -123,11 +122,6 @@ public class DelegatesTest extends GenericTestSuite
 	//
 	// Test framework
 	//
-	@Override
-	public PivotTestReflection getStaticReflection() {
-		return new PivotTestReflection(typeManager);
-	}
-	
 	@Override
 	protected void setUp() {
 		super.setUp();

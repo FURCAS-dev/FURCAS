@@ -29,6 +29,7 @@ import org.apache.log4j.spi.ThrowableInformation;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
@@ -174,6 +175,14 @@ public class XtextTestCase extends TestCase
 		ResourceSet reloadResourceSet = new ResourceSetImpl();
 		reloadResourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("pivot", new EcoreResourceFactoryImpl());
 		Resource reloadedPivotResource = reloadResourceSet.getResource(pivotURI, true);
+		TypeManager typeManager = new TypeManager();
+		for (TreeIterator<EObject> tit = reloadedPivotResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				typeManager.installPackage((org.eclipse.ocl.examples.pivot.Package) eObject);
+			}
+			
+		}
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 	}
 	
