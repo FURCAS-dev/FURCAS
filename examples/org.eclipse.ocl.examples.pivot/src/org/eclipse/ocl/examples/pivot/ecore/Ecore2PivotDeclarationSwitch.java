@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.6 2011/02/15 10:38:47 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.7 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -235,6 +235,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package caseEPackage(EPackage eObject) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject);
+		converter.getTypeManager().installPackage(pivotElement);
 		EAnnotation eAnnotation = eObject.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamedElement(pivotElement, eObject);

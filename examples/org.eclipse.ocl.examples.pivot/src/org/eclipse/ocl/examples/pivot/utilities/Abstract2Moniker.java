@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.4 2011/02/15 10:38:47 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -158,13 +158,6 @@ public abstract class Abstract2Moniker implements PivotConstants
 	}
 
 	public void appendName(MonikeredElement monikeredElement) {
-		if (monikeredElement instanceof org.eclipse.ocl.examples.pivot.Package) {
-			String alias = AliasAdapter.getAlias(monikeredElement);
-			if (alias != null) {
-				append(alias);
-				return;
-			}
-		}
 		if (monikeredElement instanceof TemplateableElement) {
 			List<TemplateBinding> templateBindings = ((TemplateableElement)monikeredElement).getTemplateBindings();
 			if (!templateBindings.isEmpty()) {
@@ -328,22 +321,6 @@ public abstract class Abstract2Moniker implements PivotConstants
 	public boolean hasEmitted(TemplateParameter templateParameter) {
 		return (emittedParameters != null) && emittedParameters.contains(templateParameter);
 	}
-
-/*	public boolean isTemplateParameter(TemplateParameter templateParameter) {
-		for (EObject eObject = target; eObject != null; eObject = eObject.eContainer()) {
-			if (eObject instanceof TemplateableElement) {
-				TemplateSignature templateSignature = ((TemplateableElement)eObject).getOwnedTemplateSignature();
-				if (templateSignature != null) {
-					for (TemplateParameter targetTemplateParameter : templateSignature.getParameters()) {
-						if (templateParameter == targetTemplateParameter) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
-	} */
 
 	/**
 	 * Return the length of the moniker so far.

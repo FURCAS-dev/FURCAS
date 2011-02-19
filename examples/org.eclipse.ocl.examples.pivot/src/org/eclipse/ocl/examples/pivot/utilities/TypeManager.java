@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.7 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: TypeManager.java,v 1.8 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -219,9 +220,12 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	
 	private Map<String, Namespace> globalNamespaces = new HashMap<String, Namespace>();
 	private Set<Type> globalTypes = new HashSet<Type>();
-//	private Map<Resource, Map<Element, String>> aliasMaps = new HashMap<Resource, Map<Element, String>>();
-//	private Map<String, Element> alias2pivot = new HashMap<String, Element>();
-//	private Map<Element, String> pivot2alias = new HashMap<Element, String>();
+
+	/**
+	 * Packages have unique monikers arbitrated by the packageMoniker2packageMap.
+	 */
+	private Map<String, org.eclipse.ocl.examples.pivot.Package> packageMoniker2packageMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+
 	private int unspecifiedTypeCount = 0;
 
 	public TypeManager() {
@@ -639,6 +643,19 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return invalidLiteralExp;
 	}
 
+	public Package createPackage(String string) {
+		return createPackage(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, string);
+	}
+
+	public <T extends org.eclipse.ocl.examples.pivot.Package> T createPackage(Class<T> pivotClass,
+			EClass pivotEClass, String name) {
+		@SuppressWarnings("unchecked")
+		T pivotPackage = (T) PivotFactory.eINSTANCE.create(pivotEClass);
+		pivotPackage.setName(name);
+		installPackage(pivotPackage);
+		return pivotPackage;
+	}
+
 	public Resource createResource(URI uri, String contentType) {
 		// FIXME Convert URI to absolute
 		URI pivotURI = uri.appendFileExtension(PivotResource.FILE_EXTENSION);
@@ -1011,6 +1028,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		if (pivotOrphans == null) {
 			pivotOrphans = PivotFactory.eINSTANCE.createPackage();
 			pivotOrphans.setName(PivotConstants.ORPHANAGE_NAME);
+			pivotOrphans.setMoniker(PivotConstants.ORPHANAGE_NAME);
 			pivotOrphans.setNsURI(PivotConstants.ORPHANAGE_URI);
 			pivotOrphans.setNsPrefix(PivotConstants.ORPHANAGE_PREFIX);
 			URI uri = URI.createURI(PivotConstants.ORPHANAGE_URI);
@@ -1028,6 +1046,15 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		Resource ecoreMetaModel = eObject.eResource();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, this);
 		return ecore2Pivot.getCreated(pivotClass, eObject);
+	}
+
+	@Override
+	public org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
+		if (pivotPackage == null) {
+			super.getPivotPackage();
+			pivotPackage.setMoniker("pivot");		// FIXME temporary workaround
+		}
+		return pivotPackage;
 	}
 
 	public ResourceSet getPivotResourceSet() {
@@ -1355,6 +1382,20 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 
 	public ValueFactory getValueFactory() {
 		return ValueFactory.INSTANCE;
+	}
+
+	public void installPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+		String name = pivotPackage.getName();
+		if (name == null) {
+			name = PivotConstants.NULL_ROOT;
+		}
+		String packageMoniker = name;
+		int suffix = 0;
+		while (packageMoniker2packageMap.get(packageMoniker) != null) {
+			packageMoniker = name + "_" + ++suffix;
+		}
+		pivotPackage.setMoniker(packageMoniker);
+		packageMoniker2packageMap.put(packageMoniker, pivotPackage);
 	}
 
 	public boolean isAdapterForType(Object type) {
