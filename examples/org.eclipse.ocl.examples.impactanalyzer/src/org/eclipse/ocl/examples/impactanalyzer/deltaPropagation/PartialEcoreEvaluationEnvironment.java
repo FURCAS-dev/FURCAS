@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.opposites.ExtentMap;
+import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEvaluationEnvironmentWithScopedExtentMap;
 import org.eclipse.ocl.expressions.VariableExp;
 
