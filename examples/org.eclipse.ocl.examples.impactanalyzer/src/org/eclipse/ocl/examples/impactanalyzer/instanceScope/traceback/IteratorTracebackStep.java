@@ -22,9 +22,10 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
@@ -149,7 +150,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         boolean resultPost = acceptIfPredicateTrue;
         if (atPre == null || resultPre != acceptIfPredicateTrue) {
             // evaluate whether the source object passes the iterator's body after the change
-            PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
+            PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPost.evaluate(null, getExpression(), sourceCollection);
                 resultPost = isSourceInResult(sourceObject, result);
