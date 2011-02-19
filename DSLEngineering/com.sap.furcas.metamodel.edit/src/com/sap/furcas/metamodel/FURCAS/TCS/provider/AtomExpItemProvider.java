@@ -64,6 +64,7 @@ public class AtomExpItemProvider
             super.getPropertyDescriptors(object);
 
             addPropertyNamePropertyDescriptor(object);
+            addPropertyReferencePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -91,33 +92,25 @@ public class AtomExpItemProvider
     }
 
         /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * This adds a property descriptor for the Property Reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    @Override
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(TCSPackage.Literals.ATOM_EXP__PROPERTY_REFERENCE);
-        }
-        return childrenFeatures;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
-
-        return super.getChildFeature(object, child);
+    protected void addPropertyReferencePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_AtomExp_propertyReference_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_AtomExp_propertyReference_feature", "_UI_AtomExp_type"),
+                 TCSPackage.Literals.ATOM_EXP__PROPERTY_REFERENCE,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
         /**
@@ -149,9 +142,6 @@ public class AtomExpItemProvider
             case TCSPackage.ATOM_EXP__PROPERTY_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
         }
         super.notifyChanged(notification);
     }
@@ -166,11 +156,6 @@ public class AtomExpItemProvider
         @Override
         protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (TCSPackage.Literals.ATOM_EXP__PROPERTY_REFERENCE,
-                 TCSFactory.eINSTANCE.createPropertyReference()));
     }
 
 }
