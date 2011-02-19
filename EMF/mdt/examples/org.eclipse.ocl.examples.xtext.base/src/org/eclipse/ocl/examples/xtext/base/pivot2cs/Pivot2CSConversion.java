@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.5 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.6 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -43,8 +43,8 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -240,6 +240,35 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 	}
 
+	public void refreshQualifiers(List<String> qualifiers, String trueString, String falseString, Boolean polarity) {
+		boolean isFalse = false;
+		boolean isTrue = false;
+		for (String qualifier : qualifiers) {
+			if (qualifier.equals(trueString)) {
+				if (isTrue || (polarity != Boolean.TRUE)) {
+					qualifiers.remove(qualifier);
+				}
+				isTrue = true;
+			}
+			if (qualifier.equals(falseString)) {
+				if (isTrue || (polarity != Boolean.FALSE)) {
+					qualifiers.remove(qualifier);
+				}
+				isFalse = true;
+			}
+		}
+		if (polarity == Boolean.TRUE) {
+			if (!isTrue) {
+				qualifiers.add(trueString);
+			}
+		}
+		else if (polarity == Boolean.FALSE) {
+			if (!isFalse) {
+				qualifiers.add(falseString);
+			}
+		}
+	}
+
 	public <T extends StructuralFeatureCS> T refreshStructuralFeature(Class<T> csClass, EClass csEClass, Property object) {
 		T csElement = refreshTypedMultiplicityElement(csClass, csEClass, object);
 		refreshQualifiers(csElement.getQualifier(), "derived", object.isDerived());
@@ -294,8 +323,9 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 				csElement.setUpper(upper);
 			}
 		}
-		csElement.getQualifier().add(object.isOrdered() ? "ordered" : "!ordered");
-		csElement.getQualifier().add(object.isUnique() ? "unique" : "!unique");
+		List<String> qualifiers = csElement.getQualifier();
+		refreshQualifiers(qualifiers, "ordered", "!ordered", object.isOrdered() ? Boolean.TRUE : null);
+		refreshQualifiers(qualifiers, "unique", "!unique", object.isUnique() ? null : Boolean.FALSE);
 		return csElement;
 	}
 

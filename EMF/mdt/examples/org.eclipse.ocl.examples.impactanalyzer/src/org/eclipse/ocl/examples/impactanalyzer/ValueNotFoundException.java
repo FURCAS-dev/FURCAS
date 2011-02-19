@@ -8,11 +8,14 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;
+package org.eclipse.ocl.examples.impactanalyzer;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEcoreEvaluationEnvironment;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
+import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.VariableValueNotFoundInfo;
 import org.eclipse.ocl.expressions.VariableExp;
 
 /**

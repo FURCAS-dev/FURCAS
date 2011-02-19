@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.4 2011/02/15 10:37:10 ewillink Exp $
+ * $Id: OCLstdlibCS2MonikerVisitor.java,v 1.5 2011/02/19 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.utilities;
 
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegatingOCLstdlibCSVisitor;
 
 public class OCLstdlibCS2MonikerVisitor
-	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Object, CS2Moniker, EssentialOCLCSVisitor<Object, CS2Moniker>>
+	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Boolean, CS2Moniker, EssentialOCLCSVisitor<Boolean, CS2Moniker>>
 	implements PivotConstants
 {	
 	private static final class Factory implements CS2Moniker.Factory
@@ -50,11 +50,11 @@ public class OCLstdlibCS2MonikerVisitor
 		
 	@SuppressWarnings("unchecked")
 	public OCLstdlibCS2MonikerVisitor(CS2Moniker context) {
-		super((EssentialOCLCSVisitor<Object, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
+		super((EssentialOCLCSVisitor<Boolean, CS2Moniker>) context.getVisitor(EssentialOCLCSTPackage.eINSTANCE), context);
 	}
 
 	@Override
-	public Object visitLibClassCS(LibClassCS object) {
+	public Boolean visitLibClassCS(LibClassCS object) {
 		MetaTypeName metaType = object.getMetaTypeName();
 		if ((metaType != null) && PrimitiveType.class.getSimpleName().equals(metaType.getName())) {
 //		if (object.getMetaType() instanceof PrimitiveType) {
@@ -65,7 +65,7 @@ public class OCLstdlibCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitLibIterationCS(LibIterationCS object) {
+	public Boolean visitLibIterationCS(LibIterationCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		context.appendTemplateParametersCS(object);
@@ -74,7 +74,7 @@ public class OCLstdlibCS2MonikerVisitor
 	}
 
 	@Override
-	public Object visitPrecedenceCS(PrecedenceCS object) {
+	public Boolean visitPrecedenceCS(PrecedenceCS object) {
 		context.appendParentCS(object, PRECEDENCE_PREFIX);
 		context.appendNameCS(object);
 		return true;

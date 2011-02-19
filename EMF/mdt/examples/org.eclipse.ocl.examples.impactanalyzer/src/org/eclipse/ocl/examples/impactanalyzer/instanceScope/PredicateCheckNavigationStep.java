@@ -23,9 +23,9 @@ import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
-import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.ValueNotFoundException;
+import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.SemanticIdentity;
@@ -139,7 +139,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
 
         Boolean resultPre = positive;
         if (atPre != null) {
-            PartialEvaluatorImpl evalPre = partialEvaluatorFactory.createPartialEvaluator(atPre, oppositeEndFinder, oclFactory);
+            PartialEvaluator evalPre = partialEvaluatorFactory.createPartialEvaluator(atPre, oppositeEndFinder, oclFactory);
             try {
                 Object result = evalPre.evaluate(null, (CallExp) exp, sourceObjects);
                 resultPre = sourceObjects.contains(result);
@@ -152,7 +152,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         }
         // evaluate whether the source object passes the iterator's body after the change
 
-        PartialEvaluatorImpl evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
+        PartialEvaluator evalPost = partialEvaluatorFactory.createPartialEvaluator(oppositeEndFinder, oclFactory);
         Boolean resultPost = positive;
 		if (atPre == null || resultPre != positive) {
 			try {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.4 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -132,7 +132,6 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 	}	
 	
 	public void refreshPivotMappings() {
-		CSAliasCreator.refreshPackageAliases(resource);
 		converter.update();
 	}
 }

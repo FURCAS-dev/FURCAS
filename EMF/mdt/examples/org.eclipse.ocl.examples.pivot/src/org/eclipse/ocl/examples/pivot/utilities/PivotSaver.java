@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.3 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.4 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -269,6 +269,7 @@ public class PivotSaver
 		if (orphanage == null) {
 			orphanage = PivotFactory.eINSTANCE.createPackage();
 			orphanage.setName(PivotConstants.ORPHANAGE_NAME);
+			orphanage.setMoniker(PivotConstants.ORPHANAGE_NAME);
 			resource.getContents().add(orphanage);
 		}
 		return orphanage;
