@@ -650,16 +650,6 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
                     // be created and the fixpoint iteration never stops.
                     continue;
                 }
-
-                if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE
-                        && resolvedReferences.contains(reference)) {
-                    // resolve foreach properties only once. Otherwise delayed references for the individual foreach
-                    // elements would be created over and over again
-                    // FIXME: this is buggy if the actual value of the predicate used in the for changes over the course
-                    // of the fixpoint iteration. The elements missed before would be missed entirely.
-                    continue;
-                }
-
                 try {
                     Collection<ParsingError> errorList = new ArrayList<ParsingError>(injector.getErrorList());
 
@@ -913,7 +903,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
     public final void setPredicateRef(Object object, String propertyName, String mode, String query,
             List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext) {
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
-        DelayedReference ref = new DelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE,
+        DelayedReference ref = new DelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE,
                 object, propertyName, query, mode, preds, ruleNameFinder,
                 lastToken, hasContext, /* isOptional: ForEach is always considered optional as 
                  * error reporting will be done based on metamodel constraints. */ true);

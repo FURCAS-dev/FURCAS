@@ -44,7 +44,7 @@ public class DelayedReference implements Cloneable {
         /** Constant for reference type default */
         TYPE_DEFAULT,
         /** Constant for reference type semantic predicate */
-        TYPE_SEMANTIC_PREDICATE,
+        TYPE_FOREACH_PREDICATE,
         CONTEXT_LOOKUP,
         SEMANTIC_DISAMBIGUATE
     }
@@ -480,7 +480,7 @@ public class DelayedReference implements Cloneable {
     @Override
     public String toString() {
         String result = modelElement != null && modelElement.getClass() != null ? modelElement.getClass().getName() : "<generic>";
-        if(getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
+        if(getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE) {
             result += " [FOR_EACH_PROPERTY_INIT] ";
         }
         result += '.'

@@ -307,8 +307,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private void addForeachContext(TextBlock textBlock, Object foreachElement, EObject elementToUpdate,
-            EObject producedElement) {
-        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement);
+            EObject producedElement, Template template) {
+        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement, template);
         textBlock.getForEachContext().add(foreachContext);
     }
 
@@ -324,14 +324,17 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         }
     }
 
-    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement, EObject producedElement) {
+    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement, EObject producedElement, Template template) {
         // create ForEachContext element documenting what just happened in the TextBlocks model
         ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
         foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
         foreachContext.setSourceModelElement(elementToUpdate);
-        // TODO this cast is probably not safe, particularly if the foreach base expression return an non-EObject type
-        // such as Boolean or Integer or String
-        foreachContext.setContextElement((EObject) foreachElement);
+        if (foreachElement instanceof EObject) {
+            foreachContext.setContextElement((EObject) foreachElement);
+        } else if (foreachElement instanceof String) {
+            foreachContext.setContextString((String) foreachElement);
+        } // else it must have been a Boolean which we don't record
+        foreachContext.setTemplate(template);
         foreachContext.setResultModelElement(producedElement);
         return foreachContext;
     }
@@ -397,6 +400,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             }
             parser.setCurrentForeachElement(foreachElement);
             TbParsingUtil.constructContext(textBlock, parser);
+            // TODO can't easily be decided in isolation because multiple equal foreachElement values may exist
             deleteObsoleteForeachContexts(textBlock, foreachElement); // must be deleted AFTER ContextBuilder was
                                                                       // constructed because it requires the
                                                                       // ForEachContext elements
@@ -406,7 +410,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
             parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model updaters
-            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn);
+            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn, template);
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
