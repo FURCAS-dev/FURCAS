@@ -517,8 +517,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 				InterpreterImpl interpreter = new InterpreterImpl(emfHelper, this.memoryFQLProcessor, this, this.mqlAuxServices);
 				result = interpreter.execute(internalQuery, this.maxResultSetSize, numberOfResults,isSortingNeeded);
 			} finally {
-				//Explicitly unloading the resources after result calculation
-				emfHelper.unloadResources();
+				
 				// we're done. Release
 				// this.syncManager.releaseReadLock( );
 			}
