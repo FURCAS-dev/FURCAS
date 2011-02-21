@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -69,6 +69,7 @@ public class ValueFactoryImpl implements ValueFactory
 	public final SequenceValue emptySequenceValue = new SequenceValueImpl(this);	
 	public final SetValue emptySetValue = new SetValueImpl(this);
 	public final BooleanValue falseValue = new BooleanValueImpl(this, false); 
+	public final InvalidValue invalidValue = new InvalidValueImpl(this); 
 	public final NullValue nullValue = new NullValueImpl(this); 
 	public final BooleanValue trueValue = new BooleanValueImpl(this, true); 
 	public final UnlimitedValue unlimitedValue = new UnlimitedValueImpl(this); 
@@ -95,23 +96,14 @@ public class ValueFactoryImpl implements ValueFactory
     }
 	
 	public BagValue createBagValue(Value... values) {
-		if (!isValid(values)) {
-			return createInvalidValue("bag-of-invalid");
-		}
 		return new BagValueImpl(this, values);
 	}
 
 	public BagValue createBagValue(Bag<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("bag-of-invalid");
-		}
 		return new BagValueImpl(this, values);
 	}
 
 	public BagValue createBagValue(Collection<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("bag-of-invalid");
-		}
 		return new BagValueImpl(this, values);
 	}
     
@@ -203,14 +195,6 @@ public class ValueFactoryImpl implements ValueFactory
 		return new ElementValueImpl<E>(this, element);
 	}
 
-	public InvalidValue createInvalidValue(String reason) {
-		return new InvalidValueImpl(this, null, null, reason, null);
-	}
-
-	public InvalidValue createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable) {
-		return new InvalidValueImpl(this, object, expression, reason, throwable);
-	}
-
 	public ObjectValue createObjectValue(Object object) {
 		return new ObjectValueImpl(this, object);
 	}
@@ -226,23 +210,14 @@ public class ValueFactoryImpl implements ValueFactory
     }
 
 	public OrderedSetValue createOrderedSetValue(Value... values) {
-		if (!isValid(values)) {
-			return createInvalidValue("ordered-set-of-invalid");
-		}
 		return new OrderedSetValueImpl(this, values);
 	}
 
 	public OrderedSetValue createOrderedSetValue(LinkedHashSet<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("ordered-set-of-invalid");
-		}
 		return new OrderedSetValueImpl(this, values);
 	}
 
 	public OrderedSetValue createOrderedSetValue(Collection<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("ordered-set-of-invalid");
-		}
 		return new OrderedSetValueImpl(this, values);
 	}
 
@@ -257,23 +232,14 @@ public class ValueFactoryImpl implements ValueFactory
     }
 
 	public SequenceValue createSequenceValue(Value... values) {
-		if (!isValid(values)) {
-			return createInvalidValue("sequence-of-invalid");
-		}
 		return new SequenceValueImpl(this, values);
 	}
 
 	public SequenceValue createSequenceValue(List<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("sequence-of-invalid");
-		}
 		return new SequenceValueImpl(this, values);
 	}
 
 	public SequenceValue createSequenceValue(Collection<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("sequence-of-invalid");
-		}
 		return new SequenceValueImpl(this, values);
 	}
 
@@ -288,23 +254,14 @@ public class ValueFactoryImpl implements ValueFactory
     }
 
 	public SetValue createSetValue(Value... values) {
-		if (!isValid(values)) {
-			return createInvalidValue("set-of-invalid");
-		}
 		return new SetValueImpl(this, values);
 	}
 
 	public SetValue createSetValue(Set<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("set-of-invalid");
-		}
 		return new SetValueImpl(this, values);
 	}
 
 	public SetValue createSetValue(Collection<? extends Value> values) {
-		if (!isValid(values)) {
-			return createInvalidValue("set-of-invalid");
-		}
 		return new SetValueImpl(this, values);
 	}
 
@@ -317,10 +274,7 @@ public class ValueFactoryImpl implements ValueFactory
 	}
 
 	public Object getEcoreValueOf(Value value) {
-		if (value instanceof InvalidValue) {
-			return value;		// ?? DelegateException
-		}
-		else if (value instanceof NullValue) {
+		if (value instanceof NullValue) {
 			return null;
 		}
 		else if (value instanceof CollectionValue) {
@@ -331,11 +285,11 @@ public class ValueFactoryImpl implements ValueFactory
 			}
 			return ecoreResult;
 		}
-		else if (value instanceof IntegerValue) {
-			return ((IntegerValue)value).asInteger();
+		else if (value instanceof IntegerValueImpl) {
+			return ((IntegerValueImpl)value).intValue();
 		}
-		else if (value instanceof RealValue) {
-			return ((RealValue)value).asDouble();
+		else if (value instanceof RealValueImpl) {
+			return ((RealValueImpl)value).doubleValue();
 		}
 		else {
 			Object object = value.asObject();
@@ -370,6 +324,10 @@ public class ValueFactoryImpl implements ValueFactory
 		return falseValue;
 	}
 
+	public InvalidValue getInvalid() {
+		return invalidValue;
+	}
+
 	public NullValue getNull() {
 		return nullValue;
 	}
@@ -398,41 +356,22 @@ public class ValueFactoryImpl implements ValueFactory
 	 * Creates a BigInteger representation for aValue.
 	 * @param aValue the string representation of a (non-negative) integer number
 	 * @return the numeric representation
-	 * @throws NumberFormatException if representation cannot be created
+	 * @throws InvalidValueException if representation cannot be created
 	 * @since 3.1
 	 */
-	public IntegerValue integerValueOf(String aValue) {
-		int len = aValue.length();
-		if ((len < maxLongSize) || ((len == maxLongSize) && (maxLongValue.compareTo(aValue) >= 0))) {
-			return new IntegerValueImpl(this, BigInteger.valueOf(Long.parseLong(aValue)));
-		}
-		else {
-			return new IntegerValueImpl(this, new BigInteger(aValue));
-		}
-	}
-
-	public boolean isValid(Value[] elements) {
-		if (elements == null) {
-			return false;			
-		}
-		for (Value element : elements) {
-			if (element.isInvalid()) {
-				return false;
+	public IntegerValue integerValueOf(String aValue) throws InvalidValueException {
+		try {
+			int len = aValue.length();
+			if ((len < maxLongSize) || ((len == maxLongSize) && (maxLongValue.compareTo(aValue) >= 0))) {
+				return new IntegerValueImpl(this, BigInteger.valueOf(Long.parseLong(aValue)));
+			}
+			else {
+				return new IntegerValueImpl(this, new BigInteger(aValue));
 			}
 		}
-		return true;
-	}
-	
-	public boolean isValid(Collection<? extends Value> elements) {
-		if (elements == null) {
-			return false;			
+		catch (NumberFormatException e) {
+			throw new InvalidValueException("Not an Integer", e);
 		}
-		for (Value element : elements) {
-			if (element.isInvalid()) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public RealValue realValueOf(double value) {
@@ -451,14 +390,22 @@ public class ValueFactoryImpl implements ValueFactory
 		return realValueOf(integerValue.bigDecimalValue());
 	}
 	
-	public RealValue realValueOf(String aValue) {
-		return new RealValueImpl(this, new BigDecimal(aValue.trim()));
+	public RealValue realValueOf(String aValue) throws InvalidValueException {
+		try {
+			return new RealValueImpl(this, new BigDecimal(aValue.trim()));
+		}
+		catch (NumberFormatException e) {
+			throw new InvalidValueException("Not a Real", e);
+		}
 	}
 	
 	public StringValue stringValueOf(String value) {
 		return new StringValueImpl(this, value);
 	}
 
+	public void throwInvalidValue(String reason) throws InvalidValueException {
+		throw new InvalidValueException(reason);
+	}
 	@Override
 	public String toString() {
 		return "ValueFactory : " + name;

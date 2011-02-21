@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectionSumOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: CollectionSumOperation.java,v 1.3 2011/02/21 08:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.library.numeric.NumericPlusOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -33,17 +34,12 @@ public class CollectionSumOperation extends AbstractOperation
 {
 	public static final CollectionSumOperation INSTANCE = new CollectionSumOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		CollectionValue collectionValue = sourceVal.asCollectionValue();
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		if (collectionValue != null) {
-			// FIXME Bug 301351 Look for user-defined zero
-//			Type resultType = operationCall.getType();	
-//			resultType.getZero();
-			return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.getZero());
-		}
-		else {
-			return valueFactory.createInvalidValue(sourceVal, null, "non-collection", null);
-		}
+		// FIXME Bug 301351 Look for user-defined zero
+//		Type resultType = operationCall.getType();	
+//		resultType.getZero();
+		return collectionValue.sum(NumericPlusOperation.INSTANCE, valueFactory.getZero());
 	}
 }

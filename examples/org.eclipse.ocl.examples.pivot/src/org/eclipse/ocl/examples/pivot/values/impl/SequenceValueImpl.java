@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SequenceValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: SequenceValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -29,7 +30,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class SequenceValueImpl extends AbstractSequenceValue<List<Value>>
 {
-	public static SequenceValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
+	public static SequenceValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();

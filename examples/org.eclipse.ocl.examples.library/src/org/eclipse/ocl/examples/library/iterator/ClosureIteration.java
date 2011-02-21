@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.4 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.5 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.library.ValidationWarning;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
@@ -76,7 +77,11 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 			return accumulatorValue;						// Null body is termination
 		}
 		else {
-			evaluateIteration(new IterationManager<CollectionValue.Accumulator>(iterationManager, bodyVal));
+			try {
+				evaluateIteration(new IterationManager<CollectionValue.Accumulator>(iterationManager, bodyVal));
+			} catch (InvalidValueException e) {
+				iterationManager.throwInvalidEvaluation(e);
+			}
 			return null;
 		}
 	}

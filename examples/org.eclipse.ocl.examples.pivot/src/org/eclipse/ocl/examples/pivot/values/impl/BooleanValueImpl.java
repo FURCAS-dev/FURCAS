@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: BooleanValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: BooleanValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class BooleanValueImpl extends AbstractValue implements BooleanValue
@@ -30,33 +31,23 @@ public class BooleanValueImpl extends AbstractValue implements BooleanValue
 		this.value = value;
 	}
 
-//	@Override
-//	public boolean and(Value v) {
-//		return (v instanceof BooleanValue) && (value && ((BooleanValue)v).value);
-//	}
+	@Override
+	public boolean asBoolean() {
+		return value;
+	}
 
 	@Override
 	public BooleanValueImpl asBooleanValue() {
 		return this;
 	}
 
-	@Override
-	public BooleanValue asFalse() {
-		return valueFactory.booleanValueOf(!value);
-	}
-
 	public Object asObject() {
 		return value;
 	}
 
-	@Override
-	public BooleanValue asTrue() {
+	public Value asValidValue() {
 		return this;
 	}
-
-//	public boolean booleanValue() {
-//		return value;
-//	}
 
 	public Type getType(TypeManager typeManager, Type staticType) {
 		return typeManager.getBooleanType();

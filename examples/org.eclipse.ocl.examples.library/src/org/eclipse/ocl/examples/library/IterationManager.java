@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationManager.java,v 1.3 2011/01/30 11:07:31 ewillink Exp $
+ * $Id: IterationManager.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -28,8 +30,9 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class IterationManager<ACC extends Value>
 {
@@ -100,7 +103,7 @@ public class IterationManager<ACC extends Value>
 		}
 	}
 
-	public IterationManager(IterationManager<ACC> iterationManager, Value value) {
+	public IterationManager(IterationManager<ACC> iterationManager, Value value) throws InvalidValueException {
 		this.depth = iterationManager.depth+1;
 		this.evaluationVisitor = iterationManager.evaluationVisitor;
 		this.body = iterationManager.body;
@@ -108,7 +111,7 @@ public class IterationManager<ACC extends Value>
 			this.collectionValue = (CollectionValue) value;
 		}
 		else {
-			this.collectionValue = evaluationVisitor.getValueFactory().createSequenceValue(value);
+			this.collectionValue = getValueFactory().createSequenceValue(value);
 		}
 		this.accumulatorValue = iterationManager.accumulatorValue;
 		this.accumulatorVariable = iterationManager.accumulatorVariable;
@@ -135,9 +138,9 @@ public class IterationManager<ACC extends Value>
 		}
 	}
 
-	public InvalidValue createInvalidValue(String string) {
-		return evaluationVisitor.getValueFactory().createInvalidValue(string);
-	}
+//	public InvalidValue createInvalidValue(String string) {
+//		return evaluationVisitor.getValueFactory().createInvalidValue(string);
+//	}
 
 	public Value get(int i) {
 		return iterators.get(0).get();		
@@ -160,7 +163,7 @@ public class IterationManager<ACC extends Value>
 	}
 
 	public Value getFalse() {
-		return evaluationVisitor.getValueFactory().getFalse();
+		return getValueFactory().getFalse();
 	}
 	
 	private int getNextUnfinishedIterator() {
@@ -173,7 +176,11 @@ public class IterationManager<ACC extends Value>
 	}
 
 	public Value getTrue() {
-		return evaluationVisitor.getValueFactory().getTrue();
+		return getValueFactory().getTrue();
+	}
+
+	public ValueFactory getValueFactory() {
+		return evaluationVisitor.getValueFactory();
 	}
 	
 	public boolean hasCurrent() {
@@ -203,5 +210,13 @@ public class IterationManager<ACC extends Value>
 	@Override
 	public String toString() {
 		return body.eContainer().toString();
+	}
+
+	public NullValue throwInvalidEvaluation(String string) throws InvalidEvaluationException {
+		return getEvaluationEnvironment().throwInvalidEvaluation(string);
+	}
+
+	public NullValue throwInvalidEvaluation(InvalidValueException e) {
+		return getEvaluationEnvironment().throwInvalidEvaluation(e);
 	}
 }
