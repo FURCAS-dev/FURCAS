@@ -206,7 +206,7 @@
 					Association 	"Registration")
 				    (object Link
 					quid       	"4D6274870240"
-					supplier   	"$UNNAMED$3"
+					supplier   	"rs"
 					quidu      	"4D626E90019F"
 					supplier_containment 	"By Value"
 					client_containment 	"By Value"
@@ -216,7 +216,7 @@
 				persistence 	"Transient"
 				creationObj 	FALSE
 				multi      	FALSE)
-			    (object Object "$UNNAMED$3"
+			    (object Object "rs"
 				quid       	"4D626E90019F"
 				class      	"Logical View::emf::ResourceSet"
 				quidu      	"4D626E8000EE"
@@ -1197,7 +1197,7 @@
 			zoom       	100
 			max_height 	28350
 			max_width  	21600
-			origin_x   	57
+			origin_x   	56
 			origin_y   	0
 			items      	(list diagram_item_list
 			    (object ObjectView "e1" @44
@@ -1386,7 +1386,7 @@
 				subobjects 	0
 				x_offset   	0.000000
 				y_offset   	0.000000)
-			    (object ObjectView "$UNNAMED$3" @50
+			    (object ObjectView "rs" @50
 				location   	(3011, 680)
 				font       	(object Font
 				    size       	10
@@ -1402,9 +1402,9 @@
 				    location   	(3010, 788)
 				    anchor_loc 	1
 				    nlines     	2
-				    max_width  	341
+				    max_width  	432
 				    justify    	0
-				    label      	"")
+				    label      	"rs")
 				icon       	"Interface"
 				icon_style 	"Icon"
 				line_color 	3342489
@@ -1774,7 +1774,7 @@
 				client_cardinality 	(value cardinality "0..*")
 				Containment 	"By Value"
 				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$4"
+			    (object Role "$UNNAMED$3"
 				quid       	"4D6252CA0011"
 				supplier   	"Logical View::eventmanager::EventManager"
 				quidu      	"4D62523103B1"
@@ -1789,7 +1789,7 @@
 				quidu      	"4D626E8000EE"
 				client_cardinality 	(value cardinality "0..*")
 				is_navigable 	TRUE)
-			    (object Role "$UNNAMED$5"
+			    (object Role "$UNNAMED$4"
 				quid       	"4D626EF80245"
 				supplier   	"Logical View::eventmanager::EventManager"
 				quidu      	"4D62523103B1")))
