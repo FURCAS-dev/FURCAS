@@ -257,8 +257,10 @@ public class DelayedReferencesHelper {
                     }
                 }
             }
-            if (foreachContextIterator != null && foreachContextIterator.hasNext()) {
+            if (nextOldForeachContext != null && foreachContextIterator != null && foreachContextIterator.hasNext()) {
                 nextOldForeachContext = foreachContextIterator.next();
+            } else {
+                nextOldForeachContext = null;
             }
             i++;
         }
