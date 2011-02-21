@@ -60,11 +60,21 @@ event managers</a> it produces lay the scalable foundation for the
 re-evaluation process. Even if it has to manage many subscriptions, its performance does not
 degrade as it would if the change notification filters were evaluated one after the other.
 With this it becomes possible to register many OCL expressions for change impact analysis
-as shown above. As described in more detail in the Javadoc, event managers may be re-used,
+as shown above. The figure below shows a typical default configuration of an
+event manager.
+<img src="eventManagerDefaultConfig.png" alt="Default Event Manager Configuration"/>
+The event manager in the figure is configured to listen to the change events coming
+from anything inside the resource set. In this example it is shown with three different
+event filters, each coming with its own adapter handling those change notifications
+matches by the respective filter.
+</p><p>
+As described in more detail in the Javadoc, event managers may be re-used,
 temporarily deactivated and new ones may be created specifically upon request. This way
 it is possible to have several event managers, e.g., listening for changes during different
 phases of a model's life cycle without having to create and initialize the event managers
-again and again.
+again and again. Also, an event manager is not restricted to listen to the changes of
+exactly one resource set. The following figure shows a not so typical configuration.
+<img src="eventManagerInstances.png" alt="Default Event Manager Configuration"/>
 </p>
 
 <h2>Using the Impact Analyzer in EMF Editors</h2>
