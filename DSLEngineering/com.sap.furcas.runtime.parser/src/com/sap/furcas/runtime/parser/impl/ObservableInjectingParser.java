@@ -615,71 +615,86 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      *         references. A client can obtain those unresolved references by calling {@link #getUnresolvedReferences}.
      */
     public final boolean setDelayedReferencesAfterParsing() {
-        injector.performAdapterDeferredActions();
-        replaceResolvedProxies();
+        // TODO this is a bad workaround to ensure FOREACH predicates are at least evaluated twice; this ensures that if they depend on other property inits that those have a change to get computed first 
+        Collection<DelayedReference> foreachRefsToTryASecondTime = new HashSet<DelayedReference>();
+        for (int i = 0; i < 2; i++) {
+            injector.performAdapterDeferredActions();
+            replaceResolvedProxies();
+            /*
+             * It is assumed here that at this point of time, the code structure guarantees that the list of delayed
+             * References does not contain any IModelElementproxy elements, neither does the ContextManager contain any
+             * IModelElementProxy object.
+             */
+            if (injector.getErrorList().size() != 0) {
+                return delayedReferenceList.size() == 0;
+            }
+            // try to resolve references as long as there are new references resolved
+            // this is done because the actual optimal ordering is not known at this point
+            boolean resolvedNewReference = true;
+            Collection<DelayedReference> resolvedReferences = new HashSet<DelayedReference>();
+            while (!delayedReferenceList.isEmpty() && resolvedNewReference || !unResolvedDelayedReferenceList.isEmpty()) {
+                // clear the error list as the errors might get resolved within
+                // the next iteration if not they will be added again anyways
+                injector.getErrorList().clear();
+                // if in the resolving part some new references are created they
+                // must be evaluated as well
+                delayedReferenceList.addAll(unResolvedDelayedReferenceList);
+                unResolvedDelayedReferenceList.clear();
+                resolvedNewReference = false;
+                for (DelayedReference reference : delayedReferenceList) {
+                    if (reference.getAutoCreate() != null && resolvedReferences.contains(reference)) {
+                        // make sure to create elements only once. Otherwise endless elements will
+                        // be created and the fixpoint iteration never stops.
+                        continue;
+                    }
+                    if (reference.getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE
+                            && resolvedReferences.contains(reference)) {
+                        // resolve foreach properties only once. Otherwise delayed references for the individual foreach
+                        // elements would be created over and over again
+                        // FIXME: this is buggy if the actual value of the predicate used in the for changes over the
+                        // course
+                        // of the fixpoint iteration. The elements missed before would be missed entirely.
+                        continue;
+                    }
 
-        /*
-         * It is assumed here that at this point of time, the code structure guarantees that the list of delayed
-         * References does not contain any IModelElementproxy elements, neither does the ContextManager contain any
-         * IModelElementProxy object.
-         */
-
-        if (injector.getErrorList().size() != 0) {
-            return delayedReferenceList.size() == 0;
-        }
-
-        // try to resolve references as long as there are new references resolved
-        // this is done because the actual optimal ordering is not known at this point
-        boolean resolvedNewReference = true;
-        Collection<DelayedReference> resolvedReferences = new HashSet<DelayedReference>();
-
-        while (!delayedReferenceList.isEmpty() && resolvedNewReference || !unResolvedDelayedReferenceList.isEmpty()) {
-            // clear the error list as the errors might get resolved within
-            // the next iteration if not they will be added again anyways
-            injector.getErrorList().clear();
-            // if in the resolving part some new references are created they
-            // must be evaluated as well
-            delayedReferenceList.addAll(unResolvedDelayedReferenceList);
-            unResolvedDelayedReferenceList.clear();
-
-            resolvedNewReference = false;
-            for (DelayedReference reference : delayedReferenceList) {
-
-                if (reference.getAutoCreate() != null && resolvedReferences.contains(reference)) {
-                    // make sure to create elements only once. Otherwise endless elements will
-                    // be created and the fixpoint iteration never stops.
-                    continue;
-                }
-                try {
-                    Collection<ParsingError> errorList = new ArrayList<ParsingError>(injector.getErrorList());
-
-                    Object valueBefore = getReferenceValue(reference);
-                    boolean resolvedSuccessfully = injector.resolveReference(reference, contextManager, this);
-                    Object valueAfter = getReferenceValue(reference);
-                    boolean valueChanged = valueHasChanged(valueBefore, valueAfter);
-                    if (resolvedSuccessfully) {
-                        // log which references could be resolved. Keep them around
-                        // so that they can be tried to resolve again if necessary.
-                        resolvedReferences.add(reference);
-                        if (valueChanged) {
-                            resolvedNewReference = true;
+                    try {
+                        Collection<ParsingError> errorList = new ArrayList<ParsingError>(injector.getErrorList());
+                        Object valueBefore = getReferenceValue(reference);
+                        boolean resolvedSuccessfully = injector.resolveReference(reference, contextManager, this);
+                        Object valueAfter = getReferenceValue(reference);
+                        boolean valueChanged = valueHasChanged(valueBefore, valueAfter);
+                        if (resolvedSuccessfully) {
+                            // log which references could be resolved. Keep them around
+                            // so that they can be tried to resolve again if necessary.
+                            // TODO this is a bad workaround to ensure FOREACH predicates are at least evaluated twice; this ensures that if they depend on other property inits that those have a change to get computed first 
+                            resolvedReferences.add(reference);
+                            if (reference.getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE && i==0) {
+                                foreachRefsToTryASecondTime.add(reference);
+                            }
+                            if (valueChanged) {
+                                resolvedNewReference = true;
+                            }
+                        } else if (reference.isOptional()) {
+                            restoreErrorList(errorList);
                         }
-                    } else if (reference.isOptional()) {
-                        restoreErrorList(errorList);
+                        if (resolvedSuccessfully && valueChanged) {
+                            Object me = (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
+                                    .getModelElement()).getRealObject() : reference.getModelElement();
+                            onRuleElementResolvedOutOfContext(reference.getRealValue(), me, reference.getToken(),
+                                    reference);
+                        }
+                    } catch (ModelElementCreationException e) {
+                        getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
+                    } catch (ModelAdapterException e) {
+                        getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
                     }
-                    if (resolvedSuccessfully && valueChanged) {
-                        Object me = (reference.getModelElement() instanceof IModelElementProxy) ? ((IModelElementProxy) reference
-                                .getModelElement()).getRealObject() : reference.getModelElement();
-                        onRuleElementResolvedOutOfContext(reference.getRealValue(), me, reference.getToken(), reference);
-                    }
-                } catch (ModelElementCreationException e) {
-                    getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
-                } catch (ModelAdapterException e) {
-                    getInjector().addError(new ParsingError(e.getMessage(), reference.getToken()));
                 }
             }
+            delayedReferenceList.removeAll(resolvedReferences);
+            // TODO this is a bad workaround to ensure FOREACH predicates are at least evaluated twice; this ensures that if they depend on other property inits that those have a change to get computed first 
+            delayedReferenceList.addAll(foreachRefsToTryASecondTime);
+            foreachRefsToTryASecondTime.clear();
         }
-        delayedReferenceList.removeAll(resolvedReferences);
         return delayedReferenceList.size() == 0;
     }
 
