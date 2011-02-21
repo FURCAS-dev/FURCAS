@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.3 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
@@ -63,20 +65,22 @@ public class OCLValidationDelegate implements ValidationDelegate
 			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraint);
 			throw new OCLDelegateException(message);
 		}
-		Value result = ocl.evaluate(object, query);
-		if ((result == null) || result.isInvalid()) {
+		try {
+			Value result = ocl.evaluate(object, query);
+			if (result.isNull()) {
+				String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraint);
+				throw new OCLDelegateException(message);
+			}
+			return result.asBooleanValue().isTrue();
+		}
+		catch (InvalidValueException e) {
+			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraint);
+			throw new OCLDelegateException(message);
+		}
+		catch (EvaluationException e) {
 			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraint);
 			throw new OCLDelegateException(message);
 		}
-		if (result.isNull()) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraint);
-			throw new OCLDelegateException(message);
-		}
-		if (result.asBooleanValue() == null) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraint);
-			throw new OCLDelegateException(message);
-		}		
-		return result.isTrue();
 	}
 
 	@Override

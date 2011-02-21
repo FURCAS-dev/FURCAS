@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: OCLBase.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -370,13 +370,16 @@ public abstract class OCLBase {
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evaluationProblems = e.getDiagnostic();
-			result = null;
-//		} finally {
+			throw e;
+		} finally {
 //			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-//			localEvalEnv.remove(expression.getContextVariable());
+			localEvalEnv.remove(expression.getContextVariable());
 		}
 		if (result == null) {
-			result = valueFactory.createInvalidValue("Java-Null value");
+			return localEvalEnv.throwInvalidEvaluation("Java-Null value");
+		}
+		if (result.isInvalid()) {
+			return localEvalEnv.throwInvalidEvaluation("Invalid Value");
 		}
 		return result;
 	}
@@ -447,9 +450,12 @@ public abstract class OCLBase {
 		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
-
-		Value result = evaluate(context, specification);
-		return result.isTrue();
+		try {
+			Value result = evaluate(context, specification);
+			return result.isTrue();
+		} catch (InvalidEvaluationException e) {
+			return false;
+		}
 	}
 
 	/**

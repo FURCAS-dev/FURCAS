@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CollectIteration.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: CollectIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -49,16 +50,17 @@ public class CollectIteration extends AbstractIteration<CollectionValue.Accumula
     protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
-		if (bodyVal.isInvalid()) {
-			return bodyVal;							// invalid body is invalid
-		}
-		else if (bodyVal.isNull()) {
+		if (bodyVal.isNull()) {
 			accumulatorValue.add(bodyVal);
 		}
 		else if (bodyVal instanceof CollectionValue) {
 			CollectionValue bodyColl = (CollectionValue) bodyVal;
-			for (Value value : bodyColl.flatten()) {
-				accumulatorValue.add(value);
+			try {
+				for (Value value : bodyColl.flatten()) {
+					accumulatorValue.add(value);
+				}
+			} catch (InvalidValueException e) {
+				iterationManager.throwInvalidEvaluation(e);
 			}
 		}
 		else

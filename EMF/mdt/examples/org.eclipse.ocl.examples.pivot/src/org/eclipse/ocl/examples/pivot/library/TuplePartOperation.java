@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TuplePartOperation.java,v 1.1 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: TuplePartOperation.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class TuplePartOperation implements CallableImplementation
 {
@@ -34,7 +33,7 @@ public class TuplePartOperation implements CallableImplementation
 	public TuplePartOperation() {}
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
-		if (!(sourceValue instanceof TupleValue) || sourceValue.isUndefined()) {
+/*		if (!(sourceValue instanceof TupleValue) || sourceValue.isUndefined()) {
 			if (sourceValue.isInvalid()) {
 				return sourceValue;
 			}
@@ -42,7 +41,7 @@ public class TuplePartOperation implements CallableImplementation
 				ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 				return valueFactory.createInvalidValue("non-tuple source");
 			}
-		}
+		} */
 		PropertyCallExp propertyCallExp = (PropertyCallExp) callExp;
 		Property property = propertyCallExp.getReferredProperty();
 		Value resultValue = ((TupleValue)sourceValue).getValue(property);

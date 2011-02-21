@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BooleanOrOperation.java,v 1.2 2011/01/24 19:56:32 ewillink Exp $
+ * $Id: BooleanOrOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -33,25 +34,21 @@ public class BooleanOrOperation extends AbstractBinaryOperation
 	public static final BooleanOrOperation INSTANCE = new BooleanOrOperation();
 
 	@Override
-	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public BooleanValue evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		if (sourceVal == valueFactory.getTrue()) {
+		if (sourceVal.isTrue()) {
 			return valueFactory.getTrue();
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		return evaluate(valueFactory, sourceVal, argVal);
 	}
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (left == valueFactory.getTrue()) {
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		if (left.isTrue() || right.isTrue()) {
 			return valueFactory.getTrue();
 		}
-		if (right == valueFactory.getTrue()) {
-			return valueFactory.getTrue();
+		else {
+			return valueFactory.booleanValueOf(left.asBoolean() || right.asBoolean());
 		}
-		if ((left == valueFactory.getFalse()) && (right == valueFactory.getFalse())) {
-			return valueFactory.getFalse();
-		}
-		return valueFactory.createInvalidValue("non-Boolean 'or' term");
 	}
 }

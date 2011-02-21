@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.6 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
@@ -24,12 +24,15 @@ import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -168,6 +171,20 @@ public abstract class AbstractEvaluationVisitor
     void setVisitor(EvaluationVisitor visitor) {
 		setUndecoratedVisitor(visitor);
     }
+
+	public NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException {
+		return evaluationEnvironment.throwInvalidEvaluation(message);
+	}
+
+
+	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+		return evaluationEnvironment.throwInvalidEvaluation(e);
+	}
+
+
+	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) {
+		return evaluationEnvironment.throwInvalidEvaluation(message, e, expression, value);
+	}
 	
 	@Override
     public String toString() {
@@ -202,7 +219,10 @@ public abstract class AbstractEvaluationVisitor
 		}
 		
 		Value result = body.accept(getUndecoratedVisitor());
-		
-		return isBoolean ? result.asTrue() : result;
+		try {
+			return result.asBooleanValue();
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		}
 	}
 } //EvaluationVisitorImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: CollectionExcludingOperation.java,v 1.2 2011/01/24 19:56:30 ewillink Exp $
+ * $Id: CollectionExcludingOperation.java,v 1.3 2011/02/21 08:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.collection;
 
+import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -25,12 +27,12 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * 
  * @since 3.1
  */
-public class CollectionExcludingOperation extends AbstractCollectionBinaryOperation
+public class CollectionExcludingOperation extends AbstractBinaryOperation
 {
 	public static final CollectionExcludingOperation INSTANCE = new CollectionExcludingOperation();
 
-	@Override
-	protected Value evaluateCollection(ValueFactory valueFactory, CollectionValue sourceVal, Value argVal) {
-		return sourceVal.excluding(argVal);
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		CollectionValue leftCollectionValue = left.asCollectionValue();
+		return leftCollectionValue.excluding(right);
 	}
 }

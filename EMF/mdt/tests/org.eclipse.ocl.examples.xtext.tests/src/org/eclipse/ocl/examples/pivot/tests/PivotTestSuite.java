@@ -15,12 +15,11 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.2 2011/02/21 08:37:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
 
-import java.awt.Choice;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -61,7 +60,9 @@ import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -81,7 +82,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -252,9 +252,9 @@ public abstract class PivotTestSuite
 			findChoice(choices, kind, name));
 	} */
 	
-	protected void assertInvalid(Value value) {
-		assertTrue("Expected invalid", value.isInvalid());
-	}
+//	protected void assertInvalid(Value value) {
+//		assertTrue("Expected invalid", value.isInvalid());
+//	}
 	
 	/**
 	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
@@ -472,14 +472,14 @@ public abstract class PivotTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			if (!value.isInvalid()) {
-				fail(denormalized + " expected: invalid but was: " + value);
-			}
-			return value;
+			fail(denormalized + " expected: invalid but was: " + value);
+		} catch (EvaluationException e) {
+//			assertEquals("Invalid Value Reason", reason, e.getMessage());
+//			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
-			return null;
 		}
+		return null;
 	}
 
 	protected Object assertQueryInvalid(Object context, String expression,
@@ -487,17 +487,15 @@ public abstract class PivotTestSuite
 		String denormalized = denormalize(expression);
 		try {
 			Value value = evaluate(helper, context, denormalized);
-			if (!value.isInvalid()) {
-				assertEquals(denormalized, valueFactory.createInvalidValue("bad value"), value);
-			}
-			InvalidValue invalidValue = (InvalidValue)value;
-			assertEquals("Invalid Value Reason", reason, invalidValue.getReason());
-			assertEquals("Invalid Value Throwable", exceptionClass, invalidValue.getThrowable().getClass());
-			return invalidValue;
+			fail(denormalized + " expected: invalid but was: " + value);
+//           fail("Expected invalid for \"" + denormalized + "\"");
+		} catch (EvaluationException e) {
+			assertEquals("Invalid Value Reason", reason, e.getMessage());
+			assertEquals("Invalid Value Throwable", exceptionClass, e.getCause().getClass());
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
-			return null;
 		}
+		return null;
 	}
 
 	/**
@@ -596,10 +594,12 @@ public abstract class PivotTestSuite
 			BooleanValue actualResult = ((CollectionValue) result).includesAll(expectedResult);
 			assertTrue("Expected " + result + " to contain " + expectedResult, actualResult.isTrue());
 			return result;
+		} catch (InvalidValueException e) {
+	        fail("Failed to evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
 		} catch (ParserException e) {
             fail("Failed to parse or evaluate \"" + denormalizedExpression + "\": " + e.getLocalizedMessage());
-			return null;
 		}
+		return null;
 	}
 
 	/**

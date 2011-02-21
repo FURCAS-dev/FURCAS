@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SelectIteration.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: SelectIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -51,10 +51,10 @@ public class SelectIteration extends AbstractIteration<CollectionValue.Accumulat
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return bodyVal.toInvalidValue();
+			return iterationManager.throwInvalidEvaluation("null body"); 	// Null body is invalid
 		}
 		// should be exactly one iterator
-		if (bodyVal.isTrue()) {
+		else if (bodyVal.isTrue()) {
 			Value value = iterationManager.get(0);		
 			accumulatorValue.add(value);
 		}

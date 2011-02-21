@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BooleanXorOperation.java,v 1.2 2011/01/24 19:56:32 ewillink Exp $
+ * $Id: BooleanXorOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.logical;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -30,23 +31,7 @@ public class BooleanXorOperation extends AbstractBinaryOperation
 {
 	public static final BooleanXorOperation INSTANCE = new BooleanXorOperation();
 
-	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (left == valueFactory.getTrue()) {
-			if (right == valueFactory.getTrue()) {
-				return valueFactory.getFalse();
-			}
-			else if (right == valueFactory.getFalse()) {
-				return valueFactory.getTrue();
-			}
-		}
-		else if (left == valueFactory.getFalse()) {
-			if (right == valueFactory.getTrue()) {
-				return valueFactory.getTrue();
-			}
-			else if (right == valueFactory.getFalse()) {
-				return valueFactory.getFalse();
-			}
-		}
-		return valueFactory.createInvalidValue("non-Boolean 'xor' term");
+	public BooleanValue evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		return valueFactory.booleanValueOf(left.asBoolean() ^ right.asBoolean());
 	}
 }

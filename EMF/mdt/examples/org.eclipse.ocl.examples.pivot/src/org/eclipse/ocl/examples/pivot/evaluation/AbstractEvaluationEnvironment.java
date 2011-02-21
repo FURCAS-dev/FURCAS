@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -24,13 +24,17 @@ import java.util.Map;
 import org.eclipse.ocl.examples.pivot.Adaptable;
 import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.options.Option;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
@@ -374,4 +378,31 @@ public abstract class AbstractEvaluationEnvironment
         
         return result;
     }
+
+/*	public NullValue throwInvalidEvaluation(Object value, OclExpression expression,
+			String message, Object object)
+			throws InvalidEvaluationException {
+		// TODO Auto-generated method stub
+		return null;
+	} */
+
+	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, e);
+	}
+
+	public NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, null, null);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, OclExpression expression) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, expression, null);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, expression, context);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object context) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, e, expression, context);
+	}
 }

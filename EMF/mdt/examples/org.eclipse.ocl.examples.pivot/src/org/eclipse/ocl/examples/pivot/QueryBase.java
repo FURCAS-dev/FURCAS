@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBase.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: QueryBase.java,v 1.4 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -59,7 +59,7 @@ public interface QueryBase {
 	 * @see #evaluate(List)
 	 * @see #resultType()
 	 */
-	public Value evaluate(Object obj);
+	public Value evaluate(Object obj) throws InvalidEvaluationException;
 	
 	/**
 	 * Evaluates the query. This method is used when there is no 'self' context
@@ -74,7 +74,7 @@ public interface QueryBase {
 	 * 
 	 * @see #resultType()
 	 */
-	public Object evaluate();  
+	public Object evaluate() throws InvalidEvaluationException;  
 	
 	/**
 	 * Evaluates the query on an object. The query must be a boolean valued
@@ -103,7 +103,7 @@ public interface QueryBase {
 	 * @see #evaluate(Object)
 	 * @see #resultType()
 	 */
-	public List<?> evaluate(List<?> objects);
+	public List<?> evaluate(List<?> objects) throws InvalidEvaluationException;
 			
 	/**
 	 * Determines whether all of the input objects satisfy the query.
