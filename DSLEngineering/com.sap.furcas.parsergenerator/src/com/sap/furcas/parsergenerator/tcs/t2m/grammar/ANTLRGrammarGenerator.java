@@ -400,16 +400,18 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		if (!templates.isEmpty()) {
 			for (Template template : templates) {
 				if (template.getMetaReference() != null) {
-					if (template instanceof PrimitiveTemplate) {
-						templatesNamesList.add(((PrimitiveTemplate) template)
-								.getTemplateName().toString());
-					} else if (template instanceof FunctionTemplate) {
-						templatesNamesList.add(((FunctionTemplate) template)
-								.getFunctionName().toString());
-					} else {
-						templatesNamesList.add(template.getMetaReference()
-								.getName().toString());
-					}
+					
+					templatesNamesList.add(getStringNameOfTemplate(template));
+//					if (template instanceof PrimitiveTemplate) {
+//						templatesNamesList.add(((PrimitiveTemplate) template)
+//								.getTemplateName().toString());
+//					} else if (template instanceof FunctionTemplate) {
+//						templatesNamesList.add(((FunctionTemplate) template)
+//								.getFunctionName().toString());
+//					} else {
+//						templatesNamesList.add(template.getMetaReference()
+//								.getName().toString());
+//					}
 				}
 			}
 		}
@@ -432,8 +434,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				for (Template templates_imported : imported_syntax
 						.getTemplates()) {
 					// to avoid duplicate templates
-					if (templatesNamesList.contains(templates_imported
-							.getMetaReference().getName().toString())
+					if (templatesNamesList.contains(getStringNameOfTemplate(templates_imported))
 							|| templates.contains(templates_imported)) {
 						errorBucket
 								.addWarning(
@@ -520,14 +521,14 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		// of the concrete syntax import
 		for (Template template1 : imported_templates) {
 			// to avoid duplicate templates
-			if (templatesNamesList.contains(template1.getMetaReference()
-					.getName().toString())
+			if (templatesNamesList.contains(getStringNameOfTemplate(template1))
 					|| templates.contains(template1)) {
 				errorBucket.addWarning(
 						"the template already exists in the main syntax.. ",
 						template1);
 			} else {
 				templates.add(template1);
+				templatesNamesList.add(getStringNameOfTemplate(template1));
 			}
 		}
 
@@ -537,8 +538,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			for (Template template : syntaxbean.getImportedTemplates()) {
 				if (template instanceof PrimitiveTemplate
 						&& (templatesNamesList
-								.contains(((PrimitiveTemplate) template)
-										.getTemplateName().toString()) || templates
+								.contains(getStringNameOfTemplate(template)) || templates
 								.contains(template))) {
 					errorBucket
 							.addWarning(
@@ -547,15 +547,14 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				}
 				if (template instanceof FunctionTemplate
 						&& (templatesNamesList
-								.contains(((FunctionTemplate) template)
-										.getFunctionName().toString()) || templates
+								.contains(templatesNamesList
+										.contains(getStringNameOfTemplate(template))) || templates
 								.contains(template))) {
 					errorBucket
 							.addWarning(
 									"the template of the imported templates already exists in the main syntax..",
 									template);
-				} else if (templatesNamesList.contains(template
-						.getMetaReference().getName().toString())
+				} else if (templatesNamesList.contains(getStringNameOfTemplate(template))
 						|| templates.contains(template)) {
 					errorBucket
 							.addWarning(
@@ -563,6 +562,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 									template);
 				} else {
 					templates.add(template);
+					templatesNamesList.add(getStringNameOfTemplate(template));
 					// to set the list of imported tokens and symbols of the
 					// concrete syntax of the imported template
 					if (!template.getConcreteSyntax().getName().toString()
@@ -701,17 +701,8 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		// Just for the test, to get the name list of the templates
 		if (!templates.isEmpty()) {
 			for (Template template : templates) {
-				if (template.getMetaReference() != null) {
-					if (template instanceof PrimitiveTemplate) {
-						templatesNamesList.add(((PrimitiveTemplate) template)
-								.getTemplateName().toString());
-					} else if (template instanceof FunctionTemplate) {
-						templatesNamesList.add(((FunctionTemplate) template)
-								.getFunctionName().toString());
-					} else {
-						templatesNamesList.add(template.getMetaReference()
-								.getName().toString());
-					}
+					if (template.getMetaReference() != null) {
+							templatesNamesList.add(getStringNameOfTemplate(template));
 				}
 			}
 		}
@@ -734,8 +725,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				for (Template templates_imported : imported_syntax
 						.getTemplates()) {
 					// to avoid duplicate templates
-					if (templatesNamesList.contains(templates_imported
-							.getMetaReference().getName().toString())
+					if (templatesNamesList.contains(getStringNameOfTemplate(templates_imported))
 							|| templates.contains(templates_imported)) {
 						errorBucket
 								.addWarning(
@@ -823,14 +813,14 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		// of the concretesyntax import
 		for (Template template1 : imported_templates) {
 			// to avoid duplicate templates
-			if (templatesNamesList.contains(template1.getMetaReference()
-					.getName().toString())
+			if (templatesNamesList.contains(getStringNameOfTemplate(template1))
 					|| templates.contains(template1)) {
 				errorBucket.addWarning(
 						"the template already exists in the main syntax.. ",
 						template1);
 			} else {
 				templates.add(template1);
+				templatesNamesList.add(getStringNameOfTemplate(template1));
 			}
 		}
 
@@ -840,8 +830,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			for (Template template : syntaxbean.getImportedTemplates()) {
 				if (template instanceof PrimitiveTemplate
 						&& (templatesNamesList
-								.contains(((PrimitiveTemplate) template)
-										.getTemplateName().toString()) || templates
+								.contains(getStringNameOfTemplate(template)) || templates
 								.contains(template))) {
 					errorBucket
 							.addWarning(
@@ -850,15 +839,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				}
 				if (template instanceof FunctionTemplate
 						&& (templatesNamesList
-								.contains(((FunctionTemplate) template)
-										.getFunctionName().toString()) || templates
+								.contains(getStringNameOfTemplate(template)) || templates
 								.contains(template))) {
 					errorBucket
 							.addWarning(
 									"the template of the imported templates already exists in the main syntax..",
 									template);
-				} else if (templatesNamesList.contains(template
-						.getMetaReference().getName().toString())
+				} else if (templatesNamesList.contains(getStringNameOfTemplate(template))
 						|| templates.contains(template)) {
 					errorBucket
 							.addWarning(
@@ -866,6 +853,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 									template);
 				} else {
 					templates.add(template);
+					templatesNamesList.add(getStringNameOfTemplate(template));
 					// to set the list of imported tokens and symbols of the
 					// concrete syntax of the imported template
 					if (!template.getConcreteSyntax().getName().toString()

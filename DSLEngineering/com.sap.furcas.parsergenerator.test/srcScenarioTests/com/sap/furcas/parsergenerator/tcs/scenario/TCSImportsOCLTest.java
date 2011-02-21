@@ -101,22 +101,13 @@ public class TCSImportsOCLTest extends GeneratedParserBasedTest {
 				((StubModelElement) ((StubModelElement) ((StubModelElement) result
 						.getParsedModelElement()).get("templates"))
 						.get("templateSequence")).type.toString());
+		assertEquals(1, stubModelAdapter.getElementsbyType("TCSWithOCL::Property").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("TCSWithOCL::QueryPArg").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::LetExp").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::Variable").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::VariableExp").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::IntegerLiteralExp").size());
 
-		// assertEquals(2, ((ClassTemplate)((ConcreteSyntax)
-		// result.getParsedModelElement())
-		// .getTemplates().get(0)).get);
-		// StubModelAdapter stubModelHandler = parsingHelper
-		// .parseString(sample, 0);
-		// assertEquals(1, stubModelHandler
-		// .getElementsbyType("TCS::ClassTemplate").size());
-		// assertEquals(1,
-		// stubModelHandler.getElementsbyType("TCS::ConcreteSyntax")
-		// .size());
-		// assertEquals(2, stubModelHandler.getElementsbyType("TCS::Sequence")
-		// .size());
-		// assertEquals(2,
-		// stubModelHandler
-		// .getElementsbyType("OCL::ecore2::OclExpression").size());
 
 	}
 

@@ -101,7 +101,14 @@ public class TCSImportsOCL_ConcreteSyntax extends GeneratedParserBasedTest {
 				((StubModelElement) ((StubModelElement) ((StubModelElement) result
 						.getParsedModelElement()).get("templates"))
 						.get("templateSequence")).type.toString());
-
+		
+		assertEquals(1, stubModelAdapter.getElementsbyType("TCSWithOCL::Property").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("TCSWithOCL::QueryPArg").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::LetExp").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::Variable").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::VariableExp").size());
+		assertEquals(1, stubModelAdapter.getElementsbyType("ocl::ecore2::IntegerLiteralExp").size()); 
+	
 	}
 
 }
