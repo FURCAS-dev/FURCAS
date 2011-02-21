@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,45 +12,37 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedValue.java,v 1.3 2011/01/30 11:17:25 ewillink Exp $
+ * $Id: AbstractUndefinedValue.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
-import org.eclipse.ocl.examples.pivot.values.StringValue;
-import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
-public abstract class AbstractUndefinedValue implements NullValue
+public abstract class AbstractUndefinedValue extends AbstractValue implements NullValue
 {	
-	protected final ValueFactory valueFactory;
-	
 	protected AbstractUndefinedValue(ValueFactory valueFactory) {
-		this.valueFactory = valueFactory;
+		super(valueFactory);
 	}
 
-	public InvalidValue abs() {
+	public NullValue abs() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue add(IntegerValue right) {
+	public NullValue add(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue add(RealValue right) {
-		return toInvalidValue();
-	}
-
-	public BooleanValue asBooleanValue() {
+	public NullValue add(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -58,40 +50,16 @@ public abstract class AbstractUndefinedValue implements NullValue
 		return this;
 	}
 
-	public Double asDouble() {
-		return null;
-	}
-
-	public Integer asInteger() {
-		return null;
-	}
-
-	public IntegerValue asIntegerValue() {
-		return toInvalidValue();
-	}
+//	public Double asDouble() {
+//		return null;
+//	}
 
 	public Object asObject() {
 		return null;
 	}
 
-	public RealValue asRealValue() {
-		return toInvalidValue();
-	}
-
-	public String asString() {
-		return null;
-	}
-
-	public StringValue asStringValue() {
-		return this;
-	}
-
 	public BooleanValue asTrue() {
 		return this;
-	}
-
-	public TypeValue asTypeValue() {
-		return null;
 	}
 
 	public BigDecimal bigDecimalValue() {
@@ -106,15 +74,15 @@ public abstract class AbstractUndefinedValue implements NullValue
 		throw new UnsupportedOperationException("AbstractUndefinedValue.compareTo");
 	}
 
-	public InvalidValue div(IntegerValue right) {
+	public NullValue div(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue divide(IntegerValue right) {
+	public NullValue divide(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue divide(RealValue right) {
+	public NullValue divide(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -122,7 +90,7 @@ public abstract class AbstractUndefinedValue implements NullValue
 		throw new UnsupportedOperationException("InvalidValue.compareTo");
 	}
 
-	public InvalidValue floor() {
+	public NullValue floor() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -138,63 +106,44 @@ public abstract class AbstractUndefinedValue implements NullValue
 		return null;
 	}
 
-	public ValueFactory getValueFactory() {
-		return valueFactory;
-	}
-
-	public boolean isFalse() {
-		return false;
-	}
-
-	public boolean isTrue() {
-		return false;
-	}
-
+	@Override
 	public boolean isUndefined() {
 		return true;
 	}
 
-	public boolean isUnlimited() {
-		return false;
-	}
-
-	public boolean isUnlimitedNatural() {
-		return false;
-	}
-
-	public InvalidValue max(IntegerValue right) {
+	public NullValue max(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue max(RealValue right) {
+	public NullValue max(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue min(IntegerValue right) {
+	public NullValue min(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue min(RealValue right) {
+	public NullValue min(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue mod(IntegerValue right) {
+	public NullValue mod(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue multiply(IntegerValue right) {
+	public NullValue multiply(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue multiply(RealValue right) {
+	public NullValue multiply(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue negate() {
+	public NullValue negate() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue round() {
+	public NullValue round() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -202,24 +151,20 @@ public abstract class AbstractUndefinedValue implements NullValue
 		throw new UnsupportedOperationException("InvalidValue.compareTo");
 	}
 
-	public InvalidValue subtract(IntegerValue right) {
+	public String stringValue() {
+		return null;
+	}
+
+	public NullValue subtract(IntegerValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue subtract(RealValue right) {
+	public NullValue subtract(RealValue right) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public IntegerValue toIntegerValue() {
-		return this;
-	}
-
-	public RealValue toRealValue() {
-		return this;
-	}
-
-	public void toString(StringBuffer s, int sizeLimit) {
-		s.append(toString());
+	protected NullValue toInvalidValue() throws InvalidValueException {
+		throw new InvalidValueException("Undefined Value", this);
 	}
 
 //	public <T extends NumericValue> T toValue(Class<T> numericClass) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TestPrettyPrinter.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: TestPrettyPrinter.java,v 1.3 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintNameVisitor;
 import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 public class TestPrettyPrinter extends XtextTestCase
 {

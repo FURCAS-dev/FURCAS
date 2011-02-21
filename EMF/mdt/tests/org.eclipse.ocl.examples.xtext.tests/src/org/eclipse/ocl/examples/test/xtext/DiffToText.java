@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DiffToText.java,v 1.1 2010/05/03 05:34:36 ewillink Exp $
+ * $Id: DiffToText.java,v 1.2 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-class DiffToText extends DiffSwitch<Boolean>
+public class DiffToText extends DiffSwitch<Boolean>
 {
 	protected final StringBuffer s;
 	protected int depth = 0;

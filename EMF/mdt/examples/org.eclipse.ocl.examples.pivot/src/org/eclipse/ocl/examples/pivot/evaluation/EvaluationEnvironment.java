@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -21,11 +21,15 @@ import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -235,4 +239,16 @@ public interface EvaluationEnvironment {
 	TypeManager getTypeManager();
 
 	ValueFactory getValueFactory();
+
+//	NullValue throwInvalidEvaluation(Object value, OclExpression expression, String message, Object object) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, OclExpression expression) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, Throwable e,OclExpression expression, Object context) throws InvalidEvaluationException;
 }

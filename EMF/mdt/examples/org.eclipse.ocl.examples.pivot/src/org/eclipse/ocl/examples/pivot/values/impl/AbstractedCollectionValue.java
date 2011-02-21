@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractedCollectionValue.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: AbstractedCollectionValue.java,v 1.2 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -75,7 +75,16 @@ public abstract class AbstractedCollectionValue
         return valueFactory.createSetValue(getElements());
     }
 
+	public Value asValidValue() {
+		return this;
+	}
+
 	protected abstract Collection<Value> getElements();
+
+	@Override
+	public CollectionValue isCollectionValue() {
+		return this;
+	}
 
 	public BooleanValue isEmpty() {
 		return valueFactory.booleanValueOf(intSize() == 0);

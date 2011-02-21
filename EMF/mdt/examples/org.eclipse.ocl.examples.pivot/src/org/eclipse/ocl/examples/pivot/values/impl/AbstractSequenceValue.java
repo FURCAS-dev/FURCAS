@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractSequenceValue.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: AbstractSequenceValue.java,v 1.2 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -53,16 +54,19 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
         return this;
     }
 
-    public SequenceValue append(Value object) {
+    public SequenceValue append(Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("append invalid");
+		}
     	List<Value> result = new ArrayList<Value>(elements);
         result.add(object);
         return valueFactory.createSequenceValue(result);
     }
 
-    public Value at(int index) {
+    public Value at(int index) throws InvalidValueException {
         index = index - 1;        
         if (index < 0 || elements.size() <= index) {
-			throw new IndexOutOfBoundsException(
+			throw new InvalidValueException(
 				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
 					+ size());
 		}        
@@ -78,8 +82,12 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 			SequenceValue that = (SequenceValue)obj;
 			int i = 0;
 			for (Value thisValue : this) {
-				Value thatValue = that.at(i++);
-				if (!thisValue.equals(thatValue)) {
+				try {
+					Value thatValue = that.at(i++);
+					if (!thisValue.equals(thatValue)) {
+						return false;
+					}
+				} catch (InvalidValueException e) {
 					return false;
 				}
 			}
@@ -112,7 +120,7 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
         return elements.get(0);
     }
 
-    public SequenceValue flatten() {
+    public SequenceValue flatten() throws InvalidValueException {
     	List<Value> flattened = new ArrayList<Value>();
     	if (flatten(flattened)) {
     		return valueFactory.createSequenceValue(flattened);
@@ -126,18 +134,29 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
 	    return CollectionKind.SEQUENCE;
 	}
 	   
-	public SequenceValue including(Value value) {
+	public SequenceValue including(Value value) throws InvalidValueException {
+		if (value.isInvalid()) {
+			throw new InvalidValueException("including invalid");
+		}
 		List<Value> result = new ArrayList<Value>(elements);
 		result.add(value);
 		return valueFactory.createSequenceValue(result);
 	}
 
-    public IntegerValue indexOf(Value object) {
+    public IntegerValue indexOf(Value object) throws InvalidValueException {
         int index = elements.indexOf(object);
-        return index >= 0 ? valueFactory.integerValueOf(index+1) : valueFactory.createInvalidValue("missing object");
+        if (index >= 0) {
+        	return valueFactory.integerValueOf(index+1);
+        }
+        else {
+        	throw new InvalidValueException("missing object");
+        }
     }
 
-    public SequenceValue insertAt(int index, Value object) {
+    public SequenceValue insertAt(int index, Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("insertAt invalid");
+		}
         index = index - 1;        
         if (index < 0 || index > elements.size()) {
 			throw new IndexOutOfBoundsException(
@@ -157,7 +176,10 @@ public abstract class AbstractSequenceValue<L extends List<Value>>
         return elements.get(size-1);
     }
     
-    public SequenceValue prepend(Value object) {
+    public SequenceValue prepend(Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("prepend invalid");
+		}
     	List<Value> result = new ArrayList<Value>();
         result.add(object);
         result.addAll(elements);

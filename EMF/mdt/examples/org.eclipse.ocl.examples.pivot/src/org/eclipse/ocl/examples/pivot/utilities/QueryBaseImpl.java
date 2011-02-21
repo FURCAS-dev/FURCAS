@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: QueryBaseImpl.java,v 1.2 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: QueryBaseImpl.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -25,6 +25,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -99,7 +100,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		return expression;
 	}
 
-	public Value evaluate(Object obj) {
+	public Value evaluate(Object obj) throws EvaluationException {
 		evalProblems = null;
 		
 		if (obj == null) {
@@ -133,7 +134,8 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = valueFactory.createInvalidValue(obj, null, evalProblems.toString(), e); 			
+//			result = valueFactory.createInvalidValue(obj, null, evalProblems.toString(), e);
+			throw e;
 //		} finally {
 //			myEnv.remove(specification.getContextVariable());
 //			if (resultVariable != null) {
@@ -144,7 +146,7 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 		return result;
 	}
 
-	public Value evaluate() {
+	public Value evaluate() throws EvaluationException {
 		evalProblems = null;
 		
 		// lazily create the evaluation environment, if not already done by
@@ -159,7 +161,8 @@ public class QueryBaseImpl implements QueryBase, ProblemAware {
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evalProblems = e.getDiagnostic();
-			result = environment.getTypeManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
+//			result = environment.getTypeManager().getValueFactory().createInvalidValue(null, null, evalProblems.toString(), e);
+			throw e;
 		}
 		
 		return result;
