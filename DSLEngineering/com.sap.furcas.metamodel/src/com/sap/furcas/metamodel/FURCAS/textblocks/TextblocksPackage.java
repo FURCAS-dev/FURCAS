@@ -1347,22 +1347,22 @@ public interface TextblocksPackage extends EPackage {
         int FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = 3;
 
         /**
-     * The feature id for the '<em><b>Template</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_CONTEXT__TEMPLATE = 4;
-
-        /**
      * The feature id for the '<em><b>Context String</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FOR_EACH_CONTEXT__CONTEXT_STRING = 5;
+    int FOR_EACH_CONTEXT__CONTEXT_STRING = 4;
+
+        /**
+     * The feature id for the '<em><b>Parser Rule Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_CONTEXT__PARSER_RULE_NAME = 5;
 
         /**
      * The number of structural features of the '<em>For Each Context</em>' class.
@@ -2245,17 +2245,6 @@ public interface TextblocksPackage extends EPackage {
         EReference getForEachContext_SourceModelElement();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplate <em>Template</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Template</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplate()
-     * @see #getForEachContext()
-     * @generated
-     */
-    EReference getForEachContext_Template();
-
-        /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2265,6 +2254,17 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      */
     EAttribute getForEachContext_ContextString();
+
+        /**
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Parser Rule Name</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName()
+     * @see #getForEachContext()
+     * @generated
+     */
+    EAttribute getForEachContext_ParserRuleName();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken <em>Eostoken</em>}'.
@@ -2661,20 +2661,20 @@ public interface TextblocksPackage extends EPackage {
                 EReference FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = eINSTANCE.getForEachContext_SourceModelElement();
 
                 /**
-         * The meta object literal for the '<em><b>Template</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FOR_EACH_CONTEXT__TEMPLATE = eINSTANCE.getForEachContext_Template();
-
-                /**
          * The meta object literal for the '<em><b>Context String</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         EAttribute FOR_EACH_CONTEXT__CONTEXT_STRING = eINSTANCE.getForEachContext_ContextString();
+
+                /**
+         * The meta object literal for the '<em><b>Parser Rule Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FOR_EACH_CONTEXT__PARSER_RULE_NAME = eINSTANCE.getForEachContext_ParserRuleName();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
