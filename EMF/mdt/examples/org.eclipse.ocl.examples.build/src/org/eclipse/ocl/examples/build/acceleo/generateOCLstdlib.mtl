@@ -8,7 +8,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,6 @@
 package	[javaPackage/];
 
 import java.math.BigInteger;
-import java.util.Collections;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -43,8 +42,6 @@ import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
-import org.eclipse.ocl.examples.pivot.utilities.PivotAliasCreator;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * This is the [uri/] Standard Library
@@ -100,8 +97,6 @@ public class [javaClass/] extends XMLResourceImpl
 	private [javaClass/]() {
 		super(URI.createURI(STDLIB_URI));
 		getContents().add(create());
-		PivotAliasCreator.refreshPackageAliases(this);
-		TypeManager.setMonikerAsID(Collections.singletonList(this));
 	}
 
 	/**
@@ -123,6 +118,7 @@ public class [javaClass/] extends XMLResourceImpl
 		[/for]
 
 		[pkg.getSymbolName()/].setName("[pkg.name/]");
+		[pkg.getSymbolName()/].setMoniker("[pkg.moniker/]");
 		[if (pkg.nsPrefix <> null)]
 		[pkg.getSymbolName()/].setNsPrefix("[pkg.nsPrefix/]");
 		[/if]

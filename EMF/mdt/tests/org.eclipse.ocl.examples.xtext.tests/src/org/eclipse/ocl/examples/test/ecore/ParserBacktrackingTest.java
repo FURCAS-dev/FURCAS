@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ParserBacktrackingTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: ParserBacktrackingTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -24,9 +24,4 @@ import org.eclipse.ocl.examples.test.generic.GenericParserBacktrackingTest;
  * Tests for error reports from the backtracking parser.
  */
 public class ParserBacktrackingTest extends GenericParserBacktrackingTest {
-
-	@Override
-	public PivotTestReflection getStaticReflection() {
-		return new PivotTestReflection(typeManager);
-	}
 }

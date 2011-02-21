@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.5 2011/02/15 10:37:09 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.6 2011/02/19 12:00:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
@@ -49,8 +48,6 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegating
 public class OCLstdlibPreOrderVisitor
 	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
 {
-	private static final Logger logger = Logger.getLogger(OCLstdlibPreOrderVisitor.class);
-	
 	protected static class CollectionElementTypeContinuation extends SingleContinuation<LibClassCS>
 	{
 		public CollectionElementTypeContinuation(CS2PivotConversion context, LibClassCS csElement) {
@@ -147,7 +144,7 @@ public class OCLstdlibPreOrderVisitor
 	@Override
 	public Continuation<?> visitLibRootPackageCS(LibRootPackageCS csLibRootPackage) {
 		@SuppressWarnings("unused")
-		Library pivotElement = context.refreshNamedElement(Library.class, PivotPackage.Literals.LIBRARY, csLibRootPackage);
+		Library pivotElement = context.refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csLibRootPackage);
 		Continuation<?> superContinuation = visitPackageCS(csLibRootPackage);
 		Continuation<?> localContinuation =  new LibraryPrecedenceContinuation(context, csLibRootPackage);
 		return Continuations.combine(superContinuation, localContinuation);
