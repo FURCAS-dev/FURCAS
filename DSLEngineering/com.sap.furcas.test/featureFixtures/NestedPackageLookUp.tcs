@@ -1,0 +1,17 @@
+syntax NestedPackageLookUp { 
+
+ 		
+  
+  template root::RootTest main
+  	: "rootTest" nested
+  	;
+
+
+  template root::nested::NestedTest 
+        : "nestedTest"
+        ;
+
+  token COMMENT   : endOfLine(start = "--");
+
+}
+  
