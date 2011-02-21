@@ -450,10 +450,13 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     } catch (ParserException e) {
                         throw new RuntimeException(e);
                     }
-                    Boolean match = (Boolean) ocl.evaluate(foreachElement, when);
-                    if (match) {
-                        result = whenClause.getAs();
-                        break;
+                    Object whenResult = ocl.evaluate(foreachElement, when);
+                    if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != whenResult) {
+                        Boolean match = (Boolean) ocl.evaluate(foreachElement, when);
+                        if (match) {
+                            result = whenClause.getAs();
+                            break;
+                        }
                     }
                 } else {
                     // no when clause means a match

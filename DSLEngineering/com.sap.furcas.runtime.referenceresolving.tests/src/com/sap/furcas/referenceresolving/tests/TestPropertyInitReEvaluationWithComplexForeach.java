@@ -103,7 +103,6 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         triggerManager.removeFromObservedResourceSets(resourceSet);
     }
     
-    @Ignore("Still working on getting the foreach handling with textblocks right")
     @Test
     public void testInitialModel() {
         assertNotNull(rootElement);
@@ -126,7 +125,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         }
      }
 
-    @Ignore("Still working on getting the foreach handling with textblocks right")
+    @Ignore("yet yields unreproducable failures")
     @Test
     public void testChangeArticleName() {
         for (EObject article : articles) {
@@ -154,7 +153,6 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
      * impact analysis in case the author hasn't been created using concrete syntax and
      * therefore no text block exists for the property init's execution.
      */
-    @Ignore
     @Test
     public void testChangeAuthorNameForAuthorNotCreatedByConcreteSyntax() {
         EObject newAuthor = authorClass.getEPackage().getEFactoryInstance().create(authorClass);
