@@ -33,8 +33,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextElement <em>Context Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getResultModelElement <em>Result Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getSourceModelElement <em>Source Model Element</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getTemplate <em>Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextString <em>Context String</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getParserRuleName <em>Parser Rule Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,16 +82,6 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         protected EObject sourceModelElement;
 
         /**
-     * The cached value of the '{@link #getTemplate() <em>Template</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTemplate()
-     * @generated
-     * @ordered
-     */
-    protected Template template;
-
-        /**
      * The default value of the '{@link #getContextString() <em>Context String</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -110,6 +100,26 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
      * @ordered
      */
     protected String contextString = CONTEXT_STRING_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #getParserRuleName() <em>Parser Rule Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getParserRuleName()
+     * @generated
+     * @ordered
+     */
+    protected static final String PARSER_RULE_NAME_EDEFAULT = null;
+
+        /**
+     * The cached value of the '{@link #getParserRuleName() <em>Parser Rule Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getParserRuleName()
+     * @generated
+     * @ordered
+     */
+    protected String parserRuleName = PARSER_RULE_NAME_EDEFAULT;
 
         /**
      * <!-- begin-user-doc -->
@@ -287,44 +297,6 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Template getTemplate() {
-        if (template != null && template.eIsProxy()) {
-            InternalEObject oldTemplate = (InternalEObject)template;
-            template = (Template)eResolveProxy(oldTemplate);
-            if (template != oldTemplate) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE, oldTemplate, template));
-            }
-        }
-        return template;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Template basicGetTemplate() {
-        return template;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTemplate(Template newTemplate) {
-        Template oldTemplate = template;
-        template = newTemplate;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE, oldTemplate, template));
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public String getContextString() {
         return contextString;
     }
@@ -339,6 +311,27 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         contextString = newContextString;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING, oldContextString, contextString));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getParserRuleName() {
+        return parserRuleName;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setParserRuleName(String newParserRuleName) {
+        String oldParserRuleName = parserRuleName;
+        parserRuleName = newParserRuleName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME, oldParserRuleName, parserRuleName));
     }
 
         /**
@@ -361,11 +354,10 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 if (resolve) return getSourceModelElement();
                 return basicGetSourceModelElement();
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE:
-                if (resolve) return getTemplate();
-                return basicGetTemplate();
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
                 return getContextString();
+            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
+                return getParserRuleName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -391,11 +383,11 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE:
-                setTemplate((Template)newValue);
-                return;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
                 setContextString((String)newValue);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
+                setParserRuleName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -421,11 +413,11 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)null);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE:
-                setTemplate((Template)null);
-                return;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
                 setContextString(CONTEXT_STRING_EDEFAULT);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
+                setParserRuleName(PARSER_RULE_NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -447,10 +439,10 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
                 return resultModelElement != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 return sourceModelElement != null;
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE:
-                return template != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
                 return CONTEXT_STRING_EDEFAULT == null ? contextString != null : !CONTEXT_STRING_EDEFAULT.equals(contextString);
+            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
+                return PARSER_RULE_NAME_EDEFAULT == null ? parserRuleName != null : !PARSER_RULE_NAME_EDEFAULT.equals(parserRuleName);
         }
         return super.eIsSet(featureID);
     }
@@ -467,6 +459,8 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (contextString: ");
         result.append(contextString);
+        result.append(", parserRuleName: ");
+        result.append(parserRuleName);
         result.append(')');
         return result.toString();
     }
