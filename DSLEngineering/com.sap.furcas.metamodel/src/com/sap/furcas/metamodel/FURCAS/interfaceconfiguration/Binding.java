@@ -11,6 +11,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.RequiredInterfaceTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getRequiredTemplate <em>Required Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getProvidedTemplate <em>Provided Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getMode <em>Mode</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getRequiredTemplatePackage <em>Required Template Package</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getProvidedTemplatePackage <em>Provided Template Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -162,5 +165,57 @@ public interface Binding extends EObject {
 	 * @generated
 	 */
 	void setMode(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Required Template Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Required Template Package</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Required Template Package</em>' reference.
+	 * @see #setRequiredTemplatePackage(EPackage)
+	 * @see com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.InterfaceconfigurationPackage#getBinding_RequiredTemplatePackage()
+	 * @model
+	 * @generated
+	 */
+	EPackage getRequiredTemplatePackage();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getRequiredTemplatePackage <em>Required Template Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Required Template Package</em>' reference.
+	 * @see #getRequiredTemplatePackage()
+	 * @generated
+	 */
+	void setRequiredTemplatePackage(EPackage value);
+
+	/**
+	 * Returns the value of the '<em><b>Provided Template Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Provided Template Package</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Provided Template Package</em>' reference.
+	 * @see #setProvidedTemplatePackage(EPackage)
+	 * @see com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.InterfaceconfigurationPackage#getBinding_ProvidedTemplatePackage()
+	 * @model
+	 * @generated
+	 */
+	EPackage getProvidedTemplatePackage();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getProvidedTemplatePackage <em>Provided Template Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provided Template Package</em>' reference.
+	 * @see #getProvidedTemplatePackage()
+	 * @generated
+	 */
+	void setProvidedTemplatePackage(EPackage value);
 
 } // Binding

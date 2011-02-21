@@ -2,12 +2,15 @@ package com.sap.furcas.runtime.parser.testbase;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -40,6 +43,7 @@ public class GeneratedParserTestConfiguration {
     private final String packageName;
     private final String generationDir;
     private final File grammarFile;
+	private List<String> additionalCPs = new ArrayList<String>();
     
 
     /**
@@ -97,6 +101,7 @@ public class GeneratedParserTestConfiguration {
     
     private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {
         ResourceSet resourceSet =  loadResourceSet(metamodels);
+        resourceSet.getResources().add(EcorePackage.eINSTANCE.eResource());
 //        resourceSet.getPackageRegistry().put(FURCASPackage.eNS_URI, FURCASPackage.eINSTANCE);
 //        resourceSet.getPackageRegistry().put(FURCASPackage.eNAME, FURCASPackage.eINSTANCE);
         return resourceSet;
@@ -172,4 +177,12 @@ public class GeneratedParserTestConfiguration {
     public File getSyntaxDefinitionFile(){
         return syntaxDefFile;
     }
+
+	public List<String> getAdditionalClassPaths() {
+		return additionalCPs;
+	}
+
+	public void addAdditionalClassPath(String additionalCP) {
+		this.additionalCPs.add(additionalCP);
+	}
 }

@@ -326,8 +326,8 @@ public class ClassTemplateHandler<Type extends Object> {
     private boolean addAbstractRuleBody(ClassTemplate template, String templateRulename, VarStringBuffer rulebody, RuleBodyBufferFactory ruleBodyBufferFactory) throws MetaModelLookupException {
         boolean hasAddedSubTemplates = false; // drives writing "ret2=ret;"
         boolean hasSemanticDisambiguate = false;
-        String templateMode = template.getMode();
-        
+        String templateMode = template.getMode();  
+          
         if (template.isIsOperatored()) {
             if (templateMode != null) {
                 // TODO implement this by adding mode wherever sub-templates are being invoked
@@ -361,7 +361,7 @@ public class ClassTemplateHandler<Type extends Object> {
                         subtemps = syntaxLookup.getTCSTemplate(template, subTypeName, templateMode);
 
                         for (Template subTemp : subtemps) {
-							importedTemplatesReceiver.addAdditionallyImportedTemplate(subTemp);
+							importedTemplatesReceiver.addAdditionallyImportedTemplate(template, subTemp);
 						}
                         if (subtemps != null) {
                             templates.addAll(subtemps);

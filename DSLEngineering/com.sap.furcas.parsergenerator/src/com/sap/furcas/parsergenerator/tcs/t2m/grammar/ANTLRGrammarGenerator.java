@@ -14,8 +14,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
-
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport;
@@ -29,10 +27,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
-import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding;
 import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Configuration;
-import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.InterfaceconfigurationFactory;
-import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.InterfaceconfigurationPackageImpl;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBeanWithConfig;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SymbolProductionRule;
@@ -146,18 +141,21 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 
 	private HashSet<Template> transitiveTemplates = new HashSet<Template>();
 
+	private HashSet<TemplateImport> templateImports = new HashSet<TemplateImport>();
+
 	private HashSet<RequiredInterfaceTemplate> requiredInterfaceTemplates = new HashSet<RequiredInterfaceTemplate>();
 
 	private HashSet<Template> requiredTemplates = new HashSet<Template>();
-
-	private HashSet<Binding> bindings = new HashSet<Binding>();
-
+	/**
+	 * the list of templates names of the main syntax
+	 */
+	private Collection<String> templatesNamesList = new HashSet<String>();
 	/**
 	 * this is used to get all the transitively imported templates to avoid
 	 * duplicate generation of grammar rules for transitively imported templates
 	 */
 	private HashSet<Template> allTransitiveTemplate = new HashSet<Template>();
-	
+
 	/**
 	 * Creates an ANTLR3 grammar for the given syntax and uses the writer to
 	 * write it as a String.
@@ -176,7 +174,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				metaLookup);
 		this.writer = grammarWriter;
 		this.syntax = syntaxbean.getSyntax();
-			
+
 		if (syntax.getImports() != null && syntax.getImports().size() > 0) {
 			for (ImportDeclaration importDeclaration : syntax.getImports()) {
 				if (importDeclaration instanceof ConcreteSyntaxImport) {
@@ -188,8 +186,18 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 						// (isPartial)
 					}
 				} else if (importDeclaration instanceof TemplateImport) {
+					// set the list of TemplateImports
+					templateImports.add((TemplateImport) importDeclaration);
+					// set the list of importedTemplates
 					importedTemplates.add(((TemplateImport) importDeclaration)
 							.getTemplate());
+
+					// add the symbols of the template´s concrete syntax, that
+					// does not already exist in the active concrete syntax
+					imported_symbols
+							.addAll((((TemplateImport) importDeclaration)
+									.getTemplate()).getConcreteSyntax()
+									.getSymbols());
 				}
 			}
 		}
@@ -233,18 +241,20 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				blockHandler, conElHandler, syntaxLookup, propertyHandler,
 				namingHelper, actionsHandler, errorBucket);
 	}
-	
+
 	/**
 	 * Creates an ANTLR3 grammar for the given syntax and uses the writer to
 	 * write it as a String.
 	 * 
 	 * @param grammarWriter
 	 * @param lookup
-	 * @param syntaxbean the bean with the configuration defined by an interface
+	 * @param syntaxbean
+	 *            the bean with the configuration defined by an interface
 	 * @param qualifiedNamesSeparator
 	 */
 	private <T> void init(ANTLR3GrammarWriter grammarWriter,
-			IMetaModelLookup<T> metaLookup, TCSSyntaxContainerBeanWithConfig syntaxbean) {
+			IMetaModelLookup<T> metaLookup,
+			TCSSyntaxContainerBeanWithConfig syntaxbean) {
 		interfaceSpecification = new InterfaceSpecification();
 		// collects all errors that happen during grammar generation
 		errorBucket = new SemanticErrorBucket();
@@ -254,25 +264,33 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				metaLookup);
 		this.writer = grammarWriter;
 		this.syntax = syntaxbean.getSyntax();
-		if (syntax.getRequiredTemplates() != null && !syntax.getRequiredTemplates().isEmpty()) {
+		if (syntax.getRequiredTemplates() != null
+				&& !syntax.getRequiredTemplates().isEmpty()) {
 			requiredInterfaceTemplates.addAll(syntax.getRequiredTemplates());
-			//TODO how to get the configuration elements from the tcs data 
 			Configuration configuration = syntaxbean.getConfiguration();
 			if (configuration != null) {
-				if (configuration.getBindings() != null && !configuration.getBindings().isEmpty()) {
-					//to get a list of templates from the bindings
-					resultTemplates = interfaceSpecification.getTemplatesFromBinding(configuration.getBindings(), requiredInterfaceTemplates);
+				if (configuration.getBindings() != null
+						&& !configuration.getBindings().isEmpty()) {
+					// to get a list of templates from the bindings
+					resultTemplates = interfaceSpecification
+							.getTemplatesFromBinding(
+									configuration.getBindings(),
+									requiredInterfaceTemplates);
 					if (resultTemplates != null && !resultTemplates.isEmpty()) {
-						//the templates get from the bindings will be later add as imported templates
-						requiredTemplates.addAll(resultTemplates); 
-						
+						// the templates get from the bindings will be later add
+						// as imported templates
+						requiredTemplates.addAll(resultTemplates);
+
 					}
 				}
-			}else {
-				errorBucket.addWarning("they are no Configuration defined for an interface by this syntax ", syntax);
+			} else {
+				errorBucket
+						.addWarning(
+								"they are no Configuration defined for an interface by this syntax ",
+								syntax);
 			}
 		}
-		
+
 		if (syntax.getImports() != null && syntax.getImports().size() > 0) {
 			for (ImportDeclaration importDeclaration : syntax.getImports()) {
 				if (importDeclaration instanceof ConcreteSyntaxImport) {
@@ -284,15 +302,26 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 						// (isPartial)
 					}
 				} else if (importDeclaration instanceof TemplateImport) {
-					importedTemplates.add(((TemplateImport) importDeclaration)
-							.getTemplate());
-					//add the list of  templates specified by the Interface definition 
+					Template importedTemplate = ((TemplateImport) importDeclaration)
+							.getTemplate();
+					importedTemplates.add(importedTemplate);
+
+					// add the symbols of the template´s concrete syntax, that
+					// does not already exist in the active concrete syntax
+					imported_symbols
+							.addAll((((TemplateImport) importDeclaration)
+									.getTemplate()).getConcreteSyntax()
+									.getSymbols());
+
+					// add the list of templates specified by the Interface
+					// definition
 					importedTemplates.addAll(resultTemplates);
 				}
 			}
 		}
-		
-		//add the templates got from the interface specification like imported templates
+
+		// add the templates got from the interface specification like imported
+		// templates
 		importedTemplates.addAll(requiredTemplates);
 		syntaxbean.setImportedTemplates(importedTemplates);
 		syntaxbean.setImportedConcreteSyntaxes(importedSyntaxes);
@@ -359,13 +388,30 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		Collection<Template> templates = new ArrayList<Template>();
 		templates.addAll(syntax.getTemplates());
 
+		if (!templates.isEmpty()) {
+			for (Template template : templates) {
+				if (template.getMetaReference() != null) {
+					if (template instanceof PrimitiveTemplate) {
+						templatesNamesList.add(((PrimitiveTemplate) template)
+								.getTemplateName().toString());
+					} else if (template instanceof FunctionTemplate) {
+						templatesNamesList.add(((FunctionTemplate) template)
+								.getFunctionName().toString());
+					} else {
+						templatesNamesList.add(template.getMetaReference()
+								.getName().toString());
+					}
+				}
+			}
+		}
+
 		init(writer2, metaLookup, syntaxbean);
 		errorBucket.clear();
 
 		if (validationRules != null) {
 			validationRules.validateSyntax(syntax, metaLookup, errorBucket);
 		}
-		// TODO validation of the imported templates
+		// TODO validation of the imported templates?
 
 		if (syntaxbean.getImportedConcreteSyntaxes().size() > 0) {
 			for (ConcreteSyntax imported_syntax : syntaxbean
@@ -376,7 +422,10 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 
 				for (Template templates_imported : imported_syntax
 						.getTemplates()) {
-					if (templates.contains(templates_imported)) {
+					// to avoid duplicate templates
+					if (templatesNamesList.contains(templates_imported
+							.getMetaReference().getName().toString())
+							|| templates.contains(templates_imported)) {
 						errorBucket
 								.addWarning(
 										"the template already exists in the main syntax.. ",
@@ -458,10 +507,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		} else {
 			writer.setGrammarOptions("k = " + syntax.getK() + ";");
 		}
-
+		// to build a list of all templates inclusively the imported templates
+		// of the concretesyntax import
 		for (Template template1 : imported_templates) {
-
-			if (templates.contains(template1)) {
+			// to avoid duplicate templates
+			if (templatesNamesList.contains(template1.getMetaReference()
+					.getName().toString())
+					|| templates.contains(template1)) {
 				errorBucket.addWarning(
 						"the template already exists in the main syntax.. ",
 						template1);
@@ -472,8 +524,30 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		}
 
 		if (syntaxbean.getImportedTemplates().size() > 0) {
+			importsNotnull = true;
 			for (Template template : syntaxbean.getImportedTemplates()) {
-				if (templates.contains(template)) {
+				if (template instanceof PrimitiveTemplate
+						&& (templatesNamesList
+								.contains(((PrimitiveTemplate) template)
+										.getTemplateName().toString()) || templates
+								.contains(template))) {
+					errorBucket
+							.addWarning(
+									"the template of the imported templates already exists in the main syntax..",
+									template);
+				}
+				if (template instanceof FunctionTemplate
+						&& (templatesNamesList
+								.contains(((FunctionTemplate) template)
+										.getFunctionName().toString()) || templates
+								.contains(template))) {
+					errorBucket
+							.addWarning(
+									"the template of the imported templates already exists in the main syntax..",
+									template);
+				} else if (templatesNamesList.contains(template
+						.getMetaReference().getName().toString())
+						|| templates.contains(template)) {
 					errorBucket
 							.addWarning(
 									"the template of the imported templates already exists in the main syntax..",
@@ -509,42 +583,43 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 
 		Collection<Token> tokens = new HashSet<Token>(syntax.getTokens());
 		Collection<Symbol> symbols = new HashSet<Symbol>(syntax.getSymbols());
-		Collection<Symbol> symbolList = new HashSet<Symbol>();
-		Collection<String> symbolListValues = new ArrayList<String>();
 
 		if (importsNotnull) {
 			// TODO what to do with the tokens of the concrete syntax of the
 			// imported template(TemplateImport)
-			for (Token token : imported_tokens) {
-				if (tokens.contains(token)) {
-					errorBucket.addWarning(
-							"this token already exists in the main mapping ",
-							token);
-				} else {
-					tokens.add(token);
+			if (!imported_tokens.isEmpty()) {
+				for (Token token : imported_tokens) {
+					if (tokens.contains(token)) {
+						errorBucket
+								.addWarning(
+										"this token already exists in the main mapping ",
+										token);
+					} else {
+						tokens.add(token);
+
+					}
 
 				}
-
 			}
-
-			// TODO what to do with the symbols of the concrete syntax of the
-			// imported template(TemplateImport)
-			for (Symbol symbol : imported_symbols) {
+			if (!imported_symbols.isEmpty()) {
+				Collection<String> existingSymbolValueList = new HashSet<String>();
 				for (Symbol existingSymbol : symbols) {
-					if (existingSymbol.getValue().equalsIgnoreCase(
-							symbol.getValue())) {
+					existingSymbolValueList.add(existingSymbol.getValue()
+							.toUpperCase().toString());
+				}
+				for (Symbol symbol : imported_symbols) {
+					if (existingSymbolValueList.contains(symbol.getValue()
+							.toUpperCase())) {
 						errorBucket
 								.addWarning(
 										"this symbol already exists in the main mapping ",
 										symbol);
 					} else {
-						symbolListValues.add(symbol.getValue());
-						if (!symbolListValues.contains(symbol.getValue()))
-							symbolList.add(symbol);
+						symbols.add(symbol);
 					}
 				}
 			}
-			symbols.addAll(symbolList);
+
 		}
 
 		for (Token token : tokens) {
@@ -564,13 +639,12 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		return report;
 	}
 
-	
 	/**
 	 * traverses the syntax definition elements and creates grammar elements by
 	 * delegating creation actions to Handlers. The result is stored in the
 	 * grammar Writer that was passed in the constructor, call writer.getOuput
-	 * to write get the ANTLR stream.
-	 * the class TCSSyntaxContainerBeanWithConfig is used instead of TCSSyntaxContainerBean
+	 * to write get the ANTLR stream. the class TCSSyntaxContainerBeanWithConfig
+	 * is used instead of TCSSyntaxContainerBean
 	 * 
 	 * @return
 	 * @throws MetaModelLookupException
@@ -591,6 +665,24 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		Collection<Template> templates = new ArrayList<Template>();
 		templates.addAll(syntax.getTemplates());
 
+		// Just for the test, to get the name list of the templates
+		if (!templates.isEmpty()) {
+			for (Template template : templates) {
+				if (template.getMetaReference() != null) {
+					if (template instanceof PrimitiveTemplate) {
+						templatesNamesList.add(((PrimitiveTemplate) template)
+								.getTemplateName().toString());
+					} else if (template instanceof FunctionTemplate) {
+						templatesNamesList.add(((FunctionTemplate) template)
+								.getFunctionName().toString());
+					} else {
+						templatesNamesList.add(template.getMetaReference()
+								.getName().toString());
+					}
+				}
+			}
+		}
+
 		init(writer2, metaLookup, syntaxbean);
 		errorBucket.clear();
 
@@ -608,7 +700,10 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 
 				for (Template templates_imported : imported_syntax
 						.getTemplates()) {
-					if (templates.contains(templates_imported)) {
+					// to avoid duplicate templates
+					if (templatesNamesList.contains(templates_imported
+							.getMetaReference().getName().toString())
+							|| templates.contains(templates_imported)) {
 						errorBucket
 								.addWarning(
 										"the template already exists in the main syntax.. ",
@@ -691,9 +786,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			writer.setGrammarOptions("k = " + syntax.getK() + ";");
 		}
 
+		// to build a list of all templates inclusively the imported templates
+		// of the concretesyntax import
 		for (Template template1 : imported_templates) {
-
-			if (templates.contains(template1)) {
+			// to avoid duplicate templates
+			if (templatesNamesList.contains(template1.getMetaReference()
+					.getName().toString())
+					|| templates.contains(template1)) {
 				errorBucket.addWarning(
 						"the template already exists in the main syntax.. ",
 						template1);
@@ -704,8 +803,30 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		}
 
 		if (syntaxbean.getImportedTemplates().size() > 0) {
+			importsNotnull = true;
 			for (Template template : syntaxbean.getImportedTemplates()) {
-				if (templates.contains(template)) {
+				if (template instanceof PrimitiveTemplate
+						&& (templatesNamesList
+								.contains(((PrimitiveTemplate) template)
+										.getTemplateName().toString()) || templates
+								.contains(template))) {
+					errorBucket
+							.addWarning(
+									"the template of the imported templates already exists in the main syntax..",
+									template);
+				}
+				if (template instanceof FunctionTemplate
+						&& (templatesNamesList
+								.contains(((FunctionTemplate) template)
+										.getFunctionName().toString()) || templates
+								.contains(template))) {
+					errorBucket
+							.addWarning(
+									"the template of the imported templates already exists in the main syntax..",
+									template);
+				} else if (templatesNamesList.contains(template
+						.getMetaReference().getName().toString())
+						|| templates.contains(template)) {
 					errorBucket
 							.addWarning(
 									"the template of the imported templates already exists in the main syntax..",
@@ -714,8 +835,8 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 					templates.add(template);
 				}
 			}
-
 		}
+
 		for (Template temp : templates) {
 			try {
 				this.addTemplateProductionRuleToGrammar(temp);
@@ -741,42 +862,43 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 
 		Collection<Token> tokens = new HashSet<Token>(syntax.getTokens());
 		Collection<Symbol> symbols = new HashSet<Symbol>(syntax.getSymbols());
-		Collection<Symbol> symbolList = new HashSet<Symbol>();
-		Collection<String> symbolListValues = new ArrayList<String>();
 
 		if (importsNotnull) {
 			// TODO what to do with the tokens of the concrete syntax of the
 			// imported template(TemplateImport)
-			for (Token token : imported_tokens) {
-				if (tokens.contains(token)) {
-					errorBucket.addWarning(
-							"this token already exists in the main mapping ",
-							token);
-				} else {
-					tokens.add(token);
+			if (!imported_tokens.isEmpty()) {
+				for (Token token : imported_tokens) {
+					if (tokens.contains(token)) {
+						errorBucket
+								.addWarning(
+										"this token already exists in the main mapping ",
+										token);
+					} else {
+						tokens.add(token);
+
+					}
 
 				}
 
 			}
-
-			// TODO what to do with the symbols of the concrete syntax of the
-			// imported template(TemplateImport)
-			for (Symbol symbol : imported_symbols) {
+			if (!imported_symbols.isEmpty()) {
+				Collection<String> existingSymbolValueList = new HashSet<String>();
 				for (Symbol existingSymbol : symbols) {
-					if (existingSymbol.getValue().equalsIgnoreCase(
-							symbol.getValue())) {
+					existingSymbolValueList.add(existingSymbol.getValue()
+							.toString());
+				}
+
+				for (Symbol symbol : imported_symbols) {
+					if (existingSymbolValueList.contains(symbol.getValue())) {
 						errorBucket
 								.addWarning(
 										"this symbol already exists in the main mapping ",
 										symbol);
 					} else {
-						symbolListValues.add(symbol.getValue());
-						if (!symbolListValues.contains(symbol.getValue()))
-							symbolList.add(symbol);
+						symbols.add(symbol);
 					}
 				}
 			}
-			symbols.addAll(symbolList);
 		}
 
 		for (Token token : tokens) {
@@ -796,7 +918,6 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		return report;
 	}
 
-	
 	private void addTransitivTemplateProductionRuleToGrammar()
 			throws MetaModelLookupException {
 		HashSet<Template> transitiveTemplatesCopy = new HashSet<Template>();
@@ -837,19 +958,55 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 	/*
 	 * to add all transitive imported template to the imported templates
 	 */
-	public void addAdditionallyImportedTemplate(Template importedTemplate) {
-		if (!importedTemplates.contains(importedTemplate)
-				&& !syntax.getTemplates().contains(importedTemplate)) {
-			// we have a transitively imported template which we also need to
-			// generate code for
-			if (allTransitiveTemplate.size() > 0) {
-				if (!allTransitiveTemplate.contains(importedTemplate)) {
+	public void addAdditionallyImportedTemplate(
+			Template templateCausingTransitiveImport, Template importedTemplate) {
+		if (!templateImports.isEmpty()) {
+			for (TemplateImport templateImport : templateImports) {
+				if (templateImport.getTemplate() == templateCausingTransitiveImport
+						&& templateImport.isIsPartImport()) {
+					errorBucket.addWarning(
+							"The following template avoid transitive imports ",
+							templateCausingTransitiveImport);
+				} else {
+					// just import templates transitively only when the
+					// template causing the transitive import is not
+					// partial(templateImport.isPartial = true
+					// for the templateCausingTransitiveImport )
+					if (!importedTemplates.contains(importedTemplate)
+							&& !syntax.getTemplates()
+									.contains(importedTemplate)) {
+						// we have a transitively imported template which we
+						// also need to
+						// generate code for
+						if (allTransitiveTemplate.size() > 0) {
+							if (!allTransitiveTemplate
+									.contains(importedTemplate)) {
+								transitiveTemplates.add(importedTemplate);
+							}
+						} else {
+							transitiveTemplates.add(importedTemplate);
+						}
+					}
+				}
+			}
+		} else {
+			// for the imported trough an interface specification
+			if (!importedTemplates.contains(importedTemplate)
+					&& !syntax.getTemplates().contains(importedTemplate)) {
+				// we have a transitively imported template which we
+				// also need to
+				// generate code for
+				if (allTransitiveTemplate.size() > 0) {
+					if (!allTransitiveTemplate.contains(importedTemplate)) {
+						transitiveTemplates.add(importedTemplate);
+					}
+				} else {
 					transitiveTemplates.add(importedTemplate);
 				}
-			} else {
-				transitiveTemplates.add(importedTemplate);
+
 			}
 		}
+
 	}
 
 	/**
@@ -913,6 +1070,12 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 					+ " unknown implementation of Template");
 		}
 	}
+
+	// private void addOperatorProductionRuleToGrammar(Operator operator)
+	// throws MetaModelLookupException, SyntaxElementException {
+	// operatorHandler.add
+	//
+	// }
 
 	protected static final String DEFAULT_LEXER = "NL\r\n"
 			+ "    :   (   \'\\r\' \'\\n\'\r\n"

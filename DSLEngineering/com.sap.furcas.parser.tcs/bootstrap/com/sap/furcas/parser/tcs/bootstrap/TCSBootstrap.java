@@ -39,7 +39,6 @@ public class TCSBootstrap {
     
     private static GrammarGenerationSourceConfiguration sourceConfigurationForInterface;
     private static GrammarGenerationTargetConfiguration targetConfigurationForInterface;
-//    private static TCSParserGenerator generatorForInterface;
 
     /**
      * Result of Step #1: The parsed TCS.tcs
@@ -133,7 +132,6 @@ public class TCSBootstrap {
     public void phase1_1_step2_generateGrammar() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
-//            generatorForInterface.generateGrammarFromSyntax(syntaxBeanForInterface, sourceConfigurationForInterface, targetConfigurationForInterface, errorHandler);
             generator.generateGrammarFromSyntax(syntaxBeanForInterface, sourceConfigurationForInterface, targetConfigurationForInterface, errorHandler);
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
         } catch (GrammarGenerationException e) {

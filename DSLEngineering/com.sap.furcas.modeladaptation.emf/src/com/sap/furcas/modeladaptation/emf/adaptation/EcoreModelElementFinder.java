@@ -122,9 +122,15 @@ public class EcoreModelElementFinder {
             URI[] uris = resultSet.getUris(MQL_ALIAS_INSTANCE);
             return resourceSet.getEObject(uris[0], true);
         } else {
-            throw new ReferenceSettingException("Expected to find 1 result for search after "
+//            throw new ReferenceSettingException("Expected to find 1 result for search after "
+//                    + MessageUtil.asModelName(targetType) + " with " + targetKeyName + " = " + targetKeyValue
+//                    + " but found " + resultSet.getSize());
+        	//FIXME report warning somwhere using a proper eclipse logger
+        	System.err.println("Warning: Expected to find 1 result for search after "
                     + MessageUtil.asModelName(targetType) + " with " + targetKeyName + " = " + targetKeyValue
-                    + " but found " + resultSet.getSize());
+                    + " but found " + resultSet.getSize() +  ". using the first result for now");
+        	URI[] uris = resultSet.getUris(MQL_ALIAS_INSTANCE);
+            return resourceSet.getEObject(uris[0], true);
         }
     }
     

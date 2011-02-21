@@ -18,7 +18,7 @@ public class TestInvalidSyntaxes extends AbstractTCSInjectionTest {
         
         assertNotNull(modelParsingResult);
         assertNotNull(modelParsingResult.getResult().getErrors());
-        assertEquals(2, modelParsingResult.getResult().getErrors().size());
+        assertEquals(1, modelParsingResult.getResult().getErrors().size());
         ParsingError e1 = modelParsingResult.getResult().getErrors().get(0);
         assertEquals(1, e1.getLine());
         assertEquals(0, e1.getPosition());

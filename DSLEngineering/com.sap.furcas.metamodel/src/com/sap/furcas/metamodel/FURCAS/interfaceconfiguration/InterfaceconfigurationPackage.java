@@ -152,13 +152,31 @@ public interface InterfaceconfigurationPackage extends EPackage {
 	int BINDING__MODE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Required Template Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING__REQUIRED_TEMPLATE_PACKAGE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Provided Template Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINDING__PROVIDED_TEMPLATE_PACKAGE = 6;
+
+	/**
 	 * The number of structural features of the '<em>Binding</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_FEATURE_COUNT = 5;
+	int BINDING_FEATURE_COUNT = 7;
 
 
 	/**
@@ -259,6 +277,28 @@ public interface InterfaceconfigurationPackage extends EPackage {
 	EAttribute getBinding_Mode();
 
 	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getRequiredTemplatePackage <em>Required Template Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Required Template Package</em>'.
+	 * @see com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getRequiredTemplatePackage()
+	 * @see #getBinding()
+	 * @generated
+	 */
+	EReference getBinding_RequiredTemplatePackage();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getProvidedTemplatePackage <em>Provided Template Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Provided Template Package</em>'.
+	 * @see com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Binding#getProvidedTemplatePackage()
+	 * @see #getBinding()
+	 * @generated
+	 */
+	EReference getBinding_ProvidedTemplatePackage();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,6 +395,22 @@ public interface InterfaceconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BINDING__MODE = eINSTANCE.getBinding_Mode();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Template Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINDING__REQUIRED_TEMPLATE_PACKAGE = eINSTANCE.getBinding_RequiredTemplatePackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Provided Template Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BINDING__PROVIDED_TEMPLATE_PACKAGE = eINSTANCE.getBinding_ProvidedTemplatePackage();
 
 	}
 

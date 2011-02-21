@@ -67,6 +67,7 @@ syntax TCS {
         -- @end TextBlockDefintion      
 
         -- the root element of any syntax definition
+        --template TCS::ConcreteSyntax main context(syntax)
         template TCS::ConcreteSyntax main context
                 :(isDefined(imports) ? imports )    
                 (isDefined(requiredTemplates) ? "requires" requiredTemplates{separator = ","} ";") 
@@ -211,8 +212,16 @@ syntax TCS {
         template TemplateImport
                 : (isPartImport ? "partial") "imports" concreteSyntax { refersTo = name,
                 query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
+                (isDefined(templatePackage) ? templatePackage{ as = identifierOrKeyword ,
+				query ="OCL:ecore::EPackage.allInstances()->select(p | p.name =?)"} "::" )
                 template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
-                ->select(t | t.metaReference.name = ? and 
+                ->select(t | t.metaReference.name = ? and
+                if(not self.templatePackage.oclIsUndefined()) then
+                t.oclAsType(FURCAS::TCS::Template).metaReference.ePackage = self.templatePackage
+                else
+                		true
+                endif
+                		and 
                 if(not self.mode.oclIsUndefined()) then
                 t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
                 else
@@ -234,6 +243,7 @@ syntax TCS {
 
         template TCS::LiteralRef
                 :
+                				--referredLiteral{refersTo = value, lookIn = #context(syntax1), as = stringSymbol, autoCreate = ifmissing, createAs = FURCAS::TCS::Keyword}
                                 referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol, autoCreate = ifmissing, createAs = FURCAS::TCS::Keyword}
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
@@ -244,14 +254,8 @@ syntax TCS {
                   (isDefined(strucfeature) ? 
                   strucfeature{
                         refersTo = name, 
-                        query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass) in
-                        		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
-                                         if (not result.oclIsInvalid()) then
-                                                 Bag{result}     
-                                         else    
-                                                Bag{}
-                                         endif",
-                        filter = "", invert = "name", as = identifierOrKeyword}
+                        query = "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures",
+                        filter = "->select(f | f.name = ?)", invert = "name", as = identifierOrKeyword}
                   : "->" name{as = identifierOrKeyword})
             ;
 
@@ -686,7 +690,7 @@ syntax TCS {
                 dlsquare        = "[[";
                 drsquare        = "]]";
                 excl            = "!";
-                coma            = ",";
+                COMMA            = ",";
                 lparen          = "(";
                 rparen          = ")";
                 lcurly          = "{";

@@ -8,13 +8,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.antlr.runtime.Lexer;
 
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
-import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
@@ -38,38 +36,47 @@ import com.sun.tools.javac.Main;
  * 
  */
 public abstract class GeneratedParserBasedTest {
-	
+
 	/**
-	 * Parse a syntax that defined an Template trough an interface specified by an configuration data
+	 * Parse a syntax that defined an Template trough an interface specified by
+	 * an configuration data
+	 * 
 	 * @param config
-	 * @throws ParserGeneratorInvocationException 
-	 * @throws ParserInvokationException 
+	 * @throws ParserGeneratorInvocationException
+	 * @throws ParserInvokationException
 	 */
-	
-	public static TCSSyntaxContainerBeanWithConfig parse(GeneratedParserTestWithConfiguration config) throws ParserGeneratorInvocationException, ParserInvokationException {
+
+	public static TCSSyntaxContainerBeanWithConfig parse(
+			GeneratedParserTestWithConfiguration config)
+			throws ParserGeneratorInvocationException,
+			ParserInvokationException {
 		TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE
-			.createTCSParserGenerator();
-			return generator.parseSyntaxWithConfig(config.getSourceConfiguration(), config.getSyntaxDefinitionFile(), config.getSyntaxDefFiles());
+				.createTCSParserGenerator();
+		return generator.parseSyntaxWithConfig(config.getSourceConfiguration(),
+				config.getSyntaxDefinitionFile(), config.getSyntaxDefFiles());
 	}
-	
-	public static ParserFacade generateParserForLanguageWithConfiguration(TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration,
-			GeneratedParserTestWithConfiguration testConfig, ClassLookup classLookup)
-			throws GrammarGenerationException,
+
+	public static ParserFacade generateParserForLanguageWithConfiguration(
+			TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration,
+			GeneratedParserTestWithConfiguration testConfig,
+			ClassLookup classLookup) throws GrammarGenerationException,
 			ParserGeneratorInvocationException,
 			InvalidParserImplementationException {
-		
-		return generateParserForLanguageWithConfiguration(syntaxBeanWithConfiguration,testConfig, classLookup,
-				true);
+
+		return generateParserForLanguageWithConfiguration(
+				syntaxBeanWithConfiguration, testConfig, classLookup, false);
 	}
-	
-	public static ParserFacade generateParserForLanguageWithConfiguration(TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration,
+
+	public static ParserFacade generateParserForLanguageWithConfiguration(
+			TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration,
 			GeneratedParserTestWithConfiguration testConfig,
 			ClassLookup classLookup, boolean doCleanUp)
 			throws GrammarGenerationException,
 			ParserGeneratorInvocationException,
 			InvalidParserImplementationException {
 		try {
-			generateGrammarWithConfiguration(testConfig,syntaxBeanWithConfiguration);
+			generateGrammarWithConfiguration(testConfig,
+					syntaxBeanWithConfiguration);
 			generateParser(testConfig);
 			compileParser(testConfig);
 
@@ -80,16 +87,21 @@ public abstract class GeneratedParserBasedTest {
 			}
 		}
 	}
-	
+
 	protected final static void generateGrammarWithConfiguration(
-			GeneratedParserTestWithConfiguration testConfig,TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration)
+			GeneratedParserTestWithConfiguration testConfig,
+			TCSSyntaxContainerBeanWithConfig syntaxBeanWithConfiguration)
 			throws GrammarGenerationException {
 		SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
 		try {
 			TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE
 					.createTCSParserGenerator();
-			generator.generateGrammarFromSyntaxWithConfiguration(syntaxBeanWithConfiguration,testConfig.getSourceConfiguration(),testConfig.getTargetConfiguration(),
-					testConfig.getSyntaxDefinitionFile(),testConfig.getSyntaxDefFiles(), errorHandler);
+			generator.generateGrammarFromSyntaxWithConfiguration(
+					syntaxBeanWithConfiguration,
+					testConfig.getSourceConfiguration(),
+					testConfig.getTargetConfiguration(),
+					testConfig.getSyntaxDefinitionFile(),
+					testConfig.getSyntaxDefFiles(), errorHandler);
 		} catch (ParserGeneratorInvocationException e) {
 			e.printStackTrace();
 			fail("Failed to generate grammar:" + e.getMessage());
@@ -98,51 +110,46 @@ public abstract class GeneratedParserBasedTest {
 				errorHandler.hasFailedWithError());
 
 	}
-	
-/**
- * for imported syntaxes
- * @param testConfigMod
- * @return
- * @throws MetaModelLookupException
- * @throws ParserGeneratorInvocationException
- * @throws ParserInvokationException
- */
+
+	/**
+	 * for imported syntaxes
+	 * 
+	 * @param testConfigMod
+	 * @return
+	 * @throws MetaModelLookupException
+	 * @throws ParserGeneratorInvocationException
+	 * @throws ParserInvokationException
+	 */
 	public static List<TCSSyntaxContainerBean> modularParseSyntax(
 			ModularisedGeneratedParserTestConfiguration testConfigMod)
 			throws MetaModelLookupException,
 			ParserGeneratorInvocationException, ParserInvokationException {
-		
+
 		List<TCSSyntaxContainerBean> syntaxBeanList = parseSyntax(testConfigMod);
 		return syntaxBeanList;
 	}
-	
+
 	public static List<TCSSyntaxContainerBean> parseSyntax(
 			ModularisedGeneratedParserTestConfiguration testConfigMod)
 			throws ParserGeneratorInvocationException,
 			ParserInvokationException {
-		
+
 		List<TCSSyntaxContainerBean> syntaxBeanList1 = new ArrayList<TCSSyntaxContainerBean>();
 		TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE
 				.createTCSParserGenerator();
 		for (File syntaxDefFile : testConfigMod.getSyntaxDefFiles()) {
 			TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(
-					testConfigMod.getSourceConfiguration(),
-					syntaxDefFile);
+					testConfigMod.getSourceConfiguration(), syntaxDefFile);
 			syntaxBeanList1.add(syntaxBean);
 		}
-		
+
 		TCSSyntaxContainerBean syntaxBean1 = generator.parseSyntax(
 				testConfigMod.getSourceConfiguration(),
 				testConfigMod.getSyntaxDefinitionFile());
 		syntaxBeanList1.add(syntaxBean1);
-		
-		
-		
 		return syntaxBeanList1;
-
 	}
-	
-	
+
 	public static TCSSyntaxContainerBean parseSyntax(
 			GeneratedParserTestConfiguration testConfig)
 			throws ParserGeneratorInvocationException,
@@ -164,7 +171,7 @@ public abstract class GeneratedParserBasedTest {
 			ParserGeneratorInvocationException,
 			InvalidParserImplementationException {
 		return generateParserForLanguage(syntaxBean, testConfig, classLookup,
-				true);
+				false);
 	}
 
 	public static ParserFacade generateParserForLanguageWithConfig(
@@ -173,10 +180,11 @@ public abstract class GeneratedParserBasedTest {
 			throws GrammarGenerationException,
 			ParserGeneratorInvocationException,
 			InvalidParserImplementationException {
-		
-		return generateParserForLanguageWithConfig(syntaxBean, testConfig, classLookup,
-				true);
+
+		return generateParserForLanguageWithConfig(syntaxBean, testConfig,
+				classLookup, false);
 	}
+
 	public static ParserFacade generateParserForLanguage(
 			TCSSyntaxContainerBean syntaxBean,
 			GeneratedParserTestConfiguration testConfig,
@@ -196,6 +204,7 @@ public abstract class GeneratedParserBasedTest {
 			}
 		}
 	}
+
 	public static ParserFacade generateParserForLanguageWithConfig(
 			TCSSyntaxContainerBeanWithConfig syntaxBean,
 			GeneratedParserTestConfiguration testConfig,
@@ -235,7 +244,7 @@ public abstract class GeneratedParserBasedTest {
 				errorHandler.hasFailedWithError());
 
 	}
-	
+
 	protected final static void generateGrammarWithConfig(
 			GeneratedParserTestConfiguration testConfig,
 			TCSSyntaxContainerBeanWithConfig syntaxBean)
@@ -284,18 +293,20 @@ public abstract class GeneratedParserBasedTest {
 		ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
 		PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
 		try {
+			String cp = "../org.antlr/bin" + File.pathSeparator
+					+ "../com.sap.furcas.runtime.parser/bin"
+					+ File.pathSeparator
+					+ "../com.sap.furcas.runtime.common/bin"
+					+ File.pathSeparator
+					+ "../com.sap.furcas.parsergenerator.emf/bin"
+					+ File.pathSeparator + "../com.sap.furcas.runtime.tcs/bin";
+			for (String cpElement : testConfig.getAdditionalClassPaths()) {
+				cp += File.pathSeparator + cpElement;
+			}
 			int success = Main.compile(new String[] {
 					testConfig.getRelativePathToGeneratedLexerClass(),
-					testConfig.getRelativePathToGeneratedParserClass(),
-					"-cp",
-					"../org.antlr/bin" + File.pathSeparator
-							+ "../com.sap.furcas.runtime.parser/bin"
-							+ File.pathSeparator
-							+ "../com.sap.furcas.runtime.common/bin"
-							+ File.pathSeparator
-							+ "../com.sap.furcas.parsergenerator.emf/bin"
-							+ File.pathSeparator
-							+ "../com.sap.furcas.runtime.tcs/bin" });
+					testConfig.getRelativePathToGeneratedParserClass(), "-cp",
+					cp });
 			if (success != 0) {
 				fail("Parser compilation failed with code '" + success
 						+ "'. Messages: \n" + errByteStream.toString());

@@ -226,7 +226,8 @@ public class PropertyTypeHandler<Type extends Object> {
 						// returned here?
 						for (Template importedTemplate : tcsTemplate) {
 							importedTemplatesReceiver
-									.addAdditionallyImportedTemplate(importedTemplate);
+									.addAdditionallyImportedTemplate(prop.getParentTemplate(),
+											importedTemplate);
 						}
 
 						repeatablePart.append(propertyTemplateRule);

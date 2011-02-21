@@ -1,0 +1,874 @@
+-- Identifiers are ALPHA (ALPHA | DIGIT)* with a special form between single quote to escape them in case they are the same as a keywords of TCS
+-- Strings are double quoted
+-- Comments begin with -- and end with the end of the line
+
+requires ecore2::OCLExpression;
+syntax TCSWithOCL {
+         primitiveTemplate identifier for ecore::EString default using NAME :
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate identifierOrKeyword for ecore::EString using NAME orKeyword:
+                value = "unescapeString(%token%)";
+                
+        primitiveTemplate escapedIdentifierOrKeyword for ecore::EString using NAME orKeyword:
+                value = "unescapeString(%token%)",
+                serializer = "\'%value%\'";
+
+        primitiveTemplate stringSymbol for ecore::EString using STRING:
+                value = "unescapeString(%token%)",
+				serializer="\"%value%\"";
+	
+		primitiveTemplate plainStringSymbol for ecore::EString using STRING:
+                value = "unescapeString(%token%)";
+
+        primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
+                value = "Integer.valueOf(%token%)";
+
+        primitiveTemplate floatSymbol for ecore::EDoubleObject default using FLOAT:
+                value = "Double.valueOf(%token%)";
+                
+        primitiveTemplate booleanSymbol for EBoolean using BOOL:
+				value = "Boolean.parseBoolean(%token%)";
+       
+ /**       primitiveTemplate qualifiedNameSymbol for ecore::EString using QNAME:
+                value = "unescapeString(%token%)";
+*/ 
+                
+ /**         primitiveTemplate qualifiedNameSymbolList for ecore::EString using QNAME:
+                value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
+*/
+        -- ecore element representation in qualified names
+
+        
+        -- A modelClassifier is either its container followed by :: and a name, or just a name
+        template ecore::EClassifier referenceOnly --should never be created
+                : ( isDefined(ePackage) ? ePackage "::" name : name)
+                ;
+                
+/** TODO Doesn't work and I don't know why                
+        -- Namespace gets operatored using the :: operator to resolve left recursion
+        template ecore::EObject abstract operatored(DBLCOLON);
+*/
+
+        -- if parsed path has more than one element, 
+        -- the first will be of type Generalizable element
+        -- because that is the type of Mode::ModelElement.container
+        template ecore::EPackage referenceOnly -- should never be created
+                : name
+                ;
+/** TODO Doesn't work and I don't know why                
+        -- any following elements in a package path will be resolved using this
+        operatorTemplate ecore::ENamedElement(operators =
+                        opDlColon, source = 'eContainer') referenceOnly -- should never be created
+                :       name
+                ;
+        -- end ecore element representation
+*/
+
+        -- @begin TextBlockDefintion
+        template textblockdefinition::TextBlockDefinition
+                :
+                ;
+        -- @end TextBlockDefintion      
+
+        -- the root element of any syntax definition
+        template TCSWithOCL::ConcreteSyntax main context
+                :(isDefined(imports) ? imports )    
+                (isDefined(requiredTemplates) ? "requires" requiredTemplates{separator = ","} ";") 
+                 "syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
+                 				[[
+                 					(templates instanceOf PrimitiveTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf ContextTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf EnumerationTemplate ? templates{forcedLower=1})
+                 					|
+                 					(templates instanceOf FunctionTemplate ? templates{forcedLower=1})
+                 				]]*
+                                (isDefined(keywords) ? "keywords" "{" [ keywords ] "}")
+                                (isDefined(symbols) ? "symbols" "{" [ symbols ] "}")
+                                operatorLists
+                                tokens
+                                (isDefined(lexer) ? "lexer" "=" lexer{as = stringSymbol} ";")
+                        ] {nbNL = 2} "}"
+                ;
+
+        -- utility for all qualified meta references
+        function reference(TCSWithOCL::QualifiedNamedElement)
+                : (isDefined(metaReference) 
+                  ? 
+                     metaReference   
+                  : "->" names{separator="::"}) -- workaround allowing to specify metatypes without directly referencing them                
+                ;
+
+-- @begin Templates
+
+        template TCSWithOCL::Template abstract;
+        
+        template TCSWithOCL::ContextTemplate abstract;
+
+        template TCSWithOCL::PrimitiveTemplate
+                :       (isDefined(templateVisibility) ? templateVisibility )
+                        "primitiveTemplate" templateName "for" $reference
+                                (default ? "default")
+                                "using" tokenName
+                                (orKeyword ? "orKeyword")
+                        ":"
+                                "value" "=" value{as = stringSymbol}
+                                (isDefined(serializer) ?
+                                        "," "serializer" "=" serializer{as = stringSymbol}
+                                )
+                        ";"
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
+                        textBlockDefinition{forcedUpper=1}
+                ;
+
+        template TCSWithOCL::EnumerationTemplate context addToContext
+                :       (isDefined(templateVisibility) ? templateVisibility)
+                	"enumerationTemplate" $reference (automatic ? "auto")
+                        (isDefined(mappings) ?
+                                        [ ":" [
+                                                mappings{separator = ","}
+                                        ] {startNL = false} ";" ]
+                                :
+                                        ";"
+                        )
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
+                        textBlockDefinition{forcedUpper=1}
+                ;
+
+        template TCSWithOCL::EnumLiteralMapping
+                :       literal "=" element
+                ;
+
+        template TCSWithOCL::ClassTemplate context addToContext
+                :   (isDefined(templateVisibility) ? templateVisibility )    
+                	"template" $reference
+                        (isReferenceOnly 
+                          ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
+                          : 
+                                (isDefined(mode) ? "#" mode{as = identifierOrKeyword})
+                                (isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
+                                (isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
+                                (isDefined(semDisambiguate) ? "(" "semDisambiguate" "=" semDisambiguate{as = stringSymbol} ")")
+                                (isMulti ? "multi")
+                                (isMain ? "main")
+                                (isAbstract ? (isDeep ? "deep") "abstract")
+                                (isOperatored ? "operatored" (isDefined(operatorList) ? "(" operatorList{refersTo = name} ")"))
+                                (isContext ? "context" (isDefined(contextTags) ? contextTags))
+                                (isAddToContext ? "addToContext")
+                                (isNonPrimary ? "nonPrimary")
+                                (isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
+                          )
+                        (isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
+                        textBlockDefinition{forcedUpper=1}
+                ;
+                
+        template TCSWithOCL::RequiredInterfaceTemplate context addToContext
+         		: $reference
+         		(isDefined(mode) ? "#" mode{as = identifierOrKeyword}) 
+                --(isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
+                --(isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
+                --(isDefined(semDisambiguate) ? "(" "semDisambiguate" "=" semDisambiguate{as = stringSymbol} ")")
+                ;
+
+        template TCSWithOCL::OperatorTemplate context addToContext
+                :       (isDefined(templateVisibility) ? templateVisibility )
+                		"operatorTemplate" $reference "("
+                                "operators" "=" operators{refersTo = name}
+                                "," "source" "=" storeLeftSideTo
+                                (isDefined(storeOperatorTo) ? "," "storeOpTo" "=" storeOperatorTo)
+                                (isDefined(storeRightSideTo) ? "," "storeRightTo" "=" storeRightSideTo)
+                                (isDefined(disambiguate) ? "," "disambiguate" "=" disambiguate{as = stringSymbol})
+                                (isDefined(disambiguateV3) ? "," "disambiguateV3" "=" disambiguateV3{as = stringSymbol})
+                                (isDefined(semDisambiguate) ? "," "semDisambiguate" "=" semDisambiguate{as = stringSymbol})
+                        ")"
+                        (isReferenceOnly ? "referenceOnly" :
+                                (isContext ? "context" (isDefined(contextTags) ? contextTags))
+                        )
+                        (isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
+                        --this is an oppositeEnd for TextBlockDefinition:parseRule
+                        textBlockDefinition{forcedUpper=1}
+                ;
+
+        template TCSWithOCL::FunctionTemplate context addToContext
+                :       (isDefined(templateVisibility) ? templateVisibility )
+                		"function" functionName "(" $reference ")"
+                                [ ":"
+                                        [ functionSequence ] {startNL = false}
+                                ";" ]
+                ;
+                
+        template TCSWithOCL::ContextTags
+                : "(" tags{separator= ","} ")"
+                ;
+-- @end Templates 
+  
+-- @the import concept 
+		template ImportDeclaration abstract;
+				 
+		template ConcreteSyntaxImport 
+				: (isPartImport ? "partial") "imports" concreteSyntax { refersTo = name, 
+				query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"} ";" 
+				;
+		
+        template TemplateImport
+                : (isPartImport ? "partial") "imports" concreteSyntax { refersTo = name,
+                query = "OCL:ConcreteSyntax.allInstances()->select(cs | cs.name = ?)"}
+                (isDefined(templatePackage) ? templatePackage{ as = identifierOrKeyword ,
+					query ="OCL:ecore::EPackage.allInstances()->select(p | p.name =?)"} "::" )
+                template { as = identifierOrKeyword, query = "OCL:self.concreteSyntax.templates
+                ->select(t | t.metaReference.name = ? and
+                if(not self.templatePackage.oclIsUndefined()) then
+                t.oclAsType(FURCAS::TCSWithOCL::Template).metaReference.ePackage = self.templatePackage
+                else
+                		true
+                endif
+                		and 
+                if(not self.mode.oclIsUndefined()) then
+                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode = self.mode
+                else
+                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode.oclIsUndefined()
+                endif)"}
+                (isDefined(mode) ?  "#" mode ) ";" 
+                ;
+
+--@ end of the import concept
+
+
+
+        template TCSWithOCL::Sequence
+                :       [ elements ]
+                ;
+
+-- @begin Sequence Elements
+        template TCSWithOCL::SequenceElement abstract;
+
+
+        template TCSWithOCL::LiteralRef
+                :
+                                referredLiteral{refersTo = value, lookIn = #all, as = stringSymbol , autoCreate = ifmissing, createAs = TCSWithOCL::Keyword}
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::PropertyReference 
+            :
+            -- for reference, need to look in metareference modelElement of the template this property belongs to       
+                  (isDefined(strucfeature) ? 
+                  strucfeature{
+                        refersTo = name, 
+                        query = "OCL:let c:ecore::EClass = #context.oclAsType(FURCAS::TCSWithOCL::Template).metaReference.oclAsType(ecore::EClass) in
+                        		     let result:ecore::EStructuralFeature = c.getEStructuralFeature(?) in
+                                         if (not result.oclIsInvalid()) then
+                                                 Bag{result}     
+                                         else    
+                                                Bag{}
+                                         endif",
+                        filter = "", invert = "name", as = identifierOrKeyword}
+                  : "->" name{as = identifierOrKeyword})
+            ;
+
+        template TCSWithOCL::Property
+                : propertyReference
+                  (isDefined(propertyArgs) ? "{" propertyArgs{separator = ","} "}")
+                  {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::CustomSeparator
+                :       "<" name ">"
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::Block
+                :       "[" blockSequence "]" (isDefined(blockArgs) ? "{" blockArgs{separator = ","} "}")
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::ConditionalElement
+                :       "(" condition "?" thenSequence (isDefined(elseSequence) ? ":" elseSequence) ")"
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::Alternative
+                :       "[[" [ sequences{separator = "|"} ]  "]]" (isMulti ? "*")
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+                
+        template TCSWithOCL::SequenceInAlternative
+                :       (isDefined(disambiguate) ? "disambiguate" "(" disambiguate{as = stringSymbol} ")") 
+                        [ elements ]
+                ;
+                
+        template TCSWithOCL::FunctionCall
+                :       "$" calledFunction{refersTo = functionName}
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+
+        template TCSWithOCL::InjectorActionsBlock
+                :       "{{" [ injectorActions{separator = ","} ] "}}"
+                        {{ parentTemplate = lookIn("OCL:#context") }}
+                ;
+                
+        template TCSWithOCL::InjectorAction abstract;
+        
+        template TCSWithOCL::PropertyInit abstract;
+        
+        template TCSWithOCL::PrimitivePropertyInit
+                :       propertyReference (default ? "<-" : "=") value { as = escapedIdentifierOrKeyword }
+                ;
+        
+        template TCSWithOCL::LookupPropertyInit
+                :       propertyReference (default ? "<-" : "=") "lookIn" "(" value { as = stringSymbol } ")"
+                ;
+        template TCSWithOCL::ForeachPredicatePropertyInit
+                :       propertyReference (default ? "<-" : "=") "foreach" "(" 
+                                value {as = stringSymbol} 
+                                (isDefined(mode)? "," "mode" "=" mode {as = identifierOrKeyword})
+                                (isDefined(predicateSemantic)? "," [ predicateSemantic {separator=","} ] )
+                                ")"
+                ;
+
+                template TCSWithOCL::PredicateSemantic
+                : (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
+                  (isDefined(mode)?  "mode" "=" mode {as = identifierOrKeyword}",")
+                  "as" "=" 
+                              as {as = identifierOrKeyword, 
+                                                                query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+                                                        filter="->select(t | 
+                                                                        if(t.oclIsTypeOf(FURCAS::TCSWithOCL::ClassTemplate)) then 
+                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.name = ?
+                                                                                and(t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.oclAsType(ecore::EClass)).eAllSuperTypes
+                                                                                        ->prepend(t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.oclAsType(ecore::EClass))
+                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.eType)
+                                                                                and (
+                                                                                        if(not self.mode.oclIsUndefined()) then
+                                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode = self.mode
+                                                                                        else
+                                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode = self.foreachParent.mode
+                                                                                        endif
+                                                                                )                                                                       
+                                                                        else
+                                                                                if(t.oclIsTypeOf(FURCAS::TCSWithOCL::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCSWithOCL::PrimitiveTemplate).templateName = ?
+                                                                                else
+                                                                                        false
+                                                                                endif
+                                                                        endif)
+                                                                ",
+                                                        invert="OCL:if self.oclIsTypeOf(FURCAS::TCSWithOCL::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.name
+                                                                                else 
+                                                                                        if self.oclIsTypeOf(FURCAS::TCSWithOCL::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCSWithOCL::PrimitiveTemplate).templateName
+                                                                                        else
+                                                                                                '<no name?>'
+                                                                                        endif
+                                                                                endif"}
+                ;
+
+-- @end Sequence Elements
+
+
+-- @begin Property Arguments
+        template TCSWithOCL::PropertyArg abstract;
+
+        template TCSWithOCL::RefersToPArg
+                :       "refersTo" "=" propertyName{as = identifierOrKeyword}
+                ;
+
+        template TCSWithOCL::LookInPArg
+                :       "lookIn" "=" (propertyName = "#all" ? "#" "all" : propertyName{as = identifierOrKeyword, separator = "."})
+                ;
+
+        template TCSWithOCL::CreateInPArg
+                :       "createIn" "=" propertyName{as = identifierOrKeyword, separator = "."}
+                ;
+
+        template TCSWithOCL::AsPArg
+                :       "as" "=" 
+                                template {as = identifierOrKeyword, 
+                                                                query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
+                                                                filter="->select(t | 
+                                                                        if(t.oclIsTypeOf(FURCAS::TCSWithOCL::ClassTemplate)) then 
+                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.name = ? 
+                                                                                and(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass).eAllSuperTypes
+                                                                                        ->prepend(self.property.propertyReference.strucfeature.eType.oclAsType(ecore::EClass))
+                                                                                        ->includes(t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.oclAsType(ecore::EClass)))
+                                                                                and (
+                                                                                        if (not self.property.propertyArgs->select(
+                                                                                                        arg | arg.oclIsTypeOf(FURCAS::TCSWithOCL::ModePArg))->isEmpty()
+                                                                                                ) 
+                                                                                        then
+                                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode = 
+                                                                                                        self.property.propertyArgs->select(
+                                                                                                                arg | arg.oclIsTypeOf(FURCAS::TCSWithOCL::ModePArg))
+                                                                                                                        .oclAsType(FURCAS::TCSWithOCL::ModePArg)->asSequence()->at(1)
+                                                                                                        .mode
+                                                                                        else
+                                                                                                t.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).mode.oclIsUndefined()
+                                                                                        endif
+                                                                                )
+                                                                        else
+                                                                                if(t.oclIsTypeOf(FURCAS::TCSWithOCL::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(FURCAS::TCSWithOCL::PrimitiveTemplate).templateName = ? 
+                                                                                else
+                                                                                        false
+                                                                                endif
+                                                                        endif)
+                                                                ", 
+                                                                invert="OCL:if self.oclIsTypeOf(FURCAS::TCSWithOCL::ClassTemplate) then
+                                                                                        self.oclAsType(FURCAS::TCSWithOCL::ClassTemplate).metaReference.name
+                                                                                else 
+                                                                                        if self.oclIsTypeOf(FURCAS::TCSWithOCL::PrimitiveTemplate) then
+                                                                                                self.oclAsType(FURCAS::TCSWithOCL::PrimitiveTemplate).templateName
+                                                                                        else
+                                                                                                '<no name?>'
+                                                                                        endif
+                                                                                endif"}
+                ;
+
+        template TCSWithOCL::SeparatorPArg
+                :       "separator" "=" separatorSequence
+                ;
+
+        template TCSWithOCL::DisambiguatePArg
+                :       "disambiguate" "=" disambiguation{as = stringSymbol}
+                ;
+
+        template TCSWithOCL::AutoCreatePArg
+                :       "autoCreate" "=" value
+                ;
+
+        enumerationTemplate TCSWithOCL::AutoCreateKind
+                :       #always         = "always",
+                        #ifmissing      = "ifmissing",
+                        #never          = "never"
+                ;
+                
+          enumerationTemplate TCSWithOCL::VisibilityEnum
+                :       #private         = "private",
+                        #public          = "public"
+                ;
+
+        template TCSWithOCL::ImportContextPArg
+                :       "importContext"
+                ;
+                
+        template TCSWithOCL::PartialPArg
+                :       "partial"
+                ;       
+
+        template TCSWithOCL::ForcedLowerPArg
+                :       "forcedLower" "=" value
+                ;
+                
+        template TCSWithOCL::ForcedUpperPArg
+                :       "forcedUpper" "=" value
+                ;
+
+        template TCSWithOCL::CreateAsPArg
+                :       "createAs" "=" name{as = identifierOrKeyword, separator = "::"}
+                ;
+
+        template TCSWithOCL::QueryPArg
+                :       "query" "=" query --{{query.eType = self.property.parentTemplate.metaReference}}
+                ;
+                
+        template TCSWithOCL::FilterPArg
+                :       "filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
+                ;
+
+        template TCSWithOCL::ModePArg
+                :       "mode" "=" mode{as = identifierOrKeyword}
+                ;
+-- @end Property Arguments
+
+
+-- @begin Block Arguments
+
+        template TCSWithOCL::BlockArg abstract;
+
+        template TCSWithOCL::NbNLBArg -- Number of New Line
+                :       "nbNL" "=" value --int
+                ;
+
+        template TCSWithOCL::IndentIncrBArg
+                :       "indentIncr" "=" value --int
+                ;
+
+        template TCSWithOCL::StartNLBArg  -- newlines before block
+                :       "startNL" "=" value
+                ;
+
+        template TCSWithOCL::StartNbNLBArg
+                :       "startNbNL" "=" value --int 
+                ;
+
+        template TCSWithOCL::EndNLBArg -- one newline after block plus indent -1
+                :       "endNL" "=" value
+                ;
+-- @end Block Arguments
+
+
+-- @begin Literals
+--      template TCSWithOCL::Literal abstract;
+
+        template TCSWithOCL::Symbol addToContext
+                :       name "=" value{as = stringSymbol} (isDefined(spaces) ? ":" spaces{separator = ","}) ";"
+                ;
+
+        enumerationTemplate TCSWithOCL::SpaceKind
+                :       #leftSpace      =       "leftSpace",
+                        #leftNone       =       "leftNone",
+                        #rightSpace     =       "rightSpace",
+                        #rightNone      =       "rightNone"
+                ;
+                
+        template TCSWithOCL::Keyword addToContext
+                :       name "=" value{as = stringSymbol} ";"
+                ;
+                
+-- @end Literals
+
+-- @begin Operators
+        template TCSWithOCL::OperatorList addToContext
+                :       "operators" (isDefined(name) ? name) "{" [
+                                priorities
+                        ] "}"
+                ;
+
+        template TCSWithOCL::Priority
+                :       "priority" value
+                        (associativity = #left ?
+                                        -- nothing
+                                :
+                                        "," associativity
+                        )
+                        "{" [
+                                operators
+                        ] "}"
+                ;
+                
+        template TCSWithOCL::Operator addToContext
+                :       (postfix ? "postfix") name "="
+                        (isDefined(literal) ? [[
+                                literal{refersTo = name}
+                        |
+                                literal{refersTo = value, lookIn = #all, as = stringSymbol ,autoCreate = ifmissing, createAs = TCSWithOCL::Keyword}
+                        ]])
+                        "," arity ";"
+                ;
+                
+        enumerationTemplate TCSWithOCL::Associativity
+                :       #left           = "left",
+                        #right          = "right"
+                ;
+-- @end Operators
+
+-- @begin Expressions
+        template TCSWithOCL::Expression abstract;
+
+        template TCSWithOCL::AndExp
+                :       expressions{separator = "and"}
+                ;
+
+        template TCSWithOCL::AtomExp abstract;
+
+        template TCSWithOCL::EqualsExp
+                :       propertyReference "=" value
+                ;
+
+        template TCSWithOCL::BooleanPropertyExp
+                :       propertyReference
+                ;
+
+        template TCSWithOCL::IsDefinedExp
+                :       "isDefined" "(" propertyReference ")"
+                ;
+                
+        template TCSWithOCL::OneExp
+                :       "one" "(" propertyReference ")"
+                ;
+
+        template TCSWithOCL::InstanceOfExp
+                :       propertyReference "instanceOf" 
+                        supertype{separator = "::"}
+                ;
+
+--@end Expressions
+
+-- @begin Values
+        template TCSWithOCL::Value abstract;
+
+        template TCSWithOCL::StringVal
+                :       symbol{as = stringSymbol}
+                ;
+        
+        template TCSWithOCL::IntegerVal
+                :       symbol
+                ;
+        
+        template TCSWithOCL::NegativeIntegerVal
+                :       "-" symbol
+                ;
+
+        template TCSWithOCL::EnumLiteralVal
+                :       "#" name{as = identifierOrKeyword}
+                ;
+-- @end Values
+
+
+-- @begin Tokens
+        template TCSWithOCL::Token
+                :       (omitted ? "omitted") "token" name ":" pattern ";"
+                ;
+
+        template TCSWithOCL::OrPattern
+                :       simplePatterns{separator = "|"}
+                ;
+
+-- @begin SimplePatterns
+        template TCSWithOCL::SimplePattern abstract;
+
+        template TCSWithOCL::RulePattern
+--              :       name "(" arguments{separator = ","} ")"
+                :       rule
+                ;
+
+-- @begin Rules
+        template TCSWithOCL::Rule abstract;
+
+        template TCSWithOCL::WordRule
+                :       "word" "("
+                                "start" "=" start ","
+                                "part" "=" part
+                                (isDefined(end) ?
+                                        "," "end" "=" end
+                                )
+                        ")"
+                ;
+
+        template TCSWithOCL::EndOfLineRule
+                :       "endOfLine" "("
+                                "start" "=" (dropStart ? "drop") start
+                        ")"
+                ;
+
+        template TCSWithOCL::MultiLineRule
+                :       "multiLine" "("
+                                "start" "=" (dropStart ? "drop") start ","
+                                "end" "=" (dropEnd ? "drop") end
+                                (isDefined(esc) ?
+                                        "," "esc" "=" esc
+                                        (isDefined(escMappings) ?
+                                                "," "(" escMappings{separator = ","} ")"
+                                        )
+                                )
+                        ")"
+                ;
+        
+        template TCSWithOCL::Mapping abstract;
+        
+        template TCSWithOCL::SimpleMapping
+                :       key "->" value
+                ;
+
+        template TCSWithOCL::WildcardMapping
+                :       "." "->" "."
+                ;
+                
+        template TCSWithOCL::OctalMapping
+                :       "octal"
+                ;
+                
+        template TCSWithOCL::HexadecimalMapping
+                :       "hex"
+                ;
+-- @end Rules
+
+        template TCSWithOCL::StringPattern
+                :       name{as = stringSymbol}
+                ;
+
+        template TCSWithOCL::ClassPattern
+                :       "[" name "]"
+                ;
+-- @end SimplePatterns
+-- @end Tokens
+        
+        symbols {
+                lsquare         = "[";
+                rsquare         = "]";
+                dlsquare        = "[[";
+                drsquare        = "]]";
+                excl            = "!";
+                COMMA            = ",";
+                lparen          = "(";
+                rparen          = ")";
+                lcurly          = "{";
+                rcurly          = "}";
+                dlcurly         = "{{";
+                drcurly         = "}}";
+                semi            = ";";
+                colon           = ":";
+                DLCOLON         = "::";         
+                pipe            = "|";
+                sharp           = "#";
+                qmark           = "?";
+                dollar          = "$";
+                arobas          = "@";
+                
+                -- operator symbols
+                point           = ".";
+                rarrow          = "->";
+                minus           = "-";
+                STAR            = "*";
+                slash           = "/";
+                plus            = "+";
+                eq              = "=";
+                gt              = ">";
+                lt              = "<";
+                ge              = ">=";
+                le              = "<=";
+                ne              = "<>";
+                larrow          = "<-";
+        }
+        
+        -- operator for left recursive qualified names
+        operators DBLCOLON{
+                priority 0 {
+                        opDlColon = DLCOLON, 2;
+                }
+        }
+
+        omitted token COMMENT   : endOfLine(start = "--");
+        omitted token MULTI_LINE_COMMENT        : multiLine(start = "/**", end = "*/");
+
+        lexer = "
+%options testLiterals = false;
+
+NL
+        :       (       '\\r' '\\n'
+                |       '\\n' '\\r'     //Improbable
+                |       '\\r'
+                |       '\\n'
+                )
+        {newline();$channel=HIDDEN;}
+        ;
+
+WS
+        :       (       ' '
+                |       '\\t'
+                ){$channel=HIDDEN;}
+        ;
+
+%protected
+DIGIT
+        :       '0'..'9'
+        ;
+
+%protected
+ALPHA
+        :       'a'..'z'
+        |       'A'..'Z'
+        |       '_'
+        //For Unicode compatibility (from 0000 to 00ff)
+        |       '\\u00C0' .. '\\u00D6'
+        |       '\\u00D8' .. '\\u00F6'
+        |       '\\u00F8' .. '\\u00FF'
+        ;
+        
+
+//Just for the test, this have to be defined in OCLToImport (QNAME and BOOL)     
+BOOL	:	'true' | 'false'	;
+
+
+%protected
+SNAME
+        :       
+//      (~ORKEYWORD)=> 
+        (ALPHA) (ALPHA | DIGIT)* 
+;
+
+
+//%protected 
+//ORKEYWORD :
+//      'orKeyword'
+//;
+
+//%protected
+NAME
+        :       (   
+                        SNAME
+                |       '\\''!  // exclamation marks means to exclude the char from the token (in theory)
+                        (       ESC
+                        |       '\\n' {newline();}
+                        |       ~('\\\\'|'\\''|'\\n') // means any other character
+                        )*
+                        '\\''!
+                )
+        ;
+
+
+ //Just for the test, this have to be defined in OCLToImport (QNAME and BOOL)
+//%protected
+QNAME
+        : SNAME DLCOLON SNAME (DLCOLON SNAME )*
+        ;
+        
+//QNAME_OR_NAME :
+//         ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }
+//         |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }
+//         |    (~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }
+//         |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }
+//         |    ( '\\'' SNAME) => NAME { _type = NAME; }
+//;
+
+INT
+        :       (DIGIT)+
+        ;
+
+        FLOAT   :       DIGIT+ '.' DIGIT*       ;
+
+%protected
+ESC
+        :       '\\\\'!
+                (       'n' 
+                |       'r' 
+                |       't' 
+                |       'b' 
+                |       'f' 
+                |       '\"' 
+                |       '\\'' 
+                |       '\\\\' 
+                |       (
+                                ('0'..'3')
+                                (
+                                :       ('0'..'7')
+                                        (
+                                        :       '0'..'7'
+                                        )?
+                                )?
+                        |       ('4'..'7')
+                                (
+                                :       ('0'..'7')
+                                )?
+                        )
+                                {
+                                }
+                )
+        ;
+
+STRING
+        :       '\"'!
+                (       ESC
+                |       '\\n' {newline();}
+                |       ~('\\\\'|'\\\"'|'\\n')  // means any other character
+                )*
+                '\"'!
+        ;
+
+        ";
+
+}

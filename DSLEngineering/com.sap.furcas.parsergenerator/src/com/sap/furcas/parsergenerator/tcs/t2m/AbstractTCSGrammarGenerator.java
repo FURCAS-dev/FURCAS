@@ -107,40 +107,22 @@ public abstract class AbstractTCSGrammarGenerator {
 
              return report;
 		} else {
-			 GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);writer.setTargetPackage(targetPackage);
-		        out.write(writer.getOutput().getBytes());
+			 GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);
+			 writer.setTargetPackage(targetPackage);
+		       out.write(writer.getOutput().getBytes());
 
 		        return report;
 		}
         
     }
     
-//    public GenerationReport generateGrammarWithConfig(ResourceSet resourceSet, Set<URI> referenceScope,
-//            Class<? extends ObservableInjectingParser> paserSuperClass, String languageId) throws ParserInvokationException,
-//            SyntaxParsingException, IOException, ModelAdapterException, GrammarGenerationException {
-//
-//        if (resourceSet.getPackageRegistry().getEFactory(TextblocksPackage.eNS_URI) == null) {
-//            throw new IllegalArgumentException("TCS Metamodel not registered for connection");
-//        }
-//
-//        TCSSyntaxContainerBeanWithConfig bean = doGetSyntaxDef(resourceSet, referenceScope, languageId);
-//
-//        ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
-//        ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
-//        GenerationReport report = mapper.generateGrammar(writer, lookup, bean, new SyntaxDefinitionValidation(), paserSuperClass);
-//
-//        writer.setTargetPackage(targetPackage);
-//        out.write(writer.getOutput().getBytes());
-//
-//        return report;
-//    }
-    
+
     /**
      * Do get syntax def.
      * 
      * @param metamodelURIs
      * 
-     * @return the tCS syntax container bean
+     * @return the TCS syntax container bean
      * 
      * @throws SyntaxParsingException
      *             the syntax parsing exception

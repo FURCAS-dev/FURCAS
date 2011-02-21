@@ -96,7 +96,7 @@ public class InterfaceconfigurationPackageImpl extends EPackageImpl implements I
 	 * @generated
 	 */
 	public static InterfaceconfigurationPackage init() {
-		if (isInited) return (InterfaceconfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI);
+		if (isInited) return (InterfaceconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(InterfaceconfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
 		InterfaceconfigurationPackageImpl theInterfaceconfigurationPackage = (InterfaceconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InterfaceconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new InterfaceconfigurationPackageImpl());
@@ -221,6 +221,24 @@ public class InterfaceconfigurationPackageImpl extends EPackageImpl implements I
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBinding_RequiredTemplatePackage() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBinding_ProvidedTemplatePackage() {
+		return (EReference)bindingEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InterfaceconfigurationFactory getInterfaceconfigurationFactory() {
 		return (InterfaceconfigurationFactory)getEFactoryInstance();
 	}
@@ -254,6 +272,8 @@ public class InterfaceconfigurationPackageImpl extends EPackageImpl implements I
 		createEReference(bindingEClass, BINDING__REQUIRED_TEMPLATE);
 		createEReference(bindingEClass, BINDING__PROVIDED_TEMPLATE);
 		createEAttribute(bindingEClass, BINDING__MODE);
+		createEReference(bindingEClass, BINDING__REQUIRED_TEMPLATE_PACKAGE);
+		createEReference(bindingEClass, BINDING__PROVIDED_TEMPLATE_PACKAGE);
 	}
 
 	/**
@@ -280,7 +300,6 @@ public class InterfaceconfigurationPackageImpl extends EPackageImpl implements I
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
 		TCSPackage theTCSPackage = (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
 
 		// Create type parameters
@@ -292,14 +311,16 @@ public class InterfaceconfigurationPackageImpl extends EPackageImpl implements I
 		// Initialize classes and features; add operations and parameters
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConfiguration_Bindings(), this.getBinding(), null, "bindings", null, 1, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConfiguration_Name(), theEcorePackage_1.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(bindingEClass, Binding.class, "Binding", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBinding_RequireingSyntax(), theTCSPackage.getConcreteSyntax(), null, "requireingSyntax", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_ProvidingSyntax(), theTCSPackage.getConcreteSyntax(), null, "providingSyntax", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_RequiredTemplate(), theTCSPackage.getRequiredInterfaceTemplate(), null, "requiredTemplate", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBinding_ProvidedTemplate(), theTCSPackage.getTemplate(), null, "providedTemplate", null, 1, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getBinding_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBinding_Mode(), ecorePackage.getEString(), "mode", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_RequiredTemplatePackage(), ecorePackage.getEPackage(), null, "requiredTemplatePackage", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBinding_ProvidedTemplatePackage(), ecorePackage.getEPackage(), null, "providedTemplatePackage", null, 0, 1, Binding.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //InterfaceconfigurationPackageImpl

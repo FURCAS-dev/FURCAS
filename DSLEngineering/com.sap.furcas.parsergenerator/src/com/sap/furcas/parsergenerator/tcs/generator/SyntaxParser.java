@@ -60,6 +60,7 @@ public class SyntaxParser {
 			TCSSyntaxContainerBean returnBean = new TCSSyntaxContainerBean();
 			returnBean.setSyntax((ConcreteSyntax) result.getResult()
 					.getParsedModelElement());
+			//returnBean.getKeywords().addAll(result.getSyntax().getKeywords());
 			returnBean.setKeywords(result.getKeywords());
 			returnBean.setElementToLocationMap(result.getResult()
 					.getLocationMap());
@@ -98,7 +99,7 @@ public class SyntaxParser {
 		// By choosing this injector, we establish the dependency to EMF.
 		for (File file : syntaxDefFiles) {
 				filesInputStream = new FileInputStream(file);
-				//parse all the syntaxes used in an configuration with the correspodent parser (TCSParser)
+				//parse all the syntaxes used in an configuration with the correspondent parser (TCSParser)
 				ModelInjectionResult resultOfList = TCSSpecificEMFModelInjector
 						.parseSyntaxDefinition(filesInputStream,
 								sourceConfiguration.getResourceSet(),

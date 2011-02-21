@@ -19,7 +19,9 @@ public class ScenarioFixtureData {
     public static final File KMELIA_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/Kmelia.ecore");
     public static final File LOTOS_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/LOTOS.ecore");
     public static final File MULTIPACKAGE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/MultiPackage.ecore");
+    public static final File OCL_ECORE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/OCLEcore.ecore");
     public static final File OCL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/OCL.ecore");
+    public static final File ECORE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/Ecore.ecore");
     public static final File PEOPLE_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/People.ecore");
     public static final File PROBLEM_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/Problem.ecore");
     public static final File SPL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/SPL.ecore");
@@ -30,7 +32,9 @@ public class ScenarioFixtureData {
     public static final File XPATH_REDUCED_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/XPathReduced.ecore");
     public static final File MINI_JAVA_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/MiniJava.ecore");
     public static final File INTERFACE_CONFIGURATION_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/InterfaceConfiguration.ecore");
-    
+    public static final File TEXTBLOCKDEFINITION = new File("../com.sap.furcas.test/scenarioFixtures/textblockdefinitionForOCLInTCS.ecore");
+    public static final File TEXTBLOCKS = new File("../com.sap.furcas.test/scenarioFixtures/textblocksForOCLInTCS.ecore");
+    public static final File TCS_WITH_OCL_METAMODEL = new File("../com.sap.furcas.test/scenarioFixtures/TCSWithOCL.ecore");
     
     public static final File ATL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ATL.tcs");
     public static final File BIBTEXT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/Bibtext.tcs");
@@ -56,6 +60,7 @@ public class ScenarioFixtureData {
     public static final File LOTOS_TCS = new File("../com.sap.furcas.test/scenarioFixtures/LOTOS.tcs");
     public static final File MULTIPACKAGE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/MultiPackage.tcs");
     public static final File OCL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/OCL.tcs");
+    public static final File OCL_TO_IMPORT_TCS = new File("../com.sap.furcas.test/scenarioFixtures/OCLToImport.tcs");
     public static final File PEOPLE_TCS = new File("../com.sap.furcas.test/scenarioFixtures/People.tcs");
     public static final File PRIM_TEMP_BUG_TCS = new File("../com.sap.furcas.test/scenarioFixtures/PrimTempBug.tcs");
     public static final File PROBLEM_TCS = new File("../com.sap.furcas.test/scenarioFixtures/Problem.tcs");
@@ -68,8 +73,11 @@ public class ScenarioFixtureData {
 	public static final File BIBTEXT_IMPORTED_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibtextImported.tcs");
 	public static final File BIBTEXT_INTERFACE_NORMAL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/BibTextInterfaceNormalTest.tcs");
 	public static final File SYNTAX_CONFIGURATION_TCS = new File("../com.sap.furcas.test/scenarioFixtures/SyntaxConfiguration.tcs");
+	public static final File TCS_WITH_OCL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/TCSWithOCL.tcs");
+	public static final File TCS_IMPORTS_OCL_TCS = new File("../com.sap.furcas.test/scenarioFixtures/TCSImportsOCL.tcs");
+	public static final File TCS_IMPORTS_OCL_CONCRETE_SYNTAX_TCS = new File("../com.sap.furcas.test/scenarioFixtures/TCSImportsOCLConcreteSyntax.tcs");
 	
-	
+	public static final File CONFIG_TCS_WITH_OCL = new File("../com.sap.furcas.test/scenarioFixtures/ConfigTCSWithOcl.tcs");
 	public static final File CONFIGURATION_TCS = new File("../com.sap.furcas.test/scenarioFixtures/ConfigurationTest.tcs");
 
 

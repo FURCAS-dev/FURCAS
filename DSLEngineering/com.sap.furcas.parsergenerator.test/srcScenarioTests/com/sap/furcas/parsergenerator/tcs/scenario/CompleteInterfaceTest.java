@@ -85,7 +85,7 @@ public class CompleteInterfaceTest extends GeneratedParserBasedTest {
 
 		assertEquals(johnDoe, article.get("author"));
 
-		// check the imported property year was really set(here with attributes)
+		// check the imported property year was really set(here trough attributes)
 		assertNotNull(article.get("attributes"));
 
 		assertEquals(year2002, article.get("attributes"));

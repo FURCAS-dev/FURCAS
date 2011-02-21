@@ -62,7 +62,7 @@ public class TCSSpecificEMFModelInjector {
 	TCSSpecificEMFModelAdapter handler = new TCSSpecificEMFModelAdapter(resourceSet, referenceScope);
 	
 	try {
-	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
+ 	    DefaultTextAwareModelAdapter handlerWrapper = new DefaultTextAwareModelAdapter(handler);
 	    ModelParsingResult result = tcsParserFacade.parseProductionRule(in, handlerWrapper, null, null, observer);
 	    return new ModelInjectionResult(handler, result);
 	} finally {

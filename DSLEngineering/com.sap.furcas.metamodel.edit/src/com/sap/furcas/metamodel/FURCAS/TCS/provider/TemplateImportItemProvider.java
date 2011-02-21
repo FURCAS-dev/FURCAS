@@ -63,6 +63,7 @@ public class TemplateImportItemProvider
 
 			addTemplatePropertyDescriptor(object);
 			addModePropertyDescriptor(object);
+			addTemplatePackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -107,6 +108,28 @@ public class TemplateImportItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+				/**
+	 * This adds a property descriptor for the Template Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTemplatePackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TemplateImport_templatePackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TemplateImport_templatePackage_feature", "_UI_TemplateImport_type"),
+				 TCSPackage.Literals.TEMPLATE_IMPORT__TEMPLATE_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

@@ -1,0 +1,474 @@
+--specify your DSL grammar rules here ...
+
+syntax OCLToImport(k=0) {
+
+	
+	primitiveTemplate identifier for EString default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for EString using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for EString using STRING:
+		value = "unescapeString(%token%)",
+		serializer="\"%value%\"";
+	
+	primitiveTemplate qualifiedNameSymbol for EString using QNAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate annotationSymbol for EString using MULTI_LINE_COMMENT:
+		value = "unescapeString(%token%)",
+		serializer="/** %value% */";
+
+	/**primitiveTemplate integerSymbol for EInt default using INT:
+		value = "Integer.valueOf(%token%)";*/
+	
+	primitiveTemplate integerSymbol for EIntegerObject default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for ELong default using INT:
+		value = "Integer.valueOf(%token%)";
+	
+	primitiveTemplate integerAsString for EString using INT:
+		value = "unescapeString(%token%)";
+		
+	primitiveTemplate floatAsString for EString using FLOAT:
+		value = "unescapeString(%token%)";
+		
+	primitiveTemplate booleanAsString for EString using BOOL:
+		value = "%token%";
+	
+	primitiveTemplate booleanValueSymbol for EBooleanObject default using BOOL:
+		value = "Boolean.valueOf(%token%)";
+	
+	primitiveTemplate floatSymbol for EFloat default using FLOAT:
+		value = "Double.valueOf(%token%)";
+		
+	primitiveTemplate realSymbol for EDoubleObject default using FLOAT:
+		value = "Double.valueOf(%token%)";
+		
+	primitiveTemplate doubleSymbol for EDouble default using FLOAT:
+		value = "Double.valueOf(%token%)";
+		
+  ----------------------------- Templates ---------------------------
+
+ 
+  
+  ------------------------------------ OCL ------------------------------------
+  
+  public template ecore2::OCLExpression abstract;
+  public template expressions::OCLExpression main abstract operatored(OclExpressions);
+  template ecore2::LiteralExp abstract;
+  template ecore2::PrimitiveLiteralExp abstract;
+  template ecore2::NumericLiteralExp abstract;
+  template ecore2::IntegerLiteralExp
+  	:integerSymbol {forcedLower=1} {{ eType=lookIn("OCL:EClassifier.allInstances()->select(c| if c.ePackage->isEmpty() then false else c.ePackage.name->asSequence()->at(1)=\'ecore2\' and c.ePackage.name->asSequence()->at(2)=\'EIntegerObject\' endif)") }}
+  	;
+  template ecore2::StringLiteralExp
+  	: "\\'" stringSymbol {forcedLower=1} "\\'"
+  	{{ eType=lookIn("OCL:EClassifier.allInstances()->select(c| if c.ePackage->isEmpty() then false else c.name->asSequence()->at(1)=\'ecore2\' and name->asSequence()->at(2)=\'EString\' endif)") }}
+  	;
+  template ecore2::RealLiteralExp
+  	: realSymbol {forcedLower=1}
+  	  {{ eType=lookIn("OCL:EClassifier.allInstances()->select(c| if c.ePackage->isEmpty() then false else c.name->asSequence()->at(1)=\'ecore2\' and name->asSequence()->at(2)=\'EDoubleObject\' endif)") }}
+  	;
+  template ecore2::BooleanLiteralExp
+  	: booleanSymbol {forcedLower=1}
+  	{{ eType=lookIn("OCL:EClassifier.allInstances()->select(c| if c.ePackage->isEmpty() then false else c.name->asSequence()->at(1)=\'ecore2\' and qualifiedName->asSequence()->at(2)=\'EBooleanObject\' endif)") }}
+  	;
+  
+  template ecore2::EnumLiteralExp  
+  	: eType { as = qualifiedNameSymbol , forcedLower=1 , query = "OCL:EEnum.allInstances() " , filter="->select(c | c.name=?)" } 
+  	 "::"
+  	  referredEnumLiteral  {as = identifier,forcedLower=1, query = "OCL:self.eType.oclAsType(EEnum).eLiterals", filter="->select(l | l.literal = ?)"} 
+  	;
+  	
+  template expressions::CollectionLiteralPart abstract;
+  template ecore2::CollectionLiteralExp context(collectionliteral)
+  	: [[	"Sequence"		eType  {forcedLower=1,mode=sequence}		{{ kind='org.eclipse.ocl.expressions.CollectionKind.SEQUENCE' }}
+  	   |	"Set"			eType  {forcedLower=1,mode=set}			{{ kind='org.eclipse.ocl.expressions.CollectionKind.SET' }}
+  	   |	"Collection"	eType  {forcedLower=1,mode=collection}	{{ kind='org.eclipse.ocl.expressions.CollectionKind.COLLECTION' }}
+  	   |	"Bag"			eType  {forcedLower=1,mode=bag}			{{ kind='org.eclipse.ocl.expressions.CollectionKind.BAG' }}
+  	   |	"OrderedSet"	eType  {forcedLower=1,mode=orderedset}	{{ kind='org.eclipse.ocl.expressions.CollectionKind.ORDERED_SET' }}
+  	  ]]
+  	  "{" part{separator=","}  "}"
+	  {{ name=lookIn("OCL:self.eType.name.subString(1, -4+type.name.size()).concat('{...}')") }}
+  	;
+  
+  template EClassifier #sequence abstract;
+  template EDataType #sequence abstract;
+  template ecore2::CollectionType #sequence abstract;
+  template ecore2::SequenceType #sequence
+  	: $collectionTypeElementType
+  	  {{ name='"SequenceType"' }}
+  	;
+  	
+  template EClassifier #set abstract;
+  template EDataType #set abstract;
+  template ecore2::CollectionType #set abstract;
+  template ecore2::SetType #set
+  	: $collectionTypeElementType
+  	  {{ name='"SetType"' }}
+  	;
+  	
+  template EClassifier #collection abstract;
+  template EDataType #collection abstract;
+  template ecore2::CollectionType #collection
+  	: $collectionTypeElementType
+  	  {{ name='"CollectionType"' }}
+  	;
+  	
+  template EClassifier #bag abstract;
+  template EDataType #bag abstract;
+  template ecore2::CollectionType #bag abstract;
+  template ecore2::BagType #bag
+  	: $collectionTypeElementType
+  	  {{ name='"BagType"' }}
+  	;
+  	
+  template EClassifier #orderedset abstract;
+  template EDataType #orderedset abstract;
+  template ecore2::CollectionType #orderedset abstract;
+  template ecore2::OrderedSetType #orderedset
+  	: $collectionTypeElementType
+  	  {{ name='"OrderedSetType"' }}
+  	;
+  
+  function collectionTypeElementType(types::CollectionType)
+  	: {{ elementType=lookIn("OCL:#context(collectionliteral).oclAsType(CollectionLiteralExp).part.eType->iterate(
+  								t; acc:EClass=null |
+  									if acc->isEmpty() or acc=t then
+  										t 
+  									else 
+  										if t.eAllSupertypes->includes(acc) then
+  											acc 
+  										else 
+  											if acc.eAllSupertypes->includes(t) then
+  												t 
+  											else 
+  												null 
+  											endif
+  										endif
+  									endif)") }}
+  	;
+  	
+  --template ecore2::CollectionLiteralPart abstract;
+  template expressions::CollectionItem abstract;
+  template ecore2::CollectionItem(disambiguateV3="ocl_expressions_collectionitem")
+  	: item {{ eType=lookIn("OCL:self.item.eType") }}
+  	;
+  template expressions::CollectionRange (disambiguateV3="ocl_expressions_oclexpression COMMA") abstract;
+  template ecore2::CollectionRange(disambiguateV3="ocl_expressions_oclexpression COMMA")
+  	: first ".." last
+  	  {{ eType=lookIn("OCL:if self.first.eType=self.last.eType then
+  	  						self.first.eType 
+  	  					  else 
+  	  					  	if self.first.eType.eAllSupertypes->includes(self.last.eType) then
+  	  					  		self.last.eType 
+  	  					  	else 
+  	  					  		if self.last.eType.eAllSupertypes->includes(self.first.eType) then 
+  	  					  			self.first.eType 
+  	  					  		else 
+  	  					  			null 
+  	  					  		endif 
+  	  					  	endif 
+  	  					  endif") }}
+  	;
+  
+ -- enumerationTemplate CollectionKind auto;
+ 
+  template ecore2::IfExp
+  	: "if" condition "then" [
+  	    thenExpression
+  	  ] "else" [
+  	    elseExpression
+  	  ] "endif"
+  	  {{ name=lookIn("OCL:'if '.concat(self.condition.name)"),
+  	     eType=lookIn("OCL:if self.thenExpression.type=self.elseExpression.eType then
+  	                          self.thenExpression.eType
+  	                      else
+  	                          if self.thenExpression.eType.eAllSupertypes->includes(self.elseExpression.eType) then
+  	                              self.elseExpression.eType
+  	                          else
+  	                              if self.elseExpression.eType.eAllSupertypes->includes(self.thenExpression.eType) then
+  	                                  self.thenExpression.eType
+  	                              else
+  	                                  null
+  	                              endif
+  	                          endif
+  	                      endif") }}
+  	;
+  
+  template ecore2::LetExp
+  	: "let" variable{ forcedLower=1,mode=let} "in" [
+  	    in {forcedLower=1}
+  	  ]
+  	  {{ eType=lookIn("OCL:self.\"in\".eType"),
+  	     name=lookIn("OCL:'let '.concat(self.variable.name)") }}
+  	;
+  
+  template expressions::Variable #let abstract;
+  template ecore2::Variable #let --addToContext
+  	: name {forcedLower=1}
+  	  [[ -- default case: infer type from init expression
+  	    {{ eType=lookIn("OCL:self.initExpression.eType") }}
+  	   
+  	   |
+  	  	":" eType  {as=identifier,forcedLower=1, query="OCL:EClassifier.allInstances()",
+  	  	     filter="->select(name=?)"}
+  	  ]]
+  	  "=" initExpression{forcedLower=1}
+  	  {{ name=lookIn("OCL:self.varName") }}
+  	;
+  
+  template expressions::Variable abstract;
+  template ecore2::Variable --addToContext
+  	: name {forcedLower=1}
+  	  [[
+  	    -- empty; infer type from context
+  	    {{ eType=lookIn("OCL:#context(propertyCallExp).oclAsType(PropertyCallExp).source.eType") }}
+  	   |
+  	    ":" eType {as=identifier, forcedLower=1, query="OCL:EClassifier.allInstances()",
+  	  	     filter="->select(name=?)"}
+  	  ]]
+  	  (isDefined(initExpression) ? "=" initExpression)
+  	;
+
+  template ecore2::VariableExp
+  	: [[
+  	     referredVariable {forcedLower=1,mode=self}
+  	  |
+  	     referredVariable  {as=identifier, forcedLower=1 ,query = "OCL:ecore::Variable.allInstances()", filter="->select(v | v.name =?)"}
+  	  ]]
+  	     {{ eType=lookIn("OCL:self.referredVariable.eType"),
+  	        name=lookIn("OCL:self.referredVariable.name") }}
+  	;
+  	
+  template expressions::Variable #self abstract;
+  template ecore2::Variable #self
+  	: "self"
+  	  {{ name='"self"', eType=lookIn("#context(class)") }}
+  	;
+  
+--  template expressions::CallExp abstract operatored(OclExpressions);
+--  template ecore2::CallExp abstract;
+--  template expressions::PropertyCallExp abstract;
+--  template expressions::FeatureCallExp abstract;
+--  template expressions::NavigationCallExp abstract;
+--  template expressions::LoopExp abstract;
+--  template ecore2::PropertyCallExp abstract;
+--  template ecore2::FeatureCallExp abstract;
+--  template ecore2::NavigationCallExp abstract;
+--  template ecore2::LoopExp abstract;
+  
+  operatorTemplate ecore2::IterateExp(operators=arrowOp, source='source') context(propertyCallExp)
+  	: [[ "iterate" "(" iterator
+	  	  [[
+	  	     -- explicitly-specified accumulator:
+	  	     ";" result {forcedLower=1}
+	  	   |
+	  	     -- implicitly-defined accumulator:
+	  	     result{forcedLower=1, mode=implicitAccumulator}
+	  	  ]]
+	  	|
+	  	"forAll" "(" iterator{separator = ","}
+	  	|
+	  	"collect" "(" iterator{separator = ","}
+	  ]]
+  	  "|" body ")"
+  	;
+  template expressions::Variable #implicitAccumulator abstract;
+  template ecore2::Variable #implicitAccumulator
+  	: {{ name='"acc"', eType=lookIn("OCL:#context(propertyCallExp).oclAsType(IterateExp).\"body\".eType") }}
+  	;
+   
+  operatorTemplate ecore2::PropertyCallExp(operators=dotOp, source='source', disambiguateV3="identifier ~LPAREN") context(propertyCallExp)
+  	: referredProperty {as=identifierOrKeyword, forcedLower=1 ,query="OCL:self.source.eType.allSupertypes()->append(self.source.eType).
+  												contents->select(a | a.oclIsKindOf(EProperty))",
+  									   filter="->select(a|a.name=?)"}
+  	  {{ name=lookIn("OCL:self.referredProperty.name"),
+  	     eType=lookIn("OCL:self.referredProperty.eType") }}
+ 	;
+  
+ 
+  
+--  operatorTemplate ecore2::OperationCallExp(operators=dotOp, source='source', disambiguateV3="identifier LPAREN") context(propertyCallExp)
+--  	: 
+-----  	[[
+  	-- --disambiguate("identifier LPAREN")
+--  	    referredOperation{as=identifierOrKeyword, query= "OCL:self.source.eType.allSupertypes()->append(self.source.eType).
+--  												contents->select(o | o.oclIsKindOf(EOperation))",
+--  									   filter="->select(o|o.name=?)"}   -- do mapping to Stdlib types where necessary
+--  	    "(" argument ")"
+--  	    {{ name=lookIn("OCL:self.referredOperation.name.concat('(...)')"),
+--  	       eType=lookIn("OCL:self.referredOperation.contents->select(p |
+--  	       			p.oclIsKindOf(EParameter))->select(p |
+--  	       					p.oclAsType(EParameter).direction = DirectionKind::return_dir).
+--  	       					oclAsType(EParameter).eType") }}
+--  	  ]]
+--  	;
+  	
+  ---------------------------------- End OCL ----------------------------------
+
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+  
+  symbols {
+			    DDOT = "..";
+			    LSQUARE = "[";
+			    RSQUARE = "]"; 
+			    LCURLY = "{";
+			    RCURLY = "}";
+			    STAR = "*";
+			    LCURL_LBRACK = "{[";
+			    RBRACK_RCURL = "]}";
+			    LBRACK_LCURL = "[{";
+			    RCURL_RBRACK = "}]";
+			    LPAREN = "(";
+			    RPAREN = ")";
+			    COLON = ":";
+			    DLCOLON = "::";
+			    COMMA = ",";
+    
+                DLSQUARE        = "[[";
+                DRSQUARE        = "]]";
+                EXCL            = "!";
+                DLCURLY         = "{{";
+                DRCURLY         = "}}";
+                SEMI            = ";";
+                PIPE            = "|";
+                SHARP           = "#";
+                QMARK           = "?";
+                DOLLAR          = "$";
+                AROBAS          = "@";
+    
+     -- operator symbols
+                POINT           = ".";
+                RARROW          = "->";
+                MINUS           = "-";
+                STAR            = "*";
+                SLASH           = "/";
+                --BSLASH           = "\";
+                PLUS            = "+";
+                EQ              = "=";
+                GT              = ">";
+                LT              = "<";
+                GE              = ">=";
+                LE              = "<=";
+                NE              = "<>";
+                LARROW          = "<-";
+                
+                
+  }
+
+
+
+	operators OclExpressions {
+		priority 0 {
+			dotOp		= ".", 2;
+			arrowOp     = "->", 2;
+		}
+		priority 1 {
+			equalsOp	= "=", 2;
+		}
+	}
+  -- place tokens here (optional, except for COMMENT)
+
+	omitted token COMMENT	: endOfLine(start = "--");
+	omitted token MULTI_LINE_COMMENT	: multiLine(start = "/**", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	--Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	--For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+NAME
+	:	(
+			(SNAME (~DLCOLON|EOF))=>SNAME
+		|	'\\''!
+			(	
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+QNAME
+	: SNAME DLCOLON SNAME (DLCOLON SNAME )*
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						--For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+STRING
+	:	'\"'!
+		(	
+		--ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+
+}

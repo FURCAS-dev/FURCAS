@@ -7132,13 +7132,22 @@ public interface TCSPackage extends EPackage {
 	int TEMPLATE_IMPORT__MODE = IMPORT_DECLARATION_FEATURE_COUNT + 1;
 
 								/**
+	 * The feature id for the '<em><b>Template Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_IMPORT__TEMPLATE_PACKAGE = IMPORT_DECLARATION_FEATURE_COUNT + 2;
+
+								/**
 	 * The number of structural features of the '<em>Template Import</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int TEMPLATE_IMPORT_FEATURE_COUNT = IMPORT_DECLARATION_FEATURE_COUNT + 2;
+    int TEMPLATE_IMPORT_FEATURE_COUNT = IMPORT_DECLARATION_FEATURE_COUNT + 3;
 
         /**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.RequiredInterfaceTemplateImpl <em>Required Interface Template</em>}' class.
@@ -10182,6 +10191,17 @@ public interface TCSPackage extends EPackage {
 	EAttribute getTemplateImport_Mode();
 
 								/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport#getTemplatePackage <em>Template Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Template Package</em>'.
+	 * @see com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport#getTemplatePackage()
+	 * @see #getTemplateImport()
+	 * @generated
+	 */
+	EReference getTemplateImport_TemplatePackage();
+
+								/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.RequiredInterfaceTemplate <em>Required Interface Template</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12619,6 +12639,14 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEMPLATE_IMPORT__MODE = eINSTANCE.getTemplateImport_Mode();
+
+																/**
+		 * The meta object literal for the '<em><b>Template Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_IMPORT__TEMPLATE_PACKAGE = eINSTANCE.getTemplateImport_TemplatePackage();
 
 																/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.RequiredInterfaceTemplateImpl <em>Required Interface Template</em>}' class.

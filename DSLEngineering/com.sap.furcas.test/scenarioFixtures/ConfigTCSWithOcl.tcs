@@ -1,0 +1,3 @@
+Configuration Test2{
+bind TCSWithOCL:OCLExpression to OCLToImport:ecore2::OCLExpression;
+}

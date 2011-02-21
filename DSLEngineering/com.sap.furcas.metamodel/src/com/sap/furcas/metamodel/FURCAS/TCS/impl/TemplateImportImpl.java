@@ -12,6 +12,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TemplateImport;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.TemplateImportImpl#getTemplate <em>Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.TemplateImportImpl#getMode <em>Mode</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.TemplateImportImpl#getTemplatePackage <em>Template Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +60,16 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 	 * @ordered
 	 */
 	protected String mode = MODE_EDEFAULT;
+
+				/**
+	 * The cached value of the '{@link #getTemplatePackage() <em>Template Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTemplatePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPackage templatePackage;
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -139,6 +151,44 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPackage getTemplatePackage() {
+		if (templatePackage != null && templatePackage.eIsProxy()) {
+			InternalEObject oldTemplatePackage = (InternalEObject)templatePackage;
+			templatePackage = (EPackage)eResolveProxy(oldTemplatePackage);
+			if (templatePackage != oldTemplatePackage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE, oldTemplatePackage, templatePackage));
+			}
+		}
+		return templatePackage;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPackage basicGetTemplatePackage() {
+		return templatePackage;
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTemplatePackage(EPackage newTemplatePackage) {
+		EPackage oldTemplatePackage = templatePackage;
+		templatePackage = newTemplatePackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE, oldTemplatePackage, templatePackage));
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -150,6 +200,9 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 				return basicGetTemplate();
 			case TCSPackage.TEMPLATE_IMPORT__MODE:
 				return getMode();
+			case TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE:
+				if (resolve) return getTemplatePackage();
+				return basicGetTemplatePackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +220,9 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 				return;
 			case TCSPackage.TEMPLATE_IMPORT__MODE:
 				setMode((String)newValue);
+				return;
+			case TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE:
+				setTemplatePackage((EPackage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -186,6 +242,9 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 			case TCSPackage.TEMPLATE_IMPORT__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
+			case TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE:
+				setTemplatePackage((EPackage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -202,6 +261,8 @@ public class TemplateImportImpl extends ImportDeclarationImpl implements Templat
 				return template != null;
 			case TCSPackage.TEMPLATE_IMPORT__MODE:
 				return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
+			case TCSPackage.TEMPLATE_IMPORT__TEMPLATE_PACKAGE:
+				return templatePackage != null;
 		}
 		return super.eIsSet(featureID);
 	}

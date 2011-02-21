@@ -23,7 +23,15 @@ syntax SyntaxConfiguration {
 					"bind" requireingSyntax { refersTo = name, 
 					query = "OCL:TCS::ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"}
 					":" 
+					(isDefined(requiredTemplatePackage) ? requiredTemplatePackage{ as = identifierOrKeyword ,
+					query ="OCL:ecore::EPackage.allInstances()->select(p | p.name =?)"} "::" )
 					requiredTemplate { as = identifierOrKeyword, query = "OCL:  requireingSyntax.requiredTemplates ->select(t | t.oclIsTypeOf(TCS::RequiredInterfaceTemplate) and t.metaReference.name = ? and
+					if(not self.requiredTemplatePackage.oclIsUndefined()) then
+                                            	t.oclAsType(FURCAS::TCS::RequiredInterfaceTemplate).metaReference.ePackage = self.requiredTemplatePackage
+                                            else
+                                            	true
+                                            endif
+					and
 					if(not self.mode.oclIsUndefined()) then
                                             	t.oclAsType(FURCAS::TCS::RequiredInterfaceTemplate).mode = self.mode
                                             else
@@ -34,7 +42,15 @@ syntax SyntaxConfiguration {
 					providingSyntax  { refersTo = name, 
 					query = "OCL:TCS::ConcreteSyntax.allInstances()->select(cs | cs.name = ? )"}
 					":" 
+					(isDefined(providedTemplatePackage) ? providedTemplatePackage{as = identifierOrKeyword ,
+					query ="OCL:ecore::EPackage.allInstances()->select(p | p.name =?)"} "::")
 					providedTemplate { as = identifierOrKeyword, query = "OCL:  providingSyntax.templates ->select(t |  t.metaReference.name = ? and
+					if(not self.providedTemplatePackage.oclIsUndefined()) then
+                                            	t.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.ePackage = self.providedTemplatePackage
+                                            else
+                                            	true
+                                            endif
+					and
 					if(not self.mode.oclIsUndefined()) then
                                             	t.oclAsType(FURCAS::TCS::ClassTemplate).mode = self.mode
                                             else
@@ -42,14 +58,14 @@ syntax SyntaxConfiguration {
                                             endif)" }
                 	(isDefined(mode) ?  "#" mode ) ";"
                 	;
-					
+
 							
 symbols {
-                lsquare         = "[";
-                rsquare         = "]";
-                dlsquare        = "[[";
-                drsquare        = "]]";
-                excl            = "!";
+                --lsquare         = "[";
+                --rsquare         = "]";
+                --dlsquare        = "[[";
+                --drsquare        = "]]";
+                --excl            = "!";
                 coma            = ",";
                 lparen          = "(";
                 rparen          = ")";
@@ -63,23 +79,23 @@ symbols {
                 pipe            = "|";
                 sharp           = "#";
                 qmark           = "?";
-                dollar          = "$";
-                arobas          = "@";
+                --dollar          = "$";
+               --arobas          = "@";
                 
                 -- operator symbols
                 point           = ".";
                 rarrow          = "->";
-                minus           = "-";
-                star            = "*";
-                slash           = "/";
-                plus            = "+";
+               --minus           = "-";
+                --star            = "*";
+                --slash           = "/";
+                --plus            = "+";
                 eq              = "=";
-                gt              = ">";
-                lt              = "<";
-                ge              = ">=";
-                le              = "<=";
-                ne              = "<>";
-                larrow          = "<-";
+                --gt              = ">";
+                --lt              = "<";
+                --ge              = ">=";
+                --le              = "<=";
+                --ne              = "<>";
+                --larrow          = "<-";
         }
         
         -- operator for left recursive qualified names

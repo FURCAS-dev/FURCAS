@@ -161,6 +161,7 @@ import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 
+import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.provider.InterfaceconfigurationItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.presentation.FURCASEditorPlugin;
 
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
@@ -714,7 +715,7 @@ public class InterfaceconfigurationEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new FURCASItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
-//		adapterFactory.addAdapterFactory(new InterfaceconfigurationItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new InterfaceconfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblocksItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());

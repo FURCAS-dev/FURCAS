@@ -1,0 +1,249 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x6d7f30b9, pid=3660, tid=4936
+#
+# JRE version: 6.0_23-b05
+# Java VM: Java HotSpot(TM) Client VM (19.0-b09 mixed mode windows-x86 )
+# Problematic frame:
+# V  [jvm.dll+0x30b9]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x02087c00):  VMThread [stack: 0x01990000,0x019e0000] [id=4936]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000c
+
+Registers:
+EAX=0x00000008, EBX=0x0154ff10, ECX=0x44997a10, EDX=0x00000008
+ESP=0x019df4d4, EBP=0x019df4d8, ESI=0x44997a10, EDI=0x44997a10
+EIP=0x6d7f30b9, EFLAGS=0x00010202
+
+Register to memory mapping:
+
+EAX=0x00000008
+0x00000008 is pointing to unknown location
+
+EBX=0x0154ff10
+0x0154ff10 is pointing to unknown location
+
+ECX=0x44997a10
+[S 
+ - klass: {type array short}
+ - length: 70
+
+EDX=0x00000008
+0x00000008 is pointing to unknown location
+
+ESP=0x019df4d4
+0x019df4d4 is pointing to unknown location
+
+EBP=0x019df4d8
+0x019df4d8 is pointing to unknown location
+
+ESI=0x44997a10
+[S 
+ - klass: {type array short}
+ - length: 70
+
+EDI=0x44997a10
+[S 
+ - klass: {type array short}
+ - length: 70
+
+
+Top of Stack: (sp=0x019df4d4)
+0x019df4d4:   44997a10 019df4e4 6d9aaea9 00000008
+0x019df4e4:   019df4fc 6d80eb2b 44997a10 019df54c
+0x019df4f4:   019df54c 0154db08 019df508 6d8c78ab
+0x019df504:   44997c88 019df518 6d8c11a3 44997c88
+0x019df514:   0154fcd0 019df524 6d8c0f53 0154fed0
+0x019df524:   019df53c 6d875494 019df54c 00000000
+0x019df534:   0154db64 44997c88 019df558 6d8c0c95
+0x019df544:   019df54c 00000000 6da1bccc 44997c88 
+
+Instructions: (pc=0x6d7f30b9)
+0x6d7f30a9:   00 00 00 c3 cc cc cc 55 8b ec 8b 55 08 56 8b f1
+0x6d7f30b9:   8b 4a 04 8b c1 c1 f8 02 85 c9 89 4d 08 7f 35 7d 
+
+
+Stack: [0x01990000,0x019e0000],  sp=0x019df4d4,  free space=317k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x30b9]
+V  [jvm.dll+0x1baea9]
+V  [jvm.dll+0x1eb2b]
+V  [jvm.dll+0xd78ab]
+V  [jvm.dll+0xd11a3]
+V  [jvm.dll+0xd0f53]
+V  [jvm.dll+0x85494]
+V  [jvm.dll+0xd0c95]
+V  [jvm.dll+0xcb537]
+V  [jvm.dll+0x1725c5]
+V  [jvm.dll+0x1f8c5]
+V  [jvm.dll+0xcd8a9]
+V  [jvm.dll+0xce480]
+V  [jvm.dll+0xd0a65]
+V  [jvm.dll+0x181edb]
+V  [jvm.dll+0x18216d]
+V  [jvm.dll+0x1823c3]
+V  [jvm.dll+0x182464]
+V  [jvm.dll+0xdc126]
+V  [jvm.dll+0x172a64]
+V  [jvm.dll+0xb6ba7]
+V  [jvm.dll+0xb6cc2]
+V  [jvm.dll+0x1e7a78]
+V  [jvm.dll+0x1e7e5f]
+V  [jvm.dll+0x1ac539]
+V  [jvm.dll+0xcc5c0]
+V  [jvm.dll+0xccff2]
+V  [jvm.dll+0xcd2eb]
+V  [jvm.dll+0xd134a]
+V  [jvm.dll+0x1e4752]
+V  [jvm.dll+0xcc018]
+V  [jvm.dll+0xcc411]
+V  [jvm.dll+0x200f64]
+V  [jvm.dll+0x203e33]
+V  [jvm.dll+0x20310e]
+V  [jvm.dll+0x203430]
+V  [jvm.dll+0x203832]
+V  [jvm.dll+0x18843c]
+C  [msvcr71.dll+0x9565]
+C  [kernel32.dll+0x4d0e9]
+C  [ntdll.dll+0x416c3]
+C  [ntdll.dll+0x41696]
+
+JavaThread 0x01549c00 (nid = 4576) was being processed
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J  java.lang.ClassLoader.defineClass1(Ljava/lang/String;[BIILjava/security/ProtectionDomain;Ljava/lang/String;Z)Ljava/lang/Class;
+J  java.lang.ClassLoader.defineClassCond(Ljava/lang/String;[BIILjava/security/ProtectionDomain;Z)Ljava/lang/Class;
+J  org.eclipse.osgi.baseadaptor.loader.ClasspathManager.defineClass(Ljava/lang/String;[BLorg/eclipse/osgi/baseadaptor/loader/ClasspathEntry;Lorg/eclipse/osgi/baseadaptor/bundlefile/BundleEntry;[Lorg/eclipse/osgi/baseadaptor/hooks/ClassLoadingStatsHook;)Ljava/lang/Class;
+J  org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findClassImpl(Ljava/lang/String;Lorg/eclipse/osgi/baseadaptor/loader/ClasspathEntry;[Lorg/eclipse/osgi/baseadaptor/hooks/ClassLoadingStatsHook;)Ljava/lang/Class;
+J  org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClassImpl(Ljava/lang/String;[Lorg/eclipse/osgi/baseadaptor/hooks/ClassLoadingStatsHook;)Ljava/lang/Class;
+J  org.eclipse.osgi.baseadaptor.loader.ClasspathManager.findLocalClass(Ljava/lang/String;)Ljava/lang/Class;
+J  org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(Ljava/lang/String;)Ljava/lang/Class;
+J  org.eclipse.osgi.internal.loader.BundleLoader.findClassInternal(Ljava/lang/String;ZLjava/lang/ClassLoader;)Ljava/lang/Class;
+J  org.eclipse.osgi.internal.loader.BundleLoader.findClass(Ljava/lang/String;Z)Ljava/lang/Class;
+J  org.eclipse.osgi.internal.loader.BundleLoader.findClass(Ljava/lang/String;)Ljava/lang/Class;
+J  org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader.loadClass(Ljava/lang/String;Z)Ljava/lang/Class;
+J  java.lang.ClassLoader.loadClass(Ljava/lang/String;)Ljava/lang/Class;
+v  ~StubRoutines::call_stub
+
+[error occurred during error reporting (printing target Java thread stack), id 0xc0000005]
+
+VM_Operation (0x0150cd48): GenCollectForPermanentAllocation, mode: safepoint, requested by thread 0x01549c00
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x55527c00 JavaThread "À€À€À€ä°±éºç¡³á®¦ÑˆäÀ€Stringç¢‹á®¦ì•°ä“™À€À€À€ì‡¨á®½ÄÀ€ç†¸á¯—ì¼ˆá®½Ä‡À€êœ˜äšÀ€À€êœ˜äšç‡ á¯—À€À€À€À€î¨á¯’À€À€À€À€ç£“á®¦í‰˜äì¼ á®½À€À€À€à°¨è—¸ç£«á®¦ÑˆäÀ€UnlimitedNaturalÀ€À€ç¤›á®¦à¡˜ä“–è¨á¯’ì‡¨á®½À€çˆ á¯—ì¿ á®½À€À€À€À€ê»˜ä™‡ê»˜ä™‡ç‰ˆá¯—ä¬ä™‡ì‡¨á®½îƒ˜á¯’À€À€á–¸á¯•áš á¯•á¶ˆá¯“áµ á¯“á›˜á¯•á˜á¯•á›¸á¯•á €á¯•á¡¨á¯•À€À€À€À€èá¯’è¸á¯’á· á¯“á™ á¯•á–ˆá¯•íƒ˜á®½è‘á¯’À€À€ç¦«á®¦í‰˜äì¿¸á®½À€À€À€è˜¿é¯ç§ƒá®¦ÑˆäÀ€CommentÀ€À€À€ç§£á®¦á¨ä“™À€À€À€ì½á®½â˜À€í…á®½í¸á®½À€À€À€ì¹ˆá®½í‚¨á®½À€À€À€ä¬ä™‡À€À€À€À€À€À€À€À€ì¹ˆá®½À€À€À€À€À€À€ì¹ˆá®½ç©ƒá®¦í‰˜äí‚á®½À€À€À€À€À€ç©›á®¦ÑˆäÀ€bodyÀ€À€ç©³á®¦é±¨ä“›À€ï¿¶À€À€í€˜á®½À€À€ç‰¨á¯—ì¹ˆá®½À€À€À€À€ì¹ˆá®½À€À€çª£á®¦ëœˆä“—À€À€í„€á®½á ä“‘ì½á®½À€À€À€À€ç«‹á®¦ïº¸ä“–À€í€˜á®½í‰ á®½À€À€À€À€À€À€ç««á®¦ä™ä“ŸÀ€À€À€í€˜á®½À€À€À€À€â¦€ä“Ÿí‡°á®½À€À€À€À€À€À€ç¬›á®¦ëœˆä“—À€À€í…¸á®½èœ°ä““í€˜á®½À€À€À€À€À€ç­ƒá®¦íŒ˜ä“ŸÀ€í„ á®½À€À€À€À€À€À€À€À€ç­£á®¦ê¹ä“ŸÀ€ï¿½À€À€í„ á®½ï¿¿ï¿¿æº€ä’‘í†¸á®½ç®ƒá®¦í‰˜äí‡á®½À€À€À€À€À€ç®›á®¦ÑˆäÀ€elementÀ€À€À€ç®»á®¦è˜ˆä“ŸÀ€À€íˆ˜á®½À€À€À€À€í™¨á¨›ëŒ€ä“Ÿí„ á®½ç¯£á®¦ë°€ä“ŸÀ€À€í‰€á®½ëŒ€ä“Ÿí„ á®½À€í‡°á®½À€À€ç°‹á®¦íƒ¨ä“ŸÀ€í†˜á®½À€À€À€À€À€À€À€À€ç°«á®¦æ€ä“™À€À€À€ì½á®½ØçŠ¨á¯—í‹ˆá®½À€À€ï¿¿ï¿¿íŒá®½è“ˆá¯’À€À€À€ä¬ä™‡À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€íŒá®½À€À€ç²“á®¦í‰˜äí‹ á®½À€À€À€À€À€ç²«á®¦ÑˆäÀ€annotatedElementÀ€À€ç³›á®¦à¡˜ä“–í°á®½ì‡¨á®½ÄÀ€á»á®¾í á®½À€À€À€ê½¨ä™‡ê½¨ä™‡á»¸á®¾î˜ä˜¼ì‡¨á®½î„ˆá¯’À€À€á•˜á¯•á˜°á¯•á´ˆá¯“á³¨á¯“á¢¸á¯•áº¨á¯“á¸ˆá¯“áŸˆá¯•á °á¯•À€À€À€À€í˜á®½í€á®½í™¨á®½á˜á¯•á”¸á¯•á¼˜á®¾í˜á®½À€À€çµ«á®¦í‰˜äí¸á®½À€À€À€ë›œç¶ƒá®¦ÑˆäÀ€ElementÀ€À€À€ç¶£á®¦ä§˜ä“–íŒá®½À€À€å‘á®¾íŒá®½ç¶»á®¦äšä“šÀ€í˜á®½ç·‹á®¦â¹ä“›À€íŒá®½íŒá®½À€À€ç·£á®¦æ£˜ä“›À€À€í‘°á®½æº¨ä““íŒá®½À€À€íŒá®½ç¸‹á®¦é±¨ä“›À€ï¿©À€À€íŒá®½À€À€ç‹á¯—ë¤á¨›À€À€À€À€ë¤á¨›À€À€ç¸»á®¦êœ€ä“›À€í‘€á®½À€À€À€À€À€À€À€À€ç¹›á®¦ê‚€ä“™À€
+À€À€íŒá®½ÌÀ€çŒá¯—í“˜á®½À€À€À€í´°á¨›í—°á®½À€çŒ¸á¯—í¡ á®½ç€á¯—ç˜á¯—À€À€çº£á®¦í‰˜äí“°á®½À€À€À€À€À€çº»á®¦ÑˆäÀ€not_own_selfÀ€À€ç»£á®¦Ñˆä@À€ecore:EDataType http:// daemon [_thread_blocked, id=4488, stack(0x57030000,0x57080000)]
+  0x55527800 JavaThread "Unknown thread" [_thread_blocked, id=2472, stack(0x56010000,0x56060000)]
+  0x55527000 JavaThread "Unknown thread" [_thread_blocked, id=3712, stack(0x55fc0000,0x56010000)]
+  0x55526c00 JavaThread "Ôì€Œ À€À€À€áˆˆäæ °äÑˆäÀ€À€À€À€À€À€À€À€À€À€À€À€ç³˜ä‘æ °äĞ¸äÀ€À€Ë°äĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€î¥ä“†À€À€À€À€À€ç¢¸ä‘ï¿¿ç¿¿À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€æœˆäæˆ¸äæ¸äæ† äæ‹€äÀ€À€À€É˜ää™›À€À€À€Ç äè‡°æ¶£Ø‚ì€Œ À€À€À€áˆˆäæ °äÖ äÀ€À€À€À€À€À€À€À€À€À€À€À€ç´¸ä‘æ °äÖäÀ€À€ÑˆäĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€çœ¸ä‘ï¿»ç¿¿À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€æœˆäæˆ¸äæ¸äæ† äæ‹€äÀ€À€À€É˜ää‘›À€À€À€Ç äè‡°æ¶£Üƒì€ À€À€À€áˆˆäæ °äÛ¸äÀ€À€À€À€À€À€À€À€À€À€À€À€ç¶˜ä‘æ °äÛ¨äÀ€À€Ö äĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€ç˜ä‘ï¿½ã¿¿À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€æœˆäæˆ¸äæ¸äæ† äæ‹€äÀ€À€À€É˜ää‰›À€À€À€Ç äè‡°æ¶£à €ì€Œ À€À€À€áˆˆäæ °äà¡äÀ€À€À€À€À€À€À€À€À€À€À€À€ç·¸ä‘æ °äà¡€äÀ€À€Û¸äĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€è»¸ä´À€À€À€À€À€çŸ¸ä‘ï¿¿ç¿¿À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€æœˆäæˆ¸äæ¸äæ† äæ‹€äÀ€À€À€É˜äå›À€À€À€Ç äè‡°æ¶£à¤ì€Œ À€À€À€áˆˆäæ °äà¦¨äÀ€À€À€À€À€À€À€À€À€À€À€À€ç¹˜ä‘æ °äà¦˜äÀ€À€à¡äĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€ç§¸ä’ŒÀ€À€À€À€À€ç¥¸ä‘ï¿¿ç¿¿À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€À€æœˆäæˆ¸äæ¸äæ† äæ‹€äÀ€À€À€É˜ää¥›À€À€À€Ç äè‡°æ¶£à¨‚ì€Œ À€À€À€áˆˆäæ °äà¬€äÀ€À€À€À€À€À€À€À€À€À€À€À€çº¸ä‘æ °äà«°äÀ€À€à¦¨äĞ‘À€À€è€€À€À€À€À€À€À€À€À€À€À€À€À€ì¿˜ä¼À€À€ daemon [_thread_blocked, id=5748, stack(0x55f70000,0x55fc0000)]
+  0x55526000 JavaThread "Unknown thread" [_thread_in_native, id=5620, stack(0x55e80000,0x55ed0000)]
+  0x55525800 
+[error occurred during error reporting (printing all threads), id 0xc0000005]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x01548008] Threads_lock - owner thread: 0x02087c00
+[0x01548418] Heap_lock - owner thread: 0x01549c00
+
+Heap
+ def new generation   total 157376K, used 57543K [0x04100000, 0x0ebc0000, 0x19650000)
+  eden space 139904K,  29% used [0x04100000, 0x0693d178, 0x0c9a0000)
+  from space 17472K,  93% used [0x0c9a0000, 0x0d994bd8, 0x0dab0000)
+  to   space 17472K,   0% used [0x0dab0000, 0x0dab0000, 0x0ebc0000)
+ tenured generation   total 349568K, used 91999K [0x19650000, 0x2ebb0000, 0x44100000)
+   the space 349568K,  26% used [0x19650000, 0x1f027ed0, 0x1c92ca00, 0x2ebb0000)
+ compacting perm gen  total 45104K, used 45103K [0x44100000, 0x46d0c000, 0x54100000)
+   the space 45104K,  99% used [0x44100000, 0x46d0bfe8, 0x46cfb400, 0x46d0c000)
+No shared spaces configured.
+
+Dynamic libraries:
+0x00400000 - 0x00424000 	C:\Program Files\Java\jre6\bin\javaw.exe
+0x776f0000 - 0x77818000 	C:\Windows\system32\ntdll.dll
+0x760a0000 - 0x7617c000 	C:\Windows\system32\kernel32.dll
+0x76ff0000 - 0x770b6000 	C:\Windows\system32\ADVAPI32.dll
+0x771c0000 - 0x77283000 	C:\Windows\system32\RPCRT4.dll
+0x77290000 - 0x7732d000 	C:\Windows\system32\USER32.dll
+0x77860000 - 0x778ab000 	C:\Windows\system32\GDI32.dll
+0x75f50000 - 0x75f6e000 	C:\Windows\system32\IMM32.DLL
+0x76f20000 - 0x76fe8000 	C:\Windows\system32\MSCTF.dll
+0x76e20000 - 0x76eca000 	C:\Windows\system32\msvcrt.dll
+0x77850000 - 0x77859000 	C:\Windows\system32\LPK.DLL
+0x77140000 - 0x771bd000 	C:\Windows\system32\USP10.dll
+0x7c340000 - 0x7c396000 	C:\Program Files\Java\jre6\bin\msvcr71.dll
+0x6d7f0000 - 0x6da9c000 	C:\Program Files\Java\jre6\bin\client\jvm.dll
+0x74390000 - 0x743c2000 	C:\Windows\system32\WINMM.dll
+0x77330000 - 0x77475000 	C:\Windows\system32\ole32.dll
+0x76180000 - 0x7620d000 	C:\Windows\system32\OLEAUT32.dll
+0x74190000 - 0x741cd000 	C:\Windows\system32\OLEACC.dll
+0x75d80000 - 0x75dac000 	C:\Windows\system32\apphelp.dll
+0x6d7a0000 - 0x6d7ac000 	C:\Program Files\Java\jre6\bin\verify.dll
+0x6d320000 - 0x6d33f000 	C:\Program Files\Java\jre6\bin\java.dll
+0x6d280000 - 0x6d288000 	C:\Program Files\Java\jre6\bin\hpi.dll
+0x75f40000 - 0x75f47000 	C:\Windows\system32\PSAPI.DLL
+0x6d370000 - 0x6d399000 	C:\Program Files\Java\jre6\bin\jdwp.dll
+0x6d690000 - 0x6d696000 	C:\Program Files\Java\jre6\bin\npt.dll
+0x6d7e0000 - 0x6d7ef000 	C:\Program Files\Java\jre6\bin\zip.dll
+0x6d200000 - 0x6d207000 	C:\Program Files\Java\jre6\bin\dt_socket.dll
+0x77920000 - 0x7794d000 	C:\Windows\system32\WS2_32.dll
+0x778b0000 - 0x778b6000 	C:\Windows\system32\NSI.dll
+0x75150000 - 0x7515f000 	C:\Windows\system32\NLAapi.dll
+0x75780000 - 0x75799000 	C:\Windows\system32\IPHLPAPI.DLL
+0x75740000 - 0x75775000 	C:\Windows\system32\dhcpcsvc.DLL
+0x759f0000 - 0x75a1c000 	C:\Windows\system32\DNSAPI.dll
+0x75de0000 - 0x75df4000 	C:\Windows\system32\Secur32.dll
+0x757a0000 - 0x757a7000 	C:\Windows\system32\WINNSI.DLL
+0x75710000 - 0x75732000 	C:\Windows\system32\dhcpcsvc6.DLL
+0x729b0000 - 0x729bf000 	C:\Windows\system32\napinsp.dll
+0x72590000 - 0x725a2000 	C:\Windows\system32\pnrpnsp.dll
+0x755b0000 - 0x755eb000 	C:\Windows\System32\mswsock.dll
+0x72840000 - 0x72848000 	C:\Windows\System32\winrnr.dll
+0x778c0000 - 0x77909000 	C:\Windows\system32\WLDAP32.dll
+0x729f0000 - 0x729f6000 	C:\Windows\system32\rasadhlp.dll
+0x75310000 - 0x75315000 	C:\Windows\System32\wshtcpip.dll
+0x75520000 - 0x7555b000 	C:\Windows\system32\rsaenh.dll
+0x75e00000 - 0x75e1e000 	C:\Windows\system32\USERENV.dll
+0x6d600000 - 0x6d613000 	C:\Program Files\Java\jre6\bin\net.dll
+0x75620000 - 0x75625000 	C:\Windows\System32\wship6.dll
+0x6d620000 - 0x6d629000 	C:\Program Files\Java\jre6\bin\nio.dll
+0x72000000 - 0x7200d000 	C:\eclipse-modeling-helios-incubation-win32\plugins\org.eclipse.equinox.launcher.win32.win32.x86_1.1.0.v20100503\eclipse_1307.dll
+0x74aa0000 - 0x74c3e000 	C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_6.0.6002.18305_none_5cb72f2a088b0ed3\COMCTL32.dll
+0x76210000 - 0x76269000 	C:\Windows\system32\SHLWAPI.dll
+0x756f0000 - 0x756f8000 	C:\Windows\system32\VERSION.dll
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:53196 -XX:MaxPermSize=256m -Xms512m -Xmx1024m -ea -DuseBootstrappedTCSParser=true -Declipse.pde.launch=true -Declipse.p2.data.area=@config.dir\p2 -Dfile.encoding=Cp1252 
+java_command: org.eclipse.equinox.launcher.Main -os win32 -ws win32 -arch x86 -nl de_DE -consoleLog -version 3 -port 53195 -testLoaderClass org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader -loaderpluginname org.eclipse.jdt.junit4.runtime -classNames com.sap.furcas.parsergenerator.tcs.scenario.TCSImportsOCLTest -application org.eclipse.pde.junit.runtime.coretestapplication -data C:\FURCAS_EMF\FURCASEMF/../junit-workspace -configuration file:C:/FURCAS_EMF/FURCASEMF/.metadata/.plugins/org.eclipse.pde.core/pde-junit/ -dev file:C:/FURCAS_EMF/FURCASEMF/.metadata/.plugins/org.eclipse.pde.core/pde-junit/dev.properties -os win32 -ws win32 -arch x86 -nl de_DE -consoleLog -testpluginname com.sap.furcas.parsergenerator
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=I:\Java\jdk1.6.0
+PATH=C:/Program Files/Java/jre6/bin/client;C:/Program Files/Java/jre6/bin;C:/Program Files/Java/jre6/lib/i386;C:\Program Files\PostgreSQL\8.4\bin;C:\Program Files\MiKTeX 2.8\miktex\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Program Files\TortoiseSVN\bin;I:\Java\jdk1.6.0\bin;I:\Tools\apache-ant-1.8.0\bin;C:\Program Files\TortoiseGit\bin;C:\Program Files\Graphviz2.26.3\bin
+USERNAME=siani christian
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 13, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows Vista Build 6002 Service Pack 2
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 2086112k(172176k free), swap 4423396k(1133416k free)
+
+vm_info: Java HotSpot(TM) Client VM (19.0-b09) for windows-x86 JRE (1.6.0_23-b05), built on Nov 12 2010 15:00:43 by "java_re" with MS VC++ 7.1 (VS2003)
+
+time: Thu Feb 17 17:11:24 2011
+elapsed time: 439 seconds
+

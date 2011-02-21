@@ -71,6 +71,8 @@ public class BindingItemProvider
 			addRequiredTemplatePropertyDescriptor(object);
 			addProvidedTemplatePropertyDescriptor(object);
 			addModePropertyDescriptor(object);
+			addRequiredTemplatePackagePropertyDescriptor(object);
+			addProvidedTemplatePackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -181,6 +183,50 @@ public class BindingItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Required Template Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequiredTemplatePackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Binding_requiredTemplatePackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Binding_requiredTemplatePackage_feature", "_UI_Binding_type"),
+				 InterfaceconfigurationPackage.Literals.BINDING__REQUIRED_TEMPLATE_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Provided Template Package feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addProvidedTemplatePackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Binding_providedTemplatePackage_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Binding_providedTemplatePackage_feature", "_UI_Binding_type"),
+				 InterfaceconfigurationPackage.Literals.BINDING__PROVIDED_TEMPLATE_PACKAGE,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}

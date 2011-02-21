@@ -12,7 +12,7 @@ class SystemOutErrorHandler implements GenerationErrorHandler {
     @Override
     public void error(ParsingError exception) {
         failedWithError = true;
-        System.err.println("ERROR: " + exception.getMessage());
+        System.err.println("ERROR: " + exception.getMessage() + " in line " + exception.getLine());
     }
 
     @Override
@@ -29,7 +29,7 @@ class SystemOutErrorHandler implements GenerationErrorHandler {
     @Override
     public void error(Message err) {
         failedWithError = true;
-        System.err.println("ERROR: " + err);
+        System.err.println("ERROR: " + err + " in line " + err.line);
     }
 
     @Override

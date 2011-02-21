@@ -16,6 +16,7 @@ import com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.Interfaceconfigura
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -33,6 +34,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.BindingImpl#getRequiredTemplate <em>Required Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.BindingImpl#getProvidedTemplate <em>Provided Template</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.BindingImpl#getMode <em>Mode</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.BindingImpl#getRequiredTemplatePackage <em>Required Template Package</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.interfaceconfiguration.impl.BindingImpl#getProvidedTemplatePackage <em>Provided Template Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,6 +101,26 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * @ordered
 	 */
 	protected String mode = MODE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getRequiredTemplatePackage() <em>Required Template Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequiredTemplatePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPackage requiredTemplatePackage;
+
+	/**
+	 * The cached value of the '{@link #getProvidedTemplatePackage() <em>Provided Template Package</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProvidedTemplatePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected EPackage providedTemplatePackage;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -296,6 +319,82 @@ public class BindingImpl extends EObjectImpl implements Binding {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EPackage getRequiredTemplatePackage() {
+		if (requiredTemplatePackage != null && requiredTemplatePackage.eIsProxy()) {
+			InternalEObject oldRequiredTemplatePackage = (InternalEObject)requiredTemplatePackage;
+			requiredTemplatePackage = (EPackage)eResolveProxy(oldRequiredTemplatePackage);
+			if (requiredTemplatePackage != oldRequiredTemplatePackage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE, oldRequiredTemplatePackage, requiredTemplatePackage));
+			}
+		}
+		return requiredTemplatePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPackage basicGetRequiredTemplatePackage() {
+		return requiredTemplatePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRequiredTemplatePackage(EPackage newRequiredTemplatePackage) {
+		EPackage oldRequiredTemplatePackage = requiredTemplatePackage;
+		requiredTemplatePackage = newRequiredTemplatePackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE, oldRequiredTemplatePackage, requiredTemplatePackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPackage getProvidedTemplatePackage() {
+		if (providedTemplatePackage != null && providedTemplatePackage.eIsProxy()) {
+			InternalEObject oldProvidedTemplatePackage = (InternalEObject)providedTemplatePackage;
+			providedTemplatePackage = (EPackage)eResolveProxy(oldProvidedTemplatePackage);
+			if (providedTemplatePackage != oldProvidedTemplatePackage) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE, oldProvidedTemplatePackage, providedTemplatePackage));
+			}
+		}
+		return providedTemplatePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EPackage basicGetProvidedTemplatePackage() {
+		return providedTemplatePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProvidedTemplatePackage(EPackage newProvidedTemplatePackage) {
+		EPackage oldProvidedTemplatePackage = providedTemplatePackage;
+		providedTemplatePackage = newProvidedTemplatePackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE, oldProvidedTemplatePackage, providedTemplatePackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -313,6 +412,12 @@ public class BindingImpl extends EObjectImpl implements Binding {
 				return basicGetProvidedTemplate();
 			case InterfaceconfigurationPackage.BINDING__MODE:
 				return getMode();
+			case InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE:
+				if (resolve) return getRequiredTemplatePackage();
+				return basicGetRequiredTemplatePackage();
+			case InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE:
+				if (resolve) return getProvidedTemplatePackage();
+				return basicGetProvidedTemplatePackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -339,6 +444,12 @@ public class BindingImpl extends EObjectImpl implements Binding {
 				return;
 			case InterfaceconfigurationPackage.BINDING__MODE:
 				setMode((String)newValue);
+				return;
+			case InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE:
+				setRequiredTemplatePackage((EPackage)newValue);
+				return;
+			case InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE:
+				setProvidedTemplatePackage((EPackage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -367,6 +478,12 @@ public class BindingImpl extends EObjectImpl implements Binding {
 			case InterfaceconfigurationPackage.BINDING__MODE:
 				setMode(MODE_EDEFAULT);
 				return;
+			case InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE:
+				setRequiredTemplatePackage((EPackage)null);
+				return;
+			case InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE:
+				setProvidedTemplatePackage((EPackage)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -389,6 +506,10 @@ public class BindingImpl extends EObjectImpl implements Binding {
 				return providedTemplate != null;
 			case InterfaceconfigurationPackage.BINDING__MODE:
 				return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
+			case InterfaceconfigurationPackage.BINDING__REQUIRED_TEMPLATE_PACKAGE:
+				return requiredTemplatePackage != null;
+			case InterfaceconfigurationPackage.BINDING__PROVIDED_TEMPLATE_PACKAGE:
+				return providedTemplatePackage != null;
 		}
 		return super.eIsSet(featureID);
 	}

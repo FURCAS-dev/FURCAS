@@ -43,7 +43,7 @@ import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
  * 
  * @author C5107456
  */
-public class SyntaxLookup  {
+public class SyntaxLookup {
 
 	/** The syntax. */
 	private final ConcreteSyntax syntax;
@@ -62,9 +62,13 @@ public class SyntaxLookup  {
 
 	private final MetaModelElementResolutionHelper<?> resolutionHelper;
 
-	private List<PrimitiveTemplate> primitiveTemplates;
+	private Set<PrimitiveTemplate> primitiveTemplates = new HashSet<PrimitiveTemplate>();
 
 	private final Map<QualifiedNamedElement, List<String>> qualifiednamesCache = new HashMap<QualifiedNamedElement, List<String>>();
+
+	private List<ConcreteSyntax> concreteSyntaxForCheck = new ArrayList<ConcreteSyntax>();
+
+	private Collection<String> primitiveTemplateNameList = new HashSet<String>();
 
 	SemanticErrorBucket errorBucket = new SemanticErrorBucket();
 
@@ -187,24 +191,43 @@ public class SyntaxLookup  {
 	private void initializePrimitiveTemplatesList(ConcreteSyntax syntax,
 			Collection<ConcreteSyntax> importedSyntaxes,
 			Collection<Template> importedTemplates) {
-		primitiveTemplates = new ArrayList<PrimitiveTemplate>();
-
 		if (syntax != null) {
 			Collection<Template> templates = syntax.getTemplates();
 			if (templates != null) {
 				for (Template template : templates) {
 					if (template instanceof PrimitiveTemplate) {
 						primitiveTemplates.add((PrimitiveTemplate) template);
+						if (template.getMetaReference() != null) {
+							primitiveTemplateNameList
+									.add(((PrimitiveTemplate) template)
+											.getTemplateName().toString());
+						}
 					}
 				}
 			}
 		}
-		addImportedPrimitiveTemplates(importedSyntaxes, importedTemplates);
+		// to initialize the imported PrimitiveTemplates and to get the list of
+		// PrimitiveTemplate,FunctionTemplate and OperatorTemplates that have to
+		// be imported
+		Collection<Template> importedOtherTemplates = addImportedPrimitiveTemplates(
+				importedSyntaxes, importedTemplates);
+		// to add the list of to imported PrimitiveTemplates to the list of
+		// imported templates
+		importedTemplates.addAll(importedOtherTemplates);
 	}
 
-	private void addImportedPrimitiveTemplates(
+	/**
+	 * add the new imported primitive template to the list of primitiveTemplates
+	 * 
+	 * @param importedSyntaxes
+	 * @param importedTemplates
+	 * @return a list of new imported primitiveTemplates functionTemplates, and
+	 *         OperatorTemplates that have to be added as importedTemplate
+	 */
+	private Collection<Template> addImportedPrimitiveTemplates(
 			Collection<ConcreteSyntax> importedSyntaxes,
 			Collection<Template> importedTemplates) {
+		Collection<Template> newImportedTemplate = new HashSet<Template>();
 		if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
 			for (ConcreteSyntax concreteSyntax : importedSyntaxes) {
 				if (concreteSyntax != null) {
@@ -216,7 +239,11 @@ public class SyntaxLookup  {
 							Template template = iterator.next();
 							if (template instanceof PrimitiveTemplate) {
 								if (primitiveTemplates
-										.contains((PrimitiveTemplate) template)) {
+										.contains((PrimitiveTemplate) template)
+										|| primitiveTemplateNameList
+												.contains(((PrimitiveTemplate) template)
+														.getTemplateName()
+														.toString())) {
 									errorBucket
 											.addWarning(
 													"the PrimitiveTemplate already exists in the main mapping ..",
@@ -224,6 +251,9 @@ public class SyntaxLookup  {
 								} else {
 									primitiveTemplates
 											.add((PrimitiveTemplate) template);
+									// add the new primitiveTemplate in the
+									// importedTemplate list
+									newImportedTemplate.add(template);
 								}
 
 							}
@@ -234,11 +264,15 @@ public class SyntaxLookup  {
 		}
 
 		if (importedTemplates != null && importedTemplates.size() > 0) {
+			// get the names of the imported primitiveTemplates
 			for (Template template : importedTemplates) {
 				if (template != null) {
 					if (template instanceof PrimitiveTemplate) {
 						if (primitiveTemplates
-								.contains((PrimitiveTemplate) template)) {
+								.contains((PrimitiveTemplate) template)
+								|| primitiveTemplateNameList
+										.contains(((PrimitiveTemplate) template)
+												.getTemplateName().toString())) {
 							errorBucket
 									.addWarning(
 											"the PrimitiveTemplate already exists in the main mapping ..",
@@ -246,12 +280,63 @@ public class SyntaxLookup  {
 						} else {
 							primitiveTemplates
 									.add((PrimitiveTemplate) template);
+							// add the new primitiveTemplate in the
+							// importedTemplate list
+							newImportedTemplate.add(template);
 						}
 
+					} else {
+						// add the primitive templates of the template´s
+						// concrete syntax, that
+						// does not already exist in the active concrete syntax
+						if (template.getConcreteSyntax() != null
+								&& !template.getConcreteSyntax().getTemplates()
+										.isEmpty()) {
+							Collection<Template> newPrimitiveTemplate = new HashSet<Template>();
+							// Just check for the templates that have different
+							// concrete syntaxes
+							if (!concreteSyntaxForCheck.contains(template
+									.getConcreteSyntax())) {
+								newPrimitiveTemplate.addAll(template
+										.getConcreteSyntax().getTemplates());
+								for (Template template2 : newPrimitiveTemplate) {
+									if (template2 instanceof PrimitiveTemplate) {
+										if (!primitiveTemplates
+												.contains((PrimitiveTemplate) template2)
+												&& !primitiveTemplateNameList
+														.contains(((PrimitiveTemplate) template2)
+																.getTemplateName()
+																.toString())) {
+											primitiveTemplates
+													.add((PrimitiveTemplate) template2);
+											// add the new primitiveTemplate in
+											// the importedTemplate list
+											newImportedTemplate.add(template2);
+										}
+										// to add the functionTemplate of the
+										// imported concrete syntax of the
+										// imported template or
+										// primitiveTemplate
+									} else if (template2 instanceof FunctionTemplate) {
+										newImportedTemplate.add(template2);
+									} else if (template2 instanceof OperatorTemplate) {
+										newImportedTemplate.add(template2);
+									}
+								}
+							}
+						} else {
+							errorBucket
+									.addWarning(
+											"The concrete syntax of the imported template is null",
+											template);
+						}
 					}
 				}
+				concreteSyntaxForCheck.add(template.getConcreteSyntax());
 			}
+			concreteSyntaxForCheck.clear();
 		}
+		return newImportedTemplate;
 	}
 
 	public Set<Keyword> getAllKeywords() {
@@ -422,32 +507,35 @@ public class SyntaxLookup  {
 
 		// add the imported templates
 		if (importedTemplates != null && importedTemplates.size() > 0) {
-			
+
 			if (parentTemplate != null) {
-				if (importedTemplates.contains(parentTemplate) || !syntax.getTemplates().contains(parentTemplate)) {
-					//template is either imported or transitively referenced by a non-partial import.
+				if (importedTemplates.contains(parentTemplate)
+						|| !syntax.getTemplates().contains(parentTemplate)) {
+					// template is either imported or transitively referenced by
+					// a non-partial import.
 					HashSet<Template> listOfRecursiveTemplate = new HashSet<Template>();
 					// to get the recursiv imported templates (isPartImport ==
 					// false)
 					listOfRecursiveTemplate = getRecursivTemplate(
 							parentTemplate, templates);
-					
+
 					if (listOfRecursiveTemplate != null
 							&& listOfRecursiveTemplate.size() > 0) {
 						for (Template template1 : listOfRecursiveTemplate) {
 							if (templates.contains(template1)) {
-								errorBucket.addWarning(
-										"The template already exists in the mapping",
-										template1);
+								errorBucket
+										.addWarning(
+												"The template already exists in the mapping",
+												template1);
 							} else {
 								templates.add(template1);
 							}
 						}
-						
+
 					}
 
 				}
-			}else {
+			} else {
 				errorBucket.addWarning(
 						"The parent Template for this subtype is null",
 						parentTemplate);
