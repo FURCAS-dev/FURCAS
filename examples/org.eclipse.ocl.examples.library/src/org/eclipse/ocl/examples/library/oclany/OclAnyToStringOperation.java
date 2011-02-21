@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyToStringOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: OclAnyToStringOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -31,6 +31,7 @@ public class OclAnyToStringOperation extends AbstractOperation
 	public static final OclAnyToStringOperation INSTANCE = new OclAnyToStringOperation();
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		return evaluationVisitor.getValueFactory().stringValueOf(sourceVal.oclToString());
+		String string = sourceVal == null?  "invalid" : sourceVal.oclToString();
+		return evaluationVisitor.getValueFactory().stringValueOf(string);
 	}
 }

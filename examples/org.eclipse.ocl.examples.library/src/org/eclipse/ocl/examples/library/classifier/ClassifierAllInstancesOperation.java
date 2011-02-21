@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.2 2011/01/24 19:56:32 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
@@ -36,12 +37,9 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 {
 	public static final ClassifierAllInstancesOperation INSTANCE = new ClassifierAllInstancesOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
 		TypeValue typeVal = sourceVal.asTypeValue();
-		if ((typeVal == null) || typeVal.isNull()) {
-			return valueFactory.createInvalidValue(sourceVal, operationCall, "Type value expected", null);
-		}
 		ModelManager modelManager = evaluationVisitor.getModelManager();
 		Set<Value> results = new HashSet<Value>();
 		Set<?> instances = modelManager.get(typeVal.getType());

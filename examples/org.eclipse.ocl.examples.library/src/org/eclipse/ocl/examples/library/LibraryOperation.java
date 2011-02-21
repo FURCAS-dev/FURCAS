@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: LibraryOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: LibraryOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library;
 
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -34,6 +36,8 @@ public interface LibraryOperation extends LibraryFeature
 	 * @param sourceVal the source operand for the operation
 	 * @param operationCall the operation and additional arguments
 	 * @return the evaluated value
+	 * @throws InvalidValueException 
 	 */
-	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall);
+	Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall)
+		throws InvalidEvaluationException, InvalidValueException;
 }
