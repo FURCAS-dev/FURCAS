@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -41,88 +41,88 @@ public abstract class AbstractValue implements Value
 		this.valueFactory = valueFactory;
 	}
 
-//	public boolean and(Value v) {
-//		return false;
-//	}
-
-	public BagValue asBagValue() {
-		return null;
+	public BagValue asBagValue() throws InvalidValueException {
+		throw new InvalidValueException("Bag Value Required", this);
 	}
 
-	public BooleanValue asBooleanValue() {
-		return null;
+	public boolean asBoolean() throws InvalidValueException {
+		throw new InvalidValueException("Boolean Value Required", this);
 	}
 
-	public CollectionValue asCollectionValue() {
-		return null;
+	public BooleanValue asBooleanValue() throws InvalidValueException {
+		throw new InvalidValueException("Boolean Value Required", this);
+	}
+
+	public CollectionValue asCollectionValue() throws InvalidValueException {
+		throw new InvalidValueException("Collection Value Required", this);
+	}
+
+	public Double asDouble() throws InvalidValueException {
+		throw new InvalidValueException("Double Value Required", this);
 	}
 
 	public Element asElement() {
 		return null;
 	}
 
-	public BooleanValue asFalse() {
-		return valueFactory.getFalse();
+	public Integer asInteger() throws InvalidValueException {
+		throw new InvalidValueException("Integer Value Required", this);
 	}
 
-	public Integer asInteger() {
-		return null;
+	public IntegerValue asIntegerValue() throws InvalidValueException {
+		throw new InvalidValueException("Integer Value Required", this);
 	}
 
-	public IntegerValue asIntegerValue() {
-		return null;
+	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
+		throw new InvalidValueException("Ordered Collection Value Required", this);
 	}
 
-	public InvalidValue asInvalidValue() {
-		return null;
+	public OrderedSetValue asOrderedSetValue() throws InvalidValueException {
+		throw new InvalidValueException("OrderedSet Value Required", this);
 	}
 
-	public OrderedCollectionValue asOrderedCollectionValue() {
-		return null;
+	public RealValue asRealValue() throws InvalidValueException {
+		throw new InvalidValueException("Real Value Required", this);
 	}
 
-	public OrderedSetValue asOrderedSetValue() {
-		return null;
+	public SequenceValue asSequenceValue() throws InvalidValueException {
+		throw new InvalidValueException("Sequence Value Required", this);
 	}
 
-	public RealValue asRealValue() {
-		return null;
+	public SetValue asSetValue() throws InvalidValueException {
+		throw new InvalidValueException("Set Value Required", this);
 	}
 
-	public SequenceValue asSequenceValue() {
-		return null;
+	public String asString() throws InvalidValueException {
+		throw new InvalidValueException("String Value Required", this);
 	}
 
-	public SetValue asSetValue() {
-		return null;
+	public StringValue asStringValue() throws InvalidValueException {
+		throw new InvalidValueException("String Value Required", this);
 	}
 
-	public String asString() {
-		return null;
+	public TypeValue asTypeValue() throws InvalidValueException {
+		throw new InvalidValueException("Type Value Required", this);
 	}
 
-	public StringValue asStringValue() {
-		return null;
-	}
-
-	public BooleanValue asTrue() {
-		return valueFactory.getFalse();
-	}
-
-	public TypeValue asTypeValue() {
-		return null;
-	}
-
-	public UniqueCollectionValue asUniqueCollectionValue() {
-		return null;
+	public UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException {
+		throw new InvalidValueException("Unique Collection Value Required", this);
 	}
 	
 	public ValueFactory getValueFactory() {
 		return valueFactory;
 	}
 
+	public CollectionValue isCollectionValue() {
+		return null;
+	}
+
 	public boolean isFalse() {
 		return false;
+	}
+
+	public IntegerValue isIntegerValue() {
+		return null;
 	}
 
 	public boolean isInvalid() {
@@ -131,6 +131,10 @@ public abstract class AbstractValue implements Value
 
 	public boolean isNull() {
 		return false;
+	}
+
+	public RealValue isRealValue() {
+		return null;
 	}
 
 	public boolean isTrue() {
@@ -153,12 +157,12 @@ public abstract class AbstractValue implements Value
 		return toString();
 	}
 
-	public InvalidValue toInvalidValue() {
-		return valueFactory.createInvalidValue(this, null, "bad value", null);
+	public IntegerValue toIntegerValue() throws InvalidValueException {
+		throw new InvalidValueException("Integer Value Required", this);
 	}
 
-	public RealValue toRealValue() {
-		return null;
+	public RealValue toRealValue() throws InvalidValueException {
+		throw new InvalidValueException("Real Value Required", this);
 	}
 
 	public void toString(StringBuffer s, int sizeLimit) {

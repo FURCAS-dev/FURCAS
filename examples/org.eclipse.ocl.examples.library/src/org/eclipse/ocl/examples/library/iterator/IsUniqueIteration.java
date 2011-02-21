@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: IsUniqueIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: IsUniqueIteration.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
@@ -49,15 +50,16 @@ public class IsUniqueIteration extends AbstractIteration<CollectionValue.Accumul
     protected Value updateAccumulator(IterationManager<CollectionValue.Accumulator> iterationManager) {
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
-		if (bodyVal.isInvalid()) {
-			return bodyVal;						// invalid body is invalid
-		}
-		else if (accumulatorValue.includes(bodyVal).isTrue()) {
-			return iterationManager.getFalse();		// Abort after second find
-		}
-		else {
-			accumulatorValue.add(bodyVal);
-			return null;						// Carry on after first find
+		try {
+			if (accumulatorValue.includes(bodyVal).isTrue()) {
+				return iterationManager.getFalse();		// Abort after second find
+			}
+			else {
+				accumulatorValue.add(bodyVal);
+				return null;						// Carry on after first find
+			}
+		} catch (InvalidValueException e) {
+			return iterationManager.throwInvalidEvaluation(e);
 		}
 	}
 }

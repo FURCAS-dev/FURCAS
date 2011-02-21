@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractNumericBinaryOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: AbstractNumericBinaryOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -30,27 +31,18 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  */
 public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOperation
 {
-	public Value evaluate(ValueFactory valueFactory, Value left, Value right) {
-		if (left.isInvalid() || right.isInvalid()) {
-			return evaluateInvalid(valueFactory, left, right);
-		}
-		else if (left.isNull() || right.isNull()) {
-			return evaluateNull(valueFactory, left, right);
-		}
-		else if (left.isUnlimited() || right.isUnlimited()) {
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		if (left.isUnlimited() || right.isUnlimited()) {
 			return evaluateUnlimited(valueFactory, left, right);
 		}
-		IntegerValue leftInteger = left.asIntegerValue();
-		IntegerValue rightInteger = right.asIntegerValue();
+		IntegerValue leftInteger = left.isIntegerValue();
+		IntegerValue rightInteger = right.isIntegerValue();
 		if ((leftInteger != null) && (rightInteger != null)) {
 			return evaluateInteger(valueFactory, leftInteger, rightInteger);
 		}
 		RealValue leftReal = left.toRealValue();
 		RealValue rightReal = right.toRealValue();
-		if ((leftReal != null) && (rightReal != null)) {
-			return evaluateReal(valueFactory, leftReal, rightReal);
-		}
-		return evaluateNonNumeric(valueFactory, left, right);
+		return evaluateReal(valueFactory, leftReal, rightReal);
 	}
 	
 	/**
@@ -58,41 +50,10 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param left argument
 	 * @param right argument
 	 * @return result
+	 * @throws InvalidValueException 
 	 */
-	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) {
+	protected Value evaluateInteger(ValueFactory valueFactory, IntegerValue left, IntegerValue right) throws InvalidValueException {
 		return evaluate(valueFactory, left, right);
-	}
-	
-	/**
-	 * Evaluate an operation for which at least one of left and right are invalid.
-	 * @param left argument
-	 * @param right argument
-	 * @return result
-	 */
-	protected Value evaluateInvalid(ValueFactory valueFactory, Value left, Value right) {
-		return null;
-	}
-	
-	/**
-	 * Evaluate an operation for which at least neither left or right is null or invalid
-	 * but at least one of left and right are a non-numeric value.
-	 * @param left argument
-	 * @param right argument
-	 * @return result
-	 */
-	protected Value evaluateNonNumeric(ValueFactory valueFactory, Value left, Value right) {
-		return null;
-	}
-	
-	/**
-	 * Evaluate an operation for which at least one of left and right are null
-	 * and for which neither left nor right are invalid.
-	 * @param left argument
-	 * @param right argument
-	 * @return result
-	 */
-	protected Value evaluateNull(ValueFactory valueFactory, Value left, Value right) {
-		return null;
 	}
 
 	/**
@@ -100,8 +61,9 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param left argument
 	 * @param right argument
 	 * @return result
+	 * @throws InvalidValueException 
 	 */
-	protected Value evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) {
+	protected Value evaluateReal(ValueFactory valueFactory, RealValue left, RealValue right) throws InvalidValueException {
 		return evaluate(valueFactory, left, right);
 	}
 	
@@ -112,7 +74,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * @param right argument
 	 * @return result
 	 */
-	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) {
+	protected Value evaluateUnlimited(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
 		return null;
 	}
 	
@@ -121,7 +83,7 @@ public abstract class AbstractNumericBinaryOperation extends AbstractBinaryOpera
 	 * of the same derived Number type. 
 	 * A null return or an exception may be used for invalid.
 	 */
-	protected <T extends Number & Comparable<T>> Object evaluate(ValueFactory valueFactory, T left, T right) {
+	protected <T extends Number & Comparable<T>> Object evaluate(ValueFactory valueFactory, T left, T right) throws InvalidValueException {
 		return null;
 	}
 }

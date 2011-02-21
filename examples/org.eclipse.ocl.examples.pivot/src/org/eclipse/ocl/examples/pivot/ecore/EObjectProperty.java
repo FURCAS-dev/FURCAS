@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EObjectProperty.java,v 1.1 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: EObjectProperty.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -46,7 +46,7 @@ public class EObjectProperty implements CallableImplementation
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceValue, CallExp callExp) {
 		Object object = sourceValue.asObject();
 		if (!(object instanceof EObject)) {
-			return sourceValue.toInvalidValue();
+			return evaluationVisitor.throwInvalidEvaluation("non-EObject", null, callExp, object);
 		}
 		Object eValue = ((EObject)object).eGet(eFeature);
 		return evaluationVisitor.getValueFactory().valueOf(eValue, eFeature);

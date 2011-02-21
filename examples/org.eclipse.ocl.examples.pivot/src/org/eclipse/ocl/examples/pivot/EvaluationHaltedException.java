@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009 Borland Software Corporation and others.
+ * Copyright (c) 2009,2011 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationHaltedException.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: EvaluationHaltedException.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -37,9 +37,8 @@ import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
  * @author radvorak
  * @since 1.3
  */
-public class EvaluationHaltedException
-		extends RuntimeException {
-
+public class EvaluationHaltedException extends EvaluationException
+{
 	private static final long serialVersionUID = -7375617635204485747L;
 
 	private Diagnostic diagnostic;

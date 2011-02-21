@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ObjectValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class ObjectValueImpl extends AbstractValue implements ObjectValue
@@ -38,6 +39,10 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	public Object asObject() {
 		return object;
+	}
+
+	public Value asValidValue() {
+		return this;
 	}
 
 	@Override

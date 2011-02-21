@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -43,7 +44,6 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 		super(valueFactory);
 		this.elements = elements;
 		assert elements != null;
-		assert valueFactory.isValid(elements);		// FIXME Debugging
 	}
 	
 	/**
@@ -65,8 +65,9 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
      * @param self the source collection
      * @param object an object
      * @return the number of occurrences of the object in the collection
+     * @throws InvalidValueException 
      */
-    public IntegerValue count(Value value) {
+    public IntegerValue count(Value value) throws InvalidValueException {
         long count = 0;
         for (Value next : elements) {
             if (next.equals(value)) {
@@ -110,11 +111,12 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 
     /**
      * Returns true if any element flattened.
+     * @throws InvalidValueException 
      */
-	public boolean flatten(Collection<Value> flattenedElements) {
+	public boolean flatten(Collection<Value> flattenedElements) throws InvalidValueException {
 		boolean flattened = false;
 		for (Value element : elements) {
-			CollectionValue collectionElement = element.asCollectionValue();
+			CollectionValue collectionElement = element.isCollectionValue();
 			if (collectionElement != null) {
 				flattened = true;
 				collectionElement.flatten(flattenedElements);
@@ -163,7 +165,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 		return elements.size();
 	}
 
-	public CollectionValue intersection(CollectionValue c) {
+	public CollectionValue intersection(CollectionValue c) throws InvalidValueException {
         if (this instanceof UniqueCollectionValue || c instanceof UniqueCollectionValue) {
             return SetValueImpl.intersection(valueFactory, this, c);
         }
@@ -176,7 +178,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
 		return elements != null ? elements.iterator() : Collections.<Value>emptyList().iterator();
 	}
 
-	public Value maxMin(BinaryOperation binaryOperation) {
+	public Value maxMin(BinaryOperation binaryOperation) throws InvalidValueException {
 		Value result = null;
         for (Value element : elements) {
         	if (result == null) {
@@ -185,15 +187,16 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         	else {
         		result = binaryOperation.evaluate(valueFactory, result, element);
         		if (result == null) {
-        			return valueFactory.createInvalidValue(element, null, "max/min evaluation failure", null);
+        			throw new InvalidValueException("max/min evaluation failure", this);
         		}
         		if (result.isUndefined()) {
-        			return result.toInvalidValue();
+        			throw new InvalidValueException("max/min evaluation failure", this);
+//        			return result.toInvalidValue();
         		}
         	}
         }
 		if (result == null) {
-			return valueFactory.createInvalidValue(this, null, "max/min or empty collection", null);
+			throw new InvalidValueException("max/min or empty collection", this);
 		}
 		else {
 			return result;
@@ -210,7 +213,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return result;
     }
 
-	public Value sum(BinaryOperation binaryOperation, Value zero) {
+	public Value sum(BinaryOperation binaryOperation, Value zero) throws InvalidValueException {
 		Value result = zero;
         for (Value element : elements) {
         	result = binaryOperation.evaluate(valueFactory, result, element);
@@ -218,7 +221,7 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         return result;
     }
 
-    public CollectionValue union(CollectionValue c) {
+    public CollectionValue union(CollectionValue c) throws InvalidValueException {
         if (this instanceof BagValue || c instanceof BagValue) {
             return BagValueImpl.union(valueFactory, this, c);
         }
