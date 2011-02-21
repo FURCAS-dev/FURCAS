@@ -14,6 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntaxImport;
@@ -150,6 +152,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 	 * the list of templates names of the main syntax
 	 */
 	private Collection<String> templatesNamesList = new HashSet<String>();
+
+	/**
+	 * this is used to get all the imported or transitively imported templates,
+	 * for witch a grammar rule has already been generated. It helps to avoid
+	 * duplicate generation of grammar rules for transitively imported templates
+	 */
+	private Collection<String> templatesWithGrammarRule = new HashSet<String>();
 	/**
 	 * this is used to get all the transitively imported templates to avoid
 	 * duplicate generation of grammar rules for transitively imported templates
@@ -508,7 +517,7 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			writer.setGrammarOptions("k = " + syntax.getK() + ";");
 		}
 		// to build a list of all templates inclusively the imported templates
-		// of the concretesyntax import
+		// of the concrete syntax import
 		for (Template template1 : imported_templates) {
 			// to avoid duplicate templates
 			if (templatesNamesList.contains(template1.getMetaReference()
@@ -518,13 +527,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 						"the template already exists in the main syntax.. ",
 						template1);
 			} else {
-				// templates are the template of the main syntax
 				templates.add(template1);
 			}
 		}
 
 		if (syntaxbean.getImportedTemplates().size() > 0) {
 			importsNotnull = true;
+			String templateName = "";
 			for (Template template : syntaxbean.getImportedTemplates()) {
 				if (template instanceof PrimitiveTemplate
 						&& (templatesNamesList
@@ -554,6 +563,17 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 									template);
 				} else {
 					templates.add(template);
+					// to set the list of imported tokens and symbols of the
+					// concrete syntax of the imported template
+					if (!template.getConcreteSyntax().getName().toString()
+							.equalsIgnoreCase(templateName)) {
+						imported_symbols.addAll(template.getConcreteSyntax()
+								.getSymbols());
+						imported_tokens.addAll(template.getConcreteSyntax()
+								.getTokens());
+					}
+					templateName = template.getConcreteSyntax().getName()
+							.toString();
 				}
 			}
 
@@ -588,14 +608,25 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			// TODO what to do with the tokens of the concrete syntax of the
 			// imported template(TemplateImport)
 			if (!imported_tokens.isEmpty()) {
-				for (Token token : imported_tokens) {
-					if (tokens.contains(token)) {
-						errorBucket
-								.addWarning(
-										"this token already exists in the main mapping ",
-										token);
-					} else {
-						tokens.add(token);
+				Collection<String> existingTokensValueList = new HashSet<String>();
+				for (Token token : tokens) {
+					existingTokensValueList.add(token.getName().toString()
+							.toUpperCase());
+				}
+				if (!imported_tokens.isEmpty()) {
+					for (Token token : imported_tokens) {
+						if (existingTokensValueList.contains(token.getName()
+								.toString().toUpperCase())) {
+							errorBucket
+									.addWarning(
+											"this token already exists in the main mapping ",
+											token);
+						} else {
+							tokens.add(token);
+							existingTokensValueList.add(token.getName()
+									.toString().toUpperCase());
+
+						}
 
 					}
 
@@ -604,18 +635,20 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			if (!imported_symbols.isEmpty()) {
 				Collection<String> existingSymbolValueList = new HashSet<String>();
 				for (Symbol existingSymbol : symbols) {
-					existingSymbolValueList.add(existingSymbol.getValue()
-							.toUpperCase().toString());
+					existingSymbolValueList.add(existingSymbol.getName()
+							.toString().toUpperCase());
 				}
 				for (Symbol symbol : imported_symbols) {
-					if (existingSymbolValueList.contains(symbol.getValue()
-							.toUpperCase())) {
+					if (existingSymbolValueList.contains(symbol.getName()
+							.toString().toUpperCase())) {
 						errorBucket
 								.addWarning(
 										"this symbol already exists in the main mapping ",
 										symbol);
 					} else {
 						symbols.add(symbol);
+						existingSymbolValueList.add(symbol.getName().toString()
+								.toUpperCase());
 					}
 				}
 			}
@@ -797,13 +830,13 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 						"the template already exists in the main syntax.. ",
 						template1);
 			} else {
-				// templates are the template of the main syntax
 				templates.add(template1);
 			}
 		}
 
 		if (syntaxbean.getImportedTemplates().size() > 0) {
 			importsNotnull = true;
+			String templateName = "";
 			for (Template template : syntaxbean.getImportedTemplates()) {
 				if (template instanceof PrimitiveTemplate
 						&& (templatesNamesList
@@ -833,6 +866,17 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 									template);
 				} else {
 					templates.add(template);
+					// to set the list of imported tokens and symbols of the
+					// concrete syntax of the imported template
+					if (!template.getConcreteSyntax().getName().toString()
+							.equalsIgnoreCase(templateName)) {
+						imported_symbols.addAll(template.getConcreteSyntax()
+								.getSymbols());
+						imported_tokens.addAll(template.getConcreteSyntax()
+								.getTokens());
+					}
+					templateName = template.getConcreteSyntax().getName()
+							.toString();
 				}
 			}
 		}
@@ -866,36 +910,51 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		if (importsNotnull) {
 			// TODO what to do with the tokens of the concrete syntax of the
 			// imported template(TemplateImport)
+
 			if (!imported_tokens.isEmpty()) {
-				for (Token token : imported_tokens) {
-					if (tokens.contains(token)) {
-						errorBucket
-								.addWarning(
-										"this token already exists in the main mapping ",
-										token);
-					} else {
-						tokens.add(token);
+				Collection<String> existingTokensValueList = new HashSet<String>();
+				for (Token token : tokens) {
+					existingTokensValueList.add(token.getName().toString()
+							.toUpperCase());
+				}
+				if (!imported_tokens.isEmpty()) {
+					for (Token token : imported_tokens) {
+						if (existingTokensValueList.contains(token.getName()
+								.toString().toUpperCase())) {
+							errorBucket
+									.addWarning(
+											"this token already exists in the main mapping ",
+											token);
+						} else {
+							tokens.add(token);
+							existingTokensValueList.add(token.getName()
+									.toString().toUpperCase());
+
+						}
 
 					}
 
 				}
-
 			}
+
 			if (!imported_symbols.isEmpty()) {
 				Collection<String> existingSymbolValueList = new HashSet<String>();
 				for (Symbol existingSymbol : symbols) {
-					existingSymbolValueList.add(existingSymbol.getValue()
-							.toString());
+					existingSymbolValueList.add(existingSymbol.getName()
+							.toString().toUpperCase());
 				}
 
 				for (Symbol symbol : imported_symbols) {
-					if (existingSymbolValueList.contains(symbol.getValue())) {
+					if (existingSymbolValueList.contains(symbol.getName()
+							.toString().toUpperCase())) {
 						errorBucket
 								.addWarning(
 										"this symbol already exists in the main mapping ",
 										symbol);
 					} else {
 						symbols.add(symbol);
+						existingSymbolValueList.add(symbol.getName().toString()
+								.toUpperCase());
 					}
 				}
 			}
@@ -952,6 +1011,38 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 			}
 
 		}
+	}
+
+	/**
+	 * to get the a unique string name of the given template
+	 * 
+	 * @param template
+	 * @return
+	 */
+	private String getStringNameOfTemplate(Template template) {
+		String s = "";
+		if (template instanceof PrimitiveTemplate) {
+			s = ((PrimitiveTemplate) template).getTemplateName().toString();
+		} else if (template instanceof FunctionTemplate) {
+			s = ((FunctionTemplate) template).getFunctionName().toString();
+		} else {
+			if (template instanceof ClassTemplate) {
+				ClassTemplate template1 = (ClassTemplate) template;
+				if (template1.getMetaReference() != null
+						&& template1.getMode() != null) {
+					s = EcoreUtil.getURI(template1.getMetaReference()).toString()
+							.concat(template1.getMode());
+				} else if (template1.getMetaReference() != null
+						&& template1.getMode() == null) {
+					s = EcoreUtil.getURI(template1.getMetaReference()).toString();
+				}
+			} else {
+				if (template.getMetaReference()!=null) {
+					s = EcoreUtil.getURI(template.getMetaReference()).toString();
+				}
+			}
+		}
+		return s;
 	}
 
 	@Override
@@ -1050,20 +1141,56 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		templateProductionRuleToGrammar.add(template);
 		if (template instanceof ClassTemplate) {
 			ClassTemplate primTemp = (ClassTemplate) template;
-			classTempHandler.addTemplate(primTemp, ruleBodyFactory, syntax
-					.getTemplates().contains(primTemp));
+			if (!templatesWithGrammarRule
+					.contains(getStringNameOfTemplate(primTemp))) {
+				classTempHandler.addTemplate(primTemp, ruleBodyFactory, syntax
+						.getTemplates().contains(primTemp));
+				if (!getStringNameOfTemplate(primTemp).equalsIgnoreCase("")) {
+					templatesWithGrammarRule
+							.add(getStringNameOfTemplate(primTemp));
+				}
+			}
+
 		} else if (template instanceof PrimitiveTemplate) {
 			PrimitiveTemplate primTemp = (PrimitiveTemplate) template;
-			primTempHandler.addTemplate(primTemp);
+			if (!templatesWithGrammarRule
+					.contains(getStringNameOfTemplate(primTemp))) {
+				primTempHandler.addTemplate(primTemp);
+				if (!getStringNameOfTemplate(primTemp).equalsIgnoreCase("")) {
+					templatesWithGrammarRule
+							.add(getStringNameOfTemplate(primTemp));
+				}
+			}
 		} else if (template instanceof OperatorTemplate) {
 			OperatorTemplate primTemp = (OperatorTemplate) template;
-			operatorTemplateHandler.addTemplate(primTemp, ruleBodyFactory);
+			if (!templatesWithGrammarRule
+					.contains(getStringNameOfTemplate(primTemp))) {
+				operatorTemplateHandler.addTemplate(primTemp, ruleBodyFactory);
+				if (!getStringNameOfTemplate(primTemp).equalsIgnoreCase("")) {
+					templatesWithGrammarRule
+							.add(getStringNameOfTemplate(primTemp));
+				}
+			}
 		} else if (template instanceof EnumerationTemplate) {
 			EnumerationTemplate primTemp = (EnumerationTemplate) template;
-			enumTempHandler.addTemplate(primTemp, ruleBodyFactory);
+			if (!templatesWithGrammarRule
+					.contains(getStringNameOfTemplate(primTemp))) {
+				enumTempHandler.addTemplate(primTemp, ruleBodyFactory);
+				if (!getStringNameOfTemplate(primTemp).equalsIgnoreCase("")) {
+					templatesWithGrammarRule
+							.add(getStringNameOfTemplate(primTemp));
+				}
+			}
 		} else if (template instanceof FunctionTemplate) {
 			FunctionTemplate funcTemp = (FunctionTemplate) template;
-			funcTempHandler.addTemplate(funcTemp, ruleBodyFactory);
+			if (!templatesWithGrammarRule
+					.contains(getStringNameOfTemplate(funcTemp))) {
+				funcTempHandler.addTemplate(funcTemp, ruleBodyFactory);
+				if (!getStringNameOfTemplate(funcTemp).equalsIgnoreCase("")) {
+					templatesWithGrammarRule
+							.add(getStringNameOfTemplate(funcTemp));
+				}
+			}
 		} else {
 			// should never happen, unless TCS metamodel changed
 			throw new RuntimeException(template.getClass()

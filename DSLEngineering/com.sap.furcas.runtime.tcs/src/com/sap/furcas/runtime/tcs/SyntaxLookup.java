@@ -125,12 +125,25 @@ public class SyntaxLookup {
 	private void addImportedKeywordsAndSymbolList(
 			Collection<ConcreteSyntax> importedSyntaxes,
 			Collection<Template> importedTemplates) {
+
+		Collection<String> symbolListNames = new HashSet<String>();
+		Collection<String> keywordListNames = new HashSet<String>();
+		// generate the list of symbol names for the test (check)
+		for (Symbol symbol : symbolList) {
+			symbolListNames.add(symbol.getName().toString().toUpperCase());
+		}
+
+		// generate the list of keyword names for the test (check)
+		// for (Keyword keyword : this.keywordSet) {
+		// keywordListNames.add(keyword.getName().toString());
+		// }
+
 		if (importedSyntaxes != null && importedSyntaxes.size() > 0) {
 			for (ConcreteSyntax imported_syntax : importedSyntaxes) {
 				if (imported_syntax != null) {
 					for (Keyword keyword : imported_syntax.getKeywords()) {
 						if (this.keywordSet != null) {
-							if (this.keywordSet.contains(keyword)) {
+							if (keywordSet.contains(keyword)) {
 								errorBucket
 										.addWarning(
 												"the keyword  already exists in the main mapping ..",
@@ -142,13 +155,16 @@ public class SyntaxLookup {
 					}
 					for (Symbol imported_symbol : imported_syntax.getSymbols()) {
 
-						if (symbolList.contains(imported_symbol)) {
+						if (symbolListNames.contains(imported_symbol.getName()
+								.toString().toUpperCase())) {
 							errorBucket
 									.addWarning(
 											"the symbol already exists in the main mapping ..",
 											imported_symbol);
 						} else {
 							symbolList.add(imported_symbol);
+							symbolListNames.add(imported_symbol.getName()
+									.toString().toUpperCase());
 						}
 					}
 				}
@@ -160,28 +176,31 @@ public class SyntaxLookup {
 				if (imported_template != null) {
 					for (Keyword keyword : imported_template
 							.getConcreteSyntax().getKeywords()) {
-						if (this.keywordSet != null) {
-							if (this.keywordSet.contains(keyword)) {
-								errorBucket
-										.addWarning(
-												"the keyword  already exists in the main mapping ..",
-												keyword);
-							} else {
-								this.keywordSet.add(keyword);
-							}
-						}
-					}
-					for (Symbol imported_symbol : imported_template
-							.getConcreteSyntax().getSymbols()) {
-
-						if (symbolList.contains(imported_symbol)) {
+						if (keywordListNames.contains(keyword.getName()
+								.toString())) {
 							errorBucket
 									.addWarning(
-											"the symbol already exists in the main mapping ..",
-											imported_symbol);
+											"the keyword  already exists in the main mapping ..",
+											keyword);
 						} else {
-							symbolList.add(imported_symbol);
+							this.keywordSet.add(keyword);
 						}
+					}
+				}
+
+				for (Symbol imported_symbol : imported_template
+						.getConcreteSyntax().getSymbols()) {
+
+					if (symbolListNames.contains(imported_symbol.getName()
+							.toString())) {
+						errorBucket
+								.addWarning(
+										"the symbol already exists in the main mapping ..",
+										imported_symbol);
+					} else {
+						symbolList.add(imported_symbol);
+						symbolListNames.add(imported_symbol.getName()
+								.toString().toUpperCase());
 					}
 				}
 			}
