@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLInvocationDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLInvocationDelegate.java,v 1.3 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.BasicInvocationDelegate;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -82,15 +83,11 @@ public class OCLInvocationDelegate extends BasicInvocationDelegate
 				}
 			}
 			Value result = query.evaluate(target);
-			if (result.isInvalid()) {
-				String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
-				throw new OCLDelegateException(message);
-			}
-	//		if ((result == null) /* || ocl.isInvalid(result) */) {
-	//			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getOperationName());
-	//			throw new OCLDelegateException(message);
-	//		}
 			return valueFactory.getEcoreValueOf(result);
+		}
+		catch (EvaluationException e) {
+			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, operation);
+			throw new InvocationTargetException(new OCLDelegateException(message));
 		}
 		catch (OCLDelegateException e) {
 			throw new InvocationTargetException(e);

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLSettingDelegate.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLSettingDelegate.java,v 1.3 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
+import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -66,16 +67,14 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 			specification = SettingBehavior.INSTANCE.getExpressionInOcl(typeManager, property);
 		}
 		OCL.Query query = ocl.createQuery(specification);
-		Value result = query.evaluate(owner);
-		if (result.isInvalid()) {
+		try {
+			Value result = query.evaluate(owner);
+			return valueFactory.getEcoreValueOf(result);
+		}
+		catch (EvaluationException e) {
 			String message = NLS.bind(OCLMessages.EvaluationResultIsInvalid_ERROR_, property);
 			throw new OCLDelegateException(message);
 		}
-//		if ((result == null) /* || ocl.isInvalid(result) */) {
-//			String message = NLS.bind(OCLMessages.EvaluationResultIsNull_ERROR_, getFeatureName());
-//			throw new OCLDelegateException(message);
-//		}
-		return valueFactory.getEcoreValueOf(result);
 	}
 
 	@Override

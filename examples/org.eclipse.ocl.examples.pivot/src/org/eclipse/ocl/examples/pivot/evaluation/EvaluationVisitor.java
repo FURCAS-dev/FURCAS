@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -77,4 +80,10 @@ public interface EvaluationVisitor extends Visitor<Value, Object> {
      * @param decorator the decorator that is not decorated/
      */
 	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor);
+
+	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) throws InvalidEvaluationException;
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: JavaComparisonOperation.java,v 1.1 2011/02/08 17:51:46 ewillink Exp $
+ * $Id: JavaComparisonOperation.java,v 1.2 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.library;
 
@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
@@ -40,20 +41,24 @@ public abstract class JavaComparisonOperation implements CallableImplementation,
 		OperationCallExp operationCall = (OperationCallExp) callExp;
 		OclExpression arg = operationCall.getArguments().get(0);
 		Value argVal = arg.accept(evaluationVisitor);
-		return evaluate(evaluationVisitor.getValueFactory(), sourceValue, argVal);
+		try {
+			return evaluate(evaluationVisitor.getValueFactory(), sourceValue, argVal);
+		} catch (InvalidValueException e) {
+			return evaluationVisitor.throwInvalidEvaluation(e);
+		}
 	}
 
-	public Value evaluate(ValueFactory valueFactory, Value leftValue, Value rightValue) {
+	public Value evaluate(ValueFactory valueFactory, Value leftValue, Value rightValue) throws InvalidValueException {
 		Object leftObject = leftValue.asObject();
 		Object rightObject = rightValue.asObject();
 		try {
 			Object result = method.invoke(leftObject, rightObject);
 			if (!(result instanceof Integer)) {
-				return valueFactory.createInvalidValue("non-integer return");
+				throw new InvalidValueException("non-integer return");
 			}
 			return valueFactory.booleanValueOf(evaluateComparison((Integer) result));
 		} catch (Exception e) {
-			return valueFactory.createInvalidValue(method, null, "Evaluation failure", e);
+			throw new InvalidValueException(e);
 		}
 	}
 
