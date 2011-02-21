@@ -1792,8 +1792,1086 @@
 			    (object Role "$UNNAMED$5"
 				quid       	"4D626EF80245"
 				supplier   	"Logical View::eventmanager::EventManager"
-				quidu      	"4D62523103B1"))))
-		logical_presentations 	(list unit_reference_list))
+				quidu      	"4D62523103B1")))
+		    (object Mechanism @65
+			logical_models 	(list unit_reference_list
+			    (object Object "em1"
+				quid       	"4D627C9B03DC"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D627D0103C9"
+					supplier   	"rs1"
+					quidu      	"4D627CA3032F")
+				    (object Link
+					quid       	"4D627D0500BF"
+					supplier   	"rs2"
+					quidu      	"4D627CA401FE"))
+				class      	"Logical View::eventmanager::EventManager"
+				quidu      	"4D62523103B1"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "em2"
+				quid       	"4D627C9E02B3"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D627D080290"
+					supplier   	"rs2"
+					quidu      	"4D627CA401FE"))
+				class      	"Logical View::eventmanager::EventManager"
+				quidu      	"4D62523103B1"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "em3"
+				quid       	"4D627C9F0142"
+				class      	"Logical View::eventmanager::EventManager"
+				quidu      	"4D62523103B1"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "em4"
+				quid       	"4D627CA0007E"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D627D0D03B0"
+					supplier   	"rs2"
+					quidu      	"4D627CA401FE")
+				    (object Link
+					quid       	"4D627D1001FF"
+					supplier   	"rs3"
+					quidu      	"4D627CA502AC")
+				    (object Link
+					quid       	"4D627D130098"
+					supplier   	"rs4"
+					quidu      	"4D627CA601D8"))
+				class      	"Logical View::eventmanager::EventManager"
+				quidu      	"4D62523103B1"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "rs1"
+				quid       	"4D627CA3032F"
+				class      	"Logical View::emf::ResourceSet"
+				quidu      	"4D626E8000EE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "rs2"
+				quid       	"4D627CA401FE"
+				class      	"Logical View::emf::ResourceSet"
+				quidu      	"4D626E8000EE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "rs3"
+				quid       	"4D627CA502AC"
+				class      	"Logical View::emf::ResourceSet"
+				quidu      	"4D626E8000EE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "rs4"
+				quid       	"4D627CA601D8"
+				class      	"Logical View::emf::ResourceSet"
+				quidu      	"4D626E8000EE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)))
+		    (object Mechanism @66
+			logical_models 	(list unit_reference_list
+			    (object Object "em"
+				quid       	"4D62873F00FD"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D62878E00C8"
+					supplier   	"r1"
+					quidu      	"4D6287670080"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"Registration")
+				    (object Link
+					quid       	"4D62878F011A"
+					supplier   	"r2"
+					quidu      	"4D62876E0297"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"Registration")
+				    (object Link
+					quid       	"4D62879001A9"
+					supplier   	"r3"
+					quidu      	"4D6287760303"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"Registration"))
+				class      	"Logical View::eventmanager::EventManager"
+				quidu      	"4D62523103B1"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "rs"
+				quid       	"4D62874B024E"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D62875401A7"
+					supplier   	"em"
+					quidu      	"4D62873F00FD"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"ResourceSetOfEventManager"))
+				class      	"Logical View::emf::ResourceSet"
+				quidu      	"4D626E8000EE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "r1"
+				quid       	"4D6287670080"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D6287CF02B4"
+					supplier   	"f1"
+					quidu      	"4D6287BD0245")
+				    (object Link
+					quid       	"4D6287D002D4"
+					supplier   	"a1"
+					quidu      	"4D6287C801C5"))
+				class      	"Logical View::impactAnalyzer::Registration"
+				quidu      	"4D6271C70193"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "r2"
+				quid       	"4D62876E0297"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D6288370190"
+					supplier   	"f2"
+					quidu      	"4D6287D6039F"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"FilterInRegistration")
+				    (object Link
+					quid       	"4D6288380239"
+					supplier   	"a2"
+					quidu      	"4D6287D70284"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"AdapterInRegistration"))
+				class      	"Logical View::impactAnalyzer::Registration"
+				quidu      	"4D6271C70193"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "r3"
+				quid       	"4D6287760303"
+				collaborators 	(list link_list
+				    (object Link
+					quid       	"4D62883A0000"
+					supplier   	"f3"
+					quidu      	"4D6287D8014C"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"FilterInRegistration")
+				    (object Link
+					quid       	"4D62883B01CF"
+					supplier   	"a3"
+					quidu      	"4D6287D90018"
+					supplier_containment 	"By Value"
+					client_containment 	"By Value"
+					Association 	"AdapterInRegistration"))
+				class      	"Logical View::impactAnalyzer::Registration"
+				quidu      	"4D6271C70193"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "f1"
+				quid       	"4D6287BD0245"
+				class      	"Logical View::eventmanager::EventFilter"
+				quidu      	"4D62523802BE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "a1"
+				quid       	"4D6287C801C5"
+				class      	"Logical View::impactAnalyzer::Adapter"
+				quidu      	"4D62715E02C2"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "f2"
+				quid       	"4D6287D6039F"
+				class      	"Logical View::eventmanager::EventFilter"
+				quidu      	"4D62523802BE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "a2"
+				quid       	"4D6287D70284"
+				class      	"Logical View::impactAnalyzer::Adapter"
+				quidu      	"4D62715E02C2"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "f3"
+				quid       	"4D6287D8014C"
+				class      	"Logical View::eventmanager::EventFilter"
+				quidu      	"4D62523802BE"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE)
+			    (object Object "a3"
+				quid       	"4D6287D90018"
+				class      	"Logical View::impactAnalyzer::Adapter"
+				quidu      	"4D62715E02C2"
+				persistence 	"Transient"
+				creationObj 	FALSE
+				multi      	FALSE))))
+		logical_presentations 	(list unit_reference_list
+		    (object ObjectDiagram "Many Event Managers"
+			mechanism_ref 	@65
+			quid       	"4D627C6A00B5"
+			title      	"Many Event Managers"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ObjectView "em1" @67
+				location   	(281, 278)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@67
+				    location   	(280, 386)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	355
+				    justify    	0
+				    label      	"em1")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627C9B03DC"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "em2" @68
+				location   	(279, 622)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@68
+				    location   	(278, 730)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	358
+				    justify    	0
+				    label      	"em2")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627C9E02B3"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "em3" @69
+				location   	(285, 951)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@69
+				    location   	(284, 1059)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	361
+				    justify    	0
+				    label      	"em3")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627C9F0142"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "em4" @70
+				location   	(277, 1289)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@70
+				    location   	(276, 1397)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	365
+				    justify    	0
+				    label      	"em4")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627CA0007E"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "rs1" @71
+				location   	(1188, 278)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@71
+				    location   	(1187, 386)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	368
+				    justify    	0
+				    label      	"rs1")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627CA3032F"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "rs2" @72
+				location   	(1189, 628)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@72
+				    location   	(1188, 736)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	371
+				    justify    	0
+				    label      	"rs2")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627CA401FE"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "rs3" @73
+				location   	(1192, 951)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@73
+				    location   	(1191, 1059)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	375
+				    justify    	0
+				    label      	"rs3")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627CA502AC"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "rs4" @74
+				location   	(1195, 1289)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@74
+				    location   	(1194, 1397)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	378
+				    justify    	0
+				    label      	"rs4")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D627CA601D8"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object LinkView "" @75
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D0103C9"
+				client     	@67
+				supplier   	@71
+				vertices   	(list Points
+				    (307, 278)
+				    (1160, 278))
+				line_style 	0)
+			    (object LinkView "" @76
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D0500BF"
+				client     	@67
+				supplier   	@72
+				vertices   	(list Points
+				    (414, 326)
+				    (1161, 615))
+				line_style 	0)
+			    (object LinkView "" @77
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D080290"
+				client     	@68
+				supplier   	@72
+				vertices   	(list Points
+				    (305, 621)
+				    (1161, 623))
+				line_style 	0)
+			    (object LinkView "" @78
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D0D03B0"
+				client     	@70
+				supplier   	@72
+				vertices   	(list Points
+				    (303, 1267)
+				    (1016, 751))
+				line_style 	0)
+			    (object LinkView "" @79
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D1001FF"
+				client     	@70
+				supplier   	@73
+				vertices   	(list Points
+				    (303, 1278)
+				    (1019, 1012))
+				line_style 	0)
+			    (object LinkView "" @80
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D627D130098"
+				client     	@70
+				supplier   	@74
+				vertices   	(list Points
+				    (303, 1289)
+				    (1167, 1289))
+				line_style 	0)))
+		    (object ObjectDiagram "EventManager Default Configuration"
+			mechanism_ref 	@66
+			quid       	"4D62873C0000"
+			title      	"EventManager Default Configuration"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ObjectView "em" @81
+				location   	(1042, 642)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@81
+				    location   	(1041, 750)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	381
+				    justify    	0
+				    label      	"em")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D62873F00FD"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "rs" @82
+				location   	(295, 639)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@82
+				    location   	(294, 747)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	385
+				    justify    	0
+				    label      	"rs")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D62874B024E"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "r1" @83
+				location   	(1586, 311)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@83
+				    location   	(1585, 419)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	388
+				    justify    	0
+				    label      	"r1")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287670080"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "r2" @84
+				location   	(1595, 642)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@84
+				    location   	(1594, 750)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	391
+				    justify    	0
+				    label      	"r2")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D62876E0297"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "r3" @85
+				location   	(1595, 926)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@85
+				    location   	(1594, 1034)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	401
+				    justify    	0
+				    label      	"r3")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287760303"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "f1" @86
+				location   	(2012, 91)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@86
+				    location   	(2011, 199)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	405
+				    justify    	0
+				    label      	"f1")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287BD0245"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "a1" @87
+				location   	(2015, 283)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@87
+				    location   	(2014, 391)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	409
+				    justify    	0
+				    label      	"a1")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287C801C5"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "f2" @88
+				location   	(2018, 494)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@88
+				    location   	(2017, 602)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	412
+				    justify    	0
+				    label      	"f2")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287D6039F"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "a2" @89
+				location   	(2019, 698)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@89
+				    location   	(2018, 806)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	415
+				    justify    	0
+				    label      	"a2")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287D70284"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "f3" @90
+				location   	(2019, 907)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@90
+				    location   	(2018, 1015)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	419
+				    justify    	0
+				    label      	"f3")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287D8014C"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object ObjectView "a3" @91
+				location   	(2019, 1110)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object ItemLabel
+				    Parent_View 	@91
+				    location   	(2018, 1218)
+				    anchor_loc 	1
+				    nlines     	2
+				    max_width  	422
+				    justify    	0
+				    label      	"a3")
+				icon       	"Interface"
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4D6287D90018"
+				width      	58
+				height     	58
+				annotation 	4
+				autoResize 	TRUE
+				subobjects 	0
+				x_offset   	0.000000
+				y_offset   	0.000000)
+			    (object LinkView "" @92
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62878E00C8"
+				client     	@81
+				supplier   	@83
+				vertices   	(list Points
+				    (1068, 624)
+				    (1434, 401))
+				line_style 	0)
+			    (object LinkView "" @93
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62878F011A"
+				client     	@81
+				supplier   	@84
+				vertices   	(list Points
+				    (1068, 642)
+				    (1566, 642))
+				line_style 	3
+				origin_attachment 	(1068, 642)
+				terminal_attachment 	(1566, 642))
+			    (object LinkView "" @94
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62879001A9"
+				client     	@81
+				supplier   	@85
+				vertices   	(list Points
+				    (1222, 731)
+				    (1566, 909))
+				line_style 	0)
+			    (object LinkView "" @95
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62875401A7"
+				client     	@82
+				supplier   	@81
+				vertices   	(list Points
+				    (321, 641)
+				    (1013, 641))
+				line_style 	3
+				origin_attachment 	(321, 641)
+				terminal_attachment 	(1013, 641))
+			    (object LinkView "" @96
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D6287CF02B4"
+				client     	@83
+				supplier   	@86
+				vertices   	(list Points
+				    (1612, 294)
+				    (1874, 161))
+				line_style 	0)
+			    (object LinkView "" @97
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D6287D002D4"
+				client     	@83
+				supplier   	@87
+				vertices   	(list Points
+				    (1612, 306)
+				    (1986, 282))
+				line_style 	0)
+			    (object LinkView "" @98
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D6288370190"
+				client     	@84
+				supplier   	@88
+				vertices   	(list Points
+				    (1621, 629)
+				    (1880, 539))
+				line_style 	0)
+			    (object LinkView "" @99
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D6288380239"
+				client     	@84
+				supplier   	@89
+				vertices   	(list Points
+				    (1621, 643)
+				    (1990, 691))
+				line_style 	0)
+			    (object LinkView "" @100
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62883A0000"
+				client     	@85
+				supplier   	@90
+				vertices   	(list Points
+				    (1621, 921)
+				    (1990, 906))
+				line_style 	0)
+			    (object LinkView "" @101
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4D62883B01CF"
+				client     	@85
+				supplier   	@91
+				vertices   	(list Points
+				    (1744, 989)
+				    (1990, 1095))
+				line_style 	0)))))
 	    (object Class_Category "emf"
 		quid       	"4D626E7B0287"
 		exportControl 	"Public"
