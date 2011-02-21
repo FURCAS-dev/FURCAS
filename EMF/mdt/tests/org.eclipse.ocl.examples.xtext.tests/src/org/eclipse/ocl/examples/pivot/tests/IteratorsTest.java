@@ -13,10 +13,10 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.3 2011/02/11 20:10:13 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.test.generic;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -26,11 +26,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
@@ -46,9 +50,8 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("nls")
-public abstract class GenericIteratorsTest
-	extends GenericTestSuite {
-
+public class IteratorsTest extends PivotTestSuite
+{
 	org.eclipse.ocl.examples.pivot.Package pkg1;
 	org.eclipse.ocl.examples.pivot.Package pkg2;
 	org.eclipse.ocl.examples.pivot.Package pkg3;
@@ -74,14 +77,14 @@ public abstract class GenericIteratorsTest
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
 
-        pkg1 = reflection.createPackage("pkg1");
-        pkg2 = reflection.createNestedPackage(pkg1, "pkg2");
-        jim = reflection.createNestedPackage(pkg2, "jim");
-        bob = reflection.createNestedPackage(pkg1, "bob");
-        pkg3 = reflection.createNestedPackage(pkg1, "pkg3");
-        pkg4 = reflection.createNestedPackage(pkg3, "pkg4");
-        pkg5 = reflection.createNestedPackage(pkg3, "pkg5");
-        george = reflection.createNestedPackage(pkg5, "george");
+        pkg1 = typeManager.createPackage("pkg1");
+        pkg2 = createNestedPackage(pkg1, "pkg2");
+        jim = createNestedPackage(pkg2, "jim");
+        bob = createNestedPackage(pkg1, "bob");
+        pkg3 = createNestedPackage(pkg1, "pkg3");
+        pkg4 = createNestedPackage(pkg3, "pkg4");
+        pkg5 = createNestedPackage(pkg3, "pkg5");
+        george = createNestedPackage(pkg5, "george");
         helper.setContext(typeManager.getPivotType("Package"));
     }
 
@@ -370,8 +373,8 @@ public abstract class GenericIteratorsTest
      */
     public void test_closure_cycles() {
         Type packageMetaclass = typeManager.getPivotType("Package");
-        Property nestedPackage = reflection.getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
-        Property nestingPackage = reflection.getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
+        Property nestedPackage = getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
+        Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
 
         helper.setContext(typeManager.getPivotType("Property"));
 
@@ -384,10 +387,10 @@ public abstract class GenericIteratorsTest
      * Tests parsing the closure of operation calls.
      */
     public void test_closure_operations() {
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = reflection.createPackage("fake");
-        org.eclipse.ocl.examples.pivot.Class fake = reflection.createOwnedClass(fakePkg, "Fake", false);
-        Operation getFakes = reflection.createOwnedOperation(fake, "getFakes", null, null, fake, true);
-        reflection.setOperationUpper(getFakes, reflection.getUnlimitedValue());
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+        org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
+        Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
+        getFakes.setUpper(BigInteger.valueOf(-1));
 
         assertQuery(fake, "self->closure(getFakes())");
     }
@@ -408,18 +411,18 @@ public abstract class GenericIteratorsTest
      * body type with the iterator variable (source element) type.
      */
     public void test_closureValidation_typeConformance_154695() {
-    	org.eclipse.ocl.examples.pivot.Package fakePkg = reflection.createPackage("fake");
-        org.eclipse.ocl.examples.pivot.Class fake = reflection.createOwnedClass(fakePkg, "Fake", false);
-        Operation getFakes = reflection.createOwnedOperation(fake, "getFakes", null, null, fake, true);
-        reflection.setOperationUpper(getFakes, reflection.getUnlimitedValue());
+    	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+        org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
+        Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
+        getFakes.setUpper(BigInteger.valueOf(-1));
 
         // subclass the Fake class
-        org.eclipse.ocl.examples.pivot.Class subFake = reflection.createOwnedClass(fakePkg, "Subfake", false);
-        reflection.createGeneralization(subFake, fake);
+        org.eclipse.ocl.examples.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
+        createGeneralization(subFake, fake);
 
         // get sub-fakes from a fake
-        Operation getSubFakes = reflection.createOwnedOperation(fake, "getSubFakes", null, null, subFake, true);
-        reflection.setOperationUpper(getSubFakes, reflection.getUnlimitedValue());
+        Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, subFake, true);
+        getSubFakes.setUpper(BigInteger.valueOf(-1));
 
         helper.setContext(subFake);
 
@@ -703,5 +706,14 @@ public abstract class GenericIteratorsTest
         	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type.toString());
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
+    	loadEPackage("ecore", EcorePackage.eINSTANCE);
+        
+        // EDate defines '<' by having a Comparable instance class
+        assertQuery(context, "let dates : Sequence(ecore::EDate) = Sequence{} in dates->sortedBy(e | e)");
     }
+	
+	public void loadEPackage(String alias, EPackage ePackage) {		
+		Element ecoreElement = Ecore2Pivot.importFromEcore(typeManager, alias, ePackage);
+		typeManager.addGlobalNamespace(alias, (Namespace) ecoreElement);
+	}
 }

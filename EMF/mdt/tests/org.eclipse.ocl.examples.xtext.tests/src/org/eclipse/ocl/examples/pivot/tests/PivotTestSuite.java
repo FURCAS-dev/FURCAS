@@ -15,10 +15,10 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.5 2011/02/11 20:10:13 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
  */
 
-package org.eclipse.ocl.examples.test.generic;
+package org.eclipse.ocl.examples.pivot.tests;
 
 import java.awt.Choice;
 import java.io.IOException;
@@ -30,6 +30,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 import junit.framework.TestCase;
@@ -42,21 +43,32 @@ import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.spi.ThrowableInformation;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.Enumeration;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParserException;
+import org.eclipse.ocl.examples.pivot.PivotFactory;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -64,6 +76,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -83,11 +96,12 @@ import org.eclipse.xtext.diagnostics.ExceptionDiagnostic;
  * @author Christian W. Damus (cdamus)
  */
 @SuppressWarnings("nls")
-public abstract class GenericTestSuite
+public abstract class PivotTestSuite
 	extends TestCase {
 
 	// set this variable true when testing for memory leaks
     private static boolean DISPOSE_RESOURCE_SET = false;
+	public static final String PLUGIN_ID = "org.eclipse.ocl.examples.xtext.tests";
 	
     public static final class CheckedTestSuite extends TestSuite {
 
@@ -95,7 +109,7 @@ public abstract class GenericTestSuite
 			super(name);
 		}
 
-		public void createTestSuite(Class<? extends GenericTestSuite> testClass, String testName) {
+		public void createTestSuite(Class<? extends PivotTestSuite> testClass, String testName) {
 	        addTest(new TestSuite(testClass, testName));
 		}
 
@@ -152,11 +166,13 @@ public abstract class GenericTestSuite
 
 	protected TypeManager typeManager;
 	protected ValueFactory valueFactory;
-	protected TestReflection.Static staticReflection;
 	protected OCL ocl;
 	protected Environment environment;
-	protected TestReflection reflection;
 	protected OCLHelper helper;
+
+	public void addSupertype(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class superClass) {
+		aClass.getSuperClasses().add(superClass);
+	}
     
 	/**
 	 * Assert that an expression cannot be used as an invariant, because an exception is thrown
@@ -220,7 +236,7 @@ public abstract class GenericTestSuite
     protected void assertSemanticErrorQuery(String expression,
     		 String messageTemplate, String... bindings) {
     	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-    		 expression, messageTemplate, bindings);	   
+    		 expression, messageTemplate, (Object[])bindings);	   
 	}
     	
 	/**
@@ -734,7 +750,7 @@ public abstract class GenericTestSuite
 
 	protected ExpressionInOcl createBodyCondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(reflection.getOwner(context), context);
+		helper.setOperationContext(context.getClass_(), context);
 		
 		ExpressionInOcl result = null;
 		
@@ -748,6 +764,10 @@ public abstract class GenericTestSuite
 		return result;
 	}
 
+	public org.eclipse.ocl.examples.pivot.Class createClass() {
+		return PivotFactory.eINSTANCE.createClass();
+	}
+
 	/**
 	 * Return an isOrdered,isUnique collection containing args.
 	 */
@@ -756,6 +776,10 @@ public abstract class GenericTestSuite
 			return isUnique ? valueFactory.createOrderedSetValue(args) : valueFactory.createSequenceValue(args);
 		else
 			return isUnique ? valueFactory.createSetValue(args) : valueFactory.createBagValue(args);
+	}
+
+	public Comment createComment() {
+		return PivotFactory.eINSTANCE.createComment();
 	}
 
 	protected void createDocument(String text) {
@@ -767,6 +791,11 @@ public abstract class GenericTestSuite
 //        }
 	}
 
+	public void createGeneralization(Type special, Type general) {
+		if ((special instanceof org.eclipse.ocl.examples.pivot.Class) && (general instanceof org.eclipse.ocl.examples.pivot.Class))
+			((org.eclipse.ocl.examples.pivot.Class)special).getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)general);
+	}
+
 	protected OCLHelper createHelper() {
 		return ocl.createOCLHelper();
 	}
@@ -775,13 +804,91 @@ public abstract class GenericTestSuite
 		return assertInvariant(context, expression);
 	}
 
+	protected org.eclipse.ocl.examples.pivot.Package createNestedPackage(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
+		org.eclipse.ocl.examples.pivot.Package nestedPackage = typeManager.createPackage(name);
+		aPackage.getNestedPackages().add(nestedPackage);
+		return nestedPackage;
+	}
+
+	protected Property createOwnedAttribute(org.eclipse.ocl.examples.pivot.Class aClass, String name, Type type) {
+		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
+		eAttribute.setName(name);
+		eAttribute.setType(type);
+		aClass.getOwnedAttributes().add(eAttribute);
+		return eAttribute;
+	}
+
+	protected org.eclipse.ocl.examples.pivot.Class createOwnedClass(org.eclipse.ocl.examples.pivot.Package aPackage, String name, boolean isAbstract) {
+		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
+		eClass.setName(name);
+		eClass.setIsAbstract(isAbstract);
+		aPackage.getOwnedTypes().add(eClass);
+		return eClass;
+	}
+
+	protected Enumeration createOwnedEnumeration(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
+		Enumeration eEnum = PivotFactory.eINSTANCE.createEnumeration();
+		eEnum.setName(name);
+		aPackage.getOwnedTypes().add(eEnum);
+		return eEnum;
+	}
+
+	protected EnumerationLiteral createOwnedLiteral(Enumeration anEnumeration, String name) {
+		EnumerationLiteral eLiteral = PivotFactory.eINSTANCE.createEnumerationLiteral();
+		eLiteral.setName(name);
+		anEnumeration.getOwnedLiterals().add(eLiteral);
+		return eLiteral;
+	}
+
+	protected Operation createOwnedOperation(org.eclipse.ocl.examples.pivot.Class aClass, String name, List<String> paramNames, List<Type> paramTypes, Type type, boolean isQuery) {
+		Operation eOperation = PivotFactory.eINSTANCE.createOperation();
+		eOperation.setName(name);
+		eOperation.setType(type);
+		if (paramNames != null) {
+			for (int i = 0; i < paramNames.size(); i++) {
+				createOwnedParameter(eOperation, paramNames.get(i), paramTypes.get(i));
+			}
+		}
+		aClass.getOwnedOperations().add(eOperation);
+		return eOperation;
+	}
+
+	protected Parameter createOwnedParameter(Operation eOperation, String name, Type type) {
+		Parameter eParameter = PivotFactory.eINSTANCE.createParameter();
+		eParameter.setName(name);
+		eParameter.setType(type);
+		eOperation.getOwnedParameters().add(eParameter);
+		return eParameter;
+	}
+
+	protected Operation createOwnedPrimitiveOperation(Type aPrimitiveType, String name, EList<String> paramNames, EList<Type> paramTypes, Type type, boolean isQuery) {
+		return createOwnedOperation((org.eclipse.ocl.examples.pivot.Class) aPrimitiveType, name, paramNames, paramTypes, type, isQuery);
+	}
+
+	protected org.eclipse.ocl.examples.pivot.Class createOwnedPrimitiveType(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
+		org.eclipse.ocl.examples.pivot.Class eClass = PivotFactory.eINSTANCE.createClass();
+		eClass.setName(name);
+		aPackage.getOwnedTypes().add(eClass);
+		return eClass;
+	}
+
+	protected Property createOwnedReference(org.eclipse.ocl.examples.pivot.Class aClass, String name, org.eclipse.ocl.examples.pivot.Class type) {
+		Property eReference = PivotFactory.eINSTANCE.createProperty();
+		eReference.setName(name);
+		eReference.setType(type);
+		aClass.getOwnedAttributes().add(eReference);
+		return eReference;
+	}
+
 	protected OCL createOCL() {
-		return staticReflection.createOCL(resourceSet);
+		Registry packageRegistry = resourceSet.getPackageRegistry();
+		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
+		return OCL.newInstance(envFactory);
 	}
 	
 	protected ExpressionInOcl createPostcondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(reflection.getOwner(context), context);
+		helper.setOperationContext(context.getClass_(), context);
 		
 		ExpressionInOcl result = null;
 		
@@ -797,7 +904,7 @@ public abstract class GenericTestSuite
 	
 	protected ExpressionInOcl createPrecondition(Operation context, String text) {
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setOperationContext(reflection.getOwner(context), context);
+		helper.setOperationContext(context.getClass_(), context);
 		
 		ExpressionInOcl result = null;
 		
@@ -834,6 +941,14 @@ public abstract class GenericTestSuite
 		
 		return result;
 	}
+	
+	public ResourceSet createResourceSet() {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+			"ecore", new EcoreResourceFactoryImpl());
+		resourceSet.getPackageRegistry().put(PivotPackage.eINSTANCE.getNsURI(), PivotPackage.eINSTANCE);
+		return resourceSet;
+	}
 
 	protected void createVariableInEnvironment(String name, Type type) {
 		Variable var = environment.getOCLFactory().createVariable();
@@ -859,9 +974,9 @@ public abstract class GenericTestSuite
 						break;
 					}
 				}
-				String key = expression.substring(iStart, i);
-				String mapped = reflection.denormalize(key);
-				s.append(mapped != null ? mapped : key);
+				s.append(expression.substring(iStart, i));
+//				String mapped = reflection.denormalize(key);
+//				s.append(mapped != null ? mapped : key);
 			}
 			if (i < iMax)
 				s.append(c);
@@ -947,6 +1062,21 @@ public abstract class GenericTestSuite
 //		return reflection.getBodyExpression(constraint);
 //	}
 	
+	/**
+	 * Retrieves the first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Attribute</b></em>' reference list.
+	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
+	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
+	 * @return The first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
+	 */
+	protected Property getAttribute(Type classifier, String name, Type type) {
+		if (!(classifier instanceof org.eclipse.ocl.examples.pivot.Class))
+			return null;
+		Property feature = PivotUtil.getNamedElement(((org.eclipse.ocl.examples.pivot.Class)classifier).getOwnedAttributes(), name);
+		if (feature == null)
+			return null;
+		// check type
+		return feature;
+	}
    
     /**
      * Obtains the diagnostic describing the problem in the last failed parse,
@@ -987,7 +1117,7 @@ public abstract class GenericTestSuite
 //	}
     
 	protected Type getMetaclass(String name) {
-		return reflection.getMetaclass(name);
+		return typeManager.getRequiredLibraryType(name);
 	}
 	
 	protected Object getNull() {
@@ -997,11 +1127,9 @@ public abstract class GenericTestSuite
 	protected StandardLibrary getOCLStandardLibrary() {
 		return ocl.getEnvironment().getOCLStandardLibrary();
 	}
-
-	abstract protected TestReflection.Static getStaticReflection();
 	
 	public URI getTestModelURI(String localFileName) {
-		String testPlugInId = staticReflection.getTestPlugInId();
+		String testPlugInId = getTestPlugInId();
 		try {
 			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform");
 			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class});
@@ -1020,6 +1148,10 @@ public abstract class GenericTestSuite
 			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
 		return URI.createFileURI(urlString + "/" + localFileName);
 	}
+
+	public String getTestPlugInId() {
+		return PLUGIN_ID;
+	}
 	
 	protected Type getUMLBoolean() {
 		return getOCLStandardLibrary().getBooleanType();
@@ -1030,7 +1162,7 @@ public abstract class GenericTestSuite
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package getUMLMetamodel() {
-		return reflection.getUMLMetamodel();
+		return typeManager.getPivotPackage();
 	}
 	
 	protected Type getUMLString() {
@@ -1042,7 +1174,7 @@ public abstract class GenericTestSuite
 	}
 
 	protected void initializeResourceSet() {
-	    resourceSet = staticReflection.createResourceSet();
+	    resourceSet = createResourceSet();
 		standardResources = new ArrayList<Resource>(resourceSet.getResources());
 	}
 	
@@ -1179,12 +1311,11 @@ public abstract class GenericTestSuite
 		typeManager = new TypeManager();
 		valueFactory = typeManager.getValueFactory();
 		typeManager.loadLibrary(OCLstdlib.INSTANCE);
-		staticReflection = getStaticReflection();
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();
         }
 		if (!initialized) {
-			noDebug = System.getProperty(staticReflection.getTestPlugInId() + ".nodebug") != null;
+			noDebug = System.getProperty(getTestPlugInId() + ".nodebug") != null;
 			if (!eclipseIsRunning()) {
 				initializeStandalone();
 			}
@@ -1195,8 +1326,8 @@ public abstract class GenericTestSuite
 //		debugPrintln("==> Start  " + getName());
 		ocl = createOCL();
 		environment = ocl.getEnvironment();
-		reflection = staticReflection.createReflection(environment);
-		String repairs = System.getProperty(staticReflection.getTestPlugInId() + ".repairs");
+//		reflection = staticReflection.createReflection(environment);
+		String repairs = System.getProperty(getTestPlugInId() + ".repairs");
 		if (repairs != null)
 			ocl.setParserRepairCount(Integer.parseInt(repairs));
 //        ocl.setParseTracingEnabled(true);
@@ -1223,7 +1354,7 @@ public abstract class GenericTestSuite
 		//	Null out any references that a test may have left behind, so that unwanted
 		//	objects are not locked into memory.
 		//
-		for (java.lang.Class<?> aClass = getClass(); GenericTestSuite.class.isAssignableFrom(aClass); aClass = aClass.getSuperclass()) {
+		for (java.lang.Class<?> aClass = getClass(); PivotTestSuite.class.isAssignableFrom(aClass); aClass = aClass.getSuperclass()) {
 			for (Field field : aClass.getDeclaredFields()) {
 				int modifiers = field.getModifiers();
 				if (Modifier.isFinal(modifiers)) {
@@ -1265,7 +1396,7 @@ public abstract class GenericTestSuite
 	}
 
 	protected void tearDownStatic(java.lang.Class<?> aClass, Field field) {
-		if (aClass != GenericTestSuite.class) {
+		if (aClass != PivotTestSuite.class) {
 			// Tests may not have statics since they are prone to memory leakage
 			fail("static test variable:" + field); 
 		}
@@ -1305,7 +1436,7 @@ public abstract class GenericTestSuite
 		try {
 			EObject eContainer = expr.eContainer();
 			if ((eContainer != null)
-					&& reflection.getConstraintClass().isAssignableFrom(eContainer.eContainer().getClass())) {
+					&& Constraint.class.isAssignableFrom(eContainer.eContainer().getClass())) {
 				// start validation from the constraint, for good measure
 				Constraint eContainerContainer = (Constraint) eContainer.eContainer();
 				validate(eContainerContainer);
