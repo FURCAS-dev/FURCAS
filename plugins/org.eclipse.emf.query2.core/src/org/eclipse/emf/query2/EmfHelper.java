@@ -176,16 +176,6 @@ public class EmfHelper {
 		return r;
 	}
 	
-	/**
-	 *  unloads the resources in the given resourceset
-	 */		
-	public void unloadResources() {
-				if(this.rs.getResources()!=null){
-					for (Resource res : this.rs.getResources()) {
-						res.unload();
-					}
-				}
-	}
 
 	private void addToIndex(final Resource r) {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
