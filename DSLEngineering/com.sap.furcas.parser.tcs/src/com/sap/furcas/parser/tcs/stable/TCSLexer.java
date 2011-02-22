@@ -1,19 +1,20 @@
 // $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g 2011-02-22 15:46:36
 
-package generated;
-import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
-import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
-import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
-import org.antlr.runtime.BitSet;
-import org.antlr.runtime.IntStream;
+package com.sap.furcas.parser.tcs.stable;
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.Lexer;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.NoViableAltException;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
 
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
+import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 
 public class TCSLexer extends Lexer {
     public static final int LT=19;
@@ -152,7 +153,8 @@ public class TCSLexer extends Lexer {
       /*************** Code generated in class com.sap.furcas.parsergenerator.tcs.t2m.grammar.ANTLR3GrammarWriter  ********/
       private void newline() {}
 
-      public final Token emit() {
+      @Override
+    public final Token emit() {
     	// override emit() to generate own token class
     	ANTLR3LocationToken ret = null;
             ITokenFactory<? extends ANTLR3LocationToken> tokenFactory = getTokenFactory();
@@ -177,6 +179,7 @@ public class TCSLexer extends Lexer {
          * Removing starting/ending delimiters.
          * @deprecated
          */
+        @Deprecated
         public String unescapeString(String s, int delimLength) {
             // get rid of the starting and ending delimiters (e.g., '\'', '"')
            if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
@@ -185,7 +188,8 @@ public class TCSLexer extends Lexer {
             return s;
         }
 
-          public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
+          @Override
+        public void displayRecognitionError(String[] tokenNames, RecognitionException e) {
               if (ei != null) {
                   ei.reportError(e);
               } else {
@@ -207,6 +211,7 @@ public class TCSLexer extends Lexer {
         super(input,state);
 
     }
+    @Override
     public String getGrammarFileName() { return "C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g"; }
 
     // $ANTLR start "T__49"
@@ -3594,6 +3599,7 @@ public class TCSLexer extends Lexer {
     }
     // $ANTLR end "STRING"
 
+    @Override
     public void mTokens() throws RecognitionException {
         // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | COMMENT | MULTI_LINE_COMMENT | LSQUARE | RSQUARE | DLSQUARE | DRSQUARE | EXCL | COMA | LPAREN | RPAREN | LCURLY | RCURLY | DLCURLY | DRCURLY | SEMI | COLON | DLCOLON | PIPE | SHARP | QMARK | DOLLAR | AROBAS | POINT | RARROW | MINUS | STAR | SLASH | PLUS | EQ | GT | LT | GE | LE | NE | LARROW | NL | WS | NAME | INT | FLOAT | STRING )
         int alt16=126;
@@ -5375,6 +5381,7 @@ public class TCSLexer extends Lexer {
             this.special = DFA16_special;
             this.transition = DFA16_transition;
         }
+        @Override
         public String getDescription() {
             return "1:1: Tokens : ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | COMMENT | MULTI_LINE_COMMENT | LSQUARE | RSQUARE | DLSQUARE | DRSQUARE | EXCL | COMA | LPAREN | RPAREN | LCURLY | RCURLY | DLCURLY | DRCURLY | SEMI | COLON | DLCOLON | PIPE | SHARP | QMARK | DOLLAR | AROBAS | POINT | RARROW | MINUS | STAR | SLASH | PLUS | EQ | GT | LT | GE | LE | NE | LARROW | NL | WS | NAME | INT | FLOAT | STRING );";
         }
