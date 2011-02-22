@@ -109,20 +109,20 @@ public class DelayedReferencesHelper {
 
     private static class ForeachProductionResult {
         private final ModelElementProxy producedProxy;
-        private final String parserRuleNameUsedForProduction;
+        private final Template templateUsedForProduction;
         private final Object foreachExpressionResultForWhichProduced;
-        public ForeachProductionResult(ModelElementProxy producedProxy, String parserRuleNameUsedForProduction,
+        public ForeachProductionResult(ModelElementProxy producedProxy, Template templateUsedForProduction,
                 Object foreachExpressionResultForWhichProduced) {
             super();
             this.producedProxy = producedProxy;
-            this.parserRuleNameUsedForProduction = parserRuleNameUsedForProduction;
+            this.templateUsedForProduction = templateUsedForProduction;
             this.foreachExpressionResultForWhichProduced = foreachExpressionResultForWhichProduced;
         }
         public ModelElementProxy getProducedProxy() {
             return producedProxy;
         }
-        public String getParserRuleNameUsedForProduction() {
-            return parserRuleNameUsedForProduction;
+        public Template getTemplateUsedForProduction() {
+            return templateUsedForProduction;
         }
         public Object getForeachExpressionResultForWhichProduced() {
             return foreachExpressionResultForWhichProduced;
@@ -153,23 +153,54 @@ public class DelayedReferencesHelper {
                     // look if there are possible when/as constructs
                     PredicateSemantic activePredicateSemantic = getActivePredicateFromWhenAsClauses(reference,
                             modelAdapter, contextElement, singleForeachResult);
+                    Template templateUsedForProduction = getTemplateFromPredicateSemantic(activePredicateSemantic, reference);
+                    // TODO it would be nice to compute the rule name from the template; however, if no textblocks are being produced, the reference doesn't have the link to the ForeachPropertyInit set, so the template can't be determined and isn't passed in by the parser run; only the rule name is passed
                     String parserRuleNameToUseForProduction = computeRuleName(parser, singleForeachResult, activePredicateSemantic, mode, ruleNameFinder);
                     if (parserRuleNameToUseForProduction == null) {
                         throw new UnknownProductionRuleException("At least one as parameter is needed in that case.");
                     }
                     ModelElementProxy foreachTargetElement = produceForOneForeachResult(reference, modelAdapter,
                             contextElement, parser, singleForeachResult, activePredicateSemantic, parserRuleNameToUseForProduction);
-                    ForeachProductionResult resultObject = new ForeachProductionResult(foreachTargetElement, parserRuleNameToUseForProduction,
+                    ForeachProductionResult resultObject = new ForeachProductionResult(foreachTargetElement, templateUsedForProduction,
                             singleForeachResult);
                     producedResults.add(resultObject);
                 }
             }
-            updateForeachContexts(reference, modelAdapter, producedResults);
+            setReferenceAndUpdateForeachContexts(reference, modelAdapter, producedResults);
         } catch (Exception e) {
             reportProblem(e.getMessage(), reference.getToken());
             return false;
         }
         return true;
+    }
+
+    /**
+     * Tries to find a {@link DelayedReference#getQueryElement() foreach property init} on the delayed reference <code>ref</code>.
+     * Assuming that <code>ref</code> is a {@link DelayedReference.ReferenceType#TYPE_FOREACH_PREDICATE} reference,
+     * its {@link DelayedReference#getPredicateActionList() predicate list} (the list of when/as/mode clauses}
+     * is used to find the position/index of <code>activePredicateSemantic</code>. At this position,
+     * the {@link com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic#getAs() template} to be used for production
+     * is looked up.<p>
+     * 
+     * If either the reference doesn't have the property init set in its {@link DelayedReference#getQueryElement()},
+     * <code>null</code> is returned. This will in particular be the case if the parser is not configured to produce
+     * text blocks.
+     */
+    private Template getTemplateFromPredicateSemantic(PredicateSemantic activePredicateSemantic, DelayedReference ref) {
+        int index = ref.getPredicateActionList().indexOf(activePredicateSemantic);
+        if (index >= 0 && ((ForeachPredicatePropertyInit) ref.getQueryElement()) != null) {
+            int i = 0;
+
+            for (com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
+                    .getQueryElement()).getPredicateSemantic()) {
+                if (i++ == index) {
+                    return predSem.getAs();
+                }
+            }
+            return null;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -217,8 +248,11 @@ public class DelayedReferencesHelper {
      * 
      * It's obvious that there may be more sophisticated re-use strategies based on longest sequence etc., but those may
      * be added later.
+     * 
+     * @param producedResults the {@link ForeachProductionResult#getTemplateUsedForProduction() templates} need to be
+     * set only if text blocks are being produced by the parser run
      */
-    private void updateForeachContexts(DelayedReference reference, IModelAdapter modelAdapter,
+    private void setReferenceAndUpdateForeachContexts(DelayedReference reference, IModelAdapter modelAdapter,
             List<ForeachProductionResult> producedResults)
             throws ModelElementCreationException, ModelAdapterException {
         Iterator<ForEachContext> foreachContextIterator = null;
@@ -243,7 +277,7 @@ public class DelayedReferencesHelper {
                 // target element is not re-usable, a new one needs to be produced
                 setReference(reference, producedResult.getForeachExpressionResultForWhichProduced(), modelAdapter,
                         producedResult.getProducedProxy(), i);
-                if (reference.getTextBlock() != null) {
+                if (reference.getTextBlock() != null && producedResult.getTemplateUsedForProduction() != null) {
                     // if we have a ForEachContext element for the current source element and foreach predicate,
                     // re-use and update it:
                     if (nextOldForeachContext == null) {
@@ -260,7 +294,7 @@ public class DelayedReferencesHelper {
                             nextOldForeachContext.setContextString((String) producedResult
                                     .getForeachExpressionResultForWhichProduced());
                         }
-                        nextOldForeachContext.setParserRuleName(producedResult.getParserRuleNameUsedForProduction());
+                        nextOldForeachContext.setTemplateUsedForProduction(producedResult.getTemplateUsedForProduction());
                         nextOldForeachContext.setResultModelElement((EObject) producedResult.getProducedProxy()
                                 .getRealObject());
                     }
@@ -285,7 +319,7 @@ public class DelayedReferencesHelper {
         newContext.setForeachPedicatePropertyInit((ForeachPredicatePropertyInit) reference.getQueryElement());
         newContext.setSourceModelElement((EObject) reference.getModelElement());
         newContext.setContextElement((EObject) producedResult.getForeachExpressionResultForWhichProduced());
-        newContext.setParserRuleName(producedResult.getParserRuleNameUsedForProduction());
+        newContext.setTemplateUsedForProduction(producedResult.getTemplateUsedForProduction());
         newContext.setResultModelElement((EObject) reference.getRealValue());
         return newContext;
     }
@@ -296,7 +330,7 @@ public class DelayedReferencesHelper {
      * documented by <code>nextOldForeachContext</code> is the same as that used in <code>producedResult</code>.
      */
     private boolean isTargetElementReusable(ForEachContext nextOldForeachContext, ForeachProductionResult producedResult) {
-        return nextOldForeachContext.getParserRuleName().equals(producedResult.getParserRuleNameUsedForProduction());
+        return nextOldForeachContext.getTemplateUsedForProduction() == producedResult.getTemplateUsedForProduction();
     }
 
     /**

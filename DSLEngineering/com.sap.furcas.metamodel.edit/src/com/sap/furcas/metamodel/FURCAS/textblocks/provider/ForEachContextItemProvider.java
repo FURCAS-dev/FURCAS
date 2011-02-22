@@ -71,7 +71,7 @@ public class ForEachContextItemProvider
             addResultModelElementPropertyDescriptor(object);
             addSourceModelElementPropertyDescriptor(object);
             addContextStringPropertyDescriptor(object);
-            addParserRuleNamePropertyDescriptor(object);
+            addTemplateUsedForProductionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -187,23 +187,23 @@ public class ForEachContextItemProvider
     }
 
         /**
-     * This adds a property descriptor for the Parser Rule Name feature.
+     * This adds a property descriptor for the Template Used For Production feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addParserRuleNamePropertyDescriptor(Object object) {
+    protected void addTemplateUsedForProductionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_ForEachContext_parserRuleName_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ForEachContext_parserRuleName_feature", "_UI_ForEachContext_type"),
-                 TextblocksPackage.Literals.FOR_EACH_CONTEXT__PARSER_RULE_NAME,
+                 getString("_UI_ForEachContext_templateUsedForProduction_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ForEachContext_templateUsedForProduction_feature", "_UI_ForEachContext_type"),
+                 TextblocksPackage.Literals.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION,
                  true,
                  false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 true,
+                 null,
                  null,
                  null));
     }
@@ -227,7 +227,7 @@ public class ForEachContextItemProvider
      */
         @Override
         public String getText(Object object) {
-        String label = ((ForEachContext)object).getParserRuleName();
+        String label = ((ForEachContext)object).getContextString();
         return label == null || label.length() == 0 ?
             getString("_UI_ForEachContext_type") :
             getString("_UI_ForEachContext_type") + " " + label;
@@ -246,7 +246,6 @@ public class ForEachContextItemProvider
 
         switch (notification.getFeatureID(ForEachContext.class)) {
             case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
-            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

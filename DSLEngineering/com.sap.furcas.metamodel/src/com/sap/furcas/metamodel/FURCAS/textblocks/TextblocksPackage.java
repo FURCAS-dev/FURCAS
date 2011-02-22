@@ -1356,13 +1356,13 @@ public interface TextblocksPackage extends EPackage {
     int FOR_EACH_CONTEXT__CONTEXT_STRING = 4;
 
         /**
-     * The feature id for the '<em><b>Parser Rule Name</b></em>' attribute.
+     * The feature id for the '<em><b>Template Used For Production</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FOR_EACH_CONTEXT__PARSER_RULE_NAME = 5;
+    int FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION = 5;
 
         /**
      * The number of structural features of the '<em>For Each Context</em>' class.
@@ -2256,15 +2256,15 @@ public interface TextblocksPackage extends EPackage {
     EAttribute getForEachContext_ContextString();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Parser Rule Name</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName()
+     * @return the meta object for the reference '<em>Template Used For Production</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction()
      * @see #getForEachContext()
      * @generated
      */
-    EAttribute getForEachContext_ParserRuleName();
+    EReference getForEachContext_TemplateUsedForProduction();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken <em>Eostoken</em>}'.
@@ -2669,12 +2669,12 @@ public interface TextblocksPackage extends EPackage {
         EAttribute FOR_EACH_CONTEXT__CONTEXT_STRING = eINSTANCE.getForEachContext_ContextString();
 
                 /**
-         * The meta object literal for the '<em><b>Parser Rule Name</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Template Used For Production</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FOR_EACH_CONTEXT__PARSER_RULE_NAME = eINSTANCE.getForEachContext_ParserRuleName();
+        EReference FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION = eINSTANCE.getForEachContext_TemplateUsedForProduction();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
