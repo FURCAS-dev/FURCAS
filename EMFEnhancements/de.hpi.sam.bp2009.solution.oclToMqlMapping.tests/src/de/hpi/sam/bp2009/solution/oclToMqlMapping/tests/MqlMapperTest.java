@@ -393,9 +393,9 @@ public class MqlMapperTest extends TestCase {
   
     @Test
     public void testVisitExpressionCompleteAtt() {
-        String att= "{100=1, 55=1, 42=3, 43=2}";
+        String att= "{100=1, 55=1, 42=2, 43=3}"; // TODO (Axel Uhl) changed this from 42=3, 43=2;
+        // the test generally seems a bit off; why is the 22-year old student not listed?
         statementAtt = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteAtt);
-
         assertEquals(att, statementAtt.toString());
     }
     

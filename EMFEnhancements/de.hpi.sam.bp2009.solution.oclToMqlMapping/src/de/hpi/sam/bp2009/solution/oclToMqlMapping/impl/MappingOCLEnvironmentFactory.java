@@ -30,6 +30,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+// TODO consider the variant with scoped extent map instead
 public class MappingOCLEnvironmentFactory extends EcoreEnvironmentFactory {
     public static MappingOCLEnvironmentFactory INSTANCE = new MappingOCLEnvironmentFactory();
 
