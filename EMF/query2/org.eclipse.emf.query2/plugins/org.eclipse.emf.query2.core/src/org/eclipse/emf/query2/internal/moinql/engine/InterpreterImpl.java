@@ -111,7 +111,7 @@ final public class InterpreterImpl implements Interpreter {
 	/* Public methods */
 	/* ---------------- */
 
-	public ResultSet execute(InternalQuery internalQuery, int _maxResultSetSize, int numberOfResults) throws QueryExecutionException {
+	public ResultSet execute(InternalQuery internalQuery, int _maxResultSetSize, int numberOfResults,boolean isSortingNeeded) throws QueryExecutionException {
 
 		// set the maximum result set size. If this is exceeded, we throw and MQLExecutionException
 		this.maxResultSetSize = _maxResultSetSize;
@@ -151,7 +151,7 @@ final public class InterpreterImpl implements Interpreter {
 				this.calculateAliasAttributePositionMaps(topLevelSelectEntries, positionMap, aliasToPosition, attrsToPosition);
 
 				// construct result
-				resultSet = new ResultSetImpl(this.emfHelper, topLevelSelectEntries, facilityResultSet, aliasToPosition, attrsToPosition);
+				resultSet = new ResultSetImpl(this.emfHelper, topLevelSelectEntries, facilityResultSet, aliasToPosition, attrsToPosition,isSortingNeeded);
 			}
 		}
 
@@ -1093,4 +1093,6 @@ final public class InterpreterImpl implements Interpreter {
 			logger.trace(LogSeverity.DEBUG, FQLTraceMessages.MQL_PROCESSOR_TARGET_RESULT_SET, "\n", targetResultSet); //$NON-NLS-1$
 		}
 	}
+
+	
 }

@@ -1004,10 +1004,11 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 		ResultSet resultSet = this.executeQuery(preparedQuery, this.getQueryContext(queryScopeProvider));
 
 		// read the result
-		assertEquals(resultSet.getAttribute(0, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(1, "em", "name"), "Rainer"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(2, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(3, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		
+		assertEquals(resultSet.getAttribute(0, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(2, "em", "name"), "Rainer"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(3, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Test
@@ -1088,11 +1089,11 @@ public class SuiteCompanyQueryTest extends QueryTestCase {
 
 		// read the result
 		assertEquals(resultSet.getAttribute(0, "em", "name"), "Boris"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(1, "em", "name"), "Eduard"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(2, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(3, "em", "name"), "Meinolf"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(4, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		assertEquals(resultSet.getAttribute(5, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(1, "em", "name"), "Stefan"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(2, "em", "name"), "Eduard"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(3, "em", "name"), "Simon"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(4, "em", "name"), "Meinolf"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		assertEquals(resultSet.getAttribute(5, "em", "name"), "Jens"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 	}
 
