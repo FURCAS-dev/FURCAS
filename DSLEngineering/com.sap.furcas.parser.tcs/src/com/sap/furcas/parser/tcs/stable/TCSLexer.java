@@ -1,6 +1,6 @@
 // $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g 2011-02-22 15:46:36
 
-package generated;
+package com.sap.furcas.parser.tcs.stable;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
 import com.sap.furcas.runtime.parser.antlr3.DefaultANTLR3LocationTokenFactory;
