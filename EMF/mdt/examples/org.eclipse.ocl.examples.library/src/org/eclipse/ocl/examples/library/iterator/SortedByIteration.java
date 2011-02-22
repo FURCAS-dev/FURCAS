@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.3 2011/02/11 20:00:10 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -29,6 +29,7 @@ import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.library.ValidationWarning;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -43,10 +44,10 @@ import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.Value.BinaryOperation;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.AbstractValue;
 
 /**
@@ -58,22 +59,26 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 {
 	protected static class SortingValue extends AbstractValue implements Comparator<Value>
 	{
-		private final EvaluationEnvironment env;
-		private final Value sourceVal;
+		private final EvaluationEnvironment evaluationEnvironment;
+//		private final Value sourceVal;
 		private final Map<Value, Value> content = new HashMap<Value, Value>();	// User object to sortedBy value
 		private final LoopExp iteratorExp;
 		private final Value.BinaryOperation binaryImplementation;
 
 		public SortingValue(EvaluationEnvironment env, Value sourceVal, LoopExp iteratorExp, Value.BinaryOperation binaryImplementation) {
 			super(env.getValueFactory());
-			this.env = env;
-			this.sourceVal = sourceVal;
+			this.evaluationEnvironment = env;
+//			this.sourceVal = sourceVal;
 			this.iteratorExp = iteratorExp;
 			this.binaryImplementation = binaryImplementation;
 		}
 
 		public Object asObject() {
 			return content;
+		}
+
+		public Value asValidValue() {
+			return this;
 		}
 		
 		public int compare(Value o1, Value o2) {
@@ -85,34 +90,38 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 			if (v1 == v2) {
 				return 0;
 			}
-			Value lessThan = binaryImplementation.evaluate(valueFactory, v1, v2);
-			if (lessThan.isTrue()) {
-				return -1;
+			try {
+				BooleanValue lessThan = binaryImplementation.evaluate(valueFactory, v1, v2).asBooleanValue();
+				if (lessThan.isTrue()) {
+					return -1;
+				}
+				BooleanValue greaterThan = binaryImplementation.evaluate(valueFactory, v2, v1).asBooleanValue();
+				if (greaterThan.isTrue()) {
+					return 1;
+				}
+				return 0;
+			} catch (InvalidValueException e) {
+	//			evaluationEnvironment.throwInvalidEvaluation("'<' evaluation failed", e);
+				evaluationEnvironment.throwInvalidEvaluation(e);
+				return 0;
 			}
-			if (!lessThan.isFalse()) {
-				throw new IllegalArgumentException();
-			}
-			Value greaterThan = binaryImplementation.evaluate(valueFactory, v2, v1);
-			if (greaterThan.isTrue()) {
-				return 1;
-			}
-			if (!greaterThan.isFalse()) {
-				throw new IllegalArgumentException();
-			}
-			return 0;
 		}
 
 		public Value createSortedValue() {
 			List<Value> result = new ArrayList<Value>(content.keySet());
-			try {
+	//		try {
 				Collections.sort(result, this);
-			}
-			catch (Exception e) {
-				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' evaluation failed", e);
-			}
+	//		}
+	//		catch (WrappedInvalidValueException e) {
+//	//			evaluationEnvironment.throwInvalidEvaluation(sourceVal, iteratorExp, "'<' evaluation failed", e);
+	//			evaluationEnvironment.throwInvalidEvaluation(e);
+	//		}
+	//		catch (Exception e) {
+	//			evaluationEnvironment.throwInvalidEvaluation(sourceVal, iteratorExp, "'<' evaluation failed", e);
+	//		}
 			// create result from the sorted collection
 			Type sourceType = iteratorExp.getSource().getType();
-			boolean isUnique = env.getTypeManager().isUnique(sourceType);
+			boolean isUnique = evaluationEnvironment.getTypeManager().isUnique(sourceType);
 			return valueFactory.createCollectionValue(true, isUnique, result);
 		}
 
@@ -134,7 +143,6 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();		
 		TypeManager typeManager = evaluationEnvironment.getTypeManager();
 		CompleteEnvironmentManager completeManager = typeManager.getCompleteEnvironmentManager();
 		OclExpression body = iteratorExp.getBody();		
@@ -142,25 +150,25 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
 		Operation staticLessThanOperation = typeManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
-			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null);
+			evaluationEnvironment.throwInvalidEvaluation("No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null, iteratorExp, sourceVal);
 		}
 		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticLessThanOperation);
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
 //		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
 //		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-		Value.BinaryOperation binaryImplementation;
+		CallableImplementation implementation = null;
 		try {
-			CallableImplementation implementation = typeManager.getImplementation(staticCompleteOperation);
-			if (implementation == null) {
-				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", null);
-			}
-			if (!(implementation instanceof Value.BinaryOperation)) {
-				return valueFactory.createInvalidValue(sourceVal, iteratorExp, "'<' is not a binary operation", null);
-			}
-			binaryImplementation = (BinaryOperation) implementation;
+			implementation = typeManager.getImplementation(staticCompleteOperation);
 		} catch (Exception e) {
-			return valueFactory.createInvalidValue(sourceVal, iteratorExp, "Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", e);
+			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", e, iteratorExp, sourceVal);
 		}
+		if (implementation == null) {
+			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", null, iteratorExp, sourceVal);
+		}
+		if (!(implementation instanceof Value.BinaryOperation)) {
+			evaluationEnvironment.throwInvalidEvaluation("'<' is not a binary operation", null, iteratorExp, sourceVal);
+		}
+		Value.BinaryOperation binaryImplementation = (BinaryOperation) implementation;
 		SortingValue accumulatorValue = new SortingValue(evaluationEnvironment, sourceVal, iteratorExp, binaryImplementation);
 //		IterationManager iterationManager = new IterationManager(evaluationVisitor, iteratorExp, (CollectionValue) sourceVal);
 //		return evaluateIteration(iterationManager, accumulatorValue);
@@ -180,7 +188,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 		SortingValue accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return bodyVal.toInvalidValue();				// Null body is invalid
+			iterationManager.throwInvalidEvaluation("null body");//bodyVal.toInvalidValue();				// Null body is invalid
 		}
 		// must have exactly one iterator
 		Value iterValue = iterationManager.get(0);

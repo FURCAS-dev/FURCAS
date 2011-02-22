@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -77,6 +77,10 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 	public Object asObject() {
 		return parts;
 	}
+
+	public Value asValidValue() {
+		return this;
+	}
 	
     private int computeHashCode() {
         int typeHashCode = type.hashCode();
@@ -121,21 +125,8 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     // overrides the inherited implementation
     @Override
     public int hashCode() {
-//        int typeHashCode = type.hashCode();
-//		int partsHashCode = parts.hashCode();
-//		return 37 * typeHashCode + 17 * partsHashCode;
 		return hashCode;
     }
-    
-    @Override
-	public boolean isInvalid() {
-    	for (Value part : parts.values()) {
-    		if (part.isInvalid()) {
-    			return true;
-    		}
-    	}
-		return false;
-	}
 
 	@Override
     public String toString() {

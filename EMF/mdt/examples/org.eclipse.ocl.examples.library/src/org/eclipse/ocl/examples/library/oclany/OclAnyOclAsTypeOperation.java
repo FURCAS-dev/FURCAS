@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.4 2011/02/11 20:00:10 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.5 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 /**
  * OclAnyOclAsTypeOperation realises the OclAny::oclAsType() library operation.
@@ -34,8 +34,7 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 {
 	public static final OclAnyOclAsTypeOperation INSTANCE = new OclAnyOclAsTypeOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
-		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
 		if (sourceType == null) {
@@ -43,9 +42,6 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
-		if (typeVal == null) {
-			return valueFactory.createInvalidValue(argVal, operationCall, "Type required", null);
-		}
 		Type argType = typeVal.getType();
 		if (typeManager.conformsTo(sourceType, argType, null)) {
 			return evaluateConforming(evaluationVisitor, sourceVal, argType);
@@ -55,11 +51,11 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		}
 	}
 
-	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
+	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
 		return sourceVal;
 	}
 
-	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
+	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
 		return null;
 	}
 }

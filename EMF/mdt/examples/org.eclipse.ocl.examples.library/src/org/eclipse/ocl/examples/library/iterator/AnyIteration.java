@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnyIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: AnyIteration.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -44,11 +44,11 @@ public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
 	@Override
 	protected Value resolveTerminalValue(IterationManager<CollectionValue.Accumulator> iterationManager) {
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
-		if (accumulatorValue.notEmpty().isTrue()) {
+		if (accumulatorValue.intSize() > 0) {
 			return accumulatorValue.asList().get(0);		// Normal something found result.
 		}
 		else {
-			return iterationManager.createInvalidValue("nothing found");
+			return iterationManager.getValueFactory().getNull();
 		}
 	}
 	
@@ -57,12 +57,12 @@ public class AnyIteration extends AbstractIteration<CollectionValue.Accumulator>
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return bodyVal.toInvalidValue();				// Null body is invalid
+			return iterationManager.throwInvalidEvaluation("null body"); 	// Null body is invalid
 		}
 		else if (bodyVal.isFalse()) {
 			return null;									// Carry on for nothing found
 		}
-		else if (accumulatorValue.notEmpty().isTrue()) {
+		else if (accumulatorValue.intSize() > 0) {
 			return iterationManager.getFalse();				// Abort after second find
 		}
 		else {

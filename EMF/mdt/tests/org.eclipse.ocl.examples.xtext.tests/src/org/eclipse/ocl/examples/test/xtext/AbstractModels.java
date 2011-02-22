@@ -16,6 +16,7 @@ import java.net.URL;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 /**
  * Supports loading model files.

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BagValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: BagValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Bag;
@@ -40,7 +41,7 @@ public class BagValueImpl
 	extends AbstractCollectionValue<Bag<Value>>
 	implements BagValue
 {
-    public static BagValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right)
+    public static BagValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -64,7 +65,7 @@ public class BagValueImpl
     	return results.size() > 0 ? new BagValueImpl(valueFactory, results) : valueFactory.getEmptyBagValue();
     }
 
-    public static BagValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
+    public static BagValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -141,7 +142,7 @@ public class BagValueImpl
 		}
 	}
 
-    public BagValue flatten() {
+    public BagValue flatten() throws InvalidValueException {
     	Bag<Value> flattened = new BagImpl<Value>();
     	if (flatten(flattened)) {
     		return new BagValueImpl(valueFactory, flattened);
@@ -159,7 +160,10 @@ public class BagValueImpl
 		return staticType; // standardLibrary.getBagType();
 	}
 
-	public BagValue including(Value value) {
+	public BagValue including(Value value) throws InvalidValueException {
+		if (value.isInvalid()) {
+			throw new InvalidValueException("including invalid");
+		}
 		Bag<Value> result = new BagImpl<Value>(elements);
 		result.add(value);
 		return new BagValueImpl(valueFactory, result);

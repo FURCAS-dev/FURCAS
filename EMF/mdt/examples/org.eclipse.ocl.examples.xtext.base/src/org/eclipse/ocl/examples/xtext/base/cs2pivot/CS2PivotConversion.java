@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.9 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.10 2011/02/19 18:50:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -120,6 +120,9 @@ public class CS2PivotConversion extends AbstractConversion
 	private Map<MonikeredElementCS, MonikeredElement> debugCheckMap = new HashMap<MonikeredElementCS, MonikeredElement>();
 	// CS -> pivot pairs with possibly divergent monikers
 	private Map<ElementCS, Element> debugOtherMap = new HashMap<ElementCS, Element>();
+
+	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByName = null;
+	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByQualifiedName = null;
 	
 	public CS2PivotConversion(CS2Pivot converter) {
 		this.converter = converter;
@@ -262,6 +265,57 @@ public class CS2PivotConversion extends AbstractConversion
 		return documentationStrings;
 	} */
 
+	/**
+	 * Add any packages and nested packages pivoted by csObjects to newPackages. This
+	 * is invoked at the end of an update to identify redundant packages. 
+	 */
+	protected void gatherNewPackages(Set<org.eclipse.ocl.examples.pivot.Package> newPackages, List<? extends EObject> csElements) {
+		for (EObject csElement : csElements) {
+			if (csElement instanceof PackageCS) {
+				PackageCS csPackage = (PackageCS)csElement;
+				Element element = csPackage.getPivot();
+				if (element instanceof org.eclipse.ocl.examples.pivot.Package) {
+					newPackages.add((org.eclipse.ocl.examples.pivot.Package)element);
+				}
+				gatherNewPackages(newPackages, csPackage.getOwnedNestedPackage());
+			}
+		}	
+	}
+
+	/**
+	 * Add any packages and nested packages in eObjects to oldPackages. This
+	 * is invoked at the start of an update to cache the packages for re-use. 
+	 */
+	protected void gatherOldPackages(List<? extends EObject> eObjects) {
+		for (EObject eObject : eObjects) {
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				org.eclipse.ocl.examples.pivot.Package pkg = (org.eclipse.ocl.examples.pivot.Package) eObject;
+				String name = pkg.getName();
+				if (name == null) {
+					name = PivotConstants.NULL_ROOT;
+				}
+				String qualifiedName = getQualifiedName(new StringBuffer(), pkg);
+				org.eclipse.ocl.examples.pivot.Package oldPkg = oldPackagesByQualifiedName.put(qualifiedName, pkg);
+				if (oldPkg != null) {
+					logger.warn("Duplicate qualified package name: " + qualifiedName);
+				}
+				if (name.equals(qualifiedName)) {
+					oldPkg = oldPackagesByName.put(name, pkg);
+					if ((oldPkg != null) && name.equals(getQualifiedName(new StringBuffer(), oldPkg))) {
+						logger.warn("Duplicate unqualified package name: " + qualifiedName);
+					}
+				}
+				else {
+					oldPkg = oldPackagesByName.get(name);
+					if (oldPkg == null) {
+						oldPackagesByName.put(name, pkg);
+					}
+				}
+				gatherOldPackages(pkg.getNestedPackages());
+			}
+		}	
+	}
+
 	public BaseCSVisitor<MonikeredElement, CS2PivotConversion> getLeft2RightVisitor(EPackage ePackage) {
 		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = left2RightVisitorMap.get(ePackage);
 		if ((left2RightVisitor == null) && !left2RightVisitorMap.containsKey(ePackage)) {
@@ -336,6 +390,34 @@ public class CS2PivotConversion extends AbstractConversion
 			preOrderVisitorMap.put(ePackage, preOrderVisitor);
 		}
 		return preOrderVisitor;
+	}
+
+	protected String getQualifiedName(StringBuffer s, org.eclipse.ocl.examples.pivot.Package pkg) {
+		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getNestingPackage();
+		if (nestingPackage != null) {
+			getQualifiedName(s, nestingPackage);
+			s.append("$$");
+		}
+		String name = pkg.getName();
+		if (name == null) {
+			name = PivotConstants.NULL_ROOT;
+		}
+		s.append(name);
+		return s.toString();
+	}
+	
+	protected String getQualifiedName(StringBuffer s, PackageCS csPackage) {
+		EObject eContainer = csPackage.eContainer();
+		if (eContainer instanceof PackageCS) {
+			getQualifiedName(s, (PackageCS) eContainer);
+			s.append("$$");
+		}
+		String name = csPackage.getName();
+		if (name == null) {
+			name = PivotConstants.NULL_ROOT;
+		}
+		s.append(name);
+		return s.toString();
 	}
 
 	public boolean getQualifier(List<String> qualifiers, String trueString, String falseString, boolean defaultValue) {
@@ -456,30 +538,6 @@ public class CS2PivotConversion extends AbstractConversion
 			debugOtherMap.put(csElement, newPivotElement);
 		}
 		installPivotElementInternal(csElement, newPivotElement);
-	}
-	
-	/**
-	 * Install a CS to Pivot mapping for which the CS element does not have a
-	 * matching moniker. This occurs where the CS requires multiple objects for
-	 * a pivot object and so only one of the CS objects can have a matching moniker.
-	 * e.g. NavigationArgCS
-	 */
-	public void reusePivotElement(ModelElementCS csElement, Element newPivotElement) {
-		if (newPivotElement != null) {
-			debugOtherMap.put(csElement, newPivotElement);
-			installPivotElementInternal(csElement, newPivotElement);
-		}
-	}
-
-	/**
-	 * Install a CS to Pivot mapping for which the CS element does not map to the
-	 * pivot object. This occurs where the pivot requires multiple objects for
-	 * a CS object and so only one of the pivot objects can have a matching moniker.
-	 * e.g. LetExpCS
-	 */
-	public void usePivotElement(ModelElementCS csElement, Element newPivotElement) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	private void installPivotElementInternal(ModelElementCS csElement, Element newPivotElement) {
@@ -719,30 +777,41 @@ public class CS2PivotConversion extends AbstractConversion
 
 	public <T extends org.eclipse.ocl.examples.pivot.Package> T refreshPackage(Class<T> pivotClass, EClass pivotEClass, PackageCS csElement) {
 		String moniker;
-		T pivotElement = PivotUtil.getPivot(pivotClass, csElement);
-		if (pivotElement == null) {
-			pivotElement = (T)oldCS2PivotMap.get(csElement);
+		Object pivotObject = csElement.getPivot();
+		if (pivotObject == null) {
+			pivotObject = oldCS2PivotMap.get(csElement);
 		}
-		if (pivotElement == null) {
+		if (pivotObject == null) {
+			String qualifiedName = getQualifiedName(new StringBuffer(), csElement);
+			pivotObject = oldPackagesByQualifiedName.get(qualifiedName);
+		}
+		if (pivotObject == null) {
+			pivotObject = oldPackagesByName.get(csElement.getName());
+		}
+		T pivotElement;
+		if (pivotObject == null) {
 			pivotElement = converter.getTypeManager().createPackage(pivotClass, pivotEClass, csElement.getName());
 			moniker = pivotElement.getMoniker();
 			logger.trace("Created " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		else {
+			if (!pivotClass.isAssignableFrom(pivotObject.getClass())) {
+				throw new ClassCastException();
+			}
+			@SuppressWarnings("unchecked")
+			T pivotElement2 = (T) pivotObject;
+			pivotElement = pivotElement2;
 			moniker = pivotElement.getMoniker();
 //			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
 			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 			refreshName(pivotElement, csElement.getName());
-		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			throw new ClassCastException();
 		}
 		converter.putPivotElement(moniker, pivotElement);
 		installPivotElement(csElement, pivotElement);
 		refreshComments(pivotElement, csElement);
 		return pivotElement;
 	}
-	
+
 	public <T extends Element> void refreshPivotList(Class<T> pivotClass, List<? super T> pivotElements,
 			List<? extends ModelElementCS> csElements) {
 		if (pivotElements.isEmpty() && csElements.isEmpty()) {
@@ -836,6 +905,19 @@ public class CS2PivotConversion extends AbstractConversion
 		for (Namespace namespace : namespaces) {
 			@SuppressWarnings("unused")
 			Namespace dummy = namespace;	// Resolves the proxies from the outside.
+		}
+	}
+	
+	/**
+	 * Install a CS to Pivot mapping for which the CS element does not have a
+	 * matching moniker. This occurs where the CS requires multiple objects for
+	 * a pivot object and so only one of the CS objects can have a matching moniker.
+	 * e.g. NavigationArgCS
+	 */
+	public void reusePivotElement(ModelElementCS csElement, Element newPivotElement) {
+		if (newPivotElement != null) {
+			debugOtherMap.put(csElement, newPivotElement);
+			installPivotElementInternal(csElement, newPivotElement);
 		}
 	}
 
@@ -1071,6 +1153,11 @@ public class CS2PivotConversion extends AbstractConversion
 		resetPivotMappings(csResources);
 		debugCheckMap.clear();
 		debugOtherMap.clear();
+		oldPackagesByName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+		oldPackagesByQualifiedName = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
+		for (Resource resource : converter.cs2pivotResourceMap.values()) {
+			gatherOldPackages(resource.getContents());
+		}
 		List<BasicContinuation<?>> continuations = new ArrayList<BasicContinuation<?>>();
 		//
 		//	Perform the pre-order traversal to create packages, unspecialized classes and precedences.
@@ -1137,6 +1224,29 @@ public class CS2PivotConversion extends AbstractConversion
 		if (!hasNoErrors) {
 			return false;
 		}
+		//
+		//	Prune obsolete packages
+		//
+		Set<org.eclipse.ocl.examples.pivot.Package> newPackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>();
+		for (Resource resource : csResources) {
+			gatherNewPackages(newPackages, resource.getContents());
+		}
+		Set<org.eclipse.ocl.examples.pivot.Package> obsoletePackages = new HashSet<org.eclipse.ocl.examples.pivot.Package>(oldPackagesByQualifiedName.values());
+		obsoletePackages.removeAll(newPackages);
+		for (org.eclipse.ocl.examples.pivot.Package obsoletePackage : obsoletePackages) {
+			EObject eContainer = obsoletePackage.eContainer();
+			if (eContainer != null) {
+				EReference eContainmentFeature = obsoletePackage.eContainmentFeature();
+				if (eContainmentFeature.isMany()) {
+					List<?> siblings = (List<?>) eContainer.eGet(eContainmentFeature);
+					siblings.remove(obsoletePackage);
+				}
+				else {
+					eContainer.eSet(eContainmentFeature, null);
+				}
+			}
+		}
+		
 		checkMonikers();		
 		//
 		//	Set the monikers as IDs throughout the pivot model.
@@ -1146,6 +1256,17 @@ public class CS2PivotConversion extends AbstractConversion
 			TypeManager.setMonikerAsID(Collections.singletonList(pivotResource));	// FIXME purge
 		}
 		return true;
+	}
+
+	/**
+	 * Install a CS to Pivot mapping for which the CS element does not map to the
+	 * pivot object. This occurs where the pivot requires multiple objects for
+	 * a CS object and so only one of the pivot objects can have a matching moniker.
+	 * e.g. LetExpCS
+	 */
+	public void usePivotElement(ModelElementCS csElement, Element newPivotElement) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public MonikeredElement visitLeft2Right(EObject eObject) {
