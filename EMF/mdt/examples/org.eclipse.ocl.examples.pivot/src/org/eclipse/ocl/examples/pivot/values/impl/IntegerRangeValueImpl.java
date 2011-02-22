@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IntegerRangeValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: IntegerRangeValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -21,6 +21,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
@@ -37,14 +38,8 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 	}
 
 	@Override
-	public SequenceValue append(Value value) {
+	public SequenceValue append(Value value) throws InvalidValueException {
 		IntegerValue integerValue = value.asIntegerValue();
-		if (integerValue == null) {
-			return valueFactory.createInvalidValue("non-Integer argument");
-		}
-		else if (integerValue.isUndefined()) {
-			return value.toInvalidValue();
-		}
 		int intValue = integerValue.asInteger();
 		int nextValue = elements.getLast() + elements.getDelta();
 		if (intValue == nextValue) {
@@ -58,8 +53,8 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 	}
 
 	@Override
-	public IntegerValue count(Value value) {
-		IntegerValue integerValue = value.asIntegerValue();
+	public IntegerValue count(Value value) throws InvalidValueException {
+		IntegerValue integerValue = value.isIntegerValue();
 		if ((integerValue != null) && !integerValue.isUndefined()) {
 			BigInteger first = BigInteger.valueOf(elements.getFirst());
 			BigInteger last = BigInteger.valueOf(elements.getLast());
@@ -153,7 +148,7 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 //	}
 
 	@Override
-	public SequenceValue including(Value value) {
+	public SequenceValue including(Value value) throws InvalidValueException {
 		return append(value);
 	}
 
@@ -173,14 +168,8 @@ public class IntegerRangeValueImpl extends AbstractSequenceValue<IntegerRangeImp
 	}
 
 	@Override
-	public SequenceValue prepend(Value value) {
+	public SequenceValue prepend(Value value) throws InvalidValueException {
 		IntegerValue integerValue = value.asIntegerValue();
-		if (integerValue == null) {
-			return valueFactory.createInvalidValue("non-Integer argument");
-		}
-		else if (integerValue.isUndefined()) {
-			return value.toInvalidValue();
-		}
 		int intValue = integerValue.asInteger();
 		int previousValue = elements.getFirst() - elements.getDelta();
 		if (intValue == previousValue) {

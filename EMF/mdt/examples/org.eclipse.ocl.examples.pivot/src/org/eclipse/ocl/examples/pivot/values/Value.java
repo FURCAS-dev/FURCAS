@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,55 +12,62 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: Value.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
- * isXXX returns true if self is an XXX and is not Null and is not Invalid.
- * asXXX returns an XXX if self is an XXX, null otherwise; note Null, Invalid are an XXX.
+ * asXXX returns an XXX if self is an XXX and not Null (and is not Invalid),
+ * Null (and Invalid) throw an InvalidValueException.
+ * 
+ * isXXX returns an XXX-related value if self is an XXX and is not Null (and is not Invalid).
+ * 
  * toXXX returns an XXX if self is or can be converted to an XXX; Invalid otherwise.
  */
 public interface Value
 {	
 	interface BinaryOperation {
-		Value evaluate(ValueFactory valueFactory, Value result, Value element);
+		Value evaluate(ValueFactory valueFactory, Value result, Value element) throws InvalidValueException;
 	}
 
-	BagValue asBagValue();
-	BooleanValue asBooleanValue();
-	CollectionValue asCollectionValue();
+	BagValue asBagValue() throws InvalidValueException;
+	boolean asBoolean() throws InvalidValueException;
+	BooleanValue asBooleanValue() throws InvalidValueException;
+	CollectionValue asCollectionValue() throws InvalidValueException;
+	Double asDouble() throws InvalidValueException;
 	Element asElement(); 
-	BooleanValue asFalse(); 
-	Integer asInteger();
-	IntegerValue asIntegerValue();
-	InvalidValue asInvalidValue();
+	Integer asInteger() throws InvalidValueException;
+	IntegerValue asIntegerValue() throws InvalidValueException;
 	Object asObject();
-	OrderedCollectionValue asOrderedCollectionValue();
-	OrderedSetValue asOrderedSetValue();
-	RealValue asRealValue();
-	SequenceValue asSequenceValue();
-	SetValue asSetValue();
-	String asString();
-	StringValue asStringValue();
-	BooleanValue asTrue();
-	TypeValue asTypeValue();
-	UniqueCollectionValue asUniqueCollectionValue();
+	OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException;
+	OrderedSetValue asOrderedSetValue() throws InvalidValueException;
+	RealValue asRealValue() throws InvalidValueException;
+	SequenceValue asSequenceValue() throws InvalidValueException;
+	SetValue asSetValue() throws InvalidValueException;
+	String asString() throws InvalidValueException;
+	StringValue asStringValue() throws InvalidValueException;
+	TypeValue asTypeValue() throws InvalidValueException;
+	UniqueCollectionValue asUniqueCollectionValue() throws InvalidValueException;
+	Value asValidValue() throws InvalidValueException;
 	Type getType(TypeManager typeManager, Type staticType);
 	ValueFactory getValueFactory();	
+	CollectionValue isCollectionValue();
 	boolean isFalse();
+	IntegerValue isIntegerValue();
 	boolean isInvalid();
 	boolean isNull();
+	RealValue isRealValue();
 	boolean isTrue();
 	boolean isUndefined();
 	boolean isUnlimited();
 	boolean isUnlimitedNatural();
 	String oclToString();
-	RealValue toRealValue();
+	IntegerValue toIntegerValue() throws InvalidValueException;
+	RealValue toRealValue() throws InvalidValueException;
 	void toString(StringBuffer s, int sizeLimit);
-	InvalidValue toInvalidValue();
 }

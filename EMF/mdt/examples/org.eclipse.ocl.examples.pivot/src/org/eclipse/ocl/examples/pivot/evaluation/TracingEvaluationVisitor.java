@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TracingEvaluationVisitor.java,v 1.3 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: TracingEvaluationVisitor.java,v 1.4 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,10 +27,13 @@ import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
@@ -45,6 +48,7 @@ import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -82,12 +86,24 @@ public class TracingEvaluationVisitor extends EvaluationVisitorDecorator {
 //    private boolean isInvalid(Object value) {
 //        return value == getEnvironment().getOCLStandardLibrary().getInvalidValue();
 //    }
+
+	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+	       return getDelegate().throwInvalidEvaluation(e);
+	}
+
+	public NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException {
+        return getDelegate().throwInvalidEvaluation(message);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) {
+	       return getDelegate().throwInvalidEvaluation(message, e, expression, value);
+	}
     
     private Value trace(Object expression, Value value) {
         try {
             PivotPlugin.trace("Evaluate: " + expression); //$NON-NLS-1$
             PivotPlugin.trace("Result  : " + //$NON-NLS-1$
-                (value.isInvalid() ? "OclInvalid" : String.valueOf(value))); //$NON-NLS-1$
+                (value != null ? "OclInvalid" : String.valueOf(value))); //$NON-NLS-1$
         } catch (Exception e) {
             // tracing must not interfere with evaluation
         }

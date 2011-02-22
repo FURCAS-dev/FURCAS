@@ -9,6 +9,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks.provider;
 
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASEditPlugin;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
 import java.util.Collection;
@@ -26,7 +27,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext} object.
@@ -67,6 +70,8 @@ public class ForEachContextItemProvider
             addContextElementPropertyDescriptor(object);
             addResultModelElementPropertyDescriptor(object);
             addSourceModelElementPropertyDescriptor(object);
+            addContextStringPropertyDescriptor(object);
+            addParserRuleNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -160,6 +165,50 @@ public class ForEachContextItemProvider
     }
 
         /**
+     * This adds a property descriptor for the Context String feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addContextStringPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ForEachContext_contextString_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ForEachContext_contextString_feature", "_UI_ForEachContext_type"),
+                 TextblocksPackage.Literals.FOR_EACH_CONTEXT__CONTEXT_STRING,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+        /**
+     * This adds a property descriptor for the Parser Rule Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addParserRuleNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ForEachContext_parserRuleName_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ForEachContext_parserRuleName_feature", "_UI_ForEachContext_type"),
+                 TextblocksPackage.Literals.FOR_EACH_CONTEXT__PARSER_RULE_NAME,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+        /**
      * This returns ForEachContext.gif.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -178,7 +227,10 @@ public class ForEachContextItemProvider
      */
         @Override
         public String getText(Object object) {
-        return getString("_UI_ForEachContext_type");
+        String label = ((ForEachContext)object).getParserRuleName();
+        return label == null || label.length() == 0 ?
+            getString("_UI_ForEachContext_type") :
+            getString("_UI_ForEachContext_type") + " " + label;
     }
 
         /**
@@ -191,6 +243,13 @@ public class ForEachContextItemProvider
         @Override
         public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(ForEachContext.class)) {
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+            case TextblocksPackage.FOR_EACH_CONTEXT__PARSER_RULE_NAME:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 

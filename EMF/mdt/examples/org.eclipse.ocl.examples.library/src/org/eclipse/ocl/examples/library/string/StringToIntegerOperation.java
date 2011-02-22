@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringToIntegerOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: StringToIntegerOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
-import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.library.AbstractUnaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -27,23 +26,12 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * 
  * @since 3.1
  */
-public class StringToIntegerOperation extends AbstractStringUnaryOperation
+public class StringToIntegerOperation extends AbstractUnaryOperation
 {
 	public static final StringToIntegerOperation INSTANCE = new StringToIntegerOperation();
 
-	@Override
-	public IntegerValue evaluateString(ValueFactory valueFactory, String sourceVal) {
-		return valueFactory.integerValueOf(sourceVal.trim());
-	}
-
-	@Override
-	public Value evaluate(EvaluationVisitor evaluationVisitor,
-			Value sourceVal, OperationCallExp operationCall) {
-		try {
-			return super.evaluate(evaluationVisitor, sourceVal, operationCall);
-		}
-		catch (NumberFormatException e) {
-			return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, operationCall, "Not an Integer", e);
-		}
+	public Value evaluate(ValueFactory valueFactory, Value sourceVal) throws InvalidValueException {
+		String sourceString = sourceVal.asString();
+		return valueFactory.integerValueOf(sourceString.trim());
 	}
 }

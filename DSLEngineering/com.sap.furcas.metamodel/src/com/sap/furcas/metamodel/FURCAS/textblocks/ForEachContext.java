@@ -22,6 +22,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement <em>Context Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,5 +135,57 @@ public interface ForEachContext extends EObject {
      * @generated
      */
         void setSourceModelElement(EObject value);
+
+        /**
+     * Returns the value of the '<em><b>Context String</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context String</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Context String</em>' attribute.
+     * @see #setContextString(String)
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_ContextString()
+     * @model
+     * @generated
+     */
+    String getContextString();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context String</em>' attribute.
+     * @see #getContextString()
+     * @generated
+     */
+    void setContextString(String value);
+
+        /**
+     * Returns the value of the '<em><b>Parser Rule Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Parser Rule Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Parser Rule Name</em>' attribute.
+     * @see #setParserRuleName(String)
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_ParserRuleName()
+     * @model
+     * @generated
+     */
+    String getParserRuleName();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Parser Rule Name</em>' attribute.
+     * @see #getParserRuleName()
+     * @generated
+     */
+    void setParserRuleName(String value);
 
 } // ForEachContext
