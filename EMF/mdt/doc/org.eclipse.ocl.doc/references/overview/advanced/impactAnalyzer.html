@@ -22,7 +22,7 @@ on which re-evaluation of expressions is necessary after a change.
 </p><p>
 Given an <a href="../../javadoc/org/eclipse/ocl/ecore/OCLExpression.html">
 OCL expression</a>, the factory can be used to create an
-impact analyzer as follows:
+impact analyzer for a single expression as follows:
 <pre class="Code">
     final OCLExpression e = ...;
     final ImpactAnalyzer impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
@@ -32,7 +32,7 @@ impact analyzer as follows:
 </pre>
 The impact analyzer obtained this way can create a change notification filter which
 can then be used to register for notifications that indicate a change which may affect
-the value of the expression. Consider the following example: 
+the value of the expression. Consider the following example:
 <pre class="Code">
     ResourceSet myResourceSet = ...;
     EventFilter filter = impactAnalyzer.createFilterForExpression();
@@ -46,6 +46,13 @@ the value of the expression. Consider the following example:
         }
     });
 </pre>
+The event manager can be used to register the event filters of several OCL expressions with their respective
+adapters. The adapters for different expressions do not have to be distinct but may optionally be shared. The
+following figure shows how the classes relate:
+<img src="impactAnalyzerClasses.png" width="60%" alt="Impact Analyzer Classes"/><br/>
+For each OCL expression a new impact analyzer is used. The event filters produced by them can be registered
+with the same event manager. The following figure shows a typical instance diagram.
+<img src="impactAnalyzerInstances.png" width="100%" alt="Impact Analyzer Classes"/>
 </p><p>
 The <a href="../../javadoc/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html">
 event manager factory</a> and the <a href="../../javadoc/org/eclipse/ocl/examples/eventmanager/EventManager.html">
@@ -53,11 +60,21 @@ event managers</a> it produces lay the scalable foundation for the
 re-evaluation process. Even if it has to manage many subscriptions, its performance does not
 degrade as it would if the change notification filters were evaluated one after the other.
 With this it becomes possible to register many OCL expressions for change impact analysis
-as shown above. As described in more detail in the Javadoc, event managers may be re-used,
+as shown above. The figure below shows a typical default configuration of an
+event manager.
+<img src="eventManagerDefaultConfig.png" width="70%" alt="Default Event Manager Configuration"/><br/>
+The event manager in the figure is configured to listen to the change events coming
+from anything inside the resource set. In this example it is shown with three different
+event filters, each coming with its own adapter handling those change notifications
+matches by the respective filter.
+</p><p>
+As described in more detail in the Javadoc, event managers may be re-used,
 temporarily deactivated and new ones may be created specifically upon request. This way
 it is possible to have several event managers, e.g., listening for changes during different
 phases of a model's life cycle without having to create and initialize the event managers
-again and again.
+again and again. Also, an event manager is not restricted to listen to the changes of
+exactly one resource set. The following figure shows a not so typical configuration.
+<img src="eventManagerInstances.png" width="50%" alt="Default Event Manager Configuration"/>
 </p>
 
 <h2>Using the Impact Analyzer in EMF Editors</h2>
