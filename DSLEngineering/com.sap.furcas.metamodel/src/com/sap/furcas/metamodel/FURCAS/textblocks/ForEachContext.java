@@ -9,6 +9,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}</li>
  * </ul>
  * </p>
  *
@@ -163,29 +164,29 @@ public interface ForEachContext extends EObject {
     void setContextString(String value);
 
         /**
-     * Returns the value of the '<em><b>Parser Rule Name</b></em>' attribute.
+     * Returns the value of the '<em><b>Template Used For Production</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Parser Rule Name</em>' attribute isn't clear,
+     * If the meaning of the '<em>Template Used For Production</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parser Rule Name</em>' attribute.
-     * @see #setParserRuleName(String)
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_ParserRuleName()
-     * @model
+     * @return the value of the '<em>Template Used For Production</em>' reference.
+     * @see #setTemplateUsedForProduction(Template)
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_TemplateUsedForProduction()
+     * @model required="true"
      * @generated
      */
-    String getParserRuleName();
+    Template getTemplateUsedForProduction();
 
         /**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getParserRuleName <em>Parser Rule Name</em>}' attribute.
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parser Rule Name</em>' attribute.
-     * @see #getParserRuleName()
+     * @param value the new value of the '<em>Template Used For Production</em>' reference.
+     * @see #getTemplateUsedForProduction()
      * @generated
      */
-    void setParserRuleName(String value);
+    void setTemplateUsedForProduction(Template value);
 
 } // ForEachContext

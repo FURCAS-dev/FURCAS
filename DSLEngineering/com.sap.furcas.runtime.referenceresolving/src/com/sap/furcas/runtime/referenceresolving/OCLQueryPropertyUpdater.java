@@ -270,18 +270,18 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     }
 
     /**
-     * From the <code>element</code> and the {@link #property} find out the tokens that were parsed by the
+     * From the <code>elementToUpdate</code> and the {@link #property} find out the tokens that were parsed by the
      * {@link #property} rule and that were produced within the execution of the template that led to
      * <code>element</code>'s creation. If no such token is found, e.g., because the {@link #property} rule didn't fire
      * for <code>element</code>, <code>null</code> is returned.
      */
     private Collection<LexedToken> getTokens(EObject elementToUpdate) {
-        Collection<EObject> textBlockDocumentingExecutionOfQuery = getOppositeEndFinder()
+        Collection<EObject> documentNodeDocumentingExecutionOfQuery = getOppositeEndFinder()
         .navigateOppositePropertyWithBackwardScope(
                 TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property);
         Collection<LexedToken> result = new HashSet<LexedToken>();
-        if (textBlockDocumentingExecutionOfQuery != null) {
-            for (EObject eo : textBlockDocumentingExecutionOfQuery) {
+        if (documentNodeDocumentingExecutionOfQuery != null) {
+            for (EObject eo : documentNodeDocumentingExecutionOfQuery) {
                 if (eo instanceof LexedToken) {
                     LexedToken lt = (LexedToken) eo;
                     for (EObject correspondingModelElement : lt.getParent().getCorrespondingModelElements()) {
