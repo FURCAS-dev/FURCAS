@@ -165,6 +165,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private void handleChangeOfBaseExpressionValue(Collection<EObject> affectedContextObjects, Notification change) {
+        // FIXME only handle affectedContextObjects subset for which the foreachPredicatePropertyInit was actually applied
         // the base expression changed; see what changed:
         PartialEvaluator partialEvaluator = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(change,
                 getOppositeEndFinder(), OCLFactory.INSTANCE);
@@ -307,9 +308,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private void addForeachContext(TextBlock textBlock, Object foreachElement, EObject elementToUpdate,
-            EObject producedElement, Template template, String parserRuleName) {
+            EObject producedElement, Template template) {
         ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement,
-                template, parserRuleName);
+                template);
         textBlock.getForEachContext().add(foreachContext);
     }
 
@@ -326,7 +327,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement,
-            EObject producedElement, Template template, String parserRuleName) {
+            EObject producedElement, Template template) {
         // create ForEachContext element documenting what just happened in the TextBlocks model
         ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
         foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
@@ -336,7 +337,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         } else if (foreachElement instanceof String) {
             foreachContext.setContextString((String) foreachElement);
         } // else it must have been a Boolean which we don't record
-        foreachContext.setParserRuleName(parserRuleName);
+        foreachContext.setTemplateUsedForProduction(template);
         foreachContext.setResultModelElement(producedElement);
         return foreachContext;
     }
@@ -412,7 +413,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
             parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model updaters
-            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn, template, ruleName);
+            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn, template);
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
