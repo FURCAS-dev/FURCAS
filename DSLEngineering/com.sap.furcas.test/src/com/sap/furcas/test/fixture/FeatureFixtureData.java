@@ -9,6 +9,7 @@ public class FeatureFixtureData {
     // NestedPackageLookup Tests
     public static final File NESTED_PACKAGE_METAMODEL = new File("../com.sap.furcas.test/featureFixtures/NestedPackageLookUp.ecore");
     public static final File NESTED_PACKAGE_TCS = new File("../com.sap.furcas.test/featureFixtures/NestedPackageLookUp.tcs");
+    public static final File NESTED_PACKAGE_BY_URI_TCS = new File("../com.sap.furcas.test/featureFixtures/NestedPackageLookUpByNsURI.tcs");
     public static final String NESTED_PACKAGE_PACKAGE_URI = "http://www.furcas.org/TCS/featuretests/template/NestedPackage";
     
     // EnumerationTemplates Tests

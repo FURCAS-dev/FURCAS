@@ -19,6 +19,9 @@ syntax TCS {
 	
 	primitiveTemplate plainStringSymbol for ecore::EString using STRING:
                 value = "unescapeString(%token%)";
+                
+        primitiveTemplate uriSymbol for ecore::EString using STRING:
+                value = "unescapeString(%token%)";
 
         primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
                 value = "Integer.valueOf(%token%)";
@@ -37,7 +40,7 @@ syntax TCS {
         
      -- A modelClassifier is either its container followed by :: and a name, or just a name
         template ecore::EClassifier referenceOnly   --should never be created
-                : ( isDefined(ePackage) ? ePackage "::" name : name)
+                : ( isDefined(ePackage) ? ePackage ) name
                 ;
 
             
@@ -54,12 +57,23 @@ syntax TCS {
 
         -- if parsed path has more than one element, (workaround for bug #98)
         template ecore::EPackage referenceOnly -- should never be created
-        : (isDefined(eSuperPackage) ? eSuperPackage { mode = superPackage} "::" ) name
+        :       
+                [[
+                        nsURI {as = uriSymbol} "#"
+                      |
+                        (isDefined(eSuperPackage) ? eSuperPackage { mode = superPackage}  ) name "::"
+                ]]
         ;
         
         --workaround for bug #98
         template ecore::EPackage referenceOnly #superPackage -- should never be created
-        : name
+        :       
+                [[
+                        nsURI {as = uriSymbol} "#"
+                      |
+                        name "::"
+                ]]
+                
         ;
            
 

@@ -1,0 +1,14 @@
+syntax NestedPackageLookUpByURI { 
+
+  template "http://www.furcas.org/TCS/featuretests/template/NestedPackageLookUp/root"#RootTest main
+        : "rootTest" nested
+        ;
+
+  template "http://www.furcas.org/TCS/featuretests/template/NestedPackageLookUp/root"#nested::NestedTest 
+        : "nestedTest"
+        ;
+
+  token COMMENT   : endOfLine(start = "--");
+
+}
+  
