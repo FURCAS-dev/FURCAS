@@ -175,6 +175,7 @@ public class EmfHelper {
 		}
 		return r;
 	}
+	
 
 	private void addToIndex(final Resource r) {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
