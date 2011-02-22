@@ -59,9 +59,9 @@ syntax TCS {
         template ecore::EPackage referenceOnly -- should never be created
         :       
                 [[
-                        nsURI {as = uriSymbol} "#"
-                      |
                         (isDefined(eSuperPackage) ? eSuperPackage { mode = superPackage}  ) name "::"
+                      |  
+                        nsURI {as = uriSymbol} "#"
                 ]]
         ;
         
@@ -69,9 +69,9 @@ syntax TCS {
         template ecore::EPackage referenceOnly #superPackage -- should never be created
         :       
                 [[
-                        nsURI {as = uriSymbol} "#"
-                      |
                         name "::"
+                      |  
+                        nsURI {as = uriSymbol} "#"
                 ]]
                 
         ;
