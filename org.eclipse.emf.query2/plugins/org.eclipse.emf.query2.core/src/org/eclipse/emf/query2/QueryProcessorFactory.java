@@ -12,6 +12,15 @@ public class QueryProcessorFactory {
 	}
 
 	public QueryProcessor createQueryProcessor(Index index) {
-		return new QueryProcessorImpl(index);
+		return new QueryProcessorImpl(index, false);
+	}
+	/**
+	 * To be used when resultset needs to be sorted.Sorting disabled by default
+	 * @param index
+	 * @param isSortingNeeded
+	 * @return
+	 */
+	public QueryProcessor createQueryProcessor(Index index,boolean isSortingNeeded){
+		return new QueryProcessorImpl(index,isSortingNeeded);
 	}
 }

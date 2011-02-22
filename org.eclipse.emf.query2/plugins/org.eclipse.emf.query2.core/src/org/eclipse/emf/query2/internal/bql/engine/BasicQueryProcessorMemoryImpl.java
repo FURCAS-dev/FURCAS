@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.EmfHelper;
@@ -292,10 +293,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	 * gets the objects of all provided types within the provided priScope. If a fixed element set is provided, only return objects from
 	 * that set.
 	 */
-	public static EObject[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements,
+	public static BasicEObjectImpl[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements,
 			SpiAttributeExpression attributeExpression) {
 
 		List<EObject> result = new ArrayList<EObject>();
+		BasicEObjectImpl[] results;
 
 		// filter for the partition, the types, and the element set
 		for (URI pri : priScope) {
@@ -352,9 +354,14 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 				}
 				// }
 			}
+			possibleResultElements = null;
 		}
-
-		return result.toArray(new EObject[result.size()]);
+		//Explicitly setting the result to null, after copying results to an array object
+		results = new BasicEObjectImpl[result.size()];
+		result.toArray(results);
+		result = null;
+		return  results;
+		//return result.toArray(new EObject[result.size()]);
 	}
 
 	private static Map<EClass, URI> typeUris = new WeakHashMap<EClass, URI>(256);
