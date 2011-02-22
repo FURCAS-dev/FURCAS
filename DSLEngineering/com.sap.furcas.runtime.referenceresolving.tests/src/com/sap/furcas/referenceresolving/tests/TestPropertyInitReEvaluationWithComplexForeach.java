@@ -162,7 +162,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         }
     }
     
-    @Ignore("Doesn't work yet because changing when-clauses not yet supported by ForeachPropertyInitUpdater")
+    //@Ignore("Doesn't work yet because changing when-clauses not yet supported by ForeachPropertyInitUpdater")
     @Test
     public void testChangeArticleNameCausingWhenClauseSelectionToChange() {
         testInitialModel(); // just to make sure that for this particular test case evaluation the model is correct, too
