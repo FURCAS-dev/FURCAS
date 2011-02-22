@@ -28,8 +28,6 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
-import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
@@ -103,8 +101,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
 
     private final ForeachPredicatePropertyInit foreachPredicatePropertyInit;
 
-    private ImpactAnalyzer impactAnalyzerForBaseExpression;
-
     private final ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
 
     protected ForeachPropertyInitUpdater(ForeachPredicatePropertyInit foreachPredicatePropertyInit,
@@ -166,8 +162,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private void handleChangeOfBaseExpressionValue(Collection<EObject> affectedContextObjects, Notification change) {
-        // FIXME only handle affectedContextObjects subset for which the foreachPredicatePropertyInit was actually applied
-        // the base expression changed; see what changed:
         PartialEvaluator partialEvaluator = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(change,
                 getOppositeEndFinder(), OCLFactory.INSTANCE);
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
@@ -176,9 +170,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             Object newValue = ocl.evaluate(affectedContextObject, baseForeachExpression);
             if (oldValue != newValue && (oldValue == null || !oldValue.equals(newValue))) {
                 // something changed
-                // TODO sophisticated solution: find out what was removed and what was added from the result of the
-                // foreach expression and which elements changed
-                // Then we could try to selectively remove elements from the target feature.
                 try {
                     // the getElementsToUpdate(affectedContextObject) is necessary because the foreach
                     // base expression may itself use #context or #foreach
@@ -219,13 +210,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         // this as if the foreach expression itself had changed.
         // We assume here that no #context nor #foreach is used in the when-clause.
         // It wouldn't make much sense anyway because the when-clause should filter the foreach result.
-
-        // TODO ImpactAnalyzer would need to make available barebones traceback functionality
-        // We don't have a Notification, and we don't necessarily have a property change.
-        // We only want to compute traceback(affectedContextObject) which then gives us those elements
-        // for which the foreach base expression evaluates to affectedContextObject and hence
-        // gives us the decisive clue on which element to update the property.
-        ImpactAnalyzer ia = getImpactAnalyzerForBaseExpression();
         for (EObject affectedContextObject : affectedContextObjects) {
             Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
@@ -262,31 +246,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 }
             }
         }
-
-        ia.toString(); // TODO remove this dummy usage again when I continue here...
-        System.err.println("TODO Impact Analysis for when clause not yet active: " + whenClause.getWhen());
-    }
-
-    private ImpactAnalyzer getImpactAnalyzerForBaseExpression() {
-        // TODO fetch the existing impact analyzer for the base expression created by the superclass
-        if (impactAnalyzerForBaseExpression == null) {
-            impactAnalyzerForBaseExpression = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
-                    baseForeachExpression, /* notifyOnNewContextElements */false, getOppositeEndFinder(),
-                    OCLFactory.INSTANCE);
-        }
-        return impactAnalyzerForBaseExpression;
     }
 
     /**
      * Receives the current value of the foreach base expression and the elements on which to update the feature
      * indicated by {@link #foreachPredicatePropertyInit}.{@link ForeachPredicatePropertyInit#getPropertyReference()
      * getPropertyReference()}. {@link PropertyReference#getStrucfeature() getStrucfeature()}.
-     * <p>
-     * 
-     * TODO The current implementation replaces all elements in the feature for each element in
-     * <code>elementToUpdate</code>. Future implementations will be more sophisticated and make an effort to replace
-     * only those elements that need replacement, particularly because they have to be produced by a different template
-     * than before.
      * <p>
      * 
      * With the current coarse-grained replacement strategy, all {@link ForEachContext} elements attached to the
@@ -310,8 +275,15 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             // We assume that the when-clauses and their evaluation results haven't changed for those
             // elements to which foreach element production already applied. Such changes are handled
             // by the impact analyzer for the when-clause expressions.
-            // Therefore, for all foreach-elements for which we already have a ForEachContext record
-            // nothing needs to be done. If a ForEachContext element exists at TODO
+            // We loop over the ForEachContext elements attached to the TextBlock that documents
+            // the creation of elementToUpdate, filtering for those that are for foreachPredicatePropertyInit
+            // and having elementToUpdate as their source element (could be different in case of
+            // nested foreach templates). Existing ForEachContext objects are updated; new elements
+            // are produced if the template of the foreach-element differ. Existing ForEachContext
+            // objects can be updated with newly-produced objects. If the ForEachContext list is
+            // preempted before all elements have been produced, new ForEachContext elements are
+            // appended to the text block. If there are trailing not re-used ForEachContext elements,
+            // they are deleted.
 
             // from the following ForEachContext elements select the sub-sequence for which all elements
             // refer to the foreachPredicatePropertyInit
