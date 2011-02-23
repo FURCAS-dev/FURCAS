@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="root"
+    nsURI="http://www.furcas.org/TCS/featuretests/template/NestedPackageLookUp/root"
+    nsPrefix="root">
+  <eClassifiers xsi:type="ecore:EClass" name="RootTest">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nested" eType="#//nested/NestedTest"/>
+  </eClassifiers>
+  <eSubpackages name="nested" nsURI="http://www.furcas.org/TCS/featuretests/template/NestedPackageLookUp/nested"
+      nsPrefix="nested">
+    <eClassifiers xsi:type="ecore:EClass" name="NestedTest"/>
+  </eSubpackages>
+</ecore:EPackage>

@@ -162,7 +162,7 @@ public class B4Impl extends EObjectImpl implements B4 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (onePrimitive: ");
+		result.append(" (onePrimitive: "); //$NON-NLS-1$
 		result.append(onePrimitive);
 		result.append(')');
 		return result.toString();

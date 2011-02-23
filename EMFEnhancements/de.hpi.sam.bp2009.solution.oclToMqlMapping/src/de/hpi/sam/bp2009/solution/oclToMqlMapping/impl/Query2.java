@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromType;
 import org.eclipse.emf.query2.LocalWhereEntry;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DebugTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: DebugTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -26,18 +26,12 @@ import org.eclipse.ocl.examples.test.generic.GenericDebugTest;
  */
 @SuppressWarnings("nls")
 public class DebugTest extends GenericDebugTest {
-
-	@Override
-	public PivotTestReflection getStaticReflection() {
-		return new PivotTestReflection(typeManager);
-	}
-	
 	public org.eclipse.ocl.examples.pivot.Package pkg1;
 
     @Override
     protected void setUp() {
         super.setUp();
-        pkg1 = reflection.createPackage("pkg1");
+        pkg1 = typeManager.createPackage("pkg1");
         helper.setContext(getMetaclass(denormalize("%Package")));
     }
 

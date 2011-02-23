@@ -530,11 +530,11 @@ public class SerializationcallbackPackageImpl extends EPackageImpl implements Se
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a19SerializationEClass, A19Serialization.class, "A19Serialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA19Serialization_TestTranslatableTextF(), theCase004fPackage.getTranslatableTextF(), null, "testTranslatableTextF", null, 1, 1, A19Serialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a19SerializationEClass, A19Serialization.class, "A19Serialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA19Serialization_TestTranslatableTextF(), theCase004fPackage.getTranslatableTextF(), null, "testTranslatableTextF", null, 1, 1, A19Serialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b19SerializationEClass, B19Serialization.class, "B19Serialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getB19Serialization_TestTranslatableText(), theTranslatabletextsPackage.getA19TranslatableText(), null, "testTranslatableText", null, 1, 1, B19Serialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b19SerializationEClass, B19Serialization.class, "B19Serialization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getB19Serialization_TestTranslatableText(), theTranslatabletextsPackage.getA19TranslatableText(), null, "testTranslatableText", null, 1, 1, B19Serialization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -548,36 +548,36 @@ public class SerializationcallbackPackageImpl extends EPackageImpl implements Se
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a19SerializationEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case019.serializationcallback.A19Serialization",
-			 "metaObjectMofId", "48D8F70A4F2F1772897811DDA8430019993BAD15",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case019.serializationcallback.A19Serialization", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48D8F70A4F2F1772897811DDA8430019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA19Serialization_TestTranslatableTextF(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48DA2D8A6172FFA08A3111DDACFF0019993BAD15"
+			 "ovaMofId", "48DA2D8A6172FFA08A3111DDACFF0019993BAD15" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b19SerializationEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case019.serializationcallback.B19Serialization",
-			 "metaObjectMofId", "48DA2D8A6172FFA48A3111DDC8DD0019993BAD15",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case019.serializationcallback.B19Serialization", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DA2D8A6172FFA48A3111DDC8DD0019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB19Serialization_TestTranslatableText(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48DA2D8A6172FFA28A3111DD8ADF0019993BAD15"
+			 "ovaMofId", "48DA2D8A6172FFA28A3111DD8ADF0019993BAD15" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -19,6 +19,8 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query2.EmfHelper;
+import org.eclipse.emf.query2.IndexQueryService;
 import org.eclipse.emf.query2.internal.bql.api.SpiAbstractBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiClusterExternalLinkExpression;
@@ -31,7 +33,6 @@ import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectList;
 import org.eclipse.emf.query2.internal.fql.SpiFqlFromTypeCategory;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
-import org.eclipse.emf.query2.internal.index.IndexQueryService;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
 import org.eclipse.emf.query2.internal.logger.LogSeverity;
@@ -43,7 +44,6 @@ import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.QueryResultSetImpl;
 import org.eclipse.emf.query2.internal.moinql.engine.CoreQueryClientScope;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * @author D045917
@@ -161,7 +161,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		}
 
 		// only global scope permitted
-		if (!(!queryClientScope.isPartitionScopeInclusive() && queryClientScope.getPartitionsScope().isEmpty())) {
+		if (!(!queryClientScope.isResourceScopeInclusive() && queryClientScope.getResourcesScope().isEmpty())) {
 			throw new BugException(BugMessages.NON_RESTRICTED_SCOPE_FOR_FQL_QUERY);
 		}
 	}
@@ -374,7 +374,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 		if (meeCategory.equals(SpiFqlFromTypeCategory.CLASS) && !mee.hasElements()) {
 			CoreQueryClientScope newClientScope = new CoreQueryClientScope(mee.getScope(), mee.scopeIsIncluded());
 
-			Set<URI> newScope = IndexQueryService.getPartitionsOfInstances(this.index, newClientScope, mee.getTypes());
+			Set<URI> newScope = IndexQueryService.getResourcesOfInstances(this.index, newClientScope, mee.getTypes());
 			SpiPartitionExpression newPartitionExp = new SpiPartitionExpression(newScope.toArray(new URI[newScope.size()]), true);
 			mee.setPartitionExpression(newPartitionExp);
 		}
@@ -655,7 +655,7 @@ public class BasicQueryProcessorMemoryEstimationImpl extends SpiAbstractBasicQue
 			} else {
 				// obtain the cross-links from this PRI - don't ask for a negative "linkExists"
 				CoreQueryClientScope queryClientScope = new CoreQueryClientScope();
-				Set<URI> connectedPrisSet = (linkExists ? IndexQueryService.getLinkedPartitions(this.index, queryClientScope, fromPri,
+				Set<URI> connectedPrisSet = (linkExists ? IndexQueryService.getLinkedResources(this.index, queryClientScope, fromPri,
 						assocMri) : null);
 
 				// run over the toMeScope

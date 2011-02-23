@@ -422,17 +422,17 @@ public class TextFImpl extends EObjectImpl implements TextF {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (maxWidth: ");
+		result.append(" (maxWidth: "); //$NON-NLS-1$
 		result.append(maxWidth);
-		result.append(", originalText: ");
+		result.append(", originalText: "); //$NON-NLS-1$
 		result.append(originalText);
-		result.append(", resName: ");
+		result.append(", resName: "); //$NON-NLS-1$
 		result.append(resName);
-		result.append(", resType: ");
+		result.append(", resType: "); //$NON-NLS-1$
 		result.append(resType);
-		result.append(", translate: ");
+		result.append(", translate: "); //$NON-NLS-1$
 		result.append(translate);
-		result.append(", transUnitId: ");
+		result.append(", transUnitId: "); //$NON-NLS-1$
 		result.append(transUnitId);
 		result.append(')');
 		return result.toString();

@@ -510,9 +510,9 @@ public class StructurebasedtextsPackageImpl extends EPackageImpl implements Stru
 		specializedTranslatableTextEClass.getESuperTypes().add(this.getGeneralTranslatableText());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(generalTranslatableTextEClass, GeneralTranslatableText.class, "GeneralTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(generalTranslatableTextEClass, GeneralTranslatableText.class, "GeneralTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(specializedTranslatableTextEClass, SpecializedTranslatableText.class, "SpecializedTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(specializedTranslatableTextEClass, SpecializedTranslatableText.class, "SpecializedTranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -526,24 +526,24 @@ public class StructurebasedtextsPackageImpl extends EPackageImpl implements Stru
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (generalTranslatableTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.structurebasedtexts.GeneralTranslatableText",
-			 "metaObjectMofId", "48EF6AC639944C4096DA11DDA171001558C93B47",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.structurebasedtexts.GeneralTranslatableText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48EF6AC639944C4096DA11DDA171001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (specializedTranslatableTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.structurebasedtexts.SpecializedTranslatableText",
-			 "metaObjectMofId", "48EF6AC639944C4296DA11DD8836001558C93B47",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.structurebasedtexts.SpecializedTranslatableText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48EF6AC639944C4296DA11DD8836001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

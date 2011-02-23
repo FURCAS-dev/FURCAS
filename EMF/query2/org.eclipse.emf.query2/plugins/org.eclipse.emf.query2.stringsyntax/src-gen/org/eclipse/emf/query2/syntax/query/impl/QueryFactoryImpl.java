@@ -35,7 +35,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   {
     try
     {
-      QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/query2/Query"); 
+      QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/query2/Query");  //$NON-NLS-1$
       if (theQueryFactory != null)
       {
         return theQueryFactory;
@@ -92,7 +92,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.OR_WHERE_ENTRY: return createOrWhereEntry();
       case QueryPackage.AND_WHERE_ENTRY: return createAndWhereEntry();
       default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
   }
 
@@ -109,7 +109,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.OPERATOR:
         return createOperatorFromString(eDataType, initialValue);
       default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
   }
 
@@ -126,7 +126,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.OPERATOR:
         return convertOperatorToString(eDataType, instanceValue);
       default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
   }
 
@@ -380,7 +380,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   public Operator createOperatorFromString(EDataType eDataType, String initialValue)
   {
     Operator result = Operator.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     return result;
   }
 

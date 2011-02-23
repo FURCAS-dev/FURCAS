@@ -319,9 +319,9 @@ public class S8Impl extends EObjectImpl implements S8 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (field1: ");
+		result.append(" (field1: "); //$NON-NLS-1$
 		result.append(field1);
-		result.append(", field2: ");
+		result.append(", field2: "); //$NON-NLS-1$
 		result.append(field2);
 		result.append(')');
 		return result.toString();

@@ -507,16 +507,16 @@ public class Case011PackageImpl extends EPackageImpl implements Case011Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a11EClass, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, "A11", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getA11_Attribute1(), ecorePackage.getEString(), "attribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA11_Attribute2(), ecorePackage.getEString(), "attribute2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a11EClass, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, "A11", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getA11_Attribute1(), ecorePackage.getEString(), "attribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA11_Attribute2(), ecorePackage.getEString(), "attribute2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case011.A11.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(a11EClass, null, "callMultipleSetter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "throwRuntimeExceptionBetweenTheCalls", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "attribute1", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "attribute2", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(a11EClass, null, "callMultipleSetter", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "throwRuntimeExceptionBetweenTheCalls", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "attribute1", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEString(), "attribute2", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a11EClass, ecorePackage.getEString(), "callMultipleGetter", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(a11EClass, ecorePackage.getEString(), "callMultipleGetter", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -533,15 +533,15 @@ public class Case011PackageImpl extends EPackageImpl implements Case011Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a11EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case011.A11",
-			 "metaObjectMofId", "45F120A5D1F668EE896C43F632C9C2ECBCFC42B8",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case011.A11", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5D1F668EE896C43F632C9C2ECBCFC42B8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -24,9 +24,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
@@ -49,7 +50,6 @@ public interface ValueFactory
 	 * @param isOrdered the required collection ordering
 	 * @param isUnique the required collection uniqueness
 	 * @return the new collection
-	 * @since 3.1
 	 */
 	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Value... values);
 	public CollectionValue createCollectionValue(boolean isOrdered, boolean isUnique, Collection<Value> values);
@@ -57,9 +57,6 @@ public interface ValueFactory
 	public CollectionValue createCollectionValue(CollectionKind kind, Collection<Value> values);
 	
 	public <E extends Element> ElementValue<E> createElementValue(E element);
-
-	public InvalidValue createInvalidValue(String reason);
-	public InvalidValue createInvalidValue(Object object, OclExpression expression, String reason, Throwable throwable);
 	
 	public ObjectValue createObjectValue(Object object);
 
@@ -82,11 +79,14 @@ public interface ValueFactory
 
 	public Value createTypeValue(Type type);
 
+	public Object getEcoreValueOf(Value result);
+
 	public BagValue getEmptyBagValue();
 	public OrderedSetValue getEmptyOrderedSetValue();
 	public SequenceValue getEmptySequenceValue();	
 	public SetValue getEmptySetValue();
 	public BooleanValue getFalse();
+	public InvalidValue getInvalid();
 	public NullValue getNull();
 	public BooleanValue getTrue();
 	public UnlimitedValue getUnlimited();
@@ -94,18 +94,16 @@ public interface ValueFactory
 	
 	public IntegerValue integerValueOf(long value);
 	public IntegerValue integerValueOf(BigInteger value);
-	public IntegerValue integerValueOf(String aValue) throws NumberFormatException;
-
-	public boolean isValid(Value[] elements);	
-	public boolean isValid(Collection<? extends Value> elements);
+	public IntegerValue integerValueOf(String aValue) throws InvalidValueException;
 	
 	public RealValue realValueOf(double value);
 	public RealValue realValueOf(BigDecimal value);
 	public RealValue realValueOf(IntegerValue integerValue);	
-	public RealValue realValueOf(String aValue) throws NumberFormatException;
+	public RealValue realValueOf(String aValue) throws InvalidValueException;
 	
 	public StringValue stringValueOf(String value) ;
 
 	public Value valueOf(Object object);
+	public Value valueOf(Object eValue, ETypedElement eFeature);
 }
  

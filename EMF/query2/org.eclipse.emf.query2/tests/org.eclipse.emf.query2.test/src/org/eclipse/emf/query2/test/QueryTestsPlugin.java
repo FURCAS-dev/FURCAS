@@ -7,7 +7,7 @@ public class QueryTestsPlugin extends Plugin {
 	
 	private static QueryTestsPlugin plugin;
 	
-	public static final String PLUGIN_ID = "org.eclipse.emf.query.index.ui";
+	public static final String PLUGIN_ID = "org.eclipse.emf.query.index.ui"; //$NON-NLS-1$
 
 	
 	public static QueryTestsPlugin getPluginInstance(){

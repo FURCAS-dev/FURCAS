@@ -22,7 +22,7 @@ public class QueryExecutableExtensionFactory extends AbstractGuiceAwareExecutabl
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.emf.query2.syntax.ui.internal.QueryActivator.getInstance().getInjector("org.eclipse.emf.query2.syntax.Query");
+		return org.eclipse.emf.query2.syntax.ui.internal.QueryActivator.getInstance().getInjector("org.eclipse.emf.query2.syntax.Query"); //$NON-NLS-1$
 	}
 	
 }

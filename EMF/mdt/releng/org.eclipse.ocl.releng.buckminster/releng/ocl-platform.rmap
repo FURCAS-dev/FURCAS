@@ -2,7 +2,7 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="checkout.location" value="${workspace.root}"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
-  <rm:property key="build.type" mutable="false" value="N"/>
+  <rm:property key="build.type" mutable="false" value="S"/>
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="local.releng"/>
   <rm:locator pattern="^org\.eclipse\.emf\.mwe.*" searchPathRef="mwe"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
@@ -48,7 +48,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="xtext">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I))">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I)(build.type=S))">
       <rm:uri format="{0}/modeling/tmf/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
@@ -65,24 +65,34 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="mwe">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I))">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I)(build.type=S))">
       <rm:uri format="{0}/modeling/emft/mwe/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(build.type=S)">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=R)(build.type=M))">
       <rm:uri format="{0}/modeling/emft/mwe/updates">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="xpand">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I))">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I)(build.type=S))">
       <rm:uri format="{0}/modeling/m2t/xpand/updates/nightly">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(build.type=S)">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=R)(build.type=M))">
       <rm:uri format="{0}/modeling/m2t/xpand/updates/releases">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>

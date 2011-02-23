@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mwe:Root xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mwe="http://www.eclipse.org/ocl/test/2010/ModelWithErrors.ecore"
+	xsi:schemaLocation="http://www.eclipse.org/ocl/test/2010/ModelWithErrors.ecore ModelWithErrors.ecore"/>

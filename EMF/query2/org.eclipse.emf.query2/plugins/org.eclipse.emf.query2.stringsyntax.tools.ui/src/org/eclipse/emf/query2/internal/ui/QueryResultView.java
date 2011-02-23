@@ -89,7 +89,7 @@ public class QueryResultView extends ViewPart {
 			// for each new field
 			ranges = new ArrayList<Integer>(); // reset the ranges-array
 			// empty search term ==> return an empty StyleRange array
-			if (searchTerm.equals("")) {
+			if (searchTerm.equals("")) { //$NON-NLS-1$
 				return new int[] {};
 			}
 
@@ -150,7 +150,7 @@ public class QueryResultView extends ViewPart {
 		private String searchString;
 
 		public void setSearchText(String s) {
-			this.searchString = ".*" + s + ".*";
+			this.searchString = ".*" + s + ".*"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
@@ -300,7 +300,7 @@ public class QueryResultView extends ViewPart {
 		parent.setLayout(layout);
 
 		Label searchLabel = new Label(parent, SWT.NONE);
-		searchLabel.setText("Search: ");
+		searchLabel.setText(Messages.Query2StringSyntaxToolsUI_QueryResultView_Search);
 		searchLabel.setLayoutData(new GridData());
 		final Text searchText = new Text(parent, SWT.BORDER | SWT.SEARCH);
 		searchText.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
@@ -344,11 +344,11 @@ public class QueryResultView extends ViewPart {
 
 	public void setInput(final ResultSet rs, long duration) {
 		for (TableViewerColumn col : cols) {
-			col.getColumn().setText("");
+			col.getColumn().setText(""); //$NON-NLS-1$
 			col.setLabelProvider(EMPTY_LABEL_PROVIDER);
 		}
 		labelProviders.clear();
-		statusLabel.setText("");
+		statusLabel.setText(""); //$NON-NLS-1$
 		tv.setInput(null);
 		if (rs != null) {
 			Table table = tv.getTable();
@@ -367,28 +367,28 @@ public class QueryResultView extends ViewPart {
 				treeColumn.setLabelProvider(labelProvider);
 				String typeUri = colType.typeName;
 				EObject eObject;
-				if (typeUri.equals("STRING")) {
+				if (typeUri.equals("STRING")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.ESTRING;
-				} else if (typeUri.equals("BOOLEAN")) {
+				} else if (typeUri.equals("BOOLEAN")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.EBOOLEAN;
-				} else if (typeUri.equals("INTEGER")) {
+				} else if (typeUri.equals("INTEGER")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.EINT;
-				} else if (typeUri.equals("LONG")) {
+				} else if (typeUri.equals("LONG")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.ELONG;
-				} else if (typeUri.equals("DOUBLE")) {
+				} else if (typeUri.equals("DOUBLE")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.EDOUBLE;
-				} else if (typeUri.equals("FLOAT")) {
+				} else if (typeUri.equals("FLOAT")) { //$NON-NLS-1$
 					eObject = EcorePackage.Literals.EFLOAT;
 				} else {
 					eObject = resSet.getEObject(URI.createURI(typeUri), true);
 				}
 				String string = colType.alias;
 				if (colType.attribute != null) {
-					string += "." + colType.attribute;
+					string += "." + colType.attribute; //$NON-NLS-1$
 				}
 				if (eObject instanceof EClassifier) {
 					EClassifier classifier = (EClassifier) eObject;
-					string += " (" + classifier.getEPackage().getName() + "::" + classifier.getName() + ")";
+					string += " (" + classifier.getEPackage().getName() + "::" + classifier.getName() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
 				treeColumn.getColumn().setText(string);
 
@@ -410,17 +410,18 @@ public class QueryResultView extends ViewPart {
 			}
 
 			tv.setInput(rs);
-			tv.setItemCount(rs.getSize());
+			int resultSize = rs.getSize();
+			tv.setItemCount(resultSize);
 
 			for (int i = 0, n = table.getColumnCount(); i < n; i++) {
 				TableColumn column = table.getColumn(i);
-				if (column.getText().equals("")) {
+				if (column.getText().equals("")) { //$NON-NLS-1$
 					column.setWidth(0);
 				} else {
 					column.pack();
 				}
 			}
-			statusLabel.setText("Result size: " + rs.getSize() + " - query time: " + duration + "ms");
+			statusLabel.setText(Messages.getString(Messages.Query2StringSyntaxToolsUI_QueryResultView_StatusLabelText, new String[]{Integer.toString(resultSize),Long.toString(duration)}));
 		}
 
 	}

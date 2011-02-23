@@ -18,8 +18,8 @@ import org.eclipse.emf.query2.exception.BaseException;
 import org.eclipse.emf.query2.exception.BaseRuntimeException;
 import org.eclipse.emf.query2.internal.moinql.parser.AstException;
 import org.eclipse.emf.query2.internal.moinql.parser.LPGMessages;
+import org.eclipse.emf.query2.internal.report.ProcessErrorImpl;
 import org.eclipse.emf.query2.report.LocalizedProcessException;
-import org.eclipse.emf.query2.report.ProcessErrorImpl;
 import org.eclipse.emf.query2.report.ProcessReport;
 
 import lpg.lpgjavaruntime.*;

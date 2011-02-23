@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
 
 public interface CollectionValue extends Value, Iterable<Value>
@@ -33,26 +34,26 @@ public interface CollectionValue extends Value, Iterable<Value>
 
 	Collection<Value> asCollection();	
 	List<Value> asList();
-    IntegerValue count(Value value);
-    CollectionValue createNew();
-	BooleanValue excludes(Value value);	
-	BooleanValue excludesAll(CollectionValue c);
-	CollectionValue excluding(Value value);
-    CollectionValue flatten();
-	boolean flatten(Collection<Value> flattenedElements);
+    IntegerValue count(Value value) throws InvalidValueException;
+	BooleanValue excludes(Value value) throws InvalidValueException;	
+	BooleanValue excludesAll(CollectionValue c) throws InvalidValueException;
+	CollectionValue excluding(Value value) throws InvalidValueException;
+    CollectionValue flatten() throws InvalidValueException;
+	boolean flatten(Collection<Value> flattenedElements) throws InvalidValueException;
 	CollectionKind getKind();
-    BooleanValue includes(Value value);	
-    BooleanValue includesAll(CollectionValue c);
-	CollectionValue including(Value value);
-	CollectionValue intersection(CollectionValue c);
-	BooleanValue isEmpty();
+    BooleanValue includes(Value value) throws InvalidValueException;	
+    BooleanValue includesAll(CollectionValue c) throws InvalidValueException;
+	CollectionValue including(Value value) throws InvalidValueException;
+	int intSize();
+	CollectionValue intersection(CollectionValue c) throws InvalidValueException;
+	BooleanValue isEmpty() throws InvalidValueException;
 	Iterator<Value> iterator();
-	Value maxMin(BinaryOperation binaryOperation);
-	BooleanValue notEmpty();
-	Set<TupleValue> product(CollectionValue c, TupleType tupleType);   	
-	IntegerValue size();
-    OrderedCollectionValue sort(Comparator<Value> comparator);
-	Value sum(BinaryOperation binaryOperation, Value zero);
-	OrderedCollectionValue toOrderedCollectionValue();
-    CollectionValue union(CollectionValue c);
+	Value maxMin(BinaryOperation binaryOperation) throws InvalidValueException;
+	BooleanValue notEmpty() throws InvalidValueException;
+	Set<TupleValue> product(CollectionValue c, TupleType tupleType) throws InvalidValueException;   	
+	IntegerValue size() throws InvalidValueException;
+    OrderedCollectionValue sort(Comparator<Value> comparator) throws InvalidValueException;
+	Value sum(BinaryOperation binaryOperation, Value zero) throws InvalidValueException;
+	OrderedCollectionValue toOrderedCollectionValue() throws InvalidValueException;
+    CollectionValue union(CollectionValue c) throws InvalidValueException;
 }

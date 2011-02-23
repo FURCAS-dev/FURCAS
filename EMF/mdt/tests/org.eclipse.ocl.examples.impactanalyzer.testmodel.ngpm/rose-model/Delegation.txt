@@ -1,0 +1,67 @@
+Thoughts on delegation and type adapters:
+-----------------------------------------
+
+Assume the following scenario:
+
+class A {
+  delegating B b;
+  void opA();
+}
+
+class B {
+  void opB();
+}
+
+class D {
+  void opD();
+}
+
+typeadapter C on D {
+  expose A::b;
+  void opA() { opD(); }
+}
+
+C tries to adapt D to A by saying that D's opD() can be called instead
+of A's opA(), and by exposing the "b" end of A's association to
+B. This association is designed as a delegating association, meaning
+that B's features (in this example opB()) are transparently exposed by
+A. In turn, if C is trying to adapt D to A, the user may hope that
+exposing the end of this delegating association will also work as
+delegating for D. In particular, it shall be possible with C in place
+to do the following:
+
+   D d = ...;
+   d.opB();
+
+This generally raises the question how the B instance for end "b" is
+obtained during creation of A and---with C in place---for D. The
+adapted D has to do this anyhow because the lower bound on the "b"
+end is 1. But let's assume, that is worked out, e.g., by setting, at
+some time, the B instance for the delegating instance:
+
+   B delegee = ...;
+   A a = ...;
+   a.b = delegee;
+   a.opB(); // --> invokes delegee.opB()
+   D d = ...;
+   d.b = delegee;
+   d.opB(); // --> invokes delegee.opB()
+
+If the type adapter did not delegate to the exposed end, the adapter
+would need to specify separate operations for those that make it
+conform to the delegee's type (in this case B), and it would have to
+implement them accordingly, as in
+
+typeadapter C on D {
+  expose A::b;
+  void opA() { opD(); }
+  void opB() { b.opB(); }
+}
+
+This would give the flexibility to implement the features that A
+obtained by delegation in a different way but at the same time
+*requires* an implementation which otherwise would come "for free"
+from the delegee.
+
+For the time being it seems reasonable that at least by default a type
+adapter delegates to an exposed end of a delegating association.

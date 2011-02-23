@@ -505,19 +505,19 @@ public class Case009PackageImpl extends EPackageImpl implements Case009Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(classThrowsExceptionEClass, ClassThrowsException.class, "ClassThrowsException", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(classThrowsExceptionEClass, ClassThrowsException.class, "ClassThrowsException", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		addEOperation(classThrowsExceptionEClass, ecorePackage.getEString(), "operationThrowsEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(classThrowsExceptionEClass, ecorePackage.getEString(), "operationThrowsEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		EOperation op = addEOperation(classThrowsExceptionEClass, null, "operationThrowsEx9AndFx9", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "throwEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "throwFx9", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(classThrowsExceptionEClass, null, "operationThrowsEx9AndFx9", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "throwEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "throwFx9", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		op = addEOperation(classThrowsExceptionEClass, null, "changingOperationThrowsEx9AndFx9", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "throwEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEBoolean(), "throwFx9", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(classThrowsExceptionEClass, null, "changingOperationThrowsEx9AndFx9", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "throwEx9", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, ecorePackage.getEBoolean(), "throwFx9", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(a9EClass, org.eclipse.emf.query2.test.mm.testcases.case009.A9.class, "A9", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a9EClass, org.eclipse.emf.query2.test.mm.testcases.case009.A9.class, "A9", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -534,24 +534,24 @@ public class Case009PackageImpl extends EPackageImpl implements Case009Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (classThrowsExceptionEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case009.ClassThrowsException",
-			 "metaObjectMofId", "45F120A57D450A94A44B409139D1DCBB942EF1EE",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case009.ClassThrowsException", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A57D450A94A44B409139D1DCBB942EF1EE", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a9EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case009.A9",
-			 "metaObjectMofId", "45F120A5C80B3E113A77428922D7AE3F04C1B535",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case009.A9", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5C80B3E113A77428922D7AE3F04C1B535", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -35,7 +35,7 @@ public class Case012FactoryImpl extends EFactoryImpl implements Case012Factory {
 	 */
 	public static Case012Factory init() {
 		try {
-			Case012Factory theCase012Factory = (Case012Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case012"); 
+			Case012Factory theCase012Factory = (Case012Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case012"); //$NON-NLS-1$ 
 			if (theCase012Factory != null) {
 				return theCase012Factory;
 			}
@@ -69,7 +69,7 @@ public class Case012FactoryImpl extends EFactoryImpl implements Case012Factory {
 			case Case012Package.A12: return createA12();
 			case Case012Package.B12: return createB12();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

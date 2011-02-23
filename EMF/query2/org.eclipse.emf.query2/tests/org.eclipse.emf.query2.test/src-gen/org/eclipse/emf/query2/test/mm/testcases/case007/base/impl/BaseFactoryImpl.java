@@ -35,7 +35,7 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 	 */
 	public static BaseFactory init() {
 		try {
-			BaseFactory theBaseFactory = (BaseFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/base"); 
+			BaseFactory theBaseFactory = (BaseFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/base"); //$NON-NLS-1$ 
 			if (theBaseFactory != null) {
 				return theBaseFactory;
 			}
@@ -68,7 +68,7 @@ public class BaseFactoryImpl extends EFactoryImpl implements BaseFactory {
 			case BasePackage.BASE_B: return createBaseB();
 			case BasePackage.BASE_AREFERENCES_BASE_B: return createBaseAReferencesBaseB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

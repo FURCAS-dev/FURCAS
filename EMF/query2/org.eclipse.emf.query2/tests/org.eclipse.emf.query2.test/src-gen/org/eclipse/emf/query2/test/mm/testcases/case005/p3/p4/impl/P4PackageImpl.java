@@ -528,11 +528,11 @@ public class P4PackageImpl extends EPackageImpl implements P4Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(d5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p3.p4.D5.class, "D5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(d5EClass, org.eclipse.emf.query2.test.mm.testcases.case005.p3.p4.D5.class, "D5", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(association2EClass, Association2.class, "Association2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociation2_Y(), theP1Package.getA5(), null, "Y", null, 0, 1, Association2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAssociation2_D5(), this.getD5(), null, "d5", null, 0, 1, Association2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(association2EClass, Association2.class, "Association2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAssociation2_Y(), theP1Package.getA5(), null, "Y", null, 0, 1, Association2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAssociation2_D5(), this.getD5(), null, "d5", null, 0, 1, Association2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -546,39 +546,39 @@ public class P4PackageImpl extends EPackageImpl implements P4Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (d5EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p3.p4.D5",
-			 "metaObjectMofId", "45F120A5EFC8410A569D474E20FF95F185CF2BA3",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p3.p4.D5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5EFC8410A569D474E20FF95F185CF2BA3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getAssociation2_Y(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p3.p4.Association2",
-			 "metaObjectMofId", "45F120A5F42E369C47F94BF235129C103A6B5A13",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p3.p4.Association2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5F42E369C47F94BF235129C103A6B5A13", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getAssociation2_D5(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case005.p3.p4.Association2",
-			 "metaObjectMofId", "45F120A5F42E369C47F94BF235129C103A6B5A13",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case005.p3.p4.Association2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5F42E369C47F94BF235129C103A6B5A13", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

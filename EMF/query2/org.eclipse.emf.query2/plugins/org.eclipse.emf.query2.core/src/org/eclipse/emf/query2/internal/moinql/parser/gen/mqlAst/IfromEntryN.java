@@ -14,16 +14,7 @@
 
 package org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst;
 
-import org.eclipse.emf.query2.exception.BaseException;
-import org.eclipse.emf.query2.internal.moinql.parser.AstException;
-import org.eclipse.emf.query2.internal.moinql.parser.LPGMessages;
-import org.eclipse.emf.query2.report.LocalizedProcessException;
-import org.eclipse.emf.query2.report.ProcessErrorImpl;
-import org.eclipse.emf.query2.report.ProcessMessages;
-import org.eclipse.emf.query2.report.ProcessReport;
-import org.eclipse.emf.query2.report.ProcessWarningImpl;
-
-import lpg.lpgjavaruntime.*;
+import lpg.lpgjavaruntime.IToken;
 
 
 

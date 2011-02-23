@@ -15,6 +15,7 @@
 			<topic label="Customizing the Environment" href="references/overview/advanced/customization.html" />
 			<topic label="OCL Persistence" href="references/overview/advanced/persistence.html" />
 			<topic label="Creating Metamodel Bindings" href="references/overview/advanced/metamodelBindings.html" />
+			<topic label="Incrementally Re-Evaluating Using Impact Analyzer" href="references/overview/advanced/impactAnalyzer.html" />
 		</topic>
 	</topic>
 	<anchor id="overviews-after" />

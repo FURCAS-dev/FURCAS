@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotVisitorCodeGenerator.java,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: PivotVisitorCodeGenerator.java,v 1.3 2011/02/15 10:36:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -33,6 +33,7 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GeneratePivotVisitors;
+import org.eclipse.ocl.examples.build.acceleo.MyGeneratePivotVisitors;
 import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
 
 /**
@@ -81,7 +82,7 @@ public class PivotVisitorCodeGenerator extends AbstractWorkflowComponent
 			arguments.add(javaClassName);
 			arguments.add(ecoreFile);
 			EObject ecoreModel = ecoreResource.getContents().get(0);
-			GeneratePivotVisitors acceleo = new GeneratePivotVisitors(ecoreModel, folder, arguments);
+			GeneratePivotVisitors acceleo = new MyGeneratePivotVisitors(ecoreModel, folder, arguments);
 			log.info("Generating to ' " + folder + "'");
 			acceleo.generate(null);
 		} catch (RuntimeException e) {

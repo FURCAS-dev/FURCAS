@@ -37,7 +37,7 @@ public interface InheritancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "inheritance";
+	String eNAME = "inheritance"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -45,7 +45,7 @@ public interface InheritancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case008/inheritance";
+	String eNS_URI = "http://sap.com/moin/testcases/case008/inheritance"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface InheritancePackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case008inheritance";
+	String eNS_PREFIX = "case008inheritance"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

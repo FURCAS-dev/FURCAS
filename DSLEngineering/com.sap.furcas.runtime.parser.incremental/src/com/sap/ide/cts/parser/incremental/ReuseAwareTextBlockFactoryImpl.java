@@ -183,7 +183,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 			// mapping definition
 			Collection<EObject> tbDefs = oppositeEndFinder.
 				navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, template);
-			if (!tbDefs.isEmpty()) {
+			if (tbDefs != null && !tbDefs.isEmpty()) {
 				if (tbDefs.size() == 1) {
 					tbDef = (TextBlockDefinition) tbDefs.iterator().next();
 				} else {

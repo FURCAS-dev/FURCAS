@@ -8,12 +8,9 @@ package org.eclipse.emf.query2.syntax.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.query2.syntax.query.AliasAttributeExpression;
 import org.eclipse.emf.query2.syntax.query.Expression;
 import org.eclipse.emf.query2.syntax.query.ExpressionWhereEntry;
@@ -332,7 +329,7 @@ public class ExpressionWhereEntryImpl extends WhereEntryImpl implements Expressi
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (operator: ");
+    result.append(" (operator: "); //$NON-NLS-1$
     result.append(operator);
     result.append(')');
     return result.toString();

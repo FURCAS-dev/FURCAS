@@ -1,0 +1,33 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "ap_runtime_constraints"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"47A45E2C00C6"
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "queryConstraint"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"rose2mof.constrainedElements"
+		    value      	(value Text "Signature")))
+	    quid       	"47A45E4103E7"
+	    operations 	(list Operations
+		(object Operation "OCL"
+		    quid       	"47A731C0009C"
+		    concurrency 	"Sequential"
+		    semantics  	(object Semantic_Info
+			PDL        	
+|context data::classes::Signature
+|inv:
+|  1 = 1
+			)
+		    opExportControl 	"Public"
+		    uid        	0))))
+    logical_presentations 	(list unit_reference_list))

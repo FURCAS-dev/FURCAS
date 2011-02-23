@@ -173,7 +173,7 @@ public class A22JavadocImpl extends EObjectImpl implements A22Javadoc {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (attributeJavadoc: ");
+		result.append(" (attributeJavadoc: "); //$NON-NLS-1$
 		result.append(attributeJavadoc);
 		result.append(')');
 		return result.toString();

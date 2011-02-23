@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -60,8 +61,31 @@ public class PropertyItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addPropertyReferencePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+        /**
+     * This adds a property descriptor for the Property Reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addPropertyReferencePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Property_propertyReference_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Property_propertyReference_feature", "_UI_Property_type"),
+                 TCSPackage.Literals.PROPERTY__PROPERTY_REFERENCE,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
         /**
@@ -77,7 +101,6 @@ public class PropertyItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(TCSPackage.Literals.PROPERTY__PROPERTY_ARGS);
-            childrenFeatures.add(TCSPackage.Literals.PROPERTY__PROPERTY_REFERENCE);
         }
         return childrenFeatures;
     }
@@ -133,7 +156,6 @@ public class PropertyItemProvider
 
         switch (notification.getFeatureID(Property.class)) {
             case TCSPackage.PROPERTY__PROPERTY_ARGS:
-            case TCSPackage.PROPERTY__PROPERTY_REFERENCE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -224,17 +246,22 @@ public class PropertyItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (TCSPackage.Literals.PROPERTY__PROPERTY_ARGS,
+                 TCSFactory.eINSTANCE.createPrefixPArg()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.PROPERTY__PROPERTY_ARGS,
+                 TCSFactory.eINSTANCE.createPostfixPArg()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TCSPackage.Literals.PROPERTY__PROPERTY_ARGS,
                  TCSFactory.eINSTANCE.createPartialPArg()));
 
         newChildDescriptors.add
             (createChildParameter
                 (TCSPackage.Literals.PROPERTY__PROPERTY_ARGS,
                  TCSFactory.eINSTANCE.createDisambiguatePArg()));
-
-        newChildDescriptors.add
-            (createChildParameter
-                (TCSPackage.Literals.PROPERTY__PROPERTY_REFERENCE,
-                 TCSFactory.eINSTANCE.createPropertyReference()));
     }
 
 }

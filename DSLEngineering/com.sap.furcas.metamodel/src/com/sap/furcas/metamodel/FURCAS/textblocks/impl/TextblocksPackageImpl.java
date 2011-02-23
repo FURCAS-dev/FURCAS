@@ -597,6 +597,24 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getForEachContext_ContextString() {
+        return (EAttribute)forEachContextEClass.getEStructuralFeatures().get(4);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getForEachContext_TemplateUsedForProduction() {
+        return (EReference)forEachContextEClass.getEStructuralFeatures().get(5);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -701,6 +719,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEReference(forEachContextEClass, FOR_EACH_CONTEXT__CONTEXT_ELEMENT);
         createEReference(forEachContextEClass, FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT);
         createEReference(forEachContextEClass, FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT);
+        createEAttribute(forEachContextEClass, FOR_EACH_CONTEXT__CONTEXT_STRING);
+        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION);
 
         eostokenEClass = createEClass(EOSTOKEN);
 
@@ -803,6 +823,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEReference(getForEachContext_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getForEachContext_ResultModelElement(), theEcorePackage_1.getEObject(), null, "resultModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getForEachContext_SourceModelElement(), theEcorePackage_1.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getForEachContext_ContextString(), ecorePackage.getEString(), "contextString", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachContext_TemplateUsedForProduction(), theTCSPackage.getTemplate(), null, "templateUsedForProduction", null, 1, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(eostokenEClass, Eostoken.class, "Eostoken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

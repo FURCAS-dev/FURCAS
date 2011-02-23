@@ -214,9 +214,9 @@ public class B22JavadocSpecialCharactersImpl extends EObjectImpl implements B22J
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (javadocCommentEndSign: ");
+		result.append(" (javadocCommentEndSign: "); //$NON-NLS-1$
 		result.append(javadocCommentEndSign);
-		result.append(", httpAddress: ");
+		result.append(", httpAddress: "); //$NON-NLS-1$
 		result.append(httpAddress);
 		result.append(')');
 		return result.toString();

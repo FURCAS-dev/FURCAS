@@ -19,6 +19,9 @@ syntax TCS {
 	
 	primitiveTemplate plainStringSymbol for ecore::EString using STRING:
                 value = "unescapeString(%token%)";
+                
+        primitiveTemplate uriSymbol for ecore::EString using STRING:
+                value = "unescapeString(%token%)";
 
         primitiveTemplate integerSymbol for ecore::EIntegerObject default using INT:
                 value = "Integer.valueOf(%token%)";
@@ -35,30 +38,44 @@ syntax TCS {
         -- ecore element representation in qualified names
 
         
-        -- A modelClassifier is either its container followed by :: and a name, or just a name
-        template ecore::EClassifier referenceOnly --should never be created
-                : ( isDefined(ePackage) ? ePackage "::" name : name)
+     -- A modelClassifier is either its container followed by :: and a name, or just a name
+        template ecore::EClassifier referenceOnly   --should never be created
+                : ( isDefined(ePackage) ? ePackage ) name
                 ;
-                
-/** TODO Doesn't work and I don't know why                
-        -- Namespace gets operatored using the :: operator to resolve left recursion
-        template ecore::EObject abstract operatored(DBLCOLON);
-*/
 
-        -- if parsed path has more than one element, 
-        -- the first will be of type Generalizable element
-        -- because that is the type of Mode::ModelElement.container
-        template ecore::EPackage referenceOnly -- should never be created
-                : name
-                ;
-/** TODO Doesn't work and I don't know why                
+            
+     /**-- Namespace gets operatored using the :: operator to resolve left recursion
+        template ecore::EPackage #noop abstract operatored(DBLCOLON);
+
         -- any following elements in a package path will be resolved using this
-        operatorTemplate ecore::ENamedElement(operators =
-                        opDlColon, source = 'eContainer') referenceOnly -- should never be created
+        operatorTemplate ecore::EPackage(operators =
+                        opDlColon, source = 'eSuperPackage') referenceOnly -- should never be created
                 :       name
                 ;
         -- end ecore element representation
 */
+
+        -- if parsed path has more than one element, (workaround for bug #98)
+        template ecore::EPackage referenceOnly -- should never be created
+        :       
+                [[
+                        (isDefined(eSuperPackage) ? eSuperPackage { mode = superPackage}  ) name "::"
+                      |  
+                        nsURI {as = uriSymbol} "#"
+                ]]
+        ;
+        
+        --workaround for bug #98
+        template ecore::EPackage referenceOnly #superPackage -- should never be created
+        :       
+                [[
+                        name "::"
+                      |  
+                        nsURI {as = uriSymbol} "#"
+                ]]
+                
+        ;
+           
 
         -- @begin TextBlockDefintion
         template textblockdefinition::TextBlockDefinition
@@ -88,7 +105,7 @@ syntax TCS {
         function reference(TCS::QualifiedNamedElement)
                 : (isDefined(metaReference) 
                   ? 
-                     metaReference   
+                     metaReference
                   : "->" names{separator="::"}) -- workaround allowing to specify metatypes without directly referencing them                
                 ;
 
@@ -133,7 +150,9 @@ syntax TCS {
         template TCS::ClassTemplate context addToContext
                 :       "template" $reference
                         (isReferenceOnly 
-                          ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
+                          ? "referenceOnly" 
+                          (isDefined(mode) ? "#" mode{as = identifierOrKeyword})
+                          -- Reference Templates do not have other classTemplate attributes 
                           : 
                                 (isDefined(mode) ? "#" mode{as = identifierOrKeyword})
                                 (isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")

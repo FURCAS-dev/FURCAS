@@ -17,7 +17,7 @@ import org.eclipse.emf.query2.internal.localization.MoinLocaleProvider;
 
 
 /**
- * Base class for all localized MOIN exceptions
+ * Base class for all localized EMF exceptions
  */
 public abstract class LocalizedBaseException extends BaseException {
 

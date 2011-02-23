@@ -162,7 +162,7 @@ public class A25Impl extends EObjectImpl implements A25 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (externalId: ");
+		result.append(" (externalId: "); //$NON-NLS-1$
 		result.append(externalId);
 		result.append(')');
 		return result.toString();

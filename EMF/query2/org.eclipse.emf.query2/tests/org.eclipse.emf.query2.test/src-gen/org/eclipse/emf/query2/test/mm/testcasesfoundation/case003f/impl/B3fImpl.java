@@ -163,7 +163,7 @@ public class B3fImpl extends TranslatableTextImpl implements B3f {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (textName: ");
+		result.append(" (textName: "); //$NON-NLS-1$
 		result.append(textName);
 		result.append(')');
 		return result.toString();

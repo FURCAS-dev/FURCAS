@@ -465,39 +465,39 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		studentEClass.getESuperTypes().add(this.getEmployee());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(employeeEClass, Employee.class, "Employee", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEmployee_Name(), ecorePackage.getEString(), "name", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getEmployee_Age(), ecorePackage.getEInt(), "age", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getEmployee_Salary(), ecorePackage.getEInt(), "salary", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getEmployee_Employer(), this.getDepartment(), this.getDepartment_Employee(), "employer", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getEmployee_Managed(), this.getDepartment(), this.getDepartment_Boss(), "managed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getEmployee_Directed(), this.getDivision(), this.getDivision_Director(), "directed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getEmployee_Secretary(), this.getEmployee(), null, "secretary", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(employeeEClass, Employee.class, "Employee", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getEmployee_Name(), ecorePackage.getEString(), "name", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEmployee_Age(), ecorePackage.getEInt(), "age", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getEmployee_Salary(), ecorePackage.getEInt(), "salary", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEmployee_Employer(), this.getDepartment(), this.getDepartment_Employee(), "employer", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEmployee_Managed(), this.getDepartment(), this.getDepartment_Boss(), "managed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEmployee_Directed(), this.getDivision(), this.getDivision_Director(), "directed", null, 0, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEmployee_Secretary(), this.getEmployee(), null, "secretary", null, 1, 1, Employee.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(departmentEClass, Department.class, "Department", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDepartment_Name(), ecorePackage.getEString(), "name", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDepartment_MaxJuniors(), ecorePackage.getEInt(), "maxJuniors", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDepartment_Budget(), ecorePackage.getEInt(), "budget", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDepartment_Employee(), this.getEmployee(), this.getEmployee_Employer(), "employee", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDepartment_Boss(), this.getEmployee(), this.getEmployee_Managed(), "boss", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDepartment_Division(), this.getDivision(), this.getDivision_Department(), "division", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(departmentEClass, Department.class, "Department", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getDepartment_Name(), ecorePackage.getEString(), "name", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDepartment_MaxJuniors(), ecorePackage.getEInt(), "maxJuniors", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDepartment_Budget(), ecorePackage.getEInt(), "budget", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDepartment_Employee(), this.getEmployee(), this.getEmployee_Employer(), "employee", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDepartment_Boss(), this.getEmployee(), this.getEmployee_Managed(), "boss", null, 1, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDepartment_Division(), this.getDivision(), this.getDivision_Department(), "division", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(departmentEClass, ecorePackage.getEInt(), "calcExpenses", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEOperation(departmentEClass, ecorePackage.getEInt(), "calcExpenses", 1, 1, !IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(freelanceEClass, Freelance.class, "Freelance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFreelance_Assignment(), ecorePackage.getEInt(), "assignment", null, 1, 1, Freelance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(freelanceEClass, Freelance.class, "Freelance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getFreelance_Assignment(), ecorePackage.getEInt(), "assignment", null, 1, 1, Freelance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(divisionEClass, Division.class, "Division", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDivision_Name(), ecorePackage.getEString(), "name", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDivision_Department(), this.getDepartment(), this.getDepartment_Division(), "department", null, 1, -1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getDivision_Budget(), ecorePackage.getEInt(), "budget", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDivision_Commuting(), this.getTransport(), null, "commuting", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(divisionEClass, Division.class, "Division", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getDivision_Name(), ecorePackage.getEString(), "name", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDivision_Department(), this.getDepartment(), this.getDepartment_Division(), "department", null, 1, -1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDivision_Budget(), ecorePackage.getEInt(), "budget", null, 1, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDivision_Commuting(), this.getTransport(), null, "commuting", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(transportEClass, Transport.class, "Transport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTransport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(transportEClass, Transport.class, "Transport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getTransport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -514,144 +514,144 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (employeeEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Employee",
-			 "metaObjectMofId", "473C6EB6D6B7E0D6939411DC9D9E00199904B925",
-			 "isStructureType", "false",
-			 "ova", "secretary"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Employee", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0D6939411DC9D9E00199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "secretary" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee_Employer(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.WorksIn",
-			 "metaObjectMofId", "473C6EB6D6B7E0F1939411DCB3E500199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.WorksIn", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0F1939411DCB3E500199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee_Managed(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Manages",
-			 "metaObjectMofId", "473C6EB6D6B7E0F4939411DC9A9200199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Manages", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0F4939411DC9A9200199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee_Directed(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Directs",
-			 "metaObjectMofId", "473C6EB6D6BA51D0939411DCBE8300199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Directs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6BA51D0939411DCBE8300199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getEmployee_Secretary(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "473C6EB6D6B7E0D5939411DCB2A400199904B925"
+			 "ovaMofId", "473C6EB6D6B7E0D5939411DCB2A400199904B925" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (departmentEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Department",
-			 "metaObjectMofId", "473C6EB6D6B7E0E1939411DCA5E700199904B925",
-			 "isStructureType", "false"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Department", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0E1939411DCA5E700199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getDepartment_Employee(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.WorksIn",
-			 "metaObjectMofId", "473C6EB6D6B7E0F1939411DCB3E500199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.WorksIn", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0F1939411DCB3E500199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getDepartment_Boss(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Manages",
-			 "metaObjectMofId", "473C6EB6D6B7E0F4939411DC9A9200199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Manages", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0F4939411DC9A9200199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (freelanceEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Freelance",
-			 "metaObjectMofId", "473C6EB6D6B7E0E7939411DC988800199904B925",
-			 "isStructureType", "false",
-			 "ova", "secretary"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Freelance", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0E7939411DC988800199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "secretary" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (divisionEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Division",
-			 "metaObjectMofId", "473C6EB6D6B7E0EE939411DCC52900199904B925",
-			 "isStructureType", "false"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Division", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0EE939411DCC52900199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getDivision_Department(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Divides",
-			 "metaObjectMofId", "473C6EB6D6B7E0F7939411DC867200199904B925",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Divides", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6B7E0F7939411DC867200199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getDivision_Director(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Directs",
-			 "metaObjectMofId", "473C6EB6D6BA51D0939411DCBE8300199904B925",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Directs", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "473C6EB6D6BA51D0939411DCBE8300199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (studentEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]",
-			 "metaObject", "Company.Student",
-			 "metaObjectMofId", "47B2E2DF72495980DA2F11DC9D5D00199904B925",
-			 "isStructureType", "false",
-			 "ova", "secretary"
+			 "metamodels", "sap.com/tc/moin/test/company[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "Company.Student", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47B2E2DF72495980DA2F11DC9D5D00199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "secretary" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

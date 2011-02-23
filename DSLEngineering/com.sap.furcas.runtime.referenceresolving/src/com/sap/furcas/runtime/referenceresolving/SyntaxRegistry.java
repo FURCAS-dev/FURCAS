@@ -58,10 +58,8 @@ public class SyntaxRegistry implements BundleActivator {
     /**
      * Registers a concrete syntax with all the OCL expressions it contains,
      * producing or fetching from a cache a {@link TriggerManager}
-     * @param metamodelPackageRegistry TODO
      * @param monitor
      *            optional; may be <code>null</code>
-     * @param parserFactory TODO
      * @return a {@link TriggerManager} object. Clients should hold on to it as
      *         long as they wish the triggers to be executed as this registry
      *         only weakly references it.

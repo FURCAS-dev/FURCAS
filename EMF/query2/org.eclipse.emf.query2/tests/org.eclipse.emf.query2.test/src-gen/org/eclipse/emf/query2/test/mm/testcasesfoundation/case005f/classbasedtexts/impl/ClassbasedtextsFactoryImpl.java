@@ -35,7 +35,7 @@ public class ClassbasedtextsFactoryImpl extends EFactoryImpl implements Classbas
 	 */
 	public static ClassbasedtextsFactory init() {
 		try {
-			ClassbasedtextsFactory theClassbasedtextsFactory = (ClassbasedtextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/classbasedtexts"); 
+			ClassbasedtextsFactory theClassbasedtextsFactory = (ClassbasedtextsFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/classbasedtexts"); //$NON-NLS-1$ 
 			if (theClassbasedtextsFactory != null) {
 				return theClassbasedtextsFactory;
 			}
@@ -67,7 +67,7 @@ public class ClassbasedtextsFactoryImpl extends EFactoryImpl implements Classbas
 			case ClassbasedtextsPackage.GENERAL_TEXT: return createGeneralText();
 			case ClassbasedtextsPackage.SPECIALIZED_TEXT: return createSpecializedText();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -1,0 +1,69 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "localization"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"450001630220"
+    documentation 	
+|Contains model snipplets useful for parts of the programming model that require translation of (parts of) their artifacts, such as UI texts, message texts or descriptions useful during design-time. This may require linking to concepts such as "development language" providing defaults for the language in which a string is given.
+|
+|It will also be an interesting question how the languages, regions and dialects important for the translation process should be represented.
+    
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "TranslatableText"
+	    quid       	"450001CE02D8"
+	    class_attributes 	(list class_attribute_list
+		(object ClassAttribute "text"
+		    quid       	"450001DC01BF"
+		    type       	"String"
+		    exportControl 	"Public")
+		(object ClassAttribute "hintForTranslator"
+		    quid       	"4500021C003B"
+		    type       	"String"
+		    exportControl 	"Public"))))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Translatable Texts"
+	    quid       	"4500019E015C"
+	    title      	"Translatable Texts"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::localization::TranslatableText" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(616, 315)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(369, 209)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	494
+			justify    	0
+			label      	"TranslatableText")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"450001CE02D8"
+		    width      	512
+		    height     	236
+		    annotation 	8
+		    autoResize 	TRUE)))))

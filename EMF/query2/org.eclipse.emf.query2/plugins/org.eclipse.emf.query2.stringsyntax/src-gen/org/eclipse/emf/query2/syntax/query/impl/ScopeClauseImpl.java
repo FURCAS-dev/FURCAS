@@ -215,9 +215,9 @@ public class ScopeClauseImpl extends MinimalEObjectImpl.Container implements Sco
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (notIn: ");
+    result.append(" (notIn: "); //$NON-NLS-1$
     result.append(notIn);
-    result.append(", uris: ");
+    result.append(", uris: "); //$NON-NLS-1$
     result.append(uris);
     result.append(')');
     return result.toString();

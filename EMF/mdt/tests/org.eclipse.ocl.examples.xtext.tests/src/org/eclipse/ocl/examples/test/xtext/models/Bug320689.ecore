@@ -4,15 +4,15 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Bug320689"
     nsURI="http://www.org.eclipse.ocl/Bug320689" nsPrefix="bug">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
-    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EDataType" name="ThirtyCharString1" instanceClassName="java.lang.String">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="MaxLengthConstraint"/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="MaxLengthConstraint" value="not oclIsUndefined()"/>
     </eAnnotations>
   </eClassifiers>
@@ -20,7 +20,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="MaxEnumConstraint"/>
     </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="MaxEnumConstraint" value="not oclIsUndefined()"/>
     </eAnnotations>
   </eClassifiers>

@@ -1,0 +1,348 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "PrimitiveTypes"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"packageName"
+	    value      	(value Text "ecore"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsPrefix"
+	    value      	(value Text "ecore"))
+	(object Attribute
+	    tool       	"Ecore"
+	    name       	"nsURI"
+	    value      	(value Text "http://www.eclipse.org/emf/2002/Ecore")))
+    quid       	"3B5389EE0204"
+    documentation 	
+|The PrimitiveTypes Package contains MOF's standard collection of technology-neutral primitive data types. 
+|These types are available for use in all MOF metamodels and are also used by the MOF Model. 
+|Note: Technology mappings shall recognize standard PrimitiveType instance based on their qualified names. 
+|Multiple primitiveType instances with the samename shall be deemed to mean the same thing.
+    
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class "Integer"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "long"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EInt")))
+	    quid       	"3B538AB300B3"
+	    stereotype 	"primitive")
+	(object Class "Float"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "float"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EFloat")))
+	    quid       	"3B538ABB02B3"
+	    stereotype 	"primitive")
+	(object Class "Double"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "double"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EDouble")))
+	    quid       	"3B538AE303DD"
+	    stereotype 	"primitive")
+	(object Class "String"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "wstring"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EString")))
+	    quid       	"39A2BDA60394"
+	    stereotype 	"primitive")
+	(object Class "Long"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "long long"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "ELong")))
+	    quid       	"39A2BDA603A0"
+	    stereotype 	"primitive")
+	(object Class "Boolean"
+	    attributes 	(list Attribute_Set
+		(object Attribute
+		    tool       	"MOF"
+		    name       	"uml2mof.corbaType"
+		    value      	(value Text "boolean"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EBoolean")))
+	    quid       	"39A2BDA60392"
+	    stereotype 	"primitive"))
+    logical_presentations 	(list unit_reference_list
+	(object ClassDiagram "Primitive Types"
+	    quid       	"3B5389FE0301"
+	    title      	"Primitive Types"
+	    zoom       	100
+	    max_height 	28350
+	    max_width  	21600
+	    origin_x   	0
+	    origin_y   	0
+	    items      	(list diagram_item_list
+		(object ClassView "Class" "Logical View::PrimitiveTypes::Integer" @1
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1056, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@1
+			location   	(921, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"Integer")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@1
+			location   	(921, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	267
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3B538AB300B3"
+		    width      	288
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::PrimitiveTypes::Float" @2
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(2112, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@2
+			location   	(1979, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	266
+			justify    	0
+			label      	"Float")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@2
+			location   	(1979, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	263
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3B538ABB02B3"
+		    width      	284
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::PrimitiveTypes::Double" @3
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1408, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@3
+			location   	(1273, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"Double")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@3
+			location   	(1273, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	267
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"3B538AE303DD"
+		    width      	288
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::PrimitiveTypes::String" @4
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(272, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@4
+			location   	(137, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"String")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@4
+			location   	(137, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	267
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39A2BDA60394"
+		    width      	288
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::PrimitiveTypes::Long" @5
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(1744, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@5
+			location   	(1611, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	266
+			justify    	0
+			label      	"Long")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@5
+			location   	(1611, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	263
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39A2BDA603A0"
+		    width      	284
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)
+		(object ClassView "Class" "Logical View::PrimitiveTypes::Boolean" @6
+		    ShowCompartmentStereotypes 	TRUE
+		    IncludeAttribute 	TRUE
+		    IncludeOperation 	TRUE
+		    location   	(688, 624)
+		    font       	(object Font
+			size       	10
+			face       	"Arial"
+			bold       	FALSE
+			italics    	FALSE
+			underline  	FALSE
+			strike     	FALSE
+			color      	0
+			default_color 	TRUE)
+		    label      	(object ItemLabel
+			Parent_View 	@6
+			location   	(553, 596)
+			fill_color 	13434879
+			nlines     	1
+			max_width  	270
+			justify    	0
+			label      	"Boolean")
+		    stereotype 	(object ItemLabel
+			Parent_View 	@6
+			location   	(553, 546)
+			fill_color 	13434879
+			anchor     	10
+			nlines     	1
+			max_width  	267
+			justify    	0
+			label      	"<<primitive>>")
+		    icon_style 	"Icon"
+		    line_color 	3342489
+		    fill_color 	13434879
+		    quidu      	"39A2BDA60392"
+		    width      	288
+		    height     	180
+		    annotation 	8
+		    autoResize 	TRUE)))))

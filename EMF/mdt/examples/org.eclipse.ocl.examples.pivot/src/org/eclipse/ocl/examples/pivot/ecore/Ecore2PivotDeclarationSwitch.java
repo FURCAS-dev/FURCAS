@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.7 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -21,6 +21,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,6 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -65,7 +65,12 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.library.JavaComparisonOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOrEqualOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
+import org.eclipse.ocl.examples.pivot.library.JavaLessThanOrEqualOperation;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
@@ -170,7 +175,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	public Operation caseEOperation(EOperation eObject) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -208,9 +216,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
+					pivotElement.setImplementation(new EObjectOperation(eObject, specification));
 				}
 			}				
 		}
@@ -225,6 +235,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package caseEPackage(EPackage eObject) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject);
+		converter.getTypeManager().installPackage(pivotElement);
 		EAnnotation eAnnotation = eObject.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamedElement(pivotElement, eObject);
@@ -286,7 +297,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, EClassifier eClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
-		EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		Map<String, Constraint> constraintMap = null;
+		EAnnotation oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -299,8 +314,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				String value = entry.getValue();
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 				specification.getBodies().add(value);
+				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				constraints.add(constraint);
+				if (constraintMap == null) {
+					constraintMap = new HashMap<String, Constraint>();
+				}
+				constraintMap.put(entry.getKey(), constraint);
 			}				
 		}
 		EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
@@ -315,7 +335,13 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				String[] constraintNames = constraintNameList.split(" ");
 				for (String constraintName : constraintNames) {
 					if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
-						Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+						Constraint constraint = null;
+						if (constraintMap != null) {
+							constraint = constraintMap.get(constraintName);
+						}
+						if (constraint == null) {
+							constraint = PivotFactory.eINSTANCE.createConstraint();
+						}
 						constraint.setStereotype("invariant");
 						constraint.setName(constraintName);
 						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
@@ -343,19 +369,51 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (instanceClass != null) {
 			try {
 				Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
-				Operation operation = PivotFactory.eINSTANCE.createOperation();
-				operation.setName(PivotConstants.LESS_THAN_OPERATOR);
-				operation.setImplementation(new JavaLessThanOperation(declaredMethod));
-				Parameter parameter = PivotFactory.eINSTANCE.createParameter();
-				parameter.setName("that");
-				parameter.setType(pivotElement);
-				operation.getOwnedParameters().add(parameter);
-				operation.setType(converter.getTypeManager().getBooleanType());
-				pivotElement.getOwnedOperations().add(operation);
-
+				List<Operation> ownedOperations = pivotElement.getOwnedOperations();
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
+				ownedOperations.add(createJavaComparisonOperation(
+					PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
+				if ((instanceClass == Boolean.class) || (instanceClass == boolean.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
+				}
+				else if ((instanceClass == Byte.class) || (instanceClass == byte.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+				}
+				else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
 			} catch (Exception e) {
 			}
 		}
+	}
+
+	protected Operation createJavaComparisonOperation(String operator, JavaComparisonOperation javaOperation) {
+		Operation operation = PivotFactory.eINSTANCE.createOperation();
+		operation.setName(operator);
+		operation.setImplementation(javaOperation);
+		Parameter parameter = PivotFactory.eINSTANCE.createParameter();
+		parameter.setName("that");
+		parameter.setType(converter.getTypeManager().getOclAnyType());
+		operation.getOwnedParameters().add(parameter);
+		operation.setType(converter.getTypeManager().getBooleanType());
+		return operation;
 	}
 
 	protected void copyModelElement(Element pivotElement, EModelElement eModelElement) {
@@ -388,7 +446,10 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	}
 
 	protected void copyStructuralFeature(Property pivotElement, EStructuralFeature eObject, List<EAnnotation> excludedAnnotations) {
-		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		if (oclAnnotation == null) {
+			oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_LPG);
+		}
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -411,9 +472,14 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
+					pivotElement.setImplementation(new EObjectProperty(eObject, specification));
+				}
+				else {
+					pivotElement.setImplementation(new EObjectProperty(eObject, null));
 				}
 			}				
 		}

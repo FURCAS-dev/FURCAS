@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -19,7 +20,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryFormatException;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.setup.DefaultTestClientImpl;
@@ -91,7 +92,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 			return true;
 		}
 
-		assertTrue("Query >> " + query + " << did not produce an MQL FormatException!", false);
+		assertTrue("Query >> " + query + " << did not produce an MQL FormatException!", false);  //$NON-NLS-1$//$NON-NLS-2$
 		return false;
 	}
 
@@ -121,7 +122,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void derivedAttributesAreNotSupported() throws Exception {
 
-		String query = "select ref.eReferenceType from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEReference()) + "] as modelClass";
+		String query = "select ref.eReferenceType from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEReference()) + "] as modelClass"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -129,7 +130,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void unMatchingAliasesInSelect() throws Exception {
 
-		String query = "select alias1 from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] as alias2";
+		String query = "select alias1 from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] as alias2"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -137,7 +138,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void fromTypeDoesNotExist() throws Exception {
 
-		String query = "select nec from [" + EcorePackage.eINSTANCE.getNsURI() + "#//NotExistingClass] as nec";
+		String query = "select nec from [" + EcorePackage.eINSTANCE.getNsURI() + "#//NotExistingClass] as nec"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -145,7 +146,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void whereClauseWithOr() throws Exception {
 
-		String query = "select cl from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] as cl where cl.name = 'a' or c.name = 'b'";
+		String query = "select cl from [" + EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass()) + "] as cl where cl.name = 'a' or c.name = 'b'"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -153,7 +154,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void nullComparisonOnPrimitiveTypeInWhereClause() throws Exception {
 
-		String query = "select dep from [" + EcoreUtil.getURI(CompanyPackage.eINSTANCE.getDepartment()) + "] as dep where dep.budget = null";
+		String query = "select dep from [" + EcoreUtil.getURI(CompanyPackage.eINSTANCE.getDepartment()) + "] as dep where dep.budget = null";  //$NON-NLS-1$//$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -161,9 +162,9 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void comparisonTooLong() throws Exception {
 
-		String query = "select mm from ["
+		String query = "select mm from [" //$NON-NLS-1$
 				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0())
-				+ "] as mm where name = 'Thisisalongstringwhichismorethan200characters :                                                                                                                                                                       n'";
+				+ "] as mm where name = 'Thisisalongstringwhichismorethan200characters :                                                                                                                                                                       n'"; //$NON-NLS-1$
 
 		this.verifyNegativeTest(query);
 	}
@@ -171,9 +172,9 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void nestedQueryWithMoreThanOneSelect() throws Exception {
 
-		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0())
-				+ "] as cl0 where cl0.assoc0x1EndB in (select cl1, cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1 "
-				+ " where for cl1(name ='ModelClass1Inst0'))";
+		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) //$NON-NLS-1$
+				+ "] as cl0 where cl0.assoc0x1EndB in (select cl1, cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1 " //$NON-NLS-1$ //$NON-NLS-2$
+				+ " where for cl1(name ='ModelClass1Inst0'))"; //$NON-NLS-1$
 
 		this.verifyNegativeTest(query);
 	}
@@ -181,8 +182,8 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void nestedQueryWithOneAttributeSelect() throws Exception {
 
-		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0())
-				+ "] as cl0 where cl0.assoc0x1EndB in (select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1)";
+		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) //$NON-NLS-1$
+				+ "] as cl0 where cl0.assoc0x1EndB in (select cl1.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "] as cl1)"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -190,7 +191,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void fromTypeWithNotInElements() throws Exception {
 
-		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as cl0 not in elements{}";
+		String query = "select cl0.name from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as cl0 not in elements{}"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -198,8 +199,8 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void fromTypeWithSameAlias() throws Exception {
 
-		String query = "select mm from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm, ["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm";
+		String query = "select mm from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm, [" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm"; //$NON-NLS-1$
 
 		this.verifyNegativeTest(query);
 	}
@@ -207,7 +208,7 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void invalidEscapeInLikePattern() throws Exception {
 
-		String query = "select mm from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm where mm.name like 'this pattern is \\invalid'";
+		String query = "select mm from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] as mm where mm.name like 'this pattern is \\invalid'"; //$NON-NLS-1$ //$NON-NLS-2$
 
 		this.verifyNegativeTest(query);
 	}
@@ -238,15 +239,15 @@ public class SuiteNegativeQueryTest extends QueryTestCase {
 	@Test
 	public void invalidSubTypeExclusion() throws Exception {
 
-		String query = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {} as clf";
+		String query = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {} as clf"; //$NON-NLS-1$ //$NON-NLS-2$
 		this.verifyNegativeTest(query);
 
-		String query2 = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "]} as clf";
+		String query2 = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {[" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "]} as clf"; //$NON-NLS-1$
 		this.verifyNegativeTest(query2);
 
-		String query3 = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {["
-				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "]} as clf";
+		String query3 = "select clf from [" + EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass0()) + "] withoutsubtypes {[" //$NON-NLS-1$ //$NON-NLS-2$
+				+ EcoreUtil.getURI(GeneratedmetamodelPackage.eINSTANCE.getModelClass1()) + "]} as clf"; //$NON-NLS-1$
 		this.verifyNegativeTest(query3);
 	}
 }

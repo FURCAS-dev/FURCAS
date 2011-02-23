@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,20 +17,20 @@ import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
-import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 import com.sap.emf.ocl.trigger.AbstractTriggerable;
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
@@ -86,22 +87,20 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * Used to override {@link AbstractTriggerable#getTriggerExpressionsWithContext()}
      */
     private final Collection<ExpressionWithContext> triggerExpressionsWithContext;
-    
+
     /**
      * The base expression "X" used in the <code>foreach(X ...)</code> property init
      */
     private final OCLExpression baseForeachExpression;
-    
+
     /**
-     * Enables mapping the OCL expressions used in the <code>when</code> clauses of the <code>foreach</code>
-     * predicate to the {@link PredicateSemantic} objects representing the respective <code>when</code> clause
+     * Enables mapping the OCL expressions used in the <code>when</code> clauses of the <code>foreach</code> predicate
+     * to the {@link PredicateSemantic} objects representing the respective <code>when</code> clause
      */
     private final Map<OCLExpression, PredicateSemantic> expressionToWhenClause;
-    
+
     private final ForeachPredicatePropertyInit foreachPredicatePropertyInit;
-    
-    private ImpactAnalyzer impactAnalyzerForBaseExpression;
-    
+
     private final ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
 
     protected ForeachPropertyInitUpdater(ForeachPredicatePropertyInit foreachPredicatePropertyInit,
@@ -109,17 +108,17 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
             OppositeEndFinder oppositeEndFinder) throws ParserException {
         super(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(), metamodelPackageRegistry,
-              oppositeEndFinder,
-              /* expression with context; provided later in getTriggerExpressionsWithContext() */null,
-              /* notifyNewContextElements */true, getSelfKind(foreachPredicatePropertyInit.getValue()),
-              ContextAndForeachHelper.getContextTag(foreachPredicatePropertyInit.getValue()));
+                oppositeEndFinder,
+                /* expression with context; provided later in getTriggerExpressionsWithContext() */null,
+                /* notifyNewContextElements */true, determineSelfKind(foreachPredicatePropertyInit.getValue()),
+                ContextAndForeachHelper.getContextTag(foreachPredicatePropertyInit.getValue()));
         this.parserFactory = parserFactory;
         triggerExpressionsWithContext = new LinkedList<ExpressionWithContext>();
         this.foreachPredicatePropertyInit = foreachPredicatePropertyInit;
         Helper oclHelper = createOCLHelper();
         // add the base foreach expression:
-        baseForeachExpression = oclHelper.createQuery(
-                ContextAndForeachHelper.prepareOclQuery(foreachPredicatePropertyInit.getValue()));
+        baseForeachExpression = oclHelper.createQuery(ContextAndForeachHelper
+                .prepareOclQuery(foreachPredicatePropertyInit.getValue()));
         triggerExpressionsWithContext.add(new ExpressionWithContext(baseForeachExpression,
                 (EClass) ContextAndForeachHelper.getParsingContext(foreachPredicatePropertyInit.getValue(),
                         ((InjectorActionsBlock) foreachPredicatePropertyInit.eContainer()).getParentTemplate())));
@@ -128,13 +127,17 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         } else {
             expressionToWhenClause = new HashMap<OCLExpression, PredicateSemantic>();
         }
-        oclHelper.setContext(baseForeachExpression.getType());
+        EClassifier baseType = baseForeachExpression.getType();
+        if (baseType instanceof CollectionType) {
+            baseType = ((CollectionType) baseType).getElementType();
+        }
+        oclHelper.setContext(baseType);
         for (PredicateSemantic whenClause : foreachPredicatePropertyInit.getPredicateSemantic()) {
             if (whenClause.getWhen() != null) {
                 OCLExpression whenClausExpression = oclHelper.createQuery(whenClause.getWhen());
                 expressionToWhenClause.put(whenClausExpression, whenClause);
-                triggerExpressionsWithContext.add(
-                        new ExpressionWithContext(whenClausExpression, (EClass) baseForeachExpression.getType()));
+                triggerExpressionsWithContext.add(new ExpressionWithContext(whenClausExpression,
+                        (EClass) baseType));
             }
         }
     }
@@ -146,8 +149,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     @Override
-    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects, OppositeEndFinder oppositeEndFinder,
-            Notification change) {
+    public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
+            OppositeEndFinder oppositeEndFinder, Notification change) {
         if (expression == baseForeachExpression) {
             handleChangeOfBaseExpressionValue(affectedContextObjects, change);
         } else {
@@ -159,7 +162,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     private void handleChangeOfBaseExpressionValue(Collection<EObject> affectedContextObjects, Notification change) {
-        // the base expression changed; see what changed:
         PartialEvaluator partialEvaluator = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(change,
                 getOppositeEndFinder(), OCLFactory.INSTANCE);
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
@@ -168,8 +170,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             Object newValue = ocl.evaluate(affectedContextObject, baseForeachExpression);
             if (oldValue != newValue && (oldValue == null || !oldValue.equals(newValue))) {
                 // something changed
-                // TODO sophisticated solution: find out what was removed and what was added from the result of the foreach expression and which elements changed
-                // Then we could try to selectively remove elements from the target feature.
                 try {
                     // the getElementsToUpdate(affectedContextObject) is necessary because the foreach
                     // base expression may itself use #context or #foreach
@@ -180,31 +180,72 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             }
         }
     }
-    
-    private void handleChangeOfWhenClauseValue(PredicateSemantic whenClause, Collection<EObject> affectedContextObjects,
-            Notification change) {
+
+    /**
+     * The <code>change</code> event may have affected the value of the <code>whenClause</code>. The same change may
+     * have had other effects as well, e.g., on the other <code>when</code>-clauses of the same <code>foreach</code>
+     * construct.
+     * <p>
+     * 
+     * The elements for which the <code>when</code>-clause value has changed may or may not have been results of a
+     * <code>foreach</code> clause. To find this out, the impact analyzer can trace back the candidate object through
+     * the <code>foreach</code> expression and see if there is a {@link TextBlock} documenting the execution of the
+     * <code>foreach</code> clause for the respective element. If not, the change is simply ignored. If yes, and if the
+     * <code>foreach</code> expression actually evaluates to the affected context object from
+     * <code>affectedContextObjects</code>, the production of the corresponding result is triggered and the resulting
+     * element is used to replace the old element from the {@link #getPropertyToUpdate() feature to update}.
+     * 
+     * @param whenClause
+     *            the <code>when</code>-clause whose value may have changed due to <code>change</code>
+     * @param affectedContextObjects
+     *            the superset of the context objects for which the <code>when</code>-clause may have changed its value
+     * @param change
+     *            the original change that may have caused a change in <code>whenClause</code>'s value when evaluated on
+     *            <code>affectedContextObjects</code>
+     */
+    private void handleChangeOfWhenClauseValue(PredicateSemantic whenClause,
+            Collection<EObject> affectedContextObjects, Notification change) {
         // The context element of the when-clause is the result of the corresponding foreach element.
         // We need to use the impact analyzer to trace this back to the foreach "self" context and repeat
         // this as if the foreach expression itself had changed.
         // We assume here that no #context nor #foreach is used in the when-clause.
         // It wouldn't make much sense anyway because the when-clause should filter the foreach result.
-
-        // TODO ImpactAnalyzer would need to make available barebones traceback functionality
-        // We don't have a Notification, and we don't necessarily have a property change.
-        // We only want to compute traceback(affectedContextObject) which then gives us those elements
-        // for which the foreach base expression evaluates to affectedContextObject and hence
-        // gives us the decisive clue on which element to update the property.
-        ImpactAnalyzer ia = getImpactAnalyzerForBaseExpression();
-        ia.toString(); // TODO remove this dummy usage again when I continue here...
-        System.err.println("TODO Impact Analysis for when clause not yet active: " + whenClause.getWhen());
-    }
-
-    private ImpactAnalyzer getImpactAnalyzerForBaseExpression() {
-        if (impactAnalyzerForBaseExpression == null) {
-            impactAnalyzerForBaseExpression = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(baseForeachExpression, /* notifyOnNewContextElements */ false,
-                    getOppositeEndFinder(), OCLFactory.INSTANCE);
+        for (EObject affectedContextObject : affectedContextObjects) {
+            Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
+                .navigateOppositePropertyWithBackwardScope(
+                        TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), affectedContextObject);
+            if (foreachContextsUsingSelfAsForeachElement != null) {
+                for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
+                    if (eo.eContainer() != null) { // ignore stale ForEachContext that for unknown reasons are still
+                                                   // returned by opposite end finder
+                        ForEachContext foreachContext = (ForEachContext) eo;
+                        EObject elementToUpdate = foreachContext.getSourceModelElement();
+                        TextBlock textBlock = (TextBlock) foreachContext.eContainer();
+                        ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
+                        if (propInit == foreachPredicatePropertyInit) {
+                            Template oldTemplateUsedForProduction = foreachContext.getTemplateUsedForProduction();
+                            // check if the template to use for producing really changed; if so, execute the one
+                            // production rule and carefully update the existing ForEachContext
+                            Template newTemplateToUse = findTemplate(affectedContextObject);
+                            if (newTemplateToUse != oldTemplateUsedForProduction) {
+                                // the supposed change really led to a change in production rule; produce anew
+                                EObject newObject = produceWith(newTemplateToUse, affectedContextObject, textBlock,
+                                        elementToUpdate, getOppositeEndFinder());
+                                if (getPropertyToUpdate().isMany()) {
+                                    int position = textBlock.getForEachContext().indexOf(foreachContext);
+                                    @SuppressWarnings("unchecked")
+                                    List<EObject> l = (List<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
+                                    l.set(position, newObject);
+                                } else {
+                                    elementToUpdate.eSet(getPropertyToUpdate(), newObject);
+                                }
+                                foreachContext.setResultModelElement(newObject);
+                            }
+                        }
+                    }
+                }
+            }
         }
-        return impactAnalyzerForBaseExpression;
     }
 
     /**
@@ -213,18 +254,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * getPropertyReference()}. {@link PropertyReference#getStrucfeature() getStrucfeature()}.
      * <p>
      * 
-     * TODO The current implementation replaces all elements in the feature for each element in
-     * <code>elementToUpdate</code>. Future implementations will be more sophisticated and make an effort to replace
-     * only those elements that need replacement, particularly because they have to be produced by a different template
-     * than before.
-     * <p>
-     * 
      * With the current coarse-grained replacement strategy, all {@link ForEachContext} elements attached to the
-     * {@link TextBlock} documenting the creation of each of the <code>elementsToUpdate</code> are removed first.
-     * Then, the new elements are produced using {@link #produceElement(Object, TextBlock, ResourceSet, OppositeEndFinder)}
-     * operation. As a record of this, a new {@link ForEachContext} element is created for each object creation.
-     * They are attached to the {@link TextBlock#getForEachContext()} collection of the text blocks documenting
-     * the creation of the <code>elementsToUpdate</code>.
+     * {@link TextBlock} documenting the creation of each of the <code>elementsToUpdate</code> are removed first. Then,
+     * the new elements are produced using {@link #produceElement(Object, TextBlock, ResourceSet, OppositeEndFinder)}
+     * operation. As a record of this, a new {@link ForEachContext} element is created for each object creation. They
+     * are attached to the {@link TextBlock#getForEachContext()} collection of the text blocks documenting the creation
+     * of the <code>elementsToUpdate</code>.
      */
     private void updateFeature(Set<EObject> elementsToUpdate, Object newValueOfForeachBaseExpression) {
         Collection<?> foreachElements;
@@ -236,82 +271,135 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         for (EObject elementToUpdate : elementsToUpdate) {
             // update the element only if a TextBlock documents its creation and indicates that the
             // InjectorActionsBlock containing the foreachPredicatePropertyInit has actually been executed
-            // during its creation
+            // during its creation.
+            // We assume that the when-clauses and their evaluation results haven't changed for those
+            // elements to which foreach element production already applied. Such changes are handled
+            // by the impact analyzer for the when-clause expressions.
+            // We loop over the ForEachContext elements attached to the TextBlock that documents
+            // the creation of elementToUpdate, filtering for those that are for foreachPredicatePropertyInit
+            // and having elementToUpdate as their source element (could be different in case of
+            // nested foreach templates). Existing ForEachContext objects are updated; new elements
+            // are produced if the template of the foreach-element differ. Existing ForEachContext
+            // objects can be updated with newly-produced objects. If the ForEachContext list is
+            // preempted before all elements have been produced, new ForEachContext elements are
+            // appended to the text block. If there are trailing not re-used ForEachContext elements,
+            // they are deleted.
+
+            // from the following ForEachContext elements select the sub-sequence for which all elements
+            // refer to the foreachPredicatePropertyInit
             Collection<EObject> textBlocks = getOppositeEndFinder().navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
-            if (!textBlocks.isEmpty()) {
-                TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
-                if (foreachWasExecutedFor(textBlock)) {
-                    // TODO this would be the place where to identify changes and carefully replace/remove/add only single elements
-                    Collection<Object> newFeatureValue = new BasicEList<Object>();
-                    for (Object foreachElement : foreachElements) {
-                        EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate, getOppositeEndFinder());
-                        if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
-                                || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
-                                        .isContainment()) {
-                            // assign to elementToUpdate's Resource as a default, in case it's not added to a
-                            // containment reference
-                            elementToUpdate.eResource().getContents().add(producedElement);
-                        }
-                        newFeatureValue.add(producedElement);
+            TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
+            if (foreachWasExecutedFor(textBlock)) {
+                Iterator<ForEachContext> foreachContextsIterator = textBlock.getForEachContext().iterator();
+                ForEachContext nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
+                Collection<Object> newFeatureValue = new BasicEList<Object>();
+                for (Object foreachElement : foreachElements) {
+                    EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate,
+                            getOppositeEndFinder(), nextForEachContext);
+                    if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
+                            || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
+                                    .isContainment()) {
+                        // assign to elementToUpdate's Resource as a default, in case it's not added to a
+                        // containment reference
+                        elementToUpdate.eResource().getContents().add(producedElement);
                     }
-                    if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
+                    newFeatureValue.add(producedElement);
+                    if (nextForEachContext != null) {
+                        nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
+                    }
+                }
+                // delete trailing ForEachContexts
+                while (nextForEachContext != null) {
+                    foreachContextsIterator.remove();
+                    nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
+                }
+                if (foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().isMany()) {
+                    elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
+                            newFeatureValue);
+                } else {
+                    if (newFeatureValue.isEmpty()) {
                         elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
-                                newFeatureValue);
+                                null);
                     } else {
-                        if (newFeatureValue.isEmpty()) {
-                            elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
-                                    null);
-                        } else {
-                            elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
-                                    newFeatureValue.iterator().next()); // pick first element
-                        }
+                        elementToUpdate.eSet(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature(),
+                                newFeatureValue.iterator().next()); // pick first element
                     }
                 }
             }
         }
     }
 
-    private void addForeachContext(TextBlock textBlock, Object foreachElement, EObject elementToUpdate, EObject producedElement) {
-        ForEachContext foreachContext = createForeachContext(elementToUpdate, foreachElement, producedElement);
-        textBlock.getForEachContext().add(foreachContext);
-    }
-
-    private void deleteObsoleteForeachContexts(TextBlock textBlock, Object foreachElement) {
-        // delete now obsolete ForEachContext elements
-        for (Iterator<ForEachContext> existingForeachContextIterator = textBlock.getForEachContext()
-                .iterator(); existingForeachContextIterator.hasNext();) {
-            ForEachContext existingForeachContext = existingForeachContextIterator.next();
-            if (existingForeachContext.getForeachPedicatePropertyInit() == foreachPredicatePropertyInit &&
-                    existingForeachContext.getContextElement() == foreachElement) {
-                existingForeachContextIterator.remove();
+    /**
+     * Finds the next {@link ForEachContext} in the collection iterated by <code>foreachContextIterator</code> that is
+     * for the same {@link #foreachPredicatePropertyInit property init} as this updater and has
+     * <code>elementToUpdate</code> as its {@link ForEachContext#getSourceModelElement() source element}. If no such
+     * element is found, <code>null</code> is returned
+     * 
+     * Postcondition: if a non-<code>null</code> result is returned, the <code>foreachContextIterator</code> is at that
+     * element so that calling {@link Iterator#remove()} removes the element just returned
+     * 
+     * @param foreachContextIterator
+     *            must not be <code>null</code>
+     */
+    private ForEachContext getNextForeachContext(Iterator<ForEachContext> foreachContextIterator, EObject elementToUpdate) {
+        ForEachContext result = null;
+        while (foreachContextIterator.hasNext() && result == null) {
+            ForEachContext fec = foreachContextIterator.next();
+            if (fec.getForeachPedicatePropertyInit().equals(foreachPredicatePropertyInit)) {
+                result = fec;
             }
         }
+        return result;
     }
 
-    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement, EObject producedElement) {
+
+    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement,
+            EObject producedElement, Template template) {
         // create ForEachContext element documenting what just happened in the TextBlocks model
         ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
         foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
         foreachContext.setSourceModelElement(elementToUpdate);
-        // TODO this cast is probably not safe, particularly if the foreach base expression return an non-EObject type such as Boolean or Integer or String
-        foreachContext.setContextElement((EObject) foreachElement);
+        if (foreachElement instanceof EObject) {
+            foreachContext.setContextElement((EObject) foreachElement);
+        } else if (foreachElement instanceof String) {
+            foreachContext.setContextString((String) foreachElement);
+        } // else it must have been a Boolean which we don't record
+        foreachContext.setTemplateUsedForProduction(template);
         foreachContext.setResultModelElement(producedElement);
         return foreachContext;
     }
 
     /**
      * Tries to find the execution of {@link #foreachPredicatePropertyInit}.
-     * {@link ForeachPredicatePropertyInit#getInjectorActionsBlock() getInjectorActionsBlock()} documented
-     * inside <code>textBlock</code>.
+     * {@link ForeachPredicatePropertyInit#getInjectorActionsBlock() getInjectorActionsBlock()} documented inside
+     * <code>textBlock</code>.
      */
     private boolean foreachWasExecutedFor(TextBlock textBlock) {
         return TcsUtil.wasExecuted((ContextTemplate) textBlock.getType().getParseRule(),
                 textBlock.getParentAltChoices(), getSequenceElement());
     }
 
+    /**
+     * Determines the template to use to produce the element for the given <code>foreachElement</code> which is a result
+     * object from the foreach-expression's evaluation result. If a <code>null</code> <code>forEachContext</code> is
+     * passed, a new element is produced and a new {@link ForEachContext} will be constructed and appended to the
+     * <code>textBlock</code>'s {@link TextBlock#getForEachContext() foreach contexts}, documenting this rule execution.
+     * <p>
+     * 
+     * If a non-<code>null</code> <code>forEachContext</code> is passed, two cases are possible. If the template that
+     * would be used now for production is the same as the one pointed to by the {@link ForEachContext} and the same
+     * foreach result was used, no production is necessary. The {@link ForEachContext} as well as its element can be
+     * re-used. The {@link ForEachContext#getResultModelElement() result element} of the {@link ForEachContext} is used
+     * as this method's result in this case.
+     * <p>
+     * 
+     * If the template to use for production differs from the one in the <code>forEachContext</code> or the production
+     * was carried out for a different foreach result, the production is executed and the {@link ForEachContext} is
+     * updated with the results.
+     */
     private EObject produceElement(Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
-            OppositeEndFinder oppositeEndFinder) {
+            OppositeEndFinder oppositeEndFinder, ForEachContext forEachContext) {
         Template template = null; // null means "don't produce"
         if (foreachElement instanceof Boolean) {
             if ((Boolean) foreachElement) {
@@ -325,7 +413,27 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         }
         EObject result = null;
         if (template != null) {
-            result = produceWith(template, foreachElement, textBlock, elementToUpdate, oppositeEndFinder);
+            if (forEachContext == null || forEachContext.getTemplateUsedForProduction() != template ||
+                    forEachContext.getContextElement() != foreachElement) {
+                result = produceWith(template, foreachElement, textBlock, elementToUpdate, oppositeEndFinder);
+                if (forEachContext == null) {
+                    ForEachContext newForEachContext = createForeachContext(elementToUpdate, foreachElement, result, template);
+                    // no concurrent modification exception can occur here because forEachContext is null
+                    // which avoids further calls to the iterator's next() operation
+                    textBlock.getForEachContext().add(newForEachContext);
+                } else {
+                    forEachContext.setTemplateUsedForProduction(template);
+                    forEachContext.setResultModelElement(result);
+                    if (foreachElement instanceof EObject) {
+                        forEachContext.setContextElement((EObject) foreachElement);
+                    } else if (foreachElement instanceof String) {
+                        forEachContext.setContextString((String) foreachElement);
+                    }
+                }
+            } else {
+                // re-use result object from ForEachContext:
+                result = forEachContext.getResultModelElement();
+            }
         }
         return result;
     }
@@ -335,18 +443,19 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * {@link ObservableInjectingParser#setCurrentForeachElement(Object) foreach element} on the parser can easily be
      * set to <code>foreachElement</code>. Tricky is establishing the #context stack.
      * 
+     * @param textBlock
+     *            required to construct a context stack if necessary and to initialize the lexer's token stream
      * @return the element produced
      */
-    private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock,
-            EObject elementToUpdate, OppositeEndFinder oppositeEndFinder) {
+    private EObject produceWith(Template template, Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
+            OppositeEndFinder oppositeEndFinder) {
         IRuleName ruleNameFinder = parserFactory.getRuleNameFinder();
         String mode = null;
         try {
             String ruleName = ruleNameFinder.getRuleName(template, mode);
-            Lexer lexer = parserFactory.createLexer(
-                    new ANTLRStringStream(getRootBlock(textBlock).getCachedString()));
-            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer),
-                    elementToUpdate.eResource().getResourceSet());
+            Lexer lexer = parserFactory.createLexer(new ANTLRStringStream(getRootBlock(textBlock).getCachedString()));
+            ObservableInjectingParser parser = parserFactory.createParser(new CommonTokenStream(lexer), elementToUpdate
+                    .eResource().getResourceSet());
             DelegationParsingObserver delegator = new DelegationParsingObserver();
             IParsingObserver originalObserver = parser.getObserver();
             if (originalObserver != null) {
@@ -362,14 +471,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
             }
             parser.setCurrentForeachElement(foreachElement);
             TbParsingUtil.constructContext(textBlock, parser);
-            deleteObsoleteForeachContexts(textBlock, foreachElement); // must be deleted AFTER ContextBuilder was constructed because it requires the ForEachContext elements
             EObject parseReturn = (EObject) methodToCall.invoke(parser);
             if (parseReturn == null) {
                 throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
                         + ". Parse errors: " + parser.getInjector().getErrorList());
             }
             parser.setDelayedReferencesAfterParsing(); // TODO instead of using DelayedReference stuff, migrate to model updaters
-            addForeachContext(textBlock, foreachElement, elementToUpdate, parseReturn);
             return parseReturn;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -384,117 +491,17 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         return result;
     }
 
-    /*
-     * This code copied from DelayedReferencesHelper:
-     * 
-    private Object setReference(ObservableInjectingParser parser, Object foreachElement, String ruleName) throws Exception {
-        // TODO need to determine and set context element
-        
-        // invoke the parser to execute the template
-        Method methodToCall = parser.getClass().getMethod(ruleName);
-        // parser.reset();
-        if (!Modifier.isFinal(methodToCall.getModifiers())) {
-            throw new UnknownProductionRuleException(ruleName + " is not a production rule in generated Parser.");
-        }
-        boolean originalResolveProxiesValue = parser.isResolveProxies();
-        parser.setResolveProxies(false);
-        DelegationParsingObserver delegator = new DelegationParsingObserver();
-        IParsingObserver originalObserver = parser.getObserver();
-        if (originalObserver != null) {
-            delegator.addParsingObserver(originalObserver);
-        }
-        delegator.addParsingObserver(new ForeachParsingObserver((TextBlock) reference.getTextBlock()));
-        parser.setObserver(delegator);
-
-        IModelElementProxy proxyForContextElement = null;
-        if (reference.getContextElement() instanceof IModelElementProxy) {
-            proxyForContextElement = (IModelElementProxy) reference.getContextElement();
-        } else {
-            proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
-        }
-
-        parser.setCurrentForeachElement(foreachElement);
-
-        if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
-            parser.addContext(proxyForContextElement);
-            if (proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
-                parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement, reference.getContextElement(),
-                // no creation context element needs to be provided here because the proxy has just been created and has not been
-                // added to any other context
-                null);
-            }
-        } else {
-            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
-        }
-        if (reference.hasContext() && foreachElement instanceof EObject) {
-            ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(foreachElement);
-            if (parser.getContextManager().getContextForElement(foreachElement) == null) {
-                parser.addContext(proxyForNext);
-                parser.getContextManager().notifyProxyResolvedWith(proxyForNext, foreachElement,
-                // no creation context element needs to be provided here because the proxy has just been created and has not been
-                // added to any other context
-                 null);
-            } else {
-                parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created elsewhere
-            }
-        }
-        try {
-            Object parseReturn = methodToCall.invoke(parser);
-            if (parseReturn == null) {
-                throw new ModelElementCreationException("Unable to create model element using parse rule " + ruleName
-                        + ". Parse errors: " + parser.getInjector().getErrorList());
-            }
-            // add the parsed part to the object
-            // first try to resolve if there is a model element that already
-            // exists and can be reused
-            // EObject candidate = findCandidateFromProxy((EObject)
-            // reference.getModelElement(),
-            // reference.getPropertyName(), parseReturn, (EObject)
-            // reference.getElementForSelf(),//(EObject) next,
-            // (ForeachPredicatePropertyInit) reference.getQueryElement(),
-            // (TextBlock) reference.getTextBlock());
-            if (reusableResultElement != null) {
-                // element already exists so we can reuse it
-                reference.setRealValue(reusableResultElement);
-                ((ModelElementProxy) parseReturn).setRealObject(reusableResultElement);
-                return;
-            } else {
-                reference.setRealValue(injector.createOrResolve(parseReturn, null, null));
-                // by default use partition of reference.getModelElement
-                if (reference.getModelElement() instanceof EObject && reference.getRealValue() instanceof EObject) {
-                    ((EObject) reference.getModelElement()).eResource().getContents().add((EObject) reference.getRealValue());
-                }
-                modelAdapter.set(reference.getModelElement(), reference.getPropertyName(), reference.getRealValue());
-                if (reference.getTextBlock() != null) {
-                    addForEachContext((TextBlock) reference.getTextBlock(), (EObject) reference.getModelElement(),
-                            (EObject) foreachElement, (ForeachPredicatePropertyInit) reference.getQueryElement(),
-                            (EObject) reference.getRealValue(), ((EObject) reference.getModelElement()).eResource()
-                                    .getResourceSet());
-                }
-            }
-        } finally {
-            if (reference.hasContext() && foreachElement instanceof EObject) {
-                parser.leaveContext();
-            }
-            parser.getCurrentContextStack().pop();
-            parser.setObserver(originalObserver);
-            parser.setResolveProxies(originalResolveProxiesValue);
-        }
-    }
-    */
-    
     /**
-     * Determines for an {@link EObject} result of the foreach base expression which template
-     * to use to produce the element. If there is no {@link PredicateSemantic} associated, use the
-     * <code>foreachElement</code>'s type and the {@link ForeachPredicatePropertyInit#getMode() global mode}
-     * to decide which template to use (using {@link TcsUtil#getTemplateMode(Template)}). If no template
-     * is found, a {@link RuntimeException} is thrown.
+     * Determines for an {@link EObject} result of the foreach base expression which template to use to produce the
+     * element. If there is no {@link PredicateSemantic} associated, use the <code>foreachElement</code>'s type and the
+     * {@link ForeachPredicatePropertyInit#getMode() global mode} to decide which template to use (using
+     * {@link TcsUtil#getTemplateMode(Template)}). If no template is found, a {@link RuntimeException} is thrown.
      */
     private Template findTemplate(EObject foreachElement) {
         Template result = null;
         if (foreachPredicatePropertyInit.getPredicateSemantic().isEmpty()) {
             String mode = foreachPredicatePropertyInit.getMode();
-            result = TcsUtil.findTemplate(foreachElement.eClass(), mode, /* TODO partition scope */ null);
+            result = TcsUtil.findTemplate(foreachElement.eClass(), mode, /* TODO partition scope */null);
         } else {
             OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
             Helper oclHelper = ocl.createOCLHelper();
@@ -504,14 +511,18 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     OCLExpression when;
                     // TODO this try/catch will probably disappear when we're compiling the OCL ASTs into the FURCAS mapping
                     try {
+                        // TODO cache compiled expressions; caution: foreachElement.eClass() may be more specific than real context type; obtain context type from foreach expression's type
                         when = oclHelper.createQuery(whenClause.getWhen());
                     } catch (ParserException e) {
                         throw new RuntimeException(e);
                     }
-                    Boolean match = (Boolean) ocl.evaluate(foreachElement, when);
-                    if (match) {
-                        result = whenClause.getAs();
-                        break;
+                    Object whenResult = ocl.evaluate(foreachElement, when);
+                    if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != whenResult) {
+                        Boolean match = (Boolean) ocl.evaluate(foreachElement, when);
+                        if (match) {
+                            result = whenClause.getAs();
+                            break;
+                        }
                     }
                 } else {
                     // no when clause means a match

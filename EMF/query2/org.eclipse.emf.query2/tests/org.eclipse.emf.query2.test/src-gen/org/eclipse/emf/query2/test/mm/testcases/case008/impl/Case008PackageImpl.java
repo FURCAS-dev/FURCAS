@@ -716,31 +716,31 @@ public class Case008PackageImpl extends EPackageImpl implements Case008Package {
 		u8EClass.getESuperTypes().add(this.getT8());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(s8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, "S8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getS8_Field1(), ecorePackage.getEInt(), "field1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getS8_Field2(), ecorePackage.getEString(), "field2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getS8_Structure1(), this.getT8(), null, "structure1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(s8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, "S8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getS8_Field1(), ecorePackage.getEInt(), "field1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getS8_Field2(), ecorePackage.getEString(), "field2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getS8_Structure1(), this.getT8(), null, "structure1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.S8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(t8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, "T8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getT8_Field1(), ecorePackage.getEInt(), "field1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getT8_Field2(), ecorePackage.getEString(), "field2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(t8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, "T8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getT8_Field1(), ecorePackage.getEInt(), "field1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getT8_Field2(), ecorePackage.getEString(), "field2", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.T8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(a8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, "A8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getA8_OneEnumerationE(), this.getE8(), "oneEnumerationE", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8_OneStructureS(), this.getS8(), null, "oneStructureS", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8_OneStructureT(), this.getT8(), null, "oneStructureT", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8_OneStructureV(), this.getV8(), null, "oneStructureV", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getA8_ManyEnumerationE(), this.getE8(), "manyEnumerationE", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8_ManyStructureS(), this.getS8(), null, "manyStructureS", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, "A8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getA8_OneEnumerationE(), this.getE8(), "oneEnumerationE", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8_OneStructureS(), this.getS8(), null, "oneStructureS", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8_OneStructureT(), this.getT8(), null, "oneStructureT", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8_OneStructureV(), this.getV8(), null, "oneStructureV", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getA8_ManyEnumerationE(), this.getE8(), "manyEnumerationE", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8_ManyStructureS(), this.getS8(), null, "manyStructureS", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case008.A8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(u8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.U8.class, "U8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getU8_SubField1(), ecorePackage.getEBoolean(), "subField1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.U8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(u8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.U8.class, "U8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getU8_SubField1(), ecorePackage.getEBoolean(), "subField1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.U8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(v8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.V8.class, "V8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getV8_Structure1(), this.getV8(), null, "structure1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.V8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(v8EClass, org.eclipse.emf.query2.test.mm.testcases.case008.V8.class, "V8", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getV8_Structure1(), this.getV8(), null, "structure1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case008.V8.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
-		initEEnum(e8EEnum, org.eclipse.emf.query2.test.mm.testcases.case008.E8.class, "E8");
+		initEEnum(e8EEnum, org.eclipse.emf.query2.test.mm.testcases.case008.E8.class, "E8"); //$NON-NLS-1$
 		addEEnumLiteral(e8EEnum, org.eclipse.emf.query2.test.mm.testcases.case008.E8.LABEL1);
 		addEEnumLiteral(e8EEnum, org.eclipse.emf.query2.test.mm.testcases.case008.E8.LABEL2);
 
@@ -759,75 +759,75 @@ public class Case008PackageImpl extends EPackageImpl implements Case008Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (s8EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.S8",
-			 "metaObjectMofId", "48201D2241442DE31B4A11DDBD9F00199904B925",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.S8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48201D2241442DE31B4A11DDBD9F00199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (t8EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.T8",
-			 "metaObjectMofId", "48201D2241442DE61B4A11DD94EC00199904B925",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.T8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48201D2241442DE61B4A11DD94EC00199904B925", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a8EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.A8",
-			 "metaObjectMofId", "45F120A5127A94999671491413379870E97DF87B",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.A8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5127A94999671491413379870E97DF87B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8_OneStructureS(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A53075DF5D05334C0022C69986A32037AD"
+			 "ovaMofId", "45F120A53075DF5D05334C0022C69986A32037AD" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8_OneStructureT(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A5BAB50092ECBE47273671E48FAC25CD5C"
+			 "ovaMofId", "45F120A5BAB50092ECBE47273671E48FAC25CD5C" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8_OneStructureV(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "49675D0592F59800DE5811DDBD570019993BAD15"
+			 "ovaMofId", "49675D0592F59800DE5811DDBD570019993BAD15" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8_ManyStructureS(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "462F149F243C2A365E8B45CB384FCA031B1ACAB1"
+			 "ovaMofId", "462F149F243C2A365E8B45CB384FCA031B1ACAB1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (u8EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.U8",
-			 "metaObjectMofId", "49675BF2EEC91721DE5711DD94A10019993BAD15",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.U8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "49675BF2EEC91721DE5711DD94A10019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (v8EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.V8",
-			 "metaObjectMofId", "49675BF2EEC91723DE5711DD86870019993BAD15",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.V8", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "49675BF2EEC91723DE5711DD86870019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

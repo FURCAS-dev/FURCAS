@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -211,8 +211,6 @@ public class CompletePropertyImpl
 				return getImplementationClass();
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
 				return getImplementation();
-			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
-				return getFeaturingClass();
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -512,8 +510,6 @@ public class CompletePropertyImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.COMPLETE_PROPERTY__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case PivotPackage.COMPLETE_PROPERTY__FEATURING_CLASS:
-				return getFeaturingClass() != null;
 			case PivotPackage.COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.COMPLETE_PROPERTY__TEMPLATE_PARAMETER:

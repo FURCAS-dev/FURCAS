@@ -196,7 +196,7 @@ public class B25Impl extends A4Impl implements B25 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (externalId: ");
+		result.append(" (externalId: "); //$NON-NLS-1$
 		result.append(externalId);
 		result.append(')');
 		return result.toString();

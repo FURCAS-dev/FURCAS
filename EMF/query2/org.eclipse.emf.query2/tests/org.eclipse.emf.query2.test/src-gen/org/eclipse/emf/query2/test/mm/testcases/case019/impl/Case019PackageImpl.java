@@ -525,10 +525,10 @@ public class Case019PackageImpl extends EPackageImpl implements Case019Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(b19EClass, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, "B19", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getB19_TranslatableTextShort1(), theCase004fPackage.getShortTranslatableTextF(), null, "translatableTextShort1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getB19_TranslatableTextVeryShort1(), theCase004fPackage.getVeryShortTranslatableTextF(), null, "translatableTextVeryShort1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getB19_TranslatableButtons(), theCase004fPackage.getButtonTextF(), null, "translatableButtons", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b19EClass, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, "B19", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getB19_TranslatableTextShort1(), theCase004fPackage.getShortTranslatableTextF(), null, "translatableTextShort1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getB19_TranslatableTextVeryShort1(), theCase004fPackage.getVeryShortTranslatableTextF(), null, "translatableTextVeryShort1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getB19_TranslatableButtons(), theCase004fPackage.getButtonTextF(), null, "translatableButtons", null, 1, -1, org.eclipse.emf.query2.test.mm.testcases.case019.B19.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -545,33 +545,33 @@ public class Case019PackageImpl extends EPackageImpl implements Case019Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (b19EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case019.B19",
-			 "metaObjectMofId", "488462FAAC487011570E11DDBB95001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case019.B19", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "488462FAAC487011570E11DDBB95001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB19_TranslatableTextShort1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "488462FAAC45FF10570E11DD81D6001558C93B47"
+			 "ovaMofId", "488462FAAC45FF10570E11DD81D6001558C93B47" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB19_TranslatableTextVeryShort1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36CF3BD0573F11DDC371001B776F88F3"
+			 "ovaMofId", "4884B46A36CF3BD0573F11DDC371001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getB19_TranslatableButtons(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36CF3BD1573F11DD8111001B776F88F3"
+			 "ovaMofId", "4884B46A36CF3BD1573F11DD8111001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

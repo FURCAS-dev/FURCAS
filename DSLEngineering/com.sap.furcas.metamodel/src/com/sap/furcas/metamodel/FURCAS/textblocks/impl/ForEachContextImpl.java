@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
@@ -32,6 +33,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextElement <em>Context Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getResultModelElement <em>Result Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getSourceModelElement <em>Source Model Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextString <em>Context String</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getTemplateUsedForProduction <em>Template Used For Production</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,6 +80,36 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
      * @ordered
      */
         protected EObject sourceModelElement;
+
+        /**
+     * The default value of the '{@link #getContextString() <em>Context String</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getContextString()
+     * @generated
+     * @ordered
+     */
+    protected static final String CONTEXT_STRING_EDEFAULT = null;
+
+        /**
+     * The cached value of the '{@link #getContextString() <em>Context String</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getContextString()
+     * @generated
+     * @ordered
+     */
+    protected String contextString = CONTEXT_STRING_EDEFAULT;
+
+        /**
+     * The cached value of the '{@link #getTemplateUsedForProduction() <em>Template Used For Production</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTemplateUsedForProduction()
+     * @generated
+     * @ordered
+     */
+    protected Template templateUsedForProduction;
 
         /**
      * <!-- begin-user-doc -->
@@ -251,6 +284,65 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getContextString() {
+        return contextString;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContextString(String newContextString) {
+        String oldContextString = contextString;
+        contextString = newContextString;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING, oldContextString, contextString));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Template getTemplateUsedForProduction() {
+        if (templateUsedForProduction != null && templateUsedForProduction.eIsProxy()) {
+            InternalEObject oldTemplateUsedForProduction = (InternalEObject)templateUsedForProduction;
+            templateUsedForProduction = (Template)eResolveProxy(oldTemplateUsedForProduction);
+            if (templateUsedForProduction != oldTemplateUsedForProduction) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
+            }
+        }
+        return templateUsedForProduction;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Template basicGetTemplateUsedForProduction() {
+        return templateUsedForProduction;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setTemplateUsedForProduction(Template newTemplateUsedForProduction) {
+        Template oldTemplateUsedForProduction = templateUsedForProduction;
+        templateUsedForProduction = newTemplateUsedForProduction;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -269,6 +361,11 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 if (resolve) return getSourceModelElement();
                 return basicGetSourceModelElement();
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+                return getContextString();
+            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+                if (resolve) return getTemplateUsedForProduction();
+                return basicGetTemplateUsedForProduction();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -294,6 +391,12 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)newValue);
                 return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+                setContextString((String)newValue);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+                setTemplateUsedForProduction((Template)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -318,6 +421,12 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)null);
                 return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+                setContextString(CONTEXT_STRING_EDEFAULT);
+                return;
+            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+                setTemplateUsedForProduction((Template)null);
+                return;
         }
         super.eUnset(featureID);
     }
@@ -338,8 +447,28 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
                 return resultModelElement != null;
             case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
                 return sourceModelElement != null;
+            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+                return CONTEXT_STRING_EDEFAULT == null ? contextString != null : !CONTEXT_STRING_EDEFAULT.equals(contextString);
+            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+                return templateUsedForProduction != null;
         }
         return super.eIsSet(featureID);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (contextString: ");
+        result.append(contextString);
+        result.append(')');
+        return result.toString();
     }
 
 } //ForEachContextImpl

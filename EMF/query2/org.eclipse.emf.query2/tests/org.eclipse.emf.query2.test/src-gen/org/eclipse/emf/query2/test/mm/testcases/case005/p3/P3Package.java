@@ -37,7 +37,7 @@ public interface P3Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "p3";
+	String eNAME = "p3"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -45,7 +45,7 @@ public interface P3Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case005/p3";
+	String eNS_URI = "http://sap.com/moin/testcases/case005/p3"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface P3Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case005p3";
+	String eNS_PREFIX = "case005p3"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

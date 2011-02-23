@@ -24,7 +24,7 @@ public class ConvenientUser {
 
 	public void test() {
 		final ResourceQuery<ConvenientResourceDescriptor> query = new ConvenientIndexQueryFactory().createResourceQuery();
-		query.uri("hallo");
+		query.uri("hallo"); //$NON-NLS-1$
 
 		Index index = null;
 		index.executeQueryCommand(new QueryCommand() {

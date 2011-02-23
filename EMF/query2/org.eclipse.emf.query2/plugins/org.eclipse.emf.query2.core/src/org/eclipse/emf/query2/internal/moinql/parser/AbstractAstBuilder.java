@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query2.exception.LocalizedBaseException;
 import org.eclipse.emf.query2.exception.LocalizedBaseRuntimeException;
 import org.eclipse.emf.query2.exception.LocalizedString;
+import org.eclipse.emf.query2.internal.report.ProcessErrorImpl;
+import org.eclipse.emf.query2.internal.report.ProcessWarningImpl;
 import org.eclipse.emf.query2.report.LocalizedProcessException;
 import org.eclipse.emf.query2.report.ProcessError;
-import org.eclipse.emf.query2.report.ProcessErrorImpl;
 import org.eclipse.emf.query2.report.ProcessMessage;
 import org.eclipse.emf.query2.report.ProcessReport;
 import org.eclipse.emf.query2.report.ProcessWarning;
-import org.eclipse.emf.query2.report.ProcessWarningImpl;
 
 
 /**

@@ -24,6 +24,7 @@ import javax.print.attribute.UnmodifiableSetException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiClusterInternalLinkExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiLinkExpression;
@@ -33,7 +34,6 @@ import org.eclipse.emf.query2.internal.bql.api.SpiMriSetLinkExpression;
 import org.eclipse.emf.query2.internal.fql.SpiFqlFromTypeCategory;
 import org.eclipse.emf.query2.internal.messages.BugMessages;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * The cluster navigation plan describes how the memory query implementation can navigate between the ModelElementExpression instances of a

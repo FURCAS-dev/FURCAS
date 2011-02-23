@@ -486,7 +486,7 @@ public class Case021PackageImpl extends EPackageImpl implements Case021Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a21AbstractEClass, A21Abstract.class, "A21Abstract", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a21AbstractEClass, A21Abstract.class, "A21Abstract", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

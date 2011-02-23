@@ -529,9 +529,9 @@ public class A8Impl extends EObjectImpl implements A8 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (oneEnumerationE: ");
+		result.append(" (oneEnumerationE: "); //$NON-NLS-1$
 		result.append(oneEnumerationE);
-		result.append(", manyEnumerationE: ");
+		result.append(", manyEnumerationE: "); //$NON-NLS-1$
 		result.append(manyEnumerationE);
 		result.append(')');
 		return result.toString();

@@ -214,9 +214,9 @@ public class StructInStructTpImpl extends EObjectImpl implements StructInStructT
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (Field1: ");
+		result.append(" (Field1: "); //$NON-NLS-1$
 		result.append(field1);
-		result.append(", Field2: ");
+		result.append(", Field2: "); //$NON-NLS-1$
 		result.append(field2);
 		result.append(')');
 		return result.toString();

@@ -10,8 +10,6 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.4.0,3.0.0)",
  lpg.runtime.java;bundle-version="2.0.17"
 Export-Package: org.eclipse.emf.query2,
  org.eclipse.emf.query2.exception,
- org.eclipse.emf.query2.internal.index;x-friends:="org.eclipse.emf.query2.test",
- org.eclipse.emf.query2.internal.moinql.controller;x-friends:="org.eclipse.emf.query2.test,org.eclipse.emf.query2.librarytest",
  org.eclipse.emf.query2.report
 Bundle-Vendor: Query2Core.providerName
 Bundle-ClassPath: lib/net.sourceforge.lpg.lpgjavaruntime_1.1.0.v200711021030.jar,

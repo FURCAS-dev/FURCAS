@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: KeywordsTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.ecore;
@@ -27,9 +27,4 @@ import org.eclipse.ocl.examples.test.generic.GenericKeywordsTest;
  * @author Christian W. Damus (cdamus)
  */
 public class KeywordsTest extends GenericKeywordsTest {
-
-	@Override
-	public PivotTestReflection getStaticReflection() {
-		return new PivotTestReflection(typeManager);
-	}
 }

@@ -37,7 +37,7 @@ public interface TranslatabletextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "translatabletexts";
+	String eNAME = "translatabletexts"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -45,7 +45,7 @@ public interface TranslatabletextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case019/translatabletexts";
+	String eNS_URI = "http://sap.com/moin/testcases/case019/translatabletexts"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface TranslatabletextsPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case019translatabletexts";
+	String eNS_PREFIX = "case019translatabletexts"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

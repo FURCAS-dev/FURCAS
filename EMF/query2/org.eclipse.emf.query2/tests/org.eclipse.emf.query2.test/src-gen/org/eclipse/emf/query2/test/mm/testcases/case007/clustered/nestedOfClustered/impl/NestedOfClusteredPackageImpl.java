@@ -545,13 +545,13 @@ public class NestedOfClusteredPackageImpl extends EPackageImpl implements Nested
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(nestedOfClusteredAEClass, nestedOfClusteredA.class, "nestedOfClusteredA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nestedOfClusteredAEClass, nestedOfClusteredA.class, "nestedOfClusteredA", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(nestedOfClusteredBEClass, nestedOfClusteredB.class, "nestedOfClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(nestedOfClusteredBEClass, nestedOfClusteredB.class, "nestedOfClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(nestedOfClusteredAReferencesNestedOfClusteredBEClass, NestedOfClusteredAReferencesNestedOfClusteredB.class, "NestedOfClusteredAReferencesNestedOfClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredB(), this.getnestedOfClusteredB(), null, "nestedOfClusteredB", null, 0, 1, NestedOfClusteredAReferencesNestedOfClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredA(), this.getnestedOfClusteredA(), null, "nestedOfClusteredA", null, 0, -1, NestedOfClusteredAReferencesNestedOfClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(nestedOfClusteredAReferencesNestedOfClusteredBEClass, NestedOfClusteredAReferencesNestedOfClusteredB.class, "NestedOfClusteredAReferencesNestedOfClusteredB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredB(), this.getnestedOfClusteredB(), null, "nestedOfClusteredB", null, 0, 1, NestedOfClusteredAReferencesNestedOfClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredA(), this.getnestedOfClusteredA(), null, "nestedOfClusteredA", null, 0, -1, NestedOfClusteredAReferencesNestedOfClusteredB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -565,48 +565,48 @@ public class NestedOfClusteredPackageImpl extends EPackageImpl implements Nested
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (nestedOfClusteredAEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.nestedOfClustered.nestedOfClusteredA",
-			 "metaObjectMofId", "476118E36F8F0460A96F11DCC905001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.nestedOfClustered.nestedOfClusteredA", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F8F0460A96F11DCC905001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (nestedOfClusteredBEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.nestedOfClustered.nestedOfClusteredB",
-			 "metaObjectMofId", "476118E36F8F0461A96F11DCB30F001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.nestedOfClustered.nestedOfClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F8F0461A96F11DCB30F001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredB(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.nestedOfClustered.NestedOfClusteredAReferencesNestedOfClusteredB",
-			 "metaObjectMofId", "476118E36F8F0464A96F11DC9D45001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.nestedOfClustered.NestedOfClusteredAReferencesNestedOfClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F8F0464A96F11DC9D45001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getNestedOfClusteredAReferencesNestedOfClusteredB_NestedOfClusteredA(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case007.clustered.nestedOfClustered.NestedOfClusteredAReferencesNestedOfClusteredB",
-			 "metaObjectMofId", "476118E36F8F0464A96F11DC9D45001558C93B47",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case007.clustered.nestedOfClustered.NestedOfClusteredAReferencesNestedOfClusteredB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "476118E36F8F0464A96F11DC9D45001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

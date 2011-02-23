@@ -93,6 +93,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contextString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateUsedForProduction"
+        lowerBound="1" eType="ecore:EClass TCS.ecore#//Template"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Eostoken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="Bostoken" eSuperTypes="#//AbstractToken"/>

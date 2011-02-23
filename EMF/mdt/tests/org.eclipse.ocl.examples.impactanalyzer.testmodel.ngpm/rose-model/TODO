@@ -1,0 +1,69 @@
+TODO NGPM Metamodel:
+--------------------
+
+ - Class extends EventProducer, EventProducer has :1-assoc to
+TypeDefinition for notification type: this won't fly because a class
+can emit / produce more than one event type. How should this be
+described?
+
+ - Model pre/post conditions and play with it as a S&AM
+replacement. Thoughts: This has an impact on extensibility and
+grouping of conditions. The S&AM approach has this notion of a schema
+as a grouping entity, spanning multiple actions and multiple status
+variables / values. A pre/post condition centers around the individual
+action. This makes recognizing the grouping provided by a schema much
+harder. Extensions have to happen within the expressions on the
+action. The benefit of this, however, is full visibility of the sum of
+all applicable conditions for the action which may be harder with a
+set of overlapping schemas affecting a single action. A pre/post
+condition that purely consists of a boolean expression over equality
+checks of enumeration-typed features against values of these
+enumerations can be depicted as a S&AM schema.
+
+   The next fundamental question is whether postconditions should be
+expressed primarily as separate (redundant) constraints or be derived
+from the implementation of the action. The action's implementation may
+effect the values of one or more attributes. For those where the
+attribute has an enumeration type, the connection from the action to
+the target value would be part of the "derived" S&AM diagram. At
+least, there should be a relation between the existance of a S&AM
+transition from an action to a value of an attribute and a statement
+reachable from the action's code on a reachable execution path that
+sets that attribute to the respective value.
+
+ - Investigate enums / code lists more closely. How to do value help and
+content assist for those? Is an enum / value set just another class
+declaration where the "literals" are the names of the association ends
+pointing to the class itself for the literals / code list items?
+
+ - What about handling of VOID expressions such as calling a block
+that does not define an output type?
+
+ - Take care of nested TypeDefinitions, e.g., in order to allow for
+types such as nested "collections" that correspond, e.g., with
+Set<List<SalesOrder>>. This entails respective modifications to the
+conformsTo definition on TypeDefinition.
+
+ - Allow for Block instances as values whose type is defined by the
+block's Signature. Thoughts: a Signature then acts similar to a
+Class. It defines the type of a value. SignatureTypeDefinitions define
+value types, i.e., its objects are immutable and always passed by
+value. 
+
+
+Example:
+
+class A {
+  int->A m;
+  B[ordered, unique] theBs;
+  C[ordered, unique][unique] setOfOrderedSetOfCs;
+}
+
+class B {
+}
+
+class C {
+}
+
+
+

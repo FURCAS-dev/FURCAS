@@ -13,18 +13,38 @@ package org.eclipse.emf.query.index.query.descriptors;
 import org.eclipse.emf.common.util.URI;
 
 /**
- * @author Martin Strenge, SAP AG
- * @author Bernd Kolb, SAP AG
- * 
+ * <p>
+ * 	Information about EObjects is kept in the EObjectDescriptor.
+ * </p>
+ * <p>
+ * It contains information like:
+ * <li>type</li>
+ * <li>container resource</li>
+ * <li>name</li>
+ * <li>EObject fragment</li>
+ * <li>userdata</li>
+ * </p>
  */
 public interface EObjectDescriptor {
 
+	/**
+	 * @return uri of the resource containing the EObject
+	 */
 	URI getResourceURI();
 
+	/**
+	 * @return name of the EObject
+	 */
 	String getName();
 
+	/**
+	 * @return EObject fragment in uri
+	 */
 	String getFragment();
 
+	/**
+	 * @return type uri of the EObject
+	 */
 	String getEClassURI();
 
 	String getUserData(String key);

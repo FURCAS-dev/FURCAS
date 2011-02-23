@@ -485,7 +485,7 @@ public class Case015PackageImpl extends EPackageImpl implements Case015Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a15EClass, org.eclipse.emf.query2.test.mm.testcases.case015.A15.class, "A15", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a15EClass, org.eclipse.emf.query2.test.mm.testcases.case015.A15.class, "A15", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -502,15 +502,15 @@ public class Case015PackageImpl extends EPackageImpl implements Case015Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a15EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case015.A15",
-			 "metaObjectMofId", "45F120A5246C82FD044E453E0159957A8458C9DB",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case015.A15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5246C82FD044E453E0159957A8458C9DB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

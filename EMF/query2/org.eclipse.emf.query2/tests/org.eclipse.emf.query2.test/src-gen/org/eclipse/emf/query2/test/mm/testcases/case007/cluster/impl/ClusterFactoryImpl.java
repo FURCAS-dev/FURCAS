@@ -35,7 +35,7 @@ public class ClusterFactoryImpl extends EFactoryImpl implements ClusterFactory {
 	 */
 	public static ClusterFactory init() {
 		try {
-			ClusterFactory theClusterFactory = (ClusterFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/cluster"); 
+			ClusterFactory theClusterFactory = (ClusterFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case007/cluster"); //$NON-NLS-1$ 
 			if (theClusterFactory != null) {
 				return theClusterFactory;
 			}
@@ -68,7 +68,7 @@ public class ClusterFactoryImpl extends EFactoryImpl implements ClusterFactory {
 			case ClusterPackage.CLUSTER_B: return createClusterB();
 			case ClusterPackage.CLUSTER_AREFERENCES_CLUSTER_B: return createClusterAReferencesClusterB();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

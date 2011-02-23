@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RealValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: RealValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -20,18 +20,20 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class RealValueImpl extends AbstractValue implements RealValue
 {
 	private static final int MINIMUM_SCALE = Double.SIZE/2;		// Gives nearly twice the precision of Double
 
-	protected static RealValue divideBigDecimal(ValueFactory valueFactory, BigDecimal left, BigDecimal right) {
+	protected static RealValue divideBigDecimal(ValueFactory valueFactory, BigDecimal left, BigDecimal right) throws InvalidValueException {
 		try {
 			if (right.signum() == 0) {
 				return null;
@@ -40,12 +42,12 @@ public class RealValueImpl extends AbstractValue implements RealValue
 			BigDecimal result = left.divide(right, scale, RoundingMode.HALF_EVEN);
 			return valueFactory.realValueOf(result);
 		} catch (ArithmeticException e) {
-			return valueFactory.createInvalidValue(null, null, "Divide failure", e);
+			throw new InvalidValueException(e);
 		}
 	}
 
 	private final BigDecimal value;
-	private IntegerValue integerValue = null;	// Lazily computed exact IntegerValue or InvalidValue
+	private Object integerValue = null;	// Lazily computed exact IntegerValue or Exception
 	
 	public RealValueImpl(ValueFactory valueFactory, double value) {
 		this(valueFactory, BigDecimal.valueOf(value));
@@ -65,6 +67,11 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return valueFactory.realValueOf(value.add(right.bigDecimalValue()));
 	}
 
+	@Override
+	public Double asDouble() {
+		return value.doubleValue();
+	}
+
 	public Object asObject() {
 		return value;
 	}
@@ -74,21 +81,24 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return this;
 	}
 
+	public Value asValidValue() {
+		return this;
+	}
+
 	public BigDecimal bigDecimalValue() {
 		return value;
 	}
 
 	public int compareTo(NumericValue o) {
-		RealValue that = o.toRealValue();
-		if (that instanceof RealValue) {
-			return value.compareTo(((RealValue)that).bigDecimalValue());
-		}
-		else {
-			return Double.compare(doubleValue(), o.doubleValue());
+		try {
+			RealValue that = o.toRealValue();
+			return value.compareTo(that.bigDecimalValue());
+		} catch (InvalidValueException e) {
+			throw new IllegalArgumentException(e);
 		}
 	}
 
-	public RealValue divide(RealValue right) {
+	public RealValue divide(RealValue right) throws InvalidValueException {
 		return divideBigDecimal(valueFactory, value, right.bigDecimalValue());
 	}
 
@@ -103,15 +113,20 @@ public class RealValueImpl extends AbstractValue implements RealValue
 			return (bigDecimalValue != null) && (value.compareTo(bigDecimalValue) == 0);
 		}
 		if (obj instanceof IntegerValue) {
-			return toIntegerValue().equals(obj);
+			BigDecimal bigDecimalValue = ((IntegerValue)obj).bigDecimalValue();
+			return (bigDecimalValue != null) && (value.compareTo(bigDecimalValue) == 0);
 		}
-		if (obj instanceof NumericValue) {
-			RealValue thatValue = ((NumericValue) obj).toRealValue();
-			if (thatValue != null) {
-				BigDecimal bigDecimalValue = ((RealValue)thatValue).bigDecimalValue();
-				return (bigDecimalValue != null) && (value.compareTo(bigDecimalValue) == 0);
+/*		try {
+			if (obj instanceof NumericValue) {
+				RealValue thatValue = ((NumericValue) obj).toRealValue();
+				if (thatValue != null) {
+					BigDecimal bigDecimalValue = ((RealValue)thatValue).bigDecimalValue();
+					return (bigDecimalValue != null) && (value.compareTo(bigDecimalValue) == 0);
+				}
 			}
-		}
+		} catch (InvalidValueException e) {
+			throw new IllegalArgumentException(e);
+		} */
 		return false;
 	}
 
@@ -119,14 +134,37 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return valueFactory.integerValueOf(value.setScale(0, RoundingMode.FLOOR).toBigInteger());
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
-		return standardLibrary.getRealType();
+	protected Object getIntegerValue() {
+		if (integerValue == null) {
+			try {
+				BigInteger intValue = value.toBigIntegerExact();
+				integerValue = valueFactory.integerValueOf(intValue);
+			}
+			catch (ArithmeticException e) {
+				integerValue = e;			
+			}
+		}
+		return integerValue;
+	}
+
+	public Type getType(TypeManager typeManager, Type staticType) {
+		return typeManager.getRealType();
 	}
 
 	@Override
 	public int hashCode() {
-		IntegerValue intValue = toIntegerValue();
-		return intValue.hashCode();
+		Object intValue = getIntegerValue();
+		if (intValue instanceof IntegerValue) {
+			return intValue.hashCode();
+		} 
+		else {
+			return value.hashCode();
+		}
+	}
+
+	@Override
+	public RealValue isRealValue() {
+		return this;
 	}
 
 	public RealValue max(RealValue right) {
@@ -164,17 +202,15 @@ public class RealValueImpl extends AbstractValue implements RealValue
 		return valueFactory.realValueOf(value.subtract(right.bigDecimalValue()));
 	}
 
-	public IntegerValue toIntegerValue() {
-		if (integerValue == null) {
-			try {
-				BigInteger intValue = value.toBigIntegerExact();
-				integerValue = valueFactory.integerValueOf(intValue);
-			}
-			catch (ArithmeticException e) {
-				integerValue = valueFactory.createInvalidValue(this, null, "not integer", e);			
-			}
+	@Override
+	public IntegerValue toIntegerValue() throws InvalidValueException {
+		Object intValue = getIntegerValue();
+		if (integerValue instanceof Exception) {
+			throw new InvalidValueException((Exception)intValue);			
 		}
-		return integerValue;
+		else {
+			return (IntegerValue) intValue;
+		}
 	}
 
 	@Override
@@ -186,14 +222,4 @@ public class RealValueImpl extends AbstractValue implements RealValue
 	public String toString() {
 		return value.toString();
 	}
-
-//	public <T extends NumericValue> T toValue(Class<T> numericClass) {
-//		if (numericClass.isAssignableFrom(RealValue.class)) {
-//			return (T) this;
-//		}
-//		if (numericClass.isAssignableFrom(IntegerValue.class)) {
-//			return (T) toIntegerValue();
-//		}
-//		return (T) ValueUtils.createInvalidValue(numericClass, null, "unsupported RealValue", null);
-//	}
 }

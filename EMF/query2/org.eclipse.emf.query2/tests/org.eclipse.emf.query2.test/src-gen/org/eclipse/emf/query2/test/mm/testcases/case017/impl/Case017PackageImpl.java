@@ -506,9 +506,9 @@ public class Case017PackageImpl extends EPackageImpl implements Case017Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a17EClass, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, "A17", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA17_ToEnd(), this.getA17(), null, "toEnd", null, 1, 4, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA17_FromEnd(), this.getA17(), null, "fromEnd", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a17EClass, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, "A17", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA17_ToEnd(), this.getA17(), null, "toEnd", null, 1, 4, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA17_FromEnd(), this.getA17(), null, "fromEnd", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case017.A17.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -525,39 +525,39 @@ public class Case017PackageImpl extends EPackageImpl implements Case017Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a17EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case017.A17",
-			 "metaObjectMofId", "45F120A5262EE936B46A48E038C5DC113D1AFB10",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case017.A17", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5262EE936B46A48E038C5DC113D1AFB10", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA17_ToEnd(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case017.Composition",
-			 "metaObjectMofId", "45F120A51501A7CDF32B42880969CB0C3C2848E5",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case017.Composition", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51501A7CDF32B42880969CB0C3C2848E5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA17_FromEnd(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case017.Composition",
-			 "metaObjectMofId", "45F120A51501A7CDF32B42880969CB0C3C2848E5",
-			 "storedEnd", "0",
-			 "compositeEnd", "0",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case017.Composition", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51501A7CDF32B42880969CB0C3C2848E5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

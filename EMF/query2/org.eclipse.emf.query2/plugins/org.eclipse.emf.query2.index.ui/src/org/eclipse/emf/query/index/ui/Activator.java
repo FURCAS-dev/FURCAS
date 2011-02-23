@@ -1,5 +1,6 @@
 package org.eclipse.emf.query.index.ui;
 
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -44,10 +45,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
-		// Dumping of Indexes at the close of IDE, so that when the IDE is
-		// started for the next time, indices must not be build again and
-		// instead loaded from saved ones.
-		IndexFactory.dumpIndexes();
+		
 		super.stop(context);
 	}
 

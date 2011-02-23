@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.3 2011/01/27 06:59:07 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.5 2011/02/15 19:58:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -37,16 +37,13 @@ import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
-import org.eclipse.ocl.examples.pivot.internal.operations.MultiplicityElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -58,14 +55,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isOrdered <em>Is Ordered</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isUnique <em>Is Unique</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getLower <em>Lower</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getUpper <em>Upper</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementationClass <em>Implementation Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getFeaturingClass <em>Featuring Class</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isStatic <em>Is Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getTemplateParameter <em>Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#getOwningTemplateParameter <em>Owning Template Parameter</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl#isReadOnly <em>Is Read Only</em>}</li>
@@ -88,128 +77,8 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * @generated
  */
 public class PropertyImpl
-		extends TypedElementImpl
+		extends FeatureImpl
 		implements Property {
-
-	/**
-	 * The default value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOrdered()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_ORDERED_EDEFAULT = false;
-
-	/**
-	 * The flag representing the value of the '{@link #isOrdered() <em>Is Ordered</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isOrdered()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IS_ORDERED_EFLAG = 1 << 9;
-
-	/**
-	 * The default value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean IS_UNIQUE_EDEFAULT = true;
-
-	/**
-	 * The flag representing the value of the '{@link #isUnique() <em>Is Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int IS_UNIQUE_EFLAG = 1 << 10;
-
-	/**
-	 * The default value of the '{@link #getLower() <em>Lower</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final BigInteger LOWER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
-
-	/**
-	 * The cached value of the '{@link #getLower() <em>Lower</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLower()
-	 * @generated
-	 * @ordered
-	 */
-	protected BigInteger lower = LOWER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getUpper() <em>Upper</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final BigInteger UPPER_EDEFAULT = new BigInteger("1"); //$NON-NLS-1$
-
-	/**
-	 * The cached value of the '{@link #getUpper() <em>Upper</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getUpper()
-	 * @generated
-	 * @ordered
-	 */
-	protected BigInteger upper = UPPER_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImplementationClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IMPLEMENTATION_CLASS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getImplementationClass() <em>Implementation Class</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImplementationClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected String implementationClass = IMPLEMENTATION_CLASS_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final CallableImplementation IMPLEMENTATION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
-	protected CallableImplementation implementation = IMPLEMENTATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTemplateParameter() <em>Template Parameter</em>}' reference.
@@ -458,7 +327,6 @@ public class PropertyImpl
 	 */
 	protected PropertyImpl() {
 		super();
-		eFlags |= IS_UNIQUE_EFLAG;
 		eFlags |= IS_RESOLVE_PROXIES_EFLAG;
 	}
 
@@ -470,131 +338,6 @@ public class PropertyImpl
 	@Override
 	protected EClass eStaticClass() {
 		return PivotPackage.Literals.PROPERTY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isOrdered()
-	{
-		return (eFlags & IS_ORDERED_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsOrdered(boolean newIsOrdered)
-	{
-		boolean oldIsOrdered = (eFlags & IS_ORDERED_EFLAG) != 0;
-		if (newIsOrdered) eFlags |= IS_ORDERED_EFLAG; else eFlags &= ~IS_ORDERED_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_ORDERED, oldIsOrdered, newIsOrdered));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isUnique()
-	{
-		return (eFlags & IS_UNIQUE_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIsUnique(boolean newIsUnique)
-	{
-		boolean oldIsUnique = (eFlags & IS_UNIQUE_EFLAG) != 0;
-		if (newIsUnique) eFlags |= IS_UNIQUE_EFLAG; else eFlags &= ~IS_UNIQUE_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_UNIQUE, oldIsUnique, newIsUnique));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BigInteger getLower()
-	{
-		return lower;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setLower(BigInteger newLower)
-	{
-		BigInteger oldLower = lower;
-		lower = newLower;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__LOWER, oldLower, lower));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BigInteger getUpper()
-	{
-		return upper;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setUpper(BigInteger newUpper)
-	{
-		BigInteger oldUpper = upper;
-		upper = newUpper;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__UPPER, oldUpper, upper));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public org.eclipse.ocl.examples.pivot.Class getFeaturingClass()
-	{
-		return getClass_();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean isStatic() {
-		return (eFlags & IS_STATIC_EFLAG) != 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void setIsStatic(boolean newIsStatic) {
-		boolean oldIsStatic = (eFlags & IS_STATIC_EFLAG) != 0;
-		if (newIsStatic) eFlags |= IS_STATIC_EFLAG; else eFlags &= ~IS_STATIC_EFLAG;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IS_STATIC, oldIsStatic, newIsStatic));
 	}
 
 	/**
@@ -732,57 +475,6 @@ public class PropertyImpl
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER, newOwningTemplateParameter, newOwningTemplateParameter));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetIsStatic() {
-				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getImplementationClass() {
-		return implementationClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementationClass(String newImplementationClass) {
-		String oldImplementationClass = implementationClass;
-		implementationClass = newImplementationClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLEMENTATION_CLASS, oldImplementationClass, implementationClass));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallableImplementation getImplementation() {
-		return implementation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setImplementation(CallableImplementation newImplementation) {
-		CallableImplementation oldImplementation = implementation;
-		implementation = newImplementation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PROPERTY__IMPLEMENTATION, oldImplementation, implementation));
 	}
 
 	/**
@@ -1185,76 +877,6 @@ public class PropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLowerGe0(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return MultiplicityElementOperations.validateLowerGe0(this, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUpperGeLower(DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return MultiplicityElementOperations.validateUpperGeLower(this, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BigInteger lowerBound()
-	{
-		return MultiplicityElementOperations.lowerBound(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BigInteger upperBound()
-	{
-		return MultiplicityElementOperations.upperBound(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isMultivalued()
-	{
-		return MultiplicityElementOperations.isMultivalued(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean includesCardinality(BigInteger C)
-	{
-		return MultiplicityElementOperations.includesCardinality(this, C);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean includesMultiplicity(MultiplicityElement M)
-	{
-		return MultiplicityElementOperations.includesMultiplicity(this, M);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isTemplateParameter() {
 		return ParameterableElementOperations.isTemplateParameter(this);
 	}
@@ -1381,8 +1003,6 @@ public class PropertyImpl
 				return getImplementationClass();
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				return getImplementation();
-			case PivotPackage.PROPERTY__FEATURING_CLASS:
-				return getFeaturingClass();
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
@@ -1664,8 +1284,6 @@ public class PropertyImpl
 				return IMPLEMENTATION_CLASS_EDEFAULT == null ? implementationClass != null : !IMPLEMENTATION_CLASS_EDEFAULT.equals(implementationClass);
 			case PivotPackage.PROPERTY__IMPLEMENTATION:
 				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-			case PivotPackage.PROPERTY__FEATURING_CLASS:
-				return getFeaturingClass() != null;
 			case PivotPackage.PROPERTY__OWNING_TEMPLATE_PARAMETER:
 				return basicGetOwningTemplateParameter() != null;
 			case PivotPackage.PROPERTY__TEMPLATE_PARAMETER:
@@ -1709,34 +1327,6 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == MultiplicityElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PROPERTY__IS_ORDERED: return PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED;
-				case PivotPackage.PROPERTY__IS_UNIQUE: return PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE;
-				case PivotPackage.PROPERTY__LOWER: return PivotPackage.MULTIPLICITY_ELEMENT__LOWER;
-				case PivotPackage.PROPERTY__UPPER: return PivotPackage.MULTIPLICITY_ELEMENT__UPPER;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedMultiplicityElement.class)
-		{
-			switch (derivedFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == Feature.class)
-		{
-			switch (derivedFeatureID)
-			{
-				case PivotPackage.PROPERTY__IMPLEMENTATION_CLASS: return PivotPackage.FEATURE__IMPLEMENTATION_CLASS;
-				case PivotPackage.PROPERTY__IMPLEMENTATION: return PivotPackage.FEATURE__IMPLEMENTATION;
-				case PivotPackage.PROPERTY__FEATURING_CLASS: return PivotPackage.FEATURE__FEATURING_CLASS;
-				default: return -1;
-			}
-		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (derivedFeatureID)
@@ -1756,34 +1346,6 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == MultiplicityElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.MULTIPLICITY_ELEMENT__IS_ORDERED: return PivotPackage.PROPERTY__IS_ORDERED;
-				case PivotPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE: return PivotPackage.PROPERTY__IS_UNIQUE;
-				case PivotPackage.MULTIPLICITY_ELEMENT__LOWER: return PivotPackage.PROPERTY__LOWER;
-				case PivotPackage.MULTIPLICITY_ELEMENT__UPPER: return PivotPackage.PROPERTY__UPPER;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedMultiplicityElement.class)
-		{
-			switch (baseFeatureID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == Feature.class)
-		{
-			switch (baseFeatureID)
-			{
-				case PivotPackage.FEATURE__IMPLEMENTATION_CLASS: return PivotPackage.PROPERTY__IMPLEMENTATION_CLASS;
-				case PivotPackage.FEATURE__IMPLEMENTATION: return PivotPackage.PROPERTY__IMPLEMENTATION;
-				case PivotPackage.FEATURE__FEATURING_CLASS: return PivotPackage.PROPERTY__FEATURING_CLASS;
-				default: return -1;
-			}
-		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseFeatureID)
@@ -1803,34 +1365,6 @@ public class PropertyImpl
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
-		if (baseClass == MultiplicityElement.class)
-		{
-			switch (baseOperationID)
-			{
-				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP: return PivotPackage.PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-				case PivotPackage.MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP: return PivotPackage.PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-				case PivotPackage.MULTIPLICITY_ELEMENT___LOWER_BOUND: return PivotPackage.PROPERTY___LOWER_BOUND;
-				case PivotPackage.MULTIPLICITY_ELEMENT___UPPER_BOUND: return PivotPackage.PROPERTY___UPPER_BOUND;
-				case PivotPackage.MULTIPLICITY_ELEMENT___IS_MULTIVALUED: return PivotPackage.PROPERTY___IS_MULTIVALUED;
-				case PivotPackage.MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER: return PivotPackage.PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER;
-				case PivotPackage.MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT: return PivotPackage.PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-				default: return -1;
-			}
-		}
-		if (baseClass == TypedMultiplicityElement.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
-		if (baseClass == Feature.class)
-		{
-			switch (baseOperationID)
-			{
-				default: return -1;
-			}
-		}
 		if (baseClass == ParameterableElement.class)
 		{
 			switch (baseOperationID)

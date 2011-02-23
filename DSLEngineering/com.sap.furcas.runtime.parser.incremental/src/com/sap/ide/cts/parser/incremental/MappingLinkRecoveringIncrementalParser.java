@@ -144,7 +144,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void createTBProxy2ReferenceMap() {
             tBProxy2Reference = new HashMap<TextBlockProxy, List<DelayedReference>>();
             for (DelayedReference ref : batchParser.getDelayedReferences()) {
-                if(ref.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
+                if(ref.getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE) {
                     List<DelayedReference> refs = tBProxy2Reference.get(ref.getTextBlock());
                     if(refs == null) {
                         refs = new ArrayList<DelayedReference>(3);
@@ -228,7 +228,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private TextBlockDefinition getTbDef(Template t) {
             Collection<EObject> tbDefs = oppositeEndFinder.
             	navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, t);
-            if (!tbDefs.isEmpty()) {
+            if (tbDefs != null && !tbDefs.isEmpty()) {
                 if (tbDefs.size() == 1) {
                     return (TextBlockDefinition) tbDefs.iterator().next();
                 } else {

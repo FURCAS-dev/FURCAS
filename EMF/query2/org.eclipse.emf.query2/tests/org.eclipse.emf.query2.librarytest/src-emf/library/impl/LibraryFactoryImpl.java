@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryFactoryImpl.java,v 1.1 2010/12/07 13:18:49 akrsharma Exp $
+ * $Id: LibraryFactoryImpl.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library.impl;
 
+import library.*;
 import library.Book;
 import library.Format;
 import library.Library;
@@ -37,7 +38,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 */
 	public static LibraryFactory init() {
 		try {
-			LibraryFactory theLibraryFactory = (LibraryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/modeling/emf/query/1.0.0"); 
+			LibraryFactory theLibraryFactory = (LibraryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/modeling/emf/query/1.0.0"); //$NON-NLS-1$ 
 			if (theLibraryFactory != null) {
 				return theLibraryFactory;
 			}
@@ -72,7 +73,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 			case LibraryPackage.PERSON: return createPerson();
 			case LibraryPackage.MANUSCRIPT: return createManuscript();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -87,7 +88,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 			case LibraryPackage.FORMAT:
 				return createFormatFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -102,7 +103,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 			case LibraryPackage.FORMAT:
 				return convertFormatToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -163,7 +164,7 @@ public class LibraryFactoryImpl extends EFactoryImpl implements LibraryFactory {
 	 */
 	public Format createFormatFromString(EDataType eDataType, String initialValue) {
 		Format result = Format.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

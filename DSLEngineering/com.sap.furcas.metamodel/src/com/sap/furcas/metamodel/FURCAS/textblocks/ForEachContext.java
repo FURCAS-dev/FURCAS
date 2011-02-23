@@ -9,6 +9,7 @@ package com.sap.furcas.metamodel.FURCAS.textblocks;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +23,8 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement <em>Context Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,5 +136,57 @@ public interface ForEachContext extends EObject {
      * @generated
      */
         void setSourceModelElement(EObject value);
+
+        /**
+     * Returns the value of the '<em><b>Context String</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Context String</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Context String</em>' attribute.
+     * @see #setContextString(String)
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_ContextString()
+     * @model
+     * @generated
+     */
+    String getContextString();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Context String</em>' attribute.
+     * @see #getContextString()
+     * @generated
+     */
+    void setContextString(String value);
+
+        /**
+     * Returns the value of the '<em><b>Template Used For Production</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Template Used For Production</em>' reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Template Used For Production</em>' reference.
+     * @see #setTemplateUsedForProduction(Template)
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getForEachContext_TemplateUsedForProduction()
+     * @model required="true"
+     * @generated
+     */
+    Template getTemplateUsedForProduction();
+
+        /**
+     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Template Used For Production</em>' reference.
+     * @see #getTemplateUsedForProduction()
+     * @generated
+     */
+    void setTemplateUsedForProduction(Template value);
 
 } // ForEachContext

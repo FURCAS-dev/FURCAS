@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2PivotDeclarationSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: UML2PivotDeclarationSwitch.java,v 1.6 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -48,6 +47,8 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
@@ -191,7 +192,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	public Operation caseOperation(org.eclipse.uml2.uml.Operation umlOperation) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, umlOperation);
 		List<EAnnotation> excludedAnnotations =  null;
-		EAnnotation oclAnnotation = umlOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = umlOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -229,6 +230,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 					String value = entry.getValue();
 					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 					constraint.setSpecification(specification);
 //						constraint.setExprString(entry.getValue());
 					constraints.add(constraint);
@@ -249,6 +251,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package casePackage(org.eclipse.uml2.uml.Package umlPackage) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, umlPackage);
+		converter.getTypeManager().installPackage(pivotElement);
 		EAnnotation eAnnotation = umlPackage.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		converter.copyNamedElement(pivotElement, umlPackage);
@@ -301,7 +304,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	protected void copyClassifier(org.eclipse.ocl.examples.pivot.Class pivotElement, org.eclipse.uml2.uml.Classifier umlClassifier) {
 		List<EAnnotation> excludedAnnotations =  null;
 		EMap<String, String> oclAnnotationDetails = null;
-		EAnnotation oclAnnotation = umlClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		EAnnotation oclAnnotation = umlClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation != null) {
 			excludedAnnotations = new ArrayList<EAnnotation>();
 			excludedAnnotations.add(oclAnnotation);
@@ -314,6 +317,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				String value = entry.getValue();
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
 				specification.getBodies().add(value);
+				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				constraint.setSpecification(specification);
 				constraints.add(constraint);
 			}				

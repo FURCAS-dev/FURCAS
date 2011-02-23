@@ -22,6 +22,12 @@
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser,org.eclipse.ocl.examples.parser,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.ocl,org.eclipse.ocl.examples.parser.ocl,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.parser.unresolved,org.eclipse.ocl.examples.parser.unresolved,"/>
+
+	    <!-- Impact Analyzer and Event Manager -->
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.eventmanager,org.eclipse.ocl.examples.eventmanager,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.impactanalyzer,org.eclipse.ocl.examples.impactanalyzer,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.impactanalyzer.util,org.eclipse.ocl.examples.impactanalyzer.util,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.impactanalyzer.ui,org.eclipse.ocl.examples.impactanalyzer.ui,"/>
 				
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.build,org.eclipse.ocl.examples.build,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.library,org.eclipse.ocl.examples.library,"/>

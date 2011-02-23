@@ -510,9 +510,9 @@ public class ClassbasedtextsPackageImpl extends EPackageImpl implements Classbas
 		specializedTextEClass.getESuperTypes().add(this.getGeneralText());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(generalTextEClass, GeneralText.class, "GeneralText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(generalTextEClass, GeneralText.class, "GeneralText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(specializedTextEClass, SpecializedText.class, "SpecializedText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(specializedTextEClass, SpecializedText.class, "SpecializedText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -526,24 +526,24 @@ public class ClassbasedtextsPackageImpl extends EPackageImpl implements Classbas
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (generalTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.classbasedtexts.GeneralText",
-			 "metaObjectMofId", "48FC2FA6A040E5409E7611DD9E510019993BAD15",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.classbasedtexts.GeneralText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48FC2FA6A040E5409E7611DD9E510019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (specializedTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcasesfoundation.case005f.classbasedtexts.SpecializedText",
-			 "metaObjectMofId", "48FC2FA6A040E5419E7611DD8E6D0019993BAD15",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case005f.classbasedtexts.SpecializedText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48FC2FA6A040E5419E7611DD8E6D0019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

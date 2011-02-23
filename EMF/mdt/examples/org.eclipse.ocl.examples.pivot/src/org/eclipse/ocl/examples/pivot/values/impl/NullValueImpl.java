@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NullValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: NullValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class NullValueImpl extends AbstractUndefinedCollectionValue implements NullValue
@@ -29,8 +29,13 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 		super(valueFactory);
 	}
 
+	@Override
 	public Element asElement() {
 		return null;
+	}
+
+	public Value asValidValue() {
+		return this;
 	}
 
 	@Override
@@ -38,7 +43,7 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 		return obj instanceof NullValue;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return staticType; // standardLibrary.getNullType();
 	}
 
@@ -47,25 +52,14 @@ public class NullValueImpl extends AbstractUndefinedCollectionValue implements N
 		return 0x11111111;
 	}
 
-	public InvalidValue asInvalidValue() {
-		return null;
-	}
-
-	public boolean isInvalid() {
-		return false;
-	}
-
+	@Override
 	public boolean isNull() {
 		return true;
 	}
 
-	public String oclToString() {
-		return "null";
-	}
-
-	public InvalidValue toInvalidValue() {
-		return valueFactory.createInvalidValue(this, null, "null", null);
-	}
+//	public InvalidValue toInvalidValue() {
+//		return valueFactory.createInvalidValue(this, null, "null", null);
+//	}
 
 	@Override
 	public String toString() {

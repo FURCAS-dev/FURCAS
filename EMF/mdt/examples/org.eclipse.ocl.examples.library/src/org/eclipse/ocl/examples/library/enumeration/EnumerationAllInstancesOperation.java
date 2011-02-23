@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.2 2011/01/24 19:56:32 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
@@ -23,9 +23,9 @@ import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -40,8 +40,8 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
-		Type sourceType = sourceVal.getType(stdlib, null);
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		Type sourceType = sourceVal.getType(typeManager, null);
 		// the instances are the literals
 //		for (EnumerationLiteral oclLiteral : ((Enumeration)sourceType).getOwnedLiterals()) {
 //			EObject metaModelElement = oclLiteral.getMetaModelElement();

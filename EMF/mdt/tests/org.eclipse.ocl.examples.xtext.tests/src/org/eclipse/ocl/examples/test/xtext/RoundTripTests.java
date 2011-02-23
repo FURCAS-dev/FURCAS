@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.5 2011/01/27 07:05:41 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.7 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -125,7 +126,7 @@ public class RoundTripTests extends XtextTestCase
 //		Environment.Registry.INSTANCE.registerEnvironment(
 //			new UMLEnvironmentFactory().createEnvironment());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		assertNull(org.eclipse.ocl.uml.OCL.initialize(resourceSet));
+		assertNull(UML2Pivot.initialize(resourceSet));
 		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
 //		assertNull(org.eclipse.ocl.uml.OCL.initialize(null));		
 //		org.eclipse.uml2.uml.Package umlMetamodel = (org.eclipse.uml2.uml.Package) resourceSet.getResource(

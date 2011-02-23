@@ -506,9 +506,9 @@ public class Case026PackageImpl extends EPackageImpl implements Case026Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a26EClass, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, "A26", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA26_ReflectToOne(), ecorePackage.getEObject(), null, "reflectToOne", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA26_ReflectToMany(), ecorePackage.getEObject(), null, "reflectToMany", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(a26EClass, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, "A26", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA26_ReflectToOne(), ecorePackage.getEObject(), null, "reflectToOne", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA26_ReflectToMany(), ecorePackage.getEObject(), null, "reflectToMany", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case026.A26.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -525,28 +525,28 @@ public class Case026PackageImpl extends EPackageImpl implements Case026Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a26EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case026.A26",
-			 "metaObjectMofId", "48B56701E13930D2744511DDA0DF0019992F8D38",
-			 "isStructureType", "false",
-			 "ova", "reflectToOne,reflectToMany"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case026.A26", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48B56701E13930D2744511DDA0DF0019992F8D38", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "reflectToOne,reflectToMany" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA26_ReflectToOne(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48B56701E13930D0744511DDA3AE0019992F8D38"
+			 "ovaMofId", "48B56701E13930D0744511DDA3AE0019992F8D38" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA26_ReflectToMany(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "48B56701E13930D1744511DD88330019992F8D38"
+			 "ovaMofId", "48B56701E13930D1744511DD88330019992F8D38" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

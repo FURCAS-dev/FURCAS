@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: TupleValue.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values;
@@ -40,7 +40,7 @@ public interface TupleValue extends Value {
      * @param partName the name of the part
      * @return the corresponding value
      */
-	Object getValue(String partName);
+	Value getValue(String partName);
     
     /**
      * Queries the value of the specified tuple part.
@@ -48,5 +48,5 @@ public interface TupleValue extends Value {
      * @param part the tuple part (as an attribute)
      * @return the corresponding value
      */
-	Object getValue(Property part);
+	Value getValue(Property part);
 }

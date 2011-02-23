@@ -34,7 +34,7 @@ public enum E13 implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENUM_FIELD1(0, "enumField1", "enumField1"),
+	ENUM_FIELD1(0, "enumField1", "enumField1"),  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Enum Field2</b></em>' literal object.
@@ -44,7 +44,7 @@ public enum E13 implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ENUM_FIELD2(1, "enumField2", "enumField2");
+	ENUM_FIELD2(1, "enumField2", "enumField2");  //$NON-NLS-1$//$NON-NLS-2$
 
 	/**
 	 * The '<em><b>Enum Field1</b></em>' literal value.

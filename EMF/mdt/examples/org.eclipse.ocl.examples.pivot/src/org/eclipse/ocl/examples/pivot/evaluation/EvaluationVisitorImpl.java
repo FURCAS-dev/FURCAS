@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.6 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -23,12 +23,12 @@ package org.eclipse.ocl.examples.pivot.evaluation;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -41,20 +41,19 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompleteType;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
-import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -77,12 +76,14 @@ import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.library.TuplePartOperation;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.ocl.examples.pivot.values.impl.IntegerRangeValueImpl;
 
 /**
  * An evaluation visitor implementation for OCL expressions.
@@ -94,7 +95,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  */
 public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 {
-/*	public static boolean isSimpleRange(CollectionLiteralExp cl) {
+	public static boolean isSimpleRange(CollectionLiteralExp cl) {
 		List<CollectionLiteralPart> partsList = cl.getParts();
 		int size = partsList.size();
 		if (size == 1) {
@@ -102,9 +103,8 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return part instanceof CollectionRange;
 		}
 		return false;
-	} */
+	}
 	
-	protected final ValueFactory valueFactory;;
 	
 	/**
 	 * Constructor
@@ -118,136 +118,80 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			EvaluationEnvironment evalEnv,
 			ModelManager modelManager) {
 		super(env, evalEnv, modelManager);
-		this.valueFactory = evalEnv.getValueFactory();
 	}
 
 	public EvaluationVisitor createNestedVisitor() {
-		Environment env = getEnvironment();
-		EnvironmentFactory factory = env.getFactory();
-		EvaluationEnvironment evalEnv = getEvaluationEnvironment();
-    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evalEnv);
-		return new EvaluationVisitorImpl(env, nestedEvalEnv, getModelManager());
-	}
-
-	protected Value defaultPropertyCallExp(Value sourceValue, PropertyCallExp propertyCallExp) {
-		Element element = sourceValue.asElement();
-		if (element == null) {
-			return sourceValue.toInvalidValue();
-		}
-		EClass eClass = element.eClass();
-		Property referredProperty = propertyCallExp.getReferredProperty();
-		EStructuralFeature eFeature = eClass.getEStructuralFeature(referredProperty.getName());
-		Object eValue = element.eGet(eFeature);
-		if (eFeature.isMany()) {
-			Collection<?> eValues = (Collection<?>) eValue;
-			ArrayList<Value> values = new ArrayList<Value>(eValues.size());
-			for (Object eVal : eValues) {
-				values.add(valueFactory.valueOf(eVal));
-			}
-			boolean isOrdered = eFeature.isOrdered();
-			boolean isUnique = eFeature.isUnique();
-			if (isOrdered) {
-				if (isUnique) {
-					return valueFactory.createOrderedSetValue(values);
-				}
-				else {
-					return valueFactory.createSequenceValue(values);
-				}
-			}
-			else {
-				if (isUnique) {
-					return valueFactory.createSetValue(values);
-				}
-				else {
-					return valueFactory.createBagValue(values);
-				}
-			}
-		}
-		else if (eValue instanceof Value) {
-			return (Value) eValue;		
-		}
-		else {
-			return valueFactory.valueOf(eValue);
-		}
-	}
-
-	public ValueFactory getValueFactory() {
-		return valueFactory;
+		EnvironmentFactory factory = environment.getFactory();
+    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
+		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
 	}
 
 	public Object getValueOfVariable(VariableDeclaration variable) {
 		if (variable == null) {
 			return null;
 		}
-		Object value = getEvaluationEnvironment().getValueOf(variable.getName());
+		Object value = evaluationEnvironment.getValueOf(variable);
 		if (value instanceof Visitable) {
 			return ((Visitable) value).accept(getUndecoratedVisitor());
 		}
 		return value;
 	}
-
-	protected Value handleCall(Feature feature, Value sourceValue, CallExp callExp) {
-		// FIXME merge into single caller
-		if (feature == null) {
-			return valueFactory.createInvalidValue(sourceValue, callExp, "No implementable element", null);
+	
+	protected Value handleCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
+		CompleteEnvironmentManager completeManager = typeManager.getCompleteEnvironmentManager();
+		Operation staticCompleteOperation;
+		if (staticOperation instanceof Iteration) {		// FIXME polymorphise
+			staticCompleteOperation = completeManager.getCompleteIteration((Iteration) staticOperation);
+		}
+		else {
+			staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
+		}
+		OclExpression source = callExp.getSource();
+		Type staticSourceType = source.getType();
+		Value sourceValue;
+		try {
+			sourceValue = source.accept(getUndecoratedVisitor());
+		}
+		catch (InvalidEvaluationException e) {
+			sourceValue = typeManager.getValueFactory().getInvalid();
+		}
+		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
+		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
+		Operation dynamicOperation;
+		if (staticOperation instanceof Iteration) {		// FIXME polymorphise
+			dynamicOperation = dynamicCompleteType.getDynamicIteration((CompleteIteration)staticCompleteOperation);
+		}
+		else {
+			dynamicOperation = dynamicCompleteType.getDynamicOperation((CompleteOperation)staticCompleteOperation);
+		}
+		if (dynamicOperation == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("No implementable element", callExp, sourceValue);
 		}
 		CallableImplementation implementation;
 		try {
-			implementation = typeManager.getImplementation(feature);
-			if (implementation == null) {
-				return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + feature.getImplementationClass() + "'", null);
-			}
+			implementation = typeManager.getImplementation(dynamicOperation);
 		} catch (Exception e) {
-			return valueFactory.createInvalidValue(sourceValue, callExp, "Failed to load '" + feature.getImplementationClass() + "'", e);
+			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + dynamicOperation.getImplementationClass() + "'", e, callExp, sourceValue);
+		}
+		if (implementation == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + dynamicOperation + "'",  callExp, sourceValue);
 		}
 		try {
 			EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
 			Value result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
 			if (result == null) {
-				result = valueFactory.createInvalidValue(sourceValue, callExp, "Java-Null", null);
+				result = evaluationEnvironment.throwInvalidEvaluation("Java-Null", callExp, sourceValue);
 			}
 			return result;
+		}
+		catch (InvalidEvaluationException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return valueFactory.createInvalidValue(sourceValue, callExp, "Evaluation failure", e);
+			return evaluationEnvironment.throwInvalidEvaluation("Evaluation failure", e, callExp, sourceValue);
 		}
-	}
-
-	protected Value handleLoopExp(LoopExp loopExp, Iteration staticIteration) {
-		CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
-		CompleteIteration staticCompleteIteration = completeManager.getCompleteIteration(staticIteration);
-		OclExpression source = loopExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
-		Type staticSourceType = source.getType();
-		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		CompleteIteration dynamicIteration = dynamicCompleteType.getDynamicIteration(staticCompleteIteration);
-		return handleCall(dynamicIteration, sourceValue, loopExp);
-	}
-	
-	protected Value handleOperationCallExp(OperationCallExp operationCallExp, Operation staticOperation) {
-		OclExpression source = operationCallExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
-/*		if (sourceValue instanceof TypeValue) {
-			Type dynamicSourceType = ((TypeValue)sourceValue).getType();
-			Operation staticOperation = operationCallExp.getReferredOperation();
-			CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
-			CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-			CompleteClass dynamicCompleteClass = completeManager.getCompleteClass((org.eclipse.ocl.examples.pivot.Class)dynamicSourceType);
-			CompleteOperation dynamicOperation = dynamicCompleteClass.getDynamicOperation(staticCompleteOperation);
-			return callImplementation(dynamicOperation, sourceValue, operationCallExp);
-		}
-		else {
-*/
-		CompleteEnvironmentManager completeManager = getEnvironment().getTypeManager().getCompleteEnvironmentManager();
-		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-		Type staticSourceType = source.getType();
-		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
-		return handleCall(dynamicOperation, sourceValue, operationCallExp);
 	}
 
 	/**
@@ -262,11 +206,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		Value context = ae.getSource().accept(getUndecoratedVisitor());
 		
 		if (context.isUndefined()) {
-			return valueFactory.createInvalidValue(null, ae, "Undefined context for AssociationClassCall", null);
+			return evaluationEnvironment.throwInvalidEvaluation("Undefined context for AssociationClassCall", ae);
 		}
 		
 		// evaluate attribute on source value
-		return getEvaluationEnvironment().navigateAssociationClass(
+		return evaluationEnvironment.navigateAssociationClass(
 			ae.getReferredAssociationClass(),
 			ae.getNavigationSource(),
 			context);
@@ -283,6 +227,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		return valueFactory.booleanValueOf(value);
 	}
 
+	@Override
+	public Value visitCollectionItem(CollectionItem item) {
+		throw new UnsupportedOperationException("evaluation of CollectionItem"); //$NON-NLS-1$
+	}
+
 	/**
 	 * Callback for a CollectionLiteralExp visit.
 	 */
@@ -293,7 +242,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
 		// FIXME Re-instate and test this integer range optimisation 
-/*		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
+		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
 			CollectionRange collRange = (CollectionRange) parts.get(0);
@@ -303,28 +252,36 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			// evaluate first value
 			Value firstVal = first.accept(getUndecoratedVisitor());
 			if (firstVal == null) {
-				return createInvalidValue(first, cl, "Invalid first element", null);
+				return evaluationEnvironment.throwInvalidEvaluation("Invalid first element", cl, first);
 			}
 			// evaluate last value
 			Value lastVal = last.accept(getUndecoratedVisitor());
 			if (lastVal == null) {
-				return createInvalidValue(last, cl, "Invalid last element", null);
+				return evaluationEnvironment.throwInvalidEvaluation("Invalid last element", cl, last);
 			}
-			IntegerValue firstInteger = firstVal.asIntegerValue();
-			if (firstInteger == null) {
-				return createInvalidValue(firstVal, cl, "Non integer first element", null);
+			IntegerValue firstInteger;
+			try {
+				firstInteger = firstVal.asIntegerValue();
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation("Non integer first element", e, cl, firstVal);
 			}
-			IntegerValue lastInteger = lastVal.asIntegerValue();
-			if (lastInteger == null) {
-				return createInvalidValue(lastVal, cl, "Non integer last element", null);
+			IntegerValue lastInteger;
+			try {
+				lastInteger = lastVal.asIntegerValue();
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation("Non integer last element", e, cl, lastVal);
 			}
-			Integer firstInt = firstInteger.asInteger();
-			if (firstInt == null) {
-				return createInvalidValue(firstInteger, cl, "Out of range first element", null);
+			Integer firstInt;
+			try {
+				firstInt = firstInteger.asInteger();
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation("Out of range first element", e, cl, firstInteger);
 			}
-			Integer lastInt = lastInteger.asInteger();
-			if (lastInt == null) {
-				return createInvalidValue(lastInteger, cl, "Out of range last element", null);
+			Integer lastInt;
+			try {
+				lastInt = lastInteger.asInteger();
+			} catch (InvalidValueException e) {
+				return evaluationEnvironment.throwInvalidEvaluation("Out of range last element", e, cl, lastInteger);
 			}
 //			if (firstInt > lastInt) {
 //                return result;
@@ -332,7 +289,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 			// construct a lazy integer list for the range
 			return new IntegerRangeValueImpl(valueFactory, firstInt, lastInt);
-		} else */
+		} else
 		{
 			List<Value> results = new ArrayList<Value>();
 			// not a sequence or not a simple range
@@ -355,27 +312,35 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 					// evaluate first value
 					Value firstVal = first.accept(getUndecoratedVisitor());
 					if (firstVal == null) {
-						return createInvalidValue(first, cl, "Invalid first element", null);
+						return evaluationEnvironment.throwInvalidEvaluation("Invalid first element", cl, first);
 					}
 					Value lastVal = last.accept(getUndecoratedVisitor());
 					if (lastVal == null) {
-						return createInvalidValue(last, cl, "Invalid last element", null);
+						return evaluationEnvironment.throwInvalidEvaluation("Invalid last element", cl, last);
 					}
-					IntegerValue firstInteger = firstVal.asIntegerValue();
-					if (firstInteger == null) {
-						return createInvalidValue(firstVal, cl, "Non integer first element", null);
+					IntegerValue firstInteger;
+					try {
+						firstInteger = firstVal.asIntegerValue();
+					} catch (InvalidValueException e) {
+						return evaluationEnvironment.throwInvalidEvaluation("Non integer first element", e, cl, firstVal);
 					}
-					IntegerValue lastInteger = lastVal.asIntegerValue();
-					if (lastInteger == null) {
-						return createInvalidValue(lastVal, cl, "Non integer last element", null);
+					IntegerValue lastInteger;
+					try {
+						lastInteger = lastVal.asIntegerValue();
+					} catch (InvalidValueException e) {
+						return evaluationEnvironment.throwInvalidEvaluation("Non integer last element", e, cl, lastVal);
 					}
-					Integer firstInt = firstInteger.asInteger();
-					if (firstInt == null) {
-						return createInvalidValue(firstInteger, cl, "Out of range first element", null);
+					Integer firstInt;
+					try {
+						firstInt = firstInteger.asInteger();
+					} catch (InvalidValueException e) {
+						return evaluationEnvironment.throwInvalidEvaluation("Out of range first element", e, cl, firstInteger);
 					}
-					Integer lastInt = lastInteger.asInteger();
-					if (lastInt == null) {
-						return createInvalidValue(lastInteger, cl, "Out of range last element", null);
+					Integer lastInt;
+					try {
+						lastInt = lastInteger.asInteger();
+					} catch (InvalidValueException e) {
+						return evaluationEnvironment.throwInvalidEvaluation("Out of range last element", e, cl, lastInteger);
 					}
 					// TODO: enhance IntegerRangeList to support multiple ranges
 					// add values between first and last inclusive
@@ -390,9 +355,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 
 			} // end of parts iterator
 			return valueFactory.createCollectionValue(kind, results);
-
 		} // end of not-simple range case
 	} // end of Set, OrderedSet, Bag Literals
+
+	@Override
+	public Value visitCollectionRange(CollectionRange range) {
+		throw new UnsupportedOperationException("evaluation of CollectionRange"); //$NON-NLS-1$
+	}
 
 	/**
 	 * Callback for an EnumLiteralExp visit. Get the referred enum literal and
@@ -404,7 +373,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitEnumLiteralExp(EnumLiteralExp el) {
-		return getEvaluationEnvironment().getValue(el.getReferredEnumLiteral());
+		return valueFactory.createElementValue(el.getReferredEnumLiteral());
 	}
 
 	@Override
@@ -421,15 +390,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //		if (condition == null) {
 //			return null;
 //		}
-		Value evaluatedCondition = condition.accept(getUndecoratedVisitor());
+		BooleanValue evaluatedCondition;
+		try {
+			evaluatedCondition = condition.accept(getUndecoratedVisitor()).asBooleanValue();
+		} catch (InvalidValueException e) {
+			return evaluationEnvironment.throwInvalidEvaluation(e);
+		}
 		OclExpression expression = null;
 		if (evaluatedCondition.isTrue()) {
 			expression = ifExp.getThenExpression();
-		} else if (evaluatedCondition.isFalse()) {
+		} else {
 			expression = ifExp.getElseExpression();
-		}
-		else {
-			return evaluatedCondition.toInvalidValue();
 		}
 		return expression.accept(getUndecoratedVisitor());
 	}
@@ -443,14 +414,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitIntegerLiteralExp(IntegerLiteralExp integerLiteralExp) {
 		BigInteger value = integerLiteralExp.getIntegerSymbol();
 		if (value == null) {
-			return valueFactory.createInvalidValue(null, integerLiteralExp, "Invalid Integer Value", null);
+			return evaluationEnvironment.throwInvalidEvaluation("Invalid Integer Value", integerLiteralExp);
 		}
 		return valueFactory.integerValueOf(value);
 	}
 
 	@Override
     public Value visitInvalidLiteralExp(InvalidLiteralExp invalidLiteralExp) {
-		return valueFactory.createInvalidValue(invalidLiteralExp.getObject(), invalidLiteralExp, invalidLiteralExp.getReason(), invalidLiteralExp.getThrowable());
+		return evaluationEnvironment.throwInvalidEvaluation("Invalid Literal");
 	}
 
 	/**
@@ -458,7 +429,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitIterateExp(IterateExp iterateExp) {
-		return handleLoopExp(iterateExp, iterateExp.getReferredIteration());
+		return handleCallExp(iterateExp, iterateExp.getReferredIteration());
 	}
 
 	/**
@@ -466,7 +437,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitIteratorExp(IteratorExp iteratorExp) {
-		return handleLoopExp(iteratorExp, iteratorExp.getReferredIteration());
+		return handleCallExp(iteratorExp, iteratorExp.getReferredIteration());
 	}
 
 	/**
@@ -474,38 +445,30 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitLetExp(LetExp letExp) {
-		OclExpression expression = letExp.getIn();
-		if (expression == null) {
-			return null;
-		}
-		Variable variable = letExp.getVariable();
-		if (variable == null) {
-			return null;
-		}
+		OclExpression expression = letExp.getIn();		// Never null when valid
+		Variable variable = letExp.getVariable();		// Never null when valid
+		Value value = variable.accept(this);
     	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
-//    	EvaluationEnvironment nestedEvalEnv = nestedVisitor.getEvaluationEnvironment();    	
-		nestedVisitor.getEvaluationEnvironment().addVariable(variable, variable);
+		nestedVisitor.getEvaluationEnvironment().add(variable, value);
 		return expression.accept(nestedVisitor);
-/*
-		String name = (String) variable.accept(getUndecoratedVisitor());
-		
-		try {
-			// evaluate the "in" part of the let
-			OclExpression inExp = letExp.getIn();
-			// return the value of the "in"			
-			return inExp.accept(getUndecoratedVisitor());
-			
-		} finally {
-			// remove the variable-init expression binding from the environment
-			getEvaluationEnvironment().remove(name);
-		} */
 	}
-
 	
 	@Override
     public Value visitMessageExp(MessageExp m) {
 		throw new UnsupportedOperationException("evaluation of MessageExp"); //$NON-NLS-1$
-	}
+/*        T targetResult = safeVisit(messageExp.getTarget());        
+        List<T> argumentResults;
+        List<OclExpression> arguments = messageExp.getArguments();       
+        if (arguments.isEmpty()) {
+            argumentResults = Collections.emptyList();
+        } else {
+            argumentResults = new java.util.ArrayList<T>(arguments.size());
+            for (OclExpression qual : arguments) {
+                argumentResults.add(safeVisit(qual));
+            }
+        }        
+        return handleMessageExp(messageExp, targetResult, argumentResults);
+*/	}
 
 	@Override
     public Value visitNullLiteralExp(NullLiteralExp nullLiteralExp) {
@@ -517,7 +480,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitOperationCallExp(OperationCallExp operationCallExp) {
-		return handleOperationCallExp(operationCallExp, operationCallExp.getReferredOperation());
+		return handleCallExp(operationCallExp, operationCallExp.getReferredOperation());
 	}
 
 	/**
@@ -525,7 +488,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 *
 	@Override
     public Value visitParameter(Parameter parameter) {
-		Value value = getEvaluationEnvironment().getValueOf(parameter.getName());
+		Value value = evaluationEnvironment.getValueOf(parameter.getName());
 		return value;
 	} */
 
@@ -541,28 +504,41 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		try {
 			implementation = typeManager.getImplementation(property);
 		} catch (Exception e) {
-			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Failed to load '" + property.getImplementationClass() + "'", e);
+			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + property.getImplementationClass() + "'", e, propertyCallExp, sourceValue);
 		}
-		try {
-			Value resultValue;
-			if (implementation == null) {
-				resultValue = defaultPropertyCallExp(sourceValue, propertyCallExp);
+		if (implementation == null) {
+			Object object = sourceValue.asObject();
+			if (object instanceof EObject) {
+				EObject eObject = (EObject)object;
+				EClass eClass = eObject.eClass();
+				EStructuralFeature eFeature = eClass.getEStructuralFeature(property.getName());
+				// FIXME Cache a source specific implementation in a CompleteProperty
+//				implementation = new EObjectProperty(eFeature, null);
+//				property.setImplementation(implementation);
+				Object eValue = eObject.eGet(eFeature);
+				return valueFactory.valueOf(eValue, eFeature);
+			}
+			else if (sourceValue instanceof TupleValue) {
+				implementation = TuplePartOperation.INSTANCE;
+				property.setImplementation(implementation);
 			}
 			else {
-				resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+				return evaluationEnvironment.throwInvalidEvaluation("non-object", propertyCallExp, sourceValue);
 			}
+		}
+		try {
+			Value resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
 			if (resultValue == null) {
-				resultValue = valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Java-Null", null);
+				resultValue = evaluationEnvironment.throwInvalidEvaluation("Java-Null", propertyCallExp, sourceValue);
 			}
 			return resultValue;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return valueFactory.createInvalidValue(sourceValue, propertyCallExp, "Evaluation failure", e);
+			return evaluationEnvironment.throwInvalidEvaluation("Evaluation failure", e, propertyCallExp, sourceValue);
 		}
 	}
-
 	/**
 	 * Callback for a RealLiteralExp visit.
 	 * 
@@ -572,7 +548,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitRealLiteralExp(RealLiteralExp realLiteralExp) {
 		BigDecimal value = realLiteralExp.getRealSymbol();
 		if (value == null) {
-			return valueFactory.createInvalidValue(null, realLiteralExp, "Invalid Real Value", null);
+			return evaluationEnvironment.throwInvalidEvaluation("Invalid Real Value", realLiteralExp);
 		}
 		return valueFactory.realValueOf(value);
 	}
@@ -591,7 +567,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitStringLiteralExp(StringLiteralExp stringLiteralExp) {
 		String value = stringLiteralExp.getStringSymbol();
 		if (value == null) {
-			return valueFactory.createInvalidValue(null, stringLiteralExp, "Invalid String Value", null);
+			return evaluationEnvironment.throwInvalidEvaluation("Invalid String Value", stringLiteralExp);
 		}
 		return valueFactory.stringValueOf(value);
 	}
@@ -611,7 +587,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			// Set the tuple field with the value of the init expression
 			propertyValues.put(part, part.accept(getUndecoratedVisitor()));
 		}
-//		TupleType tupleType = getEvaluationEnvironment().getTypeManager().getTupleType(type.getName(), propertyValues.keySet());
+//		TupleType tupleType = typeManager.getTupleType(type.getName(), propertyValues.keySet());
 		return valueFactory.createTupleValue((TupleType) type, propertyValues);
 	}
 	
@@ -637,7 +613,7 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp) {
 		BigInteger value = unlimitedNaturalLiteralExp.getUnlimitedNaturalSymbol();
 		if (value == null) {
-			return valueFactory.createInvalidValue(null, unlimitedNaturalLiteralExp, "Invalid Unlimited Natural Value", null);
+			return evaluationEnvironment.throwInvalidEvaluation("Invalid Unlimited Natural Value", unlimitedNaturalLiteralExp);
 		}
 		if (value.signum() < 0) {
 			return valueFactory.getUnlimited();
@@ -659,16 +635,20 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitVariable(Variable variable) {
-		// add the variable to the environment, initialized to
-		// its initial expression (if it has one). return the name
-		// of the variable.
-//		String varName = variable.getName();
+		// return the initial (only) value
 		OclExpression initExp = variable.getInitExpression();
+		Value value;
 		if (initExp == null) {
-			return valueFactory.createInvalidValue(variable, null, "Uninitialized variable", null);
+			value = evaluationEnvironment.throwInvalidEvaluation("Uninitialized variable", null, variable);
 		}
-		Value value = initExp.accept(getUndecoratedVisitor());
-	// FIXME		getEvaluationEnvironment().setVariable(variable, initVal);
+		else {
+			try {
+				value = initExp.accept(getUndecoratedVisitor());
+			}
+			catch (InvalidEvaluationException e) {
+				value = valueFactory.getInvalid();
+			}
+		}
 		return value;
 	}
 
@@ -681,30 +661,25 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	 */
 	@Override
     public Value visitVariableExp(VariableExp variableExp) {
-//		getValueOfVariable(getReferredVariable())
-		// get the referred variable name
 		VariableDeclaration variableDeclaration = variableExp.getReferredVariable();
 		if (variableDeclaration instanceof Variable) {
 			Parameter representedParameter = ((Variable)variableDeclaration).getRepresentedParameter();
-			if (representedParameter != null) {		// FIXME Why null sometimes?
+			if (representedParameter != null) {				// Non-null to map iterator actual to formal
 				variableDeclaration = representedParameter;
 			}
 		}
-		VariableDeclaration variable = getEvaluationEnvironment().getVariable(variableDeclaration);
-//		String varName = vd.getName();
-
-		// evaluate the variable in the current environment
-//		Object variableValue = getEvaluationEnvironment().getValueOf(varName);
-//		return variableValue;
-		if (variable == null) {
-			Value value = getEvaluationEnvironment().getValueOf(variableDeclaration.getName());
-			if (value != null) {
-				return value;
-			}
-			return valueFactory.createInvalidValue(null, variableExp, "Undefined variable", null);
+		Value value = evaluationEnvironment.getValueOf(variableDeclaration);
+		if (value != null) {
+			return value;
 		}
-		return variable.accept(getUndecoratedVisitor());
+		else {
+			return evaluationEnvironment.throwInvalidEvaluation("Undefined variable", variableExp);
+		}
 	}
 
+	public Value visiting(Visitable visitable) {
+		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
+		return null;
+	}
 
-} //EvaluationVisitorImpl
+}

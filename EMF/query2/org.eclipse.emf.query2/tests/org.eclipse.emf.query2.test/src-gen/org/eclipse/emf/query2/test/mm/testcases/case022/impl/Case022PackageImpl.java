@@ -536,14 +536,14 @@ public class Case022PackageImpl extends EPackageImpl implements Case022Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a22JavadocEClass, A22Javadoc.class, "A22Javadoc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getA22Javadoc_AttributeJavadoc(), ecorePackage.getEString(), "attributeJavadoc", null, 1, 1, A22Javadoc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a22JavadocEClass, A22Javadoc.class, "A22Javadoc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getA22Javadoc_AttributeJavadoc(), ecorePackage.getEString(), "attributeJavadoc", null, 1, 1, A22Javadoc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		addEOperation(a22JavadocEClass, null, "operationJavadoc", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(a22JavadocEClass, null, "operationJavadoc", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b22JavadocSpecialCharactersEClass, B22JavadocSpecialCharacters.class, "B22JavadocSpecialCharacters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB22JavadocSpecialCharacters_JavadocCommentEndSign(), ecorePackage.getEString(), "javadocCommentEndSign", null, 1, 1, B22JavadocSpecialCharacters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB22JavadocSpecialCharacters_HttpAddress(), ecorePackage.getEString(), "httpAddress", null, 1, 1, B22JavadocSpecialCharacters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b22JavadocSpecialCharactersEClass, B22JavadocSpecialCharacters.class, "B22JavadocSpecialCharacters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB22JavadocSpecialCharacters_JavadocCommentEndSign(), ecorePackage.getEString(), "javadocCommentEndSign", null, 1, 1, B22JavadocSpecialCharacters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB22JavadocSpecialCharacters_HttpAddress(), ecorePackage.getEString(), "httpAddress", null, 1, 1, B22JavadocSpecialCharacters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -560,24 +560,24 @@ public class Case022PackageImpl extends EPackageImpl implements Case022Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a22JavadocEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case022.A22Javadoc",
-			 "metaObjectMofId", "47307CB11E1403D38C7611DC98C50011252D8B30",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case022.A22Javadoc", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47307CB11E1403D38C7611DC98C50011252D8B30", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b22JavadocSpecialCharactersEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case022.B22JavadocSpecialCharacters",
-			 "metaObjectMofId", "47307CB11E1403D68C7611DCC3340011252D8B30",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case022.B22JavadocSpecialCharacters", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47307CB11E1403D68C7611DCC3340011252D8B30", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

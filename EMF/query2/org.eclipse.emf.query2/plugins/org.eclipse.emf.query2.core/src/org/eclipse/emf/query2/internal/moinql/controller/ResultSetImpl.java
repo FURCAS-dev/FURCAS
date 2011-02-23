@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query2.ColumnType;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.QueryResultException;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
@@ -31,7 +32,6 @@ import org.eclipse.emf.query2.internal.logger.QueryLogger;
 import org.eclipse.emf.query2.internal.messages.ApiMessages;
 import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.SelectEntry;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 
 /**
@@ -104,6 +104,34 @@ public class ResultSetImpl implements ResultSet {
 		// put a lexicographical sort on the result set
 		this.lexicographicSort();
 	}
+	
+	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet,
+			Map<String, Integer> _aliasToPosition, List<Map<String, Integer>> _attrsToPosition,boolean sortingRequired) {
+
+		//        this.conn = (CoreConnection) _conn;
+		this.emfHelper = _emfHelper;
+		this.resultSet = _resultSet;
+		this.aliasToPosition = _aliasToPosition;
+		this.attrsToPosition = _attrsToPosition;
+		this.resultSetSize = (_resultSet == null ? 0 : _resultSet.getSize());
+
+		// construct the column types
+		this.columnTypes = new ColumnType[selectEntries.size()];
+
+		int j = 0;
+		for (Iterator<SelectEntry> iter = selectEntries.iterator(); iter.hasNext(); j++) {
+			this.columnTypes[j] = iter.next().getColumnType();
+		}
+
+		// because original aliases might have disappeared during query processing, 
+		// we add them here and give them the same value as the "new" alias
+		this.addOriginalAliases();
+
+		// put a lexicographical sort on the result set
+		if(sortingRequired)
+			this.lexicographicSort();
+	}
+
 
 	/**
 	 * this method makes sure that all originally used aliases are also given a
@@ -153,7 +181,9 @@ public class ResultSetImpl implements ResultSet {
 		}
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
-
+	/**
+	 * Returns an array of URIs for the given alias
+	 */
 	public URI[] getUris(String alias) throws QueryResultException {
 
 		URI[] resultMRI = new URI[this.resultSetSize];
@@ -171,7 +201,9 @@ public class ResultSetImpl implements ResultSet {
 
 		return resultMRI;
 	}
-
+	/**
+	 * Returns the attribute by the given name from the given alias
+	 */
 	public Object getAttribute(int position, String alias, String attrName) throws QueryResultException {
 
 		// check for index out of bounds
@@ -193,7 +225,9 @@ public class ResultSetImpl implements ResultSet {
 		// index out of bounds
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
-
+	/**
+	 * Returns the attributes from the given alias
+	 */
 	public Object[] getAttributes(int position, String alias) throws QueryResultException {
 
 		// check for index out of bounds
