@@ -1,9 +1,9 @@
 package com.sap.furcas.ide.dslproject.builder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -15,8 +15,8 @@ import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,6 +26,7 @@ import com.sap.furcas.ide.dslproject.Constants;
 import com.sap.furcas.ide.dslproject.conf.IProjectMetaRefConf;
 import com.sap.furcas.ide.dslproject.conf.ReferenceScopeBean;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
@@ -61,7 +62,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         @Override
         public boolean visit(IResource resource) {
             try {
-                buildGrammar(resource, mymonitor);
+                doFullBuild(resource, mymonitor);
             } catch (CoreException e) {
                 Activator.logger.logError("Failed to build grammar from resource " + resource, e);
             }
@@ -72,6 +73,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 
     private class TCSCleanVisitor implements IResourceVisitor {
 
+        @SuppressWarnings("unused")
         private final IProgressMonitor mymonitor;
 
         public TCSCleanVisitor(IProgressMonitor monitor) {
@@ -80,12 +82,12 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 
         @Override
         public boolean visit(IResource resource) {
-
-            try {
-                cleanResource(resource, mymonitor);
-            } catch (CoreException e) {
-                Activator.logger.logError("Failed to clean resource " + resource);
-            }
+              // TODO implement cleaning. For now we do simply overwrite
+//            try {
+//                 cleanResource(resource, mymonitor);
+//            } catch (CoreException e) {
+//                Activator.logger.logError("Failed to clean resource " + resource);
+//            }
             // return true to continue visiting children.
             return true;
         }
@@ -108,14 +110,14 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
             switch (delta.getKind()) {
             case IResourceDelta.ADDED:
                 // handle added resource
-                buildGrammar(resource, mymonitor);
+                doFullBuild(resource, mymonitor);
                 break;
             case IResourceDelta.REMOVED:
                 // handle removed resource
                 break;
             case IResourceDelta.CHANGED:
                 // handle changed resource
-                buildGrammar(resource, mymonitor);
+                doFullBuild(resource, mymonitor);
                 break;
             default:
                 break;
@@ -150,109 +152,132 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         return null;
     }
 
-    private void buildGrammar(IResource resource, IProgressMonitor monitor) throws CoreException {
-        if (!(resource instanceof IFile && resource.getName().endsWith(Constants.TCS_EXTENSION))) {
+    /**
+     * Builds a new parsers. Works on plaintext TCS files and also TCS syntax models.
+     * When run on a plaintext file a model is created and stored.
+     * 
+     * FIXME: hardcoded project relative paths are used. We have to make them configurable.
+     */
+    private void doFullBuild(IResource resource, IProgressMonitor monitor) throws CoreException {
+        if (!resource.getName().endsWith(Constants.TCS_EXTENSION) || resource.isDerived()) {
             return; // nothing to build
         }
-        IFile syntaxDefFile = (IFile) resource;
-        if (syntaxDefFile.isDerived()) {
+        monitor.beginTask("Building FURCAS Parser", 110);
+
+        SyntaxGenerationNature nature = SyntaxGenerationNature.getNatureFromProject(resource.getProject());
+        IProjectMetaRefConf conf = nature.getMetaModelReferenceConf();
+        if (conf == null) {
+            String message = "Build failed: Project " + resource.getProject().getName()
+                    + " has DSL Syntax Definition Nature but no metamodel reference configured.";
+            EclipseMarkerUtil.addMarker(resource.getProject(), message, -1, IMarker.SEVERITY_ERROR);
             return;
         }
-        EclipseMarkerUtil.deleteMarkers(syntaxDefFile);
-        IProject project = resource.getProject();
-        EclipseMarkerUtil.deleteMarkers(project);
 
-        SyntaxGenerationNature nature = SyntaxGenerationNature.getNatureFromProject(project);
-        if (nature == null) {
-            Activator.logger.logWarning("getProject was null for IFile: " + resource.getName());
-        }
+        EclipseMarkerUtil.deleteMarkers(resource);
+        ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject();
+        try {
+            GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(
+                    refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
 
-        monitor.beginTask("Building Grammar", 110);
-        IProjectMetaRefConf conf = nature.getMetaModelReferenceConf();
-        if (conf != null) {
-            ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject();
-            try {
-                GrammarGenerationSourceConfiguration sourceConfig = new GrammarGenerationSourceConfiguration(
-                        refScopeBean.getResourceSet(), refScopeBean.getReferenceScope());
-                TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-                
-                //first check if the .tcs file is a model file
-                boolean hasModelContents = false;
-                URI modelFileURI = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
-                Resource mappingResource = null;
-                try {
-                    mappingResource = refScopeBean.getResourceSet().getResource(modelFileURI, true);
-                    hasModelContents = true;
-                } catch (Exception ex) {
-                    //load failed, so it seems to be a plain text file
-                    hasModelContents = false;
+            IFile grammarFile = getGrammarFile(resource);
+            GrammarGenerationTargetConfiguration targetConfig = new GrammarGenerationTargetConfiguration(
+                    getPackageName(grammarFile), convertIFileToFile(grammarFile));
+
+            TCSSyntaxContainerBean syntaxBean;
+            if (!hasModelContent(resource, refScopeBean)) {
+                monitor.subTask("Parsing Syntax " + resource.getName());
+                syntaxBean = parseSyntax(resource, sourceConfig);
+                IResource modelResource = resource.getProject().getFile("mapping" + File.separator + getFileNameBase(resource) + "." + "tcs");
+                if (modelResource.getModificationStamp() > resource.getModificationStamp()) {
+                    // The plaintext file is older than the model. We do not want to overwrite the model file.
+                    // (happens when the project is cleaned and a rebuilt is triggered)
+                    return;
                 }
-                
-                if(!hasModelContents) {
-                    //.TCS is a plain text file, so determine the corresponding model file
-                    modelFileURI = URI.createPlatformResourceURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs", true);
-                    try {
-                        mappingResource = refScopeBean.getResourceSet().getResource(modelFileURI, true);
-                    } catch (Exception ex) {
-                        //mappingResource remains set to null
-                    }
-                }
-                
-                
-                IFile grammarFile = getGrammarFile(syntaxDefFile);
-                TCSSyntaxContainerBean syntaxBean = null;
-                GrammarGenerationTargetConfiguration targetConfig = null;
-                if(mappingResource == null || mappingResource.getTimeStamp() < resource.getLocalTimeStamp()) {
-                    if(mappingResource == null) {
-                        mappingResource = refScopeBean.getResourceSet().createResource(modelFileURI);
-                    }
-                    targetConfig = new GrammarGenerationTargetConfiguration(
-                            getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
-                    monitor.subTask("Parsing Syntax: " +  syntaxDefFile.getName());
-                    //this will hopefully replace all /resource/ uris with /plugin/,
-                    //FIXME: unfortunately it doesn't, see https://bugzilla.furcas.org/cgi-bin/bugzilla3/show_bug.cgi?id=88
-    //                targetConfig.getMappingResource().getResourceSet().getURIConverter().getURIMap().putAll(
-    //                        EcorePlugin.computePlatformURIMap());
-                    syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(syntaxDefFile), targetConfig,
-                            new ResourceMarkingGenerationErrorHandler(
-                                    syntaxDefFile));
-                } else {
-                    targetConfig = new GrammarGenerationTargetConfiguration(
-                            getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
-                    EObject cs =  mappingResource.getContents().iterator().next();
-                    if(! (cs instanceof ConcreteSyntax)) {
-                        Activator.logger.displayError("Exprected mapping resource: " + mappingResource.getURI() + " to contain Concrete Sytnax element but found: " + cs.eClass().getName());
-                    }
-                    syntaxBean = new TCSSyntaxContainerBean();
-                    syntaxBean.setSyntax((ConcreteSyntax) cs);
-                }
-                if(syntaxBean != null) {
-                    monitor.subTask("Generating Grammar: " +  grammarFile.getName());
-                    generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, new ResourceMarkingGenerationErrorHandler(
-                                syntaxDefFile));
-                    grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
-                    if (grammarFile.exists()) {
-                        monitor.subTask("Generating Parser for Grammar: " +  grammarFile.getName());
-                        generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
-    
-                        // refresh dir where java was generated so that Java builder can compile
-                        grammarFile.getParent().refreshLocal(1, new SubProgressMonitor(monitor, 10));
-                    }
-                }
-            } catch (GrammarGenerationException e) {
-               throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
-            } catch (ParserGeneratorInvocationException e) {
-                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
-            } catch (ParserInvokationException e) {
-                throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
-            } finally {
-                monitor.done();
+                saveSyntaxAsModel(modelResource, sourceConfig, syntaxBean);
+            } else {
+                syntaxBean = loadSyntaxFromModelFile(resource, sourceConfig);
             }
+            if (syntaxBean == null) {
+                return;
+            }
+            GenerationErrorHandler errorHandler = new ResourceMarkingGenerationErrorHandler(resource);
+            monitor.subTask("Generating Parser for " + resource.getName());
+            buildParser(syntaxBean, grammarFile, sourceConfig, targetConfig, errorHandler);
 
-        } else { // conf is null
-            String message = "Build failed: Project " + project.getName()
-                    + " has DSL Syntax Definition Nature but no metamodel reference configured.";
-            EclipseMarkerUtil.addMarker(project, message, -1, IMarker.SEVERITY_ERROR);
+        } catch (GrammarGenerationException e) {
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+        } catch (ParserGeneratorInvocationException e) {
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+        } catch (ParserInvokationException e) {
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+        } catch (IOException e) {
+            throw new CoreException(EclipseExceptionHelper.getErrorStatus(e, Activator.PLUGIN_ID));
+        } finally {
+            monitor.done();
+        }
+    }
+
+    private TCSSyntaxContainerBean parseSyntax(IResource resource, GrammarGenerationSourceConfiguration sourceConfig) throws ParserInvokationException, ParserGeneratorInvocationException {
+        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+        
+        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(sourceConfig, convertIFileToFile(resource), new ResourceMarkingGenerationErrorHandler(resource));
+        if (syntaxBean.getSyntax() == null) {
+            return null; // failed with errors. Markers have been created.
+        }
+        return syntaxBean;
+    }
+
+    private void saveSyntaxAsModel(IResource resource, GrammarGenerationSourceConfiguration sourceConfig,
+            TCSSyntaxContainerBean syntaxBean) throws IOException {
+        URI modelFileURI = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+        Resource mappingResource;
+        try {
+            mappingResource = sourceConfig.getResourceSet().getResource(modelFileURI, true);
+        } catch (Exception e){
+            mappingResource = sourceConfig.getResourceSet().createResource(modelFileURI);
+        }
+        mappingResource.getContents().clear();
+        mappingResource.getContents().add(syntaxBean.getSyntax());
+        // FIXME: We have to replace replace all /resource/ uris with /plugin/
+        // See https://bugzilla.furcas.org/cgi-bin/bugzilla3/show_bug.cgi?id=88
+        mappingResource.save(null);
+    }
+    
+    private TCSSyntaxContainerBean loadSyntaxFromModelFile(IResource resource, GrammarGenerationSourceConfiguration sourceConfig) {
+        URI modelFileURI = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+        Resource mappingResource = sourceConfig.getResourceSet().getResource(modelFileURI, true);
+        
+        EObject concreteSyntax = mappingResource.getContents().iterator().next();
+        if (!(concreteSyntax instanceof ConcreteSyntax)) {
+            Activator.logger.displayError("Expected mapping resource: " + mappingResource.getURI()
+                    + " to contain Concrete Sytnax element but found: " + concreteSyntax.eClass().getName());
+            return null;
+        }
+        TCSSyntaxContainerBean syntaxBean = new TCSSyntaxContainerBean();
+        syntaxBean.setSyntax((ConcreteSyntax) concreteSyntax);
+        return syntaxBean;
+    }
+
+    private void buildParser(TCSSyntaxContainerBean syntaxBean, IFile grammarFile, GrammarGenerationSourceConfiguration sourceConfig, GrammarGenerationTargetConfiguration targetConfig, GenerationErrorHandler errorHandler) throws GrammarGenerationException, CoreException, ParserGeneratorInvocationException {
+        TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+
+        generator.generateGrammarFromSyntax(syntaxBean, sourceConfig, targetConfig, errorHandler);
+        grammarFile.getParent().refreshLocal(1, new NullProgressMonitor());
+        if (targetConfig.getGrammarTargetFile().exists()) {
+            generator.generateParserFromGrammar(targetConfig, new ResourceMarkingGenerationErrorHandler(grammarFile));
+        }
+        // refresh dir where java was generated so that Java builder can compile
+        grammarFile.getParent().refreshLocal(1, new NullProgressMonitor());
+    }
+        
+    private static boolean hasModelContent(IResource resource, ReferenceScopeBean refScopeBean) {
+        URI modelFileURI = URI.createPlatformResourceURI(resource.getFullPath().toString(), true);
+        try {
+            refScopeBean.getResourceSet().getResource(modelFileURI, true);
+            return true;
+        } catch (Exception ex) {
+            // load failed, so it seems to be a plain text file
+            return false;
         }
     }
     
@@ -276,18 +301,16 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         return targetPackage;
     }
     
-    private static IFile getGrammarFile(IFile syntaxDefFile) {
-        IContainer directory = syntaxDefFile.getParent();
-        String newFileName = getFileNameBase(syntaxDefFile) + GRAMMAR_ANTLR_POSTFIX;
-        IFile newFile = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
-        return newFile;
+    private static IFile getGrammarFile(IResource resource) {
+        String newFileName = "generated" + File.separator + "generated" + File.separator + getFileNameBase(resource) + GRAMMAR_ANTLR_POSTFIX;
+        return resource.getProject().getFile(new Path(IPath.SEPARATOR + newFileName));
     }
     
-    private static File convertIFileToFile(IFile file) {
+    private static File convertIFileToFile(IResource file) {
         return new File(file.getRawLocation().toOSString());
     }
 
-    private static String getFileNameBase(IFile file) {
+    private static String getFileNameBase(IResource file) {
         String fileName = file.getName();
         // "s m i  l e s".substring(1, 5) returns "mile"
         // 0 1 2 3 4 5
@@ -305,51 +328,4 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         }
     }
 
-    private void cleanResource(IResource resource, IProgressMonitor mymonitor) throws CoreException {
-        // TODO: implement this
-
-        // if (resource instanceof IFile && resource.getName().endsWith(Constants.TCS_EXTENSION)) {
-        // // Only delete if we are sure that we can rebuild it
-        // // one condition for that is the availability of the metamodel
-        // SyntaxGenerationNature nature = SyntaxGenerationNature.getNatureFromProject(resource.getProject());
-        //
-        // if (nature != null) {
-        // IProjectMetaRefConf conf = nature.getMetaModelReferenceConf();
-        // if (conf.getMetaLookUpForProject() != null) {
-        // IFile file = (IFile) resource;
-        // // delete markers
-        // EclipseMarkerUtil.deleteMarkers(file);
-        // // delete grammarfile
-        // IFile[] genfiles = GrammarGenerator.getFilesForClean(file);
-        // for (IFile genfile : genfiles) {
-        // if (genfile.exists()) {
-        // EclipseMarkerUtil.deleteMarkers(genfile);
-        // genfile.delete(IResource.FORCE, mymonitor);
-        // }
-        // }
-        // }
-        // }
-        // }
-    }
-
-    // /**
-    // * returns the name of the grammarfile that would be created in build.
-    // */
-    // public static IFile[] getFilesForClean(IFile file) {
-    // IFile[] files = new IFile[5];
-    //
-    // files[0] = getGrammarFile(file);
-    //
-    // IContainer directory = file.getParent();
-    // String newFileName = getFileNameBase(file) + "Parser.java";
-    // files[1] = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
-    // newFileName = getFileNameBase(file) + "Lexer.java";
-    // files[2] = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
-    // newFileName = getFileNameBase(file) + "__.g";
-    // files[3] = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
-    // newFileName = getFileNameBase(file) + ".tokens";
-    // files[4] = directory.getFile(new Path(IPath.SEPARATOR + newFileName));
-    //
-    // return files;
-    // }
 }
