@@ -402,16 +402,6 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 				if (template.getMetaReference() != null) {
 					
 					templatesNamesList.add(getStringNameOfTemplate(template));
-//					if (template instanceof PrimitiveTemplate) {
-//						templatesNamesList.add(((PrimitiveTemplate) template)
-//								.getTemplateName().toString());
-//					} else if (template instanceof FunctionTemplate) {
-//						templatesNamesList.add(((FunctionTemplate) template)
-//								.getFunctionName().toString());
-//					} else {
-//						templatesNamesList.add(template.getMetaReference()
-//								.getName().toString());
-//					}
 				}
 			}
 		}
@@ -605,8 +595,6 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		Collection<Symbol> symbols = new HashSet<Symbol>(syntax.getSymbols());
 
 		if (importsNotnull) {
-			// TODO what to do with the tokens of the concrete syntax of the
-			// imported template(TemplateImport)
 			if (!imported_tokens.isEmpty()) {
 				Collection<String> existingTokensValueList = new HashSet<String>();
 				for (Token token : tokens) {
@@ -896,9 +884,6 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 		Collection<Symbol> symbols = new HashSet<Symbol>(syntax.getSymbols());
 
 		if (importsNotnull) {
-			// TODO what to do with the tokens of the concrete syntax of the
-			// imported template(TemplateImport)
-
 			if (!imported_tokens.isEmpty()) {
 				Collection<String> existingTokensValueList = new HashSet<String>();
 				for (Token token : tokens) {
@@ -1185,12 +1170,6 @@ public class ANTLRGrammarGenerator implements ImportedTemplatesReceiver {
 					+ " unknown implementation of Template");
 		}
 	}
-
-	// private void addOperatorProductionRuleToGrammar(Operator operator)
-	// throws MetaModelLookupException, SyntaxElementException {
-	// operatorHandler.add
-	//
-	// }
 
 	protected static final String DEFAULT_LEXER = "NL\r\n"
 			+ "    :   (   \'\\r\' \'\\n\'\r\n"

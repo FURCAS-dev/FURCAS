@@ -192,7 +192,7 @@ public class SyntaxLookup {
 						.getConcreteSyntax().getSymbols()) {
 
 					if (symbolListNames.contains(imported_symbol.getName()
-							.toString())) {
+							.toString().toUpperCase())) {
 						errorBucket
 								.addWarning(
 										"the symbol already exists in the main mapping ..",
