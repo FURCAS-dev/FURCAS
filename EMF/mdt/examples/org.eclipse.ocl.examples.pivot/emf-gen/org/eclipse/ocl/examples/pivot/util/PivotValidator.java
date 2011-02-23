@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
@@ -115,6 +116,7 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -379,6 +381,8 @@ public class PivotValidator
 				return validateIteration((Iteration)value, diagnostics, context);
 			case PivotPackage.ITERATOR_EXP:
 				return validateIteratorExp((IteratorExp)value, diagnostics, context);
+			case PivotPackage.LAMBDA_TYPE:
+				return validateLambdaType((LambdaType)value, diagnostics, context);
 			case PivotPackage.LET_EXP:
 				return validateLetExp((LetExp)value, diagnostics, context);
 			case PivotPackage.LIBRARY:
@@ -485,6 +489,8 @@ public class PivotValidator
 				return validateTypedMultiplicityElement((TypedMultiplicityElement)value, diagnostics, context);
 			case PivotPackage.UNLIMITED_NATURAL_LITERAL_EXP:
 				return validateUnlimitedNaturalLiteralExp((UnlimitedNaturalLiteralExp)value, diagnostics, context);
+			case PivotPackage.UNSPECIFIED_TYPE:
+				return validateUnspecifiedType((UnspecifiedType)value, diagnostics, context);
 			case PivotPackage.UNSPECIFIED_VALUE_EXP:
 				return validateUnspecifiedValueExp((UnspecifiedValueExp)value, diagnostics, context);
 			case PivotPackage.VALUE_SPECIFICATION:
@@ -673,6 +679,16 @@ public class PivotValidator
 			UnlimitedNaturalLiteralExp unlimitedNaturalLiteralExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)unlimitedNaturalLiteralExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUnspecifiedType(UnspecifiedType unspecifiedType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)unspecifiedType, diagnostics, context);
 	}
 
 	/**
@@ -1607,6 +1623,16 @@ public class PivotValidator
 	public boolean validateIteratorExp(IteratorExp iteratorExp, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		return validate_EveryDefaultConstraint((EObject)iteratorExp, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLambdaType(LambdaType lambdaType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)lambdaType, diagnostics, context);
 	}
 
 	/**

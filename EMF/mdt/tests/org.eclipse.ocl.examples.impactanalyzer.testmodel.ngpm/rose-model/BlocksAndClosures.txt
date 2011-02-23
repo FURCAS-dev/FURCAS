@@ -1,0 +1,148 @@
+A block has a list of typed parameters and a return type, and it
+encapsulates a sequence of statements.
+
+Calling a block:
+
+Block<Boolean, (Integer i, String s, Binary b)> b =
+      { (Integer i, String s, Binary b) | return s.length > i; }
+
+b.getSignature().getInput() --> (Integer i, String s, Binary b)
+
+b(1, "Humba", 0x78BDC8);       // operation call with three args of
+                               // type { Integer, String, Binary }
+
+b(i=1, s="Humba", b=0x78BDC8); // assigning by name rather than pos
+p=(i=1, s="Humba", b=0x78BDC8);
+b p;
+
+Block / operation argument's exposed association ends are
+syntactically exposed like variables of the block. This would mean
+that the identity of the compound object passed as argument is
+revealed and cannot be easily accessed. Of course, if one of the
+associations to the components of the compound argument type is
+modeled as bidirectional, that would again be possible:
+
+	{ (param <-> Integer i, String s, Binary b) | return i.param }
+
+would be a block that returns the compound argument value.
+
+Compare with operation call convention. The operation declares a
+signature consisting of a set of named input arguments and a single
+unnamed output argument (optionally a set of exceptions /
+faults). Equivalently, an operation could be said to take a single
+unnamed argument. If multiple named arguments shall be mapped this
+way, the argument type needs to be a class with associations to those
+argument types and association ends named after the argument names.
+
+When an operation (or a block, respectively) tells its input argument
+type, when no other type is specified, the parameter list could
+instantiate that argument type by default instead of creating a new
+type implicitly that then only conforms to the argument type.
+
+Syntactically, what if "()" was the operator used to create an
+instance of a (potentially anonymous) class, filling its association
+slots? An operation or block invocation would be denoted by writing
+the argument value after the operation / block without
+parentheses. The parentheses are then only used to construct the
+"tuple" value holding the argument values. If a value of the correct
+type can be otherwise obtained, e.g., from a variable that holds a
+value of a conforming type, the invocation would not show parentheses
+at all. Example:
+
+Class c = (-> 1..1 Integer i);
+void m c;
+void m(Integer i) { ... }
+p = (i=3); // constructs an instance of an anonymous class that has an
+           // association to the (type-inferred) class Integer with
+	   // association end name "i"
+m p;	   // calls operation m passing the argument p=(i=3);
+m(i=3);	   // equivalent call, only that here the (i=3) value may not
+	   // need to create a new anonymous type but use the argument
+	   // type of m.
+
+void m(Integer compareTo(Object o), ...); // specifying required operations
+
+void m(x) {
+  if (x.compareTo(irgendwas) < 0) {
+    ...
+  } else if x.compareTo(irgendwas) > 0) {
+    ...
+  } else {
+    ...
+  }
+}
+
+Analogously, the parameter list specification of a block / operation
+would simply be an expression that evaluates to a class. Given the
+right context, something like
+
+      (Integer i)
+
+may be read as a definition of an anonymous class that has an
+anonymous association to type Integer with association end name
+"i". In this short notation, the assumed multiplicity is 1..1. Other
+multiplicities may be specified as well:
+
+      (0..1 Integer i) or (0..* Integer i) or (1..* Integer i)
+
+Composition semantics may as well be expressed, as in
+
+      (0..* <>-> Integer i)
+
+Associations that are not navigable from the argument type make little
+sense. However, they are not disallowed because it may allow using
+existing classes as argument types.
+
+With leaving the argument anonymous for the implementing block, using
+non-compound classes as argument type seems useless because there
+would be no way of identifying the argument in the implementation.
+
+
+ClassLiteral ::= '(' [ TODO...
+
+
+Discussion: Blocks referencing variables of their enclosing blocks
+------------------------------------------------------------------
+
+Referencing a variable of a block's enclosing block can get confusing
+if the object assigned to the variable may change between the point in
+time that the block is defined and the point in time when the block
+last accesses that variable. In the worst case, there may be
+concurrent execution of the block and other code that manipulates the
+variable, such that the variable changes its value with the block only
+reading from it.
+
+Java tries to address this problem by requiring variables that can be
+used by anonymous inner class instances to be final. Of course, this
+doesn't preclude the object bound to the variable to change its
+state.
+
+On the other hand, if blocks are to be used, e.g., for internal
+iterators, it would be very necessary to have access to the enclosing
+block's variables without having to make them all final. Especially,
+if such iterators execute in sequential order, this should not create
+too many surprises.
+
+Problems occur in case of concurrency. Imagine an internal
+"forallInParallel" iterator. In this case there is no execution order
+guarantee for the blocks. Variables of the enclosing block constitute
+"shared memory" for those concurrent threads of execution that will
+require some sort of locking / synchronization.
+
+Should concurrency be restricted to cases where the compiler can
+guarantee that there is no conflicting access to any objects or
+variables?
+
+Block values vs. BlockLiteral
+-----------------------------
+
+A block is defined as a literal which occurs in a lexical context
+within another block literal inside a statement which is part of the
+enclosing block. Some block literals do not have an enclosing block,
+for example a block defining the implementation of an operation in a
+class which is not defined within the context of any block.
+
+A block is also a value / object that can, e.g., be bound to a
+variable or passed as an argument to an operation or be associated
+with other objects. As such, the block value may be passed around the
+system and be used as an expression (variable expression, TODO

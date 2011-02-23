@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.3 2011/02/15 19:58:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -38,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  */
@@ -89,6 +91,36 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		safeVisit(element);
 	}
 
+	public void appendMultiplicity(MultiplicityElement object) {
+		int lower = object.getLower().intValue();
+		int upper = object.getUpper().intValue();
+		if (upper < 0) {
+			if (lower == 0) {
+				s.append("[*]");
+			}
+			else if (lower == 1) {
+				s.append("[+]");
+			}
+			else {
+				s.append("[" + lower + "..*]");
+			}
+		}
+		else if (upper == 1) {
+			if (lower == 0) {
+				s.append("[?]");
+			}
+			else {
+				//;
+			}
+		}
+		else if (upper == lower) {
+			s.append("[" + lower + "]");
+		}
+		else {
+			s.append("[" + lower + ".." + upper + "]");
+		}
+	}
+
 	protected void appendName(NamedElement object) {
 		if (object == null) {
 			s.append(NULL_PLACEHOLDER);
@@ -106,6 +138,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			for (Parameter parameter : iteration.getOwnedIterators()) {
 				s.append(prefix);
 				appendElement(parameter.getType());
+				appendMultiplicity(parameter);
 				prefix = ",";
 			}
 			if (iteration.getOwnedAccumulators().size() > 0) {
@@ -113,6 +146,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 				for (Parameter parameter : iteration.getOwnedAccumulators()) {
 					s.append(prefix);
 					appendElement(parameter.getType());
+					appendMultiplicity(parameter);
 					prefix = ",";
 				}
 			}
@@ -121,6 +155,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 		for (Parameter parameter : operation.getOwnedParameters()) {
 			append(prefix);
 			appendElement(parameter.getType());
+			appendMultiplicity(parameter);
 			prefix = ",";
 		}
 		append(")");
@@ -138,6 +173,15 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 			EObject parent = PrettyPrintNameVisitor.getNamespace(element.eContainer());
 			if ((parent instanceof org.eclipse.ocl.examples.pivot.Package) &&
 					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Package)parent).getName())) {
+				return;
+			}
+			if ((element instanceof Operation) &&
+				(parent instanceof org.eclipse.ocl.examples.pivot.Class) &&
+					PivotConstants.ORPHANAGE_NAME.equals(((org.eclipse.ocl.examples.pivot.Class)parent).getName())) {
+				Operation unspecializedOperation = PivotUtil.getUnspecializedTemplateableElement((Operation)element);
+				append(unspecializedOperation.getClass_().getName());
+				appendTemplateBindings((Operation)element);
+				append(parentSeparator);
 				return;
 			}
 			if (parent == scope) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.5 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 {				
@@ -68,6 +69,12 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 	public Object caseEClass(EClass eObject) {
 		org.eclipse.ocl.examples.pivot.Class pivotElement = converter.getCreated(org.eclipse.ocl.examples.pivot.Class.class, eObject);
 		doSwitchAll(org.eclipse.ocl.examples.pivot.Class.class, pivotElement.getSuperClasses(), eObject.getEGenericSuperTypes());
+		if (pivotElement.getSuperClasses().isEmpty()) {
+			org.eclipse.ocl.examples.pivot.Class classifierType = converter.getTypeManager().getClassifierType();
+			if (classifierType != null) {
+				pivotElement.getSuperClasses().add(classifierType);
+			}
+		}
 		return null;
 	}
 
@@ -98,7 +105,7 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 					oppositeProperty.setName(oppositeName);
 					oppositeProperty.setImplicit(true);
 					org.eclipse.ocl.examples.pivot.Class remoteType = (org.eclipse.ocl.examples.pivot.Class)pivotElement.getType();
-					Type localType = pivotElement.getFeaturingClass();
+					Type localType = PivotUtil.getFeaturingClass(pivotElement);
 					oppositeProperty.setType(localType);
 					String uniqueValue = details.get(PROPERTY_OPPOSITE_ROLE_UNIQUE_KEY);
 					if (uniqueValue != null) {

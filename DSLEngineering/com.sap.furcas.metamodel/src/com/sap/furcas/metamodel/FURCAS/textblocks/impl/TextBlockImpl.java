@@ -301,16 +301,6 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     }
 
 								/**
-     * The cached invocation delegate for the '{@link #getSubBlocks() <em>Get Sub Blocks</em>}' operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getSubBlocks()
-     * @generated
-     * @ordered
-     */
-	protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
-
-								/**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -325,16 +315,6 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     }
 
         /**
-     * The cached invocation delegate for the '{@link #getTokens() <em>Get Tokens</em>}' operation.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @see #getTokens()
-     * @generated
-     * @ordered
-     */
-	protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
-
-								/**
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -359,6 +339,26 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         }
         return additionalTemplates;
     }
+
+        /**
+     * The cached invocation delegate for the '{@link #getSubBlocks() <em>Get Sub Blocks</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getSubBlocks()
+     * @generated
+     * @ordered
+     */
+    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
+
+        /**
+     * The cached invocation delegate for the '{@link #getTokens() <em>Get Tokens</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTokens()
+     * @generated
+     * @ordered
+     */
+    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
 
         /**
      * <!-- begin-user-doc -->

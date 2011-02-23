@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromType;
@@ -109,25 +109,26 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     }
 
     @Override
-    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject target) {
-        if (target instanceof EObject) {
-            EObject etarget = target;
-            Collection<EObject> result = null;
-            if (property instanceof EReference && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass())
-                    || ((EClass) (property).getEType()).equals(EcorePackage.eINSTANCE.getEObject()))) {
-                QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
-                ResourceSet rs = etarget.eResource().getResourceSet();
-                if (rs == null) {
-                    rs = queryContext.getResourceSet();
-                    if (rs == null) {
-                        rs = new ResourceSetImpl();
-                    }
-                }
-                result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs, IndexFactory.getInstance());
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EReference property, EObject etarget) {
+        Collection<EObject> result = null;
+        if (property instanceof EReference
+                && (((EClass) (property).getEType()).isSuperTypeOf(etarget.eClass()) || ((EClass) (property).getEType())
+                        .equals(EcorePackage.eINSTANCE.getEObject()))) {
+            QueryContext queryContext = queryContextProvider.getBackwardScopeQueryContext(etarget);
+            ResourceSet rs = null;
+            if (etarget.eResource() != null) {
+                rs = etarget.eResource().getResourceSet();
             }
-            return result;
+            if (rs == null) {
+                rs = queryContext.getResourceSet();
+                if (rs == null) {
+                    rs = new ResourceSetImpl();
+                }
+            }
+            result = EcoreHelper.getInstance().reverseNavigate(etarget, property, queryContext, rs,
+                    IndexFactory.getInstance());
         }
-        throw new IllegalArgumentException();
+        return result;
     }
 
     @Override

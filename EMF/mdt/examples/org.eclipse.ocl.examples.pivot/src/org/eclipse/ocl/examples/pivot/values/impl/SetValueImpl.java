@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SetValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: SetValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -26,8 +26,9 @@ import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -44,7 +45,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	implements SetValue
 {
-    public static SetValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right)
+    public static SetValue intersection(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException
     {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
@@ -68,7 +69,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
     	return results.size() > 0 ? new SetValueImpl(valueFactory, results) : valueFactory.getEmptySetValue();
     }
 
-	public static SetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
+	public static SetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -143,10 +144,6 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
         return this;
     }
 
-	public SetValue createNew() {
-		return new SetValueImpl(valueFactory);
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof SetValueImpl)) {
@@ -170,7 +167,7 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 		}
 	}
 
-    public SetValue flatten() {
+    public SetValue flatten() throws InvalidValueException {
     	Set<Value> flattened = new HashSet<Value>();
     	if (flatten(flattened)) {
     		return new SetValueImpl(valueFactory, flattened);
@@ -184,17 +181,20 @@ public class SetValueImpl extends AbstractCollectionValue<Set<Value>>
 	    return CollectionKind.SET;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return staticType; // standardLibrary.getSetType();
 	}
 
-	public SetValue including(Value value) {
+	public SetValue including(Value value) throws InvalidValueException {
+		if (value.isInvalid()) {
+			throw new InvalidValueException("including invalid");
+		}
 		Set<Value> result = new HashSet<Value>(elements);
 		result.add(value);
 		return new SetValueImpl(valueFactory, result);
 	}
 
-    public SetValue minus(UniqueCollectionValue set) {
+    public SetValue minus(UniqueCollectionValue set) throws InvalidValueException {
     	Set<Value> result = new HashSet<Value>(elements);
         result.removeAll(set.asCollection());
         return new SetValueImpl(valueFactory, result);

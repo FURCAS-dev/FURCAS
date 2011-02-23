@@ -13,19 +13,15 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentFactory.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EnvironmentFactory.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.util.Adaptable;
 
 /**
  * A factory for creating OCL parser {@link Environment}s.  Clients of the OCL
@@ -95,7 +91,7 @@ public interface EnvironmentFactory {
 	 * @see #createOperationContext
      * @see #createAttributeContext
 	 */
-	Environment createPackageContext(Environment parent, List<String> pathname);
+//	Environment createPackageContext(Environment parent, List<String> pathname);
 	
 	/**
 	 * Loads an environment from the specified <tt>resource</tt>.  If not
@@ -210,31 +206,4 @@ public interface EnvironmentFactory {
 	EvaluationVisitor createEvaluationVisitor(Environment env,
 			EvaluationEnvironment evalEnv,
 			ModelManager modelManager);
-	
-	/**
-	 * Optional adapter interface for look-up methods that throw
-	 * {@link LookupException}s on abnormal failures (usually ambiguous names).
-	 * 
-	 * @author Christian W. Damus (cdamus)
-	 * 
-	 * @since 1.2
-	 */
-	interface Lookup {
-		/**
-		 * Creates an environment suitable for parsing OCL expressions in the
-		 * specified package context.  This context will become a classifier context
-		 * when the {@linkplain Environment#setSelfVariable "self" variable}
-		 * is defined.
-		 * 
-		 * @param pathname the qualified package name (the "::"-separated parts)
-		 * @return the environment or null if lookup fails to locate a package
-		 * @throws LookupException if package lookup encounters an error such as an ambiguity
-		 * 
-		 * @see #createClassifierContext
-		 * @see #createOperationContext
-	     * @see #createAttributeContext
-		 */
-		Environment tryCreatePackageContext(Environment parent,
-				List<String> pathname) throws LookupException;
-	}
 }

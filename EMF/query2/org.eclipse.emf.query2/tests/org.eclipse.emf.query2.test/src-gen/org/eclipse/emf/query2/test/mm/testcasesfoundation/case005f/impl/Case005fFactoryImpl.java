@@ -35,7 +35,7 @@ public class Case005fFactoryImpl extends EFactoryImpl implements Case005fFactory
 	 */
 	public static Case005fFactory init() {
 		try {
-			Case005fFactory theCase005fFactory = (Case005fFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f"); 
+			Case005fFactory theCase005fFactory = (Case005fFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f"); //$NON-NLS-1$ 
 			if (theCase005fFactory != null) {
 				return theCase005fFactory;
 			}
@@ -67,7 +67,7 @@ public class Case005fFactoryImpl extends EFactoryImpl implements Case005fFactory
 			case Case005fPackage.A5F_MIGRATION_ATTRIBUTE_TYPE_TRANSLATABLE_TEXT: return createA5fMigrationAttributeTypeTranslatableText();
 			case Case005fPackage.A5F_MIGRATION_ATTRIBUTE_TYPE_TEXT: return createA5fMigrationAttributeTypeText();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -13,9 +13,17 @@ package org.eclipse.emf.query.index.query.descriptors;
 import org.eclipse.emf.common.util.URI;
 
 /**
- * @author Jan K�hnlein - Initial contribution and API
- * @author Martin Strenge, SAP AG
- * @author Bernd Kolb, SAP AG
+ * <p>
+ * ReferenceDescriptor describes an EReference.
+ * </p>
+ * <p>
+ * It contains information like:
+ * <li>fragment uri of Source EObject</li>
+ * <li>fragment uri of Target EObject</li>
+ * <li>uri of the resource containing the source EObject</li>
+ * <li>uri of the resource containing the target EObject</li>
+ * <li>uri of the EReference</li>
+ * </p>
  */
 public interface EReferenceDescriptor {
 

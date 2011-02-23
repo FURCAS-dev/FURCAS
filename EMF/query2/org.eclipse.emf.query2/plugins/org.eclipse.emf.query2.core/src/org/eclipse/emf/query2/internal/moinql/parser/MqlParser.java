@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query2.internal.moinql.parser;
 
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryFormatException;
 import org.eclipse.emf.query2.QueryProcessor;
@@ -23,12 +24,11 @@ import org.eclipse.emf.query2.internal.moinql.parser.gen.MqlLexerGen;
 import org.eclipse.emf.query2.internal.moinql.parser.gen.MqlParserGen;
 import org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst.Node;
 import org.eclipse.emf.query2.internal.moinql.parser.impl.MqlAstBuilder;
+import org.eclipse.emf.query2.internal.report.ProcessErrorImpl;
+import org.eclipse.emf.query2.internal.report.ProcessReportImpl;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 import org.eclipse.emf.query2.internal.shared.UsageException;
-import org.eclipse.emf.query2.report.ProcessErrorImpl;
 import org.eclipse.emf.query2.report.ProcessReport;
-import org.eclipse.emf.query2.report.ProcessReportImpl;
 
 /**
  * @author D045917

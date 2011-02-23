@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTFactory.java,v 1.2 2010/05/16 19:20:25 ewillink Exp $
+ * $Id: OCLstdlibCSTFactory.java,v 1.4 2011/02/15 10:37:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -27,7 +27,9 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage
  * @generated
  */
-public interface OCLstdlibCSTFactory extends EFactory {
+public interface OCLstdlibCSTFactory
+		extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -35,15 +37,6 @@ public interface OCLstdlibCSTFactory extends EFactory {
 	 * @generated
 	 */
 	OCLstdlibCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl.OCLstdlibCSTFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Lib Bound Class CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Lib Bound Class CS</em>'.
-	 * @generated
-	 */
-	LibBoundClassCS createLibBoundClassCS();
 
 	/**
 	 * Returns a new object of class '<em>Lib Class CS</em>'.
@@ -55,13 +48,13 @@ public interface OCLstdlibCSTFactory extends EFactory {
 	LibClassCS createLibClassCS();
 
 	/**
-	 * Returns a new object of class '<em>Lib Document CS</em>'.
+	 * Returns a new object of class '<em>Lib Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Lib Document CS</em>'.
+	 * @return a new object of class '<em>Lib Constraint CS</em>'.
 	 * @generated
 	 */
-	LibDocumentCS createLibDocumentCS();
+	LibConstraintCS createLibConstraintCS();
 
 	/**
 	 * Returns a new object of class '<em>Lib Iteration CS</em>'.
@@ -82,15 +75,6 @@ public interface OCLstdlibCSTFactory extends EFactory {
 	LibOperationCS createLibOperationCS();
 
 	/**
-	 * Returns a new object of class '<em>Lib Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Lib Package CS</em>'.
-	 * @generated
-	 */
-	LibPackageCS createLibPackageCS();
-
-	/**
 	 * Returns a new object of class '<em>Lib Property CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +82,33 @@ public interface OCLstdlibCSTFactory extends EFactory {
 	 * @generated
 	 */
 	LibPropertyCS createLibPropertyCS();
+
+	/**
+	 * Returns a new object of class '<em>Lib Root Package CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lib Root Package CS</em>'.
+	 * @generated
+	 */
+	LibRootPackageCS createLibRootPackageCS();
+
+	/**
+	 * Returns a new object of class '<em>Meta Type Name</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Meta Type Name</em>'.
+	 * @generated
+	 */
+	MetaTypeName createMetaTypeName();
+
+	/**
+	 * Returns a new object of class '<em>Precedence CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Precedence CS</em>'.
+	 * @generated
+	 */
+	PrecedenceCS createPrecedenceCS();
 
 	/**
 	 * Returns the package supported by this factory.

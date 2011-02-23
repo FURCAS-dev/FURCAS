@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: EMF Query2 String Syntax Test
+Bundle-Name: %Query2SyntaxTest_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.syntax.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -10,4 +10,4 @@ Require-Bundle: org.junit4,
  org.eclipse.xtext;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.emf.query2.core;bundle-version="1.0.0",
  org.eclipse.emf.mwe.utils;bundle-version="[1.0.0,2.0.0)"
-Bundle-Vendor: eclipse.org
+Bundle-Vendor: %Query2SyntaxTest_Bundle_Vendor

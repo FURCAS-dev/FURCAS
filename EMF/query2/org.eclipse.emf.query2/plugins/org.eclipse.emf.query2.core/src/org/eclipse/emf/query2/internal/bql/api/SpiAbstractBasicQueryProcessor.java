@@ -11,15 +11,16 @@
 package org.eclipse.emf.query2.internal.bql.api;
 
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.exception.LocalizedBaseRuntimeException;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQuery;
 import org.eclipse.emf.query2.internal.fql.SpiFqlQueryResultSet;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryClientScope;
 import org.eclipse.emf.query2.internal.index.SpiFacilityQueryServiceException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 
 /**

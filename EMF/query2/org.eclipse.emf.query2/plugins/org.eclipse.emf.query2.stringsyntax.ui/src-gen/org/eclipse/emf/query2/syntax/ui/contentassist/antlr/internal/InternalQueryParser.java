@@ -23,7 +23,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalQueryParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'", "'in'", "'import'", "':'", "'from'", "'select'", "','", "'where'", "'.'", "'as'", "'{'", "'}'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'withoutsubtypes'", "'not'", "'?'", "'null'", "'true'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'", "'in'", "'import'", "':'", "'from'", "'select'", "','", "'where'", "'.'", "'as'", "'{'", "'}'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'withoutsubtypes'", "'not'", "'?'", "'null'", "'true'" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$ //$NON-NLS-16$ //$NON-NLS-17$ //$NON-NLS-18$ //$NON-NLS-19$ //$NON-NLS-20$ //$NON-NLS-21$ //$NON-NLS-22$ //$NON-NLS-23$ //$NON-NLS-24$ //$NON-NLS-25$ //$NON-NLS-26$ //$NON-NLS-27$ //$NON-NLS-28$ //$NON-NLS-29$ //$NON-NLS-30$ //$NON-NLS-31$ //$NON-NLS-32$ //$NON-NLS-33$ //$NON-NLS-34$ //$NON-NLS-35$ //$NON-NLS-36$ //$NON-NLS-37$ //$NON-NLS-38$ //$NON-NLS-39$ //$NON-NLS-40$ //$NON-NLS-41$ //$NON-NLS-42$ //$NON-NLS-43$
     };
     public static final int RULE_ID=5;
     public static final int RULE_STRING=4;
@@ -40,7 +40,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
         
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.emf.query2.syntax.ui/src-gen/org/eclipse/emf/query2/syntax/ui/contentassist/antlr/internal/InternalQuery.g"; } //$NON-NLS-1$
 
 
      
@@ -1859,14 +1859,14 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 2, input);
+                            new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 2, input); //$NON-NLS-1$
 
                         throw nvae;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 1, input);
+                        new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 1, input); //$NON-NLS-1$
 
                     throw nvae;
                 }
@@ -1882,14 +1882,14 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 2, input);
+                        new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 2, input); //$NON-NLS-1$
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 0, input);
+                    new NoViableAltException("724:1: rule__ScopeClause__Alternatives : ( ( ruleResourceScope ) | ( ruleElementScope ) );", 1, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -1966,7 +1966,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("746:1: rule__ConcreteWhereEntry__Alternatives : ( ( ruleParWhereEntry ) | ( ruleExpressionWhereEntry ) );", 2, 0, input);
+                    new NoViableAltException("746:1: rule__ConcreteWhereEntry__Alternatives : ( ( ruleParWhereEntry ) | ( ruleExpressionWhereEntry ) );", 2, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -2077,7 +2077,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("768:1: rule__Expression__Alternatives : ( ( ruleAliasAttributeExpression ) | ( ruleDoubleExpression ) | ( ruleLongExpression ) | ( ruleStringExpression ) | ( ruleNullExpression ) | ( ruleBooleanExpression ) | ( ruleQueryExpression ) | ( ruleReplacableValue ) );", 3, 0, input);
+                    new NoViableAltException("768:1: rule__Expression__Alternatives : ( ( ruleAliasAttributeExpression ) | ( ruleDoubleExpression ) | ( ruleLongExpression ) | ( ruleStringExpression ) | ( ruleNullExpression ) | ( ruleBooleanExpression ) | ( ruleQueryExpression ) | ( ruleReplacableValue ) );", 3, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -2263,7 +2263,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("826:1: rule__BooleanExpression__Alternatives : ( ( ( rule__BooleanExpression__TrueAssignment_0 ) ) | ( 'false' ) );", 4, 0, input);
+                    new NoViableAltException("826:1: rule__BooleanExpression__Alternatives : ( ( ( rule__BooleanExpression__TrueAssignment_0 ) ) | ( 'false' ) );", 4, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -2386,7 +2386,7 @@ public class InternalQueryParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("850:1: rule__Operator__Alternatives : ( ( ( '<' ) ) | ( ( '>' ) ) | ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '=' ) ) | ( ( '!=' ) ) | ( ( 'like' ) ) | ( ( 'not like' ) ) | ( ( 'not in' ) ) | ( ( 'in' ) ) );", 5, 0, input);
+                    new NoViableAltException("850:1: rule__Operator__Alternatives : ( ( ( '<' ) ) | ( ( '>' ) ) | ( ( '<=' ) ) | ( ( '>=' ) ) | ( ( '=' ) ) | ( ( '!=' ) ) | ( ( 'like' ) ) | ( ( 'not like' ) ) | ( ( 'not in' ) ) | ( ( 'in' ) ) );", 5, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }

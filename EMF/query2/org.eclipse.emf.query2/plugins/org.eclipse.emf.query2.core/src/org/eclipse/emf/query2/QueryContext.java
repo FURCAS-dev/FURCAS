@@ -14,8 +14,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public interface QueryContext {
-
+	/**
+	 * Gets the query context's resourceSet
+	 * @return resourceSet
+	 */
 	ResourceSet getResourceSet();
-
+	/**
+	 * Gets the ResourceScope
+	 * @return collection of URI's as resourceScope
+	 */
 	URI[] getResourceScope();
 }

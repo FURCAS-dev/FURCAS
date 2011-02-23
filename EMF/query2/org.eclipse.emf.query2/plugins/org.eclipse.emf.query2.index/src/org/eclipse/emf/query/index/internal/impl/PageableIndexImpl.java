@@ -44,10 +44,10 @@ public class PageableIndexImpl implements PageableIndex {
 		private final String baseDirectory;
 		private final int tolerance;
 		private final int limit;
-		
+
 		public static final int DISABLED = Integer.MAX_VALUE;
 		public static final Options PAGING_AND_DUMPING_DISABLED = new Options(null, Options.DISABLED, Options.DISABLED);
-		
+
 		public Options(String pagingDirectory, int limit, int tolerance) {
 			if (limit < 0) {
 				limit = DISABLED;
@@ -77,7 +77,7 @@ public class PageableIndexImpl implements PageableIndex {
 
 	private PageFileProvider chProv;
 
-	private String masterDumpFilePath;
+	private boolean dumpFileExists = false;
 
 	public PageableIndexImpl(Options options) {
 		rwLock = new ReentrantReadWriteLock();
@@ -99,6 +99,9 @@ public class PageableIndexImpl implements PageableIndex {
 		}
 	}
 
+	/**
+	 * Updates the existing Indices
+	 */
 	public void executeUpdateCommand(UpdateCommand command) {
 		IndexUpdaterInternal indexUpdater = new IndexUpdaterImpl(this.globalTables);
 		command.execute(indexUpdater);
@@ -134,12 +137,14 @@ public class PageableIndexImpl implements PageableIndex {
 		}
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.query.index.Index#load()
+	 */
 	public void load() {
 		this.rwLock.writeLock().lock();
-		masterDumpFilePath = null;
 		try {
 			File inputFile = this.chProv.getInputFile(DUMP_FILE_ID);
-			masterDumpFilePath = inputFile.getPath();
 			if (inputFile.exists()) {
 				FileInputStream fis = new FileInputStream(inputFile);
 				SerializationStrategyFactory factory = new SerializationStrategyFactory(fis);
@@ -164,10 +169,13 @@ public class PageableIndexImpl implements PageableIndex {
 		}
 	}
 
+	/**
+	 * Check whether the dump file exists or not.
+	 */
 	public boolean isDumpExists() {
-		File file = new File(masterDumpFilePath);
-		boolean indicesExists = file.exists();
-		return indicesExists;
+		File dumpFile = this.chProv.getOutputFile(DUMP_FILE_ID);
+		dumpFileExists = dumpFile.exists();
+		return dumpFileExists;
 	}
 
 }

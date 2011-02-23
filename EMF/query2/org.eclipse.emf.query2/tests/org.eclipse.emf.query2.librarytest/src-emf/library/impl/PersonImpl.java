@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PersonImpl.java,v 1.1 2010/12/07 13:18:49 akrsharma Exp $
+ * $Id: PersonImpl.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library.impl;
 
@@ -156,7 +156,7 @@ public class PersonImpl extends EObjectImpl implements Person {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();

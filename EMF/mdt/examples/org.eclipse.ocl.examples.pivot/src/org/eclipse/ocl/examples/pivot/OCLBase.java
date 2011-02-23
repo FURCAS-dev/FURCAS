@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLBase.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -25,18 +25,14 @@ import java.util.List;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.evaluation.ModelManager;
-import org.eclipse.ocl.examples.pivot.helper.HelperUtil;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.ocl.examples.pivot.utilities.QueryBaseImpl;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * <p>
@@ -246,86 +242,6 @@ public abstract class OCLBase {
 	}
 
 	/**
-	 * Return an analyzer configured ready to parse an input string.
-	 * 
-	 * @param input the input to parse
-	 * @return an analyzer
-	 * @since 3.0
-	 *
-	public OCLAnalyzer createAnalyzer(String input) {
-		OCLAnalyzer analyzer;
-		if (parserRepairCount != 0) {
-			OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(
-				rootEnvironment, input.toCharArray());
-			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
-			parser.setDefaultRepairCount(parserRepairCount);
-			lexer.lexer(parser.getIPrsStream());
-			analyzer = new OCLAnalyzer(
-				parser);
-		} else {
-			analyzer = new OCLAnalyzer(
-				rootEnvironment, input);
-		}
-		return analyzer;
-	} */
-
-	/**
-	 * Parses an OCL document, returning the constraints parsed from it. This
-	 * <code>OCL</code> instance remembers these constraints; they can be
-	 * retrieved later via the {@link #getConstraints()} method.
-	 * 
-	 * @param input
-	 *            an OCL document as either a string or a stream
-	 * @return the constraints parsed from the document
-	 * 
-	 * @throws ParserException
-	 *             on failure to parse, either because of a syntactic or
-	 *             semantic problem or because of an I/O failure
-	 * 
-	 * @see #getConstraints()
-	 */
-	public List<Constraint> parse(OCLInput input) throws ParserException {
-		throw new UnsupportedOperationException(getClass().getName() + ".parse");
-/*		String inputString = input.getContentAsString();
-		OCLAnalyzer analyzer = createAnalyzer(inputString);
-
-		// clear out old diagnostics
-		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment,
-			ProblemHandler.class);
-		if (ph != null) {
-			ph.beginParse();
-		}
-
-		List<Constraint> result = new java.util.ArrayList<Constraint>();
-		analyzer.parseOCLDocument(result);
-
-		constraints.addAll(result);
-
-		List<EObject> resContents = rootEnvironment.getTypeResolver()
-			.getResource().getContents();
-		for (Constraint ct : result) {
-			EObject constraintEObject = (EObject) ct;
-
-			if (constraintEObject.eResource() == null) {
-				resContents.add(constraintEObject);
-			}
-		}
-
-		if (ph != null) {
-			ph.endParse();
-
-			try {
-				problems = OCLUtil.checkForErrors(ph);
-			} catch (ParserException e) {
-				problems = e.getDiagnostic();
-				throw e;
-			}
-		}
-
-		return result; */
-	}
-
-	/**
 	 * Obtains all of the constraints parsed hitherto by this OCL instance.
 	 * These accumulate with every document that is parsed.
 	 * 
@@ -425,54 +341,17 @@ public abstract class OCLBase {
 	 * @see #isInvalid(Object)
 	 * @see #check(Object, Object)
 	 */
-	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, OclExpression expression) {
-		evaluationProblems = null;
-		
-		// can determine a more appropriate context from the context
-		// variable of the expression, to account for stereotype constraints
-		context = HelperUtil.getConstraintContext(rootEnvironment, context,
-			expression);
-
-		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
-		ValueFactory valueFactory = localEvalEnv.getValueFactory();
-		Value contextValue = valueFactory.valueOf(context);
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, contextValue);
-
-		ModelManager extents = getModelManager();
-		if (extents == null) {
-			// let the evaluation environment create one
-			extents = localEvalEnv.createModelManager(context);
-		}
-
-		EvaluationVisitor ev = environmentFactory
-			.createEvaluationVisitor(rootEnvironment, localEvalEnv, extents);
-
-		org.eclipse.ocl.examples.pivot.values.Value result;
-
-		try {
-			result = expression.accept(ev);
-		} catch (EvaluationHaltedException e) {
-			evaluationProblems = e.getDiagnostic();
-			result = null;
-		} finally {
-			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-		}
-		if (result == null) {
-			result = valueFactory.createInvalidValue("Java-Null value");
-		}
-		return result;
-	}
 	public org.eclipse.ocl.examples.pivot.values.Value evaluate(Object context, ExpressionInOcl expression) {
 		evaluationProblems = null;
 		
 		// can determine a more appropriate context from the context
 		// variable of the expression, to account for stereotype constraints
-		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
+//		context = HelperUtil.getConstraintContext(rootEnvironment, context, expression);
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
 		Value value = valueFactory.valueOf(context);
-		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
-//		localEvalEnv.addVariable(expression.getContextVariable(), value);
+//		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
+		localEvalEnv.add(expression.getContextVariable(), value);
 //		if ((value != null) && !value.isUndefined()) {
 //			expression.getContextVariable().setValue(value);
 //		}
@@ -491,12 +370,16 @@ public abstract class OCLBase {
 			result = expression.accept(ev);
 		} catch (EvaluationHaltedException e) {
 			evaluationProblems = e.getDiagnostic();
-			result = null;
+			throw e;
 		} finally {
-			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+//			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+			localEvalEnv.remove(expression.getContextVariable());
 		}
 		if (result == null) {
-			result = valueFactory.createInvalidValue("Java-Null value");
+			return localEvalEnv.throwInvalidEvaluation("Java-Null value");
+		}
+		if (result.isInvalid()) {
+			return localEvalEnv.throwInvalidEvaluation("Invalid Value");
 		}
 		return result;
 	}
@@ -535,10 +418,9 @@ public abstract class OCLBase {
 	 * @see #evaluate(Object, OCLExpression)
 	 */
 	public boolean check(Object context, Constraint constraint) {
-		ExpressionInOcl specification = rootEnvironment
-			.getUMLReflection().getSpecification(constraint);
+		ExpressionInOcl specification = (ExpressionInOcl) constraint.getSpecification();
 
-		return check(context, specification.getBodyExpression());
+		return check(context, specification);
 	}
 
 	/**
@@ -563,14 +445,17 @@ public abstract class OCLBase {
 	 * @throws IllegalArgumentException
 	 *             if the constraint expression is not boolean-valued
 	 */
-	public boolean check(Object context, OclExpression constraint) {
+	public boolean check(Object context, ExpressionInOcl specification) {
 		StandardLibrary stdlib = getEnvironment().getOCLStandardLibrary();
-		if (constraint.getType() != stdlib.getBooleanType()) {
+		if (specification.getBodyExpression().getType() != stdlib.getBooleanType()) {
 			throw new IllegalArgumentException("constraint is not boolean"); //$NON-NLS-1$
 		}
-
-		Value result = evaluate(context, constraint);
-		return result.isTrue();
+		try {
+			Value result = evaluate(context, specification);
+			return result.isTrue();
+		} catch (InvalidEvaluationException e) {
+			return false;
+		}
 	}
 
 	/**
@@ -605,8 +490,8 @@ public abstract class OCLBase {
 	 * 
 	 * @see #createQuery(Object)
 	 */
-	public QueryBase createQuery(OclExpression query) {
-		return new QueryBaseImpl(rootEnvironment, query, modelManager);
+	public QueryBase createQuery(ExpressionInOcl specification) {
+		return new QueryBaseImpl(rootEnvironment, specification, modelManager);
 	}
 
 	/**
@@ -628,8 +513,7 @@ public abstract class OCLBase {
 	 */
 	public QueryBase createQuery(Constraint constraint) {
 		return new QueryBaseImpl(
-			rootEnvironment, rootEnvironment.getUMLReflection()
-				.getSpecification(constraint).getBodyExpression(), modelManager);
+			rootEnvironment, (ExpressionInOcl) constraint.getSpecification(), modelManager);
 	}
 
 	/**
@@ -768,6 +652,14 @@ public abstract class OCLBase {
 		return problems;
 	}
 
+	public TypeManager getTypeManager() {
+		return rootEnvironment.getTypeManager();
+	}
+
+	public ValueFactory getValueFactory() {
+		return getTypeManager().getValueFactory();
+	}
+	
 	/**
 	 * Obtains problems, if any, occurred during evaluation of the last OCL
 	 * constraint or query expression.

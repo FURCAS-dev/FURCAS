@@ -36,7 +36,7 @@ public class Case013FactoryImpl extends EFactoryImpl implements Case013Factory {
 	 */
 	public static Case013Factory init() {
 		try {
-			Case013Factory theCase013Factory = (Case013Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case013"); 
+			Case013Factory theCase013Factory = (Case013Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case013"); //$NON-NLS-1$ 
 			if (theCase013Factory != null) {
 				return theCase013Factory;
 			}
@@ -73,7 +73,7 @@ public class Case013FactoryImpl extends EFactoryImpl implements Case013Factory {
 			case Case013Package.B13_SUB1_SUB2: return createB13Sub1Sub2();
 			case Case013Package.C13_SUB: return createC13Sub();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -88,7 +88,7 @@ public class Case013FactoryImpl extends EFactoryImpl implements Case013Factory {
 			case Case013Package.E13:
 				return createE13FromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -103,7 +103,7 @@ public class Case013FactoryImpl extends EFactoryImpl implements Case013Factory {
 			case Case013Package.E13:
 				return convertE13ToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -184,7 +184,7 @@ public class Case013FactoryImpl extends EFactoryImpl implements Case013Factory {
 	 */
 	public E13 createE13FromString(EDataType eDataType, String initialValue) {
 		E13 result = E13.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

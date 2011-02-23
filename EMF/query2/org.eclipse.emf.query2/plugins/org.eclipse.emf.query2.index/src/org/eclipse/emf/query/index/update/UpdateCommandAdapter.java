@@ -11,7 +11,7 @@
 package org.eclipse.emf.query.index.update;
 
 /**
- * 
+ * @see {@link UpdateCommand}
  * @author Martin Strenge, SAP AG
  * 
  */

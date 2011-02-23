@@ -11,7 +11,7 @@
             default="true"
             extensions="query"
             id="org.eclipse.emf.query2.syntax.Query"
-            name="Query Editor">
+            name="%Query2StringSyntaxUI_QueryEditor">
         </editor>
     </extension>
     <extension
@@ -52,21 +52,21 @@
         <page
             class="org.eclipse.emf.query2.syntax.ui.QueryExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.emf.query2.syntax.Query"
-            name="Query">
+            name="%Query2StringSyntaxUI_QueryPage">
             <keywordReference id="org.eclipse.emf.query2.syntax.ui.keyword_Query"/>
         </page>
         <page
             category="org.eclipse.emf.query2.syntax.Query"
             class="org.eclipse.emf.query2.syntax.ui.QueryExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="org.eclipse.emf.query2.syntax.Query.coloring"
-            name="Syntax Coloring">
+            name="%Query2StringSyntaxUI_SyntaxColoringPage">
             <keywordReference id="org.eclipse.emf.query2.syntax.ui.keyword_Query"/>
         </page>
         <page
             category="org.eclipse.emf.query2.syntax.Query"
             class="org.eclipse.emf.query2.syntax.ui.QueryExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.eclipse.emf.query2.syntax.Query.templates"
-            name="Templates">
+            name="%Query2StringSyntaxUI_TemplatesPage">
             <keywordReference id="org.eclipse.emf.query2.syntax.ui.keyword_Query"/>
         </page>
     </extension>
@@ -74,14 +74,14 @@
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipse.emf.query2.syntax.ui.keyword_Query"
-            label="Query"/>
+            label="%Query2StringSyntaxUI_Query"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
-            description="Trigger expensive validation"
+            description="%Query2StringSyntaxUI_Validation"
             id="org.eclipse.emf.query2.syntax.Query.validate"
-            name="Validate">
+            name="%Query2StringSyntaxUI_ValidateCommand">
       </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
@@ -90,7 +90,7 @@
              <command
                  commandId="org.eclipse.emf.query2.syntax.Query.validate"
                  style="push"
-                 tooltip="Trigger expensive validation">
+                 tooltip="%Query2StringSyntaxUI_ValidationLabel">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.emf.query2.syntax.Query.Editor.opened">
@@ -156,9 +156,9 @@
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
-			description="Open the quick outline."
+			description="%Query2StringSyntaxUI_OpenQuickOutlineCommandDescription"
 			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
-			name="Quick Outline">
+			name="%Query2StringSyntaxUI_QuickOutlineCommand">
 		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -166,7 +166,7 @@
 			locationURI="popup:#TextEditorContext?after=group.open">
 			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
 				style="push"
-				tooltip="Open Quick Outline">
+				tooltip="%Query2StringSyntaxUI_OpenQuickOutLineTooltip">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.emf.query2.syntax.Query.Editor.opened"/>
 				</visibleWhen>

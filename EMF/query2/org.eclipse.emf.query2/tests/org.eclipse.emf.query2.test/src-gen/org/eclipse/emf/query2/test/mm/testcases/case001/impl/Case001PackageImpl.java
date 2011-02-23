@@ -573,16 +573,16 @@ public class Case001PackageImpl extends EPackageImpl implements Case001Package {
 		a1EClass.getESuperTypes().add(this.getSuper());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a1EClass, org.eclipse.emf.query2.test.mm.testcases.case001.A1.class, "A1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA1_Bs(), this.getB1(), null, "bs", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case001.A1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(a1EClass, org.eclipse.emf.query2.test.mm.testcases.case001.A1.class, "A1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA1_Bs(), this.getB1(), null, "bs", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case001.A1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b1EClass, org.eclipse.emf.query2.test.mm.testcases.case001.B1.class, "B1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b1EClass, org.eclipse.emf.query2.test.mm.testcases.case001.B1.class, "B1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(superEClass, Super.class, "Super", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(superEClass, Super.class, "Super", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(aReferencesBEClass, AReferencesB.class, "AReferencesB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAReferencesB_B(), this.getB1(), null, "b", null, 0, 1, AReferencesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAReferencesB_A(), this.getA1(), null, "a", null, 0, 1, AReferencesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(aReferencesBEClass, AReferencesB.class, "AReferencesB", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getAReferencesB_B(), this.getB1(), null, "b", null, 0, 1, AReferencesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAReferencesB_A(), this.getA1(), null, "a", null, 0, 1, AReferencesB.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -599,64 +599,64 @@ public class Case001PackageImpl extends EPackageImpl implements Case001Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a1EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case001.A1",
-			 "metaObjectMofId", "45F120A5F0623F45C23A4B101DF7DEF019BC78EC",
-			 "isStructureType", "false",
-			 "ova", "bs"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case001.A1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5F0623F45C23A4B101DF7DEF019BC78EC", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "bs" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA1_Bs(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A55832B44EB2E2426E2EF7BB03980CD710"
+			 "ovaMofId", "45F120A55832B44EB2E2426E2EF7BB03980CD710" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b1EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case001.B1",
-			 "metaObjectMofId", "45F120A5357F9DDF7255425B08CAC0DE934E5572",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case001.B1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5357F9DDF7255425B08CAC0DE934E5572", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (superEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case001.Super",
-			 "metaObjectMofId", "45F120A5AFB12DA1B0AE427808B6AEE44600EB11",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case001.Super", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5AFB12DA1B0AE427808B6AEE44600EB11", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getAReferencesB_B(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case001.AReferencesB",
-			 "metaObjectMofId", "45F120A59095EA91E9D94B3D2EFEDEC0AC372B5E",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case001.AReferencesB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A59095EA91E9D94B3D2EFEDEC0AC372B5E", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getAReferencesB_A(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case001.AReferencesB",
-			 "metaObjectMofId", "45F120A59095EA91E9D94B3D2EFEDEC0AC372B5E",
-			 "storedEnd", "0",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case001.AReferencesB", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A59095EA91E9D94B3D2EFEDEC0AC372B5E", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

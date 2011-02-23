@@ -161,7 +161,7 @@ public class FreelanceImpl extends EmployeeImpl implements Freelance {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (assignment: ");
+		result.append(" (assignment: "); //$NON-NLS-1$
 		result.append(assignment);
 		result.append(')');
 		return result.toString();

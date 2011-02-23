@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: OrderedSetValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -24,8 +24,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
@@ -39,7 +40,7 @@ public class OrderedSetValueImpl
 	extends AbstractCollectionValue<OrderedSet<Value>>
 	implements OrderedSetValue
 {
-    public static OrderedSetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) {
+    public static OrderedSetValue union(ValueFactory valueFactory, CollectionValue left, CollectionValue right) throws InvalidValueException {
     	assert !left.isUndefined() && !right.isUndefined();
 		Collection<Value> leftElements = left.asCollection();
         Collection<Value> rightElements = right.asCollection();
@@ -71,7 +72,7 @@ public class OrderedSetValueImpl
 		super(valueFactory, new OrderedSetImpl<Value>());
 		if (elements != null) {
 			for (Value element : elements) {
-				this.elements.add(element);		// FIXME equals
+				this.elements.add(element);
 			}
 		}
 	}
@@ -84,7 +85,10 @@ public class OrderedSetValueImpl
 		super(valueFactory, elements);
 	}
 
-    public OrderedSetValue append(Value object) {
+    public OrderedSetValue append(Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("append invalid");
+		}
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
         result.remove(object);  // appended object must be last
         result.add(object);
@@ -106,10 +110,10 @@ public class OrderedSetValueImpl
         return this;
 	}
 	
-    public Value at(int index) {
+    public Value at(int index) throws InvalidValueException {
         index = index - 1;        
         if (index < 0 || index >= elements.size()) {
-			throw new IndexOutOfBoundsException(
+			throw new InvalidValueException(
 				"index: " + (index + 1) + ", size: " //$NON-NLS-1$ //$NON-NLS-2$
 					+ size());
 		}        
@@ -122,10 +126,6 @@ public class OrderedSetValueImpl
         }
         return null; // undefined
     }
-
-	public OrderedSetValue createNew() {
-		return new OrderedSetValueImpl(valueFactory);
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -157,7 +157,7 @@ public class OrderedSetValueImpl
         return elements.iterator().next();
     }
 
-    public OrderedSetValue flatten() {
+    public OrderedSetValue flatten() throws InvalidValueException {
     	OrderedSet<Value> flattened = new OrderedSetImpl<Value>();
     	if (flatten(flattened)) {
     		return new OrderedSetValueImpl(valueFactory, flattened);
@@ -171,18 +171,21 @@ public class OrderedSetValueImpl
 	    return CollectionKind.ORDERED_SET;
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
+	public Type getType(TypeManager typeManager, Type staticType) {
 		return staticType; // standardLibrary.getOrderedSetType();
 	}
 
-	public OrderedSetValue including(Value value) {
+	public OrderedSetValue including(Value value) throws InvalidValueException {
+		if (value.isInvalid()) {
+			throw new InvalidValueException("including invalid");
+		}
 		OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
 		result.add(value);
 		return new OrderedSetValueImpl(valueFactory, result);
 	}
 
 
-    public IntegerValue indexOf(Value object) {
+    public IntegerValue indexOf(Value object) throws InvalidValueException {
         int index = 1;        
         for (Value next : elements) {
             if (object.equals(next)) {
@@ -190,10 +193,13 @@ public class OrderedSetValueImpl
             }
             index++;
         }        
-        return valueFactory.createInvalidValue("missing element");
+        throw new InvalidValueException("missing element");
     }
 
-    public OrderedSetValue insertAt(int index, Value object) {
+    public OrderedSetValue insertAt(int index, Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("insertAt invalid");
+		}
         index = index - 1;
         boolean isContained = elements.contains(object);
         int effectiveSize = elements.size() - (isContained ? 1 : 0);
@@ -234,13 +240,16 @@ public class OrderedSetValueImpl
         return result;
     }
 
-    public OrderedSetValue minus(UniqueCollectionValue set) {
+    public OrderedSetValue minus(UniqueCollectionValue set) throws InvalidValueException {
     	OrderedSet<Value> result = new OrderedSetImpl<Value>(elements);
         result.removeAll(set.asCollection());
         return new OrderedSetValueImpl(valueFactory, result);
     }
 
-    public OrderedSetValue prepend(Value object) {
+    public OrderedSetValue prepend(Value object) throws InvalidValueException {
+		if (object.isInvalid()) {
+			throw new InvalidValueException("prepend invalid");
+		}
     	OrderedSet<Value> result = new OrderedSetImpl<Value>();
         result.add(object);
         result.addAll(elements);

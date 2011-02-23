@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.update;
 
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,16 +29,19 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
+ * Indexes the resources.
  * @author Martin Strenge, SAP AG
  * 
  */
 public class ResourceIndexer {
 
+	//Static Instance of ResourceIndexer
 	public static final ResourceIndexer INSTANCE = new ResourceIndexer();
 
 	public final void resourceChanged(IndexUpdater updater, final Resource... resources) {
 		Map<Object, String> typeCache = new IdentityHashMap<Object, String>();
 		Map<Resource, URI> resourceCache = new IdentityHashMap<Resource, URI>();
+		//for each resource, update the existing indices
 		for (Resource resource : resources) {
 			if (resource != null) {
 				Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
@@ -57,8 +61,21 @@ public class ResourceIndexer {
 		}
 	}
 
+	/**
+	 * Adds an EObject to a resource and updates the indices.
+	 * 
+	 * @param updater Instance of {@link IndexUpdater}
+	 * @param uriConverter The converter used to normalize URIs and to open streams
+	 * @param resourceCache Stores the resource and uri pair in form of {@link HashMap}
+	 * @param typeCache Stores the type and type uri pair in form of {@link HashMap}
+	 * @param objectCache Stores the {@link EObject} and fragment in form of {@link HashMap}
+	 * @param resource The resource to which the {@link EObject} has to be added.
+	 * @param resourceUri uri of the resource to which {@link EObject} has to be added
+	 * @param element The {@link EObject} to be added
+	 */
 	private void addContent(IndexUpdater updater, URIConverter uriConverter, Map<Resource, URI> resourceCache,
 			Map<Object, String> typeCache, Map<Object, String> objectCache, Resource resource, URI resourceUri, EObject element) {
+		//Make an entry in the Object cache and the local type cache
 		if (element.eResource() == resource && isIndexElement(element)) {
 
 			String fragment;
@@ -70,9 +87,10 @@ public class ResourceIndexer {
 			if ((typeUri = typeCache.get(type)) == null) {
 				typeCache.put(type, typeUri = EcoreUtil.getURI(type).toString());
 			}
-
+			//update the indices.
 			updater.insertEObject(resourceUri, fragment, typeUri, getEObjectName(element), getEObjectUserData(element));
-
+			
+			//update the references
 			for (EReference eReference : element.eClass().getEAllReferences()) {
 				if (isIndexReference(eReference, element)) {
 					String refString;
@@ -111,6 +129,17 @@ public class ResourceIndexer {
 		}
 	}
 
+	/**
+	 * Creates a reference and updates the indices.
+	 * @param updater Instance of {@link IndexUpdater}
+	 * @param resourceCache Stores the resource and uri pair in form of {@link HashMap}
+	 * @param objectCache Stores the {@link EObject} and fragment in form of {@link HashMap}
+	 * @param uriConverter The converter used to normalize URIs and to open streams
+	 * @param srcResourceUri uri of the resource containing source Eobject
+	 * @param sourceFragment fragment of source Eobject
+	 * @param reference type uri
+	 * @param target fragment of the target Eobject
+	 */
 	private void createEReferenceDescriptor(IndexUpdater updater, Map<Resource, URI> resourceCache, Map<Object, String> objectCache,
 			URIConverter uriConverter, URI srcResourceUri, String sourceFragment, String reference, Object target) {
 		if (target instanceof EObject) {
@@ -141,6 +170,10 @@ public class ResourceIndexer {
 		return true;
 	}
 
+	/**
+	 * @param resource {@link Resource}
+	 * @return time stamp of the resource
+	 */
 	protected long getVersion(Resource resource) {
 		return resource.getTimeStamp();
 	}
@@ -149,6 +182,11 @@ public class ResourceIndexer {
 		return null;
 	}
 
+	/**
+	 * Retrieves the name of an EObject
+	 * @param element {@link EObject}
+	 * @return name of the EObject
+	 */
 	protected String getEObjectName(EObject element) {
 		EStructuralFeature nameFeature = element.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
 		if (nameFeature != null && nameFeature.getEType() instanceof EDataType) {

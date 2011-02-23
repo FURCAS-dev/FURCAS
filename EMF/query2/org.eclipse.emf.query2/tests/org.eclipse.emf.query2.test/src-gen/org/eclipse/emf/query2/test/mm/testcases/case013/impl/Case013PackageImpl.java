@@ -735,33 +735,33 @@ public class Case013PackageImpl extends EPackageImpl implements Case013Package {
 		c13SubEClass.getESuperTypes().add(this.getC13Abstract());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a13EClass, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, "A13", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getA13_ConstrainedAttribute1(), ecorePackage.getEInt(), "constrainedAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA13_ConstrainedAttributeMany1(), this.getA13(), null, "constrainedAttributeMany1", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a13EClass, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, "A13", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getA13_ConstrainedAttribute1(), ecorePackage.getEInt(), "constrainedAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA13_ConstrainedAttributeMany1(), this.getA13(), null, "constrainedAttributeMany1", null, 0, -1, org.eclipse.emf.query2.test.mm.testcases.case013.A13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b13EClass, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, "B13", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB13_InitializedIntegerAttribute1(), ecorePackage.getEInt(), "initializedIntegerAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB13_InitializedStringAttribute1(), ecorePackage.getEString(), "initializedStringAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB13_InitializedBooleanAttribute1(), ecorePackage.getEBoolean(), "initializedBooleanAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB13_InitializedDoubleAttribute1(), ecorePackage.getEDouble(), "initializedDoubleAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB13_NotInitializedStringAttribute1(), ecorePackage.getEString(), "notInitializedStringAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getB13_InitializedEnumerationAttribute1(), this.getE13(), "initializedEnumerationAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b13EClass, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, "B13", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB13_InitializedIntegerAttribute1(), ecorePackage.getEInt(), "initializedIntegerAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB13_InitializedStringAttribute1(), ecorePackage.getEString(), "initializedStringAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB13_InitializedBooleanAttribute1(), ecorePackage.getEBoolean(), "initializedBooleanAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB13_InitializedDoubleAttribute1(), ecorePackage.getEDouble(), "initializedDoubleAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB13_NotInitializedStringAttribute1(), ecorePackage.getEString(), "notInitializedStringAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getB13_InitializedEnumerationAttribute1(), this.getE13(), "initializedEnumerationAttribute1", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case013.B13.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b13Sub2EClass, B13Sub2.class, "B13Sub2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b13Sub2EClass, B13Sub2.class, "B13Sub2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(b13Sub2SubEClass, B13Sub2Sub.class, "B13Sub2Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b13Sub2SubEClass, B13Sub2Sub.class, "B13Sub2Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(b13Sub1EClass, B13Sub1.class, "B13Sub1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b13Sub1EClass, B13Sub1.class, "B13Sub1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(b13Sub1Sub2EClass, B13Sub1Sub2.class, "B13Sub1Sub2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b13Sub1Sub2EClass, B13Sub1Sub2.class, "B13Sub1Sub2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(c13AbstractEClass, C13Abstract.class, "C13Abstract", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getC13Abstract_Attribute1(), ecorePackage.getEDouble(), "attribute1", null, 1, 1, C13Abstract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(c13AbstractEClass, C13Abstract.class, "C13Abstract", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getC13Abstract_Attribute1(), ecorePackage.getEDouble(), "attribute1", null, 1, 1, C13Abstract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(c13SubEClass, C13Sub.class, "C13Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(c13SubEClass, C13Sub.class, "C13Sub", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
-		initEEnum(e13EEnum, org.eclipse.emf.query2.test.mm.testcases.case013.E13.class, "E13");
+		initEEnum(e13EEnum, org.eclipse.emf.query2.test.mm.testcases.case013.E13.class, "E13"); //$NON-NLS-1$
 		addEEnumLiteral(e13EEnum, org.eclipse.emf.query2.test.mm.testcases.case013.E13.ENUM_FIELD1);
 		addEEnumLiteral(e13EEnum, org.eclipse.emf.query2.test.mm.testcases.case013.E13.ENUM_FIELD2);
 
@@ -780,76 +780,76 @@ public class Case013PackageImpl extends EPackageImpl implements Case013Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a13EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.A13",
-			 "metaObjectMofId", "45F120A5C6BFBFBB23B1451E20B5B97F60DBFB94",
-			 "isStructureType", "false",
-			 "ova", "constrainedAttributeMany1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.A13", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5C6BFBFBB23B1451E20B5B97F60DBFB94", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "constrainedAttributeMany1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA13_ConstrainedAttributeMany1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A56E30F4B0AACE47743FBA8A7C90994FEA"
+			 "ovaMofId", "45F120A56E30F4B0AACE47743FBA8A7C90994FEA" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b13EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.B13",
-			 "metaObjectMofId", "4783760EF4C17BB1BDEA11DCB33B001B776F88F3",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.B13", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "4783760EF4C17BB1BDEA11DCB33B001B776F88F3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b13Sub2EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.B13Sub2",
-			 "metaObjectMofId", "478F7B02F6859683C51411DC8FAB001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.B13Sub2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "478F7B02F6859683C51411DC8FAB001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b13Sub2SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.B13Sub2Sub",
-			 "metaObjectMofId", "478F7B02F6859684C51411DCB037001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.B13Sub2Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "478F7B02F6859684C51411DCB037001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b13Sub1EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.B13Sub1",
-			 "metaObjectMofId", "478F7B02F6859685C51411DCB929001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.B13Sub1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "478F7B02F6859685C51411DCB929001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b13Sub1Sub2EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.B13Sub1Sub2",
-			 "metaObjectMofId", "478F7B02F6859686C51411DCAD01001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.B13Sub1Sub2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "478F7B02F6859686C51411DCAD01001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c13SubEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case013.C13Sub",
-			 "metaObjectMofId", "47987CCE5345DED1CA7311DCC4A1001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case013.C13Sub", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "47987CCE5345DED1CA7311DCC4A1001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

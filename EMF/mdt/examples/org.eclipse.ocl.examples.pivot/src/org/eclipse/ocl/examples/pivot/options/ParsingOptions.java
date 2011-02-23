@@ -14,21 +14,16 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: ParsingOptions.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.options;
 
+import org.eclipse.ocl.examples.pivot.BasicEnvironment;
+import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
-import org.eclipse.ocl.lpg.BasicEnvironment;
-import org.eclipse.ocl.options.BasicOption;
-import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.options.Option;
-
-
 
 /**
  * Options applicable to {@link Environment}s to

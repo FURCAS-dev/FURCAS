@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,17 +28,18 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import java.math.BigDecimal;
 
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
+import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
@@ -52,6 +53,10 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 	}
 
 	public Object asObject() {
+		return this;
+	}
+
+	public Value asValidValue() {
 		return this;
 	}
 
@@ -69,8 +74,8 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 		throw new UnsupportedOperationException(getClass().getName()+ ".doubleValue");
 	}
 
-	public Type getType(StandardLibrary standardLibrary, Type staticType) {
-		return standardLibrary.getUnlimitedNaturalType();
+	public Type getType(TypeManager typeManager, Type staticType) {
+		return typeManager.getUnlimitedNaturalType();
 	}
 
 	@Override
@@ -83,16 +88,12 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 		return true;
 	}
 
-	public UnlimitedValue negate() {
-		return getValueFactory().createInvalidValue("negated UnlimitedValue");
+	public UnlimitedValue negate() throws InvalidValueException {
+		throw new InvalidValueException("negated UnlimitedValue");
 	}
 
 	public int signum() {
 		return 1;
-	}
-
-	public IntegerValue toIntegerValue() {
-		return getValueFactory().createInvalidValue("non-integer UnlimitedValue");
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: RejectIteration.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: RejectIteration.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
 import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.pivot.LoopExp;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
@@ -37,10 +37,10 @@ public class RejectIteration extends AbstractIteration<CollectionValue.Accumulat
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = iteratorExp.getSource().getType();
-		boolean isOrdered = stdlib.isOrdered(sourceType);
-		boolean isUnique = stdlib.isUnique(sourceType);
+		boolean isOrdered = typeManager.isOrdered(sourceType);
+		boolean isUnique = typeManager.isUnique(sourceType);
 		CollectionValue.Accumulator accumulatorValue = createAccumulationValue(valueFactory, isOrdered, isUnique);
 		return evaluateIteration(new IterationManager<CollectionValue.Accumulator>(evaluationVisitor,
 				iteratorExp, sourceVal, accumulatorValue));
@@ -51,10 +51,10 @@ public class RejectIteration extends AbstractIteration<CollectionValue.Accumulat
 		CollectionValue.Accumulator accumulatorValue = iterationManager.getAccumulatorValue();
 		Value bodyVal = iterationManager.getBodyValue();		
 		if (bodyVal.isUndefined()) {
-			return bodyVal.toInvalidValue();
+			return iterationManager.throwInvalidEvaluation("null body"); 	// Null body is invalid
 		}
 		// should be exactly one iterator
-		if (bodyVal.isFalse()) {
+		else if (bodyVal.isFalse()) {
 			Value value = iterationManager.get(0);		
 			accumulatorValue.add(value);
 		}

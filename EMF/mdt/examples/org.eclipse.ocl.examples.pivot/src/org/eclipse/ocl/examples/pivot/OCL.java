@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCL.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot;
@@ -20,9 +20,10 @@ package org.eclipse.ocl.examples.pivot;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelperImpl;
+import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.QueryImpl;
 
 /**
  * Convenient subclass of the <code>OCL</code> fa&ccedil;ade that binds the
@@ -100,7 +101,7 @@ public class OCL extends OCLBase {
      * @return the new <code>OCL</code>
      */
 	public static OCL newInstance() {
-		return new OCL(PivotEnvironmentFactory.INSTANCE);
+		return new OCL(PivotEnvironmentFactory.getGlobalRegistryInstance());
 	}
 	
     /**
@@ -168,8 +169,8 @@ public class OCL extends OCLBase {
 	 * </p>
 	 */
     @Override
-    public Query createQuery(OclExpression query) {
-    	return new QueryImpl(super.createQuery(query), this);
+    public Query createQuery(ExpressionInOcl specification) {
+    	return new QueryImpl(super.createQuery(specification), this);
     }
     
     /**

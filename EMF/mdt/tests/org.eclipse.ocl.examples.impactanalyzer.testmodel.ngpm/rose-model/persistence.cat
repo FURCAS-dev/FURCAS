@@ -1,0 +1,2353 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "persistence"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    quid       	"4472EA830302"
+    documentation 	
+|Persistence modeling cronstructs. This can primarily be used to tell whether an entity class shall have persistence support or not. Specific mark-up may be provided for associations.
+|
+|The package also will allow developers to specify concurrency control aspects, such as the locking style to use for a transaction or an entity class. Developers also need to be able to specify how persistent data is to be "partitioned" in the sense of defining the granularity for locking and fetching data.
+|
+|Furthermore, this package may contribute specific actions to make entity objects persistent and delete persistent objects.
+|
+|The package also has to define the semantics of persistence in the first place, such as how persistence affects the semantics of queries.
+|
+|TODO Does marking an entity class as persistent mean that there is this kind of "virtual" top-level "collection" of instances of this class which then can be queried and referred to by name? Is it like the topmost container that guarantees reachability and therefore allows for a garbage collection semantics "by reachability?"
+|
+|TODO Perhaps this package should be separated out into an own top-level metamodel package because it has dependencies on behavioral/actions and dataaccess/expressions.
+    
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "actions"
+	    quid       	"4979C042005B"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "Store"
+		    quid       	"4979C056001D"
+		    documentation 	
+|Marks an entity object or multi-object as persistent. It will be stored in the repository, producing a new snapshot on calling commit. 
+|Together with the object(s) produced by the *argument* expression, all their composite children are stored by this statement, too, and so are all links attached to any of these objects as well as all value objects that are relevant for the equality of any of the objects stored.
+|
+|TODO clarify the storing of deletions
+		    
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"4979C07300D8"
+			    supplier   	"Logical View::persistence::actions::StatementWithEntityArgument"
+			    quidu      	"497A4BFB0037")))
+		(object Class "Delete"
+		    quid       	"497A4BE10316"
+		    documentation 	"Deletes the one or multiple entity objects from the repository including its composite children and all attaching links."
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"497A4BE703A7"
+			    supplier   	"Logical View::persistence::actions::StatementWithEntityArgument"
+			    quidu      	"497A4BFB0037")))
+		(object Class "StatementWithEntityArgument"
+		    quid       	"497A4BFB0037"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"497A4C1C0028"
+			    supplier   	"Logical View::behavioral::actions::StatementWithArgument"
+			    quidu      	"492573460213"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "CanStoreOnlyEntities"
+			    quid       	"4979C0D902AD"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"4979C0E6007A"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context StatementWithEntityArgument
+|inv:
+|  if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then
+|    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType
+|  else
+|    false
+|  endif
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))))
+		(object Class "Rollback"
+		    quid       	"4981A0120399"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"4981A020005D"
+			    supplier   	"Logical View::behavioral::actions::Statement"
+			    quidu      	"4545FC1D0190"))))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "Persistence Actions"
+		    quid       	"4979C05D009A"
+		    title      	"Persistence Actions"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::persistence::actions::Store" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(916, 1437)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(835, 1386)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	162
+				justify    	0
+				label      	"Store")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4979C056001D"
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::behavioral::actions::Statement" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(619, 343)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(405, 214)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	428
+				justify    	0
+				label      	"Statement")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4545FC1D0190"
+			    width      	446
+			    height     	282
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::behavioral::actions::StatementWithArgument" @3
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1097, 773)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@3
+				location   	(857, 699)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	480
+				justify    	0
+				label      	"StatementWithArgument")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"492573460213"
+			    width      	498
+			    height     	172
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::dataaccess::expressions::Expression" @4
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2115, 431)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@4
+				location   	(1928, 327)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	374
+				justify    	0
+				label      	"Expression")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@4
+				location   	(1928, 523)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
+			    width      	392
+			    height     	232
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::dataaccess::expressions::WithArgument" @5
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1344, 432)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@5
+				location   	(1197, 358)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	294
+				justify    	0
+				label      	"WithArgument")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4577E587019C"
+			    width      	312
+			    height     	172
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "" @6
+			    location   	(1709, 431)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4577E58D0258"
+			    roleview_list 	(list RoleViews
+				(object RoleView "argument" @7
+				    Parent_View 	@6
+				    location   	(-534, 43)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @8
+					Parent_View 	@7
+					location   	(1804, 482)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	196
+					justify    	0
+					label      	"+argument"
+					pctDist    	0.452381
+					height     	51
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4577E58D025A"
+				    client     	@6
+				    supplier   	@4
+				    vertices   	(list Points
+					(1709, 431)
+					(1919, 431))
+				    line_style 	3
+				    origin_attachment 	(1709, 431)
+				    terminal_attachment 	(1919, 431)
+				    label      	(object SegLabel @9
+					Parent_View 	@7
+					location   	(1855, 398)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..1"
+					pctDist    	0.700000
+					height     	34
+					orientation 	0))
+				(object RoleView "argumentOf" @10
+				    Parent_View 	@6
+				    location   	(-534, 43)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @11
+					Parent_View 	@10
+					location   	(1543, 473)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	450
+					justify    	0
+					label      	"+argumentOf"
+					pctDist    	0.800000
+					height     	42
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4577E58D0259"
+				    client     	@6
+				    supplier   	@5
+				    vertices   	(list Points
+					(1709, 431)
+					(1500, 431))
+				    line_style 	3
+				    origin_attachment 	(1709, 431)
+				    terminal_attachment 	(1500, 431)
+				    label      	(object SegLabel @12
+					Parent_View 	@10
+					location   	(1569, 395)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..1"
+					pctDist    	0.669856
+					height     	37
+					orientation 	1))))
+			(object InheritView "" @13
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"49257357038A"
+			    client     	@3
+			    supplier   	@5
+			    vertices   	(list Points
+				(1267, 687)
+				(1267, 517))
+			    line_style 	3
+			    origin_attachment 	(1267, 687)
+			    terminal_attachment 	(1267, 517))
+			(object ClassView "Class" "Logical View::persistence::actions::Delete" @14
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1323, 1446)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@14
+				location   	(1242, 1395)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	162
+				justify    	0
+				label      	"Delete")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"497A4BE10316"
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::persistence::actions::StatementWithEntityArgument" @15
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1130, 1071)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@15
+				location   	(835, 1020)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	590
+				justify    	0
+				label      	"StatementWithEntityArgument")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"497A4BFB0037"
+			    width      	608
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritTreeView "" @16
+			    location   	(1130, 1272)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@15
+			    vertices   	(list Points
+				(1130, 1272)
+				(1130, 1134)))
+			(object InheritView "" @17
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4979C07300D8"
+			    client     	@1
+			    supplier   	@15
+			    vertices   	(list Points
+				(914, 1374)
+				(914, 1272))
+			    line_style 	3
+			    origin_attachment 	(914, 1374)
+			    terminal_attachment 	(914, 1272)
+			    drawSupplier 	@16)
+			(object InheritView "" @18
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"497A4BE703A7"
+			    client     	@14
+			    supplier   	@15
+			    vertices   	(list Points
+				(1324, 1383)
+				(1324, 1272))
+			    line_style 	3
+			    origin_attachment 	(1324, 1383)
+			    terminal_attachment 	(1324, 1272)
+			    drawSupplier 	@16)
+			(object InheritView "" @19
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"497A4C1C0028"
+			    client     	@15
+			    supplier   	@3
+			    vertices   	(list Points
+				(1121, 1008)
+				(1121, 859))
+			    line_style 	3
+			    origin_attachment 	(1121, 1008)
+			    terminal_attachment 	(1121, 859))
+			(object ClassView "Class" "Logical View::persistence::actions::Rollback" @20
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(361, 740)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@20
+				location   	(268, 689)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	186
+				justify    	0
+				label      	"Rollback")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4981A0120399"
+			    width      	204
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritTreeView "" @21
+			    location   	(619, 594)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@2
+			    vertices   	(list Points
+				(619, 594)
+				(619, 484)))
+			(object InheritView "" @22
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"49256DF60271"
+			    client     	@3
+			    supplier   	@2
+			    vertices   	(list Points
+				(949, 687)
+				(949, 594))
+			    line_style 	3
+			    origin_attachment 	(949, 687)
+			    terminal_attachment 	(949, 594)
+			    drawSupplier 	@21)
+			(object InheritView "" @23
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4981A020005D"
+			    client     	@20
+			    supplier   	@2
+			    vertices   	(list Points
+				(353, 677)
+				(353, 594))
+			    line_style 	3
+			    origin_attachment 	(353, 677)
+			    terminal_attachment 	(353, 594)
+			    drawSupplier 	@21)))))
+	(object Class_Category "expressions"
+	    quid       	"4979C049027E"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "All"
+		    quid       	"4979C34B01C3"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"4979C3550136"
+			    supplier   	"Logical View::dataaccess::expressions::Expression"
+			    quidu      	"450E63AB03A2"))
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "snapshot"
+			    quid       	"498C3F3D0186"
+			    documentation 	"A selector for the snapshot to read. If DEFAULT, the entities will be read from the current session's default snapshot. If ALL is specified, all copies of instances in all snapshots is returned. If DATE, the lastSnapshotBeforeIsoTimestamp has to be set and all snapshots before that date are selected for which no successor exists that still lies before the timestamp specified. This means that the entity will be returned from all snapshots on concurrent branches that existed at the given point in time."
+			    type       	"SnapshotSelection"
+			    quidu      	"498C3EB901C5"
+			    exportControl 	"Public"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "MustBeEntityClass"
+			    quid       	"4979C45C02BD"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"4979C468003C"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context All
+|inv:
+|  not self.ofClass.valueType
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))
+			(object Class "ExpressionMustBeSnapshotOrTimePoint"
+			    quid       	"49AE8335035D"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"49AE836D013A"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context All
+|inv:
+|  if self.snapshot = SnapshotSelection::SPECIFIED then
+|    self.snapshotIdentifier.getType().upperMultiplicity = 1 and
+|    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+|   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)
+|  else
+|    true
+|  endif
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))))
+		(object Class "SnapshotSelection"
+		    quid       	"498C3EB901C5"
+		    stereotype 	"enumeration"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "DEFAULT"
+			    quid       	"498C3EFA03B9"
+			    exportControl 	"Public")
+			(object ClassAttribute "ALL"
+			    quid       	"498C3F1D0213"
+			    exportControl 	"Public")
+			(object ClassAttribute "CHANGED"
+			    quid       	"49A41C62029A"
+			    exportControl 	"Public")
+			(object ClassAttribute "SPECIFIED"
+			    quid       	"49AE7F37015F"
+			    exportControl 	"Public")))
+		(object Class "Commit"
+		    quid       	"4981A010001F"
+		    documentation 	"Returns the Snapshot produced"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"49AC5E6D0029"
+			    supplier   	"Logical View::dataaccess::expressions::Expression"
+			    quidu      	"450E63AB03A2"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "ReturnsSnapshot"
+			    quid       	"49AC5EB70009"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"49AC5EBE0123"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context Commit
+|inv:
+|  self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+|  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Snapshot'
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))))
+		(object Class "Snapshot"
+		    quid       	"49AEBB73011C"
+		    superclasses 	(list inheritance_relationship_list
+			(object Inheritance_Relationship
+			    quid       	"49AEBBDE0006"
+			    supplier   	"Logical View::dataaccess::expressions::ObjectBasedExpression"
+			    quidu      	"453E0FC80335"))
+		    nestedClasses 	(list nestedClasses
+			(object Class "SourceObjectIsOfClassType"
+			    quid       	"49AEBC430220"
+			    stereotype 	"constraint"
+			    operations 	(list Operations
+				(object Operation "OCL"
+				    quid       	"49AEBC680181"
+				    concurrency 	"Sequential"
+				    semantics  	(object Semantic_Info
+					PDL        	
+|context Snapshot
+|inv:
+|  self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)
+					)
+				    opExportControl 	"Public"
+				    uid        	0)))))
+		(object Association "$UNNAMED$0"
+		    quid       	"4979C3D001A3"
+		    roles      	(list role_list
+			(object Role "ofClass"
+			    quid       	"4979C3D002DC"
+			    label      	"ofClass"
+			    supplier   	"Logical View::data::classes::SapClass"
+			    quidu      	"4432171B031E"
+			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE)
+			(object Role "$UNNAMED$1"
+			    quid       	"4979C3D1008A"
+			    supplier   	"Logical View::persistence::expressions::All"
+			    quidu      	"4979C34B01C3"
+			    client_cardinality 	(value cardinality "0..*"))))
+		(object Association "$UNNAMED$2"
+		    quid       	"49AE7B73000D"
+		    roles      	(list role_list
+			(object Role "snapshotIdentifier"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
+			    quid       	"49AE7B73031B"
+			    label      	"snapshotIdentifier"
+			    supplier   	"Logical View::dataaccess::expressions::Expression"
+			    quidu      	"450E63AB03A2"
+			    client_cardinality 	(value cardinality "0..1")
+			    Containment 	"By Value"
+			    is_navigable 	TRUE)
+			(object Role "all"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
+			    quid       	"49AE7B73034A"
+			    label      	"all"
+			    supplier   	"Logical View::persistence::expressions::All"
+			    quidu      	"4979C34B01C3"
+			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
+			    is_aggregate 	TRUE))))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "Persistence Expressions, Basic Queries"
+		    quid       	"4979C33A02EB"
+		    title      	"Persistence Expressions, Basic Queries"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::persistence::expressions::SnapshotSelection" @24
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2534, 387)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@24
+				location   	(2344, 253)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	380
+				justify    	0
+				label      	"SnapshotSelection")
+			    stereotype 	(object ItemLabel
+				Parent_View 	@24
+				location   	(2344, 203)
+				fill_color 	13434879
+				anchor     	10
+				nlines     	1
+				max_width  	380
+				justify    	0
+				label      	"<<enumeration>>")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"498C3EB901C5"
+			    width      	398
+			    height     	392
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::persistence::expressions::Commit" @25
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(393, 786)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@25
+				location   	(301, 734)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	184
+				justify    	0
+				label      	"Commit")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4981A010001F"
+			    width      	202
+			    height     	128
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::data::classes::SapClass" @26
+			    ShowCompartmentStereotypes 	TRUE
+			    SuppressOperation 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(2556, 815)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@26
+				location   	(2348, 736)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	416
+				justify    	0
+				label      	"SapClass")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@26
+				location   	(2348, 907)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	421)
+			    width      	434
+			    height     	182
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::dataaccess::expressions::Expression" @27
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(890, 297)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@27
+				location   	(623, 68)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	534
+				justify    	0
+				label      	"Expression")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@27
+				location   	(623, 389)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	531)
+			    width      	552
+			    height     	482
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritTreeView "" @28
+			    location   	(890, 628)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@27
+			    vertices   	(list Points
+				(890, 628)
+				(890, 538)))
+			(object InheritView "" @29
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"49AC5E6D0029"
+			    client     	@25
+			    supplier   	@27
+			    vertices   	(list Points
+				(394, 722)
+				(394, 628))
+			    line_style 	3
+			    origin_attachment 	(394, 722)
+			    terminal_attachment 	(394, 628)
+			    drawSupplier 	@28)
+			(object ClassView "Class" "Logical View::persistence::expressions::All" @30
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1517, 795)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@30
+				location   	(1218, 714)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	598
+				justify    	0
+				label      	"All")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4979C34B01C3"
+			    width      	616
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "$UNNAMED$0" @31
+			    location   	(2082, 816)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4979C3D001A3"
+			    roleview_list 	(list RoleViews
+				(object RoleView "ofClass" @32
+				    Parent_View 	@31
+				    location   	(635, -346)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @33
+					Parent_View 	@32
+					location   	(2219, 781)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	159
+					justify    	0
+					label      	"+ofClass"
+					pctDist    	0.538071
+					height     	36
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4979C3D002DC"
+				    client     	@31
+				    supplier   	@26
+				    vertices   	(list Points
+					(2082, 816)
+					(2339, 816))
+				    line_style 	3
+				    origin_attachment 	(2082, 816)
+				    terminal_attachment 	(2339, 816)
+				    label      	(object SegLabel @34
+					Parent_View 	@32
+					location   	(2312, 870)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.900000
+					height     	54
+					orientation 	1))
+				(object RoleView "$UNNAMED$1" @35
+				    Parent_View 	@31
+				    location   	(635, -346)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4979C3D1008A"
+				    client     	@31
+				    supplier   	@30
+				    vertices   	(list Points
+					(2082, 816)
+					(1825, 816))
+				    line_style 	3
+				    origin_attachment 	(2082, 816)
+				    terminal_attachment 	(1825, 816)
+				    label      	(object SegLabel @36
+					Parent_View 	@35
+					location   	(1887, 857)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..*"
+					pctDist    	0.763158
+					height     	41
+					orientation 	0))))
+			(object InheritView "" @37
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"4979C3550136"
+			    client     	@30
+			    supplier   	@27
+			    vertices   	(list Points
+				(1512, 701)
+				(1512, 628))
+			    line_style 	3
+			    origin_attachment 	(1512, 701)
+			    terminal_attachment 	(1512, 628)
+			    drawSupplier 	@28)
+			(object AssociationViewNew "$UNNAMED$2" @38
+			    location   	(1682, 279)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"49AE7B73000D"
+			    roleview_list 	(list RoleViews
+				(object RoleView "snapshotIdentifier" @39
+				    Parent_View 	@38
+				    location   	(147, -530)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @40
+					Parent_View 	@39
+					location   	(1358, 235)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	588
+					justify    	0
+					label      	"+snapshotIdentifier"
+					pctDist    	0.628070
+					height     	45
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"49AE7B73031B"
+				    client     	@38
+				    supplier   	@27
+				    vertices   	(list Points
+					(1682, 279)
+					(1166, 279))
+				    line_style 	3
+				    origin_attachment 	(1682, 279)
+				    terminal_attachment 	(1166, 279)
+				    label      	(object SegLabel @41
+					Parent_View 	@39
+					location   	(1218, 333)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..1"
+					pctDist    	0.900000
+					height     	54
+					orientation 	0))
+				(object RoleView "all" @42
+				    Parent_View 	@38
+				    location   	(147, -530)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @43
+					Parent_View 	@42
+					location   	(1704, 657)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	76
+					justify    	0
+					label      	"+all"
+					pctDist    	0.912791
+					height     	71
+					orientation 	1)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"49AE7B73034A"
+				    client     	@38
+				    supplier   	@30
+				    vertices   	(list Points
+					(1682, 279)
+					(1775, 279)
+					(1775, 702))
+				    line_style 	3
+				    origin_attachment 	(1682, 279)
+				    terminal_attachment 	(1775, 702)
+				    label      	(object SegLabel @44
+					Parent_View 	@42
+					location   	(1838, 666)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..1"
+					pctDist    	0.930233
+					height     	63
+					orientation 	0))))))
+		(object ClassDiagram "Snapshot Access Expression"
+		    quid       	"49AEBB8601D2"
+		    title      	"Snapshot Access Expression"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::persistence::expressions::Snapshot" @45
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1356, 1725)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@45
+				location   	(1255, 1674)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	202
+				justify    	0
+				label      	"Snapshot")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"49AEBB73011C"
+			    width      	220
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::dataaccess::expressions::ObjectBasedExpression" @46
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1359, 1343)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@46
+				location   	(1125, 1269)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	468
+				justify    	0
+				label      	"ObjectBasedExpression")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"453E0FC80335"
+			    width      	486
+			    height     	172
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @47
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"49AEBBDE0006"
+			    client     	@45
+			    supplier   	@46
+			    vertices   	(list Points
+				(1356, 1662)
+				(1356, 1429))
+			    line_style 	3
+			    origin_attachment 	(1356, 1662)
+			    terminal_attachment 	(1356, 1429))
+			(object ClassView "Class" "Logical View::dataaccess::expressions::Expression" @48
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1362, 822)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	TRUE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@48
+				location   	(1095, 593)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	534
+				justify    	0
+				label      	"Expression")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@48
+				location   	(1095, 914)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	531)
+			    width      	552
+			    height     	482
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object InheritView "" @49
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"453E0FF30001"
+			    client     	@46
+			    supplier   	@48
+			    vertices   	(list Points
+				(1347, 1256)
+				(1347, 1062))
+			    line_style 	3
+			    origin_attachment 	(1347, 1256)
+			    terminal_attachment 	(1347, 1062))
+			(object AssociationViewNew "" @50
+			    location   	(966, 1122)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"453649650215"
+			    roleview_list 	(list RoleViews
+				(object RoleView "objectBasedExpression" @51
+				    Parent_View 	@50
+				    location   	(-347, 397)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @52
+					Parent_View 	@51
+					location   	(825, 1395)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	450
+					justify    	0
+					label      	"+objectBasedExpression"
+					pctDist    	1.229730
+					height     	141
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4536496701C8"
+				    client     	@50
+				    supplier   	@46
+				    vertices   	(list Points
+					(966, 1122)
+					(966, 1344)
+					(1116, 1344))
+				    line_style 	3
+				    origin_attachment 	(966, 1122)
+				    terminal_attachment 	(1116, 1344)
+				    label      	(object SegLabel @53
+					Parent_View 	@51
+					location   	(1078, 1291)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..1"
+					pctDist    	0.900000
+					height     	54
+					orientation 	0))
+				(object RoleView "object" @54
+				    Parent_View 	@50
+				    location   	(-347, 397)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @55
+					Parent_View 	@54
+					location   	(976, 822)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	139
+					justify    	0
+					label      	"+object"
+					pctDist    	0.706052
+					height     	48
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"4536496701B4"
+				    client     	@50
+				    supplier   	@48
+				    vertices   	(list Points
+					(966, 1122)
+					(966, 869)
+					(1086, 869))
+				    line_style 	3
+				    origin_attachment 	(966, 1122)
+				    terminal_attachment 	(1086, 869)
+				    label      	(object SegLabel @56
+					Parent_View 	@54
+					location   	(1048, 923)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"1"
+					pctDist    	0.900000
+					height     	54
+					orientation 	1)))))))))
+    statemachine 	(object State_Machine "State/Activity Model"
+	quid       	"497E2C03001A"
+	states     	(list States
+	    (object State "$UNNAMED$3"
+		quid       	"497E2C1B0171"
+		type       	"StartState")
+	    (object State "transient, current snapshot"
+		quid       	"497E2C45027B"
+		type       	"Normal")
+	    (object State "current snapshot, in buffer as \"created\""
+		quid       	"497E2C5C0029"
+		type       	"Normal")
+	    (object State "stored, snapshot, not in buffer"
+		quid       	"497E2C9E0317"
+		type       	"Normal")
+	    (object State "$UNNAMED$4"
+		quid       	"497E2CE1001A"
+		type       	"EndState")
+	    (object State "snapshot, in buffer as \"deleted\""
+		quid       	"497E2DC102F7"
+		type       	"Normal"))
+	partitions 	(list Partitions)
+	objects    	(list Objects)
+	transitions 	(list transition_list
+	    (object State_Transition
+		quid       	"497E2C7000F4"
+		label      	""
+		supplier   	
+|Logical View::persistence::State/Activity Model::current snapshot, in buffer as "created"
+		
+		supplier_quidu 	"497E2C5C0029"
+		client     	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		client_quidu 	"497E2C45027B"
+		Event      	(object Event "save"
+		    quid       	"497E2C7000F5")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2C700104"))
+	    (object State_Transition
+		quid       	"497E2CB10142"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::stored, snapshot, not in buffer"
+		supplier_quidu 	"497E2C9E0317"
+		client     	
+|Logical View::persistence::State/Activity Model::current snapshot, in buffer as "created"
+		
+		client_quidu 	"497E2C5C0029"
+		Event      	(object Event "commit"
+		    quid       	"497E2CB10143")
+		action     	(object action "rehash"
+		    quid       	"497E2CB10144")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2CB10145"))
+	    (object State_Transition
+		quid       	"497E2D010019"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		supplier_quidu 	"497E2C45027B"
+		client     	"$UNNAMED$3"
+		client_quidu 	"497E2C1B0171"
+		Event      	(object Event "new in ObjectCreationInterpreter"
+		    quid       	"497E2D01001A")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2D01001C"))
+	    (object State_Transition
+		quid       	"497E2D4F0009"
+		label      	""
+		supplier   	"$UNNAMED$4"
+		supplier_quidu 	"497E2CE1001A"
+		client     	"Logical View::persistence::State/Activity Model::stored, snapshot, not in buffer"
+		client_quidu 	"497E2C9E0317"
+		Event      	(object Event "GC"
+		    quid       	"497E2D4F000A")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2D4F000C"))
+	    (object State_Transition
+		quid       	"497E2D8102E8"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::stored, snapshot, not in buffer"
+		supplier_quidu 	"497E2C9E0317"
+		client     	"$UNNAMED$3"
+		client_quidu 	"497E2C1B0171"
+		Event      	(object Event "load"
+		    quid       	"497E2D8102E9")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2D8102EB"))
+	    (object State_Transition
+		quid       	"497E2D990355"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		supplier_quidu 	"497E2C45027B"
+		client     	
+|Logical View::persistence::State/Activity Model::current snapshot, in buffer as "created"
+		
+		client_quidu 	"497E2C5C0029"
+		Event      	(object Event "rollback"
+		    quid       	"497E2D990356")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2D990358"))
+	    (object State_Transition
+		quid       	"497E2DE6022C"
+		label      	""
+		supplier   	
+|Logical View::persistence::State/Activity Model::snapshot, in buffer as "deleted"
+		
+		supplier_quidu 	"497E2DC102F7"
+		client     	"Logical View::persistence::State/Activity Model::stored, snapshot, not in buffer"
+		client_quidu 	"497E2C9E0317"
+		Event      	(object Event "delete"
+		    quid       	"497E2DE6022D")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2DE6022F"))
+	    (object State_Transition
+		quid       	"497E2E27021D"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		supplier_quidu 	"497E2C45027B"
+		client     	
+|Logical View::persistence::State/Activity Model::current snapshot, in buffer as "created"
+		
+		client_quidu 	"497E2C5C0029"
+		Event      	(object Event "delete"
+		    quid       	"497E2E27021E")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2E270220"))
+	    (object State_Transition
+		quid       	"497E2F160058"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		supplier_quidu 	"497E2C45027B"
+		client     	
+|Logical View::persistence::State/Activity Model::snapshot, in buffer as "deleted"
+		
+		client_quidu 	"497E2DC102F7"
+		Event      	(object Event "commit"
+		    quid       	"497E2F160059")
+		action     	(object action "rehash"
+		    quid       	"497E2F16005A")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2F16005B"))
+	    (object State_Transition
+		quid       	"497E2FA501BF"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::stored, snapshot, not in buffer"
+		supplier_quidu 	"497E2C9E0317"
+		client     	
+|Logical View::persistence::State/Activity Model::snapshot, in buffer as "deleted"
+		
+		client_quidu 	"497E2DC102F7"
+		Event      	(object Event "rollback"
+		    quid       	"497E2FA501C0")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2FA501C2"))
+	    (object State_Transition
+		quid       	"497E2FD50326"
+		label      	""
+		supplier   	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		supplier_quidu 	"497E2C45027B"
+		client     	"Logical View::persistence::State/Activity Model::transient, current snapshot"
+		client_quidu 	"497E2C45027B"
+		Event      	(object Event "commit, rollback"
+		    quid       	"497E2FD50327")
+		sendEvent  	(object sendEvent
+		    quid       	"497E2FD50329")))
+	objectflows 	(list objectflow_list)
+	statediagrams 	(list StateDiagrams
+	    (object State_Diagram "Entity State Transition"
+		quid       	"497E2C030097"
+		title      	"Entity State Transition"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object StateView "StartState" "$UNNAMED$3" @57
+			location   	(1139, 325)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@57
+			    location   	(1181, 295)
+			    nlines     	2
+			    max_width  	600
+			    label      	"")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"497E2C1B0171"
+			autoResize 	TRUE)
+		    (object StateView "Normal" "transient, current snapshot" @58
+			location   	(1149, 889)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@58
+			    location   	(1149, 878)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	340
+			    justify    	0
+			    label      	"transient, current snapshot")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"497E2C45027B"
+			width      	436
+			height     	134
+			autoResize 	TRUE)
+		    (object StateView "Normal" "current snapshot, in buffer as \"created\"" @59
+			location   	(1165, 1332)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@59
+			    location   	(1165, 1321)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	364
+			    justify    	0
+			    label      	
+|current snapshot, in buffer as "created"
+			    )
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"497E2C5C0029"
+			width      	460
+			height     	134
+			autoResize 	TRUE)
+		    (object StateView "Normal" "stored, snapshot, not in buffer" @60
+			location   	(1149, 1792)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@60
+			    location   	(1149, 1781)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	318
+			    justify    	0
+			    label      	"stored, snapshot, not in buffer")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"497E2C9E0317"
+			width      	414
+			height     	134
+			autoResize 	TRUE)
+		    (object StateView "EndState" "$UNNAMED$4" @61
+			location   	(1158, 2451)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@61
+			    location   	(1212, 2409)
+			    nlines     	2
+			    max_width  	600
+			    label      	"")
+			icon_style 	"Icon"
+			line_color 	3342489
+			quidu      	"497E2CE1001A"
+			autoResize 	TRUE)
+		    (object NoteView @62
+			location   	(334, 156)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@62
+			    location   	(105, 78)
+			    fill_color 	13434879
+			    nlines     	3
+			    max_width  	422
+			    label      	"Life cycle of a Java EntityObject instance")
+			line_color 	3342489
+			fill_color 	13434879
+			width      	482
+			height     	169)
+		    (object StateView "Normal" "snapshot, in buffer as \"deleted\"" @63
+			location   	(1815, 1797)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@63
+			    location   	(1815, 1786)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	366
+			    justify    	0
+			    label      	
+|snapshot, in buffer as "deleted"
+			    )
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"497E2DC102F7"
+			width      	462
+			height     	134
+			autoResize 	TRUE)
+		    (object TransView "" @64
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @65
+			    Parent_View 	@64
+			    location   	(1440, 601)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	613
+			    justify    	0
+			    label      	"new in ObjectCreationInterpreter"
+			    pctDist    	0.527897
+			    height     	301
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2D010019"
+			client     	@57
+			supplier   	@58
+			vertices   	(list Points
+			    (1139, 355)
+			    (1139, 821))
+			line_style 	3
+			origin_attachment 	(1139, 355)
+			terminal_attachment 	(1139, 821)
+			x_offset   	FALSE)
+		    (object TransView "" @66
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @67
+			    Parent_View 	@66
+			    location   	(413, 946)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	80
+			    justify    	0
+			    label      	"load"
+			    pctDist    	0.491569
+			    height     	54
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2D8102E8"
+			client     	@57
+			supplier   	@60
+			vertices   	(list Points
+			    (1109, 327)
+			    (359, 327)
+			    (359, 1775)
+			    (942, 1775))
+			line_style 	3
+			origin_attachment 	(1109, 327)
+			terminal_attachment 	(942, 1775)
+			x_offset   	FALSE)
+		    (object TransView "" @68
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @69
+			    Parent_View 	@68
+			    location   	(1195, 2134)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	60
+			    justify    	0
+			    label      	"GC"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2D4F0009"
+			client     	@60
+			supplier   	@61
+			vertices   	(list Points
+			    (1150, 1859)
+			    (1150, 2409))
+			line_style 	3
+			origin_attachment 	(1150, 1859)
+			terminal_attachment 	(1150, 2409)
+			x_offset   	FALSE)
+		    (object TransView "" @70
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @71
+			    Parent_View 	@70
+			    location   	(1468, 1747)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	112
+			    justify    	0
+			    label      	"delete"
+			    pctDist    	0.491228
+			    height     	43
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2DE6022C"
+			client     	@60
+			supplier   	@63
+			vertices   	(list Points
+			    (1356, 1790)
+			    (1584, 1790))
+			line_style 	3
+			origin_attachment 	(1356, 1790)
+			terminal_attachment 	(1584, 1790)
+			x_offset   	FALSE)
+		    (object TransView "" @72
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @73
+			    Parent_View 	@72
+			    location   	(2089, 1327)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	335
+			    justify    	0
+			    label      	"commit / rehash"
+			    pctDist    	0.224819
+			    height     	174
+			    orientation 	1)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2F160058"
+			client     	@63
+			supplier   	@58
+			vertices   	(list Points
+			    (1915, 1730)
+			    (1915, 746)
+			    (1178, 746)
+			    (1178, 822))
+			line_style 	3
+			origin_attachment 	(1915, 1730)
+			terminal_attachment 	(1178, 822)
+			x_offset   	FALSE)
+		    (object TransView "" @74
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @75
+			    Parent_View 	@74
+			    location   	(1546, 2063)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	141
+			    justify    	0
+			    label      	"rollback"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2FA501BF"
+			client     	@63
+			supplier   	@60
+			vertices   	(list Points
+			    (1815, 1864)
+			    (1815, 2018)
+			    (1281, 2018)
+			    (1281, 1859))
+			line_style 	3
+			origin_attachment 	(1815, 1864)
+			terminal_attachment 	(1281, 1859)
+			x_offset   	FALSE)
+		    (object TransView "" @76
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @77
+			    Parent_View 	@76
+			    location   	(979, 1565)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	335
+			    justify    	0
+			    label      	"commit / rehash"
+			    pctDist    	0.512270
+			    height     	171
+			    orientation 	1)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2CB10142"
+			client     	@59
+			supplier   	@60
+			vertices   	(list Points
+			    (1149, 1399)
+			    (1149, 1725))
+			line_style 	3
+			origin_attachment 	(1149, 1399)
+			terminal_attachment 	(1149, 1725)
+			x_offset   	FALSE)
+		    (object TransView "" @78
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @79
+			    Parent_View 	@78
+			    location   	(1669, 1171)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	141
+			    justify    	0
+			    label      	"rollback"
+			    pctDist    	0.413631
+			    height     	91
+			    orientation 	1)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2D990355"
+			client     	@59
+			supplier   	@58
+			vertices   	(list Points
+			    (1395, 1341)
+			    (1578, 1341)
+			    (1578, 881)
+			    (1367, 881))
+			line_style 	3
+			origin_attachment 	(1395, 1341)
+			terminal_attachment 	(1367, 881)
+			x_offset   	FALSE)
+		    (object TransView "" @80
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @81
+			    Parent_View 	@80
+			    location   	(612, 1128)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	112
+			    justify    	0
+			    label      	"delete"
+			    pctDist    	0.479060
+			    height     	94
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2E27021D"
+			client     	@59
+			supplier   	@58
+			vertices   	(list Points
+			    (935, 1334)
+			    (705, 1334)
+			    (705, 878)
+			    (931, 878))
+			line_style 	3
+			origin_attachment 	(935, 1334)
+			terminal_attachment 	(931, 878)
+			x_offset   	FALSE)
+		    (object TransView "" @82
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @83
+			    Parent_View 	@82
+			    location   	(1051, 1107)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	80
+			    justify    	0
+			    label      	"save"
+			    pctDist    	0.488673
+			    height     	99
+			    orientation 	1)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2C7000F4"
+			client     	@58
+			supplier   	@59
+			vertices   	(list Points
+			    (1149, 956)
+			    (1149, 1265))
+			line_style 	3
+			origin_attachment 	(1149, 956)
+			terminal_attachment 	(1149, 1265)
+			x_offset   	FALSE)
+		    (object TransView "" @84
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @85
+			    Parent_View 	@84
+			    location   	(799, 618)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	348
+			    justify    	0
+			    label      	"commit, rollback"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"497E2FD50326"
+			client     	@58
+			supplier   	@58
+			vertices   	(list Points
+			    (931, 843)
+			    (744, 843)
+			    (744, 662)
+			    (1062, 662)
+			    (1062, 822))
+			line_style 	3
+			origin_attachment 	(931, 843)
+			terminal_attachment 	(1062, 822)
+			x_offset   	FALSE)))))
+    logical_presentations 	(list unit_reference_list))

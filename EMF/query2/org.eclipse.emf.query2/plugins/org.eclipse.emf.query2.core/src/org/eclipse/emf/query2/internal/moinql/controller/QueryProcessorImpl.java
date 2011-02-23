@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryCommandWithResult;
 import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryExecutionException;
@@ -50,10 +51,9 @@ import org.eclipse.emf.query2.internal.moinql.preprocessor.ExpanderImpl;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.FacilityAssigner;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.FacilityAssignerImpl;
 import org.eclipse.emf.query2.internal.moinql.preprocessor.TypeCheckerImpl;
+import org.eclipse.emf.query2.internal.report.ProcessReportImpl;
 import org.eclipse.emf.query2.internal.shared.AuxServices;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 import org.eclipse.emf.query2.report.ProcessReport;
-import org.eclipse.emf.query2.report.ProcessReportImpl;
 import org.eclipse.emf.query2.report.ProcessWarning;
 
 /**
@@ -123,8 +123,8 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 	/**
 	 * we only do a pre-optimization of a query during scheduling if the number
-	 * of relevant partition does not exceed this threshold. This should be
-	 * larger than 2 to make sure dirty null and transient partitions are
+	 * of relevant resources does not exceed this threshold. This should be
+	 * larger than 2 to make sure dirty null and transient resources are
 	 * excluded where appropriate. The default is 10.
 	 */
 	private int thresholdForNumberOfRelevantPartitionsForOptimization = DEFAULT_THRESHOLD_FOR_NUMBER_OF_RELEVANT_PARTITIONS;
@@ -153,7 +153,11 @@ public class QueryProcessorImpl implements QueryProcessor {
 	private AuxServices mqlAuxServices;
 
 	private final Index index;
-
+	/**
+	 * Sorting of the resultset can be enabled or disabled.Sorting disabled by default
+	 */
+	private boolean isSortingNeeded=false;
+	
 	/**
 	 * The data areas relevant for the session
 	 */
@@ -278,6 +282,13 @@ public class QueryProcessorImpl implements QueryProcessor {
 		// }
 
 	}
+	
+	public QueryProcessorImpl(Index index,boolean isSortingNeeded) {
+		this(index);
+		this.isSortingNeeded = isSortingNeeded;
+	}
+	
+	
 
 	/*
 	 * The scheduler uses certain thresholds to perform a certain optimization.
@@ -285,6 +296,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 * purposes
 	 */
 
+	
 	public void turnOffOptimizationForElementsDuringScheduling() {
 
 		this.thresholdForNumberOfElementsInPartitionForOptimization = 0;
@@ -446,20 +458,24 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 * Execution method
 	 */
 	private ResultSet executeInternal(final PreparedQuery preparedQuery, final EmfHelper emfHelper, final boolean schedulingWanted, final boolean globalScopeIncluded,
-			final QueryContext scopeProvider, final URI[] globalContainerScope, final int numberOfResults) throws QueryExecutionException {
+			final QueryContext scopeProvider, final URI[] globalContainerScope, final int numberOfResults,final boolean isSortingNeeded) throws QueryExecutionException {
 		QueryCommandWithResult<ResultSet> command = new QueryCommandWithResult<ResultSet>() {
 
 			public void execute(QueryExecutor queryExecutor) {
 				this.setResult(executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded, scopeProvider.getResourceScope(), globalContainerScope,
-						numberOfResults));
+						numberOfResults,isSortingNeeded));
 			}
 		};
 		emfHelper.getIndex().executeQueryCommand(command);
 		return command.getResult();
 	}
+	
+	/**
+	 * Actual execution method where scheduling and interpreting is done
+	 */
 
 	private ResultSet executeSecuredInternal(PreparedQuery preparedQuery, EmfHelper emfHelper, boolean schedulingWanted, boolean globalScopeIncluded, URI[] globalPartitionScope,
-			URI[] globalContainerScope, int numberOfResults) throws QueryExecutionException {
+			URI[] globalContainerScope, int numberOfResults,boolean isSortingNeeded) throws QueryExecutionException {
 
 		
 
@@ -481,7 +497,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 			// We want to assure that no other threads can write and this also
 			// avoid the eviction manager from changing anything. At best, more
-			// partitions are loaded, which is safe
+			// resources are loaded, which is safe
 			// this.syncManager.acquireReadLock( );
 			try {
 				if (logger.isTraced(LogSeverity.INFO)) {
@@ -499,8 +515,9 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 				/* execute the internal query */
 				InterpreterImpl interpreter = new InterpreterImpl(emfHelper, this.memoryFQLProcessor, this, this.mqlAuxServices);
-				result = interpreter.execute(internalQuery, this.maxResultSetSize, numberOfResults);
+				result = interpreter.execute(internalQuery, this.maxResultSetSize, numberOfResults,isSortingNeeded);
 			} finally {
+				
 				// we're done. Release
 				// this.syncManager.releaseReadLock( );
 			}
@@ -556,7 +573,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 			throw new QueryExecutionException(e, ApiMessages.MQL_PREPROCESSOR_PROBLEM);
 		}
 
-		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context, globalContainerScope, numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context, globalContainerScope, numberOfResults,isSortingNeeded);
 	}
 
 	/*
@@ -660,7 +677,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 		EmfHelper emfHelper = this.getEmfHelper(scopeProvider);
 		PreparedQuery preparedQuery = this.prepareInternal(query, scopeProvider, emfHelper);
-		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider, null, numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider, null, numberOfResults,isSortingNeeded);
 	}
 
 	// public QueryScopeProvider getGlobalQueryScopeProvider() {
@@ -686,7 +703,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	// return queryScopeProvider;
 	// }
 	//
-	public TypeScopeProvider getQueryScopeProvider(final boolean scopeInclusive, final URI[] partitionScope) {
+	public TypeScopeProvider getQueryScopeProvider(final boolean scopeInclusive, final URI[] resourceScope) {
 
 		TypeScopeProvider queryScopeProvider = new TypeScopeProvider() {
 
@@ -704,12 +721,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 			// }
 			// }
 
-			public URI[] getPartitionScope() {
+			public URI[] getResourceScope() {
 
-				if (partitionScope == null) {
+				if (resourceScope == null) {
 					return new URI[0];
 				} else {
-					return partitionScope;
+					return resourceScope;
 				}
 			}
 		};
@@ -753,7 +770,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	// // return queryScopeProvider;
 	// // }
 	//
-	public TypeScopeProvider getQueryScopeProvider(final boolean scopeInclusive, final Set<URI> partitionScope) {
+	public TypeScopeProvider getQueryScopeProvider(final boolean scopeInclusive, final Set<URI> resourceScope) {
 
 		TypeScopeProvider queryScopeProvider = new TypeScopeProvider() {
 
@@ -771,12 +788,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 			// }
 			// }
 
-			public URI[] getPartitionScope() {
+			public URI[] getResourceScope() {
 
-				if (partitionScope == null) {
+				if (resourceScope == null) {
 					return new URI[0];
 				} else {
-					return partitionScope.toArray(new URI[partitionScope.size()]);
+					return resourceScope.toArray(new URI[resourceScope.size()]);
 				}
 			}
 		};
@@ -885,7 +902,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 	// return queryScopeProvider;
 	// }
 
-	public TypeScopeProvider getInclusiveQueryScopeProvider(final URI[] partitionScope) {
+	public TypeScopeProvider getInclusiveQueryScopeProvider(final URI[] resourceScope) {
 
 		TypeScopeProvider queryScopeProvider = new TypeScopeProvider() {
 
@@ -903,12 +920,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 			// }
 			// }
 
-			public URI[] getPartitionScope() {
+			public URI[] getResourceScope() {
 
-				if (partitionScope == null) {
+				if (resourceScope == null) {
 					return new URI[0];
 				} else {
-					return partitionScope;
+					return resourceScope;
 				}
 			}
 		};
@@ -916,7 +933,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 		return queryScopeProvider;
 	}
 
-	public TypeScopeProvider getInclusivePartitionScopeProvider(final URI... partitionScope) {
+	public TypeScopeProvider getInclusivePartitionScopeProvider(final URI... resourceScope) {
 
 		TypeScopeProvider queryScopeProvider = new TypeScopeProvider() {
 
@@ -930,12 +947,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 			// return new URI[0];
 			// }
 
-			public URI[] getPartitionScope() {
+			public URI[] getResourceScope() {
 
-				if (partitionScope == null) {
+				if (resourceScope == null) {
 					return new URI[0];
 				} else {
-					return partitionScope;
+					return resourceScope;
 				}
 			}
 		};
@@ -943,7 +960,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 		return queryScopeProvider;
 	}
 
-	public TypeScopeProvider getInclusiveQueryScopeProvider(final Set<URI> partitionScope) {
+	public TypeScopeProvider getInclusiveQueryScopeProvider(final Set<URI> resourceScope) {
 
 		TypeScopeProvider queryScopeProvider = new TypeScopeProvider() {
 
@@ -961,12 +978,12 @@ public class QueryProcessorImpl implements QueryProcessor {
 			// }
 			// }
 
-			public URI[] getPartitionScope() {
+			public URI[] getResourceScope() {
 
-				if (partitionScope == null) {
+				if (resourceScope == null) {
 					return new URI[0];
 				} else {
-					return partitionScope.toArray(new URI[partitionScope.size()]);
+					return resourceScope.toArray(new URI[resourceScope.size()]);
 				}
 			}
 		};

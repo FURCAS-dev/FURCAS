@@ -1,0 +1,63 @@
+Object-parameterized value classes can provide expressions
+constituting default values for their parameters. For example:
+
+	value class A|B b=someBExpression| {
+	}
+
+In particular, the type of an object parameter of a value class A may
+have a value class as its type which is or contains (by
+equality-relevant value-to-value associations only) an A value.
+
+Now, in order to construct this value of type A that is used somewhere
+in the object parameters for the outermost A value's type, that A has
+to have its object parameters set in turn. This, again, requires to
+construct another A value that goes into its type's parameters, and so
+on.
+
+This recursion can only end if at one point the same A value is used
+as object parameter that occurs somewhere up in the object/parameter
+tree, creating a cycle.
+
+For example:
+
+	value class Number|Number|1| precision| {
+	}
+
+Here, the precision argument to the Number class is again of type
+Number, with precision 1 which in turn is a Number value which has a
+precision which in this case happens to be 1 which closes the loop.
+
+Another example:
+
+	value class A|A|value A|someAExpression|()|| {
+	}
+
+Here, A defines an object parameter that is again of value class
+A. This means that the parameter's A-type needs to be parameterized as
+this is not a definition but a use of class A. In the example above,
+I've used "value A|someAExpression|()" as the parameter value. I've
+cheated by writing "someAExpression" because this again somehow (and
+be it through a call to some function or method) has to constitute a
+value of an A-parametrization. This recursion can only end if at some
+point the value descriptor that is used as object parameter is denoted
+by identifying an A value "up the tree."
+
+Mapping this to the Number example above, this works only because 1
+has as precision parameter the value 1 (itself), and moreover, the
+literal "1" implies this precision value and it therefore doesn't
+explicitly have to be specified. For such cases, I may make this work
+because parser and runtime may treat number literals special and
+establish the cyclic parametrization correctly.
+
+For user-defined and not interpreter-supprted object-parameterized
+value classes this may be more tricky. To establish the cycle in
+parameter values, an inner parameter value would have to be able to
+refer to one of the enclosing parameter values. This would require
+specific syntax support, such as using "this" inside the parameter
+definition. This all sounds too complicated and hard to
+understand. Besides, the only use case we currently have to this type
+of recursion is the special case "Number."
+
+It may be more useful to support the recursive Number declaration by
+special case handling and otherwise forbid recursive object parameter
+declarations.

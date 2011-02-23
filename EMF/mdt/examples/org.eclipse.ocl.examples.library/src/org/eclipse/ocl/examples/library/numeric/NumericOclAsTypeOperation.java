@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2009,2010 E.D.Willink and others.
+ * Copyright (c) 2009,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,15 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -34,8 +35,8 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	public static final NumericOclAsTypeOperation INSTANCE = new NumericOclAsTypeOperation();
 
 	@Override
-	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
+		TypeManager stdlib = evaluationVisitor.getTypeManager();
 		if (sourceVal.isUnlimited() && ((argType == stdlib.getIntegerType()) || (argType == stdlib.getRealType()))) {
 			return null;
 		}
@@ -48,26 +49,26 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	}
 
 	@Override
-	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) {
-		StandardLibrary stdlib = evaluationVisitor.getStandardLibrary();
+	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		RealValue realValue = sourceVal.asRealValue();
 		if (realValue != null) {
-			if (argType == stdlib.getUnlimitedNaturalType()) {
+			if (argType == typeManager.getUnlimitedNaturalType()) {
 				if (realValue.signum() < 0) {
-					return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, null, "not positive", null);
+					return evaluationVisitor.throwInvalidEvaluation("not positive", null, null, sourceVal);
 				}
 				return realValue.toIntegerValue();
 			}
-			else if (argType == stdlib.getIntegerType()) {
+			else if (argType == typeManager.getIntegerType()) {
 				return realValue.toIntegerValue();
 			}
 			return null;
 		}
 		IntegerValue integerValue = sourceVal.asIntegerValue();
 		if (integerValue != null) {
-			if (argType == stdlib.getUnlimitedNaturalType()) {
+			if (argType == typeManager.getUnlimitedNaturalType()) {
 				if (integerValue.signum() < 0) {
-					return evaluationVisitor.getValueFactory().createInvalidValue(sourceVal, null, "not positive", null);
+					return evaluationVisitor.throwInvalidEvaluation("not positive", null, null, sourceVal);
 				}
 				return integerValue;
 			}

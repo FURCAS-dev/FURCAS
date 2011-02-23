@@ -4,7 +4,7 @@
 
    <extension
          id="queryIndexBuilder"
-         name="%extension.name"
+         name="%Query2IndexUI_QueryIndexBuilder"
          point="org.eclipse.core.resources.builders">
       <builder
             hasNature="true">
@@ -15,7 +15,7 @@
    </extension>
    <extension
          id="queryIndexNature"
-         name="%extension.name.0"
+         name="%Query2IndexUI_QueryIndexNature"
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
@@ -34,7 +34,7 @@
             nameFilter="*"
             id="org.eclipse.emf.query.index.ui.contribution1">
          <action
-               label="%action.label"
+               label="%Query2IndexUI_AddOrRemoveQueryIndexNatureAction"
                class="org.eclipse.emf.query.index.internal.ui.builder.ToggleNatureAction"
                menubarPath="additions"
                enablesFor="+"

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -228,6 +228,21 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 		s.append("'");
 		append(eElement.getSource());
 		s.append("'");
+		Object container = eElement.eContainer().eGet(eElement.eContainingFeature());
+		if (container instanceof List<?>) {
+			int index = 0;
+			for (Object object : (List<?>)container) {
+				if (object == eElement) {
+					break;
+				}
+				if ((object instanceof EAnnotation) && (((EAnnotation)object).getSource().equals(eElement.getSource()))) {
+					index++;
+				}
+			}
+			if (index > 0) {
+				s.append(index);
+			}
+		}
 		return true;
 	}
 

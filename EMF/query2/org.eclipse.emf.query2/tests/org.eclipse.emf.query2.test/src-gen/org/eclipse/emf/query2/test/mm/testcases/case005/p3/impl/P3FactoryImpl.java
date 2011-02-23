@@ -35,7 +35,7 @@ public class P3FactoryImpl extends EFactoryImpl implements P3Factory {
 	 */
 	public static P3Factory init() {
 		try {
-			P3Factory theP3Factory = (P3Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p3"); 
+			P3Factory theP3Factory = (P3Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p3"); //$NON-NLS-1$ 
 			if (theP3Factory != null) {
 				return theP3Factory;
 			}
@@ -66,7 +66,7 @@ public class P3FactoryImpl extends EFactoryImpl implements P3Factory {
 		switch (eClass.getClassifierID()) {
 			case P3Package.C5: return createC5();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

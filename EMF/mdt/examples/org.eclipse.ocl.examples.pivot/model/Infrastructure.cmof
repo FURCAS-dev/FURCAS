@@ -84,7 +84,8 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_no_qualified_name-_specification">
               <language>OCL</language>
-              <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;&#xA;  implies self.qualifiedName->isEmpty()</body>
+              <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;
+  implies self.qualifiedName->isEmpty()</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_qualified_name" name="has_qualified_name" constrainedElement="Core-Abstractions-Namespaces-NamedElement" namespace="Core-Abstractions-Namespaces-NamedElement">
@@ -93,7 +94,8 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-has_qualified_name-_specification">
               <language>OCL</language>
-              <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies&#xA;  self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
+              <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies
+  self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
             </specification>
           </ownedRule>
           <ownedAttribute xmi:type="cmof:Property" xmi:id="Core-Abstractions-Namespaces-NamedElement-name" name="name" type="Core-PrimitiveTypes-String" lower="0">
@@ -118,7 +120,10 @@
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-allNamespaces" namespace="Core-Abstractions-Namespaces-NamedElement-allNamespaces">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-spec-_specification">
                 <language>OCL</language>
-                <body>result = if self.namespace->isEmpty()&#xA;then Sequence{}&#xA;else self.namespace.allNamespaces()->prepend(self.namespace)&#xA;endif</body>
+                <body>result = if self.namespace->isEmpty()
+then Sequence{}
+else self.namespace.allNamespaces()->prepend(self.namespace)
+endif</body>
               </specification>
             </ownedRule>
             <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Abstractions-Namespaces-NamedElement-allNamespaces-_ownedParameter.0" type="Core-Abstractions-Namespaces-Namespace" isOrdered="true" upper="*" lower="0" direction="return"/>
@@ -130,7 +135,10 @@
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom" namespace="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-spec-_specification">
                 <language>OCL</language>
-                <body>result = if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)&#xA;then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()&#xA;else true&#xA;endif</body>
+                <body>result = if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)
+then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()
+else true
+endif</body>
               </specification>
             </ownedRule>
             <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Abstractions-Namespaces-NamedElement-isDistinguishableFrom-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -156,7 +164,12 @@
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1 Core-Abstractions-Namespaces-NamedElement-qualifiedName" namespace="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-spec-_specification">
                 <language>OCL</language>
-                <body>result = if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()&#xA;then &#xA;    self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))&#xA;else&#xA;    Set{}&#xA;endif</body>
+                <body>result = if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()
+then 
+    self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))
+else
+    Set{}
+endif</body>
               </specification>
             </ownedRule>
             <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Abstractions-Namespaces-NamedElement-qualifiedName.1-_ownedParameter.0" type="Core-PrimitiveTypes-String" direction="return"/>
@@ -205,7 +218,9 @@
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-spec" name="spec" constrainedElement="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable" namespace="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-spec-_specification">
                 <language>OCL</language>
-                <body>result = self.member->forAll( memb |&#xA;self.member->excluding(memb)->forAll(other |&#xA;memb.isDistinguishableFrom(other, self)))</body>
+                <body>result = self.member->forAll( memb |
+self.member->excluding(memb)->forAll(other |
+memb.isDistinguishableFrom(other, self)))</body>
               </specification>
             </ownedRule>
             <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Abstractions-Namespaces-Namespace-membersAreDistinguishable-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -468,7 +483,14 @@
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom" namespace="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-spec-_specification">
                 <language>OCL</language>
-                <body>result = if n.oclIsKindOf(BehavioralFeature)&#xA;then&#xA;  if ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->notEmpty()&#xA;  then Set{}->including(self)->including(n)->isUnique( bf | bf.parameter->collect(type))&#xA;  else true&#xA;  endif&#xA;else true&#xA;endif</body>
+                <body>result = if n.oclIsKindOf(BehavioralFeature)
+then
+  if ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->notEmpty()
+  then Set{}->including(self)->including(n)->isUnique( bf | bf.parameter->collect(type))
+  else true
+  endif
+else true
+endif</body>
               </specification>
             </ownedRule>
             <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Abstractions-BehavioralFeatures-BehavioralFeature-isDistinguishableFrom-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -498,7 +520,10 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Instances-InstanceSpecification-slots_are_defined-_specification">
               <language>OCL</language>
-              <body>slot->forAll(s |&#xA;classifier->exists(c | c.allFeatures()->includes(s.definingFeature))&#xA;)&#xA;</body>
+              <body>slot->forAll(s |
+classifier->exists(c | c.allFeatures()->includes(s.definingFeature))
+)
+</body>
             </specification>
           </ownedRule>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots" name="no_duplicate_slots" constrainedElement="Core-Abstractions-Instances-InstanceSpecification" namespace="Core-Abstractions-Instances-InstanceSpecification">
@@ -507,7 +532,10 @@
             </ownedComment>
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Instances-InstanceSpecification-no_duplicate_slots-_specification">
               <language>OCL</language>
-              <body>classifier->forAll(c |&#xA;(c.allFeatures()->forAll(f | slot->select(s | s.definingFeature = f)->size() &lt;= 1)&#xA;)&#xA;</body>
+              <body>classifier->forAll(c |
+(c.allFeatures()->forAll(f | slot->select(s | s.definingFeature = f)->size() &lt;= 1)
+)
+</body>
             </specification>
           </ownedRule>
           <ownedAttribute xmi:type="cmof:Property" xmi:id="Core-Abstractions-Instances-InstanceSpecification-slot" name="slot" type="Core-Abstractions-Instances-Slot" upper="*" lower="0" isComposite="true" subsettedProperty="Core-Abstractions-Ownerships-Element-ownedElement" association="Core-Abstractions-Instances-A_slot_owningInstance">
@@ -1364,7 +1392,9 @@ other classifiers.</body>
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-_ownedRule.0" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality" namespace="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality">
               <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-_ownedRule.0-_specification">
                 <language>OCL</language>
-                <body>upperBound()->notEmpty() and lowerBound()->notEmpty()&#xA;includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)&#xA;</body>
+                <body>upperBound()->notEmpty() and lowerBound()->notEmpty()
+includesCardinality = (lowerBound() &lt;= C) and (upperBound() >= C)
+</body>
               </specification>
             </ownedRule>
             <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality-spec" name="spec" constrainedElement="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality" namespace="Core-Abstractions-Multiplicities-MultiplicityElement-includesCardinality">
@@ -2261,7 +2291,14 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Namespace-getNamesOfMember-spec" name="spec" constrainedElement="Core-Constructs-Namespace-getNamesOfMember" namespace="Core-Constructs-Namespace-getNamesOfMember">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Namespace-getNamesOfMember-spec-_specification">
               <language>OCL</language>
-              <body>result = if self.ownedMember->includes(element)&#xA;then Set{}->include(element.name)&#xA;else let elementImports: ElementImport = self.elementImport->select(ei | ei.importedElement = element) in&#xA;  if elementImports->notEmpty()&#xA;  then elementImports->collect(el | el.getName())&#xA;  else self.packageImport->select(pi | pi.importedPackage.visibleMembers()->includes(element))->collect(pi | pi.importedPackage.getNamesOfMember(element))&#xA;  endif&#xA;endif</body>
+              <body>result = if self.ownedMember->includes(element)
+then Set{}->include(element.name)
+else let elementImports: ElementImport = self.elementImport->select(ei | ei.importedElement = element) in
+  if elementImports->notEmpty()
+  then elementImports->collect(el | el.getName())
+  else self.packageImport->select(pi | pi.importedPackage.visibleMembers()->includes(element))->collect(pi | pi.importedPackage.getNamesOfMember(element))
+  endif
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Namespace-getNamesOfMember-_ownedParameter.0" type="Core-PrimitiveTypes-String" upper="*" lower="0" direction="return"/>
@@ -2300,7 +2337,9 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-spec" name="spec" constrainedElement="Core-Constructs-Namespace-membersAreDistinguishable" namespace="Core-Constructs-Namespace-membersAreDistinguishable">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-spec-_specification">
               <language>OCL</language>
-              <body>result = self.member->forAll( memb |&#xA;&#x9;self.member->excluding(memb)->forAll(other |&#xA;&#x9;&#x9;memb.isDistinguishableFrom(other, self)))</body>
+              <body>result = self.member->forAll( memb |
+	self.member->excluding(memb)->forAll(other |
+		memb.isDistinguishableFrom(other, self)))</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Namespace-membersAreDistinguishable-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -2529,7 +2568,9 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Association-specialized_end_types-_specification">
             <language>OCL</language>
-            <body>Sequence{1..self.memberEnd->size()}->&#xD;&#xA;&#x9;forAll(i | self.general->select(oclIsKindOf(Association)).oclAsType(Association)->&#xD;&#xA;&#x9;&#x9;forAll(ga |self.memberEnd->at(i).type.conformsTo(ga.memberEnd->at(i).type)))</body>
+            <body>Sequence{1..self.memberEnd->size()}->&#xD;
+	forAll(i | self.general->select(oclIsKindOf(Association)).oclAsType(Association)->&#xD;
+		forAll(ga |self.memberEnd->at(i).type.conformsTo(ga.memberEnd->at(i).type)))</body>
           </specification>
         </ownedRule>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="Core-Constructs-Association-isDerived" name="isDerived" type="Core-PrimitiveTypes-Boolean" default="false">
@@ -2627,7 +2668,10 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-subsetting_context_conforms-_specification">
             <language>OCL</language>
-            <body>self.subsettedProperty->notEmpty() implies&#xA;  (self.subsettingContext()->notEmpty() and self.subsettingContext()->forAll (sc |&#xA;    self.subsettedProperty->forAll(sp |&#xA;      sp.subsettingContext()->exists(c | sc.conformsTo(c)))))</body>
+            <body>self.subsettedProperty->notEmpty() implies
+  (self.subsettingContext()->notEmpty() and self.subsettingContext()->forAll (sc |
+    self.subsettedProperty->forAll(sp |
+      sp.subsettingContext()->exists(c | sc.conformsTo(c)))))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-redefined_property_inherited" name="redefined_property_inherited" constrainedElement="Core-Constructs-Property" namespace="Core-Constructs-Property">
@@ -2636,7 +2680,11 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-redefined_property_inherited-_specification">
             <language>OCL</language>
-            <body>if (redefinedProperty->notEmpty()) then&#xA;  (redefinitionContext->notEmpty() and&#xA;      redefinedProperty->forAll(rp|&#xA;        ((redefinitionContext->collect(fc|&#xA;          fc.allParents()))->asSet())->collect(c| c.allFeatures())->asSet()->includes(rp))</body>
+            <body>if (redefinedProperty->notEmpty()) then
+  (redefinitionContext->notEmpty() and
+      redefinedProperty->forAll(rp|
+        ((redefinitionContext->collect(fc|
+          fc.allParents()))->asSet())->collect(c| c.allFeatures())->asSet()->includes(rp))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-subsetting_rules" name="subsetting_rules" constrainedElement="Core-Constructs-Property" namespace="Core-Constructs-Property">
@@ -2645,7 +2693,10 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-subsetting_rules-_specification">
             <language>OCL</language>
-            <body>self.subsettedProperty->forAll(sp |&#xA;  self.type.conformsTo(sp.type) and&#xA;    ((self.upperBound()->notEmpty() and sp.upperBound()->notEmpty()) implies&#xA;      self.upperBound()&lt;=sp.upperBound() ))</body>
+            <body>self.subsettedProperty->forAll(sp |
+  self.type.conformsTo(sp.type) and
+    ((self.upperBound()->notEmpty() and sp.upperBound()->notEmpty()) implies
+      self.upperBound()&lt;=sp.upperBound() ))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-navigable_readonly" name="navigable_readonly" constrainedElement="Core-Constructs-Property" namespace="Core-Constructs-Property">
@@ -2742,7 +2793,12 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-opposite.1-spec" name="spec" constrainedElement="Core-Constructs-Property-opposite.1 Core-Constructs-Property-opposite" namespace="Core-Constructs-Property-opposite.1">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-opposite.1-spec-_specification">
               <language>OCL</language>
-              <body>result = if owningAssociation->isEmpty() and association.memberEnd->size() = 2&#xA;  then&#xA;    let otherEnd = (association.memberEnd - self)->any() in&#xA;      if otherEnd.owningAssociation->isEmpty() then otherEnd else Set{} endif&#xA;    else Set {}&#xA;    endif</body>
+              <body>result = if owningAssociation->isEmpty() and association.memberEnd->size() = 2
+  then
+    let otherEnd = (association.memberEnd - self)->any() in
+      if otherEnd.owningAssociation->isEmpty() then otherEnd else Set{} endif
+    else Set {}
+    endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Property-opposite.1-_ownedParameter.0" type="Core-Constructs-Property" direction="return"/>
@@ -2760,7 +2816,13 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-isConsistentWith-spec" name="spec" constrainedElement="Core-Constructs-Property-isConsistentWith" namespace="Core-Constructs-Property-isConsistentWith">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-isConsistentWith-spec-_specification">
               <language>OCL</language>
-              <body>result = redefinee.oclIsKindOf(Property) and &#xA;  let prop : Property = redefinee.oclAsType(Property) in &#xA;  (prop.type.conformsTo(self.type) and &#xA;  ((prop.lowerBound()->notEmpty() and self.lowerBound()->notEmpty()) implies prop.lowerBound() >= self.lowerBound()) and &#xA;  ((prop.upperBound()->notEmpty() and self.upperBound()->notEmpty()) implies prop.lowerBound() &lt;= self.lowerBound()) and &#xA;  (self.isDerived implies prop.isDerived) and&#xA;  (self.isComposite implies prop.isComposite))</body>
+              <body>result = redefinee.oclIsKindOf(Property) and 
+  let prop : Property = redefinee.oclAsType(Property) in 
+  (prop.type.conformsTo(self.type) and 
+  ((prop.lowerBound()->notEmpty() and self.lowerBound()->notEmpty()) implies prop.lowerBound() >= self.lowerBound()) and 
+  ((prop.upperBound()->notEmpty() and self.upperBound()->notEmpty()) implies prop.lowerBound() &lt;= self.lowerBound()) and 
+  (self.isDerived implies prop.isDerived) and
+  (self.isComposite implies prop.isComposite))</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Property-isConsistentWith-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -2773,7 +2835,10 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-subsettingContext-spec" name="spec" constrainedElement="Core-Constructs-Property-subsettingContext" namespace="Core-Constructs-Property-subsettingContext">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-subsettingContext-spec-_specification">
               <language>OCL</language>
-              <body>result = if association->notEmpty()&#xA;then association.endType-type &#xA;else if classifier->notEmpty then Set{classifier} else Set{} endif&#xA;endif</body>
+              <body>result = if association->notEmpty()
+then association.endType-type 
+else if classifier->notEmpty then Set{classifier} else Set{} endif
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Property-subsettingContext-_ownedParameter.0" type="Core-Constructs-Classifier" upper="*" lower="0" direction="return"/>
@@ -2785,7 +2850,8 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Property-isNavigable-spec" name="spec" constrainedElement="Core-Constructs-Property-isNavigable" namespace="Core-Constructs-Property-isNavigable">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Property-isNavigable-spec-_specification">
               <language>OCL</language>
-              <body>result = not classifier->isEmpty() or&#xA;association.owningAssociation.navigableOwnedEnd->includes(self)</body>
+              <body>result = not classifier->isEmpty() or
+association.owningAssociation.navigableOwnedEnd->includes(self)</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Property-isNavigable-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -3068,7 +3134,11 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Operation-isConsistentWith-spec" name="spec" constrainedElement="Core-Constructs-Operation-isConsistentWith" namespace="Core-Constructs-Operation-isConsistentWith">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Operation-isConsistentWith-spec-_specification">
               <language>OCL</language>
-              <body>result = (redefinee.oclIsKindOf(Operation) and&#xD;&#xA;let op: Operation = redefinee.oclAsType(Operation) in&#xD;&#xA;self.ownedParameter.size() = op.ownedParameter.size() and&#xD;&#xA;forAll(i | op.ownedParameter[i].type.conformsTo(self.ownedParameter[i].type))&#xD;&#xA;)</body>
+              <body>result = (redefinee.oclIsKindOf(Operation) and&#xD;
+let op: Operation = redefinee.oclAsType(Operation) in&#xD;
+self.ownedParameter.size() = op.ownedParameter.size() and&#xD;
+forAll(i | op.ownedParameter[i].type.conformsTo(self.ownedParameter[i].type))&#xD;
+)</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Operation-isConsistentWith-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -3125,7 +3195,14 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Constructs-BehavioralFeature-isDistinguishableFrom" namespace="Core-Constructs-BehavioralFeature-isDistinguishableFrom">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-spec-_specification">
               <language>OCL</language>
-              <body>result = if n.oclIsKindOf(BehavioralFeature)&#xA;then&#xA;  if ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->notEmpty()&#xA;  then Set{}->include(self)->include(n)->isUnique( bf | bf.parameter->collect(type))&#xA;  else true&#xA;  endif&#xA;else true&#xA;endif</body>
+              <body>result = if n.oclIsKindOf(BehavioralFeature)
+then
+  if ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->notEmpty()
+  then Set{}->include(self)->include(n)->isUnique( bf | bf.parameter->collect(type))
+  else true
+  endif
+else true
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-BehavioralFeature-isDistinguishableFrom-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -3182,7 +3259,11 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-ElementImport-getName-spec" name="spec" constrainedElement="Core-Constructs-ElementImport-getName" namespace="Core-Constructs-ElementImport-getName">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-ElementImport-getName-spec-_specification">
               <language>OCL</language>
-              <body>result = if self.alias->notEmpty() then &#xA;  self.alias&#xA;else&#xA;  self.importedElement.name&#xA;endif</body>
+              <body>result = if self.alias->notEmpty() then 
+  self.alias
+else
+  self.importedElement.name
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-ElementImport-getName-_ownedParameter.0" type="Core-PrimitiveTypes-String" direction="return"/>
@@ -3263,7 +3344,14 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-Package-makesVisible-spec" name="spec" constrainedElement="Core-Constructs-Package-makesVisible" namespace="Core-Constructs-Package-makesVisible">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-Package-makesVisible-spec-_specification">
               <language>OCL</language>
-              <body>result = (ownedMember->includes(el)) or&#xA;   (elementImport->&#xA;      select(ei|ei.visibility = #public)->&#xA;         collect(ei|ei.importedElement)->includes(el)) or&#xA;   (packageImport->&#xA;      select(pi|pi.visibility = #public)->&#xA;        collect(pi|&#xA;           pi.importedPackage.member->includes(el))->notEmpty())</body>
+              <body>result = (ownedMember->includes(el)) or
+   (elementImport->
+      select(ei|ei.visibility = #public)->
+         collect(ei|ei.importedElement)->includes(el)) or
+   (packageImport->
+      select(pi|pi.visibility = #public)->
+        collect(pi|
+           pi.importedPackage.member->includes(el))->notEmpty())</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-Package-makesVisible-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -3347,7 +3435,8 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-has_no_qualified_name-_specification">
             <language>OCL</language>
-            <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;&#xA;  implies self.qualifiedName->isEmpty()</body>
+            <body>(self.name->isEmpty() or self.allNamespaces()->select(ns | ns.name->isEmpty())->notEmpty())&#xD;
+  implies self.qualifiedName->isEmpty()</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-NamedElement-has_qualified_name" name="has_qualified_name" constrainedElement="Core-Constructs-NamedElement" namespace="Core-Constructs-NamedElement">
@@ -3356,7 +3445,8 @@ other classifiers.</body>
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-has_qualified_name-_specification">
             <language>OCL</language>
-            <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies&#xA;  self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
+            <body>(self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()) implies
+  self.qualifiedName = self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))</body>
           </specification>
         </ownedRule>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-NamedElement-visibility_needs_ownership" name="visibility_needs_ownership" constrainedElement="Core-Constructs-NamedElement" namespace="Core-Constructs-NamedElement">
@@ -3395,7 +3485,10 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-NamedElement-allNamespaces-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-allNamespaces" namespace="Core-Constructs-NamedElement-allNamespaces">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-allNamespaces-spec-_specification">
               <language>OCL</language>
-              <body>result = if self.namespace->isEmpty()&#xA;then Sequence{}&#xA;else self.namespace.allNamespaces()->prepend(self.namespace)&#xA;endif</body>
+              <body>result = if self.namespace->isEmpty()
+then Sequence{}
+else self.namespace.allNamespaces()->prepend(self.namespace)
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-NamedElement-allNamespaces-_ownedParameter.0" type="Core-Constructs-Namespace" isOrdered="true" upper="*" lower="0" direction="return"/>
@@ -3407,7 +3500,10 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-isDistinguishableFrom" namespace="Core-Constructs-NamedElement-isDistinguishableFrom">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-spec-_specification">
               <language>OCL</language>
-              <body>result = if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)&#xA;then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()&#xA;else true&#xA;endif</body>
+              <body>result = if self.oclIsKindOf(n.oclType) or n.oclIsKindOf(self.oclType)
+then ns.getNamesOfMember(self)->intersection(ns.getNamesOfMember(n))->isEmpty()
+else true
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-NamedElement-isDistinguishableFrom-_ownedParameter.0" type="Core-PrimitiveTypes-Boolean" direction="return"/>
@@ -3433,7 +3529,12 @@ other classifiers.</body>
           <ownedRule xmi:type="cmof:Constraint" xmi:id="Core-Constructs-NamedElement-qualifiedName.1-spec" name="spec" constrainedElement="Core-Constructs-NamedElement-qualifiedName.1" namespace="Core-Constructs-NamedElement-qualifiedName.1">
             <specification xmi:type="cmof:OpaqueExpression" xmi:id="Core-Constructs-NamedElement-qualifiedName.1-spec-_specification">
               <language>OCL</language>
-              <body>result = if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()&#xA;then &#xA;    self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))&#xA;else&#xA;    Set{}&#xA;endif</body>
+              <body>result = if self.name->notEmpty() and self.allNamespaces()->select(ns | ns.name->isEmpty())->isEmpty()
+then 
+    self.allNamespaces()->iterate( ns : Namespace; result: String = self.name | ns.name->union(self.separator())->union(result))
+else
+    Set{}
+endif</body>
             </specification>
           </ownedRule>
           <ownedParameter xmi:type="cmof:Parameter" xmi:id="Core-Constructs-NamedElement-qualifiedName.1-_ownedParameter.0" type="Core-PrimitiveTypes-String" direction="return"/>
@@ -3718,7 +3819,9 @@ other classifiers.</body>
         </ownedComment>
         <specification xmi:type="cmof:OpaqueExpression" xmi:id="Profiles-Profile-metaclass_reference_not_specialized-_specification">
           <language>OCL</language>
-          <body>self.metaclassReference.importedElement->&#xD;&#xA;&#x9;select(c | c.oclIsKindOf(Classifier) and&#xD;&#xA;&#x9;&#x9;(c.generalization.namespace = self or&#x9;c.specialization.namespace = self))->isEmpty()</body>
+          <body>self.metaclassReference.importedElement->&#xD;
+	select(c | c.oclIsKindOf(Classifier) and&#xD;
+		(c.generalization.namespace = self or	c.specialization.namespace = self))->isEmpty()</body>
         </specification>
       </ownedRule>
       <ownedRule xmi:type="cmof:Constraint" xmi:id="Profiles-Profile-references_same_metamodel" name="references_same_metamodel" constrainedElement="Profiles-Profile" namespace="Profiles-Profile">
@@ -3727,7 +3830,8 @@ other classifiers.</body>
         </ownedComment>
         <specification xmi:type="cmof:OpaqueExpression" xmi:id="Profiles-Profile-references_same_metamodel-_specification">
           <language>OCL</language>
-          <body>self.metamodelReference.importedPackage.elementImport.importedElement.allOwningPackages()->&#xD;&#xA;  union(self.metaclassReference.importedElement.allOwningPackages() )->notEmpty()</body>
+          <body>self.metamodelReference.importedPackage.elementImport.importedElement.allOwningPackages()->&#xD;
+  union(self.metaclassReference.importedElement.allOwningPackages() )->notEmpty()</body>
         </specification>
       </ownedRule>
       <ownedAttribute xmi:type="cmof:Property" xmi:id="Profiles-Profile-metaclassReference" name="metaclassReference" type="Core-Constructs-ElementImport" upper="*" lower="0" isComposite="true" subsettedProperty="Core-Constructs-Namespace-elementImport" association="Profiles-A_metaclassReference_profile">
@@ -3762,7 +3866,9 @@ other classifiers.</body>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Profiles-Package-allApplicableStereotypes-spec" name="spec" constrainedElement="Profiles-Package-allApplicableStereotypes" namespace="Profiles-Package-allApplicableStereotypes">
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Profiles-Package-allApplicableStereotypes-spec-_specification">
             <language>OCL</language>
-            <body>result = &#xD;&#xA;self.ownedStereotype->union(self.ownedMember->&#xD;&#xA;&#x9;select(oclIsKindOf(Package)).oclAsType(Package).allApplicableStereotypes()->flatten())->asSet()</body>
+            <body>result = &#xD;
+self.ownedStereotype->union(self.ownedMember->&#xD;
+	select(oclIsKindOf(Package)).oclAsType(Package).allApplicableStereotypes()->flatten())->asSet()</body>
           </specification>
         </ownedRule>
         <ownedParameter xmi:type="cmof:Parameter" xmi:id="Profiles-Package-allApplicableStereotypes-_ownedParameter.0" type="Profiles-Stereotype" upper="*" lower="0" direction="return"/>
@@ -3774,7 +3880,12 @@ other classifiers.</body>
         <ownedRule xmi:type="cmof:Constraint" xmi:id="Profiles-Package-containingProfile-spec" name="spec" constrainedElement="Profiles-Package-containingProfile" namespace="Profiles-Package-containingProfile">
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="Profiles-Package-containingProfile-spec-_specification">
             <language>OCL</language>
-            <body>result =&#xD;&#xA;if self.oclIsKindOf(Profile) then &#xD;&#xA;&#x9;self.oclAsType(Profile)&#xD;&#xA;else&#xD;&#xA;&#x9;self.namespace.oclAsType(Package).containingProfile()&#xD;&#xA;endif</body>
+            <body>result =&#xD;
+if self.oclIsKindOf(Profile) then &#xD;
+	self.oclAsType(Profile)&#xD;
+else&#xD;
+	self.namespace.oclAsType(Package).containingProfile()&#xD;
+endif</body>
           </specification>
         </ownedRule>
         <ownedParameter xmi:type="cmof:Parameter" xmi:id="Profiles-Package-containingProfile-_ownedParameter.0" type="Profiles-Profile" lower="0" direction="return"/>

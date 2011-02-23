@@ -102,27 +102,27 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.println("Creating resources");
+		System.out.println("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi"));
-		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi")); //$NON-NLS-1$
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 		resourceURIs.add(r2.getURI());
 
 		EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1.setName("EClass1");
+		eClass1.setName("EClass1"); //$NON-NLS-1$
 		EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2.setName("EClass2");
+		eClass2.setName("EClass2"); //$NON-NLS-1$
 		r.getContents().add(eClass1);
 		r2.getContents().add(eClass2);
 		eClass1.getESuperTypes().add(eClass2);
 
 		EClass eClass1_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1_2.setName("EClass1_2");
+		eClass1_2.setName("EClass1_2"); //$NON-NLS-1$
 		EClass eClass2_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2_2.setName("EClass2_2");
+		eClass2_2.setName("EClass2_2"); //$NON-NLS-1$
 		r.getContents().add(eClass1_2);
 		r2.getContents().add(eClass2_2);
 
@@ -142,7 +142,7 @@ public class TestIndexNotSufficient extends Assert {
 				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
 				for (EReferenceDescriptor eob : result) {
-					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment());
+					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment()); //$NON-NLS-1$
 					size++;
 				}
 				assertEquals(2, size);
@@ -150,8 +150,8 @@ public class TestIndexNotSufficient extends Assert {
 
 		});
 
-		System.out.println("----");
-		query.targetEObject().resource().uri("find_ich_nich");
+		System.out.println("----"); //$NON-NLS-1$
+		query.targetEObject().resource().uri("find_ich_nich"); //$NON-NLS-1$
 		query.targetEObject().fragment(class2Uri.fragment());
 		index.executeQueryCommand(new QueryCommand() {
 
@@ -159,7 +159,7 @@ public class TestIndexNotSufficient extends Assert {
 				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
 				for (EReferenceDescriptor eob : result) {
-					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment());
+					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment()); //$NON-NLS-1$
 					size++;
 				}
 				assertEquals(0, size);
@@ -181,34 +181,34 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi"));
-		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi")); //$NON-NLS-1$
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 		resourceURIs.add(r2.getURI());
 
 		EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1.setName("EClass1");
+		eClass1.setName("EClass1"); //$NON-NLS-1$
 		EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2.setName("EClass2");
+		eClass2.setName("EClass2"); //$NON-NLS-1$
 		r.getContents().add(eClass1);
 		r2.getContents().add(eClass2);
 		eClass1.getESuperTypes().add(eClass2);
 
 		EClass eClass1_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1_2.setName("EClass1_2");
+		eClass1_2.setName("EClass1_2"); //$NON-NLS-1$
 		EClass eClass2_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2_2.setName("EClass2_2");
+		eClass2_2.setName("EClass2_2"); //$NON-NLS-1$
 		r.getContents().add(eClass1_2);
 		r2.getContents().add(eClass2_2);
 
 		r.save(null);
 		r2.save(null);
 		this.resourceChanged(index, r, r2);
-		System.out.print(".");
+		System.out.print("."); //$NON-NLS-1$
 		r.unload();
 		r2.unload();
 
@@ -227,7 +227,7 @@ public class TestIndexNotSufficient extends Assert {
 				QueryResult<EObjectDescriptor> result = queryExecutor.execute(query);
 				int size = 0;
 				for (EObjectDescriptor eob : result) {
-					System.out.println(eob.getResourceURI() + "#" + eob.getFragment());
+					System.out.println(eob.getResourceURI() + "#" + eob.getFragment()); //$NON-NLS-1$
 					size++;
 				}
 				assertEquals(5, size);
@@ -249,36 +249,36 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
 		getTempDir();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_1.xmi"));
-		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_2.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_1.xmi")); //$NON-NLS-1$
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/resERefQuery_2.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 		resourceURIs.add(r2.getURI());
 
 		EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1.setName("EClass1");
+		eClass1.setName("EClass1"); //$NON-NLS-1$
 		EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2.setName("EClass2");
+		eClass2.setName("EClass2"); //$NON-NLS-1$
 		r.getContents().add(eClass1);
 		r2.getContents().add(eClass2);
 		eClass1.getESuperTypes().add(eClass2);
 
 		EClass eClass1_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1_2.setName("EClass1_2");
+		eClass1_2.setName("EClass1_2"); //$NON-NLS-1$
 		EClass eClass2_2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2_2.setName("EClass2_2");
+		eClass2_2.setName("EClass2_2"); //$NON-NLS-1$
 		r.getContents().add(eClass1_2);
 		r2.getContents().add(eClass2_2);
 
 		r.save(null);
 		r2.save(null);
 		this.resourceChanged(index, r, r2);
-		System.out.print(".");
+		System.out.print("."); //$NON-NLS-1$
 		r.unload();
 		r2.unload();
 
@@ -289,13 +289,13 @@ public class TestIndexNotSufficient extends Assert {
 
 		// forward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
-		refQuery.sourceEObject().name("*s1");
+		refQuery.sourceEObject().name("*s1"); //$NON-NLS-1$
 
 		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// backward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
-		refQuery.targetEObject().name("*s2");
+		refQuery.targetEObject().name("*s2"); //$NON-NLS-1$
 
 		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
@@ -305,7 +305,7 @@ public class TestIndexNotSufficient extends Assert {
 	}
 
 	private static String getTempDir() {
-		return System.getProperty("java.io.tmpdir") + File.separator + "index";
+		return System.getProperty("java.io.tmpdir") + File.separator + "index"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Test
@@ -316,24 +316,24 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resIntraERefQuery_1.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resIntraERefQuery_1.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 
 		EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-		eClass1.setName("EClass1");
+		eClass1.setName("EClass1"); //$NON-NLS-1$
 		EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-		eClass2.setName("EClass2");
+		eClass2.setName("EClass2"); //$NON-NLS-1$
 		r.getContents().add(eClass1);
 		r.getContents().add(eClass2);
 		eClass1.getESuperTypes().add(eClass2);
 
 		r.save(null);
 		this.resourceChanged(index, r);
-		System.out.print(".");
+		System.out.print("."); //$NON-NLS-1$
 		r.unload();
 
 		time = System.currentTimeMillis() - time;
@@ -343,13 +343,13 @@ public class TestIndexNotSufficient extends Assert {
 
 		// forward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
-		refQuery.sourceEObject().name("*s1");
+		refQuery.sourceEObject().name("*s1"); //$NON-NLS-1$
 
 		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
 		// backward Query
 		refQuery = IndexQueryFactory.createEReferenceQuery();
-		refQuery.targetEObject().name("*s2");
+		refQuery.targetEObject().name("*s2"); //$NON-NLS-1$
 
 		index.executeQueryCommand(new QueryCmd<EReferenceDescriptor, EReferenceDescriptor, EReferenceQuery<EReferenceDescriptor>>(refQuery));
 
@@ -365,22 +365,22 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEResource.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEResource.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 
 		for (int i = 0; i < ELEMENT_COUNT; i++) {
 			EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-			eClass1.setName("EClass1" + i);
+			eClass1.setName("EClass1" + i); //$NON-NLS-1$
 			r.getContents().add(eClass1);
 		}
 
 		r.save(null);
 		this.resourceChanged(index, r);
-		System.out.print(".");
+		System.out.print("."); //$NON-NLS-1$
 		r.unload();
 
 		time = System.currentTimeMillis() - time;
@@ -392,12 +392,12 @@ public class TestIndexNotSufficient extends Assert {
 
 		index.executeQueryCommand(new QueryCmd<ResourceDescriptor, ResourceDescriptor, ResourceQuery<ResourceDescriptor>>(resQuery));
 
-		resQuery.userData("key", "abc*");
+		resQuery.userData("key", "abc*");  //$NON-NLS-1$//$NON-NLS-2$
 
 		index.executeQueryCommand(new QueryCmd<ResourceDescriptor, ResourceDescriptor, ResourceQuery<ResourceDescriptor>>(resQuery));
 
 		// negative
-		resQuery.userData("key", "abce");
+		resQuery.userData("key", "abce"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		index.executeQueryCommand(new QueryCmd<ResourceDescriptor, ResourceDescriptor, ResourceQuery<ResourceDescriptor>>(resQuery, 0));
 
@@ -413,22 +413,22 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
-		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEObject.xmi"));
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/resQueryEObject.xmi")); //$NON-NLS-1$
 
 		resourceURIs.add(r.getURI());
 
 		for (int i = 0; i < ELEMENT_COUNT; i++) {
 			EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-			eClass1.setName("EClass1" + i);
+			eClass1.setName("EClass1" + i); //$NON-NLS-1$
 			r.getContents().add(eClass1);
 		}
 
 		r.save(null);
 		this.resourceChanged(index, r);
-		System.out.print(".");
+		System.out.print("."); //$NON-NLS-1$
 		r.unload();
 
 		time = System.currentTimeMillis() - time;
@@ -437,17 +437,17 @@ public class TestIndexNotSufficient extends Assert {
 		// query eobjects
 		EObjectQuery<EObjectDescriptor> eObjectQuery = IndexQueryFactory.createEObjectQuery();
 		eObjectQuery.eClassURI(EcoreUtil.getURI(EcorePackage.Literals.ECLASS));
-		eObjectQuery.fragment("/1*");
+		eObjectQuery.fragment("/1*"); //$NON-NLS-1$
 
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery));
 
 		eObjectQuery = IndexQueryFactory.createEObjectQuery();
-		eObjectQuery.userData("key", "wxy*");
+		eObjectQuery.userData("key", "wxy*");  //$NON-NLS-1$//$NON-NLS-2$
 
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery));
 
 		eObjectQuery = IndexQueryFactory.createEObjectQuery();
-		eObjectQuery.userData("key", "wxyaasd");
+		eObjectQuery.userData("key", "wxyaasd");  //$NON-NLS-1$//$NON-NLS-2$
 
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery, 0));
 
@@ -456,7 +456,7 @@ public class TestIndexNotSufficient extends Assert {
 		eObjectQuery.resource().uri(r.getURI().toString());
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery));
 
-		eObjectQuery.resource().uri(r.getURI().toString() + "_invalid");
+		eObjectQuery.resource().uri(r.getURI().toString() + "_invalid"); //$NON-NLS-1$
 		index.executeQueryCommand(new QueryCmd<EObjectDescriptor, EObjectDescriptor, EObjectQuery<EObjectDescriptor>>(eObjectQuery, 0));
 
 		System.out.println();
@@ -471,21 +471,21 @@ public class TestIndexNotSufficient extends Assert {
 
 		List<URI> resourceURIs = new ArrayList<URI>();
 
-		System.out.print("Creating resources");
+		System.out.print("Creating resources"); //$NON-NLS-1$
 		long time = System.currentTimeMillis();
 
 		for (int i = 0; i < (RESOURCE_COUNT / 2); i++) {
-			Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_1.xmi"));
-			Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_2.xmi"));
+			Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_1.xmi")); //$NON-NLS-1$ //$NON-NLS-2$
+			Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/res" + i + "_2.xmi"));  //$NON-NLS-1$//$NON-NLS-2$
 
 			resourceURIs.add(r.getURI());
 			resourceURIs.add(r2.getURI());
 
 			for (int j = 0; j < ELEMENT_COUNT; j++) {
 				EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
-				eClass1.setName("EClass1_" + i + "_" + j);
+				eClass1.setName("EClass1_" + i + "_" + j);  //$NON-NLS-1$//$NON-NLS-2$
 				EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
-				eClass2.setName("EClass2_" + i + "_" + j);
+				eClass2.setName("EClass2_" + i + "_" + j); //$NON-NLS-1$ //$NON-NLS-2$
 				r.getContents().add(eClass1);
 				r2.getContents().add(eClass2);
 				if (j % 5 == 0) {
@@ -500,7 +500,7 @@ public class TestIndexNotSufficient extends Assert {
 			r.save(null);
 			r2.save(null);
 			this.resourceChanged(index, r, r2);
-			System.out.print(".");
+			System.out.print("."); //$NON-NLS-1$
 			r.unload();
 			r2.unload();
 		}
@@ -511,13 +511,13 @@ public class TestIndexNotSufficient extends Assert {
 		time = System.currentTimeMillis();
 		index.save();
 		time = System.currentTimeMillis() - time;
-		System.out.println("Index save time: " + time);
+		System.out.println("Index save time: " + time); //$NON-NLS-1$
 
 		index = new PageableIndexImpl(getOptions());
 		time = System.currentTimeMillis();
 		index.load();
 		time = System.currentTimeMillis() - time;
-		System.out.println("Index load time: " + time);
+		System.out.println("Index load time: " + time); //$NON-NLS-1$
 
 		time = System.currentTimeMillis();
 		this.deleteResources(resourceURIs, index);
@@ -536,13 +536,13 @@ public class TestIndexNotSufficient extends Assert {
 
 					protected Map<String, String> getResourceUserData(Resource res) {
 						Map<String, String> result = new HashMap<String, String>();
-						result.put("key", "abcd");
+						result.put("key", "abcd"); //$NON-NLS-1$ //$NON-NLS-2$
 						return result;
 					}
 
 					protected Map<String, String> getEObjectUserData(EObject element) {
 						Map<String, String> result = new HashMap<String, String>();
-						result.put("key", "wxyz");
+						result.put("key", "wxyz");  //$NON-NLS-1$//$NON-NLS-2$
 						return result;
 					}
 				}.resourceChanged(updater, r);

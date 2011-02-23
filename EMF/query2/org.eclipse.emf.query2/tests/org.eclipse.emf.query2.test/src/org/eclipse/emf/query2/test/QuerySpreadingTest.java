@@ -11,6 +11,7 @@
 package org.eclipse.emf.query2.test;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -20,7 +21,7 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
-import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
+
 import org.eclipse.emf.query2.test.mm.testcases.case001.A1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.B1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Factory;
@@ -72,7 +73,7 @@ public class QuerySpreadingTest extends QueryTestCase {
 		return new QueryContext() {
 
 			public URI[] getResourceScope() {
-				return scopeProvider.getPartitionScope();
+				return scopeProvider.getResourceScope();
 			}
 
 			public ResourceSet getResourceSet() {
@@ -88,8 +89,8 @@ public class QuerySpreadingTest extends QueryTestCase {
 
 		QueryProcessor mql = this.getMQLProcessor();
 
-		Resource mixedDirty_NonDirty = this.testClient.getOrCreateResourceStable("mixedDirty_nonDirty.xmi");
-		Resource mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi");
+		Resource mixedDirty_NonDirty = this.testClient.getOrCreateResourceStable("mixedDirty_nonDirty.xmi"); //$NON-NLS-1$
+		Resource mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi"); //$NON-NLS-1$
 
 		mixedDirty_Dirty.getContents().clear();
 		mixedDirty_NonDirty.getContents().clear();
@@ -116,17 +117,17 @@ public class QuerySpreadingTest extends QueryTestCase {
 		this.resetTestClient();
 
 		// load the dirty partition and make it dirty
-		mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi");
+		mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi"); //$NON-NLS-1$
 		mixedDirty_Dirty.setModified(true);
 
-		String query = String.format("select a, b from [%s] as a, [%s] as b in resources{[%s]} where a.bs = b", aType, bType, mixedDirty_Dirty.getURI());
+		String query = String.format("select a, b from [%s] as a, [%s] as b in resources{[%s]} where a.bs = b", aType, bType, mixedDirty_Dirty.getURI()); //$NON-NLS-1$
 
 		TypeScopeProvider scopeProvider = mql.getInclusivePartitionScopeProvider(mixedDirty_Dirty.getURI(), mixedDirty_NonDirty.getURI());
 		ResultSet resultSet = mql.execute(query, this.getQueryContext(scopeProvider));
 
 		assertEquals(1, resultSet.getSize());
 
-		mixedDirty_NonDirty = this.testClient.getOrCreateResourceStable("mixedDirty_nonDirty.xmi");
+		mixedDirty_NonDirty = this.testClient.getOrCreateResourceStable("mixedDirty_nonDirty.xmi"); //$NON-NLS-1$
 
 		mixedDirty_Dirty.delete(null);
 		mixedDirty_NonDirty.delete(null);

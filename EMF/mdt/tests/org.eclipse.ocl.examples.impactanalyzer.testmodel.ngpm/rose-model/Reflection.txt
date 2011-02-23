@@ -1,0 +1,23 @@
+Thoughts on the semantics of reflection and metalevel-crossing semantics:
+-------------------------------------------------------------------------
+
+A class in NGPM shall itself be an object. Therefore, it must be
+possible to write a literal that denotes a class.
+
+There is an association "InstanceOf" linking any object to its
+class. Since the "Object" class does not expose any features, all
+classes conform to it. Therefore, all objects are permissible to be
+linked to their class using the InstanceOf association.
+
+All metaobjects as modeled in the metamodel appear as regular objects
+in the programming model. Many of them may be read-only during
+program runtime.
+
+The class object for class Class has itself as its type.
+
+The Block type can as well be instantiated, and an instance of type
+Block is just a runtime object whose class is Block. So are Statement,
+Assignment, Variable, ...
+
+For many of these types corresponding literals are required to represent
+values of the type.

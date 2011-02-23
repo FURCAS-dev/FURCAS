@@ -35,7 +35,7 @@ public class TextverticalizationFactoryImpl extends EFactoryImpl implements Text
 	 */
 	public static TextverticalizationFactory init() {
 		try {
-			TextverticalizationFactory theTextverticalizationFactory = (TextverticalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/textverticalization"); 
+			TextverticalizationFactory theTextverticalizationFactory = (TextverticalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/textverticalization"); //$NON-NLS-1$ 
 			if (theTextverticalizationFactory != null) {
 				return theTextverticalizationFactory;
 			}
@@ -66,7 +66,7 @@ public class TextverticalizationFactoryImpl extends EFactoryImpl implements Text
 		switch (eClass.getClassifierID()) {
 			case TextverticalizationPackage.TRANSLATABLE_TEXT: return createTranslatableText();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

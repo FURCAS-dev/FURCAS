@@ -36,7 +36,7 @@ public interface SerializationcallbackPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "serializationcallback";
+	String eNAME = "serializationcallback"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface SerializationcallbackPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case019/serializationcallback";
+	String eNS_URI = "http://sap.com/moin/testcases/case019/serializationcallback"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface SerializationcallbackPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case019serializationcallback";
+	String eNS_PREFIX = "case019serializationcallback"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

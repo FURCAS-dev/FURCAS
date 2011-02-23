@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<co:Company xmi:version="2.0"
+	xmlns:xmi="http://www.omg.org/XMI"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:co="http://www.eclipse.org/ocl/test/2010/Company.ecore"
+	xsi:schemaLocation="http://www.eclipse.org/ocl/test/2010/Company.ecore Company.ecore"
+	name="Acme">
+  <employees name="Bob" manager="//@employees.3"/>
+  <employees name="Jane" manager="//@employees.3"/>
+  <employees name="Fred" manager="//@employees.3"/>
+  <employees name="Amy"/>
+  <employees name="Norbert" manager="//@employees.0"/>
+  <employees name="Sally" manager="//@employees.0"/>
+</co:Company>

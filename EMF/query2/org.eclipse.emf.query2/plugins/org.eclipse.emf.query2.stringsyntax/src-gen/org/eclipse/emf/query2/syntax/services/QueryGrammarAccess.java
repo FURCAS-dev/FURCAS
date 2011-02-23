@@ -17,7 +17,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cImportsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cImportsImportParserRuleCall_0_0 = (RuleCall)cImportsAssignment_0.eContents().get(0);
@@ -53,7 +53,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cImpURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -77,7 +77,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NamedQueryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedQuery");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NamedQuery"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
@@ -109,7 +109,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class MQLqueryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MQLquery");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MQLquery"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFromKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cFromEntriesAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -195,7 +195,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class SelectEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SelectEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SelectEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cSelectAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cSelectFromEntryCrossReference_0_0 = (CrossReference)cSelectAssignment_0.eContents().get(0);
@@ -239,7 +239,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class FromEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FromEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FromEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cTypeEClassCrossReference_0_0 = (CrossReference)cTypeAssignment_0.eContents().get(0);
@@ -342,7 +342,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ScopeClauseElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ScopeClause");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ScopeClause"); //$NON-NLS-1$
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cResourceScopeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cElementScopeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -362,7 +362,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ResourceScopeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ResourceScope");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ResourceScope"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNotInAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cNotInNotKeyword_0_0 = (Keyword)cNotInAssignment_0.eContents().get(0);
@@ -422,7 +422,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ElementScopeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ElementScope");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ElementScope"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNotInAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cNotInNotKeyword_0_0 = (Keyword)cNotInAssignment_0.eContents().get(0);
@@ -482,7 +482,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class WhereEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "WhereEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "WhereEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAndWhereEntryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -522,7 +522,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AndWhereEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AndWhereEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AndWhereEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cConcreteWhereEntryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
@@ -562,7 +562,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ConcreteWhereEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConcreteWhereEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConcreteWhereEntry"); //$NON-NLS-1$
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cParWhereEntryParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cExpressionWhereEntryParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -582,7 +582,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ParWhereEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParWhereEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParWhereEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cWhereEntryParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
@@ -606,7 +606,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExpressionWhereEntryElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpressionWhereEntry");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpressionWhereEntry"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLhsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLhsAliasAttributeExpressionParserRuleCall_0_0 = (RuleCall)cLhsAssignment_0.eContents().get(0);
@@ -642,7 +642,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class AliasAttributeExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AliasAttributeExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AliasAttributeExpression"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAliasAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cAliasFromEntryCrossReference_0_0 = (CrossReference)cAliasAssignment_0.eContents().get(0);
@@ -686,7 +686,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Expression"); //$NON-NLS-1$
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cAliasAttributeExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDoubleExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
@@ -732,7 +732,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class ReplacableValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReplacableValue");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReplacableValue"); //$NON-NLS-1$
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final Keyword cValueQuestionMarkKeyword_0 = (Keyword)cValueAssignment.eContents().get(0);
 		
@@ -748,7 +748,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class DoubleExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DoubleExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DoubleExpression"); //$NON-NLS-1$
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueSIGNED_DOUBLETerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
@@ -764,7 +764,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class LongExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LongExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LongExpression"); //$NON-NLS-1$
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueSINGED_LONGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
@@ -780,7 +780,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class StringExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringExpression"); //$NON-NLS-1$
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
@@ -796,7 +796,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class NullExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NullExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NullExpression"); //$NON-NLS-1$
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final Keyword cValueNullKeyword_0 = (Keyword)cValueAssignment.eContents().get(0);
 		
@@ -812,7 +812,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class BooleanExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanExpression"); //$NON-NLS-1$
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Assignment cTrueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
 		private final Keyword cTrueTrueKeyword_0_0 = (Keyword)cTrueAssignment_0.eContents().get(0);
@@ -836,7 +836,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	public class QueryExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QueryExpression");
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QueryExpression"); //$NON-NLS-1$
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -865,7 +865,7 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	public class OperatorElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Operator");
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Operator"); //$NON-NLS-1$
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cLessThenEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cLessThenLessThanSignKeyword_0_0 = (Keyword)cLessThenEnumLiteralDeclaration_0.eContents().get(0);
@@ -1250,43 +1250,43 @@ public class QueryGrammarAccess extends AbstractGrammarElementFinder {
 	//terminal SINGED_LONG returns ecore::ELong:
 	//	"-"? "0".."9"+;
 	public TerminalRule getSINGED_LONGRule() {
-		return (tSINGED_LONG != null) ? tSINGED_LONG : (tSINGED_LONG = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGED_LONG"));
+		return (tSINGED_LONG != null) ? tSINGED_LONG : (tSINGED_LONG = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGED_LONG")); //$NON-NLS-1$
 	} 
 
 	//terminal SIGNED_DOUBLE returns ecore::EDouble:
 	//	"-"? "0".."9"+ ("." "0".."9"+)?;
 	public TerminalRule getSIGNED_DOUBLERule() {
-		return (tSIGNED_DOUBLE != null) ? tSIGNED_DOUBLE : (tSIGNED_DOUBLE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_DOUBLE"));
+		return (tSIGNED_DOUBLE != null) ? tSIGNED_DOUBLE : (tSIGNED_DOUBLE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_DOUBLE")); //$NON-NLS-1$
 	} 
 
 	//terminal ID:
 	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
-		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
+		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID")); //$NON-NLS-1$
 	} 
 
 	//terminal STRING:
 	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" | "n" |
 	//	"f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
-		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+		return (tSTRING != null) ? tSTRING : (tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "STRING")); //$NON-NLS-1$
 	} 
 
 	//terminal ML_COMMENT:
 	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT")); //$NON-NLS-1$
 	} 
 
 	//terminal SL_COMMENT:
 	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT")); //$NON-NLS-1$
 	} 
 
 	//terminal WS:
 	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
-		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS")); //$NON-NLS-1$
 	} 
 }

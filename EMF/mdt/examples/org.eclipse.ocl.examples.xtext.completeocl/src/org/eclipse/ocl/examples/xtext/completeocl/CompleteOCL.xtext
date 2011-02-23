@@ -12,194 +12,120 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.6 2010/05/21 20:20:26 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.8 2011/02/08 17:53:05 ewillink Exp $
  */
-grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
+grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
+with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
 import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
 import "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.ecore" as oclinecore
+import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"
-
 CompleteOCLDocumentCS returns CompleteOCLDocumentCS:
-	(imports+=ImportCS)* 
-	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*
+	(ownedImport+=ImportCS)*
+	(packages+=PackageDeclarationCS | contexts+=ContextDeclCS)*;
+
+NavigationOperator:						// Intended to be overridden
+	EssentialOCLNavigationOperator | '^' | '^^'
 ;
 
-RestrictedKeywords:
-	EssentialOCLRestrictedKeywords
-|	'body'
-|	'context'
-|	'def'
-|	'derive'
-//|	'endpackage'
-|	'import'
-|	'init'
-|	'inv'
-//|	'package'
-//|	'post'
-//|	'pre'
-//|	'static'
+UnrestrictedName returns ecore::EString:
+	EssentialOCLUnrestrictedName
+	| 'body'
+	| 'context'
+	| 'def'
+	| 'derive'
+	//|	'endpackage'
+	| 'import'
+	| 'init'
+	| 'inv'
+	//|	'package'
+	|	'post'
+	|	'pre'
+	//|	'static'
 ;
 
 PrimitiveTypeIdentifier:
 	'Boolean'
-|	'Integer'
-|	'Real'
-|	'String'
-|	'UnlimitedNatural'
-|	'OclAny'
-|	'OclInvalid'
-|	'OclMessage'
-|	'OclState'
-|	'OclVoid'
-;
+	| 'Integer'
+	| 'Real'
+	| 'String'
+	| 'UnlimitedNatural'
+	| 'OclAny'
+	| 'OclInvalid'
+	| 'OclMessage'
+	| 'OclState'
+	| 'OclVoid';
 
+BodyCS returns BodyCS:
+	'body' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
 
-BodyCS returns BodyCS :
-	'body' (constraintName=SimpleName)? ':' expression=ExpCS
-;
-
-ClassifierContextDeclCS returns ClassifierContextDeclCS :
-	'context' (selfName=SimpleName ':' )? classifier=ClassifierRefCS (invs+=InvCS | defs+=DefCS)*
-;
-
-ClassifierRefCS returns base::ClassifierRefCS:
-	QualifiedClassifierRefCS | SimpleClassifierRefCS
-;
+ClassifierContextDeclCS returns ClassifierContextDeclCS:
+	'context' (selfName=UnrestrictedName ':')?
+	(namespace+=[pivot::Namespace|Identifier] '::')*
+	classifier=[pivot::Type|Identifier]
+	(rules+=InvCS | rules+=DefCS)*;
 
 ContextDeclCS returns ContextDeclCS:
 	PropertyContextDeclCS
-|	ClassifierContextDeclCS
-|	OperationContextDeclCS
-;
+	| ClassifierContextDeclCS
+	| OperationContextDeclCS;
 
-DefCS returns DefCS :
-	(static?='static')? 'def' (constraintName=SimpleName)? ':' constrainedName=SimpleName
+DefCS returns DefCS:
+	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
 	('(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
-	':' (type=TypeExpCS)? '=' expression=ExpCS
-;
+	':' (ownedType=TypeExpCS)? '=' ownedExpression=ExpCS;
 
-DerCS returns DerCS :
-	'derive' ':' expression=ExpCS
-;
+DerCS returns DerCS:
+	stereotype='derive' ':' ownedExpression=ExpCS;
 
-ImportCS returns base::ImportCS :
-	'import' (name=Identifier ':')? namespace=[base::NamespaceCS|SINGLE_QUOTED_STRING]
-;
+ImportCS returns base::ImportCS:
+	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
 
-InitCS returns InitCS :
-	'init' ':' expression=ExpCS
-;
+InitCS returns InitCS:
+	stereotype='init' ':' ownedExpression=ExpCS;
 
-InvCS returns InvCS :
-	'inv' (constraintName=SimpleName)? ':' expression=ExpCS
-;
+InvCS returns InvCS:
+	stereotype='inv' (name=UnrestrictedName ('(' ownedReason=ExpCS ')')?)? ':' ownedExpression=ExpCS;
 
-OperationContextDeclCS returns OperationContextDeclCS :
-	'context' operation=OperationRefCS '('
+OperationContextDeclCS returns OperationContextDeclCS:
+	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
+	operation=[pivot::Operation|Identifier] '(' 
 	(parameters+=ParameterCS (',' parameters+=ParameterCS)*)?
-	')' ':' (type=TypeExpCS)?
-	((pres+=PreCS) | (posts+=PostCS) | (bodies+=BodyCS))*
-;
-
-OperationRefCS returns base::OperationRefCS:
-	QualifiedOperationRefCS | SimpleOperationRefCS
-;
+	')' ':' (ownedType=TypeExpCS)?
+	((rules+=PreCS) | (rules+=PostCS) | (rules+=BodyCS))*;
 
 PackageDeclarationCS returns PackageDeclarationCS:
-	'package' package=PackageRefCS (contexts+=ContextDeclCS)* 'endpackage'
-;
-
-PackageRefCS returns base::PackageRefCS:
-	QualifiedPackageRefCS | SimplePackageRefCS
-;
+	'package' (namespace+=[pivot::Namespace|Identifier] '::')*
+	package=[pivot::Package|Identifier]
+	(contexts+=ContextDeclCS)* 'endpackage';
 
 ParameterCS returns essentialocl::VariableCS:
-	(name=SimpleName ':')? type=TypeExpCS
-;
+	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
 
-PostCS returns PostCS :
-	'post' (constraintName=SimpleName)? ':' expression=ExpCS
-;
+PostCS returns PostCS:
+	stereotype='post' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
 
-PreCS returns PreCS :
-	'pre' (constraintName=SimpleName)? ':' expression=ExpCS
-;
+PreCS returns PreCS:
+	stereotype='pre' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
 
-PropertyContextDeclCS returns PropertyContextDeclCS :
-	'context' property=PropertyRefCS ':' type=TypeExpCS
-	((init=InitCS (der=DerCS)?)? | (der=DerCS (init=InitCS)?))
-;
-
-PropertyRefCS returns base::StructuralFeatureRefCS:
-	QualifiedPropertyRefCS | SimplePropertyRefCS
-;
-
-QualifiedClassifierRefCS returns base::QualifiedClassifierRefCS:
-	namespace=[base::NamespaceCS|Identifier]
-	'::' element=ClassifierRefCS
-;
-
-QualifiedOperationRefCS returns base::QualifiedOperationRefCS:
-	namespace=[base::NamespaceCS|Identifier]
-	'::' element=OperationRefCS
-;
-
-QualifiedPropertyRefCS returns base::QualifiedStructuralFeatureRefCS:
-	namespace=[base::NamespaceCS|Identifier]
-	'::' element=PropertyRefCS
-;
-
-QualifiedPackageRefCS returns base::QualifiedPackageRefCS:
-	namespace=[base::NamespaceCS|Identifier]
-	'::' element=PackageRefCS
-;
-
-SimpleClassifierRefCS returns base::SimpleClassifierRefCS:
-	classifier=[base::ClassifierCS|Identifier]
-;
-
-SimpleOperationRefCS returns base::SimpleOperationRefCS:
-	operation=[base::OperationCS|Identifier]
-;
-
-SimplePackageRefCS returns base::SimplePackageRefCS:
-	package=[base::PackageCS|Identifier]
-;
-
-SimplePropertyRefCS returns base::SimpleStructuralFeatureRefCS:
-	feature=[base::StructuralFeatureCS|Identifier]
-;
+PropertyContextDeclCS returns PropertyContextDeclCS:
+	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
+	property=[pivot::Property|Identifier] ':' ownedType=TypeExpCS
+	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides
 //---------------------------------------------------------------------------------
-NavigationExpCS returns essentialocl::ExpCS:
-	SubNavigationExpCS
-	(
-		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
-	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
-			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
-	)?
+NavigatingExpCS_Base returns essentialocl::NamedExpCS:
+	IndexExpCS
+	({PreExpCS.namedExp=current} '@' 'pre')?
 ;
 
-// Follows ., ->, ^
-NavigatingExpCS returns essentialocl::ExpCS:
-	SubNavigatingExpCS
-	(
-		({essentialocl::InfixExpCS.source=current} op=('.'|'->') argument=NavigatingExpCS)
-	|	({OclMessageCS.source=current} op=('^^'|'^') messageName=SimpleName
-			'(' (arguments+=OclMessageArgCS (',' arguments+=OclMessageArgCS)*)? ')')
-	)?
+NavigatingArgExpCS returns essentialocl::ExpCS:
+	({OclMessageArgCS} '?')
+	| ExpCS
 ;
-
-// FIXME @pre
-
-OclMessageArgCS returns essentialocl::ExpCS:
-	({OclMessageArgCS}'?' (':' type=TypeExpCS)?)
-|	ExpCS
-;
-

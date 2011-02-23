@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="data"
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data.ecore"
+    nsPrefix="data">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eSubpackages name="classes" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/classes.ecore"
+      nsPrefix="data.classes">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="BOs, BONodes, associations, regardless the association implementation (foreign keys, persistence structures, IDs, ...). Nodes have attributes that have types. Resulting is a datatype for the node that can be used, e.g., in the action language."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="UniquenessOnBothEndsMustBeTheSame" value="self.ends->forAll( e1, e2 : AssociationEnd |&#xD;&#xA;              e1 &lt;> e2 implies e1.type.unique = e2.type.unique)"/>
+        <details key="AtMostOneCompositeEnd" value="self.ends->select(composite)->size() &lt; 2"/>
+        <details key="AtLeastOneNavigableEnd" value="self.ends->select(ae:AssociationEnd | ae.navigable)->notEmpty()"/>
+        <details key="AtMostOneEqualityContributionForTwoValueClasses" value="self.ends->select(contributesToEquality and type.clazz.valueType)->size() &lt; 2"/>
+        <details key="AtMostOneOrderedEnd" value="self.ends->select(ae|ae.type.ordered)->size() &lt; 2"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="UniquenessOnBothEndsMustBeTheSame AtMostOneCompositeEnd AtLeastOneNavigableEnd AtMostOneEqualityContributionForTwoValueClasses AtMostOneOrderedEnd"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ends" lowerBound="2"
+          upperBound="2" eType="#//classes/AssociationEnd" containment="true" eOpposite="#//classes/AssociationEnd/association"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="package_" lowerBound="1"
+          eType="ecore:EClass modelmanagement.ecore#//Package" transient="true" eOpposite="modelmanagement.ecore#//Package/associations"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timeDependency" eType="#//timedependency/TimeDependency"
+          containment="true" eOpposite="#//timedependency/TimeDependency/association"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="abapAnnotation" eType="ecore:EClass abapmapping.ecore#//AbapAssociationImplementationAnnotation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Signature" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Defines an abstract callable operation or block signature with input parameter types, return type and exception / fault types. A signature may also be implemented by association navigation expressions or link set manipulation statements.&#xD;&#xA;&#xD;&#xA;The enforcement of side effect freeness is the SignatureImplementation subclasses' responsibility."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="OnlyTrailingOptionalParameters" value="self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(&#xD;&#xA;    i | self.input->at(i).defaultValue->notEmpty()))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="OnlyTrailingOptionalParameters"/>
+      </eAnnotations>
+      <eOperations name="conformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self = s then&#xA;    true&#xA;  else&#xA;    self.conformsToExcluding(s, Sequence{}, Sequence{})&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eParameters name="s" ordered="false" unique="false" lowerBound="1" eType="#//classes/Signature"/>
+      </eOperations>
+      <eOperations name="conformsToExcluding" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if s = self then&#xA;    true&#xA;  else&#xA;    let nameConforms:Boolean = self.oclIsKindOf(MethodSignature) and s.oclIsKindOf(MethodSignature) &#xA;       implies s.oclAsType(MethodSignature).name = self.oclAsType(MethodSignature).name in&#xA;    nameConforms and&#xA;    (s.sideEffectFree implies self.sideEffectFree) and&#xA;    s.input->size() = self.input->size() and&#xA;    Sequence{1..self.input->size()}->&#xA;      forAll(i | s.input->at(i).getType().conformsToExcluding(self.input->at(i).getType(), excludingConforming, excludingTo)) and&#xA;    s.output->size() = self.output->size() and&#xA;    Sequence{1..self.output->size()}->&#xA;      forAll(i | self.output->asSequence()->at(i).conformsToExcluding(s.output->asSequence()->at(i), excludingConforming, excludingTo))&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing."/>
+        </eAnnotations>
+        <eParameters name="s" ordered="false" unique="false" lowerBound="1" eType="#//classes/Signature"/>
+        <eParameters name="excludingConforming" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingTo" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="getNamedValuesInScope" ordered="false" upperBound="-1" eType="#//classes/NamedValue">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.getOwningClass().formalObjectParameters->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="For a signature, only the owning class's formal object parameters are in scope."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getOwningClass" ordered="false" unique="false" eType="#//classes/SapClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(MethodSignature) then&#xA;    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in&#xA;    if owner.oclIsKindOf(SapClass) then&#xA;      owner.oclAsType(SapClass)&#xA;    else&#xA;      null    -- e.g., TypeAdapter&#xA;    endif&#xA;  else&#xA;    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="sideEffectFree" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If this flag is set, the signature's implementation must not use a link-modifying implementation on any object of an entity class. It is permissible for an implementation to create value objects. All signatures being called by an implementation must then also have this flag set.&#xD;&#xA;&#xD;&#xA;This flag is also relevant for conformance. A signature only conforms to one with this flag set if it also has this flag set.&#xD;&#xA;&#xD;&#xA;Note that activities that do not modify the link structure may still have side effects outside of the scope of this programming model, such as producing a log entry in some persistence layer about a query being executed. Such side effects that are outside of this programming model do not count as a side effect in the sense of this flag. In particular, they do not make the program's semantics depend on execution order of such signature implementations."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="faults" eType="#//classes/SapClass"
+          eOpposite="#//classes/SapClass/signaturesWithFault"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="output" eType="#//classes/TypeDefinition"
+          eOpposite="#//classes/TypeDefinition/signaturesWithOutput"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTypeDefinitions"
+          eType="#//classes/TypeDefinition" containment="true" eOpposite="#//classes/TypeDefinition/ownerSignature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="input" upperBound="-1"
+          eType="#//classes/Parameter" containment="true" eOpposite="#//classes/Parameter/ownerSignature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeDefinition" upperBound="-1"
+          eType="#//classes/FunctionSignatureTypeDefinition" eOpposite="#//classes/FunctionSignatureTypeDefinition/signature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="preconditions" upperBound="-1"
+          eType="#//constraints/Constraint" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value="preconditionForSignature"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="postconditions" upperBound="-1"
+          eType="#//constraints/Constraint" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value="postconditionForSignature"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="abapAnnotation" eType="ecore:EClass abapmapping.ecore#//AbapSignatureImplementationAnnotation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AssociationEnd" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ExposingClassesEqualOppositeEndsType" value="self.signatureImplementations.implements_.owner->forAll(c:SignatureOwner | c = self.otherEnd().type.clazz)"/>
+        <details key="NoCompositionWithValueClass" value="self.composite implies self.association.ends.type->forAll(ctd:ClassTypeDefinition | not ctd.clazz.valueType)"/>
+        <details key="EqualityContributionsMustBeExposedAndNavigable" value="self.contributesToEquality implies (self.otherEnd().signatureImplementations->notEmpty() and self.otherEnd().navigable)"/>
+        <details key="EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds"
+            value="(self.type.clazz.valueType and self.contributesToEquality and&#xD;&#xA;   self.type.clazz.getAssociationEnds()->exists(ae |&#xD;&#xA;     ae &lt;> self and ae.contributesToEquality)) implies&#xD;&#xA;  self.type.isMany()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ExposingClassesEqualOppositeEndsType NoCompositionWithValueClass EqualityContributionsMustBeExposedAndNavigable EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds"/>
+      </eAnnotations>
+      <eOperations name="otherEnd" ordered="false" unique="false" lowerBound="1" eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="association.ends->select(ae|ae &lt;> self)->first()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="navigable" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Means that the association can be navigated in that direction towards this end. Note that non-navigability does not serve as a security-related feature. If all objects of the type at the other end can be enumerated and because the association has to be navigable in at least one direction, it will be possible to find out those objects on the other end that are linked to an instance which semantically implements navigation again, only potentially very slowly if the extent to enumerate is large."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="composite" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Expresses ownership that for entity-to-entity associations also implies delete propagation. Only one of the two association ends can be marked as composite. The end marked in this way attaches to the &quot;owning&quot; class whereas the otherEnd() attaches to the &quot;owned&quot; class.&#xD;&#xA;&#xD;&#xA;Composition cannot be used for value classes. Values cannot be owned, and values cannot own anything."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="contributesToEquality"
+          ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, this association end contributes to the equality of the exposing class. An equality-contributing association end must be exposed (maybe with private visibility) because it is relevant for the contract of that class.&#xD;&#xA;&#xD;&#xA;It is a questionable construct to have both ends contribute to equality if both classes are value classes because it would mean that values of either of the classes can be identified only in pairs. The equality definition would be recursive, and an implementation would have to understand this and cut short the recursion, comparing only all other equality-related association end values."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
+          eType="#//classes/Association" transient="true" eOpposite="#//classes/Association/ends"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="delegation" eType="#//classes/Delegation"
+          containment="true" eOpposite="#//classes/Delegation/from"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signatureImplementations"
+          upperBound="-1" eType="#//classes/AssociationEndSignatureImplementation"
+          eOpposite="#//classes/AssociationEndSignatureImplementation/end"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//classes/ClassTypeDefinition" containment="true" eOpposite="#//classes/ClassTypeDefinition/associationEnd"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="abapAnnotation" eType="ecore:EClass abapmapping.ecore#//AbapAssociationEndImplementationAnnotation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SapClass" eSuperTypes="#//classes/SignatureOwner behavioral.ecore#//events/EventProducer">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="OnlyValueClassesCanHaveObjectParameters" value="self.formalObjectParameters->notEmpty() implies self.valueType"/>
+        <details key="OnlyObjectParameterizedClassesCanHaveConverter" value="self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()"/>
+        <details key="OnlyTrailingOptionalParameters" value="self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(&#xD;&#xA;    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))"/>
+        <details key="NoRecursionForObjectParameters" value="true  --  TODO implement this"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="OnlyValueClassesCanHaveObjectParameters OnlyObjectParameterizedClassesCanHaveConverter OnlyTrailingOptionalParameters NoRecursionForObjectParameters"/>
+      </eAnnotations>
+      <eOperations name="isAbstract" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="not (self.allSignatures()->forAll(s:MethodSignature | not s.isAbstract()))"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="isParameterizedClassDefinition" ordered="false" unique="false"
+          lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.parameterization->notEmpty()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="conformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsUndefined() then&#xA;    false&#xA;  else&#xA;    self.conformsToExcluding(type, Sequence{}, Sequence{})&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A class A conforms to a class B if they are the same or if there is a chain of (TypeAdapter_i, Class_i) pairs (0&lt;=i&lt;=n) where TypeAdapter_0 adapts A to Class_0, and where Class_n is B."/>
+        </eAnnotations>
+        <eParameters name="type" ordered="false" unique="false" lowerBound="1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="allSignatures" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.allSignaturesExcluding(Set{})"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="delegatesTo" ordered="false" upperBound="-1" eType="#//classes/SapClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then&#xA;    self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.delegatesTo()&#xA;  else&#xA;    if self.oclIsKindOf(data::generics::FormalTypeParameter) then&#xA;      self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.delegatesTo())->flatten()->asSet()&#xA;    else&#xA;      -- TODO improve OCL impact analysis algorithm so that this doesn't kill performance:&#xA;      -- Set{}  -- use this for good performance&#xA;      self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()    -- currently bad performance&#xA;    endif&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A class can delegate to another class via an attached association end that in turn has attached a Delegation element. The delegating class by this exposes all operations and association ends exposed by the delegate class (recursively). The semantics of such a delegation is that when invoked, the invocation will be forwarded to the delegate object transparently and recursively.&#xD;&#xA;&#xD;&#xA;Note, that TypeAdapter objects cannot delegate because they cannot have association ends attached to them. They can only expose association ends whose other end is attached to a class to which the TypeAdapter conforms."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="conformsToExcluding" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if oclIsUndefined() then&#xA;    false&#xA;  else&#xA;  if self = type then&#xA;   true&#xA;  else&#xA;    if Sequence{1..excludingConforming->size()}->exists(i|&#xA;        excludingConforming->asSequence()->at(i) = self and excludingTo->asSequence()->at(i) = type) then&#xA;     true&#xA;  else&#xA;    self.adapters->exists(a|a.to.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))) or&#xA;    (if self.oclIsKindOf(data::generics::FormalTypeParameter) then&#xA;        if self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->notEmpty() then&#xA;            self.oclAsType(data::generics::FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))&#xA;        else&#xA;            false&#xA;        endif&#xA;    else&#xA;        false&#xA;    endif)&#xA;  endif&#xA;  endif&#xA;endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing."/>
+        </eAnnotations>
+        <eParameters name="type" ordered="false" unique="false" lowerBound="1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingConforming" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingTo" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="signaturesWithDelegation" ordered="false" upperBound="-1"
+          eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.signaturesWithDelegationExcluding(Set{})"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Signature declared directly by this class and those signatures obtained by delegation, recursively."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="delegatedSignatures" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.delegatesTo().signaturesWithDelegation()->flatten()->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Signatures obtained by delegation recursively."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="adaptedSignatures" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.adaptedSignaturesExcluding(Set{})"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Computes signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="adaptedSignaturesExcluding" ordered="false" upperBound="-1"
+          eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if excluding->count(self)=0 then&#xA;    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then&#xA;      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding->including(self))&#xA;    else&#xA;      if self.oclIsKindOf(data::generics::FormalTypeParameter) then&#xA;        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.adaptedSignaturesExcluding(excluding->including(self)))->flatten()->asSet()&#xA;      else&#xA;        self.adapters.allSignaturesExcluding(excluding->including(self))&#xA;          ->select(s | not self.ownedSignatures->exists(os | os.conformsTo(s)))&#xA;          ->flatten()->asSet()&#xA;      endif&#xA;    endif&#xA;  else&#xA;    Set{}&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Computes signatures offered by any type adapter adapting this class to another class, minus those signatures redefined in the local class"/>
+        </eAnnotations>
+        <eParameters name="excluding" ordered="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="allSignaturesExcluding" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if excluding->count(self)=0 then&#xA;    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then&#xA;      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding->including(self))&#xA;    else&#xA;      if self.oclIsKindOf(data::generics::FormalTypeParameter) then&#xA;        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.allSignaturesExcluding(excluding->including(self)))->flatten()->asSet()&#xA;      else&#xA;        self.signaturesWithDelegationExcluding(excluding)->union(self.adaptedSignaturesExcluding(excluding))&#xA;      endif&#xA;    endif&#xA;  else&#xA;    Set{}    &#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Computes all locally-defined signatures plus those signatures offered by any Class (directly, or by delegation or recursively by type adaptation) attached to this class as a type adapter, plus allSignatures() recursively of all classes to which this class delegates."/>
+        </eAnnotations>
+        <eParameters name="excluding" ordered="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="signaturesWithDelegationExcluding" ordered="false" upperBound="-1"
+          eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if excluding->count(self)=0 then &#xA;    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then&#xA;      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding->including(self))&#xA;    else&#xA;      if self.oclIsKindOf(data::generics::FormalTypeParameter) then&#xA;        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()&#xA;      else&#xA;        self.ownedSignatures->union(self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()&#xA;      endif&#xA;    endif&#xA;else&#xA;  Set{}&#xA;endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Signature declared directly by this class and those signatures obtained by delegation, recursively."/>
+        </eAnnotations>
+        <eParameters name="excluding" ordered="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="delegatedSignaturesExcluding" ordered="false" upperBound="-1"
+          eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if excluding->count(self)=0 then&#xA;  self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self))->flatten()->asSet()&#xA;else&#xA;  Set{}&#xA;endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Signatures obtained by delegation recursively."/>
+        </eAnnotations>
+        <eParameters name="excluding" ordered="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="getConformingClasses" ordered="false" upperBound="-1" eType="#//classes/SapClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.adaptedBy.adapted.getConformingClasses()->including(self)->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getAssociationEnds" ordered="false" upperBound="-1" eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.elementsOfType->collect(associationEnd->asSet())->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Retrieves those association ends that use this class in their type definition."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getEqualityRelevantAssociationEnds" ordered="false" upperBound="-1"
+          eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.getAssociationEnds()->select(ae|ae.contributesToEquality)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Obtains all association ends that use this class in their type definition and that contribute to this class's equality, indicated by their contributesToEquality attribute being set to true."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getConformsToClasses" ordered="false" upperBound="-1" eType="#//classes/SapClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.adapters.to.getConformsToClasses()->including(self)->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Determines all classes to which this class conforms, directly and transitively, through chains of TypeAdapters. The result includes this class itself."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getConformsToAssociationEnds" ordered="false" upperBound="-1"
+          eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.getConformsToClasses().getAssociationEnds()->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Determines all association ends to whose type this class conforms. This means that an instance of this class can be inserted on that respective end of the corresponding association. For example, if there is an association between Order and Item with ends &quot;order&quot; and &quot;items&quot; and there are classes SalesOrder and SalesOrderItem conforming to Order and Item, respectively, then the &quot;order&quot; end will be returned by this method when invoked on the SalesOrder class because SalesOrder conforms to Order and therefore a SalesOrder can be inserted into the association in role &quot;order.&quot;"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getConformsToCompositeParentAssociationEnds" ordered="false"
+          upperBound="-1" eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.getConformsToClasses().getAssociationEnds()->select(ae|ae.composite)->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Like getConformsToAssociationEnds(), but selects only those association ends that are marked as composite."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getConformsToCompositeChildAssociationEnds" ordered="false"
+          upperBound="-1" eType="#//classes/AssociationEnd">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.getConformsToClasses().getAssociationEnds()->select(ae|ae.otherEnd().composite)->asSet()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Like getConformsToAssociationEnds(), but selects only those association ends whose other ends are marked as composite."/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="subscription" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//events/Subscription" containment="true"
+          eOpposite="behavioral.ecore#//events/Subscription/subscribingClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="samActions" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//status_and_action_old/SAMAction"
+          containment="true" eOpposite="behavioral.ecore#//status_and_action_old/SAMAction/businessObjectNode"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusVariables" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//status_and_action_old/SAMStatusVariable"
+          containment="true" eOpposite="behavioral.ecore#//status_and_action_old/SAMStatusVariable/businessObjectNode"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="samDerivators" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//status_and_action_old/SAMDerivator"
+          containment="true" eOpposite="behavioral.ecore#//status_and_action_old/SAMDerivator/businessObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusSchema" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//status_and_action_old/SAMStatusSchema"
+          containment="true" eOpposite="behavioral.ecore#//status_and_action_old/SAMStatusSchema/businessObjectNode"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="behaviouralModel" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//status_and_action/assembly/StatusSchema"
+          eOpposite="behavioral.ecore#//status_and_action/assembly/StatusSchema/node"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="valueType" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, instances of the class will be immutable. Comparison will be by equality. Their identity is defined by value equality. Value types can of course contain associations to non-value (or &quot;entity&quot;) types.&#xD;&#xA;&#xD;&#xA;As opposed to value types, instances of entity types have identity and mutable state. They are always passed by reference. Variables only hold a reference to a shared instance. Comparing two entity objects using &quot;Equals&quot; will compare their identities."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signaturesWithFault"
+          upperBound="-1" eType="#//classes/Signature" eOpposite="#//classes/Signature/faults"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elementsOfType" upperBound="-1"
+          eType="#//classes/ClassTypeDefinition" eOpposite="#//classes/ClassTypeDefinition/clazz"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="package_" eType="ecore:EClass modelmanagement.ecore#//Package"
+          transient="true" eOpposite="modelmanagement.ecore#//Package/classes"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="adaptedBy" upperBound="-1"
+          eType="#//classes/TypeAdapter" eOpposite="#//classes/TypeAdapter/to"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="adapters" upperBound="-1"
+          eType="#//classes/TypeAdapter" containment="true" eOpposite="#//classes/TypeAdapter/adapted"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="formalObjectParameters"
+          upperBound="-1" eType="#//classes/Parameter" containment="true" eOpposite="#//classes/Parameter/parameterOfClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="converterBetweenParametrizations"
+          eType="#//classes/ConverterBetweenParametrizations" containment="true" eOpposite="#//classes/ConverterBetweenParametrizations/clazz"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+          eType="#//constraints/Constraint" containment="true" eOpposite="#//constraints/Constraint/constrainedType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="timeDependency" eType="#//timedependency/TimeDependency"
+          containment="true" eOpposite="#//timedependency/TimeDependency/theClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterization" eType="#//generics/ClassParameterization"
+          containment="true" eOpposite="#//generics/ClassParameterization/owningClassDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="abapAnnotation" eType="ecore:EClass abapmapping.ecore#//AbapClassImplementationAnnotation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Delegation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Exposes all features (operations and exposed association ends) of the class to which the opposite of the &quot;from&quot; end is attached as features of the &quot;from&quot; end's class. In particular, this makes the &quot;from&quot; class conform to the type of the &quot;to&quot; association end.&#xD;&#xA;&#xD;&#xA;The lower and upper multiplicity of the &quot;from&quot; opposite's association end must be 1 because a single instance is required in order to the &quot;from&quot; type to be able to delegate to it."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ToEndMustHaveMultiplicityOfOne" value="self.from.otherEnd().type.lowerMultiplicity = 1 and&#xD;&#xA;  self.from.otherEnd().type.upperMultiplicity = 1"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ToEndMustHaveMultiplicityOfOne"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="allFeatures" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="from" lowerBound="1"
+          eType="#//classes/AssociationEnd" transient="true" eOpposite="#//classes/AssociationEnd/delegation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
+      <eOperations name="conformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self = typedElement or&#xA;  self.getType().conformsTo(typedElement.getType())"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A typed element consisting of a type with a multiplicity conforms to another typed element if this typed element's type conforms to the other type element's type, and this type element's multiplicity &quot;conforms&quot; to the other type element's multiplicity. In particular, equal multiplicities conform to each other.&#xD;&#xA;&#xD;&#xA;TODO: decide if and how non-equal multiplicites may still conform; for example, a single element may implicitly conform to a collection of elements of conforming type; however, additions to the single element would not be possible."/>
+        </eAnnotations>
+        <eParameters name="typedElement" ordered="false" unique="false" lowerBound="1"
+            eType="#//classes/TypedElement"/>
+      </eOperations>
+      <eOperations name="getType" ordered="false" unique="false" lowerBound="1" eType="#//classes/TypeDefinition">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.ownedTypeDefinition->notEmpty() then&#xA;    self.ownedTypeDefinition&#xA;  else&#xA;    if self.oclIsKindOf(behavioral::actions::Variable) then&#xA;      self.oclAsType(behavioral::actions::Variable).initExpression.getType()&#xA;    else if self.oclIsKindOf(behavioral::actions::Constant) then&#xA;      if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then&#xA;        self.oclAsType(behavioral::actions::Constant).initExpression.getType()&#xA;      else&#xA;         if self.oclAsType(behavioral::actions::Constant)._iterate->notEmpty() then&#xA;           self.oclAsType(behavioral::actions::Constant)._iterate.iteratorExpression.getType()&#xA;         else&#xA;           null&#xA;         endif&#xA;      endif&#xA;    else if self.oclIsKindOf(behavioral::actions::Iterator) then&#xA;      if self.oclAsType(behavioral::actions::Iterator).boundToFor->notEmpty() then&#xA;        if self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclIsKindOf(data::classes::NestedTypeDefinition) then&#xA;          -- if the selection's object has a nested type definition, un-nest by one level&#xA;          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclAsType(data::classes::NestedTypeDefinition).type&#xA;        else&#xA;          -- the tool should infer a better match; this as a better default than &quot;null&quot;&#xA;          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType()&#xA;        endif&#xA;      else&#xA;        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object->asSet() in&#xA;        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object->asSet() in&#xA;        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)._iterate.source->asSet() in&#xA;        let iteratesource:Set(dataaccess::expressions::Expression)=selection->union(groupby)->union(iterateexp) in&#xA;        if iteratesource->notEmpty() then&#xA;          if iteratesource->any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then&#xA;            -- if the Selection's/GroupBy's object has a nested type definition, un-nest by one level&#xA;            iteratesource->any(true).getType().oclAsType(data::classes::NestedTypeDefinition).type&#xA;          else&#xA;            -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;&#xA;            -- Just in case the tool doesn't do this and for the case where the object has upper&#xA;            -- multiplicity 1, use the object's type as the default for the &quot;self&quot; iterator&#xA;            iteratesource->any(true).getType()&#xA;          endif&#xA;        else&#xA;          if self.oclAsType(behavioral::actions::Iterator).groupedFactsOfGroupBy->notEmpty() then&#xA;            -- the groups of a group-by expression can re-used the facts type&#xA;            self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object.getType()&#xA;          else&#xA;            if self.oclAsType(behavioral::actions::Iterator).dimension->notEmpty() then&#xA;              -- the DimensionDefinition's expression defines the dimension iterator's type&#xA;              self.oclAsType(behavioral::actions::Iterator).dimension.expression.getType()&#xA;            else&#xA;              -- Then we have no idea how to infer the Iterator's type&#xA;              null&#xA;            endif&#xA;          endif&#xA;        endif&#xA;      endif&#xA;    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Including) or self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Excluding) then&#xA;      self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.getType()&#xA;    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then&#xA;      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.getType()&#xA;    else if self.oclIsKindOf(Parameter) then&#xA;      if self.oclAsType(Parameter).defaultValue->notEmpty() then&#xA;        self.oclAsType(Parameter).defaultValue.getType()&#xA;      else&#xA;        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and&#xA;        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and&#xA;        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then&#xA;  &#x9;let impl:AssociationEndSignatureImplementation = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in&#xA;            impl.end.type&#xA;        else&#xA;          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then&#xA;            if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension->notEmpty() then&#xA;              self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension.cellSet.factsType&#xA;            else&#xA;              if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction->notEmpty() then&#xA;                self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction.factsType&#xA;              else&#xA;                if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction->notEmpty() then&#xA;                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction->notEmpty() then&#xA;                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction.output&#xA;                  else&#xA;                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType&#xA;                  endif&#xA;                else&#xA;                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(dataaccess::analytics::CellSet) then&#xA;                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in&#xA;                    if pos = 1 then&#xA;                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).factsType&#xA;                    else&#xA;                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).&#xA;                          dimensions->at(-1+pos).characteristicFunction.output&#xA;                    endif&#xA;                  else&#xA;                    null&#xA;                  endif&#xA;                endif&#xA;              endif&#xA;            endif&#xA;          else&#xA;            null&#xA;          endif&#xA;        endif&#xA;      endif&#xA;    else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then&#xA;      -- TODO Here, the multiplicity would have to be forced to 0..*&#xA;      self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.getType()&#xA;    else if self.oclIsKindOf(dataaccess::expressions::VariableExpression) then&#xA;      self.oclAsType(dataaccess::expressions::VariableExpression).variable.getType()&#xA;    else if self.oclIsKindOf(dataaccess::expressions::SignatureCallExpression) then&#xA;      self.oclAsType(dataaccess::expressions::SignatureCallExpression).getSignature().output&#xA;    else if self.oclIsKindOf(dataaccess::expressions::AssociationEndNavigationExpression) then&#xA;      self.oclAsType(dataaccess::expressions::AssociationEndNavigationExpression).toEnd.type&#xA;    else if self.oclIsKindOf(dataaccess::expressions::Replace) then&#xA;      self.oclAsType(dataaccess::expressions::Replace).object.getType()&#xA;    else if self.oclIsKindOf(dataaccess::expressions::Ternary) then&#xA;      -- Find the &quot;least&quot; TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.&#xA;      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.&#xA;      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly&#xA;      if self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType().conformsTo(self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()) then&#xA;        self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()&#xA;      else&#xA;        self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType()&#xA;      endif&#xA;    else if self.oclIsKindOf(dataaccess::query::Selection) then&#xA;      self.oclAsType(dataaccess::query::Selection).object.getType()&#xA;    else&#xA;      null&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;    endif&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Determined the type of the element. If the element owns a type definition, that one is assumed to be the result. Otherwise, &quot;polymorphically&quot; (we will refactor this once we can defined OCL method bodies polymorphically) we determine the type of the respective element.&#xD;&#xA;&#xD;&#xA;TODO the inference for Iterator elements used in an Iterate expression needs to resolve NestedTypeDefinitions; for non-NestedTypeDefinition type definitions it needs to reduce the multiplicity to exactly 1."/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTypeDefinition"
+          eType="#//classes/TypeDefinition" containment="true" eOpposite="#//classes/TypeDefinition/ownerTypedElement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An instance of a class can occur in a number of contexts. Each context has a characteristic condition that an object has to fulfill in order to &quot;be in that context.&quot;&#xD;&#xA;&#xD;&#xA;A context can specify constraints, additional events that the object may raise, or preconditions for operations of the object's class.&#xD;&#xA;&#xD;&#xA;(Currently, the metamodel only describes context-based constraints; events and preconditions may have to be added later.)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ConditionMustBeBoolean" value="self.condition.getType().upperMultiplicity = 1 and&#xD;&#xA;  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and&#xD;&#xA;  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'"/>
+        <details key="ConstraintForRightClass" value="self.constraints->forAll(c | c.constrainedType = self.for_)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ConditionMustBeBoolean ConstraintForRightClass"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="for_" lowerBound="1"
+          eType="#//classes/SapClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+          eType="#//constraints/Constraint" containment="true" eOpposite="#//constraints/Constraint/theContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Multiplicity" abstract="true">
+      <eOperations name="isMany" ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.upperMultiplicity > 1 or self.upperMultiplicity = -1"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerMultiplicity" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The lower bounds of this multiplicity."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperMultiplicity" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The upper bounds of this multiplicity. Unlimited is encoded as -1."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="ordered" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SignatureImplementation" abstract="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A signature can be implemented by a block (this would be a &quot;method&quot; in the classical sense) or, e.g., by an association navigation or by a link set manipulation statement."/>
+      </eAnnotations>
+      <eOperations name="getImplementedSignature" ordered="false" unique="false" lowerBound="1"
+          eType="#//classes/Signature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(FunctionSignatureImplementation) then&#xA;    if self.oclAsType(FunctionSignatureImplementation).functionSignature->notEmpty() then&#xA;      self.oclAsType(FunctionSignatureImplementation).functionSignature&#xA;    else&#xA;      self.implements_&#xA;    endif&#xA;  else&#xA;    self.implements_&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A block implements either a FunctionSignature or a MethodSignature. Two different associations connect the Block with the respective Signature subclasses. This operation is a convenience that chooses the one or the other, depending on which one is filled."/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implements_" eType="#//classes/MethodSignature"
+          transient="true" eOpposite="#//classes/MethodSignature/implementation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkTraversal" eSuperTypes="#//classes/AssociationEndSignatureImplementation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Navigates an association starting on the source object on which the implementation is invoked and navigating to the *end* specified."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="OutputTypeMatchEndType" value="self.implements_.input->isEmpty() and&#xD;&#xA;  self.implements_.output.oclIsKindOf(ClassTypeDefinition) and &#xD;&#xA;  self.implements_.output.oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"/>
+        <details key="MustBeNavigable" value="self.end.navigable"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="OutputTypeMatchEndType MustBeNavigable"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkAddition" eSuperTypes="#//classes/LinkManipulationAtPosition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Adds a link to the association of which *end* is one end, such that the object on which the implementation is invoked is on the other end, and the parameters passed to this implementation are in the role denoted by *end*."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="AdditionInputTypeMatchEndType" value="self.implements_.output->isEmpty() and&#xD;&#xA;  self.implements_.input->size() = 1 and &#xD;&#xA;  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and &#xD;&#xA;  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="AdditionInputTypeMatchEndType"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkRemoval" eSuperTypes="#//classes/LinkManipulationAtPosition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Removes all links from the object on which the implementation is invoked to those objects passed as parameters where the parameter objects are in the role denoted by *end*."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="RemovalTypeMatchEndType" value="self.implements_.output->isEmpty() and&#xD;&#xA;  self.implements_.input->size() = 1 and &#xD;&#xA;  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and &#xD;&#xA;  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="RemovalTypeMatchEndType"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AssociationEndSignatureImplementation"
+        abstract="true" eSuperTypes="#//classes/SignatureImplementation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt"
+            value="(self.implements_.owner.oclIsKindOf(SapClass) and&#xD;&#xA;    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))&#xD;&#xA;  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and&#xD;&#xA;    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="end" lowerBound="1" eType="#//classes/AssociationEnd"
+          eOpposite="#//classes/AssociationEnd/signatureImplementations"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassTypeDefinition" eSuperTypes="#//classes/TypeDefinition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ActualObjectsParametersMatchSignature" value="let numberOfMandatoryParameters:Integer =&#xD;&#xA;    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()&#xD;&#xA;  in&#xD;&#xA;  self.objectParameters->size() >= numberOfMandatoryParameters and&#xD;&#xA;  self.objectParameters->size() &lt;= self.clazz.formalObjectParameters->size() and&#xD;&#xA;  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|&#xD;&#xA;    self.objectParameters->at(i).formalObjectParameter =&#xD;&#xA;    self.clazz.formalObjectParameters->at(i))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ActualObjectsParametersMatchSignature"/>
+      </eAnnotations>
+      <eOperations name="objectParametersConformTo" ordered="false" unique="false"
+          lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.effectiveObjectParameters()->size()  = ctd.effectiveObjectParameters()->size() then&#xA;    self.clazz.converterBetweenParametrizations->notEmpty() or&#xA;    Sequence{1..self.effectiveObjectParameters()->size()}->forAll(i |&#xA;      self.effectiveObjectParameters()->at(i).evaluatesToEqualAs(ctd.effectiveObjectParameters()->at(i)))&#xA;  else&#xA;    false&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eParameters name="ctd" ordered="false" unique="false" lowerBound="1" eType="#//classes/ClassTypeDefinition"/>
+      </eOperations>
+      <eOperations name="effectiveObjectParameters" unique="false" upperBound="-1"
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.objectParameters.value->flatten()->asSequence()->union(&#xA;     Sequence{(self.objectParameters->size()+1)..(self.clazz.formalObjectParameters->size())}->collect(i | &#xA;             self.clazz.formalObjectParameters->at(i).defaultValue->flatten()->asSequence()))->flatten()->asSequence()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="clazz" lowerBound="1"
+          eType="#//classes/SapClass" eOpposite="#//classes/SapClass/elementsOfType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="associationEnd" eType="#//classes/AssociationEnd"
+          transient="true" eOpposite="#//classes/AssociationEnd/type"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectParameters" upperBound="-1"
+          eType="#//classes/ActualObjectParameter" eOpposite="#//classes/ActualObjectParameter/classTypeDefinitions"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedObjectParameters"
+          upperBound="-1" eType="#//classes/ActualObjectParameter" containment="true"
+          eOpposite="#//classes/ActualObjectParameter/owningClassTypeDefinition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypeDefinition" abstract="true" eSuperTypes="#//classes/Multiplicity">
+      <eOperations name="conformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsUndefined() then&#xA;    false&#xA;  else if self = typeDef then&#xA;    true&#xA;  else&#xA;    self.conformsToExcluding(typeDef, Sequence{}, Sequence{})&#xA;  endif&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eParameters name="typeDef" ordered="false" unique="false" lowerBound="1"
+            eType="#//classes/TypeDefinition"/>
+      </eOperations>
+      <eOperations name="conformsToExcluding" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if oclIsUndefined() then&#xA;    false&#xA;  else&#xA;  if self = td then&#xA;    true&#xA;  else&#xA;   self.multiplicityConformsTo(td) and&#xA;   self.conformsToIgnoringMultiplicityExcluding(td, excludingConforming, excludingTo)&#xA;  endif&#xA; endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing."/>
+        </eAnnotations>
+        <eParameters name="td" ordered="false" unique="false" lowerBound="1" eType="#//classes/TypeDefinition"/>
+        <eParameters name="excludingConforming" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingTo" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="multiplicityConformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="-- check for multiplicity conformance&#xA;    -- multiplicity of td must include multiplicity of td&#xA;    td.lowerMultiplicity &lt;= self.lowerMultiplicity&#xA;    and&#xA;    (&#xA;        td.upperMultiplicity = -1&#xA;        or &#xA;        ( td.upperMultiplicity >= self.upperMultiplicity and self.upperMultiplicity &lt;> -1 ) &#xA;    ) &#xA;    &#xA;    -- check for conformance of orderedness and uniqueness&#xA;    -- orderedness/uniqueness of td must be same or more relaxed than self's&#xA;    and&#xA;    (&#xA;       not self.isMany()&#xA;        or&#xA;        ( ( self.ordered = td.ordered ) and ( self.unique = td.unique ) )&#xA;        or&#xA;        ( self.ordered and self.unique )&#xA;        or&#xA;        ( not ( td.ordered or td.unique ) )&#xA;    )"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Checks if this type definition's multiplicity conforms to td's multiplicity definitions. This is the case if all instances that conform to this type definition will also conform to td.&#xD;&#xA;&#xD;&#xA;Multiplicity conforms if td includes self's multiplicity, thus td's lower multiplicity is equal or smaller, and td's upper multiplicity is equal or larger than self's.&#xD;&#xA;&#xD;&#xA;Ordereness and uniquness conform if td has more relaxed requirements. Thus, they conform if they are equal, if td is neither ordered nor unique, or if self is ordered and unique"/>
+        </eAnnotations>
+        <eParameters name="td" ordered="false" unique="false" lowerBound="1" eType="#//classes/TypeDefinition"/>
+      </eOperations>
+      <eOperations name="conformsToIgnoringMultiplicityExcluding" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self = td then&#xA;    true&#xA;  else&#xA;   if self.oclIsKindOf(ClassTypeDefinition) then&#xA;    td.oclIsKindOf(ClassTypeDefinition) and&#xA;    self.oclAsType(ClassTypeDefinition).clazz.conformsToExcluding(&#xA;                td.oclAsType(ClassTypeDefinition).clazz, excludingConforming, excludingTo) and&#xA;    self.oclAsType(ClassTypeDefinition).objectParametersConformTo(td.oclAsType(ClassTypeDefinition))&#xA;  else&#xA;    if self.oclIsKindOf(FunctionSignatureTypeDefinition) then&#xA;      td.oclIsKindOf(FunctionSignatureTypeDefinition) and&#xA;      self.oclAsType(FunctionSignatureTypeDefinition).signature.conformsToExcluding(&#xA;           td.oclAsType(FunctionSignatureTypeDefinition).signature, excludingConforming, excludingTo)&#xA;    else&#xA;      td.oclIsKindOf(NestedTypeDefinition) and&#xA;      self.oclAsType(NestedTypeDefinition).type.conformsToExcluding(&#xA;          td.oclAsType(NestedTypeDefinition).type, excludingConforming, excludingTo)&#xA;    endif&#xA;  endif&#xA; endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing."/>
+        </eAnnotations>
+        <eParameters name="td" ordered="false" unique="false" lowerBound="1" eType="#//classes/TypeDefinition"/>
+        <eParameters name="excludingConforming" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingTo" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="conformsToIgnoringMultiplicity" ordered="false" unique="false"
+          lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self = typeDef then&#xA;   true&#xA;  else&#xA;    self.conformsToIgnoringMultiplicityExcluding(typeDef, Sequence{}, Sequence{})&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eParameters name="typeDef" ordered="false" unique="false" lowerBound="1"
+            eType="#//classes/TypeDefinition"/>
+      </eOperations>
+      <eOperations name="getTypeUsage" ordered="false" upperBound="-1" eType="#//classes/TypedElement">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="TypedElement.allInstances()->select(te | te.getType() = self)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getInnermost" ordered="false" unique="false" lowerBound="1"
+          eType="#//classes/TypeDefinition">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(NestedTypeDefinition) then&#xA;    self.oclAsType(NestedTypeDefinition).type.getInnermost()&#xA;  else&#xA;    self&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="For nexted type definitions, navigates through to the inner type definition. For non-nested type definitions, that type definition is the result of this method."/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getNestingLevel" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(NestedTypeDefinition) then&#xA;    self.oclAsType(NestedTypeDefinition).type.getNestingLevel() + 1&#xA;  else&#xA;    0&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getNamedValuesInScope" ordered="false" upperBound="-1" eType="#//classes/NamedValue">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="-- find owner of type definition and collect the named values in scope for the owner&#xA;  (let ownerSig:Signature = self.ownerSignature in&#xA;  if ownerSig->notEmpty() and ownerSig.oclIsKindOf(Signature) then&#xA;    ownerSig.oclAsType(Signature).getNamedValuesInScope()&#xA;  else&#xA;    Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported&#xA;  endif)->union(&#xA;&#xA;  if self.ownerTypedElement->notEmpty() then&#xA;    if self.ownerTypedElement.oclIsKindOf(dataaccess::expressions::Expression) then&#xA;      self.ownerTypedElement.oclAsType(dataaccess::expressions::Expression).getNamedValuesInScope()&#xA;    else&#xA;      if self.ownerTypedElement.oclIsKindOf(NamedValue) then&#xA;        self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()&#xA;      else&#xA;        Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported&#xA;      endif&#xA;    endif&#xA;  else&#xA;    Set{}&#xA;  endif)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Needs to find the owner of the type definition, then check if it's a statement such as a variable declaration, or a method signature (meaning the owner may contribute formal object parameters) or a function signature (meaning the function expression knows the NamedValues in scope), etc."/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signaturesWithOutput"
+          upperBound="-1" eType="#//classes/Signature" eOpposite="#//classes/Signature/output"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownerTypedElement" eType="#//classes/TypedElement"
+          transient="true" eOpposite="#//classes/TypedElement/ownedTypeDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownerSignature" eType="#//classes/Signature"
+          transient="true" eOpposite="#//classes/Signature/ownedTypeDefinitions"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NestedTypeDefinition" eSuperTypes="#//classes/TypeDefinition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="NestedIsAlwaysMany" value="self.isMany()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="NestedIsAlwaysMany"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" ordered="false" unique="false"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Only for syntax mapping issues, hopefully disappearing again in the future. It holds the operator that syntactically introduced this nested type definition, such as &quot;[&quot; or &quot;*&quot;."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//classes/TypeDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedTypeDefinition"
+          eType="#//classes/TypeDefinition" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value="owningNestedTypeDefinition"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionSignatureTypeDefinition" eSuperTypes="#//classes/TypeDefinition">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="signature" lowerBound="1"
+          eType="#//classes/Signature" eOpposite="#//classes/Signature/typeDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSignature" eType="#//classes/Signature"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="MethodSignature" eSuperTypes="#//classes/Signature modelmanagement.ecore#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="a signature of a method defined in a class"/>
+      </eAnnotations>
+      <eOperations name="isAbstract" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.implementation->isEmpty()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="producer" eType="ecore:EClass behavioral.ecore#//events/EventProducer"
+          transient="true" eOpposite="behavioral.ecore#//events/EventProducer/notificationSignatures"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//classes/SignatureImplementation"
+          containment="true" eOpposite="#//classes/SignatureImplementation/implements_"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//classes/SignatureOwner"
+          transient="true" eOpposite="#//classes/SignatureOwner/ownedSignatures"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="converter" eType="#//classes/ConverterBetweenParametrizations"
+          eOpposite="#//classes/ConverterBetweenParametrizations/conversionMethod"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionSignature" eSuperTypes="#//classes/Signature">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="signature definition for an anonymous function that has to be implemented by a block"/>
+      </eAnnotations>
+      <eOperations name="isAbstract" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.implementation->isEmpty()"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="getImplementedAnonymousFunctionExpression" ordered="false"
+          unique="false" eType="ecore:EClass dataaccess.ecore#//expressions/fp/AnonymousFunctionExpr">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="let candidates:Sequence(dataaccess::expressions::fp::AnonymousFunctionExpr) =&#xA;         self.typeDefinition.ownerTypedElement.oclAsType(dataaccess::expressions::fp::AnonymousFunctionExpr)->asSequence() in&#xA;  if candidates->isEmpty() then&#xA;    null&#xA;  else&#xA;    candidates->at(1)&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="implementation" eType="#//classes/FunctionSignatureImplementation"
+          containment="true" eOpposite="#//classes/FunctionSignatureImplementation/functionSignature"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" eType="ecore:EClass dataaccess.ecore#//analytics/Dimension"
+          transient="true" eOpposite="dataaccess.ecore#//analytics/Dimension/characteristicFunction"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cellSetForValueFunction"
+          eType="ecore:EClass dataaccess.ecore#//analytics/CellSet" transient="true"
+          eOpposite="dataaccess.ecore#//analytics/CellSet/valueFunction"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cellSetForAggregationFunction"
+          eType="ecore:EClass dataaccess.ecore#//analytics/CellSet" transient="true"
+          eOpposite="dataaccess.ecore#//analytics/CellSet/aggregationFunction"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkSetting" eSuperTypes="#//classes/ExtentModifyingAssociationEndSignatureImplementation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Replaces all links of the association of which the association end *end* is part and which connect to the object on which this implementation is invoked with their other end. The links are replaced by links from the object on which the implementation is invoked to the object(s) passed to this implementation as argument."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="InputTypeMatchEndType" value="self.implements_.output->isEmpty() and&#xD;&#xA;  self.implements_.input->size() = 1 and &#xD;&#xA;  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and &#xD;&#xA;  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="InputTypeMatchEndType"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TypeAdapter" eSuperTypes="#//classes/SignatureOwner">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="AllSignatureConforms" value="self.ownedSignatures->forAll(selfSig:MethodSignature |&#xD;&#xA;    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |&#xD;&#xA;       selfSig.conformsTo(toSig)))"/>
+        <details key="SignaturesCannotBeAbstract" value="self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())"/>
+        <details key="IsFullAdaptationToTo" value="self.to.signaturesWithDelegation()->forAll(toSig|&#xD;&#xA;    self.adapted.signaturesWithDelegation()->exists(adaptedSig|&#xD;&#xA;      adaptedSig.conformsTo(toSig))&#xD;&#xA;    or self.ownedSignatures->exists(ownedSig|&#xD;&#xA;      ownedSig.conformsTo(toSig)))"/>
+        <details key="ValuesToValues_EntitiesToEntities" value="self.adapted.valueType = self.to.valueType"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="AllSignatureConforms SignaturesCannotBeAbstract IsFullAdaptationToTo ValuesToValues_EntitiesToEntities"/>
+      </eAnnotations>
+      <eOperations name="conformsTo" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |&#xA;    self.allSignatures()->exists(selfSig:MethodSignature |&#xA;       selfSig.conformsToExcluding(typeSig, Sequence{self.to}, Sequence{type})))"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A class A conforms to a class B if for every signature that B has (either directly or by delegation, but not from any adapters), A has a conforming signature, either immediately declared in A or by delegation or through a type adapter."/>
+        </eAnnotations>
+        <eParameters name="type" ordered="false" unique="false" lowerBound="1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="conformsToExcluding" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="Sequence{1..excludingConforming->size()}->exists(i|&#xA;  excludingConforming->asSequence()->at(i) = self.to and excludingTo->asSequence()->at(i) = type) or&#xA;  type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |&#xA;         self.allSignatures()->exists(selfSig:MethodSignature |&#xA;            selfSig.conformsToExcluding(typeSig,&#xA;                    excludingConforming->asSequence()->append(self.to),&#xA;                    excludingTo->asSequence()->append(type))))"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing."/>
+        </eAnnotations>
+        <eParameters name="type" ordered="false" unique="false" lowerBound="1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingConforming" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+        <eParameters name="excludingTo" unique="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eOperations name="allSignatures" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.allSignaturesExcluding(Set{})"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Computes all locally-defined signatures plus not conforming signatures offered by 'To' Class. "/>
+        </eAnnotations>
+      </eOperations>
+      <eOperations name="allSignaturesExcluding" ordered="false" upperBound="-1" eType="#//classes/MethodSignature">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.to.allSignaturesExcluding(excluding)->select(s |&#xA;    not self.ownedSignatures->exists(os | os.conformsTo(s)))->union(&#xA;  self.ownedSignatures)"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Same as allSignatures() but with the possibility to to avoid endless recursions."/>
+        </eAnnotations>
+        <eParameters name="excluding" ordered="false" upperBound="-1" eType="#//classes/SapClass"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="#//classes/SapClass"
+          eOpposite="#//classes/SapClass/adaptedBy"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="adapted" lowerBound="1"
+          eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/adapters"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="#//classes/NamedValue">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="DefaultValueType" value="self.defaultValue->notEmpty() implies self.defaultValue.getType().conformsTo(self.getType())"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="DefaultValueType"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownerSignature" eType="#//classes/Signature"
+          transient="true" eOpposite="#//classes/Signature/input"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterOfClass" eType="#//classes/SapClass"
+          transient="true" eOpposite="#//classes/SapClass/formalObjectParameters"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NamedValue" abstract="true" eSuperTypes="modelmanagement.ecore#//NamedElement #//classes/TypedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A value that can be used by name in the scope of a Block. Specializations are, e.g., Constant and Variable. Specializations may have different rules for initialization expressions."/>
+      </eAnnotations>
+      <eOperations name="getNamedValuesInScope" ordered="false" upperBound="-1" eType="#//classes/NamedValue">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.owner.getNamedValuesInScope()->union(&#xA;    if self.oclIsKindOf(Parameter) then&#xA;      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()&#xA;    else&#xA;      if self.oclIsKindOf(behavioral::actions::Iterator) then&#xA;        self.oclAsType(behavioral::actions::Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(&#xA;        self.oclAsType(behavioral::actions::Iterator)._iterate.getNamedValuesInScope()->asSet())&#xA;      else&#xA;        if self.oclIsKindOf(behavioral::actions::Constant) then&#xA;          self.oclAsType(behavioral::actions::Constant)._iterate.getNamedValuesInScope()&#xA;        else&#xA;          Set{}    -- TODO further cases?&#xA;        endif&#xA;      endif&#xA;    endif&#xA;    )"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="ecore:EClass behavioral.ecore#//actions/Block"
+          transient="true" eOpposite="behavioral.ecore#//actions/Block/variables"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PlatformSpecificImplementation">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetPlatform" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="NativeImpl" eSuperTypes="#//classes/SignatureImplementation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="platformSpecificImplementaiton"
+          upperBound="-1" eType="#//classes/PlatformSpecificImplementation" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SignatureOwner" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSignatures" upperBound="-1"
+          eType="#//classes/MethodSignature" containment="true" eOpposite="#//classes/MethodSignature/owner"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExtentModifyingAssociationEndSignatureImplementation"
+        abstract="true" eSuperTypes="#//classes/AssociationEndSignatureImplementation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Abstract base class for all association extent-manipulating signature implementations. Groups all constraints that apply to those."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="MustNotModifyExtentIfEqualityRelevantForValueClass" value="end.association.ends->forAll(ae:AssociationEnd |&#xD;&#xA;    ae.contributesToEquality implies not ae.type.clazz.valueType)"/>
+        <details key="MustNotImplementSideEffectFreeOperation" value="not self.implements_.sideEffectFree"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="MustNotModifyExtentIfEqualityRelevantForValueClass MustNotImplementSideEffectFreeOperation"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="FunctionSignatureImplementation" eSuperTypes="#//classes/SignatureImplementation">
+      <eOperations name="isSideEffectFree" ordered="false" unique="false" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="if self.oclIsKindOf(behavioral::actions::Block) then&#xA;    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()&#xA;  else&#xA;    if self.oclIsKindOf(dataaccess::analytics::CellSet) then&#xA;      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()&#xA;    else&#xA;      false&#xA;    endif&#xA;  endif"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="functionSignature" eType="#//classes/FunctionSignature"
+          transient="true" eOpposite="#//classes/FunctionSignature/implementation"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ActualObjectParameter">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="formalObjectParameter"
+          lowerBound="1" eType="#//classes/Parameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="classTypeDefinitions"
+          upperBound="-1" eType="#//classes/ClassTypeDefinition" eOpposite="#//classes/ClassTypeDefinition/objectParameters"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true"
+          eOpposite="dataaccess.ecore#//expressions/Expression/actualObjectParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClassTypeDefinition"
+          lowerBound="1" eType="#//classes/ClassTypeDefinition" transient="true" eOpposite="#//classes/ClassTypeDefinition/ownedObjectParameters"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConverterBetweenParametrizations">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Specifies a method as converter method. This class is mostly used as a constraint container for such a construct."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="MustHaveConcreteMethod" value="not self.conversionMethod.isAbstract()"/>
+        <details key="FormalObjectParametersConformToMethodParameters" value="self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and&#xD;&#xA;  Sequence{1..self.conversionMethod.input->size()}->forAll(i |&#xD;&#xA;    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="MustHaveConcreteMethod FormalObjectParametersConformToMethodParameters"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="clazz" lowerBound="1"
+          eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/converterBetweenParametrizations"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conversionMethod" lowerBound="1"
+          eType="#//classes/MethodSignature" eOpposite="#//classes/MethodSignature/converter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="LinkManipulationAtPosition" abstract="true"
+        eSuperTypes="#//classes/ExtentModifyingAssociationEndSignatureImplementation">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An implementation that optionally specifies a position in an ordered link set telling where to apply the modification."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" ordered="false" unique="false"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="InScope" abstract="true">
+      <eOperations name="addNamedValuesWithNewNames" ordered="false" upperBound="-1"
+          eType="#//classes/NamedValue">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="inner->union(outer->select(o | not inner->exists(i | i.name = o.name))->asSet())"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Used to build up a scope of named values, proceeding &quot;inside-out.&quot; The first argument is the already computed set of NamedValues, all of which end up in the resulting set of NamedValues. NamedValues from the second argument are added to the result set if the first NamedValue set does not contain any NamedValue with an equal name."/>
+        </eAnnotations>
+        <eParameters name="inner" ordered="false" upperBound="-1" eType="#//classes/NamedValue"/>
+        <eParameters name="outer" ordered="false" upperBound="-1" eType="#//classes/NamedValue"/>
+      </eOperations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="constraints" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/constraints.ecore"
+      nsPrefix="data.constraints">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Complex data types (as opposed to the basic data types that are plain CCTS types)"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An instance of this class defines a subset of the instances of the type it constains. It does so by providing a predicate (&quot;characteristic function&quot;). Instances of the type constrained for which the predicate holds are part of the subset, the others are not."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ExpressionTypeMustBeBoolean" value="self.constraintExpression.getType().upperMultiplicity = 1 and&#xD;&#xA;  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and&#xD;&#xA;  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean'"/>
+        <details key="MustBeOwned" value="self.constrainedType->notEmpty() or&#xD;&#xA;  self.theContext->notEmpty() or&#xD;&#xA;  self.preconditionForSignature->notEmpty() or&#xD;&#xA;  self.postconditionForSignature->notEmpty()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ExpressionTypeMustBeBoolean MustBeOwned"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="theContext" eType="#//classes/Context"
+          transient="true" eOpposite="#//classes/Context/constraints"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedType" eType="#//classes/SapClass"
+          transient="true" eOpposite="#//classes/SapClass/constraints"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="severityInState" lowerBound="1"
+          upperBound="-1" eType="#//constraints/SeverityInState" containment="true">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value="constraint"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraintExpression"
+          lowerBound="1" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="ObjectState">
+      <eLiterals name="INITIAL"/>
+      <eLiterals name="TRANSIENT" value="1"/>
+      <eLiterals name="SAVED" value="2"/>
+      <eLiterals name="ACTIVE" value="3"/>
+      <eLiterals name="COMPLIANT" value="4"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="Severity">
+      <eLiterals name="WARNING"/>
+      <eLiterals name="ERROR" value="1"/>
+      <eLiterals name="ILLEGAL" value="2"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="SeverityInState">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" ordered="false"
+          unique="false" lowerBound="1" eType="#//constraints/ObjectState"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" ordered="false"
+          unique="false" lowerBound="1" eType="#//constraints/Severity"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="quantitystructure" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/quantitystructure.ecore"
+      nsPrefix="data.quantitystructure">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Helps modelers to specify the numbers of instances of types, relations and the access patterns over them. This can later be used to optimize data representation, partitioning and deployment."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
+  </eSubpackages>
+  <eSubpackages name="timedependency" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/timedependency.ecore"
+      nsPrefix="data.timedependency">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Models the aspect of time-dependent data. If a structural feature such as a class or a property or an association is marked as time-dependent, clients expect to find time-dependent access operations for read access. If no time is specified, the time of access is implicitly assumed.&#xD;&#xA;&#xD;&#xA;Modifications to such structures keep the history of the data. Again, if no modification time is explicitly specified, the time at which the modification occurs is used implicitly.&#xD;&#xA;&#xD;&#xA;Clarify if it should be possible to &quot;modify history.&quot; In other words, should it be possible to make structural changes in data that was already recorded in the past?&#xD;&#xA;&#xD;&#xA;TODO Perhaps this package should be separated out into an own top-level metamodel package because it has dependencies on behavioral/actions and dataaccess/expressions."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="TimeDependency">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Captures the specification for how to deal in detail with the time-dependent nature of the annotated structural feature.&#xD;&#xA;&#xD;&#xA;Time dependence of a class means that the existence of an instance of that class is timie dependent. A time-dependent association means that the existence of each link of that association is time dependent.&#xD;&#xA;&#xD;&#xA;Read operations on time-dependent classes and associations (such as queries and navigation) can optionally specify a point in time or a timespan. If no time or timespan is specified, the current time is assumed.&#xD;&#xA;&#xD;&#xA;Write/update operations by default will use the current time as the point in time, or an open time interval starting at the current time (in case of a timespan feature). Any open previous timespan by default will be closed at the current time by an update.&#xD;&#xA;&#xD;&#xA;Read and update operations of time-dependent features can optionally be equipped with a time/timespan telling the temporal validity of the values updated or the values to be read."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="RecordCutoffGreaterOrEqualZero" value="self.recordCutoffInMilliseconds >= 0"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="RecordCutoffGreaterOrEqualZero"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="recordCutoffInMilliseconds"
+          ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The number of milliseconds for which to keep historic versions of this feature. Only values greater or equal to zero are permitted. 0 means that no historic versions are kept at all."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canChangePast" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, it is permissible to change values of the time-dependent feature for previous times."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="timespan" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, data is valid over a given timespan, not only a single point in time. When writing data, the validity period is to be specified as a timespan rather than a point in time.&#xD;&#xA;&#xD;&#xA;If false, data samples are valid only at a single point in time, such as from an RFID reader or a temperature sensor. Access APIs would have to allow for conveniently finding the &quot;nearest&quot; match for a given point in time."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="theClass" eType="#//classes/SapClass"
+          transient="true" eOpposite="#//classes/SapClass/timeDependency"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="association" eType="#//classes/Association"
+          transient="true" eOpposite="#//classes/Association/timeDependency"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="documents" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/documents.ecore"
+      nsPrefix="data.documents">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Structures that help referencing and managing---typically external---document repositories. Structures shall allow to reference documents in such a repository, say something about the lifecycle of documents in such a repository in connection to the life cycle of other model elements, and integrate document repository capabilities into the modeling world, such as document ranking, versioning, etc."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
+  </eSubpackages>
+  <eSubpackages name="generics" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/generics.ecore"
+      nsPrefix="data.generics">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Describes how types can be parameterized. Parameterizable types include classes and tuples. Classes can be declared to have a list of DataType arguments. Those arguments can then be used within a class definition wherever a DataType is allowed. If a type argument is a class, it may be used wherever a class is allowed."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="FormalTypeParameter" eSuperTypes="#//classes/SapClass">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A formal type argument to the ParameterizedClass owning this parameter object. It is valid only in the scope of the classDefinition owned by the ParameterizedClass that owns this parameter object."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="UseInSignaturesOfOwningParamerizedClassOnly" value="self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies &#xD;&#xA;   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and&#xD;&#xA;    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and&#xD;&#xA;  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and &#xD;&#xA;    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and&#xD;&#xA;    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and&#xD;&#xA;  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and &#xD;&#xA;    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and&#xD;&#xA;    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)"/>
+        <details key="UseInAssociationsOfOwningParameterizedClassOnly" value="self.elementsOfType.associationEnd->&#xD;&#xA;    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="UseInSignaturesOfOwningParamerizedClassOnly UseInAssociationsOfOwningParameterizedClassOnly"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterOf" lowerBound="1"
+          eType="#//generics/ClassParameterization" transient="true" eOpposite="#//generics/ClassParameterization/formalTypeParameters"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="typeConstraint" eType="#//classes/SapClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actualTypeParameters"
+          upperBound="-1" eType="#//generics/ActualTypeParameter" eOpposite="#//generics/ActualTypeParameter/formalTypeParameter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ParameterizedClassInstantiation" eSuperTypes="#//classes/SapClass">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An instantiation of a parameterized class (a class that has one or more FormalTypeParameters associated) with a set of data types that match the parameterized type's signature. The instantiation is itself usable as a Class. It may as such itself still have formal type parameters which then make it a parameterized class that itself requires instantiation before it it a fully-specified type."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="ActualTypeParametersMatchSignature" value="self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and&#xD;&#xA;  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|&#xD;&#xA;    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =&#xD;&#xA;    self.parameterizedClass.parameterization.formalTypeParameters->at(i))"/>
+        <details key="ClassMustBeParameterized" value="self.parameterizedClass.parameterization->notEmpty()"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="ActualTypeParametersMatchSignature ClassMustBeParameterized"/>
+      </eAnnotations>
+      <eOperations name="resolveFormalTypeParameter" ordered="false" unique="false"
+          eType="#//classes/SapClass">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="self.actualTypeParametersForInstantiation->select(atp:ActualTypeParameter |&#xA;    atp.formalTypeParameter = ftp)->asSequence()->at(1).type"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Returns the ActualTypeParameter's type (a Class) from the actualTypeParameters association end whose formalTypeParameter is the one passed. If no such formal type parameter is found, no object (null) is returned."/>
+        </eAnnotations>
+        <eParameters name="ftp" ordered="false" unique="false" lowerBound="1" eType="#//generics/FormalTypeParameter"/>
+      </eOperations>
+      <eOperations name="getClassParameterization" ordered="false" unique="false"
+          lowerBound="1" eType="#//generics/ClassParameterization">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+          <details key="body" value="parameterizedClass.parameterization"/>
+        </eAnnotations>
+        <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+          <details key="constraints" value="body"/>
+        </eAnnotations>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actualTypeParametersForInstantiation"
+          lowerBound="1" upperBound="-1" eType="#//generics/ActualTypeParameter" containment="true"
+          eOpposite="#//generics/ActualTypeParameter/parameterizedClassInstantiation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterizedClass" lowerBound="1"
+          eType="#//classes/SapClass"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ClassParameterization">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="DistinctFormalTypeParameterNames" value="self.formalTypeParameters->forAll(i,j|i&lt;>j implies i.name&lt;>j.name)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="DistinctFormalTypeParameterNames"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="formalTypeParameters"
+          lowerBound="1" upperBound="-1" eType="#//generics/FormalTypeParameter" containment="true"
+          eOpposite="#//generics/FormalTypeParameter/parameterOf"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="owningClassDefinition"
+          eType="#//classes/SapClass" transient="true" eOpposite="#//classes/SapClass/parameterization"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="package_" eType="ecore:EClass modelmanagement.ecore#//Package"
+          transient="true" eOpposite="modelmanagement.ecore#//Package/parameterizedClasses"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ActualTypeParameter">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="TypeConformsWithFormalParametersTypeConstraint" value="self.formalTypeParameter.typeConstraint->notEmpty() implies&#xD;&#xA;    self.type.conformsTo(self.formalTypeParameter.typeConstraint)"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="TypeConformsWithFormalParametersTypeConstraint"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameterizedClassInstantiation"
+          lowerBound="1" eType="#//generics/ParameterizedClassInstantiation" transient="true"
+          eOpposite="#//generics/ParameterizedClassInstantiation/actualTypeParametersForInstantiation"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//classes/SapClass">
+        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
+          <details key="Property.oppositeRoleName" value="actualTypeParametersOfClass"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="formalTypeParameter"
+          lowerBound="1" eType="#//generics/FormalTypeParameter" eOpposite="#//generics/FormalTypeParameter/actualTypeParameters"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="tuples" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/data/tuples.ecore"
+      nsPrefix="data.tuples">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="TupleTypeDefinition" eSuperTypes="#//classes/TypeDefinition">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A tuple type defines named and typed elements. Conformance for tuple types is less strict. It need not be explicitly defined as is required for classes. This allows tuple types to conform to each other based on their structure."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="1"
+          upperBound="-1" eType="#//tuples/TupleElement" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TupleElement" eSuperTypes="modelmanagement.ecore#//NamedElement #//classes/TypedElement"/>
+  </eSubpackages>
+</ecore:EPackage>

@@ -12,8 +12,8 @@
 package org.eclipse.emf.query.index.query;
 
 /**
- * A query that can be executed wihtin a {@link QueryCommand} using a
- * {@link QueryExecutor} returning a given {@link <DescriptorType>}.
+ * A query that can be executed within the scope of a {@link QueryCommand} using
+ * a {@link QueryExecutor} returning a given {@link <DescriptorType>}.
  * 
  * Implementations of this class are usually plain data objects. The implementor
  * is responsible for providing an appropriate {@link QueryExecutorStrategy}

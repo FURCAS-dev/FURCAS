@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LibraryPackage.java,v 1.1 2010/12/07 13:18:53 akrsharma Exp $
+ * $Id: LibraryPackage.java,v 1.2 2010/12/23 10:00:01 akrsharma Exp $
  */
 package library;
 
@@ -34,7 +34,7 @@ public interface LibraryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "library";
+	String eNAME = "library"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -42,7 +42,7 @@ public interface LibraryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://eclipse.org/modeling/emf/query/1.0.0";
+	String eNS_URI = "http://eclipse.org/modeling/emf/query/1.0.0"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -50,7 +50,7 @@ public interface LibraryPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "library";
+	String eNS_PREFIX = "library"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.
@@ -89,13 +89,22 @@ public interface LibraryPackage extends EPackage {
 	int LIBRARY__LOCATION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Capacity</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LIBRARY__CAPACITY = 2;
+
+	/**
 	 * The number of structural features of the '<em>Library</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIBRARY_FEATURE_COUNT = 2;
+	int LIBRARY_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link library.impl.PublisherImpl <em>Publisher</em>}' class.
@@ -298,6 +307,17 @@ public interface LibraryPackage extends EPackage {
 	EAttribute getLibrary_Location();
 
 	/**
+	 * Returns the meta object for the attribute '{@link library.Library#getCapacity <em>Capacity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Capacity</em>'.
+	 * @see library.Library#getCapacity()
+	 * @see #getLibrary()
+	 * @generated
+	 */
+	EAttribute getLibrary_Capacity();
+
+	/**
 	 * Returns the meta object for class '{@link library.Publisher <em>Publisher</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -493,6 +513,14 @@ public interface LibraryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LIBRARY__LOCATION = eINSTANCE.getLibrary_Location();
+
+		/**
+		 * The meta object literal for the '<em><b>Capacity</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LIBRARY__CAPACITY = eINSTANCE.getLibrary_Capacity();
 
 		/**
 		 * The meta object literal for the '{@link library.impl.PublisherImpl <em>Publisher</em>}' class.

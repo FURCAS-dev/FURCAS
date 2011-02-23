@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedCollectionValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: AbstractUndefinedCollectionValue.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -22,16 +22,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.InvalidValue;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
-import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
-import org.eclipse.ocl.examples.pivot.values.SequenceValue;
-import org.eclipse.ocl.examples.pivot.values.SetValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.UniqueCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -57,55 +54,27 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		super(valueFactory);
 	}
 
-	public OrderedCollectionValue append(Value object) {
+	public OrderedCollectionValue append(Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
-
-    public BagValue asBagValue() {
-        return toInvalidValue();
-    }
 
 	public Collection<Value> asCollection() {
 		return null;
-	}
-
-	public CollectionValue asCollectionValue() {
-		return toInvalidValue();
 	}
 
 	public List<Value> asList() {
 		return null;
 	}
 
-	public OrderedCollectionValue asOrderedCollectionValue() {
+	public Value at(int index) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public Value at(int index) {
-		return toInvalidValue();
-	}
-
-	public OrderedSetValue asOrderedSetValue() {
+    public IntegerValue count(Value value) throws InvalidValueException {
         return toInvalidValue();
     }
 
-    public SequenceValue asSequenceValue() {
-        return toInvalidValue();
-    }
-
-    public SetValue asSetValue() {
-        return toInvalidValue();
-    }
-
-	public UniqueCollectionValue asUniqueCollectionValue() {
-        return toInvalidValue();
-	}
-
-    public IntegerValue count(Value value) {
-        return toInvalidValue();
-    }
-
-	public CollectionValue createNew() {
+	public CollectionValue createNew() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -114,24 +83,24 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 //		return elements.hashCode();
 //	}
 
-    public BooleanValue excludes(Value value) {
+    public BooleanValue excludes(Value value) throws InvalidValueException {
     	return toInvalidValue();
     }
 
 
-    public BooleanValue excludesAll(CollectionValue c) {
+    public BooleanValue excludesAll(CollectionValue c) throws InvalidValueException {
     	return toInvalidValue();
     }
 
-	public CollectionValue excluding(Value value) {
+	public CollectionValue excluding(Value value) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-    public Value first() {
+    public Value first() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public CollectionValue flatten() {
+	public CollectionValue flatten() throws InvalidValueException {
     	return toInvalidValue();
     }
 
@@ -143,31 +112,35 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 	    return CollectionKind.COLLECTION;		// FIXME UOE ??
 	}
 
-    public BooleanValue includes(Value value) {
+    public BooleanValue includes(Value value) throws InvalidValueException {
     	return toInvalidValue();
     }
 
-    public BooleanValue includesAll(CollectionValue c) {
+    public BooleanValue includesAll(CollectionValue c) throws InvalidValueException {
     	return toInvalidValue();
    }
 
-	public CollectionValue including(Value value) {
+	public CollectionValue including(Value value) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public IntegerValue indexOf(Value object) {
+	public IntegerValue indexOf(Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public OrderedCollectionValue insertAt(int index, Value object) {
+	public OrderedCollectionValue insertAt(int index, Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public CollectionValue intersection(CollectionValue c) {
+	public int intSize() {
+		return 0;
+	}
+
+	public CollectionValue intersection(CollectionValue c) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public BooleanValue isEmpty() {
+	public BooleanValue isEmpty() throws InvalidValueException {
     	return toInvalidValue();
 	}
 
@@ -175,23 +148,23 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return new Iterator();
 	}
 	
-	public Value last() {
+	public Value last() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public Value maxMin(BinaryOperation binaryOperation) {
+	public Value maxMin(BinaryOperation binaryOperation) throws InvalidValueException {
     	return toInvalidValue();
 	}
 
-	public InvalidValue minus(UniqueCollectionValue set) {
+	public NullValue minus(UniqueCollectionValue set) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public BooleanValue notEmpty() {
+	public BooleanValue notEmpty() throws InvalidValueException {
     	return toInvalidValue();
 	}
 
-	public OrderedCollectionValue prepend(Value object) {
+	public OrderedCollectionValue prepend(Value object) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
@@ -199,31 +172,31 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 		return null;
 	}
 
-	public OrderedCollectionValue reverse() {
+	public OrderedCollectionValue reverse() throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public IntegerValue size() {
+	public IntegerValue size() throws InvalidValueException {
     	return toInvalidValue();
 	}
 
-    public OrderedCollectionValue sort(Comparator<Value> comparator) {
+    public OrderedCollectionValue sort(Comparator<Value> comparator) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue subOrderedSet(int lower, int upper) {
+	public NullValue subOrderedSet(int lower, int upper) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public InvalidValue subSequence(int lower, int upper) {
+	public NullValue subSequence(int lower, int upper) throws InvalidValueException {
 		return toInvalidValue();
 	}
 
-	public Value sum(BinaryOperation binaryOperation, Value zero) {
+	public Value sum(BinaryOperation binaryOperation, Value zero) throws InvalidValueException {
     	return toInvalidValue();
 	}
 
-	public InvalidValue symmetricDifference(UniqueCollectionValue set) {
+	public NullValue symmetricDifference(UniqueCollectionValue set) throws InvalidValueException {
 		return toInvalidValue();
 	}
     

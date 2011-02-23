@@ -51,10 +51,10 @@ public class NavigationTest extends Assert {
 	protected static final int REPS = 20;
 	private static Index index;
 	private Resource cont;
-	private String pagingDirectory = System.getProperty("java.io.tmpdir") + File.separator;
+	private String pagingDirectory = System.getProperty("java.io.tmpdir") + File.separator; //$NON-NLS-1$
 	
 	public Options getOptions() {
-		System.out.println("Paging directory is:"+ pagingDirectory);
+		System.out.println("Paging directory is:"+ pagingDirectory); //$NON-NLS-1$
 		return new Options(pagingDirectory, Options.DISABLED, Options.DISABLED);
 	}
 
@@ -63,7 +63,7 @@ public class NavigationTest extends Assert {
 
 		index = new PageableIndexImpl(getOptions());
 		
-		System.out.println("indexing " + NUM_MODELS + " times ecore");
+		System.out.println("indexing " + NUM_MODELS + " times ecore");  //$NON-NLS-1$//$NON-NLS-2$
 		final Resource r = this.getEcoreCopy();
 		long begin = System.currentTimeMillis();
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
@@ -71,7 +71,7 @@ public class NavigationTest extends Assert {
 			public void execute(IndexUpdater updater) {
 				ResourceIndexer ourResourceIndexer = new ResourceIndexer();
 				for (int i = 0; i < NUM_MODELS; i++) {
-					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore");
+					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore"); //$NON-NLS-1$
 					r.setURI(resourceURI);
 					ourResourceIndexer.resourceChanged(updater, r);
 					System.out.println(i);
@@ -80,7 +80,7 @@ public class NavigationTest extends Assert {
 			}
 		});
 		long end = System.currentTimeMillis();
-		System.out.println("Total indexing time: " + (end - begin) + "ms.");
+		System.out.println("Total indexing time: " + (end - begin) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$
 
 		long timeUsed = 0;
 		for (int i = 0; i < REPS; i++) {
@@ -90,19 +90,19 @@ public class NavigationTest extends Assert {
 				public void execute(QueryExecutor queryExecutor) {
 					EObjectQuery<EObjectDescriptor> createEObjectQuery = IndexQueryFactory.createEObjectQuery();
 					EReferenceQuery<EReferenceDescriptor> createEReferenceQuery = IndexQueryFactory.createEReferenceQuery();
-					System.out.println("#EObjectDescriptors " + size(queryExecutor.execute(createEObjectQuery)));
-					System.out.println("#EReferenceDescriptors " + size(queryExecutor.execute(createEReferenceQuery)));
+					System.out.println("#EObjectDescriptors " + size(queryExecutor.execute(createEObjectQuery))); //$NON-NLS-1$
+					System.out.println("#EReferenceDescriptors " + size(queryExecutor.execute(createEReferenceQuery))); //$NON-NLS-1$
 				}
 			});
 			end = System.currentTimeMillis();
 			timeUsed += end - begin;
 		}
-		System.out.println("Total query iteration time: " + timeUsed / (float) REPS + "ms.");
+		System.out.println("Total query iteration time: " + timeUsed / (float) REPS + "ms."); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	private Resource getEcoreCopy() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
-		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+"ecoreCopy.xmi"));
+		Resource copy = rs.createResource(URI.createFileURI(pagingDirectory+"ecoreCopy.xmi")); //$NON-NLS-1$
 		Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
 		copy.getContents().add(EcorePackage.eINSTANCE);
 		copy.save(null);
@@ -142,7 +142,7 @@ public class NavigationTest extends Assert {
 					timeUsed += System.nanoTime() - time;
 					// System.out.println(result.getURI());
 				}
-				System.out.println("eobjectDesc.getResourceDescriptor() : " + (timeUsed) / REPS);
+				System.out.println("eobjectDesc.getResourceDescriptor() : " + (timeUsed) / REPS); //$NON-NLS-1$
 			}
 
 		});
@@ -179,7 +179,7 @@ public class NavigationTest extends Assert {
 					}
 					timeUsed += System.nanoTime() - time;
 				}
-				System.out.println("eResourceDesc.getEObjectDescriptor() : " + (timeUsed) / REPS);
+				System.out.println("eResourceDesc.getEObjectDescriptor() : " + (timeUsed) / REPS); //$NON-NLS-1$
 			}
 		});
 	}
@@ -215,7 +215,7 @@ public class NavigationTest extends Assert {
 					}
 					timeUsed += System.nanoTime() - time;
 				}
-				System.out.println("eResourceDesc.getEReferenceDescriptor() : " + (timeUsed) / REPS);
+				System.out.println("eResourceDesc.getEReferenceDescriptor() : " + (timeUsed) / REPS); //$NON-NLS-1$
 			}
 		});
 	}
@@ -257,7 +257,7 @@ public class NavigationTest extends Assert {
 					}
 					timeUsed += System.nanoTime() - time;
 				}
-				System.out.println("eReferenceDesc.getEObjectDescriptor() : " + (timeUsed) / (float) REPS);
+				System.out.println("eReferenceDesc.getEObjectDescriptor() : " + (timeUsed) / (float) REPS); //$NON-NLS-1$
 			}
 		});
 	}
@@ -291,7 +291,7 @@ public class NavigationTest extends Assert {
 					timeUsed += System.nanoTime() - time;
 					System.out.println(size);
 				}
-				System.out.println("getAllReferringReferences : " + (timeUsed) / REPS);
+				System.out.println("getAllReferringReferences : " + (timeUsed) / REPS); //$NON-NLS-1$
 			}
 
 		});
@@ -318,9 +318,9 @@ public class NavigationTest extends Assert {
 					int size = size(queryExecutor.execute(eObjectQuery));
 					time = System.nanoTime() - time;
 					timeUsed += time;
-					System.out.println(size + ", " + time);
+					System.out.println(size + ", " + time); //$NON-NLS-1$
 				}
-				System.out.println("getInstancesOfEClass : " + (timeUsed) / REPS);
+				System.out.println("getInstancesOfEClass : " + (timeUsed) / REPS); //$NON-NLS-1$
 			}
 		});
 	}
@@ -333,7 +333,7 @@ public class NavigationTest extends Assert {
 			long time = System.currentTimeMillis();
 			index.save();
 			time = System.currentTimeMillis() - time;
-			System.out.println("index save time: " + time);
+			System.out.println("index save time: " + time); //$NON-NLS-1$
 			timeUsed += time;
 		}
 		System.out.println(timeUsed / (float) REPS);

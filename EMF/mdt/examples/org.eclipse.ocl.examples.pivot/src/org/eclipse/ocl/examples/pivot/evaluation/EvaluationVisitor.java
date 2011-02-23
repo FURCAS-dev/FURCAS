@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitor.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EvaluationVisitor.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -35,7 +38,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * @author Tim Klinger (tklinger)
  * @author Christian W. Damus (cdamus)
  */
-public interface EvaluationVisitor extends Visitor<Value, Value> {
+public interface EvaluationVisitor extends Visitor<Value, Object> {
 
 	EvaluationVisitor createNestedVisitor();
 	
@@ -62,7 +65,7 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
 	 */
 	public ModelManager getModelManager();
 
-	public StandardLibrary getStandardLibrary();
+	public TypeManager getTypeManager();
 
 	public ValueFactory getValueFactory();
     
@@ -78,9 +81,9 @@ public interface EvaluationVisitor extends Visitor<Value, Value> {
      */
 	public void setUndecoratedVisitor(EvaluationVisitor evaluationVisitor);
 
-    /**
-     * @deprecated use {@link #visit(Visitable)
-     */
-	@Deprecated
-	public Value visitExpression(OclExpression expression);
+	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object value) throws InvalidEvaluationException;
 }

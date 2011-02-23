@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintNameVisitor.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: PrettyPrintNameVisitor.java,v 1.3 2011/02/15 19:58:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -125,6 +126,7 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		if (type != null) {
 			delegate.append(" : ");
 			delegate.appendElement(type);
+			delegate.appendMultiplicity(object);
 		}
 		return null;
 	}
@@ -169,6 +171,13 @@ public class PrettyPrintNameVisitor extends AbstractExtendingVisitor<Object,Name
 		delegate.appendName(object);
 		delegate.append(" : ");
 		delegate.appendElement(object.getType());
+		return null;
+	}
+
+	@Override
+	public Object visitTypedMultiplicityElement(TypedMultiplicityElement object) {
+		visitTypedElement(object);
+		delegate.appendMultiplicity(object);
 		return null;
 	}
 

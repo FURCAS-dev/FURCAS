@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.2 2011/01/24 23:31:52 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.4 2011/02/19 18:50:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
-import org.eclipse.ocl.examples.pivot.ecore.EcoreAliasCreator;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 /**
  * Tests.
@@ -152,7 +152,6 @@ public class MonikerTests extends XtextTestCase
 		//
 		//	Create and check Ecore monikers for uniqueness
 		//
-		EcoreAliasCreator.refreshPackageAliases(ecoreResource);
 		Map<String, EModelElement> monikerMap = new HashMap<String, EModelElement>();
 		for (TreeIterator<EObject> tit = ecoreResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();

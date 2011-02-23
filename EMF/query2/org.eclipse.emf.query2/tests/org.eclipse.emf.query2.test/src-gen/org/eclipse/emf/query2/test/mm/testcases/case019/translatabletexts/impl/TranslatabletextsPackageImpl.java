@@ -490,7 +490,7 @@ public class TranslatabletextsPackageImpl extends EPackageImpl implements Transl
 		a19TranslatableTextEClass.getESuperTypes().add(theCase004fPackage.getTranslatableTextF());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a19TranslatableTextEClass, A19TranslatableText.class, "A19TranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(a19TranslatableTextEClass, A19TranslatableText.class, "A19TranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -504,15 +504,15 @@ public class TranslatabletextsPackageImpl extends EPackageImpl implements Transl
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a19TranslatableTextEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0],test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcases.case019.translatabletexts.A19TranslatableText",
-			 "metaObjectMofId", "48DA2D8A6172FFA78A3111DDAE760019993BAD15",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0],test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case019.translatabletexts.A19TranslatableText", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48DA2D8A6172FFA78A3111DDAE760019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

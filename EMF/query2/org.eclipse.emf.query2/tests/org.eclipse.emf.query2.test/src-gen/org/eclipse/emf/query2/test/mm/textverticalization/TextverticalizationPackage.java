@@ -37,7 +37,7 @@ public interface TextverticalizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "textverticalization";
+	String eNAME = "textverticalization"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -45,7 +45,7 @@ public interface TextverticalizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/textverticalization";
+	String eNS_URI = "http://sap.com/moin/textverticalization"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -53,7 +53,7 @@ public interface TextverticalizationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "tv";
+	String eNS_PREFIX = "tv"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

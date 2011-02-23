@@ -35,7 +35,7 @@ public class TextverticalizationfFactoryImpl extends EFactoryImpl implements Tex
 	 */
 	public static TextverticalizationfFactory init() {
 		try {
-			TextverticalizationfFactory theTextverticalizationfFactory = (TextverticalizationfFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/textverticalizationf"); 
+			TextverticalizationfFactory theTextverticalizationfFactory = (TextverticalizationfFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case005f/textverticalizationf"); //$NON-NLS-1$ 
 			if (theTextverticalizationfFactory != null) {
 				return theTextverticalizationfFactory;
 			}
@@ -66,7 +66,7 @@ public class TextverticalizationfFactoryImpl extends EFactoryImpl implements Tex
 		switch (eClass.getClassifierID()) {
 			case TextverticalizationfPackage.TEXT_F: return createTextF();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

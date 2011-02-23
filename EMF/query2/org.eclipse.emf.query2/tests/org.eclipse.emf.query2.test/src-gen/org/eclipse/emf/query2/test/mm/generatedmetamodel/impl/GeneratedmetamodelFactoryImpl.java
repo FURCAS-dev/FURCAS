@@ -36,7 +36,7 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 */
 	public static GeneratedmetamodelFactory init() {
 		try {
-			GeneratedmetamodelFactory theGeneratedmetamodelFactory = (GeneratedmetamodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/generatedmetamodel"); 
+			GeneratedmetamodelFactory theGeneratedmetamodelFactory = (GeneratedmetamodelFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/generatedmetamodel"); //$NON-NLS-1$ 
 			if (theGeneratedmetamodelFactory != null) {
 				return theGeneratedmetamodelFactory;
 			}
@@ -108,7 +108,7 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 			case GeneratedmetamodelPackage.MODEL_CLASS19: return createModelClass19();
 			case GeneratedmetamodelPackage.MODEL_SUB_CLASS19: return createModelSubClass19();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -123,7 +123,7 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 			case GeneratedmetamodelPackage.ENUM_TP:
 				return createEnumTpFromString(eDataType, initialValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -138,7 +138,7 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 			case GeneratedmetamodelPackage.ENUM_TP:
 				return convertEnumTpToString(eDataType, instanceValue);
 			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -569,7 +569,7 @@ public class GeneratedmetamodelFactoryImpl extends EFactoryImpl implements Gener
 	 */
 	public EnumTp createEnumTpFromString(EDataType eDataType, String initialValue) {
 		EnumTp result = EnumTp.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 

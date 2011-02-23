@@ -334,7 +334,7 @@ public class EMFModelAdapter implements IBareModelAdapter {
         if (oclQuery.startsWith(OCL_QUERY_PREFIX)) {
             return oclQuery.substring(OCL_QUERY_PREFIX.length());
         } else {
-            throw new ReferenceSettingException("Query needs to be prefixed with '" + OCL_QUERY_PREFIX + "'");
+            return oclQuery;
         }
     }
     

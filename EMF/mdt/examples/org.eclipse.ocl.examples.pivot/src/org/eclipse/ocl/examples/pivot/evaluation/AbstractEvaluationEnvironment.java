@@ -12,26 +12,30 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
-import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.ocl.examples.pivot.Adaptable;
+import org.eclipse.ocl.examples.pivot.Customizable;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OCLUtil;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.options.Option;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
-import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.options.Option;
-import org.eclipse.ocl.util.Adaptable;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
@@ -55,8 +59,7 @@ public abstract class AbstractEvaluationEnvironment
     protected final TypeManager typeManager;
 
 	private final EvaluationEnvironment parent;
-    private final Map<String, Value> map = new HashMap<String, Value>();
-    private final Map<VariableDeclaration, VariableDeclaration> variables = new HashMap<VariableDeclaration, VariableDeclaration>();
+    private final Map<VariableDeclaration, Value> variableValues = new HashMap<VariableDeclaration, Value>();
 
     private final Map<Option<?>, Object> options = new HashMap<Option<?>, Object>();
     
@@ -90,20 +93,15 @@ public abstract class AbstractEvaluationEnvironment
      *            the name whose value is to be returned
      * @return the value associated with the name
      */
-    public Value getValueOf(String name) {
-    	Value object = map.get(name);
-        if ((object == null) && (parent != null) && !map.containsKey(name)) {
-        	object = parent.getValueOf(name);
+	public Value getValueOf(VariableDeclaration referredVariable) {
+    	if (referredVariable instanceof Variable) {
+    		assert ((Variable)referredVariable).getRepresentedParameter() == null;
+    	}
+    	Value object = variableValues.get(referredVariable);
+        if ((object == null) && (parent != null) && !variableValues.containsKey(referredVariable)) {
+        	object = parent.getValueOf(referredVariable);
         }
-		return object;
-    }
-
-	public VariableDeclaration getVariable(VariableDeclaration variableDeclaration) {
-		VariableDeclaration variable = variables.get(variableDeclaration);
-		if ((variable == null) && (parent != null)) {
-			variable = parent.getVariable(variableDeclaration);
-		}
-		return variable;
+        return object;
 	}
 
     /**
@@ -114,8 +112,11 @@ public abstract class AbstractEvaluationEnvironment
      * @param value
      *            the new value
      */
-    public void replace(String name, Value value) {
-        map.put(name, value);
+    public void replace(VariableDeclaration referredVariable, Value value) {
+    	if (referredVariable instanceof Variable) {
+    		assert ((Variable)referredVariable).getRepresentedParameter() == null;
+    	}
+    	variableValues.put(referredVariable, value);
     }
 
     /**
@@ -126,34 +127,18 @@ public abstract class AbstractEvaluationEnvironment
      * @param value
      *            the associated binding
      */
-    public void add(String name, Value value) {
-        if (map.containsKey(name)) {
+    public void add(VariableDeclaration referredVariable, Value value) {
+    	if (referredVariable instanceof Variable) {
+    		assert ((Variable)referredVariable).getRepresentedParameter() == null;
+    	}
+        if (variableValues.containsKey(referredVariable)) {
             String message = OCLMessages.bind(
             		OCLMessages.BindingExist_ERROR_,
-                    name,
-                    map.get(name));
+            		referredVariable,
+            		variableValues.get(referredVariable));
             throw new IllegalArgumentException(message);
         }
-        map.put(name, value);
-    }
-
-    /**
-     * Adds the supplied name and value binding to the environment
-     * 
-     * @param name
-     *            the name to add
-     * @param value
-     *            the associated binding
-     */
-    public void addVariable(VariableDeclaration declaration, VariableDeclaration definition) {
-        if (variables.containsKey(declaration)) {
-            String message = OCLMessages.bind(
-            		OCLMessages.BindingExist_ERROR_,
-            		declaration.getName(),
-            		variables.get(declaration));
-            throw new IllegalArgumentException(message);
-        }
-        variables.put(declaration, definition);
+        variableValues.put(referredVariable, value);
     }
 
     /**
@@ -164,15 +149,19 @@ public abstract class AbstractEvaluationEnvironment
      *            the name to remove
      * @return the value associated with the removed name
      */
-    public Value remove(String name) {
-        return map.remove(name);
+    @Deprecated
+    public Value remove(VariableDeclaration referredVariable) {
+    	if (referredVariable instanceof Variable) {
+    		assert ((Variable)referredVariable).getRepresentedParameter() == null;
+    	}
+    	return variableValues.remove(referredVariable);
     }
 
     /**
      * Clears the environment of variables.
      */
     public void clear() {
-        map.clear();
+    	variableValues.clear();
     }
 
     /**
@@ -180,7 +169,7 @@ public abstract class AbstractEvaluationEnvironment
      */
     @Override
     public String toString() {
-        return map.toString();
+        return variableValues.toString();
     }
     
     /**
@@ -281,7 +270,8 @@ public abstract class AbstractEvaluationEnvironment
 	 *            the operation
 	 * @return a java method
 	 */
-	protected abstract Method getJavaMethodFor(Operation operation, Object receiver);
+//	@Deprecated
+//	protected abstract Method getJavaMethodFor(Operation operation, Object receiver);
 	
 	/**
 	 * Obtains the language-binding-specific representation of the predefined
@@ -289,7 +279,8 @@ public abstract class AbstractEvaluationEnvironment
 	 * 
 	 * @return <tt>OclInvalid</tt>
 	 */
-	protected abstract Object getInvalidResult();
+//	@Deprecated
+//	protected abstract Object getInvalidResult();
 	
 	/**
 	 * Implements the interface method by testing whether I am an instance of
@@ -387,4 +378,31 @@ public abstract class AbstractEvaluationEnvironment
         
         return result;
     }
+
+/*	public NullValue throwInvalidEvaluation(Object value, OclExpression expression,
+			String message, Object object)
+			throws InvalidEvaluationException {
+		// TODO Auto-generated method stub
+		return null;
+	} */
+
+	public NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, e);
+	}
+
+	public NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, null, null);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, OclExpression expression) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, expression, null);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, null, expression, context);
+	}
+
+	public NullValue throwInvalidEvaluation(String message, Throwable e, OclExpression expression, Object context) throws InvalidEvaluationException {
+		throw new InvalidEvaluationException(this, message, e, expression, context);
+	}
 }

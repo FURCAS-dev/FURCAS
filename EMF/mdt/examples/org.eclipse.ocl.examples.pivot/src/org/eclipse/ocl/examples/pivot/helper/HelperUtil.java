@@ -13,19 +13,14 @@
  *
  * </copyright>
  *
- * $Id: HelperUtil.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: HelperUtil.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
 
-import java.io.LineNumberReader;
-import java.io.StringReader;
-
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
 
 /**
@@ -105,304 +100,6 @@ public class HelperUtil {
 		String methodName) {
 		PivotPlugin.catching(clazz, methodName, exception);
 	}
-
-	/**
-	 * combines several physical non-commented lines into one logical line by
-	 * removing white spaces and embedded comments 
-	 * @param txt the string we got from client that contains the ocl expression
-	 * @return String the non-commented lines of the input concatenated as one 
-	 * @throws Exception if while traversing the string something went wrong 
-	 * mainly to account for (IOException)
-	 */
-	static String getLogicalLine(String txt) throws Exception {
-		LineNumberReader reader = new LineNumberReader(new StringReader(txt
-			.trim()));
-		String logicalLine = EMPTY;
-		int embeddedCommnetIndex = HelperUtil.NONE;
-		String line = reader.readLine();
-		while (line != null) {
-			line = line.trim();
-			if (line.startsWith(HelperUtil.OCL_COMMENT) == false) {
-				// safe to search for index of "--" which consists of BMP code points
-				embeddedCommnetIndex = line.indexOf(HelperUtil.OCL_COMMENT);
-				if (embeddedCommnetIndex != HelperUtil.NONE) {
-					line = line.substring(0, embeddedCommnetIndex);
-					line = line.trim();
-				}
-				logicalLine = logicalLine + line + ' ';
-			}
-			line = reader.readLine();
-		}
-		return logicalLine;
-	}
-	
-/*	static OclExpression parseQuery(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "inv:", expression, trace); //$NON-NLS-1$
-		
-		Constraint constraint = analyzer.parseInvOrDefCS();
-		checkForErrors(helper);
-		
-		ExpressionInOcl spec = env.getUMLReflection().getSpecification(constraint);
-		OclExpression result = spec.getBodyExpression();
-		
-		// this is not a constraint
-		env.getUMLReflection().setSpecification(constraint, null);
-		spec.setBodyExpression(null);
-        
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		// re-persist the "self" variable that we temporarily stole away from
-		//    the environment, in the ExpressionInOCL.  In a query expression,
-		//    there won't be other variables (result, parameters) to worry about
-		persist(env, spec.getContextVariable());
-		
-		// persist the expression
-		persist(env, result);
-		
-		// dispose the remainder of the constraint
-		ObjectUtil.dispose(constraint);
-		
-		return result;
-	} */
-
-/*	static
-	Constraint parseInvariant(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "inv:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parseInvOrDefCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-
-/*	static
-	Constraint parsePrecondition(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "pre:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parsePrePostOrBodyDeclCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-	
-/*	static
-	Constraint parsePostcondition(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "post:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parsePrePostOrBodyDeclCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-	
-/*	static
-	Constraint parseBodyCondition(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "body:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parsePrePostOrBodyDeclCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-	
-/*	static
-	Constraint parseInitialValueExpression(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "init:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parseInitOrDerValueCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-	
-/*	static
-	Constraint parseDerivedValueExpression(
-			OCLHelperImpl helper,
-			String expression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "derive:", expression, trace); //$NON-NLS-1$
-		
-		Constraint result = analyzer.parseInitOrDerValueCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-	
-/*	static
-	Constraint parseDefExpression(
-			OCLHelperImpl helper,
-			String defExpression,
-			boolean validate,
-            boolean trace) throws ParserException {
-		
-		Environment env = helper.getEnvironment();
-		
-		OCLAnalyzer analyzer =
-			createAnalyzer(env, "def:", defExpression, trace); //$NON-NLS-1$
-		
-		// we want to make the defined feature available.  This is OK, since
-		// the constraint will be discarded anyway
-		analyzer.getEnvironment().setOption(
-		    ParsingOptions.DEFINITION_CONSTRAINS_FEATURE, true);
-		
-		Constraint result = analyzer.parseInvOrDefCS();
-		checkForErrors(helper);
-		
-		if (validate) {
-			validate(env, result);
-		}
-		
-		finishAnalyzing(helper);
-		
-		persist(helper, result);
-		
-		return result;
-	} */
-
-	/**
-	 * Initializes an analyzer on the specified <code>text</code> and environment
-	 * factory.
-	 * 
-	 * @param prefix the constraint prefix (e.g., <code>"inv:"</code> or
-	 *     <code>"pre:"</code>).  The prefix must not contain newlines
-	 * @param environmentFactory the analyzer's environment factory
-	 * @param text the OCL constraint text
-	 * @param trace whether to trace the parsing
-     * 
-	 * @return the analyzer
-	 *
-	private static
-	OCLAnalyzer
-	createAnalyzer(
-			Environment env,
-			String prefix,	String text,
-            boolean trace) {
-		
-		// we prefix the constraint with "inv:", "pre:", "def:", etc. which the
-		//    user cannot see, so we want error reporting to be relative
-		//    to line 0, not line 1.  Also, clear any old diagnostics
-		ProblemHandler ph = OCLUtil.getAdapter(env, ProblemHandler.class);
-		if (ph != null) {
-			ph.setErrorReportLineOffset(-1);
-			ph.beginParse();
-		}
-		
-		OCLAnalyzer
-		result = new OCLAnalyzer(
-				env, (prefix + '\n' + text));
-		
-		// offset the character position by the length of the extra text
-		result.setCharacterOffset(-(prefix.length() + 1)); // one for the newline
-		
-		result.setTraceFlag(trace);
-		
-		return result;
-	} */
 	
 	public static
 	Object getConstraintContext(
@@ -412,7 +109,7 @@ public class HelperUtil {
 		
 		Object result = element;
 
-		if (expr.eContainer() instanceof ExpressionInOcl) {
+/*		if (expr.eContainer() instanceof ExpressionInOcl) {
 			ExpressionInOcl specification = (ExpressionInOcl) expr.eContainer();
 			
 			Variable contextVariable = specification.getContextVariable();
@@ -430,13 +127,14 @@ public class HelperUtil {
 					}
 				}
 			}
-		}
+		} */
 		
 		return result;
 	}
 	public static
 	Object getConstraintContext(Environment env, Object element, ExpressionInOcl expr) {		
-		Object result = element;
+		throw new UnsupportedOperationException();
+/*		Object result = element;
 		Variable contextVariable = expr.getContextVariable();
 		if (contextVariable != null) {
 			Type contextClassifier = contextVariable.getType();			
@@ -449,6 +147,6 @@ public class HelperUtil {
 				}
 			}
 		}
-		return result;
+		return result; */
 	}
 }

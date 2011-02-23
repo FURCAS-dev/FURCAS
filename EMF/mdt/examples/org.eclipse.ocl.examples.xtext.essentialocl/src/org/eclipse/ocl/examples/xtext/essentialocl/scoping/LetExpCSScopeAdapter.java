@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.3 2011/01/27 07:01:10 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.4 2011/02/08 17:44:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -41,9 +41,9 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
 				if (variable != null) {		// Maybe null while resolving namespaces
 					environmentView.addNamedElement(variable);
-					if ((environmentView.getSize() <= 0) || (environmentView.getName() == null)) {
-						environmentView.addElementsOfScope(typeManager, variable.getType(), scopeView);
-					}
+//					if (!environmentView.hasFinalResult()) {
+//						environmentView.addElementsOfScope(typeManager, variable.getType(), scopeView);
+//					}
 				}
 			}
 		}

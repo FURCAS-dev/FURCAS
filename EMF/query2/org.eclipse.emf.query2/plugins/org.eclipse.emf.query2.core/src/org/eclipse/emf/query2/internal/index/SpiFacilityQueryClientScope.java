@@ -29,22 +29,22 @@ public interface SpiFacilityQueryClientScope {
 	 */
 	//    ClientSpec[] getQueryClientScope( );
 	/**
-	 * Defines, if the partitions in {@link #getPartitionsScope()} describe the
+	 * Defines, if the partitions in {@link #getResourcesScope()} describe the
 	 * inclusive or exclusive query scope.
 	 * 
 	 * @return <code>false</code> if the set returned by
-	 *         {@link #getPartitionsScope()} is to be negotiated as scope,
+	 *         {@link #getResourcesScope()} is to be negotiated as scope,
 	 *         <code>true</code> otherwise.
 	 */
-	public boolean isPartitionScopeInclusive();
+	public boolean isResourceScopeInclusive();
 
 	/**
-	 * Returns the set of PRIs describing the inclusive or exclusive scope for a
-	 * query. Pay attention to the value of {@link #isPartitionScopeInclusive()}
+	 * Returns the set of URIs describing the inclusive or exclusive scope for a
+	 * query. Pay attention to the value of {@link #isResourceScopeInclusive()}
 	 * !
 	 * 
-	 * @return A set of unique {@link PRI}s
+	 * @return A set of unique {@link URI}s
 	 */
-	public Set<URI> getPartitionsScope();
+	public Set<URI> getResourcesScope();
 
 }

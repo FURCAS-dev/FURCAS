@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Base exception for MOIN Runtime exceptions.
+ * Base exception for EMF Runtime exceptions.
  */
 public abstract class BaseRuntimeException extends RuntimeException {
 

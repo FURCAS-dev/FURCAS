@@ -35,7 +35,7 @@ public class P2FactoryImpl extends EFactoryImpl implements P2Factory {
 	 */
 	public static P2Factory init() {
 		try {
-			P2Factory theP2Factory = (P2Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p1/p2"); 
+			P2Factory theP2Factory = (P2Factory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case005/p1/p2"); //$NON-NLS-1$ 
 			if (theP2Factory != null) {
 				return theP2Factory;
 			}
@@ -66,7 +66,7 @@ public class P2FactoryImpl extends EFactoryImpl implements P2Factory {
 		switch (eClass.getClassifierID()) {
 			case P2Package.B5: return createB5();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

@@ -568,15 +568,15 @@ public class Case018PackageImpl extends EPackageImpl implements Case018Package {
 		b18EClass.getESuperTypes().add(theCase001fPackage.getB1f());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(a18EClass, org.eclipse.emf.query2.test.mm.testcases.case018.A18.class, "A18", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA18_FoundationAttributeA1f(), theCase001fPackage.getA1f(), null, "foundationAttributeA1f", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case018.A18.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a18EClass, org.eclipse.emf.query2.test.mm.testcases.case018.A18.class, "A18", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA18_FoundationAttributeA1f(), theCase001fPackage.getA1f(), null, "foundationAttributeA1f", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case018.A18.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b18EClass, org.eclipse.emf.query2.test.mm.testcases.case018.B18.class, "B18", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getB18_SpecialOnePrimitive(), ecorePackage.getEString(), "specialOnePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case018.B18.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(b18EClass, org.eclipse.emf.query2.test.mm.testcases.case018.B18.class, "B18", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getB18_SpecialOnePrimitive(), ecorePackage.getEString(), "specialOnePrimitive", null, 1, 1, org.eclipse.emf.query2.test.mm.testcases.case018.B18.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(usesA1FromFoundationEClass, usesA1FromFoundation.class, "usesA1FromFoundation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getusesA1FromFoundation_A1FromFoundation(), theCase001fPackage.getA1f(), null, "a1FromFoundation", null, 1, 1, usesA1FromFoundation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getusesA1FromFoundation_A18(), this.getA18(), null, "a18", null, 1, 1, usesA1FromFoundation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(usesA1FromFoundationEClass, usesA1FromFoundation.class, "usesA1FromFoundation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getusesA1FromFoundation_A1FromFoundation(), theCase001fPackage.getA1f(), null, "a1FromFoundation", null, 1, 1, usesA1FromFoundation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getusesA1FromFoundation_A18(), this.getA18(), null, "a18", null, 1, 1, usesA1FromFoundation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -593,55 +593,55 @@ public class Case018PackageImpl extends EPackageImpl implements Case018Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (a18EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case018.A18",
-			 "metaObjectMofId", "45F120A5586264A51AA744663E0998A4A0E295C1",
-			 "isStructureType", "false",
-			 "ova", "foundationAttributeA1f"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case018.A18", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5586264A51AA744663E0998A4A0E295C1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false", //$NON-NLS-1$ //$NON-NLS-2$
+			 "ova", "foundationAttributeA1f" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA18_FoundationAttributeA1f(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "45F120A53BEC7E6098C3418531ADC9567AD8027B"
+			 "ovaMofId", "45F120A53BEC7E6098C3418531ADC9567AD8027B" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b18EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0],test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]",
-			 "metaObject", "testcases.case018.B18",
-			 "metaObjectMofId", "45F120A593EB7AC9D909470D3DFCFCEE58ED1378",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0],test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case018.B18", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A593EB7AC9D909470D3DFCFCEE58ED1378", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getusesA1FromFoundation_A1FromFoundation(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case018.usesA1FromFoundation",
-			 "metaObjectMofId", "45F120A5BFCE758B84224C283FB196BD8E598E69",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case018.usesA1FromFoundation", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5BFCE758B84224C283FB196BD8E598E69", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getusesA1FromFoundation_A18(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case018.usesA1FromFoundation",
-			 "metaObjectMofId", "45F120A5BFCE758B84224C283FB196BD8E598E69",
-			 "storedEnd", "1",
-			 "compositeEnd", "-1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case018.usesA1FromFoundation", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5BFCE758B84224C283FB196BD8E598E69", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,14 +12,12 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.6 2011/02/16 08:43:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.common.utils.StringUtils;
+import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -37,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -74,8 +73,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		csElement.setStereotype(object.getStereotype());
 		ValueSpecification specification = object.getSpecification();
 		if (specification instanceof OpaqueExpression) {
-			List<String> bodies = ((OpaqueExpression)specification).getBodies();
-			csElement.setExprString(StringUtils.splice(bodies, "\n"));
+			String body = PivotUtil.getBody((OpaqueExpression)specification);
+			csElement.setExprString(body);
 		}
 	}
 
@@ -99,7 +98,14 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 				}
 			}));
 		context.refreshList(csElement.getOwnedOperation(), context.visitDeclarations(OperationCS.class, object.getOwnedOperations(), null));
-		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses()));
+		final Class classifierType = context.getTypeManager().getClassifierType();
+		context.refreshList(csElement.getOwnedSuperType(), context.visitReferences(TypedRefCS.class, object.getSuperClasses(),
+			new Pivot2CS.Predicate<Type>()
+			{
+				public boolean filter(Type element) {
+					return element != classifierType;
+				}
+			}));
 		context.refreshQualifiers(csElement.getQualifier(), "abstract", object.isAbstract());
 		context.refreshQualifiers(csElement.getQualifier(), "interface", object.isInterface());
 		context.setScope(savedScope);
@@ -163,7 +169,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 			csElement.setOwnedTemplateSignature(context.visitDeclaration(TemplateSignatureCS.class, ownedTemplateSignature));
 		}
 		context.refreshList(csElement.getOwnedParameter(), context.visitDeclarations(ParameterCS.class, object.getOwnedParameters(), null));
-		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions()));
+		context.refreshList(csElement.getOwnedException(), context.visitReferences(TypedRefCS.class, object.getRaisedExceptions(), null));
 		return csElement;
 	}
 
@@ -201,7 +207,7 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		else {
 			ReferenceCS csElement = context.refreshStructuralFeature(ReferenceCS.class, BaseCSTPackage.Literals.REFERENCE_CS, object);
 			context.refreshQualifiers(csElement.getQualifier(), "composes", object.isComposite());
-			context.refreshQualifiers(csElement.getQualifier(), "resolve", object.isResolveProxies());
+			context.refreshQualifiers(csElement.getQualifier(), "resolve", "!resolve", object.isResolveProxies() ? null : Boolean.FALSE);
 			Property opposite = object.getOpposite();
 			if (opposite != null) {
 				if (!opposite.isImplicit()) {

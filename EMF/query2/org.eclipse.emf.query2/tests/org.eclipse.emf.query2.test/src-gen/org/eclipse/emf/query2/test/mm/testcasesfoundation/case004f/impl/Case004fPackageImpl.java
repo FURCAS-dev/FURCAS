@@ -550,13 +550,13 @@ public class Case004fPackageImpl extends EPackageImpl implements Case004fPackage
 		translatableTextFEClass.getESuperTypes().add(theTextverticalizationPackage.getTranslatableText());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(shortTranslatableTextFEClass, ShortTranslatableTextF.class, "ShortTranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(shortTranslatableTextFEClass, ShortTranslatableTextF.class, "ShortTranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(veryShortTranslatableTextFEClass, VeryShortTranslatableTextF.class, "VeryShortTranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(veryShortTranslatableTextFEClass, VeryShortTranslatableTextF.class, "VeryShortTranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(buttonTextFEClass, ButtonTextF.class, "ButtonTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(buttonTextFEClass, ButtonTextF.class, "ButtonTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(translatableTextFEClass, TranslatableTextF.class, "TranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(translatableTextFEClass, TranslatableTextF.class, "TranslatableTextF", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -573,42 +573,42 @@ public class Case004fPackageImpl extends EPackageImpl implements Case004fPackage
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (shortTranslatableTextFEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case004f.ShortTranslatableTextF",
-			 "metaObjectMofId", "48846003E8534BE0570C11DD87F4001558C93B47",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case004f.ShortTranslatableTextF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48846003E8534BE0570C11DD87F4001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (veryShortTranslatableTextFEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case004f.VeryShortTranslatableTextF",
-			 "metaObjectMofId", "4884B2EC52D87810573E11DDBCA3001B776F88F3",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case004f.VeryShortTranslatableTextF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "4884B2EC52D87810573E11DDBCA3001B776F88F3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (buttonTextFEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case004f.ButtonTextF",
-			 "metaObjectMofId", "4884B2EC52DAE910573E11DD80DC001B776F88F3",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case004f.ButtonTextF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "4884B2EC52DAE910573E11DD80DC001B776F88F3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (translatableTextFEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]",
-			 "metaObject", "testcasesfoundation.case004f.TranslatableTextF",
-			 "metaObjectMofId", "48D8F679F87ABDD1897711DD90B50019993BAD15",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases/foundation[1.0.0],sap.com/tc/moin/textverticalization[2.0.0],sap.com/tc/moin/textverticalization[2.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcasesfoundation.case004f.TranslatableTextF", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48D8F679F87ABDD1897711DD90B50019993BAD15", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

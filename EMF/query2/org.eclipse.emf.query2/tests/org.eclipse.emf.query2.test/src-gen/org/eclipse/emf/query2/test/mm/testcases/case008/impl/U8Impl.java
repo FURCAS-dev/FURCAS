@@ -161,7 +161,7 @@ public class U8Impl extends T8Impl implements U8 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (subField1: ");
+		result.append(" (subField1: "); //$NON-NLS-1$
 		result.append(subField1);
 		result.append(')');
 		return result.toString();

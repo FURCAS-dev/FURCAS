@@ -34,7 +34,7 @@ public class SuiteSyntheticInMemoryForCstTest extends BaseSyntheticQueryTest {
         instSize = 10;
         partSize = 10;
 
-        partitionNameAppendix = "";
+        partitionNameAppendix = ""; //$NON-NLS-1$
         partitionScope = null;
         partitionScopeInclusive = true;
 
@@ -61,110 +61,110 @@ public class SuiteSyntheticInMemoryForCstTest extends BaseSyntheticQueryTest {
     @Test
     public void test_basic_get_attributes_with_removal( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.basic_get_attributes_with_removal( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.basic_get_attributes_with_removal( ) );
     }
 
     public void test_like_and_not_like_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.like_and_not_like_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.like_and_not_like_2( ) );
     }
 
     @Test
     public void test_where_not_like_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.where_not_like_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.where_not_like_2( ) );
     }
 
     @Test
     public void test_double_assoc_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.double_assoc_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.double_assoc_2( ) );
     }
 
     @Test
     public void test_double_assoc_3( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.double_assoc_3( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_4, super.double_assoc_3( ) );
     }
 
     @Test
     public void test_string_null_comparison_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.string_null_comparison_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.string_null_comparison_2( ) );
     }
 
     @Test
     public void test_string_not_null_comparison_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.string_not_null_comparison_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.string_not_null_comparison_2( ) );
     }
 
     @Test
     public void test_empty_string_comparison_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.empty_string_comparison_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.empty_string_comparison_2( ) );
     }
 
     @Test
     public void test_nested_query_with_reference_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.nested_query_with_reference_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_reference_2( ) );
     }
 
     public void test_nested_query_with_reference_and_not_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.nested_query_with_reference_and_not_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_reference_and_not_2( ) );
     }
 
     @Test
     public void test_nested_query_with_assoc_end_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.nested_query_with_assoc_end_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_assoc_end_2( ) );
     }
 
 
     @Test
     public void test_where_with_three_comparisons_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.where_with_three_comparisons_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.where_with_three_comparisons_2( ) );
     }
 
 
     @Test
     public void test_double_assoc_variant( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.double_assoc_variant( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.double_assoc_variant( ) );
     }
 
 
     @Test
     public void test_nested_query_with_reference_variant( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.nested_query_with_reference_variant( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_reference_variant( ) );
     }
 
     @Test
     public void test_assoc_with_two_comparisons_variant( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.assoc_with_two_comparisons_variant( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.assoc_with_two_comparisons_variant( ) );
     }
 
     @Test
     public void test_basic_get_attributes_with_reflect_element( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.basic_get_attributes_with_reflect_element( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.basic_get_attributes_with_reflect_element( ) );
     }
 
     @Test
     public void test_reflect_element_compared_with_fixed_set_2( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.reflect_element_compared_with_fixed_set_2( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.reflect_element_compared_with_fixed_set_2( ) );
     }
 
     @Test
     public void test_incompatible_types_return_empty_result( ) throws Exception {
 
-        assertTrue( "ResultSet is not correct", super.incompatible_types_return_empty_result( ) );
+        assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.incompatible_types_return_empty_result( ) );
     }
 
 }

@@ -36,7 +36,7 @@ public interface ImporterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "importer";
+	String eNAME = "importer"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface ImporterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case007/importer";
+	String eNS_URI = "http://sap.com/moin/testcases/case007/importer"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface ImporterPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case007importer";
+	String eNS_PREFIX = "case007importer"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

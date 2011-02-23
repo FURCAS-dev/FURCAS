@@ -7,11 +7,8 @@
 package org.eclipse.emf.query2.syntax.query.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.query2.syntax.query.BooleanExpression;
 import org.eclipse.emf.query2.syntax.query.QueryPackage;
 
@@ -171,7 +168,7 @@ public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (true: ");
+    result.append(" (true: "); //$NON-NLS-1$
     result.append(true_);
     result.append(')');
     return result.toString();

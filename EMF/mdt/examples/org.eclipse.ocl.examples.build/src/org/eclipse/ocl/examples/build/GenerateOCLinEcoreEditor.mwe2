@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenerateOCLinEcoreEditor.mwe2,v 1.2 2011/01/24 20:54:27 ewillink Exp $
+ * $Id: GenerateOCLinEcoreEditor.mwe2,v 1.3 2011/02/15 10:36:50 ewillink Exp $
  * 
  * Run As->MWE2 Workflow to regenerate the editor.
  * If it fails with a stack dump, open the Xtext file and do
@@ -87,7 +87,7 @@ Workflow {
 			// java-based API for validation 
 			fragment = validation.JavaValidatorFragment {
                 composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
-                composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
+//                composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
             }
             
 			// scoping and exporting API

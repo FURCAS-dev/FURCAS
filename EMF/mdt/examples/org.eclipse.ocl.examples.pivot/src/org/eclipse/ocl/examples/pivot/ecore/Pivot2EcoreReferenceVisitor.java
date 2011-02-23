@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Pivot2EcoreReferenceVisitor.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -36,10 +36,6 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.ecore.delegate.SettingBehavior;
-import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -50,6 +46,10 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
+import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
@@ -139,7 +139,7 @@ public class Pivot2EcoreReferenceVisitor
 		EPackage ePackage = context.getCreated(EPackage.class, pivotPackage);
 		boolean needsDelegates = false;
 		for (EClassifier eClassifier : ePackage.getEClassifiers()) {
-			EAnnotation classifierAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+			EAnnotation classifierAnnotation = eClassifier.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 			if ((classifierAnnotation != null) && !classifierAnnotation.getDetails().isEmpty()) {
 				needsDelegates = true;
 				break;
@@ -147,7 +147,7 @@ public class Pivot2EcoreReferenceVisitor
 			if (eClassifier instanceof EClass) {
 				EClass eClass = (EClass) eClassifier;
 				for (EStructuralFeature eFeature : eClass.getEStructuralFeatures()) {
-					EAnnotation featureAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+					EAnnotation featureAnnotation = eFeature.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 					if ((featureAnnotation != null) && !featureAnnotation.getDetails().isEmpty()) {
 						needsDelegates = true;
 						break;
@@ -157,7 +157,7 @@ public class Pivot2EcoreReferenceVisitor
 					break;
 				}
 				for (EOperation eOperation : eClass.getEOperations()) {
-					EAnnotation operationAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+					EAnnotation operationAnnotation = eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 					if ((operationAnnotation != null) && !operationAnnotation.getDetails().isEmpty()) {
 						needsDelegates = true;
 						break;
@@ -176,9 +176,9 @@ public class Pivot2EcoreReferenceVisitor
 		    	ePackage.getEAnnotations().add(packageAnnotation);
 		    }
 		    EMap<String, String> details = packageAnnotation.getDetails();
-			details.put(InvocationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI);
-		    details.put(SettingBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI);
-		    details.put(ValidationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI);
+			details.put(InvocationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		    details.put(SettingBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		    details.put(ValidationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		}
 		return null;
 	}

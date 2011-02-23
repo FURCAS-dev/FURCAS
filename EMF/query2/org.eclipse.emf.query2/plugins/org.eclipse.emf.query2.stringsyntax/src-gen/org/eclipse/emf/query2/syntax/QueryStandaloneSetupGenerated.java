@@ -16,12 +16,12 @@ public class QueryStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		// register default ePackages
-		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("ecore"))
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("ecore")) //$NON-NLS-1$
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"ecore", new org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl());
-		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("xmi"))
+				"ecore", new org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl()); //$NON-NLS-1$
+		if (!Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().containsKey("xmi")) //$NON-NLS-1$
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"xmi", new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl());
+				"xmi", new org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl()); //$NON-NLS-1$
 		if (!EPackage.Registry.INSTANCE.containsKey(org.eclipse.xtext.XtextPackage.eNS_URI))
 			EPackage.Registry.INSTANCE.put(org.eclipse.xtext.XtextPackage.eNS_URI, org.eclipse.xtext.XtextPackage.eINSTANCE);
 
@@ -35,14 +35,14 @@ public class QueryStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/emf/query2/Query")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/emf/query2/Query", org.eclipse.emf.query2.syntax.query.QueryPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/emf/query2/Query")) { //$NON-NLS-1$
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/emf/query2/Query", org.eclipse.emf.query2.syntax.query.QueryPackage.eINSTANCE); //$NON-NLS-1$
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
 		org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider.class);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("query", resourceFactory);
-		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("query", serviceProvider);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("query", resourceFactory); //$NON-NLS-1$
+		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE.getExtensionToFactoryMap().put("query", serviceProvider); //$NON-NLS-1$
 		
 
 

@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Base exception for all MOIN exceptions.
+ * Base exception for all EMF exceptions.
  */
 public abstract class BaseException extends Exception {
 

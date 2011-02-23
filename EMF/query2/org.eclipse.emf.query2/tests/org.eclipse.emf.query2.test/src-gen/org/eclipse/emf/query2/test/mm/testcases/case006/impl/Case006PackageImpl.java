@@ -542,13 +542,13 @@ public class Case006PackageImpl extends EPackageImpl implements Case006Package {
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(b6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.B6.class, "B6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.B6.class, "B6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(c6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, "C6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getC6_X(), this.getB6(), null, "X", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getC6_W(), this.getD6(), null, "W", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(c6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, "C6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getC6_X(), this.getB6(), null, "X", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getC6_W(), this.getD6(), null, "W", null, 0, 1, org.eclipse.emf.query2.test.mm.testcases.case006.C6.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(d6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.D6.class, "D6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(d6EClass, org.eclipse.emf.query2.test.mm.testcases.case006.D6.class, "D6", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);
@@ -565,57 +565,57 @@ public class Case006PackageImpl extends EPackageImpl implements Case006Package {
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (b6EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case006.B6",
-			 "metaObjectMofId", "45F120A5F9222BB014D443810CC7B1B5B2A30F4D",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case006.B6", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5F9222BB014D443810CC7B1B5B2A30F4D", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (c6EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case006.C6",
-			 "metaObjectMofId", "45F120A588CB3F92067140110417D26E5B59CBB5",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case006.C6", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A588CB3F92067140110417D26E5B59CBB5", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC6_X(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case006.ReferenceAtComponent",
-			 "metaObjectMofId", "45F120A5ABFF703758D84FAB0AC9D0A6EE99728A",
-			 "storedEnd", "0",
-			 "compositeEnd", "1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "0"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case006.ReferenceAtComponent", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A5ABFF703758D84FAB0AC9D0A6EE99728A", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "0", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "0" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getC6_W(), 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case006.ReferenceAtComposite",
-			 "metaObjectMofId", "45F120A51C4C3CE81D87441F1FD2B9F5C91CC80F",
-			 "storedEnd", "1",
-			 "compositeEnd", "1",
-			 "orderedEnd", "-1",
-			 "exposedEndNumber", "1"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case006.ReferenceAtComposite", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51C4C3CE81D87441F1FD2B9F5C91CC80F", //$NON-NLS-1$ //$NON-NLS-2$
+			 "storedEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "compositeEnd", "1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "orderedEnd", "-1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "exposedEndNumber", "1" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (d6EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case006.D6",
-			 "metaObjectMofId", "45F120A51F8A1638B65845940946FBE6EA3F74BC",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case006.D6", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "45F120A51F8A1638B65845940946FBE6EA3F74BC", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

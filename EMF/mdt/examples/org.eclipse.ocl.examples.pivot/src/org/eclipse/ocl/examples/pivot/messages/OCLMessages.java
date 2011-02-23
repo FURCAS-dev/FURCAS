@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -208,10 +208,12 @@ public class OCLMessages {
 	public static String WrongContextClassifier_ERROR_;
 	public static String BodyConditionForm_ERROR_;
 	public static String OperationConstraintBoolean_ERROR_;
-	public static String InvariantConstraintBoolean_ERROR_;
+//	public static String InvariantConstraintBoolean_ERROR_;
 	public static String MissingContextVariable_ERROR_;
     public static String ExtraneousParameterVariables_ERROR_;
     public static String ExtraneousResultVariable_ERROR_;
+    public static String MismatchedArgumentCount_ERROR_;
+    public static String MismatchedArgumentType_ERROR_;
     public static String MismatchedParameterVariables_ERROR_;
     public static String MismatchedResultVariable_ERROR_;
     public static String MissingResultVariable_ERROR_;
@@ -259,7 +261,12 @@ public class OCLMessages {
 	public static String ValidationConstraintIsNotBoolean_ERROR_;	
 	public static String ValidationResultIsInvalid_ERROR_;	
 	public static String ValidationResultIsNull_ERROR_;	
-//	public static String ValidationResultIsNotBoolean_ERROR_;
+	public static String ValidationResultIsNotBoolean_ERROR_;
+	
+	public static String HiddenOppositeOf;
+
+	public static String NoOperationReflection_WARNING_;
+	public static String ExtraArg_ERROR_;
 	
 //-----------------------------------------------------------
 	public static String ErrorUnresolvedName;

@@ -35,7 +35,7 @@ public class InheritanceFactoryImpl extends EFactoryImpl implements InheritanceF
 	 */
 	public static InheritanceFactory init() {
 		try {
-			InheritanceFactory theInheritanceFactory = (InheritanceFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case008/inheritance"); 
+			InheritanceFactory theInheritanceFactory = (InheritanceFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcases/case008/inheritance"); //$NON-NLS-1$ 
 			if (theInheritanceFactory != null) {
 				return theInheritanceFactory;
 			}
@@ -72,7 +72,7 @@ public class InheritanceFactoryImpl extends EFactoryImpl implements InheritanceF
 			case InheritancePackage.A8_INHERITANCE: return createA8Inheritance();
 			case InheritancePackage.B8_INHERITANCE: return createB8Inheritance();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

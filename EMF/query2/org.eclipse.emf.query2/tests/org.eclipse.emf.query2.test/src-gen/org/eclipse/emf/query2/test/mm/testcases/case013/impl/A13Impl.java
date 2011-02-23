@@ -220,7 +220,7 @@ public class A13Impl extends EObjectImpl implements A13 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (constrainedAttribute1: ");
+		result.append(" (constrainedAttribute1: "); //$NON-NLS-1$
 		result.append(constrainedAttribute1);
 		result.append(')');
 		return result.toString();

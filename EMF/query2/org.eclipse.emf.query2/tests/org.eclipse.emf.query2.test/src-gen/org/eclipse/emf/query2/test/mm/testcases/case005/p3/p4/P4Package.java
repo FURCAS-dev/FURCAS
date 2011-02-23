@@ -36,7 +36,7 @@ public interface P4Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "p4";
+	String eNAME = "p4"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface P4Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case005/p3/p4";
+	String eNS_URI = "http://sap.com/moin/testcases/case005/p3/p4"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface P4Package extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case005p3p4";
+	String eNS_PREFIX = "case005p3p4"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

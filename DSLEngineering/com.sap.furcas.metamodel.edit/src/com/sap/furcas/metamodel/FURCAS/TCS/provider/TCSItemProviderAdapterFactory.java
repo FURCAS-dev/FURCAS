@@ -1478,6 +1478,52 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
     }
 
         /**
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PrefixPArgItemProvider prefixPArgItemProvider;
+
+        /**
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPrefixPArgAdapter() {
+        if (prefixPArgItemProvider == null) {
+            prefixPArgItemProvider = new PrefixPArgItemProvider(this);
+        }
+
+        return prefixPArgItemProvider;
+    }
+
+        /**
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PostfixPArgItemProvider postfixPArgItemProvider;
+
+        /**
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPostfixPArgAdapter() {
+        if (postfixPArgItemProvider == null) {
+            postfixPArgItemProvider = new PostfixPArgItemProvider(this);
+        }
+
+        return postfixPArgItemProvider;
+    }
+
+        /**
      * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference} instances.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1950,237 +1996,85 @@ public class TCSItemProviderAdapterFactory extends TCSAdapterFactory implements 
      */
         @Override
         public void dispose() {
-        if (concreteSyntaxItemProvider != null) {
-            concreteSyntaxItemProvider.dispose();
-        }
-        if (functionTemplateItemProvider != null) {
-            functionTemplateItemProvider.dispose();
-        }
-        if (classTemplateItemProvider != null) {
-            classTemplateItemProvider.dispose();
-        }
-        if (primitiveTemplateItemProvider != null) {
-            primitiveTemplateItemProvider.dispose();
-        }
-        if (operatorTemplateItemProvider != null) {
-            operatorTemplateItemProvider.dispose();
-        }
-        if (enumerationTemplateItemProvider != null) {
-            enumerationTemplateItemProvider.dispose();
-        }
-        if (enumLiteralMappingItemProvider != null) {
-            enumLiteralMappingItemProvider.dispose();
-        }
-        if (symbolItemProvider != null) {
-            symbolItemProvider.dispose();
-        }
-        if (keywordItemProvider != null) {
-            keywordItemProvider.dispose();
-        }
-        if (operatorListItemProvider != null) {
-            operatorListItemProvider.dispose();
-        }
-        if (priorityItemProvider != null) {
-            priorityItemProvider.dispose();
-        }
-        if (operatorItemProvider != null) {
-            operatorItemProvider.dispose();
-        }
-        if (sequenceItemProvider != null) {
-            sequenceItemProvider.dispose();
-        }
-        if (literalRefItemProvider != null) {
-            literalRefItemProvider.dispose();
-        }
-        if (propertyItemProvider != null) {
-            propertyItemProvider.dispose();
-        }
-        if (customSeparatorItemProvider != null) {
-            customSeparatorItemProvider.dispose();
-        }
-        if (blockItemProvider != null) {
-            blockItemProvider.dispose();
-        }
-        if (conditionalElementItemProvider != null) {
-            conditionalElementItemProvider.dispose();
-        }
-        if (primitivePropertyInitItemProvider != null) {
-            primitivePropertyInitItemProvider.dispose();
-        }
-        if (alternativeItemProvider != null) {
-            alternativeItemProvider.dispose();
-        }
-        if (functionCallItemProvider != null) {
-            functionCallItemProvider.dispose();
-        }
-        if (refersToPArgItemProvider != null) {
-            refersToPArgItemProvider.dispose();
-        }
-        if (lookInPArgItemProvider != null) {
-            lookInPArgItemProvider.dispose();
-        }
-        if (createInPArgItemProvider != null) {
-            createInPArgItemProvider.dispose();
-        }
-        if (refersToKeyPArgItemProvider != null) {
-            refersToKeyPArgItemProvider.dispose();
-        }
-        if (separatorPArgItemProvider != null) {
-            separatorPArgItemProvider.dispose();
-        }
-        if (autoCreatePArgItemProvider != null) {
-            autoCreatePArgItemProvider.dispose();
-        }
-        if (importContextPArgItemProvider != null) {
-            importContextPArgItemProvider.dispose();
-        }
-        if (forcedLowerPArgItemProvider != null) {
-            forcedLowerPArgItemProvider.dispose();
-        }
-        if (createAsPArgItemProvider != null) {
-            createAsPArgItemProvider.dispose();
-        }
-        if (asPArgItemProvider != null) {
-            asPArgItemProvider.dispose();
-        }
-        if (modePArgItemProvider != null) {
-            modePArgItemProvider.dispose();
-        }
-        if (nbNLBArgItemProvider != null) {
-            nbNLBArgItemProvider.dispose();
-        }
-        if (indentIncrBArgItemProvider != null) {
-            indentIncrBArgItemProvider.dispose();
-        }
-        if (startNLBArgItemProvider != null) {
-            startNLBArgItemProvider.dispose();
-        }
-        if (startNbNLBArgItemProvider != null) {
-            startNbNLBArgItemProvider.dispose();
-        }
-        if (endNLBArgItemProvider != null) {
-            endNLBArgItemProvider.dispose();
-        }
-        if (andExpItemProvider != null) {
-            andExpItemProvider.dispose();
-        }
-        if (equalsExpItemProvider != null) {
-            equalsExpItemProvider.dispose();
-        }
-        if (booleanPropertyExpItemProvider != null) {
-            booleanPropertyExpItemProvider.dispose();
-        }
-        if (isDefinedExpItemProvider != null) {
-            isDefinedExpItemProvider.dispose();
-        }
-        if (oneExpItemProvider != null) {
-            oneExpItemProvider.dispose();
-        }
-        if (propertyValItemProvider != null) {
-            propertyValItemProvider.dispose();
-        }
-        if (tokenItemProvider != null) {
-            tokenItemProvider.dispose();
-        }
-        if (orPatternItemProvider != null) {
-            orPatternItemProvider.dispose();
-        }
-        if (rulePatternItemProvider != null) {
-            rulePatternItemProvider.dispose();
-        }
-        if (wordRuleItemProvider != null) {
-            wordRuleItemProvider.dispose();
-        }
-        if (wordItemProvider != null) {
-            wordItemProvider.dispose();
-        }
-        if (endOfLineRuleItemProvider != null) {
-            endOfLineRuleItemProvider.dispose();
-        }
-        if (multiLineRuleItemProvider != null) {
-            multiLineRuleItemProvider.dispose();
-        }
-        if (simpleMappingItemProvider != null) {
-            simpleMappingItemProvider.dispose();
-        }
-        if (wildcardMappingItemProvider != null) {
-            wildcardMappingItemProvider.dispose();
-        }
-        if (octalMappingItemProvider != null) {
-            octalMappingItemProvider.dispose();
-        }
-        if (hexadecimalMappingItemProvider != null) {
-            hexadecimalMappingItemProvider.dispose();
-        }
-        if (stringPatternItemProvider != null) {
-            stringPatternItemProvider.dispose();
-        }
-        if (classPatternItemProvider != null) {
-            classPatternItemProvider.dispose();
-        }
-        if (qualifiedNamedElementItemProvider != null) {
-            qualifiedNamedElementItemProvider.dispose();
-        }
-        if (forcedUpperPArgItemProvider != null) {
-            forcedUpperPArgItemProvider.dispose();
-        }
-        if (injectorActionsBlockItemProvider != null) {
-            injectorActionsBlockItemProvider.dispose();
-        }
-        if (lookupScopePArgItemProvider != null) {
-            lookupScopePArgItemProvider.dispose();
-        }
-        if (referenceByPArgItemProvider != null) {
-            referenceByPArgItemProvider.dispose();
-        }
-        if (propertyReferenceItemProvider != null) {
-            propertyReferenceItemProvider.dispose();
-        }
-        if (contextTemplateItemProvider != null) {
-            contextTemplateItemProvider.dispose();
-        }
-        if (contextTagsItemProvider != null) {
-            contextTagsItemProvider.dispose();
-        }
-        if (oclPropertyInitItemProvider != null) {
-            oclPropertyInitItemProvider.dispose();
-        }
-        if (scopeArgItemProvider != null) {
-            scopeArgItemProvider.dispose();
-        }
-        if (foreachPredicatePropertyInitItemProvider != null) {
-            foreachPredicatePropertyInitItemProvider.dispose();
-        }
-        if (predicateSemanticItemProvider != null) {
-            predicateSemanticItemProvider.dispose();
-        }
-        if (sequenceInAlternativeItemProvider != null) {
-            sequenceInAlternativeItemProvider.dispose();
-        }
-        if (partialPArgItemProvider != null) {
-            partialPArgItemProvider.dispose();
-        }
-        if (disambiguatePArgItemProvider != null) {
-            disambiguatePArgItemProvider.dispose();
-        }
-        if (instanceOfExpItemProvider != null) {
-            instanceOfExpItemProvider.dispose();
-        }
-        if (enumLiteralValItemProvider != null) {
-            enumLiteralValItemProvider.dispose();
-        }
-        if (stringValItemProvider != null) {
-            stringValItemProvider.dispose();
-        }
-        if (integerValItemProvider != null) {
-            integerValItemProvider.dispose();
-        }
-        if (negativeIntegerValItemProvider != null) {
-            negativeIntegerValItemProvider.dispose();
-        }
-        if (lookupPropertyInitItemProvider != null) {
-            lookupPropertyInitItemProvider.dispose();
-        }
+        if (concreteSyntaxItemProvider != null) concreteSyntaxItemProvider.dispose();
+        if (functionTemplateItemProvider != null) functionTemplateItemProvider.dispose();
+        if (classTemplateItemProvider != null) classTemplateItemProvider.dispose();
+        if (primitiveTemplateItemProvider != null) primitiveTemplateItemProvider.dispose();
+        if (operatorTemplateItemProvider != null) operatorTemplateItemProvider.dispose();
+        if (enumerationTemplateItemProvider != null) enumerationTemplateItemProvider.dispose();
+        if (enumLiteralMappingItemProvider != null) enumLiteralMappingItemProvider.dispose();
+        if (symbolItemProvider != null) symbolItemProvider.dispose();
+        if (keywordItemProvider != null) keywordItemProvider.dispose();
+        if (operatorListItemProvider != null) operatorListItemProvider.dispose();
+        if (priorityItemProvider != null) priorityItemProvider.dispose();
+        if (operatorItemProvider != null) operatorItemProvider.dispose();
+        if (sequenceItemProvider != null) sequenceItemProvider.dispose();
+        if (literalRefItemProvider != null) literalRefItemProvider.dispose();
+        if (propertyItemProvider != null) propertyItemProvider.dispose();
+        if (customSeparatorItemProvider != null) customSeparatorItemProvider.dispose();
+        if (blockItemProvider != null) blockItemProvider.dispose();
+        if (conditionalElementItemProvider != null) conditionalElementItemProvider.dispose();
+        if (primitivePropertyInitItemProvider != null) primitivePropertyInitItemProvider.dispose();
+        if (alternativeItemProvider != null) alternativeItemProvider.dispose();
+        if (functionCallItemProvider != null) functionCallItemProvider.dispose();
+        if (refersToPArgItemProvider != null) refersToPArgItemProvider.dispose();
+        if (lookInPArgItemProvider != null) lookInPArgItemProvider.dispose();
+        if (createInPArgItemProvider != null) createInPArgItemProvider.dispose();
+        if (refersToKeyPArgItemProvider != null) refersToKeyPArgItemProvider.dispose();
+        if (separatorPArgItemProvider != null) separatorPArgItemProvider.dispose();
+        if (autoCreatePArgItemProvider != null) autoCreatePArgItemProvider.dispose();
+        if (importContextPArgItemProvider != null) importContextPArgItemProvider.dispose();
+        if (forcedLowerPArgItemProvider != null) forcedLowerPArgItemProvider.dispose();
+        if (createAsPArgItemProvider != null) createAsPArgItemProvider.dispose();
+        if (asPArgItemProvider != null) asPArgItemProvider.dispose();
+        if (modePArgItemProvider != null) modePArgItemProvider.dispose();
+        if (nbNLBArgItemProvider != null) nbNLBArgItemProvider.dispose();
+        if (indentIncrBArgItemProvider != null) indentIncrBArgItemProvider.dispose();
+        if (startNLBArgItemProvider != null) startNLBArgItemProvider.dispose();
+        if (startNbNLBArgItemProvider != null) startNbNLBArgItemProvider.dispose();
+        if (endNLBArgItemProvider != null) endNLBArgItemProvider.dispose();
+        if (andExpItemProvider != null) andExpItemProvider.dispose();
+        if (equalsExpItemProvider != null) equalsExpItemProvider.dispose();
+        if (booleanPropertyExpItemProvider != null) booleanPropertyExpItemProvider.dispose();
+        if (isDefinedExpItemProvider != null) isDefinedExpItemProvider.dispose();
+        if (oneExpItemProvider != null) oneExpItemProvider.dispose();
+        if (propertyValItemProvider != null) propertyValItemProvider.dispose();
+        if (tokenItemProvider != null) tokenItemProvider.dispose();
+        if (orPatternItemProvider != null) orPatternItemProvider.dispose();
+        if (rulePatternItemProvider != null) rulePatternItemProvider.dispose();
+        if (wordRuleItemProvider != null) wordRuleItemProvider.dispose();
+        if (wordItemProvider != null) wordItemProvider.dispose();
+        if (endOfLineRuleItemProvider != null) endOfLineRuleItemProvider.dispose();
+        if (multiLineRuleItemProvider != null) multiLineRuleItemProvider.dispose();
+        if (simpleMappingItemProvider != null) simpleMappingItemProvider.dispose();
+        if (wildcardMappingItemProvider != null) wildcardMappingItemProvider.dispose();
+        if (octalMappingItemProvider != null) octalMappingItemProvider.dispose();
+        if (hexadecimalMappingItemProvider != null) hexadecimalMappingItemProvider.dispose();
+        if (stringPatternItemProvider != null) stringPatternItemProvider.dispose();
+        if (classPatternItemProvider != null) classPatternItemProvider.dispose();
+        if (qualifiedNamedElementItemProvider != null) qualifiedNamedElementItemProvider.dispose();
+        if (forcedUpperPArgItemProvider != null) forcedUpperPArgItemProvider.dispose();
+        if (injectorActionsBlockItemProvider != null) injectorActionsBlockItemProvider.dispose();
+        if (lookupScopePArgItemProvider != null) lookupScopePArgItemProvider.dispose();
+        if (referenceByPArgItemProvider != null) referenceByPArgItemProvider.dispose();
+        if (prefixPArgItemProvider != null) prefixPArgItemProvider.dispose();
+        if (postfixPArgItemProvider != null) postfixPArgItemProvider.dispose();
+        if (propertyReferenceItemProvider != null) propertyReferenceItemProvider.dispose();
+        if (contextTemplateItemProvider != null) contextTemplateItemProvider.dispose();
+        if (contextTagsItemProvider != null) contextTagsItemProvider.dispose();
+        if (oclPropertyInitItemProvider != null) oclPropertyInitItemProvider.dispose();
+        if (scopeArgItemProvider != null) scopeArgItemProvider.dispose();
+        if (foreachPredicatePropertyInitItemProvider != null) foreachPredicatePropertyInitItemProvider.dispose();
+        if (predicateSemanticItemProvider != null) predicateSemanticItemProvider.dispose();
+        if (sequenceInAlternativeItemProvider != null) sequenceInAlternativeItemProvider.dispose();
+        if (partialPArgItemProvider != null) partialPArgItemProvider.dispose();
+        if (disambiguatePArgItemProvider != null) disambiguatePArgItemProvider.dispose();
+        if (instanceOfExpItemProvider != null) instanceOfExpItemProvider.dispose();
+        if (enumLiteralValItemProvider != null) enumLiteralValItemProvider.dispose();
+        if (stringValItemProvider != null) stringValItemProvider.dispose();
+        if (integerValItemProvider != null) integerValItemProvider.dispose();
+        if (negativeIntegerValItemProvider != null) negativeIntegerValItemProvider.dispose();
+        if (lookupPropertyInitItemProvider != null) lookupPropertyInitItemProvider.dispose();
     }
 
 }

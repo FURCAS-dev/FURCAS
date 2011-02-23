@@ -52,6 +52,7 @@ import org.eclipse.emf.query2.syntax.query.ResourceScope;
 import org.eclipse.emf.query2.syntax.query.StringExpression;
 import org.eclipse.emf.query2.syntax.query.util.QuerySwitch;
 
+
 public class QueryTransformer {
 
 	private static final URI[] URI_ARRAY = new URI[0];
@@ -123,7 +124,7 @@ public class QueryTransformer {
 						return es == null ? false : !es.isNotIn();
 					}
 
-					public URI[] getPartitionScope() {
+					public URI[] getResourceScope() {
 						if (es == null) {
 							return new URI[0];
 						}

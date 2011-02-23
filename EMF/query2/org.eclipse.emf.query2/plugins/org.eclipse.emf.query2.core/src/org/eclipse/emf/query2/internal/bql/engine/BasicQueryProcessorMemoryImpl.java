@@ -27,8 +27,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.BasicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.internal.bql.api.SpiAbstractBasicQueryProcessor;
 import org.eclipse.emf.query2.internal.bql.api.SpiAttributeExpression;
 import org.eclipse.emf.query2.internal.bql.api.SpiSelectExpression;
@@ -40,7 +42,6 @@ import org.eclipse.emf.query2.internal.logger.QueryLogger;
 import org.eclipse.emf.query2.internal.messages.BugMessages;
 import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.shared.BugException;
-import org.eclipse.emf.query2.internal.shared.EmfHelper;
 
 /**
  * This implementation of
@@ -86,11 +87,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 			logger.trace(LogSeverity.DEBUG, FQLTraceMessages.MQL_PROCESSOR_BQL_MEMORY_ENGINE_CONSTRUCTS_CLUSTER);
 		}
 
-		if (!queryClientScope.isPartitionScopeInclusive()) {
+		if (!queryClientScope.isResourceScopeInclusive()) {
 			throw new BugException(BugMessages.UNEXPECTED_NON_INCLUSIVE_SCOPE_FOR_MEMORY_SCENARIO);
 		}
 
-		Set<URI> pris = queryClientScope.getPartitionsScope();
+		Set<URI> pris = queryClientScope.getResourcesScope();
 		ClusterEvaluator clusterEvaluator = new ClusterEvaluator(_emfHelper, pris.toArray(new URI[pris.size()]));
 		if (logger.isTraced(LogSeverity.DEBUG)) {
 			logger.trace(LogSeverity.DEBUG, FQLTraceMessages.MQL_PROCESSOR_BQL_MEMORY_ENGINE_EVALUATES_CLUSTER);
@@ -292,10 +293,11 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	 * gets the objects of all provided types within the provided priScope. If a fixed element set is provided, only return objects from
 	 * that set.
 	 */
-	public static EObject[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements,
+	public static BasicEObjectImpl[] getObjectsOfTypeInPartitions(EmfHelper _emfHelper, Set<URI> priScope, Set<URI> mrisOfTypes, Set<URI> elements,
 			SpiAttributeExpression attributeExpression) {
 
 		List<EObject> result = new ArrayList<EObject>();
+		BasicEObjectImpl[] results;
 
 		// filter for the partition, the types, and the element set
 		for (URI pri : priScope) {
@@ -352,9 +354,14 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 				}
 				// }
 			}
+			possibleResultElements = null;
 		}
-
-		return result.toArray(new EObject[result.size()]);
+		//Explicitly setting the result to null, after copying results to an array object
+		results = new BasicEObjectImpl[result.size()];
+		result.toArray(results);
+		result = null;
+		return  results;
+		//return result.toArray(new EObject[result.size()]);
 	}
 
 	private static Map<EClass, URI> typeUris = new WeakHashMap<EClass, URI>(256);

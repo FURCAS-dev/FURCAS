@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCSScopeAdapter.java,v 1.3 2011/01/27 07:01:02 ewillink Exp $
+ * $Id: ReferenceCSScopeAdapter.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
@@ -39,10 +39,10 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 		int newSize = environmentView.getSize();
 		if ((newSize <= oldSize) || (environmentView.getName() == null)) {
 			for (org.eclipse.ocl.examples.pivot.Class csTypeRef : csClass.getSuperClasses()) {
-				if (csTypeRef instanceof ParameterizedTypeRefCS) {
-					Type csType = ((ParameterizedTypeRefCS)csTypeRef).getPivot();
-					if (csType instanceof org.eclipse.ocl.examples.pivot.Class) {
-						addAllReferences(environmentView, (org.eclipse.ocl.examples.pivot.Class)csType);
+				if (csTypeRef instanceof TypedTypeRefCS) {
+					Element type = ((TypedTypeRefCS)csTypeRef).getPivot();
+					if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+						addAllReferences(environmentView, (org.eclipse.ocl.examples.pivot.Class)type);
 					}
 				}
 			}
@@ -54,8 +54,8 @@ public class ReferenceCSScopeAdapter extends BaseCSScopeAdapter<ReferenceCS, Pro
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
 			TypedRefCS typeRef = target.getOwnedType();
-			if (typeRef instanceof ParameterizedTypeRefCS) {
-				Type type = ((ParameterizedTypeRefCS)typeRef).getPivot();
+			if (typeRef instanceof TypedTypeRefCS) {
+				Element type = ((TypedTypeRefCS)typeRef).getPivot();
 				if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
 					addAllReferences(environmentView, (org.eclipse.ocl.examples.pivot.Class)type);
 				}

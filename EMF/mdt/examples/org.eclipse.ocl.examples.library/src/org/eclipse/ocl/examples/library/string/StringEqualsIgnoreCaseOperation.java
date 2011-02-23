@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: StringEqualsIgnoreCaseOperation.java,v 1.2 2011/01/24 19:56:31 ewillink Exp $
+ * $Id: StringEqualsIgnoreCaseOperation.java,v 1.3 2011/02/21 08:37:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.string;
 
+import org.eclipse.ocl.examples.library.AbstractBinaryOperation;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -24,12 +26,13 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * 
  * @since 3.1
  */
-public class StringEqualsIgnoreCaseOperation extends AbstractStringBinaryOperation
+public class StringEqualsIgnoreCaseOperation extends AbstractBinaryOperation
 {
 	public static final StringEqualsIgnoreCaseOperation INSTANCE = new StringEqualsIgnoreCaseOperation();
 
-	@Override
-	protected Value evaluateString(ValueFactory valueFactory, String left, String right) {
-		return valueFactory.booleanValueOf(left.equalsIgnoreCase(right));
+	public Value evaluate(ValueFactory valueFactory, Value left, Value right) throws InvalidValueException {
+		String leftString = left.asString();
+		String rightString = right.asString();
+		return valueFactory.booleanValueOf(leftString.equalsIgnoreCase(rightString));
 	}
 }

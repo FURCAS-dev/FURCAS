@@ -35,7 +35,7 @@ public class Case004fFactoryImpl extends EFactoryImpl implements Case004fFactory
 	 */
 	public static Case004fFactory init() {
 		try {
-			Case004fFactory theCase004fFactory = (Case004fFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case004f"); 
+			Case004fFactory theCase004fFactory = (Case004fFactory)EPackage.Registry.INSTANCE.getEFactory("http://sap.com/moin/testcasesfoundation/case004f"); //$NON-NLS-1$ 
 			if (theCase004fFactory != null) {
 				return theCase004fFactory;
 			}
@@ -69,7 +69,7 @@ public class Case004fFactoryImpl extends EFactoryImpl implements Case004fFactory
 			case Case004fPackage.BUTTON_TEXT_F: return createButtonTextF();
 			case Case004fPackage.TRANSLATABLE_TEXT_F: return createTranslatableTextF();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

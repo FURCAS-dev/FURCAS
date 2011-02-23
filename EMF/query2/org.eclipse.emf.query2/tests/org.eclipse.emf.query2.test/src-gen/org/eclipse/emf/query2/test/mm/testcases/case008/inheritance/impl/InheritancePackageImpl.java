@@ -747,33 +747,33 @@ public class InheritancePackageImpl extends EPackageImpl implements InheritanceP
 		b8InheritanceEClass.getESuperTypes().add(this.getA8Inheritance());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(superStructure1EClass, SuperStructure1.class, "SuperStructure1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSuperStructure1_SuperField1From1(), ecorePackage.getEInt(), "superField1From1", null, 1, 1, SuperStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSuperStructure1_SuperField2From1(), ecorePackage.getEInt(), "superField2From1", null, 1, 1, SuperStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(superStructure1EClass, SuperStructure1.class, "SuperStructure1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSuperStructure1_SuperField1From1(), ecorePackage.getEInt(), "superField1From1", null, 1, 1, SuperStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSuperStructure1_SuperField2From1(), ecorePackage.getEInt(), "superField2From1", null, 1, 1, SuperStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(subStructure1EClass, SubStructure1.class, "SubStructure1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSubStructure1_SubField1(), ecorePackage.getEFloat(), "subField1", null, 1, 1, SubStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(subStructure1EClass, SubStructure1.class, "SubStructure1", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSubStructure1_SubField1(), ecorePackage.getEFloat(), "subField1", null, 1, 1, SubStructure1.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(subStructure2EClass, SubStructure2.class, "SubStructure2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSubStructure2_SubField1(), ecorePackage.getEDouble(), "subField1", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubStructure2_SubField2(), ecorePackage.getEString(), "subField2", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubStructure2_SubField3(), ecorePackage.getEString(), "subField3", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubStructure2_SubField4(), ecorePackage.getEString(), "subField4", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSubStructure2_SubField5(), ecorePackage.getEString(), "subField5", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(subStructure2EClass, SubStructure2.class, "SubStructure2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSubStructure2_SubField1(), ecorePackage.getEDouble(), "subField1", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSubStructure2_SubField2(), ecorePackage.getEString(), "subField2", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSubStructure2_SubField3(), ecorePackage.getEString(), "subField3", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSubStructure2_SubField4(), ecorePackage.getEString(), "subField4", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getSubStructure2_SubField5(), ecorePackage.getEString(), "subField5", null, 1, 1, SubStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(superStructure2EClass, SuperStructure2.class, "SuperStructure2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSuperStructure2_SuperField1From2(), ecorePackage.getEString(), "superField1From2", null, 1, 1, SuperStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(superStructure2EClass, SuperStructure2.class, "SuperStructure2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSuperStructure2_SuperField1From2(), ecorePackage.getEString(), "superField1From2", null, 1, 1, SuperStructure2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(subStructureWithoutFieldsEClass, SubStructureWithoutFields.class, "SubStructureWithoutFields", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(subStructureWithoutFieldsEClass, SubStructureWithoutFields.class, "SubStructureWithoutFields", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-		initEClass(a8InheritanceEClass, A8Inheritance.class, "A8Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getA8Inheritance_ManySuperStructure1(), this.getSuperStructure1(), null, "manySuperStructure1", null, 1, -1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8Inheritance_OneSuperStructure1(), this.getSuperStructure1(), null, "oneSuperStructure1", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8Inheritance_OneSuperStructure2(), this.getSuperStructure2(), null, "oneSuperStructure2", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8Inheritance_OneSubStructure1(), this.getSubStructure1(), null, "oneSubStructure1", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getA8Inheritance_OneSubStructure2(), this.getSubStructure2(), null, "oneSubStructure2", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(a8InheritanceEClass, A8Inheritance.class, "A8Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getA8Inheritance_ManySuperStructure1(), this.getSuperStructure1(), null, "manySuperStructure1", null, 1, -1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8Inheritance_OneSuperStructure1(), this.getSuperStructure1(), null, "oneSuperStructure1", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8Inheritance_OneSuperStructure2(), this.getSuperStructure2(), null, "oneSuperStructure2", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8Inheritance_OneSubStructure1(), this.getSubStructure1(), null, "oneSubStructure1", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getA8Inheritance_OneSubStructure2(), this.getSubStructure2(), null, "oneSubStructure2", null, 1, 1, A8Inheritance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(b8InheritanceEClass, B8Inheritance.class, "B8Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(b8InheritanceEClass, B8Inheritance.class, "B8Inheritance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create annotations
 		// http://sap.com/MOIN
@@ -787,99 +787,99 @@ public class InheritancePackageImpl extends EPackageImpl implements InheritanceP
 	 * @generated
 	 */
 	protected void createMOINAnnotations() {
-		String source = "http://sap.com/MOIN";		
+		String source = "http://sap.com/MOIN"; //$NON-NLS-1$		
 		addAnnotation
 		  (superStructure1EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.SuperStructure1",
-			 "metaObjectMofId", "487756D5CABCDC324F4711DDA9D3D7DB0A126A9B",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.SuperStructure1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487756D5CABCDC324F4711DDA9D3D7DB0A126A9B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (subStructure1EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.SubStructure1",
-			 "metaObjectMofId", "487756D5CABCDC364F4711DD962FD7DB0A126A9B",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.SubStructure1", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487756D5CABCDC364F4711DD962FD7DB0A126A9B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (subStructure2EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.SubStructure2",
-			 "metaObjectMofId", "487756D5CABCDC3C4F4711DD9FD8D7DB0A126A9B",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.SubStructure2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487756D5CABCDC3C4F4711DD9FD8D7DB0A126A9B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (superStructure2EClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.SuperStructure2",
-			 "metaObjectMofId", "487756D5CABCDC3E4F4711DD8CE3D7DB0A126A9B",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.SuperStructure2", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487756D5CABCDC3E4F4711DD8CE3D7DB0A126A9B", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (subStructureWithoutFieldsEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.SubStructureWithoutFields",
-			 "metaObjectMofId", "487DAB0A83097BE0530D11DDB749001558C93B47",
-			 "isStructureType", "true"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.SubStructureWithoutFields", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "487DAB0A83097BE0530D11DDB749001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "true" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (a8InheritanceEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.A8Inheritance",
-			 "metaObjectMofId", "4884B46A36C0E3F5573F11DD89D2001B776F88F3",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.A8Inheritance", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "4884B46A36C0E3F5573F11DD89D2001B776F88F3", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8Inheritance_ManySuperStructure1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36C0E3F0573F11DD8E40001B776F88F3"
+			 "ovaMofId", "4884B46A36C0E3F0573F11DD8E40001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8Inheritance_OneSuperStructure1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36C0E3F1573F11DDB93F001B776F88F3"
+			 "ovaMofId", "4884B46A36C0E3F1573F11DDB93F001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8Inheritance_OneSuperStructure2(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36C0E3F2573F11DD8E85001B776F88F3"
+			 "ovaMofId", "4884B46A36C0E3F2573F11DD8E85001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8Inheritance_OneSubStructure1(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36C0E3F3573F11DDB9C0001B776F88F3"
+			 "ovaMofId", "4884B46A36C0E3F3573F11DDB9C0001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (getA8Inheritance_OneSubStructure2(), 
 		   source, 
 		   new String[] {
-			 "ovaMofId", "4884B46A36C0E3F4573F11DD8F3C001B776F88F3"
+			 "ovaMofId", "4884B46A36C0E3F4573F11DD8F3C001B776F88F3" //$NON-NLS-1$ //$NON-NLS-2$
 		   });		
 		addAnnotation
 		  (b8InheritanceEClass, 
 		   source, 
 		   new String[] {
-			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]",
-			 "metaObject", "testcases.case008.inheritance.B8Inheritance",
-			 "metaObjectMofId", "48FDDC69303A7E419F7611DDA903001558C93B47",
-			 "isStructureType", "false"
+			 "metamodels", "test.sap.com/tc/moin/metamodel/testcases[1.0.0]", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObject", "testcases.case008.inheritance.B8Inheritance", //$NON-NLS-1$ //$NON-NLS-2$
+			 "metaObjectMofId", "48FDDC69303A7E419F7611DDA903001558C93B47", //$NON-NLS-1$ //$NON-NLS-2$
+			 "isStructureType", "false" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 

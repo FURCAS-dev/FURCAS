@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.4 2011/02/19 12:00:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -74,6 +75,24 @@ public class PivotSaver
 				specializingElements.add(object);
 			}
 			return super.visitCollectionType(object);
+		}
+
+		@Override
+		public Object visitLambdaType(LambdaType object) {
+			Type referredType = object.getContextType();
+			if ((referredType != null) && (isOrphanType(referredType))) {
+				specializingElements.add(object);
+			}
+			for (Type parameterType : object.getParameterTypes()) {
+				if ((parameterType != null) && (isOrphanType(parameterType))) {
+					specializingElements.add(object);
+				}
+			}
+			referredType = object.getResultType();
+			if ((referredType != null) && (isOrphanType(referredType))) {
+				specializingElements.add(object);
+			}
+			return super.visitLambdaType(object);
 		}
 
 		@Override
@@ -250,6 +269,7 @@ public class PivotSaver
 		if (orphanage == null) {
 			orphanage = PivotFactory.eINSTANCE.createPackage();
 			orphanage.setName(PivotConstants.ORPHANAGE_NAME);
+			orphanage.setMoniker(PivotConstants.ORPHANAGE_NAME);
 			resource.getContents().add(orphanage);
 		}
 		return orphanage;
@@ -259,6 +279,9 @@ public class PivotSaver
 		// FIXME surely an orphan is one for which eResource() is null,
 		//  or one that is in the orphanage.
 		if (type.getTemplateBindings().size() > 0) {
+			return true;
+		}
+		if (type instanceof LambdaType) {
 			return true;
 		}
 		if (type instanceof TupleType) {

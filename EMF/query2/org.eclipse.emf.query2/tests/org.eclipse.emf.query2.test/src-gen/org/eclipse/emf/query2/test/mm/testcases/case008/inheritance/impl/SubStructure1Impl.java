@@ -161,7 +161,7 @@ public class SubStructure1Impl extends SuperStructure1Impl implements SubStructu
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (subField1: ");
+		result.append(" (subField1: "); //$NON-NLS-1$
 		result.append(subField1);
 		result.append(')');
 		return result.toString();

@@ -13,6 +13,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
 import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.emf.query2.syntax.Messages;
 import org.eclipse.emf.query2.syntax.services.QueryGrammarAccess;
 
 
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalQueryParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'import'", "':'", "'from'", "','", "'select'", "'where'", "'.'", "'withoutsubtypes'", "'{'", "'}'", "'as'", "'not'", "'in'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'?'", "'null'", "'true'", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_SIGNED_DOUBLE", "RULE_SINGED_LONG", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'import'", "':'", "'from'", "','", "'select'", "'where'", "'.'", "'withoutsubtypes'", "'{'", "'}'", "'as'", "'not'", "'in'", "'resources'", "'elements'", "'or'", "'and'", "'('", "')'", "'?'", "'null'", "'true'", "'false'", "'<'", "'>'", "'<='", "'>='", "'='", "'!='", "'like'", "'not like'", "'not in'" //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$ //$NON-NLS-11$ //$NON-NLS-12$ //$NON-NLS-13$ //$NON-NLS-14$ //$NON-NLS-15$ //$NON-NLS-16$ //$NON-NLS-17$ //$NON-NLS-18$ //$NON-NLS-19$ //$NON-NLS-20$ //$NON-NLS-21$ //$NON-NLS-22$ //$NON-NLS-23$ //$NON-NLS-24$ //$NON-NLS-25$ //$NON-NLS-26$ //$NON-NLS-27$ //$NON-NLS-28$ //$NON-NLS-29$ //$NON-NLS-30$ //$NON-NLS-31$ //$NON-NLS-32$ //$NON-NLS-33$ //$NON-NLS-34$ //$NON-NLS-35$ //$NON-NLS-36$ //$NON-NLS-37$ //$NON-NLS-38$ //$NON-NLS-39$ //$NON-NLS-40$ //$NON-NLS-41$ //$NON-NLS-42$ //$NON-NLS-43$
     };
     public static final int RULE_ID=5;
     public static final int RULE_STRING=4;
@@ -42,7 +43,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
         
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g"; }
+
+	public String getGrammarFileName() {
+		return "../org.eclipse.emf.query2.syntax/src-gen/org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.g"; } //$NON-NLS-1$
 
 
 
@@ -58,12 +61,12 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
         @Override
         protected InputStream getTokenFile() {
         	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.tokens");
+        	return classLoader.getResourceAsStream("org/eclipse/emf/query2/syntax/parser/antlr/internal/InternalQuery.tokens"); //$NON-NLS-1$
         }
         
         @Override
         protected String getFirstRuleName() {
-        	return "Model";	
+        	return "Model";	 //$NON-NLS-1$
        	}
        	
        	@Override
@@ -162,9 +165,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"imports",
+            	    	       			"imports", //$NON-NLS-1$
             	    	        		lv_imports_0_0, 
-            	    	        		"Import", 
+            	    	        		"Import",  //$NON-NLS-1$
             	    	        		currentNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -212,9 +215,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"defaultQuery",
+                    	       			"defaultQuery", //$NON-NLS-1$
                     	        		lv_defaultQuery_1_0, 
-                    	        		"MQLquery", 
+                    	        		"MQLquery",  //$NON-NLS-1$
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
@@ -263,9 +266,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"namedQueries",
+            	    	       			"namedQueries", //$NON-NLS-1$
             	    	        		lv_namedQueries_2_0, 
-            	    	        		"NamedQuery", 
+            	    	        		"NamedQuery",  //$NON-NLS-1$
             	    	        		currentNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -370,7 +373,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_impURI_1_0=(Token)input.LT(1);
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleImport274); 
 
-            			createLeafNode(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0(), "impURI"); 
+            			createLeafNode(grammarAccess.getImportAccess().getImpURISTRINGTerminalRuleCall_1_0(), "impURI");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -380,9 +383,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"impURI",
+            	       			"impURI", //$NON-NLS-1$
             	        		lv_impURI_1_0, 
-            	        		"STRING", 
+            	        		"STRING",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -478,7 +481,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_name_0_0=(Token)input.LT(1);
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleNamedQuery367); 
 
-            			createLeafNode(grammarAccess.getNamedQueryAccess().getNameIDTerminalRuleCall_0_0(), "name"); 
+            			createLeafNode(grammarAccess.getNamedQueryAccess().getNameIDTerminalRuleCall_0_0(), "name");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -488,9 +491,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"name",
+            	       			"name", //$NON-NLS-1$
             	        		lv_name_0_0, 
-            	        		"ID", 
+            	        		"ID",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -527,9 +530,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"query",
+            	       			"query", //$NON-NLS-1$
             	        		lv_query_2_0, 
-            	        		"MQLquery", 
+            	        		"MQLquery",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -649,9 +652,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		add(
             	       			current, 
-            	       			"fromEntries",
+            	       			"fromEntries", //$NON-NLS-1$
             	        		lv_fromEntries_1_0, 
-            	        		"FromEntry", 
+            	        		"FromEntry",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -704,9 +707,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"fromEntries",
+            	    	       			"fromEntries", //$NON-NLS-1$
             	    	        		lv_fromEntries_3_0, 
-            	    	        		"FromEntry", 
+            	    	        		"FromEntry",  //$NON-NLS-1$
             	    	        		currentNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -753,9 +756,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		add(
             	       			current, 
-            	       			"selectEntries",
+            	       			"selectEntries", //$NON-NLS-1$
             	        		lv_selectEntries_5_0, 
-            	        		"SelectEntry", 
+            	        		"SelectEntry",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -808,9 +811,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"selectEntries",
+            	    	       			"selectEntries", //$NON-NLS-1$
             	    	        		lv_selectEntries_7_0, 
-            	    	        		"SelectEntry", 
+            	    	        		"SelectEntry",  //$NON-NLS-1$
             	    	        		currentNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -868,9 +871,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"whereEntry",
+                    	       			"whereEntry", //$NON-NLS-1$
                     	        		lv_whereEntry_9_0, 
-                    	        		"WhereEntry", 
+                    	        		"WhereEntry",  //$NON-NLS-1$
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
@@ -974,7 +977,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSelectEntry727); 
 
-            		createLeafNode(grammarAccess.getSelectEntryAccess().getSelectFromEntryCrossReference_0_0(), "select"); 
+            		createLeafNode(grammarAccess.getSelectEntryAccess().getSelectFromEntryCrossReference_0_0(), "select");  //$NON-NLS-1$
             	
 
             }
@@ -1011,7 +1014,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                             
                     match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSelectEntry756); 
 
-                    		createLeafNode(grammarAccess.getSelectEntryAccess().getAttributeEAttributeCrossReference_1_1_0(), "attribute"); 
+                    		createLeafNode(grammarAccess.getSelectEntryAccess().getAttributeEAttributeCrossReference_1_1_0(), "attribute");  //$NON-NLS-1$
                     	
 
                     }
@@ -1115,7 +1118,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFromEntry847); 
 
-            		createLeafNode(grammarAccess.getFromEntryAccess().getTypeEClassCrossReference_0_0(), "type"); 
+            		createLeafNode(grammarAccess.getFromEntryAccess().getTypeEClassCrossReference_0_0(), "type");  //$NON-NLS-1$
             	
 
             }
@@ -1143,7 +1146,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     lv_withoutsubtypes_1_0=(Token)input.LT(1);
                     match(input,18,FOLLOW_18_in_ruleFromEntry866); 
 
-                            createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesWithoutsubtypesKeyword_1_0_0(), "withoutsubtypes"); 
+                            createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesWithoutsubtypesKeyword_1_0_0(), "withoutsubtypes");  //$NON-NLS-1$
                         
 
                     	        if (current==null) {
@@ -1152,7 +1155,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        }
                     	        
                     	        try {
-                    	       		set(current, "withoutsubtypes", true, "withoutsubtypes", lastConsumedNode);
+                    	       		set(current, "withoutsubtypes", true, "withoutsubtypes", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
@@ -1192,7 +1195,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                                     
                             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFromEntry908); 
 
-                            		createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_1_0(), "withoutsubtypesTypes"); 
+                            		createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_1_0(), "withoutsubtypesTypes");  //$NON-NLS-1$
                             	
 
                             }
@@ -1233,7 +1236,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                             	            
                             	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFromEntry937); 
 
-                            	    		createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_2_1_0(), "withoutsubtypesTypes"); 
+                            	    		createLeafNode(grammarAccess.getFromEntryAccess().getWithoutsubtypesTypesEClassCrossReference_1_1_2_1_0(), "withoutsubtypesTypes");  //$NON-NLS-1$
                             	    	
 
                             	    }
@@ -1279,7 +1282,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_alias_8_0=(Token)input.LT(1);
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFromEntry980); 
 
-            			createLeafNode(grammarAccess.getFromEntryAccess().getAliasIDTerminalRuleCall_3_0(), "alias"); 
+            			createLeafNode(grammarAccess.getFromEntryAccess().getAliasIDTerminalRuleCall_3_0(), "alias");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -1289,9 +1292,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"alias",
+            	       			"alias", //$NON-NLS-1$
             	        		lv_alias_8_0, 
-            	        		"ID", 
+            	        		"ID",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -1332,9 +1335,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"scopeClause",
+                    	       			"scopeClause", //$NON-NLS-1$
                     	        		lv_scopeClause_9_0, 
-                    	        		"ScopeClause", 
+                    	        		"ScopeClause",  //$NON-NLS-1$
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
@@ -1441,14 +1444,14 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 2, input);
+                            new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 2, input); //$NON-NLS-1$
 
                         throw nvae;
                     }
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 1, input);
+                        new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 1, input); //$NON-NLS-1$
 
                     throw nvae;
                 }
@@ -1464,14 +1467,14 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 2, input);
+                        new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 2, input); //$NON-NLS-1$
 
                     throw nvae;
                 }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 0, input);
+                    new NoViableAltException("682:1: (this_ResourceScope_0= ruleResourceScope | this_ElementScope_1= ruleElementScope )", 12, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -1602,7 +1605,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     lv_notIn_0_0=(Token)input.LT(1);
                     match(input,22,FOLLOW_22_in_ruleResourceScope1215); 
 
-                            createLeafNode(grammarAccess.getResourceScopeAccess().getNotInNotKeyword_0_0(), "notIn"); 
+                            createLeafNode(grammarAccess.getResourceScopeAccess().getNotInNotKeyword_0_0(), "notIn");  //$NON-NLS-1$
                         
 
                     	        if (current==null) {
@@ -1611,7 +1614,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        }
                     	        
                     	        try {
-                    	       		set(current, "notIn", true, "not", lastConsumedNode);
+                    	       		set(current, "notIn", true, "not", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
@@ -1646,7 +1649,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_uris_4_0=(Token)input.LT(1);
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleResourceScope1276); 
 
-            			createLeafNode(grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), "uris"); 
+            			createLeafNode(grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), "uris");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -1656,9 +1659,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		add(
             	       			current, 
-            	       			"uris",
+            	       			"uris", //$NON-NLS-1$
             	        		lv_uris_4_0, 
-            	        		"STRING", 
+            	        		"STRING",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -1698,7 +1701,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    lv_uris_6_0=(Token)input.LT(1);
             	    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleResourceScope1309); 
 
-            	    			createLeafNode(grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), "uris"); 
+            	    			createLeafNode(grammarAccess.getResourceScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), "uris");  //$NON-NLS-1$
             	    		
 
             	    	        if (current==null) {
@@ -1708,9 +1711,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"uris",
+            	    	       			"uris", //$NON-NLS-1$
             	    	        		lv_uris_6_0, 
-            	    	        		"STRING", 
+            	    	        		"STRING",  //$NON-NLS-1$
             	    	        		lastConsumedNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -1827,7 +1830,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     lv_notIn_0_0=(Token)input.LT(1);
                     match(input,22,FOLLOW_22_in_ruleElementScope1415); 
 
-                            createLeafNode(grammarAccess.getElementScopeAccess().getNotInNotKeyword_0_0(), "notIn"); 
+                            createLeafNode(grammarAccess.getElementScopeAccess().getNotInNotKeyword_0_0(), "notIn");  //$NON-NLS-1$
                         
 
                     	        if (current==null) {
@@ -1836,7 +1839,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        }
                     	        
                     	        try {
-                    	       		set(current, "notIn", true, "not", lastConsumedNode);
+                    	       		set(current, "notIn", true, "not", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
@@ -1871,7 +1874,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_uris_4_0=(Token)input.LT(1);
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleElementScope1476); 
 
-            			createLeafNode(grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), "uris"); 
+            			createLeafNode(grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_4_0(), "uris");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -1881,9 +1884,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		add(
             	       			current, 
-            	       			"uris",
+            	       			"uris", //$NON-NLS-1$
             	        		lv_uris_4_0, 
-            	        		"STRING", 
+            	        		"STRING",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -1923,7 +1926,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    lv_uris_6_0=(Token)input.LT(1);
             	    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleElementScope1509); 
 
-            	    			createLeafNode(grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), "uris"); 
+            	    			createLeafNode(grammarAccess.getElementScopeAccess().getUrisSTRINGTerminalRuleCall_5_1_0(), "uris");  //$NON-NLS-1$
             	    		
 
             	    	        if (current==null) {
@@ -1933,9 +1936,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	    	        try {
             	    	       		add(
             	    	       			current, 
-            	    	       			"uris",
+            	    	       			"uris", //$NON-NLS-1$
             	    	        		lv_uris_6_0, 
-            	    	        		"STRING", 
+            	    	        		"STRING",  //$NON-NLS-1$
             	    	        		lastConsumedNode);
             	    	        } catch (ValueConverterException vce) {
             	    				handleValueConverterException(vce);
@@ -2064,7 +2067,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                      
                             temp=factory.create(grammarAccess.getWhereEntryAccess().getOrWhereEntryEntriesAction_1_0().getType().getClassifier());
                             try {
-                            	factory.add(temp, "entries", current, null /*ParserRule*/, currentNode);
+                            	factory.add(temp, "entries", current, null /*ParserRule*/, currentNode); //$NON-NLS-1$
                             } catch(ValueConverterException vce) {
                             	handleValueConverterException(vce);
                             }
@@ -2120,9 +2123,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	    	        try {
                     	    	       		add(
                     	    	       			current, 
-                    	    	       			"entries",
+                    	    	       			"entries", //$NON-NLS-1$
                     	    	        		lv_entries_3_0, 
-                    	    	        		"AndWhereEntry", 
+                    	    	        		"AndWhereEntry",  //$NON-NLS-1$
                     	    	        		currentNode);
                     	    	        } catch (ValueConverterException vce) {
                     	    				handleValueConverterException(vce);
@@ -2258,7 +2261,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                      
                             temp=factory.create(grammarAccess.getAndWhereEntryAccess().getAndWhereEntryEntriesAction_1_0().getType().getClassifier());
                             try {
-                            	factory.add(temp, "entries", current, null /*ParserRule*/, currentNode);
+                            	factory.add(temp, "entries", current, null /*ParserRule*/, currentNode); //$NON-NLS-1$
                             } catch(ValueConverterException vce) {
                             	handleValueConverterException(vce);
                             }
@@ -2314,9 +2317,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	    	        try {
                     	    	       		add(
                     	    	       			current, 
-                    	    	       			"entries",
+                    	    	       			"entries", //$NON-NLS-1$
                     	    	        		lv_entries_3_0, 
-                    	    	        		"ConcreteWhereEntry", 
+                    	    	        		"ConcreteWhereEntry",  //$NON-NLS-1$
                     	    	        		currentNode);
                     	    	        } catch (ValueConverterException vce) {
                     	    				handleValueConverterException(vce);
@@ -2433,7 +2436,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1100:1: (this_ParWhereEntry_0= ruleParWhereEntry | this_ExpressionWhereEntry_1= ruleExpressionWhereEntry )", 21, 0, input);
+                    new NoViableAltException("1100:1: (this_ParWhereEntry_0= ruleParWhereEntry | this_ExpressionWhereEntry_1= ruleExpressionWhereEntry )", 21, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -2664,9 +2667,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"lhs",
+            	       			"lhs", //$NON-NLS-1$
             	        		lv_lhs_0_0, 
-            	        		"AliasAttributeExpression", 
+            	        		"AliasAttributeExpression",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -2700,9 +2703,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"operator",
+            	       			"operator", //$NON-NLS-1$
             	        		lv_operator_1_0, 
-            	        		"Operator", 
+            	        		"Operator",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -2736,9 +2739,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"rhs",
+            	       			"rhs", //$NON-NLS-1$
             	        		lv_rhs_2_0, 
-            	        		"Expression", 
+            	        		"Expression",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -2836,7 +2839,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAliasAttributeExpression2256); 
 
-            		createLeafNode(grammarAccess.getAliasAttributeExpressionAccess().getAliasFromEntryCrossReference_0_0(), "alias"); 
+            		createLeafNode(grammarAccess.getAliasAttributeExpressionAccess().getAliasFromEntryCrossReference_0_0(), "alias");  //$NON-NLS-1$
             	
 
             }
@@ -2873,7 +2876,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                             
                     match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAliasAttributeExpression2285); 
 
-                    		createLeafNode(grammarAccess.getAliasAttributeExpressionAccess().getAttributeEStructuralFeatureCrossReference_1_1_0(), "attribute"); 
+                    		createLeafNode(grammarAccess.getAliasAttributeExpressionAccess().getAttributeEStructuralFeatureCrossReference_1_1_0(), "attribute");  //$NON-NLS-1$
                     	
 
                     }
@@ -3018,7 +3021,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue )", 23, 0, input);
+                    new NoViableAltException("1332:1: (this_AliasAttributeExpression_0= ruleAliasAttributeExpression | this_DoubleExpression_1= ruleDoubleExpression | this_LongExpression_2= ruleLongExpression | this_StringExpression_3= ruleStringExpression | this_NullExpression_4= ruleNullExpression | this_BooleanExpression_5= ruleBooleanExpression | this_QueryExpression_6= ruleQueryExpression | this_ReplacableValue_7= ruleReplacableValue )", 23, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -3239,7 +3242,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_value_0_0=(Token)input.LT(1);
             match(input,30,FOLLOW_30_in_ruleReplacableValue2656); 
 
-                    createLeafNode(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), "value"); 
+                    createLeafNode(grammarAccess.getReplacableValueAccess().getValueQuestionMarkKeyword_0(), "value");  //$NON-NLS-1$
                 
 
             	        if (current==null) {
@@ -3248,7 +3251,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        }
             	        
             	        try {
-            	       		set(current, "value", lv_value_0_0, "?", lastConsumedNode);
+            	       		set(current, "value", lv_value_0_0, "?", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
             	        }
@@ -3335,7 +3338,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_value_0_0=(Token)input.LT(1);
             match(input,RULE_SIGNED_DOUBLE,FOLLOW_RULE_SIGNED_DOUBLE_in_ruleDoubleExpression2755); 
 
-            			createLeafNode(grammarAccess.getDoubleExpressionAccess().getValueSIGNED_DOUBLETerminalRuleCall_0(), "value"); 
+            			createLeafNode(grammarAccess.getDoubleExpressionAccess().getValueSIGNED_DOUBLETerminalRuleCall_0(), "value");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -3345,9 +3348,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"value",
+            	       			"value", //$NON-NLS-1$
             	        		lv_value_0_0, 
-            	        		"SIGNED_DOUBLE", 
+            	        		"SIGNED_DOUBLE",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -3435,7 +3438,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_value_0_0=(Token)input.LT(1);
             match(input,RULE_SINGED_LONG,FOLLOW_RULE_SINGED_LONG_in_ruleLongExpression2846); 
 
-            			createLeafNode(grammarAccess.getLongExpressionAccess().getValueSINGED_LONGTerminalRuleCall_0(), "value"); 
+            			createLeafNode(grammarAccess.getLongExpressionAccess().getValueSINGED_LONGTerminalRuleCall_0(), "value");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -3445,9 +3448,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"value",
+            	       			"value", //$NON-NLS-1$
             	        		lv_value_0_0, 
-            	        		"SINGED_LONG", 
+            	        		"SINGED_LONG",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -3535,7 +3538,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_value_0_0=(Token)input.LT(1);
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringExpression2937); 
 
-            			createLeafNode(grammarAccess.getStringExpressionAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+            			createLeafNode(grammarAccess.getStringExpressionAccess().getValueSTRINGTerminalRuleCall_0(), "value");  //$NON-NLS-1$
             		
 
             	        if (current==null) {
@@ -3545,9 +3548,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"value",
+            	       			"value", //$NON-NLS-1$
             	        		lv_value_0_0, 
-            	        		"STRING", 
+            	        		"STRING",  //$NON-NLS-1$
             	        		lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -3635,7 +3638,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             lv_value_0_0=(Token)input.LT(1);
             match(input,31,FOLLOW_31_in_ruleNullExpression3029); 
 
-                    createLeafNode(grammarAccess.getNullExpressionAccess().getValueNullKeyword_0(), "value"); 
+                    createLeafNode(grammarAccess.getNullExpressionAccess().getValueNullKeyword_0(), "value");  //$NON-NLS-1$
                 
 
             	        if (current==null) {
@@ -3644,7 +3647,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        }
             	        
             	        try {
-            	       		set(current, "value", lv_value_0_0, "null", lastConsumedNode);
+            	       		set(current, "value", lv_value_0_0, "null", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
             	        }
@@ -3734,7 +3737,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1663:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )", 24, 0, input);
+                    new NoViableAltException("1663:1: ( ( (lv_true_0_0= 'true' ) ) | 'false' )", 24, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }
@@ -3751,7 +3754,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     lv_true_0_0=(Token)input.LT(1);
                     match(input,32,FOLLOW_32_in_ruleBooleanExpression3130); 
 
-                            createLeafNode(grammarAccess.getBooleanExpressionAccess().getTrueTrueKeyword_0_0(), "true"); 
+                            createLeafNode(grammarAccess.getBooleanExpressionAccess().getTrueTrueKeyword_0_0(), "true");  //$NON-NLS-1$
                         
 
                     	        if (current==null) {
@@ -3760,7 +3763,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                     	        }
                     	        
                     	        try {
-                    	       		set(current, "true", true, "true", lastConsumedNode);
+                    	       		set(current, "true", true, "true", lastConsumedNode); //$NON-NLS-1$ //$NON-NLS-2$
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
@@ -3883,9 +3886,9 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
             	        try {
             	       		set(
             	       			current, 
-            	       			"value",
+            	       			"value", //$NON-NLS-1$
             	        		lv_value_1_0, 
-            	        		"MQLquery", 
+            	        		"MQLquery",  //$NON-NLS-1$
             	        		currentNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
@@ -3989,7 +3992,7 @@ public class InternalQueryParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1757:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )", 25, 0, input);
+                    new NoViableAltException("1757:1: ( ( '<' ) | ( '>' ) | ( '<=' ) | ( '>=' ) | ( '=' ) | ( '!=' ) | ( 'like' ) | ( 'not like' ) | ( 'not in' ) | ( 'in' ) )", 25, 0, input); //$NON-NLS-1$
 
                 throw nvae;
             }

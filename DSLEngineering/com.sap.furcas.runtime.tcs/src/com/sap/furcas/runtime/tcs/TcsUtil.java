@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
@@ -1742,7 +1742,7 @@ public class TcsUtil {
 
     private static QueryContext getQueryScope(ResourceSet rs, TypeScopeProvider mappingQueryScope) {
         Set<URI> resourcesInScope = new HashSet<URI>();
-        for (URI uri : mappingQueryScope.getPartitionScope()) {
+        for (URI uri : mappingQueryScope.getResourceScope()) {
             resourcesInScope.add(uri);
         }
         return com.sap.furcas.runtime.common.util.EcoreHelper.getQueryContext(rs, resourcesInScope);

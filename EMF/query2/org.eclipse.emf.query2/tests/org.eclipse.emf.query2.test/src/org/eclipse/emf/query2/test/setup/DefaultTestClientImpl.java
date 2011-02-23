@@ -19,14 +19,14 @@ public class DefaultTestClientImpl implements TestClient {
 	private String parentDirectory = ""; //$NON-NLS-1$
 
 	public DefaultTestClientImpl() {
-		this.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		parentDirectory = System.getProperty("java.io.tmpdir");
+		this.getResourceSet().getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl()); //$NON-NLS-1$
+		parentDirectory = System.getProperty("java.io.tmpdir"); //$NON-NLS-1$
 	}
 	
 	
 	public Resource getOrCreateResourceStable(String name) {
 
-		URI uri = URI.createFileURI(this.parentDirectory + "/" + name);
+		URI uri = URI.createFileURI(this.parentDirectory + "/" + name); //$NON-NLS-1$
 		Resource res = null;
 		res = this.getResourceSet().getResource(uri, false);
 		if (res == null) {
@@ -49,7 +49,7 @@ public class DefaultTestClientImpl implements TestClient {
 	public boolean deleteResourceStable(String name) {
 		boolean ret = false;
 
-		URI uri = URI.createFileURI(this.parentDirectory + "/" + name);
+		URI uri = URI.createFileURI(this.parentDirectory + "/" + name); //$NON-NLS-1$
 		Resource res = this.getResourceSet().getResource(uri, false);
 		if (res == null) {
 			// create resource if it does not already exist in the resource set (no need to load it)

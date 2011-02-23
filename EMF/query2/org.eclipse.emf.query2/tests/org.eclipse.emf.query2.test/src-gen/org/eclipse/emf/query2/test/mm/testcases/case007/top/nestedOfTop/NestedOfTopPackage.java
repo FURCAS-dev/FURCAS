@@ -36,7 +36,7 @@ public interface NestedOfTopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "nestedOfTop";
+	String eNAME = "nestedOfTop"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +44,7 @@ public interface NestedOfTopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://sap.com/moin/testcases/case007/top/nestedOfTop";
+	String eNS_URI = "http://sap.com/moin/testcases/case007/top/nestedOfTop"; //$NON-NLS-1$
 
 	/**
 	 * The package namespace name.
@@ -52,7 +52,7 @@ public interface NestedOfTopPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "case007nestedOfTop";
+	String eNS_PREFIX = "case007nestedOfTop"; //$NON-NLS-1$
 
 	/**
 	 * The singleton instance of the package.

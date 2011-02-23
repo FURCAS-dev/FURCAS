@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelClass9Impl.java,v 1.1 2010/12/09 06:59:29 akrsharma Exp $
+ * $Id: ModelClass9Impl.java,v 1.2 2010/12/22 04:40:31 akrsharma Exp $
  */
 package org.eclipse.emf.query2.test.mm.generatedmetamodel.impl;
 
@@ -3862,89 +3862,89 @@ public class ModelClass9Impl extends EObjectImpl implements ModelClass9 {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
-		result.append(", attrString0: ");
+		result.append(", attrString0: "); //$NON-NLS-1$
 		result.append(attrString0);
-		result.append(", attrStringMultiValued0: ");
+		result.append(", attrStringMultiValued0: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued0);
-		result.append(", attrInt0: ");
+		result.append(", attrInt0: "); //$NON-NLS-1$
 		result.append(attrInt0);
-		result.append(", attrDouble0: ");
+		result.append(", attrDouble0: "); //$NON-NLS-1$
 		result.append(attrDouble0);
-		result.append(", attrString1: ");
+		result.append(", attrString1: "); //$NON-NLS-1$
 		result.append(attrString1);
-		result.append(", attrStringMultiValued1: ");
+		result.append(", attrStringMultiValued1: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued1);
-		result.append(", attrInt1: ");
+		result.append(", attrInt1: "); //$NON-NLS-1$
 		result.append(attrInt1);
-		result.append(", attrDouble1: ");
+		result.append(", attrDouble1: "); //$NON-NLS-1$
 		result.append(attrDouble1);
-		result.append(", attrString2: ");
+		result.append(", attrString2: "); //$NON-NLS-1$
 		result.append(attrString2);
-		result.append(", attrStringMultiValued2: ");
+		result.append(", attrStringMultiValued2: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued2);
-		result.append(", attrInt2: ");
+		result.append(", attrInt2: "); //$NON-NLS-1$
 		result.append(attrInt2);
-		result.append(", attrDouble2: ");
+		result.append(", attrDouble2: "); //$NON-NLS-1$
 		result.append(attrDouble2);
-		result.append(", attrString3: ");
+		result.append(", attrString3: "); //$NON-NLS-1$
 		result.append(attrString3);
-		result.append(", attrStringMultiValued3: ");
+		result.append(", attrStringMultiValued3: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued3);
-		result.append(", attrInt3: ");
+		result.append(", attrInt3: "); //$NON-NLS-1$
 		result.append(attrInt3);
-		result.append(", attrDouble3: ");
+		result.append(", attrDouble3: "); //$NON-NLS-1$
 		result.append(attrDouble3);
-		result.append(", attrString4: ");
+		result.append(", attrString4: "); //$NON-NLS-1$
 		result.append(attrString4);
-		result.append(", attrStringMultiValued4: ");
+		result.append(", attrStringMultiValued4: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued4);
-		result.append(", attrInt4: ");
+		result.append(", attrInt4: "); //$NON-NLS-1$
 		result.append(attrInt4);
-		result.append(", attrDouble4: ");
+		result.append(", attrDouble4: "); //$NON-NLS-1$
 		result.append(attrDouble4);
-		result.append(", attrString5: ");
+		result.append(", attrString5: "); //$NON-NLS-1$
 		result.append(attrString5);
-		result.append(", attrStringMultiValued5: ");
+		result.append(", attrStringMultiValued5: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued5);
-		result.append(", attrInt5: ");
+		result.append(", attrInt5: "); //$NON-NLS-1$
 		result.append(attrInt5);
-		result.append(", attrDouble5: ");
+		result.append(", attrDouble5: "); //$NON-NLS-1$
 		result.append(attrDouble5);
-		result.append(", attrString6: ");
+		result.append(", attrString6: "); //$NON-NLS-1$
 		result.append(attrString6);
-		result.append(", attrStringMultiValued6: ");
+		result.append(", attrStringMultiValued6: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued6);
-		result.append(", attrInt6: ");
+		result.append(", attrInt6: "); //$NON-NLS-1$
 		result.append(attrInt6);
-		result.append(", attrDouble6: ");
+		result.append(", attrDouble6: "); //$NON-NLS-1$
 		result.append(attrDouble6);
-		result.append(", attrString7: ");
+		result.append(", attrString7: "); //$NON-NLS-1$
 		result.append(attrString7);
-		result.append(", attrStringMultiValued7: ");
+		result.append(", attrStringMultiValued7: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued7);
-		result.append(", attrInt7: ");
+		result.append(", attrInt7: "); //$NON-NLS-1$
 		result.append(attrInt7);
-		result.append(", attrDouble7: ");
+		result.append(", attrDouble7: "); //$NON-NLS-1$
 		result.append(attrDouble7);
-		result.append(", attrString8: ");
+		result.append(", attrString8: "); //$NON-NLS-1$
 		result.append(attrString8);
-		result.append(", attrStringMultiValued8: ");
+		result.append(", attrStringMultiValued8: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued8);
-		result.append(", attrInt8: ");
+		result.append(", attrInt8: "); //$NON-NLS-1$
 		result.append(attrInt8);
-		result.append(", attrDouble8: ");
+		result.append(", attrDouble8: "); //$NON-NLS-1$
 		result.append(attrDouble8);
-		result.append(", attrString9: ");
+		result.append(", attrString9: "); //$NON-NLS-1$
 		result.append(attrString9);
-		result.append(", attrStringMultiValued9: ");
+		result.append(", attrStringMultiValued9: "); //$NON-NLS-1$
 		result.append(attrStringMultiValued9);
-		result.append(", attrInt9: ");
+		result.append(", attrInt9: "); //$NON-NLS-1$
 		result.append(attrInt9);
-		result.append(", attrDouble9: ");
+		result.append(", attrDouble9: "); //$NON-NLS-1$
 		result.append(attrDouble9);
-		result.append(", attrEnum: ");
+		result.append(", attrEnum: "); //$NON-NLS-1$
 		result.append(attrEnum);
 		result.append(')');
 		return result.toString();

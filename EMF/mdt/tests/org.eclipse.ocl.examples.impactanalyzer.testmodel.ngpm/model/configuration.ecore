@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="configuration"
+    nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration.ecore"
+    nsPrefix="configuration">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+    <details key="documentation" value="How application developers declare configuration switches, what their type system is, what dependencies, relations and constraints on the configuration switches are, how configuration UIs are connected and what defaults for configurations are"/>
+  </eAnnotations>
+  <eSubpackages name="businessconfiguration" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration.ecore"
+      nsPrefix="configuration.businessconfiguration">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="ScopingContext"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Industry" eSuperTypes="#//businessconfiguration/ScopingContext"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Country" eSuperTypes="#//businessconfiguration/ScopingContext"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ConfigurationElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="applicableInContext"
+          upperBound="-1" eType="#//businessconfiguration/ScopingContext"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessTopic" eSuperTypes="#//businessconfiguration/ConfigurationElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="BusinessOption" upperBound="-1"
+          eType="#//businessconfiguration/BusinessOption" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessPackage" eSuperTypes="#//businessconfiguration/ConfigurationElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="BusinessTopic" upperBound="-1"
+          eType="#//businessconfiguration/BusinessTopic" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessOption" eSuperTypes="#//businessconfiguration/ConfigurationElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" upperBound="-1"
+          eType="#//businessconfiguration/ValueSet" eOpposite="#//businessconfiguration/ValueSet/configurationBusinessOption"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="BusinessArea" eSuperTypes="#//businessconfiguration/ConfigurationElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="BusinessPackage" upperBound="-1"
+          eType="#//businessconfiguration/BusinessPackage" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueSet" eSuperTypes="modelmanagement.ecore#//NamedElement data.ecore#//classes/TypedElement">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="A set of values of a specific type which can be added to a system. For example, if the type is &quot;Country&quot; then the value set could be a list of countries known to or relevant for the application.&#xD;&#xA;&#xD;&#xA;Value sets may be extensible or constant. In the &quot;Country&quot; example, the list of countries may change, be it because new countries are created or countries cease to exist because they get merged, or just because more countries are relevant for the application than originally thought.&#xD;&#xA;&#xD;&#xA;Such value sets are also known as &quot;BC Sets&quot; (Business Configuration Sets)."/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensible" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="configurationBusinessOption"
+          lowerBound="1" eType="#//businessconfiguration/BusinessOption" eOpposite="#//businessconfiguration/BusinessOption/valueSet"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
+          eType="#//businessconfiguration/ValueSetEntry" containment="true" eOpposite="#//businessconfiguration/ValueSetEntry/valueSet"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueSetEntry" eSuperTypes="modelmanagement.ecore#//NamedElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeChanged" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="If true, "/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeDeleted" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" lowerBound="1"
+          eType="#//businessconfiguration/ValueSet" transient="true" eOpposite="#//businessconfiguration/ValueSet/entries"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true"/>
+    </eClassifiers>
+    <eSubpackages name="experimental" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/businessconfiguration/experimental.ecore"
+        nsPrefix="configuration.businessconfiguration.experimental">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+        <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+        <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      </eAnnotations>
+      <eClassifiers xsi:type="ecore:EClass" name="PackageUse">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Tells a set of components and how they are wired such that for each required interface there are components configured that provide an implementation of that interface. For the outermost components all of the configuration parameters it exposes are defined or defaulted. These configuration settings transitively map through to the innermost components."/>
+        </eAnnotations>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="package_" lowerBound="1"
+            eType="ecore:EClass modelmanagement.ecore#//Package"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="setting" upperBound="-1"
+            eType="#//businessconfiguration/experimental/ConfigurationSetting"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ConfigurationEntity" eSuperTypes="modelmanagement.ecore#//NamedElement">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="pickList" eType="#//businessconfiguration/ValueSet"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="configurableItem" lowerBound="1"
+            eType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="ConfigurationSetting">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="entity" lowerBound="1"
+            eType="#//businessconfiguration/experimental/ConfigurationEntity"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+            eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+  <eSubpackages name="context_drivers" nsURI="http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/configuration/context_drivers.ecore"
+      nsPrefix="configuration.context_drivers">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+      <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="An interesting extensibility construct to be looked at closer."/>
+    </eAnnotations>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextCategory">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rootValue" lowerBound="1"
+          eType="#//context_drivers/ContextCategoryValue" containment="true" eOpposite="#//context_drivers/ContextCategoryValue/context"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="categoryConfiguration"
+          upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/category"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextCategoryValue" eSuperTypes="#//context_drivers/ContextCategory">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//context_drivers/ContextCategory"
+          transient="true" eOpposite="#//context_drivers/ContextCategory/rootValue"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedValuesConfiguration"
+          upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/includedValues"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+          eType="#//context_drivers/ContextCategoryValue" containment="true" eOpposite="#//context_drivers/ContextCategoryValue/parent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//context_drivers/ContextCategoryValue"
+          transient="true" eOpposite="#//context_drivers/ContextCategoryValue/children"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="excludedValuesConfiguration"
+          upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/excludedValues"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContextualElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ContextualElementConfiguration"
+          upperBound="-1" eType="#//context_drivers/ContexConfiguration" containment="true"
+          eOpposite="#//context_drivers/ContexConfiguration/configuredElement"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ContexConfiguration">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="category" lowerBound="1"
+          eType="#//context_drivers/ContextCategory" eOpposite="#//context_drivers/ContextCategory/categoryConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="includedValues" upperBound="-1"
+          eType="#//context_drivers/ContextCategoryValue" eOpposite="#//context_drivers/ContextCategoryValue/includedValuesConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="configuredElement" lowerBound="1"
+          eType="#//context_drivers/ContextualElement" transient="true" eOpposite="#//context_drivers/ContextualElement/ContextualElementConfiguration"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="excludedValues" upperBound="-1"
+          eType="#//context_drivers/ContextCategoryValue" eOpposite="#//context_drivers/ContextCategoryValue/excludedValuesConfiguration"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

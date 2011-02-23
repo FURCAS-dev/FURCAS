@@ -12,12 +12,10 @@
  *
  * </copyright>
  *
- * $Id: OCLBaseHelperImpl.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: OCLBaseHelperImpl.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
-
-import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.ocl.examples.pivot.Environment;
@@ -27,8 +25,6 @@ import org.eclipse.ocl.examples.pivot.OCLBase;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.helper.Choice;
-import org.eclipse.ocl.helper.ConstraintKind;
 
 /**
  * Default implementation of the {@link OCLHelper} interface.
@@ -41,8 +37,6 @@ abstract class OCLBaseHelperImpl implements OCLHelper {
 	private final EnvironmentFactory environmentFactory;
 	private Environment env;
 
-	private OCLSyntaxHelper syntaxHelper;
-	
 	private boolean validating = true;
     private final OCL ocl;
     
@@ -78,9 +72,6 @@ abstract class OCLBaseHelperImpl implements OCLHelper {
 	
 	private void setEnvironment(Environment env) {
 		this.env = env;
-		
-		// forget the cached syntax helper, as its environment is now obsolete
-		syntaxHelper = null;
 	}
 	
 	public void setContext(Type context) {
@@ -113,42 +104,17 @@ abstract class OCLBaseHelperImpl implements OCLHelper {
         setEnvironment(environmentFactory.createAttributeContext(env, property));
     }
 	
-	public Type getContextClassifier() {
-		return env.getContextClassifier();
-	}
+//	public Type getContextClassifier() {
+//		return env.getContextClassifier();
+//	}
 	
-	public Operation getContextOperation() {
-		return env.getContextOperation();
-	}
+//	public Operation getContextOperation() {
+//		return env.getContextOperation();
+//	}
 	
-	public Property getContextAttribute() {
-		return env.getContextProperty();
-	}
-
-	public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
-	    if (constraintType == null) {
-	        // query expressions cannot use post-condition constructs such
-	        // as @pre or oclIsNew(), so pretend an invariant constraint
-	        constraintType = ConstraintKind.INVARIANT;
-	    }
-	    
-//		return createSyntaxHelper().getSyntaxHelp(constraintType, txt);
-	    throw new UnsupportedOperationException(getClass().getName() + ".getSyntaxHelp");
-	}
-
-	/**
-	 * returns the ocl syntax helper object
-	 * 
-	 * @return OCLSyntaxHelper
-	 */
-	protected OCLSyntaxHelper
-	createSyntaxHelper() {
-		if (syntaxHelper == null) {
-			syntaxHelper = new OCLSyntaxHelper(
-					getEnvironment());
-		}
-		return syntaxHelper;
-	}
+//	public Property getContextAttribute() {
+//		return env.getContextProperty();
+//	}
 	
 	public Diagnostic getProblems() {
 		return problems;

@@ -40,7 +40,7 @@ public interface ResultSet {
 	boolean isEmpty();
 
 	/**
-	 * Obtain the {@link MRI} for the particular alias for the provided
+	 * Obtain the {@link URI} for the particular alias for the provided
 	 * position. If the result set does not include this information for the
 	 * alias, or the alias was not defined for the particular query, or the
 	 * position is out-of-bounds, the {@link QueryResultException} is thrown.
@@ -50,7 +50,7 @@ public interface ResultSet {
 	 *            the row position
 	 * @param alias
 	 *            the alias of the requested element
-	 * @return the actual element as a MRI
+	 * @return the actual element as a URI
 	 * @throws QueryResultException
 	 *             the MQL result exception
 	 */
@@ -74,14 +74,14 @@ public interface ResultSet {
 	//	EObject getRefObject(int position, String alias) throws MQLResultException;
 
 	/**
-	 * Obtains all the {@link MRI}s for the particular alias in the result set.
+	 * Obtains all the {@link URI}s for the particular alias in the result set.
 	 * If the result set does not include this information for the alias, or the
 	 * alias was not defined for the particular query, the
 	 * {@link QueryResultException} is thrown.
 	 * 
 	 * @param alias
 	 *            the alias the elements of interest
-	 * @return all elements for the alias in the form of a MRI
+	 * @return all elements for the alias in the form of a URI
 	 * @throws QueryResultException
 	 *             the MQL result exception
 	 */

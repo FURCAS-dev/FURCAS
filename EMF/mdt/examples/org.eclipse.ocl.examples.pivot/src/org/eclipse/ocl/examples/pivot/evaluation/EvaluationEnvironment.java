@@ -12,26 +12,26 @@
  *
  * </copyright>
  *
- * $Id: EvaluationEnvironment.java,v 1.2 2011/01/24 20:47:52 ewillink Exp $
+ * $Id: EvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
-import org.eclipse.ocl.options.Customizable;
-import org.eclipse.ocl.util.Adaptable;
 
 /**
  * The evaluation environment keeps track of the current values of variables
@@ -55,47 +55,49 @@ import org.eclipse.ocl.util.Adaptable;
  */
 public interface EvaluationEnvironment {
     /**
-     * Returns the value associated with the supplied name
+     * Returns the value associated with the supplied variable declaration
      * 
-     * @param name
+     * @param referredVariable
      *            the name whose value is to be returned
      * @return the value associated with the name
      */
-	Value getValueOf(String name);
+	Value getValueOf(VariableDeclaration referredVariable);
 
     /**
-     * Replaces the current value of the supplied name with the supplied value.
+     * Replaces the current value of the supplied variable declaration with the supplied value.
      * 
-     * @param name
-     *            the name
+     * @param referredVariable
+     *            the variable declaration
      * @param value
      *            the new value
      */
-    void replace(String name, Value value);
+    void replace(VariableDeclaration referredVariable, Value value);
 
     /**
-     * Adds the supplied name and value binding to the environment.  The name
+     * Adds the supplied variable declaration and value binding to the environment.  The variable declaration
      * must not already be bound.
      * 
-     * @param name
-     *            the name to add
+     * @param referredVariable
+     *            the variable declaration to add
      * @param value
      *            the associated binding
      *            
      * @see #replace(String, Object)
      */
-    void add(String name, Value value);
-    void addVariable(VariableDeclaration declaration, VariableDeclaration definition);
-
+    void add(VariableDeclaration referredVariable, Value value);
+ 
     /**
-     * Removes the supplied name and binding from the environment (if it exists)
+     * Removes the supplied variable declaration and binding from the environment (if it exists)
      * and returns it.
      * 
-     * @param name
-     *            the name to remove
-     * @return the value associated with the removed name
+     * @param referredVariable
+     *            the variable declaration to remove
+     * @return the value associated with the removed variable declaration
+     * 
+     * @deprecated let expiry of a nested evaluation environment remove automatically
      */
-    Value remove(String name);
+    @Deprecated
+    Value remove(VariableDeclaration referredVariable);
 
     /**
      * Clears the environment of variables.
@@ -135,8 +137,8 @@ public interface EvaluationEnvironment {
      * @throws IllegalArgumentException if the operation is not supported
      *     by this environment
      */
-    Object callOperation(Operation operation, int opcode, Object source, Object[] args)
-		throws IllegalArgumentException;
+//    Object callOperation(Operation operation, int opcode, Object source, Object[] args)
+//		throws IllegalArgumentException;
     
     /**
      * Obtains the value of the specified operation, for the given source element,
@@ -151,8 +153,8 @@ public interface EvaluationEnvironment {
      * @throws IllegalArgumentException if the property is not supported by the
      *     element or by this environment
      */
-    Value navigateProperty(Property property, List<?> qualifiers, Object source)
-    	throws IllegalArgumentException;
+//    Value navigateProperty(Property property, List<?> qualifiers, Object source)
+//    	throws IllegalArgumentException;
     
     /**
      * Obtains the instance of the specified association class that links the
@@ -204,7 +206,7 @@ public interface EvaluationEnvironment {
      * @return <code>true</code> if the specified classifier is the object's
      *     type or some supertype thereof; <code>false</code>, otherwise
      */
-    boolean isKindOf(Object object, Type classifier);
+//    boolean isKindOf(Object object, Type classifier);
     
     /**
      * Queries whether an object's type is the specified classifier.
@@ -214,7 +216,7 @@ public interface EvaluationEnvironment {
      * @return <code>true</code> if ths specified classifier is the object's
      *     type; <code>false</code>, otherwise
      */
-    boolean isTypeOf(Object object, Type classifier);
+//    boolean isTypeOf(Object object, Type classifier);
     
     /**
      * Queries the type of the specified object.
@@ -222,16 +224,8 @@ public interface EvaluationEnvironment {
      * @param object an object
      * @return its type
      */
+    @Deprecated
     Type getType(Object object);
-    
-    /**
-     * Creates a new tuple instance.
-     * 
-     * @param type the type (a {@link TupleType}) of the tuple to be created
-     * @param values a mapping of the tuple parts
-     * @return the new tuple instance
-     */
-//    Tuple createTuple(Type type, Map<TypedElement, Object> values);
 
 	/**
 	 * Obtains the Java-language value of the specified enumeration literal.
@@ -240,11 +234,21 @@ public interface EvaluationEnvironment {
 	 * @param enumerationLiteral the enumeration literal model element
 	 * @return the corresponding run-time instance
 	 */
-	Value getValue(EnumerationLiteral enumerationLiteral);
-
-	VariableDeclaration getVariable(VariableDeclaration variableDeclaration);
+//	Value getValue(EnumerationLiteral enumerationLiteral);
 
 	TypeManager getTypeManager();
 
 	ValueFactory getValueFactory();
+
+//	NullValue throwInvalidEvaluation(Object value, OclExpression expression, String message, Object object) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(InvalidValueException e) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, OclExpression expression) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, OclExpression expression, Object context) throws InvalidEvaluationException;
+
+	NullValue throwInvalidEvaluation(String message, Throwable e,OclExpression expression, Object context) throws InvalidEvaluationException;
 }

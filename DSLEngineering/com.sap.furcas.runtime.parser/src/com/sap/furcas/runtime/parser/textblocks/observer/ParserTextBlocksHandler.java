@@ -552,7 +552,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     (ANTLR3LocationToken) referenceLocation);
             if (contextBlock != null && modelElement instanceof EObject) {
 
-                if (reference.getType() == DelayedReference.ReferenceType.TYPE_SEMANTIC_PREDICATE) {
+                if (reference.getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE) {
                     // this means we are in the resolving of a foreachproperty init
                     // thus we have to add the curently set template to the
                     // additionalTemplates of
@@ -642,43 +642,41 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	// subBlock.setOffsetRelative(true);
 	// }
 
-	/**
-	 * Uses {@link DocumentNodeReferencesCorrespondingModelElement} to find a
-	 * corresponding {@link TextBlock} for the given <code>element</code>.
-	 * 
-	 * @param element
-	 *            the element to get the {@link TextBlock} for
-	 * @param i 
-	 * @return the corresponding {@link TextBlock} for the given element
-	 */
-	private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
-		TextBlock tb = null;
-                Collection<EObject> nodes = oppositeEndFinder
-                    .navigateOppositePropertyWithBackwardScope(
-                        TextblocksPackage.eINSTANCE
-                                .getDocumentNode_CorrespondingModelElements(),
-                                element);
+    /**
+     * Uses {@link DocumentNodeReferencesCorrespondingModelElement} to find a corresponding {@link TextBlock} for the
+     * given <code>element</code>.
+     * 
+     * @param element
+     *            the element to get the {@link TextBlock} for
+     * @param i
+     * @return the corresponding {@link TextBlock} for the given element
+     */
+    private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
+        TextBlock tb = null;
+        Collection<EObject> nodes = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
+        if (nodes != null) {
+            for (EObject eObject : nodes) {
+                DocumentNode node = (DocumentNode) eObject;
+                int candidateOffset = TbUtil.getAbsoluteOffset(node);
 
-		for (EObject eObject : nodes) {
-		    DocumentNode node = (DocumentNode) eObject;
-		    int candidateOffset = TbUtil.getAbsoluteOffset(node);
+                if (referenceToken != null
+                        && ((candidateOffset > referenceToken.getStartIndex()) || (candidateOffset + node.getLength() < referenceToken
+                                .getStopIndex()))) {
+                    continue;
+                }
 
-		    if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()))) {
-		        continue;
-		    }
-
-		    if (node instanceof TextBlock) {
-		        tb = (TextBlock) node;
-		        tb = (TextBlock) TbUtil.getNewestVersion(tb);    
-		    } else {
-		        AbstractToken tempToken = (AbstractToken) node;
-		        tb = tempToken.getParent();
-		    }
-		}
-
-
-		return tb;
-	}
+                if (node instanceof TextBlock) {
+                    tb = (TextBlock) node;
+                    tb = (TextBlock) TbUtil.getNewestVersion(tb);
+                } else {
+                    AbstractToken tempToken = (AbstractToken) node;
+                    tb = tempToken.getParent();
+                }
+            }
+        }
+        return tb;
+    }
 
 	/**
 	 * This setter can be used to define the parent context on which the class
