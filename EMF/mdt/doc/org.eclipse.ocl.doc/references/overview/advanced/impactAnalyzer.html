@@ -48,10 +48,11 @@ the value of the expression. Consider the following example:
 </pre>
 The event manager can be used to register the event filters of several OCL expressions with their respective
 adapters. The adapters for different expressions do not have to be distinct but may optionally be shared. The
-following figure shows how the classes relate:
+following figure shows how the classes relate, as a UML class diagram:
 <img src="impactAnalyzerClasses.png" width="60%" alt="Impact Analyzer Classes"/><br/>
 For each OCL expression a new impact analyzer is used. The event filters produced by them can be registered
-with the same event manager. The following figure shows a typical instance diagram.
+with the same event manager. The following figure shows a typical instance collaboration diagram in UML
+notation.
 <img src="impactAnalyzerInstances.png" width="100%" alt="Impact Analyzer Classes"/>
 </p><p>
 The <a href="../../javadoc/org/eclipse/ocl/examples/eventmanager/EventManagerFactory.html">
@@ -61,7 +62,7 @@ re-evaluation process. Even if it has to manage many subscriptions, its performa
 degrade as it would if the change notification filters were evaluated one after the other.
 With this it becomes possible to register many OCL expressions for change impact analysis
 as shown above. The figure below shows a typical default configuration of an
-event manager.
+event manager, as a UML instance collaboration diagram.
 <img src="eventManagerDefaultConfig.png" width="70%" alt="Default Event Manager Configuration"/><br/>
 The event manager in the figure is configured to listen to the change events coming
 from anything inside the resource set. In this example it is shown with three different
@@ -73,7 +74,8 @@ temporarily deactivated and new ones may be created specifically upon request. T
 it is possible to have several event managers, e.g., listening for changes during different
 phases of a model's life cycle without having to create and initialize the event managers
 again and again. Also, an event manager is not restricted to listen to the changes of
-exactly one resource set. The following figure shows a not so typical configuration.
+exactly one resource set. The following figure shows a not so typical configuration, again as a
+UML instance collaboration diagram.
 <img src="eventManagerInstances.png" width="50%" alt="Default Event Manager Configuration"/>
 </p>
 
