@@ -130,14 +130,14 @@ public class DefaultOppositeEndFinder
 	}
 	
 	private Set<EPackage> getLoadedPackages() {
+		Set<EPackage> result = new HashSet<EPackage>();
 		for (Object key : registry.values()) {
 			// if it's not a package descriptor indicating a not yet loaded package, add it
 			if (key instanceof EPackage) {
-				packages.add((EPackage) key);
-				cachePackage((EPackage) key);
+				result.add((EPackage) key);
 			}
 		}
-		return packages;
+		return result;
 	}
 
 	protected DefaultOppositeEndFinder(Registry registry) {
