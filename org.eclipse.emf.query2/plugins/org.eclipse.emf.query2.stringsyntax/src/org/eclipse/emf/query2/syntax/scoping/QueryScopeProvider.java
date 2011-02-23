@@ -47,6 +47,7 @@ public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 		}
 	};
 	private IScope importScope;
+	EList<Import> imports = null;
 
 	IScope scope_FromEntry(MQLquery _this, EClass type) {
 		Iterable<IEObjectDescription> transformed = transform(_this.getFromEntries(), new Function<FromEntry, IEObjectDescription>() {
@@ -71,7 +72,8 @@ public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	IScope scope_EClass(Model _this, EClass type) {
-		if(importScope==null){
+		if(importScope==null || imports!=_this.getImports()){
+			imports = _this.getImports();
 			importScope = new DefaultScope(_this.eResource(), _this.getImports(), type); 
 		}
 		return importScope;
