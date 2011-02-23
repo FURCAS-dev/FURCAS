@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Bibtex Text Editor"
+            extensions="bib"
+            class="bibtex.dsl.editor.BibtexEditor"
+            id="bibtex.dsl.editor.BibtexEditor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            languageID="Bibtex"
+            dynamicParserFactoryClass="bibtex.dsl.parser.BibtexParserFactory">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.autoEditing">
+      <configuration
+            autoIndentBraces="{,}"
+            autoEditingType="static (configurable)">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.bracketMatching">
+      <configuration
+            matchingType="configurable"
+            matchingBrackets="{}[]()">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.furcas.ide.editor.folding">
+      <configuration
+            foldingType="static (configurable)"
+            staticFoldingBrackets="{,}">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="bibtex.dsl.editor.BibtextParseController"
+            language="Bibtex">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="bib"
+            description="some thing"
+            language="Bibtex">
+      </language>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer
+            class="bibtex.imp.tokenColorer.BibtexTokenColorer"
+            language="Bibtex">
+      </tokenColorer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.contentProposer">
+      <proposer
+            class="bibtex.dsl.editor.BibtexContentProposer"
+            language="Bibtex">
+      </proposer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.modelTreeBuilder">
+      <treeBuilder
+            class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
+            language="Bibtex">
+      </treeBuilder>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.labelProvider">
+      <labelProvider
+            class="bibtex.imp.treeModelBuilder.BibtexLabelProvider"
+            language="Bibtex">
+      </labelProvider>
+   </extension>
+
+</plugin>
