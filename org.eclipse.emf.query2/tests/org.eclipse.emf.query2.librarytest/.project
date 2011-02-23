@@ -21,7 +21,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.emf.query.index.ui.queryIndexBuilder</name>
+			<name>org.eclipse.emf.query2.index.ui.queryIndexBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
