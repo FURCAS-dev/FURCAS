@@ -131,9 +131,11 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 
 				private Resource emfResource;
 
+				@Override
 				public void postCommitAction() {
 				}
 
+				@Override
 				public void preCommitAction(IndexUpdater updater) {
 				}
 
