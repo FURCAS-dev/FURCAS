@@ -45,14 +45,11 @@ public class Analyzer {
      */
     private int filteredColumnIndex;
     
-    private int noAllInstancesColumnIndex = -1;
     private int allInstanceExecTimeColumnIndex = -1;
     private int allInstanceEvalTimeColumnIndex = -1;
     private int allInstancesEvalAndExecTimeColumnIndex = -1;
     private int executionTimeColumnIndex = -1;
-    private int allInstanceNoInvalidEvalsColumnIndex = -1;
     private int iaEvalAndExecTimeColumnIndex = -1;
-    private int aiExecAndEvalTimeColumnIndex = -1;
     private int evaluationTimeAfterColumnIndex = -1;
     private int optionIdColumnIndex = -1;
     private int modelIdColumnIndex = -1;
@@ -190,14 +187,6 @@ public class Analyzer {
         }
 
         /**
-         * Returns the {@link Aggregator#getAverage() averages} of the {@link #aggrIaFiltered} aggregator,
-         * keyed by the {@link Analyzer#getAverageModelSize(int) model sizes}.
-         */
-        public Map<Double, Double> getSloppinessFilteredAverage() {
-            return getAveragesByModelSize(sloppinessFiltered);
-        }
-
-        /**
          * @param aggregatorArray an array of {@link Aggregator}s where the array index is the model ID.
          * Based on the model ID, the model size is computed using {@link Analyzer#getAverageModelSize(int)}
          * and then used as the key for the resulting map.
@@ -282,9 +271,9 @@ public class Analyzer {
 
     private void updateAggregates(Record record) {
         int modelId = (int) record.getValue(modelIdColumnIndex);
-        getModelSizeAggregator(modelId).aggregate(modelSizeColumnIndex);
+        getModelSizeAggregator(modelId).aggregate(record.getValue(modelSizeColumnIndex));
         int optionId = (int) record.getValue(optionIdColumnIndex);
-        getResult(optionId).recordMeasurement(record.getValue(aiExecAndEvalTimeColumnIndex),
+        getResult(optionId).recordMeasurement(record.getValue(allInstancesEvalAndExecTimeColumnIndex),
                 record.getValue(iaEvalAndExecTimeColumnIndex), record.getValue(sloppinessColumnIndex),
                 record.isFiltered(), modelId);
     }
@@ -328,8 +317,6 @@ public class Analyzer {
             String next = columnList.get(i);
             if (next.equals("filtered")) {
                 filteredColumnIndex = i;
-            } else if (next.equals("noAllInstances")) {
-                noAllInstancesColumnIndex = i;
             } else if (next.equals("allInstanceExecTime")) {
                 allInstanceExecTimeColumnIndex = i;
             } else if (next.equals("allInstanceEvalTime")) {
@@ -338,12 +325,8 @@ public class Analyzer {
                 allInstancesEvalAndExecTimeColumnIndex = i;
             } else if (next.equals("executionTime")) {
                 executionTimeColumnIndex = i;
-            } else if (next.equals("allInstanceNoInvalidEvals")) {
-                allInstanceNoInvalidEvalsColumnIndex = i;
             } else if (next.equals("iaEvalAndExecTime")) {
                 iaEvalAndExecTimeColumnIndex = i;
-            } else if (next.equals("aiExecAndEvalTime")) {
-                aiExecAndEvalTimeColumnIndex = i;
             } else if (next.equals("evaluationTimeAfter")) {
                 evaluationTimeAfterColumnIndex = i;
             } else if (next.equals("modelId")) {
