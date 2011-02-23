@@ -12,6 +12,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
+import com.sap.furcas.runtime.parser.testbase.FailOnErrorErrorHandler;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
@@ -27,7 +28,7 @@ public class TestPrettyPrintSymbolSpaces  {
         File syntaxFile = new File("fixtureData/SymbolSpaces.tcs");
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
         syntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                ResourceTestHelper.createFURCASReferenceScope()), syntaxFile).getSyntax();
+                ResourceTestHelper.createFURCASReferenceScope()), syntaxFile, new FailOnErrorErrorHandler()).getSyntax();
     }
 
     @Test

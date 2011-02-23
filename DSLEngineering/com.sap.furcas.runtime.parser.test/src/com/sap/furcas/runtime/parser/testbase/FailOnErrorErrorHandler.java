@@ -1,24 +1,34 @@
+/*******************************************************************************
+ * Copyright (c) 2011 SAP AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     SAP AG - initial API and implementation
+ ******************************************************************************/
 package com.sap.furcas.runtime.parser.testbase;
+
+import static org.junit.Assert.fail;
 
 import org.antlr.tool.Message;
 
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.runtime.parser.ParsingError;
 
-class SystemOutErrorHandler implements GenerationErrorHandler {
-
-    private boolean failedWithError = false;
+public class FailOnErrorErrorHandler implements GenerationErrorHandler {
 
     @Override
     public void error(ParsingError exception) {
         System.err.println("ERROR: " + exception.getMessage());
-        failedWithError = true;
+        fail(exception.getMessage());
     }
 
     @Override
     public void fatalError(ParsingError exception) {
         System.err.println("FATAL ERROR: " + exception.getMessage());
-        failedWithError = true;
+        fail(exception.getMessage());
     }
 
     @Override
@@ -29,7 +39,7 @@ class SystemOutErrorHandler implements GenerationErrorHandler {
     @Override
     public void error(Message err) {
         System.err.println("ERROR: " + err);
-        failedWithError = true;
+        fail(err.toString());
     }
 
     @Override
@@ -40,10 +50,6 @@ class SystemOutErrorHandler implements GenerationErrorHandler {
     @Override
     public void info(String info) {
         System.out.println("INFO: " + info);
-    }
-
-    public boolean hasFailedWithError() {
-        return failedWithError;
     }
 
 }
