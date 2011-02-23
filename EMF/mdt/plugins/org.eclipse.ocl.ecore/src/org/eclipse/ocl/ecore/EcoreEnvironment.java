@@ -389,8 +389,11 @@ public class EcoreEnvironment
 					}
 					
 					if (pkg != null) {
-						return EcoreForeignMethods.getEClassifier(pkg, lookup
+						EClassifier result = EcoreForeignMethods.getEClassifier(pkg, lookup
                             .get(lookup.size() - 1));
+						if (result != null) {
+							return result;
+						}
 					}
 
                     if ((currPkg == getContextPackage()) && (lookup.size() > 1)
