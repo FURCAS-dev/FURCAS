@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefaultOppositeEndFinder.java,v 1.2 2011/01/25 10:43:34 auhl Exp $
+ * $Id: DefaultOppositeEndFinder.java,v 1.3 2011/02/23 10:56:34 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 
@@ -129,16 +129,6 @@ public class DefaultOppositeEndFinder
 		return result;
 	}
 	
-	private Set<EPackage> getLoadedPackages() {
-		Set<EPackage> result = new HashSet<EPackage>();
-		for (Object key : registry.values()) {
-			// if it's not a package descriptor indicating a not yet loaded package, add it
-			if (key instanceof EPackage) {
-				result.add((EPackage) key);
-			}
-		}
-		return result;
-	}
 
 	protected DefaultOppositeEndFinder(Registry registry) {
 		this.registry = registry;
@@ -207,9 +197,14 @@ public class DefaultOppositeEndFinder
 	 * end finder is responsible
 	 */
 	private synchronized void updateOppositeCache() {
-		for (EPackage ePackage : getLoadedPackages()) {
-			if (!packages.contains(ePackage)) {
-				cachePackage(ePackage);
+		for (Object pkg : registry.values()) {
+			// if it's not a package descriptor indicating a not yet loaded package...
+			if (pkg instanceof EPackage) {
+				EPackage ePackage = (EPackage) pkg;
+				// ... and it hasn't been cached yet, cache it
+				if (!packages.contains(ePackage)) {
+					cachePackage(ePackage);
+				}
 			}
 		}
 	}
