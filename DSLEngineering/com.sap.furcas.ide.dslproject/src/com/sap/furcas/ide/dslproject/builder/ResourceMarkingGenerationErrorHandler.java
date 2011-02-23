@@ -1,8 +1,8 @@
 package com.sap.furcas.ide.dslproject.builder;
 
 import org.antlr.tool.Message;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 
 import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.runtime.parser.ParsingError;
@@ -12,46 +12,39 @@ import com.sap.furcas.runtime.parser.ParsingError;
  */
 public class ResourceMarkingGenerationErrorHandler implements GenerationErrorHandler {
 
-    /** The file. */
-    private final IFile file;
+    private final IResource resource;
 
-    /**
-     * Instantiates a new grammar generation error handler.
-     * 
-     * @param file
-     *            the file
-     */
-    public ResourceMarkingGenerationErrorHandler(IFile file) {
-        this.file = file;
+    public ResourceMarkingGenerationErrorHandler(IResource resource) {
+        this.resource = resource;
     }
 
     @Override
     public void error(ParsingError exception) {
-        EclipseMarkerUtil.addMarker(file, exception, IMarker.SEVERITY_ERROR);
+        EclipseMarkerUtil.addMarker(resource, exception, IMarker.SEVERITY_ERROR);
     }
 
     @Override
     public void fatalError(ParsingError exception) {
-        EclipseMarkerUtil.addMarker(file, exception, IMarker.SEVERITY_ERROR);
+        EclipseMarkerUtil.addMarker(resource, exception, IMarker.SEVERITY_ERROR);
     }
 
     @Override
     public void warning(ParsingError exception) {
-        EclipseMarkerUtil.addMarker(file, exception, IMarker.SEVERITY_WARNING);
+        EclipseMarkerUtil.addMarker(resource, exception, IMarker.SEVERITY_WARNING);
     }
 
     @Override
     public void error(Message err) {
-        EclipseMarkerUtil.addMarker(file, err.toString(), err.line, IMarker.SEVERITY_ERROR);
+        EclipseMarkerUtil.addMarker(resource, err.toString(), err.line, IMarker.SEVERITY_ERROR);
     }
 
     @Override
     public void warn(Message warn) {
-        EclipseMarkerUtil.addMarker(file, warn.toString(), warn.line, IMarker.SEVERITY_WARNING);
+        EclipseMarkerUtil.addMarker(resource, warn.toString(), warn.line, IMarker.SEVERITY_WARNING);
     }
 
     @Override
     public void info(String info) {
-        EclipseMarkerUtil.addMarker(file, info, 0, IMarker.SEVERITY_INFO);
+        EclipseMarkerUtil.addMarker(resource, info, 0, IMarker.SEVERITY_INFO);
     }
 }
