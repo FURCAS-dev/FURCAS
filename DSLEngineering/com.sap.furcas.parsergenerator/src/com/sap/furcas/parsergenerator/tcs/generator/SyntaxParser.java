@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.parsergenerator.GenerationErrorHandler;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.emf.tcs.inject.ModelInjectionResult;
@@ -16,7 +17,6 @@ import com.sap.furcas.parsergenerator.emf.tcs.inject.TCSSpecificEMFModelInjector
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
-import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 
 /**
@@ -28,7 +28,7 @@ import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
  */
 public class SyntaxParser {
 
-    public static TCSSyntaxContainerBean parse(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile)
+    public static TCSSyntaxContainerBean parse(GrammarGenerationSourceConfiguration sourceConfiguration, File syntaxDefFile, GenerationErrorHandler errorHandler)
             throws ParserInvokationException {
 
         InputStream inputStream = null;
@@ -43,9 +43,11 @@ public class SyntaxParser {
             if (errors != null && errors.size() > 0) {
                 if (result.getSyntax() != null) {
                     // also clean up unfinished syntax
-                    EcoreUtil.delete(result.getSyntax(), /* recursive */true);
+                    EcoreUtil.delete(result.getSyntax());
                 }
-                throw new ParserInvokationException(new SyntaxParsingException(errors));
+                for (ParsingError error : errors) {
+                    errorHandler.error(error);
+                }
             }
 
             TCSSyntaxContainerBean returnBean = new TCSSyntaxContainerBean();

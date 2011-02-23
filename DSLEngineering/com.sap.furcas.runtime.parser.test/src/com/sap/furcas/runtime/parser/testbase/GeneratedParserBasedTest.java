@@ -24,7 +24,7 @@ public abstract class GeneratedParserBasedTest {
             throws ParserGeneratorInvocationException, ParserInvokationException {
 
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
-        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(), testConfig.getSyntaxDefinitionFile());
+        TCSSyntaxContainerBean syntaxBean = generator.parseSyntax(testConfig.getSourceConfiguration(), testConfig.getSyntaxDefinitionFile(), new SystemOutErrorHandler());
         
         return syntaxBean;
     }

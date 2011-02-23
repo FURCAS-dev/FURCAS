@@ -19,6 +19,7 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.parsergenerator.tcs.generator.SyntaxParser;
 import com.sap.furcas.parsergenerator.tcs.t2m.ModelBasedTCSGrammarGenerator;
 import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.runtime.parser.testbase.FailOnErrorErrorHandler;
 import com.sap.furcas.test.fixture.ScenarioFixtureData;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 
@@ -45,7 +46,7 @@ public class GrammarGenerationTest {
 
         GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
 
-        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs, new FailOnErrorErrorHandler());
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
                 new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
 
@@ -77,7 +78,7 @@ public class GrammarGenerationTest {
 
         GrammarGenerationSourceConfiguration sourceConfiguration = new GrammarGenerationSourceConfiguration(resourceSet, referenceScope);
 
-        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration,tcs);
+        TCSSyntaxContainerBean syntaxBean = SyntaxParser.parse(sourceConfiguration, tcs, new FailOnErrorErrorHandler());
         ModelBasedTCSGrammarGenerator modelBasedGenerator = new ModelBasedTCSGrammarGenerator(out,
                 new QueryBasedEcoreMetaModelLookUp(resourceSet), "generated", syntaxBean);
 

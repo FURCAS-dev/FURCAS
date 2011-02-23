@@ -21,13 +21,14 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
-import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.parser.tcs.TCSSyntaxDefinition;
+import com.sap.furcas.parser.tcs.stable.TCSParserFactory;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
 import com.sap.furcas.parsergenerator.TCSParserGeneratorFactory;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
+import com.sap.furcas.runtime.parser.testbase.FailOnErrorErrorHandler;
 import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.furcas.unparser.testutils.PrettyPrintAssertionUtil;
 import com.sap.furcas.unparser.testutils.PrettyPrintTestHelper;
@@ -45,7 +46,7 @@ public class TestPrettyPrintTCS {
     public static void init() throws ParserGeneratorInvocationException, ParserInvokationException {
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
         syntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                ResourceTestHelper.createFURCASReferenceScope()), TCSSyntaxDefinition.TCS_TCS).getSyntax();
+                ResourceTestHelper.createFURCASReferenceScope()), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
     }
 
     @Test
@@ -134,7 +135,7 @@ public class TestPrettyPrintTCS {
         // parse the tmpFile
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
         ConcreteSyntax reparsedSyntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                ResourceTestHelper.createFURCASReferenceScope()), tmpFile).getSyntax();
+                ResourceTestHelper.createFURCASReferenceScope()), tmpFile, new FailOnErrorErrorHandler()).getSyntax();
         assertNotNull(reparsedSyntax);
         
         // reprint the new syntax model yet another time.
