@@ -8,10 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 /**
  * Reads a full dump of analysis results and pre-aggregates them for easier handling with R. Special assumption: all
@@ -27,6 +27,11 @@ public class Analyzer {
     private static final int MAX_OPTION_ID = 10;
     private static final int AVG_LINE_LENGTH = 100;
     private static final long SLOPPINESS_SCALE = 1000000;
+    
+    /**
+     * Keys the optionIds to measurement numbers such that they appear roughly with increasing measureTime values
+     */
+    private static final int[] optionIdToMeasurement = { 10, 11, 3, 9, 5, 4, 12, 6, 7, 8 };
     
     private final String[] additionalColumnNames = { "iaEvalAndExecTime", "aiExecAndEvalTime",
             "allInstancesEvalAndExecTime", "sloppiness" };
@@ -187,12 +192,14 @@ public class Analyzer {
         }
 
         /**
-         * @param aggregatorArray an array of {@link Aggregator}s where the array index is the model ID.
-         * Based on the model ID, the model size is computed using {@link Analyzer#getAverageModelSize(int)}
-         * and then used as the key for the resulting map.
+         * @param aggregatorArray
+         *            an array of {@link Aggregator}s where the array index is the model ID. Based on the model ID, the
+         *            model size is computed using {@link Analyzer#getAverageModelSize(int)} and then used as the key
+         *            for the resulting map.
+         * @return a map whose key set is ordered for ascending model size
          */
         private Map<Double, Double> getAveragesByModelSize(Aggregator[] aggregatorArray) {
-            Map<Double, Double> result = new HashMap<Double, Double>();
+            Map<Double, Double> result = new TreeMap<Double, Double>();
             for (int i=0; i<MAX_MODEL_ID; i++) {
                 if (aggregatorArray[i] != null) {
                     result.put(getAverageModelSize(i), aggregatorArray[i].getAverage());
@@ -250,14 +257,24 @@ public class Analyzer {
         writeHeader();
         for (int optionId=0; optionId<MAX_OPTION_ID; optionId++) {
             if (results[optionId] != null) {
-                for (Map.Entry<Double, Double> unfilteredEntry : results[optionId].getAggrAllInstanceUnfilteredAverage().entrySet()) {
-                    writer.write(""+results[optionId].getOptionId()+"\t"+unfilteredEntry.getKey()+"\t1\t"+unfilteredEntry.getValue()+"\n");
-                }
-                for (Map.Entry<Double, Double> filteredEntry : results[optionId].getAggrAllInstanceFilteredAverage().entrySet()) {
-                    writer.write(""+results[optionId].getOptionId()+"\t"+filteredEntry.getKey()+"\t2\t"+filteredEntry.getValue()+"\n");
+                int i=0;
+                if (optionId == 0) {
+                    for (Map.Entry<Double, Double> unfilteredEntry : results[optionId]
+                            .getAggrAllInstanceUnfilteredAverage().entrySet()) {
+                        writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
+                                + unfilteredEntry.getKey() + "\t1\t" + unfilteredEntry.getValue() + "\n");
+                    }
+                    i = 0;
+                    for (Map.Entry<Double, Double> filteredEntry : results[optionId]
+                            .getAggrAllInstanceFilteredAverage().entrySet()) {
+                        writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
+                                + filteredEntry.getKey() + "\t2\t" + filteredEntry.getValue() + "\n");
+                    }
+                    i = 0;
                 }
                 for (Map.Entry<Double, Double> ia : results[optionId].getAggrIaFilteredAverage().entrySet()) {
-                    writer.write(""+results[optionId].getOptionId()+"\t"+ia.getKey()+"\t3\t"+ia.getValue()+"\n");
+                    writer.write(""+results[optionId].getOptionId()+"\t"+(i++)+"\t"+ia.getKey()+"\t"+
+                            optionIdToMeasurement[optionId]+"\t"+ia.getValue()+"\n");
                 }
             }
         }
@@ -266,7 +283,7 @@ public class Analyzer {
     }
 
     private void writeHeader() throws IOException {
-        writer.write("optionId\tmodelSize\tmeasurement\tmeasureTime\n");
+        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\n");
     }
 
     private void updateAggregates(Record record) {
