@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Bibtex Content Test
-Bundle-SymbolicName: bibtex.test;singleton:=true
-Bundle-Version: 1.0.0
-Bundle-Vendor: SAP AG
-Require-Bundle: bibtex.metamodel
