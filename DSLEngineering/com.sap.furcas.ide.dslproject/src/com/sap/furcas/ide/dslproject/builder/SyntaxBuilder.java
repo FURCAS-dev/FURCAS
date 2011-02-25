@@ -193,6 +193,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                     modelFileURI = URI.createPlatformResourceURI(project.getFullPath() + File.separator + "mappings" + File.separator + getFileNameBase(syntaxDefFile) + "." + "tcs", true);
                     try {
                         mappingResource = refScopeBean.getResourceSet().getResource(modelFileURI, true);
+                        mappingResource.getContents().clear();
                     } catch (Exception ex) {
                         //mappingResource remains set to null
                     }
