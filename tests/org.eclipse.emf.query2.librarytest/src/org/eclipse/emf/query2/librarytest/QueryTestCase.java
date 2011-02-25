@@ -11,8 +11,9 @@ package org.eclipse.emf.query2.librarytest;
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
-
 
 import library.LibraryPackage;
 
@@ -23,7 +24,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.IndexFactory;
-
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -62,7 +62,19 @@ public class QueryTestCase extends Assert {
 				// load the resources
 				parser.loadResources(rs);
 				EList<Resource> resources = rs.getResources();
-				indexer.resourceChanged(updater, resources.toArray(new Resource[0]));
+				Resource[] resourcesAsArray = (Resource[]) resources.toArray(new Resource[resources.size()]);
+
+				for (int i = 0; i < resourcesAsArray.length; i++) {
+					if (!resourcesAsArray[i].isLoaded()) {
+						try {
+							resourcesAsArray[i].load(Collections.EMPTY_MAP);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				indexer.resourceChanged(updater, resourcesAsArray);
 
 				// unload the resources
 				for (Iterator iterator = resources.iterator(); iterator.hasNext();) {
