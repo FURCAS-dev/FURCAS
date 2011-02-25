@@ -125,7 +125,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
     protected ImageDescriptor getDefaultImageDescriptor() {
         cL = this.getClass().getClassLoader();
         ImageDescriptor iD = null;
-        URL url = cL.getResource("icons/furcasdeath.gif"); //$NON-NLS-1$
+        URL url = cL.getResource("icons/furclipse_transparent_128.png"); //$NON-NLS-1$
         iD = ImageDescriptor.createFromURL(url);
         return iD;
     }
@@ -253,6 +253,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
             if (activePart instanceof ISetSelectionTarget) {
                 final ISelection targetSelection = new StructuredSelection(modelFile);
                 getShell().getDisplay().asyncExec(new Runnable() {
+                    @Override
                     public void run() {
                         ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
                     }
