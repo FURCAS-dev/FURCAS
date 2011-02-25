@@ -142,12 +142,12 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     @Override
     public List<ResolvedNameAndReferenceBean<EObject>> getDirectSubTypes(ResolvedNameAndReferenceBean<EObject> reference)
             throws MetaModelLookupException {
-
-        String name = reference.getNameUnqualified(); // .get(reference.getNames().size()-1);
         URI uriEClassifier = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClassifier());
         URI uriEClass = EcoreUtil.getURI(EcorePackage.eINSTANCE.getEClass());
-        String query = "select instance \n" + "from [" + uriEClass + "] as instance, \n" + "[" + uriEClassifier
-                + "] as supertype \n" + "where supertype.name = '" + name + "' where instance.eSuperTypes = supertype";
+      
+        String query = "select instance \n" + "from [" + uriEClass + "] as instance , \n" + "[" + uriEClassifier
+                + "] as supertype in elements { [" 
+                        + EcoreUtil.getURI(reference.getReference())+  "] }\n" + "where instance.eSuperTypes = supertype";
 
         List<ResolvedNameAndReferenceBean<EObject>> result = null;
 
