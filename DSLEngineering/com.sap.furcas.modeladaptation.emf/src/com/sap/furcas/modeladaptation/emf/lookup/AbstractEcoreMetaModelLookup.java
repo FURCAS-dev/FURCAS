@@ -12,14 +12,19 @@ package com.sap.furcas.modeladaptation.emf.lookup;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -40,6 +45,7 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
 public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<EObject> {
 
 	private final OppositeEndFinder oppositeEndFinder;
+        private final Map<List<String>, ResolvedNameAndReferenceBean<EObject>> metaLookupCache = new WeakHashMap<List<String>, ResolvedNameAndReferenceBean<EObject>>();
 
 	/**
 	 * Constructor requiring {@link OppositeEndFinder} that is used to lookup opposite ends
@@ -92,15 +98,41 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
             	feat = getHiddenOpposite(reference, featureName);
             }
             if (feat != null) {
-                EClassifier eType = feat.getEType();
-                if (eType != null && eType.eIsProxy()) {
-                    EClassifier resolved = (EClassifier) EcoreUtil.resolve(eType, feat);
-                    if (resolved == eType) {
-                        throw new MetaModelLookupException("Could not resolve proxy for classifier: " + eType);
-                    }
-                    resultType = resolved;
+                if(feat.getEGenericType() != null) {
+                    resultType = getEType(reference.getReference(), feat);
+//                    //this is the default
+//                    resultType = feat.getEType();
+//                    //it is a generic type so find the corresponding type of the parameter
+//                    EGenericType targetGT = null;
+//                    for (EGenericType egt : ((EClass)reference.getReference()).getEGenericSuperTypes()) {
+//                        if(egt.getEClassifier().equals(feat.getEContainingClass())) {
+//                            targetGT = egt;
+//                        }
+//                    }
+//                    if(targetGT != null) { 
+//                        EList<ETypeParameter> eTypeParameters = targetGT.getEClassifier().getETypeParameters();
+//                        EGenericType referringGenericType = feat.getEGenericType();
+//                        while(resultType == null && referringGenericType != null) {
+//                            for (int index = 0; index < eTypeParameters.size(); index++) {
+//                                ETypeParameter typeArg = eTypeParameters.get(index);
+//                                if(typeArg.equals(referringGenericType.getETypeParameter())) {
+//                                    resultType = targetGT.getETypeArguments().get(index).getEClassifier();
+//                                }
+//                            }
+//                        }
+//                    }
+                        
                 } else {
-                    resultType = eType;
+                    EClassifier eType = feat.getEType();
+                    if (eType != null && eType.eIsProxy()) {
+                        EClassifier resolved = (EClassifier) EcoreUtil.resolve(eType, feat);
+                        if (resolved == eType) {
+                            throw new MetaModelLookupException("Could not resolve proxy for classifier: " + eType);
+                        }
+                        resultType = resolved;
+                    } else {
+                        resultType = eType;
+                    }
                 }
                 if (resultType == null) {
                     throw new MetaModelLookupException("Inconsistent metamodel: No type specified for for " + MessageUtil.asModelName(reference.getNames())+ "." + featureName);
@@ -109,6 +141,55 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
         }
         return createBean(resultType);
 
+    }
+    
+    /**
+     * Return the specialised value of feature.getEType() resolving any type parameters
+     * from the specialised type of the sourceObject of the feature.
+     * 
+     * @param sourceObject
+     * @param feature
+     * @return
+     */
+    public static EClassifier getEType(EObject sourceObject, EStructuralFeature feature) {
+            EGenericType targetGenericType = feature.getEGenericType();
+            ETypeParameter targetTypeParameter = targetGenericType.getETypeParameter();
+            if ((targetTypeParameter != null) && (sourceObject != null)) {
+                    EClass sourceGenericType = feature.getEContainingClass();
+                    EObject typeParameterContainer = targetTypeParameter.eContainer();
+                    EClass sourceClass = (EClass) sourceObject;
+                    EList<EGenericType> allSourceGenericSuperTypes = sourceClass.getEAllGenericSuperTypes();
+                    for (EGenericType sourceGenericSuperType : allSourceGenericSuperTypes) {
+                            if (sourceGenericSuperType.getERawType() == typeParameterContainer) {
+                                    EList<EGenericType> sourceTypeArguments = sourceGenericSuperType.getETypeArguments();
+                                    int i = sourceGenericType.getETypeParameters().indexOf(targetTypeParameter);
+                                    if ((0 <= i) && (i < sourceTypeArguments.size())) {
+                                            EGenericType sourceTypeArgument = sourceTypeArguments.get(i);
+                                            return sourceTypeArgument.getERawType();
+                                    }
+                            }
+                    }
+            } else if(sourceObject != null && targetGenericType.getETypeArguments().size() > 0) {
+                for (EGenericType forwardedGenericType : targetGenericType.getETypeArguments()) {
+                    targetTypeParameter = forwardedGenericType.getETypeParameter();
+                    
+                    EClass sourceGenericType = feature.getEContainingClass();
+                    EObject typeParameterContainer = targetTypeParameter.eContainer();
+                    EClass sourceClass = (EClass) sourceObject;
+                    EList<EGenericType> allSourceGenericSuperTypes = sourceClass.getEAllGenericSuperTypes();
+                    for (EGenericType sourceGenericSuperType : allSourceGenericSuperTypes) {
+                            if (sourceGenericSuperType.getERawType() == typeParameterContainer) {
+                                    EList<EGenericType> sourceTypeArguments = sourceGenericSuperType.getETypeArguments();
+                                    int i = sourceGenericType.getETypeParameters().indexOf(targetTypeParameter);
+                                    if ((0 <= i) && (i < sourceTypeArguments.size())) {
+                                            EGenericType sourceTypeArgument = sourceTypeArguments.get(i);
+                                            return sourceTypeArgument.getERawType();
+                                    }
+                            }
+                    }
+                }
+            }
+            return targetGenericType.getERawType();
     }
 
     private EStructuralFeature getHiddenOpposite(
@@ -214,7 +295,12 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
 
     @Override
     public ResolvedNameAndReferenceBean<EObject> resolveReference(List<String> names) throws MetaModelLookupException {
-        return createBean(findClassifiersByQualifiedName(names));
+        ResolvedNameAndReferenceBean<EObject> result = metaLookupCache .get(names);
+        if(result == null) {
+            result = createBean(findClassifiersByQualifiedName(names));
+            metaLookupCache.put(names, result);
+        }
+        return result;
     }
 
     @Override

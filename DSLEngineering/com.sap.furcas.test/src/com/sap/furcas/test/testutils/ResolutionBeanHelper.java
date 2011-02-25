@@ -41,6 +41,19 @@ public class ResolutionBeanHelper {
         return stub;
     }
     
+    public static ResolvedNameAndReferenceBean<EObject> refM(EObject reference, String... entries) {
+
+
+        ArrayList<String> list = new ArrayList<String>();
+        if (entries != null) {
+            for (String entry : entries) {
+                list.add(entry);    
+            }
+        }
+        ResolvedNameAndReferenceBean<EObject> stub = new ResolvedNameAndReferenceBean<EObject>(list, reference);
+        return stub;
+    }
+    
     public static List<ResolvedNameAndReferenceBean<EObject>> multiSimpleList(String... entries) {
         List<ResolvedNameAndReferenceBean<EObject>> list = new ArrayList<ResolvedNameAndReferenceBean<EObject>>();
         if (entries != null) {
