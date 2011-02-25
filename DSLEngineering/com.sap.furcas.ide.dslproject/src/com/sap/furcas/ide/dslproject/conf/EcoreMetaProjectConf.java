@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 import com.sap.furcas.ide.dslproject.Activator;
@@ -118,10 +120,27 @@ public final class EcoreMetaProjectConf implements IProjectMetaRefConf {
                 }
             }
 
-        } else
-            newPRIs.add(URI.createURI(nsURI));
+        } else {
+            URI createURI = URI.createURI(nsURI);
+            newPRIs.add(createURI);
+            connection.getResources().add(connection.getResource(createURI, true));
+        }
+        addAllCrossReferences(connection);
         newPRIs.add(URI.createURI(FURCASPackage.eINSTANCE.eClass().getEPackage().getNsURI()));
+        
         return new ReferenceScopeBean(connection, newPRIs);
+    }
+
+    private void addAllCrossReferences(ResourceSet connection) {
+        Set<Resource> externalResources = new HashSet<Resource>();
+        for (EObject obj : EcoreUtil.ExternalCrossReferencer.find(connection)
+                .keySet()) {
+            Resource externalResource = obj.eResource();
+            if (externalResource != null) {
+                externalResources.add(externalResource);
+            }
+        }
+        connection.getResources().addAll(externalResources);
     }
 
     /**
