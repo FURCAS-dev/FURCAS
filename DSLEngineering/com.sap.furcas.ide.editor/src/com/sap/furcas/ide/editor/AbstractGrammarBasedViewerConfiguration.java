@@ -33,6 +33,7 @@ import com.sap.furcas.ide.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.furcas.ide.editor.autoedit.CtsAutoEditStrategy;
 import com.sap.furcas.ide.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.furcas.ide.editor.document.CtsDocument;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.textblocks.TbUtil;
@@ -49,6 +50,7 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 	private ContentAssistant myAssistant;
         private final ResourceSet connection;
 	private final String languageId;
+        private final AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory;
 
 
 	/**
@@ -56,12 +58,13 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 	 */
 	public AbstractGrammarBasedViewerConfiguration(ResourceSet connection,
 			IAnnotationModel annotationModel,
-			/*Parameter[] context,*/ Class<? extends Lexer> lexerClass,
-			Class<? extends ObservableInjectingParser> parserClass, ITokenMapper myMapper, String languageId,
+			/*Parameter[] context,*/ AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory,
+			ITokenMapper myMapper, String languageId,
 			AbstractGrammarBasedEditor editor) {
 		this.annotationModel = annotationModel;
-		this.myLexerClass = lexerClass;
-		this.parserClass = parserClass;
+                this.parserFactory = parserFactory;
+		this.myLexerClass = parserFactory.getLexerClass();
+		this.parserClass = parserFactory.getParserClass();
 		this.myMapper = myMapper;
 		this.connection = connection;
 //		this.context = context;
@@ -95,7 +98,7 @@ public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfigu
 		if (getMyAssistant() == null) {
 			setMyAssistant(new ContentAssistant());
 			getMyAssistant().setContentAssistProcessor(
-					new CtsContentAssistProcessor(connection, getLexerClass(), getParserClass(),
+					new CtsContentAssistProcessor(connection, parserFactory,
 							languageId),
 					IDocument.DEFAULT_CONTENT_TYPE);
 			getMyAssistant().setAutoActivationDelay(1);

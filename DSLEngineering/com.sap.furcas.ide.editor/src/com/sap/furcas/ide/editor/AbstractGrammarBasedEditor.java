@@ -90,6 +90,7 @@ import com.sap.furcas.ide.editor.matching.CtsStaticMatcher;
 import com.sap.furcas.ide.editor.preferences.PreferenceInitializer;
 import com.sap.furcas.ide.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.furcas.ide.editor.recovery.TbRecoverUtil;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
@@ -1431,8 +1432,9 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
     protected AbstractGrammarBasedViewerConfiguration createSourceViewerConfig(
             IAnnotationModel annotationModel) {
         AbstractGrammarBasedViewerConfiguration svc = new AbstractGrammarBasedViewerConfiguration(
-                getEditingDomain().getResourceSet(), annotationModel, getLexerClass(),
-                getParserClass(), getTokenMapper(), getLanguageId(), this);
+                getEditingDomain().getResourceSet(), annotationModel, 
+                (AbstractParserFactory<ObservableInjectingParser, Lexer>) getParserFactory(),
+                getTokenMapper(), getLanguageId(), this);
         return svc;
     }
 
