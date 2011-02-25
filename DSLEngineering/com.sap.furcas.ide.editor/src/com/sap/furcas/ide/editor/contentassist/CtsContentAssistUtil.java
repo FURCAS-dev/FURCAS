@@ -500,9 +500,13 @@ public class CtsContentAssistUtil {
 							try {
 								Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj,
 										invert, null, null, null);
-								if (result instanceof String) {
-									displayString = (String) result;
+								
+								if (result instanceof Collection<?>) {
+								    result = ((Collection<?>) result).iterator().next();
 								}
+								if (result instanceof String) {
+                                                                    displayString = (String) result;
+                                                            }
 							} catch (Exception e1) {
 //								System.out
 //										.println("Error executing invert-query: "
