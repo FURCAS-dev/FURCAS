@@ -37,6 +37,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
@@ -259,7 +260,7 @@ public class CtsContentAssistUtil {
 			ConcreteSyntax syntax,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
 			ITextViewer viewer, int line, int charPositionInLine, Token token,
-			TextBlocksModel tbModel) {
+			TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 		for (SequenceElement atomic : TcsUtil
@@ -267,7 +268,7 @@ public class CtsContentAssistUtil {
 						classTemplateMap)) {
 			results.addAll(createProposalsFromAtomicSequenceElement(syntax,
 					classTemplateMap, atomic, viewer, line, charPositionInLine,
-					token, tbModel));
+					token, tbModel, oclEvaluator));
 		}
 
 		return results;
@@ -277,7 +278,7 @@ public class CtsContentAssistUtil {
 			ConcreteSyntax syntax, CtsContentAssistContext context,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
 			ITextViewer viewer, int line, int charPositionInLine, Token token,
-			TextBlocksModel tbModel) {
+			TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 		if (context == null) {
@@ -291,7 +292,7 @@ public class CtsContentAssistUtil {
 
 			results.addAll(createProposalsFromAtomicSequenceElement(syntax,
 					classTemplateMap, atomic, viewer, line, charPositionInLine,
-					token, tbModel));
+					token, tbModel, oclEvaluator));
 		}
 
 		return results;
@@ -385,7 +386,7 @@ public class CtsContentAssistUtil {
 			ConcreteSyntax syntax,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
 			SequenceElement e, ITextViewer viewer, int line,
-			int charPositionInLine, Token token, TextBlocksModel tbModel) {
+			int charPositionInLine, Token token, TextBlocksModel tbModel, TCSSpecificOCLEvaluator oclEvaluator) {
 
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
@@ -492,12 +493,12 @@ public class CtsContentAssistUtil {
 
 						List<EObject> oclElements = getQueryResult(viewer,
 								line, charPositionInLine, tbModel, prop,
-								queryArg);
+								queryArg, oclEvaluator);
 
 						for (EObject refObj : oclElements) {
 							String displayString = null;
 							try {
-								Object result = TcsUtil.executeOclQuery(refObj,
+								Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj,
 										invert, null, null, null);
 								if (result instanceof String) {
 									displayString = (String) result;
@@ -531,7 +532,7 @@ public class CtsContentAssistUtil {
 					// generate proposal strings
 
 					List<EObject> oclElements = getQueryResult(viewer, line,
-							charPositionInLine, tbModel, prop, queryArg);
+							charPositionInLine, tbModel, prop, queryArg, oclEvaluator);
 
 					for (EObject refObj : oclElements) {
 						String displayString = refObj.eGet(refObj.eClass().getEStructuralFeature(
@@ -594,7 +595,7 @@ public class CtsContentAssistUtil {
 
 	private static List<EObject> getQueryResult(ITextViewer viewer, int line,
 			int charPositionInLine, TextBlocksModel textBlocksModel, Property prop,
-			LookupScopePArg queryArg) {
+			LookupScopePArg queryArg, TCSSpecificOCLEvaluator oclEvaluator) {
 	        TextBlocksModel currentTbModel = textBlocksModel;
 		List<EObject> oclElements = new ArrayList<EObject>();
 		TextBlock currentVersion = TbVersionUtil.getOtherVersion(currentTbModel.getRoot(),Version.CURRENT);
@@ -626,7 +627,7 @@ public class CtsContentAssistUtil {
 				try {
 					// prefix is null as refersTo/query does not use
 					// ? in query
-					oclResult = TcsUtil.executeOclQuery(element, queryArg
+					oclResult = TcsUtil.executeOclQuery(oclEvaluator, element, queryArg
 							.getQuery(), contextElement, foreachObject, null);
 
 				} catch (Exception e1) {

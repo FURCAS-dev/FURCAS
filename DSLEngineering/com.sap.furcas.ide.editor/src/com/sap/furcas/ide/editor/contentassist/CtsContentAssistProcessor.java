@@ -24,8 +24,11 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.ide.editor.document.TextBlocksModelStore;
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.common.util.EcoreHelper;
+import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.parser.IModelAdapter;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
@@ -35,6 +38,9 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
 
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {
@@ -46,16 +52,22 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	private Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = null;
 	private CtsContentAssistParsingHandler parsingHandler = null;
 	private final ResourceSet connection;
+        private final Query2OppositeEndFinder oppositeEndFinder;
+        private final TCSSpecificOCLEvaluator oclEvaluator;
 
 	public CtsContentAssistProcessor(ResourceSet connection,
-			Class<? extends Lexer> lexerClass,
-			Class<? extends ObservableInjectingParser> parserClass, String language) {
+			AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
 		this.language = language;
 		Assert.isNotNull(connection, "moin connection is null");
-		this.lexerClass = lexerClass;
-		this.parserClass = parserClass;
+		this.lexerClass = parserFactory.getLexerClass();
+		this.parserClass = parserFactory.getParserClass();
 		this.syntax = getSyntax(connection, language);
 		this.connection = connection;
+		
+		QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection,
+		        parserFactory.getParserLookupScope(connection));
+	        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+	        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
 
 		if (syntax == null) {
 			throw new IllegalStateException(
@@ -67,16 +79,20 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	}
 
 	public CtsContentAssistProcessor(ConcreteSyntax syntax,
-			Class<? extends Lexer> lexerClass,
-			Class<? extends ObservableInjectingParser> parserClass, String language) {
+	        AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
 		this.language = language;
-		this.lexerClass = lexerClass;
-		this.parserClass = parserClass;
+		this.lexerClass = parserFactory.getLexerClass();
+                this.parserClass = parserFactory.getParserClass();
 		this.syntax = syntax;
 		Assert.isNotNull(syntax, "ConcreteSyntax is null");
-
+		
 		this.connection = syntax.eResource().getResourceSet();
-		Assert.isNotNull(connection, "moin connection is null");
+                Assert.isNotNull(connection, "moin connection is null");
+		
+		QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection, 
+		        parserFactory.getParserLookupScope(connection));
+                this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
+                this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
 
 		initClassTemplateMap();
 	}
@@ -172,7 +188,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 					results = CtsContentAssistUtil
 							.createFirstPossibleProposals(syntax,
 									classTemplateMap, viewer, line,
-									charPositionInLine, null, tbModel);
+									charPositionInLine, null, tbModel, oclEvaluator);
 
 					// TODO workaround because ANTRL will not create error token
 					// for unlexed characters
@@ -218,13 +234,13 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 									.createFirstPossibleProposals(syntax,
 											classTemplateMap, viewer, line,
 											charPositionInLine, context
-													.getToken(), tbModel);
+													.getToken(), tbModel, oclEvaluator);
 						} else {
 							results = CtsContentAssistUtil
 									.createFollowProposalsFromContext(syntax,
 											previousContext, classTemplateMap,
 											viewer, line, charPositionInLine,
-											context.getToken(), tbModel);
+											context.getToken(), tbModel, oclEvaluator);
 						}
 
 						// compute prefix from token text
@@ -248,7 +264,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 									.createFollowProposalsFromContext(syntax,
 											context, classTemplateMap, viewer,
 											line, charPositionInLine, null,
-											tbModel));
+											tbModel, oclEvaluator));
 
 							// not prefix-filtered
 						}
@@ -260,7 +276,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 									.createFollowProposalsFromContext(syntax,
 											context, classTemplateMap, viewer,
 											line, charPositionInLine, context
-													.getToken(), tbModel);
+													.getToken(), tbModel,
+													oclEvaluator);
 						}
 
 					}

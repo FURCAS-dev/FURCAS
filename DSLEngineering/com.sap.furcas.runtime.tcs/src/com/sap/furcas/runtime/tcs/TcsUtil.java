@@ -1607,13 +1607,35 @@ public class TcsUtil {
         return null;
     }
 
-    public static Collection<?> executeOclQuery(EObject element, String oclQuery, EObject contextObject, EObject foreachObject,
+    /** 
+     * Use {@link #executeOclQuery(TCSSpecificOCLEvaluator, EObject, String, EObject, EObject, Object)} 
+     * instead and provide a scope specific {@link TCSSpecificOCLEvaluator}.
+     * 
+     * @param element
+     * @param oclQuery
+     * @param contextObject
+     * @param foreachObject
+     * @param keyValue
+     * @return
+     * @throws ModelAdapterException
+     */
+    @Deprecated
+    public static Collection<?> executeOclQuery(EObject element,
+            String oclQuery, EObject contextObject, EObject foreachObject,
             String keyValue) throws ModelAdapterException {
+
+        TCSSpecificOCLEvaluator oclHelper = new TCSSpecificOCLEvaluator();
+
+        return executeOclQuery(oclHelper, element, oclQuery, contextObject,
+                foreachObject, keyValue);
+
+    }
+    
+    public static Collection<?> executeOclQuery(TCSSpecificOCLEvaluator oclEvaluator,
+            EObject element, String oclQuery, EObject contextObject,
+            EObject foreachObject, Object keyValue) throws ModelAdapterException {
         if (oclQuery != null) {
-
-            TCSSpecificOCLEvaluator oclHelper = new TCSSpecificOCLEvaluator();
-
-            return oclHelper.findElementsWithOCLQuery(element, keyValue, oclQuery, contextObject, foreachObject);
+            return oclEvaluator.findElementsWithOCLQuery(element, keyValue, oclQuery, contextObject, foreachObject);
         }
 
         return null;
@@ -1856,5 +1878,7 @@ public class TcsUtil {
         }
         return subSequence;
     }
+
+    
 
 }
