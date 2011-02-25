@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -43,6 +47,7 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     
     private final QueryProcessor queryProcessor;
     private final TCSSpecificOCLEvaluator oclEvaluator;
+    private final Map<List<String>, EClassifier> typeCache = new WeakHashMap<List<String>, EClassifier>();
 
     public QueryBasedEcoreMetaModelLookUp(ResourceSet resourceSet, Set<URI> referenceScope) {
     	super(DefaultOppositeEndFinder.getInstance()); // FIXME inject OppositeEndFinder
@@ -73,24 +78,29 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
         if (qualifiedNameOfType == null || qualifiedNameOfType.size() == 0) {
             throw new IllegalArgumentException("qualifiedNameOfType must not be empty: " + qualifiedNameOfType);
         }
-        // since we cannot query for the qualified name with MQL, query for the
-        // name instead, and then compare qualified names to filter out wrong results
-        String name = qualifiedNameOfType.get(qualifiedNameOfType.size() - 1);
-        List<EClassifier> classifiers = findClassifiersByUnqualifiedName(name);
-
-        if (qualifiedNameOfType.size() > 1) {
-            classifiers = filterClassifiers(qualifiedNameOfType, classifiers);
+        EClassifier result = typeCache .get(qualifiedNameOfType);
+        if(result == null) {
+            // since we cannot query for the qualified name with MQL, query for the
+            // name instead, and then compare qualified names to filter out wrong results
+            String name = qualifiedNameOfType.get(qualifiedNameOfType.size() - 1);
+            List<EClassifier> classifiers = findClassifiersByUnqualifiedName(name);
+    
+            if (qualifiedNameOfType.size() > 1) {
+                classifiers = filterClassifiers(qualifiedNameOfType, classifiers);
+            }
+    
+            if (classifiers == null || classifiers.size() == 0) {
+                result = null;
+            } else if (classifiers.size() == 1) {
+                result = classifiers.get(0);
+                typeCache.put(qualifiedNameOfType, result);
+            } else {
+                throw new MetaModelLookupException("Ambiguous classifier name: " + qualifiedNameOfType +
+                		". Either try to use full qualified names, or do not reference several metamodels with" +
+                		"the same metaclasses.");
+            }
         }
-
-        if (classifiers == null || classifiers.size() == 0) {
-            return null;
-        } else if (classifiers.size() == 1) {
-            return classifiers.get(0);
-        } else {
-            throw new MetaModelLookupException("Ambiguous classifier name: " + qualifiedNameOfType +
-            		". Either try to use full qualified names, or do not reference several metamodels with" +
-            		"the same metaclasses.");
-        }
+        return result;
     }
 
     @Override
@@ -171,15 +181,16 @@ public class QueryBasedEcoreMetaModelLookUp extends AbstractEcoreMetaModelLookup
     }
     
     @Override
-    public List<String> validateOclQuery(Template template, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(Template template, String queryToValidate) {
         return oclEvaluator.validateOclQuery(template, queryToValidate);
     }
     @Override
-    public List<String> validateOclQuery(EObject parsingContext, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(EObject parsingContext, String queryToValidate) {
         if (parsingContext instanceof EClassifier) {
             return oclEvaluator.validateOclQuery((EClassifier) parsingContext, queryToValidate);
         } else {
-            return Collections.singletonList("Parsing context must be of type EClassifier. Invalid OCL parsing context " + parsingContext);
+            return Collections.singletonList((Diagnostic) new BasicDiagnostic(getClass().getName(), Diagnostic.ERROR, 
+                    "Parsing context must be of type EClassifier. Invalid OCL parsing context: \"" + parsingContext + "\"", null));
         }
     }
 
