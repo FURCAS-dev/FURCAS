@@ -169,26 +169,7 @@ public abstract class AbstractEcoreMetaModelLookup implements IMetaModelLookup<E
                                     }
                             }
                     }
-            } else if(sourceObject != null && targetGenericType.getETypeArguments().size() > 0) {
-                for (EGenericType forwardedGenericType : targetGenericType.getETypeArguments()) {
-                    targetTypeParameter = forwardedGenericType.getETypeParameter();
-                    
-                    EClass sourceGenericType = feature.getEContainingClass();
-                    EObject typeParameterContainer = targetTypeParameter.eContainer();
-                    EClass sourceClass = (EClass) sourceObject;
-                    EList<EGenericType> allSourceGenericSuperTypes = sourceClass.getEAllGenericSuperTypes();
-                    for (EGenericType sourceGenericSuperType : allSourceGenericSuperTypes) {
-                            if (sourceGenericSuperType.getERawType() == typeParameterContainer) {
-                                    EList<EGenericType> sourceTypeArguments = sourceGenericSuperType.getETypeArguments();
-                                    int i = sourceGenericType.getETypeParameters().indexOf(targetTypeParameter);
-                                    if ((0 <= i) && (i < sourceTypeArguments.size())) {
-                                            EGenericType sourceTypeArgument = sourceTypeArguments.get(i);
-                                            return sourceTypeArgument.getERawType();
-                                    }
-                            }
-                    }
-                }
-            }
+            } 
             return targetGenericType.getERawType();
     }
 
