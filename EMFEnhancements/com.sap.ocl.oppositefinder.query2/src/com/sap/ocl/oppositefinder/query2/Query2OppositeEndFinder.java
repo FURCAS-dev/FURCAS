@@ -189,8 +189,8 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
             String uriFragment = uri.split("#")[1];
             result = r.getEObject(uriFragment);
         } else if (context instanceof EObject) {
-            Resource r = ((EObject) context).eResource();
-            result = getEObject(r, uri);
+            ResourceSet rs = ((EObject) context).eResource().getResourceSet(); 
+            result = getEObject(rs, uri); 
         } else {
             throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "+context.getClass().getName());
         }
