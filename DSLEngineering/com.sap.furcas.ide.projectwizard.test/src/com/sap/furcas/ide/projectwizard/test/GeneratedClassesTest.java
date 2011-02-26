@@ -99,9 +99,17 @@ public class GeneratedClassesTest {
             } else {
                 String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
                 if (eclipsePath.contains("/")) {
-                    bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                    if (eclipsePath.endsWith("/")) {
+                        bundlePath = eclipsePath + "plugins/" + bundleJarName;
+		    } else {
+                        bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+		    }
                 } else {
-                    bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+		    if (eclipsePath.endsWith("\\")) {
+                        bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+		    } else {
+                        bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+		    }
                 }
                 requiredBundles.append(File.pathSeparator + bundlePath);
             }
