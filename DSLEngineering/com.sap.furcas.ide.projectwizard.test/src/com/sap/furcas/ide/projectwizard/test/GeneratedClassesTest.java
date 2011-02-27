@@ -111,9 +111,13 @@ public class GeneratedClassesTest {
                 System.err.println("Unable to find bundle "+bundles[i]);
             } else {
                 try {
+                    System.out.println("Trying to find bundle "+bundle);
                     Object bundleData = bundle.getClass().getMethod("getBundleData").invoke(bundle);
+                    System.out.println("   got bundle data "+bundleData);
                     Object bundleFile = bundleData.getClass().getMethod("getBundleFile").invoke(bundleData);
+                    System.out.println("   got bundle file "+bundleFile);
                     File baseFile = (File) bundleFile.getClass().getMethod("getBaseFile").invoke(bundleFile);
+                    System.out.println("   got base file "+baseFile);
                     bundlePath = baseFile.getCanonicalPath();
                 } catch (Exception e) {
                     e.printStackTrace();
