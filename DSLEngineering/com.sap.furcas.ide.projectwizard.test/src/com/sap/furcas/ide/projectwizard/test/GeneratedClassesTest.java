@@ -132,6 +132,12 @@ public class GeneratedClassesTest {
                         }
                     }
                 }
+                File f = new File(bundlePath);
+                try {
+                    System.out.println("Canonical bundle path: "+f.getCanonicalPath());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 requiredBundles.append(File.pathSeparator + bundlePath);
             }
         }
