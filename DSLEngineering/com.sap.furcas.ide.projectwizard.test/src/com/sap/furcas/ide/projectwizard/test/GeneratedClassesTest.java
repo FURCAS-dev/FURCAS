@@ -123,7 +123,7 @@ public class GeneratedClassesTest {
                     e.printStackTrace();
                     // it didn't work; try something else
                 }
-                if (bundlePath != null) {
+                if (bundlePath == null) {
                     File bundleJar = findBundleJar(bundle);
                     if (bundleJar != null) {
                         bundlePath = bundleJar.getCanonicalPath();
