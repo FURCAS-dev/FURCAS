@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-02-24 00:25:05
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-02-27 01:26:41
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -62,7 +62,7 @@ public class BibtexParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g"; }
 
 
-       private static final String syntaxUUID = "_I8PdID-kEeCTzvDAkebJcA";
+       private static final String syntaxUUID = "_PmrnwEIIEeC1C4ulEa8acA";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }

@@ -50,6 +50,6 @@ public class BibtexParserFactory extends AbstractParserFactory<BibtexParser, Bib
 
     @Override
     public URI getSyntaxUri() {
-        return URI.createPlatformPluginURI("/bibtex.dsl/mapping/Bibtex.tcs", true);
+        return URI.createPlatformPluginURI("/com.sap.furcas.example.bibtex.dsl/mapping/Bibtex.tcs", true);
     }
 }

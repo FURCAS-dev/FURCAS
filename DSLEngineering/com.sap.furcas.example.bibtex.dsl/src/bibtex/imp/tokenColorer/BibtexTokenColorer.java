@@ -13,17 +13,16 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
 public class BibtexTokenColorer implements ITokenColorer {
 
-    protected final TextAttribute doubleAttribute, identifierAttribute, keywordAttribute, numberAttribute, commentAttribute, stringAttribute;
+    protected final TextAttribute identifierAttribute, keywordAttribute, numberAttribute, commentAttribute, stringAttribute;
 
     public BibtexTokenColorer() {
         super();
 
         Display display = Display.getDefault();
-        doubleAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_YELLOW), null, SWT.BOLD);
         numberAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_YELLOW), null, SWT.BOLD);
         
         identifierAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_BLACK), null, SWT.NORMAL);
-        stringAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_BLUE), null, SWT.BOLD);
+        stringAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_BLUE), null, SWT.NORMAL);
         
         commentAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_GREEN), null, SWT.ITALIC);
         keywordAttribute = new TextAttribute(display.getSystemColor(SWT.COLOR_DARK_MAGENTA), null, SWT.BOLD);

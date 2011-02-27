@@ -12,7 +12,7 @@ syntax AlternativeBibtex {
   template LiteratureDb main context  
   : "DB:" name "{"
   		[ author ] 
-  	"}"
+  	"}" 
   ;
   
   template Entry
