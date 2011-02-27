@@ -17,7 +17,7 @@ Bootstrap Howto:
        using the bootstrapped parser. Repeat steps 1), 2) and 3) until
        the test is green.
        
-   	   Copy the TCSParser.java and  TCSLexer.java from "generationTemp/generated"
+   	   Copy the TCSParser.java, TCSLexer.java and TCS.tcs (syntax model) from "generationTemp/generated"
    	   to "src/com.sap.furcas.parser.tcs.stable". The bootstrapped parser will now
    	   be used per-default.
 
