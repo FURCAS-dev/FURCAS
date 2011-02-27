@@ -90,6 +90,17 @@ public class GeneratedClassesTest {
                     File.separator + BIN_DIR_NAME);
         }
 
+        // The non-workspace bundles are tricky to find, particularly when executing in a Maven
+        // environment. There, the bundles of the executing JUnit plugin test shell are obtained
+        // from the Maven repository under .m2/repository/... and may have slightly different versions
+        // as compared to the Eclipse instance installed under ${eclipse.location}. Therefore, the
+        // lookup should first check ${target.location} before ${eclipse.location}.
+        // Furthermore, the bundle JAR files may be located in some nested directory structure, such
+        // as .m2/repository/p2/osgi/bundle/org.eclipse.ui/3.6.2.M20110203-1100 for the bundle
+        // org.eclipse.ui-3.6.2.M20110203-1100.jar. The bundle location can be determined by
+        // Bundle.getLocation() and gives a hint at the physical location of the JAR file. Trailing
+        // slashes have to be removed.
+        // TODO continue here
         Object[] bundles = nonWorkspacePlugins.toArray();
         for (int i = 0; i < bundles.length; i++) {
             String bundlePath = null;
@@ -98,19 +109,28 @@ public class GeneratedClassesTest {
                 System.err.println("Unable to find bundle "+bundles[i]);
             } else {
                 System.out.println("found bundle "+bundle.getLocation());
-                String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-                if (eclipsePath.contains("/")) {
-                    if (eclipsePath.endsWith("/")) {
-                        bundlePath = eclipsePath + "plugins/" + bundleJarName;
-		    } else {
-                        bundlePath = eclipsePath + "/plugins/" + bundleJarName;
-		    }
+                String prefix = "reference:file:";
+                int prefixPos = bundle.getLocation().indexOf(prefix);
+                if (prefixPos >= 0) {
+                    bundlePath = bundle.getLocation().substring(prefixPos+prefix.length());
+                    if (bundlePath.endsWith(".jar/") || bundlePath.endsWith(".jar\\")) {
+                        bundlePath = bundlePath.substring(0, bundlePath.length()-1); // remove trailing slash
+                    }
                 } else {
-		    if (eclipsePath.endsWith("\\")) {
-                        bundlePath = eclipsePath + "plugins\\" + bundleJarName;
-		    } else {
-                        bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
-		    }
+                    String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+                    if (eclipsePath.contains("/")) {
+                        if (eclipsePath.endsWith("/")) {
+                            bundlePath = eclipsePath + "plugins/" + bundleJarName;
+                        } else {
+                            bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                        }
+                    } else {
+                        if (eclipsePath.endsWith("\\")) {
+                            bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+                        } else {
+                            bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+                        }
+                    }
                 }
                 requiredBundles.append(File.pathSeparator + bundlePath);
             }
