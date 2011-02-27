@@ -134,7 +134,8 @@ public class GeneratedClassesTest {
                 }
                 File f = new File(bundlePath);
                 try {
-                    System.out.println("Canonical bundle path: "+f.getCanonicalPath());
+                    System.out.print("Canonical bundle path: "+f.getCanonicalPath());
+                    System.out.println(f.exists() ? " EXISTS" : " DOES NOT EXIST");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
