@@ -120,12 +120,12 @@ syntax TCS {
                                 (default ? "default")
                                 "using" tokenName
                                 (orKeyword ? "orKeyword")
-                        ":"
+                        [":" [
                                 "value" "=" value{as = stringSymbol}
                                 (isDefined(serializer) ?
                                         "," "serializer" "=" serializer{as = stringSymbol}
-                                )
-                        ";"
+                                ) 
+                        ] {startNL = false} ";"]
                         --this is an oppositeEnd for TextBlockDefinition:parseRule
                         textBlockDefinition{forcedUpper=1}
                 ;
