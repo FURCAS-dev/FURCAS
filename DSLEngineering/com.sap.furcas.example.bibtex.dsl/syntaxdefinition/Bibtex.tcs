@@ -6,7 +6,7 @@ syntax Bibtex {
         
   primitiveTemplate integerSymbol for EInt default using INT
   : value = "Integer.valueOf(%token%)"
-  ;
+  ; 
          
   template LiteratureDb main context
   : name <newline>
