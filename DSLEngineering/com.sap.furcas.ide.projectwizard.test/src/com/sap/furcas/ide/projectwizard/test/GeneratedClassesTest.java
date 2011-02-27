@@ -116,6 +116,11 @@ public class GeneratedClassesTest {
                     if (bundlePath.endsWith(".jar/") || bundlePath.endsWith(".jar\\")) {
                         bundlePath = bundlePath.substring(0, bundlePath.length()-1); // remove trailing slash
                     }
+                    if (bundlePath.startsWith("..")) {
+                        // for some reason the current working directory, particularly for the relative paths
+                        // under Linux, seem to be two levels deeper than expected. We need to remove two leading ..
+                        bundlePath = bundlePath.substring(6); // four dots, two separators
+                    }
                 } else {
                     String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
                     if (eclipsePath.contains("/")) {
