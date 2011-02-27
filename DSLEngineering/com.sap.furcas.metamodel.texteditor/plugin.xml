@@ -6,7 +6,7 @@
 			class="com.sap.furcas.metamodel.texteditor.editor.TCSEditor"
 			extensions="tcs" 
 			id="com.sap.furcas.metamodel.texteditor.editor.TCSEditor" 
-			name="Textual TCS Editor"> 
+			name="TCS Text Editor"> 
 		</editor> 
 	</extension>
  <extension
