@@ -387,11 +387,15 @@ if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
 	 * @param start The {@link TextBlock} to begin the marking with.
 	 */
 	public static void markAscending(TextBlock start) {
-		start.setChildrenChanged(true);
-		TextBlock parent;
-		if((parent = start.getParent()) != null) {
-			markAscending(parent);
-		}
+	        if (start.isChildrenChanged()) {
+	            // everything above us is already marked
+	            return;
+	        } else {
+	            start.setChildrenChanged(true);
+	            if(start.getParent() != null) {
+	                markAscending(start.getParent());
+	            }
+	        }
 	}
 
 	/**
