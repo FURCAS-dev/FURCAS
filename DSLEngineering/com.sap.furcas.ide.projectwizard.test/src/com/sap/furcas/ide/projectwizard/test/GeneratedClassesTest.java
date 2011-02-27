@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +50,7 @@ public class GeneratedClassesTest {
      * This test method calls the other methods in this class to generate, compile and clean the java classes.
      */
     @Test
-    public void compileGeneratedClasses() {
+    public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
         SourceCodeFactory codeFactory = new SourceCodeFactory();
@@ -75,7 +77,7 @@ public class GeneratedClassesTest {
      * 
      * @return The classpath for the compilation process.
      */
-    private String getRequiredBundles() {
+    private String getRequiredBundles() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         getManifestPluginEntries();
         String eclipsePath;
         if (System.getProperty("eclipse.location")!=null) {
@@ -108,32 +110,33 @@ public class GeneratedClassesTest {
             if (bundle == null) {
                 System.err.println("Unable to find bundle "+bundles[i]);
             } else {
-                System.out.println("found bundle "+bundle.getLocation());
-                String prefix = "reference:file:";
-                int prefixPos = bundle.getLocation().indexOf(prefix);
-                if (prefixPos >= 0) {
-                    bundlePath = bundle.getLocation().substring(prefixPos+prefix.length());
-                    if (bundlePath.endsWith(".jar/") || bundlePath.endsWith(".jar\\")) {
-                        bundlePath = bundlePath.substring(0, bundlePath.length()-1); // remove trailing slash
-                    }
-                    if (bundlePath.startsWith("..")) {
-                        // for some reason the current working directory, particularly for the relative paths
-                        // under Linux, seem to be two levels deeper than expected. We need to remove two leading ..
-                        bundlePath = bundlePath.substring(6); // four dots, two separators
-                    }
-                } else {
-                    String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-                    if (eclipsePath.contains("/")) {
-                        if (eclipsePath.endsWith("/")) {
-                            bundlePath = eclipsePath + "plugins/" + bundleJarName;
-                        } else {
-                            bundlePath = eclipsePath + "/plugins/" + bundleJarName;
-                        }
+                try {
+                    Object bundleData = bundle.getClass().getMethod("getBundleData").invoke(bundle);
+                    Object bundleFile = bundleData.getClass().getMethod("getBundleFile").invoke(bundleData);
+                    File baseFile = (File) bundleFile.getClass().getMethod("getBaseFile").invoke(bundleFile);
+                    bundlePath = baseFile.getCanonicalPath();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // it didn't work; try something else
+                }
+                if (bundlePath != null) {
+                    File bundleJar = findBundleJar(bundle);
+                    if (bundleJar != null) {
+                        bundlePath = bundleJar.getCanonicalPath();
                     } else {
-                        if (eclipsePath.endsWith("\\")) {
-                            bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+                        String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+                        if (eclipsePath.contains("/")) {
+                            if (eclipsePath.endsWith("/")) {
+                                bundlePath = eclipsePath + "plugins/" + bundleJarName;
+                            } else {
+                                bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                            }
                         } else {
-                            bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+                            if (eclipsePath.endsWith("\\")) {
+                                bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+                            } else {
+                                bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+                            }
                         }
                     }
                 }
@@ -149,6 +152,27 @@ public class GeneratedClassesTest {
         }
 
         return requiredBundles.toString();
+    }
+
+    private File findBundleJar(Bundle bundle) {
+        File searchStartDir = new File(System.getProperty("target.location"));
+        return findRecursively(searchStartDir, bundle.toString());
+    }
+
+    private File findRecursively(File d, String string) {
+        if (d.exists() && d.isDirectory()) {
+            if (Arrays.asList(d.list()).contains(string)) {
+                return new File(d, string);
+            } else {
+                for (File entry : d.listFiles()) {
+                    File result = findRecursively(entry, string);
+                    if (result != null) {
+                        return result;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**
