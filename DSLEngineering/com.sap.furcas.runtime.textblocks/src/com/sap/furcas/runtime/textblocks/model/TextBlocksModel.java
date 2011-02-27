@@ -14,12 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.AbstractCommand;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
@@ -51,8 +46,6 @@ public class TextBlocksModel {
 
     private boolean usecache = false;
 
-    private final EditingDomain editingDomain;
-
     public boolean isUsecache() {
 	return usecache;
     }
@@ -61,49 +54,21 @@ public class TextBlocksModel {
 	this.usecache = usecache;
     }
 
-    /**
-     * @param rootBlock2
-     * @param modelAdapter
-     */
-    public TextBlocksModel(TextBlock rootBlock2, IModelElementInvestigator modelAdapter) {
-        this(rootBlock2, Version.REFERENCE, modelAdapter,
-                new AdapterFactoryEditingDomain(new AdapterFactoryImpl(),
-                        new BasicCommandStack()));
+    public TextBlocksModel(TextBlock rootBlock, IModelElementInvestigator modelAdapter) {
+	this(rootBlock, Version.REFERENCE, modelAdapter);
     }
 
-    /**
-     * @param rootBlock2
-     * @param modelAdapter
-     */
-    public TextBlocksModel(TextBlock rootBlock2, IModelElementInvestigator modelAdapter, EditingDomain editingDomain) {
-	this(rootBlock2, Version.REFERENCE, modelAdapter, editingDomain);
-    }
-
-    /**
-     * @param rootBlock2
-     * @param modelAdapter
-     * @param editingDomain
-     */
-    public TextBlocksModel(TextBlock rootBlock2, Version activeVersion, IModelElementInvestigator modelAdapter,
-	    EditingDomain editingDomain) {
+    public TextBlocksModel(TextBlock rootBlock2, Version activeVersion, IModelElementInvestigator modelAdapter) {
 	this.activeVersion = activeVersion;
-	this.editingDomain = editingDomain;
-	navigator = new VersionedTextBlockNavigator(activeVersion);
+	this.navigator = new VersionedTextBlockNavigator(activeVersion);
 	setRootTextBlock(rootBlock2);
-	shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
+	this.shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
     }
 
-    /**
-     * @return the activeVersion
-     */
     public Version getActiveVersion() {
 	return activeVersion;
     }
 
-    /**
-     * @param activeVersion
-     *            the activeVersion to set
-     */
     public void setActiveVersion(Version activeVersion) {
 	this.activeVersion = activeVersion;
     }
@@ -112,10 +77,6 @@ public class TextBlocksModel {
 	return TbVersionUtil.getOtherVersion(node, activeVersion);
     }
 
-    /**
-     * @return
-     * 
-     */
     public TextBlock getRoot() {
 	return rootBlock;
     }
@@ -367,12 +328,7 @@ public class TextBlocksModel {
 	return resultString;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.jface.text.ITextStore#replace(int, int,
-     * java.lang.String)
-     * 
+    /**
      * As more than one token can be located within the replaced region, the
      * situation is handled as follows: The first affected token has it's
      * intersection with the replaced region replaced by the newText. The last
@@ -381,97 +337,45 @@ public class TextBlocksModel {
      * 
      * Any of the updated tokens left with a length of 0 are removed from their
      * parent textblock. Now empty textblocks are removed recursively as well.
+
+     * @see org.eclipse.jface.text.ITextStore#replace(int, int, java.lang.String)
+     * 
      */
     public void replace(final int replacedRegionOffset, final int replacedRegionLength, final String newText) {
-        editingDomain.getCommandStack().execute(new AbstractCommand("Replace") {
-
-            @Override
-            public boolean canExecute() {
-                return true;
-            }
-
-            @Override
-            public void execute() {
-                TextBlock workingcopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootBlock);
-                setRootTextBlock(workingcopy);
-                // if (ParsingTextblocksActivator.getDefault() != null) {
-                // ParsingTextblocksActivator.getDefault().enableMoinLogging(
-                // workingcopy.get___Connection());
-                // }
-                replace(workingcopy, replacedRegionOffset, replacedRegionLength, newText);
-                // if (ParsingTextblocksActivator.getDefault() != null) {
-                // ParsingTextblocksActivator.getDefault().disableMoinLogging(
-                // workingcopy.get___Connection());
-                // }
-            }
-
-            @Override
-            public void redo() {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
-	
-
+        TextBlock workingcopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootBlock);
+        setRootTextBlock(workingcopy);
+        replace(workingcopy, replacedRegionOffset, replacedRegionLength, newText);
     }
 
     public void doShortPrettyPrintToEditableVersion() {
-	editingDomain.getCommandStack().execute(new AbstractCommand("Pretty Print Short") {
-
-	    @Override
-	    public boolean canExecute() {
-		return true;
-	    }
-
-	    @Override
-	    public void execute() {
-		AbstractToken tok = getStartToken();
-		while (tok != null && !(tok instanceof Eostoken)
-		/*
-		 * * && tok. is___Alive ()
-		 */) {
-		    if (tok instanceof LexedToken) {
-			String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
-			// TODO check what to do with the empty string case!
-			if (newValue != null && !newValue.equals(tok.getValue()) && !newValue.equals("")) {
-			    int length = tok.getLength();
-			    int offset = TbUtil.getAbsoluteOffset(tok);
-			    if (newValue.length() != length) {
-				replaceInNonEmptyTree(offset, length, newValue, rootBlock);
-			    } else {
-				tok.setValue(newValue);
-			    }
-			    rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset)
-				    + newValue
-				    + rootBlock.getCachedString()
-					    .substring(offset + length, rootBlock.getCachedString().length()));
-			}
-		    }
-		    tok = TbNavigationUtil.nextToken(tok);
-		}
-	    }
-
-	    @Override
-	    public void redo() {
-		// TODO Auto-generated method stub
-
-	    }
-
-	});
-
+        AbstractToken tok = getStartToken();
+        while (tok != null && !(tok instanceof Eostoken)
+        /*
+         * * && tok. is___Alive ()
+         */) {
+            if (tok instanceof LexedToken) {
+                String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
+                // TODO check what to do with the empty string case!
+                if (newValue != null && !newValue.equals(tok.getValue()) && !newValue.equals("")) {
+                    int length = tok.getLength();
+                    int offset = TbUtil.getAbsoluteOffset(tok);
+                    if (newValue.length() != length) {
+                        replaceInNonEmptyTree(offset, length, newValue, rootBlock);
+                    } else {
+                        tok.setValue(newValue);
+                    }
+                    rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + newValue
+                            + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()));
+                }
+            }
+            tok = TbNavigationUtil.nextToken(tok);
+        }
     }
 
     public void reduceToMinimalVersion() {
 	shortPrettyPrinter.makeFlyweight(rootBlock);
     }
 
-    /**
-     * @param replacedRegionAbsoluteOffset
-     * @param replacedRegionLength
-     * @param newText
-     * @param workingCopy
-     */
     private void replaceInNonEmptyTree(int replacedRegionAbsoluteOffset, int replacedRegionLength, String newText,
 	    TextBlock workingCopy) {
 
@@ -746,7 +650,7 @@ public class TextBlocksModel {
      * @param newText
      * @param workingCopy
      */
-    static void replaceInEmptyTree(String newText, TextBlock workingCopy) {
+    private void replaceInEmptyTree(String newText, TextBlock workingCopy) {
 	workingCopy.setLength(newText.length());
 
 	if (workingCopy.getTokens().size() == 2) {
@@ -778,45 +682,24 @@ public class TextBlocksModel {
      * @param newText
      */
     public void replace(final TextBlock root, final int replacedRegionAbsoluteOffset, final int replacedRegionLength, final String newText) {
-        editingDomain.getCommandStack().execute(new AbstractCommand("Replace") {
+        TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(root);
+        if (replacedRegionAbsoluteOffset < 0 || replacedRegionAbsoluteOffset > root.getLength()) {
+            throw new IllegalArgumentException(Integer.toString(replacedRegionLength));
+        }
+        if (replacedRegionAbsoluteOffset + replacedRegionLength > root.getLength()) {
+            throw new IllegalArgumentException((replacedRegionAbsoluteOffset + replacedRegionLength) + " > " + root.getLength());
+        }
+        if (root.getParent() != null) {
+            throw new IllegalArgumentException("TextBlock is not root.");
+        }
 
-            @Override
-            public boolean canExecute() {
-                return true;
-            }
-
-            @Override
-            public void execute() {
-
-                TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(root);
-                if (replacedRegionAbsoluteOffset < 0 || replacedRegionAbsoluteOffset > root.getLength()) {
-                    throw new IllegalArgumentException(Integer.toString(replacedRegionLength));
-                }
-                if (replacedRegionAbsoluteOffset + replacedRegionLength > root.getLength()) {
-                    throw new IllegalArgumentException((replacedRegionAbsoluteOffset + replacedRegionLength) + " > " + root.getLength());
-                }
-                if (root.getParent() != null) {
-                    throw new IllegalArgumentException("TextBlock is not root.");
-                }
-
-                if (root.getLength() == 0) {
-
-                    replaceInEmptyTree(newText, workingCopy);
-                } else {
-                    replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
-
-                }
-                workingCopy.setChildrenChanged(true);
-                TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
-            }
-
-            @Override
-            public void redo() {
-                // TODO Auto-generated method stub
-
-            }
-
-        });
+        if (root.getLength() == 0) {
+            replaceInEmptyTree(newText, workingCopy);
+        } else {
+            replaceInNonEmptyTree(replacedRegionAbsoluteOffset, replacedRegionLength, newText, workingCopy);
+        }
+        workingCopy.setChildrenChanged(true);
+        TbReplacingHelper.updateBlockCachedString(workingCopy, replacedRegionAbsoluteOffset, replacedRegionLength, newText);
     }
 
     /**

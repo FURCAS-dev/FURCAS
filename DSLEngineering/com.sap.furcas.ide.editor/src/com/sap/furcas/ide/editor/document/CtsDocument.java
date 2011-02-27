@@ -87,7 +87,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     public void completeInit(ParserCollection parserCollection) throws PartInitException {
         validateAndMigrateTextBlocksModel(parserCollection);
 
-        model = new TextBlocksModel(rootBlock, parserCollection.parser.getInjector().getModelAdapter(), editingDomain);
+        model = new TextBlocksModel(rootBlock, parserCollection.parser.getInjector().getModelAdapter());
         expandToEditableVersion();
         refreshContentFromTextBlocksModel();
         // enable usage of cached string for get() operations as it is faster.
@@ -117,10 +117,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         } else if (!TbUtil.isTextBlockOfType(rootTemplate, rootBlock)) {
             throw new PartInitException("Main template " + MessageHelper.getTemplateName(rootTemplate) + " does not fit the given TextBlocks model which uses " + MessageHelper.getTemplateName(rootBlock.getType().getParseRule()));
         }
-        
-        TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer,
-                parserCollection.shortPrettyPrinter, /*fail silently*/false);
-        
+        TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, parserCollection.parser, parserCollection.lexer, parserCollection.shortPrettyPrinter);
         try {
             TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
             TbValidationUtil.assertCacheIsUpToDate(rootBlock);
@@ -185,6 +182,7 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
      * Updates {@link #getRootBlock()} and {@link #getRootObject()}. 
      */
     public void setModelContent(TextBlock newRootBlock) {
+        assert model.getActiveVersion() == newRootBlock.getVersion();
         this.rootBlock = newRootBlock;
 	for (EObject root : newRootBlock.getCorrespondingModelElements()) {
 	    rootObject = root;
