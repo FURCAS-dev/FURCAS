@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g 2011-02-22 15:46:36
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g 2011-02-27 01:34:00
 
 package com.sap.furcas.parser.tcs.stable;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -207,17 +207,17 @@ public class TCSLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g"; }
+    public String getGrammarFileName() { return "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g"; }
 
     // $ANTLR start "T__49"
     public final void mT__49() throws RecognitionException {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:62:7: ( 'nonPrimary' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:62:9: 'nonPrimary'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:62:7: ( 'leftSpace' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:62:9: 'leftSpace'
             {
-            match("nonPrimary"); 
+            match("leftSpace"); 
 
 
             }
@@ -235,10 +235,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:63:7: ( 'never' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:63:9: 'never'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:63:7: ( 'keywords' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:63:9: 'keywords'
             {
-            match("never"); 
+            match("keywords"); 
 
 
             }
@@ -256,10 +256,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:64:7: ( 'ifmissing' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:64:9: 'ifmissing'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:64:7: ( 'autoCreate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:64:9: 'autoCreate'
             {
-            match("ifmissing"); 
+            match("autoCreate"); 
 
 
             }
@@ -277,10 +277,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:65:7: ( 'source' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:65:9: 'source'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:65:7: ( 'startNbNL' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:65:9: 'startNbNL'
             {
-            match("source"); 
+            match("startNbNL"); 
 
 
             }
@@ -298,10 +298,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:66:7: ( 'lexer' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:66:9: 'lexer'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:66:7: ( 'never' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:66:9: 'never'
             {
-            match("lexer"); 
+            match("never"); 
 
 
             }
@@ -319,10 +319,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:67:7: ( 'prefix' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:67:9: 'prefix'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:67:7: ( 'forcedUpper' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:67:9: 'forcedUpper'
             {
-            match("prefix"); 
+            match("forcedUpper"); 
 
 
             }
@@ -340,10 +340,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:68:7: ( 'separator' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:68:9: 'separator'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:68:7: ( 'endNL' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:68:9: 'endNL'
             {
-            match("separator"); 
+            match("endNL"); 
 
 
             }
@@ -361,10 +361,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:69:7: ( 'symbols' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:69:9: 'symbols'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:69:7: ( 'main' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:69:9: 'main'
             {
-            match("symbols"); 
+            match("main"); 
 
 
             }
@@ -382,10 +382,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:70:7: ( 'and' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:70:9: 'and'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:70:7: ( 'value' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:70:9: 'value'
             {
-            match("and"); 
+            match("value"); 
 
 
             }
@@ -403,10 +403,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:71:7: ( 'part' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:71:9: 'part'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:71:7: ( 'always' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:71:9: 'always'
             {
-            match("part"); 
+            match("always"); 
 
 
             }
@@ -424,10 +424,11 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:72:7: ( 'k' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:72:9: 'k'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:72:7: ( 'hex' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:72:9: 'hex'
             {
-            match('k'); 
+            match("hex"); 
+
 
             }
 
@@ -444,10 +445,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:73:7: ( 'for' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:73:9: 'for'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:73:7: ( 'lookIn' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:73:9: 'lookIn'
             {
-            match("for"); 
+            match("lookIn"); 
 
 
             }
@@ -465,10 +466,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:74:7: ( 'enumerationTemplate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:74:9: 'enumerationTemplate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:74:7: ( 'importContext' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:74:9: 'importContext'
             {
-            match("enumerationTemplate"); 
+            match("importContext"); 
 
 
             }
@@ -486,10 +487,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:75:7: ( 'operators' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:75:9: 'operators'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:75:7: ( 'true' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:75:9: 'true'
             {
-            match("operators"); 
+            match("true"); 
 
 
             }
@@ -507,10 +508,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:76:7: ( 'orKeyword' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:76:9: 'orKeyword'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:76:7: ( 'as' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:76:9: 'as'
             {
-            match("orKeyword"); 
+            match("as"); 
 
 
             }
@@ -528,10 +529,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:77:7: ( 'leftSpace' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:77:9: 'leftSpace'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:77:7: ( 'addToContext' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:77:9: 'addToContext'
             {
-            match("leftSpace"); 
+            match("addToContext"); 
 
 
             }
@@ -549,10 +550,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:78:7: ( 'value' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:78:9: 'value'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:78:7: ( 'startNL' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:78:9: 'startNL'
             {
-            match("value"); 
+            match("startNL"); 
 
 
             }
@@ -570,10 +571,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:79:7: ( 'partial' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:79:9: 'partial'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:79:7: ( 'foreach' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:79:9: 'foreach'
             {
-            match("partial"); 
+            match("foreach"); 
 
 
             }
@@ -591,10 +592,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:80:7: ( 'startNbNL' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:80:9: 'startNbNL'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:80:7: ( 'source' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:80:9: 'source'
             {
-            match("startNbNL"); 
+            match("source"); 
 
 
             }
@@ -612,10 +613,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:81:7: ( 'drop' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:81:9: 'drop'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:81:7: ( 'octal' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:81:9: 'octal'
             {
-            match("drop"); 
+            match("octal"); 
 
 
             }
@@ -633,8 +634,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:82:7: ( 'using' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:82:9: 'using'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:82:7: ( 'using' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:82:9: 'using'
             {
             match("using"); 
 
@@ -654,10 +655,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:83:7: ( 'disambiguateV3' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:83:9: 'disambiguateV3'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:83:7: ( 'one' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:83:9: 'one'
             {
-            match("disambiguateV3"); 
+            match("one"); 
 
 
             }
@@ -675,10 +676,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:84:7: ( 'createAs' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:84:9: 'createAs'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:84:7: ( 'token' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:84:9: 'token'
             {
-            match("createAs"); 
+            match("token"); 
 
 
             }
@@ -696,10 +697,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:85:7: ( 'endOfLine' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:85:9: 'endOfLine'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:85:7: ( 'partial' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:85:9: 'partial'
             {
-            match("endOfLine"); 
+            match("partial"); 
 
 
             }
@@ -717,10 +718,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:86:7: ( 'operatorTemplate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:86:9: 'operatorTemplate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:86:7: ( 'deep' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:86:9: 'deep'
             {
-            match("operatorTemplate"); 
+            match("deep"); 
 
 
             }
@@ -738,10 +739,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:87:7: ( 'one' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:87:9: 'one'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:87:7: ( 'enumerationTemplate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:87:9: 'enumerationTemplate'
             {
-            match("one"); 
+            match("enumerationTemplate"); 
 
 
             }
@@ -759,10 +760,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:88:7: ( 'createIn' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:88:9: 'createIn'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:88:7: ( 'lookupScope' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:88:9: 'lookupScope'
             {
-            match("createIn"); 
+            match("lookupScope"); 
 
 
             }
@@ -780,10 +781,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:89:7: ( 'auto' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:89:9: 'auto'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:89:7: ( 'referenceOnly' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:89:9: 'referenceOnly'
             {
-            match("auto"); 
+            match("referenceOnly"); 
 
 
             }
@@ -801,10 +802,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:90:7: ( 'false' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:90:9: 'false'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:90:7: ( 'and' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:90:9: 'and'
             {
-            match("false"); 
+            match("and"); 
 
 
             }
@@ -822,10 +823,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:91:7: ( 'as' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:91:9: 'as'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:91:7: ( 'part' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:91:9: 'part'
             {
-            match("as"); 
+            match("part"); 
 
 
             }
@@ -843,10 +844,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:92:7: ( 'template' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:92:9: 'template'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:92:7: ( 'multi' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:92:9: 'multi'
             {
-            match("template"); 
+            match("multi"); 
 
 
             }
@@ -864,10 +865,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:93:7: ( 'when' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:93:9: 'when'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:93:7: ( 'mode' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:93:9: 'mode'
             {
-            match("when"); 
+            match("mode"); 
 
 
             }
@@ -885,10 +886,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:94:7: ( 'keywords' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:94:9: 'keywords'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:94:7: ( 'leftNone' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:94:9: 'leftNone'
             {
-            match("keywords"); 
+            match("leftNone"); 
 
 
             }
@@ -906,10 +907,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:95:7: ( 'token' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:95:9: 'token'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:95:7: ( 'postfix' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:95:9: 'postfix'
             {
-            match("token"); 
+            match("postfix"); 
 
 
             }
@@ -927,10 +928,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:96:7: ( 'end' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:96:9: 'end'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:96:7: ( 'refersTo' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:96:9: 'refersTo'
             {
-            match("end"); 
+            match("refersTo"); 
 
 
             }
@@ -948,10 +949,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:97:7: ( 'mode' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:97:9: 'mode'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:97:7: ( 'referenceBy' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:97:9: 'referenceBy'
             {
-            match("mode"); 
+            match("referenceBy"); 
 
 
             }
@@ -969,10 +970,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:98:7: ( 'importContext' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:98:9: 'importContext'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:98:7: ( 'abstract' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:98:9: 'abstract'
             {
-            match("importContext"); 
+            match("abstract"); 
 
 
             }
@@ -990,10 +991,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:99:7: ( 'multi' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:99:9: 'multi'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:99:7: ( 'separator' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:99:9: 'separator'
             {
-            match("multi"); 
+            match("separator"); 
 
 
             }
@@ -1011,10 +1012,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:100:7: ( 'autoCreate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:100:9: 'autoCreate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:100:7: ( 'when' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:100:9: 'when'
             {
-            match("autoCreate"); 
+            match("when"); 
 
 
             }
@@ -1032,10 +1033,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:101:7: ( 'forcedLower' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:101:9: 'forcedLower'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:101:7: ( 'instanceOf' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:101:9: 'instanceOf'
             {
-            match("forcedLower"); 
+            match("instanceOf"); 
 
 
             }
@@ -1053,10 +1054,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:102:7: ( 'abstract' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:102:9: 'abstract'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:102:7: ( 'createIn' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:102:9: 'createIn'
             {
-            match("abstract"); 
+            match("createIn"); 
 
 
             }
@@ -1074,10 +1075,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:103:7: ( 'foreach' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:103:9: 'foreach'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:103:7: ( 'all' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:103:9: 'all'
             {
-            match("foreach"); 
+            match("all"); 
 
 
             }
@@ -1095,10 +1096,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:104:7: ( 'default' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:104:9: 'default'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:104:7: ( 'ifmissing' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:104:9: 'ifmissing'
             {
-            match("default"); 
+            match("ifmissing"); 
 
 
             }
@@ -1116,10 +1117,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:105:7: ( 'storeOpTo' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:105:9: 'storeOpTo'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:105:7: ( 'forcedLower' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:105:9: 'forcedLower'
             {
-            match("storeOpTo"); 
+            match("forcedLower"); 
 
 
             }
@@ -1137,10 +1138,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:106:7: ( 'instanceOf' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:106:9: 'instanceOf'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:106:7: ( 'syntax' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:106:9: 'syntax'
             {
-            match("instanceOf"); 
+            match("syntax"); 
 
 
             }
@@ -1158,10 +1159,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:107:7: ( 'disambiguate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:107:9: 'disambiguate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:107:7: ( 'function' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:107:9: 'function'
             {
-            match("disambiguate"); 
+            match("function"); 
 
 
             }
@@ -1179,10 +1180,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:108:7: ( 'true' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:108:9: 'true'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:108:7: ( 'operators' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:108:9: 'operators'
             {
-            match("true"); 
+            match("operators"); 
 
 
             }
@@ -1200,10 +1201,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:109:7: ( 'refersTo' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:109:9: 'refersTo'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:109:7: ( 'auto' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:109:9: 'auto'
             {
-            match("refersTo"); 
+            match("auto"); 
 
 
             }
@@ -1221,10 +1222,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:110:7: ( 'function' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:110:9: 'function'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:110:7: ( 'left' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:110:9: 'left'
             {
-            match("function"); 
+            match("left"); 
 
 
             }
@@ -1242,10 +1243,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:111:7: ( 'semDisambiguate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:111:9: 'semDisambiguate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:111:7: ( 'rightNone' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:111:9: 'rightNone'
             {
-            match("semDisambiguate"); 
+            match("rightNone"); 
 
 
             }
@@ -1263,10 +1264,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:112:7: ( 'octal' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:112:9: 'octal'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:112:7: ( 'disambiguate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:112:9: 'disambiguate'
             {
-            match("octal"); 
+            match("disambiguate"); 
 
 
             }
@@ -1284,10 +1285,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:113:8: ( 'forcedUpper' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:113:10: 'forcedUpper'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:113:8: ( 'default' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:113:10: 'default'
             {
-            match("forcedUpper"); 
+            match("default"); 
 
 
             }
@@ -1305,10 +1306,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:114:8: ( 'leftNone' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:114:10: 'leftNone'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:114:8: ( 'storeOpTo' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:114:10: 'storeOpTo'
             {
-            match("leftNone"); 
+            match("storeOpTo"); 
 
 
             }
@@ -1326,10 +1327,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:115:8: ( 'deep' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:115:10: 'deep'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:115:8: ( 'omitted' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:115:10: 'omitted'
             {
-            match("deep"); 
+            match("omitted"); 
 
 
             }
@@ -1347,10 +1348,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:116:8: ( 'context' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:116:10: 'context'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:116:8: ( 'disambiguateV3' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:116:10: 'disambiguateV3'
             {
-            match("context"); 
+            match("disambiguateV3"); 
 
 
             }
@@ -1368,10 +1369,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:117:8: ( 'indentIncr' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:117:10: 'indentIncr'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:117:8: ( 'operatored' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:117:10: 'operatored'
             {
-            match("indentIncr"); 
+            match("operatored"); 
 
 
             }
@@ -1389,10 +1390,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:118:8: ( 'addToContext' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:118:10: 'addToContext'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:118:8: ( 'for' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:118:10: 'for'
             {
-            match("addToContext"); 
+            match("for"); 
 
 
             }
@@ -1410,11 +1411,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:119:8: ( 'isDefined' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:119:10: 'isDefined'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:119:8: ( 'k' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:119:10: 'k'
             {
-            match("isDefined"); 
-
+            match('k'); 
 
             }
 
@@ -1431,10 +1431,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:120:8: ( 'endNL' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:120:10: 'endNL'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:120:8: ( 'lexer' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:120:10: 'lexer'
             {
-            match("endNL"); 
+            match("lexer"); 
 
 
             }
@@ -1452,10 +1452,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:121:8: ( 'multiLine' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:121:10: 'multiLine'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:121:8: ( 'prefix' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:121:10: 'prefix'
             {
-            match("multiLine"); 
+            match("prefix"); 
 
 
             }
@@ -1473,10 +1473,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:122:8: ( 'main' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:122:10: 'main'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:122:8: ( 'createAs' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:122:10: 'createAs'
             {
-            match("main"); 
+            match("createAs"); 
 
 
             }
@@ -1494,10 +1494,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:123:8: ( 'hex' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:123:10: 'hex'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:123:8: ( 'primitiveTemplate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:123:10: 'primitiveTemplate'
             {
-            match("hex"); 
+            match("primitiveTemplate"); 
 
 
             }
@@ -1515,10 +1515,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:124:8: ( 'rightSpace' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:124:10: 'rightSpace'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:124:8: ( 'semDisambiguate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:124:10: 'semDisambiguate'
             {
-            match("rightSpace"); 
+            match("semDisambiguate"); 
 
 
             }
@@ -1536,10 +1536,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:125:8: ( 'primitiveTemplate' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:125:10: 'primitiveTemplate'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:125:8: ( 'rightSpace' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:125:10: 'rightSpace'
             {
-            match("primitiveTemplate"); 
+            match("rightSpace"); 
 
 
             }
@@ -1557,10 +1557,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:126:8: ( 'referenceOnly' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:126:10: 'referenceOnly'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:126:8: ( 'indentIncr' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:126:10: 'indentIncr'
             {
-            match("referenceOnly"); 
+            match("indentIncr"); 
 
 
             }
@@ -1578,10 +1578,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:127:8: ( 'omitted' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:127:10: 'omitted'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:127:8: ( 'priority' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:127:10: 'priority'
             {
-            match("omitted"); 
+            match("priority"); 
 
 
             }
@@ -1599,10 +1599,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:128:8: ( 'left' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:128:10: 'left'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:128:8: ( 'end' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:128:10: 'end'
             {
-            match("left"); 
+            match("end"); 
 
 
             }
@@ -1620,10 +1620,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:129:8: ( 'right' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:129:10: 'right'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:129:8: ( 'multiLine' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:129:10: 'multiLine'
             {
-            match("right"); 
+            match("multiLine"); 
 
 
             }
@@ -1641,10 +1641,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:130:8: ( 'start' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:130:10: 'start'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:130:8: ( 'right' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:130:10: 'right'
             {
-            match("start"); 
+            match("right"); 
 
 
             }
@@ -1662,10 +1662,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:131:8: ( 'priority' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:131:10: 'priority'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:131:8: ( 'context' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:131:10: 'context'
             {
-            match("priority"); 
+            match("context"); 
 
 
             }
@@ -1683,10 +1683,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:132:8: ( 'postfix' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:132:10: 'postfix'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:132:8: ( 'operatorTemplate' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:132:10: 'operatorTemplate'
             {
-            match("postfix"); 
+            match("operatorTemplate"); 
 
 
             }
@@ -1704,10 +1704,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__120;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:133:8: ( 'referenceBy' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:133:10: 'referenceBy'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:133:8: ( 'symbols' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:133:10: 'symbols'
             {
-            match("referenceBy"); 
+            match("symbols"); 
 
 
             }
@@ -1725,10 +1725,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__121;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:134:8: ( 'syntax' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:134:10: 'syntax'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:134:8: ( 'start' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:134:10: 'start'
             {
-            match("syntax"); 
+            match("start"); 
 
 
             }
@@ -1746,10 +1746,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__122;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:135:8: ( 'always' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:135:10: 'always'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:135:8: ( 'endOfLine' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:135:10: 'endOfLine'
             {
-            match("always"); 
+            match("endOfLine"); 
 
 
             }
@@ -1767,10 +1767,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__123;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:136:8: ( 'lookIn' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:136:10: 'lookIn'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:136:8: ( 'template' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:136:10: 'template'
             {
-            match("lookIn"); 
+            match("template"); 
 
 
             }
@@ -1788,10 +1788,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__124;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:137:8: ( 'serializer' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:137:10: 'serializer'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:137:8: ( 'nonPrimary' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:137:10: 'nonPrimary'
             {
-            match("serializer"); 
+            match("nonPrimary"); 
 
 
             }
@@ -1809,10 +1809,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__125;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:138:8: ( 'rightNone' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:138:10: 'rightNone'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:138:8: ( 'orKeyword' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:138:10: 'orKeyword'
             {
-            match("rightNone"); 
+            match("orKeyword"); 
 
 
             }
@@ -1830,10 +1830,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__126;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:139:8: ( 'all' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:139:10: 'all'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:139:8: ( 'esc' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:139:10: 'esc'
             {
-            match("all"); 
+            match("esc"); 
 
 
             }
@@ -1851,10 +1851,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__127;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:140:8: ( 'operatored' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:140:10: 'operatored'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:140:8: ( 'drop' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:140:10: 'drop'
             {
-            match("operatored"); 
+            match("drop"); 
 
 
             }
@@ -1872,8 +1872,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__128;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:141:8: ( 'nbNL' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:141:10: 'nbNL'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:141:8: ( 'nbNL' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:141:10: 'nbNL'
             {
             match("nbNL"); 
 
@@ -1893,10 +1893,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__129;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:142:8: ( 'startNL' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:142:10: 'startNL'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:142:8: ( 'false' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:142:10: 'false'
             {
-            match("startNL"); 
+            match("false"); 
 
 
             }
@@ -1914,10 +1914,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__130;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:143:8: ( 'word' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:143:10: 'word'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:143:8: ( 'isDefined' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:143:10: 'isDefined'
             {
-            match("word"); 
+            match("isDefined"); 
 
 
             }
@@ -1935,10 +1935,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__131;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:144:8: ( 'esc' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:144:10: 'esc'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:144:8: ( 'storeRightTo' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:144:10: 'storeRightTo'
             {
-            match("esc"); 
+            match("storeRightTo"); 
 
 
             }
@@ -1956,10 +1956,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__132;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:145:8: ( 'lookupScope' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:145:10: 'lookupScope'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:145:8: ( 'word' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:145:10: 'word'
             {
-            match("lookupScope"); 
+            match("word"); 
 
 
             }
@@ -1977,10 +1977,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = T__133;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:146:8: ( 'storeRightTo' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:146:10: 'storeRightTo'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:146:8: ( 'serializer' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:146:10: 'serializer'
             {
-            match("storeRightTo"); 
+            match("serializer"); 
 
 
             }
@@ -1998,21 +1998,21 @@ public class TCSLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1969:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1969:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:9: '--' (~ ( '\\r' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:9: '--' (~ ( '\\r' | '\\n' ) )*
             {
             match("--"); 
 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:14: (~ ( '\\r' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -2025,7 +2025,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1970:15: ~ ( '\\r' | '\\n' )
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1970:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2071,21 +2071,21 @@ public class TCSLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1975:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1975:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/**"); 
 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -2110,7 +2110,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1976:44: ( '\\n' | ~ '\\n' )
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1976:44: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2158,8 +2158,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LSQUARE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1981:3: ( '[' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1982:3: '['
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1981:3: ( '[' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1982:3: '['
             {
             match('['); 
 
@@ -2178,8 +2178,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = RSQUARE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1987:3: ( ']' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1988:3: ']'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1987:3: ( ']' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1988:3: ']'
             {
             match(']'); 
 
@@ -2198,8 +2198,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DLSQUARE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1993:3: ( '[[' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1994:3: '[['
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1993:3: ( '[[' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1994:3: '[['
             {
             match("[["); 
 
@@ -2219,8 +2219,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DRSQUARE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1999:3: ( ']]' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2000:3: ']]'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1999:3: ( ']]' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2000:3: ']]'
             {
             match("]]"); 
 
@@ -2240,8 +2240,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = EXCL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2005:3: ( '!' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2006:3: '!'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2005:3: ( '!' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2006:3: '!'
             {
             match('!'); 
 
@@ -2260,8 +2260,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = COMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2011:3: ( ',' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2012:3: ','
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2011:3: ( ',' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2012:3: ','
             {
             match(','); 
 
@@ -2280,8 +2280,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2017:3: ( '(' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2018:3: '('
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2017:3: ( '(' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2018:3: '('
             {
             match('('); 
 
@@ -2300,8 +2300,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2023:3: ( ')' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2024:3: ')'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2023:3: ( ')' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2024:3: ')'
             {
             match(')'); 
 
@@ -2320,8 +2320,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2029:3: ( '{' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2030:3: '{'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2029:3: ( '{' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2030:3: '{'
             {
             match('{'); 
 
@@ -2340,8 +2340,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = RCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2035:3: ( '}' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2036:3: '}'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2035:3: ( '}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2036:3: '}'
             {
             match('}'); 
 
@@ -2360,8 +2360,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DLCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2041:3: ( '{{' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2042:3: '{{'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2041:3: ( '{{' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2042:3: '{{'
             {
             match("{{"); 
 
@@ -2381,8 +2381,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DRCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2047:3: ( '}}' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2048:3: '}}'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2047:3: ( '}}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2048:3: '}}'
             {
             match("}}"); 
 
@@ -2402,8 +2402,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2053:3: ( ';' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2054:3: ';'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2053:3: ( ';' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2054:3: ';'
             {
             match(';'); 
 
@@ -2422,8 +2422,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2059:3: ( ':' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2060:3: ':'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2059:3: ( ':' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2060:3: ':'
             {
             match(':'); 
 
@@ -2442,8 +2442,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DLCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2065:3: ( '::' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2066:3: '::'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2065:3: ( '::' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2066:3: '::'
             {
             match("::"); 
 
@@ -2463,8 +2463,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = PIPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2071:3: ( '|' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2072:3: '|'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2071:3: ( '|' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2072:3: '|'
             {
             match('|'); 
 
@@ -2483,8 +2483,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = SHARP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2077:3: ( '#' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2078:3: '#'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2077:3: ( '#' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2078:3: '#'
             {
             match('#'); 
 
@@ -2503,8 +2503,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = QMARK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2083:3: ( '?' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2084:3: '?'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2083:3: ( '?' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2084:3: '?'
             {
             match('?'); 
 
@@ -2523,8 +2523,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = DOLLAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2089:3: ( '$' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2090:3: '$'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2089:3: ( '$' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2090:3: '$'
             {
             match('$'); 
 
@@ -2543,8 +2543,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = AROBAS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2095:3: ( '@' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2096:3: '@'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2095:3: ( '@' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2096:3: '@'
             {
             match('@'); 
 
@@ -2563,8 +2563,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = POINT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2101:3: ( '.' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2102:3: '.'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2101:3: ( '.' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2102:3: '.'
             {
             match('.'); 
 
@@ -2583,8 +2583,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = RARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2107:3: ( '->' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2108:3: '->'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2107:3: ( '->' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2108:3: '->'
             {
             match("->"); 
 
@@ -2604,8 +2604,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = MINUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2113:3: ( '-' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2114:3: '-'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2113:3: ( '-' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2114:3: '-'
             {
             match('-'); 
 
@@ -2624,8 +2624,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2119:3: ( '*' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2120:3: '*'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2119:3: ( '*' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2120:3: '*'
             {
             match('*'); 
 
@@ -2644,8 +2644,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = SLASH;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2125:3: ( '/' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2126:3: '/'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2125:3: ( '/' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2126:3: '/'
             {
             match('/'); 
 
@@ -2664,8 +2664,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = PLUS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2131:3: ( '+' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2132:3: '+'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2131:3: ( '+' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2132:3: '+'
             {
             match('+'); 
 
@@ -2684,8 +2684,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = EQ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2137:3: ( '=' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2138:3: '='
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2137:3: ( '=' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2138:3: '='
             {
             match('='); 
 
@@ -2704,8 +2704,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = GT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2143:3: ( '>' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2144:3: '>'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2143:3: ( '>' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2144:3: '>'
             {
             match('>'); 
 
@@ -2724,8 +2724,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2149:3: ( '<' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2150:3: '<'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2149:3: ( '<' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2150:3: '<'
             {
             match('<'); 
 
@@ -2744,8 +2744,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = GE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2155:3: ( '>=' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2156:3: '>='
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2155:3: ( '>=' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2156:3: '>='
             {
             match(">="); 
 
@@ -2765,8 +2765,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2161:3: ( '<=' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2162:3: '<='
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2161:3: ( '<=' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2162:3: '<='
             {
             match("<="); 
 
@@ -2786,8 +2786,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = NE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2167:3: ( '<>' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2168:3: '<>'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2167:3: ( '<>' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2168:3: '<>'
             {
             match("<>"); 
 
@@ -2807,8 +2807,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = LARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2173:3: ( '<-' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2174:3: '<-'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2173:3: ( '<-' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2174:3: '<-'
             {
             match("<-"); 
 
@@ -2828,10 +2828,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2182:9: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2182:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2182:9: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2182:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2182:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2182:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -2861,7 +2861,7 @@ public class TCSLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2182:25: '\\r' '\\n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2182:25: '\\r' '\\n'
                     {
                     match('\r'); 
                     match('\n'); 
@@ -2869,7 +2869,7 @@ public class TCSLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2183:25: '\\n' '\\r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2183:25: '\\n' '\\r'
                     {
                     match('\n'); 
                     match('\r'); 
@@ -2877,14 +2877,14 @@ public class TCSLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2184:25: '\\r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2184:25: '\\r'
                     {
                     match('\r'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2185:25: '\\n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2185:25: '\\n'
                     {
                     match('\n'); 
 
@@ -2910,8 +2910,8 @@ public class TCSLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2191:9: ( ( ' ' | '\\t' ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2191:17: ( ' ' | '\\t' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2191:9: ( ( ' ' | '\\t' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2191:17: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2937,8 +2937,8 @@ public class TCSLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2198:9: ( '0' .. '9' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2198:17: '0' .. '9'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2198:9: ( '0' .. '9' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2198:17: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -2953,8 +2953,8 @@ public class TCSLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2203:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2203:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -2977,17 +2977,17 @@ public class TCSLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2217:9: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2219:9: ( ALPHA ) ( ALPHA | DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2217:9: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2219:9: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2219:9: ( ALPHA )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2219:10: ALPHA
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2219:9: ( ALPHA )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2219:10: ALPHA
             {
             mALPHA(); 
 
             }
 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2219:17: ( ALPHA | DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2219:17: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -3000,7 +3000,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -3034,10 +3034,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2237:9: ( ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2237:17: ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2237:9: ( ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2237:17: ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2237:17: ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2237:17: ( SNAME | '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -3055,17 +3055,17 @@ public class TCSLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2238:25: SNAME
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2238:25: SNAME
                     {
                     mSNAME(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2239:25: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2239:25: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); 
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2240:25: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2240:25: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop5:
                     do {
                         int alt5=4;
@@ -3084,14 +3084,14 @@ public class TCSLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2240:33: ESC
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2240:33: ESC
                     	    {
                     	    mESC(); 
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2241:33: '\\n'
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2241:33: '\\n'
                     	    {
                     	    match('\n'); 
                     	    newline();
@@ -3099,7 +3099,7 @@ public class TCSLexer extends Lexer {
                     	    }
                     	    break;
                     	case 3 :
-                    	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2242:33: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2242:33: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -3142,10 +3142,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2254:9: ( ( DIGIT )+ )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2254:17: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2254:9: ( ( DIGIT )+ )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2254:17: ( DIGIT )+
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2254:17: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2254:17: ( DIGIT )+
             int cnt7=0;
             loop7:
             do {
@@ -3159,7 +3159,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2254:18: DIGIT
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2254:18: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -3191,10 +3191,10 @@ public class TCSLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:9: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:17: ( DIGIT )+ '.' ( DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:9: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:17: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:17: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:17: ( DIGIT )+
             int cnt8=0;
             loop8:
             do {
@@ -3208,7 +3208,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:17: DIGIT
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:17: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -3225,7 +3225,7 @@ public class TCSLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:28: ( DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:28: ( DIGIT )*
             loop9:
             do {
                 int alt9=2;
@@ -3238,7 +3238,7 @@ public class TCSLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2257:28: DIGIT
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2257:28: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -3264,11 +3264,11 @@ public class TCSLexer extends Lexer {
     // $ANTLR start "ESC"
     public final void mESC() throws RecognitionException {
         try {
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2261:9: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2261:17: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2261:9: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2261:17: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             {
             match('\\'); 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2262:17: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2262:17: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             int alt14=9;
             switch ( input.LA(1) ) {
             case 'n':
@@ -3332,65 +3332,65 @@ public class TCSLexer extends Lexer {
 
             switch (alt14) {
                 case 1 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2262:25: 'n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2262:25: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2263:25: 'r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2263:25: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 3 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2264:25: 't'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2264:25: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2265:25: 'b'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2265:25: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 5 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2266:25: 'f'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2266:25: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 6 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2267:25: '\"'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2267:25: '\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 7 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2268:25: '\\''
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2268:25: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 8 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2269:25: '\\\\'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2269:25: '\\\\'
                     {
                     match('\\'); 
 
                     }
                     break;
                 case 9 :
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2270:25: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2270:25: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     {
-                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2270:25: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2270:25: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -3408,16 +3408,16 @@ public class TCSLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2271:33: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2271:33: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             {
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2271:33: ( '0' .. '3' )
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2271:34: '0' .. '3'
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2271:33: ( '0' .. '3' )
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2271:34: '0' .. '3'
                             {
                             matchRange('0','3'); 
 
                             }
 
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2272:33: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2272:33: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             int alt11=2;
                             int LA11_0 = input.LA(1);
 
@@ -3426,16 +3426,16 @@ public class TCSLexer extends Lexer {
                             }
                             switch (alt11) {
                                 case 1 :
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2273:41: ( '0' .. '7' ) ( '0' .. '7' )?
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2273:41: ( '0' .. '7' ) ( '0' .. '7' )?
                                     {
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2273:41: ( '0' .. '7' )
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2273:42: '0' .. '7'
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2273:41: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2273:42: '0' .. '7'
                                     {
                                     matchRange('0','7'); 
 
                                     }
 
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2274:41: ( '0' .. '7' )?
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2274:41: ( '0' .. '7' )?
                                     int alt10=2;
                                     int LA10_0 = input.LA(1);
 
@@ -3444,7 +3444,7 @@ public class TCSLexer extends Lexer {
                                     }
                                     switch (alt10) {
                                         case 1 :
-                                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2275:49: '0' .. '7'
+                                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2275:49: '0' .. '7'
                                             {
                                             matchRange('0','7'); 
 
@@ -3463,16 +3463,16 @@ public class TCSLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2278:33: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2278:33: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
                             {
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2278:33: ( '4' .. '7' )
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2278:34: '4' .. '7'
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2278:33: ( '4' .. '7' )
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2278:34: '4' .. '7'
                             {
                             matchRange('4','7'); 
 
                             }
 
-                            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2279:33: ( ( '0' .. '7' ) )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2279:33: ( ( '0' .. '7' ) )?
                             int alt12=2;
                             int LA12_0 = input.LA(1);
 
@@ -3481,10 +3481,10 @@ public class TCSLexer extends Lexer {
                             }
                             switch (alt12) {
                                 case 1 :
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2280:41: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2280:41: ( '0' .. '7' )
                                     {
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2280:41: ( '0' .. '7' )
-                                    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2280:42: '0' .. '7'
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2280:41: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2280:42: '0' .. '7'
                                     {
                                     matchRange('0','7'); 
 
@@ -3524,11 +3524,11 @@ public class TCSLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2289:9: ( '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2289:17: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2289:9: ( '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2289:17: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
             {
             match('\"'); 
-            // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2290:17: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2290:17: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
             loop15:
             do {
                 int alt15=4;
@@ -3547,14 +3547,14 @@ public class TCSLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2290:25: ESC
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2290:25: ESC
             	    {
             	    mESC(); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2291:25: '\\n'
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2291:25: '\\n'
             	    {
             	    match('\n'); 
             	    newline();
@@ -3562,7 +3562,7 @@ public class TCSLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:2292:25: ~ ( '\\\\' | '\\\"' | '\\n' )
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:2292:25: ~ ( '\\\\' | '\\\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -3595,887 +3595,887 @@ public class TCSLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | COMMENT | MULTI_LINE_COMMENT | LSQUARE | RSQUARE | DLSQUARE | DRSQUARE | EXCL | COMA | LPAREN | RPAREN | LCURLY | RCURLY | DLCURLY | DRCURLY | SEMI | COLON | DLCOLON | PIPE | SHARP | QMARK | DOLLAR | AROBAS | POINT | RARROW | MINUS | STAR | SLASH | PLUS | EQ | GT | LT | GE | LE | NE | LARROW | NL | WS | NAME | INT | FLOAT | STRING )
+        // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | COMMENT | MULTI_LINE_COMMENT | LSQUARE | RSQUARE | DLSQUARE | DRSQUARE | EXCL | COMA | LPAREN | RPAREN | LCURLY | RCURLY | DLCURLY | DRCURLY | SEMI | COLON | DLCOLON | PIPE | SHARP | QMARK | DOLLAR | AROBAS | POINT | RARROW | MINUS | STAR | SLASH | PLUS | EQ | GT | LT | GE | LE | NE | LARROW | NL | WS | NAME | INT | FLOAT | STRING )
         int alt16=126;
         alt16 = dfa16.predict(input);
         switch (alt16) {
             case 1 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:10: T__49
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:10: T__49
                 {
                 mT__49(); 
 
                 }
                 break;
             case 2 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:16: T__50
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:16: T__50
                 {
                 mT__50(); 
 
                 }
                 break;
             case 3 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:22: T__51
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:22: T__51
                 {
                 mT__51(); 
 
                 }
                 break;
             case 4 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:28: T__52
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:28: T__52
                 {
                 mT__52(); 
 
                 }
                 break;
             case 5 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:34: T__53
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:34: T__53
                 {
                 mT__53(); 
 
                 }
                 break;
             case 6 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:40: T__54
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:40: T__54
                 {
                 mT__54(); 
 
                 }
                 break;
             case 7 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:46: T__55
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:46: T__55
                 {
                 mT__55(); 
 
                 }
                 break;
             case 8 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:52: T__56
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:52: T__56
                 {
                 mT__56(); 
 
                 }
                 break;
             case 9 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:58: T__57
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:58: T__57
                 {
                 mT__57(); 
 
                 }
                 break;
             case 10 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:64: T__58
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:64: T__58
                 {
                 mT__58(); 
 
                 }
                 break;
             case 11 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:70: T__59
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:70: T__59
                 {
                 mT__59(); 
 
                 }
                 break;
             case 12 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:76: T__60
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:76: T__60
                 {
                 mT__60(); 
 
                 }
                 break;
             case 13 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:82: T__61
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:82: T__61
                 {
                 mT__61(); 
 
                 }
                 break;
             case 14 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:88: T__62
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:88: T__62
                 {
                 mT__62(); 
 
                 }
                 break;
             case 15 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:94: T__63
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:94: T__63
                 {
                 mT__63(); 
 
                 }
                 break;
             case 16 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:100: T__64
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:100: T__64
                 {
                 mT__64(); 
 
                 }
                 break;
             case 17 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:106: T__65
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:106: T__65
                 {
                 mT__65(); 
 
                 }
                 break;
             case 18 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:112: T__66
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:112: T__66
                 {
                 mT__66(); 
 
                 }
                 break;
             case 19 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:118: T__67
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:118: T__67
                 {
                 mT__67(); 
 
                 }
                 break;
             case 20 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:124: T__68
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:124: T__68
                 {
                 mT__68(); 
 
                 }
                 break;
             case 21 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:130: T__69
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:130: T__69
                 {
                 mT__69(); 
 
                 }
                 break;
             case 22 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:136: T__70
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:136: T__70
                 {
                 mT__70(); 
 
                 }
                 break;
             case 23 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:142: T__71
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:142: T__71
                 {
                 mT__71(); 
 
                 }
                 break;
             case 24 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:148: T__72
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:148: T__72
                 {
                 mT__72(); 
 
                 }
                 break;
             case 25 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:154: T__73
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:154: T__73
                 {
                 mT__73(); 
 
                 }
                 break;
             case 26 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:160: T__74
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:160: T__74
                 {
                 mT__74(); 
 
                 }
                 break;
             case 27 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:166: T__75
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:166: T__75
                 {
                 mT__75(); 
 
                 }
                 break;
             case 28 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:172: T__76
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:172: T__76
                 {
                 mT__76(); 
 
                 }
                 break;
             case 29 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:178: T__77
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:178: T__77
                 {
                 mT__77(); 
 
                 }
                 break;
             case 30 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:184: T__78
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:184: T__78
                 {
                 mT__78(); 
 
                 }
                 break;
             case 31 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:190: T__79
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:190: T__79
                 {
                 mT__79(); 
 
                 }
                 break;
             case 32 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:196: T__80
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:196: T__80
                 {
                 mT__80(); 
 
                 }
                 break;
             case 33 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:202: T__81
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:202: T__81
                 {
                 mT__81(); 
 
                 }
                 break;
             case 34 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:208: T__82
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:208: T__82
                 {
                 mT__82(); 
 
                 }
                 break;
             case 35 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:214: T__83
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:214: T__83
                 {
                 mT__83(); 
 
                 }
                 break;
             case 36 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:220: T__84
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:220: T__84
                 {
                 mT__84(); 
 
                 }
                 break;
             case 37 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:226: T__85
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:226: T__85
                 {
                 mT__85(); 
 
                 }
                 break;
             case 38 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:232: T__86
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:232: T__86
                 {
                 mT__86(); 
 
                 }
                 break;
             case 39 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:238: T__87
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:238: T__87
                 {
                 mT__87(); 
 
                 }
                 break;
             case 40 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:244: T__88
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:244: T__88
                 {
                 mT__88(); 
 
                 }
                 break;
             case 41 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:250: T__89
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:250: T__89
                 {
                 mT__89(); 
 
                 }
                 break;
             case 42 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:256: T__90
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:256: T__90
                 {
                 mT__90(); 
 
                 }
                 break;
             case 43 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:262: T__91
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:262: T__91
                 {
                 mT__91(); 
 
                 }
                 break;
             case 44 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:268: T__92
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:268: T__92
                 {
                 mT__92(); 
 
                 }
                 break;
             case 45 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:274: T__93
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:274: T__93
                 {
                 mT__93(); 
 
                 }
                 break;
             case 46 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:280: T__94
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:280: T__94
                 {
                 mT__94(); 
 
                 }
                 break;
             case 47 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:286: T__95
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:286: T__95
                 {
                 mT__95(); 
 
                 }
                 break;
             case 48 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:292: T__96
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:292: T__96
                 {
                 mT__96(); 
 
                 }
                 break;
             case 49 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:298: T__97
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:298: T__97
                 {
                 mT__97(); 
 
                 }
                 break;
             case 50 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:304: T__98
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:304: T__98
                 {
                 mT__98(); 
 
                 }
                 break;
             case 51 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:310: T__99
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:310: T__99
                 {
                 mT__99(); 
 
                 }
                 break;
             case 52 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:316: T__100
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:316: T__100
                 {
                 mT__100(); 
 
                 }
                 break;
             case 53 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:323: T__101
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:323: T__101
                 {
                 mT__101(); 
 
                 }
                 break;
             case 54 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:330: T__102
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:330: T__102
                 {
                 mT__102(); 
 
                 }
                 break;
             case 55 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:337: T__103
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:337: T__103
                 {
                 mT__103(); 
 
                 }
                 break;
             case 56 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:344: T__104
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:344: T__104
                 {
                 mT__104(); 
 
                 }
                 break;
             case 57 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:351: T__105
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:351: T__105
                 {
                 mT__105(); 
 
                 }
                 break;
             case 58 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:358: T__106
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:358: T__106
                 {
                 mT__106(); 
 
                 }
                 break;
             case 59 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:365: T__107
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:365: T__107
                 {
                 mT__107(); 
 
                 }
                 break;
             case 60 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:372: T__108
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:372: T__108
                 {
                 mT__108(); 
 
                 }
                 break;
             case 61 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:379: T__109
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:379: T__109
                 {
                 mT__109(); 
 
                 }
                 break;
             case 62 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:386: T__110
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:386: T__110
                 {
                 mT__110(); 
 
                 }
                 break;
             case 63 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:393: T__111
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:393: T__111
                 {
                 mT__111(); 
 
                 }
                 break;
             case 64 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:400: T__112
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:400: T__112
                 {
                 mT__112(); 
 
                 }
                 break;
             case 65 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:407: T__113
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:407: T__113
                 {
                 mT__113(); 
 
                 }
                 break;
             case 66 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:414: T__114
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:414: T__114
                 {
                 mT__114(); 
 
                 }
                 break;
             case 67 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:421: T__115
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:421: T__115
                 {
                 mT__115(); 
 
                 }
                 break;
             case 68 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:428: T__116
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:428: T__116
                 {
                 mT__116(); 
 
                 }
                 break;
             case 69 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:435: T__117
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:435: T__117
                 {
                 mT__117(); 
 
                 }
                 break;
             case 70 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:442: T__118
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:442: T__118
                 {
                 mT__118(); 
 
                 }
                 break;
             case 71 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:449: T__119
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:449: T__119
                 {
                 mT__119(); 
 
                 }
                 break;
             case 72 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:456: T__120
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:456: T__120
                 {
                 mT__120(); 
 
                 }
                 break;
             case 73 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:463: T__121
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:463: T__121
                 {
                 mT__121(); 
 
                 }
                 break;
             case 74 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:470: T__122
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:470: T__122
                 {
                 mT__122(); 
 
                 }
                 break;
             case 75 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:477: T__123
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:477: T__123
                 {
                 mT__123(); 
 
                 }
                 break;
             case 76 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:484: T__124
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:484: T__124
                 {
                 mT__124(); 
 
                 }
                 break;
             case 77 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:491: T__125
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:491: T__125
                 {
                 mT__125(); 
 
                 }
                 break;
             case 78 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:498: T__126
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:498: T__126
                 {
                 mT__126(); 
 
                 }
                 break;
             case 79 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:505: T__127
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:505: T__127
                 {
                 mT__127(); 
 
                 }
                 break;
             case 80 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:512: T__128
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:512: T__128
                 {
                 mT__128(); 
 
                 }
                 break;
             case 81 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:519: T__129
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:519: T__129
                 {
                 mT__129(); 
 
                 }
                 break;
             case 82 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:526: T__130
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:526: T__130
                 {
                 mT__130(); 
 
                 }
                 break;
             case 83 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:533: T__131
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:533: T__131
                 {
                 mT__131(); 
 
                 }
                 break;
             case 84 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:540: T__132
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:540: T__132
                 {
                 mT__132(); 
 
                 }
                 break;
             case 85 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:547: T__133
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:547: T__133
                 {
                 mT__133(); 
 
                 }
                 break;
             case 86 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:554: COMMENT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:554: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 87 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:562: MULTI_LINE_COMMENT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:562: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); 
 
                 }
                 break;
             case 88 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:581: LSQUARE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:581: LSQUARE
                 {
                 mLSQUARE(); 
 
                 }
                 break;
             case 89 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:589: RSQUARE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:589: RSQUARE
                 {
                 mRSQUARE(); 
 
                 }
                 break;
             case 90 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:597: DLSQUARE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:597: DLSQUARE
                 {
                 mDLSQUARE(); 
 
                 }
                 break;
             case 91 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:606: DRSQUARE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:606: DRSQUARE
                 {
                 mDRSQUARE(); 
 
                 }
                 break;
             case 92 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:615: EXCL
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:615: EXCL
                 {
                 mEXCL(); 
 
                 }
                 break;
             case 93 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:620: COMA
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:620: COMA
                 {
                 mCOMA(); 
 
                 }
                 break;
             case 94 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:625: LPAREN
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:625: LPAREN
                 {
                 mLPAREN(); 
 
                 }
                 break;
             case 95 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:632: RPAREN
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:632: RPAREN
                 {
                 mRPAREN(); 
 
                 }
                 break;
             case 96 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:639: LCURLY
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:639: LCURLY
                 {
                 mLCURLY(); 
 
                 }
                 break;
             case 97 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:646: RCURLY
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:646: RCURLY
                 {
                 mRCURLY(); 
 
                 }
                 break;
             case 98 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:653: DLCURLY
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:653: DLCURLY
                 {
                 mDLCURLY(); 
 
                 }
                 break;
             case 99 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:661: DRCURLY
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:661: DRCURLY
                 {
                 mDRCURLY(); 
 
                 }
                 break;
             case 100 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:669: SEMI
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:669: SEMI
                 {
                 mSEMI(); 
 
                 }
                 break;
             case 101 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:674: COLON
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:674: COLON
                 {
                 mCOLON(); 
 
                 }
                 break;
             case 102 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:680: DLCOLON
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:680: DLCOLON
                 {
                 mDLCOLON(); 
 
                 }
                 break;
             case 103 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:688: PIPE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:688: PIPE
                 {
                 mPIPE(); 
 
                 }
                 break;
             case 104 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:693: SHARP
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:693: SHARP
                 {
                 mSHARP(); 
 
                 }
                 break;
             case 105 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:699: QMARK
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:699: QMARK
                 {
                 mQMARK(); 
 
                 }
                 break;
             case 106 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:705: DOLLAR
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:705: DOLLAR
                 {
                 mDOLLAR(); 
 
                 }
                 break;
             case 107 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:712: AROBAS
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:712: AROBAS
                 {
                 mAROBAS(); 
 
                 }
                 break;
             case 108 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:719: POINT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:719: POINT
                 {
                 mPOINT(); 
 
                 }
                 break;
             case 109 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:725: RARROW
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:725: RARROW
                 {
                 mRARROW(); 
 
                 }
                 break;
             case 110 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:732: MINUS
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:732: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
             case 111 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:738: STAR
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:738: STAR
                 {
                 mSTAR(); 
 
                 }
                 break;
             case 112 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:743: SLASH
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:743: SLASH
                 {
                 mSLASH(); 
 
                 }
                 break;
             case 113 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:749: PLUS
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:749: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
             case 114 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:754: EQ
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:754: EQ
                 {
                 mEQ(); 
 
                 }
                 break;
             case 115 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:757: GT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:757: GT
                 {
                 mGT(); 
 
                 }
                 break;
             case 116 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:760: LT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:760: LT
                 {
                 mLT(); 
 
                 }
                 break;
             case 117 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:763: GE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:763: GE
                 {
                 mGE(); 
 
                 }
                 break;
             case 118 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:766: LE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:766: LE
                 {
                 mLE(); 
 
                 }
                 break;
             case 119 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:769: NE
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:769: NE
                 {
                 mNE(); 
 
                 }
                 break;
             case 120 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:772: LARROW
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:772: LARROW
                 {
                 mLARROW(); 
 
                 }
                 break;
             case 121 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:779: NL
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:779: NL
                 {
                 mNL(); 
 
                 }
                 break;
             case 122 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:782: WS
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:782: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 123 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:785: NAME
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:785: NAME
                 {
                 mNAME(); 
 
                 }
                 break;
             case 124 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:790: INT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:790: INT
                 {
                 mINT(); 
 
                 }
                 break;
             case 125 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:794: FLOAT
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:794: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
             case 126 :
-                // C:\\dev\\furcas.emf\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1:800: STRING
+                // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.parser.tcs/./generationTemp/generated/TCS.g:1:800: STRING
                 {
                 mSTRING(); 
 
@@ -4489,196 +4489,194 @@ public class TCSLexer extends Lexer {
 
     protected DFA16 dfa16 = new DFA16(this);
     static final String DFA16_eotS =
-        "\1\uffff\6\55\1\107\14\55\1\146\1\150\1\152\1\154\4\uffff\1\156"+
-        "\1\160\1\uffff\1\162\11\uffff\1\164\1\170\3\uffff\1\171\1\uffff"+
-        "\22\55\1\u0094\4\55\1\uffff\34\55\27\uffff\27\55\1\u00d0\1\55\1"+
-        "\uffff\3\55\1\u00d5\1\55\1\u00d9\3\55\1\u00df\1\u00e0\2\55\1\u00e3"+
-        "\24\55\1\u00f8\2\55\1\u00fb\16\55\1\u010c\4\55\1\u0113\1\55\1\uffff"+
-        "\1\u0116\3\55\1\uffff\3\55\1\uffff\5\55\2\uffff\2\55\1\uffff\3\55"+
-        "\1\u0127\2\55\1\u012a\5\55\1\u0130\1\u0131\1\u0132\1\u0133\1\55"+
-        "\1\u0135\2\55\1\uffff\1\55\1\u0139\1\uffff\13\55\1\u0146\1\55\1"+
-        "\u0149\2\55\1\uffff\6\55\1\uffff\2\55\1\uffff\6\55\1\u015a\3\55"+
-        "\1\u015e\2\55\1\u0161\1\55\1\u0163\1\uffff\2\55\1\uffff\1\u0166"+
-        "\3\55\1\u016a\4\uffff\1\u016c\1\uffff\1\55\1\u0171\1\55\1\uffff"+
-        "\5\55\1\u0178\4\55\1\u017d\1\55\1\uffff\2\55\1\uffff\2\55\1\u0184"+
-        "\1\55\1\u0186\7\55\1\u018e\3\55\1\uffff\3\55\1\uffff\2\55\1\uffff"+
-        "\1\55\1\uffff\2\55\1\uffff\3\55\1\uffff\1\55\1\uffff\4\55\1\uffff"+
-        "\6\55\1\uffff\3\55\1\u01ad\1\uffff\1\55\1\u01af\4\55\1\uffff\1\55"+
-        "\1\uffff\2\55\1\u01b7\1\u01b8\3\55\1\uffff\3\55\1\u01bf\5\55\1\u01c5"+
-        "\1\55\1\u01c7\2\55\1\u01ca\17\55\1\uffff\1\55\1\uffff\3\55\1\u01de"+
-        "\2\55\1\u01e1\2\uffff\1\55\1\u01e3\1\55\1\u01e5\2\55\1\uffff\1\u01e8"+
-        "\4\55\1\uffff\1\55\1\uffff\1\u01f0\1\u01f1\1\uffff\1\u01f2\1\55"+
-        "\1\u01f4\4\55\1\u01f9\3\55\1\u01fd\1\u01fe\2\55\1\u0201\1\u0202"+
-        "\1\55\1\u0204\1\uffff\2\55\1\uffff\1\55\1\uffff\1\55\1\uffff\2\55"+
-        "\1\uffff\1\55\1\u020c\1\u020d\2\55\1\u0210\1\55\3\uffff\1\u0212"+
-        "\1\uffff\2\55\1\u0216\1\u0217\1\uffff\1\55\1\u0219\1\u021a\2\uffff"+
-        "\1\55\1\u021c\2\uffff\1\55\1\uffff\2\55\1\u0220\4\55\2\uffff\1\55"+
-        "\1\u0226\1\uffff\1\55\1\uffff\2\55\1\u022a\2\uffff\1\55\2\uffff"+
-        "\1\55\1\uffff\1\55\1\u022e\1\55\1\uffff\1\55\1\u0231\1\u0232\2\55"+
-        "\1\uffff\2\55\1\u0237\1\uffff\2\55\1\u023a\1\uffff\1\55\1\u023c"+
-        "\2\uffff\2\55\1\u0240\1\55\1\uffff\1\u0242\1\55\1\uffff\1\55\1\uffff"+
-        "\3\55\1\uffff\1\u0248\1\uffff\4\55\1\u024d\1\uffff\1\u024e\3\55"+
-        "\2\uffff\2\55\1\u0254\1\u0255\1\55\2\uffff\1\55\1\u0258\1\uffff";
+        "\1\uffff\1\55\1\63\21\55\1\146\1\150\1\152\1\154\4\uffff\1\156\1"+
+        "\160\1\uffff\1\162\11\uffff\1\164\1\170\3\uffff\1\171\1\uffff\3"+
+        "\55\1\uffff\2\55\1\u0082\55\55\27\uffff\6\55\1\u00be\1\uffff\1\55"+
+        "\1\u00c0\14\55\1\u00cf\2\55\1\u00d4\1\55\1\u00d6\4\55\1\u00db\11"+
+        "\55\1\u00e5\22\55\1\u00fb\3\55\1\u0101\1\55\1\uffff\1\55\1\uffff"+
+        "\13\55\1\u010f\2\55\1\uffff\4\55\1\uffff\1\55\1\uffff\1\u0117\1"+
+        "\55\1\u0119\1\55\1\uffff\5\55\1\u0120\3\55\1\uffff\4\55\1\u0129"+
+        "\4\55\1\u012e\2\55\1\u0131\2\55\1\u0134\1\u0135\4\55\1\uffff\1\u013a"+
+        "\4\55\1\uffff\3\55\1\u0143\7\55\1\u014c\1\55\1\uffff\3\55\1\u0151"+
+        "\1\u0152\2\55\1\uffff\1\u0156\1\uffff\1\u0157\5\55\1\uffff\1\u015d"+
+        "\1\55\1\u015f\3\55\1\u0163\1\55\1\uffff\4\55\1\uffff\2\55\1\uffff"+
+        "\1\55\1\u016f\2\uffff\4\55\1\uffff\1\u0174\3\55\1\u0178\3\55\1\uffff"+
+        "\2\55\1\u017f\3\55\1\u0183\1\55\1\uffff\4\55\2\uffff\3\55\2\uffff"+
+        "\5\55\1\uffff\1\55\1\uffff\3\55\1\uffff\2\55\1\u0198\10\55\1\uffff"+
+        "\4\55\1\uffff\3\55\1\uffff\3\55\1\u01ac\2\55\1\uffff\3\55\1\uffff"+
+        "\1\u01b2\3\55\1\u01b6\13\55\1\u01c2\1\55\1\u01c4\1\u01c5\1\uffff"+
+        "\2\55\1\u01c8\7\55\1\u01d0\1\55\1\u01d2\1\55\1\u01d4\2\55\1\u01d7"+
+        "\1\55\1\uffff\5\55\1\uffff\3\55\1\uffff\1\u01e1\10\55\1\u01ea\1"+
+        "\55\1\uffff\1\55\2\uffff\1\55\1\u01f0\1\uffff\2\55\1\u01f3\2\55"+
+        "\1\u01f6\1\u01f7\1\uffff\1\u01f8\1\uffff\1\55\1\uffff\2\55\1\uffff"+
+        "\1\u01fc\1\u01fd\1\55\1\u01ff\5\55\1\uffff\1\u0205\1\55\1\u0207"+
+        "\3\55\1\u020b\1\u020c\1\uffff\1\u020d\2\55\1\u0210\1\55\1\uffff"+
+        "\2\55\1\uffff\1\u0215\1\55\3\uffff\1\55\1\u0218\1\55\2\uffff\1\55"+
+        "\1\uffff\1\55\1\u021c\1\u021d\2\55\1\uffff\1\55\1\uffff\1\55\1\u0222"+
+        "\1\u0223\3\uffff\1\u0224\1\55\1\uffff\4\55\1\uffff\1\u022a\1\u022b"+
+        "\1\uffff\3\55\2\uffff\1\u022f\1\u0230\2\55\3\uffff\4\55\1\u0237"+
+        "\2\uffff\1\u0238\1\u0239\1\55\2\uffff\4\55\1\u0240\1\55\3\uffff"+
+        "\2\55\1\u0244\3\55\1\uffff\1\u0248\2\55\1\uffff\2\55\1\u024d\1\uffff"+
+        "\1\u024e\3\55\2\uffff\1\55\1\u0253\2\55\1\uffff\1\u0256\1\55\1\uffff"+
+        "\1\u0258\1\uffff";
     static final String DFA16_eofS =
         "\u0259\uffff";
     static final String DFA16_minS =
-        "\1\11\1\142\1\146\2\145\1\141\1\142\1\60\1\141\1\156\1\143\1\141"+
-        "\1\145\1\163\1\157\1\145\1\150\1\141\2\145\1\55\1\52\1\133\1\135"+
+        "\1\11\1\145\1\60\1\142\1\145\1\142\1\141\1\156\2\141\1\145\1\146"+
+        "\1\145\1\143\1\163\1\141\2\145\1\150\1\157\1\55\1\52\1\133\1\135"+
         "\4\uffff\1\173\1\175\1\uffff\1\72\11\uffff\1\75\1\55\3\uffff\1\56"+
-        "\1\uffff\1\156\1\166\1\116\1\155\1\160\1\144\1\104\1\165\2\155\1"+
-        "\141\1\146\1\157\1\145\1\162\1\163\1\144\1\164\1\60\1\163\1\144"+
-        "\1\154\1\171\1\uffff\1\162\1\154\1\156\1\144\1\143\1\145\1\113\1"+
-        "\145\1\164\1\151\1\154\1\157\1\163\1\145\1\151\1\145\1\156\1\155"+
-        "\1\153\1\165\1\145\1\162\1\144\1\154\1\151\1\146\1\147\1\170\27"+
-        "\uffff\1\120\1\145\1\114\1\151\1\157\1\164\2\145\1\162\1\141\1\104"+
-        "\1\151\1\142\1\164\2\162\1\145\1\164\1\153\1\146\1\155\2\164\1\60"+
-        "\1\157\1\uffff\1\164\1\124\1\141\1\60\1\167\1\60\1\163\1\143\1\155"+
-        "\2\60\1\162\1\145\1\60\1\141\1\164\1\165\1\160\2\141\1\160\1\156"+
-        "\1\141\1\164\1\160\2\145\1\156\1\144\1\145\1\164\1\156\1\145\1\150"+
-        "\1\60\2\162\1\60\1\163\1\162\1\141\1\156\1\146\1\143\1\162\1\151"+
-        "\1\141\1\157\1\141\1\164\1\145\1\162\1\60\1\111\2\151\1\162\1\60"+
-        "\1\146\1\uffff\1\60\1\162\1\157\1\171\1\uffff\1\157\1\145\1\141"+
-        "\1\uffff\1\145\1\164\1\145\1\146\1\114\2\uffff\1\141\1\171\1\uffff"+
-        "\1\154\1\164\1\145\1\60\1\155\1\165\1\60\1\147\1\164\1\145\1\154"+
-        "\1\156\4\60\1\151\1\60\1\162\1\164\1\uffff\1\151\1\60\1\uffff\1"+
-        "\163\1\164\1\156\1\164\1\151\1\145\1\141\1\163\2\154\1\170\1\60"+
-        "\1\117\1\60\1\160\1\157\1\uffff\1\156\1\160\1\170\1\164\1\151\1"+
-        "\141\1\uffff\1\151\1\162\1\uffff\1\141\1\103\1\163\1\162\1\144\1"+
-        "\143\1\60\1\151\1\162\1\114\1\60\1\164\1\167\1\60\1\145\1\60\1\uffff"+
-        "\1\142\1\154\1\uffff\1\60\1\145\1\170\1\141\1\60\4\uffff\1\60\1"+
-        "\uffff\1\145\1\60\1\155\1\uffff\1\151\1\103\1\143\1\111\1\156\1"+
-        "\60\1\164\1\141\1\151\1\163\1\60\1\114\1\uffff\1\160\1\151\1\uffff"+
-        "\1\141\1\156\1\60\1\123\1\60\1\151\1\164\1\154\1\170\1\145\1\143"+
-        "\1\157\1\60\1\144\1\114\1\150\1\uffff\1\157\1\141\1\151\1\uffff"+
-        "\2\157\1\uffff\1\144\1\uffff\1\151\1\164\1\uffff\1\101\2\164\1\uffff"+
-        "\1\151\1\uffff\1\124\1\156\1\160\1\157\1\uffff\1\141\1\156\1\157"+
-        "\1\145\1\156\1\145\1\uffff\1\157\1\155\1\172\1\60\1\uffff\1\116"+
-        "\1\60\1\124\1\147\1\143\1\145\1\uffff\1\143\1\uffff\1\166\1\171"+
-        "\2\60\1\141\1\164\1\156\1\uffff\1\163\1\157\1\160\1\60\1\156\1\164"+
-        "\1\156\2\162\1\60\1\147\1\60\1\163\1\156\1\60\1\145\1\156\1\157"+
-        "\1\143\1\141\1\156\1\162\1\147\1\156\1\117\1\143\1\144\1\162\1\142"+
-        "\1\145\1\uffff\1\114\1\uffff\1\157\1\150\1\145\1\60\1\157\1\145"+
-        "\1\60\2\uffff\1\164\1\60\1\164\1\60\1\167\1\160\1\uffff\1\60\1\151"+
-        "\1\145\1\124\1\144\1\uffff\1\165\1\uffff\2\60\1\uffff\1\60\1\145"+
-        "\1\60\1\145\1\143\1\145\1\171\1\60\1\164\1\146\1\162\2\60\1\151"+
-        "\1\162\2\60\1\164\1\60\1\uffff\1\160\1\124\1\uffff\1\145\1\uffff"+
-        "\1\145\1\uffff\2\145\1\uffff\1\157\2\60\1\145\1\144\1\60\1\141\3"+
-        "\uffff\1\60\1\uffff\1\102\1\145\2\60\1\uffff\1\145\2\60\2\uffff"+
-        "\1\147\1\60\2\uffff\1\124\1\uffff\2\145\1\60\1\170\2\162\1\156\2"+
-        "\uffff\1\155\1\60\1\uffff\1\164\1\uffff\1\156\1\171\1\60\2\uffff"+
-        "\1\170\2\uffff\1\165\1\uffff\1\157\1\60\1\155\1\uffff\1\164\2\60"+
-        "\1\124\1\160\1\uffff\1\145\1\154\1\60\1\uffff\1\164\1\141\1\60\1"+
-        "\uffff\1\160\1\60\2\uffff\1\145\1\154\1\60\1\171\1\uffff\1\60\1"+
-        "\164\1\uffff\1\154\1\uffff\1\155\1\141\1\63\1\uffff\1\60\1\uffff"+
-        "\1\145\1\141\1\160\1\164\1\60\1\uffff\1\60\1\164\1\154\1\145\2\uffff"+
-        "\1\145\1\141\2\60\1\164\2\uffff\1\145\1\60\1\uffff";
+        "\1\uffff\1\146\1\157\1\171\1\uffff\1\164\1\154\1\60\2\144\1\163"+
+        "\1\141\1\165\2\155\1\166\1\156\1\116\1\162\1\156\1\154\1\144\1\143"+
+        "\1\151\1\154\1\144\1\154\1\170\1\160\1\144\1\155\1\104\1\165\1\153"+
+        "\1\155\1\164\2\145\1\151\1\113\1\151\1\162\1\163\2\145\1\163\1\157"+
+        "\1\146\1\147\1\145\1\162\1\145\1\156\27\uffff\1\164\1\145\1\153"+
+        "\1\167\1\157\1\141\1\60\1\uffff\1\124\1\60\1\164\3\162\1\141\1\104"+
+        "\1\151\1\164\1\142\1\145\1\120\1\114\1\60\1\143\1\163\1\60\1\155"+
+        "\1\60\1\156\1\164\1\145\1\165\1\60\1\157\1\164\1\145\1\151\3\145"+
+        "\1\160\1\141\1\60\1\162\1\164\1\145\1\156\2\164\1\146\1\155\1\160"+
+        "\2\141\1\160\1\145\1\150\1\156\1\144\1\141\1\164\1\60\1\162\1\111"+
+        "\1\157\1\60\1\171\1\uffff\1\157\1\uffff\1\162\1\164\1\145\1\143"+
+        "\1\162\1\151\2\141\1\157\2\162\1\60\1\145\1\141\1\uffff\1\164\1"+
+        "\145\1\114\1\146\1\uffff\1\145\1\uffff\1\60\1\151\1\60\1\145\1\uffff"+
+        "\1\162\1\141\1\156\1\163\1\146\1\60\1\156\2\154\1\uffff\1\141\1"+
+        "\164\1\171\1\147\1\60\1\146\2\151\1\162\1\60\1\165\1\155\1\60\1"+
+        "\162\1\164\2\60\1\164\1\145\1\160\1\157\1\uffff\1\60\1\156\1\160"+
+        "\2\162\1\uffff\1\163\1\103\1\141\1\60\1\117\1\145\1\141\1\163\1"+
+        "\154\1\170\1\154\1\60\1\151\1\uffff\1\144\1\143\1\151\2\60\1\114"+
+        "\1\162\1\uffff\1\60\1\uffff\1\60\1\164\1\156\1\164\1\163\1\151\1"+
+        "\uffff\1\60\1\141\1\60\1\164\1\145\1\167\1\60\1\141\1\uffff\1\151"+
+        "\1\170\1\164\1\151\1\uffff\1\154\1\142\1\uffff\1\145\1\60\2\uffff"+
+        "\1\145\1\170\1\141\1\156\1\uffff\1\60\1\123\1\144\1\145\1\60\1\157"+
+        "\1\143\1\114\1\uffff\1\160\1\151\1\60\1\164\1\141\1\151\1\60\1\163"+
+        "\1\uffff\1\155\1\114\1\150\1\157\2\uffff\1\151\1\141\1\151\2\uffff"+
+        "\1\103\1\143\1\111\1\151\1\156\1\uffff\1\164\1\uffff\1\157\1\144"+
+        "\1\157\1\uffff\1\154\1\170\1\60\1\151\2\164\1\151\1\156\1\124\1"+
+        "\157\1\160\1\uffff\1\101\1\164\1\143\1\145\1\uffff\1\143\1\163\1"+
+        "\141\1\uffff\1\156\1\164\1\116\1\60\1\124\1\147\1\uffff\1\157\1"+
+        "\155\1\172\1\uffff\1\60\1\141\1\160\1\157\1\60\2\156\1\164\1\156"+
+        "\1\157\1\145\2\156\2\145\1\162\1\60\1\162\2\60\1\uffff\1\166\1\171"+
+        "\1\60\1\147\1\143\1\157\1\156\1\141\1\156\1\163\1\60\1\145\1\60"+
+        "\1\157\1\60\2\164\1\60\1\114\1\uffff\1\157\1\150\1\162\1\142\1\145"+
+        "\1\uffff\1\162\1\160\1\167\1\uffff\1\60\1\145\1\151\1\145\1\156"+
+        "\1\117\1\143\1\147\1\144\1\60\1\124\1\uffff\1\144\2\uffff\1\145"+
+        "\1\60\1\uffff\1\165\1\145\1\60\1\145\1\143\2\60\1\uffff\1\60\1\uffff"+
+        "\1\160\1\uffff\2\145\1\uffff\2\60\1\164\1\60\1\151\1\162\1\171\2"+
+        "\145\1\uffff\1\60\1\157\1\60\1\164\1\146\1\162\2\60\1\uffff\1\60"+
+        "\1\144\1\145\1\60\1\124\1\uffff\1\141\1\102\1\uffff\1\60\1\145\3"+
+        "\uffff\1\145\1\60\1\170\2\uffff\1\124\1\uffff\1\147\2\60\2\162\1"+
+        "\uffff\1\156\1\uffff\1\145\2\60\3\uffff\1\60\1\155\1\uffff\1\145"+
+        "\1\164\1\156\1\171\1\uffff\2\60\1\uffff\1\164\1\157\1\165\2\uffff"+
+        "\2\60\1\124\1\170\3\uffff\1\160\1\155\1\145\1\154\1\60\2\uffff\2"+
+        "\60\1\141\2\uffff\1\145\1\164\1\154\1\160\1\60\1\171\3\uffff\1\164"+
+        "\1\155\1\60\1\141\1\154\1\63\1\uffff\1\60\1\145\1\160\1\uffff\1"+
+        "\164\1\141\1\60\1\uffff\1\60\1\154\1\145\1\164\2\uffff\1\141\1\60"+
+        "\1\145\1\164\1\uffff\1\60\1\145\1\uffff\1\60\1\uffff";
     static final String DFA16_maxS =
-        "\1\u00ff\1\157\1\163\1\171\1\157\1\162\1\165\1\u00ff\1\165\1\163"+
-        "\1\162\1\141\1\162\1\163\2\162\1\157\1\165\1\151\1\145\1\76\1\52"+
-        "\1\133\1\135\4\uffff\1\173\1\175\1\uffff\1\72\11\uffff\1\75\1\76"+
-        "\3\uffff\1\71\1\uffff\1\156\1\166\1\116\1\155\1\160\1\163\1\104"+
-        "\1\165\1\162\1\156\1\157\1\170\1\157\1\151\1\162\1\163\1\144\1\164"+
-        "\1\u00ff\1\163\1\144\1\167\1\171\1\uffff\1\162\1\154\1\156\1\165"+
-        "\1\143\1\145\1\113\1\145\1\164\1\151\1\154\1\157\1\163\1\146\1\151"+
-        "\1\145\1\156\1\155\1\153\1\165\1\145\1\162\1\144\1\154\1\151\1\146"+
-        "\1\147\1\170\27\uffff\1\120\1\145\1\114\1\151\1\157\1\164\2\145"+
-        "\1\162\1\141\1\104\1\151\1\142\1\164\2\162\1\145\1\164\1\153\1\146"+
-        "\1\157\2\164\1\u00ff\1\157\1\uffff\1\164\1\124\1\141\1\u00ff\1\167"+
-        "\1\u00ff\1\163\1\143\1\155\2\u00ff\1\162\1\145\1\u00ff\1\141\1\164"+
-        "\1\165\1\160\2\141\1\160\1\156\1\141\1\164\1\160\2\145\1\156\1\144"+
-        "\1\145\1\164\1\156\1\145\1\150\1\u00ff\2\162\1\u00ff\1\163\1\162"+
-        "\1\141\1\156\1\146\1\143\1\162\1\151\1\141\1\157\1\141\1\164\1\145"+
-        "\1\162\1\u00ff\1\165\2\151\1\162\1\u00ff\1\146\1\uffff\1\u00ff\1"+
-        "\162\1\157\1\171\1\uffff\1\157\1\145\1\141\1\uffff\1\145\1\164\1"+
-        "\145\1\146\1\114\2\uffff\1\141\1\171\1\uffff\1\154\1\164\1\145\1"+
-        "\u00ff\1\155\1\165\1\u00ff\1\147\1\164\1\145\1\154\1\156\4\u00ff"+
-        "\1\151\1\u00ff\1\162\1\164\1\uffff\1\151\1\u00ff\1\uffff\1\163\1"+
-        "\164\1\156\1\164\1\151\1\145\1\141\1\163\2\154\1\170\1\u00ff\1\122"+
-        "\1\u00ff\1\160\1\157\1\uffff\1\156\1\160\1\170\1\164\1\151\1\141"+
-        "\1\uffff\1\151\1\162\1\uffff\1\141\1\103\1\163\1\162\1\144\1\143"+
-        "\1\u00ff\1\151\1\162\1\114\1\u00ff\1\164\1\167\1\u00ff\1\145\1\u00ff"+
-        "\1\uffff\1\142\1\154\1\uffff\1\u00ff\1\145\1\170\1\141\1\u00ff\4"+
-        "\uffff\1\u00ff\1\uffff\1\163\1\u00ff\1\155\1\uffff\1\151\1\103\1"+
-        "\143\1\111\1\156\1\u00ff\1\164\1\141\1\151\1\163\1\u00ff\1\142\1"+
-        "\uffff\1\160\1\151\1\uffff\1\141\1\156\1\u00ff\1\123\1\u00ff\1\151"+
-        "\1\164\1\154\1\170\1\145\1\143\1\157\1\u00ff\1\144\1\125\1\150\1"+
-        "\uffff\1\157\1\141\1\151\1\uffff\2\157\1\uffff\1\144\1\uffff\1\151"+
-        "\1\164\1\uffff\1\111\2\164\1\uffff\1\151\1\uffff\1\124\1\156\1\160"+
-        "\1\157\1\uffff\1\141\1\156\1\157\1\145\1\156\1\145\1\uffff\1\157"+
-        "\1\155\1\172\1\u00ff\1\uffff\1\116\1\u00ff\1\124\1\147\1\143\1\145"+
-        "\1\uffff\1\143\1\uffff\1\166\1\171\2\u00ff\1\141\1\164\1\156\1\uffff"+
-        "\1\163\1\157\1\160\1\u00ff\1\156\1\164\1\156\2\162\1\u00ff\1\147"+
-        "\1\u00ff\1\163\1\156\1\u00ff\1\145\1\156\1\157\1\143\1\141\1\156"+
-        "\1\162\1\147\1\156\1\117\1\143\1\144\1\162\1\142\1\145\1\uffff\1"+
-        "\114\1\uffff\1\157\1\150\1\145\1\u00ff\1\157\1\145\1\u00ff\2\uffff"+
-        "\1\164\1\u00ff\1\164\1\u00ff\1\167\1\160\1\uffff\1\u00ff\1\151\1"+
-        "\145\1\163\1\144\1\uffff\1\165\1\uffff\2\u00ff\1\uffff\1\u00ff\1"+
-        "\145\1\u00ff\1\145\1\143\1\145\1\171\1\u00ff\1\164\1\146\1\162\2"+
-        "\u00ff\1\151\1\162\2\u00ff\1\164\1\u00ff\1\uffff\1\160\1\124\1\uffff"+
-        "\1\145\1\uffff\1\145\1\uffff\2\145\1\uffff\1\157\2\u00ff\1\145\1"+
-        "\144\1\u00ff\1\141\3\uffff\1\u00ff\1\uffff\1\117\1\145\2\u00ff\1"+
-        "\uffff\1\145\2\u00ff\2\uffff\1\147\1\u00ff\2\uffff\1\124\1\uffff"+
-        "\2\145\1\u00ff\1\170\2\162\1\156\2\uffff\1\155\1\u00ff\1\uffff\1"+
-        "\164\1\uffff\1\156\1\171\1\u00ff\2\uffff\1\170\2\uffff\1\165\1\uffff"+
-        "\1\157\1\u00ff\1\155\1\uffff\1\164\2\u00ff\1\124\1\160\1\uffff\1"+
-        "\145\1\154\1\u00ff\1\uffff\1\164\1\141\1\u00ff\1\uffff\1\160\1\u00ff"+
-        "\2\uffff\1\145\1\154\1\u00ff\1\171\1\uffff\1\u00ff\1\164\1\uffff"+
-        "\1\154\1\uffff\1\155\1\141\1\63\1\uffff\1\u00ff\1\uffff\1\145\1"+
-        "\141\1\160\1\164\1\u00ff\1\uffff\1\u00ff\1\164\1\154\1\145\2\uffff"+
-        "\1\145\1\141\2\u00ff\1\164\2\uffff\1\145\1\u00ff\1\uffff";
+        "\1\u00ff\1\157\1\u00ff\1\165\1\171\1\157\1\165\1\163\1\165\1\141"+
+        "\1\145\1\163\2\162\1\163\2\162\1\151\1\157\1\162\1\76\1\52\1\133"+
+        "\1\135\4\uffff\1\173\1\175\1\uffff\1\72\11\uffff\1\75\1\76\3\uffff"+
+        "\1\71\1\uffff\1\170\1\157\1\171\1\uffff\1\164\1\167\1\u00ff\2\144"+
+        "\1\163\1\157\1\165\1\162\1\156\1\166\1\156\1\116\1\162\1\156\1\154"+
+        "\1\165\1\143\1\151\1\154\1\144\1\154\1\170\1\160\1\163\1\155\1\104"+
+        "\1\165\1\153\1\155\1\164\2\145\1\151\1\113\1\151\1\162\1\163\1\151"+
+        "\1\146\1\163\1\157\1\146\1\147\1\145\1\162\1\145\1\156\27\uffff"+
+        "\1\164\1\145\1\153\1\167\1\157\1\141\1\u00ff\1\uffff\1\124\1\u00ff"+
+        "\1\164\3\162\1\141\1\104\1\151\1\164\1\142\1\145\1\120\1\114\1\u00ff"+
+        "\1\143\1\163\1\u00ff\1\155\1\u00ff\1\156\1\164\1\145\1\165\1\u00ff"+
+        "\1\157\1\164\1\145\1\151\3\145\1\160\1\141\1\u00ff\1\162\1\164\1"+
+        "\145\1\156\2\164\1\146\1\157\1\160\2\141\1\160\1\145\1\150\1\156"+
+        "\1\144\1\141\1\164\1\u00ff\1\162\1\165\1\157\1\u00ff\1\171\1\uffff"+
+        "\1\157\1\uffff\1\162\1\164\1\145\1\143\1\162\1\151\2\141\1\157\2"+
+        "\162\1\u00ff\1\145\1\141\1\uffff\1\164\1\145\1\114\1\146\1\uffff"+
+        "\1\145\1\uffff\1\u00ff\1\151\1\u00ff\1\145\1\uffff\1\162\1\141\1"+
+        "\156\1\163\1\146\1\u00ff\1\156\2\154\1\uffff\1\141\1\164\1\171\1"+
+        "\147\1\u00ff\1\146\2\151\1\162\1\u00ff\1\165\1\155\1\u00ff\1\162"+
+        "\1\164\2\u00ff\1\164\1\145\1\160\1\157\1\uffff\1\u00ff\1\156\1\160"+
+        "\2\162\1\uffff\1\163\1\103\1\141\1\u00ff\1\122\1\145\1\141\1\163"+
+        "\1\154\1\170\1\154\1\u00ff\1\151\1\uffff\1\144\1\143\1\151\2\u00ff"+
+        "\1\114\1\162\1\uffff\1\u00ff\1\uffff\1\u00ff\1\164\1\156\1\164\1"+
+        "\163\1\151\1\uffff\1\u00ff\1\141\1\u00ff\1\164\1\145\1\167\1\u00ff"+
+        "\1\141\1\uffff\1\151\1\170\1\164\1\151\1\uffff\1\154\1\142\1\uffff"+
+        "\1\163\1\u00ff\2\uffff\1\145\1\170\1\141\1\156\1\uffff\1\u00ff\1"+
+        "\123\1\144\1\145\1\u00ff\1\157\1\143\1\142\1\uffff\1\160\1\151\1"+
+        "\u00ff\1\164\1\141\1\151\1\u00ff\1\163\1\uffff\1\155\1\125\1\150"+
+        "\1\157\2\uffff\1\151\1\141\1\151\2\uffff\1\103\1\143\1\111\1\151"+
+        "\1\156\1\uffff\1\164\1\uffff\1\157\1\144\1\157\1\uffff\1\154\1\170"+
+        "\1\u00ff\1\151\2\164\1\151\1\156\1\124\1\157\1\160\1\uffff\1\111"+
+        "\1\164\1\143\1\145\1\uffff\1\143\1\163\1\141\1\uffff\1\156\1\164"+
+        "\1\116\1\u00ff\1\124\1\147\1\uffff\1\157\1\155\1\172\1\uffff\1\u00ff"+
+        "\1\141\1\160\1\157\1\u00ff\2\156\1\164\1\156\1\157\1\145\2\156\2"+
+        "\145\1\162\1\u00ff\1\162\2\u00ff\1\uffff\1\166\1\171\1\u00ff\1\147"+
+        "\1\143\1\157\1\156\1\141\1\156\1\163\1\u00ff\1\145\1\u00ff\1\157"+
+        "\1\u00ff\2\164\1\u00ff\1\114\1\uffff\1\157\1\150\1\162\1\142\1\145"+
+        "\1\uffff\1\162\1\160\1\167\1\uffff\1\u00ff\1\145\1\151\1\145\1\156"+
+        "\1\117\1\143\1\147\1\144\1\u00ff\1\163\1\uffff\1\144\2\uffff\1\145"+
+        "\1\u00ff\1\uffff\1\165\1\145\1\u00ff\1\145\1\143\2\u00ff\1\uffff"+
+        "\1\u00ff\1\uffff\1\160\1\uffff\2\145\1\uffff\2\u00ff\1\164\1\u00ff"+
+        "\1\151\1\162\1\171\2\145\1\uffff\1\u00ff\1\157\1\u00ff\1\164\1\146"+
+        "\1\162\2\u00ff\1\uffff\1\u00ff\1\144\1\145\1\u00ff\1\124\1\uffff"+
+        "\1\141\1\117\1\uffff\1\u00ff\1\145\3\uffff\1\145\1\u00ff\1\170\2"+
+        "\uffff\1\124\1\uffff\1\147\2\u00ff\2\162\1\uffff\1\156\1\uffff\1"+
+        "\145\2\u00ff\3\uffff\1\u00ff\1\155\1\uffff\1\145\1\164\1\156\1\171"+
+        "\1\uffff\2\u00ff\1\uffff\1\164\1\157\1\165\2\uffff\2\u00ff\1\124"+
+        "\1\170\3\uffff\1\160\1\155\1\145\1\154\1\u00ff\2\uffff\2\u00ff\1"+
+        "\141\2\uffff\1\145\1\164\1\154\1\160\1\u00ff\1\171\3\uffff\1\164"+
+        "\1\155\1\u00ff\1\141\1\154\1\63\1\uffff\1\u00ff\1\145\1\160\1\uffff"+
+        "\1\164\1\141\1\u00ff\1\uffff\1\u00ff\1\154\1\145\1\164\2\uffff\1"+
+        "\141\1\u00ff\1\145\1\164\1\uffff\1\u00ff\1\145\1\uffff\1\u00ff\1"+
+        "\uffff";
     static final String DFA16_acceptS =
         "\30\uffff\1\134\1\135\1\136\1\137\2\uffff\1\144\1\uffff\1\147\1"+
         "\150\1\151\1\152\1\153\1\154\1\157\1\161\1\162\2\uffff\1\171\1\172"+
-        "\1\173\1\uffff\1\176\27\uffff\1\13\34\uffff\1\126\1\155\1\156\1"+
-        "\127\1\160\1\132\1\130\1\133\1\131\1\142\1\140\1\143\1\141\1\146"+
-        "\1\145\1\165\1\163\1\166\1\167\1\170\1\164\1\174\1\175\31\uffff"+
-        "\1\36\73\uffff\1\11\4\uffff\1\116\3\uffff\1\14\5\uffff\1\43\1\123"+
-        "\2\uffff\1\32\24\uffff\1\76\2\uffff\1\120\20\uffff\1\103\6\uffff"+
-        "\1\12\2\uffff\1\34\20\uffff\1\24\2\uffff\1\66\5\uffff\1\57\1\40"+
-        "\1\122\1\44\1\uffff\1\75\3\uffff\1\2\14\uffff\1\105\2\uffff\1\5"+
-        "\20\uffff\1\35\3\uffff\1\73\2\uffff\1\63\1\uffff\1\21\2\uffff\1"+
-        "\25\3\uffff\1\42\1\uffff\1\46\4\uffff\1\104\6\uffff\1\4\4\uffff"+
-        "\1\111\6\uffff\1\113\1\uffff\1\6\7\uffff\1\112\36\uffff\1\10\1\uffff"+
-        "\1\121\7\uffff\1\22\1\107\6\uffff\1\52\5\uffff\1\102\1\uffff\1\53"+
-        "\2\uffff\1\67\23\uffff\1\65\2\uffff\1\106\1\uffff\1\51\1\uffff\1"+
-        "\41\2\uffff\1\61\7\uffff\1\27\1\33\1\37\1\uffff\1\60\4\uffff\1\3"+
-        "\3\uffff\1\72\1\7\2\uffff\1\23\1\54\1\uffff\1\20\7\uffff\1\30\1"+
-        "\16\2\uffff\1\17\1\uffff\1\74\3\uffff\1\115\1\1\1\uffff\1\55\1\70"+
-        "\1\uffff\1\114\3\uffff\1\47\5\uffff\1\117\3\uffff\1\77\3\uffff\1"+
-        "\124\2\uffff\1\50\1\64\4\uffff\1\110\2\uffff\1\125\1\uffff\1\71"+
-        "\3\uffff\1\56\1\uffff\1\45\5\uffff\1\101\4\uffff\1\26\1\62\5\uffff"+
-        "\1\31\1\100\2\uffff\1\15";
+        "\1\173\1\uffff\1\176\3\uffff\1\72\60\uffff\1\126\1\155\1\156\1\127"+
+        "\1\160\1\132\1\130\1\133\1\131\1\142\1\140\1\143\1\141\1\146\1\145"+
+        "\1\165\1\163\1\166\1\167\1\170\1\164\1\174\1\175\7\uffff\1\17\73"+
+        "\uffff\1\52\1\uffff\1\35\16\uffff\1\71\4\uffff\1\103\1\uffff\1\116"+
+        "\4\uffff\1\13\11\uffff\1\26\25\uffff\1\61\5\uffff\1\60\15\uffff"+
+        "\1\120\7\uffff\1\10\1\uffff\1\40\6\uffff\1\16\10\uffff\1\36\4\uffff"+
+        "\1\31\2\uffff\1\117\2\uffff\1\47\1\124\4\uffff\1\73\10\uffff\1\111"+
+        "\10\uffff\1\5\4\uffff\1\121\1\7\3\uffff\1\37\1\11\5\uffff\1\27\1"+
+        "\uffff\1\24\3\uffff\1\25\13\uffff\1\105\4\uffff\1\14\3\uffff\1\12"+
+        "\6\uffff\1\23\3\uffff\1\55\24\uffff\1\74\23\uffff\1\21\5\uffff\1"+
+        "\110\3\uffff\1\22\13\uffff\1\66\1\uffff\1\30\1\42\2\uffff\1\64\7"+
+        "\uffff\1\106\1\uffff\1\41\1\uffff\1\2\2\uffff\1\45\11\uffff\1\56"+
+        "\10\uffff\1\113\5\uffff\1\102\2\uffff\1\43\2\uffff\1\51\1\75\1\1"+
+        "\3\uffff\1\4\1\65\1\uffff\1\46\5\uffff\1\112\1\uffff\1\104\3\uffff"+
+        "\1\53\1\122\1\57\2\uffff\1\115\4\uffff\1\62\2\uffff\1\3\3\uffff"+
+        "\1\125\1\114\4\uffff\1\50\1\101\1\70\5\uffff\1\100\1\33\3\uffff"+
+        "\1\6\1\54\6\uffff\1\44\1\20\1\123\6\uffff\1\63\3\uffff\1\15\3\uffff"+
+        "\1\34\4\uffff\1\67\1\77\4\uffff\1\107\2\uffff\1\76\1\uffff\1\32";
     static final String DFA16_specialS =
         "\u0259\uffff}>";
     static final String[] DFA16_transitionS = {
             "\1\54\1\53\2\uffff\1\53\22\uffff\1\54\1\30\1\57\1\41\1\43\2"+
             "\uffff\1\55\1\32\1\33\1\46\1\47\1\31\1\24\1\45\1\25\12\56\1"+
             "\37\1\36\1\52\1\50\1\51\1\42\1\44\32\55\1\26\1\uffff\1\27\1"+
-            "\uffff\1\55\1\uffff\1\6\1\55\1\16\1\14\1\11\1\10\1\55\1\23\1"+
-            "\2\1\55\1\7\1\4\1\21\1\1\1\12\1\5\1\55\1\22\1\3\1\17\1\15\1"+
-            "\13\1\20\3\55\1\34\1\40\1\35\102\uffff\27\55\1\uffff\37\55\1"+
-            "\uffff\10\55",
-            "\1\62\2\uffff\1\61\11\uffff\1\60",
-            "\1\63\6\uffff\1\64\1\65\4\uffff\1\66",
-            "\1\70\11\uffff\1\67\4\uffff\1\72\4\uffff\1\71",
-            "\1\73\11\uffff\1\74",
-            "\1\76\15\uffff\1\77\2\uffff\1\75",
-            "\1\103\1\uffff\1\104\7\uffff\1\105\1\uffff\1\100\4\uffff\1"+
-            "\102\1\uffff\1\101",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\4\55\1\106\25\55"+
-            "\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\111\15\uffff\1\110\5\uffff\1\112",
-            "\1\113\4\uffff\1\114",
-            "\1\120\11\uffff\1\121\1\117\1\uffff\1\115\1\uffff\1\116",
-            "\1\122",
-            "\1\125\3\uffff\1\124\10\uffff\1\123",
-            "\1\126",
-            "\1\130\2\uffff\1\127",
-            "\1\131\11\uffff\1\132\2\uffff\1\133",
-            "\1\134\6\uffff\1\135",
-            "\1\140\15\uffff\1\136\5\uffff\1\137",
-            "\1\141\3\uffff\1\142",
-            "\1\143",
+            "\uffff\1\55\1\uffff\1\3\1\55\1\23\1\20\1\7\1\6\1\55\1\12\1\13"+
+            "\1\55\1\2\1\1\1\10\1\5\1\15\1\17\1\55\1\21\1\4\1\14\1\16\1\11"+
+            "\1\22\3\55\1\34\1\40\1\35\102\uffff\27\55\1\uffff\37\55\1\uffff"+
+            "\10\55",
+            "\1\60\11\uffff\1\61",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\4\55\1\62\25\55\105"+
+            "\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\71\1\uffff\1\67\7\uffff\1\65\1\uffff\1\70\4\uffff\1\66\1"+
+            "\uffff\1\64",
+            "\1\74\11\uffff\1\73\4\uffff\1\72\4\uffff\1\75",
+            "\1\100\2\uffff\1\76\11\uffff\1\77",
+            "\1\103\15\uffff\1\101\5\uffff\1\102",
+            "\1\104\4\uffff\1\105",
+            "\1\106\15\uffff\1\110\5\uffff\1\107",
+            "\1\111",
+            "\1\112",
+            "\1\115\6\uffff\1\113\1\114\4\uffff\1\116",
+            "\1\121\11\uffff\1\120\2\uffff\1\117",
+            "\1\122\11\uffff\1\125\1\123\1\uffff\1\124\1\uffff\1\126",
+            "\1\127",
+            "\1\130\15\uffff\1\131\2\uffff\1\132",
+            "\1\133\3\uffff\1\134\10\uffff\1\135",
+            "\1\136\3\uffff\1\137",
+            "\1\140\6\uffff\1\141",
+            "\1\143\2\uffff\1\142",
             "\1\144\20\uffff\1\145",
             "\1\147",
             "\1\151",
@@ -4707,35 +4705,36 @@ public class TCSLexer extends Lexer {
             "",
             "\1\172\1\uffff\12\56",
             "",
-            "\1\173",
-            "\1\174",
+            "\1\173\21\uffff\1\174",
             "\1\175",
             "\1\176",
+            "",
             "\1\177",
-            "\1\u0081\16\uffff\1\u0080",
-            "\1\u0082",
+            "\1\u0081\12\uffff\1\u0080",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0083",
-            "\1\u0085\2\uffff\1\u0084\1\uffff\1\u0086",
-            "\1\u0087\1\u0088",
-            "\1\u0089\15\uffff\1\u008a",
-            "\1\u008c\21\uffff\1\u008b",
-            "\1\u008d",
-            "\1\u008e\3\uffff\1\u008f",
+            "\1\u0084",
+            "\1\u0085",
+            "\1\u0086\15\uffff\1\u0087",
+            "\1\u0088",
+            "\1\u008a\2\uffff\1\u0089\1\uffff\1\u008b",
+            "\1\u008d\1\u008c",
+            "\1\u008e",
+            "\1\u008f",
             "\1\u0090",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0095",
+            "\1\u0094\20\uffff\1\u0095",
             "\1\u0096",
-            "\1\u0098\12\uffff\1\u0097",
+            "\1\u0097",
+            "\1\u0098",
             "\1\u0099",
-            "",
             "\1\u009a",
             "\1\u009b",
             "\1\u009c",
-            "\1\u009e\20\uffff\1\u009d",
+            "\1\u009e\16\uffff\1\u009d",
             "\1\u009f",
             "\1\u00a0",
             "\1\u00a1",
@@ -4745,13 +4744,12 @@ public class TCSLexer extends Lexer {
             "\1\u00a5",
             "\1\u00a6",
             "\1\u00a7",
-            "\1\u00a9\1\u00a8",
+            "\1\u00a8",
+            "\1\u00a9",
             "\1\u00aa",
             "\1\u00ab",
-            "\1\u00ac",
-            "\1\u00ad",
-            "\1\u00ae",
-            "\1\u00af",
+            "\1\u00ac\3\uffff\1\u00ad",
+            "\1\u00ae\1\u00af",
             "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
@@ -4789,9 +4787,12 @@ public class TCSLexer extends Lexer {
             "\1\u00bb",
             "\1\u00bc",
             "\1\u00bd",
-            "\1\u00be",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "",
             "\1\u00bf",
-            "\1\u00c0",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u00c1",
             "\1\u00c2",
             "\1\u00c3",
@@ -4803,34 +4804,33 @@ public class TCSLexer extends Lexer {
             "\1\u00c9",
             "\1\u00ca",
             "\1\u00cb",
-            "\1\u00cc\1\uffff\1\u00cd",
-            "\1\u00ce",
-            "\1\u00cf",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00cc",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\2\55\1\u00cd\1\55"+
+            "\1\u00ce\25\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00d0",
             "\1\u00d1",
-            "",
-            "\1\u00d2",
-            "\1\u00d3",
-            "\1\u00d4",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u00d6",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\2\55\1\u00d7\1\55"+
-            "\1\u00d8\25\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\15\55\1\u00d2\1\u00d3\13\55\4\uffff\1\55\1\uffff"+
+            "\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00d5",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00d7",
+            "\1\u00d8",
+            "\1\u00d9",
             "\1\u00da",
-            "\1\u00db",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u00dc",
-            "\12\55\7\uffff\15\55\1\u00de\1\u00dd\13\55\4\uffff\1\55\1"+
-            "\uffff\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00dd",
+            "\1\u00de",
+            "\1\u00df",
+            "\1\u00e0",
             "\1\u00e1",
             "\1\u00e2",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00e3",
             "\1\u00e4",
-            "\1\u00e5",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u00e6",
             "\1\u00e7",
             "\1\u00e8",
@@ -4838,8 +4838,7 @@ public class TCSLexer extends Lexer {
             "\1\u00ea",
             "\1\u00eb",
             "\1\u00ec",
-            "\1\u00ed",
-            "\1\u00ee",
+            "\1\u00ed\1\uffff\1\u00ee",
             "\1\u00ef",
             "\1\u00f0",
             "\1\u00f1",
@@ -4849,196 +4848,199 @@ public class TCSLexer extends Lexer {
             "\1\u00f5",
             "\1\u00f6",
             "\1\u00f7",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u00f9",
-            "\1\u00fa",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u00f8",
+            "\12\55\7\uffff\15\55\1\u00fa\4\55\1\u00f9\7\55\4\uffff\1\55"+
+            "\1\uffff\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u00fc",
-            "\1\u00fd",
-            "\1\u00fe",
+            "\1\u00fd\53\uffff\1\u00fe",
             "\1\u00ff",
-            "\1\u0100",
-            "\1\u0101",
+            "\12\55\7\uffff\2\55\1\u0100\27\55\4\uffff\1\55\1\uffff\32\55"+
+            "\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0102",
+            "",
             "\1\u0103",
+            "",
             "\1\u0104",
             "\1\u0105",
             "\1\u0106",
             "\1\u0107",
             "\1\u0108",
             "\1\u0109",
-            "\12\55\7\uffff\15\55\1\u010b\4\55\1\u010a\7\55\4\uffff\1\55"+
-            "\1\uffff\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u010d\53\uffff\1\u010e",
-            "\1\u010f",
+            "\1\u010a",
+            "\1\u010b",
+            "\1\u010c",
+            "\1\u010d",
+            "\1\u010e",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0110",
             "\1\u0111",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\10\55\1\u0112\21"+
-            "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\1\u0112",
+            "\1\u0113",
             "\1\u0114",
+            "\1\u0115",
             "",
-            "\12\55\7\uffff\2\55\1\u0115\27\55\4\uffff\1\55\1\uffff\32"+
-            "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0117",
+            "\1\u0116",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0118",
-            "\1\u0119",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u011a",
+            "",
             "\1\u011b",
             "\1\u011c",
-            "",
             "\1\u011d",
             "\1\u011e",
             "\1\u011f",
-            "\1\u0120",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0121",
-            "",
-            "",
             "\1\u0122",
             "\1\u0123",
             "",
             "\1\u0124",
             "\1\u0125",
             "\1\u0126",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0128",
-            "\1\u0129",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0127",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\10\55\1\u0128\21"+
+            "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u012a",
             "\1\u012b",
             "\1\u012c",
             "\1\u012d",
-            "\1\u012e",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u012f",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0134",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0130",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0132",
+            "\1\u0133",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0136",
             "\1\u0137",
-            "",
             "\1\u0138",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0139",
             "",
-            "\1\u013a",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u013b",
             "\1\u013c",
             "\1\u013d",
             "\1\u013e",
+            "",
             "\1\u013f",
             "\1\u0140",
             "\1\u0141",
-            "\1\u0142",
-            "\1\u0143",
-            "\1\u0144",
-            "\12\55\7\uffff\15\55\1\u0145\14\55\4\uffff\1\55\1\uffff\32"+
+            "\12\55\7\uffff\15\55\1\u0142\14\55\4\uffff\1\55\1\uffff\32"+
             "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0147\2\uffff\1\u0148",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0144\2\uffff\1\u0145",
+            "\1\u0146",
+            "\1\u0147",
+            "\1\u0148",
+            "\1\u0149",
             "\1\u014a",
             "\1\u014b",
-            "",
-            "\1\u014c",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u014d",
+            "",
             "\1\u014e",
             "\1\u014f",
             "\1\u0150",
-            "\1\u0151",
-            "",
-            "\1\u0152",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0153",
-            "",
             "\1\u0154",
-            "\1\u0155",
-            "\1\u0156",
-            "\1\u0157",
-            "\1\u0158",
-            "\1\u0159",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u015b",
-            "\1\u015c",
-            "\1\u015d",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u015f",
-            "\1\u0160",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0162",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\1\u0164",
-            "\1\u0165",
-            "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0167",
-            "\1\u0168",
-            "\1\u0169",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
-            "",
-            "",
-            "",
-            "\12\55\7\uffff\13\55\1\u016b\16\55\4\uffff\1\55\1\uffff\32"+
+            "\12\55\7\uffff\13\55\1\u0155\16\55\4\uffff\1\55\1\uffff\32"+
             "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\1\u016e\15\uffff\1\u016d",
-            "\12\55\7\uffff\15\55\1\u0170\4\55\1\u016f\7\55\4\uffff\1\55"+
-            "\1\uffff\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0172",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0158",
+            "\1\u0159",
+            "\1\u015a",
+            "\1\u015b",
+            "\1\u015c",
             "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u015e",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0160",
+            "\1\u0161",
+            "\1\u0162",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0164",
+            "",
+            "\1\u0165",
+            "\1\u0166",
+            "\1\u0167",
+            "\1\u0168",
+            "",
+            "\1\u0169",
+            "\1\u016a",
+            "",
+            "\1\u016b\15\uffff\1\u016c",
+            "\12\55\7\uffff\15\55\1\u016d\4\55\1\u016e\7\55\4\uffff\1\55"+
+            "\1\uffff\32\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "",
+            "\1\u0170",
+            "\1\u0171",
+            "\1\u0172",
             "\1\u0173",
-            "\1\u0174",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0175",
             "\1\u0176",
             "\1\u0177",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0179",
             "\1\u017a",
-            "\1\u017b",
-            "\1\u017c",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u017f\25\uffff\1\u017e",
+            "\1\u017c\25\uffff\1\u017b",
             "",
+            "\1\u017d",
+            "\1\u017e",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0180",
             "\1\u0181",
-            "",
             "\1\u0182",
-            "\1\u0183",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0184",
+            "",
             "\1\u0185",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0187",
+            "\1\u0187\10\uffff\1\u0186",
             "\1\u0188",
             "\1\u0189",
+            "",
+            "",
             "\1\u018a",
             "\1\u018b",
             "\1\u018c",
+            "",
+            "",
             "\1\u018d",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u018e",
             "\1\u018f",
-            "\1\u0190\10\uffff\1\u0191",
+            "\1\u0190",
+            "\1\u0191",
+            "",
             "\1\u0192",
             "",
             "\1\u0193",
@@ -5047,302 +5049,298 @@ public class TCSLexer extends Lexer {
             "",
             "\1\u0196",
             "\1\u0197",
-            "",
-            "\1\u0198",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0199",
             "\1\u019a",
-            "",
-            "\1\u019b\7\uffff\1\u019c",
+            "\1\u019b",
+            "\1\u019c",
             "\1\u019d",
             "\1\u019e",
-            "",
             "\1\u019f",
-            "",
             "\1\u01a0",
-            "\1\u01a1",
-            "\1\u01a2",
-            "\1\u01a3",
             "",
+            "\1\u01a2\7\uffff\1\u01a1",
+            "\1\u01a3",
             "\1\u01a4",
             "\1\u01a5",
+            "",
             "\1\u01a6",
             "\1\u01a7",
             "\1\u01a8",
-            "\1\u01a9",
             "",
+            "\1\u01a9",
             "\1\u01aa",
             "\1\u01ab",
-            "\1\u01ac",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01ad",
             "\1\u01ae",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\1\u01af",
             "\1\u01b0",
             "\1\u01b1",
-            "\1\u01b2",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01b3",
-            "",
             "\1\u01b4",
-            "",
             "\1\u01b5",
-            "\1\u01b6",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01b7",
+            "\1\u01b8",
             "\1\u01b9",
             "\1\u01ba",
             "\1\u01bb",
-            "",
             "\1\u01bc",
             "\1\u01bd",
             "\1\u01be",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01bf",
             "\1\u01c0",
             "\1\u01c1",
-            "\1\u01c2",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01c3",
-            "\1\u01c4",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "",
             "\1\u01c6",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u01c8",
+            "\1\u01c7",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01c9",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01ca",
             "\1\u01cb",
             "\1\u01cc",
             "\1\u01cd",
             "\1\u01ce",
             "\1\u01cf",
-            "\1\u01d0",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01d1",
-            "\1\u01d2",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01d3",
-            "\1\u01d4",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01d5",
             "\1\u01d6",
-            "\1\u01d7",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01d8",
+            "",
             "\1\u01d9",
-            "",
             "\1\u01da",
-            "",
             "\1\u01db",
             "\1\u01dc",
             "\1\u01dd",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\1\u01de",
             "\1\u01df",
             "\1\u01e0",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u01e2",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01e3",
             "\1\u01e4",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01e5",
             "\1\u01e6",
             "\1\u01e7",
-            "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01e8",
             "\1\u01e9",
-            "\1\u01ea",
-            "\1\u01ec\20\uffff\1\u01ed\15\uffff\1\u01eb",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01ed\20\uffff\1\u01ec\15\uffff\1\u01eb",
+            "",
             "\1\u01ee",
             "",
+            "",
             "\1\u01ef",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u01f3",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01f1",
+            "\1\u01f2",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01f4",
             "\1\u01f5",
-            "\1\u01f6",
-            "\1\u01f7",
-            "\1\u01f8",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\1\u01f9",
+            "",
             "\1\u01fa",
             "\1\u01fb",
-            "\1\u01fc",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u01ff",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u01fe",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0200",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0201",
+            "\1\u0202",
             "\1\u0203",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0204",
             "",
-            "\1\u0205",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0206",
-            "",
-            "\1\u0207",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0208",
-            "",
             "\1\u0209",
             "\1\u020a",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\1\u020b",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u020e",
             "\1\u020f",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0211",
             "",
-            "",
-            "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
+            "\1\u0212",
             "\1\u0214\14\uffff\1\u0213",
-            "\1\u0215",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\1\u0218",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0216",
             "",
+            "",
+            "",
+            "\1\u0217",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0219",
+            "",
+            "",
+            "\1\u021a",
             "",
             "\1\u021b",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
-            "",
-            "\1\u021d",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u021e",
             "\1\u021f",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\1\u0220",
+            "",
             "\1\u0221",
-            "\1\u0222",
-            "\1\u0223",
-            "\1\u0224",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
             "",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0225",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
+            "\1\u0226",
             "\1\u0227",
-            "",
             "\1\u0228",
             "\1\u0229",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "",
-            "\1\u022b",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
             "\1\u022c",
-            "",
             "\1\u022d",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u022f",
+            "\1\u022e",
             "",
-            "\1\u0230",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0231",
+            "\1\u0232",
+            "",
+            "",
+            "",
             "\1\u0233",
             "\1\u0234",
-            "",
             "\1\u0235",
             "\1\u0236",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\1\u0238",
-            "\1\u0239",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u023a",
+            "",
             "",
             "\1\u023b",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
-            "",
+            "\1\u023c",
             "\1\u023d",
             "\1\u023e",
-            "\12\55\7\uffff\25\55\1\u023f\4\55\4\uffff\1\55\1\uffff\32"+
-            "\55\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\25\55\1\u023f\4\55\4\uffff\1\55\1\uffff\32\55"+
+            "\105\uffff\27\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0241",
             "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "",
+            "\1\u0242",
             "\1\u0243",
-            "",
-            "\1\u0244",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0245",
             "\1\u0246",
             "\1\u0247",
             "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0249",
             "\1\u024a",
+            "",
             "\1\u024b",
             "\1\u024c",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u024f",
             "\1\u0250",
             "\1\u0251",
             "",
             "",
             "\1\u0252",
-            "\1\u0253",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
-            "\1\u0256",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
+            "\1\u0254",
+            "\1\u0255",
             "",
-            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             "\1\u0257",
-            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff"+
-            "\27\55\1\uffff\37\55\1\uffff\10\55",
+            "",
+            "\12\55\7\uffff\32\55\4\uffff\1\55\1\uffff\32\55\105\uffff\27"+
+            "\55\1\uffff\37\55\1\uffff\10\55",
             ""
     };
 
