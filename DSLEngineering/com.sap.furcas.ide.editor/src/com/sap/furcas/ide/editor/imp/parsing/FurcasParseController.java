@@ -127,11 +127,11 @@ public abstract class FurcasParseController extends ParseControllerBase {
             parse(blockWithUnparsedEdits);
         } catch (SemanticParserException e) {
             handleParseException(e);
-            if (getCurrentAst() == null) {
-                return null;
-            }
         }
         
+        if (getCurrentAst() == null || Version.REFERENCE != getCurrentAst().getVersion()) {
+            return null;
+        }
         // 3) Merge all user edits that happened while step 2 was running.
         //    Afterwards, run the short pretty printer to update all tokens according
         //    to domain model changes. The order is essential here, because otherwise 
@@ -158,6 +158,7 @@ public abstract class FurcasParseController extends ParseControllerBase {
 
         boolean syntacticallyCorrect = parserCollection.lexer.lex(oldBlock);
         if (!syntacticallyCorrect) {
+            setParsingResult(null);
             throw new SemanticParserException(parserCollection.incrementalParser.getErrorList(), oldBlock, null);
         }
         
@@ -207,8 +208,8 @@ public abstract class FurcasParseController extends ParseControllerBase {
     
     @Override
     public Iterator<AbstractToken> getTokenIterator(final IRegion region) {
-        if (!completelyItitialized) {
-            return null; // IMP will call us before we are done initializing
+        if (!completelyItitialized || getCurrentAst() == null) {
+            return null;
         }
         final VersionedTextBlockNavigator navigator = new VersionedTextBlockNavigator(Version.REFERENCE);
         final int regionEnd = region.getOffset() + region.getLength();
