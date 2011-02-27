@@ -20,10 +20,10 @@
     <!--
     <module>bibtex.dsl</module>
     <module>bibtex.test</module>
-    -->
     <module>bibtex.metamodel</module>
     <module>bibtex.metamodel.edit</module>
     <module>bibtex.metamodel.editor</module>
+    -->
     <module>com.sap.emf.ocl.trigger</module>
     <module>com.sap.emf.ocl.trigger.tests</module>
     <module>com.sap.furcas.ide.dslproject</module>
@@ -35,6 +35,7 @@
     <module>com.sap.furcas.metamodel.edit</module>
     <module>com.sap.furcas.metamodel.editor</module>
     <module>com.sap.furcas.metamodel.tests</module>
+    <module>com.sap.furcas.metamodel.texteditor</module>
     <module>com.sap.furcas.modeladaptation.emf</module>
     <module>com.sap.furcas.modeladaptation.emf.test</module>	
     <module>com.sap.furcas.parser.tcs</module>

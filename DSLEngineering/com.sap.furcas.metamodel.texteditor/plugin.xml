@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<?eclipse version="3.4"?> 
+<plugin> 
+	<extension point="org.eclipse.ui.editors"> 
+		<editor 
+			class="com.sap.furcas.metamodel.texteditor.editor.TCSEditor"
+			extensions="tcs" 
+			id="com.sap.furcas.metamodel.texteditor.editor.TCSEditor" 
+			name="Textual TCS Editor"> 
+		</editor> 
+	</extension>
+ <extension
+       point="org.eclipse.imp.runtime.tokenColorer">
+    <tokenColorer
+          class="com.sap.furcas.metamodel.texteditor.editor.TCSTokenColorer"
+          language="TCS">
+    </tokenColorer>
+ </extension>
+ <extension
+       point="org.eclipse.imp.runtime.contentProposer">
+    <proposer
+          class="com.sap.furcas.metamodel.texteditor.editor.TCSContentProposer"
+          language="TCS">
+    </proposer>
+ </extension>
+ <extension
+       point="org.eclipse.imp.runtime.labelProvider">
+    <labelProvider
+          class="com.sap.furcas.metamodel.texteditor.tree.TCSLabelProvider"
+          language="TCS">
+    </labelProvider>
+ </extension>
+ <extension
+       point="org.eclipse.imp.runtime.parser">
+    <parser
+          class="com.sap.furcas.metamodel.texteditor.parser.TCSParseController"
+          language="TCS">
+    </parser>
+ </extension>
+ <extension
+       point="org.eclipse.imp.runtime.modelTreeBuilder">
+    <treeBuilder
+          class="com.sap.furcas.ide.editor.imp.services.FurcasTreeModelBuilder"
+          language="TCS">
+    </treeBuilder>
+ </extension>
+ <extension
+       point="org.eclipse.imp.runtime.languageDescription">
+    <language
+          description="TCS"
+          extensions="tcs"
+          language="TCS">
+    </language>
+ </extension> 
+ 
+</plugin> 

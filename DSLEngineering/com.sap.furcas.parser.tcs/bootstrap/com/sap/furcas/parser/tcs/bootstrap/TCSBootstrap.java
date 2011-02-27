@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.sap.furcas.parser.tcs.bootstrap;
 
 import static com.sap.furcas.parser.tcs.bootstrap.BootstrapHelper.createReferenceScope;
@@ -10,7 +7,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.IOException;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -28,6 +30,7 @@ public class TCSBootstrap {
     private static final String GENERATIONDIR = "./generationTemp/";
     private static final String PACKAGE = "generated";
     private static final String GRAMMAR = GENERATIONDIR + PACKAGE + "/TCS.g";
+    private static final String MAPPING = GENERATIONDIR + PACKAGE + "/TCS.tcs";
     private static final String SYNTAXDEFINITION = "./syntaxdefinition/TCS.tcs";
     
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
@@ -64,7 +67,7 @@ public class TCSBootstrap {
     public void phase1_step1_parseSyntaxDefintion() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
-            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
+            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), new SystemOutErrorHandler());
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
             assertEquals("TCS", syntaxBean.getSyntax().getName());
         } catch (ParserInvokationException e) {
@@ -93,9 +96,23 @@ public class TCSBootstrap {
      */
     @Test
     public void phase1_step3_generateParser() {
-        SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
+       SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         generator.generateParserFromGrammar(targetConfiguration, errorHandler);
         assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
+    }
+    
+    /**
+     * Step 4: Save the concrete syntax mapping definition
+     */
+    @Test
+    public void phase1_step4_saveMapping() throws IOException {
+        File mappingFile = new File(MAPPING);
+        ResourceSet resourceSet = new ResourceSetImpl();
+        
+        Resource resource = resourceSet.createResource(URI.createFileURI(mappingFile.getAbsolutePath()));
+        resource.getContents().add(syntaxBean.getSyntax());
+        
+        resource.save(null);
     }
     
 }

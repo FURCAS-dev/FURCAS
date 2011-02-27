@@ -7,6 +7,7 @@ import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 
+
 public class TCSParserFacadeFactoryImpl implements TCSParserFacadeFactory {
 
     @Override
@@ -17,20 +18,27 @@ public class TCSParserFacadeFactoryImpl implements TCSParserFacadeFactory {
             return createStableFacade();
         }
     }
-
+    
     private boolean runUnstableBootstrappedVersion() {
         return "true".equals(System.getProperty("useBootstrappedTCSParser"));
     }
-
-    @SuppressWarnings("unchecked")
+    
     private ParserFacade createBootstrappedFacade() throws InvalidParserImplementationException {
         try {
-            return new ParserFacade(
-                    (Class<? extends ObservableInjectingParser>) Class.forName("generated.TCSParser"),
-                    (Class<? extends Lexer>) Class.forName("generated.TCSLexer"), /* language name */ "TCS");
+            return new ParserFacade(loadParserClass(), loadLexerClass(), /* language name */ "TCS");
         } catch (ClassNotFoundException e) {
             throw new InvalidParserImplementationException(e);
         }
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Class<? extends Lexer> loadLexerClass() throws ClassNotFoundException {
+        return (Class<? extends Lexer>) Class.forName("generated.TCSLexer");
+    }
+
+    @SuppressWarnings("unchecked")
+    private Class<? extends ObservableInjectingParser> loadParserClass() throws ClassNotFoundException {
+        return (Class<? extends ObservableInjectingParser>) Class.forName("generated.TCSParser");
     }
 
     private ParserFacade createStableFacade() throws InvalidParserImplementationException {

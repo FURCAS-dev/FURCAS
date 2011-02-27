@@ -120,10 +120,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	}
 	
 	@Override
-	public URI getSyntaxUri() {
-	    //TODO default position of the mapping model file
-	    return null;
-	}
+	public abstract URI getSyntaxUri();
 
 	@Override
 	public L createLexer(CharStream input, ITokenFactory<? extends ANTLR3LocationToken> factory) {
