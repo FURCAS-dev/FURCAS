@@ -97,6 +97,7 @@ public class GeneratedClassesTest {
             if (bundle == null) {
                 System.err.println("Unable to find bundle "+bundles[i]);
             } else {
+                System.out.println("found bundle "+bundle.getLocation());
                 String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
                 if (eclipsePath.contains("/")) {
                     if (eclipsePath.endsWith("/")) {
