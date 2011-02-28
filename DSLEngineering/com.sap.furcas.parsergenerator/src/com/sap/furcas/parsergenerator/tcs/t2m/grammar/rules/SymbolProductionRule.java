@@ -21,7 +21,7 @@ public class SymbolProductionRule extends AbstractAntlr3Rule {
     
     private static int fixedLength = COLONSTRING.length() + SEMICOLONSTRING.length();
     
-    private int length;
+    private final int length;
     
     public SymbolProductionRule(String ruleHead, String rulebody) {
         super(ruleHead);
@@ -35,7 +35,9 @@ public class SymbolProductionRule extends AbstractAntlr3Rule {
      */
     @Override
     protected void addRuleBody(VarStringBuffer buf) {
-        buf.append('\'').append(rulebody).append('\'');
+        //escape any ' characters
+        String escaped = rulebody.replaceAll("'", "\\\\'");
+        buf.append('\'').append(escaped).append('\'');
     }
 
 

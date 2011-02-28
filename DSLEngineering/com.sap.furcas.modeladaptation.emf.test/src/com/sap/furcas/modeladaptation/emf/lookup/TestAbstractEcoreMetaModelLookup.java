@@ -14,11 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.junit.Test;
 
@@ -242,6 +244,51 @@ public class TestAbstractEcoreMetaModelLookup {
 
         assertTrue(lookup.isSubTypeOf(subRefBean, superRefBean));
     }
+    
+    /**
+     * This tests the lookup of references through generics used e.g., in the OCL and OCLEcore metamodels
+     * For example, ecore::EnumLiteralExp inherits from EnumLiteralExp<C, LE> binding the generic types
+     * as follows: EnumLiteralExp<EClassifier, EEnumLiteral> which leads to the reference "referredEnumLiteral"
+     * being bound to type EEnumLiteral. This binding has to be resolved by the metalookup. Currently,
+     * {@link AbstractEcoreMetaModelLookup#getEType(EObject, org.eclipse.emf.ecore.EStructuralFeature)} is 
+     * responsible for resolving the generic type stuff.
+     * 
+     * @throws MetaModelLookupException
+     */
+    @Test
+    public void testGenericReferenceTypeResolvingParameterizedReference() throws MetaModelLookupException {
+    	TestableAbstractEcoreMetaModelLookup lookup = new TestableAbstractEcoreMetaModelLookup();
+    	ResolvedNameAndReferenceBean<EObject> reference = ResolutionBeanHelper.refM(
+    			EcorePackage.eINSTANCE.getEnumLiteralExp(), "ocl", "ecore", "EnumLiteralExp");
+    	
+    	ResolvedNameAndReferenceBean<EObject> featureClassReference = 
+    		lookup.getFeatureClassReference(reference, "referredEnumLiteral");
+    	assertEquals(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEEnumLiteral(),
+    			featureClassReference.getReference());
+    }
+    
+//    /**
+//     * This tests the lookup of references through generics used e.g., in the OCL and OCLEcore metamodels
+//     * this time for parameterized reference types:
+//     * ecore::VariableExp has a reference referredVariable which is of Type Variable<C, PM>. As 
+//     * ecore::VariableExp has a generic supertype  VariableExp<EClassifier, EParameter> these parameters
+//     * should also be bound to the type of the  referredVariable reference leading to the reference type
+//     * of Variable<EClassifier, EParameter>. This case should also be handled by
+//     * {@link AbstractEcoreMetaModelLookup#getEType(EObject, org.eclipse.emf.ecore.EStructuralFeature)}.
+//     * 
+//     * @throws MetaModelLookupException
+//     */
+//    @Test
+//    public void testGenericReferenceTypeResolvingParameterizedReferenceType() throws MetaModelLookupException {
+//    	TestableAbstractEcoreMetaModelLookup lookup = new TestableAbstractEcoreMetaModelLookup();
+//    	ResolvedNameAndReferenceBean<EObject> reference = ResolutionBeanHelper.refM(
+//    			EcorePackage.eINSTANCE.getEnumLiteralExp(), "ocl", "ecore", "VariableExp");
+//    	
+//    	ResolvedNameAndReferenceBean<EObject> featureClassReference = 
+//    		lookup.getFeatureClassReference(reference, "referredVariable");
+//    	assertEquals(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEEnumLiteral(),
+//    			featureClassReference.getReference());
+//    }
 
     private class TestableAbstractEcoreMetaModelLookup extends AbstractEcoreMetaModelLookup {
 
@@ -263,8 +310,8 @@ public class TestAbstractEcoreMetaModelLookup {
         }
 
         @Override
-        public EList<String> validateOclQuery(Template template, String queryToValidate) {
-            return new BasicEList<String>();
+        public EList<Diagnostic> validateOclQuery(Template template, String queryToValidate) {
+            return new BasicEList<Diagnostic>();
         }
 
         @Override
@@ -280,13 +327,14 @@ public class TestAbstractEcoreMetaModelLookup {
         }
 
         @Override
-        public List<String> validateOclQuery(EObject parsingContext, String oclQuery) {
-            return new BasicEList<String>();
+        public List<Diagnostic> validateOclQuery(EObject parsingContext, String oclQuery) {
+            return new BasicEList<Diagnostic>();
         }
 
         @Override
         public EObject getOclReturnType(EObject parsingContext, String oclQuery) throws MetaModelLookupException {
             return new EcoreAnyStub();
+            
         }
 
     }

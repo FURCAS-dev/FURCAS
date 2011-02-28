@@ -10,6 +10,8 @@ package com.sap.furcas.runtime.common.interfaces;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
@@ -120,13 +122,13 @@ public interface IMetaModelLookup<Type> {
      * Checks the given OCL query for errors.
      * @return a list of error messages.
      */
-    public List<String> validateOclQuery(Template template, String oclQuery);
+    public List<Diagnostic> validateOclQuery(Template template, String oclQuery);
     
     /**
      * Checks the given OCL query for errors.
      * @return a list of error messages.
      */
-    public List<String> validateOclQuery(Type parsingContext, String oclQuery);
+    public List<Diagnostic> validateOclQuery(Type parsingContext, String oclQuery);
 
     /**
      * Returns the return type of the given OCL query.

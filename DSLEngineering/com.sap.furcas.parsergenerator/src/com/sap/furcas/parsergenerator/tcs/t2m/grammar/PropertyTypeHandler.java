@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
@@ -258,17 +259,25 @@ public class PropertyTypeHandler<Type extends Object> {
     }
     
     private void validateOclQuery(PropertyArg argument, Type parsingContext, String query) {
-        List<String> oclErrors = metaLookup.validateOclQuery(parsingContext, query);
-        for (String error : oclErrors) {
-            errorBucket.addError(error + " in OCL query " + query, argument);
+        List<Diagnostic> oclErrors = metaLookup.validateOclQuery(parsingContext, query);
+        for (Diagnostic error : oclErrors) {
+        	if(error.getSeverity() == Diagnostic.ERROR) {
+        	    errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", argument);
+        	} else if(error.getSeverity() == Diagnostic.WARNING) {
+        		errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, argument);
+        	}
         }
     }
 
     private void validateOclQuery(Property prop, PropertyArg argument, String query) {
-        List<String> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query);
-        for (String error : oclErrors) {
-            errorBucket.addError(error + " in OCL query " + query, argument);
-        }
+        List<Diagnostic> oclErrors = metaLookup.validateOclQuery(prop.getParentTemplate(), query);
+        for (Diagnostic error : oclErrors) {
+            if(error.getSeverity() == Diagnostic.ERROR) {
+                errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", argument);
+            } else if(error.getSeverity() == Diagnostic.WARNING) {
+                    errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, argument);
+            }
+    }
     }
 
     /**

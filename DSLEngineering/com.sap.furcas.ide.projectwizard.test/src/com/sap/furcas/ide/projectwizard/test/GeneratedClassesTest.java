@@ -61,7 +61,7 @@ public class GeneratedClassesTest {
                     "./generationTemp/generated/MydslParserFactory.java", "./generationTemp/generated/MydslEditor.java",
                     "./generationTemp/generated/Activator.java", "-cp", requiredBundles });
             if (success != 0) {
-                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
+                fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString()+"\nClasspath was: "+requiredBundles);
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
@@ -99,9 +99,17 @@ public class GeneratedClassesTest {
             } else {
                 String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
                 if (eclipsePath.contains("/")) {
-                    bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                    if (eclipsePath.endsWith("/")) {
+                        bundlePath = eclipsePath + "plugins/" + bundleJarName;
+		    } else {
+                        bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+		    }
                 } else {
-                    bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+		    if (eclipsePath.endsWith("\\")) {
+                        bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+		    } else {
+                        bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+		    }
                 }
                 requiredBundles.append(File.pathSeparator + bundlePath);
             }

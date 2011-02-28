@@ -8,6 +8,7 @@ import generated.$CapLangName$Lexer;
 import generated.$CapLangName$Parser;
 
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import $ProjectName$.editor.Activator;
 
 public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangName$Parser, $CapLangName$Lexer> {
 
@@ -37,12 +38,12 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
 	@Override
 	public String[] getHiddenChannelTokenNames() {
 		// TODO Auto-generated method stub
-		return null;
+		return new String[0];
 	}
 	
 	@Override 
         public URI getSyntaxUri() { 
-            return URI.createPlatformPluginURI("/$ProjectName$/mappings/$CapLangName$.tcs", true); 
+            return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/mappings/$CapLangName$.tcs", true); 
         } 
 	
 }

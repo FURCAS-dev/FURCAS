@@ -134,7 +134,8 @@ public class TcsUtil {
     }
 
     public static String escapeMultiLineOclQuery(String value) {
-        String javaQuery = value.replaceAll("\\\"", "\\\\\"");
+        String javaQuery = value.replaceAll("\\\\", "\\\\\\\\");
+        javaQuery = javaQuery.replaceAll("\\\"", "\\\\\"");
         javaQuery = javaQuery.replaceAll("\r\n", "\n");
         javaQuery = javaQuery.replaceAll("\n", "\"+\n\"");
         return javaQuery;
