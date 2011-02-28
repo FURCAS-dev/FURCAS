@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ocl.ecore:LetExp xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" xsi:schemaLocation="http://www.eclipse.org/ocl/1.1.0/Ecore ../org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore"/>
