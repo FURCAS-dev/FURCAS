@@ -264,7 +264,6 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage, EEnumL
 
     @Override
     public EGenericType getEGenericType() {
-	fail("stub method not implemented");
 	return null;
     }
 

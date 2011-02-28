@@ -10,6 +10,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -95,40 +96,48 @@ public class TestFileBasedEcoreMetaModelLookup {
     @Test
     public void testSubTypesWithBibText() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.BIBTEXT_METAMODEL, ScenarioFixtureData.BIBTEXT1_METAMODEL);
-        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("BibText", "BibTextEntry"));
+        ResolvedNameAndReferenceBean<EObject> bibEntry = lookup.resolveReference(Arrays.asList("BibText", "BibTextEntry"));
+        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(bibEntry);
         assertEquals(2, result.size());
         assertTrue(result.contains(refE("BibText", "Article")));
         assertTrue(result.contains(refE("BibText", "Author")));
 
-        assertEquals(list(), lookup.getDirectSubTypes(refE("BibText", "Article")));
+        ResolvedNameAndReferenceBean<EObject> article = lookup.resolveReference(Arrays.asList("BibText", "Article"));
+        assertEquals(list(), lookup.getDirectSubTypes(article));
 
-        result = lookup.getDirectSubTypes(refE("BibText", "Attribute"));
+        ResolvedNameAndReferenceBean<EObject> attribute = lookup.resolveReference(Arrays.asList("BibText", "Attribute"));
+        result = lookup.getDirectSubTypes(attribute);
         assertEquals(1, result.size());
         assertTrue(result.contains(refE("BibText", "Year")));
 
-        assertEquals(list(), lookup.getDirectSubTypes(refE("BibText", "Author")));
+        ResolvedNameAndReferenceBean<EObject> author = lookup.resolveReference(Arrays.asList("BibText", "Author"));
+        assertEquals(list(), lookup.getDirectSubTypes(author));
     }
 
     @Test
     public void testSubTypesWithXPath() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.XPATH1_METAMODEL, ScenarioFixtureData.XPATH_METAMODEL);
-        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("XPath", "LocatedElement"));
+        ResolvedNameAndReferenceBean<EObject> locatedElement = lookup.resolveReference(Arrays.asList("XPath", "LocatedElement"));
+        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(locatedElement);
         assertEquals(6, result.size());
         assertTrue(result.contains(refE("XPath", "Axis")));
         assertTrue(result.contains(refE("XPath", "Expression")));
         assertTrue(result.contains(refE("XPath", "NamedElement")));
 
-        result = lookup.getDirectSubTypes(refE("XPath", "NodeTest"));
+        ResolvedNameAndReferenceBean<EObject> nodeTest = lookup.resolveReference(Arrays.asList("XPath", "NodeTest"));
+        result = lookup.getDirectSubTypes(nodeTest);
         assertEquals(4, result.size());
         assertTrue(result.contains(refE("XPath", "WildCardTest")));
         assertTrue(result.contains(refE("XPath", "IsTextTest")));
 
-        result = lookup.getDirectSubTypes(refE("XPath", "Axis"));
+        ResolvedNameAndReferenceBean<EObject> axis = lookup.resolveReference(Arrays.asList("XPath", "Axis"));
+        result = lookup.getDirectSubTypes(axis);
         assertEquals(13, result.size());
         assertTrue(result.contains(refE("XPath", "ParentAxis")));
         assertTrue(result.contains(refE("XPath", "SelfAxis")));
 
-        result = lookup.getDirectSubTypes(refE("XPath", "Expression"));
+        ResolvedNameAndReferenceBean<EObject> expression = lookup.resolveReference(Arrays.asList("XPath", "Expression"));
+        result = lookup.getDirectSubTypes(expression);
         assertEquals(5, result.size());
         assertTrue(result.contains(refE("XPath", "PathExpression")));
         assertTrue(result.contains(refE("XPath", "FunctionCallExp")));
@@ -137,7 +146,8 @@ public class TestFileBasedEcoreMetaModelLookup {
     @Test
     public void testSubTypesWithMultiPackages() throws Exception {
         FileBasedEcoreMetaModelLookUp lookup = new FileBasedEcoreMetaModelLookUp(ScenarioFixtureData.MULTIPACKAGE_METAMODEL);
-        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(refE("expression", "Expression"));
+        ResolvedNameAndReferenceBean<EObject> expression = lookup.resolveReference(Arrays.asList("expression", "Expression"));
+        List<ResolvedNameAndReferenceBean<EObject>> result = lookup.getDirectSubTypes(expression);
         assertEquals(3, result.size());
         assertTrue(result.contains(refE("expression", "rightPackage", "BinaryExpression")));
         assertTrue(result.contains(refE("expression", "rightPackage", "ValueExpression")));

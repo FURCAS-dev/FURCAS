@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -108,7 +109,8 @@ public class TestQueryBasedEcoreMetaModelLookUp {
         subTypes.add(refM("FURCAS", "TCS", "PrimitiveTemplate"));
         subTypes.add(refM("FURCAS", "TCS", "ContextTemplate"));
         subTypes.add(refM("FURCAS", "TCS", "EnumerationTemplate"));
-        List<ResolvedNameAndReferenceBean<EObject>> caluclatedSubTypes = lookup.getDirectSubTypes(refM("FURCAS", "TCS", "Template"));
+        ResolvedNameAndReferenceBean<EObject> template = lookup.resolveReference(Arrays.asList("FURCAS", "TCS", "Template"));
+        List<ResolvedNameAndReferenceBean<EObject>> caluclatedSubTypes = lookup.getDirectSubTypes(template);
         assertTrue(caluclatedSubTypes.containsAll(subTypes));
         assertTrue(subTypes.containsAll(caluclatedSubTypes));
     }

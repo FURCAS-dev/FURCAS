@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
@@ -167,10 +168,14 @@ public class InjectorActionsHandler<Type> {
     }
 
     private void validateOclQuery(Template template, String query, PropertyInit propInit) {
-        List<String> oclErrors = metaLookup.validateOclQuery(template, query);
-        for (String error : oclErrors) {
-            errorBucket.addError(error + " in OCL query " + query, propInit);
-        }
+        List<Diagnostic> oclErrors = metaLookup.validateOclQuery(template, query);
+        for (Diagnostic error : oclErrors) {
+            if(error.getSeverity() == Diagnostic.ERROR) {
+                errorBucket.addError("Error: " + error.getMessage() + " in OCL query: \"" + query + "\"", propInit);
+            } else if(error.getSeverity() == Diagnostic.WARNING) {
+                errorBucket.addWarning("Warning: " + error.getMessage() + " in OCL query " + query, propInit);
+            }
+    }
     }
 
     /**

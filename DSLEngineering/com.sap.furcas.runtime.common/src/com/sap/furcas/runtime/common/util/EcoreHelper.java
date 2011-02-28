@@ -187,9 +187,14 @@ public class EcoreHelper {
         Iterator<EObject> iter = EcoreUtil.getAllContents(pack, /*resolve*/ false);
         String outmostNamePart = qualifiedClassifierName.get(0);
         // check if it is a full qualified name
-        if (outmostNamePart.equals(pack.getName())) {
-            return findClassifierByFullQualifiedName(qualifiedClassifierName, pack);
+        for (String subPackName : qualifiedClassifierName) {
+            if(!qualifiedClassifierName.get(qualifiedClassifierName.size() - 1).equals(subPackName)) {
+                if (subPackName.equals(pack.getName())) {
+                    return findClassifierByFullQualifiedName(qualifiedClassifierName, pack);
+                }
+            }
         }
+        
         // handle non-fully qualified name
         while (iter.hasNext()) {
             Object containedObject = iter.next();

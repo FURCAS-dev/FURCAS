@@ -257,13 +257,15 @@ public class ContextAndForeachHelper {
      * 
      * @deprecated Use only {@link #prepareOclQuery(String)} because ? replacement is obsolete
      */
+    @Deprecated
     public static String prepareOclQuery(String queryToExecute, Object keyValue) {
         String result = queryToExecute;
         if (queryToExecute != null) {
+            result = result.replaceAll("\\\\\"","\"");
             if (result.startsWith("OCL:")) {
                 result = result.replaceFirst("OCL:", "");
             }
-            result = ContextAndForeachHelper.prepareOclQuery(queryToExecute);
+            result = ContextAndForeachHelper.prepareOclQuery(result);
 
             if (keyValue != null) {
                 result = result.replaceAll(QUERY_PARAM_NAME, "'" + keyValue.toString() + "'");

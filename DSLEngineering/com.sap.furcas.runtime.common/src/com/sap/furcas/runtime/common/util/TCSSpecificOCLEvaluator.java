@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -95,7 +96,7 @@ public class TCSSpecificOCLEvaluator {
             }
 
         } catch (ParserException e) {
-            throw new ModelAdapterException("Cannot evaluate OCLExpression:" + queryToExecute + " Reason: "
+            throw new ModelAdapterException("Cannot evaluate) OCLExpression:" + queryToExecute + " Reason: "
                     + e.getDiagnostic().getMessage(), e);
         }
     }
@@ -115,31 +116,33 @@ public class TCSSpecificOCLEvaluator {
         return objectForSelf;
     }
     
-    public List<String> validateOclQuery(Template template, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(Template template, String queryToValidate) {
         try {
              EClassifier parsingContext = ContextAndForeachHelper.getParsingContext(queryToValidate, template, oppositeEndFinder);
             return validateOclQuery(parsingContext, queryToValidate);
         } catch (ParserException e) {
-            return Collections.singletonList(e.getMessage());
+            return Collections.singletonList((Diagnostic) new BasicDiagnostic(getClass().getName(), Diagnostic.ERROR, e.getMessage(), null));
         }
     }
 
-    public List<String> validateOclQuery(EClassifier parsingContext, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(EClassifier parsingContext, String queryToValidate) {
         queryToValidate = ContextAndForeachHelper.prepareOclQuery(queryToValidate, "__DUMMY__");
         try {
             oclHelper.setContext(parsingContext);
             oclHelper.createQuery(queryToValidate);
 
+            //TODO distinguish between errors and warnings
             Diagnostic diagnostic = oclHelper.getProblems();
             if (diagnostic == null) {
                 return Collections.emptyList();
             } else {
-                return Collections.singletonList(diagnostic.getMessage());
+                
+                return Collections.singletonList(diagnostic);
             }
         } catch (ParserException e) {
-            return Collections.singletonList(e.getDiagnostic().getMessage());
+            return Collections.singletonList(e.getDiagnostic());
         } catch (RuntimeException e) {
-            return Collections.singletonList(e.getMessage());
+            return Collections.singletonList((Diagnostic) new BasicDiagnostic(getClass().getName(), Diagnostic.ERROR, e.getMessage(), null));
         }
     }
 

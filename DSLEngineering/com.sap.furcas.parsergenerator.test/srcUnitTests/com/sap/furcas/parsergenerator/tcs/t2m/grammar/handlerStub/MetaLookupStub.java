@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
@@ -172,12 +173,12 @@ public class MetaLookupStub<Type extends Object> implements IMetaModelLookup<Typ
     }
 
     @Override
-    public List<String> validateOclQuery(Template template, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(Template template, String queryToValidate) {
 	return Collections.emptyList();
     }
     
     @Override
-    public List<String> validateOclQuery(Object parsingContext, String queryToValidate) {
+    public List<Diagnostic> validateOclQuery(Object parsingContext, String queryToValidate) {
         return Collections.emptyList();
     }
     
