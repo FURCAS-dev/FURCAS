@@ -230,7 +230,7 @@ syntax Ocl {
         : name {forcedLower=1}
           [[
             -- empty; infer type from context
-            {{ eType=lookIn("OCL:#context(propertyCallExp).oclAsType(ocl::ecore::PropertyCallExp).source.oclAsType(ocl::ecore::OCLExpression).eType") }}
+            {{ eType=lookIn("OCL:#context(propertyCallExp).oclAsType(ocl::ecore::CallExp).source.oclAsType(ocl::ecore::OCLExpression).eType") }}
            |
             ":" eType {as=identifier, forcedLower=1, lookupScope="ecore::EClassifier.allInstances()",
                      referenceBy="name"}
@@ -278,9 +278,12 @@ syntax Ocl {
                 "forAll" "(" iterator{separator = ","}
                 |
                 "collect" "(" iterator{separator = ","}
+                |
+                "select" "(" iterator{separator = ","}
           ]]
           "|" body ")"
         ;
+
   template "http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"#Variable #implicitAccumulator abstract;
   template "http://www.eclipse.org/ocl/1.1.0/Ecore"#Variable #implicitAccumulator
         : {{ name='"acc"', eType=lookIn("OCL:#context(propertyCallExp).oclAsType(ocl::ecore::IterateExp).\"body\".oclAsType(ocl::ecore::OCLExpression).eType") }}
@@ -295,21 +298,41 @@ syntax Ocl {
   
  
   
---  operatortemplate "http://www.eclipse.org/ocl/1.1.0/Ecore"#OperationCallExp(operators=dotOp, source='source', disambiguateV3="identifier LPAREN") context(propertyCallExp)
---      : 
+  operatorTemplate "http://www.eclipse.org/ocl/1.1.0/Ecore"#OperationCallExp(operators=dotOp, source='source', disambiguateV3="identifier LPAREN") context(propertyCallExp)
+      : 
 -----   [[
         -- --disambiguate("identifier LPAREN")
---          referredOperation{as=identifierOrKeyword, lookupScope= "OCL:self.source.eType.allSupertypes()->append(self.source.eType).
---                                                                                              contents->select(o | o.oclIsKindOf(EOperation))",
---                                                                         referenceBy="->select(o|o.name=?)"}   -- do mapping to Stdlib types where necessary
---          "(" argument ")"
---          {{ name=lookIn("OCL:self.referredOperation.name.concat('(...)')"),
---             eType=lookIn("OCL:self.referredOperation.contents->select(p |
---                              p.oclIsKindOf(EParameter))->select(p |
---                                              p.oclAsType(EParameter).direction = DirectionKind::return_dir).
---                                              oclAsType(EParameter).eType") }}
+          referredOperation{as=identifierOrKeyword, lookupScope= "OCL:self.source.oclAsType(ocl::ecore::OCLExpression).eType.oclAsType(ecore::EClass).eAllOperations",
+                                                                         referenceBy="name"}   -- do mapping to Stdlib types where necessary
+          "(" argument ")"
+          {{ name=lookIn("OCL:self.referredOperation.oclAsType(ecore::EOperation).name.concat('(...)')"),
+             eType=lookIn("OCL:let params : OrderedSet(ecore::EParameter) = self.referredOperation.oclAsType(ecore::EOperation).eParameters in
+             				if params->isEmpty() then
+             					null --todo: use OclVoid from StdLib
+             				else
+             					params->at(1).eType
+             				endif ") }}
 --        ]]
---      ;
+      ;
+      
+       operatorTemplate "http://www.eclipse.org/ocl/1.1.0/Ecore"#OperationCallExp(operators=equalsOp, source='source') context(propertyCallExp)
+      : 
+-----   [[
+          referredOperation{as=identifierOrKeyword, lookupScope= 
+          	"OCL:ecore::EClass.allInstances()->select(c | c.ePackage.name = 'oclstdlib' and 
+          				let type : ecore::EClassifier = source.oclAsType(ocl::ecore::OCLExpression).eType in
+          				if type.name = 'EBoolean' then
+          					c.name = 'Boolean_Class'
+          				else
+          					c.name = 'OclVoid_Class'
+          				endif
+          			).eOperations->select(op | op.oclAsType(ecore::EOperation).name = '=')",
+				referenceBy="name"}
+          argument
+          {{ name=lookIn("equals"),
+             eType=lookIn("OCL:ecore::EClassifier.allInstances()->select(c | c.ePackage.name ='ecore' and c.name = 'EBoolean')") }}
+--        ]]
+      ;
         
   ---------------------------------- End OCL ----------------------------------
 
@@ -332,6 +355,10 @@ syntax Ocl {
     SEMI = ";";
     DOT = ".";
     EQUALS = "=";
+    GT = ">";
+    GTRQULAS = ">=";
+    LT = "<";
+    LTEQUALS = "<=";
     ARROW = "->";
     BAR = "|";
     APOSTROPHE = "'";
@@ -346,6 +373,11 @@ syntax Ocl {
                 }
                 priority 1 {
                         equalsOp        = "=", 2;
+                        gtOp        	= ">", 2;
+                        ltOp        	= "<", 2;
+                        gtequalsOp      = ">=", 2;
+                        ltequalsOp		= "<=", 2;
+                        
                 }
         }
   -- place tokens here (optional, except for COMMENT)
