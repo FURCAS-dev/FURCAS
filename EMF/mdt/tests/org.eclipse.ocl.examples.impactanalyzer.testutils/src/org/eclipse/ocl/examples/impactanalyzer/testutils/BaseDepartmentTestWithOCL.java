@@ -539,7 +539,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
      * @param budget
      *            the value for the budget attribute
      */
-    private DepartmentImpl createDepartment(int employees, int freelances, int maxNumJuniors, int budget) {
+    protected DepartmentImpl createDepartment(int employees, int freelances, int maxNumJuniors, int budget) {
 
         DepartmentImpl dep = (DepartmentImpl) CompanyFactory.eINSTANCE.createDepartment();
         dep.setName("Dep" + this.curDepartmentID);
@@ -568,7 +568,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     /**
      * @return an instance of {@link Employee}
      */
-    private EmployeeImpl createEmployee() {
+    protected EmployeeImpl createEmployee() {
 
         EmployeeImpl e = (EmployeeImpl) CompanyFactory.eINSTANCE.createEmployee();
         e.setName("empl" + this.curImployeeID);
@@ -585,7 +585,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     /**
      * @return a instances of {@link Freelance}
      */
-    private FreelanceImpl createFreelance() {
+    protected FreelanceImpl createFreelance() {
 
         FreelanceImpl f = (FreelanceImpl) CompanyFactory.eINSTANCE.createFreelance();
         f.setName("empl" + this.curImployeeID);
