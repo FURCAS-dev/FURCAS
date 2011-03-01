@@ -10,12 +10,13 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -24,15 +25,14 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
-import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluator;
 import org.eclipse.ocl.examples.impactanalyzer.PartialEvaluatorFactory;
 import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 
 /**
  * The {@link DerivedPropertyAdapter} adds the ability to emit change {@link Notification}s to derived properties. To achieve this
@@ -96,12 +96,12 @@ public class DerivedPropertyAdapter implements Adapter {
                     int eventType;
                     if (property.isMany()) {
                         // handle list features
-                        EList<EObject> preList;
-                        EList<EObject> postList;
-                        if(resultPre instanceof EList<?> && resultPost instanceof EList<?>){
+                        List<EObject> preList;
+                        List<EObject> postList;
+                        if(resultPre instanceof List<?> && resultPost instanceof List<?>){
                             // this is as much typechecking as possible -> supressed warnings for "unchecked"
-                            preList = (EList<EObject>) resultPre;
-                            postList = (EList<EObject>) resultPost;
+                            preList = (ArrayList<EObject>) resultPre;
+                            postList = (ArrayList<EObject>) resultPost;
                         }else{
                             throw new ClassCastException("The values of a many valued feature are not type of EList as they should.");
                         }
