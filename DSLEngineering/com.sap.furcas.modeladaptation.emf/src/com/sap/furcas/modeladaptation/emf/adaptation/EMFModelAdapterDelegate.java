@@ -236,7 +236,8 @@ public class EMFModelAdapterDelegate {
     }
 
     private boolean valueHasChanged(Object value, Object originalValue) {
-        return (value == null && originalValue != null) || (value != null && originalValue == null) || !originalValue.equals(value);
+        return (value == null && originalValue != null) || (value != null && originalValue == null) || 
+            !(originalValue != null && originalValue.equals(value));
     }
 
     @SuppressWarnings("unchecked")
