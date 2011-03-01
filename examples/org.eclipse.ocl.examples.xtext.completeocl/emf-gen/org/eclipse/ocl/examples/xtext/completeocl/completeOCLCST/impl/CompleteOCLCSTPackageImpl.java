@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackageImpl.java,v 1.6 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: CompleteOCLCSTPackageImpl.java,v 1.7 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DerCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.FeatureContextDeclCS;
@@ -72,6 +73,13 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * @generated
 	 */
 	private EClass contextDeclCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass contextSpecificationCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -327,6 +335,16 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	public EReference getContextDeclCS_Rules()
 	{
 		return (EReference)contextDeclCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContextSpecificationCS()
+	{
+		return contextSpecificationCSEClass;
 	}
 
 	/**
@@ -630,6 +648,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		createEReference(contextDeclCSEClass, CONTEXT_DECL_CS__NAMESPACE);
 		createEReference(contextDeclCSEClass, CONTEXT_DECL_CS__RULES);
 
+		contextSpecificationCSEClass = createEClass(CONTEXT_SPECIFICATION_CS);
+
 		defCSEClass = createEClass(DEF_CS);
 		createEAttribute(defCSEClass, DEF_CS__STATIC);
 		createEAttribute(defCSEClass, DEF_CS__CONSTRAINED_NAME);
@@ -705,8 +725,9 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		bodyCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		classifierContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
 		completeOCLDocumentCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootPackageCS());
-		contextConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
+		contextConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
 		contextDeclCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
+		contextSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 		defCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		derCSEClass.getESuperTypes().add(this.getContextConstraintCS());
 		featureContextDeclCSEClass.getESuperTypes().add(this.getContextDeclCS());
@@ -737,6 +758,8 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEClass(contextDeclCSEClass, ContextDeclCS.class, "ContextDeclCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContextDeclCS_Namespace(), thePivotPackage.getNamespace(), null, "namespace", null, 0, -1, ContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContextDeclCS_Rules(), this.getContextConstraintCS(), this.getContextConstraintCS_ContextDecl(), "rules", null, 0, -1, ContextDeclCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(contextSpecificationCSEClass, ContextSpecificationCS.class, "ContextSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(defCSEClass, DefCS.class, "DefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

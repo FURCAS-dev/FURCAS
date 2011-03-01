@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclExpression.java,v 1.2 2011/01/24 20:42:34 ewillink Exp $
+ * $Id: OclExpression.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -23,7 +23,7 @@ package org.eclipse.ocl.examples.pivot;
  *
  *
  * @see org.eclipse.ocl.examples.pivot.PivotPackage#getOclExpression()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface OclExpression

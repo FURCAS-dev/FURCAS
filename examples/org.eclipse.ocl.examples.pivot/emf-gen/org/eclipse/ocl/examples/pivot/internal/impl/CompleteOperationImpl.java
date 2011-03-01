@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperationImpl.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: CompleteOperationImpl.java,v 1.4 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
@@ -49,6 +50,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl#getCompleteParameters <em>Complete Parameter</em>}</li>
  * </ul>
@@ -61,14 +63,14 @@ public class CompleteOperationImpl
 		implements CompleteOperation {
 
 	/**
-	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * The cached value of the '{@link #getModels() <em>Models</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModel()
+	 * @see #getModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected Operation model;
+	protected EList<Operation> models;
 
 	/**
 	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
@@ -104,39 +106,34 @@ public class CompleteOperationImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getModel() {
-		if (model != null && ((EObject)model).eIsProxy())
+	public Operation getModel()
+	{
+		Operation model = basicGetModel();
+		return model != null && ((EObject)model).eIsProxy() ? (Operation)eResolveProxy((InternalEObject)model) : model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Operation basicGetModel()
+	{
+		return getModels().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Operation> getModels()
+	{
+		if (models == null)
 		{
-			InternalEObject oldModel = (InternalEObject)model;
-			model = (Operation)eResolveProxy(oldModel);
-			if (model != oldModel)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_OPERATION__MODEL, oldModel, model));
-			}
+			models = new EObjectResolvingEList<Operation>(Operation.class, this, PivotPackage.COMPLETE_OPERATION__MODELS);
 		}
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operation basicGetModel() {
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModel(Operation newModel) {
-		Operation oldModel = model;
-		model = newModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_OPERATION__MODEL, oldModel, model));
+		return models;
 	}
 
 	/**
@@ -186,7 +183,7 @@ public class CompleteOperationImpl
 	 * @generated NOT
 	 */
 	public EList<Parameter> getCompleteParameters() {
-		return getModel().getOwnedParameters();
+		return getModels().get(0).getOwnedParameters();
 	}
 
 	/**
@@ -249,6 +246,8 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_OPERATION__MODELS:
+				return getModels();
 			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
 				if (resolve) return getCompleteEnvironment();
 				return basicGetCompleteEnvironment();
@@ -337,8 +336,9 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__MODEL:
-				setModel((Operation)newValue);
+			case PivotPackage.COMPLETE_OPERATION__MODELS:
+				getModels().clear();
+				getModels().addAll((Collection<? extends Operation>)newValue);
 				return;
 			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)newValue);
@@ -419,8 +419,8 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
-			case PivotPackage.COMPLETE_OPERATION__MODEL:
-				setModel((Operation)null);
+			case PivotPackage.COMPLETE_OPERATION__MODELS:
+				getModels().clear();
 				return;
 			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)null);
@@ -481,7 +481,9 @@ public class CompleteOperationImpl
 			case PivotPackage.COMPLETE_OPERATION__CLASS:
 				return basicGetClass_() != null;
 			case PivotPackage.COMPLETE_OPERATION__MODEL:
-				return model != null;
+				return basicGetModel() != null;
+			case PivotPackage.COMPLETE_OPERATION__MODELS:
+				return models != null && !models.isEmpty();
 			case PivotPackage.COMPLETE_OPERATION__COMPLETE_ENVIRONMENT:
 				return completeEnvironment != null;
 			case PivotPackage.COMPLETE_OPERATION__COMPLETE_PARAMETER:

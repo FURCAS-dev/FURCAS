@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: OperationCallExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -117,15 +117,6 @@ public class OperationCallExpImpl
 		OclExpression newArgument = (OclExpression) create(eClass);
 		getArguments().add(newArgument);
 		return newArgument;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createArgument() {
-		return createArgument(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

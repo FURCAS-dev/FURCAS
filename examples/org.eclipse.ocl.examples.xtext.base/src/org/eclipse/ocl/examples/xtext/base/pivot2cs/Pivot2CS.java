@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CS.java,v 1.3 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: Pivot2CS.java,v 1.4 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -57,6 +57,10 @@ public class Pivot2CS extends AbstractConversion implements Adapter
 	public static interface Factory {
 		BaseDeclarationVisitor createDeclarationVisitor(Pivot2CSConversion converter);
 		BaseReferenceVisitor createReferenceVisitor(Pivot2CSConversion converter);
+
+		/**
+		 * Return a list of classes for which this Pivot2CS overrides a base Pivot2CS.
+		 */
 		EClass[] getEClasses();
 	}
 

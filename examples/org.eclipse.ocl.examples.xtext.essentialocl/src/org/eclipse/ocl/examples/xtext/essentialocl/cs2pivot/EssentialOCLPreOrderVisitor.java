@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.3 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.4 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.util.AbstractExtendingDelegatingEssentialOCLCSVisitor;
+import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLPreOrderVisitor
 	extends AbstractExtendingDelegatingEssentialOCLCSVisitor<Continuation<?>, CS2PivotConversion, BasePreOrderVisitor>
@@ -121,7 +122,8 @@ public class EssentialOCLPreOrderVisitor
 //			}
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
-				context.addBadExpressionError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
+				String boundMessage = NLS.bind(OCLMessages.ErrorUnresolvedTypeName, csElement.toString());
+				context.addBadExpressionError(csElement, boundMessage);
 				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
 			}
 			context.installPivotElement(csElement, element);

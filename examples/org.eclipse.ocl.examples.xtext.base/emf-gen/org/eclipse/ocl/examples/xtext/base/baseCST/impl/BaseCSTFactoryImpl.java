@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactoryImpl.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseCSTFactoryImpl.java,v 1.7 2011/03/01 08:47:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
@@ -133,6 +134,7 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 			case BaseCSTPackage.REFERENCE_CS: return createReferenceCS();
 			case BaseCSTPackage.REFERENCE_CS_REF: return createReferenceCSRef();
 			case BaseCSTPackage.ROOT_PACKAGE_CS: return createRootPackageCS();
+			case BaseCSTPackage.SPECIFICATION_CS: return createSpecificationCS();
 			case BaseCSTPackage.TEMPLATE_BINDING_CS: return createTemplateBindingCS();
 			case BaseCSTPackage.TEMPLATE_PARAMETER_SUBSTITUTION_CS: return createTemplateParameterSubstitutionCS();
 			case BaseCSTPackage.TEMPLATE_SIGNATURE_CS: return createTemplateSignatureCS();
@@ -440,6 +442,17 @@ public class BaseCSTFactoryImpl extends EFactoryImpl implements BaseCSTFactory {
 	{
 		RootPackageCSImpl rootPackageCS = new RootPackageCSImpl();
 		return rootPackageCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SpecificationCS createSpecificationCS()
+	{
+		SpecificationCSImpl specificationCS = new SpecificationCSImpl();
+		return specificationCS;
 	}
 
 	/**

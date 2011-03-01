@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.6 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -175,7 +175,8 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.typeManager = typeManager;
-		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+//		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+		moniker2PivotMap = typeManager.computeMoniker2PivotMap(cs2pivotResourceMap.values());
 		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLReferenceVisitor.java,v 1.3 2011/01/27 07:02:06 ewillink Exp $
+ * $Id: Pivot2UMLReferenceVisitor.java,v 1.4 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -35,8 +34,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 public class Pivot2UMLReferenceVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2UML>
 {
-	public static final Logger logger = Logger.getLogger(Pivot2UMLDeclarationVisitor.class);
-
 //	protected final Pivot2EcoreTypeRefVisitor typeRefVisitor;
 	
 	public Pivot2UMLReferenceVisitor(Pivot2UML context) {
@@ -56,8 +53,7 @@ public class Pivot2UMLReferenceVisitor
 	}
 
 	public EObject visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2UML Reference pass");
 	}
 
 /*	@Override

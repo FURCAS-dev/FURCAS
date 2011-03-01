@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.4 2011/02/15 10:36:54 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.5 2011/03/01 08:47:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -56,12 +56,12 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else if (containmentFeature == BaseCSTPackage.Literals.CLASS_CS__OWNED_META_TYPE) {
-				environmentView.addNamedElement(typeManager.getBagTypeType());			// FIXME Are these necessary?				
-				environmentView.addNamedElement(typeManager.getCollectionTypeType());
-				environmentView.addNamedElement(typeManager.getOrderedSetTypeType());
-				environmentView.addNamedElement(typeManager.getSequenceTypeType());
-				environmentView.addNamedElement(typeManager.getSetTypeType());
-				environmentView.addNamedElement(typeManager.getPrimitiveTypeType());
+//				environmentView.addNamedElement(typeManager.getBagTypeType());				
+//				environmentView.addNamedElement(typeManager.getCollectionTypeType());
+//				environmentView.addNamedElement(typeManager.getOrderedSetTypeType());
+//				environmentView.addNamedElement(typeManager.getSequenceTypeType());
+//				environmentView.addNamedElement(typeManager.getSetTypeType());
+//				environmentView.addNamedElement(typeManager.getPrimitiveTypeType());
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {

@@ -157,9 +157,6 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteEnvironment" eSuperTypes="#//Package">
-    <eOperations name="getCompleteIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
-      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Iteration"/>
-    </eOperations>
     <eOperations name="getCompleteOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
       <eParameters name="model" ordered="false" lowerBound="1" eType="#//Operation"/>
     </eOperations>
@@ -172,74 +169,67 @@
     <eOperations name="getCompleteType" ordered="false" lowerBound="1" eType="#//CompleteType">
       <eParameters name="model" ordered="false" lowerBound="1" eType="#//Type"/>
     </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompleteIteration" eSuperTypes="#//Iteration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Iteration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
-        lowerBound="1" eType="#//CompleteEnvironment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeIterator" ordered="false"
-        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeAccumulator" ordered="false"
-        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
-        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
+    <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
+      <eParameters name="type" ordered="false" lowerBound="1" eType="#//CompleteType"/>
+      <eParameters name="operation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteOperation" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Operation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Operation"
+        changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
+        upperBound="-1" eType="#//Operation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
         lowerBound="1" eType="#//CompleteEnvironment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
         upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" eSuperTypes="#//Package">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Package"
+        changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
+        upperBound="-1" eType="#//Package"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
         lowerBound="1" eType="#//CompleteEnvironment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeType" ordered="false"
-        upperBound="-1" eType="#//CompleteType" changeable="false" volatile="true"
-        derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completePackage" ordered="false"
-        upperBound="-1" eType="#//CompletePackage" changeable="false" volatile="true"
-        derived="true"/>
+        upperBound="-1" eType="#//CompletePackage">
+      <eAnnotations source="redefines" references="#//Package/nestedPackage"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="completeType" ordered="false"
+        upperBound="-1" eType="#//CompleteType">
+      <eAnnotations source="redefines" references="#//Package/ownedType"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteProperty" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Property"
+        changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
+        upperBound="-1" eType="#//Property"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
         lowerBound="1" eType="#//CompleteEnvironment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompleteType" eSuperTypes="#//Class">
-    <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
-      <eParameters name="aType" ordered="false" lowerBound="1" eType="#//CompleteType"/>
-    </eOperations>
-    <eOperations name="getDynamicIteration" ordered="false" lowerBound="1" eType="#//CompleteIteration">
-      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteIteration"/>
-    </eOperations>
     <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
       <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
     </eOperations>
-    <eOperations name="getCompleteIterations" ordered="false" upperBound="-1" eType="#//CompleteIteration">
-      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
-    </eOperations>
-    <eOperations name="getCompleteOperations" ordered="false" upperBound="-1" eType="#//CompleteOperation">
-      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" ordered="false"
-        lowerBound="1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Type"
+        changeable="false" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
+        upperBound="-1" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
         lowerBound="1" eType="#//CompleteEnvironment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeOperation" ordered="false"
-        upperBound="-1" eType="#//CompleteOperation" changeable="false" volatile="true"
-        derived="true"/>
+        upperBound="-1" eType="#//CompleteOperation">
+      <eAnnotations source="redefines" references="#//Class/ownedOperation"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeProperty" ordered="false"
-        upperBound="-1" eType="#//CompleteProperty" changeable="false" volatile="true"
-        derived="true"/>
+        upperBound="-1" eType="#//CompleteProperty">
+      <eAnnotations source="redefines" references="#//Class/ownedAttribute"/>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="completeSuperType" ordered="false"
-        upperBound="-1" eType="#//CompleteType" changeable="false" volatile="true"
-        derived="true"/>
+        upperBound="-1" eType="#//CompleteType">
+      <eAnnotations source="redefines" references="#//Class/superClass"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -361,6 +351,8 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterVariable" upperBound="-1"
         eType="#//Variable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="messageExpression" ordered="false"
+        eType="#//OclExpression"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedMultiplicityElement">
     <eAnnotations source="duplicates">
@@ -390,16 +382,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerSymbol" ordered="false"
         lowerBound="1" eType="#//Integer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="object" ordered="false"
-        eType="#//Object"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
-        eType="#//OclExpression"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" ordered="false"
-        eType="#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="throwable" ordered="false"
-        eType="#//Throwable"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidLiteralExp" eSuperTypes="#//LiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidType" eSuperTypes="#//Class"/>
   <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//LoopExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//Variable"
@@ -578,7 +561,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NullLiteralExp" eSuperTypes="#//PrimitiveLiteralExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericLiteralExp" abstract="true" eSuperTypes="#//PrimitiveLiteralExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OclExpression" eSuperTypes="#//TypedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclExpression" abstract="true" eSuperTypes="#//TypedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context."/>
@@ -614,6 +597,10 @@
         <details key="documentation" value="Specifies the languages in which the expression is stated. The interpretation of the expression body depends on the languages. If the languages are unspecified, they might be implicit from the expression body or the context. Languages are matched to body strings by order."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" unique="false"
+        upperBound="-1" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExpression" ordered="false"
+        eType="#//ExpressionInOcl" transient="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature #//Namespace #//ParameterableElement #//TemplateableElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
