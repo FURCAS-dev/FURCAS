@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExp.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: MessageExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -79,16 +79,6 @@ public interface MessageExp
 	OclExpression createTarget(EClass eClass);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Target</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getTarget()
-	 * @generated
-	 */
-	OclExpression createTarget();
-
-	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.OclExpression}.
 	 * <!-- begin-user-doc -->
@@ -114,16 +104,6 @@ public interface MessageExp
 	 * @generated
 	 */
 	OclExpression createArgument(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and appends it to the '<em><b>Argument</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getArguments()
-	 * @generated
-	 */
-	OclExpression createArgument();
 
 	/**
 	 * Returns the value of the '<em><b>Called Operation</b></em>' containment reference.

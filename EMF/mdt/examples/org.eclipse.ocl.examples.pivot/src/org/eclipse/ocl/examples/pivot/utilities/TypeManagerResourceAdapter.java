@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManagerResourceAdapter.java,v 1.4 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: TypeManagerResourceAdapter.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -58,6 +58,10 @@ public class TypeManagerResourceAdapter implements Adapter
 //		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
 //			+ " " + resource.getClass().getSimpleName() + " " + resource.hashCode() + " " + resource.getURI()
 //			+ " " + typeManager.getClass().getSimpleName() + "@" + typeManager.hashCode());		
+	}
+	
+	public Resource getPivotResource(Resource csResource) {
+		return null;		// Overridden by CS2PivotResourceAdapter
 	}
 
 	public Resource getTarget() {

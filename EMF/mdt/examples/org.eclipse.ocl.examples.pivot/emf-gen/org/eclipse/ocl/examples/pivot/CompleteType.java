@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteType.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: CompleteType.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations <em>Complete Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties <em>Complete Property</em>}</li>
@@ -50,22 +51,27 @@ public interface CompleteType
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(Type)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_Model()
-	 * @model required="true" ordered="false"
+	 * @model required="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Type getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}' reference.
+	 * Returns the value of the '<em><b>Models</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Type}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Models</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' reference.
-	 * @see #getModel()
+	 * @return the value of the '<em>Models</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_Models()
+	 * @model required="true"
 	 * @generated
 	 */
-	void setModel(Type value);
+	EList<Type> getModels();
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.
@@ -96,6 +102,12 @@ public interface CompleteType
 	/**
 	 * Returns the value of the '<em><b>Complete Operation</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteOperation}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.Class#getOwnedOperations() <em>Owned Operation</em>}'</li>
+	 * </ul>
+	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Complete Operation</em>' reference list isn't clear,
@@ -104,7 +116,7 @@ public interface CompleteType
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Operation</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteOperation()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CompleteOperation> getCompleteOperations();
@@ -112,6 +124,12 @@ public interface CompleteType
 	/**
 	 * Returns the value of the '<em><b>Complete Property</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteProperty}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.Class#getOwnedAttributes() <em>Owned Attribute</em>}'</li>
+	 * </ul>
+	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Complete Property</em>' reference list isn't clear,
@@ -120,7 +138,7 @@ public interface CompleteType
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Property</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteProperty()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CompleteProperty> getCompleteProperties();
@@ -128,6 +146,12 @@ public interface CompleteType
 	/**
 	 * Returns the value of the '<em><b>Complete Super Type</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteType}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.Class#getSuperClasses() <em>Super Class</em>}'</li>
+	 * </ul>
+	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Complete Super Type</em>' reference list isn't clear,
@@ -136,26 +160,10 @@ public interface CompleteType
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Super Type</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteType_CompleteSuperType()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CompleteType> getCompleteSuperTypes();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model dataType="org.eclipse.ocl.examples.pivot.Boolean" required="true" ordered="false" aTypeRequired="true" aTypeOrdered="false"
-	 * @generated
-	 */
-	boolean conformsTo(CompleteType aType);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" staticOperationRequired="true" staticOperationOrdered="false"
-	 * @generated
-	 */
-	CompleteIteration getDynamicIteration(CompleteIteration staticOperation);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -164,21 +172,5 @@ public interface CompleteType
 	 * @generated
 	 */
 	CompleteOperation getDynamicOperation(CompleteOperation staticOperation);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model ordered="false" nameDataType="org.eclipse.ocl.examples.pivot.String" nameRequired="true" nameOrdered="false"
-	 * @generated
-	 */
-	EList<CompleteIteration> getCompleteIterations(String name);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model ordered="false" nameDataType="org.eclipse.ocl.examples.pivot.String" nameRequired="true" nameOrdered="false"
-	 * @generated
-	 */
-	EList<CompleteOperation> getCompleteOperations(String name);
 
 } // CompleteClass

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.6 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -67,9 +67,6 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
 					ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 					environmentView.computeLookups(ruleScopeView);
-//					return scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
-//					return scopeAdapter.computeLookup(environmentView, scopeView);
-//					scopeAdapter.computeLookup(environmentView, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 				}				
 			}
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.10 2011/02/15 10:37:10 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.11 2011/03/01 08:46:57 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -129,7 +129,7 @@ ImportCS returns base::ImportCS :
 ;
 
 InvCS returns LibConstraintCS:
-	stereotype='inv' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
+	stereotype='inv' (name=UnrestrictedName)? ':' specification=SpecificationCS ';'
 ;
 
 LibIterationCS returns LibIterationCS:
@@ -202,21 +202,19 @@ LibPropertyCS returns LibPropertyCS:
 ;
 
 PostCS returns LibConstraintCS:
-	stereotype='post' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
+	stereotype='post' (name=UnrestrictedName)? ':' specification=SpecificationCS ';'
 ;
 
 PreCS returns LibConstraintCS:
-	stereotype='pre' (name=UnrestrictedName)? ':' ownedExpression=ExpCS ';'
+	stereotype='pre' (name=UnrestrictedName)? ':' specification=SpecificationCS ';'
 ;
 
 PrecedenceCS returns PrecedenceCS:
 	('left'|rightAssociative?='right') ':' name=Name
 ;	
 
-//NamespaceRefCS returns base::NamespaceRefCS:
-//	ref=[pivot::Namespace|Name]
-//	(ownedTemplateBinding=TemplateBindingCS)?
-//;
+SpecificationCS returns essentialocl::ExpSpecificationCS:
+	ownedExpression=ExpCS;
 
 TemplateBindingCS returns base::TemplateBindingCS:
 	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
@@ -254,7 +252,6 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-//	(namespace+=NamespaceRefCS '::')*
 	(namespace+=[pivot::Namespace|Name] '::')*
 	type=[pivot::Type|Name]
 	(ownedTemplateBinding=TemplateBindingCS)?

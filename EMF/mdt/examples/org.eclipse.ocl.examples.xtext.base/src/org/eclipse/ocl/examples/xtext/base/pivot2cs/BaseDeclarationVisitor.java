@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: BaseDeclarationVisitor.java,v 1.6 2011/02/16 08:43:10 ewillink Exp $
+ * $Id: BaseDeclarationVisitor.java,v 1.7 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -55,6 +54,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
@@ -63,19 +63,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 
 public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, Pivot2CSConversion>
 {
-	public static final Logger logger = Logger.getLogger(BaseDeclarationVisitor.class);
-
 	public BaseDeclarationVisitor(Pivot2CSConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
-	}
-
-	protected void handleConstraint(Constraint object, ConstraintCS csElement) {
-		csElement.setStereotype(object.getStereotype());
-		ValueSpecification specification = object.getSpecification();
-		if (specification instanceof OpaqueExpression) {
-			String body = PivotUtil.getBody((OpaqueExpression)specification);
-			csElement.setExprString(body);
-		}
 	}
 
 	@Override
@@ -121,7 +110,8 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	@Override
 	public ElementCS visitConstraint(Constraint object) {
 		ConstraintCS csElement = context.refreshNamedElement(ConstraintCS.class, BaseCSTPackage.Literals.CONSTRAINT_CS, object);
-		handleConstraint(object, csElement);
+		csElement.setStereotype(object.getStereotype());
+		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, object.getSpecification()));
 		return csElement;
 	}
 
@@ -158,6 +148,20 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 		else {
 			csElement.eUnset(BaseCSTPackage.Literals.ENUMERATION_LITERAL_CS__VALUE);
 		}
+		return csElement;
+	}
+
+	@Override
+	public ElementCS visitExpressionInOcl(ExpressionInOcl object) {
+		// TODO Auto-generated method stub
+		return super.visitExpressionInOcl(object);
+	}
+
+	@Override
+	public ElementCS visitOpaqueExpression(OpaqueExpression object) {
+		SpecificationCS csElement = context.refreshMonikeredElement(SpecificationCS.class, BaseCSTPackage.Literals.SPECIFICATION_CS, object);
+		String body = PivotUtil.getBody(object);
+		csElement.setExprString(body);
 		return csElement;
 	}
 
@@ -239,7 +243,6 @@ public class BaseDeclarationVisitor extends AbstractExtendingVisitor<ElementCS, 
 	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2CS Declaration pass");
 	}
 }

@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Element.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: Element.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObject;
 
@@ -68,5 +69,6 @@ public interface Element
 	 * @generated
 	 */
 	Comment createOwnedComment();
-
+	
+	EObject getETarget();
 } // Element

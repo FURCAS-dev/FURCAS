@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.5 2011/02/19 12:00:42 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.6 2011/03/01 08:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -80,7 +80,7 @@ public class EssentialOCLCS2MonikerVisitor
 			CS2Moniker.addFactory(EssentialOCLCSTPackage.eINSTANCE, this);
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, "first");
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, "last");
-			roleNames.put(EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION, "specification" + PivotConstants.MONIKER_SCOPE_SEPARATOR + "ownedExpression");
+//			roleNames.put(EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION, "specification" + PivotConstants.MONIKER_SCOPE_SEPARATOR + "ownedExpression");
 			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "source");
 //			roleNames.put(EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT, "argument");
 		}
@@ -137,33 +137,6 @@ public class EssentialOCLCS2MonikerVisitor
 					}
 				}
 				index = roleIndex;
-	/*			int argsOrBodies = 0;
-				int accs = 0;
-				int bodies = 0;
-				for (NavigatingArgCS csNavigatingArg : csNavigatingExp.getArgument()) {
-					if (csNavigatingArg instanceof NavigatingArgOrBodyCS) {
-						argsOrBodies++;
-					}
-					else if (csNavigatingArg instanceof NavigatingAccCS) {
-						accs++;
-					}
-					else {
-						bodies++;
-					}
-				}
-				if ((accs + bodies) > 0) {
-					index -= argsOrBodies + accs;
-				}
-				if (index < 0) {
-					index += accs;
-					if (index >= 0) {
-						pivotingFeature = PivotPackage.Literals.ITERATE_EXP__RESULT;
-					}
-					else {
-						index += argsOrBodies;
-						pivotingFeature = PivotPackage.Literals.LOOP_EXP__ITERATOR;
-					}
-				} */
 			}
 		}
 		else if (pivotingFeature == EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS) {
@@ -188,27 +161,6 @@ public class EssentialOCLCS2MonikerVisitor
 			context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
 			context.append(MONIKER_OPERATOR_SEPARATOR);
 		}
-/*		if (parent instanceof NavigationOperatorCS) {
-			NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)parent;
-			if (object == csNavigationOperator.getSource()) {
-				CallExp navigatingExp = PivotUtil.getPivot(CallExp.class, csNavigationOperator.getArgument());
-				Type requiredSourceType = null;
-				if (navigatingExp instanceof LoopExp) {
-					requiredSourceType = ((LoopExp)navigatingExp).getReferredIteration().getClass_();
-				}
-				else if (navigatingExp instanceof OperationCallExp) {
-					requiredSourceType = ((OperationCallExp)navigatingExp).getReferredOperation().getClass_();
-				}
-				OclExpression source = navigatingExp.getSource();
-				Type actualSourceType = source.getType();
-				if ((requiredSourceType instanceof CollectionType) && !(actualSourceType instanceof CollectionType)) {
-					context.append("oclAsSet");		
-					context.append("MONIKER_SCOPE_SEPARATOR");		
-					context.append("source");		
-					context.append("MONIKER_OPERATOR_SEPARATOR");		
-				}
-			}
-		} */
 	}
 
 	protected void appendNameExpCSName(NameExpCS object) {

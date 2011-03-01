@@ -171,4 +171,13 @@
       <details key="parsingToSyntacticError" value="else"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidationWithMessage" eSuperTypes="#//Detritus">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="validationWithMessage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="validationWithMessage" value="false"/>
+      <details key="validationWithMessage$message" value="'custom message '"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>

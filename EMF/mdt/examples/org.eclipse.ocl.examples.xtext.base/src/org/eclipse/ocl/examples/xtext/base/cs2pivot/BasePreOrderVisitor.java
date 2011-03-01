@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.6 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -20,7 +20,6 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -71,8 +70,6 @@ import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 
 public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
 {
-	private static final Logger logger = Logger.getLogger(BasePreOrderVisitor.class);
-
 	protected static class ClassContentContinuation extends SingleContinuation<ClassCS>
 	{
 		public ClassContentContinuation(CS2PivotConversion context, org.eclipse.ocl.examples.pivot.Class pivotParent, ClassCS csElement) {
@@ -488,8 +485,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot PreOrder pass");
 	}
 
 	@Override

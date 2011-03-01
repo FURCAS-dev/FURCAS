@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Moniker.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: CS2Moniker.java,v 1.6 2011/03/01 08:47:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -95,9 +95,8 @@ public class CS2Moniker
 		super(target);
 	}
 
-	public void appendConstraintCS(ConstraintCS csConstraint) {
+	public void appendConstraintCSDisambiguator(ConstraintCS csConstraint) {
 		String csConstraintStereotype = csConstraint.getStereotype();
-		append(csConstraintStereotype);
 		Object container = csConstraint.eContainer().eGet(csConstraint.eContainingFeature());
 		if (container instanceof List<?>) {
 			int index = 0;
@@ -191,6 +190,14 @@ public class CS2Moniker
 				append(((MonikeredElementCS) parent).getMoniker()); // FIXME
 																	// Always
 																	// getMoniker
+				if (parent instanceof TemplateableElementCS) {
+					TemplateSignatureCS csTemplateSignature = ((TemplateableElementCS)parent).getOwnedTemplateSignature();
+					if (csTemplateSignature != null) {
+						for (TemplateParameterCS csTemplateParameter : csTemplateSignature.getOwnedTemplateParameter()) {
+							emittedTemplateParameterCS(csTemplateParameter);							
+						}
+					}
+				}
 			} else if (parent instanceof VisitableCS) {
 				appendElementCS((VisitableCS) parent);
 			}

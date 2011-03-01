@@ -223,7 +223,8 @@
           </ownedComment>
           <specification xmi:type="cmof:OpaqueExpression" xmi:id="AuxiliaryConstructs-Templates-Property-binding_to_attribute-_specification">
             <language>OCL</language>
-            <body>(isAttribute(self) and (templateParameterSubstitution->notEmpty())&#xD;&#xA;  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))</body>
+            <body>(isAttribute(self) and (templateParameterSubstitution->notEmpty())&#xD;
+  implies (templateParameterSubstitution->forAll(ts | isAttribute(ts.formal)))</body>
           </specification>
         </ownedRule>
       </ownedMember>

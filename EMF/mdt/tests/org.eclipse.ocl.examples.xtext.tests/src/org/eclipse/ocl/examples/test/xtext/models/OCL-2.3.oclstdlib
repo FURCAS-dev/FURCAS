@@ -611,7 +611,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	the implementation may bypass the evaluation and return an invalid result.
 	**/
 	operation sum() : T;
-	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION;
+--	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION;
 }
 
 /**

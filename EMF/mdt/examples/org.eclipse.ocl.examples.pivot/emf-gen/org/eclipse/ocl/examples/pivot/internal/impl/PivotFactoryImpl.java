@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.5 2011/02/15 10:38:47 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.6 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -65,7 +64,6 @@ import org.eclipse.ocl.examples.pivot.Library;
 import org.eclipse.ocl.examples.pivot.MessageExp;
 import org.eclipse.ocl.examples.pivot.MessageType;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
-import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -170,7 +168,6 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
 			case PivotPackage.COMPLETE_ENVIRONMENT: return (EObject)createCompleteEnvironment();
-			case PivotPackage.COMPLETE_ITERATION: return (EObject)createCompleteIteration();
 			case PivotPackage.COMPLETE_OPERATION: return (EObject)createCompleteOperation();
 			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
 			case PivotPackage.COMPLETE_PROPERTY: return (EObject)createCompleteProperty();
@@ -195,7 +192,6 @@ public class PivotFactoryImpl
 			case PivotPackage.MESSAGE_EXP: return (EObject)createMessageExp();
 			case PivotPackage.MESSAGE_TYPE: return (EObject)createMessageType();
 			case PivotPackage.NULL_LITERAL_EXP: return (EObject)createNullLiteralExp();
-			case PivotPackage.OCL_EXPRESSION: return (EObject)createOclExpression();
 			case PivotPackage.OPAQUE_EXPRESSION: return (EObject)createOpaqueExpression();
 			case PivotPackage.OPERATION: return (EObject)createOperation();
 			case PivotPackage.OPERATION_CALL_EXP: return (EObject)createOperationCallExp();
@@ -504,16 +500,6 @@ public class PivotFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createOclExpression() {
-		OclExpressionImpl oclExpression = new OclExpressionImpl();
-		return oclExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public BagType createBagType() {
 		BagTypeImpl bagType = new BagTypeImpl();
 		return bagType;
@@ -597,17 +583,6 @@ public class PivotFactoryImpl
 	public CompleteEnvironment createCompleteEnvironment() {
 		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
 		return completeEnvironment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteIteration createCompleteIteration()
-	{
-		CompleteIterationImpl completeIteration = new CompleteIterationImpl();
-		return completeIteration;
 	}
 
 	/**

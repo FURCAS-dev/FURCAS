@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: EssentialOCLCSVisitor.java,v 1.5 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: EssentialOCLCSVisitor.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 
@@ -37,7 +37,7 @@ public interface EssentialOCLCSVisitor<R, C> extends org.eclipse.ocl.examples.xt
 	R visitContextCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS object);
 	R visitDecoratedNamedExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS object);
 	R visitExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS object);
-	R visitExpConstraintCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS object);
+	R visitExpSpecificationCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS object);
 	R visitIfExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS object);
 	R visitIndexExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS object);
 	R visitInfixExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS object);

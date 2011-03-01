@@ -14,13 +14,12 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.6 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -52,8 +51,6 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  */
 public abstract class AbstractEvaluationVisitor
 	extends AbstractExtendingVisitor<Value, Object> implements EvaluationVisitor {
-
-	public static final Logger logger = Logger.getLogger(AbstractEvaluationVisitor.class);
 
     // stereotypes associated with boolean-valued constraints
 	private static Set<String> BOOLEAN_CONSTRAINTS;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTSwitch.java,v 1.5 2011/02/15 10:37:10 ewillink Exp $
+ * $Id: OCLstdlibCSTSwitch.java,v 1.6 2011/03/01 08:46:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.util;
@@ -42,8 +42,6 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.*;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.JavaImplementationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
@@ -51,6 +49,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibIterationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibOperationCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibPropertyCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibRootPackageCS;
+import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.MetaTypeName;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.PrecedenceCS;
 
@@ -146,7 +145,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 			{
 				LibConstraintCS libConstraintCS = (LibConstraintCS)theEObject;
 				T result = caseLibConstraintCS(libConstraintCS);
-				if (result == null) result = caseExpConstraintCS(libConstraintCS);
 				if (result == null) result = caseConstraintCS(libConstraintCS);
 				if (result == null) result = caseNamedElementCS(libConstraintCS);
 				if (result == null) result = caseMonikeredElementCS(libConstraintCS);
@@ -729,22 +727,6 @@ public class OCLstdlibCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConstraintCS(ConstraintCS object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpConstraintCS(ExpConstraintCS object)
-	{
 		return null;
 	}
 

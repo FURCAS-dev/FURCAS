@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.5 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.6 2011/03/01 08:47:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -63,7 +64,13 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		CS2PivotResourceAdapter adapter = findAdapter(csResource);
 		if (adapter == null) {
 			if (typeManager == null) {
-				typeManager = csResource.createTypeManager();
+				TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(csResource.getResourceSet());
+				if (rsAdapter != null) {
+					typeManager = rsAdapter.getTypeManager();					
+				}
+				if (typeManager == null) {
+					typeManager = csResource.createTypeManager();
+				}
 			}
 			adapter = new CS2PivotResourceAdapter(csResource, typeManager);
 			eAdapters.add(adapter);
