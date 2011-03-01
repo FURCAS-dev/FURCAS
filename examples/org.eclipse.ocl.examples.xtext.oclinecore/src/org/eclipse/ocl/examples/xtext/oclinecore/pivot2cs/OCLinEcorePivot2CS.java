@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcorePivot2CS.java,v 1.3 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcorePivot2CS.java,v 1.4 2011/03/01 08:46:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
@@ -46,7 +46,11 @@ public class OCLinEcorePivot2CS extends EssentialOCLPivot2CS
 		}
 
 		public EClass[] getEClasses() {
-			return new EClass[]{ PivotPackage.Literals.CONSTRAINT };
+			return new EClass[] {
+				PivotPackage.Literals.CONSTRAINT,
+				PivotPackage.Literals.OPAQUE_EXPRESSION,
+				PivotPackage.Literals.EXPRESSION_IN_OCL
+			};
 		}
 	}
 

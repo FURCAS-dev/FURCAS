@@ -12,17 +12,19 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackageImpl.java,v 1.6 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackageImpl.java,v 1.7 2011/03/01 08:46:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTFactory;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,6 +39,13 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * @generated
 	 */
 	private EClass ocLinEcoreConstraintCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass ocLinEcoreSpecificationCSEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -117,6 +126,16 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOCLinEcoreSpecificationCS()
+	{
+		return ocLinEcoreSpecificationCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public OCLinEcoreCSTFactory getOCLinEcoreCSTFactory() {
 		return (OCLinEcoreCSTFactory)getEFactoryInstance();
 	}
@@ -141,6 +160,8 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 
 		// Create classes and their features
 		ocLinEcoreConstraintCSEClass = createEClass(OC_LIN_ECORE_CONSTRAINT_CS);
+
+		ocLinEcoreSpecificationCSEClass = createEClass(OC_LIN_ECORE_SPECIFICATION_CS);
 	}
 
 	/**
@@ -167,6 +188,7 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
 		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
 
 		// Create type parameters
@@ -174,10 +196,13 @@ public class OCLinEcoreCSTPackageImpl extends EPackageImpl implements OCLinEcore
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		ocLinEcoreConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
+		ocLinEcoreConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
+		ocLinEcoreSpecificationCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpSpecificationCS());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(ocLinEcoreConstraintCSEClass, OCLinEcoreConstraintCS.class, "OCLinEcoreConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(ocLinEcoreSpecificationCSEClass, OCLinEcoreSpecificationCS.class, "OCLinEcoreSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
