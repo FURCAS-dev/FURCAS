@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyValidator.java,v 1.2 2011/03/01 08:56:02 ewillink Exp $
+ * $Id: CompanyValidator.java,v 1.3 2011/03/01 17:25:38 ewillink Exp $
  */
 package company.util;
 
@@ -25,12 +25,9 @@ import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectVal
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
- * @extends OCLinEcoreEObjectValidator
- * Bug 338507: change extends EObjectValidator implements OCLinEcoreEObjectValidator
- * to extends OCLinEcoreEObjectValidator after regeneration
  * <!-- end-user-doc -->
  * @see company.CompanyPackage
- * @generated
+ * @generated not
  */
 public class CompanyValidator extends OCLinEcoreEObjectValidator {
 	/**
