@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.impactanalyzer.tests;
 
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.tests.deltaPropagation.PartialEvaluatorTest;
+import org.eclipse.ocl.examples.impactanalyzer.tests.derivedPropertyHandling.DerivedPropertyAdapterTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisEMEnabledTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.NavigationStepDebugGraphTest;
@@ -52,6 +53,7 @@ public class ImpactAnalyzerAllTests extends TestSuite {
         suite.addTestSuite(FilterSynthesisTest.class);
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
         suite.addTestSuite(NgpmModelBasedOclIaTest.class);
+        suite.addTestSuite(DerivedPropertyAdapterTest.class);
         return suite;
     }
 
