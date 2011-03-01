@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExp.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: LetExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -74,16 +74,6 @@ public interface LetExp
 	 * @generated
 	 */
 	OclExpression createIn(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>In</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getIn()
-	 * @generated
-	 */
-	OclExpression createIn();
 
 	/**
 	 * Returns the value of the '<em><b>Variable</b></em>' containment reference.

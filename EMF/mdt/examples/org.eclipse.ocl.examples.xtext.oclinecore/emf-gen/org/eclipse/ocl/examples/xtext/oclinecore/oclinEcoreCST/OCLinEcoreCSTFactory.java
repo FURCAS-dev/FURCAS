@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTFactory.java,v 1.4 2010/05/09 09:48:11 ewillink Exp $
+ * $Id: OCLinEcoreCSTFactory.java,v 1.7 2011/03/01 08:46:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
@@ -36,112 +36,22 @@ public interface OCLinEcoreCSTFactory extends EFactory {
 	OCLinEcoreCSTFactory eINSTANCE = org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Annotation CS</em>'.
+	 * Returns a new object of class '<em>OC Lin Ecore Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Annotation CS</em>'.
+	 * @return a new object of class '<em>OC Lin Ecore Constraint CS</em>'.
 	 * @generated
 	 */
-	AnnotationCS createAnnotationCS();
+	OCLinEcoreConstraintCS createOCLinEcoreConstraintCS();
 
 	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Attribute CS</em>'.
+	 * Returns a new object of class '<em>OC Lin Ecore Specification CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Attribute CS</em>'.
+	 * @return a new object of class '<em>OC Lin Ecore Specification CS</em>'.
 	 * @generated
 	 */
-	OCLinEcoreAttributeCS createOCLinEcoreAttributeCS();
-
-	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Class CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Class CS</em>'.
-	 * @generated
-	 */
-	OCLinEcoreClassCS createOCLinEcoreClassCS();
-
-	/**
-	 * Returns a new object of class '<em>Documentation CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Documentation CS</em>'.
-	 * @generated
-	 */
-	DocumentationCS createDocumentationCS();
-
-	/**
-	 * Returns a new object of class '<em>Enum CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Enum CS</em>'.
-	 * @generated
-	 */
-	EnumCS createEnumCS();
-
-	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Document CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Document CS</em>'.
-	 * @generated
-	 */
-	OCLinEcoreDocumentCS createOCLinEcoreDocumentCS();
-
-	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Operation CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Operation CS</em>'.
-	 * @generated
-	 */
-	OCLinEcoreOperationCS createOCLinEcoreOperationCS();
-
-	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Package CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Package CS</em>'.
-	 * @generated
-	 */
-	OCLinEcorePackageCS createOCLinEcorePackageCS();
-
-	/**
-	 * Returns a new object of class '<em>OC Lin Ecore Reference CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OC Lin Ecore Reference CS</em>'.
-	 * @generated
-	 */
-	OCLinEcoreReferenceCS createOCLinEcoreReferenceCS();
-
-	/**
-	 * Returns a new object of class '<em>Postcondition CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Postcondition CS</em>'.
-	 * @generated
-	 */
-	PostconditionCS createPostconditionCS();
-
-	/**
-	 * Returns a new object of class '<em>Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint CS</em>'.
-	 * @generated
-	 */
-	ConstraintCS createConstraintCS();
-
-	/**
-	 * Returns a new object of class '<em>Data Type CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type CS</em>'.
-	 * @generated
-	 */
-	DataTypeCS createDataTypeCS();
+	OCLinEcoreSpecificationCS createOCLinEcoreSpecificationCS();
 
 	/**
 	 * Returns the package supported by this factory.

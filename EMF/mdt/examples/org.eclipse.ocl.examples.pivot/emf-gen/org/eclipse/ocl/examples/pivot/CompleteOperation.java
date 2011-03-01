@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOperation.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: CompleteOperation.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment <em>Complete Environment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteParameters <em>Complete Parameter</em>}</li>
  * </ul>
@@ -48,22 +49,27 @@ public interface CompleteOperation
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(Operation)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation_Model()
-	 * @model required="true" ordered="false"
+	 * @model required="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Operation getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModel <em>Model</em>}' reference.
+	 * Returns the value of the '<em><b>Models</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Operation}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Models</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' reference.
-	 * @see #getModel()
+	 * @return the value of the '<em>Models</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteOperation_Models()
+	 * @model required="true"
 	 * @generated
 	 */
-	void setModel(Operation value);
+	EList<Operation> getModels();
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.

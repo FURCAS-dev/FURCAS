@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLabelProvider.java,v 1.7 2011/02/17 17:48:15 ewillink Exp $
+ * $Id: OCLinEcoreLabelProvider.java,v 1.8 2011/03/01 08:47:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling.EssentialOCLLabelProvider;
@@ -74,22 +75,22 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 
 	protected String image(OCLinEcoreConstraintCS ele) {
 		String stereotype = ele.getStereotype();
-		if ("body".equals(stereotype)) {
+		if (UMLReflection.BODY.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
 		}
-		else if ("derivation".equals(stereotype)) {
+		else if (UMLReflection.DERIVATION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
 		}
-		else if ("initial".equals(stereotype)) {
+		else if (UMLReflection.INITIAL.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
 		}
-		else if ("invariant".equals(stereotype)) {
+		else if (UMLReflection.INVARIANT.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
 		}
-		else if ("postcondition".equals(stereotype)) {
+		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
 		}
-		else if ("precondition".equals(stereotype)) {
+		else if (UMLReflection.PRECONDITION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
 		}
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";

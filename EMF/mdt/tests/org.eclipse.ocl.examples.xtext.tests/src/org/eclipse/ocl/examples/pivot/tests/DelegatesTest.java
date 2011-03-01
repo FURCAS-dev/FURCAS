@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.2 2011/03/01 08:56:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -71,13 +72,21 @@ import org.eclipse.ocl.examples.pivot.delegate.OCLInvocationDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLQueryDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLSettingDelegateFactory;
 import org.eclipse.ocl.examples.pivot.delegate.OCLValidationDelegateFactory;
+import org.eclipse.ocl.examples.pivot.delegate.PivotInstaller;
 import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
+import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
+import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.osgi.util.NLS;
 
 import company.CompanyPackage;
@@ -93,6 +102,7 @@ public class DelegatesTest extends PivotTestSuite
 	protected static final String COMPANY_XMI = "/model/Company.xmi";	
 	protected static final String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
 	protected static final String MODEL_WITH_ERRORS_XMI = "/model/ModelWithErrors.xmi";
+	protected static final String MODEL_WITH_ERRORS_OCL = "/model/ModelWithErrors.ocl";
 
 	public Resource testResource;
 	public EPackage companyPackage;
@@ -129,6 +139,7 @@ public class DelegatesTest extends PivotTestSuite
 		usedLocalRegistry = false;
 		EssentialOCLStandaloneSetup.doSetup();
 		OCLstdlib.install();
+		EValidator.Registry.INSTANCE.put(null, new OCLinEcoreEObjectValidator());
 
 		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
 		if (!eclipseIsRunning) {		// Install the 'plugin' registrations
@@ -248,9 +259,10 @@ public class DelegatesTest extends PivotTestSuite
 		sizeLarge = sizeKind.getEEnumLiteral("large").getInstance();
 
 		employees = new java.util.HashMap<String, EObject>();
+		TypeManagerResourceAdapter.getAdapter(companyPackage.eResource(), typeManager);
 	}
 
-	protected void initModelWithErrors() {
+	protected Resource initModelWithErrors() {
 		URI uri = getTestModelURI(MODEL_WITH_ERRORS_XMI);
 		testResource = resourceSet.getResource(uri, true);
 		acme = testResource.getContents().get(0);
@@ -259,6 +271,32 @@ public class DelegatesTest extends PivotTestSuite
 		companyFactory = companyPackage.getEFactoryInstance();
 		badClassClass = (EClass) companyPackage.getEClassifier("BadClass");
 		companyDetritus = (EReference) companyClass .getEStructuralFeature("detritus");
+		return companyPackage.eResource();
+	}
+
+	protected void initModelWithErrorsAndOcl() {
+		CompleteOCLStandaloneSetup.doSetup();
+		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		Resource ecoreResource = initModelWithErrors();
+		String message = PivotUtil.getResourceErrorsString(ecoreResource, "Model load");
+		if (message != null)
+			fail(message);
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
+		Package pivotRoot = ecore2Pivot.getPivotRoot();
+		message = PivotUtil.getResourceErrorsString(pivotRoot.eResource(), "Pivot load");
+		if (message != null)
+			fail(message);
+		URI oclURI = getTestModelURI(MODEL_WITH_ERRORS_OCL);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
+		message = PivotUtil.getResourceErrorsString(xtextResource, "OCL load");
+		if (message != null)
+			fail(message);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, typeManager);
+		Resource pivotResource = adapter.getPivotResource(xtextResource);
+		message = PivotUtil.getResourceErrorsString(pivotResource, "Pivot OCL load");
+		if (message != null)
+			fail(message);
+		PivotInstaller.installDelegates(typeManager, pivotRoot);
 	}
 
 	protected void initPackageRegistrations() {
@@ -547,7 +585,7 @@ public class DelegatesTest extends PivotTestSuite
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		getWithException(badClassInstance, "attributeParsingToSemanticError",
 			getErrorsInMessage("'5' and 6") +
-			getBoundMessage(OCLMessages.ErrorUnresolvedOperationCall, "and"));
+			getBoundMessage(OCLMessages.ErrorUnresolvedOperationCall3, "and", "String", "UnlimitedNatural"));
 	}
 
 	public void test_attributeParsingToSyntacticError() {
@@ -946,7 +984,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
 		validateWithDelegationError("parsingToSemanticError", badClassInstance, "not '5'",
-			OCLMessages.ErrorUnresolvedOperationCall, "not");
+			OCLMessages.ErrorUnresolvedOperationCall2, "not", "String");
 	}
 	
 	public void test_validationParsingToSyntacticError() {
@@ -955,6 +993,25 @@ public class DelegatesTest extends PivotTestSuite
 		validateWithDelegationError("parsingToSyntacticError", badClassInstance, "else", 
 			"no viable alternative at input ''{0}''", "else");
 	}
+	
+	public void test_validationWithMessage() {
+		initModelWithErrors();
+		
+		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationWithMessage"), null);
+		validateWithError("ValidationWithMessage", badClassInstance, 
+			"custom message ");
+	}
+	
+	public void test_validationWithCompleteOCL() {
+		initModelWithErrorsAndOcl();
+//		EValidator.Registry.INSTANCE.put(null, new MyEObjectValidator());
+		
+		EClass eClassifier = (EClass) companyPackage.getEClassifier("Detritus");
+		EObject badClassInstance = create(acme, companyDetritus, eClassifier, null);
+		validateWithError("CompleteOCLInvariant", badClassInstance, 
+			"Failure on " + eClassifier.getName());
+	}
+	
 	void add(EObject owner, EStructuralFeature feature, Object value) {
 		this.<EList<Object>> get(owner, feature).add(value);
 	}
@@ -1157,16 +1214,15 @@ public class DelegatesTest extends PivotTestSuite
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
 		Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
-		String messageTemplate = EcorePlugin.INSTANCE.getString("_UI_GenericConstraint_diagnostic");
-		String message = NLS.bind(messageTemplate, constraintName, objectLabel);
+		String message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}
 
 	protected void validateInvariantWithError(String constraintName, EObject eObject) {
-		validateWithError(constraintName, "_UI_GenericInvariant_diagnostic", eObject, constraintName, EObjectValidator.getObjectLabel(eObject, context));
+		validateWithError(constraintName, eObject, EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic"), constraintName, EObjectValidator.getObjectLabel(eObject, context));
 	}
 
-	protected void validateWithError(String constraintName, String errorKey, EObject eObject, Object... bindings) {
+	protected void validateWithError(String constraintName, EObject eObject, String messageTemplate, Object... bindings) {
 		Diagnostic validation = Diagnostician.INSTANCE.validate(eObject, context);
 		assertEquals("Validation of '" + constraintName + "' severity:", Diagnostic.ERROR, validation.getSeverity());
 		List<Diagnostic> diagnostics = validation.getChildren();
@@ -1174,7 +1230,6 @@ public class DelegatesTest extends PivotTestSuite
 		Diagnostic diagnostic = diagnostics.get(0);
 		assertEquals("Validation of '" + constraintName + "' data count:", 1, diagnostic.getData().size());
 		assertEquals("Validation of '" + constraintName + "' data object:", eObject, diagnostic.getData().get(0));
-		String messageTemplate = EcorePlugin.INSTANCE.getString(errorKey);
 		String message = NLS.bind(messageTemplate, bindings);
 		assertEquals("Validation of '" + constraintName + "' message:", message, diagnostic.getMessage());
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.17 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: LoadTests.java,v 1.18 2011/03/01 08:56:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -108,9 +108,9 @@ public class LoadTests extends XtextTestCase
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
-		xmiResource.save(null);
+//		xmiResource.save(null);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-		assertNoResourceErrors("Save failed", xmiResource);
+//		assertNoResourceErrors("Save failed", xmiResource);
 		return xmiResource;
 	}
 

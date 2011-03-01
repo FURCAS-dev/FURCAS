@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
@@ -40,7 +39,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -73,7 +71,6 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 public class PivotUtil
 {	
 	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
-	private static final Logger logger = Logger.getLogger(PivotUtil.class);
 
 	/**
 	 * 'Highest' precedence first
@@ -199,8 +196,7 @@ public class PivotUtil
 			return null;
 		}
 		if (!adapterClass.isAssignableFrom(adapter.getClass())) {
-			logger.error("Expected " + adapterClass.getName() +
-				" rather than " + adapter.getClass().getName());
+			throw new ClassCastException(adapter.getClass().getName() + " is not assignable to " + adapterClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		T castAdapter = (T) adapter;
@@ -369,13 +365,13 @@ public class PivotUtil
 			}
 			owner = ((Operation)feature).getClass_();
 		}
-		if (owner instanceof CompleteType) {
-			owner = (org.eclipse.ocl.examples.pivot.Class)((CompleteType)owner).getModel(); // FIXME cast
-		}
+//		if (owner instanceof CompleteType) {
+//			owner = (org.eclipse.ocl.examples.pivot.Class)((CompleteType)owner).getModel(); // FIXME cast
+//		}
 		return owner;
 	}
 
-	public static <T extends NamedElement> T getNamedElement(Collection<T> elements, String name) {
+	public static <T extends NamedElement> T getNamedElement(Iterable<T> elements, String name) {
 		if (elements == null)
 			return null;
 		for (T element : elements)
@@ -393,14 +389,28 @@ public class PivotUtil
 		return null;
 	}
 
+	public static String getMessage(OpaqueExpression specification) {
+		List<String> messages = specification.getMessages();
+		List<String> languages = specification.getLanguages();
+		if ((messages == null) || (languages == null)) {
+			return null;
+		}
+		int iMax = Math.min(messages.size(), languages.size());
+		for (int i = 0; i < iMax; i++) {
+			if (PivotConstants.OCL_LANGUAGE.equalsIgnoreCase(languages.get(i))) {
+				return messages.get(i);
+			}
+		}
+		return null;
+	}
+
 	public static <T extends Element> T getPivot(Class<T> pivotClass, Pivotable pivotableElement) {
 		Element pivotElement = pivotableElement.getPivot();
 		if (pivotElement == null) {
 			return null;
 		}
 		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			logger.error("Pivot '" + pivotElement.getClass().getName() + "' element is not a '" + pivotClass.getName() + "'"); //$NON-NLS-1$
-			return null;
+			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) pivotElement;
@@ -600,7 +610,20 @@ public class PivotUtil
 		} catch (IOException e) {
 //				throw new ParserException("Failed to load expression", e);
 			ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
-			OclExpression invalidValueBody = typeManager.createInvalidExpression(contextClassifier, "Failed to load expression", e);
+			OclExpression invalidValueBody = typeManager.createInvalidExpression();
+			specification.setBodyExpression(invalidValueBody);
+			return specification;
+		}			
+	}
+
+	public static ExpressionInOcl resolveMessage(TypeManager typeManager, ExpressionInOcl specification, String expression) throws ParserException {
+		try {
+			Resource resource = createXtextResource(typeManager, specification, expression);
+			checkResourceErrors("Errors in '" + expression + "'", resource);
+			return getExpressionInOcl(resource);
+		} catch (IOException e) {
+//				throw new ParserException("Failed to load expression", e);
+			OclExpression invalidValueBody = typeManager.createInvalidExpression();
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
 		}			

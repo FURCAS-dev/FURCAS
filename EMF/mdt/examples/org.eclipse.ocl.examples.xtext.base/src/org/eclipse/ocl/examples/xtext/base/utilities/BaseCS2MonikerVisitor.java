@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCS2MonikerVisitor.java,v 1.6 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: BaseCS2MonikerVisitor.java,v 1.7 2011/03/01 08:47:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -21,12 +21,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2MonikerVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
@@ -49,6 +50,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
@@ -66,12 +68,11 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolean, CS2Moniker> implements PivotConstants
 {			
-	private static final Logger logger = Logger.getLogger(BaseCS2MonikerVisitor.class);
-
 	private static final class Factory implements CS2Moniker.Factory
 	{
 		private Factory() {
 			CS2Moniker.addFactory(BaseCSTPackage.eINSTANCE, this);
+			Pivot2MonikerVisitor.initialize();
 		}
 		
 		public BaseCSVisitor<?, ?> create(CS2Moniker context) {
@@ -91,8 +92,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	}
 
 	public Boolean visiting(VisitableCS visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS Moniker");
 	}	
 
 	@Override
@@ -149,7 +149,8 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 	@Override
 	public Boolean visitConstraintCS(ConstraintCS csConstraint) {
 		context.appendParentCS(csConstraint, MONIKER_SCOPE_SEPARATOR);
-		context.appendConstraintCS(csConstraint);
+		context.append(csConstraint.getStereotype());
+		context.appendConstraintCSDisambiguator(csConstraint);
 		return true;
 	}
 
@@ -215,7 +216,7 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 
 	@Override
 	public Boolean visitNamedElementCS(NamedElementCS object) {
-		context.appendParentCS(object, MONIKER_OPERATOR_SEPARATOR);
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		context.appendNameCS(object);
 		return true;
 	}
@@ -262,6 +263,15 @@ public class BaseCS2MonikerVisitor extends AbstractExtendingBaseCSVisitor<Boolea
 		context.appendElement(object.getRef());
 		return true;
 	}
+
+	
+	@Override
+	public Boolean visitSpecificationCS(SpecificationCS object) {
+		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
+		context.append(PivotPackage.Literals.CONSTRAINT__SPECIFICATION.getName());
+		return true;
+	}
+
 	@Override
 	public Boolean visitTemplateBindingCS(TemplateBindingCS object) {
 		context.appendElementCS(object.getOwningTemplateBindableElement());

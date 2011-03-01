@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -225,6 +226,8 @@ public class BaseCSTValidator extends EObjectValidator
 				return validateRootCS((RootCS)value, diagnostics, context);
 			case BaseCSTPackage.ROOT_PACKAGE_CS:
 				return validateRootPackageCS((RootPackageCS)value, diagnostics, context);
+			case BaseCSTPackage.SPECIFICATION_CS:
+				return validateSpecificationCS((SpecificationCS)value, diagnostics, context);
 			case BaseCSTPackage.STRUCTURAL_FEATURE_CS:
 				return validateStructuralFeatureCS((StructuralFeatureCS)value, diagnostics, context);
 			case BaseCSTPackage.TEMPLATE_BINDING_CS:
@@ -702,6 +705,16 @@ public class BaseCSTValidator extends EObjectValidator
 			return false;
 		}
 		return validateRootCS_TestConstraint(rootPackageCS, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSpecificationCS(SpecificationCS specificationCS, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint(specificationCS, diagnostics, context);
 	}
 
 	/**

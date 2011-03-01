@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UML.java,v 1.2 2011/01/24 20:47:53 ewillink Exp $
+ * $Id: Pivot2UML.java,v 1.3 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -35,8 +34,6 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 public class Pivot2UML extends AbstractConversion
 {
-	public static final Logger logger = Logger.getLogger(Pivot2UML.class);
-
 	public static List<EObject> createResource(TypeManager typeManager, Resource pivotResource) {
 		List<EObject> pivotRoots = pivotResource.getContents();
 		Pivot2UML converter = new Pivot2UML(typeManager);
@@ -120,8 +117,7 @@ public class Pivot2UML extends AbstractConversion
 			return null;
 		}
 		if (!requiredClass.isAssignableFrom(eModelElement.getClass())) {
-			logger.error("Ecore " + eModelElement.getClass().getName() + "' element is not a '" + requiredClass.getName() + "'"); //$NON-NLS-1$
-			return null;
+			throw new ClassCastException(eModelElement.getClass().getName() + " is not assignable to " + requiredClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) eModelElement;

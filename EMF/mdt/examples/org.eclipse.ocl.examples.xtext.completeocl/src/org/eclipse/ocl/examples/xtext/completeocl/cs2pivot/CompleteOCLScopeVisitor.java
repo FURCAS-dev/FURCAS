@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLScopeVisitor.java,v 1.4 2011/02/11 20:00:54 ewillink Exp $
+ * $Id: CompleteOCLScopeVisitor.java,v 1.5 2011/03/01 08:47:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.cs.EmptyCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLDocumentCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
@@ -26,7 +27,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarat
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.ClassifierContextScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLDocumentScopeAdapter;
-import org.eclipse.ocl.examples.xtext.completeocl.scoping.ContextConstraintScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.OperationContextScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.PackageDeclarationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.PropertyContextScopeAdapter;
@@ -52,14 +52,9 @@ public class CompleteOCLScopeVisitor
 
 	@Override
 	public ScopeCSAdapter visitContextConstraintCS(ContextConstraintCS eObject) {
-		return new ContextConstraintScopeAdapter(context, eObject);
+		return new EmptyCSScopeAdapter(context, eObject);
 	}
-
-//	@Override
-//	public ScopeCSAdapter visitDefCS(DefCS eObject) {
-//		return new DefScopeAdapter(context, eObject);
-//	}
-
+	
 	@Override
 	public ScopeCSAdapter visitOperationContextDeclCS(OperationContextDeclCS eObject) {
 		return new OperationContextScopeAdapter(context, eObject);
@@ -69,16 +64,6 @@ public class CompleteOCLScopeVisitor
 	public ScopeCSAdapter visitPackageDeclarationCS(PackageDeclarationCS eObject) {
 		return new PackageDeclarationScopeAdapter(context, eObject);
 	}
-
-//	@Override
-//	public ScopeCSAdapter visitPostCS(PostCS eObject) {
-//		return new PostScopeAdapter(context, eObject);
-//	}
-
-//	@Override
-//	public ScopeCSAdapter visitPreExpCS(PreExpCS eObject) {
-//		return new PreExpCSScopeAdapter(context, eObject);
-//	}
 
 	@Override
 	public ScopeCSAdapter visitPropertyContextDeclCS(PropertyContextDeclCS eObject) {

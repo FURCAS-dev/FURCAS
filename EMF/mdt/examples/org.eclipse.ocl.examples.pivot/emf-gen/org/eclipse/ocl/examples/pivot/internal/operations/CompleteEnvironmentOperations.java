@@ -12,17 +12,15 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentOperations.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: CompleteEnvironmentOperations.java,v 1.3 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.operations;
 
-import org.eclipse.ocl.examples.pivot.CompleteType;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -35,11 +33,11 @@ import org.eclipse.ocl.examples.pivot.Type;
  * <p>
  * The following operations are supported:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteIteration(org.eclipse.ocl.examples.pivot.Iteration) <em>Get Complete Iteration</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation) <em>Get Complete Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompletePackage(org.eclipse.ocl.examples.pivot.Package) <em>Get Complete Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteProperty(org.eclipse.ocl.examples.pivot.Property) <em>Get Complete Property</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type) <em>Get Complete Type</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteType, org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,8 +60,9 @@ public class CompleteEnvironmentOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static  CompleteIteration getCompleteIteration(CompleteEnvironment completeEnvironment, Iteration model)
-	{
+	public static CompleteType getCompleteType(
+			CompleteEnvironment completeEnvironment,
+			Type model) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -74,9 +73,8 @@ public class CompleteEnvironmentOperations
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static CompleteType getCompleteType(
-			CompleteEnvironment completeEnvironment,
-			Type model) {
+	public static  CompleteOperation getDynamicOperation(CompleteEnvironment completeEnvironment, CompleteType type, CompleteOperation operation)
+	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOcl.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: ExpressionInOcl.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getResultVariable <em>Result Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getParameterVariables <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,16 +78,6 @@ public interface ExpressionInOcl
 	 * @generated
 	 */
 	OclExpression createBodyExpression(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Body Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getBodyExpression()
-	 * @generated
-	 */
-	OclExpression createBodyExpression();
 
 	/**
 	 * Returns the value of the '<em><b>Context Variable</b></em>' containment reference.
@@ -185,5 +176,31 @@ public interface ExpressionInOcl
 	 * @generated
 	 */
 	Variable createParameterVariable();
+
+	/**
+	 * Returns the value of the '<em><b>Message Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Message Expression</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Message Expression</em>' reference.
+	 * @see #setMessageExpression(OclExpression)
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getExpressionInOcl_MessageExpression()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	OclExpression getMessageExpression();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Message Expression</em>' reference.
+	 * @see #getMessageExpression()
+	 * @generated
+	 */
+	void setMessageExpression(OclExpression value);
 
 } // ExpressionInOcl

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.4 2011/01/30 11:17:26 ewillink Exp $
+ * $Id: Pivot2UMLDeclarationVisitor.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -43,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
@@ -54,8 +54,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class Pivot2UMLDeclarationVisitor
 	extends AbstractExtendingVisitor<EModelElement, Pivot2UML>
 {
-	public static final Logger logger = Logger.getLogger(Pivot2UMLDeclarationVisitor.class);
-
 	public Pivot2UMLDeclarationVisitor(Pivot2UML context) {
 		super(context);
 	}
@@ -160,8 +158,7 @@ public class Pivot2UMLDeclarationVisitor
 	}
 
 	public org.eclipse.uml2.uml.Element visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2UML Declaration pass");
 	}
 
 	@Override
@@ -210,23 +207,23 @@ public class Pivot2UMLDeclarationVisitor
 //		}
 		String stereotype = pivotConstraint.getStereotype();
 		String name = pivotConstraint.getName();
-/*		if ("invariant".equals(stereotype)) {
+/*		if (UMLReflection.INVARIANT.equals(stereotype)) {
 			oclAnnotation.getDetails().put(name, exprString);
 		}
-		else if ("derivation".equals(stereotype)) {
+		else if (UMLReflection.DERIVATION.equals(stereotype)) {
 			oclAnnotation.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, exprString);
 		}
-		else if ("initial".equals(stereotype)) {
+		else if (UMLReflection.INITIAL.equals(stereotype)) {
 			oclAnnotation.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, exprString);
 		}
-		else if ("body".equals(stereotype)) {
+		else if (UMLReflection.BODY.equals(stereotype)) {
 			String key = name != null ? "body_" + name : InvocationBehavior.BODY_CONSTRAINT_KEY;
 			oclAnnotation.getDetails().put(key, exprString);
 		}
-		else if ("precondition".equals(stereotype)) {
+		else if ("UMLReflection.PRECONDITION.equals(stereotype)) {
 			oclAnnotation.getDetails().put("pre_" + name, exprString);
 		}
-		else if ("postcondition".equals(stereotype)) {
+		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
 			oclAnnotation.getDetails().put("post_" + name, exprString);
 		}
 		else {
