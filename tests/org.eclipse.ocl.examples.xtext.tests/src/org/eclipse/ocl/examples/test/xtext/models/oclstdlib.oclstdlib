@@ -109,7 +109,7 @@ type OclAny : AnyType {
 	operation oclIsNew() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 	operation oclIsTypeOf(type : Classifier) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
 	operation oclIsUndefined() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation';
-	operation oclType<OclSelf>() : OclSelf => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType() : Classifier => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 

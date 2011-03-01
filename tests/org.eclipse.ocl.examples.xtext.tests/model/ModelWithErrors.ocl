@@ -1,0 +1,9 @@
+import 'ModelWithErrors.ecore'
+
+package modelWithErrors
+
+context Detritus
+inv CompleteOCLInvariantOk: true
+inv CompleteOCLInvariantFail('Failure on ' + oclType().name): false
+
+endpackage
