@@ -475,6 +475,10 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.aDivision = (DivisionImpl) CompanyFactory.eINSTANCE.createDivision();
         this.aDivision.setName("The super Division");
         this.aDivision.setBudget(2000000);
+        if (this.comp.eResource() != null) {
+            this.comp.eResource().getContents().add(this.aDivision);
+        }
+        
         for (double i = 0; i < numDepartments; i++) {
             createDepartment(numEmployees, numFreelance, maxNumJuniors, budget);
         }
@@ -483,6 +487,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.aDivision.getDepartment().add(this.aDepartment);
         this.aEmployee = this.allEmployees.iterator().next();
         this.aFreelance = this.allFreelances.iterator().next();
+        
 
     }
 
