@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExp.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: LoopExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -76,16 +76,6 @@ public interface LoopExp
 	 * @generated
 	 */
 	OclExpression createBody(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Body</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getBody()
-	 * @generated
-	 */
-	OclExpression createBody();
 
 	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference list.

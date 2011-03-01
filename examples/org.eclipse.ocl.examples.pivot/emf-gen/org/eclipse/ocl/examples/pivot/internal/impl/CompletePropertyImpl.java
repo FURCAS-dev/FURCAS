@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePropertyImpl.java,v 1.4 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: CompletePropertyImpl.java,v 1.5 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,10 +20,12 @@ import java.math.BigInteger;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.AssociationClass;
 import org.eclipse.ocl.examples.pivot.Comment;
@@ -45,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
  * </ul>
  * </p>
@@ -56,14 +59,14 @@ public class CompletePropertyImpl
 		implements CompleteProperty {
 
 	/**
-	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * The cached value of the '{@link #getModels() <em>Models</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModel()
+	 * @see #getModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected Property model;
+	protected EList<Property> models;
 
 	/**
 	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
@@ -99,39 +102,34 @@ public class CompletePropertyImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getModel() {
-		if (model != null && ((EObject)model).eIsProxy())
+	public Property getModel()
+	{
+		Property model = basicGetModel();
+		return model != null && ((EObject)model).eIsProxy() ? (Property)eResolveProxy((InternalEObject)model) : model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Property basicGetModel()
+	{
+		return getModels().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Property> getModels()
+	{
+		if (models == null)
 		{
-			InternalEObject oldModel = (InternalEObject)model;
-			model = (Property)eResolveProxy(oldModel);
-			if (model != oldModel)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_PROPERTY__MODEL, oldModel, model));
-			}
+			models = new EObjectResolvingEList<Property>(Property.class, this, PivotPackage.COMPLETE_PROPERTY__MODELS);
 		}
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Property basicGetModel() {
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModel(Property newModel) {
-		Property oldModel = model;
-		model = newModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_PROPERTY__MODEL, oldModel, model));
+		return models;
 	}
 
 	/**
@@ -251,6 +249,8 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_PROPERTY__MODELS:
+				return getModels();
 			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
 				if (resolve) return getCompleteEnvironment();
 				return basicGetCompleteEnvironment();
@@ -359,8 +359,9 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)newValue);
 				return;
-			case PivotPackage.COMPLETE_PROPERTY__MODEL:
-				setModel((Property)newValue);
+			case PivotPackage.COMPLETE_PROPERTY__MODELS:
+				getModels().clear();
+				getModels().addAll((Collection<? extends Property>)newValue);
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)newValue);
@@ -465,8 +466,8 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				setClass_((org.eclipse.ocl.examples.pivot.Class)null);
 				return;
-			case PivotPackage.COMPLETE_PROPERTY__MODEL:
-				setModel((Property)null);
+			case PivotPackage.COMPLETE_PROPERTY__MODELS:
+				getModels().clear();
 				return;
 			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)null);
@@ -543,7 +544,9 @@ public class CompletePropertyImpl
 			case PivotPackage.COMPLETE_PROPERTY__CLASS:
 				return basicGetClass_() != null;
 			case PivotPackage.COMPLETE_PROPERTY__MODEL:
-				return model != null;
+				return basicGetModel() != null;
+			case PivotPackage.COMPLETE_PROPERTY__MODELS:
+				return models != null && !models.isEmpty();
 			case PivotPackage.COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT:
 				return completeEnvironment != null;
 		}

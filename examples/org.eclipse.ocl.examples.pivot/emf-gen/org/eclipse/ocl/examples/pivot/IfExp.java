@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExp.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: IfExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -77,16 +77,6 @@ public interface IfExp
 	OclExpression createCondition(EClass eClass);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getCondition()
-	 * @generated
-	 */
-	OclExpression createCondition();
-
-	/**
 	 * Returns the value of the '<em><b>Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -124,16 +114,6 @@ public interface IfExp
 	OclExpression createThenExpression(EClass eClass);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Then Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getThenExpression()
-	 * @generated
-	 */
-	OclExpression createThenExpression();
-
-	/**
 	 * Returns the value of the '<em><b>Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -169,15 +149,5 @@ public interface IfExp
 	 * @generated
 	 */
 	OclExpression createElseExpression(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Else Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getElseExpression()
-	 * @generated
-	 */
-	OclExpression createElseExpression();
 
 } // IfExp

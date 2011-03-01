@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.5 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -337,8 +336,6 @@ public class PivotValidator
 				return validateComment((Comment)value, diagnostics, context);
 			case PivotPackage.COMPLETE_ENVIRONMENT:
 				return validateCompleteEnvironment((CompleteEnvironment)value, diagnostics, context);
-			case PivotPackage.COMPLETE_ITERATION:
-				return validateCompleteIteration((CompleteIteration)value, diagnostics, context);
 			case PivotPackage.COMPLETE_OPERATION:
 				return validateCompleteOperation((CompleteOperation)value, diagnostics, context);
 			case PivotPackage.COMPLETE_PACKAGE:
@@ -1038,28 +1035,6 @@ public class PivotValidator
 			CompleteEnvironment completeEnvironment,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)completeEnvironment, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompleteIteration(CompleteIteration completeIteration, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		if (!validate_NoCircularContainment((EObject)completeIteration, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(completeIteration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(completeIteration, diagnostics, context);
-		return result;
 	}
 
 	/**

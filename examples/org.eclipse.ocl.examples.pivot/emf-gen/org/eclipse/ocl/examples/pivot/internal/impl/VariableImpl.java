@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: VariableImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -194,15 +194,6 @@ public class VariableImpl
 		OclExpression newInitExpression = (OclExpression) create(eClass);
 		setInitExpression(newInitExpression);
 		return newInitExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createInitExpression() {
-		return createInitExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**
