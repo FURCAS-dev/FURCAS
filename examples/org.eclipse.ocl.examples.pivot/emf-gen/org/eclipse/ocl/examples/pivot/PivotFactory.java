@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.6 2011/02/15 10:38:47 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.7 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -209,15 +209,6 @@ public interface PivotFactory
 	AssociationClassCallExp createAssociationClassCallExp();
 
 	/**
-	 * Returns a new object of class '<em>Ocl Expression</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Expression</em>'.
-	 * @generated
-	 */
-	OclExpression createOclExpression();
-
-	/**
 	 * Returns a new object of class '<em>Bag Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -297,15 +288,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	CompleteEnvironment createCompleteEnvironment();
-
-	/**
-	 * Returns a new object of class '<em>Complete Iteration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Iteration</em>'.
-	 * @generated
-	 */
-	CompleteIteration createCompleteIteration();
 
 	/**
 	 * Returns a new object of class '<em>Complete Operation</em>'.

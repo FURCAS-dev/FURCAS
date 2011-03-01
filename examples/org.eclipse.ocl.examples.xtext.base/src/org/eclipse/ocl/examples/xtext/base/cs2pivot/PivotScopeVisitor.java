@@ -12,15 +12,15 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
+import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
@@ -53,8 +53,6 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter
 
 public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, TypeManager> implements PivotConstants
 {	
-	private static final Logger logger = Logger.getLogger(PivotScopeVisitor.class);
-
 	public PivotScopeVisitor(TypeManager context) {
 		super(context);
 		assert context != null;
@@ -94,6 +92,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	@Override
 	public ScopeAdapter visitIfExp(IfExp pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);
+	}
+
+	@Override
+	public ScopeAdapter visitInvalidLiteralExp(InvalidLiteralExp pivotElement) {
+		return new EmptyScopeAdapter(context, pivotElement);		// FIXME
 	}
 
 	@Override
@@ -167,7 +170,6 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	}
 
 	public ScopeAdapter visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for PivotScopeVisitor");
 	}	
 }

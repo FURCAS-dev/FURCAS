@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackage.java,v 1.8 2011/02/15 10:37:08 ewillink Exp $
+ * $Id: OCLstdlibCSTPackage.java,v 1.9 2011/03/01 08:46:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -314,7 +313,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int LIB_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSTPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -323,7 +322,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
+	int LIB_CONSTRAINT_CS__PIVOT = BaseCSTPackage.CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -332,7 +331,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int LIB_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -341,7 +340,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
+	int LIB_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -350,7 +349,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
+	int LIB_CONSTRAINT_CS__NAME = BaseCSTPackage.CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -359,34 +358,25 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
+	int LIB_CONSTRAINT_CS__STEREOTYPE = BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
+	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
+	int LIB_CONSTRAINT_CS__SPECIFICATION = BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LIB_CONSTRAINT_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
+	int LIB_CONSTRAINT_CS__MESSAGE_SPECIFICATION = BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION;
 
 	/**
 	 * The number of structural features of the '<em>Lib Constraint CS</em>' class.
@@ -395,7 +385,7 @@ public interface OCLstdlibCSTPackage
 	 * @generated
 	 * @ordered
 	 */
-	int LIB_CONSTRAINT_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int LIB_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.

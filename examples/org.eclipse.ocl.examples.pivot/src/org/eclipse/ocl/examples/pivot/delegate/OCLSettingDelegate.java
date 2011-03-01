@@ -12,19 +12,17 @@
  * 
  * </copyright>
  *
- * $Id: OCLSettingDelegate.java,v 1.3 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: OCLSettingDelegate.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.BasicSettingDelegate;
 import org.eclipse.ocl.examples.pivot.EvaluationException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.Value;
@@ -57,18 +55,16 @@ public class OCLSettingDelegate extends BasicSettingDelegate.Stateless
 	protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
 		OCL ocl = delegateDomain.getOCL();
 		TypeManager typeManager = ocl.getEnvironment().getTypeManager();
-		ValueFactory valueFactory = typeManager.getValueFactory();
 		if (specification == null) {
 			if (property == null) {
-				Resource ecoreMetaModel = eStructuralFeature.eResource();
-				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
-				property = ecore2Pivot.getCreated(Property.class, eStructuralFeature);
+				property = delegateDomain.getPivot(Property.class, eStructuralFeature);
 			}
 			specification = SettingBehavior.INSTANCE.getExpressionInOcl(typeManager, property);
 		}
 		OCL.Query query = ocl.createQuery(specification);
 		try {
 			Value result = query.evaluate(owner);
+			ValueFactory valueFactory = typeManager.getValueFactory();
 			return valueFactory.getEcoreValueOf(result);
 		}
 		catch (EvaluationException e) {

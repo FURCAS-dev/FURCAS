@@ -12,19 +12,19 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLValidationDelegateFactory.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EValidator;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EValidator;
  * @since 3.0
  */
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
-		implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValidator.ValidationDelegate.Descriptor
+		implements ValidationDelegate.Factory, ValidationDelegate {
 
 	public OCLValidationDelegateFactory() {}
 
@@ -73,7 +73,28 @@ public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
 		ValidationDelegate validationDelegate = getValidationDelegate(eDataType);
 		return validationDelegate.validate(eDataType, value, context, constraint, expression);
 	}
-	
+
+//	public boolean validate(EClass eClass, EObject eObject,
+//			DiagnosticChain diagnostics, Map<Object, Object> context,
+//			EOperation invariant, String expression, int severity, String source, int code) {
+//		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
+//		return validationDelegate.validate(eClass, eObject, diagnostics, context, invariant, expression, severity, source, code);
+//	}
+
+	public boolean validate(EClass eClass, EObject eObject,
+			DiagnosticChain diagnostics, Map<Object, Object> context,
+			String constraint, String expression, int severity, String source, int code) {
+		ValidationDelegate validationDelegate = getValidationDelegate(eClass);
+		return validationDelegate.validate(eClass, eObject, diagnostics, context, constraint, expression, severity, source, code);
+	}
+
+	public boolean validate(EDataType eDataType, Object value,
+			DiagnosticChain diagnostics, Map<Object, Object> context,
+			String constraint, String expression, int severity, String source, int code) {
+		ValidationDelegate validationDelegate = getValidationDelegate(eDataType);
+		return validationDelegate.validate(eDataType, value, diagnostics, context, constraint, expression, severity, source, code);
+	}
+
 	/**
 	 * The Global variant of the Factory delegates to a local ResourceSet factory if one
 	 * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry

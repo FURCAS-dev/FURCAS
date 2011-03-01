@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.10 2011/02/19 18:50:01 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.11 2011/03/01 08:47:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -41,21 +41,32 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
+import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -83,7 +94,6 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.Template
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot.Factory;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.xtext.linking.impl.XtextLinkingDiagnostic;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -96,6 +106,18 @@ public class CS2PivotConversion extends AbstractConversion
 	private static final Logger logger = Logger.getLogger(CS2PivotConversion.class);
 	public static final TracingOption CONTINUATION = new TracingOption("org.eclipse.ocl.examples.xtext.base", "continuation");  //$NON-NLS-1$//$NON-NLS-2$
 
+	public static class CacheKey<T>
+	{
+		protected final String name;
+		
+		public CacheKey(String name) {
+			this.name = name;
+		}
+		
+		@Override
+		public String toString() { return name; }
+	}
+	
 	protected final CS2Pivot converter;
 	protected final TypeManager typeManager;
 	protected final Map<Pivotable, org.eclipse.ocl.examples.pivot.Package> oldCS2PivotMap = new HashMap<Pivotable, org.eclipse.ocl.examples.pivot.Package>();
@@ -116,6 +138,11 @@ public class CS2PivotConversion extends AbstractConversion
 	private InterDependency<TemplateBindingContinuation> typesHaveSpecializations = new InterDependency<TemplateBindingContinuation>("All specialized types defined", typesHaveSignatures);
 	private InterDependency<OperationContinuation<?>> operationsHaveTemplateParameters = new InterDependency<OperationContinuation<?>>("All operation template parameters defined", typesHaveSignatures);
 
+	/**
+	 * A typed cache for use by derived conversions.
+	 */
+	private final Map<CacheKey<?>, Object> intermediateCache = new HashMap<CacheKey<?>, Object>();
+
 	// CS <-> pivot pairs with identical monikers
 	private Map<MonikeredElementCS, MonikeredElement> debugCheckMap = new HashMap<MonikeredElementCS, MonikeredElement>();
 	// CS -> pivot pairs with possibly divergent monikers
@@ -123,6 +150,13 @@ public class CS2PivotConversion extends AbstractConversion
 
 	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByName = null;
 	private Map<String, org.eclipse.ocl.examples.pivot.Package> oldPackagesByQualifiedName = null;
+
+	/**
+	 * Set of all expression nodes whose type involves an UnspecifiedType. These are
+	 * created during the left2right pass and are finally resolved to
+	 * minimize invalidity.
+	 */
+	private HashSet<TypedElement> underspecifiedTypedElements = null;
 	
 	public CS2PivotConversion(CS2Pivot converter) {
 		this.converter = converter;
@@ -139,24 +173,17 @@ public class CS2PivotConversion extends AbstractConversion
 	/* (non-Javadoc)
 	 * @see org.eclipse.ocl.examples.xtext.base.cs2pivot.DiagnosticHandler#addError(org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS, java.lang.String, java.lang.Object)
 	 */
-	public OclExpression addBadExpressionError(ModelElementCS csElement, String message, Object... bindings) {
-		String boundMessage = NLS.bind(message, bindings);
+	public OclExpression addBadExpressionError(ModelElementCS csElement, String boundMessage) {
 		INode node = NodeModelUtils.getNode(csElement);
 		Resource.Diagnostic resourceDiagnostic = new ValidationDiagnostic(node, boundMessage);
 		csElement.eResource().getErrors().add(resourceDiagnostic);
-		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(
-			csElement, boundMessage, null);
+		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression();
 		installPivotElementInternal(csElement, invalidLiteralExp);
 		return invalidLiteralExp;
 	}
 
 	public OclExpression addBadProxyError(EReference eReference, ModelElementCS csElement) {
-		String linkText = ElementUtil.getText(csElement);
-		String message = CS2Pivot.getUnresolvedProxyText(eReference, csElement, linkText);
-//		csElement.getError().add(message);
-//		XtextLinkingDiagnostic diagnostic = new XtextLinkingDiagnostic(NodeModelUtils.getNode(csElement), message, "xyzzy");		// FIXME
-//		csElement.eResource().getErrors().add(diagnostic);
-		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression(csElement, message, null);
+		InvalidLiteralExp invalidLiteralExp = typeManager.createInvalidExpression();
 		installPivotElementInternal(csElement, invalidLiteralExp);
 		return invalidLiteralExp;
 	}
@@ -171,6 +198,13 @@ public class CS2PivotConversion extends AbstractConversion
 		InvalidType invalidType = typeManager.getOclInvalidType();
 		installPivotElementInternal(csElement, invalidType);
 		return invalidType;
+	}
+
+	protected void addUnderspecifiedTypedElement(TypedElement pivotElement) {
+		if (underspecifiedTypedElements == null) {
+			underspecifiedTypedElements  = new HashSet<TypedElement>();
+		}
+		underspecifiedTypedElements.add(pivotElement);
 	}
 
 //	public void addWarning(ModelElementCS csElement, String message) {
@@ -223,8 +257,10 @@ public class CS2PivotConversion extends AbstractConversion
 			String csMoniker = csElement.getMoniker();
 			if (element.eResource() != null) {		// FIXME Find a tighter way to reject pivot orphaned by parent invalidity
 				String moniker = element.getMoniker();
-				assert csMoniker.equals(moniker) : "\n" + csElement.eClass().getName() + ": '" + csMoniker + "'\n"
-				 + element.eClass().getName() + ": '" + moniker + "'";
+				if (!csMoniker.equals(moniker)) {
+					logger.warn("Inconsistent monikers\n" + csElement.eClass().getName() + ": '" + csMoniker + "'\n"
+						 + element.eClass().getName() + ": '" + moniker + "'");
+				}
 			}
 		}
 //		debugCheckQueue.clear();
@@ -315,6 +351,15 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 		}	
 	}
+	
+	public CS2Pivot getConverter() {
+		return converter;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T getIntermediate(CacheKey<T> key) {
+		return (T) intermediateCache.get(key);
+	}
 
 	public BaseCSVisitor<MonikeredElement, CS2PivotConversion> getLeft2RightVisitor(EPackage ePackage) {
 		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = left2RightVisitorMap.get(ePackage);
@@ -348,8 +393,7 @@ public class CS2PivotConversion extends AbstractConversion
 			return null;
 		}
 		if (!pivotClass.isAssignableFrom(nameableElement.getClass())) {
-			logger.error("Pivot element for " + moniker + " is not a " + pivotClass.getName()); //$NON-NLS-1$ //$NON-NLS-2$
-			return null;
+			throw new ClassCastException(nameableElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) nameableElement;
@@ -642,6 +686,11 @@ public class CS2PivotConversion extends AbstractConversion
 		return madeProgress ? moreContinuations : null;
 	}
 
+	@SuppressWarnings("unchecked")
+	public <T> T putIntermediate(CacheKey<T> key, T object) {
+		return (T) intermediateCache.put(key, object);
+	}
+	
 	public void putPivotElement(MonikeredElement pivotElement) {
 		converter.putPivotElement(pivotElement.getMoniker(), pivotElement);
 	}
@@ -681,22 +730,12 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 	}
 
-	public <T extends MonikeredElement> T refreshExpTree(Class<T> pivotClass, ModelElementCS csElement) {
-		if (csElement == null) {
-			return null;
-		}
-		MonikeredElement pivotElement = visitLeft2Right(csElement);
-		if (pivotElement == null) {
-			return null;
-		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			logger.error("Pivot '" + pivotElement.getClass().getName() + "' element is not a '" + pivotClass.getName() + "'"); //$NON-NLS-1$
-			return null;
-		}
-		@SuppressWarnings("unchecked")
-		T castElement = (T) pivotElement;
-		return castElement;
-	}
+//	public <T extends MonikeredElement> T refreshExpTree(Class<T> pivotClass, ModelElementCS csElement) {
+//		if (csElement == null) {
+//			return null;
+//		}
+//		return visitLeft2Right(pivotClass, csElement);
+//	}
 	
 	public <T extends OclExpression> T refreshExpression(Class<T> pivotClass, EClass pivotEClass, MonikeredElementCS csElement) {
 		T pivotElement = refreshMonikeredElement(pivotClass, pivotEClass, csElement);
@@ -751,7 +790,7 @@ public class CS2PivotConversion extends AbstractConversion
 			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			throw new ClassCastException();
+			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}
 //		installPivotElement(csElement, pivotElement);
 		@SuppressWarnings("unchecked")
@@ -901,13 +940,214 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 	}
 
+	/**
+	 * The iteration was initially specialized without knowledge of the body type. It may therefore
+	 * need respecialization to correct typing providing by LambdaType bodies, such as those that
+	 * propagate collect typing. It is also necessary to fudge the unmodelled collect flattening.
+	 */
+	public void resolveIterationSpecialization(LoopExp expression) {
+		Iteration specializedIteration = expression.getReferredIteration();
+		List<TemplateBinding> specializedTemplateBindings = specializedIteration.getTemplateBindings();
+		if (specializedTemplateBindings.size() <= 0) {
+			return;
+		}
+		Iteration unspecializedIteration = PivotUtil.getUnspecializedTemplateableElement(specializedIteration);
+		List<Parameter> unspecializedParameters = unspecializedIteration.getOwnedParameters();
+		if (unspecializedParameters.size() <= 0) {
+			return;															// Shouldn't happen but lazy declaration omit the body
+		}
+		Parameter parameter = unspecializedParameters.get(0);
+		Type parameterType = parameter.getType();
+		if (!(parameterType instanceof LambdaType)) {
+			return;
+		}
+		Type bodyType = expression.getBody().getType();
+		if ("collect".equals(unspecializedIteration.getName())) {			// FIXME use a Flat<T> template to model this fudge
+			while (bodyType instanceof CollectionType) {
+				bodyType = ((CollectionType)bodyType).getElementType();
+			}
+		}
+		Map<TemplateParameter, ParameterableElement> bindings = 
+			PivotUtil.getAllTemplateParameterSubstitutions(null, bodyType, (LambdaType) parameterType);
+		if (bindings == null) {
+			return;
+		}
+		boolean bindingsChanged = false;
+		for (TemplateBinding templateBinding : specializedTemplateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (actual == null) {
+					TemplateParameter formal = templateParameterSubstitution.getFormal();
+					actual = bindings.get(formal);
+					if (actual != null) {
+//						templateParameterSubstitution.setActual(actual);
+						bindingsChanged = true;
+					}
+				}
+			}
+		}
+		if (!bindingsChanged) {
+			return;
+		}
+		Map<TemplateParameter, ParameterableElement> rebindings = new HashMap<TemplateParameter, ParameterableElement>();
+		for (TemplateBinding templateBinding : specializedTemplateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				TemplateParameter formal = templateParameterSubstitution.getFormal();
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (actual == null) {
+					actual = bindings.get(formal);
+				}
+				rebindings.put(formal, actual);
+			}
+		}
+//		PivotUtil.getAllTemplateParameterSubstitutions(bindings, specializedIteration);
+		Iteration respecializedIteration = typeManager.getSpecializedOperation(unspecializedIteration, rebindings);
+		setReferredIteration(expression, respecializedIteration);
+		setType(expression, respecializedIteration.getType());
+		Parameter specializedIterator = specializedIteration.getOwnedIterators().get(0);
+		for (TreeIterator<EObject> tit = expression.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Variable) {
+				Variable variable = (Variable)eObject;
+				if (variable.getRepresentedParameter() == specializedIterator) {
+					variable.setRepresentedParameter(respecializedIteration.getOwnedIterators().get(0));
+				}
+			}
+		}
+	}
+
+	/**
+	 * The iteration was initially specialized without knowledge of the body type. It may therefore
+	 * need respecialization to correct typing providing by LambdaType bodies, such as those that
+	 * propagate collect typing. It is also necessary to fudge the unmodelled collect flattening.
+	 */
+	public void resolveIterationUnderspecification(LoopExp expression) {
+		Iteration specializedIteration = expression.getReferredIteration();
+		List<TemplateBinding> specializedTemplateBindings = specializedIteration.getTemplateBindings();
+		if (specializedTemplateBindings.size() <= 0) {
+			return;
+		}
+		Iteration unspecializedIteration = PivotUtil.getUnspecializedTemplateableElement(specializedIteration);
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParametersAsBindings(unspecializedIteration);
+		if (bindings == null) {
+			return;
+		}
+		boolean bindingsChanged = false;
+		for (TemplateBinding templateBinding : specializedTemplateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (typeManager.isUnderspecified(actual)) {
+					actual = resolveUnderspecifiedType((Type) actual);
+					if (actual != null) {
+						templateParameterSubstitution.setActual(actual);
+						bindingsChanged = true;
+					}
+				}
+			}
+		}
+		if (!bindingsChanged) {
+			return;
+		}
+		Map<TemplateParameter, ParameterableElement> rebindings = new HashMap<TemplateParameter, ParameterableElement>();
+		for (TemplateBinding templateBinding : specializedTemplateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				TemplateParameter formal = templateParameterSubstitution.getFormal();
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (actual == null) {
+					actual = bindings.get(formal);
+				}
+				rebindings.put(formal, actual);
+			}
+		}
+//		PivotUtil.getAllTemplateParameterSubstitutions(bindings, specializedIteration);
+		Iteration respecializedIteration = typeManager.getSpecializedOperation(unspecializedIteration, rebindings);
+		setReferredIteration(expression, respecializedIteration);
+		setType(expression, respecializedIteration.getType());
+		Map<Parameter, Parameter> mappings = new HashMap<Parameter, Parameter>();
+		for (int i = respecializedIteration.getOwnedIterators().size(); --i >= 0; ) {
+			Parameter specializedIterator = specializedIteration.getOwnedIterators().get(i);
+			Parameter respecializedIterator = respecializedIteration.getOwnedIterators().get(i);
+			mappings.put(specializedIterator, respecializedIterator);
+		}
+		for (int i = respecializedIteration.getOwnedAccumulators().size(); --i >= 0; ) {
+			Parameter specializedIterator = specializedIteration.getOwnedAccumulators().get(i);
+			Parameter respecializedIterator = respecializedIteration.getOwnedAccumulators().get(i);
+			mappings.put(specializedIterator, respecializedIterator);
+		}
+		for (int i = respecializedIteration.getOwnedParameters().size(); --i >= 0; ) {
+			Parameter specializedIterator = specializedIteration.getOwnedParameters().get(i);
+			Parameter respecializedIterator = respecializedIteration.getOwnedParameters().get(i);
+			mappings.put(specializedIterator, respecializedIterator);
+		}
+		for (TreeIterator<EObject> tit = expression.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof Variable) {
+				Variable variable = (Variable)eObject;
+				Parameter respecializedParameter = mappings.get(variable.getRepresentedParameter());
+				if (respecializedParameter != null) {
+					variable.setRepresentedParameter(respecializedParameter);
+				}
+			}
+		}
+	}
+
 	public void resolveNamespaces(List<Namespace> namespaces) {
 		for (Namespace namespace : namespaces) {
 			@SuppressWarnings("unused")
 			Namespace dummy = namespace;	// Resolves the proxies from the outside.
 		}
 	}
+
+	protected void resolveUnderspecifiedTypes() {
+		for (TypedElement underspecifiedTypedElement : underspecifiedTypedElements) {
+			Type underspecifiedType = underspecifiedTypedElement.getType();
+			Type resolvedType = resolveUnderspecifiedType(underspecifiedType);
+			underspecifiedTypedElement.setType(resolvedType);
+		}		
+		for (TypedElement underspecifiedTypedElement : underspecifiedTypedElements) {
+			if (underspecifiedTypedElement instanceof LoopExp) {
+				LoopExp underspecifiedIterationCall = (LoopExp)underspecifiedTypedElement;
+				resolveIterationUnderspecification(underspecifiedIterationCall);
+			}
+			else if (underspecifiedTypedElement instanceof OperationCallExp) {
+				OperationCallExp underspecifiedOperationCall = (OperationCallExp)underspecifiedTypedElement;
+// FIXME				resolveOperationUnderspecification(underspecifiedOperationCall);
+			}
+		}		
+	}
 	
+	protected Type resolveUnderspecifiedType(Type type) {
+		if (type instanceof UnspecifiedType) {
+			return ((UnspecifiedType)type).getLowerBound();
+		}
+		if (type instanceof CollectionType) {
+			CollectionType collectionType = (CollectionType)type;
+			Type resolvedElementType = resolveUnderspecifiedType(collectionType.getElementType());
+			return typeManager.getCollectionType(collectionType.getName(), resolvedElementType);
+		}
+		if (type instanceof PrimitiveType) {
+			return type;
+		}
+		if (type instanceof TupleType) {
+			TupleType tupleType = (TupleType)type;
+			List<Property> resolvedProperties = new ArrayList<Property>();
+			for (Property part : ((TupleType)type).getOwnedAttributes()) {
+				if (typeManager.isUnderspecified(part.getType())) {
+					Property prop = PivotFactory.eINSTANCE.createProperty();
+					prop.setName(part.getName());
+					prop.setType(resolveUnderspecifiedType(part.getType()));
+					resolvedProperties.add(part);
+				}
+				else {
+					resolvedProperties.add(part);
+				}
+			}
+			return typeManager.getTupleType(tupleType.getName(), resolvedProperties, null);
+		}
+		throw new UnsupportedOperationException();
+//		return null;
+	}
+
 	/**
 	 * Install a CS to Pivot mapping for which the CS element does not have a
 	 * matching moniker. This occurs where the CS requires multiple objects for
@@ -918,6 +1158,38 @@ public class CS2PivotConversion extends AbstractConversion
 		if (newPivotElement != null) {
 			debugOtherMap.put(csElement, newPivotElement);
 			installPivotElementInternal(csElement, newPivotElement);
+		}
+	}
+
+	public void setReferredIteration(LoopExp expression, Iteration iteration) {
+		expression.setReferredIteration(iteration);
+		if (iteration != null) {
+			for (Parameter parameter : iteration.getOwnedIterators()) {
+				if (typeManager.isUnderspecified(parameter.getType())) {
+					addUnderspecifiedTypedElement(expression);
+				}
+			}
+			for (Parameter parameter : iteration.getOwnedAccumulators()) {
+				if (typeManager.isUnderspecified(parameter.getType())) {
+					addUnderspecifiedTypedElement(expression);
+				}
+			}
+			for (Parameter parameter : iteration.getOwnedParameters()) {
+				if (typeManager.isUnderspecified(parameter.getType())) {
+					addUnderspecifiedTypedElement(expression);
+				}
+			}
+		}
+	}
+
+	public void setReferredOperation(OperationCallExp expression, Operation operation) {
+		expression.setReferredOperation(operation);
+		if (operation != null) {
+			for (Parameter parameter : operation.getOwnedParameters()) {
+				if (typeManager.isUnderspecified(parameter.getType())) {
+					addUnderspecifiedTypedElement(expression);
+				}
+			}
 		}
 	}
 
@@ -934,6 +1206,9 @@ public class CS2PivotConversion extends AbstractConversion
 //		}
 		if (type != pivotElement.getType()) {
 			pivotElement.setType(type);
+			if (typeManager.isUnderspecified(type)) {
+				addUnderspecifiedTypedElement(pivotElement);
+			}
 		}
 	}
 
@@ -1217,6 +1492,12 @@ public class CS2PivotConversion extends AbstractConversion
 			continuations = moreContinuations;
 		}
 		//
+		//	Resolve UnspecifiedTypes
+		//
+		if (underspecifiedTypedElements != null) {
+			resolveUnderspecifiedTypes();
+		}
+		//
 		//	Finally resolve the base classes of template specializations
 		//
 		typeManager.resolveSpecializationBaseClasses();
@@ -1269,30 +1550,37 @@ public class CS2PivotConversion extends AbstractConversion
 		
 	}
 
-	public MonikeredElement visitLeft2Right(EObject eObject) {
-		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = getLeft2RightVisitor(eObject.eClass().getEPackage());
-		if ((left2RightVisitor == null) || !(eObject instanceof VisitableCS)) {
-			logger.warn("Unsupported " + eObject.eClass().getName());
+	public <T extends MonikeredElement> T visitLeft2Right(Class<T> pivotClass, VisitableCS csObject) {
+		if (csObject == null) {
 			return null;
 		}
-		else {
-			return ((VisitableCS)eObject).accept(left2RightVisitor);
+		BaseCSVisitor<MonikeredElement, CS2PivotConversion> left2RightVisitor = getLeft2RightVisitor(csObject.eClass().getEPackage());
+		if (left2RightVisitor == null) {
+			throw new IllegalArgumentException("Unsupportable " + csObject.eClass().getName() + " for CS2Pivot Left2Right pass");
 		}
+		MonikeredElement monikeredElement = csObject.accept(left2RightVisitor);
+		if (!pivotClass.isAssignableFrom(monikeredElement.getClass())) {
+			throw new ClassCastException(monikeredElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
+		}
+		@SuppressWarnings("unchecked")
+		T castElement = (T) monikeredElement;
+		return castElement;
 	}
 
 	protected void visitInPostOrder(List<? extends EObject> eObjects, List<BasicContinuation<?>> continuations) {
 		for (int i = eObjects.size(); i-- > 0; ) {
 			EObject eObject = eObjects.get(i);
 			BaseCSVisitor<Continuation<?>, CS2PivotConversion> postOrderVisitor = getPostOrderVisitor(eObject.eClass().getEPackage());
-			if ((postOrderVisitor != null) && (eObject instanceof VisitableCS)) {
-				List<EObject> eContents = eObject.eContents();
-				if (eContents.size() > 0) {
-					visitInPostOrder(eContents, continuations);
-				}
-				Continuation<?> continuation = ((VisitableCS)eObject).accept(postOrderVisitor);
-				if (continuation != null) {
-					continuation.addTo(continuations);
-				}
+			if ((postOrderVisitor == null) || !(eObject instanceof VisitableCS)) {
+				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PostOrder pass");
+			}
+			List<EObject> eContents = eObject.eContents();
+			if (eContents.size() > 0) {
+				visitInPostOrder(eContents, continuations);
+			}
+			Continuation<?> continuation = ((VisitableCS)eObject).accept(postOrderVisitor);
+			if (continuation != null) {
+				continuation.addTo(continuations);
 			}
 		}
 	}
@@ -1301,20 +1589,18 @@ public class CS2PivotConversion extends AbstractConversion
 		for (EObject eObject : eObjects) {
 			BaseCSVisitor<Continuation<?>, CS2PivotConversion> preOrderVisitor = getPreOrderVisitor(eObject.eClass().getEPackage());
 			if ((preOrderVisitor == null) || !(eObject instanceof VisitableCS)) {
-				logger.warn("Unsupported " + eObject.eClass().getName());
+				throw new IllegalArgumentException("Unsupportable " + eObject.eClass().getName() + " for CS2Pivot PreOrder pass");
 			}
-			else {
-				Continuation<?> continuation = ((VisitableCS)eObject).accept(preOrderVisitor);
-				if (continuation != null) {
-					continuation.addTo(continuations);
+			Continuation<?> continuation = ((VisitableCS)eObject).accept(preOrderVisitor);
+			if (continuation != null) {
+				continuation.addTo(continuations);
+			}
+//			if ((continuation == null) || !continuation.isTerminate()) {
+				List<EObject> eContents = eObject.eContents();
+				if (eContents.size() > 0) {
+					visitInPreOrder(eContents, continuations);
 				}
-//				if ((continuation == null) || !continuation.isTerminate()) {
-					List<EObject> eContents = eObject.eContents();
-					if (eContents.size() > 0) {
-						visitInPreOrder(eContents, continuations);
-					}
-//				}
-			}
+//			}
 		}
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -39,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.values.Bag;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
@@ -293,8 +292,8 @@ public class ValueFactoryImpl implements ValueFactory
 		}
 		else {
 			Object object = value.asObject();
-			if (object instanceof PivotObjectImpl) {
-				EObject target = ((PivotObjectImpl)object).getTarget();
+			if (object instanceof Element) {
+				EObject target = ((Element)object).getETarget();
 				if (target instanceof EEnumLiteral) {
 					return ((EEnumLiteral)target).getInstance();
 				}

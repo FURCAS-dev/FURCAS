@@ -12,11 +12,10 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseScopeVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.apache.log4j.Logger;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -61,8 +60,6 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdapter, TypeManager>
 {
-	private static final Logger logger = Logger.getLogger(BaseScopeVisitor.class);
-
 	public BaseScopeVisitor(TypeManager context) {
 		super(context);
 		assert context != null;
@@ -174,7 +171,6 @@ public class BaseScopeVisitor extends AbstractExtendingBaseCSVisitor<ScopeCSAdap
 	}
 
 	public ScopeCSAdapter visiting(VisitableCS visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for ScopeVisitor");
 	}
 }

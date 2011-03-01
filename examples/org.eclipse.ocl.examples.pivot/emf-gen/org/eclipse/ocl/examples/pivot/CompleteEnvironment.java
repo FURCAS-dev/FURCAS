@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironment.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: CompleteEnvironment.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -35,15 +35,15 @@ public interface CompleteEnvironment
 	 * @model required="true" ordered="false" modelRequired="true" modelOrdered="false"
 	 * @generated
 	 */
-	CompleteIteration getCompleteIteration(Iteration model);
+	CompleteType getCompleteType(Type model);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" modelRequired="true" modelOrdered="false"
+	 * @model required="true" ordered="false" typeRequired="true" typeOrdered="false" operationRequired="true" operationOrdered="false"
 	 * @generated
 	 */
-	CompleteType getCompleteType(Type model);
+	CompleteOperation getDynamicOperation(CompleteType type, CompleteOperation operation);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -12,24 +12,29 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentManager.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: CompleteEnvironmentManager.java,v 1.3 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Package;
+import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl;
 
@@ -38,185 +43,470 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 	private static final Logger logger = Logger.getLogger(CompleteEnvironmentManager.class);
 
 	protected final TypeManager typeManager;
-
-	private Map<Iteration, CompleteIteration> completeIterationMap = new HashMap<Iteration, CompleteIteration>();
-	private Map<org.eclipse.ocl.examples.pivot.Package, CompletePackage> completePackageMap = new HashMap<org.eclipse.ocl.examples.pivot.Package, CompletePackage>();
-	private Map<Operation, CompleteOperation> completeOperationMap = new HashMap<Operation, CompleteOperation>();
-	private Map<Property, CompleteProperty> completePropertyMap = new HashMap<Property, CompleteProperty>();
-	private Map<Type, CompleteType> completeTypeMap = new HashMap<Type, CompleteType>();
+	private final CompletePackage rootCompletePackage;
+	private final Map<org.eclipse.ocl.examples.pivot.Package, CompletePackage> completePackageMap = new HashMap<org.eclipse.ocl.examples.pivot.Package, CompletePackage>();
+	private final Map<Operation, CompleteOperation> completeOperationMap = new HashMap<Operation, CompleteOperation>();
+	private final Map<Property, CompleteProperty> completePropertyMap = new HashMap<Property, CompleteProperty>();
+	private final Map<Type, CompleteType> completeTypeMap = new HashMap<Type, CompleteType>();
 
 	public CompleteEnvironmentManager(TypeManager typeManager) {
 		this.typeManager = typeManager;
+		rootCompletePackage = PivotFactory.eINSTANCE.createCompletePackage();
+		rootCompletePackage.setName("$");
+		rootCompletePackage.setCompleteEnvironment(this);
 	}
-	
-	protected CompleteType createCompleteType(Type type) {
-		CompleteType completeType;
-		completeType = PivotFactory.eINSTANCE.createCompleteType();
-		completeType.setModel(type);
-		completeType.setCompleteEnvironment(this);
-		completeTypeMap.put(type, completeType);
-		completeType.setName(type.getName());
-		completeType.setPackage(getCompletePackage(type.getPackage()));
-		return completeType;
+
+	private Set<Iteration> findModelIterationsOrNull(CompleteType completeType,
+			String operationName, List<CompleteType> staticCompleteIteratorTypes,
+			List<CompleteType> staticCompleteAccumulatorTypes, List<CompleteType> staticCompleteParameterTypes) {
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, completeType.getModel());
+		int staticIteratorsSize = staticCompleteIteratorTypes.size();
+		Set<Iteration> list = null;
+		for (Iteration modelIteration : getLocalModelIterations(completeType, operationName)) {
+//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
+			List<Parameter> modelIterators = modelIteration.getOwnedIterators();
+			if (staticIteratorsSize == modelIterators.size()) {
+				boolean gotIt = true;
+				for (int i = 0; i < staticIteratorsSize; i++) {
+					Type staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
+					Parameter modelIterator = modelIterators.get(i);
+					Type dynamicCompleteIteratorType = resolveType(modelIterator.getType(), bindings);
+					if (!typeManager.conformsTo(dynamicCompleteIteratorType, staticCompleteIteratorType, null)) {
+						gotIt = false;
+					}
+				}
+				if (gotIt) {
+					if (list == null) {
+						list = new HashSet<Iteration>();
+					}
+					list.add(modelIteration);
+				}
+			}
+		}
+		if (list == null) {
+			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
+				Set<Iteration> superIterations = findModelIterationsOrNull(
+					completeSuperType, operationName, staticCompleteIteratorTypes,
+					staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
+				if (superIterations != null) {
+					if (list == null) {
+						list = superIterations;
+					} else {
+						list.addAll(superIterations);
+					}
+				}
+			}
+		}
+		return list;
 	}
-	
-	protected CompleteIteration createCompleteIteration(Iteration iteration) {
-		CompleteIteration completeIteration;
-		completeIteration = PivotFactory.eINSTANCE.createCompleteIteration();
-		completeIteration.setModel(iteration);
-		completeIteration.setCompleteEnvironment(this);
-		completeIterationMap.put(iteration, completeIteration);
-		completeIteration.setClass_(getCompleteType(iteration.getClass_()));
-		completeIteration.setName(iteration.getName());
-		completeIteration.setImplementation(iteration.getImplementation());
-		completeIteration.setImplementationClass(iteration.getImplementationClass());
+
+	private Set<Operation> findModelOperationsOrNull(CompleteType completeType,
+			String operationName, List<CompleteType> staticCompleteTypes, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
+		int staticParametersSize = staticCompleteTypes.size();
+		Set<Operation> list = null;
+		for (Operation modelOperation : getLocalModelOperations(completeType, operationName)) {
+			List<Parameter> modelParameters = modelOperation.getOwnedParameters();
+			if (staticParametersSize == modelParameters.size()) {
+				boolean gotIt = true;
+				for (int i = 0; i < staticParametersSize; i++) {
+					Type staticCompleteType = staticCompleteTypes.get(i);
+					Parameter modelParameter = modelParameters.get(i);
+					Type dynamicCompleteType = resolveType(modelParameter.getType(), templateParameterSubstitutions);
+					if (!typeManager.conformsTo(dynamicCompleteType, staticCompleteType, null)) {
+						gotIt = false;
+					}
+				}
+				if (gotIt) {
+					if (list == null) {
+						list = new HashSet<Operation>();
+					}
+					list.add(modelOperation);
+				}
+			}
+		}
+		if (list == null) {
+			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
+				Set<Operation> superOperations = findModelOperationsOrNull(
+					completeSuperType, operationName, staticCompleteTypes, templateParameterSubstitutions);
+				if (superOperations != null) {
+					if (list == null) {
+						list = superOperations;
+					} else {
+						list.addAll(superOperations);
+					}
+				}
+			}
+		}
+		return list;
+	}
+
+/*	public CompleteOperation getCompleteIteration(Iteration iteration) {
+		CompleteOperation completeIteration = completeOperationMap.get(iteration);
+		if (completeIteration != null) {
+			return completeIteration;
+		}
+		if (iteration instanceof CompleteOperation) {
+			return (CompleteOperation)iteration;
+		}
+		if (iteration == null) {
+			throw new NullPointerException("getCompleteIteration for null");
+		}
+		CompleteType completeType = getCompleteType(iteration.getClass_());
+		for (CompleteOperation candidateIteration : getCompleteIterations(completeType, iteration.getName())) {
+			List<Parameter> candidateIterators = candidateIteration.getOwnedIterators();
+			List<Parameter> iterators = iteration.getOwnedIterators();
+			if (candidateIterators.size() == iterators.size()) {
+				completeIteration = candidateIteration;
+				break;
+			}
+		}
+		if (completeIteration == null) {
+			completeIteration = PivotFactory.eINSTANCE.createCompleteIteration();
+			completeIteration.setCompleteEnvironment(this);
+			completeIteration.setClass_(getCompleteType(iteration.getClass_()));
+			completeIteration.setName(iteration.getName());
+			completeIteration.setImplementation(iteration.getImplementation());
+			completeIteration.setImplementationClass(iteration.getImplementationClass());
+		}
+		completeIteration.getModels().add(iteration);
+		completeOperationMap.put(iteration, completeIteration);
 		return completeIteration;
+	} */
+	
+	public void addOperation(CompleteOperation completeOperation, Operation operation) {
+		completeOperation.getModels().add(operation);
+		completeOperationMap.put(operation, completeOperation);
+	}
+
+	public void addPackage(CompletePackage completePackage, org.eclipse.ocl.examples.pivot.Package aPackage) {
+		completePackage.getModels().add(aPackage);
+		completePackageMap.put(aPackage, completePackage);
 	}
 	
-	protected CompleteOperation createCompleteOperation(Operation operation) {
-		CompleteOperation completeOperation;
-		completeOperation = PivotFactory.eINSTANCE.createCompleteOperation();
-		completeOperation.setModel(operation);
-		completeOperation.setCompleteEnvironment(this);
-		completeOperationMap.put(operation, completeOperation);
-		completeOperation.setClass_(getCompleteType(operation.getClass_()));
-		completeOperation.setName(operation.getName());
-		completeOperation.setImplementation(operation.getImplementation());
-		completeOperation.setImplementationClass(operation.getImplementationClass());
+	public void addProperty(CompleteProperty completeProperty, Property property) {
+		completeProperty.getModels().add(property);
+		completePropertyMap.put(property, completeProperty);
+	}
+	
+	public void addType(CompleteType completeType, Type type) {
+		completeType.getModels().add(type);
+		assert completeType.getModel().getMoniker().equals(type.getMoniker());
+		completeTypeMap.put(type, completeType);
+	}
+
+	@Override
+	public CompleteOperation getCompleteOperation(Operation operation) {
+		CompleteOperation completeOperation = completeOperationMap.get(operation);
+		if (completeOperation != null) {
+			return completeOperation;
+		}
+		if (operation instanceof CompleteOperation) {
+			return (CompleteOperation)operation;
+		}
+		if (operation == null) {
+			throw new NullPointerException("getCompleteOperation for null");
+		}
+		CompleteType completeType = getCompleteType(operation.getClass_());
+		if (operation instanceof Iteration) {
+			completeOperation = getCompleteOperationForIteration(completeType, (Iteration) operation);
+		}
+		else {
+			completeOperation = getCompleteOperationForOperation(completeType, operation);
+		}
+		if (completeOperation == null) {
+			completeOperation = PivotFactory.eINSTANCE.createCompleteOperation();
+			completeOperation.setCompleteEnvironment(this);
+			completeOperation.setClass_(completeType);
+			completeOperation.setName(operation.getName());
+			completeOperation.setImplementation(operation.getImplementation());
+			completeOperation.setImplementationClass(operation.getImplementationClass());
+		}
+		addOperation(completeOperation, operation);
 		return completeOperation;
 	}
 	
-	protected CompletePackage createCompletePackage(org.eclipse.ocl.examples.pivot.Package pkg) {
-		CompletePackage completePackage;
-		completePackage = PivotFactory.eINSTANCE.createCompletePackage();
-		completePackage.setModel(pkg);
-		completePackage.setCompleteEnvironment(this);
-		completePackageMap.put(pkg, completePackage);
-		completePackage.setName(pkg.getName());
-		Package nestingPackage = pkg.getNestingPackage();
-		if (nestingPackage != null) {
-			completePackage.setNestingPackage(getCompletePackage(nestingPackage));
+	protected CompleteOperation getCompleteOperationForIteration(CompleteType completeType, Iteration iteration) {
+		String iterationMoniker = iteration.getMoniker();
+		List<Parameter> iterators = iteration.getOwnedIterators();
+		for (CompleteOperation candidateOperation : completeType.getCompleteOperations()) {
+			Operation candidateModel = candidateOperation.getModel();
+			if ((candidateModel instanceof Iteration) && candidateModel.getMoniker().equals(iterationMoniker)) {
+				Iteration candidateIteration = (Iteration) candidateModel;
+				List<Parameter> candidateIterators = candidateIteration.getOwnedIterators();
+				if (candidateIterators.size() == iterators.size()) {
+					return candidateOperation;
+				}
+			}
 		}
-		return completePackage;
+		return null;
+	}
+
+	protected CompleteOperation getCompleteOperationForOperation(CompleteType completeType, Operation operation) {
+		String operationName = operation.getName();
+		List<Parameter> parameters = operation.getOwnedParameters();
+		for (CompleteOperation candidateOperation : completeType.getCompleteOperations()) {
+			Operation candidateModel = candidateOperation.getModel();
+			if (!(candidateModel instanceof Iteration) && candidateModel.getName().equals(operationName)) {
+				List<Parameter> candidateParameters = candidateModel.getOwnedParameters();
+				if (candidateParameters.size() == parameters.size()) {
+					boolean gotIt = true;
+					for (int i = 0; i < candidateParameters.size(); i++) {
+						Parameter candidateParameter = candidateParameters.get(i);
+						Parameter parameter = parameters.get(i);
+						if (candidateParameter.getType() != getCompleteType(parameter.getType())) {
+							gotIt = false;
+							break;
+						}
+					}
+					if (gotIt) {
+						return candidateOperation;
+					}
+				}
+			}
+		}
+		return null;
 	}
 	
-	protected CompleteProperty createCompleteProperty(Property property) {
-		CompleteProperty completeProperty;
-		completeProperty = PivotFactory.eINSTANCE.createCompleteProperty();
-		completeProperty.setModel(property);
-		completeProperty.setCompleteEnvironment(this);
-		completePropertyMap.put(property, completeProperty);
-		completeProperty.setName(property.getName());
-		completeProperty.setClass_(getCompleteType(property.getClass_()));
+	@Override
+	public CompletePackage getCompletePackage(org.eclipse.ocl.examples.pivot.Package pkg) {
+		CompletePackage completePackage = completePackageMap.get(pkg);
+		if (completePackage != null) {
+			return completePackage;
+		}
+		if (pkg instanceof CompletePackage) {
+			return (CompletePackage)pkg;
+		}
+		if (pkg == null) {
+			logger.warn("getCompletePackage for null");
+			return null;
+		}
+		CompletePackage nestingCompletePackage;
+		org.eclipse.ocl.examples.pivot.Package nestingPackage = pkg.getNestingPackage();
+		if (nestingPackage == null) {
+			nestingCompletePackage = rootCompletePackage;
+		}
+		else {
+			nestingCompletePackage = getCompletePackage(nestingPackage);
+		}
+		completePackage = PivotUtil.getNamedElement(nestingCompletePackage.getCompletePackages(), pkg.getName());
+		if (completePackage == null) {
+			completePackage = PivotFactory.eINSTANCE.createCompletePackage();
+			completePackage.setCompleteEnvironment(this);
+			completePackage.setName(pkg.getName());
+			completePackage.setNestingPackage(nestingCompletePackage);
+		}
+		addPackage(completePackage, pkg);
+		return completePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 *
+	public EList<CompleteProperty> getCompleteProperties() {
+		if (completeProperties == null) {
+			completeProperties = new BasicEList<CompleteProperty>();
+			for (Property property : getOwnedAttributes()) {
+				completeProperties.add(completeEnvironment
+					.getCompleteProperty(property));
+			}
+			for (Type model : models) {
+				if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
+					for (Property property : ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedAttributes()) {
+						completeProperties.add(completeEnvironment
+							.getCompleteProperty(property));
+					}
+				}
+			}
+		}
+		return completeProperties;
+	} */
+
+	@Override
+	public CompleteProperty getCompleteProperty(Property property) {
+		CompleteProperty completeProperty = completePropertyMap.get(property);
+		if (completeProperty != null) {
+			return completeProperty;
+		}
+		if (property instanceof CompleteProperty) {
+			return (CompleteProperty)property;
+		}
+		if (property == null) {
+			throw new NullPointerException("getCompleteProperty for null");
+		}
+		CompleteType completeType = getCompleteType(property.getClass_());
+		completeProperty = PivotUtil.getNamedElement(completeType.getCompleteProperties(), property.getName());
+		if (completeProperty != null) {
+			if (completeProperty.getType() != getCompleteType(property.getType())) {
+				return null;
+			}
+		}
+		else {
+			completeProperty = PivotFactory.eINSTANCE.createCompleteProperty();
+			completeProperty.setCompleteEnvironment(this);
+			completeProperty.setName(property.getName());
+			completeProperty.setClass_(completeType);
+		}
+		addProperty(completeProperty, property);
 		return completeProperty;
 	}
 
 	@Override
 	public CompleteType getCompleteType(Type type) {
-		if (type == null) {
-			logger.warn("getCompleteType for null");
-			return null;
+		CompleteType completeType = completeTypeMap.get(type);
+		if (completeType != null) {
+			return completeType;
 		}
 		if (type instanceof CompleteType) {
-			CompleteType completeType = (CompleteType) type;
-			if (completeType.getCompleteEnvironment() == this) {
-				return completeType;
+			return (CompleteType) type;
+		}
+		if (type == null) {
+			throw new NullPointerException("getCompleteType for null");
+		}
+		CompletePackage completePackage = getCompletePackage(type.getPackage());
+		for (CompleteType aCompleteType : completePackage.getCompleteTypes()) {
+			if (aCompleteType.getMoniker().equals(type.getMoniker())) {
+				completeType = aCompleteType;
+				break;
 			}
-			logger.warn("getCompleteType for a CompleteType " + type);
-			return getCompleteType(completeType.getModel());
 		}
-		CompleteType completeType = completeTypeMap.get(type);
 		if (completeType == null) {
-			completeType = createCompleteType(type);
+			completeType = PivotFactory.eINSTANCE.createCompleteType();
+			completeType.setCompleteEnvironment(this);
+			completeType.setName(type.getName());
+			completeType.setPackage(completePackage);
 		}
+		addType(completeType, type);
 		return completeType;
 	}
 
 	@Override
-	public CompleteIteration getCompleteIteration(Iteration iteration) {
-		if (iteration == null) {
-			logger.warn("getCompleteIteration for null");
-			return null;
+	public CompleteOperation getDynamicOperation(CompleteType completeType, CompleteOperation staticOperation) {
+		Operation staticModelOperation = staticOperation.getModel();
+		Operation dynamicModelOperation;
+		if (staticModelOperation instanceof Iteration) {
+			dynamicModelOperation = getDynamicOperationForIteration(completeType, (Iteration) staticModelOperation);
 		}
-		if (iteration instanceof CompleteIteration) {
-			CompleteIteration completeIteration = (CompleteIteration) iteration;
-			if (completeIteration.getCompleteEnvironment() == this) {
-				return completeIteration;
+		else {
+			dynamicModelOperation = getDynamicOperationForOperation(completeType, staticModelOperation);
+		}
+		return getCompleteOperation(dynamicModelOperation);
+	}
+	
+	protected Iteration getDynamicOperationForIteration(CompleteType completeType, Iteration staticModelIteration)
+	{
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, completeType.getModel());
+//		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
+		List<CompleteType> staticCompleteIteratorTypes = new ArrayList<CompleteType>();
+		for (Parameter staticIterator : staticModelIteration.getOwnedIterators()) {
+			staticCompleteIteratorTypes.add(resolveType(staticIterator.getType(), bindings));
+		}
+		List<CompleteType> staticCompleteAccumulatorTypes = new ArrayList<CompleteType>();
+		for (Parameter staticAccumulator : staticModelIteration.getOwnedAccumulators()) {
+			staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType(), bindings));
+		}
+		List<CompleteType> staticCompleteParameterTypes = new ArrayList<CompleteType>();
+		for (Parameter staticParameter : staticModelIteration.getOwnedParameters()) {
+			staticCompleteParameterTypes.add(resolveType(staticParameter.getType(), bindings));
+		}
+		Iteration dynamicIteration = null;
+		Set<Iteration> modelIterations = findModelIterationsOrNull(completeType, staticModelIteration.getName(),
+			staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
+		if (modelIterations != null) {
+			if (modelIterations.size() == 1) {
+				dynamicIteration = modelIterations.iterator().next();
 			}
-			logger.warn("getCompleteIteration for a CompleteIteration " + iteration);
-			return getCompleteIteration(((CompleteIteration)iteration).getModel());
+			else if (modelIterations.size() > 1) {
+				Iteration conformantIteration = null;
+				boolean ok = true;
+				for (Iteration completeIteration : modelIterations) {
+					if (conformantIteration == null) {
+						conformantIteration = completeIteration;
+					}
+					else {
+						org.eclipse.ocl.examples.pivot.Class completeClass = PivotUtil.getFeaturingClass(completeIteration);
+						org.eclipse.ocl.examples.pivot.Class conformantClass = PivotUtil.getFeaturingClass(conformantIteration);
+						if (typeManager.conformsTo(completeClass, conformantClass, bindings)) {
+							conformantIteration = completeIteration;
+						}
+						else if (!typeManager.conformsTo(conformantClass, completeClass, bindings)) {
+							ok = false;
+						}
+					}
+				}
+				if (ok) {
+					dynamicIteration = conformantIteration;
+				}
+			}
 		}
-		CompleteIteration completeIteration = completeIterationMap.get(iteration);
-		if (completeIteration == null) {
-			completeIteration = createCompleteIteration(iteration);
-		}
-		return completeIteration;
+		return dynamicIteration;
 	}
 
-	@Override
-	public CompleteOperation getCompleteOperation(Operation operation) {
-		if (operation == null) {
-			logger.warn("getCompleteOperation for null");
-			return null;
+	protected CompleteOperation getDynamicOperationForOperation(CompleteType completeType, Operation staticModelOperation) {
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, completeType.getModel());
+		PivotUtil.getAllTemplateParameterSubstitutions(bindings, staticModelOperation);
+		List<CompleteType> staticCompleteTypes = new ArrayList<CompleteType>();
+		for (Parameter staticParameter : staticModelOperation.getOwnedParameters()) {
+			staticCompleteTypes.add(resolveType(staticParameter.getType(), bindings));
 		}
-		if (operation instanceof CompleteOperation) {
-			CompleteOperation completeOperation = (CompleteOperation) operation;
-			if (completeOperation.getCompleteEnvironment() == this) {
-				return completeOperation;
-			}
-			logger.warn("getCompleteOperation for a CompleteOperation " + operation);
-			return getCompleteOperation(((CompleteOperation)operation).getModel());
+		Operation dynamicModelOperation = null;
+		String name = staticModelOperation.getName();
+		Set<Operation> modelOperations = findModelOperationsOrNull(completeType, name, staticCompleteTypes, bindings);
+		if ((modelOperations != null) && (modelOperations.size() == 1)) {
+			dynamicModelOperation = modelOperations.iterator().next();
 		}
-		CompleteOperation completeOperation = completeOperationMap.get(operation);
-		if (completeOperation == null) {
-			completeOperation = createCompleteOperation(operation);
-		}
-		return completeOperation;
+		return getCompleteOperation(dynamicModelOperation);
 	}
 
-	@Override
-	public CompletePackage getCompletePackage(org.eclipse.ocl.examples.pivot.Package pkg) {
-		if (pkg == null) {
-			logger.warn("getCompletePackage for null");
-			return null;
+	protected Iterable<Iteration> getLocalModelIterations(CompleteType completeType, String name) {
+		List<Iteration> modelIterations = new ArrayList<Iteration>();
+		Type type = completeType.getModel();
+		if (type.getTemplateBindings().size() > 0) {
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
 		}
-		if (pkg instanceof CompletePackage) {
-			CompletePackage completePackage = (CompletePackage) pkg;
-			if (completePackage.getCompleteEnvironment() == this) {
-				return completePackage;
+		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (Operation operation : typeManager.getLocalOperations((org.eclipse.ocl.examples.pivot.Class)type)) {
+				if ((operation instanceof Iteration) && name.equals(operation.getName())) {
+					Operation modelIteration = getCompleteOperation(operation).getModel();
+					if (!modelIterations.contains(modelIteration)) {
+						modelIterations.add((Iteration) modelIteration);
+					}
+				}
 			}
-			logger.warn("getCompletePackage for a CompletePackage " + pkg);
-			return getCompletePackage(((CompletePackage)pkg).getModel());
 		}
-		CompletePackage completePackage = completePackageMap.get(pkg);
-		if (completePackage == null) {
-			completePackage = createCompletePackage(pkg);
-		}
-		return completePackage;
+		return modelIterations;
 	}
 
-	@Override
-	public CompleteProperty getCompleteProperty(Property property) {
-		if (property == null) {
-			logger.warn("getCompleteProperty for null");
-			return null;
+	protected Iterable<Operation> getLocalModelOperations(CompleteType completeType, String name) {	// FIXME return an iterator
+		List<Operation> modelOperations = new ArrayList<Operation>();
+		Type type = completeType.getModel();
+		if (type.getTemplateBindings().size() > 0) {
+			type = PivotUtil.getUnspecializedTemplateableElement(type);
 		}
-		if (property instanceof CompleteProperty) {
-			CompleteProperty completeProperty = (CompleteProperty) property;
-			if (completeProperty.getCompleteEnvironment() == this) {
-				return completeProperty;
+		if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (Operation operation : typeManager.getLocalOperations((org.eclipse.ocl.examples.pivot.Class)type)) {
+				if (!(operation instanceof Iteration) && name.equals(operation.getName())) {
+					Operation modelOperation = getCompleteOperation(operation).getModel();
+					if (!modelOperations.contains(modelOperation)) {
+						modelOperations.add(modelOperation);
+					}
+				}
 			}
-			logger.warn("getCompleteProperty for a CompleteProperty " + property);
-			return getCompleteProperty(((CompleteProperty)property).getModel());
 		}
-		CompleteProperty completeProperty = completePropertyMap.get(property);
-		if (completeProperty == null) {
-			completeProperty = createCompleteProperty(property);
-		}
-		return completeProperty;
+		return modelOperations;
 	}
 	
 	public TypeManager getTypeManager() {
 		return typeManager;
 	}
+
+	private CompleteType resolveType(Type type, Map<TemplateParameter, ParameterableElement> bindings) {
+		Type specializedType = typeManager.getSpecializedType(type, bindings);
+		return getCompleteType(specializedType); 
+	}
+	
+//	public CompletePackage getRootCompletePackage() {
+//		return rootCompletePackage;
+//	}
 }

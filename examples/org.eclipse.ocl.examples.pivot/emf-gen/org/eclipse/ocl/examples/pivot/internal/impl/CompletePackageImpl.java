@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePackageImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: CompletePackageImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteType;
@@ -45,9 +46,10 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteTypes <em>Complete Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompletePackages <em>Complete Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl#getCompleteTypes <em>Complete Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,14 +60,14 @@ public class CompletePackageImpl
 		implements CompletePackage {
 
 	/**
-	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * The cached value of the '{@link #getModels() <em>Models</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModel()
+	 * @see #getModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected org.eclipse.ocl.examples.pivot.Package model;
+	protected EList<org.eclipse.ocl.examples.pivot.Package> models;
 
 	/**
 	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
@@ -76,6 +78,26 @@ public class CompletePackageImpl
 	 * @ordered
 	 */
 	protected CompleteEnvironment completeEnvironment;
+
+	/**
+	 * The cached value of the '{@link #getCompletePackages() <em>Complete Package</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompletePackages()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompletePackage> completePackages;
+
+	/**
+	 * The cached value of the '{@link #getCompleteTypes() <em>Complete Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompleteType> completeTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,39 +123,34 @@ public class CompletePackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.ocl.examples.pivot.Package getModel() {
-		if (model != null && ((EObject)model).eIsProxy())
+	public org.eclipse.ocl.examples.pivot.Package getModel()
+	{
+		org.eclipse.ocl.examples.pivot.Package model = basicGetModel();
+		return model != null && ((EObject)model).eIsProxy() ? (org.eclipse.ocl.examples.pivot.Package)eResolveProxy((InternalEObject)model) : model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public org.eclipse.ocl.examples.pivot.Package basicGetModel()
+	{
+		return getModels().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<org.eclipse.ocl.examples.pivot.Package> getModels()
+	{
+		if (models == null)
 		{
-			InternalEObject oldModel = (InternalEObject)model;
-			model = (org.eclipse.ocl.examples.pivot.Package)eResolveProxy(oldModel);
-			if (model != oldModel)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_PACKAGE__MODEL, oldModel, model));
-			}
+			models = new EObjectResolvingEList<org.eclipse.ocl.examples.pivot.Package>(org.eclipse.ocl.examples.pivot.Package.class, this, PivotPackage.COMPLETE_PACKAGE__MODELS);
 		}
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public org.eclipse.ocl.examples.pivot.Package basicGetModel() {
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModel(org.eclipse.ocl.examples.pivot.Package newModel) {
-		org.eclipse.ocl.examples.pivot.Package oldModel = model;
-		model = newModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_PACKAGE__MODEL, oldModel, model));
+		return models;
 	}
 
 	/**
@@ -182,11 +199,13 @@ public class CompletePackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompleteType> getCompleteTypes()
+	public EList<CompletePackage> getCompletePackages()
 	{
-		// TODO: implement this method to return the 'Complete Type' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if (completePackages == null)
+		{
+			completePackages = new EObjectResolvingEList<CompletePackage>(CompletePackage.class, this, PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE);
+		}
+		return completePackages;
 	}
 
 	/**
@@ -194,10 +213,33 @@ public class CompletePackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<CompletePackage> getCompletePackages() {
-		// TODO: implement this method to return the 'Complete Package' reference list
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public boolean isSetCompletePackages()
+	{
+		return completePackages != null && !completePackages.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<CompleteType> getCompleteTypes()
+	{
+		if (completeTypes == null)
+		{
+			completeTypes = new EObjectResolvingEList<CompleteType>(CompleteType.class, this, PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE);
+		}
+		return completeTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCompleteTypes()
+	{
+		return completeTypes != null && !completeTypes.isEmpty();
 	}
 
 	/**
@@ -242,13 +284,15 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_PACKAGE__MODELS:
+				return getModels();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				if (resolve) return getCompleteEnvironment();
 				return basicGetCompleteEnvironment();
-			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
-				return getCompleteTypes();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
 				return getCompletePackages();
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				return getCompleteTypes();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -312,11 +356,20 @@ public class CompletePackageImpl
 				getOwnedTypes().clear();
 				getOwnedTypes().addAll((Collection<? extends Type>)newValue);
 				return;
-			case PivotPackage.COMPLETE_PACKAGE__MODEL:
-				setModel((org.eclipse.ocl.examples.pivot.Package)newValue);
+			case PivotPackage.COMPLETE_PACKAGE__MODELS:
+				getModels().clear();
+				getModels().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Package>)newValue);
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)newValue);
+				return;
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
+				getCompletePackages().clear();
+				getCompletePackages().addAll((Collection<? extends CompletePackage>)newValue);
+				return;
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				getCompleteTypes().clear();
+				getCompleteTypes().addAll((Collection<? extends CompleteType>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -373,11 +426,17 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TYPE:
 				getOwnedTypes().clear();
 				return;
-			case PivotPackage.COMPLETE_PACKAGE__MODEL:
-				setModel((org.eclipse.ocl.examples.pivot.Package)null);
+			case PivotPackage.COMPLETE_PACKAGE__MODELS:
+				getModels().clear();
 				return;
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)null);
+				return;
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
+				getCompletePackages().clear();
+				return;
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				getCompleteTypes().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -409,7 +468,7 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
 			case PivotPackage.COMPLETE_PACKAGE__NESTED_PACKAGE:
-				return nestedPackages != null && !nestedPackages.isEmpty();
+				return isSetNestedPackages();
 			case PivotPackage.COMPLETE_PACKAGE__NESTING_PACKAGE:
 				return basicGetNestingPackage() != null;
 			case PivotPackage.COMPLETE_PACKAGE__NS_PREFIX:
@@ -419,17 +478,65 @@ public class CompletePackageImpl
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_PRECEDENCE:
 				return ownedPrecedences != null && !ownedPrecedences.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__OWNED_TYPE:
-				return ownedTypes != null && !ownedTypes.isEmpty();
+				return isSetOwnedTypes();
 			case PivotPackage.COMPLETE_PACKAGE__MODEL:
-				return model != null;
+				return basicGetModel() != null;
+			case PivotPackage.COMPLETE_PACKAGE__MODELS:
+				return models != null && !models.isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT:
 				return completeEnvironment != null;
-			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
-				return !getCompleteTypes().isEmpty();
 			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_PACKAGE:
-				return !getCompletePackages().isEmpty();
+				return isSetCompletePackages();
+			case PivotPackage.COMPLETE_PACKAGE__COMPLETE_TYPE:
+				return isSetCompleteTypes();
 		}
 		return eDynamicIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<org.eclipse.ocl.examples.pivot.Package> getNestedPackages()
+	{
+		@SuppressWarnings("unchecked")
+		EList<org.eclipse.ocl.examples.pivot.Package> completePackage = (EList<org.eclipse.ocl.examples.pivot.Package>)((EList<?>)getCompletePackages());
+		return completePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetNestedPackages()
+	{
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Type> getOwnedTypes()
+	{
+		@SuppressWarnings("unchecked")
+		EList<Type> completeType = (EList<Type>)((EList<?>)getCompleteTypes());
+		return completeType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedTypes()
+	{
+  		return false;
 	}
 
 	@Override
