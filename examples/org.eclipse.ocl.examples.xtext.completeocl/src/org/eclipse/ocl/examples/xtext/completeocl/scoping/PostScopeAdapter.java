@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PostScopeAdapter.java,v 1.5 2011/01/24 21:08:26 ewillink Exp $
+ * $Id: PostScopeAdapter.java,v 1.6 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -35,7 +35,7 @@ public class PostScopeAdapter extends EssentialOCLCSScopeAdapter<PostCS, Constra
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION) {
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.EXP_SPECIFICATION_CS__OWNED_EXPRESSION) {
 			OperationContextDeclCS csOperation = (OperationContextDeclCS) target.eContainer();
 			environmentView.addNamedElement(csOperation.getResult());		
 		}

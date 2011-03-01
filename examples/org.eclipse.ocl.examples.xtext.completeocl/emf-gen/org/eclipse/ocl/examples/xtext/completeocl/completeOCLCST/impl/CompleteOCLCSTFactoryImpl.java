@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactoryImpl.java,v 1.5 2011/01/24 21:08:25 ewillink Exp $
+ * $Id: CompleteOCLCSTFactoryImpl.java,v 1.6 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTFactory;
@@ -89,6 +90,7 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 			case CompleteOCLCSTPackage.BODY_CS: return createBodyCS();
 			case CompleteOCLCSTPackage.CLASSIFIER_CONTEXT_DECL_CS: return createClassifierContextDeclCS();
 			case CompleteOCLCSTPackage.COMPLETE_OCL_DOCUMENT_CS: return createCompleteOCLDocumentCS();
+			case CompleteOCLCSTPackage.CONTEXT_SPECIFICATION_CS: return createContextSpecificationCS();
 			case CompleteOCLCSTPackage.DEF_CS: return createDefCS();
 			case CompleteOCLCSTPackage.DER_CS: return createDerCS();
 			case CompleteOCLCSTPackage.INIT_CS: return createInitCS();
@@ -163,6 +165,17 @@ public class CompleteOCLCSTFactoryImpl extends EFactoryImpl implements CompleteO
 	public CompleteOCLDocumentCS createCompleteOCLDocumentCS() {
 		CompleteOCLDocumentCSImpl completeOCLDocumentCS = new CompleteOCLDocumentCSImpl();
 		return completeOCLDocumentCS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContextSpecificationCS createContextSpecificationCS()
+	{
+		ContextSpecificationCSImpl contextSpecificationCS = new ContextSpecificationCSImpl();
+		return contextSpecificationCS;
 	}
 
 	/**
