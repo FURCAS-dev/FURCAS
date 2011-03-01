@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g 2011-02-25 10:40:47
+// $ANTLR 3.1.1 /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g 2011-02-28 20:11:35
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -17,30 +17,37 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 public class OclLexer extends Lexer {
+    public static final int LT=31;
     public static final int STAR=28;
     public static final int FLOAT=9;
-    public static final int EQUALS=22;
+    public static final int EQUALS=15;
     public static final int EOF=-1;
+    public static final int GTRQULAS=30;
     public static final int LPAREN=11;
     public static final int LBRACKET=26;
     public static final int RPAREN=12;
-    public static final int DCOLON=16;
+    public static final int DCOLON=17;
     public static final int NAME=4;
-    public static final int COMMA=18;
-    public static final int APOSTROPHE=15;
-    public static final int NL=29;
-    public static final int DIGIT=31;
+    public static final int T__51=51;
+    public static final int T__52=52;
+    public static final int T__53=53;
+    public static final int T__54=54;
+    public static final int COMMA=19;
+    public static final int DIGIT=35;
+    public static final int NL=33;
+    public static final int APOSTROPHE=16;
+    public static final int RANGE_OR_INT=38;
     public static final int RBRACKET=27;
-    public static final int RANGE_OR_INT=34;
-    public static final int COMMENT=25;
     public static final int DOT=13;
+    public static final int COMMENT=25;
+    public static final int T__50=50;
     public static final int T__42=42;
     public static final int T__43=43;
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__46=46;
     public static final int T__47=47;
-    public static final int DDOT=20;
+    public static final int DDOT=21;
     public static final int T__44=44;
     public static final int T__45=45;
     public static final int T__48=48;
@@ -49,19 +56,17 @@ public class OclLexer extends Lexer {
     public static final int INT=8;
     public static final int SEMI=23;
     public static final int MULTI_LINE_COMMENT=7;
-    public static final int ALPHA=32;
-    public static final int COLON=21;
-    public static final int LCURL=17;
-    public static final int WS=30;
+    public static final int ALPHA=36;
+    public static final int COLON=22;
+    public static final int LCURL=18;
     public static final int QNAME=6;
-    public static final int T__35=35;
-    public static final int SNAME=33;
-    public static final int T__36=36;
-    public static final int T__37=37;
-    public static final int T__38=38;
+    public static final int WS=34;
+    public static final int SNAME=37;
     public static final int T__39=39;
-    public static final int RCURL=19;
+    public static final int RCURL=20;
     public static final int ARROW=14;
+    public static final int GT=29;
+    public static final int LTEQUALS=32;
     public static final int BAR=24;
     public static final int STRING=5;
       public com.sap.furcas.runtime.parser.IModelInjector ei = null;
@@ -124,101 +129,17 @@ public class OclLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g"; }
-
-    // $ANTLR start "T__35"
-    public final void mT__35() throws RecognitionException {
-        try {
-            int _type = T__35;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:62:7: ( 'in' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:62:9: 'in'
-            {
-            match("in"); if (state.failed) return ;
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__35"
-
-    // $ANTLR start "T__36"
-    public final void mT__36() throws RecognitionException {
-        try {
-            int _type = T__36;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:63:7: ( 'Collection' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:63:9: 'Collection'
-            {
-            match("Collection"); if (state.failed) return ;
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__36"
-
-    // $ANTLR start "T__37"
-    public final void mT__37() throws RecognitionException {
-        try {
-            int _type = T__37;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:64:7: ( 'endif' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:64:9: 'endif'
-            {
-            match("endif"); if (state.failed) return ;
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__37"
-
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:65:7: ( 'OrderedSet' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:65:9: 'OrderedSet'
-            {
-            match("OrderedSet"); if (state.failed) return ;
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__38"
+    public String getGrammarFileName() { return "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g"; }
 
     // $ANTLR start "T__39"
     public final void mT__39() throws RecognitionException {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:66:7: ( 'collect' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:66:9: 'collect'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:62:7: ( 'if' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:62:9: 'if'
             {
-            match("collect"); if (state.failed) return ;
+            match("if"); if (state.failed) return ;
 
 
             }
@@ -236,10 +157,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:67:7: ( 'self' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:67:9: 'self'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:63:7: ( 'endif' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:63:9: 'endif'
             {
-            match("self"); if (state.failed) return ;
+            match("endif"); if (state.failed) return ;
 
 
             }
@@ -257,10 +178,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:68:7: ( 'Bag' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:68:9: 'Bag'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:64:7: ( 'then' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:64:9: 'then'
             {
-            match("Bag"); if (state.failed) return ;
+            match("then"); if (state.failed) return ;
 
 
             }
@@ -278,10 +199,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:69:7: ( 'Set' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:69:9: 'Set'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:65:7: ( 'forAll' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:65:9: 'forAll'
             {
-            match("Set"); if (state.failed) return ;
+            match("forAll"); if (state.failed) return ;
 
 
             }
@@ -299,10 +220,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:70:7: ( 'iterate' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:70:9: 'iterate'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:66:7: ( 'self' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:66:9: 'self'
             {
-            match("iterate"); if (state.failed) return ;
+            match("self"); if (state.failed) return ;
 
 
             }
@@ -320,10 +241,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:71:7: ( 'if' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:71:9: 'if'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:67:7: ( 'else' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:67:9: 'else'
             {
-            match("if"); if (state.failed) return ;
+            match("else"); if (state.failed) return ;
 
 
             }
@@ -341,10 +262,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:72:7: ( 'let' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:72:9: 'let'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:68:7: ( 'Sequence' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:68:9: 'Sequence'
             {
-            match("let"); if (state.failed) return ;
+            match("Sequence"); if (state.failed) return ;
 
 
             }
@@ -362,10 +283,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:73:7: ( 'then' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:73:9: 'then'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:69:7: ( 'collect' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:69:9: 'collect'
             {
-            match("then"); if (state.failed) return ;
+            match("collect"); if (state.failed) return ;
 
 
             }
@@ -383,10 +304,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:74:7: ( 'forAll' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:74:9: 'forAll'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:70:7: ( 'Set' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:70:9: 'Set'
             {
-            match("forAll"); if (state.failed) return ;
+            match("Set"); if (state.failed) return ;
 
 
             }
@@ -404,10 +325,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:75:7: ( 'Sequence' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:75:9: 'Sequence'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:71:7: ( 'select' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:71:9: 'select'
             {
-            match("Sequence"); if (state.failed) return ;
+            match("select"); if (state.failed) return ;
 
 
             }
@@ -425,10 +346,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:76:7: ( 'else' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:76:9: 'else'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:72:7: ( 'Collection' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:72:9: 'Collection'
             {
-            match("else"); if (state.failed) return ;
+            match("Collection"); if (state.failed) return ;
 
 
             }
@@ -441,26 +362,131 @@ public class OclLexer extends Lexer {
     }
     // $ANTLR end "T__49"
 
+    // $ANTLR start "T__50"
+    public final void mT__50() throws RecognitionException {
+        try {
+            int _type = T__50;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:73:7: ( 'in' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:73:9: 'in'
+            {
+            match("in"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__50"
+
+    // $ANTLR start "T__51"
+    public final void mT__51() throws RecognitionException {
+        try {
+            int _type = T__51;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:74:7: ( 'Bag' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:74:9: 'Bag'
+            {
+            match("Bag"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__51"
+
+    // $ANTLR start "T__52"
+    public final void mT__52() throws RecognitionException {
+        try {
+            int _type = T__52;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:75:7: ( 'iterate' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:75:9: 'iterate'
+            {
+            match("iterate"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__52"
+
+    // $ANTLR start "T__53"
+    public final void mT__53() throws RecognitionException {
+        try {
+            int _type = T__53;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:76:7: ( 'OrderedSet' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:76:9: 'OrderedSet'
+            {
+            match("OrderedSet"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__53"
+
+    // $ANTLR start "T__54"
+    public final void mT__54() throws RecognitionException {
+        try {
+            int _type = T__54;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:77:7: ( 'let' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:77:9: 'let'
+            {
+            match("let"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__54"
+
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:965:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1020:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:14: (~ ( '\\r' | '\\n' ) )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -473,7 +499,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:966:15: ~ ( '\\r' | '\\n' )
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1021:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -522,21 +548,21 @@ public class OclLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:971:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1026:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/**"); if (state.failed) return ;
 
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -561,7 +587,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:972:44: ( '\\n' | ~ '\\n' )
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1027:44: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -612,8 +638,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:977:3: ( '..' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:978:3: '..'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1032:3: ( '..' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1033:3: '..'
             {
             match(".."); if (state.failed) return ;
 
@@ -633,8 +659,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:983:3: ( '[' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:984:3: '['
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1038:3: ( '[' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1039:3: '['
             {
             match('['); if (state.failed) return ;
 
@@ -653,8 +679,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:989:3: ( ']' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:990:3: ']'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1044:3: ( ']' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1045:3: ']'
             {
             match(']'); if (state.failed) return ;
 
@@ -673,8 +699,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:995:3: ( '{' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:996:3: '{'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1050:3: ( '{' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1051:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -693,8 +719,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1001:3: ( '}' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1002:3: '}'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1056:3: ( '}' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1057:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -713,8 +739,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1007:3: ( '*' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1008:3: '*'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1062:3: ( '*' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1063:3: '*'
             {
             match('*'); if (state.failed) return ;
 
@@ -733,8 +759,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1013:3: ( '(' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1014:3: '('
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1068:3: ( '(' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1069:3: '('
             {
             match('('); if (state.failed) return ;
 
@@ -753,8 +779,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1019:3: ( ')' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1020:3: ')'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1074:3: ( ')' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1075:3: ')'
             {
             match(')'); if (state.failed) return ;
 
@@ -773,8 +799,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1025:3: ( ':' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1026:3: ':'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1080:3: ( ':' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1081:3: ':'
             {
             match(':'); if (state.failed) return ;
 
@@ -793,8 +819,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1031:3: ( '::' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1032:3: '::'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1086:3: ( '::' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1087:3: '::'
             {
             match("::"); if (state.failed) return ;
 
@@ -814,8 +840,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = COMMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1037:3: ( ',' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1038:3: ','
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1092:3: ( ',' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1093:3: ','
             {
             match(','); if (state.failed) return ;
 
@@ -834,8 +860,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = SEMI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1043:3: ( ';' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1044:3: ';'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1098:3: ( ';' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1099:3: ';'
             {
             match(';'); if (state.failed) return ;
 
@@ -854,8 +880,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1049:3: ( '.' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1050:3: '.'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1104:3: ( '.' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1105:3: '.'
             {
             match('.'); if (state.failed) return ;
 
@@ -874,8 +900,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1055:3: ( '=' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1056:3: '='
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1110:3: ( '=' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1111:3: '='
             {
             match('='); if (state.failed) return ;
 
@@ -889,13 +915,95 @@ public class OclLexer extends Lexer {
     }
     // $ANTLR end "EQUALS"
 
+    // $ANTLR start "GT"
+    public final void mGT() throws RecognitionException {
+        try {
+            int _type = GT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1116:3: ( '>' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1117:3: '>'
+            {
+            match('>'); if (state.failed) return ;
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "GT"
+
+    // $ANTLR start "GTRQULAS"
+    public final void mGTRQULAS() throws RecognitionException {
+        try {
+            int _type = GTRQULAS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1122:3: ( '>=' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1123:3: '>='
+            {
+            match(">="); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "GTRQULAS"
+
+    // $ANTLR start "LT"
+    public final void mLT() throws RecognitionException {
+        try {
+            int _type = LT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1128:3: ( '<' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1129:3: '<'
+            {
+            match('<'); if (state.failed) return ;
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "LT"
+
+    // $ANTLR start "LTEQUALS"
+    public final void mLTEQUALS() throws RecognitionException {
+        try {
+            int _type = LTEQUALS;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1134:3: ( '<=' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1135:3: '<='
+            {
+            match("<="); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "LTEQUALS"
+
     // $ANTLR start "ARROW"
     public final void mARROW() throws RecognitionException {
         try {
             int _type = ARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1061:3: ( '->' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1062:3: '->'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1140:3: ( '->' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1141:3: '->'
             {
             match("->"); if (state.failed) return ;
 
@@ -915,8 +1023,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = BAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1067:3: ( '|' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1068:3: '|'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1146:3: ( '|' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1147:3: '|'
             {
             match('|'); if (state.failed) return ;
 
@@ -935,8 +1043,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = APOSTROPHE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1073:3: ( '\\'' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1074:3: '\\''
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1152:3: ( '\\'' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1153:3: '\\''
             {
             match('\''); if (state.failed) return ;
 
@@ -955,10 +1063,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1083:9: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1083:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1162:9: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1162:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1083:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1162:17: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -989,7 +1097,7 @@ public class OclLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1083:25: '\\r' '\\n'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1162:25: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -997,7 +1105,7 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1084:25: '\\n' '\\r'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1163:25: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -1005,14 +1113,14 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1085:25: '\\r'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1164:25: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1086:25: '\\n'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1165:25: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -1040,8 +1148,8 @@ public class OclLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1092:9: ( ( ' ' | '\\t' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1092:17: ( ' ' | '\\t' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1171:9: ( ( ' ' | '\\t' ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1171:17: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1070,8 +1178,8 @@ public class OclLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1099:9: ( '0' .. '9' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1099:17: '0' .. '9'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1178:9: ( '0' .. '9' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1178:17: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -1086,8 +1194,8 @@ public class OclLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1104:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1183:9: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -1111,17 +1219,17 @@ public class OclLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1115:9: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1115:17: ( ALPHA ) ( ALPHA | DIGIT )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1194:9: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1194:17: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1115:17: ( ALPHA )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1115:18: ALPHA
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1194:17: ( ALPHA )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1194:18: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1115:25: ( ALPHA | DIGIT )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1194:25: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -1134,7 +1242,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -1169,7 +1277,7 @@ public class OclLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1118:9: ( 'true' | 'false' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1197:9: ( 'true' | 'false' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1188,7 +1296,7 @@ public class OclLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1118:17: 'true'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1197:17: 'true'
                     {
                     match("true"); if (state.failed) return ;
 
@@ -1196,7 +1304,7 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1118:26: 'false'
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1197:26: 'false'
                     {
                     match("false"); if (state.failed) return ;
 
@@ -1218,10 +1326,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1121:9: ( ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1121:17: ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1200:9: ( ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1200:17: ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1121:17: ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1200:17: ( ( SNAME (~ DCOLON | EOF ) )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1240,17 +1348,17 @@ public class OclLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:25: ( SNAME (~ DCOLON | EOF ) )=> SNAME
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:25: ( SNAME (~ DCOLON | EOF ) )=> SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1123:25: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1202:25: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1124:25: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1203:25: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -1266,7 +1374,7 @@ public class OclLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1125:25: '\\n'
+                    	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1204:25: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -1276,7 +1384,7 @@ public class OclLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1126:33: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1205:33: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1320,13 +1428,13 @@ public class OclLexer extends Lexer {
         try {
             int _type = QNAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1133:9: ( SNAME DCOLON SNAME ( DCOLON SNAME )* )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1133:11: SNAME DCOLON SNAME ( DCOLON SNAME )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1212:9: ( SNAME DCOLON SNAME ( DCOLON SNAME )* )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1212:11: SNAME DCOLON SNAME ( DCOLON SNAME )*
             {
             mSNAME(); if (state.failed) return ;
             mDCOLON(); if (state.failed) return ;
             mSNAME(); if (state.failed) return ;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1133:30: ( DCOLON SNAME )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1212:30: ( DCOLON SNAME )*
             loop8:
             do {
                 int alt8=2;
@@ -1339,7 +1447,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1133:31: DCOLON SNAME
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1212:31: DCOLON SNAME
             	    {
             	    mDCOLON(); if (state.failed) return ;
             	    mSNAME(); if (state.failed) return ;
@@ -1368,10 +1476,10 @@ public class OclLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1138:2: ( ( DIGIT )+ )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1138:4: ( DIGIT )+
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1217:2: ( ( DIGIT )+ )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1217:4: ( DIGIT )+
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1138:4: ( DIGIT )+
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1217:4: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
@@ -1385,7 +1493,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1138:5: DIGIT
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1217:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1416,10 +1524,10 @@ public class OclLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:9: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:17: ( DIGIT )+ '.' ( DIGIT )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:9: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:17: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:17: ( DIGIT )+
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:17: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
@@ -1433,7 +1541,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:17: DIGIT
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:17: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1451,7 +1559,7 @@ public class OclLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:28: ( DIGIT )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:28: ( DIGIT )*
             loop11:
             do {
                 int alt11=2;
@@ -1464,7 +1572,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1143:28: DIGIT
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1222:28: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1490,7 +1598,7 @@ public class OclLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1147:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1226:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt12=4;
             int LA12_0 = input.LA(1);
 
@@ -1529,7 +1637,7 @@ public class OclLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1147:9: ( INT '..' )=> INT
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1226:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1539,7 +1647,7 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1148:9: ( INT '.' NAME )=> INT
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1227:9: ( INT '.' NAME )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1549,7 +1657,7 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1149:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1228:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1559,7 +1667,7 @@ public class OclLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1156:9: INT
+                    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1235:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1583,11 +1691,11 @@ public class OclLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1161:9: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1161:17: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1240:9: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1240:17: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1162:17: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1241:17: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop13:
             do {
                 int alt13=3;
@@ -1603,7 +1711,7 @@ public class OclLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1164:25: '\\n'
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1243:25: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1613,7 +1721,7 @@ public class OclLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1165:25: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1244:25: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1647,299 +1755,334 @@ public class OclLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:8: ( T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LPAREN | RPAREN | COLON | DCOLON | COMMA | SEMI | DOT | EQUALS | ARROW | BAR | APOSTROPHE | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING )
-        int alt14=42;
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:8: ( T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LPAREN | RPAREN | COLON | DCOLON | COMMA | SEMI | DOT | EQUALS | GT | GTRQULAS | LT | LTEQUALS | ARROW | BAR | APOSTROPHE | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING )
+        int alt14=47;
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:10: T__35
-                {
-                mT__35(); if (state.failed) return ;
-
-                }
-                break;
-            case 2 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:16: T__36
-                {
-                mT__36(); if (state.failed) return ;
-
-                }
-                break;
-            case 3 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:22: T__37
-                {
-                mT__37(); if (state.failed) return ;
-
-                }
-                break;
-            case 4 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:28: T__38
-                {
-                mT__38(); if (state.failed) return ;
-
-                }
-                break;
-            case 5 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:34: T__39
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:10: T__39
                 {
                 mT__39(); if (state.failed) return ;
 
                 }
                 break;
-            case 6 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:40: T__40
+            case 2 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:16: T__40
                 {
                 mT__40(); if (state.failed) return ;
 
                 }
                 break;
-            case 7 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:46: T__41
+            case 3 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:22: T__41
                 {
                 mT__41(); if (state.failed) return ;
 
                 }
                 break;
-            case 8 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:52: T__42
+            case 4 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:28: T__42
                 {
                 mT__42(); if (state.failed) return ;
 
                 }
                 break;
-            case 9 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:58: T__43
+            case 5 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:34: T__43
                 {
                 mT__43(); if (state.failed) return ;
 
                 }
                 break;
-            case 10 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:64: T__44
+            case 6 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:40: T__44
                 {
                 mT__44(); if (state.failed) return ;
 
                 }
                 break;
-            case 11 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:70: T__45
+            case 7 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:46: T__45
                 {
                 mT__45(); if (state.failed) return ;
 
                 }
                 break;
-            case 12 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:76: T__46
+            case 8 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:52: T__46
                 {
                 mT__46(); if (state.failed) return ;
 
                 }
                 break;
-            case 13 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:82: T__47
+            case 9 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:58: T__47
                 {
                 mT__47(); if (state.failed) return ;
 
                 }
                 break;
-            case 14 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:88: T__48
+            case 10 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:64: T__48
                 {
                 mT__48(); if (state.failed) return ;
 
                 }
                 break;
-            case 15 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:94: T__49
+            case 11 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:70: T__49
                 {
                 mT__49(); if (state.failed) return ;
 
                 }
                 break;
+            case 12 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:76: T__50
+                {
+                mT__50(); if (state.failed) return ;
+
+                }
+                break;
+            case 13 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:82: T__51
+                {
+                mT__51(); if (state.failed) return ;
+
+                }
+                break;
+            case 14 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:88: T__52
+                {
+                mT__52(); if (state.failed) return ;
+
+                }
+                break;
+            case 15 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:94: T__53
+                {
+                mT__53(); if (state.failed) return ;
+
+                }
+                break;
             case 16 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:100: COMMENT
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:100: T__54
+                {
+                mT__54(); if (state.failed) return ;
+
+                }
+                break;
+            case 17 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:106: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 17 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:108: MULTI_LINE_COMMENT
+            case 18 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:114: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 18 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:127: DDOT
+            case 19 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:133: DDOT
                 {
                 mDDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 19 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:132: LBRACKET
+            case 20 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:138: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 20 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:141: RBRACKET
+            case 21 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:147: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 21 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:150: LCURL
+            case 22 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:156: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 22 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:156: RCURL
+            case 23 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:162: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 23 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:162: STAR
+            case 24 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:168: STAR
                 {
                 mSTAR(); if (state.failed) return ;
 
                 }
                 break;
-            case 24 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:167: LPAREN
+            case 25 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:173: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 25 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:174: RPAREN
+            case 26 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:180: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 26 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:181: COLON
+            case 27 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:187: COLON
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 27 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:187: DCOLON
+            case 28 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:193: DCOLON
                 {
                 mDCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 28 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:194: COMMA
+            case 29 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:200: COMMA
                 {
                 mCOMMA(); if (state.failed) return ;
 
                 }
                 break;
-            case 29 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:200: SEMI
+            case 30 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:206: SEMI
                 {
                 mSEMI(); if (state.failed) return ;
 
                 }
                 break;
-            case 30 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:205: DOT
+            case 31 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:211: DOT
                 {
                 mDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 31 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:209: EQUALS
+            case 32 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:215: EQUALS
                 {
                 mEQUALS(); if (state.failed) return ;
 
                 }
                 break;
-            case 32 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:216: ARROW
+            case 33 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:222: GT
+                {
+                mGT(); if (state.failed) return ;
+
+                }
+                break;
+            case 34 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:225: GTRQULAS
+                {
+                mGTRQULAS(); if (state.failed) return ;
+
+                }
+                break;
+            case 35 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:234: LT
+                {
+                mLT(); if (state.failed) return ;
+
+                }
+                break;
+            case 36 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:237: LTEQUALS
+                {
+                mLTEQUALS(); if (state.failed) return ;
+
+                }
+                break;
+            case 37 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:246: ARROW
                 {
                 mARROW(); if (state.failed) return ;
 
                 }
                 break;
-            case 33 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:222: BAR
+            case 38 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:252: BAR
                 {
                 mBAR(); if (state.failed) return ;
 
                 }
                 break;
-            case 34 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:226: APOSTROPHE
+            case 39 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:256: APOSTROPHE
                 {
                 mAPOSTROPHE(); if (state.failed) return ;
 
                 }
                 break;
-            case 35 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:237: NL
+            case 40 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:267: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
-            case 36 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:240: WS
+            case 41 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:270: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
-            case 37 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:243: BOOL
+            case 42 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:273: BOOL
                 {
                 mBOOL(); if (state.failed) return ;
 
                 }
                 break;
-            case 38 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:248: NAME
+            case 43 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:278: NAME
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 39 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:253: QNAME
+            case 44 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:283: QNAME
                 {
                 mQNAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 40 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:259: INT
+            case 45 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:289: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
-            case 41 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:263: RANGE_OR_INT
+            case 46 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:293: RANGE_OR_INT
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
 
                 }
                 break;
-            case 42 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1:276: STRING
+            case 47 :
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1:306: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -1952,11 +2095,11 @@ public class OclLexer extends Lexer {
 
     // $ANTLR start synpred1_Ocl
     public final void synpred1_Ocl_fragment() throws RecognitionException {   
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:25: ( SNAME (~ DCOLON | EOF ) )
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:26: SNAME (~ DCOLON | EOF )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:25: ( SNAME (~ DCOLON | EOF ) )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:26: SNAME (~ DCOLON | EOF )
         {
         mSNAME(); if (state.failed) return ;
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:32: (~ DCOLON | EOF )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:32: (~ DCOLON | EOF )
         int alt15=2;
         int LA15_0 = input.LA(1);
 
@@ -1967,9 +2110,9 @@ public class OclLexer extends Lexer {
             alt15=2;}
         switch (alt15) {
             case 1 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:33: ~ DCOLON
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:33: ~ DCOLON
                 {
-                if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u000F')||(input.LA(1)>='\u0011' && input.LA(1)<='\uFFFF') ) {
+                if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u0010')||(input.LA(1)>='\u0012' && input.LA(1)<='\uFFFF') ) {
                     input.consume();
                 state.failed=false;
                 }
@@ -1983,7 +2126,7 @@ public class OclLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1122:41: EOF
+                // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1201:41: EOF
                 {
                 match(EOF); if (state.failed) return ;
 
@@ -1999,8 +2142,8 @@ public class OclLexer extends Lexer {
 
     // $ANTLR start synpred2_Ocl
     public final void synpred2_Ocl_fragment() throws RecognitionException {   
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1147:9: ( INT '..' )
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1147:11: INT '..'
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1226:9: ( INT '..' )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1226:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -2012,8 +2155,8 @@ public class OclLexer extends Lexer {
 
     // $ANTLR start synpred3_Ocl
     public final void synpred3_Ocl_fragment() throws RecognitionException {   
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1148:9: ( INT '.' NAME )
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1148:11: INT '.' NAME
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1227:9: ( INT '.' NAME )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1227:11: INT '.' NAME
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2025,8 +2168,8 @@ public class OclLexer extends Lexer {
 
     // $ANTLR start synpred4_Ocl
     public final void synpred4_Ocl_fragment() throws RecognitionException {   
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1149:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\dev\\workspaces\\runtime-workspace\\OCL.dsl\\generated\\generated\\Ocl.g:1149:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1228:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // /Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g:1228:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2105,126 +2248,126 @@ public class OclLexer extends Lexer {
 
     protected DFA14 dfa14 = new DFA14(this);
     static final String DFA14_eotS =
-        "\1\uffff\13\44\1\uffff\1\67\7\uffff\1\71\5\uffff\1\72\2\uffff\1"+
-        "\44\1\73\1\uffff\1\75\1\44\1\77\1\uffff\1\44\1\uffff\15\44\12\uffff"+
-        "\1\44\1\uffff\6\44\1\125\1\126\1\44\1\130\7\44\1\140\2\44\1\143"+
-        "\2\uffff\1\44\1\uffff\1\145\1\146\4\44\1\153\1\uffff\2\44\1\uffff"+
-        "\1\44\2\uffff\1\44\1\146\2\44\1\uffff\3\44\1\165\1\166\2\44\1\171"+
-        "\1\44\2\uffff\2\44\1\uffff\1\175\2\44\1\uffff\1\u0080\1\u0081\2"+
-        "\uffff";
+        "\1\uffff\13\46\1\uffff\1\71\7\uffff\1\73\3\uffff\1\75\1\77\2\uffff"+
+        "\1\100\2\uffff\1\46\1\101\1\uffff\1\103\1\104\1\46\1\uffff\1\46"+
+        "\1\uffff\15\46\17\uffff\11\46\1\136\2\46\1\141\1\46\1\143\2\46\1"+
+        "\146\1\147\1\150\2\46\1\153\2\46\1\uffff\2\46\1\uffff\1\46\1\uffff"+
+        "\1\46\1\162\3\uffff\1\46\1\150\1\uffff\6\46\1\uffff\1\172\1\173"+
+        "\4\46\1\u0080\2\uffff\1\46\1\u0082\2\46\1\uffff\1\u0085\1\uffff"+
+        "\2\46\1\uffff\2\46\1\u008a\1\u008b\2\uffff";
     static final String DFA14_eofS =
-        "\u0082\uffff";
+        "\u008c\uffff";
     static final String DFA14_minS =
-        "\1\11\13\60\1\52\1\56\7\uffff\1\72\5\uffff\1\0\2\uffff\1\60\1\56"+
-        "\1\uffff\3\60\1\uffff\1\60\1\uffff\15\60\12\uffff\1\60\1\uffff\25"+
-        "\60\2\uffff\1\60\1\uffff\7\60\1\uffff\2\60\1\uffff\1\60\2\uffff"+
-        "\4\60\1\uffff\11\60\2\uffff\2\60\1\uffff\3\60\1\uffff\2\60\2\uffff";
+        "\1\11\13\60\1\52\1\56\7\uffff\1\72\3\uffff\2\75\2\uffff\1\0\2\uffff"+
+        "\1\60\1\56\1\uffff\3\60\1\uffff\1\60\1\uffff\15\60\17\uffff\31\60"+
+        "\1\uffff\2\60\1\uffff\1\60\1\uffff\2\60\3\uffff\2\60\1\uffff\6\60"+
+        "\1\uffff\7\60\2\uffff\4\60\1\uffff\1\60\1\uffff\2\60\1\uffff\4\60"+
+        "\2\uffff";
     static final String DFA14_maxS =
-        "\14\u00ff\1\57\1\56\7\uffff\1\72\5\uffff\1\uffff\2\uffff\1\u00ff"+
-        "\1\71\1\uffff\3\u00ff\1\uffff\1\u00ff\1\uffff\15\u00ff\12\uffff"+
-        "\1\u00ff\1\uffff\25\u00ff\2\uffff\1\u00ff\1\uffff\7\u00ff\1\uffff"+
-        "\2\u00ff\1\uffff\1\u00ff\2\uffff\4\u00ff\1\uffff\11\u00ff\2\uffff"+
-        "\2\u00ff\1\uffff\3\u00ff\1\uffff\2\u00ff\2\uffff";
+        "\14\u00ff\1\57\1\56\7\uffff\1\72\3\uffff\2\75\2\uffff\1\uffff\2"+
+        "\uffff\1\u00ff\1\71\1\uffff\3\u00ff\1\uffff\1\u00ff\1\uffff\15\u00ff"+
+        "\17\uffff\31\u00ff\1\uffff\2\u00ff\1\uffff\1\u00ff\1\uffff\2\u00ff"+
+        "\3\uffff\2\u00ff\1\uffff\6\u00ff\1\uffff\7\u00ff\2\uffff\4\u00ff"+
+        "\1\uffff\1\u00ff\1\uffff\2\u00ff\1\uffff\4\u00ff\2\uffff";
     static final String DFA14_acceptS =
-        "\16\uffff\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\uffff\1\34\1\35"+
-        "\1\37\1\40\1\41\1\uffff\1\43\1\44\2\uffff\1\52\3\uffff\1\46\1\uffff"+
-        "\1\47\15\uffff\1\20\1\21\1\22\1\36\1\33\1\32\1\42\1\50\1\51\1\1"+
-        "\1\uffff\1\12\25\uffff\1\7\1\10\1\uffff\1\13\7\uffff\1\17\2\uffff"+
-        "\1\6\1\uffff\1\14\1\45\4\uffff\1\3\11\uffff\1\15\1\11\2\uffff\1"+
-        "\5\3\uffff\1\16\2\uffff\1\2\1\4";
+        "\16\uffff\1\24\1\25\1\26\1\27\1\30\1\31\1\32\1\uffff\1\35\1\36\1"+
+        "\40\2\uffff\1\45\1\46\1\uffff\1\50\1\51\2\uffff\1\57\3\uffff\1\53"+
+        "\1\uffff\1\54\15\uffff\1\21\1\22\1\23\1\37\1\34\1\33\1\42\1\41\1"+
+        "\44\1\43\1\47\1\55\1\56\1\1\1\14\31\uffff\1\11\2\uffff\1\15\1\uffff"+
+        "\1\20\2\uffff\1\6\1\3\1\52\2\uffff\1\5\6\uffff\1\2\7\uffff\1\4\1"+
+        "\12\4\uffff\1\16\1\uffff\1\10\2\uffff\1\7\4\uffff\1\13\1\17";
     static final String DFA14_specialS =
-        "\33\uffff\1\0\146\uffff}>";
+        "\35\uffff\1\0\156\uffff}>";
     static final String[] DFA14_transitionS = {
-            "\1\35\1\34\2\uffff\1\34\22\uffff\1\35\1\uffff\1\40\4\uffff"+
-            "\1\33\1\23\1\24\1\22\1\uffff\1\26\1\31\1\15\1\14\12\37\1\25"+
-            "\1\27\1\uffff\1\30\3\uffff\1\36\1\7\1\2\13\36\1\4\3\36\1\10"+
-            "\7\36\1\16\1\uffff\1\17\1\uffff\1\36\1\uffff\2\36\1\5\1\36\1"+
-            "\3\1\13\2\36\1\1\2\36\1\11\6\36\1\6\1\12\6\36\1\20\1\32\1\21"+
-            "\102\uffff\27\36\1\uffff\37\36\1\uffff\10\36",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\43\7"+
-            "\45\1\41\5\45\1\42\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff"+
-            "\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\47"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\51"+
-            "\1\45\1\50\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\52"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\53"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\54\25"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\55\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\56\25"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\57\25"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\7\45\1\60\11"+
-            "\45\1\61\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\63\15\45"+
-            "\1\62\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\1\65\4\uffff\1\64",
-            "\1\66",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\37\1\36\2\uffff\1\36\22\uffff\1\37\1\uffff\1\42\4\uffff\1"+
+            "\35\1\23\1\24\1\22\1\uffff\1\26\1\33\1\15\1\14\12\41\1\25\1"+
+            "\27\1\32\1\30\1\31\2\uffff\1\40\1\11\1\10\13\40\1\12\3\40\1"+
+            "\6\7\40\1\16\1\uffff\1\17\1\uffff\1\40\1\uffff\2\40\1\7\1\40"+
+            "\1\2\1\4\2\40\1\1\2\40\1\13\6\40\1\5\1\3\6\40\1\20\1\34\1\21"+
+            "\102\uffff\27\40\1\uffff\37\40\1\uffff\10\40",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\5\47\1\43\7"+
+            "\47\1\44\5\47\1\45\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff"+
+            "\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\52\1"+
+            "\47\1\51\14\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\7\47\1\53\11"+
+            "\47\1\54\10\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\1\56\15\47\1"+
+            "\55\13\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\57\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\60\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\16\47\1\61\13"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\16\47\1\62\13"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\1\63\31\47\105"+
+            "\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\21\47\1\64\10"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\65\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\67\4\uffff\1\66",
             "\1\70",
             "",
             "",
             "",
             "",
             "",
-            "\134\44\1\uffff\uffa3\44",
             "",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\1\74\1\uffff\12\37",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\76\25"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\100"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\101"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\102"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\103"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\104"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\105"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\6\45\1\106"+
-            "\23\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\20\45\1\110"+
-            "\2\45\1\107\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\111"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\112"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\113"+
-            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\114"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\115"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\1\72",
             "",
             "",
             "",
+            "\1\74",
+            "\1\76",
+            "",
+            "",
+            "\134\46\1\uffff\uffa3\46",
+            "",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\102\1\uffff\12\41",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\105\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\3\47\1\106\26"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\22\47\1\107"+
+            "\7\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\110\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\24\47\1\111"+
+            "\5\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\21\47\1\112"+
+            "\10\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\113"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\114"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\20\47\1\115"+
+            "\2\47\1\116\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\117"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\120"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\6\47\1\121\23"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\3\47\1\122\26"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\123"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
             "",
             "",
             "",
@@ -2232,125 +2375,139 @@ public class OclLexer extends Lexer {
             "",
             "",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\116"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\117"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\120"+
-            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\121"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\122"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\123"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\124"+
-            "\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\127"+
-            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\131"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\132"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\1\133\31\45\4\uffff\1\45\1\uffff\32\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\134"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\135\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\136"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\137"+
-            "\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\141"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\142"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\144"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\147"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\150"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\151"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\152"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\154"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\155"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\156"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\157"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\160"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\161"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\162"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\163"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\164"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\167"+
-            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\22\45\1\170\7\45\4\uffff\1\45\1\uffff"+
-            "\32\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\172"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\173"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\174"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\176"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\177"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\21\47\1\124"+
+            "\10\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\10\47\1\125"+
+            "\21\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\126\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\15\47\1\127"+
+            "\14\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\130\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\1\131\31\47\4\uffff\1\47\1\uffff\32\47"+
+            "\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\22\47\1\132"+
+            "\7\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\134\1"+
+            "\133\24\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\24\47\1\135"+
+            "\5\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\137"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\140"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\142\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\1\144\31\47"+
+            "\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\5\47\1\145\24"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\151"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\152\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\2\47\1\154\27"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\155\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\156\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\157\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\21\47\1\160"+
+            "\10\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\161"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\13\47\1\163"+
+            "\16\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\164"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\15\47\1\165"+
+            "\14\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\2\47\1\166\27"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\2\47\1\167\27"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\170\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\171\25"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\2\47\1\174\27"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\175"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\176"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\3\47\1\177\26"+
+            "\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\u0081"+
+            "\25\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\10\47\1\u0083"+
+            "\21\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\22\47\1\u0084\7\47\4\uffff\1\47\1\uffff"+
+            "\32\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\16\47\1\u0086"+
+            "\13\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\4\47\1\u0087"+
+            "\25\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\15\47\1\u0088"+
+            "\14\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\23\47\1\u0089"+
+            "\6\47\105\uffff\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\1\50\6\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "",
             ""
     };
@@ -2385,20 +2542,19 @@ public class OclLexer extends Lexer {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LPAREN | RPAREN | COLON | DCOLON | COMMA | SEMI | DOT | EQUALS | ARROW | BAR | APOSTROPHE | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING );";
+            return "1:1: Tokens : ( T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LPAREN | RPAREN | COLON | DCOLON | COMMA | SEMI | DOT | EQUALS | GT | GTRQULAS | LT | LTEQUALS | ARROW | BAR | APOSTROPHE | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
-
                     case 0 : 
-                        int LA14_27 = input.LA(1);
+                        int LA14_29 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_27>='\u0000' && LA14_27<='[')||(LA14_27>=']' && LA14_27<='\uFFFF')) ) {s = 36;}
+                        if ( ((LA14_29>='\u0000' && LA14_29<='[')||(LA14_29>=']' && LA14_29<='\uFFFF')) ) {s = 38;}
 
-                        else s = 58;
+                        else s = 64;
 
                         if ( s>=0 ) return s;
                         break;

@@ -100,13 +100,13 @@
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.20"
-          referredLiteral="#//@symbols.16"/>
+          referredLiteral="#//@symbols.20"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.20">
         <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
         <propertyReference strucfeature="ecore:EAttribute http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//StringLiteralExp/stringSymbol"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.20"
-          referredLiteral="#//@symbols.16"/>
+          referredLiteral="#//@symbols.20"/>
       <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.20">
         <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:ecore::EClassifier.allInstances()->select(c| if c.ePackage->isEmpty() then false else c.ePackage.name='ecore' and c.name='EString' endif)">
           <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
@@ -168,13 +168,13 @@
     <textBlockDefinition/>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass http://www.eclipse.org/ocl/1.1.0/Ecore#//CollectionLiteralExp"
-      isContext="true" contextTags="http://www.furcas.org/transientParsingResource_AVCHUEDDEeCs-v9HhmjWVA#/0">
+      isContext="true" contextTags="http://www.furcas.org/transientParsingResource_hpMDQENuEeCVWekCgdT-_A#/0">
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:Alternative" parentTemplate="#//@templates.25">
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.25"
-              referredLiteral="#//@keywords.13"/>
+              referredLiteral="#//@keywords.6"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.25">
             <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
             <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="sequence"/>
@@ -188,7 +188,7 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.25"
-              referredLiteral="#//@keywords.7"/>
+              referredLiteral="#//@keywords.8"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.25">
             <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
             <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="set"/>
@@ -202,7 +202,7 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.25"
-              referredLiteral="#//@keywords.2"/>
+              referredLiteral="#//@keywords.10"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.25">
             <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
             <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="collection"/>
@@ -216,7 +216,7 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.25"
-              referredLiteral="#//@keywords.6"/>
+              referredLiteral="#//@keywords.12"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.25">
             <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
             <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="bag"/>
@@ -230,7 +230,7 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.25"
-              referredLiteral="#//@keywords.3"/>
+              referredLiteral="#//@keywords.15"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.25">
             <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
             <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="orderedset"/>
@@ -439,12 +439,12 @@
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.50"
-          referredLiteral="#//@keywords.8"/>
+          referredLiteral="#//@keywords.0"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.50">
         <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//IfExp/condition"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.50"
-          referredLiteral="#//@keywords.11"/>
+          referredLiteral="#//@keywords.2"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.50">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.50">
@@ -453,7 +453,7 @@
         </blockSequence>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.50"
-          referredLiteral="#//@keywords.14"/>
+          referredLiteral="#//@keywords.4"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.50">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.50">
@@ -474,14 +474,14 @@
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.51"
-          referredLiteral="#//@keywords.10"/>
+          referredLiteral="#//@keywords.14"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.51">
         <propertyArgs xsi:type="com.sap.furcas.TCS:ForcedLowerPArg" value="1"/>
         <propertyArgs xsi:type="com.sap.furcas.TCS:ModePArg" mode="let"/>
         <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//LetExp/variable"/>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.51"
-          referredLiteral="#//@keywords.0"/>
+          referredLiteral="#//@keywords.11"/>
       <elements xsi:type="com.sap.furcas.TCS:Block" parentTemplate="#//@templates.51">
         <blockSequence>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.51">
@@ -554,7 +554,7 @@
       <elements xsi:type="com.sap.furcas.TCS:Alternative" parentTemplate="#//@templates.55">
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.55">
-            <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context(propertyCallExp).oclAsType(ocl::ecore::PropertyCallExp).source.oclAsType(ocl::ecore::OCLExpression).eType">
+            <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:#context(propertyCallExp).oclAsType(ocl::ecore::CallExp).source.oclAsType(ocl::ecore::OCLExpression).eType">
               <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
             </injectorActions>
           </elements>
@@ -639,14 +639,14 @@
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:OperatorTemplate" metaReference="ecore:EClass http://www.eclipse.org/ocl/1.1.0/Ecore#//IterateExp"
-      isContext="true" contextTags="http://www.furcas.org/transientParsingResource_AVCHUEDDEeCs-v9HhmjWVA#/1"
+      isContext="true" contextTags="http://www.furcas.org/transientParsingResource_hpMDQENuEeCVWekCgdT-_A#/1"
       operators="#//@operatorLists.0/@priorities.0/@operators.1">
     <textBlockDefinition/>
     <templateSequence>
       <elements xsi:type="com.sap.furcas.TCS:Alternative" parentTemplate="#//@templates.59">
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
-              referredLiteral="#//@keywords.9"/>
+              referredLiteral="#//@keywords.13"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
               referredLiteral="#//@symbols.6"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.59">
@@ -672,7 +672,7 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
-              referredLiteral="#//@keywords.12"/>
+              referredLiteral="#//@keywords.3"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
               referredLiteral="#//@symbols.6"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.59">
@@ -687,7 +687,22 @@
         </sequences>
         <sequences>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
-              referredLiteral="#//@keywords.4"/>
+              referredLiteral="#//@keywords.7"/>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
+              referredLiteral="#//@symbols.6"/>
+          <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.59">
+            <propertyArgs xsi:type="com.sap.furcas.TCS:SeparatorPArg">
+              <separatorSequence>
+                <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
+                    referredLiteral="#//@symbols.10"/>
+              </separatorSequence>
+            </propertyArgs>
+            <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//LoopExp/iterator"/>
+          </elements>
+        </sequences>
+        <sequences>
+          <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
+              referredLiteral="#//@keywords.9"/>
           <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
               referredLiteral="#//@symbols.6"/>
           <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.59">
@@ -702,7 +717,7 @@
         </sequences>
       </elements>
       <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.59"
-          referredLiteral="#//@symbols.15"/>
+          referredLiteral="#//@symbols.19"/>
       <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.59">
         <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//LoopExp/body"/>
       </elements>
@@ -730,7 +745,7 @@
     </templateSequence>
   </templates>
   <templates xsi:type="com.sap.furcas.TCS:OperatorTemplate" metaReference="ecore:EClass http://www.eclipse.org/ocl/1.1.0/Ecore#//PropertyCallExp"
-      disambiguateV3="identifier ~LPAREN" isContext="true" contextTags="http://www.furcas.org/transientParsingResource_AVCHUEDDEeCs-v9HhmjWVA#/2"
+      disambiguateV3="identifier ~LPAREN" isContext="true" contextTags="http://www.furcas.org/transientParsingResource_hpMDQENuEeCVWekCgdT-_A#/2"
       operators="#//@operatorLists.0/@priorities.0/@operators.0">
     <textBlockDefinition/>
     <templateSequence>
@@ -752,29 +767,85 @@
     </templateSequence>
     <storeLeftSideTo strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//CallExp/source"/>
   </templates>
-  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.2" value="in"/>
-  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.6" value="endif"/>
-  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.2/@elements.0"
-      value="Collection"/>
-  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.4/@elements.0"
-      value="OrderedSet"/>
-  <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.0"
-      value="collect"/>
-  <keywords literalRefs="#//@templates.58/@templateSequence/@elements.0" value="self"/>
-  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.3/@elements.0"
-      value="Bag"/>
-  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.1/@elements.0"
-      value="Set"/>
+  <templates xsi:type="com.sap.furcas.TCS:OperatorTemplate" metaReference="ecore:EClass http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"
+      disambiguateV3="identifier LPAREN" isContext="true" contextTags="http://www.furcas.org/transientParsingResource_hpMDQENuEeCVWekCgdT-_A#/3"
+      operators="#//@operatorLists.0/@priorities.0/@operators.0">
+    <textBlockDefinition/>
+    <templateSequence>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.63">
+        <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:LookupScopePArg" query="OCL:self.source.oclAsType(ocl::ecore::OCLExpression).eType.oclAsType(ecore::EClass).eAllOperations"/>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:ReferenceByPArg" referenceBy="name"/>
+        <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//OperationCallExp/referredOperation"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.63"
+          referredLiteral="#//@symbols.6"/>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.63">
+        <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//OperationCallExp/argument"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:LiteralRef" parentTemplate="#//@templates.63"
+          referredLiteral="#//@symbols.7"/>
+      <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.63">
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:self.referredOperation.oclAsType(ecore::EOperation).name.concat('(...)')">
+          <propertyReference strucfeature="ecore:EAttribute http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </injectorActions>
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:let params : OrderedSet(ecore::EParameter) = self.referredOperation.oclAsType(ecore::EOperation).eParameters in&#xD;&#xA;             &#x9;&#x9;&#x9;&#x9;if params->isEmpty() then&#xD;&#xA;             &#x9;&#x9;&#x9;&#x9;&#x9;null --todo: use OclVoid from StdLib&#xD;&#xA;             &#x9;&#x9;&#x9;&#x9;else&#xD;&#xA;             &#x9;&#x9;&#x9;&#x9;&#x9;params->at(1).eType&#xD;&#xA;             &#x9;&#x9;&#x9;&#x9;endif ">
+          <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+        </injectorActions>
+      </elements>
+    </templateSequence>
+    <storeLeftSideTo strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//CallExp/source"/>
+  </templates>
+  <templates xsi:type="com.sap.furcas.TCS:OperatorTemplate" metaReference="ecore:EClass http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"
+      isContext="true" contextTags="http://www.furcas.org/transientParsingResource_hpMDQENuEeCVWekCgdT-_A#/4"
+      operators="#//@operatorLists.0/@priorities.1/@operators.0">
+    <textBlockDefinition/>
+    <templateSequence>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.64">
+        <propertyArgs xsi:type="com.sap.furcas.TCS:AsPArg" template="#//@templates.1"/>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:LookupScopePArg" query="OCL:ecore::EClass.allInstances()->select(c | c.ePackage.name = 'oclstdlib' and &#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;let type : ecore::EClassifier = source.oclAsType(ocl::ecore::OCLExpression).eType in&#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;if type.name = 'EBoolean' then&#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;&#x9;c.name = 'Boolean_Class'&#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;else&#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;&#x9;c.name = 'OclVoid_Class'&#xD;&#xA;          &#x9;&#x9;&#x9;&#x9;endif&#xD;&#xA;          &#x9;&#x9;&#x9;).eOperations->select(op | op.oclAsType(ecore::EOperation).name = '=')"/>
+        <propertyArgs xsi:type="com.sap.furcas.TCS:ReferenceByPArg" referenceBy="name"/>
+        <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//OperationCallExp/referredOperation"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.64">
+        <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//OperationCallExp/argument"/>
+      </elements>
+      <elements xsi:type="com.sap.furcas.TCS:InjectorActionsBlock" parentTemplate="#//@templates.64">
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="equals">
+          <propertyReference strucfeature="ecore:EAttribute http://www.eclipse.org/emf/2002/Ecore#//ENamedElement/name"/>
+        </injectorActions>
+        <injectorActions xsi:type="com.sap.furcas.TCS:LookupPropertyInit" value="OCL:ecore::EClassifier.allInstances()->select(c | c.ePackage.name ='ecore' and c.name = 'EBoolean')">
+          <propertyReference strucfeature="ecore:EReference http://www.eclipse.org/emf/2002/Ecore#//ETypedElement/eType"/>
+        </injectorActions>
+      </elements>
+    </templateSequence>
+    <storeLeftSideTo strucfeature="ecore:EReference http://www.eclipse.org/ocl/1.1.0/OCL/Expressions#//CallExp/source"/>
+  </templates>
   <keywords literalRefs="#//@templates.50/@templateSequence/@elements.0" value="if"/>
-  <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.0/@elements.0"
-      value="iterate"/>
-  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.0" value="let"/>
+  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.6" value="endif"/>
   <keywords literalRefs="#//@templates.50/@templateSequence/@elements.2" value="then"/>
   <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.1/@elements.0"
       value="forAll"/>
+  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.4" value="else"/>
+  <keywords literalRefs="#//@templates.58/@templateSequence/@elements.0" value="self"/>
   <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.0/@elements.0"
       value="Sequence"/>
-  <keywords literalRefs="#//@templates.50/@templateSequence/@elements.4" value="else"/>
+  <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.0"
+      value="collect"/>
+  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.1/@elements.0"
+      value="Set"/>
+  <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.3/@elements.0"
+      value="select"/>
+  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.2/@elements.0"
+      value="Collection"/>
+  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.2" value="in"/>
+  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.3/@elements.0"
+      value="Bag"/>
+  <keywords literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.0/@elements.0"
+      value="iterate"/>
+  <keywords literalRefs="#//@templates.51/@templateSequence/@elements.0" value="let"/>
+  <keywords literalRefs="#//@templates.25/@templateSequence/@elements.0/@sequences.4/@elements.0"
+      value="OrderedSet"/>
   <symbols name="DDOT" literalRefs="#//@templates.49/@templateSequence/@elements.1"
       value=".."/>
   <symbols name="LBRACKET" value="["/>
@@ -784,15 +855,15 @@
   <symbols name="RCURL" literalRefs="#//@templates.25/@templateSequence/@elements.3"
       value="}"/>
   <symbols name="STAR" value="*"/>
-  <symbols name="LPAREN" literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.0/@elements.1 #//@templates.59/@templateSequence/@elements.0/@sequences.1/@elements.1 #//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.1"
+  <symbols name="LPAREN" literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.0/@elements.1 #//@templates.59/@templateSequence/@elements.0/@sequences.1/@elements.1 #//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.1 #//@templates.59/@templateSequence/@elements.0/@sequences.3/@elements.1 #//@templates.63/@templateSequence/@elements.1"
       value="("/>
-  <symbols name="RPAREN" literalRefs="#//@templates.59/@templateSequence/@elements.3"
+  <symbols name="RPAREN" literalRefs="#//@templates.59/@templateSequence/@elements.3 #//@templates.63/@templateSequence/@elements.3"
       value=")"/>
   <symbols name="COLON" literalRefs="#//@templates.53/@templateSequence/@elements.1/@sequences.1/@elements.0 #//@templates.55/@templateSequence/@elements.1/@sequences.1/@elements.0"
       value=":"/>
   <symbols name="DCOLON" literalRefs="#//@templates.23/@templateSequence/@elements.1"
       value="::"/>
-  <symbols name="COMMA" literalRefs="#//@templates.25/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.59/@templateSequence/@elements.0/@sequences.1/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0"
+  <symbols name="COMMA" literalRefs="#//@templates.25/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.59/@templateSequence/@elements.0/@sequences.1/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.59/@templateSequence/@elements.0/@sequences.2/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0 #//@templates.59/@templateSequence/@elements.0/@sequences.3/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0"
       value=","/>
   <symbols name="SEMI" literalRefs="#//@templates.59/@templateSequence/@elements.0/@sequences.0/@elements.3/@sequences.0/@elements.0"
       value=";"/>
@@ -800,6 +871,12 @@
   <symbols name="EQUALS" operators="#//@operatorLists.0/@priorities.1/@operators.0"
       literalRefs="#//@templates.53/@templateSequence/@elements.2 #//@templates.55/@templateSequence/@elements.2/@thenSequence/@elements.0"
       value="="/>
+  <symbols name="GT" operators="#//@operatorLists.0/@priorities.1/@operators.1" value=">"/>
+  <symbols name="GTRQULAS" operators="#//@operatorLists.0/@priorities.1/@operators.3"
+      value=">="/>
+  <symbols name="LT" operators="#//@operatorLists.0/@priorities.1/@operators.2" value="&lt;"/>
+  <symbols name="LTEQUALS" operators="#//@operatorLists.0/@priorities.1/@operators.4"
+      value="&lt;="/>
   <symbols name="ARROW" operators="#//@operatorLists.0/@priorities.0/@operators.1"
       value="->"/>
   <symbols name="BAR" literalRefs="#//@templates.59/@templateSequence/@elements.1"
@@ -808,11 +885,15 @@
       value="'"/>
   <operatorLists name="OclExpressions">
     <priorities value="0">
-      <operators name="dotOp" arity="2" literal="#//@symbols.12" templates="#//@templates.62"/>
-      <operators name="arrowOp" arity="2" literal="#//@symbols.14" templates="#//@templates.59"/>
+      <operators name="dotOp" arity="2" literal="#//@symbols.12" templates="#//@templates.62 #//@templates.63"/>
+      <operators name="arrowOp" arity="2" literal="#//@symbols.18" templates="#//@templates.59"/>
     </priorities>
     <priorities value="1">
-      <operators name="equalsOp" arity="2" literal="#//@symbols.13"/>
+      <operators name="equalsOp" arity="2" literal="#//@symbols.13" templates="#//@templates.64"/>
+      <operators name="gtOp" arity="2" literal="#//@symbols.14"/>
+      <operators name="ltOp" arity="2" literal="#//@symbols.16"/>
+      <operators name="gtequalsOp" arity="2" literal="#//@symbols.15"/>
+      <operators name="ltequalsOp" arity="2" literal="#//@symbols.17"/>
     </priorities>
   </operatorLists>
   <tokens name="COMMENT" omitted="true">

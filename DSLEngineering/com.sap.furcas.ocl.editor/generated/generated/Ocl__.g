@@ -59,149 +59,178 @@ import org.antlr.runtime.BitSet;
 import org.antlr.runtime.IntStream;
 import org.antlr.runtime.RecognitionException;}
 
-T__35 : 'in' ;
-T__36 : 'Collection' ;
-T__37 : 'endif' ;
-T__38 : 'OrderedSet' ;
-T__39 : 'collect' ;
-T__40 : 'self' ;
-T__41 : 'Bag' ;
-T__42 : 'Set' ;
-T__43 : 'iterate' ;
-T__44 : 'if' ;
-T__45 : 'let' ;
-T__46 : 'then' ;
-T__47 : 'forAll' ;
-T__48 : 'Sequence' ;
-T__49 : 'else' ;
+T__39 : 'if' ;
+T__40 : 'endif' ;
+T__41 : 'then' ;
+T__42 : 'forAll' ;
+T__43 : 'self' ;
+T__44 : 'else' ;
+T__45 : 'Sequence' ;
+T__46 : 'collect' ;
+T__47 : 'Set' ;
+T__48 : 'select' ;
+T__49 : 'Collection' ;
+T__50 : 'in' ;
+T__51 : 'Bag' ;
+T__52 : 'iterate' ;
+T__53 : 'OrderedSet' ;
+T__54 : 'let' ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 964
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1019
 COMMENT
   :
      ((('//' (~('\r'| '\n'))*))){$channel=HIDDEN;}
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 970
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1025
 MULTI_LINE_COMMENT
   :
      ((('/**' (options {greedy = false;} : ('\n'| ~ '\n'))* '*/'))){$channel=HIDDEN;}
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 976
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1031
 DDOT
   :
   '..'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 982
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1037
 LBRACKET
   :
   '['
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 988
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1043
 RBRACKET
   :
   ']'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 994
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1049
 LCURL
   :
   '{'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1000
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1055
 RCURL
   :
   '}'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1006
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1061
 STAR
   :
   '*'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1012
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1067
 LPAREN
   :
   '('
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1018
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1073
 RPAREN
   :
   ')'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1024
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1079
 COLON
   :
   ':'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1030
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1085
 DCOLON
   :
   '::'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1036
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1091
 COMMA
   :
   ','
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1042
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1097
 SEMI
   :
   ';'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1048
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1103
 DOT
   :
   '.'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1054
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1109
 EQUALS
   :
   '='
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1060
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1115
+GT
+  :
+  '>'
+  ;
+
+
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1121
+GTRQULAS
+  :
+  '>='
+  ;
+
+
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1127
+LT
+  :
+  '<'
+  ;
+
+
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1133
+LTEQUALS
+  :
+  '<='
+  ;
+
+
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1139
 ARROW
   :
   '->'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1066
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1145
 BAR
   :
   '|'
   ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1072
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1151
 APOSTROPHE
   :
   '\''
@@ -212,7 +241,7 @@ APOSTROPHE
 // testLiterals = false;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1082
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1161
 NL
         :       (       '\r' '\n'
                 |       '\n' '\r'     //Improbable
@@ -222,20 +251,20 @@ NL
         {newline();$channel=HIDDEN;}
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1091
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1170
 WS
         :       (       ' '
                 |       '\t'
                 ){$channel=HIDDEN;}
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1097
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1176
 fragment
 DIGIT
         :       '0'..'9'
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1102
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1181
 fragment
 ALPHA
         :       'a'..'z'
@@ -247,16 +276,16 @@ ALPHA
         |       '\u00F8' .. '\u00FF'
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1113
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1192
 fragment
 SNAME
         :       (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1118
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1197
 BOOL    :       'true' | 'false'        ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1120
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1199
 NAME
         :       (
                         (SNAME (~DCOLON|EOF))=>SNAME
@@ -269,24 +298,24 @@ NAME
                 )
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1132
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1211
 QNAME
         : SNAME DCOLON SNAME (DCOLON SNAME )*
         ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1136
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1215
 protected
 INT
  : (DIGIT)+
  ;
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1141
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1220
 fragment
 FLOAT
         :       DIGIT+ '.' DIGIT*
         ;
   
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1146
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1225
 RANGE_OR_INT
     :   ( INT '..' ) => INT  { _type = INT; }
     |   ( INT '.' NAME ) => INT { _type = INT; }
@@ -301,7 +330,7 @@ RANGE_OR_INT
     ;
 
 
-// $ANTLR src "C:\dev\workspaces\runtime-workspace\OCL.dsl\generated\generated\Ocl.g" 1160
+// $ANTLR src "/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.editor/generated/generated/Ocl.g" 1239
 STRING
         :       '"'!
                 (       
