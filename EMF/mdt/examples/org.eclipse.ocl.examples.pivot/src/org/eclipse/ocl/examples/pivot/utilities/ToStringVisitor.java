@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.6 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -31,7 +31,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
@@ -419,12 +418,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	}
 
 	@Override
-	public String visitCompleteIteration(CompleteIteration object) {
-		safeVisit(object.getModel());
-		return null;
-	}
-
-	@Override
 	public String visitCompleteOperation(CompleteOperation object) {
 		safeVisit(object.getModel());
 		return null;
@@ -432,7 +425,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitCompletePackage(CompletePackage object) {
-		safeVisit(object.getModel());
+		if (object.getModels().size() > 0) {
+			safeVisit(object.getModel());
+		}
+		else {
+			appendName(object);
+		}
 		return null;
 	}
 

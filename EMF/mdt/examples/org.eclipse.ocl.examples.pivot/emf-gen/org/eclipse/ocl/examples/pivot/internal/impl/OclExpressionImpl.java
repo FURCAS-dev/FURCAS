@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OclExpressionImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: OclExpressionImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  *
  * @generated
  */
-public class OclExpressionImpl
+public abstract class OclExpressionImpl
 		extends TypedElementImpl
 		implements OclExpression {
 

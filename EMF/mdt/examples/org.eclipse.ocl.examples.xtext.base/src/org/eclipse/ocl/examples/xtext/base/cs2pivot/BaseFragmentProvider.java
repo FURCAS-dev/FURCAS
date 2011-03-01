@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseFragmentProvider.java,v 1.3 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: BaseFragmentProvider.java,v 1.4 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -26,6 +26,9 @@ public class BaseFragmentProvider extends DefaultFragmentProvider
 {
 	@Override
 	public EObject getEObject(Resource resource, String fragment, Fallback fallback) {
+		if (fragment.startsWith("//@ownedNestedPackage")) {
+			return super.getEObject(resource, fragment, fallback);
+		}
 		try {
 			CS2PivotResourceAdapter converter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
 			if (converter != null) {

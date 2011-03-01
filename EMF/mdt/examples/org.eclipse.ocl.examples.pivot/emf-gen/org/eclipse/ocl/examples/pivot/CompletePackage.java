@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompletePackage.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: CompletePackage.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -27,9 +27,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteEnvironment <em>Complete Environment</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages <em>Complete Package</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,22 +50,27 @@ public interface CompletePackage
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(org.eclipse.ocl.examples.pivot.Package)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_Model()
-	 * @model required="true" ordered="false"
+	 * @model required="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	org.eclipse.ocl.examples.pivot.Package getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModel <em>Model</em>}' reference.
+	 * Returns the value of the '<em><b>Models</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Package}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Models</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' reference.
-	 * @see #getModel()
+	 * @return the value of the '<em>Models</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_Models()
+	 * @model required="true"
 	 * @generated
 	 */
-	void setModel(org.eclipse.ocl.examples.pivot.Package value);
+	EList<org.eclipse.ocl.examples.pivot.Package> getModels();
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.
@@ -93,24 +99,14 @@ public interface CompletePackage
 	void setCompleteEnvironment(CompleteEnvironment value);
 
 	/**
-	 * Returns the value of the '<em><b>Complete Type</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Complete Type</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Complete Type</em>' reference list.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_CompleteType()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	EList<CompleteType> getCompleteTypes();
-
-	/**
 	 * Returns the value of the '<em><b>Complete Package</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompletePackage}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.Package#getNestedPackages() <em>Nested Package</em>}'</li>
+	 * </ul>
+	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Complete Package</em>' reference list isn't clear,
@@ -119,9 +115,31 @@ public interface CompletePackage
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Complete Package</em>' reference list.
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_CompletePackage()
-	 * @model changeable="false" volatile="true" derived="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	EList<CompletePackage> getCompletePackages();
+
+	/**
+	 * Returns the value of the '<em><b>Complete Type</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.CompleteType}.
+	 * <p>
+	 * This feature redefines the following features:
+	 * <ul>
+	 *   <li>'{@link org.eclipse.ocl.examples.pivot.Package#getOwnedTypes() <em>Owned Type</em>}'</li>
+	 * </ul>
+	 * </p>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Complete Type</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Complete Type</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompletePackage_CompleteType()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	EList<CompleteType> getCompleteTypes();
 
 } // CompletePackage

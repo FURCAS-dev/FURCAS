@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2CSConversion.java,v 1.6 2011/02/16 08:43:10 ewillink Exp $
+ * $Id: Pivot2CSConversion.java,v 1.7 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -43,7 +43,6 @@ import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTFactory;
@@ -112,7 +111,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 			importCS.setName(alias);
 			importCS.setNamespace(importedPackage);
 			importCS.setPivot(importedPackage);
-			EObject eObject = ((PivotObjectImpl)importedPackage).getTarget();
+			EObject eObject = importedPackage.getETarget();
 			URI fullURI = EcoreUtil.getURI(eObject != null ? eObject : importedPackage);
 			URI deresolvedURI = fullURI.deresolve(oclinecoreURI);
 			importCS.setUri(deresolvedURI.toString());
@@ -357,7 +356,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		}
 	}
 
-	protected <T extends ElementCS> T visitDeclaration(Class<T> csClass, EObject eObject) {
+	public <T extends ElementCS> T visitDeclaration(Class<T> csClass, EObject eObject) {
 		BaseDeclarationVisitor declarationVisitor = getDeclarationVisitor(eObject.eClass());
 		if ((declarationVisitor == null) || !(eObject instanceof Visitable)) {
 			logger.warn("Unsupported declaration " + eObject.eClass().getName());
@@ -369,7 +368,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return castElement;
 	}
 
-	protected <T extends ElementCS, V extends EObject> List<T> visitDeclarations(Class<T> csClass, List<V> eObjects, Pivot2CS.Predicate<V> predicate) {
+	public <T extends ElementCS, V extends EObject> List<T> visitDeclarations(Class<T> csClass, List<V> eObjects, Pivot2CS.Predicate<V> predicate) {
 		List<T> csElements = new ArrayList<T>();
 		for (V eObject : eObjects) {
 			if ((predicate == null) || predicate.filter(eObject)) {
@@ -385,7 +384,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return csElements;
 	}
 
-	protected <T extends ElementCS> T visitReference(Class<T> csClass, EObject eObject) {
+	public <T extends ElementCS> T visitReference(Class<T> csClass, EObject eObject) {
 		BaseReferenceVisitor referenceVisitor = getReferenceVisitor(eObject.eClass());
 		if ((referenceVisitor == null) || !(eObject instanceof Visitable)) {
 			logger.warn("Unsupported reference " + eObject.eClass().getName());
@@ -404,7 +403,7 @@ public class Pivot2CSConversion extends AbstractConversion implements PivotConst
 		return castElement;
 	}
 
-	protected <T extends ElementCS, V extends EObject> List<T> visitReferences(Class<T> csClass, List<? extends V> eObjects, Pivot2CS.Predicate<V> predicate) {
+	public <T extends ElementCS, V extends EObject> List<T> visitReferences(Class<T> csClass, List<? extends V> eObjects, Pivot2CS.Predicate<V> predicate) {
 		List<T> csElements = new ArrayList<T>();
 		for (V eObject : eObjects) {
 			if ((predicate == null) || predicate.filter(eObject)) {

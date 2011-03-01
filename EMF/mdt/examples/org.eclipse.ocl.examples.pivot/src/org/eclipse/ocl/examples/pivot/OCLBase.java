@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: OCLBase.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -350,7 +350,6 @@ public abstract class OCLBase {
 		EvaluationEnvironment localEvalEnv = getEvaluationEnvironment();
 		ValueFactory valueFactory = localEvalEnv.getValueFactory();
 		Value value = valueFactory.valueOf(context);
-//		localEvalEnv.add(Environment.SELF_VARIABLE_NAME, value);
 		localEvalEnv.add(expression.getContextVariable(), value);
 //		if ((value != null) && !value.isUndefined()) {
 //			expression.getContextVariable().setValue(value);
@@ -372,7 +371,6 @@ public abstract class OCLBase {
 			evaluationProblems = e.getDiagnostic();
 			throw e;
 		} finally {
-//			localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
 			localEvalEnv.remove(expression.getContextVariable());
 		}
 		if (result == null) {

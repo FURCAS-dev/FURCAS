@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IfExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: IfExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -190,15 +190,6 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createCondition() {
-		return createCondition(PivotPackage.Literals.OCL_EXPRESSION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OclExpression getThenExpression() {
 		if (thenExpression != null && ((EObject)thenExpression).eIsProxy())
 		{
@@ -282,15 +273,6 @@ public class IfExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createThenExpression() {
-		return createThenExpression(PivotPackage.Literals.OCL_EXPRESSION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OclExpression getElseExpression() {
 		if (elseExpression != null && ((EObject)elseExpression).eIsProxy())
 		{
@@ -367,15 +349,6 @@ public class IfExpImpl
 		OclExpression newElseExpression = (OclExpression) create(eClass);
 		setElseExpression(newElseExpression);
 		return newElseExpression;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createElseExpression() {
-		return createElseExpression(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.4 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -45,8 +44,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
  */
 public class PivotSaver
 {
-	private static final Logger logger = Logger.getLogger(PivotSaver.class);
-
 	/**
 	 * PivotSaveLocateVisitor locates references to shared specializations, so that 
 	 * local copies can be created and then replaced by the PivotSaveResolveVisitor.
@@ -234,8 +231,7 @@ public class PivotSaver
 		}
 
 		public Object visiting(Visitable visitable) {
-			logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-			return null;
+			throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for PivotSaver Resolve pass");
 		}
 	}
 	

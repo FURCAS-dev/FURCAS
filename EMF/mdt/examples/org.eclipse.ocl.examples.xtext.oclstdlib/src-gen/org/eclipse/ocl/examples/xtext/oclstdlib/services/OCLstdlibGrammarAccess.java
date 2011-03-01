@@ -799,15 +799,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedExpressionExpCSParserRuleCall_3_0 = (RuleCall)cOwnedExpressionAssignment_3.eContents().get(0);
+		private final Assignment cSpecificationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSpecificationSpecificationCSParserRuleCall_3_0 = (RuleCall)cSpecificationAssignment_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//InvCS returns LibConstraintCS:
-		//	stereotype="inv" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+		//	stereotype="inv" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="inv" name=UnrestrictedName? ":" ownedExpression=ExpCS ";"
+		//stereotype="inv" name=UnrestrictedName? ":" specification=SpecificationCS ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="inv"
@@ -825,11 +825,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//ownedExpression=ExpCS
-		public Assignment getOwnedExpressionAssignment_3() { return cOwnedExpressionAssignment_3; }
+		//specification=SpecificationCS
+		public Assignment getSpecificationAssignment_3() { return cSpecificationAssignment_3; }
 
-		//ExpCS
-		public RuleCall getOwnedExpressionExpCSParserRuleCall_3_0() { return cOwnedExpressionExpCSParserRuleCall_3_0; }
+		//SpecificationCS
+		public RuleCall getSpecificationSpecificationCSParserRuleCall_3_0() { return cSpecificationSpecificationCSParserRuleCall_3_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
@@ -1664,15 +1664,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedExpressionExpCSParserRuleCall_3_0 = (RuleCall)cOwnedExpressionAssignment_3.eContents().get(0);
+		private final Assignment cSpecificationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSpecificationSpecificationCSParserRuleCall_3_0 = (RuleCall)cSpecificationAssignment_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PostCS returns LibConstraintCS:
-		//	stereotype="post" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+		//	stereotype="post" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="post" name=UnrestrictedName? ":" ownedExpression=ExpCS ";"
+		//stereotype="post" name=UnrestrictedName? ":" specification=SpecificationCS ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="post"
@@ -1690,11 +1690,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//ownedExpression=ExpCS
-		public Assignment getOwnedExpressionAssignment_3() { return cOwnedExpressionAssignment_3; }
+		//specification=SpecificationCS
+		public Assignment getSpecificationAssignment_3() { return cSpecificationAssignment_3; }
 
-		//ExpCS
-		public RuleCall getOwnedExpressionExpCSParserRuleCall_3_0() { return cOwnedExpressionExpCSParserRuleCall_3_0; }
+		//SpecificationCS
+		public RuleCall getSpecificationSpecificationCSParserRuleCall_3_0() { return cSpecificationSpecificationCSParserRuleCall_3_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
@@ -1708,15 +1708,15 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameUnrestrictedNameParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cOwnedExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cOwnedExpressionExpCSParserRuleCall_3_0 = (RuleCall)cOwnedExpressionAssignment_3.eContents().get(0);
+		private final Assignment cSpecificationAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cSpecificationSpecificationCSParserRuleCall_3_0 = (RuleCall)cSpecificationAssignment_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//PreCS returns LibConstraintCS:
-		//	stereotype="pre" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+		//	stereotype="pre" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 		public ParserRule getRule() { return rule; }
 
-		//stereotype="pre" name=UnrestrictedName? ":" ownedExpression=ExpCS ";"
+		//stereotype="pre" name=UnrestrictedName? ":" specification=SpecificationCS ";"
 		public Group getGroup() { return cGroup; }
 
 		//stereotype="pre"
@@ -1734,11 +1734,11 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//ownedExpression=ExpCS
-		public Assignment getOwnedExpressionAssignment_3() { return cOwnedExpressionAssignment_3; }
+		//specification=SpecificationCS
+		public Assignment getSpecificationAssignment_3() { return cSpecificationAssignment_3; }
 
-		//ExpCS
-		public RuleCall getOwnedExpressionExpCSParserRuleCall_3_0() { return cOwnedExpressionExpCSParserRuleCall_3_0; }
+		//SpecificationCS
+		public RuleCall getSpecificationSpecificationCSParserRuleCall_3_0() { return cSpecificationSpecificationCSParserRuleCall_3_0; }
 
 		//";"
 		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
@@ -1784,6 +1784,22 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameNameParserRuleCall_2_0() { return cNameNameParserRuleCall_2_0; }
 	}
 
+	public class SpecificationCSElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SpecificationCS");
+		private final Assignment cOwnedExpressionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cOwnedExpressionExpCSParserRuleCall_0 = (RuleCall)cOwnedExpressionAssignment.eContents().get(0);
+		
+		//SpecificationCS returns essentialocl::ExpSpecificationCS:
+		//	ownedExpression=ExpCS;
+		public ParserRule getRule() { return rule; }
+
+		//ownedExpression=ExpCS
+		public Assignment getOwnedExpressionAssignment() { return cOwnedExpressionAssignment; }
+
+		//ExpCS
+		public RuleCall getOwnedExpressionExpCSParserRuleCall_0() { return cOwnedExpressionExpCSParserRuleCall_0; }
+	}
+
 	public class TemplateBindingCSElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TemplateBindingCS");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1796,14 +1812,6 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedParameterSubstitutionTemplateParameterSubstitutionCSParserRuleCall_2_1_0 = (RuleCall)cOwnedParameterSubstitutionAssignment_2_1.eContents().get(0);
 		private final Keyword cGreaterThanSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		////NamespaceRefCS returns base::NamespaceRefCS:
-		//
-		////	ref=[pivot::Namespace|Name]
-		//
-		////	(ownedTemplateBinding=TemplateBindingCS)?
-		//
-		////;
-		//
 		//TemplateBindingCS returns base::TemplateBindingCS:
 		//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 		//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
@@ -2118,14 +2126,10 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOwnedTemplateBindingTemplateBindingCSParserRuleCall_2_0 = (RuleCall)cOwnedTemplateBindingAssignment_2.eContents().get(0);
 		
 		//TypedTypeRefCS returns base::TypedTypeRefCS:
-		//	(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
-		//
-		//	type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
+		//	(namespace+=[pivot::Namespace|Name] "::")* type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
 		public ParserRule getRule() { return rule; }
 
-		//(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
-		//
-		//type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?
+		//(namespace+=[pivot::Namespace|Name] "::")* type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?
 		public Group getGroup() { return cGroup; }
 
 		//(namespace+=[pivot::Namespace|Name] "::")*
@@ -2243,6 +2247,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	private PostCSElements pPostCS;
 	private PreCSElements pPreCS;
 	private PrecedenceCSElements pPrecedenceCS;
+	private SpecificationCSElements pSpecificationCS;
 	private TemplateBindingCSElements pTemplateBindingCS;
 	private TemplateParameterSubstitutionCSElements pTemplateParameterSubstitutionCS;
 	private TemplateSignatureCSElements pTemplateSignatureCS;
@@ -2431,7 +2436,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//InvCS returns LibConstraintCS:
-	//	stereotype="inv" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+	//	stereotype="inv" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 	public InvCSElements getInvCSAccess() {
 		return (pInvCS != null) ? pInvCS : (pInvCS = new InvCSElements());
 	}
@@ -2532,7 +2537,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PostCS returns LibConstraintCS:
-	//	stereotype="post" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+	//	stereotype="post" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 	public PostCSElements getPostCSAccess() {
 		return (pPostCS != null) ? pPostCS : (pPostCS = new PostCSElements());
 	}
@@ -2542,7 +2547,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PreCS returns LibConstraintCS:
-	//	stereotype="pre" name=UnrestrictedName? ":" ownedExpression=ExpCS ";";
+	//	stereotype="pre" name=UnrestrictedName? ":" specification=SpecificationCS ";";
 	public PreCSElements getPreCSAccess() {
 		return (pPreCS != null) ? pPreCS : (pPreCS = new PreCSElements());
 	}
@@ -2561,14 +2566,16 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 		return getPrecedenceCSAccess().getRule();
 	}
 
-	////NamespaceRefCS returns base::NamespaceRefCS:
-	//
-	////	ref=[pivot::Namespace|Name]
-	//
-	////	(ownedTemplateBinding=TemplateBindingCS)?
-	//
-	////;
-	//
+	//SpecificationCS returns essentialocl::ExpSpecificationCS:
+	//	ownedExpression=ExpCS;
+	public SpecificationCSElements getSpecificationCSAccess() {
+		return (pSpecificationCS != null) ? pSpecificationCS : (pSpecificationCS = new SpecificationCSElements());
+	}
+	
+	public ParserRule getSpecificationCSRule() {
+		return getSpecificationCSAccess().getRule();
+	}
+
 	//TemplateBindingCS returns base::TemplateBindingCS:
 	//	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
 	//	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
@@ -2652,9 +2659,7 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypedTypeRefCS returns base::TypedTypeRefCS:
-	//	(namespace+=[pivot::Namespace|Name] "::")* //	(namespace+=NamespaceRefCS '::')*
-	//
-	//	type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
+	//	(namespace+=[pivot::Namespace|Name] "::")* type=[pivot::Type|Name] ownedTemplateBinding=TemplateBindingCS?;
 	public TypedTypeRefCSElements getTypedTypeRefCSAccess() {
 		return (pTypedTypeRefCS != null) ? pTypedTypeRefCS : (pTypedTypeRefCS = new TypedTypeRefCSElements());
 	}
@@ -3105,8 +3110,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	////TypeNameExpCS returns base::QualifiedTypeRefCS:
 	//
 	//TypeNameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName];
+	//	"::"? ((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
+	//	element=[pivot::Type|UnreservedName] | element=[pivot::Type|UnrestrictedName]);
 	public EssentialOCLGrammarAccess.TypeNameExpCSElements getTypeNameExpCSAccess() {
 		return gaEssentialOCL.getTypeNameExpCSAccess();
 	}
@@ -3224,8 +3229,8 @@ public class OCLstdlibGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NameExpCS:
-	//	(namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
-	//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName];
+	//	"::"? ((namespace+=[pivot::Namespace|UnrestrictedName] "::" (namespace+=[pivot::Namespace|UnreservedName] "::")*)
+	//	element=[pivot::NamedElement|UnreservedName] | element=[pivot::NamedElement|UnrestrictedName]);
 	public EssentialOCLGrammarAccess.NameExpCSElements getNameExpCSAccess() {
 		return gaEssentialOCL.getNameExpCSAccess();
 	}
