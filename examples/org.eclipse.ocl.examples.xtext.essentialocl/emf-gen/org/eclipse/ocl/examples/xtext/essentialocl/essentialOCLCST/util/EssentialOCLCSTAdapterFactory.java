@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTAdapterFactory.java,v 1.6 2011/01/24 21:31:48 ewillink Exp $
+ * $Id: EssentialOCLCSTAdapterFactory.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.util;
 
@@ -22,25 +22,26 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.*;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BinaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.BooleanLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLiteralPartCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -60,6 +61,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrefixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.PrimitiveLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SelfExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.SimpleNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.StringLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TupleLiteralPartCS;
@@ -173,9 +175,9 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createExpCSAdapter();
 			}
 			@Override
-			public Adapter caseExpConstraintCS(ExpConstraintCS object)
+			public Adapter caseExpSpecificationCS(ExpSpecificationCS object)
 			{
-				return createExpConstraintCSAdapter();
+				return createExpSpecificationCSAdapter();
 			}
 			@Override
 			public Adapter caseIfExpCS(IfExpCS object)
@@ -373,9 +375,9 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 				return createRootCSAdapter();
 			}
 			@Override
-			public Adapter caseConstraintCS(ConstraintCS object)
+			public Adapter caseSpecificationCS(SpecificationCS object)
 			{
-				return createConstraintCSAdapter();
+				return createSpecificationCSAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -520,16 +522,16 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
   /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS <em>Exp Specification CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS
 	 * @generated
 	 */
-	public Adapter createExpConstraintCSAdapter()
+	public Adapter createExpSpecificationCSAdapter()
 	{
 		return null;
 	}
@@ -1120,16 +1122,16 @@ public class EssentialOCLCSTAdapterFactory extends AdapterFactoryImpl
 	}
 
 /**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS <em>Constraint CS</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS <em>Specification CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS
 	 * @generated
 	 */
-	public Adapter createConstraintCSAdapter()
+	public Adapter createSpecificationCSAdapter()
 	{
 		return null;
 	}

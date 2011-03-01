@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactory.java,v 1.5 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLCSTFactory.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -81,13 +81,13 @@ public interface EssentialOCLCSTFactory extends EFactory {
 	ExpCS createExpCS();
 
 	/**
-	 * Returns a new object of class '<em>Exp Constraint CS</em>'.
+	 * Returns a new object of class '<em>Exp Specification CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Exp Constraint CS</em>'.
+	 * @return a new object of class '<em>Exp Specification CS</em>'.
 	 * @generated
 	 */
-	ExpConstraintCS createExpConstraintCS();
+	ExpSpecificationCS createExpSpecificationCS();
 
 	/**
 	 * Returns a new object of class '<em>Type Literal Exp CS</em>'.

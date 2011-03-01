@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackageImpl.java,v 1.7 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: EssentialOCLCSTPackageImpl.java,v 1.8 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -35,7 +35,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedName
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -120,7 +120,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass expConstraintCSEClass = null;
+	private EClass expSpecificationCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -542,9 +542,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpConstraintCS()
+	public EClass getExpSpecificationCS()
 	{
-		return expConstraintCSEClass;
+		return expSpecificationCSEClass;
 	}
 
 	/**
@@ -552,19 +552,9 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpConstraintCS_OwnedExpression()
+	public EReference getExpSpecificationCS_OwnedExpression()
 	{
-		return (EReference)expConstraintCSEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExpConstraintCS_OwnedReason()
-	{
-		return (EReference)expConstraintCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)expSpecificationCSEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1262,9 +1252,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		expCSEClass = createEClass(EXP_CS);
 		createEReference(expCSEClass, EXP_CS__PARENT);
 
-		expConstraintCSEClass = createEClass(EXP_CONSTRAINT_CS);
-		createEReference(expConstraintCSEClass, EXP_CONSTRAINT_CS__OWNED_EXPRESSION);
-		createEReference(expConstraintCSEClass, EXP_CONSTRAINT_CS__OWNED_REASON);
+		expSpecificationCSEClass = createEClass(EXP_SPECIFICATION_CS);
+		createEReference(expSpecificationCSEClass, EXP_SPECIFICATION_CS__OWNED_EXPRESSION);
 
 		ifExpCSEClass = createEClass(IF_EXP_CS);
 		createEReference(ifExpCSEClass, IF_EXP_CS__CONDITION);
@@ -1403,7 +1392,7 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		contextCSEClass.getESuperTypes().add(theBaseCSTPackage.getRootCS());
 		decoratedNamedExpCSEClass.getESuperTypes().add(this.getNamedExpCS());
 		expCSEClass.getESuperTypes().add(theBaseCSTPackage.getMonikeredElementCS());
-		expConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
+		expSpecificationCSEClass.getESuperTypes().add(theBaseCSTPackage.getSpecificationCS());
 		ifExpCSEClass.getESuperTypes().add(this.getExpCS());
 		indexExpCSEClass.getESuperTypes().add(this.getDecoratedNamedExpCS());
 		infixExpCSEClass.getESuperTypes().add(this.getExpCS());
@@ -1463,9 +1452,8 @@ public class EssentialOCLCSTPackageImpl extends EPackageImpl implements Essentia
 		initEClass(expCSEClass, ExpCS.class, "ExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getExpCS_Parent(), this.getOperatorCS(), null, "parent", null, 0, 1, ExpCS.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(expConstraintCSEClass, ExpConstraintCS.class, "ExpConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getExpConstraintCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ExpConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getExpConstraintCS_OwnedReason(), this.getExpCS(), null, "ownedReason", null, 0, 1, ExpConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(expSpecificationCSEClass, ExpSpecificationCS.class, "ExpSpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getExpSpecificationCS_OwnedExpression(), this.getExpCS(), null, "ownedExpression", null, 0, 1, ExpSpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(ifExpCSEClass, IfExpCS.class, "IfExpCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getIfExpCS_Condition(), this.getExpCS(), null, "condition", null, 0, 1, IfExpCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

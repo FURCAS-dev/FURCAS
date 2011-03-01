@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTFactoryImpl.java,v 1.6 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: EssentialOCLCSTFactoryImpl.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl;
 
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTFactory;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IndexExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
@@ -114,7 +114,7 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 			case EssentialOCLCSTPackage.COLLECTION_TYPE_CS: return createCollectionTypeCS();
 			case EssentialOCLCSTPackage.CONTEXT_CS: return createContextCS();
 			case EssentialOCLCSTPackage.EXP_CS: return createExpCS();
-			case EssentialOCLCSTPackage.EXP_CONSTRAINT_CS: return createExpConstraintCS();
+			case EssentialOCLCSTPackage.EXP_SPECIFICATION_CS: return createExpSpecificationCS();
 			case EssentialOCLCSTPackage.IF_EXP_CS: return createIfExpCS();
 			case EssentialOCLCSTPackage.INDEX_EXP_CS: return createIndexExpCS();
 			case EssentialOCLCSTPackage.INFIX_EXP_CS: return createInfixExpCS();
@@ -238,10 +238,10 @@ public class EssentialOCLCSTFactoryImpl extends EFactoryImpl implements Essentia
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpConstraintCS createExpConstraintCS()
+	public ExpSpecificationCS createExpSpecificationCS()
 	{
-		ExpConstraintCSImpl expConstraintCS = new ExpConstraintCSImpl();
-		return expConstraintCS;
+		ExpSpecificationCSImpl expSpecificationCS = new ExpSpecificationCSImpl();
+		return expSpecificationCS;
 	}
 
 	/**

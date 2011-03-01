@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.3 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -43,7 +43,6 @@ import com.google.inject.Inject;
 
 public class EssentialOCLLinkingService extends DefaultLinkingService
 {
-//	private static final Logger log = Logger.getLogger(OCLstdlibLinkingService.class);
 	private static int depth = -1;
 	
 	@Inject
@@ -69,15 +68,9 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 			String uri = TypesPackage.eNS_URI;
 //			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
 			if (ref.getEReferenceType().getEPackage().getNsURI().equals(uri)) {
-//				scope = globalScopeProvider.getScope(context, ref);
 				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
 			}
 			else {
-//				Resource eResource = context.eResource();
-//				CS2PivotResourceAdapter adapter = (CS2PivotResourceAdapter) EcoreUtil.getAdapter(eResource.eAdapters(), CS2PivotResourceAdapter.class);
-//				if (adapter == null) {
-//					CS2PivotResourceAdapter.refreshPivotMappings(eResource);
-//				}
 				scopeAdapter = ElementUtil.getScopeCSAdapter((ElementCS) context);
 				if (scopeAdapter.isUnresolvable()) {
 					if (traceLookup) {
@@ -86,7 +79,6 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 					return Collections.emptyList();
 				}
 				scope = getScope(context, ref);
-//				if (scope instanceof ScopeView) {
 				if (traceLookup) {
 //					EObject target = ((ScopeView)scope).getTarget();
 //					String inString = target instanceof ElementCS ? ((ElementCS)target).getSignature() : target.toString();

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLScopeVisitor.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLScopeVisitor.java,v 1.3 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionLit
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.CollectionTypeCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.InfixExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.LetExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
@@ -40,6 +41,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeNameExpCS
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.UnaryOperatorCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ContextCSScopeAdapter;
+import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpSpecificationCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.ExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.LetExpCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.NameExpCSScopeAdapter;
@@ -85,6 +87,11 @@ public class EssentialOCLScopeVisitor
 	@Override
 	public ScopeCSAdapter visitExpCS(ExpCS eObject) {
 		return new ExpCSScopeAdapter<ExpCS, OclExpression>(context, eObject, OclExpression.class);
+	}
+
+	@Override
+	public ScopeCSAdapter visitExpSpecificationCS(ExpSpecificationCS object) {
+		return new ExpSpecificationCSScopeAdapter(context, object);
 	}
 
 	@Override

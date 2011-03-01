@@ -12,27 +12,21 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: ExpSpecificationCSScopeAdapter.java,v 1.1 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.scope.AbstractRootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 
-public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS, ExpressionInOcl>
+public class ExpSpecificationCSScopeAdapter extends EssentialOCLCSScopeAdapter<ExpSpecificationCS, ExpressionInOcl>
 {
-	public ContextCSScopeAdapter(TypeManager typeManager, ContextCS csElement) {
+	public ExpSpecificationCSScopeAdapter(TypeManager typeManager, ExpSpecificationCS csElement) {
 		super(typeManager, csElement, ExpressionInOcl.class);
 	}
 
@@ -59,20 +53,6 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				}
 			}
 		}
-		else {
-			Resource resource = target.eResource();
-			if (resource instanceof EvaluationContext) {
-				NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
-				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
-				if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
-					ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
-					environmentView.computeLookups(ruleScopeView);
-				}				
-			}
-		}
-		if (!environmentView.hasFinalResult()) {
-			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
-		}
-		return super.computeLookup(environmentView, scopeView);
+		return scopeView.getOuterScope();
 	}
 }
