@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LibConstraintCS.java,v 1.2 2011/01/24 22:28:25 ewillink Exp $
+ * $Id: LibConstraintCS.java,v 1.3 2011/03/01 08:46:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +29,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraint
  * @generated
  */
 public interface LibConstraintCS
-		extends ExpConstraintCS {
+		extends ConstraintCS {
 
 } // LibConstraintCS

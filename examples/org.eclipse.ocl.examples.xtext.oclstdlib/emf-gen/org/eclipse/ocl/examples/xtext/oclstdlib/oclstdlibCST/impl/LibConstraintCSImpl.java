@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: LibConstraintCSImpl.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: LibConstraintCSImpl.java,v 1.3 2011/03/01 08:46:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibConstraintCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.util.OCLstdlibCSVisitor;
  * @generated
  */
 public class LibConstraintCSImpl
-		extends ExpConstraintCSImpl
+		extends ConstraintCSImpl
 		implements LibConstraintCS {
 
 	/**
