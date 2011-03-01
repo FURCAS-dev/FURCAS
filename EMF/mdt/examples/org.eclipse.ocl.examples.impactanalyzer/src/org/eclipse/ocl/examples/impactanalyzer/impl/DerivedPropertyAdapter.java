@@ -49,19 +49,20 @@ public class DerivedPropertyAdapter implements Adapter {
     private final EStructuralFeature property;
     private final OCLExpression derivationExp;
     private final OCLFactory oclFactory = OCLFactory.INSTANCE;
-	private final OCL ocl;
 
     public DerivedPropertyAdapter(EStructuralFeature derivedProperty) {
         if(!derivedProperty.isDerived()){
             throw new IllegalArgumentException("Given property must be derived");
         }
+        
         this.property = derivedProperty;
-        //TODO: verify if EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE is correct
-        this.ocl = this.oclFactory.createOCL(EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE);
-        this.derivationExp = SettingBehavior.INSTANCE.getFeatureBody(this.ocl, this.property);
-        em = EventManagerFactory.eINSTANCE.getEventManagerFor(property.eResource().getResourceSet()); // probably wrong if instance model does not share the resource set with the meta model
-        ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(derivationExp, true, this.oclFactory);
-        em.subscribe(ia.createFilterForExpression(), this);
+        //TODO: verify if OCL.newInstance() doesn't break things because the IA will build it's own instance
+        this.derivationExp = SettingBehavior.INSTANCE.getFeatureBody(OCL.newInstance(), this.property);
+        this.em = EventManagerFactory.eINSTANCE.getEventManagerFor(property.eResource().getResourceSet()); // probably wrong if instance model does not share the resource set with the meta model
+        this.ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(derivationExp, true, this.oclFactory);
+        
+        // subscribe at the event manager to get notified about changes that match the created filter (i.e. may have impact on the derivation expression)
+        this.em.subscribe(ia.createFilterForExpression(), this);
     }
 
     @SuppressWarnings("unchecked")
@@ -70,6 +71,7 @@ public class DerivedPropertyAdapter implements Adapter {
             // in case of a "touch" that did not change anything, just do nothing
             return;
         }
+        
         Collection<EObject> impact = ia.getContextObjects(notification);
         if (impact.size() > 0) {
             // calculate the exact change
@@ -77,16 +79,10 @@ public class DerivedPropertyAdapter implements Adapter {
                 Object resultPre = null;
                 Object resultPost = null;
                 try {
-                    /* comment recommends using #getInstance(set), but this method is not present at the time of this implementation. */
+                    // comment recommends using #getInstance(set), but this method is not present at the time of this implementation.
                     PartialEvaluator prePartEv = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(notification, DefaultOppositeEndFinder.getInstance(), oclFactory);
-                    resultPre = prePartEv.evaluate(context, derivationExp);
-                } catch (ValueNotFoundException e) {
-                    // since the self context of the expression is known, there should be no unknown variables
-                    throw new RuntimeException("During the partial evaluation of a derived property expression, an unknown variable was found.");
-                }
-                try {
-                    /* comment recommends using #getInstance(set), but this method is not present at the time of this implementation. */
                     PartialEvaluator postPartEv = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(DefaultOppositeEndFinder.getInstance(), oclFactory);
+                    resultPre = prePartEv.evaluate(context, derivationExp);
                     resultPost = postPartEv.evaluate(context, derivationExp);
                 } catch (ValueNotFoundException e) {
                     // since the self context of the expression is known, there should be no unknown variables
@@ -103,7 +99,7 @@ public class DerivedPropertyAdapter implements Adapter {
                         EList<EObject> preList;
                         EList<EObject> postList;
                         if(resultPre instanceof EList<?> && resultPost instanceof EList<?>){
-                            // this is as much typechecking as possible
+                            // this is as much typechecking as possible -> supressed warnings for "unchecked"
                             preList = (EList<EObject>) resultPre;
                             postList = (EList<EObject>) resultPost;
                         }else{
