@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.8 2011/01/24 21:56:22 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.9 2011/03/01 08:47:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -76,13 +76,13 @@ public class OCLinEcoreDocument extends BaseDocument
 	public void saveAsEcore(Writer writer) throws IOException, CoreException {
 		XMLResource pivotResource = getPivotResouce();
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		List<EObject> ecoreContents = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource);
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		URI ecoreURI = URI.createURI("internal.ecore");
-		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
-		ecoreResource.getContents().addAll(ecoreContents);
-		checkForErrors(ecoreResource);
+		URI ecoreURI = resource2.getURI();
+		XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI);
+//		ResourceSetImpl resourceSet = new ResourceSetImpl();
+//		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
+//		ecoreResource.getContents().addAll(ecoreContents);
 		ecoreResource.save(writer, null);
+		checkForErrors(ecoreResource);
 	}
 
 	/**
