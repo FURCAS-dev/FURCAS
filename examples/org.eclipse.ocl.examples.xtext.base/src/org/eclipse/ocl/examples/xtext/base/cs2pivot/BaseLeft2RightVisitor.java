@@ -12,18 +12,22 @@
  *
  * </copyright>
  *
- * $Id: BaseLeft2RightVisitor.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: BaseLeft2RightVisitor.java,v 1.3 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
-import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -37,8 +41,6 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<MonikeredElement, CS2PivotConversion>
 {
-	private static final Logger logger = Logger.getLogger(BaseLeft2RightVisitor.class);
-
 	public BaseLeft2RightVisitor(CS2PivotConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
 	}
@@ -55,7 +57,7 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 
 	@Override
 	public MonikeredElement visitConstraintCS(ConstraintCS object) {
-		return null;
+		return context.visitLeft2Right(Constraint.class, object.getSpecification());
 	}
 
 	@Override
@@ -71,6 +73,15 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 	@Override
 	public MonikeredElement visitParameterCS(ParameterCS object) {
 		return null;
+	}
+
+	@Override
+	public MonikeredElement visitSpecificationCS(SpecificationCS object) {
+		OpaqueExpression pivotElement = context.refreshMonikeredElement(OpaqueExpression.class, PivotPackage.Literals.OPAQUE_EXPRESSION, object);
+		pivotElement.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+		pivotElement.getBodies().add(object.getExprString());
+		pivotElement.getMessages().add(null);
+		return pivotElement;
 	}
 
 	@Override
@@ -114,7 +125,6 @@ public class BaseLeft2RightVisitor extends AbstractExtendingBaseCSVisitor<Monike
 	}
 
 	public MonikeredElement visiting(VisitableCS visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot Left2Right pass");
 	}
 }

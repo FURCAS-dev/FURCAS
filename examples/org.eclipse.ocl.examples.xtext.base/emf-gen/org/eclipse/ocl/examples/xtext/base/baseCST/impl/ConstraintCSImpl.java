@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,15 +12,18 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: ConstraintCSImpl.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +33,8 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl#getExprString <em>Expr String</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl#getSpecification <em>Specification</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl#getMessageSpecification <em>Message Specification</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,24 +63,24 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	protected String stereotype = STEREOTYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getExprString() <em>Expr String</em>}' attribute.
+	 * The cached value of the '{@link #getSpecification() <em>Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExprString()
+	 * @see #getSpecification()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EXPR_STRING_EDEFAULT = null;
+	protected SpecificationCS specification;
 
 	/**
-	 * The cached value of the '{@link #getExprString() <em>Expr String</em>}' attribute.
+	 * The cached value of the '{@link #getMessageSpecification() <em>Message Specification</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExprString()
+	 * @see #getMessageSpecification()
 	 * @generated
 	 * @ordered
 	 */
-	protected String exprString = EXPR_STRING_EDEFAULT;
+	protected SpecificationCS messageSpecification;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,9 +131,9 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getExprString()
+	public SpecificationCS getSpecification()
 	{
-		return exprString;
+		return specification;
 	}
 
 	/**
@@ -137,12 +141,103 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExprString(String newExprString)
+	public NotificationChain basicSetSpecification(SpecificationCS newSpecification, NotificationChain msgs)
 	{
-		String oldExprString = exprString;
-		exprString = newExprString;
+		SpecificationCS oldSpecification = specification;
+		specification = newSpecification;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING, oldExprString, exprString));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION, oldSpecification, newSpecification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSpecification(SpecificationCS newSpecification)
+	{
+		if (newSpecification != specification)
+		{
+			NotificationChain msgs = null;
+			if (specification != null)
+				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION, null, msgs);
+			if (newSpecification != null)
+				msgs = ((InternalEObject)newSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION, null, msgs);
+			msgs = basicSetSpecification(newSpecification, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION, newSpecification, newSpecification));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SpecificationCS getMessageSpecification()
+	{
+		return messageSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMessageSpecification(SpecificationCS newMessageSpecification, NotificationChain msgs)
+	{
+		SpecificationCS oldMessageSpecification = messageSpecification;
+		messageSpecification = newMessageSpecification;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION, oldMessageSpecification, newMessageSpecification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMessageSpecification(SpecificationCS newMessageSpecification)
+	{
+		if (newMessageSpecification != messageSpecification)
+		{
+			NotificationChain msgs = null;
+			if (messageSpecification != null)
+				msgs = ((InternalEObject)messageSpecification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION, null, msgs);
+			if (newMessageSpecification != null)
+				msgs = ((InternalEObject)newMessageSpecification).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION, null, msgs);
+			msgs = basicSetMessageSpecification(newMessageSpecification, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION, newMessageSpecification, newMessageSpecification));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION:
+				return basicSetSpecification(null, msgs);
+			case BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION:
+				return basicSetMessageSpecification(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -157,8 +252,10 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 		{
 			case BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				return getStereotype();
-			case BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING:
-				return getExprString();
+			case BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION:
+				return getSpecification();
+			case BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION:
+				return getMessageSpecification();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,8 +273,11 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 			case BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				setStereotype((String)newValue);
 				return;
-			case BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING:
-				setExprString((String)newValue);
+			case BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION:
+				setSpecification((SpecificationCS)newValue);
+				return;
+			case BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION:
+				setMessageSpecification((SpecificationCS)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,8 +296,11 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 			case BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				setStereotype(STEREOTYPE_EDEFAULT);
 				return;
-			case BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING:
-				setExprString(EXPR_STRING_EDEFAULT);
+			case BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION:
+				setSpecification((SpecificationCS)null);
+				return;
+			case BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION:
+				setMessageSpecification((SpecificationCS)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -215,8 +318,10 @@ public class ConstraintCSImpl extends NamedElementCSImpl implements ConstraintCS
 		{
 			case BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE:
 				return STEREOTYPE_EDEFAULT == null ? stereotype != null : !STEREOTYPE_EDEFAULT.equals(stereotype);
-			case BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING:
-				return EXPR_STRING_EDEFAULT == null ? exprString != null : !EXPR_STRING_EDEFAULT.equals(exprString);
+			case BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION:
+				return specification != null;
+			case BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION:
+				return messageSpecification != null;
 		}
 		return super.eIsSet(featureID);
 	}

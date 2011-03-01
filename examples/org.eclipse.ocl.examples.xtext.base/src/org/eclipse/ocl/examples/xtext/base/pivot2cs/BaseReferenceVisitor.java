@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseReferenceVisitor.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: BaseReferenceVisitor.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.pivot2cs;
 
@@ -102,7 +102,6 @@ public class BaseReferenceVisitor extends AbstractExtendingVisitor<ElementCS, Pi
 */	}
 
 	public ElementCS visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2CS Reference pass");
 	}
 }

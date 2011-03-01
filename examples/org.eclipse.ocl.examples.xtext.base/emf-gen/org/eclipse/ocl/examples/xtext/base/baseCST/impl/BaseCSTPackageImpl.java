@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.11 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.12 2011/03/01 08:47:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -64,6 +64,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -333,6 +334,13 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * @generated
 	 */
 	private EClass rootPackageCSEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass specificationCSEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -759,9 +767,19 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConstraintCS_ExprString()
+	public EReference getConstraintCS_Specification()
 	{
-		return (EAttribute)constraintCSEClass.getEStructuralFeatures().get(1);
+		return (EReference)constraintCSEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstraintCS_MessageSpecification()
+	{
+		return (EReference)constraintCSEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1310,6 +1328,26 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSpecificationCS()
+	{
+		return specificationCSEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSpecificationCS_ExprString()
+	{
+		return (EAttribute)specificationCSEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStructuralFeatureCS() {
 		return structuralFeatureCSEClass;
 	}
@@ -1745,7 +1783,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		constraintCSEClass = createEClass(CONSTRAINT_CS);
 		createEAttribute(constraintCSEClass, CONSTRAINT_CS__STEREOTYPE);
-		createEAttribute(constraintCSEClass, CONSTRAINT_CS__EXPR_STRING);
+		createEReference(constraintCSEClass, CONSTRAINT_CS__SPECIFICATION);
+		createEReference(constraintCSEClass, CONSTRAINT_CS__MESSAGE_SPECIFICATION);
 
 		dataTypeCSEClass = createEClass(DATA_TYPE_CS);
 		createEReference(dataTypeCSEClass, DATA_TYPE_CS__LITERALS);
@@ -1828,6 +1867,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		createEReference(rootCSEClass, ROOT_CS__OWNED_LIBRARY);
 
 		rootPackageCSEClass = createEClass(ROOT_PACKAGE_CS);
+
+		specificationCSEClass = createEClass(SPECIFICATION_CS);
+		createEAttribute(specificationCSEClass, SPECIFICATION_CS__EXPR_STRING);
 
 		structuralFeatureCSEClass = createEClass(STRUCTURAL_FEATURE_CS);
 		createEReference(structuralFeatureCSEClass, STRUCTURAL_FEATURE_CS__OWNER);
@@ -1968,6 +2010,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		rootCSEClass.getESuperTypes().add(this.getModelElementCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getPackageCS());
 		rootPackageCSEClass.getESuperTypes().add(this.getRootCS());
+		specificationCSEClass.getESuperTypes().add(this.getMonikeredElementCS());
 		structuralFeatureCSEClass.getESuperTypes().add(this.getFeatureCS());
 		templateBindingCSEClass.getESuperTypes().add(this.getModelElementCS());
 		templateParameterCSEClass.getESuperTypes().add(this.getNamedElementCS());
@@ -2021,7 +2064,8 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 
 		initEClass(constraintCSEClass, ConstraintCS.class, "ConstraintCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getConstraintCS_Stereotype(), ecorePackage.getEString(), "stereotype", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getConstraintCS_ExprString(), ecorePackage.getEString(), "exprString", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstraintCS_Specification(), this.getSpecificationCS(), null, "specification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getConstraintCS_MessageSpecification(), this.getSpecificationCS(), null, "messageSpecification", null, 0, 1, ConstraintCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(dataTypeCSEClass, DataTypeCS.class, "DataTypeCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDataTypeCS_Literals(), this.getEnumerationLiteralCS(), null, "literals", null, 0, -1, DataTypeCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2111,6 +2155,9 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEReference(getRootCS_OwnedLibrary(), this.getLibraryCS(), null, "ownedLibrary", null, 0, -1, RootCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(rootPackageCSEClass, RootPackageCS.class, "RootPackageCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(specificationCSEClass, SpecificationCS.class, "SpecificationCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSpecificationCS_ExprString(), ecorePackage.getEString(), "exprString", null, 0, 1, SpecificationCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(structuralFeatureCSEClass, StructuralFeatureCS.class, "StructuralFeatureCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getStructuralFeatureCS_Owner(), this.getClassCS(), this.getClassCS_OwnedProperty(), "owner", null, 0, 1, StructuralFeatureCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

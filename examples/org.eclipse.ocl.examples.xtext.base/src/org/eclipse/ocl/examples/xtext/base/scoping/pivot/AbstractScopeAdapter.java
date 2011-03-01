@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -224,6 +224,8 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public void unsetTarget(Notifier oldTarget) {
-		throw new UnsupportedOperationException();
+		if (oldTarget != target) {
+			throw new UnsupportedOperationException();
+		}
 	}
 }
