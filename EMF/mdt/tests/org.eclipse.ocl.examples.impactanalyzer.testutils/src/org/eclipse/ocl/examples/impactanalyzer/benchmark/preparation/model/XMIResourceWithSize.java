@@ -1,5 +1,8 @@
 package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -41,13 +44,13 @@ public class XMIResourceWithSize extends XMIResourceImpl implements ResourceWith
     }
 
     private int internalGetSize() {
-        int resourceSize = 0;
+        Set<EObject> distinctObjects = new HashSet<EObject>();
         TreeIterator<EObject> iterator = getAllContents();
         while(iterator.hasNext()){
-            iterator.next();
-            resourceSize++;
+            EObject eo = iterator.next();
+            distinctObjects.add(eo);
         }
-        return resourceSize;
+        return distinctObjects.size();
     }
 
 }
