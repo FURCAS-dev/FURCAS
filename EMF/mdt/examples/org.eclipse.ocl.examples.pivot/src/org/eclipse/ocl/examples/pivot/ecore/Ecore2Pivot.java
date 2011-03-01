@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -56,11 +56,12 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
-public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotConstants
+public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
 
@@ -170,7 +171,11 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 	
 	public Ecore2Pivot(Resource ecoreResource, TypeManager typeManager) {
 		this.ecoreResource = ecoreResource;
+		if (typeManager == null) {
+			typeManager = new TypeManager();
+		}
 		this.typeManager = typeManager;
+		typeManager.addExternalResource(this);
 	}
 	
 	public void addCreated(EObject eObject, Element pivotElement) {
@@ -222,8 +227,7 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 			return null;
 		}
 		if (!requiredClass.isAssignableFrom(element.getClass())) {
-			logger.error("Ecore " + element.getClass().getName() + "' element is not a '" + requiredClass.getName() + "'"); //$NON-NLS-1$
-			return null;
+			throw new ClassCastException(element.getClass().getName() + " is not assignable to " + requiredClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		T castElement = (T) element;
@@ -309,12 +313,20 @@ public class Ecore2Pivot extends AbstractConversion implements Adapter, PivotCon
 		return pivotRoot;
 	}
 
+	public Resource getResource() {
+		return ecoreResource;
+	}
+
 	public Notifier getTarget() {
 		return ecoreResource;
 	}
 
 	public TypeManager getTypeManager() {
 		return typeManager;
+	}
+
+	public URI getURI() {
+		return ecoreResource.getURI();
 	}
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {

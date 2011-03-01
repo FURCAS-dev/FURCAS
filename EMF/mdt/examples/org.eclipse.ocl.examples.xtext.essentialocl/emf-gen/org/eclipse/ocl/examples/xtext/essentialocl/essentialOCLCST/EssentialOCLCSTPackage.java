@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSTPackage.java,v 1.8 2011/02/11 20:59:22 ewillink Exp $
+ * $Id: EssentialOCLCSTPackage.java,v 1.9 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST;
 
@@ -980,16 +980,6 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int CONTEXT_CS_FEATURE_COUNT = BaseCSTPackage.NAMED_ELEMENT_CS_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl <em>Exp Constraint CS</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpConstraintCS()
-	 * @generated
-	 */
-	int EXP_CONSTRAINT_CS = 8;
-
-	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1117,13 +1107,23 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	int DECORATED_NAMED_EXP_CS_FEATURE_COUNT = NAMED_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpSpecificationCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpSpecificationCS()
+	 * @generated
+	 */
+	int EXP_SPECIFICATION_CS = 8;
+
+	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSTPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
+	int EXP_SPECIFICATION_CS__OWNED_ANNOTATION = BaseCSTPackage.SPECIFICATION_CS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
@@ -1132,7 +1132,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__PIVOT = BaseCSTPackage.CONSTRAINT_CS__PIVOT;
+	int EXP_SPECIFICATION_CS__PIVOT = BaseCSTPackage.SPECIFICATION_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -1141,7 +1141,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID = BaseCSTPackage.SPECIFICATION_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -1150,25 +1150,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__NAME = BaseCSTPackage.CONSTRAINT_CS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS__STEREOTYPE = BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE;
+	int EXP_SPECIFICATION_CS__MONIKER = BaseCSTPackage.SPECIFICATION_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
@@ -1177,7 +1159,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__EXPR_STRING = BaseCSTPackage.CONSTRAINT_CS__EXPR_STRING;
+	int EXP_SPECIFICATION_CS__EXPR_STRING = BaseCSTPackage.SPECIFICATION_CS__EXPR_STRING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
@@ -1186,25 +1168,16 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__OWNED_EXPRESSION = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int EXP_SPECIFICATION_CS__OWNED_EXPRESSION = BaseCSTPackage.SPECIFICATION_CS_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
+	 * The number of structural features of the '<em>Exp Specification CS</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXP_CONSTRAINT_CS__OWNED_REASON = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Exp Constraint CS</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXP_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 2;
+	int EXP_SPECIFICATION_CS_FEATURE_COUNT = BaseCSTPackage.SPECIFICATION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -3130,36 +3103,25 @@ public interface EssentialOCLCSTPackage extends EPackage {
 	EReference getExpCS_Parent();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS <em>Exp Constraint CS</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS <em>Exp Specification CS</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Exp Constraint CS</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS
+	 * @return the meta object for class '<em>Exp Specification CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS
 	 * @generated
 	 */
-	EClass getExpConstraintCS();
+	EClass getExpSpecificationCS();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS#getOwnedExpression <em>Owned Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS#getOwnedExpression <em>Owned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Owned Expression</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS#getOwnedExpression()
-	 * @see #getExpConstraintCS()
+	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS#getOwnedExpression()
+	 * @see #getExpSpecificationCS()
 	 * @generated
 	 */
-	EReference getExpConstraintCS_OwnedExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS#getOwnedReason <em>Owned Reason</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Reason</em>'.
-	 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS#getOwnedReason()
-	 * @see #getExpConstraintCS()
-	 * @generated
-	 */
-	EReference getExpConstraintCS_OwnedReason();
+	EReference getExpSpecificationCS_OwnedExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.TypeLiteralExpCS <em>Type Literal Exp CS</em>}'.
@@ -4006,14 +3968,14 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		EReference EXP_CS__PARENT = eINSTANCE.getExpCS_Parent();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl <em>Exp Constraint CS</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpSpecificationCSImpl <em>Exp Specification CS</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl
-		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpConstraintCS()
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpSpecificationCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.EssentialOCLCSTPackageImpl#getExpSpecificationCS()
 		 * @generated
 		 */
-		EClass EXP_CONSTRAINT_CS = eINSTANCE.getExpConstraintCS();
+		EClass EXP_SPECIFICATION_CS = eINSTANCE.getExpSpecificationCS();
 
 		/**
 		 * The meta object literal for the '<em><b>Owned Expression</b></em>' containment reference feature.
@@ -4021,15 +3983,7 @@ public interface EssentialOCLCSTPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXP_CONSTRAINT_CS__OWNED_EXPRESSION = eINSTANCE.getExpConstraintCS_OwnedExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Owned Reason</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EXP_CONSTRAINT_CS__OWNED_REASON = eINSTANCE.getExpConstraintCS_OwnedReason();
+		EReference EXP_SPECIFICATION_CS__OWNED_EXPRESSION = eINSTANCE.getExpSpecificationCS_OwnedExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.TypeLiteralExpCSImpl <em>Type Literal Exp CS</em>}' class.

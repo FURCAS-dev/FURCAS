@@ -12,27 +12,22 @@
  *
  * </copyright>
  *
- * $Id: ContextConstraintCSImpl.java,v 1.1 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: ContextConstraintCSImpl.java,v 1.2 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
-
+import org.eclipse.ocl.examples.xtext.base.baseCST.impl.ConstraintCSImpl;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.util.CompleteOCLCSVisitor;
-
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConstraintCSImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.impl.ExpConst
  *
  * @generated
  */
-public abstract class ContextConstraintCSImpl extends ExpConstraintCSImpl implements ContextConstraintCS
+public abstract class ContextConstraintCSImpl extends ConstraintCSImpl implements ContextConstraintCS
 {
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,5 +230,12 @@ public abstract class ContextConstraintCSImpl extends ExpConstraintCSImpl implem
 	@Override
 	public <R, C> R accept(BaseCSVisitor<R, C> visitor) {
 		return (R) visitor.getAdapter(CompleteOCLCSVisitor.class).visitContextConstraintCS(this);
+	}
+	
+	public void setMoniker(String moniker) {
+		if (this.moniker != null) {
+			throw new IllegalStateException("Moniker can only be defined once");
+		}
+		this.moniker = moniker;
 	}
 } //ContextConstraintCSImpl

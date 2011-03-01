@@ -12,12 +12,13 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTPackage.java,v 1.9 2011/02/11 20:59:20 ewillink Exp $
+ * $Id: OCLinEcoreCSTPackage.java,v 1.10 2011/03/01 08:46:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 
 /**
@@ -93,7 +94,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_ANNOTATION;
+	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_ANNOTATION = BaseCSTPackage.CONSTRAINT_CS__OWNED_ANNOTATION;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS <em>OC Lin Ecore Constraint CS</em>}'.
@@ -106,13 +107,23 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	EClass getOCLinEcoreConstraintCS();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS <em>OC Lin Ecore Specification CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OC Lin Ecore Specification CS</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS
+	 * @generated
+	 */
+	EClass getOCLinEcoreSpecificationCS();
+
+	/**
 	 * The feature id for the '<em><b>Pivot</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__PIVOT;
+	int OC_LIN_ECORE_CONSTRAINT_CS__PIVOT = BaseCSTPackage.CONSTRAINT_CS__PIVOT;
 
 	/**
 	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
@@ -121,7 +132,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__ORIGINAL_XMI_ID;
+	int OC_LIN_ECORE_CONSTRAINT_CS__ORIGINAL_XMI_ID = BaseCSTPackage.CONSTRAINT_CS__ORIGINAL_XMI_ID;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -130,7 +141,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__MONIKER = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__MONIKER;
+	int OC_LIN_ECORE_CONSTRAINT_CS__MONIKER = BaseCSTPackage.CONSTRAINT_CS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -139,7 +150,7 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__NAME = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__NAME;
+	int OC_LIN_ECORE_CONSTRAINT_CS__NAME = BaseCSTPackage.CONSTRAINT_CS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
@@ -148,34 +159,25 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__STEREOTYPE;
+	int OC_LIN_ECORE_CONSTRAINT_CS__STEREOTYPE = BaseCSTPackage.CONSTRAINT_CS__STEREOTYPE;
 
 	/**
-	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
+	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__EXPR_STRING;
+	int OC_LIN_ECORE_CONSTRAINT_CS__SPECIFICATION = BaseCSTPackage.CONSTRAINT_CS__SPECIFICATION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Message Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_EXPRESSION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Reason</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS__OWNED_REASON = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS__OWNED_REASON;
+	int OC_LIN_ECORE_CONSTRAINT_CS__MESSAGE_SPECIFICATION = BaseCSTPackage.CONSTRAINT_CS__MESSAGE_SPECIFICATION;
 
 	/**
 	 * The number of structural features of the '<em>OC Lin Ecore Constraint CS</em>' class.
@@ -184,7 +186,80 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_CONSTRAINT_CS_FEATURE_COUNT + 0;
+	int OC_LIN_ECORE_CONSTRAINT_CS_FEATURE_COUNT = BaseCSTPackage.CONSTRAINT_CS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl <em>OC Lin Ecore Specification CS</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl
+	 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getOCLinEcoreSpecificationCS()
+	 * @generated
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__OWNED_ANNOTATION = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Pivot</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__PIVOT = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__PIVOT;
+
+	/**
+	 * The feature id for the '<em><b>Original Xmi Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__ORIGINAL_XMI_ID = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__ORIGINAL_XMI_ID;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__MONIKER = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Expr String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__EXPR_STRING = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__EXPR_STRING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS__OWNED_EXPRESSION = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS__OWNED_EXPRESSION;
+
+	/**
+	 * The number of structural features of the '<em>OC Lin Ecore Specification CS</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OC_LIN_ECORE_SPECIFICATION_CS_FEATURE_COUNT = EssentialOCLCSTPackage.EXP_SPECIFICATION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -217,6 +292,15 @@ public interface OCLinEcoreCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OC_LIN_ECORE_CONSTRAINT_CS = eINSTANCE.getOCLinEcoreConstraintCS();
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl <em>OC Lin Ecore Specification CS</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreSpecificationCSImpl
+		 * @see org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.impl.OCLinEcoreCSTPackageImpl#getOCLinEcoreSpecificationCS()
+		 * @generated
+		 */
+		EClass OC_LIN_ECORE_SPECIFICATION_CS = eINSTANCE.getOCLinEcoreSpecificationCS();
 
 	}
 

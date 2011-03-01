@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTFactory.java,v 1.3 2010/05/16 19:26:03 ewillink Exp $
+ * $Id: CompleteOCLCSTFactory.java,v 1.5 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -90,6 +90,15 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	CompleteOCLDocumentCS createCompleteOCLDocumentCS();
 
 	/**
+	 * Returns a new object of class '<em>Context Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Context Specification CS</em>'.
+	 * @generated
+	 */
+	ContextSpecificationCS createContextSpecificationCS();
+
+	/**
 	 * Returns a new object of class '<em>Inv CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,6 +135,15 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	PreCS createPreCS();
 
 	/**
+	 * Returns a new object of class '<em>Pre Exp CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Pre Exp CS</em>'.
+	 * @generated
+	 */
+	PreExpCS createPreExpCS();
+
+	/**
 	 * Returns a new object of class '<em>Post CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -144,24 +162,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	BodyCS createBodyCS();
 
 	/**
-	 * Returns a new object of class '<em>Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint CS</em>'.
-	 * @generated
-	 */
-	ConstraintCS createConstraintCS();
-
-	/**
-	 * Returns a new object of class '<em>Named Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Named Constraint CS</em>'.
-	 * @generated
-	 */
-	NamedConstraintCS createNamedConstraintCS();
-
-	/**
 	 * Returns a new object of class '<em>Ocl Message Arg CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -169,15 +169,6 @@ public interface CompleteOCLCSTFactory extends EFactory {
 	 * @generated
 	 */
 	OclMessageArgCS createOclMessageArgCS();
-
-	/**
-	 * Returns a new object of class '<em>Ocl Message CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Ocl Message CS</em>'.
-	 * @generated
-	 */
-	OclMessageCS createOclMessageCS();
 
 	/**
 	 * Returns the package supported by this factory.
