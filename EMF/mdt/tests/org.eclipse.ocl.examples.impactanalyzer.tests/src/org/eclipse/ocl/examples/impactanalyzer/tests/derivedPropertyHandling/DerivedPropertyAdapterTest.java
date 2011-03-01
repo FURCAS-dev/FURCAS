@@ -39,7 +39,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     }
     
     // Register an adapter at any derived feature we want to test and let it fetch the first notification it gets.
-    // Afterwards simply make a change that will affect / not affect this derived feature and see if the correct notification comes along.
+    // Afterwards simply make a change that will affect this derived feature and see if the correct notification comes along.
 
     @Test
     public void testNonDerivedFeature() {
@@ -50,7 +50,27 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	catch(IllegalArgumentException e){
     		exception = e;
     	}
+    	// We assert to get an IllegalArgumentException if we pass a non derived property to the DerivedPropertyAdapter.
     	assertNotNull(exception);
+    }
+    
+    @Test
+    public void testTouch() {
+    	// add a director to touch it by setting it again to the same value
+    	this.aDivision.setDirector(this.aEmployee);
+    	
+    	new DerivedPropertyAdapter(this.divisionDirector);
+    	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
+    	this.aCompany.eAdapters().add(notificationCatcher);
+        
+    	// Touch director of aDivision. That will not change the divisionDirector property of aCompany.
+    	this.aDivision.setDirector(this.aEmployee);
+        
+        // The DerivedPropertyAdapter will simply exit on receiving a touch notification.
+        Notification notification = notificationCatcher.getCatchedNotification();
+        
+        // We assert to receive no notification at all because the derivedProperty didn't change and can't be touched because it's unchangeable.
+        assertNull(notification);   	
     }
     
     @Test
@@ -75,8 +95,49 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     }
     
     @Test
-    public void testSingleValuedFeatureUnset() {
-    	// TODO: implement me    	
+    public void testUnsettableSingleValuedFeatureSet() {
+    	// unset the feature to set it later on
+    	this.aDivision.unsetDirector();
+    	
+    	new DerivedPropertyAdapter(this.divisionDirector);
+    	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
+    	this.aCompany.eAdapters().add(notificationCatcher);
+        
+    	// Set director of aDivision. That will change the divisionDirector property of aCompany.
+        this.aDivision.setDirector(this.aEmployee);
+        
+        // The DerivedPropertyAdapter will cause aCompany to send a change notification for it's derived property divisionDirector.
+        Notification notification = notificationCatcher.getCatchedNotification();
+        
+        // We assert to receive a SET of aCompany.divisionDirector to aEmployee.
+        assertNotNull(notification);
+        assertEquals(this.divisionDirector, notification.getFeature());
+        assertEquals(this.aCompany, notification.getNotifier());
+        assertTrue(notification.getEventType() == Notification.SET);
+        assertEquals(this.aEmployee, notification.getNewValue());
+    }
+    
+    @Test
+    public void testUnsettableSingleValuedFeatureUnset() {
+    	// add a director to unset
+    	this.aDivision.setDirector(this.aEmployee);
+    	
+    	new DerivedPropertyAdapter(this.divisionDirector);
+    	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
+    	this.aCompany.eAdapters().add(notificationCatcher);
+        
+    	// Unset director of aDivision. That will change the divisionDirector property of aCompany.
+        this.aDivision.unsetDirector();
+        
+        // The DerivedPropertyAdapter will cause aCompany to send a change notification for it's derived property divisionDirector.
+        Notification notification = notificationCatcher.getCatchedNotification();
+        
+        // We assert to receive a UNSET of aCompany.divisionDirector to null.
+        assertNotNull(notification);
+        assertEquals(this.divisionDirector, notification.getFeature());
+        assertEquals(this.aCompany, notification.getNotifier());
+        assertTrue(notification.getEventType() == Notification.UNSET);
+        assertEquals(null, notification.getNewValue());
     }
 
     @Test

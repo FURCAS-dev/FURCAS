@@ -88,7 +88,10 @@ public class DerivedPropertyAdapter implements Adapter {
                     // since the self context of the expression is known, there should be no unknown variables
                     throw new RuntimeException("During the partial evaluation of a derived property expression, an unknown variable was found.");
                 }
-                if (!resultPre.equals(resultPost)) {
+                
+                // in case of an unset feature, resultPre will be null which will cause a null pointer exception when calling .equals
+                // therefore we need to check this case explicitly
+                if ((resultPre == null && resultPost != null) || !resultPre.equals(resultPost)) {
                     // calculate the delta between pre change and post change
                     // to determine which notification to send.
                     Object oldValue = resultPre;
@@ -123,10 +126,10 @@ public class DerivedPropertyAdapter implements Adapter {
                     } else {
                         // handle single valued features
                         if (property.isUnsettable()) {
-                            if(context.eIsSet(property)){
-                                eventType = Notification.SET;
-                            }else{
+                            if(resultPost == null){
                                 eventType = Notification.UNSET;
+                            }else{
+                                eventType = Notification.SET;
                             }
                         } else {
                             eventType = Notification.SET;

@@ -78,7 +78,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentDepartment" eType="#//Department"
         resolveProxies="false" eOpposite="#//Department/subDepartment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employeeOfTheMonth" unique="false"
-        upperBound="-1" eType="#//Employee"/>
+        upperBound="-1" eType="#//Employee" unsettable="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
@@ -108,7 +108,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
-        containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
+        unsettable="true" containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employeesOfTheMonth" unique="false"
         upperBound="-1" eType="#//Employee" changeable="false" volatile="true" transient="true"
@@ -148,6 +148,12 @@
         changeable="false" volatile="true" transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="derivation" value="let maxEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->last() in let minEOTMDivision:Division=self.division->sortedBy(i | i.numberEmployeesOfTheMonth)->first() in maxEOTMDivision.numberEmployeesOfTheMonth - minEOTMDivision.numberEmployeesOfTheMonth"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="divisionDirector" eType="#//Employee"
+        changeable="false" volatile="true" transient="true" unsettable="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="self.division.director"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
