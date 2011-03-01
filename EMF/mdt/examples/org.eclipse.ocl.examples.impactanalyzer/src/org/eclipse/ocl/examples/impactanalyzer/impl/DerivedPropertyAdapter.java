@@ -20,8 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
@@ -46,13 +49,16 @@ public class DerivedPropertyAdapter implements Adapter {
     private final EStructuralFeature property;
     private final OCLExpression derivationExp;
     private final OCLFactory oclFactory = OCLFactory.INSTANCE;
+	private final OCL ocl;
 
-    public DerivedPropertyAdapter(EStructuralFeature derivedProperty, OCLExpression derivationExp) {
+    public DerivedPropertyAdapter(EStructuralFeature derivedProperty) {
         if(!derivedProperty.isDerived()){
             throw new IllegalArgumentException("Given property must be derived");
         }
         this.property = derivedProperty;
-        this.derivationExp = derivationExp;
+        //TODO: verify if EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE is correct
+        this.ocl = this.oclFactory.createOCL(EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE);
+        this.derivationExp = SettingBehavior.INSTANCE.getFeatureBody(this.ocl, this.property);
         em = EventManagerFactory.eINSTANCE.getEventManagerFor(property.eResource().getResourceSet()); // probably wrong if instance model does not share the resource set with the meta model
         ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(derivationExp, true, this.oclFactory);
         em.subscribe(ia.createFilterForExpression(), this);
