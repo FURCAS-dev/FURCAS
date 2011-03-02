@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationDelegate.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: ValidationDelegate.java,v 1.2 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -27,8 +27,9 @@ import org.eclipse.emf.ecore.impl.ValidationDelegateRegistryImpl;
  * 
  * @since 3.0
  */
-public interface ValidationDelegate extends EValidator.ValidationDelegate {
-
+public interface ValidationDelegate extends ValidationDelegateExtension // waiting for Bug 337792
+{
+    
 	/**
 	 * A factory for creating delegate domains.
 	 */

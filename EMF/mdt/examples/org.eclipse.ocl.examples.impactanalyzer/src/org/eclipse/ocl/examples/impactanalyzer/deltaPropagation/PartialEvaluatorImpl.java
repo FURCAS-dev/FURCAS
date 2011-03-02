@@ -10,10 +10,13 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.deltaPropagation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -220,15 +223,62 @@ public class PartialEvaluatorImpl implements PartialEvaluator {
                 : Collections.singleton(oldSourceValue)));
         Collection<Object> newSourceValueAsCollection = ((newSourceValue instanceof Collection<?> ? (Collection<Object>) newSourceValue
                 : Collections.singleton(newSourceValue)));
-        result = new HashSet<Object>();
-        result.addAll(oldSourceValueAsCollection);
-        result.removeAll(newSourceValueAsCollection);
-        Collection<Object> newSourceValueMinusOldSourceValue = new HashSet<Object>();
-        newSourceValueMinusOldSourceValue.addAll(newSourceValueAsCollection);
-        newSourceValueMinusOldSourceValue.removeAll(oldSourceValueAsCollection);
-        result.addAll(newSourceValueMinusOldSourceValue);
+        if (oldSourceValueAsCollection instanceof List<?> ||
+        		newSourceValueAsCollection instanceof List<?>) {
+        	// at least one value is ordered; perform position-by-position comparison
+        	result = computeOrderedSymmetricDifference(oldSourceValueAsCollection, newSourceValueAsCollection);
+		} else {
+			// both values are unordered; compare using set semantics
+			result = computeUnorderedSymmetricDifference(oldSourceValueAsCollection, newSourceValueAsCollection);
+		}
         return result;
     }
+
+	private Set<Object> computeUnorderedSymmetricDifference(
+			Collection<Object> oldSourceValueAsCollection,
+			Collection<Object> newSourceValueAsCollection) {
+		Set<Object> result = new HashSet<Object>();
+		result.addAll(oldSourceValueAsCollection);
+		result.removeAll(newSourceValueAsCollection);
+		Collection<Object> newSourceValueMinusOldSourceValue = new HashSet<Object>();
+		newSourceValueMinusOldSourceValue
+				.addAll(newSourceValueAsCollection);
+		newSourceValueMinusOldSourceValue
+				.removeAll(oldSourceValueAsCollection);
+		result.addAll(newSourceValueMinusOldSourceValue);
+		return result;
+	}
+
+	private List<Object> computeOrderedSymmetricDifference(
+			Collection<Object> oldSourceValueAsCollection,
+			Collection<Object> newSourceValueAsCollection) {
+		List<Object> result = new ArrayList<Object>();
+		Iterator<Object> oldIt = oldSourceValueAsCollection.iterator();
+		Iterator<Object> newIt = newSourceValueAsCollection.iterator();
+		while (oldIt.hasNext() || newIt.hasNext()) {
+			Object old = null;
+			boolean oldItHadNext = oldIt.hasNext();
+			if (oldIt.hasNext()) {
+				old = oldIt.next();
+			}
+			Object nw = null;
+			boolean newItHadNext = newIt.hasNext();
+			if (newIt.hasNext()) {
+				nw = newIt.next();
+			}
+			if (oldItHadNext && newItHadNext) {
+				if (old != nw) {
+					result.add(old);
+					result.add(nw);
+				}
+			} else if (oldItHadNext) {
+				result.add(old);
+			} else {
+				result.add(nw);
+			}
+		}
+		return result;
+	}
 
     /**
      * Determines a strategy that can propagate a delta for <tt>e</tt>'s value to a superset of the

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -216,7 +216,15 @@ public abstract class Abstract2Moniker implements PivotConstants
 		else {
 			EObject parent = element.eContainer();
 			if (parent instanceof MonikeredElement) {
-				append(((MonikeredElement) parent).getMoniker());	
+				append(((MonikeredElement) parent).getMoniker());
+				if (parent instanceof TemplateableElement) {
+					TemplateSignature ownedTemplateSignature = ((TemplateableElement)parent).getOwnedTemplateSignature();
+					if (ownedTemplateSignature != null) {
+						for (TemplateParameter templateParameter : ownedTemplateSignature.getParameters()) {
+							emittedTemplateParameter(templateParameter);
+					}
+					}
+				}
 			}
 			else if (parent instanceof Element) {
 				appendElement((Element) parent);	

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTAdapterFactory.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseCSTAdapterFactory.java,v 1.7 2011/03/01 08:47:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
+import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
@@ -310,6 +311,11 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 			public Adapter caseRootPackageCS(RootPackageCS object)
 			{
 				return createRootPackageCSAdapter();
+			}
+			@Override
+			public Adapter caseSpecificationCS(SpecificationCS object)
+			{
+				return createSpecificationCSAdapter();
 			}
 			@Override
 			public Adapter caseStructuralFeatureCS(StructuralFeatureCS object)
@@ -919,6 +925,21 @@ public class BaseCSTAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRootPackageCSAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS <em>Specification CS</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS
+	 * @generated
+	 */
+	public Adapter createSpecificationCSAdapter()
 	{
 		return null;
 	}

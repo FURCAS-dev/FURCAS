@@ -12,13 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPostOrderVisitor.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: EssentialOCLPostOrderVisitor.java,v 1.4 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -48,7 +53,7 @@ public class EssentialOCLPostOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			context.visitLeft2Right(csElement);
+			context.visitLeft2Right(MonikeredElement.class, csElement);
 			return null;
 		}
 	}
@@ -97,16 +102,6 @@ public class EssentialOCLPostOrderVisitor
 		return null;
 	}
 
-/*	@Override
-	public Continuation<?> visitExpConstraintCS(ExpConstraintCS csLibConstraint) {
-		Continuation<?> continuation = super.visitExpConstraintCS(csLibConstraint);
-		ExpCS ownedExpression = csLibConstraint.getOwnedExpression();
-		if (ownedExpression == null) {
-			return continuation;
-		}
-		return Continuations.combine(continuation, new ExpConstraintCSCompletion(context, csLibConstraint));
-	} */
-
 	@Override
 	public Continuation<?> visitNavigatingExpCS(NavigatingExpCS csNavigatingExp) {
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
@@ -152,6 +147,15 @@ public class EssentialOCLPostOrderVisitor
 	public Continuation<?> visitOperatorCS(OperatorCS csOperator) {
 		csOperator.setSource(null);		// FIXME now done by resetPivot
 		csOperator.setParent(null);		// FIXME now done by resetPivot
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitSpecificationCS(SpecificationCS csSpecification) {
+		OpaqueExpression pivotSpecification = PivotUtil.getPivot(OpaqueExpression.class, csSpecification);
+		String exprString = csSpecification.getExprString();
+		pivotSpecification.getBodies().add(exprString);
+		pivotSpecification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 		return null;
 	}
 

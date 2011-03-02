@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2PivotDeclarationSwitch.java,v 1.6 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: UML2PivotDeclarationSwitch.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -47,6 +47,7 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -201,24 +202,24 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
 				if (key.equals("body")) {
-					constraint.setStereotype("body");
+					constraint.setStereotype(UMLReflection.BODY);
 				}
 				else if (key.startsWith("body_")) {
-					constraint.setStereotype("body");
+					constraint.setStereotype(UMLReflection.BODY);
 					constraint.setName(key.substring(5));
 				}
 				else if (key.equals("pre")) {
-					constraint.setStereotype("precondition");
+					constraint.setStereotype(UMLReflection.PRECONDITION);
 				}
 				else if (key.startsWith("pre_")) {
-					constraint.setStereotype("precondition");
+					constraint.setStereotype(UMLReflection.PRECONDITION);
 					constraint.setName(key.substring(4));
 				}
 				else if (key.equals("post")) {
-					constraint.setStereotype("postcondition");
+					constraint.setStereotype(UMLReflection.POSTCONDITION);
 				}
 				else if (key.startsWith("post_")) {
-					constraint.setStereotype("postcondition");
+					constraint.setStereotype(UMLReflection.POSTCONDITION);
 					constraint.setName(key.substring(5));
 				}
 				else
@@ -312,7 +313,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 			oclAnnotationDetails = oclAnnotation.getDetails();
 			for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-				constraint.setStereotype("invariant");
+				constraint.setStereotype(UMLReflection.INVARIANT);
 				constraint.setName(entry.getKey());
 				String value = entry.getValue();
 				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
@@ -335,7 +336,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 				for (String constraintName : constraintNames) {
 					if ((oclAnnotationDetails == null) || (oclAnnotationDetails.get(constraintName) == null)) {
 						Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-						constraint.setStereotype("invariant");
+						constraint.setStereotype(UMLReflection.INVARIANT);
 						constraint.setName(constraintName);
 						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
 						constraint.setSpecification(specification);

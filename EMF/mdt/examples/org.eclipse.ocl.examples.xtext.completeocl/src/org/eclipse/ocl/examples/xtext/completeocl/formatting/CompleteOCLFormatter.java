@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLFormatter.java,v 1.5 2011/02/08 17:53:06 ewillink Exp $
+ * $Id: CompleteOCLFormatter.java,v 1.6 2011/03/01 08:47:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 
@@ -65,10 +65,10 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 
 	    {
 			BodyCSElements a = f.getBodyCSAccess();
-		    c.setLinewrap(2).before(a.getBodyKeyword_0());
+		    c.setLinewrap(2).before(a.getStereotypeBodyKeyword_0_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_2());
-		    c.setIndentation(a.getOwnedExpressionAssignment_3(), a.getOwnedExpressionAssignment_3());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_3());
+		    c.setIndentation(a.getSpecificationAssignment_3(), a.getSpecificationAssignment_3());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_3());
 	    }
 	    {
 			ClassifierContextDeclCSElements a = f.getClassifierContextDeclCSAccess();
@@ -85,14 +85,14 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 		    c.setNoSpace().before(a.getRightParenthesisKeyword_5_2());
 			setNoSpaceLineWrap(c, a.getColonKeyword_6());
 //		    c.setIndentation(a.getExpressionAssignment_9(), a.getExpressionAssignment_9());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_9());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_9());
 	    }
 	    {
 			DerCSElements a = f.getDerCSAccess();
 //		    c.setLinewrap(2).before(a.getDeriveKeyword_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_1());
 //		    c.setIndentation(a.getExpressionAssignment_2(), a.getExpressionAssignment_2());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_2());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_2());
 	    }
 	    {
 			ImportCSElements a = f.getImportCSAccess();
@@ -103,14 +103,14 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 //		    c.setLinewrap(2).before(a.getInitKeyword_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_1());
 //		    c.setIndentation(a.getExpressionAssignment_2(), a.getExpressionAssignment_2());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_2());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_2());
 	    }
 	    {
 			InvCSElements a = f.getInvCSAccess();
 //		    c.setLinewrap(2).before(a.getInvKeyword_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_2());
 //		    c.setIndentation(a.getExpressionAssignment_3(), a.getExpressionAssignment_3());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_3());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_3());
 	    }
 	    {
 			OperationContextDeclCSElements a = f.getOperationContextDeclCSAccess();
@@ -135,14 +135,14 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 //		    c.setLinewrap(2).before(a.getPostKeyword_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_2());
 //		    c.setIndentation(a.getColonKeyword_2(), a.getExpressionAssignment_3());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_3());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_3());
 	    }
 	    {
 			PreCSElements a = f.getPreCSAccess();
 //		    c.setLinewrap(2).before(a.getPreKeyword_0());
 			setNoSpaceLineWrap(c, a.getColonKeyword_2());
 //		    c.setIndentation(a.getColonKeyword_2(), a.getExpressionAssignment_3());
-		    c.setLinewrap(2).after(a.getOwnedExpressionAssignment_3());
+		    c.setLinewrap(2).after(a.getSpecificationAssignment_3());
 	    }
 	    {
 	    	PropertyContextDeclCSElements a = f.getPropertyContextDeclCSAccess();

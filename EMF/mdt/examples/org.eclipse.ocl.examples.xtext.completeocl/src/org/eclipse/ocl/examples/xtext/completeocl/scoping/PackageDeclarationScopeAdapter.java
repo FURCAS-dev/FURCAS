@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.6 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.7 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -39,26 +39,13 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__NAMESPACE) {
 			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 		}
+		else if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS) {
+//			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
+			org.eclipse.ocl.examples.pivot.Package pkg = target.getPackage();
+			environmentView.addNamedElements(typeManager.getLocalPackages(pkg));
+			environmentView.addNamedElements(typeManager.getLocalTypes(pkg));
+//			environmentView.addNamedElements(pkge.getOwnedPrecedences());
+		}
 		return scopeView.getOuterScope();
-
-		
-/*		if (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__PACKAGE) {
-			return scopeView.getOuterScope();
-		}
-		if ((containmentFeature == null)
-		 || (containmentFeature == CompleteOCLCSTPackage.Literals.PACKAGE_DECLARATION_CS__CONTEXTS)) {
-			PackageRefCS csPackageRef = target.getPackage();
-			while (csPackageRef instanceof QualifiedPackageRefCS) {
-				csPackageRef = ((QualifiedPackageRefCS)csPackageRef).getElement();
-			}
-			if (csPackageRef instanceof SimplePackageRefCS) {
-				SimplePackageRefCS csSimplePackageRef = (SimplePackageRefCS)csPackageRef;
-				environmentView.addElementsOfScope(csSimplePackageRef.getPackage(), scopeView);
-			}
-		}
-		else {
-			return scopeView.getOuterScope();
-		}
-		return scopeView.getOuterScope(); */
 	}
 }

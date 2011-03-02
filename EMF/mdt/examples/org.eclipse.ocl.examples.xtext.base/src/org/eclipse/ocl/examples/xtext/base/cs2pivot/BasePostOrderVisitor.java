@@ -12,14 +12,13 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Annotation;
@@ -61,7 +60,18 @@ import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continuation<?>, CS2PivotConversion>
 {
-	public static final Logger logger = Logger.getLogger(BasePostOrderVisitor.class);
+	public static class ConstraintCSCompletion extends SingleContinuation<ConstraintCS>
+	{
+		public ConstraintCSCompletion(CS2PivotConversion context, ConstraintCS csElement) {
+			super(context, null, null, csElement);
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			context.visitLeft2Right(Constraint.class, csElement);
+			return null;
+		}
+	}
 	
 	public BasePostOrderVisitor(CS2PivotConversion context) {
 		super(context);		// NB this class is stateless since separate instances exist per CS package
@@ -94,8 +104,7 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	}
 
 	public Continuation<?> visiting(VisitableCS visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for CS2Pivot PostOrder pass");
 	}
 
 	@Override
@@ -133,7 +142,12 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	public Continuation<?> visitConstraintCS(ConstraintCS csConstraint) {
 		Constraint pivotElement = context.refreshNamedElement(Constraint.class, PivotPackage.Literals.CONSTRAINT, csConstraint);
 		pivotElement.setStereotype(csConstraint.getStereotype());
-		return null;
+		if (csConstraint.getSpecification() != null) {
+			return new ConstraintCSCompletion(context, csConstraint);
+		}
+		else {
+			return null;
+		}
 	}
 
 	@Override

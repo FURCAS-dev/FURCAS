@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.3 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -257,8 +257,13 @@ public class OCLMessages {
 	
 	public static String EvaluationResultIsInvalid_ERROR_;	
 	public static String MissingBodyForInvocationDelegate_ERROR_;	
-	public static String MissingDerivationForSettingDelegate_ERROR_;	
-	public static String ValidationConstraintIsNotBoolean_ERROR_;	
+	public static String MissingDerivationForSettingDelegate_ERROR_;
+	
+	public static String ValidationConstraintException_ERROR_;
+	public static String ValidationConstraintIsNotBoolean_ERROR_;
+	public static String ValidationConstraintIsNotSatisfied_ERROR_;
+	public static String ValidationMessageException_ERROR_;
+	public static String ValidationMessageIsNotString_ERROR_;
 	public static String ValidationResultIsInvalid_ERROR_;	
 	public static String ValidationResultIsNull_ERROR_;	
 	public static String ValidationResultIsNotBoolean_ERROR_;
@@ -271,7 +276,8 @@ public class OCLMessages {
 //-----------------------------------------------------------
 	public static String ErrorUnresolvedName;
 	public static String ErrorUnresolvedNamespaceName;
-	public static String ErrorUnresolvedOperationCall;
+	public static String ErrorUnresolvedOperationCall2;
+	public static String ErrorUnresolvedOperationCall3;
 	public static String ErrorUnresolvedOperationName;
 	public static String ErrorUnresolvedPropertyName;
 	public static String ErrorUnresolvedTypeName;

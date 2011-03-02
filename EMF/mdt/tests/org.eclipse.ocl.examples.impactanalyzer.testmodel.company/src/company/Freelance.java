@@ -26,29 +26,29 @@ package company;
  */
 public interface Freelance extends Employee {
     /**
-     * Returns the value of the '<em><b>Assignment</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Assignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Assignment</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Assignment</em>' attribute.
-     * @see #setAssignment(int)
-     * @see company.CompanyPackage#getFreelance_Assignment()
-     * @model dataType="primitivetypes.Integer"
-     * @generated
-     */
+	 * @return the value of the '<em>Assignment</em>' attribute.
+	 * @see #setAssignment(int)
+	 * @see company.CompanyPackage#getFreelance_Assignment()
+	 * @model dataType="primitivetypes.Integer"
+	 * @generated
+	 */
     int getAssignment();
 
     /**
-     * Sets the value of the '{@link company.Freelance#getAssignment <em>Assignment</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link company.Freelance#getAssignment <em>Assignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Assignment</em>' attribute.
-     * @see #getAssignment()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Assignment</em>' attribute.
+	 * @see #getAssignment()
+	 * @generated
+	 */
 	void setAssignment(int value);
 
 } // Freelance

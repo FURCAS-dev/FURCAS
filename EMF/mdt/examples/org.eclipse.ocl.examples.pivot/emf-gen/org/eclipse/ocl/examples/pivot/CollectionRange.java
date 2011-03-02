@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRange.java,v 1.2 2011/01/24 20:42:35 ewillink Exp $
+ * $Id: CollectionRange.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -76,16 +76,6 @@ public interface CollectionRange
 	OclExpression createFirst(EClass eClass);
 
 	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>First</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getFirst()
-	 * @generated
-	 */
-	OclExpression createFirst();
-
-	/**
 	 * Returns the value of the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -121,15 +111,5 @@ public interface CollectionRange
 	 * @generated
 	 */
 	OclExpression createLast(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Last</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getLast()
-	 * @generated
-	 */
-	OclExpression createLast();
 
 } // CollectionRange

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyValidator.java,v 1.1 2011/01/30 10:58:03 ewillink Exp $
+ * $Id: CompanyValidator.java,v 1.3 2011/03/01 17:25:38 ewillink Exp $
  */
 package company.util;
 
@@ -20,15 +20,16 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
  * @see company.CompanyPackage
- * @generated
+ * @generated not
  */
-public class CompanyValidator extends EObjectValidator {
+public class CompanyValidator extends OCLinEcoreEObjectValidator {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
