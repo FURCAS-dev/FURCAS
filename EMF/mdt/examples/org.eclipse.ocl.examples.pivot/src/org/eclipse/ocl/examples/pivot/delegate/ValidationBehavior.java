@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationBehavior.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: ValidationBehavior.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
@@ -36,6 +35,18 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 {
 	public static final ValidationBehavior INSTANCE = new ValidationBehavior();
 	public static final String NAME = "validationDelegates"; //$NON-NLS-1$
+	
+	public Constraint getConstraint(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
+		Resource ecoreMetaModel = eClassifier.eResource();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
+		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
+		Constraint constraint = PivotUtil.getNamedElement(typeManager.getLocalConstraints(type), constraintName);
+		if (constraint != null) {
+			return constraint;
+		}
+		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
+		throw new OCLDelegateException(message);
+	}
 
 	public ValidationDelegate.Factory getDefaultFactory() {
 		return (ValidationDelegate.Factory) ValidationDelegate.Factory.Registry.INSTANCE.getValidationDelegate(getName());
@@ -49,7 +60,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		return eClassifier.getEPackage();
 	}
 	
-	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
+/*	public ExpressionInOcl getExpressionInOcl(TypeManager typeManager, EClassifier eClassifier, String constraintName) throws OCLDelegateException {
 		Resource ecoreMetaModel = eClassifier.eResource();
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, typeManager);
 		Type type = ecore2Pivot.getCreated(Type.class, eClassifier);
@@ -62,7 +73,7 @@ public class ValidationBehavior extends AbstractDelegatedBehavior<EClassifier, E
 		}
 		String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 		throw new OCLDelegateException(message);
-	}
+	} */
 
 	@Override
 	public ValidationDelegate.Factory getFactory(DelegateDomain delegateDomain, EClassifier eClassifier) {

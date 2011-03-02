@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCSTPackageImpl.java,v 1.6 2011/02/15 10:37:09 ewillink Exp $
+ * $Id: OCLstdlibCSTPackageImpl.java,v 1.7 2011/03/01 08:46:57 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.impl;
@@ -436,7 +436,6 @@ public class OCLstdlibCSTPackageImpl
 		// Obtain other dependent packages
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 		BaseCSTPackage theBaseCSTPackage = (BaseCSTPackage)EPackage.Registry.INSTANCE.getEPackage(BaseCSTPackage.eNS_URI);
-		EssentialOCLCSTPackage theEssentialOCLCSTPackage = (EssentialOCLCSTPackage)EPackage.Registry.INSTANCE.getEPackage(EssentialOCLCSTPackage.eNS_URI);
 		PivotPackage thePivotPackage = (PivotPackage)EPackage.Registry.INSTANCE.getEPackage(PivotPackage.eNS_URI);
 
 		// Create type parameters
@@ -445,7 +444,7 @@ public class OCLstdlibCSTPackageImpl
 
 		// Add supertypes to classes
 		libClassCSEClass.getESuperTypes().add(theBaseCSTPackage.getClassCS());
-		libConstraintCSEClass.getESuperTypes().add(theEssentialOCLCSTPackage.getExpConstraintCS());
+		libConstraintCSEClass.getESuperTypes().add(theBaseCSTPackage.getConstraintCS());
 		libIterationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());
 		libIterationCSEClass.getESuperTypes().add(this.getJavaImplementationCS());
 		libOperationCSEClass.getESuperTypes().add(theBaseCSTPackage.getOperationCS());

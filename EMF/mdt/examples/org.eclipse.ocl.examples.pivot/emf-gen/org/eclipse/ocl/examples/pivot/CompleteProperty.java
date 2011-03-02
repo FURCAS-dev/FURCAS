@@ -12,9 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteProperty.java,v 1.2 2011/01/24 20:49:36 ewillink Exp $
+ * $Id: CompleteProperty.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
+
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,6 +27,7 @@ package org.eclipse.ocl.examples.pivot;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}</li>
  * </ul>
  * </p>
@@ -45,22 +48,27 @@ public interface CompleteProperty
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Model</em>' reference.
-	 * @see #setModel(Property)
 	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_Model()
-	 * @model required="true" ordered="false"
+	 * @model required="true" changeable="false" volatile="true" derived="true"
 	 * @generated
 	 */
 	Property getModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}' reference.
+	 * Returns the value of the '<em><b>Models</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Models</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' reference.
-	 * @see #getModel()
+	 * @return the value of the '<em>Models</em>' reference list.
+	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCompleteProperty_Models()
+	 * @model required="true"
 	 * @generated
 	 */
-	void setModel(Property value);
+	EList<Property> getModels();
 
 	/**
 	 * Returns the value of the '<em><b>Complete Environment</b></em>' reference.

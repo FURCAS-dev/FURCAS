@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.5 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -20,7 +20,6 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
@@ -70,28 +69,28 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstract2Moniker> implements PivotConstants
 {	
-	private static final Logger logger = Logger.getLogger(Pivot2MonikerVisitor.class);
-
 	private static boolean initialized = false;
 	
-	private static void initialize() {
-		initialized = true;
-		roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "argument");
-		roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "ownedExpression");
-
-		/*		roleNames.put(PivotPackage.Literals.CALL_EXP__SOURCE, "s");
-		roleNames.put(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, "z");
-		roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "x");
-		roleNames.put(PivotPackage.Literals.IF_EXP__CONDITION, "q");
-		roleNames.put(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, "t");
-		roleNames.put(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION, "f");
-		roleNames.put(PivotPackage.Literals.LET_EXP__IN, "i");
-		roleNames.put(PivotPackage.Literals.LET_EXP__VARIABLE, "v");
-		roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "b");
-		roleNames.put(PivotPackage.Literals.LOOP_EXP__ITERATOR, "i");
-		roleNames.put(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, "a");
-		roleNames.put(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, "i");
-*/	}
+	public static void initialize() {
+		if (!initialized) {
+			initialized = true;
+			roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "argument");
+			roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "ownedExpression");
+	
+			/*		roleNames.put(PivotPackage.Literals.CALL_EXP__SOURCE, "s");
+			roleNames.put(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, "z");
+			roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "x");
+			roleNames.put(PivotPackage.Literals.IF_EXP__CONDITION, "q");
+			roleNames.put(PivotPackage.Literals.IF_EXP__THEN_EXPRESSION, "t");
+			roleNames.put(PivotPackage.Literals.IF_EXP__ELSE_EXPRESSION, "f");
+			roleNames.put(PivotPackage.Literals.LET_EXP__IN, "i");
+			roleNames.put(PivotPackage.Literals.LET_EXP__VARIABLE, "v");
+			roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "b");
+			roleNames.put(PivotPackage.Literals.LOOP_EXP__ITERATOR, "i");
+			roleNames.put(PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, "a");
+			roleNames.put(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION, "i");
+	*/	}
+	}
 	
 	protected final Map<TemplateParameter, ParameterableElement> templateBindings;
 	
@@ -560,7 +559,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	}
 
 	public Object visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Moniker");
 	}	
 }

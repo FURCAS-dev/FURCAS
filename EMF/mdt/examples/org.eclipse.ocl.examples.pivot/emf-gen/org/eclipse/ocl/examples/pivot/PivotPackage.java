@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.7 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.8 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -92,7 +92,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 53;
+	int OCL_EXPRESSION = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -112,7 +112,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 30;
+	int FEATURE_CALL_EXP = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
@@ -122,7 +122,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 50;
+	int NAVIGATION_CALL_EXP = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -142,7 +142,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 22;
+	int DATA_TYPE = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -172,7 +172,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 41;
+	int LITERAL_EXP = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
@@ -182,7 +182,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 65;
+	int PRIMITIVE_LITERAL_EXP = 64;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -262,7 +262,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteOperation()
 	 * @generated
 	 */
-	int COMPLETE_OPERATION = 17;
+	int COMPLETE_OPERATION = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl <em>Complete Package</em>}' class.
@@ -272,7 +272,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompletePackage()
 	 * @generated
 	 */
-	int COMPLETE_PACKAGE = 18;
+	int COMPLETE_PACKAGE = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl <em>Complete Property</em>}' class.
@@ -282,7 +282,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteProperty()
 	 * @generated
 	 */
-	int COMPLETE_PROPERTY = 19;
+	int COMPLETE_PROPERTY = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -292,7 +292,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 25;
+	int ENUM_LITERAL_EXP = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationLiteralImpl <em>Enumeration Literal</em>}' class.
@@ -302,7 +302,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumerationLiteral()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL = 27;
+	int ENUMERATION_LITERAL = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationImpl <em>Enumeration</em>}' class.
@@ -312,7 +312,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumeration()
 	 * @generated
 	 */
-	int ENUMERATION = 26;
+	int ENUMERATION = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl <em>Opaque Expression</em>}' class.
@@ -322,7 +322,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOpaqueExpression()
 	 * @generated
 	 */
-	int OPAQUE_EXPRESSION = 54;
+	int OPAQUE_EXPRESSION = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl <em>Expression In Ocl</em>}' class.
@@ -332,7 +332,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getExpressionInOcl()
 	 * @generated
 	 */
-	int EXPRESSION_IN_OCL = 28;
+	int EXPRESSION_IN_OCL = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl <em>Variable</em>}' class.
@@ -342,7 +342,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 95;
+	int VARIABLE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -352,7 +352,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 31;
+	int IF_EXP = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
@@ -362,7 +362,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 52;
+	int NUMERIC_LITERAL_EXP = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -372,7 +372,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 32;
+	int INTEGER_LITERAL_EXP = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -382,7 +382,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 33;
+	int INVALID_LITERAL_EXP = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
@@ -392,7 +392,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInvalidType()
 	 * @generated
 	 */
-	int INVALID_TYPE = 34;
+	int INVALID_TYPE = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LetExpImpl <em>Let Exp</em>}' class.
@@ -402,7 +402,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 39;
+	int LET_EXP = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl <em>Loop Exp</em>}' class.
@@ -412,7 +412,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 42;
+	int LOOP_EXP = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl <em>Message Exp</em>}' class.
@@ -422,7 +422,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 43;
+	int MESSAGE_EXP = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
@@ -432,7 +432,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 70;
+	int SEND_SIGNAL_ACTION = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SignalImpl <em>Signal</em>}' class.
@@ -442,7 +442,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 73;
+	int SIGNAL = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -452,7 +452,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageType()
 	 * @generated
 	 */
-	int MESSAGE_TYPE = 44;
+	int MESSAGE_TYPE = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -462,7 +462,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 51;
+	int NULL_LITERAL_EXP = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -472,7 +472,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 56;
+	int OPERATION_CALL_EXP = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -482,7 +482,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 58;
+	int ORDERED_SET_TYPE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageableElementImpl <em>Packageable Element</em>}' class.
@@ -492,7 +492,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackageableElement()
 	 * @generated
 	 */
-	int PACKAGEABLE_ELEMENT = 60;
+	int PACKAGEABLE_ELEMENT = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -502,7 +502,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 66;
+	int PRIMITIVE_TYPE = 65;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -512,7 +512,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 68;
+	int PROPERTY_CALL_EXP = 67;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -522,7 +522,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 69;
+	int REAL_LITERAL_EXP = 68;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -532,7 +532,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 71;
+	int SEQUENCE_TYPE = 70;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -542,7 +542,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 72;
+	int SET_TYPE = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -552,7 +552,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 74;
+	int STATE = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -562,7 +562,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 75;
+	int STATE_EXP = 74;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -572,7 +572,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 76;
+	int STRING_LITERAL_EXP = 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
@@ -582,7 +582,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterType()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_TYPE = 80;
+	int TEMPLATE_PARAMETER_TYPE = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -592,7 +592,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 83;
+	int TUPLE_LITERAL_EXP = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -602,7 +602,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 84;
+	int TUPLE_LITERAL_PART = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -612,7 +612,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 85;
+	int TUPLE_TYPE = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -622,7 +622,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 87;
+	int TYPE_EXP = 86;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -632,7 +632,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 91;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -642,7 +642,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 93;
+	int UNSPECIFIED_VALUE_EXP = 92;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -652,7 +652,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 97;
+	int VARIABLE_EXP = 96;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -662,7 +662,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 100;
+	int VOID_TYPE = 99;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -672,7 +672,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
-	int PIVOTABLE = 63;
+	int PIVOTABLE = 62;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Visitable <em>Visitable</em>}' class.
@@ -682,7 +682,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 98;
+	int VISITABLE = 97;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -692,7 +692,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getElement()
 	 * @generated
 	 */
-	int ELEMENT = 24;
+	int ELEMENT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl <em>Monikered Element</em>}' class.
@@ -702,7 +702,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMonikeredElement()
 	 * @generated
 	 */
-	int MONIKERED_ELEMENT = 45;
+	int MONIKERED_ELEMENT = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -712,7 +712,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 48;
+	int NAMED_ELEMENT = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -732,7 +732,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 86;
+	int TYPE = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -752,7 +752,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 82;
+	int TEMPLATEABLE_ELEMENT = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -762,7 +762,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 77;
+	int TEMPLATE_BINDING = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -772,7 +772,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 81;
+	int TEMPLATE_SIGNATURE = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -782,7 +782,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 78;
+	int TEMPLATE_PARAMETER = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
@@ -792,7 +792,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameterableElement()
 	 * @generated
 	 */
-	int PARAMETERABLE_ELEMENT = 62;
+	int PARAMETERABLE_ELEMENT = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -802,7 +802,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 79;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -812,7 +812,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackage()
 	 * @generated
 	 */
-	int PACKAGE = 59;
+	int PACKAGE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamespaceImpl <em>Namespace</em>}' class.
@@ -822,7 +822,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 49;
+	int NAMESPACE = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrecedenceImpl <em>Precedence</em>}' class.
@@ -832,7 +832,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 64;
+	int PRECEDENCE = 63;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl <em>Type Template Parameter</em>}' class.
@@ -842,7 +842,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeTemplateParameter()
 	 * @generated
 	 */
-	int TYPE_TEMPLATE_PARAMETER = 88;
+	int TYPE_TEMPLATE_PARAMETER = 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MultiplicityElementImpl <em>Multiplicity Element</em>}' class.
@@ -852,7 +852,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMultiplicityElement()
 	 * @generated
 	 */
-	int MULTIPLICITY_ELEMENT = 46;
+	int MULTIPLICITY_ELEMENT = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl <em>Typed Multiplicity Element</em>}' class.
@@ -862,7 +862,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedMultiplicityElement()
 	 * @generated
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT = 90;
+	int TYPED_MULTIPLICITY_ELEMENT = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -872,7 +872,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 67;
+	int PROPERTY = 66;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -882,7 +882,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 89;
+	int TYPED_ELEMENT = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -902,7 +902,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCallableImplementation()
 	 * @generated
 	 */
-	int CALLABLE_IMPLEMENTATION = 104;
+	int CALLABLE_IMPLEMENTATION = 103;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl <em>Operation</em>}' class.
@@ -912,7 +912,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 55;
+	int OPERATION = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -922,7 +922,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 61;
+	int PARAMETER = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -932,7 +932,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 96;
+	int VARIABLE_DECLARATION = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationTemplateParameterImpl <em>Operation Template Parameter</em>}' class.
@@ -942,7 +942,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationTemplateParameter()
 	 * @generated
 	 */
-	int OPERATION_TEMPLATE_PARAMETER = 57;
+	int OPERATION_TEMPLATE_PARAMETER = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -962,7 +962,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 21;
+	int CONSTRAINT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -972,7 +972,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 94;
+	int VALUE_SPECIFICATION = 93;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}' class.
@@ -982,7 +982,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 47;
+	int NAMEABLE = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl <em>Detail</em>}' class.
@@ -992,7 +992,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDetail()
 	 * @generated
 	 */
-	int DETAIL = 23;
+	int DETAIL = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnyTypeImpl <em>Any Type</em>}' class.
@@ -1012,7 +1012,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 29;
+	int FEATURE = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
@@ -1022,7 +1022,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 35;
+	int ITERATE_EXP = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl <em>Iteration</em>}' class.
@@ -1032,7 +1032,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteration()
 	 * @generated
 	 */
-	int ITERATION = 36;
+	int ITERATION = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
@@ -1042,7 +1042,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 37;
+	int ITERATOR_EXP = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl <em>Library</em>}' class.
@@ -1052,7 +1052,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibrary()
 	 * @generated
 	 */
-	int LIBRARY = 40;
+	int LIBRARY = 39;
 
 	/**
 	 * The number of structural features of the '<em>Visitable</em>' class.
@@ -4826,22 +4826,13 @@ public interface PivotPackage
 	int COMPLETE_ENVIRONMENT___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
 
 	/**
-	 * The operation id for the '<em>Get Complete Iteration</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_ITERATION__ITERATION = PACKAGE_OPERATION_COUNT + 0;
-
-	/**
 	 * The operation id for the '<em>Get Complete Operation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = PACKAGE_OPERATION_COUNT + 1;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = PACKAGE_OPERATION_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Get Complete Package</em>' operation.
@@ -4850,7 +4841,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = PACKAGE_OPERATION_COUNT + 2;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = PACKAGE_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get Complete Property</em>' operation.
@@ -4859,7 +4850,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = PACKAGE_OPERATION_COUNT + 3;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = PACKAGE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Get Complete Type</em>' operation.
@@ -4868,7 +4859,16 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = PACKAGE_OPERATION_COUNT + 4;
+	int COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = PACKAGE_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION = PACKAGE_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Complete Environment</em>' class.
@@ -4887,17 +4887,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteType()
 	 * @generated
 	 */
-	int COMPLETE_TYPE = 20;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteIterationImpl <em>Complete Iteration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteIterationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteIteration()
-	 * @generated
-	 */
-	int COMPLETE_ITERATION = 16;
+	int COMPLETE_TYPE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -5617,717 +5607,6 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION__OWNED_COMMENT = OPERATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__MONIKER = OPERATION__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__NAME = OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IS_STATIC = OPERATION__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_ANNOTATION = OPERATION__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__TYPE = OPERATION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IS_ORDERED = OPERATION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IS_UNIQUE = OPERATION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__LOWER = OPERATION__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__UPPER = OPERATION__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IMPLEMENTATION_CLASS = OPERATION__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__IMPLEMENTATION = OPERATION__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNING_TEMPLATE_PARAMETER = OPERATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__TEMPLATE_PARAMETER = OPERATION__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__TEMPLATE_BINDING = OPERATION__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_TEMPLATE_SIGNATURE = OPERATION__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__RAISED_EXCEPTION = OPERATION__RAISED_EXCEPTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_PARAMETER = OPERATION__OWNED_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__PRECEDENCE = OPERATION__PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__CLASS = OPERATION__CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Iterator</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_ITERATOR = OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Accumulator</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION__OWNED_ACCUMULATOR = OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Iteration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___HAS_MONIKER = OPERATION___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___LOWER_BOUND = OPERATION___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___UPPER_BOUND = OPERATION___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_MULTIVALUED = OPERATION___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___INCLUDES_CARDINALITY__BIGINTEGER = OPERATION___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___PARAMETERABLE_ELEMENTS = OPERATION___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___IS_TEMPLATE = OPERATION___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Iteration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATION_OPERATION_COUNT = OPERATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_COMMENT = ITERATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__MONIKER = ITERATION__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__NAME = ITERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_RULE = ITERATION__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__IS_STATIC = ITERATION__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_ANNOTATION = ITERATION__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__TYPE = ITERATION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__IS_ORDERED = ITERATION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__IS_UNIQUE = ITERATION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__LOWER = ITERATION__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__UPPER = ITERATION__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__IMPLEMENTATION_CLASS = ITERATION__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__IMPLEMENTATION = ITERATION__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNING_TEMPLATE_PARAMETER = ITERATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__TEMPLATE_PARAMETER = ITERATION__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__TEMPLATE_BINDING = ITERATION__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_TEMPLATE_SIGNATURE = ITERATION__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__RAISED_EXCEPTION = ITERATION__RAISED_EXCEPTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_PARAMETER = ITERATION__OWNED_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__PRECEDENCE = ITERATION__PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__CLASS = ITERATION__CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Owned Iterator</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_ITERATOR = ITERATION__OWNED_ITERATOR;
-
-	/**
-	 * The feature id for the '<em><b>Owned Accumulator</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__OWNED_ACCUMULATOR = ITERATION__OWNED_ACCUMULATOR;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__MODEL = ITERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__COMPLETE_ENVIRONMENT = ITERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Iterator</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__COMPLETE_ITERATOR = ITERATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Complete Accumulator</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__COMPLETE_ACCUMULATOR = ITERATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Complete Parameter</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION__COMPLETE_PARAMETER = ITERATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Complete Iteration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION_FEATURE_COUNT = ITERATION_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___HAS_MONIKER = ITERATION___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = ITERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = ITERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___LOWER_BOUND = ITERATION___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___UPPER_BOUND = ITERATION___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___IS_MULTIVALUED = ITERATION___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___INCLUDES_CARDINALITY__BIGINTEGER = ITERATION___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = ITERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___IS_TEMPLATE_PARAMETER = ITERATION___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___PARAMETERABLE_ELEMENTS = ITERATION___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___IS_TEMPLATE = ITERATION___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = ITERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Complete Iteration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ITERATION_OPERATION_COUNT = ITERATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int COMPLETE_OPERATION__OWNED_COMMENT = OPERATION__OWNED_COMMENT;
 
 	/**
@@ -6520,13 +5799,22 @@ public interface PivotPackage
 	int COMPLETE_OPERATION__MODEL = OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_OPERATION__MODELS = OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OPERATION__COMPLETE_ENVIRONMENT = OPERATION_FEATURE_COUNT + 1;
+	int COMPLETE_OPERATION__COMPLETE_ENVIRONMENT = OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Complete Parameter</b></em>' reference list.
@@ -6535,7 +5823,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OPERATION__COMPLETE_PARAMETER = OPERATION_FEATURE_COUNT + 2;
+	int COMPLETE_OPERATION__COMPLETE_PARAMETER = OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Complete Operation</em>' class.
@@ -6544,7 +5832,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_OPERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 3;
+	int COMPLETE_OPERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -6799,22 +6087,22 @@ public interface PivotPackage
 	int COMPLETE_PACKAGE__MODEL = PACKAGE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PACKAGE__MODELS = PACKAGE_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = PACKAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__COMPLETE_TYPE = PACKAGE_FEATURE_COUNT + 2;
+	int COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = PACKAGE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Complete Package</b></em>' reference list.
@@ -6826,13 +6114,22 @@ public interface PivotPackage
 	int COMPLETE_PACKAGE__COMPLETE_PACKAGE = PACKAGE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Complete Type</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PACKAGE__COMPLETE_TYPE = PACKAGE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Complete Package</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_PACKAGE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 4;
+	int COMPLETE_PACKAGE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -7510,13 +6807,22 @@ public interface PivotPackage
 	int COMPLETE_PROPERTY__MODEL = PROPERTY_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_PROPERTY__MODELS = PROPERTY_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT = PROPERTY_FEATURE_COUNT + 1;
+	int COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT = PROPERTY_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Complete Property</em>' class.
@@ -7525,7 +6831,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_PROPERTY_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
+	int COMPLETE_PROPERTY_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -7798,13 +7104,22 @@ public interface PivotPackage
 	int COMPLETE_TYPE__MODEL = CLASS_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Models</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLETE_TYPE__MODELS = CLASS_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE__COMPLETE_ENVIRONMENT = CLASS_FEATURE_COUNT + 1;
+	int COMPLETE_TYPE__COMPLETE_ENVIRONMENT = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Complete Operation</b></em>' reference list.
@@ -7813,7 +7128,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE__COMPLETE_OPERATION = CLASS_FEATURE_COUNT + 2;
+	int COMPLETE_TYPE__COMPLETE_OPERATION = CLASS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Complete Property</b></em>' reference list.
@@ -7822,7 +7137,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE__COMPLETE_PROPERTY = CLASS_FEATURE_COUNT + 3;
+	int COMPLETE_TYPE__COMPLETE_PROPERTY = CLASS_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Complete Super Type</b></em>' reference list.
@@ -7831,7 +7146,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE__COMPLETE_SUPER_TYPE = CLASS_FEATURE_COUNT + 4;
+	int COMPLETE_TYPE__COMPLETE_SUPER_TYPE = CLASS_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Complete Type</em>' class.
@@ -7840,7 +7155,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 5;
+	int COMPLETE_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -7879,49 +7194,13 @@ public interface PivotPackage
 	int COMPLETE_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
 
 	/**
-	 * The operation id for the '<em>Conforms To</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Dynamic Iteration</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___GET_DYNAMIC_ITERATION__COMPLETEITERATION = CLASS_OPERATION_COUNT + 1;
-
-	/**
 	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = CLASS_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get Complete Iterations</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___GET_COMPLETE_ITERATIONS__STRING = CLASS_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Get Complete Operations</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING = CLASS_OPERATION_COUNT + 4;
+	int COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Complete Type</em>' class.
@@ -7930,7 +7209,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int COMPLETE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 5;
+	int COMPLETE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -8869,13 +8148,31 @@ public interface PivotPackage
 	int OPAQUE_EXPRESSION__LANGUAGE = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_EXPRESSION__MESSAGE = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Value Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_EXPRESSION__VALUE_EXPRESSION = VALUE_SPECIFICATION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Opaque Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 2;
+	int OPAQUE_EXPRESSION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9067,6 +8364,24 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL__LANGUAGE = OPAQUE_EXPRESSION__LANGUAGE;
 
 	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__MESSAGE = OPAQUE_EXPRESSION__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Value Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__VALUE_EXPRESSION = OPAQUE_EXPRESSION__VALUE_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9103,13 +8418,22 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = OPAQUE_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Message Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__MESSAGE_EXPRESSION = OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Expression In Ocl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_IN_OCL_FEATURE_COUNT = OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
+	int EXPRESSION_IN_OCL_FEATURE_COUNT = OPAQUE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -9571,49 +8895,13 @@ public interface PivotPackage
 	int INVALID_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
-	 * The feature id for the '<em><b>Object</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__OBJECT = LITERAL_EXP_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__EXPRESSION = LITERAL_EXP_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Reason</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__REASON = LITERAL_EXP_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Throwable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVALID_LITERAL_EXP__THROWABLE = LITERAL_EXP_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 4;
+	int INVALID_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -10153,6 +9441,339 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
+	int ITERATION__OWNED_COMMENT = OPERATION__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__MONIKER = OPERATION__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__NAME = OPERATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_RULE = OPERATION__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_STATIC = OPERATION__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_ANNOTATION = OPERATION__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__TYPE = OPERATION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_ORDERED = OPERATION__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IS_UNIQUE = OPERATION__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__LOWER = OPERATION__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__UPPER = OPERATION__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IMPLEMENTATION_CLASS = OPERATION__IMPLEMENTATION_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__IMPLEMENTATION = OPERATION__IMPLEMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNING_TEMPLATE_PARAMETER = OPERATION__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__TEMPLATE_PARAMETER = OPERATION__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__TEMPLATE_BINDING = OPERATION__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_TEMPLATE_SIGNATURE = OPERATION__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__RAISED_EXCEPTION = OPERATION__RAISED_EXCEPTION;
+
+	/**
+	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_PARAMETER = OPERATION__OWNED_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__PRECEDENCE = OPERATION__PRECEDENCE;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__CLASS = OPERATION__CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Iterator</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_ITERATOR = OPERATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Accumulator</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION__OWNED_ACCUMULATOR = OPERATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Iteration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___HAS_MONIKER = OPERATION___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___LOWER_BOUND = OPERATION___LOWER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___UPPER_BOUND = OPERATION___UPPER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___IS_MULTIVALUED = OPERATION___IS_MULTIVALUED;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___INCLUDES_CARDINALITY__BIGINTEGER = OPERATION___INCLUDES_CARDINALITY__BIGINTEGER;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___PARAMETERABLE_ELEMENTS = OPERATION___PARAMETERABLE_ELEMENTS;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___IS_TEMPLATE = OPERATION___IS_TEMPLATE;
+
+	/**
+	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The number of operations of the '<em>Iteration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATION_OPERATION_COUNT = OPERATION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int ITERATOR_EXP__OWNED_COMMENT = LOOP_EXP__OWNED_COMMENT;
 
 	/**
@@ -10298,7 +9919,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLambdaType()
 	 * @generated
 	 */
-	int LAMBDA_TYPE = 38;
+	int LAMBDA_TYPE = 37;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15141,7 +14762,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
 	 * @generated
 	 */
-	int UNSPECIFIED_TYPE = 92;
+	int UNSPECIFIED_TYPE = 91;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15646,7 +15267,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 99;
+	int VISITOR = 98;
 
 	/**
 	 * The number of structural features of the '<em>Visitor</em>' class.
@@ -15890,7 +15511,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 101;
+	int ASSOCIATIVITY_KIND = 100;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -15900,7 +15521,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 102;
+	int COLLECTION_KIND = 101;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -15909,7 +15530,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 103;
+	int BOOLEAN = 102;
 
 	/**
 	 * The meta object id for the '<em>Int</em>' data type.
@@ -15918,7 +15539,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInt()
 	 * @generated
 	 */
-	int INT = 105;
+	int INT = 104;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -15928,7 +15549,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 106;
+	int INTEGER = 105;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -15938,7 +15559,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 107;
+	int OBJECT = 106;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -15948,7 +15569,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 108;
+	int REAL = 107;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -15958,7 +15579,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 109;
+	int STRING = 108;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -15968,7 +15589,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 110;
+	int THROWABLE = 109;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -15978,7 +15599,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 111;
+	int UNLIMITED_NATURAL = 110;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -16339,16 +15960,6 @@ public interface PivotPackage
 	EClass getCompleteEnvironment();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteIteration(org.eclipse.ocl.examples.pivot.Iteration) <em>Get Complete Iteration</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Iteration</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteIteration(org.eclipse.ocl.examples.pivot.Iteration)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompleteIteration__Iteration();
-
-	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation) <em>Get Complete Operation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16389,69 +16000,14 @@ public interface PivotPackage
 	EOperation getCompleteEnvironment__GetCompleteType__Type();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteIteration <em>Complete Iteration</em>}'.
+	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteType, org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Iteration</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration
+	 * @return the meta object for the '<em>Get Dynamic Operation</em>' operation.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteType, org.eclipse.ocl.examples.pivot.CompleteOperation)
 	 * @generated
 	 */
-	EClass getCompleteIteration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteIteration#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration#getModel()
-	 * @see #getCompleteIteration()
-	 * @generated
-	 */
-	EReference getCompleteIteration_Model();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteEnvironment()
-	 * @see #getCompleteIteration()
-	 * @generated
-	 */
-	EReference getCompleteIteration_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteIterators <em>Complete Iterator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Iterator</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteIterators()
-	 * @see #getCompleteIteration()
-	 * @generated
-	 */
-	EReference getCompleteIteration_CompleteIterator();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteAccumulators <em>Complete Accumulator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Accumulator</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteAccumulators()
-	 * @see #getCompleteIteration()
-	 * @generated
-	 */
-	EReference getCompleteIteration_CompleteAccumulator();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteParameters <em>Complete Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteIteration#getCompleteParameters()
-	 * @see #getCompleteIteration()
-	 * @generated
-	 */
-	EReference getCompleteIteration_CompleteParameter();
+	EOperation getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteOperation <em>Complete Operation</em>}'.
@@ -16473,6 +16029,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompleteOperation_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModels <em>Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Models</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation#getModels()
+	 * @see #getCompleteOperation()
+	 * @generated
+	 */
+	EReference getCompleteOperation_Models();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment <em>Complete Environment</em>}'.
@@ -16518,6 +16085,17 @@ public interface PivotPackage
 	EReference getCompletePackage_Model();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModels <em>Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Models</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getModels()
+	 * @see #getCompletePackage()
+	 * @generated
+	 */
+	EReference getCompletePackage_Models();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteEnvironment <em>Complete Environment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16529,17 +16107,6 @@ public interface PivotPackage
 	EReference getCompletePackage_CompleteEnvironment();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_CompleteType();
-
-	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages <em>Complete Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16549,6 +16116,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompletePackage_CompletePackage();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Complete Type</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes()
+	 * @see #getCompletePackage()
+	 * @generated
+	 */
+	EReference getCompletePackage_CompleteType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteProperty <em>Complete Property</em>}'.
@@ -16570,6 +16148,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompleteProperty_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModels <em>Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Models</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteProperty#getModels()
+	 * @see #getCompleteProperty()
+	 * @generated
+	 */
+	EReference getCompleteProperty_Models();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}'.
@@ -16602,6 +16191,17 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCompleteType_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModels <em>Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Models</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getModels()
+	 * @see #getCompleteType()
+	 * @generated
+	 */
+	EReference getCompleteType_Models();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}'.
@@ -16648,26 +16248,6 @@ public interface PivotPackage
 	EReference getCompleteType_CompleteSuperType();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#conformsTo(org.eclipse.ocl.examples.pivot.CompleteType) <em>Conforms To</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Conforms To</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#conformsTo(org.eclipse.ocl.examples.pivot.CompleteType)
-	 * @generated
-	 */
-	EOperation getCompleteType__ConformsTo__CompleteType();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getDynamicIteration(org.eclipse.ocl.examples.pivot.CompleteIteration) <em>Get Dynamic Iteration</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Dynamic Iteration</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getDynamicIteration(org.eclipse.ocl.examples.pivot.CompleteIteration)
-	 * @generated
-	 */
-	EOperation getCompleteType__GetDynamicIteration__CompleteIteration();
-
-	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16676,26 +16256,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EOperation getCompleteType__GetDynamicOperation__CompleteOperation();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteIterations(java.lang.String) <em>Get Complete Iterations</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Iterations</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteIterations(java.lang.String)
-	 * @generated
-	 */
-	EOperation getCompleteType__GetCompleteIterations__String();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations(java.lang.String) <em>Get Complete Operations</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Operations</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations(java.lang.String)
-	 * @generated
-	 */
-	EOperation getCompleteType__GetCompleteOperations__String();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.EnumLiteralExp <em>Enum Literal Exp</em>}'.
@@ -16826,6 +16386,17 @@ public interface PivotPackage
 	EReference getExpressionInOcl_ParameterVariable();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Message Expression</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression()
+	 * @see #getExpressionInOcl()
+	 * @generated
+	 */
+	EReference getExpressionInOcl_MessageExpression();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Feature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16888,6 +16459,28 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EAttribute getOpaqueExpression_Language();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessages <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Message</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getMessages()
+	 * @see #getOpaqueExpression()
+	 * @generated
+	 */
+	EAttribute getOpaqueExpression_Message();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#getValueExpression <em>Value Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Value Expression</em>'.
+	 * @see org.eclipse.ocl.examples.pivot.OpaqueExpression#getValueExpression()
+	 * @see #getOpaqueExpression()
+	 * @generated
+	 */
+	EReference getOpaqueExpression_ValueExpression();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.OpaqueExpression#validateLanguageBodySize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate Language Body Size</em>}' operation.
@@ -17025,50 +16618,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EClass getInvalidLiteralExp();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getObject <em>Object</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Object</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getObject()
-	 * @see #getInvalidLiteralExp()
-	 * @generated
-	 */
-	EAttribute getInvalidLiteralExp_Object();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getExpression()
-	 * @see #getInvalidLiteralExp()
-	 * @generated
-	 */
-	EReference getInvalidLiteralExp_Expression();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getReason <em>Reason</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Reason</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getReason()
-	 * @see #getInvalidLiteralExp()
-	 * @generated
-	 */
-	EAttribute getInvalidLiteralExp_Reason();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getThrowable <em>Throwable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Throwable</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.InvalidLiteralExp#getThrowable()
-	 * @see #getInvalidLiteralExp()
-	 * @generated
-	 */
-	EAttribute getInvalidLiteralExp_Throwable();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.InvalidType <em>Invalid Type</em>}'.
@@ -19690,14 +19239,6 @@ public interface PivotPackage
 		EClass COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteEnvironment();
 
 		/**
-		 * The meta object literal for the '<em><b>Get Complete Iteration</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_ITERATION__ITERATION = eINSTANCE.getCompleteEnvironment__GetCompleteIteration__Iteration();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Complete Operation</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -19730,54 +19271,12 @@ public interface PivotPackage
 		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = eINSTANCE.getCompleteEnvironment__GetCompleteType__Type();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteIterationImpl <em>Complete Iteration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteIterationImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteIteration()
-		 * @generated
-		 */
-		EClass COMPLETE_ITERATION = eINSTANCE.getCompleteIteration();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPLETE_ITERATION__MODEL = eINSTANCE.getCompleteIteration_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_ITERATION__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteIteration_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Iterator</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_ITERATION__COMPLETE_ITERATOR = eINSTANCE.getCompleteIteration_CompleteIterator();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Accumulator</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_ITERATION__COMPLETE_ACCUMULATOR = eINSTANCE.getCompleteIteration_CompleteAccumulator();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Parameter</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_ITERATION__COMPLETE_PARAMETER = eINSTANCE.getCompleteIteration_CompleteParameter();
+		EOperation COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION = eINSTANCE.getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
@@ -19796,6 +19295,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_OPERATION__MODEL = eINSTANCE.getCompleteOperation_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_OPERATION__MODELS = eINSTANCE.getCompleteOperation_Models();
 
 		/**
 		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
@@ -19832,6 +19339,14 @@ public interface PivotPackage
 		EReference COMPLETE_PACKAGE__MODEL = eINSTANCE.getCompletePackage_Model();
 
 		/**
+		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_PACKAGE__MODELS = eINSTANCE.getCompletePackage_Models();
+
+		/**
 		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -19840,20 +19355,20 @@ public interface PivotPackage
 		EReference COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = eINSTANCE.getCompletePackage_CompleteEnvironment();
 
 		/**
-		 * The meta object literal for the '<em><b>Complete Type</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__COMPLETE_TYPE = eINSTANCE.getCompletePackage_CompleteType();
-
-		/**
 		 * The meta object literal for the '<em><b>Complete Package</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference COMPLETE_PACKAGE__COMPLETE_PACKAGE = eINSTANCE.getCompletePackage_CompletePackage();
+
+		/**
+		 * The meta object literal for the '<em><b>Complete Type</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_PACKAGE__COMPLETE_TYPE = eINSTANCE.getCompletePackage_CompleteType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl <em>Complete Property</em>}' class.
@@ -19872,6 +19387,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_PROPERTY__MODEL = eINSTANCE.getCompleteProperty_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_PROPERTY__MODELS = eINSTANCE.getCompleteProperty_Models();
 
 		/**
 		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
@@ -19898,6 +19421,14 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COMPLETE_TYPE__MODEL = eINSTANCE.getCompleteType_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPLETE_TYPE__MODELS = eINSTANCE.getCompleteType_Models();
 
 		/**
 		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
@@ -19932,44 +19463,12 @@ public interface PivotPackage
 		EReference COMPLETE_TYPE__COMPLETE_SUPER_TYPE = eINSTANCE.getCompleteType_CompleteSuperType();
 
 		/**
-		 * The meta object literal for the '<em><b>Conforms To</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE = eINSTANCE.getCompleteType__ConformsTo__CompleteType();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Dynamic Iteration</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_TYPE___GET_DYNAMIC_ITERATION__COMPLETEITERATION = eINSTANCE.getCompleteType__GetDynamicIteration__CompleteIteration();
-
-		/**
 		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EOperation COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = eINSTANCE.getCompleteType__GetDynamicOperation__CompleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Iterations</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_TYPE___GET_COMPLETE_ITERATIONS__STRING = eINSTANCE.getCompleteType__GetCompleteIterations__String();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Operations</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING = eINSTANCE.getCompleteType__GetCompleteOperations__String();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -20076,6 +19575,14 @@ public interface PivotPackage
 		EReference EXPRESSION_IN_OCL__PARAMETER_VARIABLE = eINSTANCE.getExpressionInOcl_ParameterVariable();
 
 		/**
+		 * The meta object literal for the '<em><b>Message Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXPRESSION_IN_OCL__MESSAGE_EXPRESSION = eINSTANCE.getExpressionInOcl_MessageExpression();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.FeatureImpl <em>Feature</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -20126,6 +19633,22 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute OPAQUE_EXPRESSION__LANGUAGE = eINSTANCE.getOpaqueExpression_Language();
+
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPAQUE_EXPRESSION__MESSAGE = eINSTANCE.getOpaqueExpression_Message();
+
+		/**
+		 * The meta object literal for the '<em><b>Value Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPAQUE_EXPRESSION__VALUE_EXPRESSION = eINSTANCE.getOpaqueExpression_ValueExpression();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate Language Body Size</b></em>' operation.
@@ -20240,38 +19763,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EClass INVALID_LITERAL_EXP = eINSTANCE.getInvalidLiteralExp();
-
-		/**
-		 * The meta object literal for the '<em><b>Object</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INVALID_LITERAL_EXP__OBJECT = eINSTANCE.getInvalidLiteralExp_Object();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INVALID_LITERAL_EXP__EXPRESSION = eINSTANCE.getInvalidLiteralExp_Expression();
-
-		/**
-		 * The meta object literal for the '<em><b>Reason</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INVALID_LITERAL_EXP__REASON = eINSTANCE.getInvalidLiteralExp_Reason();
-
-		/**
-		 * The meta object literal for the '<em><b>Throwable</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INVALID_LITERAL_EXP__THROWABLE = eINSTANCE.getInvalidLiteralExp_Throwable();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.

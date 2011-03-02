@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.5 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -81,6 +81,9 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 						}
 					}
 					else {
+						if (type == typeManager.getClassifierType()) {
+							type = typeManager.getPivotType("Class");			// FIXME Unify Class/Classifier properly
+						}
 						environmentView.addElementsOfScope(typeManager, type, scopeView);					
 						if (type instanceof CollectionType) {
 							environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);

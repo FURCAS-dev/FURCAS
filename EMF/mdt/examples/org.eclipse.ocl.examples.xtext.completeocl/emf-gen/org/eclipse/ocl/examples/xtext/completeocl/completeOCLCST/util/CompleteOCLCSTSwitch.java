@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTSwitch.java,v 1.5 2011/02/08 17:53:06 ewillink Exp $
+ * $Id: CompleteOCLCSTSwitch.java,v 1.6 2011/03/01 08:47:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.util;
 
@@ -30,7 +30,9 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.*;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.BodyCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ClassifierContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage;
@@ -51,7 +53,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.DecoratedNamedExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NamedExpCS;
 
 /**
@@ -122,7 +124,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				BodyCS bodyCS = (BodyCS)theEObject;
 				T result = caseBodyCS(bodyCS);
 				if (result == null) result = caseContextConstraintCS(bodyCS);
-				if (result == null) result = caseExpConstraintCS(bodyCS);
 				if (result == null) result = caseConstraintCS(bodyCS);
 				if (result == null) result = caseNamedElementCS(bodyCS);
 				if (result == null) result = caseMonikeredElementCS(bodyCS);
@@ -169,7 +170,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				ContextConstraintCS contextConstraintCS = (ContextConstraintCS)theEObject;
 				T result = caseContextConstraintCS(contextConstraintCS);
-				if (result == null) result = caseExpConstraintCS(contextConstraintCS);
 				if (result == null) result = caseConstraintCS(contextConstraintCS);
 				if (result == null) result = caseNamedElementCS(contextConstraintCS);
 				if (result == null) result = caseMonikeredElementCS(contextConstraintCS);
@@ -193,12 +193,25 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CompleteOCLCSTPackage.CONTEXT_SPECIFICATION_CS:
+			{
+				ContextSpecificationCS contextSpecificationCS = (ContextSpecificationCS)theEObject;
+				T result = caseContextSpecificationCS(contextSpecificationCS);
+				if (result == null) result = caseExpSpecificationCS(contextSpecificationCS);
+				if (result == null) result = caseSpecificationCS(contextSpecificationCS);
+				if (result == null) result = caseMonikeredElementCS(contextSpecificationCS);
+				if (result == null) result = caseModelElementCS(contextSpecificationCS);
+				if (result == null) result = caseElementCS(contextSpecificationCS);
+				if (result == null) result = casePivotable(contextSpecificationCS);
+				if (result == null) result = caseVisitableCS(contextSpecificationCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CompleteOCLCSTPackage.DEF_CS:
 			{
 				DefCS defCS = (DefCS)theEObject;
 				T result = caseDefCS(defCS);
 				if (result == null) result = caseContextConstraintCS(defCS);
-				if (result == null) result = caseExpConstraintCS(defCS);
 				if (result == null) result = caseConstraintCS(defCS);
 				if (result == null) result = caseNamedElementCS(defCS);
 				if (result == null) result = caseMonikeredElementCS(defCS);
@@ -215,7 +228,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				DerCS derCS = (DerCS)theEObject;
 				T result = caseDerCS(derCS);
 				if (result == null) result = caseContextConstraintCS(derCS);
-				if (result == null) result = caseExpConstraintCS(derCS);
 				if (result == null) result = caseConstraintCS(derCS);
 				if (result == null) result = caseNamedElementCS(derCS);
 				if (result == null) result = caseMonikeredElementCS(derCS);
@@ -245,7 +257,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				InitCS initCS = (InitCS)theEObject;
 				T result = caseInitCS(initCS);
 				if (result == null) result = caseContextConstraintCS(initCS);
-				if (result == null) result = caseExpConstraintCS(initCS);
 				if (result == null) result = caseConstraintCS(initCS);
 				if (result == null) result = caseNamedElementCS(initCS);
 				if (result == null) result = caseMonikeredElementCS(initCS);
@@ -262,7 +273,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				InvCS invCS = (InvCS)theEObject;
 				T result = caseInvCS(invCS);
 				if (result == null) result = caseContextConstraintCS(invCS);
-				if (result == null) result = caseExpConstraintCS(invCS);
 				if (result == null) result = caseConstraintCS(invCS);
 				if (result == null) result = caseNamedElementCS(invCS);
 				if (result == null) result = caseMonikeredElementCS(invCS);
@@ -318,7 +328,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				PostCS postCS = (PostCS)theEObject;
 				T result = casePostCS(postCS);
 				if (result == null) result = caseContextConstraintCS(postCS);
-				if (result == null) result = caseExpConstraintCS(postCS);
 				if (result == null) result = caseConstraintCS(postCS);
 				if (result == null) result = caseNamedElementCS(postCS);
 				if (result == null) result = caseMonikeredElementCS(postCS);
@@ -335,7 +344,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				PreCS preCS = (PreCS)theEObject;
 				T result = casePreCS(preCS);
 				if (result == null) result = caseContextConstraintCS(preCS);
-				if (result == null) result = caseExpConstraintCS(preCS);
 				if (result == null) result = caseConstraintCS(preCS);
 				if (result == null) result = caseNamedElementCS(preCS);
 				if (result == null) result = caseMonikeredElementCS(preCS);
@@ -445,22 +453,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpConstraintCS(ExpConstraintCS object)
-	{
-		return null;
-	}
-
-/**
 	 * Returns the result of interpreting the object as an instance of '<em>Constraint CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -493,6 +485,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
   /**
+	 * Returns the result of interpreting the object as an instance of '<em>Context Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Context Specification CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContextSpecificationCS(ContextSpecificationCS object)
+	{
+		return null;
+	}
+
+/**
 	 * Returns the result of interpreting the object as an instance of '<em>Def CS</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -856,6 +864,38 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	 * @generated
 	 */
 	public T caseRootPackageCS(RootPackageCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Specification CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSpecificationCS(SpecificationCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Exp Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exp Specification CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpSpecificationCS(ExpSpecificationCS object)
 	{
 		return null;
 	}

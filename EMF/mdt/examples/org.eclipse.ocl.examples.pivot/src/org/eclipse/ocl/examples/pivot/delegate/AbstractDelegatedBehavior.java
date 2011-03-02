@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -123,13 +123,26 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			return (ExpressionInOcl) valueSpecification;
 		}
 		else if (valueSpecification instanceof OpaqueExpression ){
-			String expression = PivotUtil.getBody((OpaqueExpression)valueSpecification);
-			if (expression != null) {
-				try {
-					return PivotUtil.resolveSpecification(typeManager, namedElement, expression);
-				} catch (ParserException e) {
-					throw new OCLDelegateException(e.getLocalizedMessage(), e);
+			OpaqueExpression opaqueExpression = (OpaqueExpression)valueSpecification;
+			ExpressionInOcl expressionInOcl = opaqueExpression.getValueExpression();
+			if (expressionInOcl != null) {
+				return expressionInOcl;
+			}
+			try {
+				String expression = PivotUtil.getBody(opaqueExpression);
+				if (expression != null) {
+					expressionInOcl = PivotUtil.resolveSpecification(typeManager, namedElement, expression);
+					if (expressionInOcl != null) {
+						opaqueExpression.setValueExpression(expressionInOcl);
+					}
+					String message = PivotUtil.getMessage(opaqueExpression);
+					if ((message != null) && (message.length() > 0)) {
+						PivotUtil.resolveSpecification(typeManager, expressionInOcl, message);
+					}
+					return expressionInOcl;
 				}
+			} catch (ParserException e) {
+				throw new OCLDelegateException(e.getLocalizedMessage(), e);
 			}
 		}
 		return null;

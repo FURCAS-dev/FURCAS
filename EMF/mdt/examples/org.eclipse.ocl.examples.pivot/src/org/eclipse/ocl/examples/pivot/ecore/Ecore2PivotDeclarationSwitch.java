@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.7 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.8 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -65,7 +65,9 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.library.JavaComparisonOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOrEqualOperation;
@@ -187,24 +189,24 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
 				if (key.equals("body")) {
-					constraint.setStereotype("body");
+					constraint.setStereotype(UMLReflection.BODY);
 				}
 				else if (key.startsWith("body_")) {
-					constraint.setStereotype("body");
+					constraint.setStereotype(UMLReflection.BODY);
 					constraint.setName(key.substring(5));
 				}
 				else if (key.equals("pre")) {
-					constraint.setStereotype("precondition");
+					constraint.setStereotype(UMLReflection.PRECONDITION);
 				}
 				else if (key.startsWith("pre_")) {
-					constraint.setStereotype("precondition");
+					constraint.setStereotype(UMLReflection.PRECONDITION);
 					constraint.setName(key.substring(4));
 				}
 				else if (key.equals("post")) {
-					constraint.setStereotype("postcondition");
+					constraint.setStereotype(UMLReflection.POSTCONDITION);
 				}
 				else if (key.startsWith("post_")) {
-					constraint.setStereotype("postcondition");
+					constraint.setStereotype(UMLReflection.POSTCONDITION);
 					constraint.setName(key.substring(5));
 				}
 				else
@@ -308,19 +310,24 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			List<Constraint> constraints = pivotElement.getOwnedRules();
 			oclAnnotationDetails = oclAnnotation.getDetails();
 			for (Map.Entry<String,String> entry : oclAnnotationDetails.entrySet()) {
-				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-				constraint.setStereotype("invariant");
-				constraint.setName(entry.getKey());
-				String value = entry.getValue();
-				OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
-				specification.getBodies().add(value);
-				specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
-				constraint.setSpecification(specification);
-				constraints.add(constraint);
-				if (constraintMap == null) {
-					constraintMap = new HashMap<String, Constraint>();
+				String constraintName = entry.getKey();
+				if (!constraintName.endsWith("$message")) {
+					Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
+					constraint.setStereotype(UMLReflection.INVARIANT);
+					constraint.setName(constraintName);
+					String value = entry.getValue();
+					OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();	// FIXME ExpressionInOcl
+					specification.getBodies().add(value);
+					specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
+					String message = oclAnnotationDetails.get(constraintName + "$message");
+					specification.getMessages().add(message != null ? message : "");
+					constraint.setSpecification(specification);
+					constraints.add(constraint);
+					if (constraintMap == null) {
+						constraintMap = new HashMap<String, Constraint>();
+					}
+					constraintMap.put(constraintName, constraint);
 				}
-				constraintMap.put(entry.getKey(), constraint);
 			}				
 		}
 		EAnnotation ecoreAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
@@ -342,7 +349,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 						if (constraint == null) {
 							constraint = PivotFactory.eINSTANCE.createConstraint();
 						}
-						constraint.setStereotype("invariant");
+						constraint.setStereotype(UMLReflection.INVARIANT);
 						constraint.setName(constraintName);
 						OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
 						constraint.setSpecification(specification);
@@ -457,11 +464,11 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 			for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
-				if (key.equals("derivation")) {
-					constraint.setStereotype("derivation");
+				if (key.equals(SettingBehavior.DERIVATION_CONSTRAINT_KEY)) {
+					constraint.setStereotype(UMLReflection.DERIVATION);
 				}
-				else if (key.equals("initial")) {
-					constraint.setStereotype("initial");
+				else if (key.equals(SettingBehavior.INITIAL_CONSTRAINT_KEY)) {
+					constraint.setStereotype(UMLReflection.INITIAL);
 				}
 				else
 				{
@@ -525,7 +532,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		return null;
 	}
 
-	public Object doInPackageSwitch(EObject eObject) {
+	public Object doInPackageSwitch(EObject eObject) {		// FIXME Diagnose not in Ecore package better than a case tree CCE
 		int classifierID = eObject.eClass().getClassifierID();
 		return doSwitch(classifierID, eObject);
 	}

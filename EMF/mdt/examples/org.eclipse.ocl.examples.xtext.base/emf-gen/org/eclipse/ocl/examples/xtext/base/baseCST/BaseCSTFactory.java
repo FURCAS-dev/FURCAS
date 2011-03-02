@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.6 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.7 2011/03/01 08:47:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -260,6 +260,15 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	RootPackageCS createRootPackageCS();
+
+	/**
+	 * Returns a new object of class '<em>Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Specification CS</em>'.
+	 * @generated
+	 */
+	SpecificationCS createSpecificationCS();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding CS</em>'.

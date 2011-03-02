@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingDelegatingEssentialOCLCSVisitor.java,v 1.5 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: AbstractExtendingDelegatingEssentialOCLCSVisitor.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 
@@ -76,8 +76,8 @@ public abstract class AbstractExtendingDelegatingEssentialOCLCSVisitor<R, C, D e
 		return delegate.visitMonikeredElementCS(object);
 	}
 
-	public R visitExpConstraintCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS object) {
-		return delegate.visitConstraintCS(object);
+	public R visitExpSpecificationCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS object) {
+		return delegate.visitSpecificationCS(object);
 	}
 
 	public R visitIfExpCS(org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.IfExpCS object) {

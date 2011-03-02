@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.3 2011/01/25 07:18:48 ewillink Exp $
+ * $Id: EssentialOCLCrossReferenceSerializer.java,v 1.4 2011/03/01 08:46:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -183,6 +183,8 @@ public class EssentialOCLCrossReferenceSerializer extends CrossReferenceSerializ
 			return ((Property) object).getName();
 		else if ((reference == BaseCSTPackage.Literals.MODEL_ELEMENT_CS_REF__REF) && (context instanceof ModelElementCSRef))
 			return ((NamedElementCS) object).getName();
+		else if (object instanceof NamedElement)
+			return ((NamedElement) object).getName();
 		else {
 			return super.getUnconvertedLinkText(object, reference, context);
 		}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.4 2011/02/17 17:48:14 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.5 2011/03/01 08:47:31 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -87,6 +87,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
@@ -433,22 +434,22 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 //	}
 	protected String image(Constraint ele) {
 		String stereotype = ele.getStereotype();
-		if ("body".equals(stereotype)) {
+		if (UMLReflection.BODY.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DefinitionConstraint.gif";
 		}
-		else if ("derivation".equals(stereotype)) {
+		else if (UMLReflection.DERIVATION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/DerivationConstraint.gif";
 		}
-		else if ("initial".equals(stereotype)) {
+		else if (UMLReflection.INITIAL.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InitialConstraint.gif";
 		}
-		else if ("invariant".equals(stereotype)) {
+		else if (UMLReflection.INVARIANT.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/InvariantConstraint.gif";
 		}
-		else if ("postcondition".equals(stereotype)) {
+		else if (UMLReflection.POSTCONDITION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PostconditionConstraint.gif";
 		}
-		else if ("precondition".equals(stereotype)) {
+		else if (UMLReflection.PRECONDITION.equals(stereotype)) {
 			return "/org.eclipse.ocl.examples.xtext.oclinecore.ui/icons/full/obj16/PreconditionConstraint.gif";
 		}
 		return "/org.eclipse.ocl.edit/icons/full/obj16/Constraint.gif";

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: CompleteEnvironmentImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -20,13 +20,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.examples.pivot.CompleteType;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
+import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
@@ -71,9 +69,8 @@ public class CompleteEnvironmentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteIteration getCompleteIteration(Iteration model)
-	{
-		return CompleteEnvironmentOperations.getCompleteIteration(this, model);
+	public CompleteType getCompleteType(Type model) {
+		return CompleteEnvironmentOperations.getCompleteType(this, model);
 	}
 
 	/**
@@ -81,8 +78,9 @@ public class CompleteEnvironmentImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CompleteType getCompleteType(Type model) {
-		return CompleteEnvironmentOperations.getCompleteType(this, model);
+	public CompleteOperation getDynamicOperation(CompleteType type, CompleteOperation operation)
+	{
+		return CompleteEnvironmentOperations.getDynamicOperation(this, type, operation);
 	}
 
 	/**
@@ -129,8 +127,6 @@ public class CompleteEnvironmentImpl
 				return parameterableElements();
 			case PivotPackage.COMPLETE_ENVIRONMENT___IS_TEMPLATE:
 				return isTemplate();
-			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_ITERATION__ITERATION:
-				return getCompleteIteration((Iteration)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION:
 				return getCompleteOperation((Operation)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE:
@@ -139,6 +135,8 @@ public class CompleteEnvironmentImpl
 				return getCompleteProperty((Property)arguments.get(0));
 			case PivotPackage.COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE:
 				return getCompleteType((Type)arguments.get(0));
+			case PivotPackage.COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION:
+				return getDynamicOperation((CompleteType)arguments.get(0), (CompleteOperation)arguments.get(1));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}

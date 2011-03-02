@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotObjectImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: PivotObjectImpl.java,v 1.3 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -25,6 +25,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 public abstract class PivotObjectImpl extends EObjectImpl implements PivotObject, Adapter.Internal
 {
 	private EObject target;
+	
+	public EObject getETarget() {
+		return target;
+	}
 	
 	public EObject getTarget() {
 		return target;

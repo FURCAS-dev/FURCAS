@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.6 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -57,16 +57,19 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
+import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
-public class UML2Pivot extends AbstractConversion implements Adapter, PivotConstants
+public class UML2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(UML2Pivot.class);
 
@@ -219,6 +222,7 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 	public UML2Pivot(Resource umlResource, TypeManager typeManager) {
 		this.umlResource = umlResource;
 		this.typeManager = typeManager;
+		typeManager.addExternalResource(this);
 	}
 	
 	public void addCreated(EModelElement umlElement, Element pivotElement) {
@@ -287,11 +291,11 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 			for (Map.Entry<String,String> entry : oclAnnotation.getDetails().entrySet()) {
 				Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
 				String key = entry.getKey();
-				if (key.equals("derivation")) {
-					constraint.setStereotype("derivation");
+				if (key.equals(SettingBehavior.DERIVATION_CONSTRAINT_KEY)) {
+					constraint.setStereotype(UMLReflection.DERIVATION);
 				}
-				else if (key.equals("initial")) {
-					constraint.setStereotype("initial");
+				else if (key.equals(SettingBehavior.INITIAL_CONSTRAINT_KEY)) {
+					constraint.setStereotype(UMLReflection.INITIAL);
 				}
 				else
 				{
@@ -426,12 +430,20 @@ public class UML2Pivot extends AbstractConversion implements Adapter, PivotConst
 		return pivotRoot;
 	}
 
+	public Resource getResource() {
+		return umlResource;
+	}
+
 	public Notifier getTarget() {
 		return umlResource;
 	}
 	
 	protected TypeManager getTypeManager() {
 		return typeManager;
+	}
+
+	public URI getURI() {
+		return umlResource.getURI();
 	}
 
 	public Resource importObjects(Collection<EObject> ecoreContents, URI ecoreURI) {
