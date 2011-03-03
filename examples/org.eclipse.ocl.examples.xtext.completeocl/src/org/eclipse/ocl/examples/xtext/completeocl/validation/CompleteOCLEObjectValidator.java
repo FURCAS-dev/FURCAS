@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLEObjectValidator.java,v 1.1 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLEObjectValidator.java,v 1.2 2011/03/03 20:09:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
@@ -165,34 +165,38 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 					evaluationEnvironment.add(query.getContextVariable(), value);
 					ModelManager extents = evaluationEnvironment.createModelManager(object);
 					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, evaluationEnvironment, extents);
+					int severity = Diagnostic.ERROR;
 					String message = null;
 					if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
 						message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 					}
 					try {
 						Value expressionResult = query.accept(evaluationVisitor);
-						if (expressionResult.isNull()) {
-							message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+						boolean isOk = false;
+						if (!expressionResult.isNull()) {
+							isOk = expressionResult.asBoolean();
+							severity = Diagnostic.WARNING;
 						}
-						else {
-							boolean isOk = expressionResult.asBoolean();
-							if (!isOk) {
-								Object objectLabel = getLabel(eClassifier, object, context);
-								OclExpression messageExpression = query.getMessageExpression();
-								if (messageExpression != null) {
-									try {
-										Value messageResult = messageExpression.accept(evaluationVisitor);
+						if (!isOk) {
+							Object objectLabel = getLabel(eClassifier, object, context);
+							OclExpression messageExpression = query.getMessageExpression();
+							if (messageExpression != null) {
+								try {
+									Value messageResult = messageExpression.accept(evaluationVisitor);
+									if (!messageResult.isNull()) {
 										message = messageResult.asString();
-									} catch (InvalidValueException e) {
-										message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
 									}
-									catch (Exception e) {
-										message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
-									}
+								} catch (InvalidValueException e) {
+									message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+									severity = Diagnostic.ERROR;
 								}
-								if (message == null) {
-									message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+								catch (Exception e) {
+									message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
+									severity = Diagnostic.ERROR;
 								}
+							}
+							if (message == null) {
+								message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 							}
 						}
 					} catch (InvalidValueException e) {
@@ -201,8 +205,11 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 						message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 					}
 					if (message != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
+						diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
 					    allOk = false;
+					    if (severity == Diagnostic.ERROR) {
+					    	break;		// Generate many warnings but only one error
+					    }
 					}
 				}
 			}

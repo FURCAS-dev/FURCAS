@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.8 2011/03/03 20:09:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -248,7 +248,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			nameToLibraryTypeMap = null;
 			type = getLibraryType(typeName);	// FIXME just a debug retry
 			if ((nameToLibraryTypeMap == null) || nameToLibraryTypeMap.isEmpty()) {
-				throw new IllegalStateException("No OCL Standard Library available");
+				throw new IllegalStateException("No OCL Standard Library content available");
 			}
 			else {
 				throw new IllegalStateException("No '" + typeName + "' type in the OCL Standard Library");
