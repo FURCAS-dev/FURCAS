@@ -17,12 +17,13 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator
 Export-Package: org.eclipse.ocl.examples.xtext.essentialocl.ui,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist,
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist.antlr,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.internal,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.model,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.outline,
  org.eclipse.ocl.examples.xtext.essentialocl.ui.quickfix,
- org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring,
- org.eclipse.ocl.examples.xtext.essentialocl.ui.contentassist.antlr
+ org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring
 
