@@ -497,6 +497,7 @@ public class CtsContentAssistUtil {
 
 						for (EObject refObj : oclElements) {
 							String displayString = null;
+							String replacementString = null;
 							try {
 								Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj,
 										invert, null, null, null);
@@ -505,7 +506,8 @@ public class CtsContentAssistUtil {
 								    result = ((Collection<?>) result).iterator().next();
 								}
 								if (result instanceof String) {
-                                                                    displayString = (String) result;
+								    replacementString = (String) result;
+								    displayString = replacementString + " : " + refObj.eClass().getName() + " (by: " + invert +  ")";
                                                             }
 							} catch (Exception e1) {
 //								System.out
@@ -517,7 +519,6 @@ public class CtsContentAssistUtil {
 							}
 
 							if (displayString != null) {
-								String replacementString = displayString;
 								results
 										.add(createPropValueProposal(
 												displayString,
@@ -560,8 +561,8 @@ public class CtsContentAssistUtil {
 								prop.eResource().getResourceSet());
 
 						for (String propValue : propValues) {
-							String displayString = propValue;
-							String replacementString = displayString;
+							String displayString = propValue + " : " + propFeature.getEType().getName();
+							String replacementString = propValue;
 							results.add(createPropValueProposal(displayString,
 									replacementString, viewer, line,
 									charPositionInLine, token));
