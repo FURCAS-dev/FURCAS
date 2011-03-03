@@ -380,10 +380,12 @@ if (isRightOf(tb, workingCopy) && !tb.equals(workingCopy)) {
 	 * @param start The {@link TextBlock} to begin the marking with.
 	 */
 	public static void markAscending(TextBlock start) {
-		start.setChildrenChanged(true);
-		TextBlock parent;
-		if((parent = start.getParent()) != null) {
-			markAscending(parent);
+		if(start != null) {
+    		start.setChildrenChanged(true);
+    		TextBlock parent;
+    		if((parent = start.getParent()) != null) {
+    			markAscending(parent);
+    		}
 		}
 	}
 
