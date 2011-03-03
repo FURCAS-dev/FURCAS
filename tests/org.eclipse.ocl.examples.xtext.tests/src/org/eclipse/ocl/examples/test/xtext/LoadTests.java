@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.18 2011/03/01 08:56:02 ewillink Exp $
+ * $Id: LoadTests.java,v 1.19 2011/03/03 20:10:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -45,13 +45,6 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 public class LoadTests extends XtextTestCase
 {	
 	protected TypeManager typeManager = null;
-	
-	@Override
-	protected void tearDown() throws Exception {
-		typeManager = null;
-		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
-		super.tearDown();
-	}
 
 	public void checkSignatures(Resource resource) {
 		Map<String, NamedElementCS> sigMap = new HashMap<String, NamedElementCS>();
@@ -152,6 +145,19 @@ public class LoadTests extends XtextTestCase
 		xmiResource.save(options);
 		assertNoResourceErrors("Save failed", xmiResource);
 		resource.getContents().addAll(xmiResource.getContents());
+	}
+	
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		configurePlatformResources();
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		typeManager = null;
+		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
+		super.tearDown();
 	}
 
 	public void testLoad_Annotations_ecore() throws IOException, InterruptedException {
