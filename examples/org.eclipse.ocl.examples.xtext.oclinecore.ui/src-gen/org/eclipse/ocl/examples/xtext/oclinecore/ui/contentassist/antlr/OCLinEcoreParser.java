@@ -88,6 +88,7 @@ public class OCLinEcoreParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeRefCSAccess().getAlternatives(), "rule__TypeRefCS__Alternatives");
 					put(grammarAccess.getTypedRefCSAccess().getAlternatives(), "rule__TypedRefCS__Alternatives");
 					put(grammarAccess.getWildcardTypeRefCSAccess().getAlternatives_2(), "rule__WildcardTypeRefCS__Alternatives_2");
+					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_1(), "rule__NUMBER_LITERAL__Alternatives_2_1");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");
