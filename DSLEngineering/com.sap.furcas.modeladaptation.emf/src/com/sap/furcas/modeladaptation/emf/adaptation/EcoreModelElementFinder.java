@@ -197,7 +197,7 @@ public class EcoreModelElementFinder {
 
         }
 
-        ResultSet resultSet = executeQuery(queryBuilder.toString());
+        ResultSet resultSet = executeQueryOnReferenceScope(queryBuilder.toString());
         
         List<Object> result = new ArrayList<Object>(resultSet.getSize());
         for (URI uri : resultSet.getUris("instance")) {
@@ -223,6 +223,11 @@ public class EcoreModelElementFinder {
         } catch (MetaModelLookupException e) {
            throw new ModelAdapterException("Failed to resolve the EClassifier for " + qualifiedTypeName, e);
         }
+    }
+    
+    private ResultSet executeQueryOnReferenceScope(String query) {
+        QueryContext scopeProvider = EcoreHelper.getQueryContextForReferenceScope(resourceSet, referenceScope);
+        return queryProcessor.execute(query, scopeProvider);
     }
     
     private ResultSet executeQuery(String query) {
