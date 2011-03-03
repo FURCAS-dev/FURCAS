@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseAntlrTokenToAttributeIdMapper.java,v 1.2 2011/01/24 21:30:14 ewillink Exp $
+ * $Id: BaseAntlrTokenToAttributeIdMapper.java,v 1.3 2011/03/03 20:05:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring;
 
@@ -31,6 +31,12 @@ public class BaseAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttrib
 			return DefaultHighlightingConfiguration.STRING_ID;
 		}
 		if("RULE_SINGLE_QUOTED_STRING".equals(tokenName)) {
+			return DefaultHighlightingConfiguration.STRING_ID;
+		}
+		if("RULE_ML_SINGLE_QUOTED_STRING".equals(tokenName)) {
+			return DefaultHighlightingConfiguration.STRING_ID;
+		}
+		if("RULE_ESCAPED_ID".equals(tokenName)) {
 			return DefaultHighlightingConfiguration.STRING_ID;
 		}
 		return super.calculateId(tokenName, tokenType);
