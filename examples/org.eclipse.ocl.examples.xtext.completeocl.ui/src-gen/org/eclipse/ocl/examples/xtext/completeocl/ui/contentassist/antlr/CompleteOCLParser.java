@@ -46,6 +46,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOperationContextDeclCSAccess().getAlternatives_8(), "rule__OperationContextDeclCS__Alternatives_8");
 					put(grammarAccess.getPropertyContextDeclCSAccess().getAlternatives_5(), "rule__PropertyContextDeclCS__Alternatives_5");
 					put(grammarAccess.getNavigatingArgExpCSAccess().getAlternatives(), "rule__NavigatingArgExpCS__Alternatives");
+					put(grammarAccess.getIDAccess().getAlternatives(), "rule__ID__Alternatives");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_0(), "rule__NUMBER_LITERAL__Alternatives_2_0");
 					put(grammarAccess.getNUMBER_LITERALAccess().getAlternatives_2_1(), "rule__NUMBER_LITERAL__Alternatives_2_1");
 					put(grammarAccess.getEssentialOCLReservedKeywordAccess().getAlternatives(), "rule__EssentialOCLReservedKeyword__Alternatives");

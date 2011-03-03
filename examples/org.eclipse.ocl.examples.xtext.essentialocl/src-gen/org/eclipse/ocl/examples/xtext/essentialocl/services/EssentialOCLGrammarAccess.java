@@ -34,6 +34,26 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getOwnedExpressionExpCSParserRuleCall_0() { return cOwnedExpressionExpCSParserRuleCall_0; }
 	}
 
+	public class IDElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ID");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSIMPLE_IDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cESCAPED_IDTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//ID:
+		//	SIMPLE_ID | ESCAPED_ID;
+		public ParserRule getRule() { return rule; }
+
+		//SIMPLE_ID | ESCAPED_ID
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SIMPLE_ID
+		public RuleCall getSIMPLE_IDTerminalRuleCall_0() { return cSIMPLE_IDTerminalRuleCall_0; }
+
+		//ESCAPED_ID
+		public RuleCall getESCAPED_IDTerminalRuleCall_1() { return cESCAPED_IDTerminalRuleCall_1; }
+	}
+
 	public class NUMBER_LITERALElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NUMBER_LITERAL");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -283,7 +303,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	public class IdentifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifier");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cIDParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cEssentialOCLUnrestrictedIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Identifier:
@@ -294,7 +314,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+		public RuleCall getIDParserRuleCall_0() { return cIDParserRuleCall_0; }
 
 		//EssentialOCLUnrestrictedIdentifier
 		public RuleCall getEssentialOCLUnrestrictedIdentifierParserRuleCall_1() { return cEssentialOCLUnrestrictedIdentifierParserRuleCall_1; }
@@ -2136,7 +2156,9 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tDOUBLE_QUOTED_STRING;
 	private TerminalRule tSINGLE_QUOTED_STRING;
 	private TerminalRule tML_SINGLE_QUOTED_STRING;
-	private TerminalRule tID;
+	private TerminalRule tSIMPLE_ID;
+	private TerminalRule tESCAPED_ID;
+	private IDElements pID;
 	private TerminalRule tINT;
 	private NUMBER_LITERALElements pNUMBER_LITERAL;
 	private TerminalRule tDOCUMENTATION;
@@ -2245,11 +2267,27 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return (tML_SINGLE_QUOTED_STRING != null) ? tML_SINGLE_QUOTED_STRING : (tML_SINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_SINGLE_QUOTED_STRING"));
 	} 
 
-	//terminal ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" SINGLE_QUOTED_STRING;
-	public TerminalRule getIDRule() {
-		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
+	//terminal SIMPLE_ID:
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	public TerminalRule getSIMPLE_IDRule() {
+		return (tSIMPLE_ID != null) ? tSIMPLE_ID : (tSIMPLE_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIMPLE_ID"));
 	} 
+
+	//terminal ESCAPED_ID:
+	//	"_" SINGLE_QUOTED_STRING;
+	public TerminalRule getESCAPED_IDRule() {
+		return (tESCAPED_ID != null) ? tESCAPED_ID : (tESCAPED_ID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_ID"));
+	} 
+
+	//ID:
+	//	SIMPLE_ID | ESCAPED_ID;
+	public IDElements getIDAccess() {
+		return (pID != null) ? pID : (pID = new IDElements());
+	}
+	
+	public ParserRule getIDRule() {
+		return getIDAccess().getRule();
+	}
 
 	//// String to allow diverse re-use
 	//
@@ -2272,7 +2310,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOCUMENTATION:
-	//	"/ **"->"** /";
+	//	"/ **"->"* /";
 	public TerminalRule getDOCUMENTATIONRule() {
 		return (tDOCUMENTATION != null) ? tDOCUMENTATION : (tDOCUMENTATION = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOCUMENTATION"));
 	} 

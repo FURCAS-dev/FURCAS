@@ -4781,6 +4781,7 @@ protected class Model_OwnedExpressionAssignment extends AssignmentToken  {
 
 
 
+
 /************ begin Rule PrimitiveTypeCS ****************
  *
  * PrimitiveTypeCS returns base::PrimitiveTypeRefCS:
