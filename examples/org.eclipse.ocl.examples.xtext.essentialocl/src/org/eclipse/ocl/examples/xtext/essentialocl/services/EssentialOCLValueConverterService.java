@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.8 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.9 2011/03/03 20:05:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -39,6 +39,7 @@ import com.google.common.collect.ImmutableSet;
 
 public class EssentialOCLValueConverterService extends AbstractDeclarativeValueConverterService
 {
+
 	@ValueConverter(rule = "DOUBLE_QUOTED_STRING")
 	public IValueConverter<String> DOUBLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
@@ -78,13 +79,41 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		}
 	}
 
+	@ValueConverter(rule = "ESCAPED_ID")
+	public IValueConverter<String> ESCAPED_ID() {
+		return new AbstractNullSafeConverter<String>()
+		{			
+			@Override
+			protected String internalToValue(String string, INode node) {
+				int length = string.length();
+				if (string.startsWith("_'") && (length >= 3) && string.endsWith("'")) {
+					return string.substring(2, length-1);
+				}
+				else if (string.startsWith("'") && (length >= 2) && string.endsWith("'")) {
+					return string.substring(1, length-1);
+				}
+				else if (string.startsWith("\"") && (length >= 2) && string.endsWith("\"")) {
+					return string.substring(1, length-1);
+				}
+				else {
+					return string;
+				}
+			}
+
+			@Override
+			protected String internalToString(String value) {	// Never called
+				return value;
+			}
+		};
+	}
+
 	@ValueConverter(rule = "ID")
 	public IValueConverter<String> ID() {
-		return new AbstractNullSafeConverter<String>() {
-					
+		return new AbstractNullSafeConverter<String>()
+		{			
 			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
 //			private Set<String> unrestrictedKeywords = ImmutableSet.copyOf(getKeywords(getGrammar(), "Unrestricted"));
-			
+
 			@Override
 			protected String internalToValue(String string, INode node) {
 				int length = string.length();
@@ -138,7 +167,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	
 	@ValueConverter(rule = "Name")
 	public IValueConverter<String> Name() {
-		return ID();
+		return ID();		// testOCLstdlib demonstrates that this is used (3/3/2011)
 	}
 
 	@ValueConverter(rule = "NUMBER_LITERAL")
@@ -166,6 +195,28 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		};
 	}
 
+	@ValueConverter(rule = "SIMPLE_ID")
+	public IValueConverter<String> SIMPLE_ID() {
+		return new AbstractNullSafeConverter<String>()
+		{			
+//			private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
+//			private Set<String> unrestrictedKeywords = ImmutableSet.copyOf(getKeywords(getGrammar(), "Unrestricted"));
+
+			@Override
+			protected String internalToValue(String string, INode node) {
+				return string;
+			}
+
+			@Override
+			protected String internalToString(String value) {		// Never called
+//				if (allKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
+//					return "_'" + value + "'";
+//				}
+				return value;
+			}
+		};
+	}
+
 	@ValueConverter(rule = "SINGLE_QUOTED_STRING")
 	public IValueConverter<String> SINGLE_QUOTED_STRING() {
 		return new AbstractNullSafeConverter<String>() {
@@ -187,6 +238,6 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	
 	@ValueConverter(rule = "StringLiteral")
 	public IValueConverter<String> StringLiteral() {
-		return SINGLE_QUOTED_STRING();
+		return SINGLE_QUOTED_STRING();		// testCollectionAt demonstrates that this is used (3/3/2011)
 	}
 }
