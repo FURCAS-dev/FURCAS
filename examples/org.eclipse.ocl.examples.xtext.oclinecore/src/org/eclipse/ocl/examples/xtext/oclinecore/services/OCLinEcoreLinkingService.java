@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLinkingService.java,v 1.9 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreLinkingService.java,v 1.10 2011/03/03 20:05:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
@@ -54,7 +54,7 @@ public class OCLinEcoreLinkingService extends EssentialOCLLinkingService
 		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
 			BaseCSResource csResource = (BaseCSResource) context.eResource();
 			URI uri = URI.createURI(text);
-			uri = uri.resolve(csResource.getURI());
+			uri = csResource.resolve(uri);
 			ImportScopeAdapter importScopeAdapter = (ImportScopeAdapter)scopeAdapter;
 			URI oldURI = importScopeAdapter.getURI();
 			Element importedElement;				
