@@ -220,12 +220,16 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
                 } else {
                     targetConfig = new GrammarGenerationTargetConfiguration(
                             getPackageName(grammarFile), convertIFileToFile(grammarFile), mappingResource);
-                    EObject cs =  mappingResource.getContents().iterator().next();
-                    if(! (cs instanceof ConcreteSyntax)) {
-                        Activator.logger.displayError("Exprected mapping resource: " + mappingResource.getURI() + " to contain Concrete Sytnax element but found: " + cs.eClass().getName());
+                    if(mappingResource.getContents().size() > 0) {
+                        EObject cs =  mappingResource.getContents().iterator().next();
+                        if(! (cs instanceof ConcreteSyntax)) {
+                            Activator.logger.displayError("Exprected mapping resource: " + mappingResource.getURI() + " to contain Concrete Sytnax element but found: " + cs.eClass().getName());
+                        }
+                        syntaxBean = new TCSSyntaxContainerBean();
+                        syntaxBean.setSyntax((ConcreteSyntax) cs);
+                    } else {
+                    	return;
                     }
-                    syntaxBean = new TCSSyntaxContainerBean();
-                    syntaxBean.setSyntax((ConcreteSyntax) cs);
                 }
                 if(syntaxBean != null) {
                     monitor.subTask("Generating Grammar: " +  grammarFile.getName());

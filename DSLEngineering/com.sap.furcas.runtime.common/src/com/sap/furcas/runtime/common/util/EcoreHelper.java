@@ -66,6 +66,23 @@ public class EcoreHelper {
     }
     
     /**
+     * Constructs a query context that contains the given <tt>resources</tt>.
+     */
+    public static QueryContext getQueryContextForReferenceScope(final ResourceSet resourceSet, final Set<URI> referenceScope) {
+        return new QueryContext() {
+            @Override
+            public URI[] getResourceScope() {
+                return referenceScope.toArray(new URI[referenceScope.size()]);
+            }
+
+            @Override
+            public ResourceSet getResourceSet() {
+                return resourceSet;
+            }
+        };
+    }
+    
+    /**
      * Constructs a query context that contains the given <tt>resources</tt> .
      */
     public static QueryContext getRestrictedQueryContext(final ResourceSet resourceSet, final Set<URI> resources) {

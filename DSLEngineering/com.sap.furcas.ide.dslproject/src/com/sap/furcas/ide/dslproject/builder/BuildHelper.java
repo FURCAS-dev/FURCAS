@@ -8,6 +8,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.util.TCSResourceFactoryImpl;
+import com.sap.furcas.metamodel.FURCAS.textblocks.util.TextblocksResourceFactoryImpl;
+
 public class BuildHelper {
     public static boolean isModelProject(IProject project) {
 	return true;
@@ -16,6 +19,8 @@ public class BuildHelper {
     public static ResourceSet getResourceSetForProject(IProject project) {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("tcs", new TCSResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("textblocks", new TextblocksResourceFactoryImpl());
         resourceSet.eAdapters().add(new Adapter() {
             
             @Override
