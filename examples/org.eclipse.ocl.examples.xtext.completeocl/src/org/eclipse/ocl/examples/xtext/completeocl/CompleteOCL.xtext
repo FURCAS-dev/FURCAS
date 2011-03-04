@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.9 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.10 2011/03/04 13:55:15 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -20,7 +20,6 @@ with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "platform:/resource/org.eclipse.ocl.examples.xtext.base/model/BaseCST.ecore" as base
 import "platform:/resource/org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore" as essentialocl
-import "platform:/resource/org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.ecore" as oclinecore
 import "platform:/resource/org.eclipse.ocl.examples.pivot/model/pivot.ecore" as pivot
 import "platform:/resource/org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.ecore"
 //generate completeOCL "http://www.eclipse.org/ocl/examples/xtext/completeocl/CompleteOCL"

@@ -8,7 +8,7 @@
     codeFormatting="true" testsDirectory="/org.eclipse.ocl.examples.xtext.completeocl.tests/emf-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     editPluginID="org.eclipse.ocl.examples.xtext.completeocl.edit" editorPluginID="org.eclipse.ocl.examples.xtext.completeocl.editor"
-    usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST ../../org.eclipse.ocl.examples.xtext.oclinecore/model/OCLinEcoreCST.genmodel#//oclinEcoreCST">
+    usedGenPackages="../../org.eclipse.ocl.examples.xtext.base/model/BaseCST.genmodel#//baseCST ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.genmodel#//essentialOCLCST">
   <foreignModel>CompleteOCLCST.ecore</foreignModel>
   <genPackages prefix="CompleteOCLCST" basePackage="org.eclipse.ocl.examples.xtext.completeocl"
       disposableProviderFactory="true" ecorePackage="CompleteOCLCST.ecore#/">
