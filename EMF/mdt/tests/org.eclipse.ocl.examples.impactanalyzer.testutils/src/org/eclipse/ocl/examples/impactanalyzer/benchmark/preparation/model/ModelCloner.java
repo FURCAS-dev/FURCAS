@@ -11,6 +11,8 @@
 package org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
@@ -63,23 +65,29 @@ public class ModelCloner {
 	            clone = resultRS.createResource(uri);
 	        }
 		Copier copier = new Copier();
+		Collection<EObject> realRoots = new ArrayList<EObject>(resourceToClone.getContents());
+		for (Iterator<EObject> i=realRoots.iterator(); i.hasNext(); ) {
+		    EObject pseudoRoot = i.next();
+		    if (pseudoRoot.eContainer() != null) {
+		        i.remove();
+		    }
+		}
 		clone.getContents().addAll(
-				copier.copyAll(resourceToClone.getContents()));
+				copier.copyAll(realRoots));
 		copier.copyReferences();
-		clone = cloneXMLResourceIDs(resourceToClone, clone);
+		clone = cloneXMLResourceIDs(resourceToClone, clone, copier);
 		return clone;
 	}
 	
 
 	private static Resource cloneXMLResourceIDs(Resource resourceToClone,
-			Resource clone) {
+			Resource clone, Copier copier) {
 		if (resourceToClone instanceof XMLResource) {
 			TreeIterator<EObject> iterator = resourceToClone.getAllContents();
-			TreeIterator<EObject> cloneIterator = clone.getAllContents();
 			while (iterator.hasNext()) {
 				EObject next = iterator.next();
-				EObject nextClone = cloneIterator.next();
-				if (next.eClass() != nextClone.eClass()) {
+				EObject nextClone = copier.get(next);
+				if (nextClone == null || next.eClass() != nextClone.eClass()) {
 				    throw new RuntimeException("Something went wrong with the iteration order between original and clone");
 				}
 				((XMLResource) clone).setID(nextClone,
