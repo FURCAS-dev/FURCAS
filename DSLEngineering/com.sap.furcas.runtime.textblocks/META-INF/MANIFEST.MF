@@ -9,7 +9,8 @@ Require-Bundle: com.sap.furcas.metamodel,
  org.eclipse.emf.edit;bundle-version="2.6.0",
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.common,
- org.eclipse.ocl.examples.impactanalyzer.util
+ org.eclipse.ocl.examples.impactanalyzer.util,
+ com.sap.furcas.utils
 Export-Package: com.sap.furcas.runtime.textblocks,
  com.sap.furcas.runtime.textblocks.model,
  com.sap.furcas.runtime.textblocks.modifcation,
