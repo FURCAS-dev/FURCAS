@@ -11,7 +11,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Before;
@@ -31,7 +33,9 @@ public class TestQueryBasedEcoreMetaModelLookUp {
 
     @Before
     public void setup() throws Exception {
-        lookup = new QueryBasedEcoreMetaModelLookUp(ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
+        Set<URI> referenceScope = ResourceTestHelper.createFURCASReferenceScope();
+        referenceScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
+        lookup = new QueryBasedEcoreMetaModelLookUp(ResourceTestHelper.createResourceSet(), referenceScope);
     }
 
     @Test
