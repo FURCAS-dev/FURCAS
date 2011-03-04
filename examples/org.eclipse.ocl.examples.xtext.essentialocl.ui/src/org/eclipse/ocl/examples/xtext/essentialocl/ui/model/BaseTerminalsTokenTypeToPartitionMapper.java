@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseTerminalsTokenTypeToPartitionMapper.java,v 1.1 2011/03/03 20:05:46 ewillink Exp $
+ * $Id: BaseTerminalsTokenTypeToPartitionMapper.java,v 1.2 2011/03/04 13:52:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -42,12 +42,6 @@ public class BaseTerminalsTokenTypeToPartitionMapper extends TerminalsTokenTypeT
 	
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		String internalCalculateId = internalCalculateId(tokenName);
-		System.out.println(tokenName + " -> " + internalCalculateId);
-		return internalCalculateId;
-	}
-
-	protected String internalCalculateId(String tokenName) {
 		if ("RULE_DOCUMENTATION".equals(tokenName)) {
 			return DOCUMENTATION_PARTITION;
 		} else if ("RULE_ML_COMMENT".equals(tokenName)) {
