@@ -12,17 +12,22 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLEObjectValidator.java,v 1.2 2011/03/03 20:09:24 ewillink Exp $
+ * $Id: CompleteOCLEObjectValidator.java,v 1.3 2011/03/04 13:58:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IResourceStatus;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -114,7 +119,28 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + ecoreResource.getURI() + message);
 		}
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
+		BaseCSResource xtextResource = null;
+		try {
+			xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
+		}
+		catch (WrappedException e) {
+			URI retryURI = null;
+			Throwable cause = e.getCause();
+			if (cause instanceof CoreException) {
+				IStatus status = ((CoreException)cause).getStatus();
+				if ((status.getCode() == IResourceStatus.RESOURCE_NOT_FOUND) && status.getPlugin().equals(ResourcesPlugin.PI_RESOURCES)) {
+					if (oclURI.isPlatformResource()) {
+						retryURI = URI.createPlatformPluginURI(oclURI.toPlatformString(false), false);
+					}
+				}
+			}
+			if (retryURI != null) {
+				xtextResource = (BaseCSResource) resourceSet.getResource(retryURI, true);			
+			}
+			else {
+				throw e;
+			}
+		}
 		message = PivotUtil.getResourceErrorsString(xtextResource, "");
 		if (message != null) {
 			logger.error("Failed to load '" + oclURI + message);
