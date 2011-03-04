@@ -17,11 +17,10 @@
  *
  * </copyright>
  *
- * $Id: EmbeddedXtextEditor.java,v 1.1 2011/03/04 22:18:25 ewillink Exp $
+ * $Id: EmbeddedXtextEditor.java,v 1.2 2011/03/04 22:52:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -30,14 +29,7 @@ import java.util.Map;
 import org.eclipse.core.expressions.Expression;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.service.DiffService;
-import org.eclipse.emf.compare.match.MatchOptions;
-import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.service.MatchService;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -114,7 +106,6 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -538,7 +529,7 @@ public class EmbeddedXtextEditor {
 	 * 
 	 * @param eObject
 	 * @param asString
-	 */
+	 *
 	public void update(EObject eObject, String asString) {
 		fResource.setParentResource(eObject.eResource());
 		if (eObject != null) {
@@ -604,7 +595,7 @@ public class EmbeddedXtextEditor {
 //		} else {
 //			update(""); //$NON-NLS-1$
 		}
-	}
+	} */
 	
 	private void createActions() {
 		{
@@ -755,7 +746,7 @@ public class EmbeddedXtextEditor {
 		return result;
 	}
 
-	private static boolean equals(EObject expected, EObject actual) {
+/*	private static boolean equals(EObject expected, EObject actual) {
 		Map<String, Object> options = ImmutableMap.<String, Object> builder().put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE).build();
 	    MatchModel match = null;
 	    try {
@@ -766,5 +757,5 @@ public class EmbeddedXtextEditor {
 	    catch (InterruptedException e) {
 	        throw new AssertionError(e);
 	    }
-	}
+	} */
 }
