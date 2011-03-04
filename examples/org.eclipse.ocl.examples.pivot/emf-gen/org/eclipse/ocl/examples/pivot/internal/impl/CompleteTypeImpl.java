@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.5 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.6 2011/03/04 07:21:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -271,7 +271,7 @@ public class CompleteTypeImpl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<CompleteType> getCompleteSuperTypes()
 	{
