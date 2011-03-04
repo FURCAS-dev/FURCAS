@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.8 2011/03/04 13:56:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -38,6 +38,7 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -67,8 +68,10 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
@@ -154,6 +157,29 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + dynamicOperation.getImplementationClass() + "'", e, callExp, sourceValue);
 		}
 		if (implementation == null) {
+			if (callExp instanceof OperationCallExp) {
+				for (Constraint constraint : typeManager.getLocalConstraints(dynamicOperation)) {
+					if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+						ValueSpecification specification = constraint.getSpecification();
+						if (specification instanceof ExpressionInOcl) {
+							ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;
+							EvaluationVisitor nestedVisitor = createNestedVisitor();
+							EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
+							nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+							List<Variable> parameters = expressionInOcl.getParameterVariables();
+							if (!parameters.isEmpty()) {
+								List<OclExpression> arguments = ((OperationCallExp)callExp).getArguments();
+								for (int i = 0; i < parameters.size(); i++) {
+									OclExpression argument = arguments.get(i);
+									Value value = argument.accept(this);
+									nestedEvaluationEnvironment.add(parameters.get(i).getRepresentedParameter(), value);
+								}
+							}
+							return expressionInOcl.accept(nestedVisitor);
+						}
+					}
+				}
+			}
 			return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + dynamicOperation + "'",  callExp, sourceValue);
 		}
 		try {
