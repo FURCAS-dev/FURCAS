@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.3 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.4 2011/03/04 13:56:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -137,6 +138,7 @@ public class CompleteOCLLeft2RightVisitor
 			PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
 		context.installPivotElement(csSpecification, pivotSpecification);
 		pivotConstraint.setSpecification(pivotSpecification);
+		pivotConstraint.setStereotype(UMLReflection.BODY);
 
 		Variable contextVariable = pivotSpecification.getContextVariable();
 		if (contextVariable == null) {

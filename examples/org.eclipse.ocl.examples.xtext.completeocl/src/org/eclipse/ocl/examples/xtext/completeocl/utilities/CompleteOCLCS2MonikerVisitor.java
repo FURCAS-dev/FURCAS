@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.5 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.6 2011/03/04 13:56:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -122,7 +122,7 @@ public class CompleteOCLCS2MonikerVisitor
 	public Boolean visitContextSpecificationCS(ContextSpecificationCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
 		if (object.eContainer() instanceof DefCS) {
-			context.append(null);		// FIXME This and ContextSpecificationCS are a fudge 
+			context.append(UMLReflection.BODY);		// FIXME This and ContextSpecificationCS are a fudge 
 			context.append(MONIKER_OPERATOR_SEPARATOR);
 			context.append(MONIKER_SCOPE_SEPARATOR);
 		}
