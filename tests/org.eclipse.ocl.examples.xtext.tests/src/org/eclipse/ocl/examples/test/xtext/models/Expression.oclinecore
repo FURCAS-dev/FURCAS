@@ -1,0 +1,13 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package test : tst = 'http://test'
+{
+ class Test  {
+--   property p : String;
+--   invariant test: let b : Boolean = true in b;
+--   invariant test: '1' + p;
+	operation test(a : Integer) : Integer {
+		body: a + 1;
+	}
+ }
+} 
