@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.7 2011/03/03 20:05:13 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.8 2011/03/04 13:58:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -88,10 +88,12 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	public URI resolve(URI uri) {
 		try {
 			ModelResolver resolver = useModelResolver();
-			java.net.URI javaURI = new java.net.URI(uri.toString());
-			URI resolvedURI = resolver.getURI(javaURI);
-			if (resolvedURI != null) {
-				uri = resolvedURI;
+			if (resolver != null) {
+				java.net.URI javaURI = new java.net.URI(uri.toString());
+				URI resolvedURI = resolver.getURI(javaURI);
+				if (resolvedURI != null) {
+					uri = resolvedURI;
+				}
 			}
 		} catch (Exception e) {
 			logger.warn("Failed to resolve '" + uri + "'", e);
@@ -118,6 +120,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 				String path = uri.toPlatformString(true);
 				IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
 				modelResolver = new ModelResourceResolver(workspaceResource);
+			}
+			else if (uri.isPlatformPlugin()) {
+				return null;
 			}
 			else {
 				String fileName = uri.toFileString();
