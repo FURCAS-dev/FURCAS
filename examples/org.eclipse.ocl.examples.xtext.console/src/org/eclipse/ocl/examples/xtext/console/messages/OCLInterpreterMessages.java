@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLInterpreterMessages.java,v 1.1 2011/03/04 22:18:25 ewillink Exp $
+ * $Id: OCLInterpreterMessages.java,v 1.2 2011/03/05 18:16:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console.messages;
@@ -31,6 +31,7 @@ public class OCLInterpreterMessages extends NLS {
 
 	public static String console_title;
 	public static String console_noContext;
+	public static String console_noExpression;
 	public static String console_badContextForQuery;
 	public static String console_badContextForConstraint;
 	public static String console_outputExc;
