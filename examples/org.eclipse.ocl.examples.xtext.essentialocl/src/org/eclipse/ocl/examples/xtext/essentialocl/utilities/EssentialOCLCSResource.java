@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.8 2011/03/04 13:58:45 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.9 2011/03/05 05:57:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.modelregistry.environment.ProjectHandle;
 import org.eclipse.ocl.examples.modelregistry.standalone.JavaProjectHandle;
 import org.eclipse.ocl.examples.modelregistry.standalone.ModelFileResolver;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -101,6 +102,10 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		return uri.resolve(getURI());
 	}
 
+	public void setContext(NamedElement pivotContext, Map<String, Type> pivotParameters) {
+		this.specificationContext = pivotContext;		
+	}
+
 	public void setEnvironment(PivotEnvironment environment) {
 		this.environment = environment;
 	}
@@ -109,9 +114,9 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 		this.modelResolver = modelResolver;
 	}
 
-	public void setSpecificationContext(NamedElement specificationContext) {
-		this.specificationContext = specificationContext;
-	}
+//	public void setSpecificationContext(NamedElement specificationContext) {
+//		this.specificationContext = specificationContext;
+//	}
 
 	public ModelResolver useModelResolver() throws IOException {
 		if (modelResolver == null) {

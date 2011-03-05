@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConsoleContext.java,v 1.1 2011/02/08 17:50:04 ewillink Exp $
+ * $Id: ConsoleContext.java,v 1.2 2011/03/05 05:57:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -29,7 +29,5 @@ public interface ConsoleContext extends IDocument
 //	IOCLFactory<Object> getOCLFactory();
 	Map<String, EClassifier> getOCLParameters();
 //	void setModelingLevel(ModelingLevel level);
-	void setOCLContext(EObject context);
-//	void setOCLFactory(IOCLFactory<Object> factory);
-	void setOCLParameters(Map<String, EClassifier> parameters);
+	void setContext(EObject context, Map<String, EClassifier> parameters);
 }
