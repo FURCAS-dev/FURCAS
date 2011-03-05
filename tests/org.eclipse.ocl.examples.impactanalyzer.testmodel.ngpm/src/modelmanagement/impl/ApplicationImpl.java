@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ApplicationImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: ApplicationImpl.java,v 1.2 2011/03/05 12:00:11 auhl Exp $
  */
 package modelmanagement.impl;
 
@@ -12,19 +12,12 @@ import java.util.Collection;
 
 import modelmanagement.Application;
 import modelmanagement.ModelmanagementPackage;
-
 import modelmanagement.deploymentunits.DeploymentUnit;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
