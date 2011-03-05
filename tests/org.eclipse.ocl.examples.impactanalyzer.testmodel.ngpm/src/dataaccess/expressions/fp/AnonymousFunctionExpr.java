@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AnonymousFunctionExpr.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: AnonymousFunctionExpr.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package dataaccess.expressions.fp;
 
@@ -31,16 +31,16 @@ import dataaccess.expressions.Expression;
  */
 public interface AnonymousFunctionExpr extends Expression {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Determines the Block implementing the function to which this expression evaluates by navigating to the FunctionSignatureTypeDefinition that tells this expression's type, and from there obtaining the signature's implementation.
-     * <!-- end-model-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * Determines the Block implementing the function to which this expression evaluates by navigating to the FunctionSignatureTypeDefinition that tells this expression's type, and from there obtaining the signature's implementation.
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	FunctionSignatureImplementation getImplementation();
 
 } // AnonymousFunctionExpr
