@@ -15,27 +15,28 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.1 2011/03/04 22:18:03 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.2 2011/03/05 18:16:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.ActionContributionItem;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
-import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -45,8 +46,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.jface.util.IPropertyChangeListener;
-import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -56,6 +55,8 @@ import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
@@ -75,7 +76,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -91,6 +91,9 @@ import org.eclipse.ui.console.actions.ClearOutputAction;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
+import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.osgi.framework.Bundle;
 
@@ -105,6 +108,12 @@ public class OCLConsolePage
 
     private static int BUNDLE_AVAILABLE = Bundle.RESOLVED | Bundle.ACTIVE |
         Bundle.STARTING;
+
+    private static Map<String, Object> saveOptions = new java.util.HashMap<String, Object>();
+    
+    static {
+        saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, true);
+    }
     
 	private Composite page;
 //	private boolean useXtextEditor = true;
@@ -115,7 +124,7 @@ public class OCLConsolePage
 	private ColorManager colorManager;
 	
 	private String lastOCLExpression;
-	private EObject context;
+	private EClassifier context;
 	
 	private ISelectionService selectionService;
 	private ISelectionListener selectionListener;
@@ -231,25 +240,25 @@ public class OCLConsolePage
 //		metamodelAction.setToolTipText(OCLInterpreterMessages.console_metamodelTip);
 //		addMetamodelActions(metamodelMenu, metamodelAction);
 		
-		IMenuManager levelMenu = new MenuManager(OCLInterpreterMessages.console_modelingLevel);
-		menu.add(levelMenu);
-        DropDownAction levelAction = new DropDownAction();
-        levelAction.setToolTipText(OCLInterpreterMessages.console_modelingLevelTip);
-		IAction m2 = new ModelingLevelAction(ModelingLevel.M2);
-		m2.setChecked(true);
-		levelMenu.add(m2);
-		levelAction.addAction(m2);
-		IAction m1 = new ModelingLevelAction(ModelingLevel.M1);
-		levelMenu.add(m1);
-		levelAction.addAction(m1);
+//		IMenuManager levelMenu = new MenuManager(OCLInterpreterMessages.console_modelingLevel);
+//		menu.add(levelMenu);
+//        DropDownAction levelAction = new DropDownAction();
+//        levelAction.setToolTipText(OCLInterpreterMessages.console_modelingLevelTip);
+//		IAction m2 = new ModelingLevelAction(ModelingLevel.M2);
+//		m2.setChecked(true);
+//		levelMenu.add(m2);
+//		levelAction.addAction(m2);
+//		IAction m1 = new ModelingLevelAction(ModelingLevel.M1);
+//		levelMenu.add(m1);
+//		levelAction.addAction(m1);
 
 //		ActionContributionItem metamodelItem = new ActionContributionItem(
 //		    metamodelAction);
 //		metamodelItem.setMode(ActionContributionItem.MODE_FORCE_TEXT);
 		
 		IToolBarManager toolbar = getSite().getActionBars().getToolBarManager();
-///        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
-        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
+//        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, metamodelItem);
+//        toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, levelAction);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, load);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, save);
 		toolbar.appendToGroup(IConsoleConstants.OUTPUT_GROUP, clear);
@@ -367,12 +376,28 @@ public class OCLConsolePage
             if (!ssel.isEmpty()) {
                 Object selected = ssel.getFirstElement();
                 
-                if (selected instanceof EObject) {
-                    context = (EObject) selected;
-                } else if (selected instanceof IAdaptable) {
-                    context = (EObject) ((IAdaptable) selected).getAdapter(
-                        EObject.class);
-                }
+        	    if (selected instanceof IOutlineNode) {
+            	    if (selected instanceof EObjectNode) {
+                        context = ((EObjectNode) selected).getEClass();
+            	    }
+            	    else if (selected instanceof EStructuralFeatureNode) {
+                        context = ((EStructuralFeatureNode) selected).getEStructuralFeature().getEContainingClass();
+            	    }
+            	    else {
+                        context = null;
+            	    }
+        	    }
+        	    else {
+        	    	if (selected instanceof IAdaptable) {
+    	                selected = ((IAdaptable) selected).getAdapter(EObject.class);
+    	            }
+                    if (selected instanceof EObject) {
+                        context = ((EObject) selected).eClass();
+                    }
+                    else {
+                    	context = null;
+                    }
+        	    }
                 
                 getEditorDocument().setContext(context, null);
             }
@@ -391,6 +416,10 @@ public class OCLConsolePage
 	boolean evaluate(String expression) {
 		if (context == null) {
 			error(OCLInterpreterMessages.console_noContext);
+			return false;
+		} 
+		if ((expression == null) || (expression.trim().length() <= 0)) {
+			error(OCLInterpreterMessages.console_noExpression);
 			return false;
 		} 
 		if (ocl == null) {
@@ -421,9 +450,11 @@ public class OCLConsolePage
             switch (modelingLevel) {
                 case M2:
         			BaseDocument editorDocument = getEditorDocument();
-        			Value value = editorDocument.readOnly(new IUnitOfWork<Value, XtextResource>()
+        			Value value = editorDocument.modify(new IUnitOfWork<Value, XtextResource>()
         			{
         				public Value exec(XtextResource resource) throws Exception {
+        					CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
+        					csAdapter.refreshPivotMappings();
         					ExpressionInOcl expressionInOcl = PivotUtil.getExpressionInOcl(resource);
         			        Value value = ocl.evaluate(context, expressionInOcl);
         					return value;
@@ -454,9 +485,6 @@ public class OCLConsolePage
             
 			// store the successfully parsed expression
 			lastOCLExpression = expression;
-//		} catch (InvalidEvaluationException e) {
-//			result = false;
-//			error("invalid"); //$NON-NLS-1$
 		} catch (Exception e) {
 			result = false;
 			error((e.getLocalizedMessage() == null) ? e.getClass().getName()
@@ -640,15 +668,13 @@ public class OCLConsolePage
 		public void keyPressed(KeyEvent e) {
 			switch (e.keyCode) {
 			case SWT.CR :
-			    if (!isContentAssistActive()
-			            && (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
+			    if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
 					String text = getEditorDocument().get();
 					evaluationSuccess = evaluate(text.trim());
 				}		
 				break;
 			case SWT.PAGE_UP :
-				if (!isContentAssistActive()
-						&& (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
+				if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
 					// history
 					if (currentHistoryPointer == 0 && history.size() > 0) {
 						if (history.size() > 0 && history.get(0).length() == 0) {
@@ -668,8 +694,7 @@ public class OCLConsolePage
 				}			
 				break;
 			case SWT.PAGE_DOWN :
-				if (!isContentAssistActive()
-						&& (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
+				if ((e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
 					// history
 					if (currentHistoryPointer > 0) {
 						currentHistoryPointer--;
@@ -700,7 +725,7 @@ public class OCLConsolePage
 					evaluationSuccess = false;
 				}				
 				break;
-			case ' ':
+//			case ' ':
 //			    if ((e.stateMask & SWT.CTRL) == SWT.CTRL) {
 //			        input.getContentAssistant().showPossibleCompletions();
 //			    }
@@ -772,9 +797,21 @@ public class OCLConsolePage
 				dlg.setFilterExtensions(new String[] {"*.xmi"}); //$NON-NLS-1$
 				dlg.setText(OCLInterpreterMessages.console_saveDlg_title);
 				
-				String file = dlg.open();
+				final String file = dlg.open();
 				if (file != null) {
 					try {
+						BaseDocument editorDocument = getEditorDocument();
+						editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
+						{
+							public Object exec(XtextResource resource) throws Exception {
+								CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
+								csAdapter.refreshPivotMappings();
+								Resource pivotResource = csAdapter.getPivotResource(resource);
+								pivotResource.setURI(URI.createFileURI(file));
+								pivotResource.save(saveOptions);
+								return null;
+							}
+						});
 // FIXME						OCLResource.save(file, document, lastOCLExpression);
 					} catch (Exception e) {
 						MessageDialog.openError(
@@ -1008,12 +1045,12 @@ public class OCLConsolePage
         }
     } */
     
-    private class ModelingLevelAction extends Action {
+/*    private class ModelingLevelAction extends Action {
         private final ModelingLevel level;
         
         /**
          * Initializes me.
-         */
+         * /
         ModelingLevelAction(ModelingLevel level) {
             super(level.name());
             
@@ -1030,9 +1067,9 @@ public class OCLConsolePage
             modelingLevel = level;
 //            document.setModelingLevel(level);
         }
-    }
+    } */
     
-    private class DropDownAction extends Action implements IMenuCreator {
+/*    private class DropDownAction extends Action implements IMenuCreator {
         private Menu menu;
         private List<IAction> actions = new java.util.ArrayList<IAction>();
         
@@ -1091,7 +1128,7 @@ public class OCLConsolePage
         public Menu getMenu(Menu parent) {
             return null;
         }
-    }
+    } */
  //////////////////////
 //	private IManagedForm managedForm;
 //	private FormToolkit toolkit;
@@ -1212,9 +1249,4 @@ public class OCLConsolePage
 		
 	    return ret;
 	}
-
-	public boolean isContentAssistActive() {
-		return false; //input.isContentAssistActive();
-	}
-
 }
