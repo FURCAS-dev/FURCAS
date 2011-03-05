@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TransitionImpl.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
+ * $Id: TransitionImpl.java,v 1.2 2011/03/05 21:48:55 auhl Exp $
  */
 package behavioral.status_and_action.assembly.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class TransitionImpl extends ConnectorImpl implements Transition {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TransitionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return AssemblyPackage.Literals.TRANSITION;
-    }
+		return AssemblyPackage.Literals.TRANSITION;
+	}
 
 } //TransitionImpl

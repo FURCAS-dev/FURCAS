@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StatementWithEntityArgumentImpl.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: StatementWithEntityArgumentImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package persistence.actions.impl;
 
@@ -24,22 +24,22 @@ import persistence.actions.StatementWithEntityArgument;
  */
 public class StatementWithEntityArgumentImpl extends StatementWithArgumentImpl implements StatementWithEntityArgument {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StatementWithEntityArgumentImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ActionsPackage.Literals.STATEMENT_WITH_ENTITY_ARGUMENT;
-    }
+		return ActionsPackage.Literals.STATEMENT_WITH_ENTITY_ARGUMENT;
+	}
 
 } //StatementWithEntityArgumentImpl

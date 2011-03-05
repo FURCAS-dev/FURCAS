@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IfElse.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: IfElse.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package behavioral.actions;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -19,23 +18,23 @@ package behavioral.actions;
  */
 public interface IfElse extends ConditionalStatement, StatementWithNestedBlocks {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.nestedBlocks->at(1)'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.nestedBlocks->at(1)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	Block getIfBlock();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.nestedBlocks->size() > 1 then\n    self.nestedBlocks->at(2)\n  else\n    null\n  endif'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.nestedBlocks->size() > 1 then\n    self.nestedBlocks->at(2)\n  else\n    null\n  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	Block getElseBlock();
 
 } // IfElse

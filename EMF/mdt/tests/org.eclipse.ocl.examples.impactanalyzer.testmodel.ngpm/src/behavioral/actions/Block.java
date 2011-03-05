@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Block.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: Block.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package behavioral.actions;
 
@@ -44,115 +44,115 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Block extends FunctionSignatureImplementation, InScope {
 	/**
-     * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
-     * The list contents are of type {@link behavioral.actions.Statement}.
-     * It is bidirectional and its opposite is '{@link behavioral.actions.Statement#getBlock <em>Block</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Statements</b></em>' containment reference list.
+	 * The list contents are of type {@link behavioral.actions.Statement}.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Statement#getBlock <em>Block</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Statements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Statements</em>' containment reference list.
-     * @see behavioral.actions.ActionsPackage#getBlock_Statements()
-     * @see behavioral.actions.Statement#getBlock
-     * @model opposite="block" containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Statements</em>' containment reference list.
+	 * @see behavioral.actions.ActionsPackage#getBlock_Statements()
+	 * @see behavioral.actions.Statement#getBlock
+	 * @model opposite="block" containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<Statement> getStatements();
 
 	/**
-     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-     * The list contents are of type {@link data.classes.NamedValue}.
-     * It is bidirectional and its opposite is '{@link data.classes.NamedValue#getOwner <em>Owner</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link data.classes.NamedValue}.
+	 * It is bidirectional and its opposite is '{@link data.classes.NamedValue#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Variables</em>' containment reference list.
-     * @see behavioral.actions.ActionsPackage#getBlock_Variables()
-     * @see data.classes.NamedValue#getOwner
-     * @model opposite="owner" containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Variables</em>' containment reference list.
+	 * @see behavioral.actions.ActionsPackage#getBlock_Variables()
+	 * @see data.classes.NamedValue#getOwner
+	 * @model opposite="owner" containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<NamedValue> getVariables();
 
 	/**
-     * Returns the value of the '<em><b>Owning Statement</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link behavioral.actions.StatementWithNestedBlocks#getNestedBlocks <em>Nested Blocks</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Owning Statement</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.StatementWithNestedBlocks#getNestedBlocks <em>Nested Blocks</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Statement</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Owning Statement</em>' container reference.
-     * @see #setOwningStatement(StatementWithNestedBlocks)
-     * @see behavioral.actions.ActionsPackage#getBlock_OwningStatement()
-     * @see behavioral.actions.StatementWithNestedBlocks#getNestedBlocks
-     * @model opposite="nestedBlocks"
-     * @generated
-     */
+	 * @return the value of the '<em>Owning Statement</em>' container reference.
+	 * @see #setOwningStatement(StatementWithNestedBlocks)
+	 * @see behavioral.actions.ActionsPackage#getBlock_OwningStatement()
+	 * @see behavioral.actions.StatementWithNestedBlocks#getNestedBlocks
+	 * @model opposite="nestedBlocks"
+	 * @generated
+	 */
 	StatementWithNestedBlocks getOwningStatement();
 
 	/**
-     * Sets the value of the '{@link behavioral.actions.Block#getOwningStatement <em>Owning Statement</em>}' container reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link behavioral.actions.Block#getOwningStatement <em>Owning Statement</em>}' container reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Owning Statement</em>' container reference.
-     * @see #getOwningStatement()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Owning Statement</em>' container reference.
+	 * @see #getOwningStatement()
+	 * @generated
+	 */
 	void setOwningStatement(StatementWithNestedBlocks value);
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Walks up the owningStatement/nestedBlocks association to find owning statements and their owning blocks transitively until it arrives at a block that is not owned by a statement. That block is then returned. Usually, such a block would be the implementation of either a function or a method signature.
-     * <!-- end-model-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.owningStatement->notEmpty() then\n    self.owningStatement.block.getOutermostBlock()\n  else\n    self\n  endif'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * Walks up the owningStatement/nestedBlocks association to find owning statements and their owning blocks transitively until it arrives at a block that is not owned by a statement. That block is then returned. Usually, such a block would be the implementation of either a function or a method signature.
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.owningStatement->notEmpty() then\n    self.owningStatement.block.getOutermostBlock()\n  else\n    self\n  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	Block getOutermostBlock();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	boolean localIsSideEffectFree();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Determines all NamedValues that are in scope for all statements of this block. For example, in the block of a Foreach statement, the Foreach Iterator is in scope for all contained statements. If the block is nested in a statement (such as for an "if" statement), the NamedValues in scope for the containing statement are added as well. Additionally, if the block occurs as a signature implementation, the signature parameters are added. If this block occurs in an object-parameterized class, the formal object parameters are also added.
-     * 
-     * 
-     * <!-- end-model-doc -->
-     * @model kind="operation" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='  self.addNamedValuesWithNewNames(\r\n  -- Handle Foreach\r\n  let s:Set(data::classes::NamedValue)=Set{} in\r\n  s->union(if owningStatement.oclIsKindOf(Foreach) and owningStatement->notEmpty() then\r\n    owningStatement.oclAsType(Foreach).forVariable.oclAsType(data::classes::NamedValue)->asSet()\r\n  else\r\n    Set{}\r\n  endif)->union(\r\n  -- add parameters for those blocks that are used as a signature implementation\r\n  functionSignature->collect(input->iterate(i; rslt:Set(data::classes::NamedValue)=Set{} | rslt->including(i)))\r\n  )->union(\r\n  implements_->collect(input->iterate(i; rslt:Set(data::classes::NamedValue)=Set{}| rslt->including(i)))\r\n  )->asSet(),\r\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\r\n  if owningStatement->notEmpty() then\r\n    owningStatement.getNamedValuesInScope()\r\n  else\r\n    -- add formal object parameters from owning class\r\n    let oc:data::classes::SapClass = self.getOwningClass() in\r\n    if oc->notEmpty() then\r\n      oc.formalObjectParameters->iterate(i; rslt:Set(data::classes::NamedValue)=Set{} | rslt->including(i))\r\n    else\r\n      let es:Set(data::classes::NamedValue) = Set{} in es\r\n    endif\r\n  endif)'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * Determines all NamedValues that are in scope for all statements of this block. For example, in the block of a Foreach statement, the Foreach Iterator is in scope for all contained statements. If the block is nested in a statement (such as for an "if" statement), the NamedValues in scope for the containing statement are added as well. Additionally, if the block occurs as a signature implementation, the signature parameters are added. If this block occurs in an object-parameterized class, the formal object parameters are also added.
+	 * 
+	 * 
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='  self.addNamedValuesWithNewNames(\r\n  -- Handle Foreach\r\n  let s:Set(data::classes::NamedValue)=Set{} in\r\n  s->union(if owningStatement.oclIsKindOf(Foreach) and owningStatement->notEmpty() then\r\n    owningStatement.oclAsType(Foreach).forVariable.oclAsType(data::classes::NamedValue)->asSet()\r\n  else\r\n    Set{}\r\n  endif)->union(\r\n  -- add parameters for those blocks that are used as a signature implementation\r\n  functionSignature->collect(input->iterate(i; rslt:Set(data::classes::NamedValue)=Set{} | rslt->including(i)))\r\n  )->union(\r\n  implements_->collect(input->iterate(i; rslt:Set(data::classes::NamedValue)=Set{}| rslt->including(i)))\r\n  )->asSet(),\r\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\r\n  if owningStatement->notEmpty() then\r\n    owningStatement.getNamedValuesInScope()\r\n  else\r\n    -- add formal object parameters from owning class\r\n    let oc:data::classes::SapClass = self.getOwningClass() in\r\n    if oc->notEmpty() then\r\n      oc.formalObjectParameters->iterate(i; rslt:Set(data::classes::NamedValue)=Set{} | rslt->including(i))\r\n    else\r\n      let es:Set(data::classes::NamedValue) = Set{} in es\r\n    endif\r\n  endif)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	EList<NamedValue> getNamedValuesInScope();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model kind="operation" unique="false" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model kind="operation" unique="false" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	SapClass getOwningClass();
 
 } // Block

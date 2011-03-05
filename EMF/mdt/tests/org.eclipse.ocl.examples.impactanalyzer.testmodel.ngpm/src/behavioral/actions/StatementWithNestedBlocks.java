@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StatementWithNestedBlocks.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: StatementWithNestedBlocks.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package behavioral.actions;
 
@@ -26,21 +26,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StatementWithNestedBlocks extends Statement {
 	/**
-     * Returns the value of the '<em><b>Nested Blocks</b></em>' containment reference list.
-     * The list contents are of type {@link behavioral.actions.Block}.
-     * It is bidirectional and its opposite is '{@link behavioral.actions.Block#getOwningStatement <em>Owning Statement</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Nested Blocks</b></em>' containment reference list.
+	 * The list contents are of type {@link behavioral.actions.Block}.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Block#getOwningStatement <em>Owning Statement</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nested Blocks</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Nested Blocks</em>' containment reference list.
-     * @see behavioral.actions.ActionsPackage#getStatementWithNestedBlocks_NestedBlocks()
-     * @see behavioral.actions.Block#getOwningStatement
-     * @model opposite="owningStatement" containment="true" resolveProxies="true" required="true" upper="2"
-     * @generated
-     */
+	 * @return the value of the '<em>Nested Blocks</em>' containment reference list.
+	 * @see behavioral.actions.ActionsPackage#getStatementWithNestedBlocks_NestedBlocks()
+	 * @see behavioral.actions.Block#getOwningStatement
+	 * @model opposite="owningStatement" containment="true" resolveProxies="true" required="true" upper="2"
+	 * @generated
+	 */
 	EList<Block> getNestedBlocks();
 
 } // StatementWithNestedBlocks

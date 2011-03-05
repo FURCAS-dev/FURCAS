@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StatusVariableImpl.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: StatusVariableImpl.java,v 1.2 2011/03/05 21:48:54 auhl Exp $
  */
 package behavioral.status_and_action.design.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StatusVariableImpl extends AbstractStatusVariableImpl implements StatusVariable {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StatusVariableImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return DesignPackage.Literals.STATUS_VARIABLE;
-    }
+		return DesignPackage.Literals.STATUS_VARIABLE;
+	}
 
 } //StatusVariableImpl

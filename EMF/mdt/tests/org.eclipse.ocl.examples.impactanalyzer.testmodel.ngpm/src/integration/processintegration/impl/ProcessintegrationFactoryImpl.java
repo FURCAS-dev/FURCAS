@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcessintegrationFactoryImpl.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: ProcessintegrationFactoryImpl.java,v 1.2 2011/03/05 21:52:06 auhl Exp $
  */
 package integration.processintegration.impl;
 
@@ -24,87 +24,87 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ProcessintegrationFactoryImpl extends EFactoryImpl implements ProcessintegrationFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static ProcessintegrationFactory init() {
-        try {
-            ProcessintegrationFactory theProcessintegrationFactory = (ProcessintegrationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore"); 
-            if (theProcessintegrationFactory != null) {
-                return theProcessintegrationFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new ProcessintegrationFactoryImpl();
-    }
+		try {
+			ProcessintegrationFactory theProcessintegrationFactory = (ProcessintegrationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/integration/processintegration.ecore"); 
+			if (theProcessintegrationFactory != null) {
+				return theProcessintegrationFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new ProcessintegrationFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ProcessintegrationFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case ProcessintegrationPackage.INTEGRATION_SCENARIO: return createIntegrationScenario();
-            case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION: return createProcessComponentInteraction();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case ProcessintegrationPackage.INTEGRATION_SCENARIO: return createIntegrationScenario();
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION: return createProcessComponentInteraction();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public IntegrationScenario createIntegrationScenario() {
-        IntegrationScenarioImpl integrationScenario = new IntegrationScenarioImpl();
-        return integrationScenario;
-    }
+		IntegrationScenarioImpl integrationScenario = new IntegrationScenarioImpl();
+		return integrationScenario;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ProcessComponentInteraction createProcessComponentInteraction() {
-        ProcessComponentInteractionImpl processComponentInteraction = new ProcessComponentInteractionImpl();
-        return processComponentInteraction;
-    }
+		ProcessComponentInteractionImpl processComponentInteraction = new ProcessComponentInteractionImpl();
+		return processComponentInteraction;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public ProcessintegrationPackage getProcessintegrationPackage() {
-        return (ProcessintegrationPackage)getEPackage();
-    }
+		return (ProcessintegrationPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static ProcessintegrationPackage getPackage() {
-        return ProcessintegrationPackage.eINSTANCE;
-    }
+		return ProcessintegrationPackage.eINSTANCE;
+	}
 
 } //ProcessintegrationFactoryImpl

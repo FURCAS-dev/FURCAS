@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DummyImpl.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: DummyImpl.java,v 1.2 2011/03/05 21:52:06 auhl Exp $
  */
 package ui.data_binding.impl;
 
@@ -24,22 +24,22 @@ import ui.data_binding.Dummy;
  */
 public class DummyImpl extends EObjectImpl implements Dummy {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DummyImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return Data_bindingPackage.Literals.DUMMY;
-    }
+		return Data_bindingPackage.Literals.DUMMY;
+	}
 
 } //DummyImpl
