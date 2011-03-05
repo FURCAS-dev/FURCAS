@@ -12,19 +12,25 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.3 2011/02/08 17:50:04 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.4 2011/03/05 05:57:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
@@ -40,20 +46,23 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		super(tokenSource, composer);
 	}
 
-	protected BaseCSResource resource2;
-
 	private EObject context;
     private Map<String, EClassifier> parameters;
 
 	protected RootCSScopeAdapter getDocumentScopeAdapter() {
-		if (!resource2.getContents().isEmpty()) {
-			ElementCS csElement = (ElementCS) resource2.getContents().get(0);
-			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
-			if (scopeAdapter != null) {
-				return scopeAdapter.getRootScopeAdapter();
-			}
-		}
-		return null;
+		return readOnly(new IUnitOfWork<RootCSScopeAdapter, XtextResource>()
+			{
+				public RootCSScopeAdapter exec(XtextResource resource) throws Exception {
+					if (!resource.getContents().isEmpty()) {
+						ElementCS csElement = (ElementCS) resource.getContents().get(0);
+						ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
+						if (scopeAdapter != null) {
+							return scopeAdapter.getRootScopeAdapter();
+						}
+					}
+					return null;
+				}
+			});
 	}
 
     public EObject getOCLContext() {
@@ -79,18 +88,32 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 			}
 		}
 	}
-	
-	@Override
-	public void setInput(XtextResource resource) {
-		this.resource2 = (BaseCSResource) resource;
-		super.setInput(resource);
-	}
 
-	public void setOCLContext(EObject context) {
-        this.context = context;
+	public void setContext(final EObject ecoreContext, final Map<String, EClassifier> ecoreParameters) {
+		modify(new IUnitOfWork<Object, XtextResource>()
+		{
+			public Object exec(XtextResource resource) throws Exception {
+				CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
+				TypeManager typeManager = csAdapter.getTypeManager();
+				NamedElement pivotContext = ecoreContext != null ? typeManager.getPivotOfEcore(NamedElement.class, ecoreContext) : null;
+				Map<String, Type> pivotParameters = null;
+				if (ecoreParameters != null) {
+					pivotParameters = new HashMap<String, Type>();
+					for (String key : ecoreParameters.keySet()) {
+						EClassifier ecoreParameterType = ecoreParameters.get(key);
+						Type pivotParameterType = typeManager.getPivotOfEcore(Type.class, ecoreParameterType);
+						pivotParameters.put(key, pivotParameterType);
+					}
+				}
+				((EssentialOCLCSResource)resource).setContext(pivotContext, pivotParameters);
+				if (pivotContext != null) {
+					csAdapter.refreshPivotMappings();
+				}
+				return null;
+			}
+		});
+
+        this.context = ecoreContext;
+        this.parameters = ecoreParameters;
     }
-
-	public void setOCLParameters(Map<String, EClassifier> parameters) {
-		this.parameters = parameters;
-	}
 }

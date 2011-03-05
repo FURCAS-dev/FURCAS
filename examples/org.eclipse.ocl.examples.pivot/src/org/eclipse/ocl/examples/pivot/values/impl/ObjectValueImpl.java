@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.6 2011/03/05 05:57:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -76,7 +76,7 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 	public String toString() {
 		if (object instanceof ENamedElement) {
 			ENamedElement eNamedElement = (ENamedElement)object;
-			return eNamedElement.getName() + ":" + eNamedElement.eClass().getName();
+			return eNamedElement.getName(); // + ":" + eNamedElement.eClass().getName();
 		}
 		else if (object instanceof EObject) {
 			EObject eObject = (EObject) object;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.8 2011/03/05 05:57:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -1365,7 +1365,7 @@ public class EssentialOCLLeft2RightVisitor
 		environmentView.computeLookups(scopeView);
 		VariableDeclaration variableDeclaration = (VariableDeclaration) environmentView.getContent();
 		expression.setReferredVariable(variableDeclaration);
-		context.setType(expression, variableDeclaration.getType());
+		context.setType(expression, variableDeclaration != null ? variableDeclaration.getType() : typeManager.getOclVoidType());
 		return expression;
 	}
 
