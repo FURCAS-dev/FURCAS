@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template name="minimal OCL Standard Library" description="template for a minimal OCL Standard Library"
+		id="org.eclipse.ocl.examples.xtext.oclstdlib.ui.templates.library"
+		context="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib.kw_library"
+		enabled="true">library ocl
+{
+type Boolean : PrimitiveType conformsTo OclAny {}
+type Classifier conformsTo OclAny {}
+type Collection&lt;T&gt; conformsTo OclAny {}
+type Integer : PrimitiveType conformsTo Real {}
+type OclAny : AnyType {
+	operation "="(anObject : OclAny) : Boolean;
+}
+type OclInvalid : InvalidType conformsTo OclVoid {}
+type OclVoid : VoidType conformsTo OclAny {}
+type Real : PrimitiveType conformsTo OclAny {}
+type String : PrimitiveType conformsTo OclAny {}
+type UnlimitedNatural : PrimitiveType conformsTo Integer {}
+}
+	</template>
+
+	
+</templates>

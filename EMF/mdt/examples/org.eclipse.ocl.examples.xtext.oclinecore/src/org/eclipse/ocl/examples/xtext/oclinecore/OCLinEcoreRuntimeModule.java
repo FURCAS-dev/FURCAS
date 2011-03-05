@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreRuntimeModule.java,v 1.8 2011/02/19 12:00:39 ewillink Exp $
+ * $Id: OCLinEcoreRuntimeModule.java,v 1.9 2011/03/04 13:53:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore;
 
@@ -22,8 +22,8 @@ import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.base.utilities.PivotDiagnostician;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
-import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreLinkingService;
 import org.eclipse.ocl.examples.xtext.oclinecore.services.OCLinEcoreValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclinecore.utilities.OCLinEcoreCSResource;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -70,7 +70,7 @@ public class OCLinEcoreRuntimeModule extends AbstractOCLinEcoreRuntimeModule
 	// External reference loading and resolution.
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {
-		return OCLinEcoreLinkingService.class;
+		return EssentialOCLLinkingService.class;
 	}
 
 	// Name value to text serialisation.

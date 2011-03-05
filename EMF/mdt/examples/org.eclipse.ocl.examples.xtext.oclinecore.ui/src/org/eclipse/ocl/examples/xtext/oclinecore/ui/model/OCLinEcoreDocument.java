@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.9 2011/03/01 08:47:41 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.10 2011/03/05 05:57:38 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -32,11 +32,14 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.ecore.Pivot2Ecore;
 import org.eclipse.ocl.examples.pivot.uml.Pivot2UML;
+import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.DocumentTokenSource;
 import org.eclipse.xtext.ui.editor.model.edit.ITextEditComposer;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 import com.google.inject.Inject;
 
@@ -64,25 +67,36 @@ public class OCLinEcoreDocument extends BaseDocument
 	}
 
 	protected XMLResource getPivotResouce() throws CoreException {
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource2);
-		checkForErrors(pivotResource);
-		return pivotResource;
+		return readOnly(new IUnitOfWork<XMLResource, XtextResource>()
+			{
+				public XMLResource exec(XtextResource resource) throws Exception {
+					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+					XMLResource pivotResource = (XMLResource) adapter.getPivotResource(resource);
+					checkForErrors(pivotResource);
+					return pivotResource;
+				}
+			});
 	}
 
 	/**
 	 * Write the XMI representation of the Ecore to be saved.
 	 */
-	public void saveAsEcore(Writer writer) throws IOException, CoreException {
-		XMLResource pivotResource = getPivotResouce();
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		URI ecoreURI = resource2.getURI();
-		XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI);
-//		ResourceSetImpl resourceSet = new ResourceSetImpl();
-//		XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
-//		ecoreResource.getContents().addAll(ecoreContents);
-		ecoreResource.save(writer, null);
-		checkForErrors(ecoreResource);
+	public void saveAsEcore(final Writer writer) throws IOException, CoreException {
+		readOnly(new IUnitOfWork<Object, XtextResource>()
+			{
+				public Object exec(XtextResource resource) throws Exception {
+					XMLResource pivotResource = getPivotResouce();
+					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+					URI ecoreURI = resource.getURI();
+					XMLResource ecoreResource = Pivot2Ecore.createResource(adapter.getTypeManager(), pivotResource, ecoreURI);
+//					ResourceSetImpl resourceSet = new ResourceSetImpl();
+//					XMLResource ecoreResource = (XMLResource) resourceSet.createResource(ecoreURI);
+//					ecoreResource.getContents().addAll(ecoreContents);
+					ecoreResource.save(writer, null);
+					checkForErrors(ecoreResource);
+					return null;
+				}
+			});
 	}
 
 	/**
@@ -96,15 +110,21 @@ public class OCLinEcoreDocument extends BaseDocument
 	/**
 	 * Write the XMI representation of the UML to be saved.
 	 */
-	public void saveAsUML(Writer writer) throws IOException, CoreException {
-		XMLResource pivotResource = getPivotResouce();
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter(resource2);
-		List<EObject> umlContents = Pivot2UML.createResource(adapter.getTypeManager(), pivotResource);
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		URI umlURI = URI.createURI("internal.uml");
-		UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
-		umlResource.getContents().addAll(umlContents);
-		checkForErrors(umlResource);
-		umlResource.save(writer, null);
+	public void saveAsUML(final Writer writer) throws IOException, CoreException {
+		readOnly(new IUnitOfWork<Object, XtextResource>()
+			{
+				public Object exec(XtextResource resource) throws Exception {
+					XMLResource pivotResource = getPivotResouce();
+					CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.findAdapter((BaseCSResource)resource);
+					List<EObject> umlContents = Pivot2UML.createResource(adapter.getTypeManager(), pivotResource);
+					ResourceSetImpl resourceSet = new ResourceSetImpl();
+					URI umlURI = URI.createURI("internal.uml");
+					UMLResource umlResource = (UMLResource) resourceSet.createResource(umlURI);
+					umlResource.getContents().addAll(umlContents);
+					checkForErrors(umlResource);
+					umlResource.save(writer, null);
+					return null;
+				}
+			});
 	}
 }

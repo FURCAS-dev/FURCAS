@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteElementIterable.java,v 1.1 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: CompleteElementIterable.java,v 1.2 2011/03/04 13:56:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -37,10 +37,10 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 	
 	protected class Iterator implements java.util.Iterator<I>
 	{
-		private final java.util.Iterator<O> outerIterator;
+		private final java.util.Iterator<? extends O> outerIterator;
 		private java.util.Iterator<I> innerIterator;
 		
-		public Iterator(Iterable<O> models) {
+		public Iterator(Iterable<? extends O> models) {
 			outerIterator = models.iterator();
 			advance();
 		}
@@ -92,9 +92,9 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
         }
     }
 	
-	protected final List<O> models;
+	protected final List<? extends O> models;
 	
-	public CompleteElementIterable(List<O> models) {
+	public CompleteElementIterable(List<? extends O> models) {
 		this.models = models;
 	}
 	

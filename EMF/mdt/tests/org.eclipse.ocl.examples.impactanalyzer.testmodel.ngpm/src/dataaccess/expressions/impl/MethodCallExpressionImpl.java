@@ -2,40 +2,33 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MethodCallExpressionImpl.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: MethodCallExpressionImpl.java,v 1.2 2011/03/05 12:00:11 auhl Exp $
  */
 package dataaccess.expressions.impl;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import data.classes.MethodSignature;
 import data.classes.Multiplicity;
 import data.classes.Signature;
-
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.ObjectCreationExpression;
 import dataaccess.expressions.SignatureCallExpression;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
