@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StringLiteralImpl.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: StringLiteralImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package dataaccess.expressions.literals.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StringLiteralImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return LiteralsPackage.Literals.STRING_LITERAL;
-    }
+		return LiteralsPackage.Literals.STRING_LITERAL;
+	}
 
 } //StringLiteralImpl

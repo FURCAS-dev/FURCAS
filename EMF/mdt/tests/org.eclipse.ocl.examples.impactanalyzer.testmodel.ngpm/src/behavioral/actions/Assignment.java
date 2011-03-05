@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Assignment.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: Assignment.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package behavioral.actions;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -30,31 +29,31 @@ package behavioral.actions;
  */
 public interface Assignment extends StatementWithArgument {
 	/**
-     * Returns the value of the '<em><b>Assign To</b></em>' reference.
-     * It is bidirectional and its opposite is '{@link behavioral.actions.Variable#getAssignments <em>Assignments</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Assign To</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Variable#getAssignments <em>Assignments</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Assign To</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Assign To</em>' reference.
-     * @see #setAssignTo(Variable)
-     * @see behavioral.actions.ActionsPackage#getAssignment_AssignTo()
-     * @see behavioral.actions.Variable#getAssignments
-     * @model opposite="assignments" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Assign To</em>' reference.
+	 * @see #setAssignTo(Variable)
+	 * @see behavioral.actions.ActionsPackage#getAssignment_AssignTo()
+	 * @see behavioral.actions.Variable#getAssignments
+	 * @model opposite="assignments" required="true"
+	 * @generated
+	 */
 	Variable getAssignTo();
 
 	/**
-     * Sets the value of the '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Assign To</em>' reference.
-     * @see #getAssignTo()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Assign To</em>' reference.
+	 * @see #getAssignTo()
+	 * @generated
+	 */
 	void setAssignTo(Variable value);
 
 } // Assignment

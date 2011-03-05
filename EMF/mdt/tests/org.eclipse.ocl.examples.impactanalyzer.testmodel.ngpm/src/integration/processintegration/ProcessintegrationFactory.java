@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcessintegrationFactory.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: ProcessintegrationFactory.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.processintegration;
 
@@ -18,38 +18,38 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface ProcessintegrationFactory extends EFactory {
 	/**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	ProcessintegrationFactory eINSTANCE = integration.processintegration.impl.ProcessintegrationFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Integration Scenario</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Integration Scenario</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Integration Scenario</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Integration Scenario</em>'.
+	 * @generated
+	 */
 	IntegrationScenario createIntegrationScenario();
 
 	/**
-     * Returns a new object of class '<em>Process Component Interaction</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Process Component Interaction</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Process Component Interaction</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Process Component Interaction</em>'.
+	 * @generated
+	 */
 	ProcessComponentInteraction createProcessComponentInteraction();
 
 	/**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
 	ProcessintegrationPackage getProcessintegrationPackage();
 
 } //ProcessintegrationFactory

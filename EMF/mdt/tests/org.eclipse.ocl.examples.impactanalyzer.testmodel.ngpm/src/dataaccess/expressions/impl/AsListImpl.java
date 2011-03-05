@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AsListImpl.java,v 1.1 2011/02/07 17:20:40 auhl Exp $
+ * $Id: AsListImpl.java,v 1.2 2011/03/05 21:52:04 auhl Exp $
  */
 package dataaccess.expressions.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AsListImpl extends ObjectBasedExpressionImpl implements AsList {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected AsListImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.AS_LIST;
-    }
+		return ExpressionsPackage.Literals.AS_LIST;
+	}
 
 } //AsListImpl

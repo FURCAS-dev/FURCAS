@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReturnImpl.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: ReturnImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package behavioral.actions.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ReturnImpl extends StatementWithArgumentImpl implements Return {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ReturnImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ActionsPackage.Literals.RETURN;
-    }
+		return ActionsPackage.Literals.RETURN;
+	}
 
 } //ReturnImpl

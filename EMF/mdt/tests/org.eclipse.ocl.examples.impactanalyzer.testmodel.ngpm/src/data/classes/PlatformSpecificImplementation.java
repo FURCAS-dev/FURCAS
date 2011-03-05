@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PlatformSpecificImplementation.java,v 1.1 2011/02/07 17:18:46 auhl Exp $
+ * $Id: PlatformSpecificImplementation.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package data.classes;
 
@@ -27,55 +27,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PlatformSpecificImplementation extends EObject {
 	/**
-     * Returns the value of the '<em><b>Target Platform</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target Platform</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target Platform</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Target Platform</em>' attribute.
-     * @see #setTargetPlatform(String)
-     * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_TargetPlatform()
-     * @model unique="false" required="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Target Platform</em>' attribute.
+	 * @see #setTargetPlatform(String)
+	 * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_TargetPlatform()
+	 * @model unique="false" required="true" ordered="false"
+	 * @generated
+	 */
 	String getTargetPlatform();
 
 	/**
-     * Sets the value of the '{@link data.classes.PlatformSpecificImplementation#getTargetPlatform <em>Target Platform</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link data.classes.PlatformSpecificImplementation#getTargetPlatform <em>Target Platform</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Target Platform</em>' attribute.
-     * @see #getTargetPlatform()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Target Platform</em>' attribute.
+	 * @see #getTargetPlatform()
+	 * @generated
+	 */
 	void setTargetPlatform(String value);
 
 	/**
-     * Returns the value of the '<em><b>Implementation</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Implementation</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Implementation</em>' attribute.
-     * @see #setImplementation(String)
-     * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_Implementation()
-     * @model unique="false" required="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Implementation</em>' attribute.
+	 * @see #setImplementation(String)
+	 * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_Implementation()
+	 * @model unique="false" required="true" ordered="false"
+	 * @generated
+	 */
 	String getImplementation();
 
 	/**
-     * Sets the value of the '{@link data.classes.PlatformSpecificImplementation#getImplementation <em>Implementation</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link data.classes.PlatformSpecificImplementation#getImplementation <em>Implementation</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Implementation</em>' attribute.
-     * @see #getImplementation()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Implementation</em>' attribute.
+	 * @see #getImplementation()
+	 * @generated
+	 */
 	void setImplementation(String value);
 
 } // PlatformSpecificImplementation

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModuleImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: ModuleImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package modelmanagement.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ModuleImpl extends EObjectImpl implements Module {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ModuleImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ModelmanagementPackage.Literals.MODULE;
-    }
+		return ModelmanagementPackage.Literals.MODULE;
+	}
 
 } //ModuleImpl
