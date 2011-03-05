@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeploymentUnit.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: DeploymentUnit.java,v 1.2 2011/03/05 21:52:06 auhl Exp $
  */
 package modelmanagement.deploymentunits;
 
@@ -30,19 +30,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface DeploymentUnit extends PackageOwner, NamedElement {
 	/**
-     * Returns the value of the '<em><b>Pcs Inside Company</b></em>' containment reference list.
-     * The list contents are of type {@link modelmanagement.processcomponents.ProcessComponent}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Pcs Inside Company</b></em>' containment reference list.
+	 * The list contents are of type {@link modelmanagement.processcomponents.ProcessComponent}.
+	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pcs Inside Company</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Pcs Inside Company</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Pcs Inside Company</em>' containment reference list.
-     * @see modelmanagement.deploymentunits.DeploymentunitsPackage#getDeploymentUnit_PcsInsideCompany()
-     * @model containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Pcs Inside Company</em>' containment reference list.
+	 * @see modelmanagement.deploymentunits.DeploymentunitsPackage#getDeploymentUnit_PcsInsideCompany()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<ProcessComponent> getPcsInsideCompany();
 
 } // DeploymentUnit

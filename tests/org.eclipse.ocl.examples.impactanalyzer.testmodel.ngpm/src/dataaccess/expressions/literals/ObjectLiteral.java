@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ObjectLiteral.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: ObjectLiteral.java,v 1.2 2011/03/05 21:52:04 auhl Exp $
  */
 package dataaccess.expressions.literals;
 
@@ -32,57 +32,57 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ObjectLiteral extends Expression {
 	/**
-     * Returns the value of the '<em><b>Value Class</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value Class</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Value Class</em>' reference.
-     * @see #setValueClass(SapClass)
-     * @see dataaccess.expressions.literals.LiteralsPackage#getObjectLiteral_ValueClass()
-     * @model required="true"
-     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='objectLiteral'"
-     * @generated
-     */
+	 * @return the value of the '<em>Value Class</em>' reference.
+	 * @see #setValueClass(SapClass)
+	 * @see dataaccess.expressions.literals.LiteralsPackage#getObjectLiteral_ValueClass()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='objectLiteral'"
+	 * @generated
+	 */
 	SapClass getValueClass();
 
 	/**
-     * Sets the value of the '{@link dataaccess.expressions.literals.ObjectLiteral#getValueClass <em>Value Class</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link dataaccess.expressions.literals.ObjectLiteral#getValueClass <em>Value Class</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Value Class</em>' reference.
-     * @see #getValueClass()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Value Class</em>' reference.
+	 * @see #getValueClass()
+	 * @generated
+	 */
 	void setValueClass(SapClass value);
 
 	/**
-     * Returns the value of the '<em><b>Property Values</b></em>' containment reference list.
-     * The list contents are of type {@link dataaccess.expressions.literals.ValueInit}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Property Values</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.expressions.literals.ValueInit}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property Values</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Property Values</em>' containment reference list.
-     * @see dataaccess.expressions.literals.LiteralsPackage#getObjectLiteral_PropertyValues()
-     * @model containment="true" resolveProxies="true"
-     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='objectLiteral'"
-     * @generated
-     */
+	 * @return the value of the '<em>Property Values</em>' containment reference list.
+	 * @see dataaccess.expressions.literals.LiteralsPackage#getObjectLiteral_PropertyValues()
+	 * @model containment="true" resolveProxies="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='objectLiteral'"
+	 * @generated
+	 */
 	EList<ValueInit> getPropertyValues();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model unique="false" required="true" ordered="false" oUnique="false" oRequired="true" oOrdered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.valueClass = o.valueClass and\n  self.propertyValues->size() = o.propertyValues->size() and\n  self.propertyValues->forAll(pv | o.propertyValues->exists(opv | opv.forEnd = pv.forEnd and opv.value.evaluatesToEqualAs(pv.value)))'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model unique="false" required="true" ordered="false" oUnique="false" oRequired="true" oOrdered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='self.valueClass = o.valueClass and\n  self.propertyValues->size() = o.propertyValues->size() and\n  self.propertyValues->forAll(pv | o.propertyValues->exists(opv | opv.forEnd = pv.forEnd and opv.value.evaluatesToEqualAs(pv.value)))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	boolean isEqualTo(ObjectLiteral o);
 
 } // ObjectLiteral
