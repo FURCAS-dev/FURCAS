@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.4 2011/03/05 05:57:44 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.5 2011/03/05 18:17:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -89,7 +89,7 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		}
 	}
 
-	public void setContext(final EObject ecoreContext, final Map<String, EClassifier> ecoreParameters) {
+	public void setContext(final EClassifier ecoreContext, final Map<String, EClassifier> ecoreParameters) {
 		modify(new IUnitOfWork<Object, XtextResource>()
 		{
 			public Object exec(XtextResource resource) throws Exception {
@@ -106,9 +106,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 					}
 				}
 				((EssentialOCLCSResource)resource).setContext(pivotContext, pivotParameters);
-				if (pivotContext != null) {
-					csAdapter.refreshPivotMappings();
-				}
 				return null;
 			}
 		});
