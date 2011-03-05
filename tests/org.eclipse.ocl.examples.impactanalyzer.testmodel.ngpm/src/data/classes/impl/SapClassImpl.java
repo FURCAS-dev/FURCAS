@@ -2,25 +2,40 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SapClassImpl.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: SapClassImpl.java,v 1.2 2011/03/05 12:00:11 auhl Exp $
  */
 package data.classes.impl;
 
-import abapmapping.AbapClassImplementationAnnotation;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
+import modelmanagement.ModelmanagementPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import abapmapping.AbapClassImplementationAnnotation;
 import behavioral.events.EventProducer;
 import behavioral.events.EventsPackage;
 import behavioral.events.Subscription;
-
 import behavioral.status_and_action.assembly.AssemblyPackage;
 import behavioral.status_and_action.assembly.StatusSchema;
-
 import behavioral.status_and_action_old.SAMAction;
 import behavioral.status_and_action_old.SAMDerivator;
 import behavioral.status_and_action_old.SAMStatusSchema;
 import behavioral.status_and_action_old.SAMStatusVariable;
 import behavioral.status_and_action_old.Status_and_action_oldPackage;
-
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.ClassesPackage;
@@ -30,40 +45,12 @@ import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.Signature;
 import data.classes.TypeAdapter;
-
 import data.constraints.Constraint;
 import data.constraints.ConstraintsPackage;
-
 import data.generics.ClassParameterization;
 import data.generics.GenericsPackage;
-
 import data.timedependency.TimeDependency;
 import data.timedependency.TimedependencyPackage;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import modelmanagement.ModelmanagementPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->

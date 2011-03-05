@@ -2,37 +2,29 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupByImpl.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: GroupByImpl.java,v 1.2 2011/03/05 12:00:11 auhl Exp $
  */
 package dataaccess.analytics.impl;
-
-import behavioral.actions.ActionsPackage;
-import behavioral.actions.Iterator;
-
-import dataaccess.analytics.AnalyticsPackage;
-import dataaccess.analytics.DimensionDefinition;
-import dataaccess.analytics.GroupBy;
-
-import dataaccess.expressions.Expression;
-
-import dataaccess.expressions.ExpressionsPackage;
-import dataaccess.expressions.impl.ObjectBasedExpressionImpl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import behavioral.actions.ActionsPackage;
+import behavioral.actions.Iterator;
+import dataaccess.analytics.AnalyticsPackage;
+import dataaccess.analytics.DimensionDefinition;
+import dataaccess.analytics.GroupBy;
+import dataaccess.expressions.Expression;
+import dataaccess.expressions.ExpressionsPackage;
+import dataaccess.expressions.impl.ObjectBasedExpressionImpl;
 
 /**
  * <!-- begin-user-doc -->
