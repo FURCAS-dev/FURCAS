@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProjectRegistry.java,v 1.4 2010/05/03 09:35:59 ewillink Exp $
+ * $Id: ProjectRegistry.java,v 1.5 2011/03/02 21:25:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.model;
 
@@ -25,6 +25,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IResourceStatus;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
@@ -253,6 +257,11 @@ public class ProjectRegistry
 				}
 			} catch (FileNotFoundException e) {
 				;			// May need to create model registry from scratch
+			} catch (CoreException e) {
+				IStatus status = e.getStatus();
+				if ((status.getCode() != IResourceStatus.RESOURCE_NOT_FOUND) || !status.getPlugin().equals(ResourcesPlugin.PI_RESOURCES)) {
+					ModelRegistryEnvironment.logError("Failed to get model registry from '" + registryURI + "'", e);
+				}
 			} catch (Exception e) {
 				ModelRegistryEnvironment.logError("Failed to get model registry from '" + registryURI + "'", e);
 			}

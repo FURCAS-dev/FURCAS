@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.xtext.tests;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -231,6 +232,40 @@ public class XtextTestCase extends TestCase
 //            System.out.println(ModelUtils.serialize(diff));
 			fail(s.toString());
 		}
+	}
+	
+	/**
+	 * Install a platform:/resource/project... mapping for all folders in
+	 * $WORKSPACE_LOC/* if defined, or $user.dir/../* otherwise.
+	 */
+	public static void configurePlatformResources() {
+		if (!eclipseIsRunning()) {
+			String urlString = System.getProperty("WORKSPACE_LOC");
+			File workspaceLoc;
+			if (urlString != null) {
+				workspaceLoc = new File(urlString);
+			}
+			else {
+				workspaceLoc = new File(System.getProperty("user.dir")).getParentFile();
+			}
+			File[] files = workspaceLoc.listFiles();
+			for (File file : files) {
+				if (file.isDirectory()) {
+					String name = file.getName();
+					EcorePlugin.getPlatformResourceMap().put(name, URI.createFileURI(file.toString() + "/"));
+				}
+			}
+		}
+	}
+
+	public static boolean eclipseIsRunning() {
+		try {
+			Class<?> platformClass = Class.forName("org.eclipse.core.runtime.Platform");
+			Method isRunningMethod = platformClass.getDeclaredMethod("isRunning");
+			return Boolean.TRUE.equals(isRunningMethod.invoke(null));
+		} catch (Exception e) {
+		}
+		return false;
 	}
 
 	protected static boolean hasCorrespondingCS(MonikeredElement pivotElement) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.11 2011/03/01 08:47:47 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.12 2011/03/05 05:57:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -785,12 +785,14 @@ public class CS2PivotConversion extends AbstractConversion
 			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
 			converter.putPivotElement(moniker, pivotElement);
 		}
+		else if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
+			logger.trace("Recreating " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
+			pivotElement = (MonikeredElement) PivotFactory.eINSTANCE.create(pivotEClass);
+			converter.reputPivotElement(moniker, pivotElement);
+		}
 		else {
 			assert !pivotElement.hasMoniker() || moniker.equals(pivotElement.getMoniker());
 			logger.trace("Reusing " + pivotEClass.getName() + " : " + moniker); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-		if (!pivotClass.isAssignableFrom(pivotElement.getClass())) {
-			throw new ClassCastException(pivotElement.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}
 //		installPivotElement(csElement, pivotElement);
 		@SuppressWarnings("unchecked")

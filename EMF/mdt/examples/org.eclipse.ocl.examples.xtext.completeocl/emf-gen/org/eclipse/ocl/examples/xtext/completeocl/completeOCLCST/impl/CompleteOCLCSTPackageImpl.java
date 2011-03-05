@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackageImpl.java,v 1.7 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCLCSTPackageImpl.java,v 1.8 2011/03/04 13:55:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PreExpCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -226,7 +225,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		isInited = true;
 
 		// Initialize simple dependencies
-		OCLinEcoreCSTPackage.eINSTANCE.eClass();
+		EssentialOCLCSTPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theCompleteOCLCSTPackage.createPackageContents();

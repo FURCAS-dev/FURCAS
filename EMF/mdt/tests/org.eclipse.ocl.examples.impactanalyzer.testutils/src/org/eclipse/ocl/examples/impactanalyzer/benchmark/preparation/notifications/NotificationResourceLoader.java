@@ -125,9 +125,6 @@ public class NotificationResourceLoader {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
-
-        if (instanceResource == null)
-            throw new RuntimeException("Not able to create resource");
         return instanceResource;
     }
 

@@ -3,9 +3,24 @@
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.ui;
 
-import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.autoedit.BaseAutoEditStrategyProvider;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
+import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
+import org.eclipse.xtext.ui.editor.hover.DispatchingEObjectTextHover;
+import org.eclipse.xtext.ui.editor.model.ITokenTypeToPartitionTypeMapper;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -14,6 +29,40 @@ public class OCLstdlibUiModule extends AbstractOCLstdlibUiModule
 {
 	public OCLstdlibUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+	}
+
+	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
+		return BaseAntlrTokenToAttributeIdMapper.class;
+	}
+
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return BaseAutoEditStrategyProvider.class;
+	}
+	
+	public Class<? extends DispatchingEObjectTextHover> bindDispatchingEObjectTextHover() {
+		return BaseEObjectTextHover.class;
+	}
+
+	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
+		return BaseLocationInFileProvider.class;
+	}
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return EssentialOCLSemanticHighlightingCalculator.class;
+	}
+
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return EssentialOCLHighlightingConfiguration.class;
+	}
+	
+	@Override
+	public Class<? extends IJavaProjectProvider> bindIJavaProjectProvider() {
+		return NonXtextResourceSetBasedProjectProvider.class;
+	}
+
+	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
+		return BaseTerminalsTokenTypeToPartitionMapper.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {

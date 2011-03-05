@@ -12,16 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.7 2011/02/16 08:43:54 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.8 2011/03/04 13:53:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
-import org.eclipse.ocl.examples.xtext.completeocl.services.CompleteOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -59,7 +59,7 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {
-		return CompleteOCLLinkingService.class;
+		return EssentialOCLLinkingService.class;
 	}
 
 	@Override

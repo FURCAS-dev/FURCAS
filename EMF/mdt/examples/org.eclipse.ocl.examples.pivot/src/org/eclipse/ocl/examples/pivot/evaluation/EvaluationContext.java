@@ -12,17 +12,20 @@
  *
  * </copyright>
  *
- * $Id: EvaluationContext.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: EvaluationContext.java,v 1.5 2011/03/05 05:57:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.evaluation;
 
+import java.util.Map;
+
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 
 public interface EvaluationContext
 {
 	NamedElement getSpecificationContext();
 	PivotEnvironment getEnvironment();
-	void setSpecificationContext(NamedElement context);
+	void setContext(NamedElement context, Map<String, Type> parameters);
 	void setEnvironment(PivotEnvironment environment);
 }
