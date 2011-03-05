@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkTraversalImpl.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: LinkTraversalImpl.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package data.classes.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class LinkTraversalImpl extends AssociationEndSignatureImplementationImpl implements LinkTraversal {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected LinkTraversalImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ClassesPackage.Literals.LINK_TRAVERSAL;
-    }
+		return ClassesPackage.Literals.LINK_TRAVERSAL;
+	}
 
 } //LinkTraversalImpl

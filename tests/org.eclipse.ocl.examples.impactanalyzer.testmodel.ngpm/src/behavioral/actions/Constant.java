@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Constant.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: Constant.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package behavioral.actions;
 
@@ -33,31 +33,31 @@ import dataaccess.expressions.collectionexpressions.Iterate;
  */
 public interface Constant extends NamedValueWithOptionalInitExpression {
 	/**
-     * Returns the value of the '<em><b>Iterate</b></em>' container reference.
-     * It is bidirectional and its opposite is '{@link dataaccess.expressions.collectionexpressions.Iterate#getAccumulator <em>Accumulator</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Iterate</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.collectionexpressions.Iterate#getAccumulator <em>Accumulator</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterate</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Iterate</em>' container reference.
-     * @see #setIterate(Iterate)
-     * @see behavioral.actions.ActionsPackage#getConstant_Iterate()
-     * @see dataaccess.expressions.collectionexpressions.Iterate#getAccumulator
-     * @model opposite="accumulator"
-     * @generated
-     */
+	 * @return the value of the '<em>Iterate</em>' container reference.
+	 * @see #setIterate(Iterate)
+	 * @see behavioral.actions.ActionsPackage#getConstant_Iterate()
+	 * @see dataaccess.expressions.collectionexpressions.Iterate#getAccumulator
+	 * @model opposite="accumulator"
+	 * @generated
+	 */
 	Iterate getIterate();
 
 	/**
-     * Sets the value of the '{@link behavioral.actions.Constant#getIterate <em>Iterate</em>}' container reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link behavioral.actions.Constant#getIterate <em>Iterate</em>}' container reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Iterate</em>' container reference.
-     * @see #getIterate()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Iterate</em>' container reference.
+	 * @see #getIterate()
+	 * @generated
+	 */
 	void setIterate(Iterate value);
 
 } // Constant

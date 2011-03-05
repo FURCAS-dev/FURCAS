@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractTypeImpl.java,v 1.1 2011/02/07 17:21:36 auhl Exp $
+ * $Id: AbstractTypeImpl.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package integration.xsd.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class AbstractTypeImpl extends NamedElementImpl implements AbstractType {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected AbstractTypeImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return XsdPackage.Literals.ABSTRACT_TYPE;
-    }
+		return XsdPackage.Literals.ABSTRACT_TYPE;
+	}
 
 } //AbstractTypeImpl
