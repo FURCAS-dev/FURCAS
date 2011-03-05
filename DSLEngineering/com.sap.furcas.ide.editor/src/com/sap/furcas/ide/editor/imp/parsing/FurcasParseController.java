@@ -58,10 +58,21 @@ public abstract class FurcasParseController extends ParseControllerBase {
     /* Implementation note:
      * 
      * This class is called from at least the UI and the parsing thread.
-     * This class must assure that no client can have a handle to a piece of
-     * the textblocks or domain model while it is altered by the parser. 
+     * 
+     * It may happen that the UI thread is still using an old parsing result
+     * (e.g. iterating over the tokens to refresh the coloring, or traversing
+     * the subblocks to update the outline view) while while this thread creates
+     * a new TextBlocks model.
+     * 
+     * This does work because a parser run will always create a new version without
+     * altering an existing REFERENCE or CURRENT version of the TextBlocks model.
      *
      */
+    
+    /**
+     * See  {@link #getParsingLock()}
+     */
+    protected Object parsingLock = new Object();
 
     protected EditingDomain editingDomain;
     protected ContentProvider contentProvider;
@@ -108,6 +119,12 @@ public abstract class FurcasParseController extends ParseControllerBase {
             monitor.setCanceled(true);
             return null; // IMP will call us before we are done initializing
         }
+        synchronized (getParsingLock()) {
+            return parseIncrementally();
+        }
+    }
+
+    private TextBlock parseIncrementally() {
         CtsDocument document = contentProvider.getDocument();
         
         // 1) Write all buffered user edits to the underlying 
@@ -270,6 +287,17 @@ public abstract class FurcasParseController extends ParseControllerBase {
     @Override
     public IAnnotationTypeInfo getAnnotationTypeInfo() {
         return annotationTypeInfo;
+    }
+    
+    /**
+     * Returns a lock object for synchronization<p>
+     * 
+     * The parser will hold this lock whenever it modifies either TextBlocks
+     * or domain model. Clients that have to prevent concurrent modifications
+     * by the parser can acquiring this lock.
+     */
+    public Object getParsingLock() {
+        return parsingLock;
     }
         
 }
