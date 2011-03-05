@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcessComponentInsideCompany.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: ProcessComponentInsideCompany.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package modelmanagement.processcomponents;
-
 
 /**
  * <!-- begin-user-doc -->

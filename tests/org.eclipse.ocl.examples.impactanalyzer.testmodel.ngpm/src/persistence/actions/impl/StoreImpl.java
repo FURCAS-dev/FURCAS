@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StoreImpl.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: StoreImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package persistence.actions.impl;
 
@@ -22,22 +22,22 @@ import persistence.actions.Store;
  */
 public class StoreImpl extends StatementWithEntityArgumentImpl implements Store {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected StoreImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ActionsPackage.Literals.STORE;
-    }
+		return ActionsPackage.Literals.STORE;
+	}
 
 } //StoreImpl

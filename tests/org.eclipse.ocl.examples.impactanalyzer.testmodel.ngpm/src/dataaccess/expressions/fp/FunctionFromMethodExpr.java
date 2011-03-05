@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionFromMethodExpr.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: FunctionFromMethodExpr.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package dataaccess.expressions.fp;
 
@@ -33,29 +33,29 @@ import dataaccess.expressions.ObjectBasedExpression;
  */
 public interface FunctionFromMethodExpr extends ObjectBasedExpression {
 	/**
-     * Returns the value of the '<em><b>Method</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Method</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Method</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Method</em>' reference.
-     * @see #setMethod(MethodSignature)
-     * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr_Method()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Method</em>' reference.
+	 * @see #setMethod(MethodSignature)
+	 * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr_Method()
+	 * @model required="true"
+	 * @generated
+	 */
 	MethodSignature getMethod();
 
 	/**
-     * Sets the value of the '{@link dataaccess.expressions.fp.FunctionFromMethodExpr#getMethod <em>Method</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link dataaccess.expressions.fp.FunctionFromMethodExpr#getMethod <em>Method</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Method</em>' reference.
-     * @see #getMethod()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Method</em>' reference.
+	 * @see #getMethod()
+	 * @generated
+	 */
 	void setMethod(MethodSignature value);
 
 } // FunctionFromMethodExpr

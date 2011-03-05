@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AddLink.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: AddLink.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package behavioral.actions;
-
 
 /**
  * <!-- begin-user-doc -->

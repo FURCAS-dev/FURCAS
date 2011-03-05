@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkAddition.java,v 1.1 2011/02/07 17:18:46 auhl Exp $
+ * $Id: LinkAddition.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package data.classes;
-
 
 /**
  * <!-- begin-user-doc -->

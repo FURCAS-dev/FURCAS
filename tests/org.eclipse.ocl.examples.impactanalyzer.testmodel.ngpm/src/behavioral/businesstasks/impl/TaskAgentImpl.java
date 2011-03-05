@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TaskAgentImpl.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: TaskAgentImpl.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package behavioral.businesstasks.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class TaskAgentImpl extends EObjectImpl implements TaskAgent {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected TaskAgentImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return BusinesstasksPackage.Literals.TASK_AGENT;
-    }
+		return BusinesstasksPackage.Literals.TASK_AGENT;
+	}
 
 } //TaskAgentImpl
