@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TupleTypeDefinition.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: TupleTypeDefinition.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package data.tuples;
 
@@ -32,19 +32,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TupleTypeDefinition extends TypeDefinition {
 	/**
-     * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-     * The list contents are of type {@link data.tuples.TupleElement}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link data.tuples.TupleElement}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Elements</em>' containment reference list.
-     * @see data.tuples.TuplesPackage#getTupleTypeDefinition_Elements()
-     * @model containment="true" resolveProxies="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see data.tuples.TuplesPackage#getTupleTypeDefinition_Elements()
+	 * @model containment="true" resolveProxies="true" required="true"
+	 * @generated
+	 */
 	EList<TupleElement> getElements();
 
 } // TupleTypeDefinition

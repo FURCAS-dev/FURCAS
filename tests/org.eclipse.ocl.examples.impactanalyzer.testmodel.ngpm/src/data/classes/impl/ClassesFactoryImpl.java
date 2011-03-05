@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ClassesFactoryImpl.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
+ * $Id: ClassesFactoryImpl.java,v 1.3 2011/03/05 21:51:24 auhl Exp $
  */
 package data.classes.impl;
 

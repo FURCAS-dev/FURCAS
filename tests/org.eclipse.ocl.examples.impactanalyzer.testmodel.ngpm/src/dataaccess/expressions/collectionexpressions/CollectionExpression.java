@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CollectionExpression.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: CollectionExpression.java,v 1.2 2011/03/05 21:51:24 auhl Exp $
  */
 package dataaccess.expressions.collectionexpressions;
 
@@ -26,31 +26,31 @@ import dataaccess.expressions.Expression;
  */
 public interface CollectionExpression extends Expression {
 	/**
-     * Returns the value of the '<em><b>Source</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getCollectionExpression <em>Collection Expression</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getCollectionExpression <em>Collection Expression</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Source</em>' containment reference.
-     * @see #setSource(Expression)
-     * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getCollectionExpression_Source()
-     * @see dataaccess.expressions.Expression#getCollectionExpression
-     * @model opposite="collectionExpression" containment="true" resolveProxies="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Source</em>' containment reference.
+	 * @see #setSource(Expression)
+	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getCollectionExpression_Source()
+	 * @see dataaccess.expressions.Expression#getCollectionExpression
+	 * @model opposite="collectionExpression" containment="true" resolveProxies="true" required="true"
+	 * @generated
+	 */
 	Expression getSource();
 
 	/**
-     * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.CollectionExpression#getSource <em>Source</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.CollectionExpression#getSource <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Source</em>' containment reference.
-     * @see #getSource()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Source</em>' containment reference.
+	 * @see #getSource()
+	 * @generated
+	 */
 	void setSource(Expression value);
 
 } // CollectionExpression

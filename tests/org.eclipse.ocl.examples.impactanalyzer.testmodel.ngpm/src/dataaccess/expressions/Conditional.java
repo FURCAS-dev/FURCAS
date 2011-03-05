@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Conditional.java,v 1.2 2011/02/07 17:20:41 auhl Exp $
+ * $Id: Conditional.java,v 1.3 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions;
 
@@ -32,31 +32,31 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Conditional extends EObject {
 	/**
-     * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Condition</em>' containment reference.
-     * @see #setCondition(Expression)
-     * @see dataaccess.expressions.ExpressionsPackage#getConditional_Condition()
-     * @see dataaccess.expressions.Expression#getConditional
-     * @model opposite="conditional" containment="true" resolveProxies="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Condition</em>' containment reference.
+	 * @see #setCondition(Expression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getConditional_Condition()
+	 * @see dataaccess.expressions.Expression#getConditional
+	 * @model opposite="conditional" containment="true" resolveProxies="true" required="true"
+	 * @generated
+	 */
 	Expression getCondition();
 
 	/**
-     * Sets the value of the '{@link dataaccess.expressions.Conditional#getCondition <em>Condition</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link dataaccess.expressions.Conditional#getCondition <em>Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Condition</em>' containment reference.
-     * @see #getCondition()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
+	 * @see #getCondition()
+	 * @generated
+	 */
 	void setCondition(Expression value);
 
 } // Conditional
