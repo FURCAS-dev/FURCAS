@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.10 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.11 2011/03/05 05:57:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -241,6 +241,9 @@ public class EnvironmentView
 	}
 
 	public EObject getContent() {
+		if (contentsSize == 0) {
+			return null;
+		}
 		if (contentsSize != 1) {
 			logger.warn("Unhandled ambiguous content for '" + name + "'");
 		}
@@ -258,6 +261,9 @@ public class EnvironmentView
 	}
 
 	public IEObjectDescription getDescription() {
+		if (contentsSize == 0) {
+			return null;
+		}
 		if (contentsSize != 1) {
 			logger.warn("Unhandled ambiguous content for '" + name + "'");
 		}
