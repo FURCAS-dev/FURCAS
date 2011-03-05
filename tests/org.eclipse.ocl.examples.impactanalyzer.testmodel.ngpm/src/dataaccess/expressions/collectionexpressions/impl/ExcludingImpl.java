@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExcludingImpl.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
+ * $Id: ExcludingImpl.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions.collectionexpressions.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ExcludingImpl extends CollectionExpressionWithArgumentImpl implements Excluding {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ExcludingImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CollectionexpressionsPackage.Literals.EXCLUDING;
-    }
+		return CollectionexpressionsPackage.Literals.EXCLUDING;
+	}
 
 } //ExcludingImpl

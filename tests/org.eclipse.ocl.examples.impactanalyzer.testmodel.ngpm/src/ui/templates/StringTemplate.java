@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StringTemplate.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: StringTemplate.java,v 1.2 2011/03/05 21:52:04 auhl Exp $
  */
 package ui.templates;
 
@@ -31,21 +31,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface StringTemplate extends FunctionSignatureImplementation {
 	/**
-     * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
-     * The list contents are of type {@link dataaccess.expressions.Expression}.
-     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getTemplate <em>Template</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.expressions.Expression}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getTemplate <em>Template</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Expressions</em>' containment reference list.
-     * @see ui.templates.TemplatesPackage#getStringTemplate_Expressions()
-     * @see dataaccess.expressions.Expression#getTemplate
-     * @model opposite="template" containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Expressions</em>' containment reference list.
+	 * @see ui.templates.TemplatesPackage#getStringTemplate_Expressions()
+	 * @see dataaccess.expressions.Expression#getTemplate
+	 * @model opposite="template" containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<Expression> getExpressions();
 
 } // StringTemplate

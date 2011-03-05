@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ScopingContextImpl.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: ScopingContextImpl.java,v 1.2 2011/03/05 21:48:54 auhl Exp $
  */
 package configuration.businessconfiguration.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ScopingContextImpl extends EObjectImpl implements ScopingContext {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ScopingContextImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return BusinessconfigurationPackage.Literals.SCOPING_CONTEXT;
-    }
+		return BusinessconfigurationPackage.Literals.SCOPING_CONTEXT;
+	}
 
 } //ScopingContextImpl

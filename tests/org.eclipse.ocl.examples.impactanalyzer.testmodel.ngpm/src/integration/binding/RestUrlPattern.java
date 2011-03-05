@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RestUrlPattern.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: RestUrlPattern.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding;
-
 
 /**
  * <!-- begin-user-doc -->

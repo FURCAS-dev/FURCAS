@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: HttpBinding.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: HttpBinding.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -29,29 +28,29 @@ package integration.binding;
  */
 public interface HttpBinding extends Binding {
 	/**
-     * Returns the value of the '<em><b>Url Pattern</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Url Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Url Pattern</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Url Pattern</em>' containment reference.
-     * @see #setUrlPattern(UrlPattern)
-     * @see integration.binding.BindingPackage#getHttpBinding_UrlPattern()
-     * @model containment="true" resolveProxies="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Url Pattern</em>' containment reference.
+	 * @see #setUrlPattern(UrlPattern)
+	 * @see integration.binding.BindingPackage#getHttpBinding_UrlPattern()
+	 * @model containment="true" resolveProxies="true" required="true"
+	 * @generated
+	 */
 	UrlPattern getUrlPattern();
 
 	/**
-     * Sets the value of the '{@link integration.binding.HttpBinding#getUrlPattern <em>Url Pattern</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link integration.binding.HttpBinding#getUrlPattern <em>Url Pattern</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Url Pattern</em>' containment reference.
-     * @see #getUrlPattern()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Url Pattern</em>' containment reference.
+	 * @see #getUrlPattern()
+	 * @generated
+	 */
 	void setUrlPattern(UrlPattern value);
 
 } // HttpBinding
