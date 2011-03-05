@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionImpl.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: ActionImpl.java,v 1.2 2011/03/05 21:48:54 auhl Exp $
  */
 package behavioral.status_and_action.design.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ActionImpl extends AbstractActionImpl implements Action {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ActionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return DesignPackage.Literals.ACTION;
-    }
+		return DesignPackage.Literals.ACTION;
+	}
 
 } //ActionImpl

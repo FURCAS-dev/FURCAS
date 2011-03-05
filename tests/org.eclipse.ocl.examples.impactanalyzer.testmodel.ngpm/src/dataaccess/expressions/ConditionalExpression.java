@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConditionalExpression.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
+ * $Id: ConditionalExpression.java,v 1.3 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions;
-
 
 /**
  * <!-- begin-user-doc -->

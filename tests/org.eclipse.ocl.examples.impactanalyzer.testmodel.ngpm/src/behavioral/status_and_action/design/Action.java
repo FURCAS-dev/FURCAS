@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Action.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: Action.java,v 1.2 2011/03/05 21:48:54 auhl Exp $
  */
 package behavioral.status_and_action.design;
-
 
 /**
  * <!-- begin-user-doc -->

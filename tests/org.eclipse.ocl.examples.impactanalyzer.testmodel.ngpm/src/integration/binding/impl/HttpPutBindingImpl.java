@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: HttpPutBindingImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: HttpPutBindingImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class HttpPutBindingImpl extends HttpBindingImpl implements HttpPutBinding {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected HttpPutBindingImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return BindingPackage.Literals.HTTP_PUT_BINDING;
-    }
+		return BindingPackage.Literals.HTTP_PUT_BINDING;
+	}
 
 } //HttpPutBindingImpl

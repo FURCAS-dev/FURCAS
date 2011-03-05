@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkSettingImpl.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: LinkSettingImpl.java,v 1.2 2011/03/05 21:51:24 auhl Exp $
  */
 package data.classes.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class LinkSettingImpl extends ExtentModifyingAssociationEndSignatureImplementationImpl implements LinkSetting {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected LinkSettingImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ClassesPackage.Literals.LINK_SETTING;
-    }
+		return ClassesPackage.Literals.LINK_SETTING;
+	}
 
 } //LinkSettingImpl

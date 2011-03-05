@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SnapshotImpl.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: SnapshotImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package persistence.expressions.impl;
 
@@ -24,22 +24,22 @@ import persistence.expressions.Snapshot;
  */
 public class SnapshotImpl extends ObjectBasedExpressionImpl implements Snapshot {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected SnapshotImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.SNAPSHOT;
-    }
+		return ExpressionsPackage.Literals.SNAPSHOT;
+	}
 
 } //SnapshotImpl

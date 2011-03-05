@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleUrlPattern.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: SimpleUrlPattern.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding;
-
 
 /**
  * <!-- begin-user-doc -->
@@ -29,29 +28,29 @@ package integration.binding;
  */
 public interface SimpleUrlPattern extends UrlPattern {
 	/**
-     * Returns the value of the '<em><b>Base Url</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Url</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Base Url</em>' attribute.
-     * @see #setBaseUrl(String)
-     * @see integration.binding.BindingPackage#getSimpleUrlPattern_BaseUrl()
-     * @model unique="false" required="true" ordered="false"
-     * @generated
-     */
+	 * @return the value of the '<em>Base Url</em>' attribute.
+	 * @see #setBaseUrl(String)
+	 * @see integration.binding.BindingPackage#getSimpleUrlPattern_BaseUrl()
+	 * @model unique="false" required="true" ordered="false"
+	 * @generated
+	 */
 	String getBaseUrl();
 
 	/**
-     * Sets the value of the '{@link integration.binding.SimpleUrlPattern#getBaseUrl <em>Base Url</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link integration.binding.SimpleUrlPattern#getBaseUrl <em>Base Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Base Url</em>' attribute.
-     * @see #getBaseUrl()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Base Url</em>' attribute.
+	 * @see #getBaseUrl()
+	 * @generated
+	 */
 	void setBaseUrl(String value);
 
 } // SimpleUrlPattern

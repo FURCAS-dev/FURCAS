@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LinkAdditionImpl.java,v 1.1 2011/02/07 17:16:10 auhl Exp $
+ * $Id: LinkAdditionImpl.java,v 1.2 2011/03/05 21:51:24 auhl Exp $
  */
 package data.classes.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class LinkAdditionImpl extends LinkManipulationAtPositionImpl implements LinkAddition {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected LinkAdditionImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ClassesPackage.Literals.LINK_ADDITION;
-    }
+		return ClassesPackage.Literals.LINK_ADDITION;
+	}
 
 } //LinkAdditionImpl

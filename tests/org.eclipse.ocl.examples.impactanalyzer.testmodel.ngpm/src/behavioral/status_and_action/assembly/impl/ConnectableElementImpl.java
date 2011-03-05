@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConnectableElementImpl.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
+ * $Id: ConnectableElementImpl.java,v 1.2 2011/03/05 21:48:55 auhl Exp $
  */
 package behavioral.status_and_action.assembly.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class ConnectableElementImpl extends SchemaElementImpl implements ConnectableElement {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ConnectableElementImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return AssemblyPackage.Literals.CONNECTABLE_ELEMENT;
-    }
+		return AssemblyPackage.Literals.CONNECTABLE_ELEMENT;
+	}
 
 } //ConnectableElementImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Binding.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: Binding.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding;
 
@@ -30,29 +30,29 @@ import modelmanagement.NamedElement;
  */
 public interface Binding extends NamedElement {
 	/**
-     * Returns the value of the '<em><b>Function</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Function</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Function</em>' containment reference.
-     * @see #setFunction(Expression)
-     * @see integration.binding.BindingPackage#getBinding_Function()
-     * @model containment="true" resolveProxies="true" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Function</em>' containment reference.
+	 * @see #setFunction(Expression)
+	 * @see integration.binding.BindingPackage#getBinding_Function()
+	 * @model containment="true" resolveProxies="true" required="true"
+	 * @generated
+	 */
 	Expression getFunction();
 
 	/**
-     * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Function</em>' containment reference.
-     * @see #getFunction()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Function</em>' containment reference.
+	 * @see #getFunction()
+	 * @generated
+	 */
 	void setFunction(Expression value);
 
 } // Binding
