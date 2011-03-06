@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.5 2011/03/03 20:09:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -66,26 +67,6 @@ public class OCLValidationDelegate implements ValidationDelegate
 		this.eClassifier = classifier;
 	}
 
-	protected boolean check(EvaluationVisitor evaluationVisitor, String constraintName, ExpressionInOcl query) {
-		if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
-			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
-		}
-		try {
-			Value result = query.accept(evaluationVisitor);
-			if (result.isNull()) {
-				String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
-				throw new OCLDelegateException(message);
-			}
-			return result.asBoolean();
-		} catch (InvalidValueException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
-		} catch (InvalidEvaluationException e) {
-			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
-			throw new OCLDelegateException(message);
-		}
-	}
 
 	public EvaluationVisitor createEvaluationVisitor(Object object, ExpressionInOcl query) {
 		EnvironmentFactory environmentFactory = delegateDomain.getEnvironmentFactory();
@@ -137,87 +118,35 @@ public class OCLValidationDelegate implements ValidationDelegate
 		TypeManager typeManager = delegateDomain.getTypeManager();
 		Operation operation = delegateDomain.getPivot(Operation.class, invariant);
 		ExpressionInOcl query = InvocationBehavior.INSTANCE.getExpressionInOcl(typeManager, operation);
-		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(eObject, query);
-		return check(evaluationVisitor, invariant.getName(), query);
+		return validateExpressionInOcl(eClass, eObject, null, context,
+			invariant.getName(), null, 0, query);
 	}
 
 	public boolean validate(EClass eClass, EObject eObject,
 			Map<Object, Object> context, String constraintName, String expression) {
-		TypeManager typeManager = delegateDomain.getTypeManager();
-		Type type = delegateDomain.getPivot(Type.class, eClass);
-		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(
-			typeManager, eClass, constraintName);
-		if (constraint == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(typeManager, type, constraint);
-		if (query == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(eObject, query);
-		return check(evaluationVisitor, constraintName, query);
+		return validatePivot(eClass, eObject, null, context, constraintName, null, 0);
 	}
 
 	public boolean validate(EDataType eDataType, Object value,
 			Map<Object, Object> context, String constraintName, String expression) {
-		TypeManager typeManager = delegateDomain.getTypeManager();
-		Type type = delegateDomain.getPivot(Type.class, eDataType);
-		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(
-			typeManager, eDataType, constraintName);
-		if (constraint == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(typeManager, type, constraint);
-		if (query == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(value, query);
-		if (check(evaluationVisitor, constraintName, query)) {
-			return true;
-		}
-		return false;
+		return validatePivot(eDataType, value, null, context, constraintName, null, 0);
 	}
 
-	public boolean validate(EClass eClass, EObject eObject,
-			DiagnosticChain diagnostics, Map<Object, Object> context,
+	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context,
 			String constraintName, String expression, int severity, String source, int code) {
-		TypeManager typeManager = delegateDomain.getTypeManager();
-		Type type = delegateDomain.getPivot(Type.class, eClass);
-		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(
-			typeManager, eClass, constraintName);
-		if (constraint == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		ExpressionInOcl query = ValidationBehavior.INSTANCE.getExpressionInOcl(typeManager, type, constraint);
-		if (query == null) {
-			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
-			throw new OCLDelegateException(message);
-		}
-		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(eObject, query);
-		if (check(evaluationVisitor, constraintName, query)) {
-			return true;
-		}
-		String message = evaluateMessage(evaluationVisitor, constraintName, query);
-		if (message == null) {
-			Object objectLabel = EObjectValidator.getObjectLabel(eObject, context);
-			message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
-		}
-	    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { eObject }));
-		return false;
+		return validatePivot(eClass, eObject, diagnostics, context, constraintName, source, code);
 	}
 
-	public boolean validate(EDataType eDataType, Object value,
-			DiagnosticChain diagnostics, Map<Object, Object> context,
+	public boolean validate(EDataType eDataType, Object value, DiagnosticChain diagnostics, Map<Object, Object> context,
 			String constraintName, String expression, int severity, String source, int code) {
+		return validatePivot(eDataType, value, diagnostics, context, constraintName, source, code);
+	}
+
+	protected boolean validatePivot(EClassifier eClassifier, Object value, DiagnosticChain diagnostics,
+			Map<Object, Object> context, String constraintName, String source, int code) {
 		TypeManager typeManager = delegateDomain.getTypeManager();
-		Type type = delegateDomain.getPivot(Type.class, eDataType);
-		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(
-			typeManager, eDataType, constraintName);
+		Type type = delegateDomain.getPivot(Type.class, eClassifier);
+		Constraint constraint = ValidationBehavior.INSTANCE.getConstraint(typeManager, eClassifier, constraintName);
 		if (constraint == null) {
 			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(message);
@@ -227,16 +156,74 @@ public class OCLValidationDelegate implements ValidationDelegate
 			String message = NLS.bind(OCLMessages.MissingBodyForInvocationDelegate_ERROR_, type);
 			throw new OCLDelegateException(message);
 		}
+		return validateExpressionInOcl(eClassifier, value, diagnostics, context,
+			constraintName, source, code, query);
+	}
+	protected boolean check(EvaluationVisitor evaluationVisitor, String constraintName, ExpressionInOcl query) {
+		if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
+			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
+		}
+		try {
+			Value result = query.accept(evaluationVisitor);
+			if (result.isNull()) {
+				String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+				throw new OCLDelegateException(message);
+			}
+			return result.asBoolean();
+		} catch (InvalidValueException e) {
+			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
+		} catch (InvalidEvaluationException e) {
+			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
+		}
+	}
+
+	protected boolean validateExpressionInOcl(EClassifier eClassifier, Object value, DiagnosticChain diagnostics,
+			Map<Object, Object> context, String constraintName, String source, int code, ExpressionInOcl query) {
 		EvaluationVisitor evaluationVisitor = createEvaluationVisitor(value, query);
-		if (check(evaluationVisitor, constraintName, query)) {
-			return true;
+		if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
+			String message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
 		}
-		String message = evaluateMessage(evaluationVisitor, constraintName, query);
-		if (message == null) {
-			Object objectLabel = EObjectValidator.getValueLabel(eDataType, value, context);
-			message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+		Value result;
+		try {
+			result = query.accept(evaluationVisitor);
+			if (result.isNull()) {
+				if (diagnostics == null) {
+					String message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+					throw new OCLDelegateException(message);
+				}
+			}
+			else if (result.asBoolean()) {
+				return true;
+			}
+		} catch (InvalidValueException e) {
+			String message = NLS.bind(OCLMessages.ValidationResultIsNotBoolean_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
+		} catch (InvalidEvaluationException e) {
+			String message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
+			throw new OCLDelegateException(message);
 		}
-	    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));
+		if (diagnostics != null) {
+			String message = evaluateMessage(evaluationVisitor, constraintName, query);
+			if (message == null) {
+				Object objectLabel;
+				if (eClassifier instanceof EDataType) {
+					objectLabel = EObjectValidator.getValueLabel((EDataType) eClassifier, value, context);
+				}
+				else if (value instanceof EObject) {
+					objectLabel = EObjectValidator.getObjectLabel((EObject) value, context);
+				}
+				else {
+					objectLabel = String.valueOf(value);
+				}
+				message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+			}
+			int severity = result.isNull() ? Diagnostic.ERROR : Diagnostic.WARNING;
+		    diagnostics.add(new BasicDiagnostic(severity, source, code, message, new Object [] { value }));
+		}
 		return false;
 	}
 }

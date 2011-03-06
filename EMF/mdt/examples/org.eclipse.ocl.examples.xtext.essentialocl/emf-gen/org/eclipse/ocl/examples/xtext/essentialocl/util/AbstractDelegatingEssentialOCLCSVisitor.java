@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingEssentialOCLCSVisitor.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: AbstractDelegatingEssentialOCLCSVisitor.java,v 1.7 2011/03/04 13:58:45 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.essentialocl.util;
 

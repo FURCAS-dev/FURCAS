@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.9 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.10 2011/03/03 20:05:13 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, DOCUMENTATION, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
@@ -32,9 +32,13 @@ terminal SINGLE_QUOTED_STRING:
 terminal ML_SINGLE_QUOTED_STRING:
 	"/'"->"'/";
 
-terminal ID:
-	(('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*)
-	| ("_" SINGLE_QUOTED_STRING);
+terminal SIMPLE_ID:
+	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+terminal ESCAPED_ID:
+	"_" SINGLE_QUOTED_STRING;
+
+ID: SIMPLE_ID | ESCAPED_ID;
 
 terminal INT: // String to allow diverse re-use
 	('0'..'9')+;
@@ -43,7 +47,7 @@ NUMBER_LITERAL returns BigNumber: // Not terminal to allow parser backtracking t
 	INT ('.' INT)? (('e' | 'E') ('+' | '-')? INT)?;
 
 terminal DOCUMENTATION:
-	'/**'->'**/';
+	'/**'->'*/';
 
 terminal ML_COMMENT:
 	'/*' !('*')->'*/';

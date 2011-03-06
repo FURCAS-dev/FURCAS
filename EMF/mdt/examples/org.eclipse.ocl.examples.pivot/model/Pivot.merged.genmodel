@@ -19,7 +19,7 @@
     <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>Pivot.merged.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="Pivot" basePackage="org.eclipse.ocl.examples" disposableProviderFactory="true" loadInitialization="true" classPackageSuffix="internal.impl" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation" generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier="org.eclipse.ocl.examples.pivot" resourceInterfaces="true" operationsPackage="org.eclipse.ocl.examples.pivot.internal.operations">
+  <genPackages xsi:type="genmodel:GenPackage" prefix="Pivot" basePackage="org.eclipse.ocl.examples" disposableProviderFactory="true" classPackageSuffix="internal.impl" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation" generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier="org.eclipse.ocl.examples.pivot" resourceInterfaces="true" operationsPackage="org.eclipse.ocl.examples.pivot.internal.operations">
     <ecorePackage href="pivot.ecore#/"/>
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false">
       <ecoreEnum href="pivot.ecore#//AssociativityKind"/>

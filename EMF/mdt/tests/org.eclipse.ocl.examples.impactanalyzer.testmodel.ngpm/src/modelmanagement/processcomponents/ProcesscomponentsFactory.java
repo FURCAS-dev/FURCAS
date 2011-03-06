@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcesscomponentsFactory.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: ProcesscomponentsFactory.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package modelmanagement.processcomponents;
 
@@ -18,38 +18,38 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface ProcesscomponentsFactory extends EFactory {
 	/**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	ProcesscomponentsFactory eINSTANCE = modelmanagement.processcomponents.impl.ProcesscomponentsFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Process Component Inside Company</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Process Component Inside Company</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Process Component Inside Company</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Process Component Inside Company</em>'.
+	 * @generated
+	 */
 	ProcessComponentInsideCompany createProcessComponentInsideCompany();
 
 	/**
-     * Returns a new object of class '<em>Process Component Outside Company</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Process Component Outside Company</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Process Component Outside Company</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Process Component Outside Company</em>'.
+	 * @generated
+	 */
 	ProcessComponentOutsideCompany createProcessComponentOutsideCompany();
 
 	/**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
 	ProcesscomponentsPackage getProcesscomponentsPackage();
 
 } //ProcesscomponentsFactory

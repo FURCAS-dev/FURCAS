@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.7 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.8 2011/03/05 05:57:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -39,7 +39,7 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		ExpressionInOcl pivot = getPivot();
-		if (pivot != null) {
+		if ((pivot != null) && (pivot.getContextVariable().getType() != null)) {
 			Variable resultVariable = pivot.getResultVariable();
 			if (resultVariable != null) {
 				environmentView.addNamedElement(resultVariable);
@@ -63,11 +63,13 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 			Resource resource = target.eResource();
 			if (resource instanceof EvaluationContext) {
 				NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
-				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
-				if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
-					ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
-					environmentView.computeLookups(ruleScopeView);
-				}				
+				if (specificationContext != null) {
+					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
+					if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
+						ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+						environmentView.computeLookups(ruleScopeView);
+					}	
+				}
 			}
 		}
 		if (!environmentView.hasFinalResult()) {

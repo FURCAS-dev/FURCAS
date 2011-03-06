@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcessComponentOutsideCompanyImpl.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: ProcessComponentOutsideCompanyImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package modelmanagement.processcomponents.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ProcessComponentOutsideCompanyImpl extends ProcessComponentImpl implements ProcessComponentOutsideCompany {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ProcessComponentOutsideCompanyImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT_OUTSIDE_COMPANY;
-    }
+		return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT_OUTSIDE_COMPANY;
+	}
 
 } //ProcessComponentOutsideCompanyImpl

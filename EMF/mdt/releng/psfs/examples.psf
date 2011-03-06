@@ -35,6 +35,7 @@
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.base,org.eclipse.ocl.examples.xtext.base,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl,org.eclipse.ocl.examples.xtext.completeocl,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.completeocl.ui,org.eclipse.ocl.examples.xtext.completeocl.ui,"/>
+		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.console,org.eclipse.ocl.examples.xtext.console,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl,org.eclipse.ocl.examples.xtext.essentialocl,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl.ui,org.eclipse.ocl.examples.xtext.essentialocl.ui,"/>
 		<project reference="1.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore,org.eclipse.ocl.examples.xtext.oclinecore,"/>
@@ -82,6 +83,7 @@
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.base" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.completeocl" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.completeocl.ui" type="4"/>
+		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.console" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.essentialocl" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.essentialocl.ui" type="4"/>
 		<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.eclipse.ocl.examples.xtext.oclinecore" type="4"/>

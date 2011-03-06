@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: HttpGetBindingImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: HttpGetBindingImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package integration.binding.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class HttpGetBindingImpl extends HttpBindingImpl implements HttpGetBinding {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected HttpGetBindingImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return BindingPackage.Literals.HTTP_GET_BINDING;
-    }
+		return BindingPackage.Literals.HTTP_GET_BINDING;
+	}
 
 } //HttpGetBindingImpl

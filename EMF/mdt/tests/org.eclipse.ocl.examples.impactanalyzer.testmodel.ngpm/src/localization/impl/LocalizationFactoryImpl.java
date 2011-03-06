@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LocalizationFactoryImpl.java,v 1.1 2011/02/07 17:21:38 auhl Exp $
+ * $Id: LocalizationFactoryImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package localization.impl;
 
@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class LocalizationFactoryImpl extends EFactoryImpl implements LocalizationFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static LocalizationFactory init() {
-        try {
-            LocalizationFactory theLocalizationFactory = (LocalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/localization.ecore"); 
-            if (theLocalizationFactory != null) {
-                return theLocalizationFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new LocalizationFactoryImpl();
-    }
+		try {
+			LocalizationFactory theLocalizationFactory = (LocalizationFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/localization.ecore"); 
+			if (theLocalizationFactory != null) {
+				return theLocalizationFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new LocalizationFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public LocalizationFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case LocalizationPackage.TRANSLATABLE_TEXT: return createTranslatableText();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case LocalizationPackage.TRANSLATABLE_TEXT: return createTranslatableText();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TranslatableText createTranslatableText() {
-        TranslatableTextImpl translatableText = new TranslatableTextImpl();
-        return translatableText;
-    }
+		TranslatableTextImpl translatableText = new TranslatableTextImpl();
+		return translatableText;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public LocalizationPackage getLocalizationPackage() {
-        return (LocalizationPackage)getEPackage();
-    }
+		return (LocalizationPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static LocalizationPackage getPackage() {
-        return LocalizationPackage.eINSTANCE;
-    }
+		return LocalizationPackage.eINSTANCE;
+	}
 
 } //LocalizationFactoryImpl

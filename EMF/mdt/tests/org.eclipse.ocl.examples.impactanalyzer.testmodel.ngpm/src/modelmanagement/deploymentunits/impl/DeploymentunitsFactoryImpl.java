@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DeploymentunitsFactoryImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: DeploymentunitsFactoryImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package modelmanagement.deploymentunits.impl;
 
@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class DeploymentunitsFactoryImpl extends EFactoryImpl implements DeploymentunitsFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static DeploymentunitsFactory init() {
-        try {
-            DeploymentunitsFactory theDeploymentunitsFactory = (DeploymentunitsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore"); 
-            if (theDeploymentunitsFactory != null) {
-                return theDeploymentunitsFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new DeploymentunitsFactoryImpl();
-    }
+		try {
+			DeploymentunitsFactory theDeploymentunitsFactory = (DeploymentunitsFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/modelmanagement/deploymentunits.ecore"); 
+			if (theDeploymentunitsFactory != null) {
+				return theDeploymentunitsFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new DeploymentunitsFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DeploymentunitsFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case DeploymentunitsPackage.DEPLOYMENT_UNIT: return createDeploymentUnit();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case DeploymentunitsPackage.DEPLOYMENT_UNIT: return createDeploymentUnit();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DeploymentUnit createDeploymentUnit() {
-        DeploymentUnitImpl deploymentUnit = new DeploymentUnitImpl();
-        return deploymentUnit;
-    }
+		DeploymentUnitImpl deploymentUnit = new DeploymentUnitImpl();
+		return deploymentUnit;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public DeploymentunitsPackage getDeploymentunitsPackage() {
-        return (DeploymentunitsPackage)getEPackage();
-    }
+		return (DeploymentunitsPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static DeploymentunitsPackage getPackage() {
-        return DeploymentunitsPackage.eINSTANCE;
-    }
+		return DeploymentunitsPackage.eINSTANCE;
+	}
 
 } //DeploymentunitsFactoryImpl

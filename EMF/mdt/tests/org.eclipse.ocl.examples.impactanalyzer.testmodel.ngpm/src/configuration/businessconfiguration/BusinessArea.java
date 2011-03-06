@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BusinessArea.java,v 1.1 2011/02/07 17:16:09 auhl Exp $
+ * $Id: BusinessArea.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package configuration.businessconfiguration;
 
@@ -26,19 +26,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface BusinessArea extends ConfigurationElement {
 	/**
-     * Returns the value of the '<em><b>Business Package</b></em>' containment reference list.
-     * The list contents are of type {@link configuration.businessconfiguration.BusinessPackage}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Business Package</b></em>' containment reference list.
+	 * The list contents are of type {@link configuration.businessconfiguration.BusinessPackage}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Business Package</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Business Package</em>' containment reference list.
-     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessArea_BusinessPackage()
-     * @model containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Business Package</em>' containment reference list.
+	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessArea_BusinessPackage()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<BusinessPackage> getBusinessPackage();
 
 } // BusinessArea

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractContentImpl.java,v 1.1 2011/02/07 17:21:36 auhl Exp $
+ * $Id: AbstractContentImpl.java,v 1.2 2011/03/05 21:37:36 auhl Exp $
  */
 package integration.xsd.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public abstract class AbstractContentImpl extends EObjectImpl implements AbstractContent {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected AbstractContentImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return XsdPackage.Literals.ABSTRACT_CONTENT;
-    }
+		return XsdPackage.Literals.ABSTRACT_CONTENT;
+	}
 
 } //AbstractContentImpl

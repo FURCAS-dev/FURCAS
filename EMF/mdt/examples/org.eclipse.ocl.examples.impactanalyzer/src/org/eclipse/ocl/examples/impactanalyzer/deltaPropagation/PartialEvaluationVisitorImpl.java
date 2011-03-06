@@ -339,7 +339,6 @@ public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
                     result = CollectionUtil.createNewCollection(kind);
                     int i = 0;
                     Iterator<T> removedIter = ((Collection<T>) atPre.getOldValue()).iterator();
-                    int sourcePos = 0;
                     int targetPos = 0;
                     for (T t : into) {
                         if (targetPos == oldPositions[i]) {
@@ -348,7 +347,6 @@ public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
                         }
                         result.add(t);
                         targetPos++;
-                        sourcePos++;
                     }
                 }
             }

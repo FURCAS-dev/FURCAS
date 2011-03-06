@@ -1096,6 +1096,34 @@ finally {
 
 
 
+// Entry rule entryRuleID
+entryRuleID 
+:
+{ before(grammarAccess.getIDRule()); }
+	 ruleID
+{ after(grammarAccess.getIDRule()); } 
+	 EOF 
+;
+
+// Rule ID
+ruleID
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getIDAccess().getAlternatives()); }
+(rule__ID__Alternatives)
+{ after(grammarAccess.getIDAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleNUMBER_LITERAL
 entryRuleNUMBER_LITERAL 
 :
@@ -2764,9 +2792,9 @@ rule__Identifier__Alternatives
     }
 :
 (
-{ before(grammarAccess.getIdentifierAccess().getIDTerminalRuleCall_0()); }
-	RULE_ID
-{ after(grammarAccess.getIdentifierAccess().getIDTerminalRuleCall_0()); }
+{ before(grammarAccess.getIdentifierAccess().getIDParserRuleCall_0()); }
+	ruleID
+{ after(grammarAccess.getIdentifierAccess().getIDParserRuleCall_0()); }
 )
 
     |(
@@ -3493,6 +3521,28 @@ rule__WildcardTypeRefCS__Alternatives_2
 { before(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2_1()); }
 (rule__WildcardTypeRefCS__Group_2_1__0)
 { after(grammarAccess.getWildcardTypeRefCSAccess().getGroup_2_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ID__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIDAccess().getSIMPLE_IDTerminalRuleCall_0()); }
+	RULE_SIMPLE_ID
+{ after(grammarAccess.getIDAccess().getSIMPLE_IDTerminalRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getIDAccess().getESCAPED_IDTerminalRuleCall_1()); }
+	RULE_ESCAPED_ID
+{ after(grammarAccess.getIDAccess().getESCAPED_IDTerminalRuleCall_1()); }
 )
 
 ;
@@ -19651,11 +19701,13 @@ RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(
 
 RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
-RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
+RULE_SIMPLE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_DOCUMENTATION : '/**' ( options {greedy=false;} : . )*'**/';
+RULE_DOCUMENTATION : '/**' ( options {greedy=false;} : . )*'*/';
 
 RULE_ML_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
 

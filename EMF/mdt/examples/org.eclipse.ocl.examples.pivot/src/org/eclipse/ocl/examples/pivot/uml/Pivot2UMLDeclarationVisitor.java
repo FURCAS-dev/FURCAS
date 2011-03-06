@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2UMLDeclarationVisitor.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: Pivot2UMLDeclarationVisitor.java,v 1.6 2011/03/04 13:57:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -42,7 +42,6 @@ import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;

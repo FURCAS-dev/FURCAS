@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryInvocationImpl.java,v 1.1 2011/02/07 17:17:57 auhl Exp $
+ * $Id: QueryInvocationImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package behavioral.actions.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class QueryInvocationImpl extends EObjectImpl implements QueryInvocation {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected QueryInvocationImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ActionsPackage.Literals.QUERY_INVOCATION;
-    }
+		return ActionsPackage.Literals.QUERY_INVOCATION;
+	}
 
 } //QueryInvocationImpl

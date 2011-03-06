@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IncludingImpl.java,v 1.1 2011/02/07 17:16:11 auhl Exp $
+ * $Id: IncludingImpl.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions.collectionexpressions.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class IncludingImpl extends CollectionExpressionWithArgumentImpl implements Including {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected IncludingImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return CollectionexpressionsPackage.Literals.INCLUDING;
-    }
+		return CollectionexpressionsPackage.Literals.INCLUDING;
+	}
 
 } //IncludingImpl

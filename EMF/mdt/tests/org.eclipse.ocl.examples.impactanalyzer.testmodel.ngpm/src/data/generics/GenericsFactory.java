@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GenericsFactory.java,v 1.1 2011/02/07 17:18:47 auhl Exp $
+ * $Id: GenericsFactory.java,v 1.2 2011/03/05 21:51:24 auhl Exp $
  */
 package data.generics;
 
@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface GenericsFactory extends EFactory {
 	/**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	GenericsFactory eINSTANCE = data.generics.impl.GenericsFactoryImpl.init();
 
 	/**
-     * Returns a new object of class '<em>Formal Type Parameter</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Formal Type Parameter</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Formal Type Parameter</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Formal Type Parameter</em>'.
+	 * @generated
+	 */
 	FormalTypeParameter createFormalTypeParameter();
 
 	/**
-     * Returns a new object of class '<em>Parameterized Class Instantiation</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Parameterized Class Instantiation</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Parameterized Class Instantiation</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Parameterized Class Instantiation</em>'.
+	 * @generated
+	 */
 	ParameterizedClassInstantiation createParameterizedClassInstantiation();
 
 	/**
-     * Returns a new object of class '<em>Class Parameterization</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Class Parameterization</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Class Parameterization</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Class Parameterization</em>'.
+	 * @generated
+	 */
 	ClassParameterization createClassParameterization();
 
 	/**
-     * Returns a new object of class '<em>Actual Type Parameter</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Actual Type Parameter</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return a new object of class '<em>Actual Type Parameter</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Actual Type Parameter</em>'.
+	 * @generated
+	 */
 	ActualTypeParameter createActualTypeParameter();
 
 	/**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
 	GenericsPackage getGenericsPackage();
 
 } //GenericsFactory

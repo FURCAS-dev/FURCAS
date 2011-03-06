@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DummyImpl.java,v 1.1 2011/02/07 17:17:58 auhl Exp $
+ * $Id: DummyImpl.java,v 1.2 2011/03/05 21:48:55 auhl Exp $
  */
 package behavioral.transactions.impl;
 
@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class DummyImpl extends EObjectImpl implements Dummy {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected DummyImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return TransactionsPackage.Literals.DUMMY;
-    }
+		return TransactionsPackage.Literals.DUMMY;
+	}
 
 } //DummyImpl
