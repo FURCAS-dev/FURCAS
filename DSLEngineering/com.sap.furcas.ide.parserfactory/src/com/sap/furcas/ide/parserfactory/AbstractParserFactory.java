@@ -3,6 +3,7 @@ package com.sap.furcas.ide.parserfactory;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -58,10 +59,8 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		Collection<URI> additionalPRIScope, Collection<URI> additionalCRIScope) {
 		Collection<URI> priScope = new HashSet<URI>();
 		Collection<URI> parserScope = getParserLookupScope(connection);
-		if (parserScope != null) {
-			for (URI pri : parserScope) {
-				priScope.add(pri);
-			}
+		for (URI pri : parserScope) {
+			priScope.add(pri);
 		}
 		if (additionalPRIScope != null) {
 			for (URI pri : additionalPRIScope) {
@@ -110,7 +109,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 
 	@Override
 	public Set<URI> getParserLookupScope(ResourceSet connection) {
-		return null;
+		return Collections.emptySet();
 	}
 
 	@Override

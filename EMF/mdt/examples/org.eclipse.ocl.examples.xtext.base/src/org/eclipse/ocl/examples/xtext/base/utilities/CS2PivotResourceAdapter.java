@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.6 2011/03/01 08:47:45 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.7 2011/03/05 05:57:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -129,6 +129,7 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 		return -1;
 	}
 
+	@Override
 	public Resource getPivotResource(Resource csResource) {
 		return converter.getPivotResource(csResource);
 	}

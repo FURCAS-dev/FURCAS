@@ -1888,6 +1888,42 @@ ruleNavigatingArgExpCS returns [EObject current=null]
 
 
 
+// Entry rule entryRuleID
+entryRuleID returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getIDRule()); } 
+	 iv_ruleID=ruleID 
+	 { $current=$iv_ruleID.current.getText(); }  
+	 EOF 
+;
+
+// Rule ID
+ruleID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_SIMPLE_ID_0=RULE_SIMPLE_ID    {
+		$current.merge(this_SIMPLE_ID_0);
+    }
+
+    { 
+    newLeafNode(this_SIMPLE_ID_0, grammarAccess.getIDAccess().getSIMPLE_IDTerminalRuleCall_0()); 
+    }
+
+    |    this_ESCAPED_ID_1=RULE_ESCAPED_ID    {
+		$current.merge(this_ESCAPED_ID_1);
+    }
+
+    { 
+    newLeafNode(this_ESCAPED_ID_1, grammarAccess.getIDAccess().getESCAPED_IDTerminalRuleCall_1()); 
+    }
+)
+    ;
+
+
+
+
+
 // Entry rule entryRuleNUMBER_LITERAL
 entryRuleNUMBER_LITERAL returns [String current=null] 
 	:
@@ -2198,12 +2234,16 @@ ruleIdentifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_ID_0=RULE_ID    {
+(
+    { 
+        newCompositeNode(grammarAccess.getIdentifierAccess().getIDParserRuleCall_0()); 
+    }
+    this_ID_0=ruleID    {
 		$current.merge(this_ID_0);
     }
 
     { 
-    newLeafNode(this_ID_0, grammarAccess.getIdentifierAccess().getIDTerminalRuleCall_0()); 
+        afterParserOrEnumRuleCall();
     }
 
     |
@@ -5217,11 +5257,13 @@ RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~
 
 RULE_ML_SINGLE_QUOTED_STRING : '/\'' ( options {greedy=false;} : . )*'\'/';
 
-RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
+RULE_SIMPLE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_ESCAPED_ID : '_' RULE_SINGLE_QUOTED_STRING;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_DOCUMENTATION : '/**' ( options {greedy=false;} : . )*'**/';
+RULE_DOCUMENTATION : '/**' ( options {greedy=false;} : . )*'*/';
 
 RULE_ML_COMMENT : '/*' ~('*') ( options {greedy=false;} : . )*'*/';
 

@@ -12,17 +12,22 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLEObjectValidator.java,v 1.1 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLEObjectValidator.java,v 1.3 2011/03/04 13:58:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.validation;
 
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IResourceStatus;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
@@ -114,7 +119,28 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 		if (message != null) {
 			logger.error("Failed to load Pivot from '" + ecoreResource.getURI() + message);
 		}
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
+		BaseCSResource xtextResource = null;
+		try {
+			xtextResource = (BaseCSResource) resourceSet.getResource(oclURI, true);
+		}
+		catch (WrappedException e) {
+			URI retryURI = null;
+			Throwable cause = e.getCause();
+			if (cause instanceof CoreException) {
+				IStatus status = ((CoreException)cause).getStatus();
+				if ((status.getCode() == IResourceStatus.RESOURCE_NOT_FOUND) && status.getPlugin().equals(ResourcesPlugin.PI_RESOURCES)) {
+					if (oclURI.isPlatformResource()) {
+						retryURI = URI.createPlatformPluginURI(oclURI.toPlatformString(false), false);
+					}
+				}
+			}
+			if (retryURI != null) {
+				xtextResource = (BaseCSResource) resourceSet.getResource(retryURI, true);			
+			}
+			else {
+				throw e;
+			}
+		}
 		message = PivotUtil.getResourceErrorsString(xtextResource, "");
 		if (message != null) {
 			logger.error("Failed to load '" + oclURI + message);
@@ -165,34 +191,38 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 					evaluationEnvironment.add(query.getContextVariable(), value);
 					ModelManager extents = evaluationEnvironment.createModelManager(object);
 					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(rootEnvironment, evaluationEnvironment, extents);
+					int severity = Diagnostic.ERROR;
 					String message = null;
 					if (query.getType() != evaluationVisitor.getTypeManager().getBooleanType()) {
 						message = NLS.bind(OCLMessages.ValidationConstraintIsNotBoolean_ERROR_, constraintName);
 					}
 					try {
 						Value expressionResult = query.accept(evaluationVisitor);
-						if (expressionResult.isNull()) {
-							message = NLS.bind(OCLMessages.ValidationResultIsNull_ERROR_, constraintName);
+						boolean isOk = false;
+						if (!expressionResult.isNull()) {
+							isOk = expressionResult.asBoolean();
+							severity = Diagnostic.WARNING;
 						}
-						else {
-							boolean isOk = expressionResult.asBoolean();
-							if (!isOk) {
-								Object objectLabel = getLabel(eClassifier, object, context);
-								OclExpression messageExpression = query.getMessageExpression();
-								if (messageExpression != null) {
-									try {
-										Value messageResult = messageExpression.accept(evaluationVisitor);
+						if (!isOk) {
+							Object objectLabel = getLabel(eClassifier, object, context);
+							OclExpression messageExpression = query.getMessageExpression();
+							if (messageExpression != null) {
+								try {
+									Value messageResult = messageExpression.accept(evaluationVisitor);
+									if (!messageResult.isNull()) {
 										message = messageResult.asString();
-									} catch (InvalidValueException e) {
-										message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
 									}
-									catch (Exception e) {
-										message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
-									}
+								} catch (InvalidValueException e) {
+									message = NLS.bind(OCLMessages.ValidationMessageIsNotString_ERROR_, constraintName);
+									severity = Diagnostic.ERROR;
 								}
-								if (message == null) {
-									message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
+								catch (Exception e) {
+									message = NLS.bind(OCLMessages.ValidationMessageException_ERROR_, new Object[]{constraintName, objectLabel, e.getMessage()});
+									severity = Diagnostic.ERROR;
 								}
+							}
+							if (message == null) {
+								message = NLS.bind(OCLMessages.ValidationConstraintIsNotSatisfied_ERROR_, constraintName, objectLabel);
 							}
 						}
 					} catch (InvalidValueException e) {
@@ -201,8 +231,11 @@ public class CompleteOCLEObjectValidator extends EObjectValidator
 						message = NLS.bind(OCLMessages.ValidationResultIsInvalid_ERROR_, constraintName);
 					}
 					if (message != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
+						diagnostics.add(new BasicDiagnostic(severity, DIAGNOSTIC_SOURCE, 0, message, new Object [] { object }));
 					    allOk = false;
+					    if (severity == Diagnostic.ERROR) {
+					    	break;		// Generate many warnings but only one error
+					    }
 					}
 				}
 			}

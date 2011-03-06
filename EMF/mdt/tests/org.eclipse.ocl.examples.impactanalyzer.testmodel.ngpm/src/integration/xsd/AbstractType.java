@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractType.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: AbstractType.java,v 1.2 2011/03/05 21:37:37 auhl Exp $
  */
 package integration.xsd;
-
 
 /**
  * <!-- begin-user-doc -->

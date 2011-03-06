@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryFactoryImpl.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: QueryFactoryImpl.java,v 1.2 2011/03/05 21:52:05 auhl Exp $
  */
 package dataaccess.query.impl;
 
@@ -24,98 +24,98 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static QueryFactory init() {
-        try {
-            QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/query.ecore"); 
-            if (theQueryFactory != null) {
-                return theQueryFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new QueryFactoryImpl();
-    }
+		try {
+			QueryFactory theQueryFactory = (QueryFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/dataaccess/query.ecore"); 
+			if (theQueryFactory != null) {
+				return theQueryFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new QueryFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public QueryFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case QueryPackage.SELECTION: return createSelection();
-            case QueryPackage.OQL_QUERY: return createOqlQuery();
-            case QueryPackage.FROM_CLAUSE: return createFromClause();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case QueryPackage.SELECTION: return createSelection();
+			case QueryPackage.OQL_QUERY: return createOqlQuery();
+			case QueryPackage.FROM_CLAUSE: return createFromClause();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Selection createSelection() {
-        SelectionImpl selection = new SelectionImpl();
-        return selection;
-    }
+		SelectionImpl selection = new SelectionImpl();
+		return selection;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public OqlQuery createOqlQuery() {
-        OqlQueryImpl oqlQuery = new OqlQueryImpl();
-        return oqlQuery;
-    }
+		OqlQueryImpl oqlQuery = new OqlQueryImpl();
+		return oqlQuery;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public FromClause createFromClause() {
-        FromClauseImpl fromClause = new FromClauseImpl();
-        return fromClause;
-    }
+		FromClauseImpl fromClause = new FromClauseImpl();
+		return fromClause;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public QueryPackage getQueryPackage() {
-        return (QueryPackage)getEPackage();
-    }
+		return (QueryPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static QueryPackage getPackage() {
-        return QueryPackage.eINSTANCE;
-    }
+		return QueryPackage.eINSTANCE;
+	}
 
 } //QueryFactoryImpl

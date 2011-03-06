@@ -2,10 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Tail.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: Tail.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions;
-
 
 /**
  * <!-- begin-user-doc -->

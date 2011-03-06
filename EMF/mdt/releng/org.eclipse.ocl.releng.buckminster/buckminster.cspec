@@ -4,6 +4,7 @@
         <cs:dependency name="lpg.runtime.java" componentType="osgi.bundle"/>
         <cs:dependency name="lpg.runtime.java.source" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.emf.compare" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.platform" componentType="eclipse.feature"/>

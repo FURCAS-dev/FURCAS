@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.9 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: TypeManager.java,v 1.10 2011/03/04 13:56:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
+import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -142,21 +144,16 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		}
 	}
 
-	public class CompleteTypeConstraintsIterable
-			extends CompleteElementIterable<Type, Constraint> {
+	public class CompleteElementConstraintsIterable
+			extends CompleteElementIterable<NamedElement, Constraint> {
 
-		public CompleteTypeConstraintsIterable(CompleteType type) {
-			super(type.getModels());
+		public CompleteElementConstraintsIterable(List<? extends NamedElement> models) {
+			super(models);
 		}
 
 		@Override
-		protected Iterable<Constraint> getInnerIterable(Type model) {
-			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
-				return ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedRules();
-			}
-			else {
-				return null;
-			}
+		protected Iterable<Constraint> getInnerIterable(NamedElement model) {
+			return model.getOwnedRules();
 		}
 
 		@Override
@@ -1165,6 +1162,32 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return specializedType;
 	}
 
+	public Iterable<Constraint> getLocalConstraints(Operation operation) {
+		if (operation.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else if (completeEnvironmentManager == null) {
+			return operation.getOwnedRules();
+		}
+		else {
+			CompleteOperation completeOperation = completeEnvironmentManager.getCompleteOperation(operation);
+			return new CompleteElementConstraintsIterable(completeOperation.getModels());
+		}
+	}
+
+	public Iterable<Constraint> getLocalConstraints(Property property) {
+		if (property.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else if (completeEnvironmentManager == null) {
+			return property.getOwnedRules();
+		}
+		else {
+			CompleteProperty completeProperty = completeEnvironmentManager.getCompleteProperty(property);
+			return new CompleteElementConstraintsIterable(completeProperty.getModels());
+		}
+	}
+
 	public Iterable<Constraint> getLocalConstraints(Type type) {
 		if (type.getOwningTemplateParameter() != null) {
 			return Collections.emptyList();
@@ -1174,7 +1197,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		}
 		else {
 			CompleteType completeType = completeEnvironmentManager.getCompleteType(type);
-			return new CompleteTypeConstraintsIterable(completeType);
+			return new CompleteElementConstraintsIterable(completeType.getModels());
 		}
 	}
 
@@ -1763,6 +1786,24 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //							}
 //							externalResources.put(uri, resource);
 //						}
+						//
+						//	If this resource already loaded under its internal URI reuse old one
+						//
+						if (resource != null) { 
+							List<EObject> contents = resource.getContents();
+							if (contents.size() > 0) {
+								EObject firstContent = contents.get(0);
+								if (firstContent instanceof EPackage) {
+									String firstURI = ((EPackage)firstContent).getNsURI();
+									if (firstURI != null) {
+										External2Pivot external2Pivot2 = external2PivotMap.get(URI.createURI(firstURI));
+										if (external2Pivot2 != null) {
+											resource = external2Pivot2.getResource();
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}

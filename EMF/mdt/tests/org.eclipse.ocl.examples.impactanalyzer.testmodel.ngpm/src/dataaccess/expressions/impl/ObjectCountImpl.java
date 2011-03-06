@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ObjectCountImpl.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: ObjectCountImpl.java,v 1.2 2011/03/05 21:52:04 auhl Exp $
  */
 package dataaccess.expressions.impl;
 
@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ObjectCountImpl extends ObjectBasedExpressionImpl implements ObjectCount {
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	protected ObjectCountImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	protected EClass eStaticClass() {
-        return ExpressionsPackage.Literals.OBJECT_COUNT;
-    }
+		return ExpressionsPackage.Literals.OBJECT_COUNT;
+	}
 
 } //ObjectCountImpl

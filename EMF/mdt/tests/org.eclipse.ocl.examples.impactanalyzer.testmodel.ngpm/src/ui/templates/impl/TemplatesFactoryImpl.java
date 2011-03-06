@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TemplatesFactoryImpl.java,v 1.1 2011/02/07 17:21:37 auhl Exp $
+ * $Id: TemplatesFactoryImpl.java,v 1.2 2011/03/05 21:37:35 auhl Exp $
  */
 package ui.templates.impl;
 
@@ -24,76 +24,76 @@ import ui.templates.*;
  */
 public class TemplatesFactoryImpl extends EFactoryImpl implements TemplatesFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static TemplatesFactory init() {
-        try {
-            TemplatesFactory theTemplatesFactory = (TemplatesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/templates.ecore"); 
-            if (theTemplatesFactory != null) {
-                return theTemplatesFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new TemplatesFactoryImpl();
-    }
+		try {
+			TemplatesFactory theTemplatesFactory = (TemplatesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/ui/templates.ecore"); 
+			if (theTemplatesFactory != null) {
+				return theTemplatesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new TemplatesFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TemplatesFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case TemplatesPackage.STRING_TEMPLATE: return createStringTemplate();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case TemplatesPackage.STRING_TEMPLATE: return createStringTemplate();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public StringTemplate createStringTemplate() {
-        StringTemplateImpl stringTemplate = new StringTemplateImpl();
-        return stringTemplate;
-    }
+		StringTemplateImpl stringTemplate = new StringTemplateImpl();
+		return stringTemplate;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public TemplatesPackage getTemplatesPackage() {
-        return (TemplatesPackage)getEPackage();
-    }
+		return (TemplatesPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static TemplatesPackage getPackage() {
-        return TemplatesPackage.eINSTANCE;
-    }
+		return TemplatesPackage.eINSTANCE;
+	}
 
 } //TemplatesFactoryImpl

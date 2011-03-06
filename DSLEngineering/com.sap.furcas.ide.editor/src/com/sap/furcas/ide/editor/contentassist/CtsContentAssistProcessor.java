@@ -8,11 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -68,12 +66,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		this.syntax = getSyntax(connection, language);
 		this.connection = connection;
 		
-		Set<URI> parserLookupScope = parserFactory.getParserLookupScope(connection);
-		if(parserLookupScope == null) {
-		    parserLookupScope = Collections.emptySet();
-		}
-                QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection,
-		        parserLookupScope);
+		QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(connection,
+		        parserFactory.getParserLookupScope(connection));
 	        this.oppositeEndFinder = new Query2OppositeEndFinder(queryContext);
 	        this.oclEvaluator = new TCSSpecificOCLEvaluator(oppositeEndFinder);
 

@@ -1444,11 +1444,27 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		return gaEssentialOCL.getML_SINGLE_QUOTED_STRINGRule();
 	} 
 
-	//terminal ID:
-	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "_" SINGLE_QUOTED_STRING;
-	public TerminalRule getIDRule() {
-		return gaEssentialOCL.getIDRule();
+	//terminal SIMPLE_ID:
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	public TerminalRule getSIMPLE_IDRule() {
+		return gaEssentialOCL.getSIMPLE_IDRule();
 	} 
+
+	//terminal ESCAPED_ID:
+	//	"_" SINGLE_QUOTED_STRING;
+	public TerminalRule getESCAPED_IDRule() {
+		return gaEssentialOCL.getESCAPED_IDRule();
+	} 
+
+	//ID:
+	//	SIMPLE_ID | ESCAPED_ID;
+	public EssentialOCLGrammarAccess.IDElements getIDAccess() {
+		return gaEssentialOCL.getIDAccess();
+	}
+	
+	public ParserRule getIDRule() {
+		return getIDAccess().getRule();
+	}
 
 	//// String to allow diverse re-use
 	//
@@ -1471,7 +1487,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOCUMENTATION:
-	//	"/ **"->"** /";
+	//	"/ **"->"* /";
 	public TerminalRule getDOCUMENTATIONRule() {
 		return gaEssentialOCL.getDOCUMENTATIONRule();
 	} 

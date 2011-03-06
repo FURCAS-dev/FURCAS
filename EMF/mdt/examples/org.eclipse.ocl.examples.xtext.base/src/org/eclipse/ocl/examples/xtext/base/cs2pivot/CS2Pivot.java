@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.6 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.7 2011/03/05 05:57:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -288,6 +288,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 		if (oldElement != null) {
 			assert oldElement == pivotElement;
 		}
+		return oldElement;
+	}
+	
+	public MonikeredElement reputPivotElement(String moniker, MonikeredElement pivotElement) {
+		MonikeredElement oldElement = moniker2PivotMap.put(moniker, pivotElement);
 		return oldElement;
 	}
 

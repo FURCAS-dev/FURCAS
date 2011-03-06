@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SignatureCallExpression.java,v 1.1 2011/02/07 17:20:41 auhl Exp $
+ * $Id: SignatureCallExpression.java,v 1.2 2011/03/05 21:51:23 auhl Exp $
  */
 package dataaccess.expressions;
 
@@ -31,44 +31,44 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SignatureCallExpression extends Expression {
 	/**
-     * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-     * The list contents are of type {@link dataaccess.expressions.Expression}.
-     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}'.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.expressions.Expression}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameters</em>' containment reference list.
-     * @see dataaccess.expressions.ExpressionsPackage#getSignatureCallExpression_Parameters()
-     * @see dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall
-     * @model opposite="usedAsArgumentInSignatureCall" containment="true" resolveProxies="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
+	 * @see dataaccess.expressions.ExpressionsPackage#getSignatureCallExpression_Parameters()
+	 * @see dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall
+	 * @model opposite="usedAsArgumentInSignatureCall" containment="true" resolveProxies="true"
+	 * @generated
+	 */
 	EList<Expression> getParameters();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * For FunctionCallExpression, this retrieves the signature from the type of the calledBlock expression which is required to be a FunctionSignatureTypeDefinition. For MethodCallExpression, it obtains the signature by navigating to the methodSignature role.
-     * <!-- end-model-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(FunctionCallExpression) then\r\n    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)->any(true)\r\n  else\r\n    self.oclAsType(MethodCallExpression).methodSignature\r\n  endif'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * <!-- begin-model-doc -->
+	 * For FunctionCallExpression, this retrieves the signature from the type of the calledBlock expression which is required to be a FunctionSignatureTypeDefinition. For MethodCallExpression, it obtains the signature by navigating to the methodSignature role.
+	 * <!-- end-model-doc -->
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(FunctionCallExpression) then\r\n    self.oclAsType(FunctionCallExpression).calledBlock->collect(getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)->any(true)\r\n  else\r\n    self.oclAsType(MethodCallExpression).methodSignature\r\n  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	Signature getSignature();
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @model kind="operation" unique="false" required="true" ordered="false"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(FunctionCallExpression) then\n      self.oclAsType(FunctionCallExpression).calledBlock.getType()\n  else\n      self.oclAsType(MethodCallExpression).object.getType()\n  endif'"
-     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-     * @generated
-     */
+	 * @model kind="operation" unique="false" required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL body='if self.oclIsKindOf(FunctionCallExpression) then\n      self.oclAsType(FunctionCallExpression).calledBlock.getType()\n  else\n      self.oclAsType(MethodCallExpression).object.getType()\n  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
 	Multiplicity getMultiplicityOfCallTarget();
 
 } // SignatureCallExpression

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.8 2011/03/05 05:57:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -158,7 +158,7 @@ public class PivotUtil
 		Resource resource = resourceSet.createResource(INTERNAL_URI);
 		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
-			((EvaluationContext)resource).setSpecificationContext(typeContext);
+			((EvaluationContext)resource).setContext(typeContext, null);
 		}
 		resource.load(inputStream, null);
 		return resource;

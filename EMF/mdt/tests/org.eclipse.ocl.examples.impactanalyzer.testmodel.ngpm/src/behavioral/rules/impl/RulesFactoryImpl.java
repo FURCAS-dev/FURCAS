@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RulesFactoryImpl.java,v 1.1 2011/02/07 17:17:58 auhl Exp $
+ * $Id: RulesFactoryImpl.java,v 1.2 2011/03/05 21:48:55 auhl Exp $
  */
 package behavioral.rules.impl;
 
@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class RulesFactoryImpl extends EFactoryImpl implements RulesFactory {
 	/**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static RulesFactory init() {
-        try {
-            RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore"); 
-            if (theRulesFactory != null) {
-                return theRulesFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new RulesFactoryImpl();
-    }
+		try {
+			RulesFactory theRulesFactory = (RulesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/ocl/examples/impactanalyzer/testmodel/ngpm/behavioral/rules.ecore"); 
+			if (theRulesFactory != null) {
+				return theRulesFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new RulesFactoryImpl();
+	}
 
 	/**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public RulesFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	@Override
 	public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case RulesPackage.DUMMY: return createDummy();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case RulesPackage.DUMMY: return createDummy();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public Dummy createDummy() {
-        DummyImpl dummy = new DummyImpl();
-        return dummy;
-    }
+		DummyImpl dummy = new DummyImpl();
+		return dummy;
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public RulesPackage getRulesPackage() {
-        return (RulesPackage)getEPackage();
-    }
+		return (RulesPackage)getEPackage();
+	}
 
 	/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
 	@Deprecated
 	public static RulesPackage getPackage() {
-        return RulesPackage.eINSTANCE;
-    }
+		return RulesPackage.eINSTANCE;
+	}
 
 } //RulesFactoryImpl
