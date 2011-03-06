@@ -69,11 +69,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
      *
      */
     
-    /**
-     * See  {@link #getParsingLock()}
-     */
-    protected Object parsingLock = new Object();
-
     protected EditingDomain editingDomain;
     protected ContentProvider contentProvider;
     protected ParserCollection parserCollection;
@@ -119,12 +114,6 @@ public abstract class FurcasParseController extends ParseControllerBase {
             monitor.setCanceled(true);
             return null; // IMP will call us before we are done initializing
         }
-        synchronized (getParsingLock()) {
-            return parseIncrementally();
-        }
-    }
-
-    private TextBlock parseIncrementally() {
         CtsDocument document = contentProvider.getDocument();
         
         // 1) Write all buffered user edits to the underlying 
@@ -289,15 +278,4 @@ public abstract class FurcasParseController extends ParseControllerBase {
         return annotationTypeInfo;
     }
     
-    /**
-     * Returns a lock object for synchronization<p>
-     * 
-     * The parser will hold this lock whenever it modifies either TextBlocks
-     * or domain model. Clients that have to prevent concurrent modifications
-     * by the parser can acquiring this lock.
-     */
-    public Object getParsingLock() {
-        return parsingLock;
-    }
-        
 }
