@@ -60,7 +60,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
          * It will lead to dataloss due to reverting of the connection!
          */
 	public CtsContentAssistProcessor(ResourceSet connection,
-			AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
+			AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
 		this.language = language;
 		Assert.isNotNull(connection, "moin connection is null");
 		this.lexerClass = parserFactory.getLexerClass();
@@ -90,7 +90,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
          * It will lead to dataloss due to reverting of the connection!
          */
 	public CtsContentAssistProcessor(ConcreteSyntax syntax,
-	        AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
+	        AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory, String language) {
 		this.language = language;
 		this.lexerClass = parserFactory.getLexerClass();
                 this.parserClass = parserFactory.getParserClass();
