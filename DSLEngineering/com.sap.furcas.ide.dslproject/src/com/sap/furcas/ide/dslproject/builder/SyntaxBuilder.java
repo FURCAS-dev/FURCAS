@@ -169,7 +169,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         if (conf == null) {
             String message = "Build failed: Project " + resource.getProject().getName()
                     + " has DSL Syntax Definition Nature but no metamodel reference configured.";
-            EclipseMarkerUtil.addMarker(resource.getProject(), message, -1, IMarker.SEVERITY_ERROR);
+            EclipseMarkerUtil.addMarker(resource, message, -1, IMarker.SEVERITY_ERROR);
             return;
         }
 
