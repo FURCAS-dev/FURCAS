@@ -12,39 +12,30 @@
  *
  * </copyright>
  *
- * $Id: CompleteTypeImpl.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: CompleteTypeImpl.java,v 1.5 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
 import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
-import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
@@ -52,9 +43,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
-import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -64,6 +52,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl#getModels <em>Models</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl#getCompleteEnvironment <em>Complete Environment</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl#getCompleteOperations <em>Complete Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl#getCompleteProperties <em>Complete Property</em>}</li>
@@ -78,14 +67,14 @@ public class CompleteTypeImpl
 		implements CompleteType {
 
 	/**
-	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * The cached value of the '{@link #getModels() <em>Models</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModel()
+	 * @see #getModels()
 	 * @generated
 	 * @ordered
 	 */
-	protected Type model;
+	protected EList<Type> models;
 
 	/**
 	 * The cached value of the '{@link #getCompleteEnvironment() <em>Complete Environment</em>}' reference.
@@ -96,6 +85,16 @@ public class CompleteTypeImpl
 	 * @ordered
 	 */
 	protected CompleteEnvironment completeEnvironment;
+
+	/**
+	 * The cached value of the '{@link #getCompleteOperations() <em>Complete Operation</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompleteOperation> completeOperations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,40 +120,34 @@ public class CompleteTypeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getModel() {
-		if (model != null && ((EObject)model).eIsProxy())
-		{
-			InternalEObject oldModel = (InternalEObject)model;
-			model = (Type)eResolveProxy(oldModel);
-			if (model != oldModel)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.COMPLETE_TYPE__MODEL, oldModel, model));
-			}
-		}
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Type basicGetModel() {
-		return model;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setModel(Type newModel)
+	public Type getModel()
 	{
-		Type oldModel = model;
-		model = newModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_TYPE__MODEL, oldModel, model));
+		Type model = basicGetModel();
+		return model != null && ((EObject)model).eIsProxy() ? (Type)eResolveProxy((InternalEObject)model) : model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Type basicGetModel()
+	{
+		return getModels().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Type> getModels()
+	{
+		if (models == null)
+		{
+			models = new EObjectResolvingEList<Type>(Type.class, this, PivotPackage.COMPLETE_TYPE__MODELS);
+		}
+		return models;
 	}
 
 	/**
@@ -198,126 +191,28 @@ public class CompleteTypeImpl
 			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.COMPLETE_TYPE__COMPLETE_ENVIRONMENT, oldCompleteEnvironment, completeEnvironment));
 	}
 
-	private EList<CompleteType> completeSuperTypes = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public EList<CompleteType> getCompleteSuperTypes() {
-		if (completeSuperTypes == null) {
-			completeSuperTypes = new UniqueEList<CompleteType>();
-			for (Type superType : getSuperClasses()) {
-				completeSuperTypes.add(completeEnvironment.getCompleteType(superType));
-			}
-			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
-				org.eclipse.ocl.examples.pivot.Class thisModelClass = (org.eclipse.ocl.examples.pivot.Class)model;
-				if (thisModelClass.getTemplateBindings().size() > 0) {
-//					thisModelClass = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)model);
-				}
-				for (Type superType : thisModelClass.getSuperClasses()) {
-					completeSuperTypes.add(completeEnvironment.getCompleteType(superType));
-				}
-			}
-		}
-		return completeSuperTypes;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public boolean conformsTo(CompleteType aType) {
-		if (this == aType) {
-			return true;
-		}
-		for (CompleteType aSuperType : getCompleteSuperTypes()) {
-			if (aSuperType.conformsTo(aType)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private Map<CompleteIteration, CompleteIteration> dynamicIterationMap = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public CompleteIteration getDynamicIteration(CompleteIteration staticIteration)
+	public EList<CompleteOperation> getCompleteOperations()
 	{
-		if (dynamicIterationMap == null) {
-			dynamicIterationMap = new HashMap<CompleteIteration, CompleteIteration>();
+		if (completeOperations == null)
+		{
+			completeOperations = new EObjectResolvingEList<CompleteOperation>(CompleteOperation.class, this, PivotPackage.COMPLETE_TYPE__COMPLETE_OPERATION);
 		}
-		CompleteIteration dynamicIteration = dynamicIterationMap.get(staticIteration);
-		if ((dynamicIteration == null)
-			&& !dynamicIterationMap.containsKey(staticIteration)) {
-			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
-//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, staticIteration.getModel());
-			List<Type> staticCompleteIteratorTypes = new ArrayList<Type>();
-			for (Parameter staticIterator : staticIteration.getCompleteIterators()) {
-				staticCompleteIteratorTypes.add(resolveType(staticIterator.getType(), bindings));
-			}
-			List<Type> staticCompleteAccumulatorTypes = new ArrayList<Type>();
-			for (Parameter staticAccumulator : staticIteration.getCompleteAccumulators()) {
-				staticCompleteAccumulatorTypes.add(resolveType(staticAccumulator.getType(), bindings));
-			}
-			List<Type> staticCompleteParameterTypes = new ArrayList<Type>();
-			for (Parameter staticParameter : staticIteration.getCompleteParameters()) {
-				staticCompleteParameterTypes.add(resolveType(staticParameter.getType(), bindings));
-			}
-			Set<CompleteIteration> dynamicIterations = findIterationsOrNull(
-				this, staticIteration.getName(), staticCompleteIteratorTypes, staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
-			if (dynamicIterations != null) {
-				if (dynamicIterations.size() == 1) {
-					dynamicIteration = dynamicIterations.iterator().next();
-				}
-				else if (dynamicIterations.size() > 1) {
-					CompleteIteration conformantIteration = null;
-					boolean ok = true;
-					for (CompleteIteration completeIteration : dynamicIterations) {
-						if (conformantIteration == null) {
-							conformantIteration = completeIteration;
-						}
-						else {
-							org.eclipse.ocl.examples.pivot.Class completeClass = PivotUtil.getFeaturingClass(completeIteration.getModel());
-							org.eclipse.ocl.examples.pivot.Class conformantClass = PivotUtil.getFeaturingClass(conformantIteration.getModel());
-							if (conformsTo(completeClass, conformantClass)) {
-								conformantIteration = completeIteration;
-							}
-							else if (!conformsTo(conformantClass, completeClass)) {
-								ok = false;
-							}
-						}
-					}
-					if (ok) {
-						dynamicIteration = conformantIteration;
-					}
-				}
-			}
-			dynamicIterationMap.put(staticIteration, dynamicIteration);
-		}
-		return dynamicIteration;
+		return completeOperations;
 	}
 
-	private static boolean conformsTo(Type aClass, Type requiredClass) {
-		return conformsTo((org.eclipse.ocl.examples.pivot.Class)aClass, (org.eclipse.ocl.examples.pivot.Class)requiredClass);
-	}
-
-	private static boolean conformsTo(org.eclipse.ocl.examples.pivot.Class aClass, org.eclipse.ocl.examples.pivot.Class requiredClass) {
-		if (aClass == requiredClass) {
-			return true;
-		}
-		for (org.eclipse.ocl.examples.pivot.Class superClass : aClass.getSuperClasses()) {
-			if (conformsTo(PivotUtil.getUnspecializedTemplateableElement(superClass), requiredClass)) {
-				return true;
-			}
-		}
-		return false;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCompleteSuperTypes()
+	{
+		return completeSuperTypes != null && !completeSuperTypes.isEmpty();
 	}
 	
 	private Map<CompleteOperation, CompleteOperation> dynamicOperationMap = null;
@@ -332,211 +227,73 @@ public class CompleteTypeImpl
 			dynamicOperationMap = new HashMap<CompleteOperation, CompleteOperation>();
 		}
 		CompleteOperation dynamicOperation = dynamicOperationMap.get(staticOperation);
-		if ((dynamicOperation == null)
-			&& !dynamicOperationMap.containsKey(staticOperation)) {
-			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
-			PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, staticOperation.getModel());
-			List<Type> staticCompleteTypes = new ArrayList<Type>();
-			for (Parameter staticParameter : staticOperation.getCompleteParameters()) {
-				staticCompleteTypes.add(resolveType(staticParameter.getType(), templateParameterSubstitutions));
-			}
-			Set<CompleteOperation> dynamicOperations = findOperationsOrNull(
-				this, staticOperation.getName(), staticCompleteTypes, templateParameterSubstitutions);
-			if ((dynamicOperations != null) && (dynamicOperations.size() == 1)) {
-				dynamicOperation = dynamicOperations.iterator().next();
-			}
-			dynamicOperationMap.put(staticOperation, dynamicOperation);
+		if (dynamicOperation != null) {
+			return dynamicOperation;
 		}
+		if (dynamicOperationMap.containsKey(staticOperation)) {
+			return dynamicOperation;
+		}
+		dynamicOperation = completeEnvironment.getDynamicOperation(this, staticOperation);
+		dynamicOperationMap.put(staticOperation, dynamicOperation);
 		return dynamicOperation;
 	}
 
-	private Type resolveType(Type type, Map<TemplateParameter, ParameterableElement> bindings) {
-/*		TemplateParameter templateParameter = type.getOwningTemplateParameter();
-		if ((templateParameter != null) && (templateParameterSubstitutions != null)) {
-			ParameterableElement parameterableElement = templateParameterSubstitutions.get(templateParameter);
-			if (parameterableElement instanceof Type) {
-				type = (Type) parameterableElement;
-			}
-			else if (parameterableElement != null) {
-				type = (Type) templateParameter.getParameteredElement();
-			}
-			else {
-				return type;
-			}
-		} */
-		TypeManager typeManager = ((CompleteEnvironmentManager) completeEnvironment).getTypeManager();
-		Type specializedType = typeManager.getSpecializedType(type, bindings);
-		return completeEnvironment.getCompleteType(specializedType); 
-	}
+	/**
+	 * The cached value of the '{@link #getCompleteProperties() <em>Complete Property</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompleteProperty> completeProperties;
 
-	private Set<CompleteIteration> findIterationsOrNull(CompleteType completeType,
-			String operationName, List<Type> staticCompleteIteratorTypes,
-			List<Type> staticCompleteAccumulatorTypes, List<Type> staticCompleteParameterTypes) {
-		Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(null, model);
-		int staticIteratorsSize = staticCompleteIteratorTypes.size();
-		Set<CompleteIteration> list = null;
-		for (CompleteIteration dynamicIteration : completeType.getCompleteIterations(operationName)) {
-//			Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions2 = PivotUtil.getAllTemplateParameterSubstitutions(null, dynamicIteration.getModel());
-			List<Parameter> dynamicIterators = dynamicIteration.getCompleteIterators();
-			if (staticIteratorsSize == dynamicIterators.size()) {
-				boolean gotIt = true;
-				for (int i = 0; i < staticIteratorsSize; i++) {
-					Type staticCompleteIteratorType = staticCompleteIteratorTypes.get(i);
-					Parameter dynamicIterator = dynamicIterators.get(i);
-					Type dynamicCompleteIteratorType = resolveType(dynamicIterator.getType(), templateParameterSubstitutions);
-					if (!conformsTo(dynamicCompleteIteratorType, staticCompleteIteratorType)) {
-						gotIt = false;
-					}
-				}
-				if (gotIt) {
-					if (list == null) {
-						list = new HashSet<CompleteIteration>();
-					}
-					list.add(dynamicIteration);
-				}
-			}
-		}
-		if (list == null) {
-			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
-				Set<CompleteIteration> superIterations = findIterationsOrNull(
-					completeSuperType, operationName, staticCompleteIteratorTypes,
-					staticCompleteAccumulatorTypes, staticCompleteParameterTypes);
-				if (superIterations != null) {
-					if (list == null) {
-						list = superIterations;
-					} else {
-						list.addAll(superIterations);
-					}
-				}
-			}
-		}
-		return list;
-	}
+	/**
+	 * The cached value of the '{@link #getCompleteSuperTypes() <em>Complete Super Type</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCompleteSuperTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<CompleteType> completeSuperTypes;
 
-	private Set<CompleteOperation> findOperationsOrNull(CompleteType completeType,
-			String operationName, List<Type> staticCompleteTypes, Map<TemplateParameter, ParameterableElement> templateParameterSubstitutions) {
-		int staticParametersSize = staticCompleteTypes.size();
-		Set<CompleteOperation> list = null;
-		for (CompleteOperation dynamicOperation : completeType.getCompleteOperations(operationName)) {
-			List<Parameter> dynamicParameters = dynamicOperation.getCompleteParameters();
-			if (staticParametersSize == dynamicParameters.size()) {
-				boolean gotIt = true;
-				for (int i = 0; i < staticParametersSize; i++) {
-					Type staticCompleteType = staticCompleteTypes.get(i);
-					Parameter dynamicParameter = dynamicParameters.get(i);
-					Type dynamicCompleteType = resolveType(dynamicParameter.getType(), templateParameterSubstitutions);
-					if (!conformsTo(dynamicCompleteType, staticCompleteType)) {
-						gotIt = false;
-					}
-				}
-				if (gotIt) {
-					if (list == null) {
-						list = new HashSet<CompleteOperation>();
-					}
-					list.add(dynamicOperation);
-				}
-			}
-		}
-		if (list == null) {
-			for (CompleteType completeSuperType : completeType.getCompleteSuperTypes()) {
-				Set<CompleteOperation> superOperations = findOperationsOrNull(
-					completeSuperType, operationName, staticCompleteTypes, templateParameterSubstitutions);
-				if (superOperations != null) {
-					if (list == null) {
-						list = superOperations;
-					} else {
-						list.addAll(superOperations);
-					}
-				}
-			}
-		}
-		return list;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCompleteProperties()
+	{
+		return completeProperties != null && !completeProperties.isEmpty();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public EList<CompleteIteration> getCompleteIterations(String name) {
-		EList<CompleteIteration> completeIterations = new BasicEList<CompleteIteration>();
-		for (Operation operation : getOwnedOperations()) {
-			if ((operation instanceof Iteration) && name.equals(operation.getName())) {
-				completeIterations.add(completeEnvironment
-					.getCompleteIteration((Iteration)operation));
-			}
-		}
-		Type thisModel = model;
-		if (thisModel.getTemplateBindings().size() > 0) {
-			thisModel = PivotUtil.getUnspecializedTemplateableElement(thisModel);
-		}
-		if (thisModel instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class)thisModel).getOwnedOperations()) {
-				if ((operation instanceof Iteration) && name.equals(operation.getName())) {
-					CompleteIteration completeIteration = completeEnvironment
-						.getCompleteIteration((Iteration)operation);
-					if (!completeIterations.contains(completeIteration)) {
-						completeIterations.add(completeIteration);
+	public EList<CompleteType> getCompleteSuperTypes()
+	{
+		if (completeSuperTypes == null)
+		{
+			completeSuperTypes = new EObjectResolvingEList<CompleteType>(CompleteType.class, this, PivotPackage.COMPLETE_TYPE__COMPLETE_SUPER_TYPE);
+//			for (Type superType : getSuperClasses()) {
+//				completeSuperTypes.add(completeEnvironment.getCompleteType(superType));
+//			}
+			for (Type model : models) {
+				if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
+					org.eclipse.ocl.examples.pivot.Class thisModelClass = (org.eclipse.ocl.examples.pivot.Class)model;
+					if (thisModelClass.getTemplateBindings().size() > 0) {
+	//					thisModelClass = PivotUtil.getUnspecializedTemplateableElement((org.eclipse.ocl.examples.pivot.Class)model);
+					}
+					for (Type superType : thisModelClass.getSuperClasses()) {
+						completeSuperTypes.add(completeEnvironment.getCompleteType(superType));
 					}
 				}
 			}
 		}
-		return completeIterations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<CompleteOperation> getCompleteOperations(String name) {
-		EList<CompleteOperation> completeOperations = new BasicEList<CompleteOperation>();
-		for (Operation operation : getOwnedOperations()) {
-			if (name.equals(operation.getName())) {
-				completeOperations.add(completeEnvironment
-					.getCompleteOperation(operation));
-			}
-		}
-		Type thisModel = model;
-		if (thisModel.getTemplateBindings().size() > 0) {
-			thisModel = PivotUtil.getUnspecializedTemplateableElement(thisModel);
-		}
-		if (thisModel instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (Operation operation : ((org.eclipse.ocl.examples.pivot.Class)thisModel).getOwnedOperations()) {
-				if (name.equals(operation.getName())) {
-					CompleteOperation completeOperation = completeEnvironment
-						.getCompleteOperation(operation);
-					if (!completeOperations.contains(completeOperation)) {
-						completeOperations.add(completeOperation);
-					}
-				}
-			}
-		}
-		return completeOperations;
-	}
-
-	private EList<CompleteProperty> completeProperties = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public EList<CompleteProperty> getCompleteProperties() {
-		if (completeProperties == null) {
-			completeProperties = new BasicEList<CompleteProperty>();
-			for (Property property : getOwnedAttributes()) {
-				completeProperties.add(completeEnvironment
-					.getCompleteProperty(property));
-			}
-			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
-				for (Property property : ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedAttributes()) {
-					completeProperties.add(completeEnvironment
-						.getCompleteProperty(property));
-				}
-			}
-		}
-		return completeProperties;
+		return completeSuperTypes;
 	}
 
 	/**
@@ -591,6 +348,8 @@ public class CompleteTypeImpl
 			case PivotPackage.COMPLETE_TYPE__MODEL:
 				if (resolve) return getModel();
 				return basicGetModel();
+			case PivotPackage.COMPLETE_TYPE__MODELS:
+				return getModels();
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_ENVIRONMENT:
 				if (resolve) return getCompleteEnvironment();
 				return basicGetCompleteEnvironment();
@@ -676,11 +435,24 @@ public class CompleteTypeImpl
 				getSubClasses().clear();
 				getSubClasses().addAll((Collection<? extends org.eclipse.ocl.examples.pivot.Class>)newValue);
 				return;
-			case PivotPackage.COMPLETE_TYPE__MODEL:
-				setModel((Type)newValue);
+			case PivotPackage.COMPLETE_TYPE__MODELS:
+				getModels().clear();
+				getModels().addAll((Collection<? extends Type>)newValue);
 				return;
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)newValue);
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_OPERATION:
+				getCompleteOperations().clear();
+				getCompleteOperations().addAll((Collection<? extends CompleteOperation>)newValue);
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_PROPERTY:
+				getCompleteProperties().clear();
+				getCompleteProperties().addAll((Collection<? extends CompleteProperty>)newValue);
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_SUPER_TYPE:
+				getCompleteSuperTypes().clear();
+				getCompleteSuperTypes().addAll((Collection<? extends CompleteType>)newValue);
 				return;
 		}
 		eDynamicSet(featureID, newValue);
@@ -749,11 +521,20 @@ public class CompleteTypeImpl
 			case PivotPackage.COMPLETE_TYPE__SUB_CLASS:
 				getSubClasses().clear();
 				return;
-			case PivotPackage.COMPLETE_TYPE__MODEL:
-				setModel((Type)null);
+			case PivotPackage.COMPLETE_TYPE__MODELS:
+				getModels().clear();
 				return;
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_ENVIRONMENT:
 				setCompleteEnvironment((CompleteEnvironment)null);
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_OPERATION:
+				getCompleteOperations().clear();
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_PROPERTY:
+				getCompleteProperties().clear();
+				return;
+			case PivotPackage.COMPLETE_TYPE__COMPLETE_SUPER_TYPE:
+				getCompleteSuperTypes().clear();
 				return;
 		}
 		eDynamicUnset(featureID);
@@ -795,25 +576,27 @@ public class CompleteTypeImpl
 			case PivotPackage.COMPLETE_TYPE__IS_ABSTRACT:
 				return ((eFlags & IS_ABSTRACT_EFLAG) != 0) != IS_ABSTRACT_EDEFAULT;
 			case PivotPackage.COMPLETE_TYPE__OWNED_ATTRIBUTE:
-				return ownedAttributes != null && !ownedAttributes.isEmpty();
+				return isSetOwnedAttributes();
 			case PivotPackage.COMPLETE_TYPE__OWNED_OPERATION:
-				return ownedOperations != null && !ownedOperations.isEmpty();
+				return isSetOwnedOperations();
 			case PivotPackage.COMPLETE_TYPE__SUPER_CLASS:
-				return superClasses != null && !superClasses.isEmpty();
+				return isSetSuperClasses();
 			case PivotPackage.COMPLETE_TYPE__IS_INTERFACE:
 				return ((eFlags & IS_INTERFACE_EFLAG) != 0) != IS_INTERFACE_EDEFAULT;
 			case PivotPackage.COMPLETE_TYPE__SUB_CLASS:
 				return subClasses != null && !subClasses.isEmpty();
 			case PivotPackage.COMPLETE_TYPE__MODEL:
-				return model != null;
+				return basicGetModel() != null;
+			case PivotPackage.COMPLETE_TYPE__MODELS:
+				return models != null && !models.isEmpty();
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_ENVIRONMENT:
 				return completeEnvironment != null;
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_OPERATION:
-				return !getCompleteOperations().isEmpty();
+				return isSetCompleteOperations();
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_PROPERTY:
-				return !getCompleteProperties().isEmpty();
+				return isSetCompleteProperties();
 			case PivotPackage.COMPLETE_TYPE__COMPLETE_SUPER_TYPE:
-				return !getCompleteSuperTypes().isEmpty();
+				return isSetCompleteSuperTypes();
 		}
 		return eDynamicIsSet(featureID);
 	}
@@ -836,23 +619,103 @@ public class CompleteTypeImpl
 				return parameterableElements();
 			case PivotPackage.COMPLETE_TYPE___IS_TEMPLATE:
 				return isTemplate();
-			case PivotPackage.COMPLETE_TYPE___CONFORMS_TO__COMPLETETYPE:
-				return conformsTo((CompleteType)arguments.get(0));
-			case PivotPackage.COMPLETE_TYPE___GET_DYNAMIC_ITERATION__COMPLETEITERATION:
-				return getDynamicIteration((CompleteIteration)arguments.get(0));
 			case PivotPackage.COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION:
 				return getDynamicOperation((CompleteOperation)arguments.get(0));
-			case PivotPackage.COMPLETE_TYPE___GET_COMPLETE_ITERATIONS__STRING:
-				return getCompleteIterations((String)arguments.get(0));
-			case PivotPackage.COMPLETE_TYPE___GET_COMPLETE_OPERATIONS__STRING:
-				return getCompleteOperations((String)arguments.get(0));
 		}
 		return eDynamicInvoke(operationID, arguments);
 	}
 
-	public EList<CompleteOperation> getCompleteOperations() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Operation> getOwnedOperations()
+	{
+		@SuppressWarnings("unchecked")
+		EList<Operation> completeOperation = (EList<Operation>)((EList<?>)getCompleteOperations());
+		return completeOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedOperations()
+	{
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<Property> getOwnedAttributes()
+	{
+		@SuppressWarnings("unchecked")
+		EList<Property> completeProperty = (EList<Property>)((EList<?>)getCompleteProperties());
+		return completeProperty;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetOwnedAttributes()
+	{
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EList<org.eclipse.ocl.examples.pivot.Class> getSuperClasses()
+	{
+		@SuppressWarnings("unchecked")
+		EList<org.eclipse.ocl.examples.pivot.Class> completeSuperType = (EList<org.eclipse.ocl.examples.pivot.Class>)((EList<?>)getCompleteSuperTypes());
+		return completeSuperType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSuperClasses()
+	{
+  		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetCompleteOperations()
+	{
+		return completeOperations != null && !completeOperations.isEmpty();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<CompleteProperty> getCompleteProperties()
+	{
+		if (completeProperties == null)
+		{
+			completeProperties = new EObjectResolvingEList<CompleteProperty>(CompleteProperty.class, this, PivotPackage.COMPLETE_TYPE__COMPLETE_PROPERTY);
+		}
+		return completeProperties;
 	}
 
 	@Override

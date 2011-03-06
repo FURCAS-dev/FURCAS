@@ -22,7 +22,6 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -207,10 +206,10 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         assertNull(newAuthorsArticle.eGet(articleClass.getEStructuralFeature("location")));
     }
     
-    @Ignore
     @Test
     public void testAddArticleAndExpectRevenueLedgerCreation() throws Exception {
         EObject newArticle = articleClass.getEPackage().getEFactoryInstance().create(articleClass);
+        newArticle.eSet(articleClass.getEStructuralFeature("key"), "New Article's Name");
         newArticle.eSet(articleClass.getEStructuralFeature("location"), "Location of the New Article");
         @SuppressWarnings("unchecked")
         EList<EObject> johnsArticles = (EList<EObject>) johnDoe.eGet(authorClass.getEStructuralFeature("articles"));
@@ -223,19 +222,23 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
         Set<EObject> johnsArticlesAsSet = new HashSet<EObject>(johnsArticles);
         Set<EObject> revenueLedgerArticles = new HashSet<EObject>();
         for (EObject revenueLedger : revenues) {
-            revenueLedgerArticles.add((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article")));
+            EObject articleOfRevenue = (EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("article"));
+            String articleName = (String) articleOfRevenue.eGet(articleClass.getEStructuralFeature("key"));
+            assertEquals((articleName.length()<5 ? 1 : articleName.length()<10?2:3)*articleName.length(),
+                    revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
+            revenueLedgerArticles.add(articleOfRevenue);
             assertEquals(
-                    ((String) ((EObject) ((EObject) revenueLedger.eGet(revenueLedger.eClass().getEStructuralFeature(
-                            "article"))).eGet(articleClass.getEStructuralFeature("author"))).eGet(                    authorClass.getEStructuralFeature("name"))).length(), revenueLedger.eGet(
-                            revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
-            assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
-                    1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
+                    "Expected to find exactly one ForEachContext for produced RevenueLedger element " + revenueLedger,
+                    1,
+                    oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
             EObject author = revenueLedger.eContainer();
-            TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();
-            assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
-                    author, revenues.size(), authorCreationRecord.getForEachContext().size());
+            TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder
+                    .navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author)
+                    .iterator().next();
+            assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "
+                    + author, revenues.size(), authorCreationRecord.getForEachContext().size());
         }
         assertEquals(johnsArticlesAsSet, revenueLedgerArticles);
     }

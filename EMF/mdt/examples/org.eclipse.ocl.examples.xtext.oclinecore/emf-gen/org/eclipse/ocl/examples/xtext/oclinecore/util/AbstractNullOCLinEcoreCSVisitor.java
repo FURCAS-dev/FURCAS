@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullOCLinEcoreCSVisitor.java,v 1.6 2011/02/15 10:36:44 ewillink Exp $
+ * $Id: AbstractNullOCLinEcoreCSVisitor.java,v 1.7 2011/03/01 08:46:34 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.oclinecore.util;
 
@@ -42,6 +42,10 @@ public abstract class AbstractNullOCLinEcoreCSVisitor<R, C>
 	}	
 
 	public R visitOCLinEcoreConstraintCS(org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS object) {
+		return null;
+	}
+
+	public R visitOCLinEcoreSpecificationCS(org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreSpecificationCS object) {
 		return null;
 	}
 }

@@ -8,7 +8,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.junit.BeforeClass;
 import org.junit.Rule;
@@ -45,8 +47,10 @@ public class TestPrettyPrintTCS {
     @BeforeClass
     public static void init() throws ParserGeneratorInvocationException, ParserInvokationException {
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+        Set<URI> refScope = ResourceTestHelper.createFURCASReferenceScope();
+        refScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
         syntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                ResourceTestHelper.createFURCASReferenceScope()), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
+                refScope), TCSSyntaxDefinition.TCS_TCS, new FailOnErrorErrorHandler()).getSyntax();
     }
 
     @Test

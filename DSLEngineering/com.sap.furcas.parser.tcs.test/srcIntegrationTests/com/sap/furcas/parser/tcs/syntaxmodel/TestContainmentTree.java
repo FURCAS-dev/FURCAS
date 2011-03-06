@@ -3,8 +3,10 @@ package com.sap.furcas.parser.tcs.syntaxmodel;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.BeforeClass;
@@ -39,11 +41,13 @@ public class TestContainmentTree extends GeneratedParserBasedTest {
 
     @BeforeClass
     public static void setupParser() throws Exception {
+        final Set<URI> ref = ResourceTestHelper.createFURCASReferenceScope();
+        ref.addAll(ResourceTestHelper.createEcoreReferenceScope());
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
             @Override
             public GrammarGenerationSourceConfiguration getSourceConfiguration() {
                 return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                        ResourceTestHelper.createFURCASReferenceScope());
+                        ref);
             }
         };
         syntaxBean = parseSyntax(testConfig);

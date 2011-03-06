@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItemImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: CollectionItemImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -161,15 +161,6 @@ public class CollectionItemImpl
 		OclExpression newItem = (OclExpression) create(eClass);
 		setItem(newItem);
 		return newItem;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createItem() {
-		return createItem(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

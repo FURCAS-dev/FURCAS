@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoopExpImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: LoopExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -188,15 +188,6 @@ public abstract class LoopExpImpl
 		OclExpression newBody = (OclExpression) create(eClass);
 		setBody(newBody);
 		return newBody;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createBody() {
-		return createBody(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

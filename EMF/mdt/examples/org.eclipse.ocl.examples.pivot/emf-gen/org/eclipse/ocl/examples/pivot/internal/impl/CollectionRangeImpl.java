@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionRangeImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: CollectionRangeImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -179,15 +179,6 @@ public class CollectionRangeImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createFirst() {
-		return createFirst(PivotPackage.Literals.OCL_EXPRESSION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public OclExpression getLast() {
 		if (last != null && ((EObject)last).eIsProxy())
 		{
@@ -264,15 +255,6 @@ public class CollectionRangeImpl
 		OclExpression newLast = (OclExpression) create(eClass);
 		setLast(newLast);
 		return newLast;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createLast() {
-		return createLast(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

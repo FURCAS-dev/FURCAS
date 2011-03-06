@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.6 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -38,9 +38,6 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.CompleteIteration;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
@@ -51,7 +48,6 @@ import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
-import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.MessageExp;
@@ -78,7 +74,6 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.library.TuplePartOperation;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
@@ -138,14 +133,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 	
 	protected Value handleCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
-		CompleteEnvironmentManager completeManager = typeManager.getCompleteEnvironmentManager();
-		Operation staticCompleteOperation;
-		if (staticOperation instanceof Iteration) {		// FIXME polymorphise
-			staticCompleteOperation = completeManager.getCompleteIteration((Iteration) staticOperation);
-		}
-		else {
-			staticCompleteOperation = completeManager.getCompleteOperation(staticOperation);
-		}
 		OclExpression source = callExp.getSource();
 		Type staticSourceType = source.getType();
 		Value sourceValue;
@@ -153,17 +140,10 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			sourceValue = source.accept(getUndecoratedVisitor());
 		}
 		catch (InvalidEvaluationException e) {
-			sourceValue = typeManager.getValueFactory().getInvalid();
+			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
 		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
-		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
-		Operation dynamicOperation;
-		if (staticOperation instanceof Iteration) {		// FIXME polymorphise
-			dynamicOperation = dynamicCompleteType.getDynamicIteration((CompleteIteration)staticCompleteOperation);
-		}
-		else {
-			dynamicOperation = dynamicCompleteType.getDynamicOperation((CompleteOperation)staticCompleteOperation);
-		}
+		Operation dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
 		if (dynamicOperation == null) {
 			return evaluationEnvironment.throwInvalidEvaluation("No implementable element", callExp, sourceValue);
 		}
@@ -241,7 +221,6 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		// based on the collection kind.
 		CollectionKind kind = cl.getKind();
 		List<CollectionLiteralPart> parts = cl.getParts();
-		// FIXME Re-instate and test this integer range optimisation 
 		if ((kind == CollectionKind.SEQUENCE) && isSimpleRange(cl)) {
 			// literal is of the form: Sequence{first..last}.
 			// construct a list with a lazy iterator for it.
@@ -447,7 +426,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitLetExp(LetExp letExp) {
 		OclExpression expression = letExp.getIn();		// Never null when valid
 		Variable variable = letExp.getVariable();		// Never null when valid
-		Value value = variable.accept(this);
+		Value value;
+		try {
+			value = variable.accept(this);
+		}
+		catch (InvalidEvaluationException e) {
+			value = valueFactory.getInvalid();
+		}
     	EvaluationVisitor nestedVisitor = getUndecoratedVisitor().createNestedVisitor();		
 		nestedVisitor.getEvaluationEnvironment().add(variable, value);
 		return expression.accept(nestedVisitor);
@@ -637,19 +622,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     public Value visitVariable(Variable variable) {
 		// return the initial (only) value
 		OclExpression initExp = variable.getInitExpression();
-		Value value;
 		if (initExp == null) {
-			value = evaluationEnvironment.throwInvalidEvaluation("Uninitialized variable", null, variable);
+			return evaluationEnvironment.throwInvalidEvaluation("Uninitialized variable", null, variable);
 		}
 		else {
-			try {
-				value = initExp.accept(getUndecoratedVisitor());
-			}
-			catch (InvalidEvaluationException e) {
-				value = valueFactory.getInvalid();
-			}
+			return initExp.accept(getUndecoratedVisitor());
 		}
-		return value;
 	}
 
 	/**
@@ -669,17 +647,19 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			}
 		}
 		Value value = evaluationEnvironment.getValueOf(variableDeclaration);
-		if (value != null) {
-			return value;
+		if (value == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Undefined variable", variableExp);
+		}
+		else if (value.isInvalid()) {
+			return evaluationEnvironment.throwInvalidEvaluation("Invalid variable", variableExp);
 		}
 		else {
-			return evaluationEnvironment.throwInvalidEvaluation("Undefined variable", variableExp);
+			return value;
 		}
 	}
 
 	public Value visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for EvaluationVisitor");
 	}
 
 }

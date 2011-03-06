@@ -30,6 +30,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ecore.EcorePackage;
 
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
@@ -53,9 +54,29 @@ public class EcoreHelper {
             public URI[] getResourceScope() {
                 Collection<URI> result = new HashSet<URI>(referenceScope);
                 for (Resource resource : resourceSet.getResources()) {
-                    result.add(resource.getURI());
+                    //TODO this is a hack to avoid ambiguities if the OCL metamodel is loaded
+                    if(!resource.getURI().equals(EcorePackage.eINSTANCE.getNsURI())) {
+                        result.add(resource.getURI());
+                    }
                 }
                 return result.toArray(new URI[result.size()]);
+            }
+
+            @Override
+            public ResourceSet getResourceSet() {
+                return resourceSet;
+            }
+        };
+    }
+    
+    /**
+     * Constructs a query context that contains the given <tt>resources</tt>.
+     */
+    public static QueryContext getQueryContextForReferenceScope(final ResourceSet resourceSet, final Set<URI> referenceScope) {
+        return new QueryContext() {
+            @Override
+            public URI[] getResourceScope() {
+                return referenceScope.toArray(new URI[referenceScope.size()]);
             }
 
             @Override

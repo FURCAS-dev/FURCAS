@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,8 @@ import java.util.TreeMap;
 /**
  * Reads a full dump of analysis results and pre-aggregates them for easier handling with R. Special assumption: all
  * columns have values that fit in <code>long</code> variables, except for the <code>filtered</code> column which is a
- * boolean, encoded by the literals <code>TRUE</code> or <code>FALSE</code>.<p>
+ * boolean, encoded by the literals <code>TRUE</code> or <code>FALSE</code>.
+ * <p>
  * 
  * Note that the <code>sloppiness</code> column is scaled by a factor {@link #SLOPPINESS_SCALE}.
  * 
@@ -27,29 +29,28 @@ public class Analyzer {
     private static final int MAX_OPTION_ID = 10;
     private static final int AVG_LINE_LENGTH = 100;
     private static final long SLOPPINESS_SCALE = 1000000;
-    
+
     /**
      * Keys the optionIds to measurement numbers such that they appear roughly with increasing measureTime values
      */
     private static final int[] optionIdToMeasurement = { 10, 11, 3, 9, 5, 4, 12, 6, 7, 8 };
-    
+
     private final String[] additionalColumnNames = { "iaEvalAndExecTime", "aiExecAndEvalTime",
             "allInstancesEvalAndExecTime", "sloppiness" };
 
     private final BufferedReader reader;
     private final BufferedWriter writer;
     private final List<String> columnList;
-    
+
     private final int estimatedNumberOfLines;
     private int linesRead;
-    
+
     /**
-     * Will be set after the header has been read. See {@link #readHeader()}. Identified
-     * the index in {@link #columnList} where the <code>filtered</code> Boolean column is
-     * located.
+     * Will be set after the header has been read. See {@link #readHeader()}. Identified the index in
+     * {@link #columnList} where the <code>filtered</code> Boolean column is located.
      */
     private int filteredColumnIndex;
-    
+
     private int allInstanceExecTimeColumnIndex = -1;
     private int allInstanceEvalTimeColumnIndex = -1;
     private int allInstancesEvalAndExecTimeColumnIndex = -1;
@@ -61,88 +62,99 @@ public class Analyzer {
     private int modelSizeColumnIndex = -1;
     private int noEqualResultsBeforeAndAfterColumnIndex = -1;
     private int noContextObjectsColumnIndex = -1;
+    private int noAllInstancesColumnIndex = -1;
+    private int allInstanceNoInvalidEvalsColumnIndex = -1;
     private int sloppinessColumnIndex = -1;
-    
+
     /**
      * Stores the sum of the model sizes, indexed by the modelId column value
      */
     private final Aggregator[] modelSize;
-    
+
     /**
      * Results, aggregated by <code>optionId</code>
      */
     private final Result[] results;
-    
+
     /**
-     * One row of the file. The <code>filtered</code> flag is separate; all other <code>long</code>
-     * columns match up with the indexes in {@link Analyzer#columnList} which means that the
-     * column for <code>filtered</code> remains empty in the <code>long</code> array.
+     * One row of the file. The <code>filtered</code> flag is separate; all other <code>long</code> columns match up
+     * with the indexes in {@link Analyzer#columnList} which means that the column for <code>filtered</code> remains
+     * empty in the <code>long</code> array.
      * 
      * @author Axel Uhl (d043530)
      */
     private class Record {
         private final long[] values;
         private final boolean filtered;
+
         public Record(boolean filtered, long[] values) {
             super();
             assert values.length == columnList.size();
             this.filtered = filtered;
             this.values = values;
         }
+
         public boolean isFiltered() {
             return filtered;
         }
+
         public long getValue(int i) {
             return values[i];
         }
     }
-    
+
+    /**
+     * Used to compute the sum and average aggregates of a set of numerical values. Uses {@link BigInteger} internally
+     * to avoid overflows. The maximum number of elements that can be aggregated is {@link Long#MAX_VALUE}.
+     * 
+     * @author Axel Uhl (d043530)
+     */
     private static class Aggregator {
-        private int count;
-        private long sum;
-        
+        private long count;
+        private BigInteger sum = BigInteger.ZERO;
+
         public void aggregate(long value) {
-            sum += value;
+            sum = sum.add(BigInteger.valueOf(value));
             count++;
         }
-        
-        public long getSum() {
+
+        public BigInteger getSum() {
             return sum;
         }
-        
+
         public double getAverage() {
-            return (double) sum / count;
+            return sum.doubleValue() / count;
         }
-        
+
         public String toString() {
-            return ""+getSum()+"/"+count+"="+getAverage();
+            return "" + getSum() + "/" + count + "=" + getAverage();
         }
     }
-    
+
     /**
      * Captures aggregation results for a single algorithm variant for all model IDs
-     *  
+     * 
      * @author Axel Uhl (d043530)
      */
     private class Result {
         private final int optionId;
-        
+
         private final Aggregator[] aggrAllInstanceUnfiltered = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] aggrAllInstanceFiltered = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] aggrIaFiltered = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] sloppinessFiltered = new Aggregator[MAX_MODEL_ID];
-        
+
         public Result(int optionId) {
             this.optionId = optionId;
         }
-        
+
         /**
-         * If <code>filtered</code> is <code>true</code>, the event of the record has passed the event filter.
-         * Its <code>aiExecAndEvalTime</code> is added to the {@link #aggrAllInstanceFiltered} and
-         * {@link #aggrIaFiltered} aggregators. In all cases it's added to the {@link #aggrAllInstanceUnfiltered}
-         * aggregator.
+         * If <code>filtered</code> is <code>true</code>, the event of the record has passed the event filter. Its
+         * <code>aiExecAndEvalTime</code> is added to the {@link #aggrAllInstanceFiltered} and {@link #aggrIaFiltered}
+         * aggregators. In all cases it's added to the {@link #aggrAllInstanceUnfiltered} aggregator.
          */
-        public void recordMeasurement(long aiExecAndEvalTime, long iaExecAndEvalTime, long sloppiness, boolean filtered, int modelId) {
+        public void recordMeasurement(long aiExecAndEvalTime, long iaExecAndEvalTime, long sloppiness,
+                boolean filtered, int modelId) {
             if (aggrAllInstanceUnfiltered[modelId] == null) {
                 aggrAllInstanceUnfiltered[modelId] = new Aggregator();
             }
@@ -162,33 +174,33 @@ public class Analyzer {
                 sloppinessFiltered[modelId].aggregate(sloppiness);
             }
         }
-        
+
         public int getOptionId() {
             return optionId;
         }
-        
+
         /**
          * Returns the {@link Aggregator#getAverage() averages} of the {@link #aggrAllInstanceUnfiltered} aggregator,
          * keyed by the {@link Analyzer#getAverageModelSize(int) model sizes}.
          */
-        public Map<Double, Double> getAggrAllInstanceUnfilteredAverage() {
-            return getAveragesByModelSize(aggrAllInstanceUnfiltered);
+        public Map<Double, BigInteger> getAggrAllInstanceUnfilteredAverage() {
+            return getSumByModelSize(aggrAllInstanceUnfiltered);
         }
 
         /**
          * Returns the {@link Aggregator#getAverage() averages} of the {@link #aggrAllInstanceFiltered} aggregator,
          * keyed by the {@link Analyzer#getAverageModelSize(int) model sizes}.
          */
-        public Map<Double, Double> getAggrAllInstanceFilteredAverage() {
-            return getAveragesByModelSize(aggrAllInstanceFiltered);
+        public Map<Double, BigInteger> getAggrAllInstanceFilteredAverage() {
+            return getSumByModelSize(aggrAllInstanceFiltered);
         }
 
         /**
-         * Returns the {@link Aggregator#getAverage() averages} of the {@link #aggrIaFiltered} aggregator,
-         * keyed by the {@link Analyzer#getAverageModelSize(int) model sizes}.
+         * Returns the {@link Aggregator#getAverage() averages} of the {@link #aggrIaFiltered} aggregator, keyed by the
+         * {@link Analyzer#getAverageModelSize(int) model sizes}.
          */
-        public Map<Double, Double> getAggrIaFilteredAverage() {
-            return getAveragesByModelSize(aggrIaFiltered);
+        public Map<Double, BigInteger> getAggrIaFilteredAverage() {
+            return getSumByModelSize(aggrIaFiltered);
         }
 
         /**
@@ -198,23 +210,24 @@ public class Analyzer {
          *            for the resulting map.
          * @return a map whose key set is ordered for ascending model size
          */
-        private Map<Double, Double> getAveragesByModelSize(Aggregator[] aggregatorArray) {
-            Map<Double, Double> result = new TreeMap<Double, Double>();
-            for (int i=0; i<MAX_MODEL_ID; i++) {
+        private Map<Double, BigInteger> getSumByModelSize(Aggregator[] aggregatorArray) {
+            Map<Double, BigInteger> result = new TreeMap<Double, BigInteger>();
+            for (int i = 0; i < MAX_MODEL_ID; i++) {
                 if (aggregatorArray[i] != null) {
-                    result.put(getAverageModelSize(i), aggregatorArray[i].getAverage());
+                    result.put(getAverageModelSize(i), aggregatorArray[i].getSum());
                 }
             }
             return result;
         }
-        
+
     }
-    
+
     public Analyzer(String inFileName, String outFileName) throws IOException {
         File inFile = new File(inFileName);
         long inFileSize = inFile.length();
         reader = new BufferedReader(new FileReader(inFile));
-        writer = new BufferedWriter(outFileName == null ? new OutputStreamWriter(System.out) : new FileWriter(outFileName));
+        writer = new BufferedWriter(outFileName == null ? new OutputStreamWriter(System.out) : new FileWriter(
+                outFileName));
         columnList = new ArrayList<String>();
         modelSize = new Aggregator[MAX_MODEL_ID];
         linesRead = 0;
@@ -223,8 +236,9 @@ public class Analyzer {
     }
 
     /**
-     * @param args <code>args[0]</code> is expected to specify the file from which to load data,
-     * <code>args[1]</code> is expected to specify the output file.
+     * @param args
+     *            <code>args[0]</code> is expected to specify the file from which to load data, <code>args[1]</code> is
+     *            expected to specify the output file.
      */
     public static void main(String[] args) {
         try {
@@ -240,7 +254,8 @@ public class Analyzer {
         Record record = readRecord();
         while (record != null) {
             if (linesRead % 1000000 == 0) {
-                System.err.println((100.*linesRead/estimatedNumberOfLines)+"% ("+linesRead+"/"+estimatedNumberOfLines+")");
+                System.err.println((100. * linesRead / estimatedNumberOfLines) + "% (" + linesRead + "/"
+                        + estimatedNumberOfLines + ")");
             }
             updateAggregates(record);
             record = readRecord();
@@ -250,31 +265,38 @@ public class Analyzer {
     }
 
     /**
-     * Dumps results to {@link #writer}. 
+     * Dumps results to {@link #writer}.
      */
     private void dumpResults() throws IOException {
         System.err.println("Dumping results...");
         writeHeader();
-        for (int optionId=0; optionId<MAX_OPTION_ID; optionId++) {
+        for (int optionId = 0; optionId < MAX_OPTION_ID; optionId++) {
             if (results[optionId] != null) {
-                int i=0;
+                int i = 0;
                 if (optionId == 0) {
-                    for (Map.Entry<Double, Double> unfilteredEntry : results[optionId]
+                    // write re-evaluation times over all instances filtered/unfiltered
+                    // as the first two measurements
+                    for (Map.Entry<Double, BigInteger> unfilteredEntry : results[optionId]
                             .getAggrAllInstanceUnfilteredAverage().entrySet()) {
                         writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
-                                + unfilteredEntry.getKey() + "\t1\t" + unfilteredEntry.getValue() + "\n");
+                                + unfilteredEntry.getKey() + "\t1\t" + unfilteredEntry.getValue() + "\t"
+                                + results[optionId].getAggrAllInstanceFilteredAverage().get(unfilteredEntry.getKey())
+                                + "\n");
                     }
                     i = 0;
-                    for (Map.Entry<Double, Double> filteredEntry : results[optionId]
+                    for (Map.Entry<Double, BigInteger> filteredEntry : results[optionId]
                             .getAggrAllInstanceFilteredAverage().entrySet()) {
                         writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
-                                + filteredEntry.getKey() + "\t2\t" + filteredEntry.getValue() + "\n");
+                                + filteredEntry.getKey() + "\t2\t" + filteredEntry.getValue() + "\t"
+                                + results[optionId].getAggrAllInstanceFilteredAverage().get(filteredEntry.getKey())
+                                + "\n");
                     }
                     i = 0;
                 }
-                for (Map.Entry<Double, Double> ia : results[optionId].getAggrIaFilteredAverage().entrySet()) {
-                    writer.write(""+results[optionId].getOptionId()+"\t"+(i++)+"\t"+ia.getKey()+"\t"+
-                            optionIdToMeasurement[optionId]+"\t"+ia.getValue()+"\n");
+                for (Map.Entry<Double, BigInteger> ia : results[optionId].getAggrIaFilteredAverage().entrySet()) {
+                    writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t" + ia.getKey() + "\t"
+                            + optionIdToMeasurement[optionId] + "\t" + ia.getValue() + "\t"
+                            + results[optionId].getAggrAllInstanceFilteredAverage().get(ia.getKey()) + "\n");
                 }
             }
         }
@@ -283,18 +305,28 @@ public class Analyzer {
     }
 
     private void writeHeader() throws IOException {
-        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\n");
+        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\tallInstancesFilterdEvalAndExecTime\n");
     }
 
+    /**
+     * If the record's {@link #noAllInstancesColumnIndex noAllInstances} value differs from the
+     * {@link Aggregator#allinstanceNoInvalidEvals number of invalid evaluation results} for the expression, meaning
+     * that at least one valid evaluation result was obtained for the expression on any model for any of its extent's
+     * elements, this method updates the aggregates of this analyzer, particularly the model size for the record's
+     * {@link #modelIdColumnIndex modelId} s well as the allInstances and impact analysis times. See
+     * {@link Result#recordMeasurement(long, long, long, boolean, int)}.
+     */
     private void updateAggregates(Record record) {
-        int modelId = (int) record.getValue(modelIdColumnIndex);
-        getModelSizeAggregator(modelId).aggregate(record.getValue(modelSizeColumnIndex));
-        int optionId = (int) record.getValue(optionIdColumnIndex);
-        getResult(optionId).recordMeasurement(record.getValue(allInstancesEvalAndExecTimeColumnIndex),
-                record.getValue(iaEvalAndExecTimeColumnIndex), record.getValue(sloppinessColumnIndex),
-                record.isFiltered(), modelId);
+        if (record.getValue(noAllInstancesColumnIndex) != record.getValue(allInstanceNoInvalidEvalsColumnIndex)) {
+            int modelId = (int) record.getValue(modelIdColumnIndex);
+            getModelSizeAggregator(modelId).aggregate(record.getValue(modelSizeColumnIndex));
+            int optionId = (int) record.getValue(optionIdColumnIndex);
+            getResult(optionId).recordMeasurement(record.getValue(allInstancesEvalAndExecTimeColumnIndex),
+                    record.getValue(iaEvalAndExecTimeColumnIndex), record.getValue(sloppinessColumnIndex),
+                    record.isFiltered(), modelId);
+        }
     }
-    
+
     /**
      * Option the {@link Result} object for the option ID <code>optionId</code>. Create if not yet there.
      */
@@ -330,7 +362,7 @@ public class Analyzer {
         for (String additionalColumnName : additionalColumnNames) {
             columnList.add(additionalColumnName);
         }
-        for (int i=0; i<columnList.size(); i++) {
+        for (int i = 0; i < columnList.size(); i++) {
             String next = columnList.get(i);
             if (next.equals("filtered")) {
                 filteredColumnIndex = i;
@@ -354,6 +386,10 @@ public class Analyzer {
                 noEqualResultsBeforeAndAfterColumnIndex = i;
             } else if (next.equals("noContextObjects")) {
                 noContextObjectsColumnIndex = i;
+            } else if (next.equals("noAllInstances")) {
+                noAllInstancesColumnIndex = i;
+            } else if (next.equals("allInstanceNoInvalidEvals")) {
+                allInstanceNoInvalidEvalsColumnIndex = i;
             } else if (next.equals("sloppiness")) {
                 sloppinessColumnIndex = i;
             } else if (next.equals("optionId")) {
@@ -361,7 +397,7 @@ public class Analyzer {
             }
         }
     }
-    
+
     /**
      * @return <code>null</code> if the end of the file has been reached
      */
@@ -384,10 +420,12 @@ public class Analyzer {
                 }
                 i++;
             }
-            values[iaEvalAndExecTimeColumnIndex] = values[executionTimeColumnIndex] + values[evaluationTimeAfterColumnIndex];
-            values[allInstancesEvalAndExecTimeColumnIndex] = values[allInstanceEvalTimeColumnIndex] + values[allInstanceExecTimeColumnIndex];
-            values[sloppinessColumnIndex] = SLOPPINESS_SCALE * (values[noEqualResultsBeforeAndAfterColumnIndex]+1) /
-                                                               (values[noContextObjectsColumnIndex]+1);
+            values[iaEvalAndExecTimeColumnIndex] = values[executionTimeColumnIndex]
+                    + values[evaluationTimeAfterColumnIndex];
+            values[allInstancesEvalAndExecTimeColumnIndex] = values[allInstanceEvalTimeColumnIndex]
+                    + values[allInstanceExecTimeColumnIndex];
+            values[sloppinessColumnIndex] = SLOPPINESS_SCALE * (values[noEqualResultsBeforeAndAfterColumnIndex] + 1)
+                    / (values[noContextObjectsColumnIndex] + 1);
             result = new Record(filtered, values);
         }
         return result;

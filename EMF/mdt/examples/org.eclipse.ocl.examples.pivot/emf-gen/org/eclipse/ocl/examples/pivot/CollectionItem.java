@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionItem.java,v 1.3 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: CollectionItem.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -73,15 +73,5 @@ public interface CollectionItem
 	 * @generated
 	 */
 	OclExpression createItem(EClass eClass);
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.OclExpression} and sets the '<em><b>Item</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.OclExpression}.
-	 * @see #getItem()
-	 * @generated
-	 */
-	OclExpression createItem();
 
 } // CollectionItem

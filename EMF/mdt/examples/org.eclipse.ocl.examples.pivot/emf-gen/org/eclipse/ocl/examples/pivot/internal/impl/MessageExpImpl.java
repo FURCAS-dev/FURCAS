@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: MessageExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -206,15 +206,6 @@ public class MessageExpImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclExpression createTarget() {
-		return createTarget(PivotPackage.Literals.OCL_EXPRESSION);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<OclExpression> getArguments() {
 		if (arguments == null)
 		{
@@ -232,15 +223,6 @@ public class MessageExpImpl
 		OclExpression newArgument = (OclExpression) create(eClass);
 		getArguments().add(newArgument);
 		return newArgument;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createArgument() {
-		return createArgument(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**
