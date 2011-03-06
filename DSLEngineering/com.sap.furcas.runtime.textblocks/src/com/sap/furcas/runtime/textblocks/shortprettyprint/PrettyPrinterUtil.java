@@ -10,7 +10,7 @@ import com.sap.furcas.utils.StringUtil;
 public class PrettyPrinterUtil {
 
     public static String printUsingSerializer(String value, PrimitiveTemplate template) {
-        if (template.getSerializer() != null && !template.getSerializer().equals("")) {
+        if (template != null && template.getSerializer() != null && !template.getSerializer().equals("")) {
             String serializer = StringUtil.unescapeString(template.getSerializer());
             return serializer.replaceAll("%value%", Matcher.quoteReplacement(value));
         } else {
