@@ -25,7 +25,6 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 import com.sap.furcas.ide.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.furcas.ide.editor.document.CtsDocument;
-import com.sap.furcas.ide.editor.document.TextBlocksModelStore;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
@@ -57,6 +56,9 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
         private final Query2OppositeEndFinder oppositeEndFinder;
         private final TCSSpecificOCLEvaluator oclEvaluator;
 
+        /** FIXME: This content assist interface can have crude side affects.
+         * It will lead to dataloss due to reverting of the connection!
+         */
 	public CtsContentAssistProcessor(ResourceSet connection,
 			AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
 		this.language = language;
@@ -83,7 +85,10 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		initClassTemplateMap();
 	}
-
+	
+        /** FIXME: This content assist interface can have crude side affects.
+         * It will lead to dataloss due to reverting of the connection!
+         */
 	public CtsContentAssistProcessor(ConcreteSyntax syntax,
 	        AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory, String language) {
 		this.language = language;
@@ -103,7 +108,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		initClassTemplateMap();
 	}
 
-	/**
+    /**
 	 * offset = 0..n-1
 	 */
 	@Override
@@ -143,11 +148,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		TextBlocksModel tbModel = null;
 		IDocument doc = viewer.getDocument();
 		if (doc instanceof CtsDocument) {
-			TextBlocksModelStore store = ((CtsDocument) doc)
-					.getTextBlocksModelStore();
-			if (store != null) {
-				tbModel = store.getModel();
-			}
+		    tbModel = new TextBlocksModel(((CtsDocument) doc).getRootBlock(), null);
 		}
 
 		return computeCompletionProposals(viewer, line, charPositionInLine,
