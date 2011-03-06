@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-02-27 01:26:42
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g 2011-03-07 00:08:00
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -73,6 +73,10 @@ public class BibtexLexer extends Lexer {
             // get rid of the starting and ending delimiters (e.g., '\'', '"')
            if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                     s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
+           } else if (s.length() >= 4 && s.charAt(0) == '\\' && s.charAt(s.length()-delimLength) == '\"' && s.charAt(1) == '\"' && s.charAt(s.length()-delimLength-1) == '\\') {
+                 //also handle strings that are surrounded with an escaped string symbol \"value\"
+                 delimLength += 1;
+                 s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
             }
             return s;
         }
@@ -106,8 +110,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:62:7: ( 'Entries:' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:62:9: 'Entries:'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:66:7: ( 'Entries:' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:66:9: 'Entries:'
             {
             match("Entries:"); if (state.failed) return ;
 
@@ -127,8 +131,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:63:7: ( 'Authors:' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:63:9: 'Authors:'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:67:7: ( 'Authors:' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:67:9: 'Authors:'
             {
             match("Authors:"); if (state.failed) return ;
 
@@ -148,8 +152,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:64:7: ( '@article' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:64:9: '@article'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:68:7: ( '@article' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:68:9: '@article'
             {
             match("@article"); if (state.failed) return ;
 
@@ -169,8 +173,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:65:7: ( 'title' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:65:9: 'title'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:69:7: ( 'title' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:69:9: 'title'
             {
             match("title"); if (state.failed) return ;
 
@@ -190,8 +194,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:66:7: ( '=' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:66:9: '='
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:70:7: ( '=' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:70:9: '='
             {
             match('='); if (state.failed) return ;
 
@@ -210,8 +214,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:67:7: ( 'author' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:67:9: 'author'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:71:7: ( 'author' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:71:9: 'author'
             {
             match("author"); if (state.failed) return ;
 
@@ -231,8 +235,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:68:7: ( 'and' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:68:9: 'and'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:72:7: ( 'and' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:72:9: 'and'
             {
             match("and"); if (state.failed) return ;
 
@@ -252,21 +256,21 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:178:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:185:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:9: '--' (~ ( '\\r' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:9: '--' (~ ( '\\r' | '\\n' ) )*
             {
             match("--"); if (state.failed) return ;
 
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:14: (~ ( '\\r' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -279,7 +283,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:179:15: ~ ( '\\r' | '\\n' )
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:186:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -325,8 +329,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = COMA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:184:3: ( ',' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:185:3: ','
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:191:3: ( ',' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:192:3: ','
             {
             match(','); if (state.failed) return ;
 
@@ -345,8 +349,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = LCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:190:3: ( '{' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:191:3: '{'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:197:3: ( '{' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:198:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -365,8 +369,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = RCURLY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:196:3: ( '}' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:197:3: '}'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:203:3: ( '}' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:204:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -385,10 +389,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:202:5: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:202:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:209:5: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:209:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:202:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:209:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt2=4;
             int LA2_0 = input.LA(1);
 
@@ -419,7 +423,7 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:202:13: '\\r' '\\n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:209:13: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -427,7 +431,7 @@ public class BibtexLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:203:13: '\\n' '\\r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:210:13: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -435,14 +439,14 @@ public class BibtexLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:204:13: '\\r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:211:13: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:205:13: '\\n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:212:13: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -470,8 +474,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:211:5: ( ( ' ' | '\\t' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:211:9: ( ' ' | '\\t' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:218:5: ( ( ' ' | '\\t' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:218:9: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -500,8 +504,8 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:218:5: ( '0' .. '9' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:218:9: '0' .. '9'
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:225:5: ( '0' .. '9' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:225:9: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -516,7 +520,7 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:223:5: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:230:5: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
             // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
@@ -541,17 +545,17 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:234:5: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:234:9: ( ALPHA ) ( ALPHA | DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:5: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:9: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:234:9: ( ALPHA )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:234:10: ALPHA
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:9: ( ALPHA )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:10: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:234:17: ( ALPHA | DIGIT )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:17: ( ALPHA | DIGIT )*
             loop3:
             do {
                 int alt3=2;
@@ -599,10 +603,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:238:5: ( ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:238:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:245:5: ( ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:245:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:238:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:245:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -621,17 +625,17 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:239:13: SNAME
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:246:13: SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:240:13: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:247:13: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
                     {
                     match('\"'); if (state.failed) return ;
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:13: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:248:13: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
                     loop4:
                     do {
                         int alt4=4;
@@ -650,14 +654,14 @@ public class BibtexLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:241:17: ESC
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:248:17: ESC
                     	    {
                     	    mESC(); if (state.failed) return ;
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:242:17: '\\n'
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:249:17: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -667,7 +671,7 @@ public class BibtexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 3 :
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:243:17: ~ ( '\\\\' | '\\\"' | '\\n' )
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:250:17: ~ ( '\\\\' | '\\\"' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -711,10 +715,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:251:5: ( ( DIGIT )+ )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:251:9: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:5: ( ( DIGIT )+ )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:9: ( DIGIT )+
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:251:9: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:9: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -728,7 +732,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:251:10: DIGIT
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:10: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -761,10 +765,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:9: ( ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )? )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:13: ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:9: ( ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )? )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:13: ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
             {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:13: ( DIGIT )+
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:13: ( DIGIT )+
             int cnt7=0;
             loop7:
             do {
@@ -778,7 +782,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:13: DIGIT
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:13: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -795,7 +799,7 @@ public class BibtexLexer extends Lexer {
                 cnt7++;
             } while (true);
 
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:20: ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:20: ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -804,10 +808,10 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:21: ( '.' DIGIT )=> '.' ( DIGIT )+
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:21: ( '.' DIGIT )=> '.' ( DIGIT )+
                     {
                     match('.'); if (state.failed) return ;
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:38: ( DIGIT )+
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:38: ( DIGIT )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -821,7 +825,7 @@ public class BibtexLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:38: DIGIT
+                    	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:38: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -858,11 +862,11 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "ESC"
     public final void mESC() throws RecognitionException {
         try {
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:5: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:258:9: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:265:5: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:265:9: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             {
             match('\\'); if (state.failed) return ;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:259:9: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:266:9: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             int alt14=9;
             switch ( input.LA(1) ) {
             case 'n':
@@ -927,65 +931,65 @@ public class BibtexLexer extends Lexer {
 
             switch (alt14) {
                 case 1 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:259:13: 'n'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:266:13: 'n'
                     {
                     match('n'); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:260:13: 'r'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:267:13: 'r'
                     {
                     match('r'); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:13: 't'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:268:13: 't'
                     {
                     match('t'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:262:13: 'b'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:269:13: 'b'
                     {
                     match('b'); if (state.failed) return ;
 
                     }
                     break;
                 case 5 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:263:13: 'f'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:270:13: 'f'
                     {
                     match('f'); if (state.failed) return ;
 
                     }
                     break;
                 case 6 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:264:13: '\"'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:271:13: '\"'
                     {
                     match('\"'); if (state.failed) return ;
 
                     }
                     break;
                 case 7 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:265:13: '\\''
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:272:13: '\\''
                     {
                     match('\''); if (state.failed) return ;
 
                     }
                     break;
                 case 8 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:266:13: '\\\\'
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:273:13: '\\\\'
                     {
                     match('\\'); if (state.failed) return ;
 
                     }
                     break;
                 case 9 :
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:267:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:274:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     {
-                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:267:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:274:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1004,16 +1008,16 @@ public class BibtexLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:268:17: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:17: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             {
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:268:17: ( '0' .. '3' )
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:268:18: '0' .. '3'
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:17: ( '0' .. '3' )
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:18: '0' .. '3'
                             {
                             matchRange('0','3'); if (state.failed) return ;
 
                             }
 
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:269:17: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:276:17: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             int alt11=2;
                             int LA11_0 = input.LA(1);
 
@@ -1022,16 +1026,16 @@ public class BibtexLexer extends Lexer {
                             }
                             switch (alt11) {
                                 case 1 :
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:270:21: ( '0' .. '7' ) ( '0' .. '7' )?
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:21: ( '0' .. '7' ) ( '0' .. '7' )?
                                     {
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:270:21: ( '0' .. '7' )
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:270:22: '0' .. '7'
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:21: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:22: '0' .. '7'
                                     {
                                     matchRange('0','7'); if (state.failed) return ;
 
                                     }
 
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:271:21: ( '0' .. '7' )?
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:278:21: ( '0' .. '7' )?
                                     int alt10=2;
                                     int LA10_0 = input.LA(1);
 
@@ -1040,7 +1044,7 @@ public class BibtexLexer extends Lexer {
                                     }
                                     switch (alt10) {
                                         case 1 :
-                                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:272:25: '0' .. '7'
+                                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:279:25: '0' .. '7'
                                             {
                                             matchRange('0','7'); if (state.failed) return ;
 
@@ -1059,16 +1063,16 @@ public class BibtexLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:17: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:282:17: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
                             {
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:17: ( '4' .. '7' )
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:275:18: '4' .. '7'
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:282:17: ( '4' .. '7' )
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:282:18: '4' .. '7'
                             {
                             matchRange('4','7'); if (state.failed) return ;
 
                             }
 
-                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:276:17: ( ( '0' .. '7' ) )?
+                            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:283:17: ( ( '0' .. '7' ) )?
                             int alt12=2;
                             int LA12_0 = input.LA(1);
 
@@ -1077,10 +1081,10 @@ public class BibtexLexer extends Lexer {
                             }
                             switch (alt12) {
                                 case 1 :
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:21: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:284:21: ( '0' .. '7' )
                                     {
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:21: ( '0' .. '7' )
-                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:277:22: '0' .. '7'
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:284:21: ( '0' .. '7' )
+                                    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:284:22: '0' .. '7'
                                     {
                                     matchRange('0','7'); if (state.failed) return ;
 
@@ -1122,11 +1126,11 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:286:5: ( '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:286:9: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:293:5: ( '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:293:9: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
             {
             match('\''); if (state.failed) return ;
-            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:287:9: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+            // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:294:9: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
             loop15:
             do {
                 int alt15=4;
@@ -1145,14 +1149,14 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:287:13: ESC
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:294:13: ESC
             	    {
             	    mESC(); if (state.failed) return ;
 
             	    }
             	    break;
             	case 2 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:288:13: '\\n'
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:295:13: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1162,7 +1166,7 @@ public class BibtexLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:289:13: ~ ( '\\\\' | '\\'' | '\\n' )
+            	    // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:296:13: ~ ( '\\\\' | '\\'' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1326,8 +1330,8 @@ public class BibtexLexer extends Lexer {
 
     // $ANTLR start synpred1_Bibtex
     public final void synpred1_Bibtex_fragment() throws RecognitionException {   
-        // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:21: ( '.' DIGIT )
-        // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:254:22: '.' DIGIT
+        // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:21: ( '.' DIGIT )
+        // /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/Bibtex.g:261:22: '.' DIGIT
         {
         match('.'); if (state.failed) return ;
         mDIGIT(); if (state.failed) return ;
