@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: LetExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -173,15 +173,6 @@ public class LetExpImpl
 		OclExpression newIn = (OclExpression) create(eClass);
 		setIn(newIn);
 		return newIn;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createIn() {
-		return createIn(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

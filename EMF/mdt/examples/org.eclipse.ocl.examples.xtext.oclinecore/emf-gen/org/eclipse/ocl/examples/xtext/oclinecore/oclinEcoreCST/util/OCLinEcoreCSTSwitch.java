@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreCSTSwitch.java,v 1.7 2011/02/08 17:43:40 ewillink Exp $
+ * $Id: OCLinEcoreCSTSwitch.java,v 1.8 2011/03/01 08:46:34 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.util;
 
@@ -26,8 +26,10 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.*;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpSpecificationCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreConstraintCS;
 
@@ -98,7 +100,6 @@ protected T doSwitch(int classifierID, EObject theEObject)
 			{
 				OCLinEcoreConstraintCS ocLinEcoreConstraintCS = (OCLinEcoreConstraintCS)theEObject;
 				T result = caseOCLinEcoreConstraintCS(ocLinEcoreConstraintCS);
-				if (result == null) result = caseExpConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseConstraintCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseNamedElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = caseMonikeredElementCS(ocLinEcoreConstraintCS);
@@ -107,6 +108,20 @@ protected T doSwitch(int classifierID, EObject theEObject)
 				if (result == null) result = caseElementCS(ocLinEcoreConstraintCS);
 				if (result == null) result = casePivotable(ocLinEcoreConstraintCS);
 				if (result == null) result = caseVisitableCS(ocLinEcoreConstraintCS);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OCLinEcoreCSTPackage.OC_LIN_ECORE_SPECIFICATION_CS:
+			{
+				OCLinEcoreSpecificationCS ocLinEcoreSpecificationCS = (OCLinEcoreSpecificationCS)theEObject;
+				T result = caseOCLinEcoreSpecificationCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseExpSpecificationCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseSpecificationCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseMonikeredElementCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseModelElementCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseElementCS(ocLinEcoreSpecificationCS);
+				if (result == null) result = casePivotable(ocLinEcoreSpecificationCS);
+				if (result == null) result = caseVisitableCS(ocLinEcoreSpecificationCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -126,6 +141,22 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	 * @generated
 	 */
 	public T caseOCLinEcoreConstraintCS(OCLinEcoreConstraintCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>OC Lin Ecore Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OC Lin Ecore Specification CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOCLinEcoreSpecificationCS(OCLinEcoreSpecificationCS object)
 	{
 		return null;
 	}
@@ -259,17 +290,33 @@ protected T doSwitch(int classifierID, EObject theEObject)
 	}
 
 /**
-	 * Returns the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Specification CS</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Exp Constraint CS</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Specification CS</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseExpConstraintCS(ExpConstraintCS object)
+	public T caseSpecificationCS(SpecificationCS object)
+	{
+		return null;
+	}
+
+/**
+	 * Returns the result of interpreting the object as an instance of '<em>Exp Specification CS</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Exp Specification CS</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpSpecificationCS(ExpSpecificationCS object)
 	{
 		return null;
 	}

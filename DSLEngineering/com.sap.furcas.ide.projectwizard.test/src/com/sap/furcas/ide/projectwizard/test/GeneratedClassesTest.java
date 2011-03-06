@@ -9,7 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +50,7 @@ public class GeneratedClassesTest {
      * This test method calls the other methods in this class to generate, compile and clean the java classes.
      */
     @Test
-    public void compileGeneratedClasses() {
+    public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
         SourceCodeFactory codeFactory = new SourceCodeFactory();
@@ -75,7 +77,7 @@ public class GeneratedClassesTest {
      * 
      * @return The classpath for the compilation process.
      */
-    private String getRequiredBundles() {
+    private String getRequiredBundles() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         getManifestPluginEntries();
         String eclipsePath;
         if (System.getProperty("eclipse.location")!=null) {
@@ -90,6 +92,17 @@ public class GeneratedClassesTest {
                     File.separator + BIN_DIR_NAME);
         }
 
+        // The non-workspace bundles are tricky to find, particularly when executing in a Maven
+        // environment. There, the bundles of the executing JUnit plugin test shell are obtained
+        // from the Maven repository under .m2/repository/... and may have slightly different versions
+        // as compared to the Eclipse instance installed under ${eclipse.location}. Therefore, the
+        // lookup should first check ${target.location} before ${eclipse.location}.
+        // Furthermore, the bundle JAR files may be located in some nested directory structure, such
+        // as .m2/repository/p2/osgi/bundle/org.eclipse.ui/3.6.2.M20110203-1100 for the bundle
+        // org.eclipse.ui-3.6.2.M20110203-1100.jar. The bundle location can be determined by
+        // Bundle.getLocation() and gives a hint at the physical location of the JAR file. Trailing
+        // slashes have to be removed.
+        // TODO continue here
         Object[] bundles = nonWorkspacePlugins.toArray();
         for (int i = 0; i < bundles.length; i++) {
             String bundlePath = null;
@@ -97,25 +110,73 @@ public class GeneratedClassesTest {
             if (bundle == null) {
                 System.err.println("Unable to find bundle "+bundles[i]);
             } else {
-                String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
-                if (eclipsePath.contains("/")) {
-                    if (eclipsePath.endsWith("/")) {
-                        bundlePath = eclipsePath + "plugins/" + bundleJarName;
-		    } else {
-                        bundlePath = eclipsePath + "/plugins/" + bundleJarName;
-		    }
-                } else {
-		    if (eclipsePath.endsWith("\\")) {
-                        bundlePath = eclipsePath + "plugins\\" + bundleJarName;
-		    } else {
-                        bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
-		    }
+                try {
+                    System.out.println("Trying to find bundle "+bundle);
+                    Object bundleData = bundle.getClass().getMethod("getBundleData").invoke(bundle);
+                    System.out.println("   got bundle data "+bundleData);
+                    Object bundleFile = bundleData.getClass().getMethod("getBundleFile").invoke(bundleData);
+                    System.out.println("   got bundle file "+bundleFile);
+                    File baseFile = (File) bundleFile.getClass().getMethod("getBaseFile").invoke(bundleFile);
+                    System.out.println("   got base file "+baseFile);
+                    bundlePath = baseFile.getCanonicalPath();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // it didn't work; try something else
+                }
+                if (bundlePath == null) {
+                    File bundleJar = findBundleJar(bundle);
+                    if (bundleJar != null) {
+                        bundlePath = bundleJar.getCanonicalPath();
+                    } else {
+                        String bundleJarName = bundle.toString().split(" ")[0] + ".jar";
+                        if (eclipsePath.contains("/")) {
+                            if (eclipsePath.endsWith("/")) {
+                                bundlePath = eclipsePath + "plugins/" + bundleJarName;
+                            } else {
+                                bundlePath = eclipsePath + "/plugins/" + bundleJarName;
+                            }
+                        } else {
+                            if (eclipsePath.endsWith("\\")) {
+                                bundlePath = eclipsePath + "plugins\\" + bundleJarName;
+                            } else {
+                                bundlePath = eclipsePath + "\\plugins\\" + bundleJarName;
+                            }
+                        }
+                    }
+                }
+                File f = new File(bundlePath);
+                try {
+                    System.out.print("Canonical bundle path: "+f.getCanonicalPath());
+                    System.out.println(f.exists() ? " EXISTS" : " DOES NOT EXIST");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
                 requiredBundles.append(File.pathSeparator + bundlePath);
             }
         }
 
         return requiredBundles.toString();
+    }
+
+    private File findBundleJar(Bundle bundle) {
+        File searchStartDir = new File(System.getProperty("target.location"));
+        return findRecursively(searchStartDir, bundle.toString());
+    }
+
+    private File findRecursively(File d, String string) {
+        if (d.exists() && d.isDirectory()) {
+            if (Arrays.asList(d.list()).contains(string)) {
+                return new File(d, string);
+            } else {
+                for (File entry : d.listFiles()) {
+                    File result = findRecursively(entry, string);
+                    if (result != null) {
+                        return result;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**

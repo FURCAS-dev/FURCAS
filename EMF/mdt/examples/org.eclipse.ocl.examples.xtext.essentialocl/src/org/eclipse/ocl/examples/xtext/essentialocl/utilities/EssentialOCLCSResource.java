@@ -12,17 +12,19 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCSResource.java,v 1.5 2011/02/11 20:00:46 ewillink Exp $
+ * $Id: EssentialOCLCSResource.java,v 1.6 2011/03/01 08:46:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationContext;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot.EssentialOCLCS2Pivot;
@@ -45,7 +47,14 @@ public class EssentialOCLCSResource extends LazyLinkingResource
 	}
 
 	public TypeManager createTypeManager() {
-		return new TypeManager();
+		ResourceSet resourceSet = getResourceSet();
+		TypeManagerResourceSetAdapter resourceSetAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		if (resourceSetAdapter != null) {
+			return resourceSetAdapter.getTypeManager();
+		}
+		else {
+			return new TypeManager();
+		}
 	}
 
 	public PivotEnvironment getEnvironment() {

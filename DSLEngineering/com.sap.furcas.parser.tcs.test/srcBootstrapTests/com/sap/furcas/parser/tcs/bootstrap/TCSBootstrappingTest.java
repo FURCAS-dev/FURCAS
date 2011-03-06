@@ -2,7 +2,9 @@ package com.sap.furcas.parser.tcs.bootstrap;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -44,10 +46,13 @@ public class TCSBootstrappingTest extends GeneratedParserBasedTest {
 
     @BeforeClass
     public static void setupParser() throws Exception {
+        final Set<URI> ref = ResourceTestHelper.createFURCASReferenceScope();
+        ref.addAll(ResourceTestHelper.createEcoreReferenceScope());
         GeneratedParserTestConfiguration testConfig = new GeneratedParserTestConfiguration(LANGUAGE, TCS, METAMODELS) {
             @Override
             public GrammarGenerationSourceConfiguration getSourceConfiguration() {
-                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(), ResourceTestHelper.createFURCASReferenceScope());
+                return new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(), 
+                        ref);
             }
         };
         TCSSyntaxContainerBean syntaxBeanyntaxBean = parseSyntax(testConfig);

@@ -12,11 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ContextConstraintCS.java,v 1.1 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: ContextConstraintCS.java,v 1.2 2011/03/01 08:47:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
-import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,7 +34,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpConstraint
  * @model abstract="true"
  * @generated
  */
-public interface ContextConstraintCS extends ExpConstraintCS
+public interface ContextConstraintCS extends ConstraintCS
 {
 	/**
 	 * Returns the value of the '<em><b>Context Decl</b></em>' container reference.

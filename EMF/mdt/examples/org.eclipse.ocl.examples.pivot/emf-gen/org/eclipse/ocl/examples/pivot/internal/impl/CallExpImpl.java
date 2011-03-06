@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -183,15 +183,6 @@ public abstract class CallExpImpl
 		OclExpression newSource = (OclExpression) create(eClass);
 		setSource(newSource);
 		return newSource;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclExpression createSource() {
-		return createSource(PivotPackage.Literals.OCL_EXPRESSION);
 	}
 
 	/**

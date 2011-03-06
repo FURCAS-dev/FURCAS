@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.8 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.9 2011/03/01 08:47:03 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -61,7 +61,7 @@ PrimitiveTypeIdentifier:
 	| 'OclVoid';
 
 BodyCS returns BodyCS:
-	'body' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
+	stereotype='body' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 ClassifierContextDeclCS returns ClassifierContextDeclCS:
 	'context' (selfName=UnrestrictedName ':')?
@@ -77,19 +77,19 @@ ContextDeclCS returns ContextDeclCS:
 DefCS returns DefCS:
 	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
 	('(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
-	':' (ownedType=TypeExpCS)? '=' ownedExpression=ExpCS;
+	':' (ownedType=TypeExpCS)? '=' specification=SpecificationCS;
 
 DerCS returns DerCS:
-	stereotype='derive' ':' ownedExpression=ExpCS;
+	stereotype='derive' ':' specification=SpecificationCS;
 
 ImportCS returns base::ImportCS:
 	'import' (name=Identifier ':')? namespace=[pivot::Namespace|SINGLE_QUOTED_STRING];
 
 InitCS returns InitCS:
-	stereotype='init' ':' ownedExpression=ExpCS;
+	stereotype='init' ':' specification=SpecificationCS;
 
 InvCS returns InvCS:
-	stereotype='inv' (name=UnrestrictedName ('(' ownedReason=ExpCS ')')?)? ':' ownedExpression=ExpCS;
+	stereotype='inv' (name=UnrestrictedName ('(' messageSpecification=SpecificationCS ')')?)? ':' specification=SpecificationCS;
 
 OperationContextDeclCS returns OperationContextDeclCS:
 	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
@@ -107,15 +107,18 @@ ParameterCS returns essentialocl::VariableCS:
 	(name=UnrestrictedName ':')? ownedType=TypeExpCS;
 
 PostCS returns PostCS:
-	stereotype='post' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
+	stereotype='post' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 PreCS returns PreCS:
-	stereotype='pre' (name=UnrestrictedName)? ':' ownedExpression=ExpCS;
+	stereotype='pre' (name=UnrestrictedName)? ':' specification=SpecificationCS;
 
 PropertyContextDeclCS returns PropertyContextDeclCS:
 	'context' (namespace+=[pivot::Namespace|Identifier] '::')*
 	property=[pivot::Property|Identifier] ':' ownedType=TypeExpCS
 	((rules+=InitCS (rules+=DerCS)?)? | (rules+=DerCS (rules+=InitCS)?));
+
+SpecificationCS returns ContextSpecificationCS:
+	ownedExpression=ExpCS;
 
 //---------------------------------------------------------------------------------
 //	EssentialOCL overrides

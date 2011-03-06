@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.2 2011/02/21 08:37:43 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.3 2011/03/01 08:56:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -234,9 +234,9 @@ public abstract class PivotTestSuite
 	}
      
     protected void assertSemanticErrorQuery(String expression,
-    		 String messageTemplate, String... bindings) {
+    		 String messageTemplate, Object... bindings) {
     	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-    		 expression, messageTemplate, (Object[])bindings);	   
+    		 expression, messageTemplate, bindings);	   
 	}
     	
 	/**

@@ -80,8 +80,13 @@ public class GeneratedParserTestConfiguration {
         return new File(generationDir + language + ANTLR_GRAMMAR_SUFFIX);
     }
     
-    private static Set<URI> createReferenceScope() {
-        return ResourceTestHelper.createEcoreReferenceScope();
+    private Set<URI> createReferenceScope() {
+        Set<URI> scope =  ResourceTestHelper.createEcoreReferenceScope();
+        //add metamodels to scope set:
+        for (Resource res : resourceSet.getResources()) {
+            scope.add(res.getURI());
+        }
+        return scope;
     }
     
     private static ResourceSet createResourceSet(File... metamodels) throws MetaModelLookupException {

@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +30,6 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.internal.impl.TypeImpl;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -39,8 +37,6 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class Pivot2EcoreTypeRefVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
 {
-	public static final Logger logger = Logger.getLogger(Pivot2EcoreTypeRefVisitor.class);
-
 	public Pivot2EcoreTypeRefVisitor(Pivot2Ecore context) {
 		super(context);
 	}
@@ -69,8 +65,7 @@ public class Pivot2EcoreTypeRefVisitor
 	}
 
 	public EClassifier visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore TypeRef pass");
 	}
 
 	@Override
@@ -91,8 +86,7 @@ public class Pivot2EcoreTypeRefVisitor
 			return EcorePackage.Literals.EBIG_INTEGER;
 		}
 		else {
-			logger.error("Unsupported primitive type '" + pivotType + "' in pass2");
-			return null;
+			throw new IllegalArgumentException("Unsupported primitive type '" + pivotType + "' in Pivot2Ecore TypeRef pass");
 		}
 	}
 
@@ -128,7 +122,7 @@ public class Pivot2EcoreTypeRefVisitor
 			if (eClassifier != null) {
 				return eClassifier;
 			}
-			return ((TypeImpl)pivotType).getTarget();
+			return pivotType.getETarget();
 		}
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement(pivotType));

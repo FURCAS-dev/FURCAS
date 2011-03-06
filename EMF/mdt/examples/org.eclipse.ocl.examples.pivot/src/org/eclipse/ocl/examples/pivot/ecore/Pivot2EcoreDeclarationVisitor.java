@@ -12,13 +12,12 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -47,10 +46,8 @@ import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
-import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -62,19 +59,12 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
-import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
-import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintExprVisitor;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Pivot2EcoreDeclarationVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
 {
-	public static final Logger logger = Logger.getLogger(Pivot2EcoreDeclarationVisitor.class);
 
 	public Pivot2EcoreDeclarationVisitor(Pivot2Ecore context) {
 		super(context);
@@ -91,30 +81,12 @@ public class Pivot2EcoreDeclarationVisitor
 			eClassifier.eUnset(EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME);
 		}
 //		visitAll(eClassifier.getETypeParameters(), pivotType.getTypeParameters());
-		StringBuffer s = null;
 		for (Constraint pivotConstraint : pivotType.getOwnedRules()) {
 			safeVisit(pivotConstraint);		// Results are inserted directly
-			if (s == null) {
-				s = new StringBuffer();
-			}
-			else {
-				s.append(" ");
-			}
-			s.append(pivotConstraint.getName());
 		}
-		EAnnotation eAnnotation = eClassifier.getEAnnotation(EcorePackage.eNS_URI);
-		if (s != null) {
-			if (eAnnotation == null) {
-				eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-				eAnnotation.setSource(EcorePackage.eNS_URI);
-				eClassifier.getEAnnotations().add(0, eAnnotation);
-			}
-			eAnnotation.getDetails().put("constraints", s.toString());
-		}
-		else {
-			eClassifier.getEAnnotations().remove(eAnnotation);
-		}
+		Pivot2Ecore.installDelegates(context.getTypeManager(), eClassifier, pivotType);
 	}
+
 
 	protected void copyDataTypeOrEnum(EDataType eDataType, DataType pivotDataType) {
 		copyClassifier(eDataType, pivotDataType);
@@ -170,8 +142,7 @@ public class Pivot2EcoreDeclarationVisitor
 	}
 
 	public EObject visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore Declaration pass");
 	}
 
 	@Override
@@ -203,48 +174,8 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitConstraint(Constraint pivotConstraint) {
-		ValueSpecification specification = pivotConstraint.getSpecification();
-		if (!(specification instanceof OpaqueExpression)) {
-			return null;
-		}
-		String exprString = PivotUtil.getBody((OpaqueExpression) specification);
-		if ((exprString == null) && (specification instanceof ExpressionInOcl)) {
-			exprString = PrettyPrintExprVisitor.prettyPrint(((ExpressionInOcl)specification).getBodyExpression(), PrettyPrintExprVisitor.getNamespace(specification));
-		}
-		if (exprString == null) {
-			return null;
-		}
 		EModelElement eModelElement = context.getCreated(EModelElement.class, (Element)pivotConstraint.eContainer());
-		EAnnotation oclAnnotation = eModelElement.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		if (oclAnnotation == null) {
-			oclAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			oclAnnotation.setSource(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-			eModelElement.getEAnnotations().add(oclAnnotation);
-		}
-		String stereotype = pivotConstraint.getStereotype();
-		String name = pivotConstraint.getName();
-		if ("invariant".equals(stereotype)) {
-			oclAnnotation.getDetails().put(name, exprString);
-		}
-		else if ("derivation".equals(stereotype)) {
-			oclAnnotation.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, exprString);
-		}
-		else if ("initial".equals(stereotype)) {
-			oclAnnotation.getDetails().put(SettingBehavior.INITIAL_CONSTRAINT_KEY, exprString);
-		}
-		else if ("body".equals(stereotype)) {
-			String key = name != null ? "body_" + name : InvocationBehavior.BODY_CONSTRAINT_KEY;
-			oclAnnotation.getDetails().put(key, exprString);
-		}
-		else if ("precondition".equals(stereotype)) {
-			oclAnnotation.getDetails().put("pre_" + name, exprString);
-		}
-		else if ("postcondition".equals(stereotype)) {
-			oclAnnotation.getDetails().put("post_" + name, exprString);
-		}
-		else {
-//			error("Unsupported " + pivotConstraint);
-		}
+		Pivot2Ecore.installDelegate(eModelElement, pivotConstraint);
 		return null;
 	}
 

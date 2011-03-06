@@ -12,15 +12,13 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Pivot2EcoreReferenceVisitor.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -35,7 +33,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.Annotation;
 import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -46,18 +43,13 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.delegate.SettingBehavior;
-import org.eclipse.ocl.examples.pivot.delegate.ValidationBehavior;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 
 public class Pivot2EcoreReferenceVisitor
 	extends AbstractExtendingVisitor<EObject, Pivot2Ecore>
 {
-	public static final Logger logger = Logger.getLogger(Pivot2EcoreDeclarationVisitor.class);
-
 	protected final Pivot2EcoreTypeRefVisitor typeRefVisitor;
 	
 	public Pivot2EcoreReferenceVisitor(Pivot2Ecore context) {
@@ -99,8 +91,7 @@ public class Pivot2EcoreReferenceVisitor
 	}
 
 	public EObject visiting(Visitable visitable) {
-		logger.error("Unsupported " + visitable.eClass().getName() + " for " + getClass().getName());
-		return null;
+		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore Reference pass");
 	}
 
 	@Override
@@ -169,16 +160,7 @@ public class Pivot2EcoreReferenceVisitor
 			}
 		}
 		if (needsDelegates) {
-		    EAnnotation packageAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
-		    if (packageAnnotation == null) {
-		    	packageAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-		    	packageAnnotation.setSource(EcorePackage.eNS_URI);
-		    	ePackage.getEAnnotations().add(packageAnnotation);
-		    }
-		    EMap<String, String> details = packageAnnotation.getDetails();
-			details.put(InvocationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		    details.put(SettingBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
-		    details.put(ValidationBehavior.NAME, OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		    Pivot2Ecore.installDelegates(ePackage);
 		}
 		return null;
 	}
@@ -237,7 +219,7 @@ public class Pivot2EcoreReferenceVisitor
 			eTypedElement.setEGenericType(eGenericType);
 		}
 		else {
-			logger.error("Unsupported pivot type '" + pivotType + "' in pass2");
+			throw new IllegalArgumentException("Unsupported pivot type '" + pivotType + "' in Pivot2Ecore Reference pass");
 		}
 		return null;
 	}

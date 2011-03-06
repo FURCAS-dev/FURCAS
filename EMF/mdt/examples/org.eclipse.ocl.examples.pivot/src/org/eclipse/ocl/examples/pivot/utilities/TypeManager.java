@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.8 2011/02/19 12:00:44 ewillink Exp $
+ * $Id: TypeManager.java,v 1.9 2011/03/01 08:47:20 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -46,8 +46,10 @@ import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
@@ -98,7 +100,127 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
  * facilitate alias generation for monikers.
  */
 public class TypeManager extends PivotStandardLibrary implements Adapter
-{
+{	
+	public class CompletePackagePackagesIterable
+		extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Package, org.eclipse.ocl.examples.pivot.Package> {
+		
+		public CompletePackagePackagesIterable(CompletePackage pkg) {
+			super(pkg.getModels());
+		}
+		
+		@Override
+		protected Iterable<org.eclipse.ocl.examples.pivot.Package> getInnerIterable(org.eclipse.ocl.examples.pivot.Package model) {
+			return model.getNestedPackages();
+		}
+		
+		@Override
+		protected org.eclipse.ocl.examples.pivot.Package getInnerValue(org.eclipse.ocl.examples.pivot.Package element) {
+			if (completeEnvironmentManager != null) {
+				return completeEnvironmentManager.getCompletePackage(element).getModel();
+			}
+			else {
+				return element;
+			}
+		}
+	}
+
+	public class CompletePackageTypesIterable
+		extends CompleteElementIterable<org.eclipse.ocl.examples.pivot.Package, Type> {
+		
+		public CompletePackageTypesIterable(CompletePackage pkg) {
+			super(pkg.getModels());
+		}
+		
+		@Override
+		protected Iterable<Type> getInnerIterable(org.eclipse.ocl.examples.pivot.Package model) {
+			return model.getOwnedTypes();
+		}
+		
+		@Override
+		protected Type getInnerValue(Type element) {
+			return getModelType(element);
+		}
+	}
+
+	public class CompleteTypeConstraintsIterable
+			extends CompleteElementIterable<Type, Constraint> {
+
+		public CompleteTypeConstraintsIterable(CompleteType type) {
+			super(type.getModels());
+		}
+
+		@Override
+		protected Iterable<Constraint> getInnerIterable(Type model) {
+			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
+				return ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedRules();
+			}
+			else {
+				return null;
+			}
+		}
+
+		@Override
+		protected Constraint getInnerValue(Constraint element) {
+			return element;
+		}
+	}
+
+	public class CompleteTypeOperationsIterable
+			extends CompleteElementIterable<Type, Operation> {
+
+		public CompleteTypeOperationsIterable(CompleteType type) {
+			super(type.getModels());
+		}
+
+		@Override
+		protected Iterable<Operation> getInnerIterable(Type model) {
+			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
+				return ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedOperations();
+			}
+			else {
+				return null;
+			}
+		}
+
+		@Override
+		protected Operation getInnerValue(Operation element) {
+			if (completeEnvironmentManager != null) {
+				return completeEnvironmentManager.getCompleteOperation(element).getModel();
+			}
+			else {
+				return element;
+			}
+		}
+	}
+	
+	public class CompleteTypePropertiesIterable
+			extends CompleteElementIterable<Type, Property> {
+
+		public CompleteTypePropertiesIterable(CompleteType type) {
+			super(type.getModels());
+		}
+
+		@Override
+		protected Iterable<Property> getInnerIterable(Type model) {
+			if (model instanceof org.eclipse.ocl.examples.pivot.Class) {
+				return ((org.eclipse.ocl.examples.pivot.Class)model).getOwnedAttributes();
+			}
+			else {
+				return null;
+			}
+		}
+
+		@Override
+		protected Property getInnerValue(Property element) {
+			if (completeEnvironmentManager != null) {
+				return completeEnvironmentManager.getCompleteProperty(element).getModel();
+			}
+			else {
+				return element;
+			}
+		}
+	}
+
 	/**
 	 * A TypeManager.NoDefaultLibrary should be used when the OCL standard
 	 * library is loaded as a pivot resource. This may be achieved by associating
@@ -106,7 +228,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	 * before any such models are accessed via a TypeManager.
 	 * <pre>
 	 * 	TypeManager typeManager =  new TypeManager.NoDefaultLibrary();
-	 *	CS2PivotResourceSetAdapter.getAdapter(resourceSet, typeManager);
+	 *	TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
 	 * </pre>
 	 */
 	public static class NoDefaultLibrary extends TypeManager
@@ -197,9 +319,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	protected org.eclipse.ocl.examples.pivot.Package pivotOrphans = null;
 	protected org.eclipse.ocl.examples.pivot.Class pivotClass = null;
 
-	protected final CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this);
-
-	protected Map<URI, Resource> externalResources = null;
+	private CompleteEnvironmentManager completeEnvironmentManager = new CompleteEnvironmentManager(this); // FIXME Use a lightweight when no Complete required
 
 	protected ResourceSet externalResourceSet = null;
 
@@ -227,6 +347,11 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	private Map<String, org.eclipse.ocl.examples.pivot.Package> packageMoniker2packageMap = new HashMap<String, org.eclipse.ocl.examples.pivot.Package>();
 
 	private int unspecifiedTypeCount = 0;
+	
+	/**
+	 * Map of URI to extertnal resource converter.
+	 */
+	private Map<URI, External2Pivot> external2PivotMap = new HashMap<URI, External2Pivot>();
 
 	public TypeManager() {
 		this(new ResourceSetImpl());
@@ -238,6 +363,10 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		pivotResourceSet.eAdapters().add(this);
 //		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
 //			+ " " + pivotResourceSet.getClass().getSimpleName() + "@" + pivotResourceSet.hashCode());		
+	}
+
+	public void addExternalResource(External2Pivot external2Pivot) {
+		external2PivotMap.put(external2Pivot.getURI(), external2Pivot);
 	}
 
 	public Namespace addGlobalNamespace(String name, Namespace namespace) {
@@ -455,6 +584,9 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public boolean conformsTo(Type firstType, Type secondType, Map<TemplateParameter, ParameterableElement> bindings) {
+		if ((firstType == null) || (secondType == null)) {
+			return false;
+		}
 		if (bindings != null) {
 			TemplateParameter firstTemplateParameter = firstType.getOwningTemplateParameter();
 			if (firstTemplateParameter != null) {
@@ -478,7 +610,12 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		if (firstType == secondType) {
 			return true;
 		}
-		else if (secondType instanceof AnyType) {			// FIXME Shouldn't the library model definitions apply here too
+		firstType = getModelType(firstType);
+		secondType = getModelType(secondType);
+		if (firstType == secondType) {
+			return true;
+		}
+		if (secondType instanceof AnyType) {			// FIXME Shouldn't the library model definitions apply here too
 			return true;
 		}
 		else if (firstType instanceof AnyType) {
@@ -634,12 +771,12 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return true;
 	}
 
-	public InvalidLiteralExp createInvalidExpression(Object object, String boundMessage, Throwable e) {
+	public InvalidLiteralExp createInvalidExpression(/*Object object, String boundMessage, Throwable e*/) {
 		InvalidLiteralExp invalidLiteralExp = PivotFactory.eINSTANCE.createInvalidLiteralExp();
 		invalidLiteralExp.setType(getOclInvalidType());
-		invalidLiteralExp.setObject(object);
-		invalidLiteralExp.setReason(boundMessage);
-		invalidLiteralExp.setThrowable(e);
+//		invalidLiteralExp.setObject(object);
+//		invalidLiteralExp.setReason(boundMessage);
+//		invalidLiteralExp.setThrowable(e);
 		return invalidLiteralExp;
 	}
 
@@ -847,6 +984,10 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return completeEnvironmentManager.getCompleteType(type);
 	}
 
+	/**
+	 * Return the CompleteEnvironmentManager, which is null if none yet created.
+	 * Invoke useCompleteEnvironmentManager to create one when required.
+	 */
 	public CompleteEnvironmentManager getCompleteEnvironmentManager() {
 		return completeEnvironmentManager;
 	}
@@ -856,6 +997,19 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return completeEnvironmentManager.getCompletePackage(type);
 	}
 
+	public String getDefaultStandardLibraryURI() {
+		return defaultStandardLibraryURI;
+	}
+
+	public Operation getDynamicOperation(Type dynamicType, Operation staticOperation) {
+//		if (completeEnvironmentManager == null) {
+//			return dynamicType.getDynamicOperation(staticOperation); // FIXME Provide this acceleration
+//		}
+		CompleteType dynamicCompleteType = completeEnvironmentManager.getCompleteType(dynamicType);
+		CompleteOperation staticCompleteOperation = completeEnvironmentManager.getCompleteOperation(staticOperation);
+		return dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
+	}
+
 	public ResourceSet getExternalResourceSet() {
 		if (externalResourceSet == null) {
 			externalResourceSet = new ResourceSetImpl();
@@ -863,15 +1017,11 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return externalResourceSet;
 	}
 
-	public String getDefaultStandardLibraryURI() {
-		return defaultStandardLibraryURI;
-	}
-
-	public Collection<Resource> getExternalResources() {
-		return externalResources != null
-			? externalResources.values()
-			: Collections.<Resource> emptySet();
-	}
+//	public Collection<Resource> getExternalResources() {
+//		return externalResources != null
+//			? externalResources.values()
+//			: Collections.<Resource> emptySet();
+//	}
 
 	public Set<Map.Entry<String, Namespace>> getGlobalNamespaces() {
 		return globalNamespaces.entrySet();
@@ -1015,6 +1165,74 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return specializedType;
 	}
 
+	public Iterable<Constraint> getLocalConstraints(Type type) {
+		if (type.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else if (completeEnvironmentManager == null) {
+			return type.getOwnedRules();
+		}
+		else {
+			CompleteType completeType = completeEnvironmentManager.getCompleteType(type);
+			return new CompleteTypeConstraintsIterable(completeType);
+		}
+	}
+
+	public Iterable<Operation> getLocalOperations(org.eclipse.ocl.examples.pivot.Class type) {
+		if (type.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else if (completeEnvironmentManager == null) {
+			return type.getOwnedOperations();
+		}
+		else {
+			CompleteType completeType = completeEnvironmentManager.getCompleteType(type);
+			return new CompleteTypeOperationsIterable(completeType);
+		}
+	}
+
+	public Iterable<org.eclipse.ocl.examples.pivot.Package> getLocalPackages(org.eclipse.ocl.examples.pivot.Package pkg) {
+		if (completeEnvironmentManager == null) {
+			return pkg.getNestedPackages();
+		}
+		else {
+			CompletePackage completePackage = completeEnvironmentManager.getCompletePackage(pkg);
+			return new CompletePackagePackagesIterable(completePackage);
+		}
+	}
+
+	public Iterable<Property> getLocalProperties(org.eclipse.ocl.examples.pivot.Class type) {
+		if (type.getOwningTemplateParameter() != null) {
+			return Collections.emptyList();
+		}
+		else if (completeEnvironmentManager == null) {
+			return type.getOwnedAttributes();
+		}
+		else {
+			CompleteType completeType = completeEnvironmentManager.getCompleteType(type);
+			return new CompleteTypePropertiesIterable(completeType);
+		}
+	}
+
+	public Iterable<Type> getLocalTypes(org.eclipse.ocl.examples.pivot.Package pkg) {
+		if (completeEnvironmentManager == null) {
+			return pkg.getOwnedTypes();
+		}
+		else {
+			CompletePackage completePackage = completeEnvironmentManager.getCompletePackage(pkg);
+			return new CompletePackageTypesIterable(completePackage);
+		}
+	}
+
+	public Type getModelType(Type type) {
+		if (completeEnvironmentManager != null) {
+			if (type.getOwningTemplateParameter() == null) {
+				return completeEnvironmentManager.getCompleteType(type).getModel();
+			}
+		}
+		return type;
+	}
+
 	public org.eclipse.ocl.examples.pivot.Class getOrphanClass() {
 		if (pivotClass == null) {
 			pivotClass = PivotFactory.eINSTANCE.createClass();
@@ -1108,7 +1326,11 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
 		for (List<TemplateParameter> templateParameters : templateParameterLists) {
 			for (TemplateParameter templateParameter : templateParameters) {
-				templateArguments.add(templateBindings.get(templateParameter));
+				ParameterableElement binding = templateBindings.get(templateParameter);
+//				if (binding instanceof UnspecifiedType) {		// FIXME this is a pragmatic fudge
+//					binding = ((UnspecifiedType)binding).getLowerBound();
+//				}
+				templateArguments.add(binding);
 			}
 		}
 //		int iMax = templateParameters.size();
@@ -1117,6 +1339,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //				"Incorrect template bindings for template type");
 //		}
 		Map<TemplateParameter, ParameterableElement> allBindings = templateBindings; //new HashMap<TemplateParameter, ParameterableElement>();
+		
 //		for (int i = 0; i < iMax; i++) {
 //			TemplateParameter formalParameter = templateParameters.get(i);
 //			ParameterableElement actualType = templateArguments.get(i);
@@ -1196,7 +1419,9 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //			System.out.println("P: " + specializedMoniker);
 			String moniker2 = getSpecializedOperationMoniker(unspecializedOperation, templateArguments, allBindings);
 			String specializedMoniker2 = Pivot2Moniker.toString(specializedOperation);
-			assert moniker2.equals(specializedMoniker2);
+			if (!moniker2.equals(specializedMoniker2)) {
+				logger.warn("Inconsistent monikers:\n\t" + moniker2 + "\n\t" + specializedMoniker2);
+			}
 		}
 		return specializedOperation;
 	}
@@ -1424,6 +1649,52 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return false;
 	}
 
+	/**
+	 * Retyurn true if this type involves an UnspecifiedType.
+	 */
+	public boolean isUnderspecified(ParameterableElement type) {
+		if (type == null) {
+			return false;
+		}
+		if (type instanceof TemplateableElement) {
+			for (TemplateBinding templateBinding : ((TemplateableElement)type).getTemplateBindings()) {
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					if (isUnderspecified((Type) templateParameterSubstitution.getActual())) {
+						return true;
+					}
+				}
+			}
+		}
+		if (type instanceof UnspecifiedType) {
+			return true;
+		}
+		if (type instanceof CollectionType) {
+			return isUnderspecified(((CollectionType)type).getElementType());
+		}
+		if (type instanceof TupleType) {
+			for (Property part : ((TupleType)type).getOwnedAttributes()) {
+				if (isUnderspecified(part.getType())) {
+					return true;
+				}
+			}
+		}
+		if (type instanceof LambdaType) {
+			LambdaType lambdaType = (LambdaType)type;
+			if (isUnderspecified(lambdaType.getContextType())) {
+				return true;
+			}
+			for (Type parameterType : lambdaType.getParameterTypes()) {
+				if (isUnderspecified(parameterType)) {
+					return true;
+				}
+			}
+			if (isUnderspecified(lambdaType.getResultType())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	protected Resource loadDefaultLibrary(String uri) {
 		if (uri == null) {
@@ -1479,13 +1750,19 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 					resource = contribution.getResource();
 				}
 				else {
-					ResourceSet resourceSet = getExternalResourceSet();
-					resource = resourceSet.getResource(resourceURI, true);
-					if (resource != null) {
-						if (externalResources == null) {
-							externalResources = new HashMap<URI, Resource>();
-						}
-						externalResources.put(uri, resource);
+					External2Pivot external2Pivot = external2PivotMap.get(uri);
+					if (external2Pivot != null) {
+						resource = external2Pivot.getResource();
+					}
+					else {
+						ResourceSet resourceSet = getExternalResourceSet();
+						resource = resourceSet.getResource(resourceURI, true);
+//						if (resource != null) {
+//							if (externalResources == null) {
+//								externalResources = new HashMap<URI, Resource>();
+//							}
+//							externalResources.put(uri, resource);
+//						}
 					}
 				}
 			}
@@ -1728,5 +2005,15 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == pivotResourceSet;
+	}
+
+	/**
+	 * Return the CompleteEnvironmentManager, creating one if none yet created.
+	 */
+	public CompleteEnvironmentManager useCompleteEnvironmentManager() {
+		if (completeEnvironmentManager == null) {
+			completeEnvironmentManager = new CompleteEnvironmentManager(this);
+		}
+		return completeEnvironmentManager;
 	}
 }

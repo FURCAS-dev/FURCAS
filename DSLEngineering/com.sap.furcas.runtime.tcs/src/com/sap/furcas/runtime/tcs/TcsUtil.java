@@ -118,7 +118,7 @@ import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
  */
 public class TcsUtil {
 
-    private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("TcsUtilTransientPartition");
+    private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("http://www.furcas.org/TcsUtilTransientPartition");
 	private static final String MQL_ALIAS_INSTANCE = "cs";
 
     /**

@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.9 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.10 2011/03/01 08:47:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -57,7 +57,9 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  * valid for long given the rapid recreation of CST nodes that occurs while
  * editing.
  */
-public class EnvironmentView {
+public class EnvironmentView
+{
+	private static final Logger logger = Logger.getLogger(TypeManager.class);
 
 	public static interface Filter
 	{
@@ -161,7 +163,7 @@ public class EnvironmentView {
 		return 1;
 	}
 
-	public int addElements(Collection<? extends EObject> elements) {
+	public int addElements(Iterable<? extends EObject> elements) {
 		int additions = 0;
 		if (elements != null) {
 			for (EObject element : elements) {
@@ -204,7 +206,7 @@ public class EnvironmentView {
 		return 0;
 	}
 
-	public int addNamedElements(Collection<? extends Nameable> namedElements) {
+	public int addNamedElements(Iterable<? extends Nameable> namedElements) {
 		int additions = 0;
 		if (namedElements != null) {
 			for (Nameable namedElement : namedElements) {
@@ -221,20 +223,27 @@ public class EnvironmentView {
 	}
 	
 	public int computeLookups(ScopeView aScope) {
-		while ((aScope != null) && !hasFinalResult()) {
-			ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
-			if (aScopeAdapter == null) {
-				break;					// The NULLSCOPEVIEW
+		try {
+			while ((aScope != null) && !hasFinalResult()) {
+				ScopeAdapter aScopeAdapter = aScope.getScopeAdapter();
+				if (aScopeAdapter == null) {
+					break;					// The NULLSCOPEVIEW
+				}
+				@SuppressWarnings("unused")
+				EObject aTarget = aScopeAdapter.getTarget();
+				aScope = aScopeAdapter.computeLookup(this, aScope);
 			}
-			@SuppressWarnings("unused")
-			EObject aTarget = aScopeAdapter.getTarget();
-			aScope = aScopeAdapter.computeLookup(this, aScope);
+		}
+		catch (Exception e) {
+			logger.warn("Lookup of '" + name + "' failed", e);
 		}
 		return resolveDuplicates();
 	}
 
 	public EObject getContent() {
-		assert contentsSize == 1;
+		if (contentsSize != 1) {
+			logger.warn("Unhandled ambiguous content for '" + name + "'");
+		}
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
 			if (value instanceof List<?>) {
@@ -249,7 +258,9 @@ public class EnvironmentView {
 	}
 
 	public IEObjectDescription getDescription() {
-		assert contentsSize == 1;
+		if (contentsSize != 1) {
+			logger.warn("Unhandled ambiguous content for '" + name + "'");
+		}
 		for (Map.Entry<String, Object> entry : contentsByName.entrySet()) {
 			Object value = entry.getValue();
 			if (value instanceof List<?>) {

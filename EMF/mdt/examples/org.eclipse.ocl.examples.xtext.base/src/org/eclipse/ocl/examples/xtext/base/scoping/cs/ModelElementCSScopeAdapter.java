@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.4 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.5 2011/03/01 08:47:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -68,7 +68,7 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 			return null;
 		}
 		if (!pivotClass.isAssignableFrom(pivot.getClass())) {
-			throw new ClassCastException("Incorrect pivot class");
+			throw new ClassCastException(pivot.getClass().getName() + " is not assignable to " + pivotClass.getName());
 		}
 		@SuppressWarnings("unchecked")
 		P castPivot = (P) pivot;
@@ -102,6 +102,9 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 		// FIXME Use this for all namespace lists and all nested qualified names
 		InternalEList<Namespace> internalNamespaces = (InternalEList<Namespace>)namespaces;
 		int iMax = internalNamespaces.size();
+		//
+		//	A normal parse traverses unresolved proxies.
+		//
 		for (int i = 0; i < iMax; i++) {
 			Namespace namespace = internalNamespaces.basicGet(i);
 			if (namespace.eIsProxy()) {
@@ -117,6 +120,15 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 						return null;
 					}
 				}
+			}
+		}
+		//
+		//	A serialization traverses them all again just for fun.
+		//
+		for (Namespace namespace : namespaces) {
+			environmentView.addNamedElement(namespace);
+			if (environmentView.hasFinalResult()) {
+				break;
 			}
 		}
 		return null;
