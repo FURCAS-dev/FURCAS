@@ -91,14 +91,31 @@ public class ParsingOptions {
     public static final Option<?> IMPLICIT_ROOT_CLASS =
         new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
 
+    
+    /**
+     * The alternative strategies for resolving the package name at the start of a path name.
+     * <p>
+     * <tt>LOOKUP_PACKAGE_BY_NAME</tt> is the default and traditional behavior whereby packages
+     * in the package registry with a matching package name are considered.
+     * <p>
+     * <tt>LOOKUP_PACKAGE_BY_ALIAS</tt> matches package names according to the 'nsURI' key in the
+     * for the associated package registry entry. This allows the 'nsURI' to be interpreted as
+     * an alias. Multiple 'nsURI' aliases may reference the same package. This strategy is only
+     * supported for the Ecore binding.
+     * 
+	 * @since 3.1
+	 */
+    public static enum PACKAGE_LOOKUP_STRATEGIES { LOOKUP_PACKAGE_BY_NAME, LOOKUP_PACKAGE_BY_ALIAS };
+    
     /**
      * <p>
      * Static instance for the lookup-package-by-aliase option token.  It is returned
      * via an unchecked cast by the {@link #implicitRootClass()} method.
      * </p>
+     * @since 3.1
      */
-    public static final Option<Boolean> LOOKUP_PACKAGE_BY_ALIAS =
-        new BasicOption<Boolean>("lookup.package.by.alias", false); //$NON-NLS-1$
+    public static final Option<PACKAGE_LOOKUP_STRATEGIES> PACKAGE_LOOKUP_STRATEGY =
+        new BasicOption<PACKAGE_LOOKUP_STRATEGIES>("lookup.package.by.alias", PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_NAME); //$NON-NLS-1$
 
 	/**
 	 * <p>

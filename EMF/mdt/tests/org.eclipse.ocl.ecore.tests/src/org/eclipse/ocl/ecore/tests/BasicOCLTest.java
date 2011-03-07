@@ -65,7 +65,9 @@ public class BasicOCLTest
 		r.put("EMFEcore", EcorePackage.eINSTANCE);
 		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
-		((EcoreEnvironment) ocl.getEnvironment()).setOption(ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS, true);
+		((EcoreEnvironment) ocl.getEnvironment()).setOption(
+			ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
+			ParsingOptions.PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_ALIAS);
 		Helper helper = ocl.createOCLHelper();
 		helper.setContext(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression());
 		org.eclipse.ocl.ecore.OCLExpression expr = helper.createQuery(
@@ -86,6 +88,32 @@ public class BasicOCLTest
 		assertSame(
 			org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression(),
 			oclEcoreOCLExpression.getReferredType());
+	}
+
+	/**
+	 * Ensure that regular package names are still found even if alias lookup strategy is selected
+	 */
+	public void testRegularPackageNameWithAliasLookupEnabled()
+			throws ParserException {
+		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
+		eCls.setName("bar");
+		Registry r = new EPackageRegistryImpl(EPackage.Registry.INSTANCE); // delegating registry
+		r.put("EMFEcore", EcorePackage.eINSTANCE);
+		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
+		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
+		((EcoreEnvironment) ocl.getEnvironment()).setOption(
+			ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
+			ParsingOptions.PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_ALIAS);
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE
+			.getOCLExpression());
+		org.eclipse.ocl.ecore.OCLExpression expr = helper
+			.createQuery("self.oclIsKindOf(ecore::OCLExpression)");
+		OperationCallExp oclIsKindOf = (OperationCallExp) expr;
+		TypeExp emfEcoreEClassifier = (TypeExp) oclIsKindOf.getArgument().get(0);
+		assertSame(
+			org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression(),
+			emfEcoreEClassifier.getReferredType());
 	}
 
     public void hide_test_createStandardLibrary() {
