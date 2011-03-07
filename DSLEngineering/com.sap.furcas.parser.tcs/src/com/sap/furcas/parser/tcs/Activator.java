@@ -29,7 +29,7 @@ public class Activator extends AbstractSyntaxProvider<TCSParser, TCSLexer> imple
     public void stop(BundleContext context) throws Exception {
     }
     
-    public static Activator getInstance() {
+    public static Activator getDefault() {
         if (instance == null) {
             // non-OSGi mode?
             instance = new Activator();
