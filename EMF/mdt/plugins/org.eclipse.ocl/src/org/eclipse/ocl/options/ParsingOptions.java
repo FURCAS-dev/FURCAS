@@ -91,6 +91,15 @@ public class ParsingOptions {
     public static final Option<?> IMPLICIT_ROOT_CLASS =
         new BasicOption<Object>("implict.root.class", null); //$NON-NLS-1$
 
+    /**
+     * <p>
+     * Static instance for the lookup-package-by-aliase option token.  It is returned
+     * via an unchecked cast by the {@link #implicitRootClass()} method.
+     * </p>
+     */
+    public static final Option<Boolean> LOOKUP_PACKAGE_BY_ALIAS =
+        new BasicOption<Boolean>("lookup.package.by.alias", false); //$NON-NLS-1$
+
 	/**
 	 * <p>
 	 * Parsing option indicating whether to process backslash escape sequences (
