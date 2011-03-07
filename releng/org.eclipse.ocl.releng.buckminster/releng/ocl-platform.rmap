@@ -37,13 +37,18 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="emfcompare">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(|(build.type=N)(build.type=I))">
-      <rm:uri format="{0}/modeling/emf/compare/updates/milestones">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(build.type=N)">
+      <rm:uri format="{0}/modeling/emf/compare/updates/nightly/1.1">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(build.type=I)">
+      <rm:uri format="{0}/modeling/emf/compare/updates/interim/1.1">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false" resolutionFilter="(build.type=S)">
-      <rm:uri format="{0}/modeling/emf/compare/updates/milestones">
+      <rm:uri format="{0}/modeling/emf/compare/updates/milestones/1.1">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
