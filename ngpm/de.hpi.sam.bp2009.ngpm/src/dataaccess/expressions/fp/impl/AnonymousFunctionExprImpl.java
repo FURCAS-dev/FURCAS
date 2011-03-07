@@ -66,7 +66,8 @@ public class AnonymousFunctionExprImpl extends ExpressionImpl implements Anonymo
      */
 	public FunctionSignatureImplementation getImplementation() {
         try {
-            return (FunctionSignatureImplementation)GET_IMPLEMENTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            FunctionSignatureImplementation result = (FunctionSignatureImplementation) GET_IMPLEMENTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

@@ -492,7 +492,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
      */
 	public boolean conformsTo(Signature s) {
         try {
-            return (Boolean)CONFORMS_TO_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{s}));
+            Boolean result = (Boolean) CONFORMS_TO_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{s}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -516,7 +517,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
      */
 	public boolean conformsToExcluding(Signature s, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
         try {
-            return (Boolean)CONFORMS_TO_EXCLUDING_SIGNATURE_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{s, excludingConforming, excludingTo}));
+            Boolean result = (Boolean) CONFORMS_TO_EXCLUDING_SIGNATURE_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{s, excludingConforming, excludingTo}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -540,7 +542,9 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
      */
 	public EList<NamedValue> getNamedValuesInScope() {
         try {
-            return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -564,7 +568,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
      */
 	public SapClass getOwningClass() {
         try {
-            return (SapClass)GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            SapClass result = (SapClass) GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

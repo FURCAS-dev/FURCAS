@@ -100,7 +100,8 @@ public class WhileLoopImpl extends ConditionalStatementImpl implements WhileLoop
      */
 	public Block getLoopBody() {
         try {
-            return (Block)GET_LOOP_BODY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Block result = (Block) GET_LOOP_BODY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

@@ -136,7 +136,8 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public Block getOutermostBlock() {
         try {
-            return (Block)GET_OUTERMOST_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Block result = (Block) GET_OUTERMOST_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -160,7 +161,8 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public boolean isSideEffectFree() {
         try {
-            return (Boolean)IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -184,7 +186,8 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public boolean isSideEffectFreeForBlock(Block block) {
         try {
-            return (Boolean)IS_SIDE_EFFECT_FREE_FOR_BLOCK_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{block}));
+            Boolean result = (Boolean) IS_SIDE_EFFECT_FREE_FOR_BLOCK_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{block}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -208,7 +211,9 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public EList<NamedValue> getNamedValuesInScope() {
         try {
-            return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -232,7 +237,8 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public SapClass getOwningClass() {
         try {
-            return (SapClass)GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            SapClass result = (SapClass) GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -256,7 +262,9 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
      */
 	public EList<NamedValue> addNamedValuesWithNewNames(EList<NamedValue> inner, EList<NamedValue> outer) {
         try {
-            return (EList<NamedValue>)ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

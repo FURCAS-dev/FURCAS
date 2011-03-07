@@ -299,7 +299,8 @@ public class ValueSetImpl extends NamedElementImpl implements ValueSet {
      */
 	public boolean conformsTo(TypedElement typedElement) {
         try {
-            return (Boolean)CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            Boolean result = (Boolean) CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -323,7 +324,8 @@ public class ValueSetImpl extends NamedElementImpl implements ValueSet {
      */
 	public TypeDefinition getType() {
         try {
-            return (TypeDefinition)GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
