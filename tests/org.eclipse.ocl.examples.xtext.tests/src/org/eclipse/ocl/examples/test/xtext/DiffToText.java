@@ -12,25 +12,25 @@
  *
  * </copyright>
  *
- * $Id: DiffToText.java,v 1.2 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: DiffToText.java,v 1.3 2011/03/07 15:16:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
 import java.util.List;
 
-import org.eclipse.emf.compare.diff.metamodel.DiffElement;
-import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
-import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
-import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
+//import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+//import org.eclipse.emf.compare.diff.metamodel.DiffGroup;
+//import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+//import org.eclipse.emf.compare.diff.metamodel.UpdateAttribute;
+//import org.eclipse.emf.compare.diff.metamodel.UpdateReference;
+//import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class DiffToText extends DiffSwitch<Boolean>
+public class DiffToText //extends DiffSwitch<Boolean>
 {
-	protected final StringBuffer s;
+/*	protected final StringBuffer s;
 	protected int depth = 0;
 
 	public DiffToText(StringBuffer s) {
@@ -113,5 +113,5 @@ public class DiffToText extends DiffSwitch<Boolean>
 		for (int i = 0; i < depth; i++) {
 			s.append("  ");
 		}
-	}
+	} */
 }

@@ -33,13 +33,13 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.compare.diff.metamodel.DiffModel;
-import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
-import org.eclipse.emf.compare.diff.service.DiffService;
-import org.eclipse.emf.compare.match.MatchOptions;
-import org.eclipse.emf.compare.match.metamodel.MatchModel;
-import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
-import org.eclipse.emf.compare.match.service.MatchService;
+//import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+//import org.eclipse.emf.compare.diff.metamodel.util.DiffSwitch;
+//import org.eclipse.emf.compare.diff.service.DiffService;
+//import org.eclipse.emf.compare.match.MatchOptions;
+//import org.eclipse.emf.compare.match.metamodel.MatchModel;
+//import org.eclipse.emf.compare.match.metamodel.UnmatchElement;
+//import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -200,7 +200,7 @@ public class XtextTestCase extends TestCase
 	}
 	
 	public static void assertSameModel(Resource expectedResource, Resource actualResource) throws IOException, InterruptedException {
-		Map<String,Object> options = new HashMap<String,Object>();
+/*		Map<String,Object> options = new HashMap<String,Object>();
 		options.put(MatchOptions.OPTION_IGNORE_XMI_ID, Boolean.TRUE);
 //		options.put(MatchOptions.OPTION_DISTINCT_METAMODELS, Boolean.TRUE);
         MatchModel match = MatchService.doResourceMatch(actualResource, expectedResource, options);
@@ -231,7 +231,7 @@ public class XtextTestCase extends TestCase
 			diffSwitch.doSwitch(diff);
 //            System.out.println(ModelUtils.serialize(diff));
 			fail(s.toString());
-		}
+		} */
 	}
 	
 	/**
