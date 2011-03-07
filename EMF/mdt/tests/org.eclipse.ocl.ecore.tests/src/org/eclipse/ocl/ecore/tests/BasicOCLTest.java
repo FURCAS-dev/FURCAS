@@ -131,7 +131,7 @@ public class BasicOCLTest
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
 		((EcoreEnvironment) ocl.getEnvironment()).setOption(
 			ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
-			ParsingOptions.PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_ALIAS);
+			ParsingOptions.PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME);
 		Helper helper = ocl.createOCLHelper();
 		helper.setContext(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE
 			.getOCLExpression());
