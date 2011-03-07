@@ -338,7 +338,8 @@ public class CellSetImpl extends FunctionSignatureImplementationImpl implements 
      */
 	public TypeDefinition keyFigureType() {
         try {
-            return (TypeDefinition)KEY_FIGURE_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) KEY_FIGURE_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -362,7 +363,8 @@ public class CellSetImpl extends FunctionSignatureImplementationImpl implements 
      */
 	public TypeDefinition cellType() {
         try {
-            return (TypeDefinition)CELL_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) CELL_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -386,7 +388,8 @@ public class CellSetImpl extends FunctionSignatureImplementationImpl implements 
      */
 	public boolean localIsSideEffectFree() {
         try {
-            return (Boolean)LOCAL_IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) LOCAL_IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

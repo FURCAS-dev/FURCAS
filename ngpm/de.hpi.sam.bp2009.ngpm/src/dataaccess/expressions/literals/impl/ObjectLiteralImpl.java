@@ -155,7 +155,8 @@ public class ObjectLiteralImpl extends ExpressionImpl implements ObjectLiteral {
      */
 	public boolean isEqualTo(ObjectLiteral o) {
         try {
-            return (Boolean)IS_EQUAL_TO_OBJECT_LITERAL__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{o}));
+            Boolean result = (Boolean) IS_EQUAL_TO_OBJECT_LITERAL__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{o}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

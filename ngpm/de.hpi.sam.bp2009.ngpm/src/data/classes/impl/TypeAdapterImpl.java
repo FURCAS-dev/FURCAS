@@ -200,7 +200,8 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
      */
 	public boolean conformsTo(SapClass type) {
         try {
-            return (Boolean)CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+            Boolean result = (Boolean) CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -224,7 +225,8 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
      */
 	public boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
         try {
-            return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+            Boolean result = (Boolean) CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -248,7 +250,9 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
      */
 	public EList<MethodSignature> allSignatures() {
         try {
-            return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -272,7 +276,9 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
      */
 	public EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding) {
         try {
-            return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

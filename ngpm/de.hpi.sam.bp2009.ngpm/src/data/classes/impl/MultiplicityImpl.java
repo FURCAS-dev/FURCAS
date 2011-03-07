@@ -238,7 +238,8 @@ public abstract class MultiplicityImpl extends EObjectImpl implements Multiplici
      */
 	public boolean isMany() {
         try {
-            return (Boolean)IS_MANY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_MANY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

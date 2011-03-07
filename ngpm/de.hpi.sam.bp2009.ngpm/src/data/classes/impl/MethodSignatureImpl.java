@@ -432,7 +432,8 @@ public class MethodSignatureImpl extends SignatureImpl implements MethodSignatur
      */
 	public boolean isAbstract() {
         try {
-            return (Boolean)IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

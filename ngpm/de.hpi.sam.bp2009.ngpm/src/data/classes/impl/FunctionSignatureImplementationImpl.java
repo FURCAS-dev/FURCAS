@@ -126,7 +126,8 @@ public class FunctionSignatureImplementationImpl extends SignatureImplementation
      */
 	public boolean isSideEffectFree() {
         try {
-            return (Boolean)IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

@@ -286,7 +286,8 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
      */
 	public String getName() {
         try {
-            return (String)GET_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            String result = (String) GET_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
