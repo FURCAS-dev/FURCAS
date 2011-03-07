@@ -438,6 +438,12 @@ public class EcoreEnvironment
 			case LOOKUP_PACKAGE_BY_ALIAS:
 				pkg = findPackageByAlias(newNames, registry);
 				break;
+			case LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME:
+				pkg = findPackageByAlias(newNames, registry);
+				if (pkg == null) {
+					pkg = findPackage(newNames, registry);
+				}
+				break;
 			case LOOKUP_PACKAGE_BY_NAME:
 				pkg = findPackage(newNames, registry);
 				break;
@@ -697,8 +703,6 @@ public class EcoreEnvironment
 		if (ePackage != null) {
 			List<String> packageSubList = packageNames.subList(1, packageNames.size());
 			ePackage = findNestedPackage(packageSubList, ePackage);
-		} else {
-			ePackage = findPackage(packageNames, registry);
 		}
 		return ePackage;
 	}
