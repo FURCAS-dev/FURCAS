@@ -30,10 +30,19 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
@@ -49,6 +58,36 @@ import org.eclipse.ocl.types.CollectionType;
 public class BasicOCLTest
 	extends AbstractTestSuite {
     
+	public void testAliasPackageName() throws ParserException {
+		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
+		eCls.setName("bar");
+		Registry r = new EPackageRegistryImpl(EPackage.Registry.INSTANCE); // delegating registry
+		r.put("EMFEcore", EcorePackage.eINSTANCE);
+		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
+		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
+		((EcoreEnvironment) ocl.getEnvironment()).setOption(ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS, true);
+		Helper helper = ocl.createOCLHelper();
+		helper.setContext(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression());
+		org.eclipse.ocl.ecore.OCLExpression expr = helper.createQuery(
+			"self.oclIsKindOf(EMFEcore::EClassifier) and not self.oclIsKindOf(OCLEcore::OCLExpression)");
+		assertTrue(check(expr, eCls));
+		OperationCallExp and = (OperationCallExp) expr;
+		OperationCallExp selfOclIsKindOfEMFEcoreEClassifier = (OperationCallExp) and
+			.getSource();
+		TypeExp emfEcoreEClassifier = (TypeExp) selfOclIsKindOfEMFEcoreEClassifier
+			.getArgument().get(0);
+		assertSame(EcorePackage.eINSTANCE.getEClassifier(),
+			emfEcoreEClassifier.getReferredType());
+		OperationCallExp not = (OperationCallExp) and.getArgument().get(0);
+		OperationCallExp selfOclIsKindOfOCLEcoreOCLExpression = (OperationCallExp) not
+			.getSource();
+		TypeExp oclEcoreOCLExpression = (TypeExp) selfOclIsKindOfOCLEcoreOCLExpression
+			.getArgument().get(0);
+		assertSame(
+			org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression(),
+			oclEcoreOCLExpression.getReferredType());
+	}
+
     public void hide_test_createStandardLibrary() {
         Resource res = ocl.getEnvironment().getOCLStandardLibrary().getOclAny().eResource();
         URI oldURI = res.getURI();

@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -363,7 +365,11 @@ public class EcoreEnvironment
 		}
 		
 		// Check whether this package exists in the global package registry
-		return findPackage(path, registry);
+		if (ParsingOptions.getValue(this, ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS)) {
+			return findPackageWithAlias(path, registry);
+		} else {
+			return findPackage(path, registry);
+		}
 	}
 
     // implements the inherited specification
@@ -389,11 +395,7 @@ public class EcoreEnvironment
 					}
 					
 					if (pkg != null) {
-						EClassifier result = EcoreForeignMethods.getEClassifier(pkg, lookup
-                            .get(lookup.size() - 1));
-						if (result != null) {
-							return result;
-						}
+						return EcoreForeignMethods.getEClassifier(pkg, lookup.get(lookup.size() - 1));
 					}
 
                     if ((currPkg == getContextPackage()) && (lookup.size() > 1)
@@ -410,7 +412,11 @@ public class EcoreEnvironment
 			
 			// Check whether this package exists
 			List<String> newNames = names.subList(0, names.size() - 1);
-			pkg = findPackage(newNames, registry);
+			if (ParsingOptions.getValue(this, ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS)) {
+				pkg = findPackageWithAlias(newNames, registry);
+			} else {
+				pkg = findPackage(newNames, registry);
+			}
 			if (pkg == null) {
 				return null;
 			}
@@ -650,6 +656,49 @@ public class EcoreEnvironment
 		}
 
 		return findPackageByNSPrefix(packageNames, registry);
+	}
+
+	/**
+	 * Looks in the given registry for a package with the specified qualified
+	 * package name. Different from
+	 * {@link #findPackage(List, org.eclipse.emf.ecore.EPackage.Registry)}, this
+	 * method first checks for <em>keys</em> in the <code>registry</code> to
+	 * match the package names concatenated by "::". This can, for example, be
+	 * used to disambiguate between the EMF "ecore" and the OCL "ocl::ecore"
+	 * packages as follows: a specific registry can be set up, e.g., as a
+	 * {@link EPackageRegistryImpl#EPackageRegistryImpl(org.eclipse.emf.ecore.EPackage.Registry)
+	 * delegating registry} and the ambiguous packages can be registered with alias names
+	 * as their URIs. The aliases can then be specified as package names.<p>
+	 * 
+	 * If lookup by alias in the registry's keys fails, lookup resorts to the behavior of
+	 * {@link #findPackage(List, org.eclipse.emf.ecore.EPackage.Registry)}.
+	 * 
+	 * @param packageNames
+	 *            the qualified package name
+	 * @param registry
+	 *            the EPackage.Registry to look in
+	 * @return the matching EPackage, or <code>null</code> if not found
+	 */
+	static private EPackage findPackageWithAlias(List<String> packageNames, EPackage.Registry registry) {
+		if (packageNames.isEmpty()) {
+			return null;
+		}
+		StringBuilder aliasBuilder = new StringBuilder();
+		boolean first = true;
+		for (String packageName : packageNames) {
+			if (!first) {
+				aliasBuilder.append("::"); //$NON-NLS-1$
+			} else {
+				first = false;
+			}
+			aliasBuilder.append(packageName);
+		}
+		EPackage result = registry.getEPackage(aliasBuilder.toString());
+		if (result != null) {
+			return result;
+		} else {
+			return findPackage(packageNames, registry);
+		}
 	}
 
 	/**
