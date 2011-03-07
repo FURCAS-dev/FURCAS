@@ -694,11 +694,13 @@ public class EcoreEnvironment
 		}       
 		String name = packageNames.get(0);
 		EPackage ePackage = registry.getEPackage(name);
-		if (ePackage == null) {
-			return null;
+		if (ePackage != null) {
+			List<String> packageSubList = packageNames.subList(1, packageNames.size());
+			ePackage = findNestedPackage(packageSubList, ePackage);
+		} else {
+			ePackage = findPackage(packageNames, registry);
 		}
-		List<String> packageSubList = packageNames.subList(1, packageNames.size());
-		return findNestedPackage(packageSubList, ePackage);
+		return ePackage;
 	}
 
 	/**
