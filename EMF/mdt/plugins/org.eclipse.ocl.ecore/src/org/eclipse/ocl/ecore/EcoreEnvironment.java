@@ -365,11 +365,7 @@ public class EcoreEnvironment
 		}
 		
 		// Check whether this package exists in the global package registry
-		if (ParsingOptions.getValue(this, ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS)) {
-			return findPackageWithAlias(path, registry);
-		} else {
-			return findPackage(path, registry);
-		}
+		return findPackageWithStrategy(path, registry);
 	}
 
     // implements the inherited specification
@@ -395,7 +391,8 @@ public class EcoreEnvironment
 					}
 					
 					if (pkg != null) {
-						return EcoreForeignMethods.getEClassifier(pkg, lookup.get(lookup.size() - 1));
+						return EcoreForeignMethods.getEClassifier(pkg, lookup
+                            .get(lookup.size() - 1));
 					}
 
                     if ((currPkg == getContextPackage()) && (lookup.size() > 1)
@@ -412,11 +409,7 @@ public class EcoreEnvironment
 			
 			// Check whether this package exists
 			List<String> newNames = names.subList(0, names.size() - 1);
-			if (ParsingOptions.getValue(this, ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS)) {
-				pkg = findPackageWithAlias(newNames, registry);
-			} else {
-				pkg = findPackage(newNames, registry);
-			}
+			pkg = findPackageWithStrategy(newNames, registry);
 			if (pkg == null) {
 				return null;
 			}
@@ -437,6 +430,22 @@ public class EcoreEnvironment
 		}
 		
 		return null;
+	}
+
+	private EPackage findPackageWithStrategy(List<String> newNames, EPackage.Registry registry) {
+		EPackage pkg;
+		switch (ParsingOptions.getValue(this, ParsingOptions.PACKAGE_LOOKUP_STRATEGY)) {
+			case LOOKUP_PACKAGE_BY_ALIAS:
+				pkg = findPackageByAlias(newNames, registry);
+				break;
+			case LOOKUP_PACKAGE_BY_NAME:
+				pkg = findPackage(newNames, registry);
+				break;
+			default:
+				throw new RuntimeException("Unknown PACKAGE_LOOKUP_STRATEGY value "+ //$NON-NLS-1$
+					ParsingOptions.getValue(this, ParsingOptions.PACKAGE_LOOKUP_STRATEGY));
+		}
+		return pkg;
 	}
 	
 	/**
@@ -679,26 +688,17 @@ public class EcoreEnvironment
 	 *            the EPackage.Registry to look in
 	 * @return the matching EPackage, or <code>null</code> if not found
 	 */
-	static private EPackage findPackageWithAlias(List<String> packageNames, EPackage.Registry registry) {
+	static private EPackage findPackageByAlias(List<String> packageNames, EPackage.Registry registry) {
 		if (packageNames.isEmpty()) {
 			return null;
+		}       
+		String name = packageNames.get(0);
+		EPackage ePackage = registry.getEPackage(name);
+		if (ePackage == null) {
+			return null;
 		}
-		StringBuilder aliasBuilder = new StringBuilder();
-		boolean first = true;
-		for (String packageName : packageNames) {
-			if (!first) {
-				aliasBuilder.append("::"); //$NON-NLS-1$
-			} else {
-				first = false;
-			}
-			aliasBuilder.append(packageName);
-		}
-		EPackage result = registry.getEPackage(aliasBuilder.toString());
-		if (result != null) {
-			return result;
-		} else {
-			return findPackage(packageNames, registry);
-		}
+		List<String> packageSubList = packageNames.subList(1, packageNames.size());
+		return findNestedPackage(packageSubList, ePackage);
 	}
 
 	/**
