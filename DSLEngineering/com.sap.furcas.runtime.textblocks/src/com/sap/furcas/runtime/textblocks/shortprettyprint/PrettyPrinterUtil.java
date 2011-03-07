@@ -1,31 +1,18 @@
 package com.sap.furcas.runtime.textblocks.shortprettyprint;
 
+import java.util.regex.Matcher;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.utils.StringUtil;
 
 public class PrettyPrinterUtil {
 
-    public static String printUsingSerializer(String value, Template template) {
-        if (template != null && template instanceof PrimitiveTemplate) {
-            if (((PrimitiveTemplate) template).getSerializer() != null
-                    && !((PrimitiveTemplate) template).getSerializer().equals(
-                            "")) {
-                PrimitiveTemplate primTemplate = (PrimitiveTemplate) template;
-                if (primTemplate.getSerializer().contains("%value%")) {
-                    return primTemplate.getSerializer()
-                            .replaceAll(
-                                    "%value%",
-                                    java.util.regex.Matcher
-                                            .quoteReplacement(( value)
-                                                    .replaceAll("\"",
-                                                            "\\\\\\\"")));
-                } else {
-		    return primTemplate.getSerializer();
-		}
-            } else {
-                return value;
-            }
+    public static String printUsingSerializer(String value, PrimitiveTemplate template) {
+        if (template != null && template.getSerializer() != null && !template.getSerializer().equals("")) {
+            String serializer = StringUtil.unescapeString(template.getSerializer());
+            return serializer.replaceAll("%value%", Matcher.quoteReplacement(value));
         } else {
             return value;
         }

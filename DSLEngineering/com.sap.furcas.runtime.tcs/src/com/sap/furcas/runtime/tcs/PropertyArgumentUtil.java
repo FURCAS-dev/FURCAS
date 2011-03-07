@@ -263,5 +263,9 @@ public class PropertyArgumentUtil {
     public static boolean containsLookupScopePArg(Property p) {
         return PropertyArgumentUtil.getLookupScopePArg(p) != null;
     }
+    
+    public static boolean containsReferenceByPArg(Property p) {
+        return PropertyArgumentUtil.getReferenceByPArg(p) != null;
+    }
 
 }

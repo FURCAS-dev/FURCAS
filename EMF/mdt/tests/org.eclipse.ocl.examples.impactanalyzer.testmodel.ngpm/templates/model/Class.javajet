@@ -1,4 +1,4 @@
-<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.util.CodeGenUtil" class="Class" version="$Id: Class.javajet,v 1.1 2011/03/05 21:37:36 auhl Exp $" %>
+<%@ jet package="org.eclipse.emf.codegen.ecore.templates.model" imports="java.util.* org.eclipse.emf.codegen.ecore.genmodel.* org.eclipse.emf.codegen.util.CodeGenUtil" class="Class" version="$Id: Class.javajet,v 1.3 2011/03/06 08:48:00 auhl Exp $" %>
 <%
 /**
  * <copyright>
@@ -13,6 +13,10 @@
  *   IBM - Initial API and implementation
  *
  * </copyright>
+ *
+ * This version is a (temporary) copy of /org.eclipse.emf.codegen.ecore/templates/model/Class.javajet
+ * in order to add @SuppressWarning("unchecked") for unsafe casts in delegating operations. Branched
+ * from original's CVS version 1.91.
  */
 %>
 <%final GenClass genClass = (GenClass)((Object[])argument)[0]; final GenPackage genPackage = genClass.getGenPackage(); final GenModel genModel=genPackage.getGenModel();%>
@@ -1498,11 +1502,11 @@ if (index != -1) { head = typeName.substring(0, index); tail = typeName.substrin
     <%if (genOperation.isVoid()) {%>
 			<%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE.dynamicInvoke(this, <%if (size > 0) {%>new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%>.UnmodifiableEList<Object>(<%=size%>, <%=genOperation.getParametersArray(genClass)%>)<%} else {%>null<%}%>);
     <%} else {
-        if (genOperation.getObjectType(genClass).contains("<")) {
+        if (genOperation.isUncheckedCast(genClass)) {
             // means that this is a generic type and the cast is unsafe %>
             @SuppressWarnings("unchecked")<%
         }%>
-			<%=genOperation.getObjectType(genClass)%> result = (<%=genOperation.getObjectType(genClass)%>) <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE.dynamicInvoke(this, <%if (size > 0) {%>new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%>.UnmodifiableEList<Object>(<%=size%>, <%=genOperation.getParametersArray(genClass)%>)<%} else {%>null<%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>).<%=genOperation.getPrimitiveValueFunction()%>()<%}%>;
+			<%=genOperation.getObjectType(genClass)%> result = <%if (!isJDK50 && genOperation.isPrimitiveType()) {%>(<%}%>(<%=genOperation.getObjectType(genClass)%>) <%=CodeGenUtil.upperName(genClass.getUniqueName(genOperation), genModel.getLocale())%>__EINVOCATION_DELEGATE.dynamicInvoke(this, <%if (size > 0) {%>new <%=genModel.getImportedName("org.eclipse.emf.common.util.BasicEList")%>.UnmodifiableEList<Object>(<%=size%>, <%=genOperation.getParametersArray(genClass)%>)<%} else {%>null<%}%>)<%if (!isJDK50 && genOperation.isPrimitiveType()) {%>).<%=genOperation.getPrimitiveValueFunction()%>()<%}%>;
 			return result;
     <%}%>
 		}
