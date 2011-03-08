@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.8 2011/03/08 15:10:14 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.9 2011/03/08 16:20:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -273,14 +273,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
-				append("<");
+				append("(");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
 					safeVisit(templateParameter.getParameteredElement());
 					prefix = ",";
 				}
-				append(">");
+				append(")");
 			}
 		}
 	}
