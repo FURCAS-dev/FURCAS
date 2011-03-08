@@ -22,7 +22,7 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
     private static Activator plugin;
 
     public Activator() {
-        delegate = new SyntaxProviderImpl<$CapLangName$Parser, $CapLangName$Lexer>(new $CapLangName$ParserFactory(),
+        delegate = new SyntaxProviderImpl(new $ProjectName$.parser.$CapLangName$ParserFactory(),
                 DefaultOppositeEndFinder.getInstance());
     }
 

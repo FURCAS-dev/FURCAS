@@ -150,7 +150,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         return null;
     }
 
-    private void buildGrammar(IResource resource, IProgressMonitor monitor) throws CoreException {
+    public void buildGrammar(IResource resource, IProgressMonitor monitor) throws CoreException {
         if (!(resource instanceof IFile && resource.getName().endsWith(Constants.TCS_EXTENSION))) {
             return; // nothing to build
         }

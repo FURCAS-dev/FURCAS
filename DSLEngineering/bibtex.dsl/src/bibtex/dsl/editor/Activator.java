@@ -1,8 +1,5 @@
 package bibtex.dsl.editor; 
 
-import generated.BibtexLexer;
-import generated.BibtexParser;
-
 import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -14,8 +11,8 @@ import org.osgi.framework.BundleContext;
 import bibtex.dsl.parser.BibtexParserFactory;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
+import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
 
 /**
@@ -28,7 +25,7 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
     private static Activator plugin;
 
     public Activator() {
-        delegate = new SyntaxProviderImpl<BibtexParser, BibtexLexer>(new BibtexParserFactory(),
+        delegate = new SyntaxProviderImpl(new BibtexParserFactory(),
                 DefaultOppositeEndFinder.getInstance());
     }
 

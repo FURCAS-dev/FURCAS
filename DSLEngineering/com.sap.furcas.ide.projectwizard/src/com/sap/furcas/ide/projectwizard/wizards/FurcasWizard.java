@@ -213,7 +213,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
     /**
      * This method is only called if the user chooses to create a new Metamodel Project. It uses the <code>create()</code> method
-     * of {@link}CreateMMProject to generate the project. And it then opens the file in the editor.
+     * of {@link CreateMMProject} to generate the project. And it then opens the file in the editor.
      * 
      * @param pi
      *            The user input.

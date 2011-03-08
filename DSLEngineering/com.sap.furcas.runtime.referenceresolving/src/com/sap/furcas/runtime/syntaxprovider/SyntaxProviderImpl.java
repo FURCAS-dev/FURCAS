@@ -2,7 +2,6 @@ package com.sap.furcas.runtime.syntaxprovider;
 
 import java.io.IOException;
 
-import org.antlr.runtime.Lexer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -15,18 +14,17 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
-public class SyntaxProviderImpl<P extends ObservableInjectingParser, L extends Lexer> implements SyntaxProvider {
+public class SyntaxProviderImpl implements SyntaxProvider {
     private ResourceSet resourceSet;
     private ConcreteSyntax syntax;
     private Resource syntaxResource;
-    private final AbstractParserFactory<P, L> parserFactory;
+    private final AbstractParserFactory<?, ?> parserFactory;
     private TriggerManager triggerManager;
     private final OppositeEndFinder oppositeEndFinder;
     
-    public SyntaxProviderImpl(AbstractParserFactory<P, L> parserFactory, OppositeEndFinder oppositeEndFinder) {
+    public SyntaxProviderImpl(AbstractParserFactory<?, ?> parserFactory, OppositeEndFinder oppositeEndFinder) {
         super();
         this.parserFactory = parserFactory;
         this.oppositeEndFinder = oppositeEndFinder;

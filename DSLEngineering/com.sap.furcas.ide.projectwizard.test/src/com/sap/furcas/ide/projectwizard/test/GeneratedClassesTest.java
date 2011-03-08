@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -50,7 +51,7 @@ public class GeneratedClassesTest {
      * This test method calls the other methods in this class to generate, compile and clean the java classes.
      */
     @Test
-    public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+    public void compileGeneratedClasses() throws IOException, IllegalArgumentException, SecurityException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, CoreException {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
         SourceCodeFactory codeFactory = new SourceCodeFactory();
@@ -203,7 +204,7 @@ public class GeneratedClassesTest {
     }
 
     /**
-     * Generates the four classes with the help of {@link}SourceCodeFactory
+     * Generates the four classes with the help of {@link SourceCodeFactory}
      * 
      * @param codeFactory
      * @param pi
