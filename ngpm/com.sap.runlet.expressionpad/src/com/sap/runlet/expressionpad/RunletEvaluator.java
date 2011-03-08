@@ -6,8 +6,10 @@ import generated.ClassParser;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.TokenRewriteStream;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.omg.ocl.expressions.VariableDeclaration;
 
+import behavioral.actions.ActionsFactory;
 import behavioral.actions.Block;
 import behavioral.actions.Statement;
 
@@ -68,8 +70,8 @@ extends Evaluator<
 	super(projectName, repository);
     }
     
-    public RunletEvaluator(Connection connection, Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
-	super(connection, repository);
+    public RunletEvaluator(ResourceSet resourceSet, Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
+	super(resourceSet, repository);
     }
 
     @Override
@@ -87,7 +89,7 @@ extends Evaluator<
     @Override
     protected void initLocalFields(Connection connection, Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
 	setStackFrame(new RunletStackFrame());
-	Block contextBlock = connection.createElement(Block.CLASS_DESCRIPTOR);
+	Block contextBlock = ActionsFactory.eINSTANCE.createBlock();
 	contextBlock.assign___PartitionIncludingChildren(connection.getOrCreateTransientPartition("RunletConsoleObjects"));
 	setContextBlock(contextBlock);
 	setInterpreter(new RunletInterpreter(connection, repository));

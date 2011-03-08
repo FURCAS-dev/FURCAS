@@ -28,7 +28,7 @@ public class RunletOclIaTests extends TestCase {
     }
 
     protected void setUp() {
-	connection = Evaluator.getConnection("ngpm.stdlib");
+	connection = Evaluator.getResourceSet("ngpm.stdlib");
     }
     
     /**
