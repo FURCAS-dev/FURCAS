@@ -4,13 +4,15 @@ Bundle-Name: Abstractexpressionpad Plug-in
 Bundle-SymbolicName: com.sap.runlet.abstractexpressionpad; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP AG
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.antlr;bundle-version="3.1.1",
+ org.eclipse.ui,
  org.eclipse.core.runtime,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.parser,
  org.eclipse.core.resources;bundle-version="3.4.2",
  com.sap.runlet.abstractinterpreter,
- com.sap.mi.textual.common,
- com.sap.mi.textual.parsing,
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ com.sap.furcas.metamodel;bundle-version="1.0.0",
+ com.sap.furcas.parser.tcs
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.abstractexpressionpad,
