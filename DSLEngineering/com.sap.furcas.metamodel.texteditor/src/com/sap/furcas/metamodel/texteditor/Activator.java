@@ -1,33 +1,16 @@
 package com.sap.furcas.metamodel.texteditor; 
 
-import java.io.IOException;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-import bibtex.dsl.parser.BibtexParserFactory;
-
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
-import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin implements SyntaxProvider {
-    private final SyntaxProvider delegate;
+public class Activator extends AbstractUIPlugin {
 
     public static final String PLUGIN_ID = "com.sap.furcas.metamodel.texteditor"; //NON-NLS-1
     private static Activator plugin;
-
-    public Activator() {
-        delegate = new SyntaxProviderImpl(new BibtexParserFactory(),
-                DefaultOppositeEndFinder.getInstance());
-    }
 
     @Override
     public void start(BundleContext context) throws Exception {
@@ -43,16 +26,6 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
 
     public static Activator getDefault() {
         return plugin;
-    }
-
-    @Override
-    public ResourceSet getResourceSet() throws ParserException, IOException {
-        return delegate.getResourceSet();
-    }
-
-    @Override
-    public ConcreteSyntax getSyntax() throws IOException, ParserException {
-        return delegate.getSyntax();
     }
 
 }

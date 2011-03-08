@@ -17,13 +17,11 @@
   <modules>
     <module>FURCAS</module>
     <module>FURCAS-Update-Site</module>
-    <module>bibtex.dsl</module>
-    <!--
-    <module>bibtex.test</module>
-    <module>bibtex.metamodel</module>
-    <module>bibtex.metamodel.edit</module>
-    <module>bibtex.metamodel.editor</module>
-    -->
+    <module>com.sap.furcas.example.bibtex.dsl</module>
+    <module>com.sap.furcas.example.bibtex.dsl.example</module>
+    <module>com.sap.furcas.example.bibtex.metamodel</module>
+    <module>com.sap.furcas.example.bibtex.metamodel.edit</module>
+    <module>com.sap.furcas.example.bibtex.metamodel.editor</module>
     <module>com.sap.emf.ocl.trigger</module>
     <module>com.sap.emf.ocl.trigger.tests</module>
     <module>com.sap.furcas.ide.dslproject</module>
