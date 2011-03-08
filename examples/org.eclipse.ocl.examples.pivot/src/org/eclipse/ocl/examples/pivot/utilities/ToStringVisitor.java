@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.8 2011/03/08 15:10:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
@@ -44,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.FeatureCallExp;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
@@ -253,7 +255,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	protected void appendTemplateBindings(List<TemplateBinding> templateBindings) {
 		if (templateBindings.size() > 0) {
-			append("<");
+			append("(");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding
@@ -263,7 +265,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 					prefix = ",";
 				}
 			}
-			append(">");
+			append(")");
 		}
 	}
 
@@ -296,6 +298,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String toString() {
 		return result.toString();
+	}
+
+	@Override
+	public String visitAnyType(AnyType object) {
+		appendName(object);
+		return null;
 	}
 
 	/**
@@ -582,6 +590,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitInvalidLiteralExp(InvalidLiteralExp il) {
 		append("invalid");
+		return null;
+	}
+
+	@Override
+	public String visitInvalidType(InvalidType object) {
+		appendName(object);
 		return null;
 	}
 
@@ -1052,6 +1066,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	@Override
 	public String visitVariableExp(VariableExp v) {
 		appendName(v.getReferredVariable());
+		return null;
+	}
+
+	@Override
+	public String visitVoidType(VoidType object) {
+		appendName(object);
 		return null;
 	}
 
