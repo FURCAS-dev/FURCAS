@@ -18,7 +18,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
-public class AbstractSyntaxProvider<P extends ObservableInjectingParser, L extends Lexer> implements SyntaxProvider {
+public class SyntaxProviderImpl<P extends ObservableInjectingParser, L extends Lexer> implements SyntaxProvider {
     private ResourceSet resourceSet;
     private ConcreteSyntax syntax;
     private Resource syntaxResource;
@@ -26,7 +26,7 @@ public class AbstractSyntaxProvider<P extends ObservableInjectingParser, L exten
     private TriggerManager triggerManager;
     private final OppositeEndFinder oppositeEndFinder;
     
-    public AbstractSyntaxProvider(AbstractParserFactory<P, L> parserFactory, OppositeEndFinder oppositeEndFinder) {
+    public SyntaxProviderImpl(AbstractParserFactory<P, L> parserFactory, OppositeEndFinder oppositeEndFinder) {
         super();
         this.parserFactory = parserFactory;
         this.oppositeEndFinder = oppositeEndFinder;
