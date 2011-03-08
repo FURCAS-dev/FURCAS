@@ -9,7 +9,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -91,8 +90,8 @@ public class ShortPrettyPrinter {
         			// with the target element we need to invert this
         			// change to get the actual value
         		        AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        		        PrimitiveTemplate template = PrettyPrinterUtil.getAsTemplate(asParg);
-        			return PrettyPrinterUtil.printUsingSerializer(invertOclQuery(referencedObject, se, newvalue), template);
+        		        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
+        			return PrettyPrinterUtil.escapeUsingSerializer(PrettyPrinterUtil.invertReferenceByQuery(referencedObject, se, oclEvaluator), template);
         		    } else {
         		        // refersTo case
         		        RefersToPArg refersToArg = PropertyArgumentUtil.getRefersToPArg(se);
@@ -105,8 +104,8 @@ public class ShortPrettyPrinter {
         		        }
         		        
         		        AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        		        PrimitiveTemplate template = PrettyPrinterUtil.getAsTemplate(asParg);
-        		        return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+        		        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
+        		        return PrettyPrinterUtil.escapeUsingSerializer(newvalue, template);
         		    }
         		} catch (ModelAdapterException e) {
         		    // element does not have this property
@@ -145,27 +144,13 @@ public class ShortPrettyPrinter {
             }
 	}
 	AsPArg asParg = PropertyArgumentUtil.getAsPArg(se);
-        PrimitiveTemplate template = PrettyPrinterUtil.getAsTemplate(asParg);
+        PrimitiveTemplate template = PropertyArgumentUtil.getAsTemplate(asParg);
         if(newvalue.equals(token.getValue())) {
             return newvalue;
         } else {
-            return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
+            return PrettyPrinterUtil.escapeUsingSerializer(newvalue, template);
         }
     }
 
-	private String invertOclQuery(EObject self, Property se, String newValue) throws ModelAdapterException {
-		ReferenceByPArg referenceByPArg = PropertyArgumentUtil.getReferenceByPArg(se);
-		if (referenceByPArg != null) {
-	                ReferenceByPArg referenceBy = PropertyArgumentUtil.getReferenceByPArg(se);
-	                String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
-	                try {
-	                    String value = (String) oclEvaluator.findElementsWithOCLQuery(self, /*keyValue*/ null, invertQuery).iterator().next();
-	                    value = PropertyArgumentUtil.stripPrefixPostfix(value, PropertyArgumentUtil.getPrefixPArg(se), PropertyArgumentUtil.getPostfixPArg(se));
-	                } catch (ModelAdapterException e) {
-	                    throw new ModelAdapterException("Unable to serialize referenced model element: " + e.getMessage(), e);
-	                }
-		}
-		return newValue;
-	}
 
 }

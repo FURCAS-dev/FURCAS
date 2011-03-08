@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
@@ -59,7 +58,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
@@ -73,12 +71,12 @@ import com.sap.furcas.runtime.common.util.EcoreHelper;
 import com.sap.furcas.runtime.common.util.TCSSpecificOCLEvaluator;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.shortprettyprint.PrettyPrinterUtil;
 import com.sap.furcas.unparser.PrettyPrintExceptions.ForcedBoundsException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.NoTemplateMatchFoundException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.PropertyInitException;
 import com.sap.furcas.unparser.PrettyPrintExceptions.SyntaxMismatchException;
 import com.sap.furcas.unparser.extraction.TCSExtractorStream;
-import com.sap.furcas.utils.StringUtil;
 
 /**
  * @author Fr�d�ric Jouault
@@ -547,13 +545,7 @@ public class PrettyPrinter {
 	    // TODO what about serializer attribute?
 	    PrimitiveTemplate template = primitiveTemplates.get(as);
 	    if (template != null) {
-	        if (template.getSerializer() != null && !template.getSerializer().equals("")) {
-	            String serializer = StringUtil.unescapeString(template.getSerializer());
-	            String escapedValue = ((String)value).replaceAll("\"", Matcher.quoteReplacement("\\\""));
-	            printer.printCustomStringLiteral(serializer.replaceAll("%value%", Matcher.quoteReplacement(escapedValue)), "");
-		} else {
-		    printer.printDefault((String) value);
-		}
+	        printer.printDefault(PrettyPrinterUtil.escapeUsingSerializer((String) value, template));
 	    } else if ("stringSymbol".equals(as)) {
 	        // TODO what about tokens and token attribute?
 		printer.printStringLiteral((String) value);
@@ -636,13 +628,9 @@ public class PrettyPrinter {
 	    printer.printIndentationIfNeeded();
 
 	    if (scope != null) {
-	        ReferenceByPArg referenceBy = PropertyArgumentUtil.getReferenceByPArg(property);
-		String invertQuery = PropertyArgumentUtil.getReferenceByAsOCL(referenceBy);
-		try {
-		    TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
-		    String refValue = (String) oclEvaluator.findElementsWithOCLQuery(valueME, /*keyValue*/ null, invertQuery).iterator().next();
-		    refValue = PropertyArgumentUtil.stripPrefixPostfix(refValue, PropertyArgumentUtil.getPrefixPArg(property), PropertyArgumentUtil.getPostfixPArg(property));
-		    this.serializePrimitiveTemplate(refValue, primitiveTemplateName);
+	        try {
+	            TCSSpecificOCLEvaluator oclEvaluator = new TCSSpecificOCLEvaluator();
+		    this.serializePrimitiveTemplate(PrettyPrinterUtil.invertReferenceByQuery(valueME, property, oclEvaluator), primitiveTemplateName);
 		} catch (ModelAdapterException e) {
 		    error("Unable to serialize referenced model element: " + e.getMessage());
 		}

@@ -21,11 +21,13 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 /**
  * Helper utils for the various subclasses of {@link PropertyArgument}.
@@ -165,9 +167,13 @@ public class PropertyArgumentUtil {
     }
     
     public static String stripPrefixPostfix(String string, PrefixPArg prefixPArg, PostfixPArg postfixPArg) {
-        int prefixLength = prefixPArg == null ? 0 : prefixPArg.getPrefix().length();
-        int postfixLength = postfixPArg == null ? 0 : postfixPArg.getPostfix().length();
-        return string.substring(prefixLength, string.length() - postfixLength);
+        if (prefixPArg != null && string.startsWith(prefixPArg.getPrefix())) {
+            string = string.substring(prefixPArg.getPrefix().length(), string.length());
+        }
+        if (postfixPArg != null && string.endsWith(postfixPArg.getPostfix())) {
+            string = string.substring(0, string.length() - postfixPArg.getPostfix().length());
+        }
+        return string;
     }
 
     /**
@@ -178,6 +184,19 @@ public class PropertyArgumentUtil {
         for (PropertyArg arg : p.getPropertyArgs()) {
             if (arg instanceof AsPArg) {
                 return (AsPArg) arg;
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the PrimitiveTemplate referenced by the given AsPArg.
+     */
+    public static PrimitiveTemplate getAsTemplate(AsPArg asParg) {
+        if (asParg != null) {
+            Template asTemplate = asParg.getTemplate();
+            if (asTemplate instanceof PrimitiveTemplate) {
+                return (PrimitiveTemplate) asTemplate;
             }
         }
         return null;
