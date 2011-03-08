@@ -7,9 +7,9 @@ import org.osgi.framework.BundleContext;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 import com.sap.furcas.parser.tcs.stable.TCSParser;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
-import com.sap.furcas.runtime.syntaxprovider.AbstractSyntaxProvider;
+import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
-public class Activator extends AbstractSyntaxProvider<TCSParser, TCSLexer> implements BundleActivator {
+public class Activator extends SyntaxProviderImpl<TCSParser, TCSLexer> implements BundleActivator {
     private static Activator instance;
     
     public Activator() {
