@@ -51,6 +51,13 @@ public class PrettyPrintExceptions {
 
  	    return error;
  	}
+ 	
+ 	@Override
+ 	public synchronized Throwable fillInStackTrace() {
+ 	    // Do not create a stack trace as we don't need it.
+ 	    // It is very costly when all we want is a deep return.
+ 	    return this;
+ 	}
 
  	protected abstract String getMismatchError();
 
