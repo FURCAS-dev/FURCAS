@@ -32,7 +32,7 @@ public class PrettyPrintConstants {
      * Print caught property init exceptions.
      * This indicates either backtracking or ignoring of partial properties
      */
-    public static boolean DEBUG_BACKTRACKING = true;
+    public static boolean DEBUG_BACKTRACKING = false;
 
     
     
