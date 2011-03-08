@@ -49,98 +49,64 @@ public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 	private IScope importScope;
 	EList<Import> imports = null;
 
-	IScope scope_FromEntry(MQLquery _this, EClass type) {
-		Iterable<IEObjectDescription> transformed = transform(
-				_this.getFromEntries(),
-				new Function<FromEntry, IEObjectDescription>() {
-
-					public IEObjectDescription apply(FromEntry from) {
-						return EObjectDescription.create(from.getAlias(), from);
-					}
-				});
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-	}
-	
 	IScope scope_FromEntry(MQLquery _this, EReference type) {
-		Iterable<IEObjectDescription> transformed = transform(
-				_this.getFromEntries(),
-				new Function<FromEntry, IEObjectDescription>() {
+		Iterable<IEObjectDescription> transformed = transform(_this.getFromEntries(), new Function<FromEntry, IEObjectDescription>() {
 
-					public IEObjectDescription apply(FromEntry from) {
-						return EObjectDescription.create(from.getAlias(), from);
-					}
-				});
+			public IEObjectDescription apply(FromEntry from) {
+				return EObjectDescription.create(from.getAlias(), from);
+			}
+		});
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
 	}
 
 	IScope scope_SelectEntry_attribute(SelectEntry _this, EReference ref) {
-		Iterable<IEObjectDescription> transformed = transform(_this.getSelect()
-				.getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
+		Iterable<IEObjectDescription> transformed = transform(_this.getSelect().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
 
 	}
 
-	IScope scope_AliasAttributeExpression_attribute(
-			AliasAttributeExpression _this, EReference ref) {
-		Iterable<IEObjectDescription> transformed = transform(_this.getAlias()
-				.getType().getEAllStructuralFeatures(),
-				NAME_2_STRUCTURAL_FEATURE);
+	IScope scope_AliasAttributeExpression_attribute(AliasAttributeExpression _this, EReference ref) {
+		Iterable<IEObjectDescription> transformed = transform(_this.getAlias().getType().getEAllStructuralFeatures(), NAME_2_STRUCTURAL_FEATURE);
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
 
-	}
-
-	IScope scope_EClass(Model _this, EClass type) {
-		if (importScope == null || imports != _this.getImports()) {
-			imports = _this.getImports();
-			importScope = new DefaultScope(_this.eResource(),
-					_this.getImports(), type);
-		}
-		return importScope;
 	}
 
 	IScope scope_EClass(Model _this, EReference type) {
 		if (importScope == null || imports != _this.getImports()) {
 			imports = _this.getImports();
-			importScope = new DefaultScope(_this.eResource(),
-					_this.getImports(), type.getEReferenceType());
+			importScope = new DefaultScope(_this.eResource(), _this.getImports(), type.getEReferenceType());
 		}
 		return importScope;
 	}
 
 	private static class DefaultScope extends SimpleScope {
 
-		public DefaultScope(Resource resource, EList<Import> imports,
-				EClass type) {
+		public DefaultScope(Resource resource, EList<Import> imports, EClass type) {
 			this(resource, imports, type, SimpleAttributeResolver.NAME_RESOLVER);
 		}
 
-		public DefaultScope(Resource resource, List<Import> imports,
-				EClass type, Function<EObject, String> nameResolver) {
-			super(createParent(imports, type, resource, nameResolver), Scopes
-					.allInResource(resource, type, nameResolver));
+		@SuppressWarnings("deprecation")
+		public DefaultScope(Resource resource, List<Import> imports, EClass type, Function<EObject, String> nameResolver) {
+			super(createParent(imports, type, resource, nameResolver), Scopes.allInResource(resource, type, nameResolver));
 		}
 
-		private static IScope createParent(List<Import> imports, EClass type,
-				Resource resource, Function<EObject, String> nameResolver) {
+		private static IScope createParent(List<Import> imports, EClass type, Resource resource, Function<EObject, String> nameResolver) {
 			final List<String> orderedImportURIs = new ArrayList<String>(10);
 			for (Import imp : imports) {
 				orderedImportURIs.add(imp.getImpURI());
 			}
 			IScope result = IScope.NULLSCOPE;
 			for (int i = orderedImportURIs.size() - 1; i >= 0; i--) {
-				result = new LazyReferencedResourceScope(result, type,
-						resource, orderedImportURIs.get(i), nameResolver);
+				result = new LazyReferencedResourceScope(result, type, resource, orderedImportURIs.get(i), nameResolver);
 			}
 			return result;
 		}
 
 		static class LazyReferencedResourceScope extends SimpleScope {
 
-			public LazyReferencedResourceScope(IScope parent, EClass type,
-					Resource context, String uri,
-					Function<EObject, String> nameFunc) {
-				super(parent, Scopes.allInResource(
-						EcoreUtil2.getResource(context, uri), type, nameFunc));
+			@SuppressWarnings("deprecation")
+			public LazyReferencedResourceScope(IScope parent, EClass type, Resource context, String uri, Function<EObject, String> nameFunc) {
+				super(parent, Scopes.allInResource(EcoreUtil2.getResource(context, uri), type, nameFunc));
 			}
 
 		}
