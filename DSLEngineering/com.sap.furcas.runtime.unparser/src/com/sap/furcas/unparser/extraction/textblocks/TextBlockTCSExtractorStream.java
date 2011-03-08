@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
@@ -39,7 +38,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.furcas.runtime.tcs.TcsDebugUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
@@ -432,10 +430,13 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    rootBlock = createTextBlock();
 	    setType(rootBlock, template);
 	    rootBlock.setOffsetRelative(false);
-	    if (correspondingModelElement != null && se instanceof Property &&
-	            PropertyArgumentUtil.containsReferenceByPArg((Property) se)) {
-	        rootBlock.getReferencedElements().add(correspondingModelElement);
-	    }
+            if (correspondingModelElement != null) {
+                if (template instanceof ContextTemplate && ((ContextTemplate) template).isIsReferenceOnly()) {
+                    rootBlock.getReferencedElements().add(correspondingModelElement);
+                } else {
+                    rootBlock.getCorrespondingModelElements().add(correspondingModelElement);
+                }
+            }
 	    rootBlock.setSequenceElement(se);
 	    currentBlock = rootBlock;
 
@@ -504,6 +505,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 
 	    addToken(t);
 
+	    // Force reparsing. Reparsing will set the referencedElement.
 	    TbMarkingUtil.markTokenRelexed(t);
 
 	    rootBlockCachedString.append(value);
