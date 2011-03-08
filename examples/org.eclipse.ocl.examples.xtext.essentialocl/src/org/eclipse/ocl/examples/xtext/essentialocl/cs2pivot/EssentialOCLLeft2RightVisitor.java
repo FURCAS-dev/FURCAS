@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.8 2011/03/05 05:57:43 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.9 2011/03/08 15:14:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -69,9 +69,6 @@ import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
-import org.eclipse.ocl.examples.pivot.TemplateBinding;
-import org.eclipse.ocl.examples.pivot.TemplateParameter;
-import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
 import org.eclipse.ocl.examples.pivot.Type;
@@ -239,7 +236,7 @@ public class EssentialOCLLeft2RightVisitor
 		return precedenceToOperatorIndex;
 	}
 
-	private TemplateParameterSubstitution findFormalParameter(TemplateParameter formalTemplateParameter, Type actualType) {
+/*	private TemplateParameterSubstitution findFormalParameter(TemplateParameter formalTemplateParameter, Type actualType) {
 		for (TemplateBinding actualTemplateBinding : actualType.getTemplateBindings()) {
 			for (TemplateParameterSubstitution actualTemplateParameterSubstitution : actualTemplateBinding.getParameterSubstitutions()) {
 				TemplateParameter actualFormal = actualTemplateParameterSubstitution.getFormal();
@@ -257,9 +254,9 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		return null;
-	}
+	} */
 
-	private TemplateParameter getFormal(List<TemplateBinding> templateBindings, TemplateParameter templateParameter) {
+/*	private TemplateParameter getFormal(List<TemplateBinding> templateBindings, TemplateParameter templateParameter) {
 		for (TemplateBinding templateBinding : templateBindings) {
 			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
 				if (templateParameter == templateParameterSubstitution.getFormal()) {
@@ -268,7 +265,7 @@ public class EssentialOCLLeft2RightVisitor
 			}
 		}
 		return null;
-	}
+	} */
 
 	protected VariableDeclaration getImplicitSource(ModelElementCS csExp, NamedElement namedElement) {
 		EObject eContainer = csExp.eContainer();
@@ -550,7 +547,7 @@ public class EssentialOCLLeft2RightVisitor
 				continue;
 			}
 			if (iterationIteratorsSize <= argIndex) {
-				context.addWarning(csArgument, OCLMessages.WarningExtraIteratorIgnored, iteration.getName());
+				context.addWarning(csArgument, OCLMessages.RedundantIterator_WARNING_, iteration.getName());
 				continue;
 			}
 			if (csArgument.getInit() != null) {
@@ -801,10 +798,10 @@ public class EssentialOCLLeft2RightVisitor
 			}
 			String boundMessage;
 			if (s.length() > 0) {
-				boundMessage = NLS.bind(OCLMessages.ErrorUnresolvedOperationCall3, new Object[]{csOperator, sourceType, s.toString()});
+				boundMessage = NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{csOperator, sourceType, s.toString()});
 			}
 			else {
-				boundMessage = NLS.bind(OCLMessages.ErrorUnresolvedOperationCall2, new Object[]{csOperator, sourceType});
+				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType});
 			}
 			context.addBadExpressionError(csOperator, boundMessage);
 			context.setReferredOperation(expression, null);
@@ -827,7 +824,7 @@ public class EssentialOCLLeft2RightVisitor
 	protected OclExpression resolvePropertyNavigation(NamedExpCS csNamedExp) {
 		NamedElement namedElement = csNamedExp.getNamedElement();
 		if (namedElement.eIsProxy()) {
-			String boundMessage = NLS.bind(OCLMessages.ErrorUnresolvedPropertyName, csNamedExp);
+			String boundMessage = NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, csNamedExp, "unknown type");
 			return context.addBadExpressionError(csNamedExp, boundMessage);
 		}
 		if (namedElement instanceof Property) {
