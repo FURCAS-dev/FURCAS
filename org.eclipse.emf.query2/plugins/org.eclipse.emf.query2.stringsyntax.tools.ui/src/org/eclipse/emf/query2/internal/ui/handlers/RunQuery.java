@@ -36,6 +36,7 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
@@ -116,6 +117,23 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 	private void doQuery(ExecutionEvent event, final ResourceSet rs, final NamedQuery query) {
 		ProgressMonitorDialog dialog = new ProgressMonitorDialog(HandlerUtil.getActiveShell(event).getShell());
 		try {
+			//Clears the previous result table view synchronously before executing the next query.
+			if(query!=null){
+				class ResetTable implements Runnable {
+					public void run() {
+						QueryResultView queryResultView;
+						try {
+							queryResultView = (QueryResultView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
+									"org.eclipse.emf.query2.syntax.tools.ui.queryresultview"); //$NON-NLS-1$
+							queryResultView.resetTableView();
+						} catch (PartInitException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				ResetTable reset = new ResetTable();
+				Display.getDefault().syncExec(reset);
+			}
 			dialog.run(true, true, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
