@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLabelProvider.java,v 1.4 2011/01/24 21:30:14 ewillink Exp $
+ * $Id: EssentialOCLLabelProvider.java,v 1.5 2011/03/08 16:20:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -46,13 +46,13 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 	protected void appendType(StringBuffer s, Type type) {
 		if (type instanceof CollectionTypeCS) {
 			appendName(s, (CollectionTypeCS)type);
-			s.append("<");
+			s.append("(");
 			appendType(s, ((CollectionTypeCS)type).getOwnedType());
-			s.append(">");
+			s.append(")");
 		}
 		else if (type instanceof TupleTypeCS) {
 			appendName(s, (TupleTypeCS)type);
-			s.append("Tuple<");
+			s.append("Tuple(");
 			String prefix = "";
 			for (TuplePartCS part : ((TupleTypeCS)type).getOwnedParts()) {
 				s.append(prefix);
@@ -61,7 +61,7 @@ public class EssentialOCLLabelProvider extends BaseLabelProvider
 				appendType(s, part.getOwnedType());
 				prefix = ", ";
 			}
-			s.append(">");
+			s.append(")");
 		}
 		else if (type instanceof NameExpCS) {
 //			appendName(s, ((NameExpCS)type).getNamedElement());
