@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.5 2011/03/08 15:14:52 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -131,7 +131,6 @@ public class OCLMessages {
 	
 	public static String VariableUsed_ERROR_;
 	public static String VariableDeclaration_ERROR_;
-	public static String OperationNotFound_ERROR_;
 	public static String BadArg_ERROR_;
 	public static String PackageNotFound_ERROR_;
 	public static String UnrecognizedContext_ERROR_;
@@ -223,24 +222,7 @@ public class OCLMessages {
     public static String NonStaticOperation_ERROR_;
     
 	public static String InvalidOCL_ERROR_;
-	public static String ParseCSTNodeType_ERROR_;
-
-	public static String OCLParseErrorCodes_LEX_ERROR;
-	public static String OCLParseErrorCodes_ERROR;
-	public static String OCLParseErrorCodes_BEFORE;
-	public static String OCLParseErrorCodes_INSERTION;
-	public static String OCLParseErrorCodes_INVALID;
-	public static String OCLParseErrorCodes_SUBSTITUTION_SECONDARY;
-	public static String OCLParseErrorCodes_DELETION;
-	public static String OCLParseErrorCodes_MERGE;
-	public static String OCLParseErrorCodes_MISPLACED;
-	public static String OCLParseErrorCodes_SCOPE;
-	public static String OCLParseErrorCodes_EOF;
-	public static String OCLParseErrorCodes_INVALID_TOKEN;
 	
-	public static String ErrorReport_RowColumn;
-	
-	public static String Conceptual_Operation_Name_;
 	public static String NonStd_DQuote_Escape_;
 	public static String NonStd_SQuote_Escape_;
     public static String NonStd_Operation_;
@@ -273,19 +255,17 @@ public class OCLMessages {
 	public static String NoOperationReflection_WARNING_;
 	public static String ExtraArg_ERROR_;
 	
-//-----------------------------------------------------------
-	public static String ErrorUnresolvedName;
-	public static String ErrorUnresolvedNamespaceName;
-	public static String ErrorUnresolvedOperationCall2;
-	public static String ErrorUnresolvedOperationCall3;
-	public static String ErrorUnresolvedOperationName;
-	public static String ErrorUnresolvedPropertyName;
-	public static String ErrorUnresolvedTypeName;
-
-	public static String WarningExtraIteratorIgnored;
-	public static String WarningNonConformingBodyType;
-	public static String WarningUndefinedOperation;
-
+	// above this line messages migrated from non-Pivot
+	//-----------------------------------------------------------
+	// below this line alphabetical messages known to be used for Pivot
+	public static String IncompatibleBodyType_WARNING_;
+	public static String RedundantIterator_WARNING_;
+	public static String UnresolvedOperation_ERROR_;
+	public static String UnresolvedOperationCall_ERROR_;
+	public static String UnresolvedProperty_ERROR_;
+	public static String UnresolvedType_ERROR_;
+	
+	//-----------------------------------------------------------
 		
 	private static IMessages messagesImpl;
 	

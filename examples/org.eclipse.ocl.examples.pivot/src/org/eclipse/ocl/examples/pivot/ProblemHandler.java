@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemHandler.java,v 1.1 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: ProblemHandler.java,v 1.2 2011/03/08 15:14:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -33,22 +33,7 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
  * processing phase convenience methods and <code>StringProblemHandler</code> for
  * a complete handler that just accumulates all problem reports as a string.
  */
-public interface ProblemHandler {
-	String ERROR_MESSAGES[] = {
-	    /* LEX_ERROR_CODE */                     OCLMessages.OCLParseErrorCodes_LEX_ERROR,
-	    /* ERROR_CODE */                         OCLMessages.OCLParseErrorCodes_ERROR,
-	    /* BEFORE_CODE */                        OCLMessages.OCLParseErrorCodes_BEFORE,
-	    /* INSERTION_CODE */                     OCLMessages.OCLParseErrorCodes_INSERTION,
-	    /* INVALID_CODE */                       OCLMessages.OCLParseErrorCodes_INVALID,
-	    /* SUBSTITUTION_CODE, SECONDARY_CODE */  OCLMessages.OCLParseErrorCodes_SUBSTITUTION_SECONDARY,
-	    /* DELETION_CODE */                      OCLMessages.OCLParseErrorCodes_DELETION,
-	    /* MERGE_CODE */                         OCLMessages.OCLParseErrorCodes_MERGE,
-	    /* MISPLACED_CODE */                     OCLMessages.OCLParseErrorCodes_MISPLACED,
-	    /* SCOPE_CODE */                         OCLMessages.OCLParseErrorCodes_SCOPE,
-	    /* EOF_CODE */                           OCLMessages.OCLParseErrorCodes_EOF,
-	    /* INVALID_TOKEN_CODE */                 OCLMessages.OCLParseErrorCodes_INVALID_TOKEN
-	};
-	
+public interface ProblemHandler {	
 	/**
 	 * Standard processing phases for problem messages.  This class may be
      * extended by custom problem handlers to define additional phases in
