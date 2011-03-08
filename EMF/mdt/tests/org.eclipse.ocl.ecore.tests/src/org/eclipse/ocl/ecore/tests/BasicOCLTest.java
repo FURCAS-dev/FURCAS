@@ -124,10 +124,10 @@ public class BasicOCLTest
 		initFruitPackage();
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar");
-		Registry r = new EPackageRegistryImpl(resourceSet.getPackageRegistry()); // delegating registry
+		Registry r = new EPackageRegistryImpl(); // delegating registry
+		r.putAll(resourceSet.getPackageRegistry());
 		r.put("EMFEcore", EcorePackage.eINSTANCE);
 		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
-		r.put(fruitPackage.getNsURI(), fruitPackage);
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
 		((EcoreEnvironment) ocl.getEnvironment()).setOption(
 			ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
