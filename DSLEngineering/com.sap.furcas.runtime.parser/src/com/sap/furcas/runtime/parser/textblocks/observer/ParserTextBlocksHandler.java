@@ -541,15 +541,16 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	@Override
         public void notifyModelElementResolvedOutOfContext(Object modelElement,
-                Object contextModelElement, Token referenceLocation,
-                DelayedReference reference) {
+                Object contextModelElement, Token referenceLocation, DelayedReference reference) {
             if (contextModelElement instanceof ResolvedModelElementProxy) {
-                contextModelElement = ((ResolvedModelElementProxy) contextModelElement)
-                        .getRealObject();
+                contextModelElement = ((ResolvedModelElementProxy) contextModelElement).getRealObject();
             }
-            TextBlock contextBlock = getTextBlockForElementAt(
-                    (EObject) contextModelElement,
-                    (ANTLR3LocationToken) referenceLocation);
+            
+            if (modelElement instanceof Collection && ((Collection<?>) modelElement).size() == 1) {
+                modelElement = ((Collection<?>) modelElement).iterator().next();
+            }
+            
+            TextBlock contextBlock = getTextBlockForElementAt((EObject) contextModelElement, (ANTLR3LocationToken) referenceLocation);
             if (contextBlock != null && modelElement instanceof EObject) {
 
                 if (reference.getType() == DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE) {
@@ -559,21 +560,17 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     // of the contextBlock. This will make all injectoractions
                     // associated with the template
                     // available for the GDR for the given model element
-                    contextBlock.getAdditionalTemplates().add(
-                            getCurrentTbProxy().getTemplate());
+                    contextBlock.getAdditionalTemplates().add(getCurrentTbProxy().getTemplate());
                     contextBlock.getCorrespondingModelElements().add((EObject) modelElement);
 
                 } else {
-                    AbstractToken referenceToken = navigateToToken(contextBlock,
-                            referenceLocation);
+                    AbstractToken referenceToken = navigateToToken(contextBlock, referenceLocation);
                     if (referenceToken == null) {
                         // reference location doesn't correspond to a token. Add to
                         // block
-                        contextBlock.getReferencedElements().add(
-                                (EObject) modelElement);
+                        contextBlock.getReferencedElements().add((EObject) modelElement);
                     } else {
-                        referenceToken.getReferencedElements().add(
-                                (EObject) modelElement);
+                        referenceToken.getReferencedElements().add((EObject) modelElement);
                     }
                 }
             }
