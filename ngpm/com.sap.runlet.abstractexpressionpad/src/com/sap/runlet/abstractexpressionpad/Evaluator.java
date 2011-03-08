@@ -2,6 +2,7 @@ package com.sap.runlet.abstractexpressionpad;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -9,23 +10,20 @@ import java.util.logging.Logger;
 
 import org.antlr.runtime.BitSet;
 import org.antlr.runtime.RecognitionException;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
+import com.sap.furcas.runtime.common.implementation.ResolvedModelElementProxy;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.ParsingError;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
@@ -96,12 +94,6 @@ public abstract class Evaluator<MetaClass extends EObject,
      */
     private AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> interpreter;
 
-    /**
-     * Tells if the {@link #conn connection} should be closed when this object
-     * is finalized
-     */
-    private boolean closeConnectionUponFinalize;
-
     public static class ExecuteResult<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsage> {
 	private RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>[] result;
 	private String[] errors;
@@ -130,10 +122,10 @@ public abstract class Evaluator<MetaClass extends EObject,
 
     public static class ParseResult<ExpressionType extends EObject> {
 	private List<String> errors;
-	private Collection<JmiException> constraintViolations;
+	private DiagnosticChain constraintViolations;
 	private ExpressionType expression;
 
-	public ParseResult(List<String> errors, Collection<JmiException> constraintViolations, ExpressionType expression) {
+	public ParseResult(List<String> errors, DiagnosticChain constraintViolations, ExpressionType expression) {
 	    super();
 	    this.errors = errors;
 	    this.constraintViolations = constraintViolations;
@@ -144,7 +136,7 @@ public abstract class Evaluator<MetaClass extends EObject,
 	    return errors;
 	}
 
-	public Collection<JmiException> getConstraintViolations() {
+	public DiagnosticChain getConstraintViolations() {
 	    return constraintViolations;
 	}
 
@@ -154,14 +146,12 @@ public abstract class Evaluator<MetaClass extends EObject,
     }
 
     private void init(String projectName, Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository) {
-	closeConnectionUponFinalize = true;
-	init(getConnection(projectName), repository);
+	init(getResourceSet(projectName), repository);
     }
 
     private void init(ResourceSet connection,
 	    Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository) {
 	this.conn = connection;
-	closeConnectionUponFinalize = false;
 	initLocalFields(connection, repository);
 	if (stackFrame == null || contextBlock == null || interpreter == null) {
 	    throw new RuntimeException("Evaluator is not correctly initialized.");
@@ -203,47 +193,17 @@ public abstract class Evaluator<MetaClass extends EObject,
 	init(projectName, repository);
     }
 
-    public Evaluator(ResourceSet connection,
+    public Evaluator(ResourceSet resourceSet,
 	    Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository) {
-	init(connection, repository);
-    }
-
-    @Override
-    public void finalize() {
-	if (closeConnectionUponFinalize) {
-	    conn.close();
-	}
+	init(resourceSet, repository);
     }
 
     public Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> getRepository() {
 	return getInterpreter().getRepository();
     }
 
-    public static ResourceSet getConnection(String projectName) {
-	final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-	final ResourceSet[] conn = new ResourceSet[1];
-	IRunnableWithProgress operation = new IRunnableWithProgress() {
-	    public void run(IProgressMonitor monitor) {
-		// non UI thread
-		try {
-		    project.open(/* progress monitor */null);
-		} catch (CoreException e) {
-		    throw new RuntimeException(e);
-		}
-		conn[0] = ConnectionManager.getInstance().getOrCreateDefaultConnection(project);
-	    }
-	};
-	IProgressService ps = PlatformUI.getWorkbench().getProgressService();
-	try {
-	    if (Thread.currentThread() == Display.getDefault().getThread()) {
-		ps.busyCursorWhile(operation);
-	    } else {
-		operation.run(null);
-	    }
-	} catch (Exception e) {
-	    throw new RuntimeException(e);
-	}
-	return conn[0];
+    public static ResourceSet getResourceSet(String projectName) {
+	return new ResourceSetImpl();
     }
 
     @SuppressWarnings("unchecked")
@@ -286,22 +246,29 @@ public abstract class Evaluator<MetaClass extends EObject,
 	    errors.add(err.getMessage());
 	}
 
-	Collection<JmiException> constraintViolations = null;
+        BasicDiagnostic diagnostics = null;
 	if (e != null) {
-	    constraintViolations = e.refVerifyConstraints(/* deepVerify */true);
+	    EValidator v = EValidator.Registry.INSTANCE.getEValidator(e.eClass().getEPackage());
+	    v.validate(e, diagnostics, new HashMap<Object, Object>());
+	    // append constraint violations to result (for display on console)
+            diagnostics = new BasicDiagnostic();
+	    logAndCollectErrors(diagnostics, errors);
 	}
-	// append constraint violations to result (for display on console)
-	if (constraintViolations != null) {
-	    for (JmiException constraintViolation : constraintViolations) {
-		log.severe("Constraint violation: " + constraintViolation.getMessage() + " on element "
-			+ constraintViolation.getObjectInError());
-		errors.add("Constraint violation: " + constraintViolation.getMessage() + " on element "
-			+ constraintViolation.getObjectInError());
-	    }
-	}
-	return new ParseResult<ExpressionType>(errors, constraintViolations, e);
+	return new ParseResult<ExpressionType>(errors, diagnostics, e);
     }
     
+    private void logAndCollectErrors(Diagnostic constraintViolations, List<String> errors) {
+        if (constraintViolations.getSeverity() == Diagnostic.ERROR) {
+            log.severe("Constraint violation: " + constraintViolations.getMessage() + " on element "
+                    + constraintViolations.getMessage());
+            errors.add("Constraint violation: " + constraintViolations.getMessage() + " on element "
+                    + constraintViolations.getMessage());
+        }
+        for (Diagnostic child : constraintViolations.getChildren()) {
+            logAndCollectErrors(child, errors);
+        }
+    }
+
     /**
      * Implement
      * @param parser
@@ -313,7 +280,7 @@ public abstract class Evaluator<MetaClass extends EObject,
     public ExecuteResult<LinkEndMetaObject, TypeUsage, ClassUsage> execute(String... statements) throws Exception {
 	List<RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>> result = new LinkedList<RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>>();
 	List<String> errors = new LinkedList<String>();
-	Collection<JmiException> constraintViolations = null;
+	Collection<Exception> constraintViolations = null;
 
 	for (String statementString : statements) {
 	    ObservableInjectingParser parser = createParser(statementString);
@@ -349,9 +316,13 @@ public abstract class Evaluator<MetaClass extends EObject,
 		errors.add(err.getMessage());
 	    }
 
-	    if (statement != null) {
-		constraintViolations = contextBlock.refVerifyConstraints(/* deepVerify */true);
-		saveParserState(parser);
+            if (statement != null) {
+                EValidator v = EValidator.Registry.INSTANCE.getEValidator(statement.eClass().getEPackage());
+                BasicDiagnostic diagnostics = new BasicDiagnostic();
+                v.validate(statement, diagnostics, new HashMap<Object, Object>());
+                // append constraint violations to result (for display on console)
+                logAndCollectErrors(diagnostics, errors);
+                saveParserState(parser);
 		interpreter.push(stackFrame);
 		try {
 		    result.add(interpreter.evaluateStatement(statement));
@@ -376,11 +347,11 @@ public abstract class Evaluator<MetaClass extends EObject,
 	    }
 	    // append constraint violations to result (for display on console)
 	    if (constraintViolations != null) {
-		for (JmiException constraintViolation : constraintViolations) {
+		for (Exception constraintViolation : constraintViolations) {
 		    log.severe("Constraint violation: " + constraintViolation.getMessage() + " on element "
-			    + constraintViolation.getObjectInError());
+			    + constraintViolation.getMessage());
 		    errors.add("Constraint violation: " + constraintViolation.getMessage() + " on element "
-			    + constraintViolation.getObjectInError());
+			    + constraintViolation.getMessage());
 		}
 	    }
 	}
