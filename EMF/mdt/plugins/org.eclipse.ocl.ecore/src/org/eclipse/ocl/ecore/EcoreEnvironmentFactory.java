@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AbstractEnvironmentFactory;
 import org.eclipse.ocl.Environment;
@@ -46,6 +47,7 @@ import org.eclipse.ocl.ecore.parser.OCLAnalyzer;
 import org.eclipse.ocl.ecore.parser.OCLFactoryWithHistory;
 import org.eclipse.ocl.ecore.parser.ValidationVisitor;
 import org.eclipse.ocl.helper.OCLSyntaxHelper;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.parser.AbstractOCLParser;
 import org.eclipse.ocl.utilities.Visitor;
 
@@ -80,12 +82,25 @@ public class EcoreEnvironmentFactory
 	public EcoreEnvironmentFactory() {
 		this(EPackage.Registry.INSTANCE);
 	}
-	
+
 	/**
 	 * Initializes me with an <code>EPackage.Registry</code> that the
-     * environments I create will use to look up packages.
-     * 
-     * @param reg my package registry (must not be <code>null</code>)
+	 * environments I create will use to look up packages.
+	 * 
+	 * @param reg
+	 *            my package registry (must not be <code>null</code>). Package
+	 *            descriptors that are not yet resolved will not be resolved for
+	 *            OCL package name lookups. To ensure that packages can be
+	 *            referenced by their name, clients shall
+	 *            {@link EPackage.Registry#getEPackage(String) resolve} those
+	 *            packages explicitly before asking OCL to look them up. See
+	 *            also {@link ParsingOptions#PACKAGE_LOOKUP_STRATEGY} for
+	 *            different package lookup strategies. Note also, that if a
+	 *            {@link EPackageRegistryImpl#EPackageRegistryImpl(org.eclipse.emf.ecore.EPackage.Registry)
+	 *            "delegating registry"} is used, packages contained only by the
+	 *            delegate will not be found by an OCL lookup because
+	 *            {@link EPackage.Registry#values()} only enumerates the
+	 *            packages / descriptors contained by the outer registry.
 	 */
 	public EcoreEnvironmentFactory(EPackage.Registry reg) {
 		super();

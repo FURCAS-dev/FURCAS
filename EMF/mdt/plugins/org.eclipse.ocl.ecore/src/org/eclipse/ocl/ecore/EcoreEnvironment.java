@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 182994, 252600
+ *   SAP - Bug 339052
  *
  * </copyright>
  *
@@ -39,7 +40,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
@@ -674,19 +674,10 @@ public class EcoreEnvironment
 	}
 
 	/**
-	 * Looks in the given registry for a package with the specified qualified
-	 * package name. Different from
-	 * {@link #findPackage(List, org.eclipse.emf.ecore.EPackage.Registry)}, this
-	 * method first checks for <em>keys</em> in the <code>registry</code> to
-	 * match the package names concatenated by "::". This can, for example, be
-	 * used to disambiguate between the EMF "ecore" and the OCL "ocl::ecore"
-	 * packages as follows: a specific registry can be set up, e.g., as a
-	 * {@link EPackageRegistryImpl#EPackageRegistryImpl(org.eclipse.emf.ecore.EPackage.Registry)
-	 * delegating registry} and the ambiguous packages can be registered with alias names
-	 * as their URIs. The aliases can then be specified as package names.<p>
-	 * 
-	 * If lookup by alias in the registry's keys fails, lookup resorts to the behavior of
-	 * {@link #findPackage(List, org.eclipse.emf.ecore.EPackage.Registry)}.
+	 * Looks in the given registry for an 'nsURI' matching the first element in <tt>packageNames</tt>.
+	 * If found, further elements of <tt>packageNames</tt> identify nested packages.
+	 * <t>
+	 * This search supports the {@link ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS} strategy.
 	 * 
 	 * @param packageNames
 	 *            the qualified package name

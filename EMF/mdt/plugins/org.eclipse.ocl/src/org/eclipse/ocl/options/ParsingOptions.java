@@ -94,30 +94,66 @@ public class ParsingOptions {
     
     /**
 	 * The alternative strategies for resolving the package name at the start of
-	 * a path name.
-	 * <p>
-	 * <tt>LOOKUP_PACKAGE_BY_NAME</tt> is the default and traditional behavior
-	 * whereby packages in the package registry with a matching package name are
-	 * considered.
-	 * <p>
-	 * <tt>LOOKUP_PACKAGE_BY_ALIAS</tt> matches package names according to the
-	 * 'nsURI' key in the for the associated package registry entry. This allows
-	 * the 'nsURI' to be interpreted as an alias. Multiple 'nsURI' aliases may
-	 * reference the same package. This strategy is only supported for the Ecore
-	 * binding.
-	 * <p>
-	 * <tt>LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME</tt> matches package names
-	 * according to the 'nsURI' key in the for the associated package registry
-	 * entry. This allows the 'nsURI' to be interpreted as an alias. Multiple
-	 * 'nsURI' aliases may reference the same package. If no match is found, the
-	 * lookup is performed by regular package name. This strategy is only
-	 * supported for the Ecore binding.
+	 * a path name. The default LOOKUP_PACKAGE_BY_NAME strategy supports the
+	 * OMG 2.2 specification. The alternate strategies support a potential extension
+	 * for 'import' statements.
 	 * 
 	 * @since 3.1
 	 */
-    public static enum PACKAGE_LOOKUP_STRATEGIES { LOOKUP_PACKAGE_BY_NAME,
-    											   LOOKUP_PACKAGE_BY_ALIAS,
-    											   LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME };
+    public static enum PACKAGE_LOOKUP_STRATEGIES {
+		/**
+		 * <tt>LOOKUP_PACKAGE_BY_NAME</tt> is the default and traditional
+		 * behavior whereby the first package name is resolved by recursive
+		 * search from names in the current environment to parent environments.
+		 * Once all these search possibilities have been exhausted, the package
+		 * registry for the root environment is searched for an already resolved
+		 * package whose name matches the first package name. Unresolved package
+		 * descriptors are not resolved during this process which also means
+		 * that packages contained by yet unresolved in the registry will not be
+		 * found.
+		 * <p>
+		 * The outward direction of this search allows inner environments to
+		 * occlude outer definitions and in some cases may make outer
+		 * definitions inaccessible.
+		 */
+    	LOOKUP_PACKAGE_BY_NAME,
+    	/**
+		 * <tt>LOOKUP_PACKAGE_BY_ALIAS</tt> ignores hierarchical context and just
+		 * looks up the first package name as the 'nsURI' key in the package registry
+		 * of the root environment. For this to give useful results, the package
+		 * registry should be populated with a mapping from package name aliases to packages.
+		 * <p>
+		 * This strategy therefore supports a possible import syntax such as:
+		 * <pre>  import OclEcore 'http://www.eclipse.org/ocl/1.1.0/Ecore'</pre>
+		 * in which <tt>OclEcore</tt> is defined as an alias for the OCL Ecore package.
+		 * <p>
+		 * More than one 'alias' may map to the same package.
+		 * <p>
+		 * This strategy is only supported for the Ecore binding.
+		 */
+    	LOOKUP_PACKAGE_BY_ALIAS,
+		/**
+		 * <tt>LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME</tt> combines the alias and
+		 * traditional strategies. If the first package name can be located as
+		 * an alias, then the alias resolution is used, otherwise the recursive
+		 * environment search proceeds.
+		 * <p>
+		 * This strategy ensures that package name aliases cannot be occluded.
+		 * <p>
+		 * In order to use this strategy and avoid cluttering a registry of
+		 * packages that may serve other purposes, it is recommended that the
+		 * root environment is created with a fresh
+		 * {@link EPackageRegistryImpl#EPackageRegistryImpl() registry} that is
+		 * populated with the packages required, e.g., by copying all contents
+		 * of the {@link EPackage.Registry#INSTANCE default package registry}
+		 * using {@link java.util.Map#putAll(java.util.Map)}. Note, that this
+		 * will copy unresolved package descriptors to the new registry without
+		 * resolving them.
+		 * <p>
+		 * This strategy is only supported for the Ecore binding.
+		 */
+    	LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME
+    };
     
     /**
      * <p>
