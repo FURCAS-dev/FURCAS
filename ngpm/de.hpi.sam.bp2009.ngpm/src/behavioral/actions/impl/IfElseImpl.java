@@ -99,7 +99,8 @@ public class IfElseImpl extends ConditionalStatementImpl implements IfElse {
      */
 	public Block getIfBlock() {
         try {
-            return (Block)GET_IF_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Block result = (Block) GET_IF_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -123,7 +124,8 @@ public class IfElseImpl extends ConditionalStatementImpl implements IfElse {
      */
 	public Block getElseBlock() {
         try {
-            return (Block)GET_ELSE_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Block result = (Block) GET_ELSE_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

@@ -490,7 +490,8 @@ public class AssociationEndImpl extends NamedElementImpl implements AssociationE
      */
 	public AssociationEnd otherEnd() {
         try {
-            return (AssociationEnd)OTHER_END__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            AssociationEnd result = (AssociationEnd) OTHER_END__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

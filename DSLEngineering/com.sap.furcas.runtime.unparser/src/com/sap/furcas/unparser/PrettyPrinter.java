@@ -549,7 +549,8 @@ public class PrettyPrinter {
 	    if (template != null) {
 	        if (template.getSerializer() != null && !template.getSerializer().equals("")) {
 	            String serializer = StringUtil.unescapeString(template.getSerializer());
-	            printer.printCustomStringLiteral(serializer.replaceAll("%value%", Matcher.quoteReplacement((String) value)), "");
+	            String escapedValue = ((String)value).replaceAll("\"", Matcher.quoteReplacement("\\\""));
+	            printer.printCustomStringLiteral(serializer.replaceAll("%value%", Matcher.quoteReplacement(escapedValue)), "");
 		} else {
 		    printer.printDefault((String) value);
 		}

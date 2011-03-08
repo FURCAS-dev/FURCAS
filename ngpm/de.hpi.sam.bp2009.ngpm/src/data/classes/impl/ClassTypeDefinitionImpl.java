@@ -254,7 +254,8 @@ public class ClassTypeDefinitionImpl extends TypeDefinitionImpl implements Class
      */
 	public boolean objectParametersConformTo(ClassTypeDefinition ctd) {
         try {
-            return (Boolean)OBJECT_PARAMETERS_CONFORM_TO_CLASS_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{ctd}));
+            Boolean result = (Boolean) OBJECT_PARAMETERS_CONFORM_TO_CLASS_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{ctd}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -278,7 +279,9 @@ public class ClassTypeDefinitionImpl extends TypeDefinitionImpl implements Class
      */
 	public EList<Expression> effectiveObjectParameters() {
         try {
-            return (EList<Expression>)EFFECTIVE_OBJECT_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<Expression> result = (EList<Expression>) EFFECTIVE_OBJECT_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

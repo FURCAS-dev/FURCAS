@@ -157,7 +157,8 @@ public class ParameterizedClassInstantiationImpl extends SapClassImpl implements
      */
 	public SapClass resolveFormalTypeParameter(FormalTypeParameter ftp) {
         try {
-            return (SapClass)RESOLVE_FORMAL_TYPE_PARAMETER_FORMAL_TYPE_PARAMETER__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{ftp}));
+            SapClass result = (SapClass) RESOLVE_FORMAL_TYPE_PARAMETER_FORMAL_TYPE_PARAMETER__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{ftp}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -181,7 +182,8 @@ public class ParameterizedClassInstantiationImpl extends SapClassImpl implements
      */
 	public ClassParameterization getClassParameterization() {
         try {
-            return (ClassParameterization)GET_CLASS_PARAMETERIZATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            ClassParameterization result = (ClassParameterization) GET_CLASS_PARAMETERIZATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

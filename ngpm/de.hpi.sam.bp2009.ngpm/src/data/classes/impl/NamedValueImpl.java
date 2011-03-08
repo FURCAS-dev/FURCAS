@@ -211,7 +211,9 @@ public abstract class NamedValueImpl extends NamedElementImpl implements NamedVa
      */
 	public EList<NamedValue> getNamedValuesInScope() {
         try {
-            return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -235,7 +237,8 @@ public abstract class NamedValueImpl extends NamedElementImpl implements NamedVa
      */
 	public boolean conformsTo(TypedElement typedElement) {
         try {
-            return (Boolean)CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            Boolean result = (Boolean) CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -259,7 +262,8 @@ public abstract class NamedValueImpl extends NamedElementImpl implements NamedVa
      */
 	public TypeDefinition getType() {
         try {
-            return (TypeDefinition)GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

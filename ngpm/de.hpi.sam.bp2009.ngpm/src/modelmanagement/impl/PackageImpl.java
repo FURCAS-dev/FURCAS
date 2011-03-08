@@ -258,7 +258,8 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
   public boolean hasOwnershipCycle(EList<modelmanagement.Package> pks)
   {
         try {
-            return (Boolean)HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
+            Boolean result = (Boolean) HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

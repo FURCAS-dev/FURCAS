@@ -17,8 +17,8 @@
   <modules>
     <module>FURCAS</module>
     <module>FURCAS-Update-Site</module>
-    <!--
     <module>bibtex.dsl</module>
+    <!--
     <module>bibtex.test</module>
     <module>bibtex.metamodel</module>
     <module>bibtex.metamodel.edit</module>

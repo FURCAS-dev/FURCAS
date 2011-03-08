@@ -158,7 +158,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
      * 
      * FIXME: hardcoded project relative paths are used. We have to make them configurable.
      */
-    private void doFullBuild(IResource resource, IProgressMonitor monitor) throws CoreException {
+    public void doFullBuild(IResource resource, IProgressMonitor monitor) throws CoreException {
         if (!resource.getName().endsWith(Constants.TCS_EXTENSION) || resource.isDerived()) {
             return; // nothing to build
         }

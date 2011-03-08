@@ -33,7 +33,6 @@
     <module>com.sap.ide.refactoring</module>
     <module>com.sap.ide.refactoring.test</module>
     <module>com.sap.ide.treeprovider</module>
-    <module>com.sap.runlet.abstractexpressionpad</module>
     <module>com.sap.runlet.apps.dunning</module>
     <module>com.sap.runlet.apps.opportunitymanagement</module>
     <module>com.sap.runlet.apps.wave</module>
@@ -53,6 +52,7 @@
     <module>finex.test</module>
     <module>ngpm.stdlib</module>
 	-->
+    <module>com.sap.runlet.abstractexpressionpad</module>
     <module>de.hpi.sam.bp2009.ngpm</module>
     <module>com.sap.runlet.abstractinterpreter</module>
     <module>com.sap.runlet.interpreter</module>

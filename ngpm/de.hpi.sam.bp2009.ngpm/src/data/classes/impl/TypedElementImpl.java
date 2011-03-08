@@ -151,7 +151,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
      */
 	public boolean conformsTo(TypedElement typedElement) {
         try {
-            return (Boolean)CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            Boolean result = (Boolean) CONFORMS_TO_TYPED_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typedElement}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -175,7 +176,8 @@ public abstract class TypedElementImpl extends EObjectImpl implements TypedEleme
      */
 	public TypeDefinition getType() {
         try {
-            return (TypeDefinition)GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) GET_TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
