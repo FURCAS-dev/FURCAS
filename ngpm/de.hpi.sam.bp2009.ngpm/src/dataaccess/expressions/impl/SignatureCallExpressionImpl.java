@@ -6,29 +6,23 @@
  */
 package dataaccess.expressions.impl;
 
-import data.classes.Multiplicity;
-import data.classes.Signature;
-
-import dataaccess.expressions.Expression;
-import dataaccess.expressions.ExpressionsPackage;
-import dataaccess.expressions.SignatureCallExpression;
-
 import java.lang.reflect.InvocationTargetException;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import data.classes.Multiplicity;
+import data.classes.Signature;
+import dataaccess.expressions.Expression;
+import dataaccess.expressions.ExpressionsPackage;
+import dataaccess.expressions.SignatureCallExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -102,7 +96,8 @@ public abstract class SignatureCallExpressionImpl extends ExpressionImpl impleme
      */
 	public Signature getSignature() {
         try {
-            return (Signature)GET_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Signature result = (Signature) GET_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -126,7 +121,8 @@ public abstract class SignatureCallExpressionImpl extends ExpressionImpl impleme
      */
 	public Multiplicity getMultiplicityOfCallTarget() {
         try {
-            return (Multiplicity)GET_MULTIPLICITY_OF_CALL_TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Multiplicity result = (Multiplicity) GET_MULTIPLICITY_OF_CALL_TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

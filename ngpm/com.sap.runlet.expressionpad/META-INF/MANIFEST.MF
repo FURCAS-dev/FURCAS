@@ -6,23 +6,19 @@ Bundle-Activator: com.sap.runlet.expressionpad.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.runlet.interpreter,
- com.sap.ide.cts.editor,
  com.sap.furcas.runtime.parser.incremental,
- com.sap.mi.textual.parsing,
- com.sap.mi.textual.parsing.textblocks,
- com.sap.ap.metamodel.core,
  org.eclipse.core.resources,
  org.junit,
  org.eclipse.ui,
  com.sap.runlet.interpreter.test,
  org.eclipse.debug.core,
  org.eclipse.debug.ui,
- com.sap.ap.cts.editor,
- com.sap.ide.cts.moin,
- com.sap.mi.textual.common,
  com.sap.runlet.abstractinterpreter,
  com.sap.runlet.abstractexpressionpad,
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ com.sap.furcas.metamodel;bundle-version="1.0.0",
+ de.hpi.sam.bp2009.ngpm,
+ org.antlr.runtime;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.expressionpad,
  com.sap.runlet.expressionpad.views
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

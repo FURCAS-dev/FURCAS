@@ -128,7 +128,8 @@ public abstract class SignatureImplementationImpl extends EObjectImpl implements
      */
 	public Signature getImplementedSignature() {
         try {
-            return (Signature)GET_IMPLEMENTED_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Signature result = (Signature) GET_IMPLEMENTED_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

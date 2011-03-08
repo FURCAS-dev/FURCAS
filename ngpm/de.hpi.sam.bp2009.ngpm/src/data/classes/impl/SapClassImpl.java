@@ -6,21 +6,36 @@
  */
 package data.classes.impl;
 
-import abapmapping.AbapClassImplementationAnnotation;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 
+import modelmanagement.ModelmanagementPackage;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import abapmapping.AbapClassImplementationAnnotation;
 import behavioral.events.EventProducer;
 import behavioral.events.EventsPackage;
 import behavioral.events.Subscription;
-
 import behavioral.status_and_action.assembly.AssemblyPackage;
 import behavioral.status_and_action.assembly.StatusSchema;
-
 import behavioral.status_and_action_old.SAMAction;
 import behavioral.status_and_action_old.SAMDerivator;
 import behavioral.status_and_action_old.SAMStatusSchema;
 import behavioral.status_and_action_old.SAMStatusVariable;
 import behavioral.status_and_action_old.Status_and_action_oldPackage;
-
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.ClassesPackage;
@@ -30,40 +45,12 @@ import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.Signature;
 import data.classes.TypeAdapter;
-
 import data.constraints.Constraint;
 import data.constraints.ConstraintsPackage;
-
 import data.generics.ClassParameterization;
 import data.generics.GenericsPackage;
-
 import data.timedependency.TimeDependency;
 import data.timedependency.TimedependencyPackage;
-
-import java.lang.reflect.InvocationTargetException;
-
-import java.util.Collection;
-
-import modelmanagement.ModelmanagementPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.WrappedException;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -810,7 +797,8 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public boolean isAbstract() {
         try {
-            return (Boolean)IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -834,7 +822,8 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public boolean isParameterizedClassDefinition() {
         try {
-            return (Boolean)IS_PARAMETERIZED_CLASS_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_PARAMETERIZED_CLASS_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -858,7 +847,8 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public boolean conformsTo(SapClass type) {
         try {
-            return (Boolean)CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+            Boolean result = (Boolean) CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -882,7 +872,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> allSignatures() {
         try {
-            return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -906,7 +898,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<SapClass> delegatesTo() {
         try {
-            return (EList<SapClass>)DELEGATES_TO__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<SapClass> result = (EList<SapClass>) DELEGATES_TO__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -930,7 +924,8 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
         try {
-            return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+            Boolean result = (Boolean) CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -954,7 +949,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> signaturesWithDelegation() {
         try {
-            return (EList<MethodSignature>)SIGNATURES_WITH_DELEGATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) SIGNATURES_WITH_DELEGATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -978,7 +975,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> delegatedSignatures() {
         try {
-            return (EList<MethodSignature>)DELEGATED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) DELEGATED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1002,7 +1001,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> adaptedSignatures() {
         try {
-            return (EList<MethodSignature>)ADAPTED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ADAPTED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1026,7 +1027,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> adaptedSignaturesExcluding(EList<SapClass> excluding) {
         try {
-            return (EList<MethodSignature>)ADAPTED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ADAPTED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1050,7 +1053,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding) {
         try {
-            return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1074,7 +1079,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> signaturesWithDelegationExcluding(EList<SapClass> excluding) {
         try {
-            return (EList<MethodSignature>)SIGNATURES_WITH_DELEGATION_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) SIGNATURES_WITH_DELEGATION_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1098,7 +1105,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<MethodSignature> delegatedSignaturesExcluding(EList<SapClass> excluding) {
         try {
-            return (EList<MethodSignature>)DELEGATED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            @SuppressWarnings("unchecked")
+            EList<MethodSignature> result = (EList<MethodSignature>) DELEGATED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1122,7 +1131,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<SapClass> getConformingClasses() {
         try {
-            return (EList<SapClass>)GET_CONFORMING_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<SapClass> result = (EList<SapClass>) GET_CONFORMING_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1146,7 +1157,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<AssociationEnd> getAssociationEnds() {
         try {
-            return (EList<AssociationEnd>)GET_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<AssociationEnd> result = (EList<AssociationEnd>) GET_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1170,7 +1183,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<AssociationEnd> getEqualityRelevantAssociationEnds() {
         try {
-            return (EList<AssociationEnd>)GET_EQUALITY_RELEVANT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<AssociationEnd> result = (EList<AssociationEnd>) GET_EQUALITY_RELEVANT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1194,7 +1209,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<SapClass> getConformsToClasses() {
         try {
-            return (EList<SapClass>)GET_CONFORMS_TO_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<SapClass> result = (EList<SapClass>) GET_CONFORMS_TO_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1218,7 +1235,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<AssociationEnd> getConformsToAssociationEnds() {
         try {
-            return (EList<AssociationEnd>)GET_CONFORMS_TO_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<AssociationEnd> result = (EList<AssociationEnd>) GET_CONFORMS_TO_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1242,7 +1261,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<AssociationEnd> getConformsToCompositeParentAssociationEnds() {
         try {
-            return (EList<AssociationEnd>)GET_CONFORMS_TO_COMPOSITE_PARENT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<AssociationEnd> result = (EList<AssociationEnd>) GET_CONFORMS_TO_COMPOSITE_PARENT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -1266,7 +1287,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
      */
 	public EList<AssociationEnd> getConformsToCompositeChildAssociationEnds() {
         try {
-            return (EList<AssociationEnd>)GET_CONFORMS_TO_COMPOSITE_CHILD_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<AssociationEnd> result = (EList<AssociationEnd>) GET_CONFORMS_TO_COMPOSITE_CHILD_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

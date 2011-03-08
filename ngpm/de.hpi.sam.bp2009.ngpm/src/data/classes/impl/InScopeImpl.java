@@ -67,7 +67,9 @@ public abstract class InScopeImpl extends EObjectImpl implements InScope {
      */
 	public EList<NamedValue> addNamedValuesWithNewNames(EList<NamedValue> inner, EList<NamedValue> outer) {
         try {
-            return (EList<NamedValue>)ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

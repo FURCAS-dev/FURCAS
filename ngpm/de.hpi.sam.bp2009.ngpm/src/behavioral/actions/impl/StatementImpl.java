@@ -133,7 +133,8 @@ public abstract class StatementImpl extends InScopeImpl implements Statement {
      */
 	public Block getOutermostBlock() {
         try {
-            return (Block)GET_OUTERMOST_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Block result = (Block) GET_OUTERMOST_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -157,7 +158,8 @@ public abstract class StatementImpl extends InScopeImpl implements Statement {
      */
 	public boolean isSideEffectFree() {
         try {
-            return (Boolean)IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_SIDE_EFFECT_FREE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -181,7 +183,8 @@ public abstract class StatementImpl extends InScopeImpl implements Statement {
      */
 	public boolean isSideEffectFreeForBlock(Block block) {
         try {
-            return (Boolean)IS_SIDE_EFFECT_FREE_FOR_BLOCK_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{block}));
+            Boolean result = (Boolean) IS_SIDE_EFFECT_FREE_FOR_BLOCK_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{block}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -205,7 +208,9 @@ public abstract class StatementImpl extends InScopeImpl implements Statement {
      */
 	public EList<NamedValue> getNamedValuesInScope() {
         try {
-            return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -229,7 +234,8 @@ public abstract class StatementImpl extends InScopeImpl implements Statement {
      */
 	public SapClass getOwningClass() {
         try {
-            return (SapClass)GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            SapClass result = (SapClass) GET_OWNING_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

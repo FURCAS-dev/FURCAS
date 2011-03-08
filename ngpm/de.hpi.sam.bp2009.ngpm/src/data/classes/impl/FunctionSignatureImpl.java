@@ -313,7 +313,8 @@ public class FunctionSignatureImpl extends SignatureImpl implements FunctionSign
      */
 	public boolean isAbstract() {
         try {
-            return (Boolean)IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Boolean result = (Boolean) IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -337,7 +338,8 @@ public class FunctionSignatureImpl extends SignatureImpl implements FunctionSign
      */
 	public AnonymousFunctionExpr getImplementedAnonymousFunctionExpression() {
         try {
-            return (AnonymousFunctionExpr)GET_IMPLEMENTED_ANONYMOUS_FUNCTION_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            AnonymousFunctionExpr result = (AnonymousFunctionExpr) GET_IMPLEMENTED_ANONYMOUS_FUNCTION_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

@@ -45,7 +45,7 @@ import data.classes.TypeDefinition;
  *
  */
 public class Rucola {
-    private RunletInterpreter interpreter;
+    private final RunletInterpreter interpreter;
     
     /**
      * Initializes a new {@link RunletInterpreter} with a new empty

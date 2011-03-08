@@ -210,7 +210,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public boolean conformsTo(TypeDefinition typeDef) {
         try {
-            return (Boolean)CONFORMS_TO_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typeDef}));
+            Boolean result = (Boolean) CONFORMS_TO_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typeDef}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -234,7 +235,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public boolean conformsToExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
         try {
-            return (Boolean)CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+            Boolean result = (Boolean) CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -258,7 +260,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public boolean multiplicityConformsTo(TypeDefinition td) {
         try {
-            return (Boolean)MULTIPLICITY_CONFORMS_TO_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{td}));
+            Boolean result = (Boolean) MULTIPLICITY_CONFORMS_TO_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{td}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -282,7 +285,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public boolean conformsToIgnoringMultiplicityExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
         try {
-            return (Boolean)CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+            Boolean result = (Boolean) CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -306,7 +310,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public boolean conformsToIgnoringMultiplicity(TypeDefinition typeDef) {
         try {
-            return (Boolean)CONFORMS_TO_IGNORING_MULTIPLICITY_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typeDef}));
+            Boolean result = (Boolean) CONFORMS_TO_IGNORING_MULTIPLICITY_TYPE_DEFINITION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{typeDef}));
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -330,7 +335,9 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public EList<TypedElement> getTypeUsage() {
         try {
-            return (EList<TypedElement>)GET_TYPE_USAGE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<TypedElement> result = (EList<TypedElement>) GET_TYPE_USAGE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -354,7 +361,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public TypeDefinition getInnermost() {
         try {
-            return (TypeDefinition)GET_INNERMOST__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            TypeDefinition result = (TypeDefinition) GET_INNERMOST__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -378,7 +386,8 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public int getNestingLevel() {
         try {
-            return (Integer)GET_NESTING_LEVEL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            Integer result = (Integer) GET_NESTING_LEVEL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -402,7 +411,9 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
      */
 	public EList<NamedValue> getNamedValuesInScope() {
         try {
-            return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            @SuppressWarnings("unchecked")
+            EList<NamedValue> result = (EList<NamedValue>) GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return result;
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);

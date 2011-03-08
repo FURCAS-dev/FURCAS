@@ -138,8 +138,10 @@ public class TestPrettyPrintTCS {
         
         // parse the tmpFile
         TCSParserGenerator generator = TCSParserGeneratorFactory.INSTANCE.createTCSParserGenerator();
+        Set<URI> refScope = ResourceTestHelper.createFURCASReferenceScope();
+        refScope.addAll(ResourceTestHelper.createEcoreReferenceScope());
         ConcreteSyntax reparsedSyntax = generator.parseSyntax(new GrammarGenerationSourceConfiguration(ResourceTestHelper.createResourceSet(),
-                ResourceTestHelper.createFURCASReferenceScope()), tmpFile, new FailOnErrorErrorHandler()).getSyntax();
+                refScope), tmpFile, new FailOnErrorErrorHandler()).getSyntax();
         assertNotNull(reparsedSyntax);
         
         // reprint the new syntax model yet another time.

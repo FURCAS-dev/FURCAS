@@ -10,18 +10,18 @@ import java.util.Date;
 import java.util.Iterator;
 
 import org.antlr.runtime.RecognitionException;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.runlet.abstractexpressionpad.Evaluator.ExecuteResult;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.DateParser;
-import com.sap.runlet.expressionpad.RunletEvaluator;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
+import com.sap.runlet.expressionpad.RunletEvaluator;
 import com.sap.runlet.expressionpad.views.RunletHTTPHandler;
 import com.sap.runlet.interpreter.Activator;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.NativeObject;
 import com.sap.runlet.interpreter.repository.simpleimpl.RunletInMemoryRepository;
-import com.sap.tc.moin.repository.Connection;
 import com.sun.net.httpserver.HttpServer;
 
 import data.classes.AssociationEnd;
@@ -307,8 +307,8 @@ public class GeneralTests extends RunletTestCase {
     }
     
     public void testRunletHttpServerAndBinding() throws Exception {
-	Connection conn = RunletEvaluator.getConnection("ngpm.stdlib");
-	RunletInterpreter interpreter = new RunletInterpreter(conn, new RunletInMemoryRepository(
+	ResourceSet rs = RunletEvaluator.getResourceSet("ngpm.stdlib");
+	RunletInterpreter interpreter = new RunletInterpreter(rs, new RunletInMemoryRepository(
 		Activator.getDefault().getModelAdapter()));
 	final String testString = "123";
 	URL url = new URL("http://localhost:8234/trala?s="+testString);
@@ -328,7 +328,6 @@ public class GeneralTests extends RunletTestCase {
 	r.close();
 	runletHTTPServer.stop(0);
 	assertEquals(testString, sb.toString());
-	conn.close();
     }
 
     public void testCompositionCheck() throws Exception {

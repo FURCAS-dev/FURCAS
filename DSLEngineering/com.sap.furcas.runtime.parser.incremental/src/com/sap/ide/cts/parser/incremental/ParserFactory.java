@@ -11,8 +11,10 @@ import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.antlr3.ITokenFactory;
@@ -41,7 +43,11 @@ public interface ParserFactory<P extends ObservableInjectingParser,
     public URI getMetamodelUri(ResourceSet connection);
     
     public EPackage getMetamodelPackage(ResourceSet connection);
-    
+
+    /**
+     * @return the URI of the {@link Resource} holding as its single immediate {@link Resource#getContents() content
+     *         object} the {@link ConcreteSyntax} element representing the syntax / mapping definition.
+     */
     public URI getSyntaxUri();
     
     public String getLanguageId();
