@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.10 2011/01/25 10:43:34 auhl Exp $
+ * $Id: EcoreEnvironment.java,v 1.11 2011/03/09 13:07:04 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -671,6 +671,31 @@ public class EcoreEnvironment
 		}
 
 		return findPackageByNSPrefix(packageNames, registry);
+	}
+
+	/**
+	 * Looks in the given registry for an 'nsURI' matching the first element in <tt>packageNames</tt>.
+	 * If found, further elements of <tt>packageNames</tt> identify nested packages.
+	 * <t>
+	 * This search supports the {@link ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS} strategy.
+	 * 
+	 * @param packageNames
+	 *            the qualified package name
+	 * @param registry
+	 *            the EPackage.Registry to look in
+	 * @return the matching EPackage, or <code>null</code> if not found
+	 */
+	static private EPackage findPackageByAlias(List<String> packageNames, EPackage.Registry registry) {
+		if (packageNames.isEmpty()) {
+			return null;
+		}       
+		String name = packageNames.get(0);
+		EPackage ePackage = registry.getEPackage(name);
+		if (ePackage != null) {
+			List<String> packageSubList = packageNames.subList(1, packageNames.size());
+			ePackage = findNestedPackage(packageSubList, ePackage);
+		}
+		return ePackage;
 	}
 
 	/**

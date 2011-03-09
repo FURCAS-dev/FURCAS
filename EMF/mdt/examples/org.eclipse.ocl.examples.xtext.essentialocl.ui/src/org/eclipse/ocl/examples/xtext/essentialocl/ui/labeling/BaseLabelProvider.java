@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.5 2011/03/01 08:47:31 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.6 2011/03/08 16:20:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -274,21 +274,21 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	}
 
 	protected void appendTemplateParameterSubstitutions(StringBuffer s, Collection<TemplateParameterSubstitutionCS> templateParameterSubstitutions) {
-		s.append("<");
+		s.append("(");
 		String prefix = "";
 		for (TemplateParameterSubstitutionCS templateParameterSubstitution : templateParameterSubstitutions) {
 			s.append(prefix);
 			appendTemplateParameterSubstitution(s, templateParameterSubstitution);
 			prefix = ", ";
 		}
-		s.append(">");
+		s.append(")");
 	}
 
 	protected void appendTemplateSignature(StringBuffer s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				s.append("<");
+				s.append("(");
 				Collection<TemplateParameter> templateParameters = templateSignature.getParameters();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
@@ -298,7 +298,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 						prefix = ", ";
 					}
 				}
-				s.append(">");
+				s.append(")");
 			}
 		}
 	}

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLResource.java,v 1.1 2011/03/04 22:18:03 ewillink Exp $
+ * $Id: OCLResource.java,v 1.2 2011/03/08 15:13:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.examples.pivot.OclExpression;
-import org.eclipse.ocl.examples.pivot.utilities.ToStringVisitor;
 
 
 /**
@@ -84,7 +83,7 @@ public class OCLResource
 		
 		OclExpression expr = res.getOCLExpression();
 		if (expr != null) {
-			result = expr.accept(ToStringVisitor.getInstance(expr));
+			result = expr.toString();
 		}
 		
 		return result;
@@ -148,7 +147,6 @@ public class OCLResource
 	 * 
 	 * @return my OCL expression
 	 */
-	@SuppressWarnings("unchecked")
 	public OclExpression getOCLExpression() {
 		OclExpression result = null;
 		
