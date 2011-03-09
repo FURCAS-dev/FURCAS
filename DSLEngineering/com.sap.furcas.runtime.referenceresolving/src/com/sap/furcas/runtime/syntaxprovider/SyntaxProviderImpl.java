@@ -17,7 +17,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
 public class SyntaxProviderImpl implements SyntaxProvider {
-    private ResourceSet resourceSet;
     private ConcreteSyntax syntax;
     private Resource syntaxResource;
     private final AbstractParserFactory<?, ?> parserFactory;
@@ -31,22 +30,23 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     }
 
     @Override
-    public synchronized ResourceSet getResourceSet() throws ParserException, IOException {
-        if (resourceSet == null) {
-            resourceSet = new ResourceSetImpl();
-            triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(getSyntax(),
+    public synchronized TriggerManager getTriggerManager() throws ParserException, IOException {
+        if (triggerManager == null) {
+            triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(getSyntax(null),
                     EPackage.Registry.INSTANCE, oppositeEndFinder, /* monitor */ null, parserFactory);
-            triggerManager.addToObservedResourceSets(resourceSet);
         }
-        return resourceSet;
+        return triggerManager;
     }
 
     @Override
-    public synchronized ConcreteSyntax getSyntax() throws IOException, ParserException {
+    public synchronized ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
         if (syntax == null && syntaxResource == null) {
             URI syntaxUri = parserFactory.getSyntaxUri();
             if (syntaxUri != null) {
-                syntaxResource = getResourceSet().createResource(syntaxUri);
+                if (loadSyntaxIn == null) {
+                    loadSyntaxIn = new ResourceSetImpl();
+                }
+                syntaxResource = loadSyntaxIn.createResource(syntaxUri);
                 syntaxResource.load(/* options */null);
                 for (EObject e : syntaxResource.getContents()) {
                     if (e instanceof ConcreteSyntax) {

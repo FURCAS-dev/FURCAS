@@ -1,15 +1,18 @@
 package com.sap.furcas.runtime.referenceresolving;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.WeakHashMap;
+import java.util.Map;
 
 import org.antlr.runtime.Lexer;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.osgi.framework.BundleActivator;
@@ -30,12 +33,12 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
 
 public class SyntaxRegistry implements BundleActivator {
     private static SyntaxRegistry instance;
-    private final WeakHashMap<ConcreteSyntax, TriggerManager> triggerManagersForSyntax;
-    private final WeakHashMap<ConcreteSyntax, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoriesForSyntax;
+    private final Map<URI, TriggerManager> triggerManagersForSyntax;
+    private final Map<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoriesForSyntax;
     
     public SyntaxRegistry() {
-        triggerManagersForSyntax = new WeakHashMap<ConcreteSyntax, TriggerManager>();
-        parserFactoriesForSyntax = new WeakHashMap<ConcreteSyntax, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
+        triggerManagersForSyntax = new HashMap<URI, TriggerManager>();
+        parserFactoriesForSyntax = new HashMap<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
     }
     
     @Override
@@ -67,11 +70,12 @@ public class SyntaxRegistry implements BundleActivator {
     public TriggerManager getTriggerManagerForSyntax(ConcreteSyntax syntax, Registry metamodelPackageRegistry,
             OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor,
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws ParserException {
-        TriggerManager triggerManager = triggerManagersForSyntax.get(syntax);
+        URI syntaxURI = EcoreUtil.getURI(syntax);
+        TriggerManager triggerManager = triggerManagersForSyntax.get(syntaxURI);
         if (triggerManager == null) {
-            parserFactoriesForSyntax.put(syntax, parserFactory);
+            parserFactoriesForSyntax.put(syntaxURI, parserFactory);
             triggerManager = TriggerManagerFactory.INSTANCE.createTriggerManager(oppositeEndFinder);
-            triggerManagersForSyntax.put(syntax, triggerManager);
+            triggerManagersForSyntax.put(syntaxURI, triggerManager);
             fillTriggerManagerForSyntax(triggerManager, syntax, parserFactory, metamodelPackageRegistry, oppositeEndFinder, monitor);
         }
         return triggerManager;

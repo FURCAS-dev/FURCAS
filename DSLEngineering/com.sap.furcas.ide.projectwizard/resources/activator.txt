@@ -1,14 +1,15 @@
 package $ProjectName$.editor; 
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ui.plugin.AbstractUIPlugin; 
 import org.osgi.framework.BundleContext; 
 
 import java.io.IOException;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 
@@ -47,12 +48,12 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
     }
 
     @Override
-    public ResourceSet getResourceSet() throws ParserException, IOException {
-        return delegate.getResourceSet();
+    public TriggerManager getTriggerManager() throws ParserException, IOException {
+        return delegate.getTriggerManager();
     }
 
     @Override
-    public ConcreteSyntax getSyntax() throws IOException, ParserException {
-        return delegate.getSyntax();
+    public ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
+        return delegate.getSyntax(loadSyntaxIn);
     }
 }
