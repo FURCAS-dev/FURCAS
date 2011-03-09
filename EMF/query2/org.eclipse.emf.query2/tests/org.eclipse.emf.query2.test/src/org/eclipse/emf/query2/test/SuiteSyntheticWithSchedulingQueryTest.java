@@ -152,6 +152,7 @@ public class SuiteSyntheticWithSchedulingQueryTest extends BaseSyntheticQueryTes
 		assertTrue("ResultSet is not correct", super.nested_query_with_reference_variant()); //$NON-NLS-1$
 	}
 
+	@Test
 	public void test_nested_query_with_reference_and_not() throws Exception {
 
 		assertTrue("ResultSet is not correct", super.nested_query_with_reference_and_not()); //$NON-NLS-1$
