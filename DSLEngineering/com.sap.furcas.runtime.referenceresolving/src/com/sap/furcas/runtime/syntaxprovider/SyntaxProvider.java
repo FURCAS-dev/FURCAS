@@ -7,6 +7,7 @@ import org.eclipse.ocl.ParserException;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
 /**
  * Can provide a {@link ConcreteSyntax concrete syntax} and a {@link TriggerManager} for a syntax-providing bundle. The
@@ -31,7 +32,7 @@ public interface SyntaxProvider {
      * any effects unless {@link TriggerManager#addToObservedResourceSets(ResourceSet) registered}
      * for a resource set.
      */
-    TriggerManager getTriggerManager() throws ParserException, IOException;
+    TriggerManager getTriggerManager(SyntaxRegistry syntaxRegistry) throws ParserException, IOException;
     
     /**
      * Loads this provider's syntax if it hasn't been loaded already and returns it. If loading

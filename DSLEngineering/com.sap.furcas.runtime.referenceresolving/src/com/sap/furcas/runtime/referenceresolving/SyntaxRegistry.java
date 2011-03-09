@@ -2,19 +2,28 @@ package com.sap.furcas.runtime.referenceresolving;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
+import java.util.logging.Logger;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
@@ -30,6 +39,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 
@@ -44,24 +54,62 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
  * Ecore package's bundle is started for a package that is registered with the Ecore <code>generated_package</code>
  * extension point. These packages end up in the {@link EPackage.Registry#INSTANCE default package registry}.<p>
  * 
- * 
+ * TODO Currently, all TriggerManagers share a single EventManager which can cause trouble during individual registering/unregistering. Consider using a single TriggerManager only.
  * 
  * @author Axel Uhl (d043530)
  * 
  */
 public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener {
+    private static Logger log = Logger.getLogger(SyntaxRegistry.class.getName());
+    
+    private static final String EXTENSION_POINT_ID = "furcas_syntax";
+    private static final String METAMODEL_PROPERTY_NAME = "metamodel";
     private static SyntaxRegistry instance;
+    
+    /**
+     * The values are the extensions specifying as the "provider_class" attribute the fully-qualified
+     * class name of the {@link SyntaxProvider} class.
+     */
+    private final Map<URI, Set<IConfigurationElement>> metamodelNsURIToSyntaxProviders;
+    
     private final Map<URI, TriggerManager> triggerManagersForSyntax;
+    
+    /**
+     * The single event manager to be used by all {@link TriggerManager}s created by this registry.
+     * This ensures that only one adapter needs to be registered and that all event filters can be
+     * scalably centralized in one event manager instead of requiring another event manager per
+     * syntax registered.
+     */
+    private final EventManager eventManager;
+    
     private final Map<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoriesForSyntax;
+    
+    private final Registry metamodelRegistry;
     
     public SyntaxRegistry() {
         triggerManagersForSyntax = new HashMap<URI, TriggerManager>();
         parserFactoriesForSyntax = new HashMap<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
+        metamodelNsURIToSyntaxProviders = new HashMap<URI, Set<IConfigurationElement>>();
+        eventManager = EventManagerFactory.eINSTANCE.createEventManager();
+        metamodelRegistry = Registry.INSTANCE;
     }
     
     @Override
     public void start(BundleContext context) throws Exception {
         instance = this;
+        IExtensionRegistry registry = Platform.getExtensionRegistry();
+        for (IConfigurationElement listenerConfig : registry.getConfigurationElementsFor(
+                context.getBundle().getSymbolicName()+"."+EXTENSION_POINT_ID)) {
+            for (IConfigurationElement metamodelElement : listenerConfig.getChildren(METAMODEL_PROPERTY_NAME)) {
+                URI metamodelURI = URI.createURI(metamodelElement.getAttribute("nsURI"));
+                Set<IConfigurationElement> syntaxProviders = metamodelNsURIToSyntaxProviders.get(metamodelURI);
+                if (syntaxProviders == null) {
+                    syntaxProviders = new HashSet<IConfigurationElement>();
+                    metamodelNsURIToSyntaxProviders.put(metamodelURI, syntaxProviders);
+                }
+                syntaxProviders.add(listenerConfig);
+            }
+        }
     }
 
     @Override
@@ -85,30 +133,29 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
      *         long as they wish the triggers to be executed as this registry
      *         only weakly references it.
      */
-    public TriggerManager getTriggerManagerForSyntax(ConcreteSyntax syntax, Registry metamodelPackageRegistry,
-            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor,
-            ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws ParserException {
+    public TriggerManager getTriggerManagerForSyntax(ConcreteSyntax syntax, OppositeEndFinder oppositeEndFinder,
+            IProgressMonitor monitor, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) throws ParserException {
         URI syntaxURI = EcoreUtil.getURI(syntax);
         TriggerManager triggerManager = triggerManagersForSyntax.get(syntaxURI);
         if (triggerManager == null) {
             parserFactoriesForSyntax.put(syntaxURI, parserFactory);
-            triggerManager = TriggerManagerFactory.INSTANCE.createTriggerManager(oppositeEndFinder);
+            triggerManager = TriggerManagerFactory.INSTANCE.createTriggerManager(oppositeEndFinder, eventManager);
             triggerManagersForSyntax.put(syntaxURI, triggerManager);
-            fillTriggerManagerForSyntax(triggerManager, syntax, parserFactory, metamodelPackageRegistry, oppositeEndFinder, monitor);
+            fillTriggerManagerForSyntax(triggerManager, syntax, parserFactory, oppositeEndFinder, monitor);
         }
         return triggerManager;
     }
 
     private void fillTriggerManagerForSyntax(TriggerManager triggerManager, ConcreteSyntax syntax,
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-            Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
             throws ParserException {
         // fetch all InjectorAction and Property elements from the syntax
         Collection<InjectorAction> injectorActions = getInjectorActions(syntax);
         Collection<Property> propertyInits = getPropertiesWithQuery(syntax);
         initMonitor(syntax, monitor, injectorActions.size()+propertyInits.size());
-        registerInjectorActions(injectorActions, triggerManager, parserFactory, metamodelPackageRegistry, oppositeEndFinder, monitor);
-        registerPropertiesWithQuery(propertyInits, triggerManager, metamodelPackageRegistry, oppositeEndFinder, monitor);
+        registerInjectorActions(injectorActions, triggerManager, parserFactory, oppositeEndFinder, monitor);
+        registerPropertiesWithQuery(propertyInits, triggerManager, oppositeEndFinder, monitor);
         if (monitor != null) {
             monitor.done();
         }
@@ -123,7 +170,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     }
 
     private void registerPropertiesWithQuery(Collection<Property> propertyInits, TriggerManager triggerManager,
-            Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor) throws ParserException {
         if (monitor != null) {
             monitor.subTask("Property Queries");
         }
@@ -133,14 +180,14 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             }
             Template template = property.getParentTemplate();
             if (template != null && template instanceof ClassTemplate && PropertyArgumentUtil.getReferenceByPArg(property) != null) {
-                triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelPackageRegistry, oppositeEndFinder));
+                triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelRegistry, oppositeEndFinder));
             }
         }
     }
 
     private void registerInjectorActions(Collection<InjectorAction> injectorActions, TriggerManager triggerManager,
             ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-            EPackage.Registry metamodelPackageRegistry, OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
+            OppositeEndFinder oppositeEndFinder, IProgressMonitor monitor)
             throws ParserException {
         if (monitor != null) {
             monitor.subTask("PropertyInits");
@@ -150,9 +197,11 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
                 monitor.worked(1);
             }
             if (injectorAction instanceof LookupPropertyInit) {
-                triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction, metamodelPackageRegistry, oppositeEndFinder));
+                triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction,
+                        metamodelRegistry, oppositeEndFinder));
             } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
-                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction, metamodelPackageRegistry, parserFactory, oppositeEndFinder));
+                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction,
+                        metamodelRegistry, parserFactory, oppositeEndFinder));
             }
         }
     }
@@ -186,12 +235,35 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     }
 
     /**
-     * By means of synchronization, concurrently registering all already loaded packages won't run
-     * out of synch.
+     * If syntaxes are registered for the Ecore package identified by <code>nsURI</code> then those syntaxes'
+     * {@link SyntaxProvider providers} are fetched, their syntaxes are retrieved and their {@link TriggerManager}s
+     * constructed.
+     * <p>
+     * 
+     * By means of synchronization, concurrently registering all already loaded packages won't run out of synch.
      */
     @Override
     public synchronized void packageLoaded(String nsURI) {
-        // System.out.println(pkg+" loaded");
-        // TODO implement SyntaxRegistry.packageLoaded
+        Set<IConfigurationElement> syntaxProviderConfigs = metamodelNsURIToSyntaxProviders.get(nsURI);
+        if (syntaxProviderConfigs != null) {
+            for (IConfigurationElement syntaxProviderConfig : syntaxProviderConfigs) {
+                try {
+                    SyntaxProvider syntaxProvider = (SyntaxProvider) syntaxProviderConfig.createExecutableExtension("provider_class");
+                    syntaxProvider.getTriggerManager(this); // trigger manager is remembered in this SyntaxRegistry
+                } catch (Exception e) {
+                    log.throwing(SyntaxRegistry.class.getName(), "packageLoaded", e);
+                }
+            }
+        }
+    }
+    
+    /**
+     * After calling this method, all change {@link Notification notifications} coming from the
+     * <code>registerWith</code> resource set and all its contained elements are analyzed. If they
+     * trigger any of the OCL-based model updater rules from any of the syntaxes currently loaded,
+     * the updater fires and updates the model accordingly.
+     */
+    public void registerAllLoadedSyntaxesTriggerManagers(ResourceSet registerWith) {
+        eventManager.addToObservedResourceSets(registerWith);
     }
 }

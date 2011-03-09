@@ -39,7 +39,16 @@ public class TriggerManagerImpl implements TriggerManager {
     }
 
     public TriggerManagerImpl(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration) {
-        eventManager = EventManagerFactory.eINSTANCE.createEventManager();
+        this(oppositeEndFinder, impactAnalysisConfiguration, EventManagerFactory.eINSTANCE.createEventManager());
+    }
+
+    public TriggerManagerImpl(OppositeEndFinder oppositeEndFinder, EventManager eventManager) {
+        this(oppositeEndFinder, OptimizationActivation.getOption(), eventManager);
+    }
+
+    public TriggerManagerImpl(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration,
+            EventManager eventManager) {
+        this.eventManager = eventManager;
         this.oppositeEndFinder = oppositeEndFinder;
         this.impactAnalysisConfiguration = impactAnalysisConfiguration;
         this.strongAdapterReferences = new HashSet<AdapterForExpression>();
@@ -79,6 +88,11 @@ public class TriggerManagerImpl implements TriggerManager {
         eventManager.addToObservedResourceSets(resourceSet);
     }
 
+    /**
+     * TODO consider changing behavior so that an interim instance manages the association between
+     * event managers and trigger managers, and the event manager only stops receiving events only
+     * if all trigger managers have been removed
+     */
     @Override
     public void removeFromObservedResourceSets(ResourceSet resourceSet) {
         eventManager.removeFromObservedResourceSets(resourceSet);
