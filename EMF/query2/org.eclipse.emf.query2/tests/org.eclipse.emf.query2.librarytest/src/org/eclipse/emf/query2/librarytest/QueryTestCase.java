@@ -1,4 +1,5 @@
 package org.eclipse.emf.query2.librarytest;
+
 /*******************************************************************************
  * Copyright (c) 2006, 2009 SAP AG and others.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +11,9 @@ package org.eclipse.emf.query2.librarytest;
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.Iterator;
-
-
 
 import library.LibraryPackage;
 
@@ -23,8 +24,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.IndexFactory;
-
-
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -32,7 +31,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
-public abstract class QueryTestCase extends Assert {
+public class QueryTestCase extends Assert {
 
 	private static final Index DEFAULT_INDEX = IndexFactory.getInstance();
 
@@ -50,32 +49,42 @@ public abstract class QueryTestCase extends Assert {
 
 	static {
 
-		System.out.println("Start indexing");
+		System.out.println("Start indexing"); //$NON-NLS-1$
 		final Counter c = new Counter();
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
 			public void execute(final IndexUpdater updater) {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				indexer.resourceChanged(updater, EcorePackage.eINSTANCE.eResource());
 				indexer.resourceChanged(updater, LibraryPackage.eINSTANCE.eResource());
 				final ResourceSet rs = new ResourceSetImpl();
-				Parser parser=new Parser();
-				//load the resources
+				Parser parser = new Parser();
+				// load the resources
 				parser.loadResources(rs);
 				EList<Resource> resources = rs.getResources();
-				indexer.resourceChanged(updater,resources.toArray(new Resource[0]));
-				
-				//unload the resources
-				for (Iterator iterator = resources.iterator(); iterator
-						.hasNext();) {
+				Resource[] resourcesAsArray = (Resource[]) resources.toArray(new Resource[resources.size()]);
+
+				for (int i = 0; i < resourcesAsArray.length; i++) {
+					if (!resourcesAsArray[i].isLoaded()) {
+						try {
+							resourcesAsArray[i].load(Collections.EMPTY_MAP);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+
+				indexer.resourceChanged(updater, resourcesAsArray);
+
+				// unload the resources
+				for (Iterator iterator = resources.iterator(); iterator.hasNext();) {
 					Resource resource = (Resource) iterator.next();
 					resource.unload();
 				}
 			}
 		});
 
-		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files");
+		System.out.println("\nIndexing finished. Indexed " + c.getCount() + " files"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	public static Index getDefaultIndexStore() {

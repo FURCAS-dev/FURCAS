@@ -250,5 +250,13 @@ public final class QueryResultSetImpl implements SpiFqlQueryResultSet {
 		}
 
 	}
+	
+	/**
+	 * Flushes the resultset 
+	 */
+	 public void flushResultSet(){
+			numberOfAttributesPerSelection=null;
+			resultSet.clear();
+		   }
 
 }
