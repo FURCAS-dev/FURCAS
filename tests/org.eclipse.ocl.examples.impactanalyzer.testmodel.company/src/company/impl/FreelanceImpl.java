@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FreelanceImpl.java,v 1.1 2011/01/20 15:52:51 auhl Exp $
+ * $Id: FreelanceImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
  */
 package company.impl;
 
@@ -30,137 +30,137 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class FreelanceImpl extends EmployeeImpl implements Freelance {
     /**
-     * The default value of the '{@link #getAssignment() <em>Assignment</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAssignment() <em>Assignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAssignment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssignment()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int ASSIGNMENT_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getAssignment() <em>Assignment</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAssignment() <em>Assignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAssignment()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAssignment()
+	 * @generated
+	 * @ordered
+	 */
     protected int assignment = ASSIGNMENT_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected FreelanceImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return CompanyPackage.Literals.FREELANCE;
-    }
+		return CompanyPackage.Literals.FREELANCE;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getAssignment() {
-        return assignment;
-    }
+		return assignment;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public void setAssignment(int newAssignment) {
-        int oldAssignment = assignment;
-        assignment = newAssignment;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.FREELANCE__ASSIGNMENT, oldAssignment, assignment));
-    }
+		int oldAssignment = assignment;
+		assignment = newAssignment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.FREELANCE__ASSIGNMENT, oldAssignment, assignment));
+	}
 
 				/**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case CompanyPackage.FREELANCE__ASSIGNMENT:
-                return getAssignment();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case CompanyPackage.FREELANCE__ASSIGNMENT:
+				return getAssignment();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case CompanyPackage.FREELANCE__ASSIGNMENT:
-                setAssignment((Integer)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case CompanyPackage.FREELANCE__ASSIGNMENT:
+				setAssignment((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case CompanyPackage.FREELANCE__ASSIGNMENT:
-                setAssignment(ASSIGNMENT_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case CompanyPackage.FREELANCE__ASSIGNMENT:
+				setAssignment(ASSIGNMENT_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case CompanyPackage.FREELANCE__ASSIGNMENT:
-                return assignment != ASSIGNMENT_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case CompanyPackage.FREELANCE__ASSIGNMENT:
+				return assignment != ASSIGNMENT_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (assignment: ");
-        result.append(assignment);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (assignment: ");
+		result.append(assignment);
+		result.append(')');
+		return result.toString();
+	}
 
 } //FreelanceImpl

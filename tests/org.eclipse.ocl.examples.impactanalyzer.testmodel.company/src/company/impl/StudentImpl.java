@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StudentImpl.java,v 1.1 2011/01/20 15:52:51 auhl Exp $
+ * $Id: StudentImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
  */
 package company.impl;
 
@@ -22,22 +22,22 @@ import company.Student;
  */
 public class StudentImpl extends EmployeeImpl implements Student {
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected StudentImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return CompanyPackage.Literals.STUDENT;
-    }
+		return CompanyPackage.Literals.STUDENT;
+	}
 
 } //StudentImpl

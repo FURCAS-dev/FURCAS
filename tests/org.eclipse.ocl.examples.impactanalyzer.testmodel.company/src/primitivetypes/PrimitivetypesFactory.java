@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrimitivetypesFactory.java,v 1.1 2011/01/20 15:52:51 auhl Exp $
+ * $Id: PrimitivetypesFactory.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
  */
 package primitivetypes;
 
@@ -18,20 +18,20 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface PrimitivetypesFactory extends EFactory {
     /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     PrimitivetypesFactory eINSTANCE = primitivetypes.impl.PrimitivetypesFactoryImpl.init();
 
     /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
     PrimitivetypesPackage getPrimitivetypesPackage();
 
 } //PrimitivetypesFactory
