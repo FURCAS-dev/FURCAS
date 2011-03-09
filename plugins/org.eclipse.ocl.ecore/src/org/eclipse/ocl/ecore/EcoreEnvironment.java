@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005,2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 182994, 252600
+ *   SAP - Bug 339052
  *
  * </copyright>
  *
- * $Id: EcoreEnvironment.java,v 1.10 2011/01/25 10:43:34 auhl Exp $
+ * $Id: EcoreEnvironment.java,v 1.11 2011/03/09 13:07:04 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -58,6 +59,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.impl.ExpressionsPackageImpl;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -363,7 +365,7 @@ public class EcoreEnvironment
 		}
 		
 		// Check whether this package exists in the global package registry
-		return findPackage(path, registry);
+		return findPackageWithStrategy(path, registry);
 	}
 
     // implements the inherited specification
@@ -407,7 +409,7 @@ public class EcoreEnvironment
 			
 			// Check whether this package exists
 			List<String> newNames = names.subList(0, names.size() - 1);
-			pkg = findPackage(newNames, registry);
+			pkg = findPackageWithStrategy(newNames, registry);
 			if (pkg == null) {
 				return null;
 			}
@@ -428,6 +430,28 @@ public class EcoreEnvironment
 		}
 		
 		return null;
+	}
+
+	private EPackage findPackageWithStrategy(List<String> newNames, EPackage.Registry registry) {
+		EPackage pkg;
+		switch (ParsingOptions.getValue(this, ParsingOptions.PACKAGE_LOOKUP_STRATEGY)) {
+			case LOOKUP_PACKAGE_BY_ALIAS:
+				pkg = findPackageByAlias(newNames, registry);
+				break;
+			case LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME:
+				pkg = findPackageByAlias(newNames, registry);
+				if (pkg == null) {
+					pkg = findPackage(newNames, registry);
+				}
+				break;
+			case LOOKUP_PACKAGE_BY_NAME:
+				pkg = findPackage(newNames, registry);
+				break;
+			default:
+				throw new RuntimeException("Unknown PACKAGE_LOOKUP_STRATEGY value "+ //$NON-NLS-1$
+					ParsingOptions.getValue(this, ParsingOptions.PACKAGE_LOOKUP_STRATEGY));
+		}
+		return pkg;
 	}
 	
 	/**
@@ -647,6 +671,31 @@ public class EcoreEnvironment
 		}
 
 		return findPackageByNSPrefix(packageNames, registry);
+	}
+
+	/**
+	 * Looks in the given registry for an 'nsURI' matching the first element in <tt>packageNames</tt>.
+	 * If found, further elements of <tt>packageNames</tt> identify nested packages.
+	 * <t>
+	 * This search supports the {@link ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS} strategy.
+	 * 
+	 * @param packageNames
+	 *            the qualified package name
+	 * @param registry
+	 *            the EPackage.Registry to look in
+	 * @return the matching EPackage, or <code>null</code> if not found
+	 */
+	static private EPackage findPackageByAlias(List<String> packageNames, EPackage.Registry registry) {
+		if (packageNames.isEmpty()) {
+			return null;
+		}       
+		String name = packageNames.get(0);
+		EPackage ePackage = registry.getEPackage(name);
+		if (ePackage != null) {
+			List<String> packageSubList = packageNames.subList(1, packageNames.size());
+			ePackage = findNestedPackage(packageSubList, ePackage);
+		}
+		return ePackage;
 	}
 
 	/**
