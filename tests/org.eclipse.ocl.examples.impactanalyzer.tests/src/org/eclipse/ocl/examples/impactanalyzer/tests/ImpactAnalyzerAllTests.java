@@ -10,8 +10,13 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.tests;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
+
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.tests.deltaPropagation.PartialEvaluatorTest;
+import org.eclipse.ocl.examples.impactanalyzer.tests.derivedPropertyHandling.DerivedPropertyAdapterTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisEMEnabledTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.NavigationStepDebugGraphTest;
@@ -19,10 +24,6 @@ import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.NgpmModelBase
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.OclIaTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.QuickOclParseAndEvalTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.RevPathComputationTest;
-
-import junit.framework.Test;
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
 
 
 public class ImpactAnalyzerAllTests extends TestSuite {
@@ -52,6 +53,7 @@ public class ImpactAnalyzerAllTests extends TestSuite {
         suite.addTestSuite(FilterSynthesisTest.class);
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
         suite.addTestSuite(NgpmModelBasedOclIaTest.class);
+        suite.addTestSuite(DerivedPropertyAdapterTest.class);
         return suite;
     }
 
