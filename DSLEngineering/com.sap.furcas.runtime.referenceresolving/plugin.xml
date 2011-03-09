@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="furcas_syntax" name="FURCAS Syntax with Model Updater Contributions" schema="schema/furcas_syntax.exsd"/>
    <extension point="com.sap.emf.bundlelistener.emf_bundle_listener">
          <listener classname="com.sap.furcas.runtime.referenceresolving.SyntaxRegistry" />
    </extension>

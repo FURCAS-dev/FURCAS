@@ -11,5 +11,9 @@ import org.osgi.framework.Bundle;
  *
  */
 public interface EcorePackageLoadListener {
-    void packageLoaded(EPackage pkg);
+    /**
+     * When called, the bundle hosting the generated Ecore package with the URI <code>nsURI</code>
+     * has been started.
+     */
+    void packageLoaded(String nsURI);
 }
