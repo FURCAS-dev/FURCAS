@@ -1,5 +1,7 @@
 package com.sap.furcas.ide.projectwizard.util;
 
+import com.sap.furcas.ide.projectwizard.wizards.SelectionPage;
+
 /**
  * Saves all the information entered in the wizard. See the variables for detailed information.
  * 
@@ -24,7 +26,7 @@ public class ProjectInfo {
     private String fileExtension = "";
 
     /**
-     * The nsURI of the metamodel as entered on the {@link}SelectionPage if new Metamodel project creation is chosen.
+     * The nsURI of the metamodel as entered on the {@link SelectionPage} if new Metamodel project creation is chosen.
      */
     private String nsURI = "";
 
