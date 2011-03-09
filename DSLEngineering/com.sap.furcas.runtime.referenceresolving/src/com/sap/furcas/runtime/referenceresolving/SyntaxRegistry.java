@@ -190,7 +190,8 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
      * out of synch.
      */
     @Override
-    public synchronized void packageLoaded(EPackage pkg) {
-        System.out.println(pkg+" loaded");
+    public synchronized void packageLoaded(String nsURI) {
+        // System.out.println(pkg+" loaded");
+        // TODO implement SyntaxRegistry.packageLoaded
     }
 }
