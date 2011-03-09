@@ -699,31 +699,6 @@ public class EcoreEnvironment
 	}
 
 	/**
-	 * Looks in the given registry for an 'nsURI' matching the first element in <tt>packageNames</tt>.
-	 * If found, further elements of <tt>packageNames</tt> identify nested packages.
-	 * <t>
-	 * This search supports the {@link ParsingOptions.LOOKUP_PACKAGE_BY_ALIAS} strategy.
-	 * 
-	 * @param packageNames
-	 *            the qualified package name
-	 * @param registry
-	 *            the EPackage.Registry to look in
-	 * @return the matching EPackage, or <code>null</code> if not found
-	 */
-	static private EPackage findPackageByAlias(List<String> packageNames, EPackage.Registry registry) {
-		if (packageNames.isEmpty()) {
-			return null;
-		}       
-		String name = packageNames.get(0);
-		EPackage ePackage = registry.getEPackage(name);
-		if (ePackage != null) {
-			List<String> packageSubList = packageNames.subList(1, packageNames.size());
-			ePackage = findNestedPackage(packageSubList, ePackage);
-		}
-		return ePackage;
-	}
-
-	/**
 	 * Looks in the given package for a nested package with the specified relative
 	 * package name.
 	 * 

@@ -18,6 +18,8 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
+import com.sap.emf.bundlelistener.EcorePackageLoadListener;
+import com.sap.emf.ocl.trigger.OCLBasedModelUpdater;
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.emf.ocl.trigger.TriggerManagerFactory;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
@@ -31,7 +33,23 @@ import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 
-public class SyntaxRegistry implements BundleActivator {
+/**
+ * Manages the relationship between {@link ConcreteSyntax FURCAS syntaxes} with their OCL-based
+ * {@link OCLBasedModelUpdater model updaters} and the Ecore metamodel packages for which the syntaxes are
+ * registered. A plugin that contributes a FURCAS syntax and that wants the syntax's model
+ * updaters to be loaded
+ * 
+ * The syntax registry implements the com.sap.emf.bundlelistener extension point <code>emf_bundle_listener</code>,
+ * implementing the {@link EcorePackageLoadListener} interface. As such, it receives update notifications whenever an
+ * Ecore package's bundle is started for a package that is registered with the Ecore <code>generated_package</code>
+ * extension point. These packages end up in the {@link EPackage.Registry#INSTANCE default package registry}.<p>
+ * 
+ * 
+ * 
+ * @author Axel Uhl (d043530)
+ * 
+ */
+public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener {
     private static SyntaxRegistry instance;
     private final Map<URI, TriggerManager> triggerManagersForSyntax;
     private final Map<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>> parserFactoriesForSyntax;
@@ -167,4 +185,12 @@ public class SyntaxRegistry implements BundleActivator {
         return result;
     }
 
+    /**
+     * By means of synchronization, concurrently registering all already loaded packages won't run
+     * out of synch.
+     */
+    @Override
+    public synchronized void packageLoaded(EPackage pkg) {
+        System.out.println(pkg+" loaded");
+    }
 }
