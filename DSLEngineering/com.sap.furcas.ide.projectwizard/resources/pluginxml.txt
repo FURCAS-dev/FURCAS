@@ -9,5 +9,11 @@
 			name="$CapLangName$ Editor"> 
 		</editor> 
 	</extension> 
+
+    <extension point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
+       <furcas_syntax provider_class="$ProjectName$.editor.Activator">
+       	 <metamodel nsURI="$URI$" />
+       </furcas_syntax>
+    </extension> 
  
 </plugin> 
