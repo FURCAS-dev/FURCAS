@@ -76,9 +76,8 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         crossRefAdapter.setTarget(resourceSet);
         syntaxRegistry = SyntaxRegistry.getInstance();
         testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(resourceSet);
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, testMetamodelPackageRegistry,
-                DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null,
-                incrementalParserFacade.getParserFactory());
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
+                /* progress monitor */ null, incrementalParserFacade.getParserFactory());
     }
 
     private static EPackage.Registry addMetamodelPackagesToLocalRegistry(ResourceSet resourceSet) {

@@ -17,6 +17,7 @@ import bibtex.dsl.editor.Activator;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 
 public class TestSyntaxRegistry {
@@ -42,7 +43,7 @@ public class TestSyntaxRegistry {
     @Test
     public void testTriggerManagerRegisteredForResourceSet() throws IOException, ParserException {
         SyntaxProvider bibtexProvider = Activator.getDefault();
-        TriggerManager tm = bibtexProvider.getTriggerManager();
+        TriggerManager tm = bibtexProvider.getTriggerManager(SyntaxRegistry.getInstance());
         assertNotNull(tm);
     }
 }

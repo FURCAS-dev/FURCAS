@@ -10,31 +10,33 @@
       </documentation>
    </annotation>
 
-   <element name="something">
-      <annotation>
-         <appinfo>
-            <meta.element />
-         </appinfo>
-      </annotation>
+   <element name="furcas_syntax">
       <complexType>
-         <attribute name="point" type="string" use="required">
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="metamodel"/>
+         </sequence>
+         <attribute name="provider_class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The fully-qualified classname of the syntax provider class, implementing the
+                  interface com.sap.furcas.runtime.syntaxprovider.SyntaxProvider
                </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
             </annotation>
          </attribute>
-         <attribute name="id" type="string">
+      </complexType>
+   </element>
+
+   <element name="metamodel">
+      <complexType>
+         <attribute name="nsURI" type="string" use="required">
             <annotation>
                <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="name" type="string">
-            <annotation>
-               <documentation>
-                  
+                  The URIs of the Ecore metamodel packages whose bundle&apos;s loading shall trigger
+                   the loading of the syntax-contributing bundle together with a registration
+                   of those syntax&apos;s OCL-based model updaters with the syntax registry.
                </documentation>
                <appinfo>
                   <meta.attribute translatable="true"/>

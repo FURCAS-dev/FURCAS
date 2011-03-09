@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -30,10 +29,10 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     }
 
     @Override
-    public synchronized TriggerManager getTriggerManager() throws ParserException, IOException {
+    public synchronized TriggerManager getTriggerManager(SyntaxRegistry syntaxRegistry) throws ParserException, IOException {
         if (triggerManager == null) {
-            triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(getSyntax(null),
-                    EPackage.Registry.INSTANCE, oppositeEndFinder, /* monitor */ null, parserFactory);
+            triggerManager = syntaxRegistry.getTriggerManagerForSyntax(getSyntax(null),
+                    oppositeEndFinder, /* monitor */ null, parserFactory);
         }
         return triggerManager;
     }
