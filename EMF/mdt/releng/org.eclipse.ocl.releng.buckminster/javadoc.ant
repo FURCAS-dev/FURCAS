@@ -1,5 +1,5 @@
 <project name="javadoc-project">
-	<target name="create.javadoc">
+	<target name="create.javadoc" if="create.javadoc">
 
 		<property name="projectName" value="MDT-OCL" />
 

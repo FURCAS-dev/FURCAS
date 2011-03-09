@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.11 2011/03/01 08:46:57 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.12 2011/03/08 16:20:19 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -217,7 +217,7 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
+	'(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')'	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -225,11 +225,11 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
+	'(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')'
 ;
 
 LibTupleCS returns base::TupleTypeCS:
-	name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
+	name='Tuple' '(' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? ')'
 ;
 
 LibTuplePartCS returns base::TuplePartCS:

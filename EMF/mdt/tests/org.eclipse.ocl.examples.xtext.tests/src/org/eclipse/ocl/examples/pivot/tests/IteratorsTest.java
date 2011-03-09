@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.2 2011/03/08 15:15:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -260,7 +260,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.ErrorUnresolvedPropertyName, "unknownAttribute");
+        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set(pivot::Package)");
    }
 
     /**
@@ -271,7 +271,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.ErrorUnresolvedOperationName, "unknownOperation");
+        	OCLMessages.UnresolvedOperation_ERROR_, "unknownOperation", "Set(pivot::Package)");
    }
 
     /**
@@ -432,7 +432,7 @@ public class IteratorsTest extends PivotTestSuite
         // assigned recursively
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"self->closure(getFakes())",
-        	OCLMessages.WarningNonConformingBodyType, fake, subFake);
+        	OCLMessages.IncompatibleBodyType_WARNING_, fake, subFake);
 
         // this should parse OK because the result of the closure expression
         // is more specific than the iterator variable, so it can be
@@ -595,11 +595,8 @@ public class IteratorsTest extends PivotTestSuite
             "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())");
 
         // same deal for null values
-//        assertQueryInvalid(EcorePackage.eINSTANCE,
-//            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))");
-        assertBadQuery(SemanticException.class, Diagnostic.ERROR,
-        	"Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))",
-        	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, "null");
+        assertQueryInvalid(EcorePackage.eINSTANCE,
+            "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))");
 
     }
 
@@ -663,35 +660,35 @@ public class IteratorsTest extends PivotTestSuite
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "exists");
+        	OCLMessages.UnresolvedOperation_ERROR_, "exists", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "forAll");
+        	OCLMessages.UnresolvedOperation_ERROR_, "forAll", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.ErrorUnresolvedOperationName, "collect");
+        	OCLMessages.UnresolvedOperation_ERROR_, "collect", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "any");
+        	OCLMessages.UnresolvedOperation_ERROR_, "any", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "one");
+        	OCLMessages.UnresolvedOperation_ERROR_, "one", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "select");
+        	OCLMessages.UnresolvedOperation_ERROR_, "select", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "reject");
+        	OCLMessages.UnresolvedOperation_ERROR_, "reject", "Sequence(String)");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.ErrorUnresolvedOperationName, "isUnique");
+        	OCLMessages.UnresolvedOperation_ERROR_, "isUnique", "Sequence(String)");
     }
 
 	/**
@@ -703,7 +700,7 @@ public class IteratorsTest extends PivotTestSuite
     	Type type = typeManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
-        	OCLMessages.WarningUndefinedOperation, PivotConstants.LESS_THAN_OPERATOR, type.toString());
+        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type);
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);

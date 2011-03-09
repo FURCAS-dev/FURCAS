@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.3 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.4 2011/03/08 15:14:28 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -177,7 +178,15 @@ public class OperationFilter extends AbstractOperationFilter
 					if (bindings == null) {
 						bindings = new HashMap<TemplateParameter, ParameterableElement>();
 					}
-					bindings.put(templateParameter, null);
+					if ("oclAsType".equals(candidateOperation.getName())) {		// FIXME This should be modeled
+						NavigatingArgCS csExpression = csArguments.get(0);
+						TypeExp expression = PivotUtil.getPivot(TypeExp.class, csExpression);
+						Type expressionType = expression.getReferredType();
+						bindings.put(templateParameter, expressionType);
+					}
+					else {
+						bindings.put(templateParameter, null);
+					}
 				}
 			}
 			for (int i = 0; i < expressions; i++) {

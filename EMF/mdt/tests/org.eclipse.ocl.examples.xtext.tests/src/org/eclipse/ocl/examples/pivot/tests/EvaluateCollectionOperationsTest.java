@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateCollectionOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: EvaluateCollectionOperationsTest.java,v 1.2 2011/03/08 15:15:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -875,7 +875,7 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let b : Bag(Integer) = invalid in b->intersection(Bag{4})");
 
 		assertSemanticErrorQuery("let s : Set(Integer) = invalid in Set{4}->intersection(s)",
-			OCLMessages.ErrorUnresolvedOperationName, "intersection");
+			OCLMessages.UnresolvedOperation_ERROR_, "intersection", "Set(UnlimitedNatural)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Set{4}->intersection(s)");
 		assertQueryInvalid(null, "let s : Set(UnlimitedNatural) = invalid in Bag{4}->intersection(s)");
 		assertQueryInvalid(null, "let b : Bag(UnlimitedNatural) = invalid in Set{4}->intersection(b)");

@@ -16,6 +16,7 @@
 		<!-- supply defaults -->
 		<property name="build.id" value="" />
 		<property name="hudson.build.id" value="" />
+		<property name="create.javadoc" value="false"/>
 
 		<propertyfile file="${promoter.properties.file}" comment="Promoter script properties">
 			<entry key="java.home" value="${java.home}" />
@@ -188,11 +189,6 @@
 			</fileset>
 		</delete>
 
-		<echo>Remove existing javadoc</echo>
-		<delete verbose="true">
-			<fileset dir="${project.javadoc.directory}"/>
-		</delete>
-
 		<echo>Copying zip packages</echo>
 		<copy todir="${build.drop.directory}">
 			<fileset dir="${packages.directory}">
@@ -212,13 +208,6 @@
 				<filename name="**/*.xml" />
 			</fileset>
 		</copy>
-
-		<echo>Unzipping javadoc</echo>
-		<unzip dest="${project.javadoc.directory}">
-			<fileset dir="${javadoc.directory}">
-				<filename name="*-javadoc.zip" />
-			</fileset>
-		</unzip>
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
@@ -250,6 +239,7 @@
 		</condition>
 
 		<antcall target="-publish.build.repository" inheritall="true" />
+		<antcall target="-publish.javadoc" inheritall="true" />
 	</target>
 
 	<target name="-publish.build.repository" if="composite.repository.base">
@@ -277,7 +267,7 @@
 
 
 		<!-- change Group owner  -->
-	<fileset id="repository.resources" dir="${composite.repository.directory}">
+		<fileset id="repository.resources" dir="${composite.repository.directory}">
 			<or>
 				<filename name="compositeContent.*" />
 				<filename name="compositeArtifacts.*" />
@@ -298,5 +288,19 @@
 
 	<target name="echo-status" if="alreadyPromoted">
 		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
+	</target>
+	
+	<target name="-publish.javadoc" if="create.javadoc">
+		<echo>Remove existing javadoc</echo>
+		<delete verbose="true">
+			<fileset dir="${project.javadoc.directory}"/>
+		</delete>
+					
+		<echo>Unzipping javadoc</echo>
+		<unzip dest="${project.javadoc.directory}">
+			<fileset dir="${javadoc.directory}">
+				<filename name="*-javadoc.zip" />
+			</fileset>
+		</unzip>
 	</target>
 </project>
