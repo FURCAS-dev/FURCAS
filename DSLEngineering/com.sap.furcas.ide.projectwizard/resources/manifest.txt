@@ -29,6 +29,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench.texteditor,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
+ com.sap.emf.ocl.trigger,
  com.sap.furcas.runtime.referenceresolving
 Bundle-ActivationPolicy: lazy
 Export-Package: $ProjectName$.editor
