@@ -281,6 +281,70 @@ Person person = getPersonToValidate();
 System.out.printf("%s valid SSN: %b%n", person, ocl.<b>check</b>(person, validSSN));
 </pre>
 
+<h2>Selecting a Package Lookup Strategy</h2>
+
+<p>
+When package names are provided in OCL expressions, e.g., when representing types in an
+<em class="CodeName">oclIsKindOf</em> call, these names are looked up using a specific
+strategy. By default, the lookup proceeds starting at the parsing context, traversing
+up the package hierarchy. If the package name cannot be resolved this way, for the Ecore
+binding a lookup is performed in the <em class="CodeName">EPackage.Registry</em>. By
+default, the package name provided is compared to the names of the packages that are
+contained as values in the registry.
+</p>
+
+<p>
+In rare cases there may be ambiguous package names. For example, if an OCL expression
+is to be parsed using a classifier from the OCL AST metamodel as its context, the
+context package is <em class="CodeName">ocl::ecore</em>. If such an expression is
+trying to reference a type from the EMF Ecore package with package name
+<em class="CodeName">ecore</em>, the EMF Ecore package is hidden by the lookup
+happening relative to the context package. Instead of the EMF Ecore package, the
+<em class="CodeName">ocl::ecore</em> package will be found.
+</p>
+
+<p>
+Such an ambiguity can be resolved by using a dedicated <em class="CodeName">EPackage.Registry</em>
+which registers the otherwise ambiguous packages with a special "URI" that represents a
+simple alias name for the package. In order to force the OCL parser to look up packages
+by those alias names, an option needs to be set on the OCL environment, as follows:
+</p>
+
+<pre class="Code">
+    Registry r = new EPackageRegistryImpl();
+    r.putAll(EPackage.Registry.INSTANCE);
+    r.put("EMFEcore", EcorePackage.eINSTANCE);
+    r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
+    OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
+    ((EcoreEnvironment) ocl.getEnvironment()).setOption(
+        ParsingOptions.PACKAGE_LOOKUP_STRATEGY,
+        ParsingOptions.PACKAGE_LOOKUP_STRATEGIES.LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME);
+    Helper helper = ocl.createOCLHelper();
+    helper.setContext(org.eclipse.ocl.ecore.EcorePackage.eINSTANCE.getOCLExpression());
+    org.eclipse.ocl.ecore.OCLExpression expr = helper.createQuery(
+        "self.oclIsKindOf(EMFEcore::EClassifier) and not self.oclIsKindOf(OCLEcore::OCLExpression)");
+</pre>
+
+<p>
+In the example above, two packages with ambiguous simple names (EMF Ecore package and
+OCL Ecore package, both with simple name <em class="CodeName">ecore</em>) are added with
+alias names <em class="CodeName">EMFEcore</em> and <em class="CodeName">OCLEcore</em>,
+respectively. The package lookup strategy is then set to
+<em class="CodeName">LOOKUP_PACKAGE_BY_ALIAS_THEN_NAME</em> which allows OCL expressions to reference
+the packages by their aliases, as in
+<em class="CodeName">self.oclIsKindOf(EMFEcore::EClassifier) and not self.oclIsKindOf(OCLEcore::OCLExpression)</em>.
+</p>
+
+<p>
+Note, that the use of a delegating registry (constructor
+<em class="CodeName">EPackageRegistryImpl(EPackage.Registry)</em>) does not work
+because a registry initialized this way does not forward the call to
+<em class="CodeName">values()</em> which would be required by the OCL
+package lookup implementation. Instead, if the packages registered with the
+default registry are required, they need to be copied to a new registry
+using <em class="CodeName">putAll</em> as shown above.
+</p>
+
 <h2>Customizing "Hidden" Opposite Lookup and Navigation</h2>
 
 <p>
@@ -328,12 +392,12 @@ navigation behavior shall be redefined:
       
       @Override
       public Object navigateOppositeProperty(EStructuralFeature property, Object target) {
-		  Collection<Object> result = null;
-		  EObject eTarget = (EObject) target;
-		  // do something clever, e.g., using your underlying store's query facility or
-		  // the new EMF Query2 component (incubation)
-		  // ...
-		  return result;
+          Collection&lt;Object&gt; result = null;
+          EObject eTarget = (EObject) target;
+          // do something clever, e.g., using your underlying store's query facility or
+          // the new EMF Query2 component (incubation)
+          // ...
+          return result;
       }
   }
 </pre>
