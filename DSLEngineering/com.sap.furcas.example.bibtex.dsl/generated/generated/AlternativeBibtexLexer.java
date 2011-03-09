@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/AlternativeBibtex.g 2011-03-07 00:08:02
+// $ANTLR 3.1.1 /home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/com.sap.furcas.example.bibtex.dsl/generated/generated/AlternativeBibtex.g 2011-03-09 14:16:38
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
