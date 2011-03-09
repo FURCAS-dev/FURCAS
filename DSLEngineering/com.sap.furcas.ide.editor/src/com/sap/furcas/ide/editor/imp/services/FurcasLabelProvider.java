@@ -46,7 +46,14 @@ public class FurcasLabelProvider implements ILabelProvider {
     
     private Object unwrap(Object object) {
         if (object instanceof DocumentNode) {
-            return ((DocumentNode) object).getCorrespondingModelElements().iterator().next();
+            DocumentNode node = (DocumentNode) object;
+            if (!node.getCorrespondingModelElements().isEmpty()) {
+                return node.getCorrespondingModelElements().iterator().next();
+            }
+            if (!node.getReferencedElements().isEmpty()) {
+                return node.getReferencedElements().iterator().next();
+            }
+            return object;
         } else if (object instanceof ModelTreeNode) {
             return unwrap(((ModelTreeNode) object).getASTNode());
         } else {
