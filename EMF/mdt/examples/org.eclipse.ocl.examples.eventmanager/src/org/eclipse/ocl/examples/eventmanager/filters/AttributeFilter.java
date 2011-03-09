@@ -10,16 +10,29 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.filters;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 
+/**
+ * Matches a {@link Notification#getFeature() feature}.
+ * Essentially it delegates to the {@link StructuralFeatureFilter} methods, but is specific for 
+ * an {@link EAttribute attribute}
+ * @author Philipp Berger
+ *
+ */
 public class AttributeFilter extends StructuralFeatureFilter {
-    public AttributeFilter(EStructuralFeature feature) {
+    public AttributeFilter(EAttribute feature) {
         super(feature);
     }
 
     @Override
     public AttributeFilter clone(){
         return new AttributeFilter(getFeature());
+    }
+
+    @Override
+    public EAttribute getFeature() {
+    	return (EAttribute)super.getFeature();
     }
 
 } // AttributeFilterImpl

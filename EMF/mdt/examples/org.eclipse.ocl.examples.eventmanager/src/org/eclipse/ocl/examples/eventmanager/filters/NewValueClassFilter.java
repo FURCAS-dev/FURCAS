@@ -15,17 +15,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Matches an event's {@link Notification#getNewValue()} to an {@link EObject#eClass()}
+ * @author Philipp Berger
+ *
+ */
 public class NewValueClassFilter extends ClassFilter {
 
     public NewValueClassFilter(EClass subClass, boolean negated) {
         super(subClass, negated);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -38,11 +38,6 @@ public class NewValueClassFilter extends ClassFilter {
         return super.equals(other);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         return 37 * super.hashCode();
