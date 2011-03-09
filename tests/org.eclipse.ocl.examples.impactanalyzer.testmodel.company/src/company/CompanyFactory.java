@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyFactory.java,v 1.1 2011/01/20 15:52:51 auhl Exp $
+ * $Id: CompanyFactory.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
  */
 package company;
 
@@ -18,74 +18,74 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface CompanyFactory extends EFactory {
     /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     CompanyFactory eINSTANCE = company.impl.CompanyFactoryImpl.init();
 
     /**
-     * Returns a new object of class '<em>Employee</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Employee</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Employee</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Employee</em>'.
+	 * @generated
+	 */
     Employee createEmployee();
 
     /**
-     * Returns a new object of class '<em>Department</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Department</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Department</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Department</em>'.
+	 * @generated
+	 */
     Department createDepartment();
 
     /**
-     * Returns a new object of class '<em>Freelance</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Freelance</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Freelance</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Freelance</em>'.
+	 * @generated
+	 */
     Freelance createFreelance();
 
     /**
-     * Returns a new object of class '<em>Division</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Division</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Division</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Division</em>'.
+	 * @generated
+	 */
     Division createDivision();
 
     /**
-     * Returns a new object of class '<em>Student</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Student</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Student</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Student</em>'.
+	 * @generated
+	 */
     Student createStudent();
 
     /**
-     * Returns a new object of class '<em>Company</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Company</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Company</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Company</em>'.
+	 * @generated
+	 */
     Company createCompany();
 
     /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
     CompanyPackage getCompanyPackage();
 
 } //CompanyFactory
