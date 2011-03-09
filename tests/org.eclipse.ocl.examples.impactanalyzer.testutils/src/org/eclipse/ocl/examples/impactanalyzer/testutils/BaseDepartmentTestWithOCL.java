@@ -37,6 +37,7 @@ import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Employee;
 import company.Freelance;
+import company.impl.CompanyImpl;
 import company.impl.DepartmentImpl;
 import company.impl.DivisionImpl;
 import company.impl.EmployeeImpl;
@@ -104,6 +105,11 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
      * a instance of {@link FreelanceImpl}
      */
     protected FreelanceImpl aFreelance = null;
+    
+    /**
+     * a instance of {@link CompanyImpl}
+     */
+    protected CompanyImpl aCompany = null;
 
     // constaints
     /**
@@ -334,6 +340,8 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     protected EReference directedRef = null;
 
     protected EReference internRef = null;
+    
+    protected EReference divisionDirector = null;
 
     /**
      * Declare a public String field
@@ -471,10 +479,18 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
 
         int maxNumJuniors = 3;
         int budget = 50000;
-
+     
         this.aDivision = (DivisionImpl) CompanyFactory.eINSTANCE.createDivision();
         this.aDivision.setName("The super Division");
         this.aDivision.setBudget(2000000);
+        this.aCompany = (CompanyImpl)CompanyFactory.eINSTANCE.createCompany();
+        this.aCompany.setDivision(this.aDivision);
+        if (this.comp.eResource() != null) {
+        	// none of them is contained somewhere else, therefore we need them in the resource
+            this.comp.eResource().getContents().add(this.aDivision);
+            this.comp.eResource().getContents().add(this.aCompany);
+        }
+        
         for (double i = 0; i < numDepartments; i++) {
             createDepartment(numEmployees, numFreelance, maxNumJuniors, budget);
         }
@@ -483,6 +499,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.aDivision.getDepartment().add(this.aDepartment);
         this.aEmployee = this.allEmployees.iterator().next();
         this.aFreelance = this.allFreelances.iterator().next();
+        
 
     }
 
@@ -514,6 +531,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
         this.directedRef = (EReference) this.employee.getEStructuralFeature("directed");
         this.managedRef = (EReference) this.employee.getEStructuralFeature("managed");
         this.internRef = (EReference) this.employee.getEStructuralFeature("intern");
+        this.divisionDirector = (EReference) this.companyClass.getEStructuralFeature("divisionDirector");
         this.freelance = this.comp.getFreelance();
         this.student = this.comp.getStudent();
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature("assignment");
@@ -534,7 +552,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
      * @param budget
      *            the value for the budget attribute
      */
-    private DepartmentImpl createDepartment(int employees, int freelances, int maxNumJuniors, int budget) {
+    protected DepartmentImpl createDepartment(int employees, int freelances, int maxNumJuniors, int budget) {
 
         DepartmentImpl dep = (DepartmentImpl) CompanyFactory.eINSTANCE.createDepartment();
         dep.setName("Dep" + this.curDepartmentID);
@@ -563,7 +581,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     /**
      * @return an instance of {@link Employee}
      */
-    private EmployeeImpl createEmployee() {
+    protected EmployeeImpl createEmployee() {
 
         EmployeeImpl e = (EmployeeImpl) CompanyFactory.eINSTANCE.createEmployee();
         e.setName("empl" + this.curImployeeID);
@@ -580,7 +598,7 @@ public class BaseDepartmentTestWithOCL extends BaseDepartmentTest {
     /**
      * @return a instances of {@link Freelance}
      */
-    private FreelanceImpl createFreelance() {
+    protected FreelanceImpl createFreelance() {
 
         FreelanceImpl f = (FreelanceImpl) CompanyFactory.eINSTANCE.createFreelance();
         f.setName("empl" + this.curImployeeID);
