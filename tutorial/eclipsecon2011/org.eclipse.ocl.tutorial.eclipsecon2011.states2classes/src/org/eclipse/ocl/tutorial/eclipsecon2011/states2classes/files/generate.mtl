@@ -1,0 +1,85 @@
+[comment encoding = UTF-8 /]
+[module generate('http://ocl.eclipse.org/tutorial/eclipsecon2011/States')/]
+
+[query getEventMethodName(v : Event) : String = 'do' + v.name/]
+[query getPackageName(m : Module) : String = m.name/]
+[query getStateClassName(s : State) : String = s.name/]
+[query getStateEnumName(s : State) : String = 'STATE_' + s.name/]
+[query getStateMachineClassName(e : Statemachine) : String = e.name/]
+
+[template public generate(m : Module)]	
+[comment @main /]
+[for (e : Statemachine | m.machines)]
+[file (e.name + '.java', false, 'UTF-8')]
+[generateStatemachineClass(m, e)/]
+[/file]
+[for (s : State | e.states)]
+[file (s.name + '.java', false, 'UTF-8')]
+[generateStateClass(m, e, s)/]
+[/file]
+[/for]	
+[/for]
+[/template]
+
+[template public generateStatemachineClass(m : Module, e : Statemachine)]
+package [m.getPackageName()/];
+
+public class [e.getStateMachineClassName()/]
+{
+	public interface State
+	{
+[for (v : Event | e.events)]
+		public void [v.getEventMethodName()/]();
+[/for]
+
+		enum STATES
+		{
+[for (s : State | e.states) separator (',\n') after('\n')]
+			[s.getStateEnumName()/][/for]
+		}
+	}
+
+	private final State['[]'/] states = new State['[]'/] {
+[for (s : State | e.states) separator (',\n') after('\n')]
+		new [s.getStateClassName()/](this)[/for]
+	};
+
+	private State state;
+
+	public [e.getStateMachineClassName()/]() {
+		setState(State.STATES.[e.states->any(s : State | s.oclIsKindOf(SimpleState) and s.oclAsType(SimpleState).initial).getStateEnumName()/]);
+	}
+
+	public void setState(State.STATES state) {
+		this.state = states['['/]state.ordinal()];
+	}
+
+[for (v : Event | e.events)]
+	public void [v.getEventMethodName()/]() { state.[v.getEventMethodName()/](); }
+[/for]
+}	
+[/template]
+
+[template public generateStateClass(m : Module, e : Statemachine, s : State)]
+package [m.getPackageName()/];
+
+public class [s.name/] implements [e.name + '.State'/]
+{
+}	
+[/template]
+
+[template public generateStateClass(m : Module, e : Statemachine, s : SimpleState)]
+package [m.getPackageName()/];
+
+public class [s.getStateClassName()/] implements [e.name + '.State'/]
+{
+	private final [e.getStateMachineClassName()/] sm;
+
+	public [s.getStateClassName()/]([e.getStateMachineClassName()/] sm) {
+		this.sm = sm;
+	}
+[for (t : Transition | s.transitions)]
+	public void [t.event.getEventMethodName()/]() { sm.setState(STATES.[t.state.getStateEnumName()/]); }
+[/for]
+}	
+[/template]

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.eclipse.acceleo.ide.ui.launching.launchConfigurationType">
+<stringAttribute key="org.eclipse.acceleo.ide.ui.ARGUMENTS" value=""/>
+<booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_PROFILING" value="false"/>
+<booleanAttribute key="org.eclipse.acceleo.ide.ui.COMPUTE_TRACEABILITY" value="false"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.LAUNCHING_STRATEGY_DESCRIPTION" value="Acceleo Plug-in Application"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.MODEL_PATH" value="/org.eclipse.ocl.tutorial.eclipsecon2011.states2classes/simple.states"/>
+<stringAttribute key="org.eclipse.acceleo.ide.ui.TARGET_PATH" value="/org.eclipse.ocl.tutorial.eclipsecon2011.playspace/src/simple/states"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.eclipse.ocl.tutorial.eclipsecon2011.states2classes/src/org/eclipse/ocl/tutorial/eclipsecon2011/states2classes/files/Generate.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.tutorial.eclipsecon2011.states2classes.files.Generate"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="&quot;C:/Development/HartLibrary/Workspace3.6.1/org.eclipse.ocl.tutorial.eclipsecon2011.states2classes/simple.states&quot; &quot;C:/Development/HartLibrary/runtime-EclipseApplication/org.eclipse.ocl.tutorial.eclipsecon2011.playspace/src/simple/states&quot;"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.tutorial.eclipsecon2011.states2classes"/>
+</launchConfiguration>
