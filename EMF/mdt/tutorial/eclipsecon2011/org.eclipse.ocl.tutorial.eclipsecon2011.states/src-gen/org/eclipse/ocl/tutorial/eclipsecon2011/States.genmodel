@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen"
+    editDirectory="/org.eclipse.ocl.tutorial.eclipsecon2011.states.edit/src" editorDirectory="/org.eclipse.ocl.tutorial.eclipsecon2011.states.editor/src"
+    modelPluginID="org.eclipse.ocl.tutorial.eclipsecon2011.states" forceOverwrite="true"
+    modelName="States" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.ocl.tutorial.eclipsecon2011.states.edit"
+    editorPluginID="org.eclipse.ocl.tutorial.eclipsecon2011.states.editor">
+  <genPackages prefix="States" basePackage="org.eclipse.ocl.tutorial.eclipsecon2011"
+      disposableProviderFactory="true" ecorePackage="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Module">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Module/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Module/machines"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/initial"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/events"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/states"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Statemachine/dbgName"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Event/name"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//State/initial"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//State/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//State/transitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//State/dbgName"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//SimpleState">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//SimpleState/value"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//CompoundState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//CompoundState/machine"/>
+    </genClasses>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Transition/event"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Transition/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.ocl.tutorial.eclipsecon2011.states/src-gen/org/eclipse/ocl/tutorial/eclipsecon2011/States.ecore#//Transition/dbgName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
