@@ -1,5 +1,5 @@
 <project name="javadoc-project">
-	<target name="create.javadoc" depends="-setup" if="mustCreateJavadoc">
+	<target name="create.javadoc" if="${mustCreateJavadoc}">
 
 		<property name="projectName" value="MDT-OCL" />
 
@@ -45,11 +45,5 @@
 		
 		<!-- Compress the output javadoc in a zip file --> 
 		<zip destfile="${output}/${projectName}-javadoc.zip" basedir="${output}"></zip>
-	</target>
-	
-	<target name ="-setup">
-		<echo message="-post-setup: ${mustCreateJavadoc}"/>
-		<property name="mustCreateJavadoc" value="false" />
-		<echo message="-post-setup: ${mustCreateJavadoc}"/>
 	</target>
 </project>
