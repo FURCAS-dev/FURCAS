@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sap.furcas.runtime.referenceresolving" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sap.furcas.runtime.referenceresolving" id="furcas_syntax" name="FURCAS Syntax with Model Updater Contributions"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="furcas_syntax">
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="metamodel"/>
+         </sequence>
+         <attribute name="provider_class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified classname of the syntax provider class, implementing the
+                  interface com.sap.furcas.runtime.syntaxprovider.SyntaxProvider
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="metamodel">
+      <complexType>
+         <attribute name="nsURI" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The URIs of the Ecore metamodel packages whose bundle&apos;s loading shall trigger
+                   the loading of the syntax-contributing bundle together with a registration
+                   of those syntax&apos;s OCL-based model updaters with the syntax registry.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

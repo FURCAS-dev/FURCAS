@@ -16756,7 +16756,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             int alt52=2;
             int LA52_0 = input.LA(1);
 
-            if ( (LA52_0==56) ) {
+            if ( (LA52_0==80) ) {
                 alt52=1;
             }
             switch (alt52) {
@@ -20149,11 +20149,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:6540:1: ( rule__LibIterationCS__OwnedTemplateSignatureAssignment_2 )?
             int alt63=2;
-            int LA63_0 = input.LA(1);
-
-            if ( (LA63_0==56) ) {
-                alt63=1;
-            }
+            alt63 = dfa63.predict(input);
             switch (alt63) {
                 case 1 :
                     // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:6540:2: rule__LibIterationCS__OwnedTemplateSignatureAssignment_2
@@ -23037,11 +23033,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:7578:1: ( rule__LambdaTypeCS__OwnedTemplateSignatureAssignment_2 )?
             int alt71=2;
-            int LA71_0 = input.LA(1);
-
-            if ( (LA71_0==56) ) {
-                alt71=1;
-            }
+            alt71 = dfa71.predict(input);
             switch (alt71) {
                 case 1 :
                     // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:7578:2: rule__LambdaTypeCS__OwnedTemplateSignatureAssignment_2
@@ -24180,11 +24172,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             }
             // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:7986:1: ( rule__LibOperationCS__OwnedTemplateSignatureAssignment_3 )?
             int alt75=2;
-            int LA75_0 = input.LA(1);
-
-            if ( (LA75_0==56) ) {
-                alt75=1;
-            }
+            alt75 = dfa75.predict(input);
             switch (alt75) {
                 case 1 :
                     // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:7986:2: rule__LibOperationCS__OwnedTemplateSignatureAssignment_3
@@ -29949,24 +29937,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__TemplateBindingCS__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10100:1: rule__TemplateBindingCS__Group__0__Impl : ( '<' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10100:1: rule__TemplateBindingCS__Group__0__Impl : ( '(' ) ;
     public final void rule__TemplateBindingCS__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10104:1: ( ( '<' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10105:1: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10104:1: ( ( '(' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10105:1: ( '(' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10105:1: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10106:1: '<'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10105:1: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10106:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0()); 
+               before(grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__TemplateBindingCS__Group__0__Impl20906); if (state.failed) return ;
+            match(input,80,FollowSets000.FOLLOW_80_in_rule__TemplateBindingCS__Group__0__Impl20906); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0()); 
+               after(grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0()); 
             }
 
             }
@@ -30219,24 +30207,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__TemplateBindingCS__Group__3__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10188:1: rule__TemplateBindingCS__Group__3__Impl : ( '>' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10188:1: rule__TemplateBindingCS__Group__3__Impl : ( ')' ) ;
     public final void rule__TemplateBindingCS__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10192:1: ( ( '>' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10193:1: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10192:1: ( ( ')' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10193:1: ( ')' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10193:1: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10194:1: '>'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10193:1: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10194:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3()); 
+               before(grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__TemplateBindingCS__Group__3__Impl21086); if (state.failed) return ;
+            match(input,81,FollowSets000.FOLLOW_81_in_rule__TemplateBindingCS__Group__3__Impl21086); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3()); 
+               after(grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3()); 
             }
 
             }
@@ -30461,24 +30449,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__TemplateSignatureCS__Group__0__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10290:1: rule__TemplateSignatureCS__Group__0__Impl : ( '<' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10290:1: rule__TemplateSignatureCS__Group__0__Impl : ( '(' ) ;
     public final void rule__TemplateSignatureCS__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10294:1: ( ( '<' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10295:1: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10294:1: ( ( '(' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10295:1: ( '(' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10295:1: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10296:1: '<'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10295:1: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10296:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0()); 
+               before(grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__TemplateSignatureCS__Group__0__Impl21279); if (state.failed) return ;
+            match(input,80,FollowSets000.FOLLOW_80_in_rule__TemplateSignatureCS__Group__0__Impl21279); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0()); 
+               after(grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0()); 
             }
 
             }
@@ -30731,24 +30719,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__TemplateSignatureCS__Group__3__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10378:1: rule__TemplateSignatureCS__Group__3__Impl : ( '>' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10378:1: rule__TemplateSignatureCS__Group__3__Impl : ( ')' ) ;
     public final void rule__TemplateSignatureCS__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10382:1: ( ( '>' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10383:1: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10382:1: ( ( ')' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10383:1: ( ')' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10383:1: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10384:1: '>'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10383:1: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10384:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3()); 
+               before(grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__TemplateSignatureCS__Group__3__Impl21459); if (state.failed) return ;
+            match(input,81,FollowSets000.FOLLOW_81_in_rule__TemplateSignatureCS__Group__3__Impl21459); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3()); 
+               after(grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3()); 
             }
 
             }
@@ -31062,24 +31050,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__LibTupleCS__Group__1__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10509:1: rule__LibTupleCS__Group__1__Impl : ( '<' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10509:1: rule__LibTupleCS__Group__1__Impl : ( '(' ) ;
     public final void rule__LibTupleCS__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10513:1: ( ( '<' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10514:1: ( '<' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10513:1: ( ( '(' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10514:1: ( '(' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10514:1: ( '<' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10515:1: '<'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10514:1: ( '(' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10515:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1()); 
+               before(grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,56,FollowSets000.FOLLOW_56_in_rule__LibTupleCS__Group__1__Impl21712); if (state.failed) return ;
+            match(input,80,FollowSets000.FOLLOW_80_in_rule__LibTupleCS__Group__1__Impl21712); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1()); 
+               after(grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1()); 
             }
 
             }
@@ -31236,24 +31224,24 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__LibTupleCS__Group__3__Impl"
-    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10568:1: rule__LibTupleCS__Group__3__Impl : ( '>' ) ;
+    // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10568:1: rule__LibTupleCS__Group__3__Impl : ( ')' ) ;
     public final void rule__LibTupleCS__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10572:1: ( ( '>' ) )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10573:1: ( '>' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10572:1: ( ( ')' ) )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10573:1: ( ')' )
             {
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10573:1: ( '>' )
-            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10574:1: '>'
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10573:1: ( ')' )
+            // ../org.eclipse.ocl.examples.xtext.oclstdlib.ui/src-gen/org/eclipse/ocl/examples/xtext/oclstdlib/ui/contentassist/antlr/internal/InternalOCLstdlib.g:10574:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3()); 
+               before(grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,55,FollowSets000.FOLLOW_55_in_rule__LibTupleCS__Group__3__Impl21832); if (state.failed) return ;
+            match(input,81,FollowSets000.FOLLOW_81_in_rule__LibTupleCS__Group__3__Impl21832); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3()); 
+               after(grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3()); 
             }
 
             }
@@ -57425,6 +57413,9 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     protected DFA43 dfa43 = new DFA43(this);
     protected DFA44 dfa44 = new DFA44(this);
     protected DFA45 dfa45 = new DFA45(this);
+    protected DFA63 dfa63 = new DFA63(this);
+    protected DFA71 dfa71 = new DFA71(this);
+    protected DFA75 dfa75 = new DFA75(this);
     protected DFA96 dfa96 = new DFA96(this);
     protected DFA97 dfa97 = new DFA97(this);
     protected DFA112 dfa112 = new DFA112(this);
@@ -59184,6 +59175,378 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             return "4250:1: rule__NameExpCS__Alternatives_1 : ( ( ( rule__NameExpCS__Group_1_0__0 ) ) | ( ( rule__NameExpCS__ElementAssignment_1_1 ) ) );";
         }
     }
+    static final String DFA63_eotS =
+        "\62\uffff";
+    static final String DFA63_eofS =
+        "\62\uffff";
+    static final String DFA63_minS =
+        "\1\120\1\10\56\24\2\uffff";
+    static final String DFA63_maxS =
+        "\1\120\1\113\56\122\2\uffff";
+    static final String DFA63_acceptS =
+        "\60\uffff\1\2\1\1";
+    static final String DFA63_specialS =
+        "\62\uffff}>";
+    static final String[] DFA63_transitionS = {
+            "\1\1",
+            "\1\2\1\3\5\uffff\1\13\2\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1"+
+            "\12\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1"+
+            "\27\6\uffff\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56"+
+            "\1\57\11\uffff\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40"+
+            "\1\41\1\42\1\43\1\44",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "",
+            ""
+    };
+
+    static final short[] DFA63_eot = DFA.unpackEncodedString(DFA63_eotS);
+    static final short[] DFA63_eof = DFA.unpackEncodedString(DFA63_eofS);
+    static final char[] DFA63_min = DFA.unpackEncodedStringToUnsignedChars(DFA63_minS);
+    static final char[] DFA63_max = DFA.unpackEncodedStringToUnsignedChars(DFA63_maxS);
+    static final short[] DFA63_accept = DFA.unpackEncodedString(DFA63_acceptS);
+    static final short[] DFA63_special = DFA.unpackEncodedString(DFA63_specialS);
+    static final short[][] DFA63_transition;
+
+    static {
+        int numStates = DFA63_transitionS.length;
+        DFA63_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA63_transition[i] = DFA.unpackEncodedString(DFA63_transitionS[i]);
+        }
+    }
+
+    class DFA63 extends DFA {
+
+        public DFA63(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 63;
+            this.eot = DFA63_eot;
+            this.eof = DFA63_eof;
+            this.min = DFA63_min;
+            this.max = DFA63_max;
+            this.accept = DFA63_accept;
+            this.special = DFA63_special;
+            this.transition = DFA63_transition;
+        }
+        public String getDescription() {
+            return "6540:1: ( rule__LibIterationCS__OwnedTemplateSignatureAssignment_2 )?";
+        }
+    }
+    static final String DFA71_eotS =
+        "\146\uffff";
+    static final String DFA71_eofS =
+        "\146\uffff";
+    static final String DFA71_minS =
+        "\1\120\1\6\24\24\1\6\31\24\1\uffff\1\6\1\116\1\uffff\2\6\25\24"+
+        "\1\6\30\24\2\6";
+    static final String DFA71_maxS =
+        "\1\120\1\121\56\131\1\uffff\1\113\1\120\1\uffff\62\131";
+    static final String DFA71_acceptS =
+        "\60\uffff\1\2\2\uffff\1\1\62\uffff";
+    static final String DFA71_specialS =
+        "\146\uffff}>";
+    static final String[] DFA71_transitionS = {
+            "\1\1",
+            "\1\60\1\uffff\1\2\1\3\5\uffff\1\13\2\uffff\1\4\1\5\1\6\1\7"+
+            "\1\10\1\11\1\12\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24"+
+            "\1\25\1\26\1\27\6\uffff\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1"+
+            "\54\1\55\1\56\1\57\11\uffff\1\30\1\31\1\32\1\33\1\34\1\35\1"+
+            "\36\1\37\1\40\1\41\1\42\1\43\1\44\5\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\60\1\uffff\2\60\5\uffff\1\60\2\uffff\2\60\1\64\14\60\1"+
+            "\65\3\60\6\uffff\13\60\11\uffff\15\60\4\uffff\1\60\1\62\1\61"+
+            "\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "",
+            "\1\60\1\uffff\1\67\1\70\5\uffff\1\100\2\uffff\1\71\1\72\1"+
+            "\73\1\74\1\75\1\76\1\77\1\101\1\102\1\103\1\104\1\105\1\106"+
+            "\1\107\1\110\1\111\1\112\1\113\1\66\6\uffff\1\131\1\132\1\133"+
+            "\1\134\1\135\1\136\1\137\1\140\1\141\1\142\1\143\11\uffff\1"+
+            "\114\1\115\1\116\1\117\1\120\1\121\1\122\1\123\1\124\1\125\1"+
+            "\126\1\127\1\130",
+            "\1\60\1\uffff\1\63",
+            "",
+            "\1\63\1\uffff\2\63\5\uffff\1\63\2\uffff\23\63\6\uffff\13\63"+
+            "\11\uffff\15\63\4\uffff\1\60\10\uffff\1\60",
+            "\1\63\1\uffff\2\63\5\uffff\1\63\2\uffff\23\63\6\uffff\13\63"+
+            "\11\uffff\15\63\4\uffff\1\60\10\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\60\1\uffff\2\60\5\uffff\1\60\2\uffff\2\60\1\144\14\60\1"+
+            "\145\3\60\6\uffff\13\60\11\uffff\15\60\4\uffff\1\60\1\62\1\61"+
+            "\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\14\uffff\1\63\56\uffff\1\60\1\62\1\61\6\uffff\1\60",
+            "\1\63\1\uffff\2\63\5\uffff\1\63\2\uffff\23\63\6\uffff\13\63"+
+            "\11\uffff\15\63\4\uffff\1\60\10\uffff\1\60",
+            "\1\63\1\uffff\2\63\5\uffff\1\63\2\uffff\23\63\6\uffff\13\63"+
+            "\11\uffff\15\63\4\uffff\1\60\10\uffff\1\60"
+    };
+
+    static final short[] DFA71_eot = DFA.unpackEncodedString(DFA71_eotS);
+    static final short[] DFA71_eof = DFA.unpackEncodedString(DFA71_eofS);
+    static final char[] DFA71_min = DFA.unpackEncodedStringToUnsignedChars(DFA71_minS);
+    static final char[] DFA71_max = DFA.unpackEncodedStringToUnsignedChars(DFA71_maxS);
+    static final short[] DFA71_accept = DFA.unpackEncodedString(DFA71_acceptS);
+    static final short[] DFA71_special = DFA.unpackEncodedString(DFA71_specialS);
+    static final short[][] DFA71_transition;
+
+    static {
+        int numStates = DFA71_transitionS.length;
+        DFA71_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA71_transition[i] = DFA.unpackEncodedString(DFA71_transitionS[i]);
+        }
+    }
+
+    class DFA71 extends DFA {
+
+        public DFA71(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 71;
+            this.eot = DFA71_eot;
+            this.eof = DFA71_eof;
+            this.min = DFA71_min;
+            this.max = DFA71_max;
+            this.accept = DFA71_accept;
+            this.special = DFA71_special;
+            this.transition = DFA71_transition;
+        }
+        public String getDescription() {
+            return "7578:1: ( rule__LambdaTypeCS__OwnedTemplateSignatureAssignment_2 )?";
+        }
+    }
+    static final String DFA75_eotS =
+        "\62\uffff";
+    static final String DFA75_eofS =
+        "\62\uffff";
+    static final String DFA75_minS =
+        "\1\120\1\10\56\24\2\uffff";
+    static final String DFA75_maxS =
+        "\1\120\1\121\56\122\2\uffff";
+    static final String DFA75_acceptS =
+        "\60\uffff\1\2\1\1";
+    static final String DFA75_specialS =
+        "\62\uffff}>";
+    static final String[] DFA75_transitionS = {
+            "\1\1",
+            "\1\2\1\3\5\uffff\1\13\2\uffff\1\4\1\5\1\6\1\7\1\10\1\11\1"+
+            "\12\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1"+
+            "\27\6\uffff\1\45\1\46\1\47\1\50\1\51\1\52\1\53\1\54\1\55\1\56"+
+            "\1\57\11\uffff\1\30\1\31\1\32\1\33\1\34\1\35\1\36\1\37\1\40"+
+            "\1\41\1\42\1\43\1\44\5\uffff\1\60",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "\1\61\14\uffff\1\61\54\uffff\1\60\2\uffff\2\61",
+            "",
+            ""
+    };
+
+    static final short[] DFA75_eot = DFA.unpackEncodedString(DFA75_eotS);
+    static final short[] DFA75_eof = DFA.unpackEncodedString(DFA75_eofS);
+    static final char[] DFA75_min = DFA.unpackEncodedStringToUnsignedChars(DFA75_minS);
+    static final char[] DFA75_max = DFA.unpackEncodedStringToUnsignedChars(DFA75_maxS);
+    static final short[] DFA75_accept = DFA.unpackEncodedString(DFA75_acceptS);
+    static final short[] DFA75_special = DFA.unpackEncodedString(DFA75_specialS);
+    static final short[][] DFA75_transition;
+
+    static {
+        int numStates = DFA75_transitionS.length;
+        DFA75_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA75_transition[i] = DFA.unpackEncodedString(DFA75_transitionS[i]);
+        }
+    }
+
+    class DFA75 extends DFA {
+
+        public DFA75(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 75;
+            this.eot = DFA75_eot;
+            this.eof = DFA75_eof;
+            this.min = DFA75_min;
+            this.max = DFA75_max;
+            this.accept = DFA75_accept;
+            this.special = DFA75_special;
+            this.transition = DFA75_transition;
+        }
+        public String getDescription() {
+            return "7986:1: ( rule__LibOperationCS__OwnedTemplateSignatureAssignment_3 )?";
+        }
+    }
     static final String DFA96_eotS =
         "\62\uffff";
     static final String DFA96_eofS =
@@ -59202,100 +59565,100 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
             "\1\24\1\25\1\26\6\uffff\1\44\1\45\1\46\1\47\1\50\1\51\1\52\1"+
             "\53\1\54\1\55\1\56\11\uffff\1\27\1\30\1\31\1\32\1\33\1\34\1"+
             "\35\1\36\1\37\1\40\1\41\1\42\1\43",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
-            "\1\61\7\uffff\1\61\21\uffff\2\61\23\uffff\1\61\3\uffff\6\61"+
-            "\2\uffff\1\61\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
+            "\1\61\7\uffff\1\61\46\uffff\1\61\3\uffff\6\61\2\uffff\1\61"+
+            "\1\60",
             "",
             ""
     };
@@ -59334,229 +59697,31 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         }
     }
     static final String DFA97_eotS =
-        "\146\uffff";
+        "\15\uffff";
     static final String DFA97_eofS =
-        "\1\2\145\uffff";
+        "\1\2\14\uffff";
     static final String DFA97_minS =
-        "\1\35\1\6\1\uffff\25\24\1\6\30\24\1\uffff\1\6\1\0\2\6\24\24\1\6"+
-        "\31\24\2\6";
+        "\1\35\1\0\13\uffff";
     static final String DFA97_maxS =
-        "\1\130\1\113\1\uffff\56\131\1\uffff\1\113\1\0\62\131";
+        "\1\130\1\0\13\uffff";
     static final String DFA97_acceptS =
-        "\2\uffff\1\2\56\uffff\1\1\64\uffff";
+        "\2\uffff\1\2\11\uffff\1\1";
     static final String DFA97_specialS =
-        "\63\uffff\1\0\62\uffff}>";
+        "\1\uffff\1\0\13\uffff}>";
     static final String[] DFA97_transitionS = {
-            "\1\2\7\uffff\1\2\21\uffff\1\2\1\1\23\uffff\1\2\3\uffff\6\2"+
-            "\2\uffff\1\2",
-            "\1\61\1\uffff\1\4\1\5\5\uffff\1\15\2\uffff\1\6\1\7\1\10\1"+
-            "\11\1\12\1\13\1\14\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1"+
-            "\26\1\27\1\30\1\3\2\uffff\1\61\3\uffff\1\46\1\47\1\50\1\51\1"+
-            "\52\1\53\1\54\1\55\1\56\1\57\1\60\11\uffff\1\31\1\32\1\33\1"+
-            "\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45",
-            "",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\61\1\uffff\2\61\5\uffff\1\61\2\uffff\2\61\1\64\14\61\1"+
-            "\65\3\61\6\uffff\13\61\1\uffff\1\63\1\61\6\uffff\15\61\6\uffff"+
-            "\1\62\6\uffff\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "",
-            "\1\61\1\uffff\1\66\1\67\5\uffff\1\77\2\uffff\1\70\1\71\1\72"+
-            "\1\73\1\74\1\75\1\76\1\100\1\101\1\102\1\103\1\104\1\105\1\106"+
-            "\1\107\1\110\1\111\1\112\1\113\2\uffff\1\61\3\uffff\1\131\1"+
-            "\132\1\133\1\134\1\135\1\136\1\137\1\140\1\141\1\142\1\143\11"+
-            "\uffff\1\114\1\115\1\116\1\117\1\120\1\121\1\122\1\123\1\124"+
-            "\1\125\1\126\1\127\1\130",
+            "\1\2\7\uffff\1\2\46\uffff\1\2\3\uffff\1\1\5\2\2\uffff\1\2",
             "\1\uffff",
-            "\1\2\1\uffff\2\2\5\uffff\1\2\2\uffff\23\2\6\uffff\13\2\2\uffff"+
-            "\1\61\6\uffff\15\2\4\uffff\1\61\10\uffff\1\61",
-            "\1\2\1\uffff\2\2\5\uffff\1\2\2\uffff\23\2\6\uffff\13\2\2\uffff"+
-            "\1\61\6\uffff\15\2\4\uffff\1\61\10\uffff\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\61\1\uffff\2\61\5\uffff\1\61\2\uffff\2\61\1\144\14\61\1"+
-            "\145\3\61\6\uffff\13\61\1\uffff\1\63\1\61\6\uffff\15\61\6\uffff"+
-            "\1\62\6\uffff\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\14\uffff\1\2\25\uffff\1\63\1\61\31\uffff\1\62\6\uffff"+
-            "\1\61",
-            "\1\2\1\uffff\2\2\5\uffff\1\2\2\uffff\23\2\6\uffff\13\2\2\uffff"+
-            "\1\61\6\uffff\15\2\4\uffff\1\61\10\uffff\1\61",
-            "\1\2\1\uffff\2\2\5\uffff\1\2\2\uffff\23\2\6\uffff\13\2\2\uffff"+
-            "\1\61\6\uffff\15\2\4\uffff\1\61\10\uffff\1\61"
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
     };
 
     static final short[] DFA97_eot = DFA.unpackEncodedString(DFA97_eotS);
@@ -59596,18 +59761,18 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA97_51 = input.LA(1);
+                        int LA97_1 = input.LA(1);
 
                          
-                        int index97_51 = input.index();
+                        int index97_1 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (synpred171_InternalOCLstdlib()) ) {s = 49;}
+                        if ( (synpred171_InternalOCLstdlib()) ) {s = 12;}
 
                         else if ( (true) ) {s = 2;}
 
                          
-                        input.seek(index97_51);
+                        input.seek(index97_1);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -61176,16 +61341,16 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__ClassCS__Group__0__Impl_in_rule__ClassCS__Group__011287 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__ClassCS__Group__1_in_rule__ClassCS__Group__011290 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_34_in_rule__ClassCS__Group__0__Impl11318 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ClassCS__Group__1__Impl_in_rule__ClassCS__Group__111349 = new BitSet(new long[]{0x0100000000040000L,0x0000000000005000L});
+        public static final BitSet FOLLOW_rule__ClassCS__Group__1__Impl_in_rule__ClassCS__Group__111349 = new BitSet(new long[]{0x0000000000040000L,0x0000000000015000L});
         public static final BitSet FOLLOW_rule__ClassCS__Group__2_in_rule__ClassCS__Group__111352 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ClassCS__NameAssignment_1_in_rule__ClassCS__Group__1__Impl11379 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ClassCS__Group__2__Impl_in_rule__ClassCS__Group__211409 = new BitSet(new long[]{0x0100000000040000L,0x0000000000005000L});
+        public static final BitSet FOLLOW_rule__ClassCS__Group__2__Impl_in_rule__ClassCS__Group__211409 = new BitSet(new long[]{0x0000000000040000L,0x0000000000015000L});
         public static final BitSet FOLLOW_rule__ClassCS__Group__3_in_rule__ClassCS__Group__211412 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ClassCS__OwnedTemplateSignatureAssignment_2_in_rule__ClassCS__Group__2__Impl11439 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ClassCS__Group__3__Impl_in_rule__ClassCS__Group__311470 = new BitSet(new long[]{0x0100000000040000L,0x0000000000005000L});
+        public static final BitSet FOLLOW_rule__ClassCS__Group__3__Impl_in_rule__ClassCS__Group__311470 = new BitSet(new long[]{0x0000000000040000L,0x0000000000015000L});
         public static final BitSet FOLLOW_rule__ClassCS__Group__4_in_rule__ClassCS__Group__311473 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ClassCS__Group_3__0_in_rule__ClassCS__Group__3__Impl11500 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ClassCS__Group__4__Impl_in_rule__ClassCS__Group__411531 = new BitSet(new long[]{0x0100000000040000L,0x0000000000005000L});
+        public static final BitSet FOLLOW_rule__ClassCS__Group__4__Impl_in_rule__ClassCS__Group__411531 = new BitSet(new long[]{0x0000000000040000L,0x0000000000015000L});
         public static final BitSet FOLLOW_rule__ClassCS__Group__5_in_rule__ClassCS__Group__411534 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ClassCS__Group_4__0_in_rule__ClassCS__Group__4__Impl11561 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__ClassCS__Group__5__Impl_in_rule__ClassCS__Group__511592 = new BitSet(new long[]{0x0000000566C80000L,0x000000000000A000L});
@@ -61281,10 +61446,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__LibIterationCS__Group__0__Impl_in_rule__LibIterationCS__Group__013716 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__LibIterationCS__Group__1_in_rule__LibIterationCS__Group__013719 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_23_in_rule__LibIterationCS__Group__0__Impl13747 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibIterationCS__Group__1__Impl_in_rule__LibIterationCS__Group__113778 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LibIterationCS__Group__1__Impl_in_rule__LibIterationCS__Group__113778 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LibIterationCS__Group__2_in_rule__LibIterationCS__Group__113781 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibIterationCS__NameAssignment_1_in_rule__LibIterationCS__Group__1__Impl13808 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibIterationCS__Group__2__Impl_in_rule__LibIterationCS__Group__213838 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LibIterationCS__Group__2__Impl_in_rule__LibIterationCS__Group__213838 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LibIterationCS__Group__3_in_rule__LibIterationCS__Group__213841 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibIterationCS__OwnedTemplateSignatureAssignment_2_in_rule__LibIterationCS__Group__2__Impl13868 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibIterationCS__Group__3__Impl_in_rule__LibIterationCS__Group__313899 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000000FFFL});
@@ -61371,10 +61536,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__0__Impl_in_rule__LambdaTypeCS__Group__015769 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__1_in_rule__LambdaTypeCS__Group__015772 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__NameAssignment_0_in_rule__LambdaTypeCS__Group__0__Impl15799 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__1__Impl_in_rule__LambdaTypeCS__Group__115829 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__1__Impl_in_rule__LambdaTypeCS__Group__115829 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__2_in_rule__LambdaTypeCS__Group__115832 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__OwnedContextTypeAssignment_1_in_rule__LambdaTypeCS__Group__1__Impl15859 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__2__Impl_in_rule__LambdaTypeCS__Group__215889 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__2__Impl_in_rule__LambdaTypeCS__Group__215889 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__3_in_rule__LambdaTypeCS__Group__215892 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__OwnedTemplateSignatureAssignment_2_in_rule__LambdaTypeCS__Group__2__Impl15919 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LambdaTypeCS__Group__3__Impl_in_rule__LambdaTypeCS__Group__315950 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000020FFFL});
@@ -61407,10 +61572,10 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__LibOperationCS__Group__1__Impl_in_rule__LibOperationCS__Group__116576 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__LibOperationCS__Group__2_in_rule__LibOperationCS__Group__116579 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_25_in_rule__LibOperationCS__Group__1__Impl16607 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibOperationCS__Group__2__Impl_in_rule__LibOperationCS__Group__216638 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LibOperationCS__Group__2__Impl_in_rule__LibOperationCS__Group__216638 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LibOperationCS__Group__3_in_rule__LibOperationCS__Group__216641 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibOperationCS__NameAssignment_2_in_rule__LibOperationCS__Group__2__Impl16668 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibOperationCS__Group__3__Impl_in_rule__LibOperationCS__Group__316698 = new BitSet(new long[]{0x0100000000000000L,0x0000000000010000L});
+        public static final BitSet FOLLOW_rule__LibOperationCS__Group__3__Impl_in_rule__LibOperationCS__Group__316698 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LibOperationCS__Group__4_in_rule__LibOperationCS__Group__316701 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibOperationCS__OwnedTemplateSignatureAssignment_3_in_rule__LibOperationCS__Group__3__Impl16728 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibOperationCS__Group__4__Impl_in_rule__LibOperationCS__Group__416759 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000020FFFL});
@@ -61595,15 +61760,15 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__PrecedenceCS__NameAssignment_2_in_rule__PrecedenceCS__Group__2__Impl20839 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__0__Impl_in_rule__TemplateBindingCS__Group__020875 = new BitSet(new long[]{0x803FF89FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__1_in_rule__TemplateBindingCS__Group__020878 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__TemplateBindingCS__Group__0__Impl20906 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__1__Impl_in_rule__TemplateBindingCS__Group__120937 = new BitSet(new long[]{0x0080000000000000L,0x0000000000040000L});
+        public static final BitSet FOLLOW_80_in_rule__TemplateBindingCS__Group__0__Impl20906 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__1__Impl_in_rule__TemplateBindingCS__Group__120937 = new BitSet(new long[]{0x0000000000000000L,0x0000000000060000L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__2_in_rule__TemplateBindingCS__Group__120940 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_1_in_rule__TemplateBindingCS__Group__1__Impl20967 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__2__Impl_in_rule__TemplateBindingCS__Group__220997 = new BitSet(new long[]{0x0080000000000000L,0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__2__Impl_in_rule__TemplateBindingCS__Group__220997 = new BitSet(new long[]{0x0000000000000000L,0x0000000000060000L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__3_in_rule__TemplateBindingCS__Group__221000 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group_2__0_in_rule__TemplateBindingCS__Group__2__Impl21027 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group__3__Impl_in_rule__TemplateBindingCS__Group__321058 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__TemplateBindingCS__Group__3__Impl21086 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_81_in_rule__TemplateBindingCS__Group__3__Impl21086 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group_2__0__Impl_in_rule__TemplateBindingCS__Group_2__021125 = new BitSet(new long[]{0x803FF89FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__TemplateBindingCS__Group_2__1_in_rule__TemplateBindingCS__Group_2__021128 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_82_in_rule__TemplateBindingCS__Group_2__0__Impl21156 = new BitSet(new long[]{0x0000000000000002L});
@@ -61611,31 +61776,31 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__TemplateBindingCS__OwnedParameterSubstitutionAssignment_2_1_in_rule__TemplateBindingCS__Group_2__1__Impl21214 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__0__Impl_in_rule__TemplateSignatureCS__Group__021248 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__1_in_rule__TemplateSignatureCS__Group__021251 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__TemplateSignatureCS__Group__0__Impl21279 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__1__Impl_in_rule__TemplateSignatureCS__Group__121310 = new BitSet(new long[]{0x0080000000000000L,0x0000000000040000L});
+        public static final BitSet FOLLOW_80_in_rule__TemplateSignatureCS__Group__0__Impl21279 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__1__Impl_in_rule__TemplateSignatureCS__Group__121310 = new BitSet(new long[]{0x0000000000000000L,0x0000000000060000L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__2_in_rule__TemplateSignatureCS__Group__121313 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_1_in_rule__TemplateSignatureCS__Group__1__Impl21340 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__2__Impl_in_rule__TemplateSignatureCS__Group__221370 = new BitSet(new long[]{0x0080000000000000L,0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__2__Impl_in_rule__TemplateSignatureCS__Group__221370 = new BitSet(new long[]{0x0000000000000000L,0x0000000000060000L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__3_in_rule__TemplateSignatureCS__Group__221373 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group_2__0_in_rule__TemplateSignatureCS__Group__2__Impl21400 = new BitSet(new long[]{0x0000000000000002L,0x0000000000040000L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group__3__Impl_in_rule__TemplateSignatureCS__Group__321431 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__TemplateSignatureCS__Group__3__Impl21459 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_81_in_rule__TemplateSignatureCS__Group__3__Impl21459 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group_2__0__Impl_in_rule__TemplateSignatureCS__Group_2__021498 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group_2__1_in_rule__TemplateSignatureCS__Group_2__021501 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_82_in_rule__TemplateSignatureCS__Group_2__0__Impl21529 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__Group_2__1__Impl_in_rule__TemplateSignatureCS__Group_2__121560 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TemplateSignatureCS__OwnedTemplateParameterAssignment_2_1_in_rule__TemplateSignatureCS__Group_2__1__Impl21587 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibTupleCS__Group__0__Impl_in_rule__LibTupleCS__Group__021621 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__LibTupleCS__Group__0__Impl_in_rule__LibTupleCS__Group__021621 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group__1_in_rule__LibTupleCS__Group__021624 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibTupleCS__NameAssignment_0_in_rule__LibTupleCS__Group__0__Impl21651 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibTupleCS__Group__1__Impl_in_rule__LibTupleCS__Group__121681 = new BitSet(new long[]{0x80BFF81FFFFC8300L,0x0000000000000FFFL});
+        public static final BitSet FOLLOW_rule__LibTupleCS__Group__1__Impl_in_rule__LibTupleCS__Group__121681 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000020FFFL});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group__2_in_rule__LibTupleCS__Group__121684 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_56_in_rule__LibTupleCS__Group__1__Impl21712 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__LibTupleCS__Group__2__Impl_in_rule__LibTupleCS__Group__221743 = new BitSet(new long[]{0x80BFF81FFFFC8300L,0x0000000000000FFFL});
+        public static final BitSet FOLLOW_80_in_rule__LibTupleCS__Group__1__Impl21712 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__LibTupleCS__Group__2__Impl_in_rule__LibTupleCS__Group__221743 = new BitSet(new long[]{0x803FF81FFFFC8300L,0x0000000000020FFFL});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group__3_in_rule__LibTupleCS__Group__221746 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group_2__0_in_rule__LibTupleCS__Group__2__Impl21773 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group__3__Impl_in_rule__LibTupleCS__Group__321804 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_55_in_rule__LibTupleCS__Group__3__Impl21832 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_81_in_rule__LibTupleCS__Group__3__Impl21832 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group_2__0__Impl_in_rule__LibTupleCS__Group_2__021871 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
         public static final BitSet FOLLOW_rule__LibTupleCS__Group_2__1_in_rule__LibTupleCS__Group_2__021874 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__LibTupleCS__OwnedPartsAssignment_2_0_in_rule__LibTupleCS__Group_2__0__Impl21901 = new BitSet(new long[]{0x0000000000000002L});
@@ -61680,7 +61845,7 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__0__Impl_in_rule__TypedTypeRefCS__Group__022855 = new BitSet(new long[]{0x803FF81FFFFC8340L,0x0000000000000FFFL});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__1_in_rule__TypedTypeRefCS__Group__022858 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group_0__0_in_rule__TypedTypeRefCS__Group__0__Impl22885 = new BitSet(new long[]{0x803FF81FFFFC8342L,0x0000000000000FFFL});
-        public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__1__Impl_in_rule__TypedTypeRefCS__Group__122916 = new BitSet(new long[]{0x0100000000000000L});
+        public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__1__Impl_in_rule__TypedTypeRefCS__Group__122916 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__2_in_rule__TypedTypeRefCS__Group__122919 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__TypeAssignment_1_in_rule__TypedTypeRefCS__Group__1__Impl22946 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__TypedTypeRefCS__Group__2__Impl_in_rule__TypedTypeRefCS__Group__222976 = new BitSet(new long[]{0x0000000000000002L});

@@ -1,0 +1,16 @@
+module "simple.states"
+
+statemachine Machine
+{
+	events START STOP;
+    
+	initial state Start
+	{
+		START => Start
+	} 
+	     
+	state Stop 
+	{
+		STOP  => Stop
+	}  
+}

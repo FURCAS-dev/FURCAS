@@ -62,7 +62,8 @@ instances, as determined by the client.  A client sets the extent map using the
 <a href="../javadoc/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
 method.  The default extent map, if none is provided by the client, lazily
 computes the extent of a class from the EMF <em class="CodeName">Resource</em>
-containing the context element of the evaluation.
+containing the context element of the evaluation. An alternative extent map can be
+found in <a href="../javadoc/org/eclipse/ocl/ecore/opposites/ExtentMap.html"><em class="CodeName">org.eclipse.ocl.ecore.opposites.ExtentMap</em></a>.
 </p><p>
 So, after optionally setting values of context variables (other than
 <em class="CodeName">self</em>; the <em class="CodeName">Query</em> takes care

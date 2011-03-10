@@ -36,6 +36,11 @@
           foldingType="static (configurable)"
           staticFoldingBrackets="{,}">
     </configuration>
+ </extension>
+ <extension point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
+       <furcas_syntax provider_class="bibtex.dsl.editor.Activator">
+       	 <metamodel nsURI="http://www.sap.com/furcas/examples/bibtex" />
+       </furcas_syntax>
  </extension> 
  
 </plugin> 

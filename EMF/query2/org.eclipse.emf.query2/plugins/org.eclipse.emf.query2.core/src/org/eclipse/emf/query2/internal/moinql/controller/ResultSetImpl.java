@@ -400,4 +400,11 @@ public class ResultSetImpl implements ResultSet {
 			}
 		}
 	}
+	
+	/**
+	 * Flushes the resultset
+	 */
+	public void flushResultSet() {
+		resultSet.flushResultSet();
+	}
 }
