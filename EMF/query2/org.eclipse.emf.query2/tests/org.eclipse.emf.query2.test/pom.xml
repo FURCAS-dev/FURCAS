@@ -19,6 +19,7 @@
         <artifactId>maven-osgi-test-plugin</artifactId>
         <configuration>
           <excludes>
+            <exclude>**/org/eclipse/emf/query2/test/QueryTestCase.java</exclude>
             <exclude>**/*$*.java</exclude>
           </excludes>
         </configuration>
