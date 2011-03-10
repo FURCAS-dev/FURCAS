@@ -16,14 +16,14 @@
 		<!-- supply defaults -->
 		<property name="build.id" value="" />
 		<property name="hudson.build.id" value="" />
-		<property name="publish.javadoc" value="false"/>
+		<property name="must.publish.javadoc" value="false"/>
 
 		<propertyfile file="${promoter.properties.file}" comment="Promoter script properties">
 			<entry key="java.home" value="${java.home}" />
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-			<entry key="publish.javadoc" value="${create.javadoc}" />
+			<entry key="must.publish.javadoc" value="${create.javadoc}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -240,6 +240,12 @@
 		</condition>
 
 		<antcall target="-publish.build.repository" inheritall="true" />
+		
+		<!-- Prepare the property which will dictate if the javadoc will be published -->
+
+		<condition property="publish.javadoc">
+			<equals arg1="${must.publish.javadoc}" arg2="true"/>
+		</condition>
 		<antcall target="-publish.javadoc" inheritall="true" />
 	</target>
 
