@@ -462,8 +462,10 @@ public class QueryProcessorImpl implements QueryProcessor {
 		QueryCommandWithResult<ResultSet> command = new QueryCommandWithResult<ResultSet>() {
 
 			public void execute(QueryExecutor queryExecutor) {
-				this.setResult(executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded, scopeProvider.getResourceScope(), globalContainerScope,
-						numberOfResults,isSortingNeeded));
+				URI[] resourceScope = scopeProvider.getResourceScope();
+				ResultSet result = executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded, resourceScope, globalContainerScope,
+						numberOfResults,isSortingNeeded);
+				this.setResult(result);
 			}
 		};
 		emfHelper.getIndex().executeQueryCommand(command);

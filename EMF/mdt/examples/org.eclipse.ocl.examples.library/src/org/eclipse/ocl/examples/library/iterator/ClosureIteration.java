@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClosureIteration.java,v 1.5 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: ClosureIteration.java,v 1.6 2011/03/08 15:14:50 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -95,7 +95,7 @@ public class ClosureIteration extends AbstractIteration<CollectionValue.Accumula
 		Type iteratorType = ((IteratorExp)callExp).getIterators().get(0).getType();
 		Map<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
 		if (!typeManager.conformsTo(bodyType, iteratorType, bindings)) {
-			return new ValidationWarning(OCLMessages.WarningNonConformingBodyType, bodyType, iteratorType);
+			return new ValidationWarning(OCLMessages.IncompatibleBodyType_WARNING_, bodyType, iteratorType);
 		}
 		return null;
 	}

@@ -10103,11 +10103,11 @@ rule__TemplateBindingCS__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0()); }
+{ before(grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0()); }
 
-	'<' 
+	'(' 
 
-{ after(grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0()); }
+{ after(grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0()); }
 )
 
 ;
@@ -10191,11 +10191,11 @@ rule__TemplateBindingCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3()); }
+{ before(grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3()); }
 
-	'>' 
+	')' 
 
-{ after(grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3()); }
+{ after(grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3()); }
 )
 
 ;
@@ -10293,11 +10293,11 @@ rule__TemplateSignatureCS__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0()); }
+{ before(grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0()); }
 
-	'<' 
+	'(' 
 
-{ after(grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0()); }
+{ after(grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0()); }
 )
 
 ;
@@ -10381,11 +10381,11 @@ rule__TemplateSignatureCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3()); }
+{ before(grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3()); }
 
-	'>' 
+	')' 
 
-{ after(grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3()); }
+{ after(grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3()); }
 )
 
 ;
@@ -10512,11 +10512,11 @@ rule__LibTupleCS__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1()); }
+{ before(grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1()); }
 
-	'<' 
+	'(' 
 
-{ after(grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1()); }
+{ after(grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1()); }
 )
 
 ;
@@ -10571,11 +10571,11 @@ rule__LibTupleCS__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3()); }
+{ before(grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3()); }
 
-	'>' 
+	')' 
 
-{ after(grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3()); }
+{ after(grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3()); }
 )
 
 ;

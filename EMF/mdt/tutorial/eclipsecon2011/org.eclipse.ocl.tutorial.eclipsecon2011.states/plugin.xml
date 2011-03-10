@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://ocl.eclipse.org/tutorial/eclipsecon2011/States" 
+       class = "org.eclipse.ocl.tutorial.eclipsecon2011.states.StatesPackage"
+       genModel = "org/eclipse/ocl/tutorial/eclipsecon2011/States.genmodel" /> 
+	
+  </extension>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://ocl.eclipse.org/tutorial/eclipsecon2011/States2" 
+       class = "org.eclipse.ocl.tutorial.eclipsecon2011.states.StatesPackage"
+       genModel = "org/eclipse/ocl/tutorial/eclipsecon2011/States.genmodel" /> 
+	
+  </extension>
+
+
+</plugin>

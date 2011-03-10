@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.6 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.7 2011/03/08 15:14:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -392,7 +392,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		public BasicContinuation<?> execute() {
 			Element pivotType = csElement.getType();
 			if (pivotType.eIsProxy()) {
-				Type badType = context.addBadTypeError(csElement, OCLMessages.ErrorUnresolvedTypeName, csElement);
+				Type badType = context.addBadTypeError(csElement, OCLMessages.UnresolvedType_ERROR_, csElement);
 				csElement.setType(badType);
 			}
 			else {

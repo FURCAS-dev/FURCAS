@@ -7766,13 +7766,13 @@ protected class SpecificationCS_OwnedExpressionAssignment extends AssignmentToke
 /************ begin Rule TemplateBindingCS ****************
  *
  * TemplateBindingCS returns base::TemplateBindingCS:
- * 	"<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
- * 	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">";
+ * 	"(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+ * 	ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")";
  *
  **/
 
-// "<" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
-// ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ">"
+// "(" ownedParameterSubstitution+=TemplateParameterSubstitutionCS (","
+// ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ")"
 protected class TemplateBindingCS_Group extends GroupToken {
 	
 	public TemplateBindingCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7787,7 +7787,7 @@ protected class TemplateBindingCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TemplateBindingCS_GreaterThanSignKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TemplateBindingCS_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -7801,16 +7801,16 @@ protected class TemplateBindingCS_Group extends GroupToken {
 
 }
 
-// "<"
-protected class TemplateBindingCS_LessThanSignKeyword_0 extends KeywordToken  {
+// "("
+protected class TemplateBindingCS_LeftParenthesisKeyword_0 extends KeywordToken  {
 	
-	public TemplateBindingCS_LessThanSignKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TemplateBindingCS_LeftParenthesisKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0();
+		return grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0();
 	}
 
     @Override
@@ -7862,7 +7862,7 @@ protected class TemplateBindingCS_OwnedParameterSubstitutionAssignment_1 extends
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new TemplateBindingCS_LessThanSignKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TemplateBindingCS_LeftParenthesisKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -7960,16 +7960,16 @@ protected class TemplateBindingCS_OwnedParameterSubstitutionAssignment_2_1 exten
 }
 
 
-// ">"
-protected class TemplateBindingCS_GreaterThanSignKeyword_3 extends KeywordToken  {
+// ")"
+protected class TemplateBindingCS_RightParenthesisKeyword_3 extends KeywordToken  {
 	
-	public TemplateBindingCS_GreaterThanSignKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TemplateBindingCS_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3();
+		return grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3();
 	}
 
     @Override
@@ -8047,11 +8047,11 @@ protected class TemplateParameterSubstitutionCS_OwnedActualParameterAssignment e
 /************ begin Rule TemplateSignatureCS ****************
  *
  * TemplateSignatureCS returns base::TemplateSignatureCS:
- * 	"<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">";
+ * 	"(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")";
  *
  **/
 
-// "<" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ">"
+// "(" ownedTemplateParameter+=TypeParameterCS ("," ownedTemplateParameter+=TypeParameterCS)* ")"
 protected class TemplateSignatureCS_Group extends GroupToken {
 	
 	public TemplateSignatureCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8066,7 +8066,7 @@ protected class TemplateSignatureCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TemplateSignatureCS_GreaterThanSignKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TemplateSignatureCS_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -8080,16 +8080,16 @@ protected class TemplateSignatureCS_Group extends GroupToken {
 
 }
 
-// "<"
-protected class TemplateSignatureCS_LessThanSignKeyword_0 extends KeywordToken  {
+// "("
+protected class TemplateSignatureCS_LeftParenthesisKeyword_0 extends KeywordToken  {
 	
-	public TemplateSignatureCS_LessThanSignKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TemplateSignatureCS_LeftParenthesisKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0();
+		return grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0();
 	}
 
     @Override
@@ -8141,7 +8141,7 @@ protected class TemplateSignatureCS_OwnedTemplateParameterAssignment_1 extends A
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new TemplateSignatureCS_LessThanSignKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TemplateSignatureCS_LeftParenthesisKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -8239,16 +8239,16 @@ protected class TemplateSignatureCS_OwnedTemplateParameterAssignment_2_1 extends
 }
 
 
-// ">"
-protected class TemplateSignatureCS_GreaterThanSignKeyword_3 extends KeywordToken  {
+// ")"
+protected class TemplateSignatureCS_RightParenthesisKeyword_3 extends KeywordToken  {
 	
-	public TemplateSignatureCS_GreaterThanSignKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TemplateSignatureCS_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3();
+		return grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3();
 	}
 
     @Override
@@ -8269,11 +8269,11 @@ protected class TemplateSignatureCS_GreaterThanSignKeyword_3 extends KeywordToke
 /************ begin Rule LibTupleCS ****************
  *
  * LibTupleCS returns base::TupleTypeCS:
- * 	name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">";
+ * 	name="Tuple" "(" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ")";
  *
  **/
 
-// name="Tuple" "<" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ">"
+// name="Tuple" "(" (ownedParts+=LibTuplePartCS ("," ownedParts+=LibTuplePartCS)*)? ")"
 protected class LibTupleCS_Group extends GroupToken {
 	
 	public LibTupleCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8288,7 +8288,7 @@ protected class LibTupleCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new LibTupleCS_GreaterThanSignKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new LibTupleCS_RightParenthesisKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -8335,16 +8335,16 @@ protected class LibTupleCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// "<"
-protected class LibTupleCS_LessThanSignKeyword_1 extends KeywordToken  {
+// "("
+protected class LibTupleCS_LeftParenthesisKeyword_1 extends KeywordToken  {
 	
-	public LibTupleCS_LessThanSignKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public LibTupleCS_LeftParenthesisKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1();
+		return grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1();
 	}
 
     @Override
@@ -8420,7 +8420,7 @@ protected class LibTupleCS_OwnedPartsAssignment_2_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new LibTupleCS_LessThanSignKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new LibTupleCS_LeftParenthesisKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -8519,23 +8519,23 @@ protected class LibTupleCS_OwnedPartsAssignment_2_1_1 extends AssignmentToken  {
 
 
 
-// ">"
-protected class LibTupleCS_GreaterThanSignKeyword_3 extends KeywordToken  {
+// ")"
+protected class LibTupleCS_RightParenthesisKeyword_3 extends KeywordToken  {
 	
-	public LibTupleCS_GreaterThanSignKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public LibTupleCS_RightParenthesisKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3();
+		return grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new LibTupleCS_Group_2(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new LibTupleCS_LessThanSignKeyword_1(lastRuleCallOrigin, this, 1, inst);
+			case 1: return new LibTupleCS_LeftParenthesisKeyword_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}

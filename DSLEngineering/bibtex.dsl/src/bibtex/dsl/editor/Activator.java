@@ -10,7 +10,9 @@ import org.osgi.framework.BundleContext;
 
 import bibtex.dsl.parser.BibtexParserFactory;
 
+import com.sap.emf.ocl.trigger.TriggerManager;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
@@ -46,13 +48,13 @@ public class Activator extends AbstractUIPlugin implements SyntaxProvider {
     }
 
     @Override
-    public ResourceSet getResourceSet() throws ParserException, IOException {
-        return delegate.getResourceSet();
+    public TriggerManager getTriggerManager(SyntaxRegistry syntaxRegistry) throws ParserException, IOException {
+        return delegate.getTriggerManager(syntaxRegistry);
     }
 
     @Override
-    public ConcreteSyntax getSyntax() throws IOException, ParserException {
-        return delegate.getSyntax();
+    public ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
+        return delegate.getSyntax(loadSyntaxIn);
     }
 
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
+import org.eclipse.ocl.examples.xtext.essentialocl.validation.EssentialOCLJavaValidator;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 @ComposedChecks(validators= {org.eclipse.xtext.validation.ImportUriValidator.class})
-public class AbstractOCLstdlibJavaValidator extends AbstractDeclarativeValidator {
+public class AbstractOCLstdlibJavaValidator extends EssentialOCLJavaValidator {
 
 	@Override
 	protected List<EPackage> getEPackages() {

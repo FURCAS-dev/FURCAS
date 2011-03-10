@@ -2,8 +2,6 @@ package org.eclipse.emf.query.index;
 
 import java.io.File;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,8 @@ public class IndexFactory {
 	static {
 		// This option enables Paging and Dump. So that it can be used while IDE
 		// starts and indexes would not be built all the time.
-		index = new PageableIndexImpl(getOptions());
+		Options options = getOptions();
+		index = new PageableIndexImpl(options);
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			public void execute(final IndexUpdater updater) {
@@ -63,22 +62,31 @@ public class IndexFactory {
 	 * @return Options required for paging and dumping the Indexes built.
 	 */
 	private static Options getOptions() {
-		return new Options(getDirectoryToDumpIndices(), Options.DISABLED, Options.DISABLED);
+		String directoryToDumpIndices = getDirectoryToDumpIndices();
+		if (directoryToDumpIndices != null) {
+			return new Options(directoryToDumpIndices, Options.DISABLED, Options.DISABLED);
+		}
+
+		return Options.PAGING_AND_DUMPING_DISABLED;
 	}
 
 	/**
 	 * @return The directory for dumping the indexes.
 	 */
 	private static String getDirectoryToDumpIndices() {
-		IPath baseDirectory = Activator.getDefault().getStateLocation().addTrailingSeparator();
+		Activator activatorInstance = Activator.getDefault();
+		String indexDirectoryAsString = null;
+		if (activatorInstance != null) {
+			IPath baseDirectory = activatorInstance.getStateLocation().addTrailingSeparator();
 
-		IPath indexDirectoryPath = new Path(baseDirectory.toString() + Path.SEPARATOR + "index" + Path.SEPARATOR); //$NON-NLS-1$
-		File indexDir = new File(indexDirectoryPath.toString());
-		if (!indexDir.exists()) {
-			indexDir.mkdir();
+			Path indexDirectoryPath = new Path(baseDirectory.toString() + Path.SEPARATOR + "index" + Path.SEPARATOR); //$NON-NLS-1$
+			File indexDir = new File(indexDirectoryPath.toString());
+			if (!indexDir.exists()) {
+				indexDir.mkdir();
+			}
+			indexDirectoryAsString = indexDirectoryPath.toString();
 		}
-
-		return indexDirectoryPath.toString();
+		return indexDirectoryAsString;
 	}
 
 	/**

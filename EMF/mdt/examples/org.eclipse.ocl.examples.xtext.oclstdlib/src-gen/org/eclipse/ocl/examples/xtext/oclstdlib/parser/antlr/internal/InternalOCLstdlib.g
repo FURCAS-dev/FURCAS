@@ -2999,9 +2999,9 @@ ruleTemplateBindingCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='<' 
+(	otherlv_0='(' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getTemplateBindingCSAccess().getLessThanSignKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getTemplateBindingCSAccess().getLeftParenthesisKeyword_0());
     }
 (
 (
@@ -3043,9 +3043,9 @@ ruleTemplateBindingCS returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_4='>' 
+))*	otherlv_4=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getTemplateBindingCSAccess().getGreaterThanSignKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getTemplateBindingCSAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
@@ -3107,9 +3107,9 @@ ruleTemplateSignatureCS returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='<' 
+(	otherlv_0='(' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getTemplateSignatureCSAccess().getLessThanSignKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getTemplateSignatureCSAccess().getLeftParenthesisKeyword_0());
     }
 (
 (
@@ -3151,9 +3151,9 @@ ruleTemplateSignatureCS returns [EObject current=null]
 	    }
 
 )
-))*	otherlv_4='>' 
+))*	otherlv_4=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getTemplateSignatureCSAccess().getGreaterThanSignKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getTemplateSignatureCSAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
@@ -3191,9 +3191,9 @@ ruleLibTupleCS returns [EObject current=null]
 	    }
 
 )
-)	otherlv_1='<' 
+)	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getLibTupleCSAccess().getLessThanSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getLibTupleCSAccess().getLeftParenthesisKeyword_1());
     }
 ((
 (
@@ -3235,9 +3235,9 @@ ruleLibTupleCS returns [EObject current=null]
 	    }
 
 )
-))*)?	otherlv_5='>' 
+))*)?	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getLibTupleCSAccess().getGreaterThanSignKeyword_3());
+    	newLeafNode(otherlv_5, grammarAccess.getLibTupleCSAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
