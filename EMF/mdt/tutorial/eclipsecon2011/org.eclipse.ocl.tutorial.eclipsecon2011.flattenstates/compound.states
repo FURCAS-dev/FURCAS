@@ -1,0 +1,41 @@
+module "compound.states"
+
+statemachine Outer
+{
+	events START STOP;
+
+	initial state Start value 4
+	{
+		START => CompoundA
+	}
+
+	state Stop value 5
+	{
+		STOP => CompoundB
+	}
+
+	compound state CompoundA machine Inner
+	{
+		START => Stop
+	}
+
+	compound state CompoundB machine Inner
+	{
+		STOP => Stop
+	}
+}
+
+statemachine Inner
+{
+	events LEFT RIGHT;
+
+	initial state Left value 1
+	{
+		LEFT => Right
+	}
+
+	state Right
+	{
+		RIGHT => Left
+	}
+}

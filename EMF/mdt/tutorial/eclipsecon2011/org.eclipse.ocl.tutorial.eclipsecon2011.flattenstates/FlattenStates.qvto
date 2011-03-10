@@ -1,0 +1,180 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2011 E.D.Willink and others.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   E.D.Willink - Initial API and implementation
+ *
+ * </copyright>
+ *
+ * $Id: FlattenStates.qvto,v 1.1 2011/03/10 08:52:56 ewillink Exp $
+ */
+modeltype HIER uses 'http://ocl.eclipse.org/tutorial/eclipsecon2011/States';
+modeltype FLAT uses 'http://ocl.eclipse.org/tutorial/eclipsecon2011/States';
+
+/*
+ * The transformation signature declares that a HIER modeltype is required as input, while an FLAT
+ * modeltype is produced as an output.  The HIER modeltype is referenced as 'hier' throughout the 
+ * transformation definition, while no name is needed for the output FLAT modeltype.  Note that OCL 
+ * type and namespace notation are used in operational QVT (: and :: respectively).
+ */
+transformation FlattenStates(in hier : HIER, out FLAT);
+
+/*
+ * The main entry point of the transformation.  The 'hier' reference to the input HIER modeltype 
+ * instance is used to collect all rootObjects() of type Model.  The rootObjects() operation 
+ * is available on all QVT Model objects (extents) and returns those objects found at the 
+ * root of the input model.  The [HIER::Model] statement following the call to rootObjects() 
+ * is shorthand notation for the imperative select (xselect) construct where the condition is 
+ * a type expression, which effectively performs a oclIsKindOf(HIER::Model) with type recasting 
+ * as a sequence.
+ *
+ * The invocation of the model2FLATModel() mapping is done using an -> operator, which is a 
+ * shorthand notation for the imperative collect (xcollect) construct.  Alternatively, it could
+ * be written as hier.rootObjects()[HIER::Model]->xcollect(a | a.map model2FLATModel());
+ */
+main() {
+	hier.rootObjects()[HIER::Module]->map model2FLATModel();
+}
+
+/*
+ * This mapping returns an FLAT::Model instance from the HIER::Model passed from main().  The name 
+ * attributes map directly using the OCL assignment operator.  The FLAT Model has a collection 
+ * of schemas populated by the package2schemas() mapping.  The Sequence of FLAT::Schema objects 
+ * that is returned by the mapping is converted into the required OrderedSet using the OCL operation 
+ * asOrderedSet().
+ *
+ * This mapping has no init or end section, leaving the body as an implicit population section.
+ */
+mapping HIER::Module::model2FLATModel() : FLAT::Module {
+	name := 'flattened.' + self.name;
+	var name2state : Dict(String, HIER::State);
+	var allMachines : Set(HIER::Statemachine) =
+		self.machines.allMachines()->asSet();
+	var allStates : Set(HIER::State) =
+		allMachines.states->asSet();
+	var allCompoundStates : Set(HIER::CompoundState) =
+		allStates->select(oclIsTypeOf(HIER::CompoundState))
+			->collect(oclAsType(HIER::CompoundState))->asSet();
+	var rootMachines : Set(HIER::Statemachine) =
+		allMachines->select(m : HIER::Statemachine
+			| not allCompoundStates->exists(machine = m));
+//	var nestedMachines : Set(HIER::Statemachine) = allMachines - rootMachines;
+	machines := rootMachines->map machine2machine(name2state);
+}
+
+mapping HIER::Statemachine::machine2machine(name2state : Dict(String, HIER::State)) : FLAT::Statemachine {
+	var exitTransitions : Dict(FLAT::Event, FLAT::State);
+	name := self.name;
+	events := self.allMachines().events->asSet().map event2event();
+	states := self.states.map state2states(name2state, Sequence{});
+	self.states.map state2transitions(name2state, Sequence{}, exitTransitions);
+}
+
+mapping HIER::Event::event2event() : FLAT::Event {
+	name := self.name;
+}
+
+mapping HIER::State::state2states(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState)) : Set(FLAT::State)
+	disjuncts HIER::SimpleState::simpleState2states,
+	HIER::CompoundState::compoundState2states {}
+
+mapping HIER::SimpleState::simpleState2states(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState)) : Set(FLAT::SimpleState) {
+	init {
+		result := self.map simpleState2state(name2state, hierarchy)->asSet();
+	}
+}
+
+mapping HIER::SimpleState::simpleState2state(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState)) : FLAT::SimpleState {
+	var stateName : String = self.getStateName(hierarchy);
+	name := stateName;
+	value := self.value;
+	initial := hierarchy->isEmpty() and self.initial;
+	name2state->put(stateName, result);
+}
+
+mapping HIER::CompoundState::compoundState2states(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState)) : Set(FLAT::State) {
+	init {
+		result := self.machine.states.map state2states(name2state, hierarchy->append(self))->asSet();
+	}
+}
+
+mapping HIER::State::state2transitions(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState), exitTransitions : Dict(FLAT::Event, FLAT::State)) : Set(FLAT::State)
+	disjuncts HIER::SimpleState::simpleState2transitions,
+	HIER::CompoundState::compoundState2transitions {}
+
+mapping HIER::SimpleState::simpleState2transitions(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState), exitTransitions : Dict(FLAT::Event, FLAT::State)) : Set(FLAT::State) {
+	init {
+		result := self.map simpleState2transitions2(name2state, hierarchy, exitTransitions)->asSet();
+	}
+}
+
+mapping HIER::SimpleState::simpleState2transitions2(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState), exitTransitions : Dict(FLAT::Event, FLAT::State)) : FLAT::State {
+	init {
+		var stateName : String = self.getStateName(hierarchy);
+		result := name2state->get(stateName);
+	}
+	transitions := exitTransitions->keys()->iterate(v : FLAT::Event;
+		acc : Sequence(HIER::Transition) =
+			self.transitions.map transition2transition(name2state, hierarchy)
+		| acc->append(object FLAT::Transition { state := exitTransitions->get(v); event := v; }));
+}
+
+mapping HIER::CompoundState::compoundState2transitions(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState), outerExitTransitions : Dict(FLAT::Event, FLAT::State)) : Set(FLAT::State) {
+	init {
+		var innerExitTransitions : Dict(FLAT::Event, FLAT::State);
+		self.transitions.cacheTransition(name2state, hierarchy, innerExitTransitions);
+		outerExitTransitions->keys().cacheTransition(innerExitTransitions, outerExitTransitions);
+		result := self.machine.states.map state2transitions(name2state, hierarchy->append(self), innerExitTransitions)->asSet();
+	}
+}
+
+mapping HIER::Transition::transition2transition(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState)) : FLAT::Transition {
+	init {
+		var stateName : String = self.state.initialStateName(hierarchy);
+		result := object FLAT::Transition {};
+		result.state := name2state->get(stateName);
+		result.event := self.event.resolveone(Event);
+	}
+}
+
+query HIER::Statemachine::allMachines() : Set(HIER::Statemachine) {
+	return self->asSet()->union(self->closure(sm : HIER::Statemachine
+			| sm.states->select(oclIsTypeOf(HIER::CompoundState))
+					->collect(oclAsType(HIER::CompoundState).machine)))
+}
+
+query HIER::State::initialStateName(hierarchy : Sequence(HIER::CompoundState)) : String {
+	var stateName : String = self.getStateName(hierarchy);
+	return if self.oclIsKindOf(HIER::CompoundState)
+	       then let compoundState : HIER::CompoundState =
+	       			self.oclAsType(HIER::CompoundState)
+	       		in compoundState.machine.states->any(initial)
+	       			.initialStateName(hierarchy->append(compoundState))
+	       else stateName
+	       endif
+}
+
+query HIER::State::getStateName(hierarchy : Sequence(HIER::CompoundState)) : String {
+	return hierarchy->iterate(c : HIER::CompoundState;
+		s : String = self.name |
+		c.name + '_' + s)
+}
+
+query HIER::Transition::cacheTransition(name2state : Dict(String, HIER::State), hierarchy : Sequence(HIER::CompoundState), exitTransitions : Dict(FLAT::Event, FLAT::State)) : Dict(FLAT::Event, FLAT::State) {
+	var stateName : String = self.state.initialStateName(hierarchy);
+	var state : HIER::State = name2state->get(stateName);
+	var event : HIER::Event = self.event.resolveone(Event);
+	exitTransitions->put(event, state);
+	return exitTransitions
+}
+
+query FLAT::Event::cacheTransition(innerExitTransitions : Dict(FLAT::Event, FLAT::State), outerExitTransitions : Dict(FLAT::Event, FLAT::State)) : Dict(FLAT::Event, FLAT::State) {
+	innerExitTransitions->put(self, outerExitTransitions->get(self));
+	return innerExitTransitions
+}

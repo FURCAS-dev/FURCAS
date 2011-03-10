@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<states:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:states="http://ocl.eclipse.org/tutorial/eclipsecon2011/States" name="flattened.compound.states">
+  <machines name="Outer">
+    <events name="RIGHT"/>
+    <events name="START"/>
+    <events name="LEFT"/>
+    <events name="STOP"/>
+    <states xsi:type="states:SimpleState" initial="true" name="Start" value="4">
+      <transitions event="//@machines.0/@events.1" state="//@machines.0/@states.3"/>
+    </states>
+    <states xsi:type="states:SimpleState" name="Stop" value="5">
+      <transitions event="//@machines.0/@events.3" state="//@machines.0/@states.5"/>
+    </states>
+    <states xsi:type="states:SimpleState" name="CompoundA_Right">
+      <transitions event="//@machines.0/@events.0" state="//@machines.0/@states.3"/>
+      <transitions event="//@machines.0/@events.1" state="//@machines.0/@states.1"/>
+    </states>
+    <states xsi:type="states:SimpleState" name="CompoundA_Left" value="1">
+      <transitions event="//@machines.0/@events.2" state="//@machines.0/@states.2"/>
+      <transitions event="//@machines.0/@events.1" state="//@machines.0/@states.1"/>
+    </states>
+    <states xsi:type="states:SimpleState" name="CompoundB_Right">
+      <transitions event="//@machines.0/@events.0" state="//@machines.0/@states.5"/>
+      <transitions event="//@machines.0/@events.3" state="//@machines.0/@states.1"/>
+    </states>
+    <states xsi:type="states:SimpleState" name="CompoundB_Left" value="1">
+      <transitions event="//@machines.0/@events.2" state="//@machines.0/@states.4"/>
+      <transitions event="//@machines.0/@events.3" state="//@machines.0/@states.1"/>
+    </states>
+  </machines>
+</states:Module>
