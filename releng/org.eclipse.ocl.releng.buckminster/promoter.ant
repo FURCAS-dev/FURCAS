@@ -16,14 +16,14 @@
 		<!-- supply defaults -->
 		<property name="build.id" value="" />
 		<property name="hudson.build.id" value="" />
-		<property name="create.javadoc" value="false"/>
+		<property name="publish.javadoc" value="false"/>
 
 		<propertyfile file="${promoter.properties.file}" comment="Promoter script properties">
 			<entry key="java.home" value="${java.home}" />
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-			<entry key="create.javadoc" value="${create.javadoc}" />
+			<entry key="publish.javadoc" value="${create.javadoc}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -291,7 +291,7 @@
 		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
 	</target>
 	
-	<target name="-publish.javadoc" if="create.javadoc">
+	<target name="-publish.javadoc" if="${publish.javadoc}">
 		<echo>Remove existing javadoc</echo>
 		<delete verbose="true">
 			<fileset dir="${project.javadoc.directory}"/>
