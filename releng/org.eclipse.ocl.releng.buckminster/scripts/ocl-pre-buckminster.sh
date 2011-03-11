@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm -rf buildroot MDT-OCL.*
 mkdir buildroot
 :
