@@ -43,7 +43,6 @@ import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
 import com.sap.furcas.runtime.parser.textblocks.ITextBlocksTokenStream;
 import com.sap.furcas.runtime.parser.textblocks.ParsingTextblocksActivator;
 import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 /**
  * This class handles the connection between the parser and the textblocks
