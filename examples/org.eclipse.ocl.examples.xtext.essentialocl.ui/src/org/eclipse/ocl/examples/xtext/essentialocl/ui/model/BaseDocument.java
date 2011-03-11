@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.5 2011/03/05 18:17:02 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.6 2011/03/11 15:26:19 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -27,7 +27,6 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
-import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
@@ -93,24 +92,28 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 		modify(new IUnitOfWork<Object, XtextResource>()
 		{
 			public Object exec(XtextResource resource) throws Exception {
-				CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
-				TypeManager typeManager = csAdapter.getTypeManager();
-				NamedElement pivotContext = ecoreContext != null ? typeManager.getPivotOfEcore(NamedElement.class, ecoreContext) : null;
-				Map<String, Type> pivotParameters = null;
-				if (ecoreParameters != null) {
-					pivotParameters = new HashMap<String, Type>();
-					for (String key : ecoreParameters.keySet()) {
-						EClassifier ecoreParameterType = ecoreParameters.get(key);
-						Type pivotParameterType = typeManager.getPivotOfEcore(Type.class, ecoreParameterType);
-						pivotParameters.put(key, pivotParameterType);
-					}
-				}
-				((EssentialOCLCSResource)resource).setContext(pivotContext, pivotParameters);
-				return null;
+				return setContext((EssentialOCLCSResource) resource, ecoreContext, ecoreParameters);
 			}
 		});
 
         this.context = ecoreContext;
         this.parameters = ecoreParameters;
     }
+
+	public Object setContext(EssentialOCLCSResource resource, EClassifier ecoreContext, Map<String, EClassifier> ecoreParameters) {
+		CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter(resource, null);
+		TypeManager typeManager = csAdapter.getTypeManager();
+		NamedElement pivotContext = ecoreContext != null ? typeManager.getPivotOfEcore(NamedElement.class, ecoreContext) : null;
+		Map<String, Type> pivotParameters = null;
+		if (ecoreParameters != null) {
+			pivotParameters = new HashMap<String, Type>();
+			for (String key : ecoreParameters.keySet()) {
+				EClassifier ecoreParameterType = ecoreParameters.get(key);
+				Type pivotParameterType = typeManager.getPivotOfEcore(Type.class, ecoreParameterType);
+				pivotParameters.put(key, pivotParameterType);
+			}
+		}
+		resource.setContext(pivotContext, pivotParameters);
+		return null;
+	}
 }

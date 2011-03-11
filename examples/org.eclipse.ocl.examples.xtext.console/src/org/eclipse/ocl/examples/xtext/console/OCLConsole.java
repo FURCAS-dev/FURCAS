@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsole.java,v 1.1 2011/03/04 22:18:03 ewillink Exp $
+ * $Id: OCLConsole.java,v 1.2 2011/03/11 15:26:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -43,7 +43,7 @@ public class OCLConsole
 		super(
 			OCLInterpreterMessages.console_title,
 			ImageDescriptor.createFromURL(
-				XtextConsolePlugin.getDefault().getBundle().getEntry(
+				XtextConsolePlugin.getInstance().getBundle().getEntry(
 					"/icons/ocl.gif"))); //$NON-NLS-1$
 	}
 
