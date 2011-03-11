@@ -20,11 +20,31 @@ import static org.junit.Assert.assertSame;
 import java.io.File;
 import java.util.Collection;
 
+import javax.management.InstanceAlreadyExistsException;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.impl.LexedTokenImpl;
+import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl;
+import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
+import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 
 /**
  * Tests NestedScopes TCS and metamodel and impact analysis behavior on renames using the NestedScopes language.
@@ -213,7 +233,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * based on the lookup result.
      */
     @Test
-    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRename() {
+    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithShadowing() {
         String sample = "{ def a;" + "{ def b; use a;}" + "}";
         setupModelFromTextToParse(sample);
 
@@ -224,6 +244,33 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertSame(aDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         renameDefinition(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+
+    }
+    
+    @Test
+    @Ignore("IA doesn't seem to break the boundDefinition reference after the usage is changed textually.")
+    public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() {
+        String sample = "{ def a; { def b; use a;} }";
+        setupModelFromTextToParse(sample);
+        
+        EObject aDefinition = getStatementNonNestingLevelM(1, 0);
+        EObject bDefinition = getStatementNonNestingLevelM(1, 1);
+        EObject aUsage = getStatementNonNestingLevelM(2, 1);
+        assertSame(aDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
+        
+        OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+        LexedTokenImpl lexedTokenOfUsage = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition).iterator().next();
+        
+        TextBlock workingCopy = TbReplacingHelper.getWorkingCopy(rootTextBlock);
+        lexedTokenOfUsage.setValue("d");
+        TbMarkingUtil.mark(lexedTokenOfUsage);
+        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(workingCopy);
+        TbChangeUtil.cleanUp(currentVersionTb);
+        
+        LexedTokenImpl newLexedTokenOfUsage = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition).iterator().next();
+        assertEquals("d", newLexedTokenOfUsage.getValue());
+        assertEquals("a", aDefinition.eGet(aDefinition.eClass().getEStructuralFeature("name")));
+        assertFalse("boundDefinition should not be set",aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
 
     }
      
@@ -294,7 +341,16 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         if (method == RenameOn.MODEL) {
             definition.eSet(definition.eClass().getEStructuralFeature("name"), newValue);
         }else if (method == RenameOn.TEXTBLOCK){
-            //TODO:yet to be implemented
+            OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
+            Collection<EObject> textBlocks = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), definition);
+            assertEquals(1,textBlocks.size());
+            TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
+            System.out.println(textBlock.getReferencedElements());
+            for (AbstractToken abstractToken : textBlock.getTokens()) {
+                if (abstractToken instanceof LexedTokenImpl) {
+                    LexedToken lexedToken = (LexedToken) abstractToken;
+                }
+            }
         }
     }
 
