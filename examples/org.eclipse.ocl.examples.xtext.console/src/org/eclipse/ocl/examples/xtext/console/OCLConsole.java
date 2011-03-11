@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsole.java,v 1.2 2011/03/11 15:26:21 ewillink Exp $
+ * $Id: OCLConsole.java,v 1.3 2011/03/11 20:23:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -75,7 +75,7 @@ public class OCLConsole
 	 * Closes me and clears the singleton instance reference, so that it will
 	 * be reinitialized when another console is requested.
 	 */
-	void close() {
+	public void close() {
 		try {
 			ConsolePlugin.getDefault().getConsoleManager().removeConsoles(
 				new IConsole[] {this});
