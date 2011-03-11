@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
@@ -119,7 +120,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection, this.queryScope);
 		this.input = input;
 		this.traverser = new TextBlockTraverser();
-		this.oppositeEndFinder = Query2OppositeEndFinder.getInstance();
+		this.oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
 	}
 	
 	public void setConnection(ResourceSet conn) {
