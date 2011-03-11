@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: DecorableCompleteOCLCSVisitor.java,v 1.7 2011/03/04 13:55:15 ewillink Exp $
+ * $Id: DecorableCompleteOCLCSVisitor.java,v 1.8 2011/03/11 20:23:51 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.completeocl.util;
 

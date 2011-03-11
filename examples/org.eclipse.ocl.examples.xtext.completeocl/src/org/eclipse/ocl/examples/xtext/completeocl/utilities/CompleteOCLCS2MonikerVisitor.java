@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.6 2011/03/04 13:56:19 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.7 2011/03/11 20:23:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -135,7 +135,9 @@ public class CompleteOCLCS2MonikerVisitor
 		context.appendElement(object.getContextDecl().getPivot());
 		context.append(MONIKER_SCOPE_SEPARATOR);
 		context.append(object.getConstrainedName());
-		appendParametersCS(object.getParameters());
+		if (object.isOperation()) {
+			appendParametersCS(object.getParameters());
+		}
 		return true;
 	}
 
