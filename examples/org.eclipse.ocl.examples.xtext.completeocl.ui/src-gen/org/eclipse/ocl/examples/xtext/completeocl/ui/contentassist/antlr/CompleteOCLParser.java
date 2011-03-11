@@ -176,6 +176,7 @@ public class CompleteOCLParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefCSAccess().getStereotypeAssignment_1(), "rule__DefCS__StereotypeAssignment_1");
 					put(grammarAccess.getDefCSAccess().getNameAssignment_2(), "rule__DefCS__NameAssignment_2");
 					put(grammarAccess.getDefCSAccess().getConstrainedNameAssignment_4(), "rule__DefCS__ConstrainedNameAssignment_4");
+					put(grammarAccess.getDefCSAccess().getOperationAssignment_5_0(), "rule__DefCS__OperationAssignment_5_0");
 					put(grammarAccess.getDefCSAccess().getParametersAssignment_5_1_0(), "rule__DefCS__ParametersAssignment_5_1_0");
 					put(grammarAccess.getDefCSAccess().getParametersAssignment_5_1_1_1(), "rule__DefCS__ParametersAssignment_5_1_1_1");
 					put(grammarAccess.getDefCSAccess().getOwnedTypeAssignment_7(), "rule__DefCS__OwnedTypeAssignment_7");
