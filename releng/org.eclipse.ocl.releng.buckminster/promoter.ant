@@ -23,7 +23,7 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-			<entry key="must.publish.javadoc" value="${create.javadoc}" />
+			<entry key="must.publish.javadoc" value="${manage.javadoc}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -297,7 +297,7 @@
 		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
 	</target>
 	
-	<target name="-publish.javadoc" if="${publish.javadoc}">
+	<target name="-publish.javadoc" if="publish.javadoc">
 		<echo>Remove existing javadoc</echo>
 		<delete verbose="true">
 			<fileset dir="${project.javadoc.directory}"/>
