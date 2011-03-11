@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.6 2011/03/11 15:26:19 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.7 2011/03/11 20:23:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -70,6 +71,15 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 
     public Map<String, EClassifier> getOCLParameters() {
 		return parameters;
+	}
+
+	public ResourceSet getResourceSet() {
+		return readOnly(new IUnitOfWork<ResourceSet, XtextResource>()
+			{
+				public ResourceSet exec(XtextResource resource) throws Exception {
+					return resource.getResourceSet();
+				}
+			});
 	}
 
 	@Override
