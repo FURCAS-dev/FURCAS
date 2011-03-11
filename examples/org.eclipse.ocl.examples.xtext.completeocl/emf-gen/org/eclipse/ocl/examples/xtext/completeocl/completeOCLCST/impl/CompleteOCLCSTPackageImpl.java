@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackageImpl.java,v 1.8 2011/03/04 13:55:15 ewillink Exp $
+ * $Id: CompleteOCLCSTPackageImpl.java,v 1.9 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -497,8 +497,18 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDefCS_Operation()
+	{
+		return (EAttribute)defCSEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getDefCS_Parameters() {
-		return (EReference)defCSEClass.getEStructuralFeatures().get(2);
+		return (EReference)defCSEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -508,7 +518,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 	 */
 	public EReference getDefCS_OwnedType()
 	{
-		return (EReference)defCSEClass.getEStructuralFeatures().get(3);
+		return (EReference)defCSEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -652,6 +662,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		defCSEClass = createEClass(DEF_CS);
 		createEAttribute(defCSEClass, DEF_CS__STATIC);
 		createEAttribute(defCSEClass, DEF_CS__CONSTRAINED_NAME);
+		createEAttribute(defCSEClass, DEF_CS__OPERATION);
 		createEReference(defCSEClass, DEF_CS__PARAMETERS);
 		createEReference(defCSEClass, DEF_CS__OWNED_TYPE);
 
@@ -763,6 +774,7 @@ public class CompleteOCLCSTPackageImpl extends EPackageImpl implements CompleteO
 		initEClass(defCSEClass, DefCS.class, "DefCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDefCS_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDefCS_ConstrainedName(), ecorePackage.getEString(), "constrainedName", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDefCS_Operation(), ecorePackage.getEBoolean(), "operation", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefCS_Parameters(), theEssentialOCLCSTPackage.getVariableCS(), null, "parameters", null, 0, -1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDefCS_OwnedType(), theBaseCSTPackage.getTypedRefCS(), null, "ownedType", null, 0, 1, DefCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
