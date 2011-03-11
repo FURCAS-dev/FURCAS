@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.2 2011/03/05 18:16:59 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.3 2011/03/11 15:26:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -33,6 +33,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -59,8 +60,8 @@ import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyleRange;
@@ -86,11 +87,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleConstants;
+import org.eclipse.ui.console.IConsoleView;
 import org.eclipse.ui.console.actions.ClearOutputAction;
 import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
@@ -116,15 +120,14 @@ public class OCLConsolePage
     }
     
 	private Composite page;
-//	private boolean useXtextEditor = true;
 	private ITextViewer output;
 	private SourceViewer input;
-//	private ConsoleContext document;
 	
 	private ColorManager colorManager;
 	
 	private String lastOCLExpression;
-	private EClassifier context;
+	private EObject contextObject;
+	private EClassifier contextClassifier;
 	
 	private ISelectionService selectionService;
 	private ISelectionListener selectionListener;
@@ -195,7 +198,6 @@ public class OCLConsolePage
 		output.setDocument(new Document());
 
 		colorManager = new ColorManager();
-//		document = new OCLDocument();
 //		document.setOCLFactory(oclFactory);
 //		document.setModelingLevel(modelingLevel);
 		
@@ -206,6 +208,12 @@ public class OCLConsolePage
 		selectionListener = new ISelectionListener() {
             public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 //				System.out.println("selectionChanged: ");
+            	if (part instanceof IConsoleView) {
+            		IConsole console = ((IConsoleView)part).getConsole();
+                	if (console instanceof OCLConsole) {
+                		return;
+                	}
+            	}
                 OCLConsolePage.this.selectionChanged(selection);
             }};
 		selectionService = getSite().getWorkbenchWindow().getSelectionService();
@@ -370,38 +378,15 @@ public class OCLConsolePage
 	} */
 	
 	private void selectionChanged(ISelection sel) {
+		Object selectedObject = null;
 	    if (sel instanceof IStructuredSelection) {
             IStructuredSelection ssel = (IStructuredSelection) sel;
             
             if (!ssel.isEmpty()) {
-                Object selected = ssel.getFirstElement();
-                
-        	    if (selected instanceof IOutlineNode) {
-            	    if (selected instanceof EObjectNode) {
-                        context = ((EObjectNode) selected).getEClass();
-            	    }
-            	    else if (selected instanceof EStructuralFeatureNode) {
-                        context = ((EStructuralFeatureNode) selected).getEStructuralFeature().getEContainingClass();
-            	    }
-            	    else {
-                        context = null;
-            	    }
-        	    }
-        	    else {
-        	    	if (selected instanceof IAdaptable) {
-    	                selected = ((IAdaptable) selected).getAdapter(EObject.class);
-    	            }
-                    if (selected instanceof EObject) {
-                        context = ((EObject) selected).eClass();
-                    }
-                    else {
-                    	context = null;
-                    }
-        	    }
-                
-                getEditorDocument().setContext(context, null);
+                selectedObject = ssel.getFirstElement();
             }
 	    }
+        refreshSelection(selectedObject);
 	}
 	
 	/**
@@ -413,8 +398,8 @@ public class OCLConsolePage
 	 * @return <code>true</code> on successful evaluation; <code>false</code>
 	 *    if the expression failed to parse or evaluate
 	 */
-	boolean evaluate(String expression) {
-		if (context == null) {
+	boolean evaluate(String expression) {        
+		if (contextObject == null) {
 			error(OCLInterpreterMessages.console_noContext);
 			return false;
 		} 
@@ -456,7 +441,7 @@ public class OCLConsolePage
         					CS2PivotResourceAdapter csAdapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)resource, null);
         					csAdapter.refreshPivotMappings();
         					ExpressionInOcl expressionInOcl = PivotUtil.getExpressionInOcl(resource);
-        			        Value value = ocl.evaluate(context, expressionInOcl);
+        			        Value value = ocl.evaluate(contextObject, expressionInOcl);
         					return value;
         				}
         			});
@@ -492,6 +477,48 @@ public class OCLConsolePage
 		}
 		
 		return result;
+	}
+
+	protected void refreshSelection(final Object selected) {
+		final BaseDocument editorDocument = getEditorDocument();
+		editorDocument.modify(new IUnitOfWork<Object, XtextResource>()
+		{
+			public Value exec(XtextResource resource) throws Exception {
+				Object selectedObject = selected;
+			    if (selectedObject instanceof IOutlineNode) {
+		    	    if (selectedObject instanceof EObjectNode) {
+		                EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
+		                URI eObjectURI = selectedObjectNode.getEObjectURI();
+		        		ResourceSet resourceSet = editor.getResourceSet();
+		        		contextObject = resourceSet.getEObject(eObjectURI, true);
+						contextClassifier = selectedObjectNode.getEClass();
+		    	    }
+		    	    else if (selectedObject instanceof EStructuralFeatureNode) {
+		            	contextObject = null;
+		    	    	contextClassifier = ((EStructuralFeatureNode) selectedObject).getEStructuralFeature().getEContainingClass();
+		    	    }
+		    	    else {
+		            	contextObject = null;
+		    	    	contextClassifier = null;
+		    	    }
+			    }
+			    else {
+			    	if (selectedObject instanceof IAdaptable) {
+			    		selectedObject = ((IAdaptable) selectedObject).getAdapter(EObject.class);
+		            }
+		            if (selectedObject instanceof EObject) {
+		            	contextObject = (EObject) selectedObject;
+		            	contextClassifier = contextObject.eClass();
+		            }
+		            else {
+		            	contextObject = null;
+		            	contextClassifier = null;
+		            }
+			    }	        
+		        editorDocument.setContext((EssentialOCLCSResource) resource, contextClassifier, null);
+				return null;
+			}
+		});
 	}
 	
 	/**
@@ -652,7 +679,7 @@ public class OCLConsolePage
 				OCLInterpreterMessages.console_outputExc,
 				e);
 			
-			XtextConsolePlugin.getDefault().getLog().log(status);
+			XtextConsolePlugin.getInstance().getLog().log(status);
 		}
 	}
 	
@@ -776,7 +803,7 @@ public class OCLConsolePage
 				OCLInterpreterMessages.console_saveAction_label,
 				ImageDescriptor.createFromURL(
 					FileLocator.find(
-							XtextConsolePlugin.getDefault().getBundle(),
+							XtextConsolePlugin.getInstance().getBundle(),
 							new Path("$nl$/icons/elcl16/save.gif"), //$NON-NLS-1$
 							null)));
 			
@@ -1140,7 +1167,7 @@ public class OCLConsolePage
 //		client.setLayout(new GridLayout());
 //		client.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		Injector injector = EssentialOCLActivator.getInstance().getInjector("org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL"); //$NON-NLS-1$
+		Injector injector = XtextConsolePlugin.getInstance().getInjector(XtextConsolePlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
 		
 //		editorComposite.setLayout(new GridLayout());
@@ -1248,5 +1275,9 @@ public class OCLConsolePage
 	    gc.dispose();
 		
 	    return ret;
+	}
+
+	public IXtextDocument getDocument(URI trimFragment) {
+		return getEditorDocument();
 	}
 }
