@@ -20,8 +20,6 @@ import static org.junit.Assert.assertSame;
 import java.io.File;
 import java.util.Collection;
 
-import javax.management.InstanceAlreadyExistsException;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
@@ -31,20 +29,12 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.impl.LexedTokenImpl;
-import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl;
-import com.sap.furcas.runtime.parser.textblocks.TbParsingUtil;
-import com.sap.furcas.runtime.textblocks.TbUtil;
-import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
-import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
-import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 
 /**
  * Tests NestedScopes TCS and metamodel and impact analysis behavior on renames using the NestedScopes language.
@@ -176,7 +166,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Usage", bUsageInnerScope.eClass().getName());
         assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),bDefinitionOuterScope);
 
-        renameDefinition(definitionInnerScope, "b", RenameOn.MODEL);
+        renameElement(definitionInnerScope, "b", RenameOn.MODEL);
         assertEquals("b", definitionInnerScope.eGet(definitionInnerScope.eClass().getEStructuralFeature("name")));
 
         assertSame(bUsageInnerScope.eGet(bUsageInnerScope.eClass().getEStructuralFeature("boundDefinition")),definitionInnerScope);
@@ -196,7 +186,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EObject bUsage = getStatementNonNestingLevelM(4, 0);
 
         assertSame(bDefinition, bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")));
-        renameDefinition(bDefinition, "d", RenameOn.MODEL);
+        renameElement(bDefinition, "d", RenameOn.MODEL);
         assertSame(bDefinition, bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")));
 
     }
@@ -221,7 +211,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         assertEquals("Usage", bUsage.eClass().getName());
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
 
-        renameDefinition(bDefinition, "a", RenameOn.MODEL);
+        renameElement(bDefinition, "a", RenameOn.MODEL);
 
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
 
@@ -229,7 +219,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
 
     /**
      * Tests that if a usage was bound, but the definition to which it was bound ("def a") is no longer contained in the lookup
-     * scope, Impact Analysis uses the name of this previously bound definition to perform a fresh lookup and sets the reference
+     * scope due to shadowing, Impact Analysis uses the name of this previously bound definition to perform a fresh lookup and sets the reference
      * based on the lookup result.
      */
     @Test
@@ -242,11 +232,15 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EObject aUsage = getStatementNonNestingLevelM(2, 1);
 
         assertSame(aDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
-        renameDefinition(bDefinition, "a", RenameOn.MODEL);
+        renameElement(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
 
     }
     
+    /**
+     * Tests that if a usage initially was bound, but the definition to which it was bound ("def a") is no longer contained in the lookup
+     * scope due to a textual rename of the usage's token value, Impact Analysis breaks the boundDefinition reference.
+     */
     @Test
     @Ignore("IA doesn't seem to break the boundDefinition reference after the usage is changed textually.")
     public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() {
@@ -258,19 +252,16 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EObject aUsage = getStatementNonNestingLevelM(2, 1);
         assertSame(aDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
+        renameElement(aDefinition, "d", RenameOn.TEXTBLOCK);
+        
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-        LexedTokenImpl lexedTokenOfUsage = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition).iterator().next();
-        
-        TextBlock workingCopy = TbReplacingHelper.getWorkingCopy(rootTextBlock);
-        lexedTokenOfUsage.setValue("d");
-        TbMarkingUtil.mark(lexedTokenOfUsage);
-        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(workingCopy);
-        TbChangeUtil.cleanUp(currentVersionTb);
-        
         LexedTokenImpl newLexedTokenOfUsage = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition).iterator().next();
         assertEquals("d", newLexedTokenOfUsage.getValue());
         assertEquals("a", aDefinition.eGet(aDefinition.eClass().getEStructuralFeature("name")));
-        assertFalse("boundDefinition should not be set",aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
+        assertFalse("boundDefinition reference should not be set",aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
+        
+        renameElement(bDefinition, "a", RenameOn.MODEL);
+        assertFalse(aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
 
     }
      
@@ -292,14 +283,14 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EcoreUtil.delete(aDefinition);
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
-        renameDefinition(bDefinition, "a", RenameOn.MODEL);
+        renameElement(bDefinition, "a", RenameOn.MODEL);
         assertSame(bDefinition, aUsage.eGet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
     }
     
     /**
      * Variant of testCorrectBindingIfElementWasNotBoundBeforeRename1 that
-     * check that a rename operation does not accidentally trigger the binding
+     * checks that a rename operation does not accidentally trigger the binding
      * of a usage to a wrong definition.
      */
     @Test
@@ -316,7 +307,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         EcoreUtil.delete(aDefinition);
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
-        renameDefinition(bDefinition, "c", RenameOn.MODEL);
+        renameElement(bDefinition, "c", RenameOn.MODEL);
         assertFalse(aUsage.eIsSet(aUsage.eClass().getEStructuralFeature("boundDefinition")));
         
     }
@@ -337,21 +328,18 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         return (EObject) statmentsInBlockM.toArray()[n - 1];
     }
 
-    private void renameDefinition(EObject definition, String newValue, RenameOn method) {
+    private void renameElement(EObject element, String newValue, RenameOn method) {
         if (method == RenameOn.MODEL) {
-            definition.eSet(definition.eClass().getEStructuralFeature("name"), newValue);
+            element.eSet(element.eClass().getEStructuralFeature("name"), newValue);
         }else if (method == RenameOn.TEXTBLOCK){
             OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-            Collection<EObject> textBlocks = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), definition);
-            assertEquals(1,textBlocks.size());
-            TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
-            System.out.println(textBlock.getReferencedElements());
-            for (AbstractToken abstractToken : textBlock.getTokens()) {
-                if (abstractToken instanceof LexedTokenImpl) {
-                    LexedToken lexedToken = (LexedToken) abstractToken;
-                }
+            LexedTokenImpl lexedToken = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator().next();
+            TextBlock workingCopy = TbReplacingHelper.getWorkingCopy(rootTextBlock);
+            lexedToken.setValue(newValue);
+            TbMarkingUtil.mark(lexedToken);
+            TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(workingCopy);
+            TbChangeUtil.cleanUp(currentVersionTb);
             }
         }
-    }
 
 }
