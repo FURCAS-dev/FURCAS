@@ -7,7 +7,7 @@ COMPACT_BUILD_ID="${BUILD_ID//[-_]}"
 COMPACT_BUILD_ID="${COMPACT_BUILD_ID:0:12}"
 :
 {
-	cat "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-build.properties"
+	cat "${WORKSPACE}/org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-build.properties"
 
 	echo
 	echo "# Define the Build Type (added by Hudson job definition)"
