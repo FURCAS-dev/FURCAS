@@ -1,6 +1,6 @@
 setpref complianceLevel=1.5
 
-setpref targetPlatformPath="${WORKSPACE}/buildroot/target.platform"
+setpref targetPlatformPath="buildroot/target.platform"
 
 import --properties "${WORKSPACE}/buildroot/build.properties" "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-platform.mspec"
 
