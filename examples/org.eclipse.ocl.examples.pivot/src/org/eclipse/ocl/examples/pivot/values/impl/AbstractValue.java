@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractValue.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: AbstractValue.java,v 1.4 2011/03/12 13:21:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -21,7 +21,9 @@ import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.values.BagValue;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
+import org.eclipse.ocl.examples.pivot.values.ElementValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.ObjectValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedCollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
@@ -65,12 +67,20 @@ public abstract class AbstractValue implements Value
 		return null;
 	}
 
+	public ElementValue<?> asElementValue() throws InvalidValueException {
+		throw new InvalidValueException("Element Value Required", this);
+	}
+
 	public Integer asInteger() throws InvalidValueException {
 		throw new InvalidValueException("Integer Value Required", this);
 	}
 
 	public IntegerValue asIntegerValue() throws InvalidValueException {
 		throw new InvalidValueException("Integer Value Required", this);
+	}
+
+	public ObjectValue asObjectValue() throws InvalidValueException {
+		throw new InvalidValueException("Object Value Required", this);
 	}
 
 	public OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException {
