@@ -13,13 +13,17 @@
  *
  * </copyright>
  *
- * $Id: OCLConsole.java,v 1.3 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: OCLConsole.java,v 1.4 2011/03/12 10:56:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.console.AbstractConsole;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -63,7 +67,7 @@ public class OCLConsole
 	}
 	
 	public IPageBookViewPage createPage(IConsoleView view) {
-		page = new OCLConsolePage();
+		page = new OCLConsolePage(this);
 		return page;
 	}
 	
@@ -83,5 +87,11 @@ public class OCLConsole
 		} finally {
 			instance = null;
 		}
+	}
+
+	public void setSelection(EClassifier contextClassifier, EObject contextObject) {
+		String typeName = contextClassifier != null ? contextClassifier.getName() : "null"; //$NON-NLS-1$
+		String objectName = contextObject != null ? PivotUtil.getLabel(contextObject) : "null"; //$NON-NLS-1$
+		setName(NLS.bind(OCLInterpreterMessages.console_titleWithContext, objectName, typeName));		
 	}
 }

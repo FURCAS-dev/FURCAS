@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.4 2011/03/11 20:23:43 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.5 2011/03/12 10:56:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -96,7 +96,6 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
-
 
 /**
  * The page implementing the Interactive OCL console.
@@ -254,6 +253,7 @@ public class OCLConsolePage extends Page
 		}
 	}
     
+	private final OCLConsole console;
 	private Composite page;
 	private ModelingLevel modelingLevel = ModelingLevel.M2;
 
@@ -316,10 +316,12 @@ public class OCLConsolePage extends Page
 	
 	/**
 	 * Initializes me.
+	 * @param oclConsole 
 	 */
-	OCLConsolePage() {
+	OCLConsolePage(OCLConsole console) {
 		super();
 		ocl = OCL.newInstance();
+		this.console = console;
 	}
 
 	/**
@@ -447,7 +449,8 @@ public class OCLConsolePage extends Page
 		CloseAction close = new CloseAction();
 		SaveExpressionAction saveExpression = new SaveExpressionAction(this);
 		LoadExpressionAction loadExpression = new LoadExpressionAction(this);
-		Action loadResource = new LoadResourceAction(this);
+		Action loadResource = new LoadResourceAction(this);		
+		
 		IMenuManager menu = getSite().getActionBars().getMenuManager();
 		menu.add(loadResource);
 		menu.add(loadExpression);
@@ -838,7 +841,8 @@ public class OCLConsolePage extends Page
 		            }
 			    }	        
 		        editorDocument.setContext((EssentialOCLCSResource) resource, contextClassifier, null);
-				return null;
+		        console.setSelection(contextClassifier, contextObject);
+		        return null;
 			}
 		});
 	}
