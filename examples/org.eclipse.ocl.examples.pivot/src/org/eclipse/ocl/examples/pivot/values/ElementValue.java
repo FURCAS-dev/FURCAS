@@ -12,13 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ElementValue.java,v 1.2 2011/01/24 20:47:51 ewillink Exp $
+ * $Id: ElementValue.java,v 1.3 2011/03/12 13:21:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
 import org.eclipse.ocl.examples.pivot.Element;
 
-public interface ElementValue<E extends Element> extends Value
+public interface ElementValue<E extends Element> extends ObjectValue
 {
 	E getElement();
 }

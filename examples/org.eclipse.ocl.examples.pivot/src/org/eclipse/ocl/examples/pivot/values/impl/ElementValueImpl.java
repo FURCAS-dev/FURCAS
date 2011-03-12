@@ -12,64 +12,52 @@
  *
  * </copyright>
  *
- * $Id: ElementValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: ElementValueImpl.java,v 1.5 2011/03/12 13:21:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.ElementValue;
-import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
-public class ElementValueImpl<E extends Element> extends AbstractValue implements ElementValue<E>
-{
-	protected final E element;
-	
+public class ElementValueImpl<E extends Element>
+		extends ObjectValueImpl
+		implements ElementValue<E> {
+
 	public ElementValueImpl(ValueFactory valueFactory, E element) {
-		super(valueFactory);
-		this.element = element;
+		super(valueFactory, element);
 	}
 
 	@Override
 	public Element asElement() {
-		return element;
+		return (Element) object;
 	}
 
-	public Object asObject() {
-		return element;
-	}
-
-	public Value asValidValue() {
+	@Override
+	public ElementValue<E> asElementValue() {
 		return this;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof ElementValue)) {
-			return false;
+			return super.equals(obj);
 		}
-		return element.equals(((ElementValue<?>)obj).getElement());
+		return object.equals(((ElementValue<?>) obj).getElement());
 	}
 
+	@SuppressWarnings("unchecked")
 	public E getElement() {
-		return element;
+		return (E) object;
 	}
 
+	@Override
 	public Type getType(TypeManager typeManager, Type staticType) {
-		EClass eClass = element.eClass();
+		EClass eClass = ((EObject)object).eClass();
 		return typeManager.getPivotType(eClass.getName());
-	}
-
-	@Override
-	public int hashCode() {
-		return element.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return element.toString();
 	}
 }
