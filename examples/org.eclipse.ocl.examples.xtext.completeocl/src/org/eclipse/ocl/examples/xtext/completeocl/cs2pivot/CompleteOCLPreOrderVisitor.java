@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.6 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.7 2011/03/12 18:44:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -147,6 +147,9 @@ public class CompleteOCLPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			Operation modelOperation = csElement.getOperation();
+			if ((modelOperation == null) || modelOperation.eIsProxy()) {
+				return null;
+			}
 			CompleteOperation completeOperation = completeEnvironmentManager.getCompleteOperation(modelOperation);
 			org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelOperation.getClass_(), csElement);
 //			completeEnvironmentManager.getCompleteOperation(element);
@@ -231,6 +234,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		Type modelClassifier = object.getClassifier();
+		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
+			return null;
+		}
 		Type contextClassifier = getContextClassifier(modelClassifier, object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -256,6 +262,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		org.eclipse.ocl.examples.pivot.Package modelPackage = object.getPackage();
+		if ((modelPackage == null) || modelPackage.eIsProxy()) {
+			return null;
+		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -269,6 +278,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		Property modelProperty = object.getProperty();
+		if ((modelProperty == null) || modelProperty.eIsProxy()) {
+			return null;
+		}
 		CompleteProperty completeProperty = completeEnvironmentManager.getCompleteProperty(modelProperty);
 		org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelProperty.getClass_(), object);
 //		if ((element == null) || element.eIsProxy()) {
