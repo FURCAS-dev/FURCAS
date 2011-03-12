@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.8 2011/03/04 13:56:20 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.9 2011/03/12 10:49:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -518,6 +518,18 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + property.getImplementationClass() + "'", e, propertyCallExp, sourceValue);
 		}
 		if (implementation == null) {
+			for (Constraint constraint : typeManager.getLocalConstraints(property)) {
+				if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+					ValueSpecification specification = constraint.getSpecification();
+					if (specification instanceof ExpressionInOcl) {
+						ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;
+						EvaluationVisitor nestedVisitor = createNestedVisitor();
+						EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
+						nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
+						return expressionInOcl.accept(nestedVisitor);
+					}
+				}
+			}
 			Object object = sourceValue.asObject();
 			if (object instanceof EObject) {
 				EObject eObject = (EObject)object;
