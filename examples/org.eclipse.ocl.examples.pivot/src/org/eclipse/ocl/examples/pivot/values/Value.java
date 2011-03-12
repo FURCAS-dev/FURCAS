@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Value.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: Value.java,v 1.5 2011/03/12 13:21:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -41,9 +41,11 @@ public interface Value
 	CollectionValue asCollectionValue() throws InvalidValueException;
 	Double asDouble() throws InvalidValueException;
 	Element asElement(); 
+	ElementValue<?> asElementValue() throws InvalidValueException;
 	Integer asInteger() throws InvalidValueException;
 	IntegerValue asIntegerValue() throws InvalidValueException;
 	Object asObject();
+	ObjectValue asObjectValue() throws InvalidValueException;
 	OrderedCollectionValue asOrderedCollectionValue() throws InvalidValueException;
 	OrderedSetValue asOrderedSetValue() throws InvalidValueException;
 	RealValue asRealValue() throws InvalidValueException;
