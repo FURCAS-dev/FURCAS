@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelRegistryPlugin.java,v 1.2 2010/04/08 06:23:46 ewillink Exp $
+ * $Id: ModelRegistryPlugin.java,v 1.3 2011/03/12 07:23:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.modelregistry.eclipse;
 
@@ -33,6 +33,7 @@ public class ModelRegistryPlugin extends Plugin
 	/**
 	 * The constructor
 	 */
+	@SuppressWarnings("unused")
 	public ModelRegistryPlugin() {
 		new EclipseModelRegistryEnvironment();
 	}
