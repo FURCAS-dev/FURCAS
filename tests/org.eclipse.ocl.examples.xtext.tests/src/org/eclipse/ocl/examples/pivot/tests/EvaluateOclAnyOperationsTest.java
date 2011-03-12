@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.4 2011/03/12 13:22:51 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.5 2011/03/12 16:16:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -581,4 +581,26 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
         assertQueryFalse(pkg1, "'null'.oclIsUndefined()");
         assertQueryFalse(pkg1, "self.oclIsUndefined()");
     }
+
+    /**
+     * Tests the oclType() operator.
+     */
+    public void test_oclType() {
+    	assertQueryEquals(null, typeManager.getBooleanType(), "true.oclType()");
+    	assertQueryEquals(null, typeManager.getUnlimitedNaturalType(), "3.oclType()");
+    	assertQueryEquals(null, typeManager.getRealType(), "3.0.oclType()");
+    	assertQueryEquals(null, typeManager.getUnlimitedNaturalType(), "*.oclType()");
+    	assertQueryEquals(null, typeManager.getStringType(), "'string'.oclType()");
+// FIXME    	assertQueryEquals(null, typeManager.getSetType(), "Set{}.oclType()");
+// FIXME    	assertQueryEquals(null, typeManager.getSetType(), "Set{1}.oclType()");
+    	assertQueryEquals(null, typeManager.getOclVoidType(), "null.oclType()");
+    	assertQueryEquals(null, typeManager.getOclInvalidType(), "invalid.oclType()");
+    	assertQueryEquals(null, typeManager.getOclAnyType(), "self.oclType()");
+    	assertQueryEquals(pkg1, typeManager.getPivotType("Package"), "self.oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("PrimitiveType"), "3.oclType().oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("Class"), "3.oclType().oclType().oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("Class"), "3.oclType().oclType().oclType().oclType()");
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.MismatchedArgumentCount_ERROR_, 1, 0);
+    }
+
 }
