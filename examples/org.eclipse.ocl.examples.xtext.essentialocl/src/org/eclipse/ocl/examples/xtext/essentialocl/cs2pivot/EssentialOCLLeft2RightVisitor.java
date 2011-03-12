@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.9 2011/03/08 15:14:56 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.10 2011/03/12 16:15:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -748,7 +748,8 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
-		if (csArguments.size() > 0) {
+		int csArgumentCount = csArguments.size();
+		if (csArgumentCount > 0) {
 			if (csArguments.get(0).getRole() != NavigationRole.EXPRESSION) {
 				context.addBadExpressionError(csNavigatingExp, "Operation calls can only specify expressions");			
 			}
@@ -765,11 +766,10 @@ public class EssentialOCLLeft2RightVisitor
 				}
 			}
 		}
-		if (csArguments.size() < operation.getOwnedParameters().size()) {
-			context.addBadExpressionError(csNavigatingExp, "Operation call has too few parameters");			
-		}
-		else if (csArguments.size() > operation.getOwnedParameters().size()) {
-			context.addBadExpressionError(csNavigatingExp, "Operation call has too many parameters");			
+		int parametersCount = operation.getOwnedParameters().size();
+		if (csArgumentCount != parametersCount) {
+			String boundMessage = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			context.addBadExpressionError(csNavigatingExp, boundMessage);			
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
 	}
