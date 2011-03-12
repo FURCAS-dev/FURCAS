@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.5 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.6 2011/03/12 18:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -144,7 +144,7 @@ public class CompleteOCLLeft2RightVisitor
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csDef.getSpecification();
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		Constraint pivotConstraint = context.refreshMonikeredElement(Constraint.class,
-			PivotPackage.Literals.CONSTRAINT, csSpecification.getMoniker() + "xx");
+			PivotPackage.Literals.CONSTRAINT, csSpecification.getMoniker());
 		ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
 			PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
 		context.installPivotElement(csSpecification, pivotSpecification);
