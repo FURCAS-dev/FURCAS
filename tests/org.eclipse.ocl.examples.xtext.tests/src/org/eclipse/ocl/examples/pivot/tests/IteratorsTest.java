@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.2 2011/03/08 15:15:20 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.3 2011/03/12 19:16:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -102,6 +102,8 @@ public class IteratorsTest extends PivotTestSuite
 
         // shortest form
         assertQueryEquals(pkg1, expected, "nestedPackage->iterate(s : Set(String) = Set{} | s->including(name))");
+
+        assertQueryEquals(pkg1, "pfx_a_b_c", "Sequence{'a','b','c'}->iterate(e : String; s : String = 'pfx' | s + '_' + e)");
     }
     
     /**
