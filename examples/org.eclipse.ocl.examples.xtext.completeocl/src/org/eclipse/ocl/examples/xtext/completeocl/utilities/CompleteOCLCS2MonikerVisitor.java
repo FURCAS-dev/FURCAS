@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.7 2011/03/11 20:23:51 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.8 2011/03/13 13:30:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -28,6 +28,7 @@ import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTP
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextConstraintCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.ContextSpecificationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS;
+import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.InvCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.OperationContextDeclCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PackageDeclarationCS;
 import org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.PropertyContextDeclCS;
@@ -121,7 +122,15 @@ public class CompleteOCLCS2MonikerVisitor
 	@Override
 	public Boolean visitContextSpecificationCS(ContextSpecificationCS object) {
 		context.appendParentCS(object, MONIKER_SCOPE_SEPARATOR);
-		if (object.eContainer() instanceof DefCS) {
+		if (object.eContainer() instanceof InvCS) {
+			InvCS csInv = (InvCS)object.eContainer();
+			if (object == csInv.getMessageSpecification()) {
+				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
+				context.append(MONIKER_OPERATOR_SEPARATOR);
+				context.append(MONIKER_SCOPE_SEPARATOR);
+			}
+		}
+		else if (object.eContainer() instanceof DefCS) {
 			context.append(UMLReflection.BODY);		// FIXME This and ContextSpecificationCS are a fudge 
 			context.append(MONIKER_OPERATOR_SEPARATOR);
 			context.append(MONIKER_SCOPE_SEPARATOR);
