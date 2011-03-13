@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: LetExpCSScopeAdapter.java,v 1.4 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: LetExpCSScopeAdapter.java,v 1.5 2011/03/13 11:44:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.Variable;
@@ -36,14 +37,23 @@ public class LetExpCSScopeAdapter extends ExpCSScopeAdapter<LetExpCS, LetExp>
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
-		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
+		EObject child = scopeView.getChild();
+		if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__VARIABLE) {
+			for (VariableCS csVariable : target.getVariable()) {
+				if (csVariable == child) {
+					break;
+				}
+				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
+				if (variable != null) {		// Maybe null while resolving namespaces
+					environmentView.addNamedElement(variable);
+				}
+			}
+		}
+		else if (containmentFeature == EssentialOCLCSTPackage.Literals.LET_EXP_CS__IN) {
 			for (VariableCS csVariable : target.getVariable()) {
 				Variable variable = PivotUtil.getPivot(Variable.class, csVariable);
 				if (variable != null) {		// Maybe null while resolving namespaces
 					environmentView.addNamedElement(variable);
-//					if (!environmentView.hasFinalResult()) {
-//						environmentView.addElementsOfScope(typeManager, variable.getType(), scopeView);
-//					}
 				}
 			}
 		}
