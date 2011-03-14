@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclTypeOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: OclAnyOclTypeOperation.java,v 1.4 2011/03/12 16:16:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -34,7 +34,8 @@ public class OclAnyOclTypeOperation extends AbstractOperation
 
 	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
-		return evaluationVisitor.getValueFactory().createTypeValue(sourceType);
+		Type staticType = operationCall.getSource().getType();
+		Type sourceType = sourceVal.getType(typeManager, staticType);
+		return evaluationVisitor.getValueFactory().createElementValue(sourceType);
 	}
 }

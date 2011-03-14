@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCSTPackage.java,v 1.10 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: CompleteOCLCSTPackage.java,v 1.11 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -834,13 +834,22 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	int DEF_CS__CONSTRAINED_NAME = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Operation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEF_CS__OPERATION = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__PARAMETERS = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 2;
+	int DEF_CS__PARAMETERS = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference.
@@ -849,7 +858,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS__OWNED_TYPE = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 3;
+	int DEF_CS__OWNED_TYPE = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
@@ -858,7 +867,7 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEF_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 4;
+	int DEF_CS_FEATURE_COUNT = CONTEXT_CONSTRAINT_CS_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -2104,6 +2113,17 @@ public interface CompleteOCLCSTPackage extends EPackage {
 	EAttribute getDefCS_ConstrainedName();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operation</em>'.
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation()
+	 * @see #getDefCS()
+	 * @generated
+	 */
+	EAttribute getDefCS_Operation();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters <em>Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2490,6 +2510,14 @@ public interface CompleteOCLCSTPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DEF_CS__CONSTRAINED_NAME = eINSTANCE.getDefCS_ConstrainedName();
+
+		/**
+		 * The meta object literal for the '<em><b>Operation</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DEF_CS__OPERATION = eINSTANCE.getDefCS_Operation();
 
 		/**
 		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.

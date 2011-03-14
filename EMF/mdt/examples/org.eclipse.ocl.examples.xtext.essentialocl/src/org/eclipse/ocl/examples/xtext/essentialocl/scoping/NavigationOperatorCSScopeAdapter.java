@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.6 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.7 2011/03/12 13:22:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -96,7 +96,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 					environmentView.removeFilter(filter);
 				}
 			}
-			return scopeView.getOuterScope();
+			return scopeView.getOuterScope(); // FIXME should be null for immediate child
 		}
 		else {
 			ExpCS parent = target.getParent();

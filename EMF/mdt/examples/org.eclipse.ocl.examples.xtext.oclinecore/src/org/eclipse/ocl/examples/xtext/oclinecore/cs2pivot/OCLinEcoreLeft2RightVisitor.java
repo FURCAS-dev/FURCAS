@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.6 2011/03/01 08:46:35 ewillink Exp $
+ * $Id: OCLinEcoreLeft2RightVisitor.java,v 1.7 2011/03/14 10:19:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.cs2pivot;
 
@@ -101,6 +101,7 @@ public class OCLinEcoreLeft2RightVisitor
 			pivotSpecification.setBodyExpression(bodyExpression);
 			ExpSpecificationCS csMessageSpecification = (ExpSpecificationCS) csConstraint.getMessageSpecification();
 			if (csMessageSpecification != null) {
+				context.reusePivotElement(csMessageSpecification, pivotSpecification);
 				ExpCS csMessageExpression = csMessageSpecification.getOwnedExpression();
 				if (csMessageExpression != null) {
 					OclExpression messageExpression = context.visitLeft2Right(OclExpression.class, csMessageExpression);		

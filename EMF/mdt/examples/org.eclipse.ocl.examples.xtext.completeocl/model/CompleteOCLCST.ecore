@@ -29,6 +29,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="DefCS" eSuperTypes="#//ContextConstraintCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constrainedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="ecore:EClass ../../org.eclipse.ocl.examples.xtext.essentialocl/model/EssentialOCLCST.ecore#//VariableCS"
         containment="true"/>
