@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.8 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.9 2011/03/14 07:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -8418,7 +8418,7 @@ public interface PivotPackage
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = OPAQUE_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Message Expression</b></em>' reference.
+	 * The feature id for the '<em><b>Message Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -16386,10 +16386,10 @@ public interface PivotPackage
 	EReference getExpressionInOcl_ParameterVariable();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression <em>Message Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Message Expression</em>'.
+	 * @return the meta object for the containment reference '<em>Message Expression</em>'.
 	 * @see org.eclipse.ocl.examples.pivot.ExpressionInOcl#getMessageExpression()
 	 * @see #getExpressionInOcl()
 	 * @generated
@@ -19575,7 +19575,7 @@ public interface PivotPackage
 		EReference EXPRESSION_IN_OCL__PARAMETER_VARIABLE = eINSTANCE.getExpressionInOcl_ParameterVariable();
 
 		/**
-		 * The meta object literal for the '<em><b>Message Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Message Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
