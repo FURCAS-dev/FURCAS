@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.10 2011/03/04 13:56:40 ewillink Exp $
+ * $Id: TypeManager.java,v 1.12 2011/03/14 10:20:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1644,6 +1644,9 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		}
 		pivotPackage.setMoniker(packageMoniker);
 		packageMoniker2packageMap.put(packageMoniker, pivotPackage);
+		if ((suffix > 0) && (name != PivotConstants.NULL_ROOT)) {
+			logger.warn("Conflicting package " + pivotPackage);
+		}
 	}
 
 	public boolean isAdapterForType(Object type) {
@@ -1760,46 +1763,44 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	public Element loadResource(URI uri, String alias) {
 		// if (EPackage.Registry.INSTANCE.containsKey(resourceOrNsURI))
 		// return EPackage.Registry.INSTANCE.getEPackage(resourceOrNsURI);
-		try {
-			Resource resource;
-			URI resourceURI = uri.trimFragment();
-			String resourceURIstring = resourceURI.toString();
-			if (resourceURIstring.equals(defaultStandardLibraryURI)) {
-				resource = loadDefaultLibrary(resourceURIstring);
+		Resource resource;
+		URI resourceURI = uri.trimFragment();
+		String resourceURIstring = resourceURI.toString();
+		if (resourceURIstring.equals(defaultStandardLibraryURI)) {
+			resource = loadDefaultLibrary(resourceURIstring);
+		}
+		else {
+			StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(resourceURIstring);
+			if (contribution != null) {
+				resource = contribution.getResource();
 			}
 			else {
-				StandardLibraryContribution contribution = StandardLibraryContribution.REGISTRY.get(resourceURIstring);
-				if (contribution != null) {
-					resource = contribution.getResource();
+				External2Pivot external2Pivot = external2PivotMap.get(uri);
+				if (external2Pivot != null) {
+					resource = external2Pivot.getResource();
 				}
 				else {
-					External2Pivot external2Pivot = external2PivotMap.get(uri);
-					if (external2Pivot != null) {
-						resource = external2Pivot.getResource();
-					}
-					else {
-						ResourceSet resourceSet = getExternalResourceSet();
-						resource = resourceSet.getResource(resourceURI, true);
-//						if (resource != null) {
-//							if (externalResources == null) {
-//								externalResources = new HashMap<URI, Resource>();
-//							}
-//							externalResources.put(uri, resource);
+					ResourceSet resourceSet = getExternalResourceSet();
+					resource = resourceSet.getResource(resourceURI, true);
+//					if (resource != null) {
+//						if (externalResources == null) {
+//							externalResources = new HashMap<URI, Resource>();
 //						}
-						//
-						//	If this resource already loaded under its internal URI reuse old one
-						//
-						if (resource != null) { 
-							List<EObject> contents = resource.getContents();
-							if (contents.size() > 0) {
-								EObject firstContent = contents.get(0);
-								if (firstContent instanceof EPackage) {
-									String firstURI = ((EPackage)firstContent).getNsURI();
-									if (firstURI != null) {
-										External2Pivot external2Pivot2 = external2PivotMap.get(URI.createURI(firstURI));
-										if (external2Pivot2 != null) {
-											resource = external2Pivot2.getResource();
-										}
+//						externalResources.put(uri, resource);
+//					}
+					//
+					//	If this resource already loaded under its internal URI reuse old one
+					//
+					if (resource != null) { 
+						List<EObject> contents = resource.getContents();
+						if (contents.size() > 0) {
+							EObject firstContent = contents.get(0);
+							if (firstContent instanceof EPackage) {
+								String firstURI = ((EPackage)firstContent).getNsURI();
+								if (firstURI != null) {
+									External2Pivot external2Pivot2 = external2PivotMap.get(URI.createURI(firstURI));
+									if (external2Pivot2 != null) {
+										resource = external2Pivot2.getResource();
 									}
 								}
 							}
@@ -1807,26 +1808,23 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 					}
 				}
 			}
-			if (resource != null) {
-				String fragment = uri.fragment();
-				if (fragment == null) {
-					// return null;
-					return Ecore2Pivot.importFromEcore(this, alias, resource);
-				} else {
-					EObject eObject = resource.getEObject(fragment);
-					if (eObject instanceof Element) {
-						return (Element) eObject;
-					}
-					// return null;
-					return Ecore2Pivot.importFromEcore(this, alias, eObject);
-				}
-			}
-			logger.warn("Cannot load package with URI '" + uri + "'");
-			return null;
-		} catch (RuntimeException ex) {
-			logger.error("Cannot load package with URI '" + uri + "'", ex);
-			return null;
 		}
+		if (resource != null) {
+			String fragment = uri.fragment();
+			if (fragment == null) {
+				// return null;
+				return Ecore2Pivot.importFromEcore(this, alias, resource);
+			} else {
+				EObject eObject = resource.getEObject(fragment);
+				if (eObject instanceof Element) {
+					return (Element) eObject;
+				}
+				// return null;
+				return Ecore2Pivot.importFromEcore(this, alias, eObject);
+			}
+		}
+		logger.warn("Cannot load package with URI '" + uri + "'");
+		return null;
 	}
 
 	public void notifyChanged(Notification msg) {

@@ -17,7 +17,7 @@
  *
  * </copyright>
  *
- * $Id: EmbeddedXtextEditor.java,v 1.3 2011/03/08 16:20:29 ewillink Exp $
+ * $Id: EmbeddedXtextEditor.java,v 1.4 2011/03/11 15:26:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.expressions.Expression;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -79,7 +77,6 @@ import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.eclipse.ui.internal.editors.text.EditorsPlugin;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.AnnotationPreference;
@@ -103,8 +100,6 @@ import org.eclipse.xtext.ui.editor.validation.AnnotationIssueProcessor;
 import org.eclipse.xtext.ui.editor.validation.IValidationIssueProcessor;
 import org.eclipse.xtext.ui.editor.validation.ValidationJob;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
-import org.eclipse.xtext.ui.resource.IStorage2UriMapper;
-import org.eclipse.xtext.util.Pair;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
@@ -153,12 +148,6 @@ public class EmbeddedXtextEditor {
 
 	@Inject
 	private Provider<XtextDocument> fDocumentProvider;
-	
-//	@Inject
-//	private IResourceServiceProvider.Registry resourceServiceProviderRegistry;
-
-	@Inject
-	private IStorage2UriMapper mapper;
 
 	@Inject
 	private Provider<EmbeddedXtextResource> fEmbeddedXtextResourceProvider;
@@ -195,8 +184,7 @@ public class EmbeddedXtextEditor {
 	public EmbeddedXtextEditor(Composite control, Injector injector, int style) {
 		fControl = control;
 		fStyle = style;
-		fAnnotationPreferences= EditorsPlugin.getDefault().getMarkerAnnotationPreferences();
-//		fFoldingStructureProvider = new EmbeddedFoldingStructureProvider();
+		fAnnotationPreferences = new MarkerAnnotationPreferences();
 		
 		injector.injectMembers(this);
 
@@ -747,18 +735,19 @@ public class EmbeddedXtextEditor {
 	}
 
 	protected EmbeddedXtextResource createResource() {
-		String dummyFileName = fGrammarAccess.getGrammar().getName() + "." + fFileExtension;
+		String dummyFileName = fGrammarAccess.getGrammar().getName() + "." + fFileExtension; //$NON-NLS-1$
 		URI dummyURI = URI.createURI(dummyFileName);
-//		IResourceServiceProvider resourceServiceProvider = resourceServiceProviderRegistry.getResourceServiceProvider(dummyURI.trimFragment());
-		Iterable<Pair<IStorage, IProject>> storages = mapper.getStorages(dummyURI);
-//		storages.add(new Pair<IStorage, IProject>());
-		ResourceSet resourceSet = fResourceSetProvider.get(null);
+		ResourceSet resourceSet = getResourceSet();
 //		XtextResource result = (XtextResource) resourceSet.createResource(
 //				URI.createURI(fGrammarAccess.getGrammar().getName() + "." + fFileExtension));
 		EmbeddedXtextResource result = fEmbeddedXtextResourceProvider.get();
-		result.setURI(dummyURI); //$NON-NLS-1$
+		result.setURI(dummyURI);
 		resourceSet.getResources().add(result);
 		return result;
+	}
+
+	public ResourceSet getResourceSet() {
+		return fResourceSetProvider.get(null);
 	}
 
 /*	private static boolean equals(EObject expected, EObject actual) {

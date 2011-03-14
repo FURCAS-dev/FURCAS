@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLFormatter.java,v 1.6 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLFormatter.java,v 1.7 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.formatting;
 
@@ -80,7 +80,7 @@ public class CompleteOCLFormatter extends AbstractEssentialOCLFormatter {
 			DefCSElements a = f.getDefCSAccess();
 		    c.setLinewrap(2).before(a.getStereotypeDefKeyword_1_0());
 		    c.setNoSpace().before(a.getColonKeyword_3());
-		    c.setNoSpace().around(a.getLeftParenthesisKeyword_5_0());
+		    c.setNoSpace().around(a.getOperationLeftParenthesisKeyword_5_0_0());
 		    c.setNoSpace().before(a.getCommaKeyword_5_1_1_0());
 		    c.setNoSpace().before(a.getRightParenthesisKeyword_5_2());
 			setNoSpaceLineWrap(c, a.getColonKeyword_6());

@@ -23,8 +23,6 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
  * 
  */
 public interface EventManager {
-    final static int CONTAINMENT_EVENT_TYPE = 666;
-
     /**
      * Register an {@link Adapter} on the {@link EventManager} which will be notified for any {@link Notification} which matches
      * the given filter. If an equal or the same <code>caller</code> registers multiple times using equal <code>filter</code>s,

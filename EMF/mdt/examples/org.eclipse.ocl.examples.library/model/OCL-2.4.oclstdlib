@@ -26,6 +26,8 @@ type Boolean : PrimitiveType conformsTo OclAny {
 
 type Classifier conformsTo OclAny {
 	operation allInstances(OclSelf)() : Set(OclSelf) => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
+	operation oclContainer() : Classifier => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
+	operation oclContents() : Set(Classifier) => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
 }
 
 type Collection(T) : CollectionType conformsTo OclAny {
@@ -238,9 +240,11 @@ type String : PrimitiveType conformsTo OclAny {
 	operation substring(lower : Integer, upper : Integer) : String => 'org.eclipse.ocl.examples.library.string.StringSubstringOperation';
 	operation toBoolean() : Boolean => 'org.eclipse.ocl.examples.library.string.StringToBooleanOperation';
 	operation toInteger() : Integer => 'org.eclipse.ocl.examples.library.string.StringToIntegerOperation';
+	operation toLower() : String => 'org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation';
 	operation toLowerCase() : String => 'org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation';
 	operation toReal() : Real => 'org.eclipse.ocl.examples.library.string.StringToRealOperation';
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
+	operation toUpper() : String => 'org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation';
 	operation toUpperCase() : String => 'org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation';
 	operation ">"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanOperation';
 	operation "<"(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanOperation';

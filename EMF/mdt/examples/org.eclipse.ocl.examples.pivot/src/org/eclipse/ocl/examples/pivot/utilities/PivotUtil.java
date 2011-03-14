@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.8 2011/03/05 05:57:46 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.9 2011/03/12 10:50:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +38,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -71,6 +75,13 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 public class PivotUtil
 {	
 	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
+
+	private static final AdapterFactory reflectiveAdapterFactory =
+		new ReflectiveItemProviderAdapterFactory();
+
+	private static final AdapterFactory defaultAdapterFactory =
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
 
 	/**
 	 * 'Highest' precedence first
@@ -387,6 +398,18 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static String getLabel(EObject eObject) {
+		IItemLabelProvider labeler =
+			(IItemLabelProvider) defaultAdapterFactory.adapt(eObject, IItemLabelProvider.class);		
+		if (labeler == null) {
+			labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(eObject, IItemLabelProvider.class);
+		}		
+		if (labeler != null) {
+			return labeler.getText(eObject);
+		}
+		return eObject.toString();
 	}
 
 	public static String getMessage(OpaqueExpression specification) {

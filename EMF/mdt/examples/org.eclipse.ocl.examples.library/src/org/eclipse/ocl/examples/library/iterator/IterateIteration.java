@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateIteration.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: IterateIteration.java,v 1.4 2011/03/12 19:16:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.pivot.values.Value;
  * 
  * @since 3.1
  */
-public class IterateIteration extends AbstractIteration<CollectionValue>
+public class IterateIteration extends AbstractIteration<Value>
 {
 	public static final IterateIteration INSTANCE = new IterateIteration();
 
@@ -41,15 +41,15 @@ public class IterateIteration extends AbstractIteration<CollectionValue>
 		if (initValue.isUndefined()) {
 			return evaluationVisitor.throwInvalidEvaluation("undefined initializer", null, iterateExp, initValue);
 		}
-		CollectionValue accumulatorValue = initValue.asCollectionValue();
-		return evaluateIteration(new IterationManager<CollectionValue>(evaluationVisitor,
-				iterateExp, sourceVal, accumulatorValue));
+//		CollectionValue accumulatorValue = initValue.asCollectionValue();
+		return evaluateIteration(new IterationManager<Value>(evaluationVisitor,
+				iterateExp, sourceVal, initValue));
 	}
 
 	@Override
-    protected Value updateAccumulator(IterationManager<CollectionValue> iterationManager) {
+    protected Value updateAccumulator(IterationManager<Value> iterationManager) {
 		Value bodyVal = iterationManager.getBodyValue();		
-		iterationManager.replaceAccumulator((CollectionValue) bodyVal);		
+		iterationManager.replaceAccumulator(bodyVal);		
 		return null;					// carry on
 	}
 }

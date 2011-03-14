@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.9 2011/03/08 15:14:56 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.11 2011/03/12 18:44:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -602,7 +602,10 @@ public class EssentialOCLLeft2RightVisitor
 		Type requiredSourceType = PivotUtil.getFeaturingClass(feature);
 		if (!(requiredSourceType instanceof CollectionType) && (actualSourceType instanceof CollectionType)) {
 			Type elementType = ((CollectionType)actualSourceType).getElementType();
-			String moniker = csElement.getMoniker() + "~collect";
+			String csMoniker = csElement.getMoniker();
+			int lastIndex = csMoniker.lastIndexOf(PivotConstants.MONIKER_OPERATOR_SEPARATOR);
+			String baseMoniker = csMoniker.substring(0, lastIndex+1);
+			String moniker = baseMoniker + "collect";
 			IteratorExp iteratorExp = context.refreshMonikeredElement(IteratorExp.class, PivotPackage.Literals.ITERATOR_EXP, moniker);
 			iteratorExp.setImplicit(true);
 			EnvironmentView environmentView = new EnvironmentView(typeManager, PivotPackage.Literals.LOOP_EXP__REFERRED_ITERATION, "collect");
@@ -610,14 +613,15 @@ public class EssentialOCLLeft2RightVisitor
 			environmentView.computeLookups(actualSourceType);
 			Iteration resolvedIteration = (Iteration)environmentView.getResolvedContent();
 			context.setReferredIteration(iteratorExp, resolvedIteration);
-			Variable iterator = context.refreshMonikeredElement(Variable.class, PivotPackage.Literals.VARIABLE, moniker + "|iterator~1_");
+			Variable iterator = context.refreshMonikeredElement(Variable.class, PivotPackage.Literals.VARIABLE, baseMoniker + "1_");
 			Parameter resolvedIterator = resolvedIteration.getOwnedIterators().get(0);
 			iterator.setRepresentedParameter(resolvedIterator);
 			context.refreshName(iterator, "1_");
 			context.setType(iterator, resolvedIterator.getType());
 			iterator.setImplicit(true);
 			iteratorExp.getIterators().add(iterator);
-			VariableExp variableExp = context.refreshMonikeredElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, moniker + "|source~1_");
+			String iteratorRefMoniker = csMoniker + PivotConstants.MONIKER_SCOPE_SEPARATOR + "source" + PivotConstants.MONIKER_OPERATOR_SEPARATOR + "1_";
+			VariableExp variableExp = context.refreshMonikeredElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, iteratorRefMoniker);
 			variableExp.setReferredVariable(iterator);
 			context.setType(variableExp, resolvedIterator.getType());
 			callExp.setSource(variableExp);			
@@ -748,7 +752,8 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
-		if (csArguments.size() > 0) {
+		int csArgumentCount = csArguments.size();
+		if (csArgumentCount > 0) {
 			if (csArguments.get(0).getRole() != NavigationRole.EXPRESSION) {
 				context.addBadExpressionError(csNavigatingExp, "Operation calls can only specify expressions");			
 			}
@@ -765,11 +770,10 @@ public class EssentialOCLLeft2RightVisitor
 				}
 			}
 		}
-		if (csArguments.size() < operation.getOwnedParameters().size()) {
-			context.addBadExpressionError(csNavigatingExp, "Operation call has too few parameters");			
-		}
-		else if (csArguments.size() > operation.getOwnedParameters().size()) {
-			context.addBadExpressionError(csNavigatingExp, "Operation call has too many parameters");			
+		int parametersCount = operation.getOwnedParameters().size();
+		if (csArgumentCount != parametersCount) {
+			String boundMessage = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
+			context.addBadExpressionError(csNavigatingExp, boundMessage);			
 		}
 		context.refreshList(expression.getArguments(), pivotArguments);
 	}

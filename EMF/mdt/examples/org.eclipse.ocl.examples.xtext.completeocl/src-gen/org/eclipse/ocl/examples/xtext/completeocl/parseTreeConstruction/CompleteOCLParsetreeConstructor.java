@@ -1020,13 +1020,13 @@ protected class ContextDeclCS_OperationContextDeclCSParserRuleCall_2 extends Rul
 /************ begin Rule DefCS ****************
  *
  * DefCS:
- * 	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName ("("
+ * 	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
  * 	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
  * 	specification=SpecificationCS;
  *
  **/
 
-// static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName ("("
+// static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
 // (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
 // specification=SpecificationCS
 protected class DefCS_Group extends GroupToken {
@@ -1215,7 +1215,7 @@ protected class DefCS_ConstrainedNameAssignment_4 extends AssignmentToken  {
 
 }
 
-// ("(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")?
+// (operation?="(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")?
 protected class DefCS_Group_5 extends GroupToken {
 	
 	public DefCS_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1237,16 +1237,16 @@ protected class DefCS_Group_5 extends GroupToken {
 
 }
 
-// "("
-protected class DefCS_LeftParenthesisKeyword_5_0 extends KeywordToken  {
+// operation?="("
+protected class DefCS_OperationAssignment_5_0 extends AssignmentToken  {
 	
-	public DefCS_LeftParenthesisKeyword_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public DefCS_OperationAssignment_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getDefCSAccess().getLeftParenthesisKeyword_5_0();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getDefCSAccess().getOperationAssignment_5_0();
 	}
 
     @Override
@@ -1255,6 +1255,18 @@ protected class DefCS_LeftParenthesisKeyword_5_0 extends KeywordToken  {
 			case 0: return new DefCS_ConstrainedNameAssignment_4(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("operation",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("operation");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getDefCSAccess().getOperationLeftParenthesisKeyword_5_0_0();
+			return obj;
+		}
+		return null;
 	}
 
 }
@@ -1322,7 +1334,7 @@ protected class DefCS_ParametersAssignment_5_1_0 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new DefCS_LeftParenthesisKeyword_5_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new DefCS_OperationAssignment_5_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -1437,6 +1449,7 @@ protected class DefCS_RightParenthesisKeyword_5_2 extends KeywordToken  {
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new DefCS_Group_5_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new DefCS_OperationAssignment_5_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}

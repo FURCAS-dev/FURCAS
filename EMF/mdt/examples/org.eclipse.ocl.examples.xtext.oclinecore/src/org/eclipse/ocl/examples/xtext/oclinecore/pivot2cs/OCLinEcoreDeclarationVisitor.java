@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDeclarationVisitor.java,v 1.4 2011/03/01 08:46:35 ewillink Exp $
+ * $Id: OCLinEcoreDeclarationVisitor.java,v 1.5 2011/03/14 10:19:43 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.pivot2cs;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
@@ -39,7 +40,17 @@ public class OCLinEcoreDeclarationVisitor extends EssentialOCLDeclarationVisitor
 	public ElementCS visitConstraint(Constraint object) {
 		OCLinEcoreConstraintCS csElement = context.refreshNamedElement(OCLinEcoreConstraintCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_CONSTRAINT_CS, object);
 		csElement.setStereotype(object.getStereotype());
-		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, object.getSpecification()));
+		ValueSpecification specification = object.getSpecification();
+		csElement.setSpecification(context.visitDeclaration(SpecificationCS.class, specification));
+		if (specification instanceof OpaqueExpression) {		// FIXME ExpressionInOcl too??
+			OpaqueExpression opaqueExpression = (OpaqueExpression)specification;
+			String message = PivotUtil.getMessage(opaqueExpression);
+			if (message != null) {
+				OCLinEcoreSpecificationCS csMessageElement = context.refreshMonikeredElement(OCLinEcoreSpecificationCS.class, OCLinEcoreCSTPackage.Literals.OC_LIN_ECORE_SPECIFICATION_CS, opaqueExpression);
+				csMessageElement.setExprString(message);
+				csElement.setMessageSpecification(csMessageElement);
+			}
+		}
 		return csElement;
 	}
 

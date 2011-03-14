@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteElementIterable.java,v 1.2 2011/03/04 13:56:40 ewillink Exp $
+ * $Id: CompleteElementIterable.java,v 1.3 2011/03/14 10:19:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * A CompleteElementIterable supports iteration over the mulktiple model contributions
- * to a Complete Element as if all were mertged in a composite element.
+ * A CompleteElementIterable supports iteration over the multiple model contributions
+ * to a Complete Element as if all were merged in a composite element.
  *
  * @param <O> The Outer type of the Complete Element
  * @param <I> The Inner type of the iterated Complete Element child

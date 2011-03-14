@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.4 2011/03/08 15:15:20 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.5 2011/03/11 20:23:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -480,7 +480,7 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
 		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
-			getBoundMessage(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "xyzzy1"));
+			getBoundMessage(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'Unknown type'"));
 		//
 		//	Definition of undeclared variable
 		//
@@ -816,7 +816,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperation_ERROR_, "'at'", "ModelWithErrors.ecore::modelWithErrors::BadClass"));
+			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperation_ERROR_, "'at'", "'ModelWithErrors.ecore::modelWithErrors::BadClass'"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
