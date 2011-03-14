@@ -82,7 +82,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="cvs_uml">
-    <rm:provider componentTypes="osgi.bundle" readerType="cvs" source="false" mutable="false" resolutionFilter="">
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false" resolutionFilter="">
       <rm:uri format="{0},org.eclipse.mdt/org.eclipse.uml2/plugins/{1}">
         <bc:propertyRef key="cvs.modeling.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>

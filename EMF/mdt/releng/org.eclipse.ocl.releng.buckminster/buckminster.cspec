@@ -21,7 +21,7 @@
             </cs:actorProperties>
             <cs:properties>
                 <cs:property key="checkoutLocation" value="${checkout.location}"/>
-                <cs:property key="mustCreateJavadoc" value="${create.javadoc}"/>
+                <cs:property key="mustCreateJavadoc" value="${manage.javadoc}"/>
                 <cs:property key="output" value="${buckminster.output}/javadoc/"/>
                 <cs:property key="targetPlatform" value="${targetPlatformPath}"/>
             </cs:properties>

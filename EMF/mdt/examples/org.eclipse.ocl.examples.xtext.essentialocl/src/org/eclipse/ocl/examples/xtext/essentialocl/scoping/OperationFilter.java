@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.4 2011/03/08 15:14:28 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.5 2011/03/12 18:45:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -85,6 +85,59 @@ public class OperationFilter extends AbstractOperationFilter
 		}
 		return null;
 	}
+
+	protected Map<TemplateParameter, ParameterableElement> getIterationBindings(Iteration candidateIteration) {
+		Type sourceType = this.sourceType;
+		if (!(sourceType instanceof CollectionType) && (candidateIteration.getClass_() instanceof CollectionType)) {
+			sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+		}			
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
+		TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
+		if (templateSignature != null) {
+			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
+			int accIndex = 0;
+			for (NavigatingArgCS csArgument : csArguments) {
+				if (csArgument.getRole() == NavigationRole.ACCUMULATOR) {
+					if (accIndex < templateParameters.size()) {
+						Variable argument = PivotUtil.getPivot(Variable.class, csArgument);
+						Type argumentType = argument.getType();
+						TemplateParameter accParameter = templateParameters.get(accIndex);
+						bindings.put(accParameter, argumentType);
+					}
+					accIndex++;
+				}
+			}
+		}
+		return bindings;
+	}
+
+	@Override
+	protected Map<TemplateParameter, ParameterableElement> getOperationBindings(Operation candidateOperation) {
+		Type sourceType = this.sourceType;
+		if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
+			sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
+		}			
+		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
+//			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
+		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
+		if (templateSignature != null) {
+			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
+				if (bindings == null) {
+					bindings = new HashMap<TemplateParameter, ParameterableElement>();
+				}
+				if ("oclAsType".equals(candidateOperation.getName())) {		// FIXME This should be modeled
+					NavigatingArgCS csExpression = csArguments.get(0);
+					TypeExp expression = PivotUtil.getPivot(TypeExp.class, csExpression);
+					Type expressionType = expression.getReferredType();
+					bindings.put(templateParameter, expressionType);
+				}
+				else {
+					bindings.put(templateParameter, null);
+				}
+			}
+		}
+		return bindings;
+	}
 	
 	@Override
 	protected void installBindings(EnvironmentView environmentView, EObject eObject,
@@ -128,27 +181,7 @@ public class OperationFilter extends AbstractOperationFilter
 			if (accumulatorCount != accumulators) {
 				return false;
 			}
-			Type sourceType = this.sourceType;
-			if (!(sourceType instanceof CollectionType) && (candidateIteration.getClass_() instanceof CollectionType)) {
-				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
-			}			
-			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
-			TemplateSignature templateSignature = candidateIteration.getOwnedTemplateSignature();
-			if (templateSignature != null) {
-				List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
-				int accIndex = 0;
-				for (NavigatingArgCS csArgument : csArguments) {
-					if (csArgument.getRole() == NavigationRole.ACCUMULATOR) {
-						if (accIndex < templateParameters.size()) {
-							Variable argument = PivotUtil.getPivot(Variable.class, csArgument);
-							Type argumentType = argument.getType();
-							TemplateParameter accParameter = templateParameters.get(accIndex);
-							bindings.put(accParameter, argumentType);
-						}
-						accIndex++;
-					}
-				}
-			}
+			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(candidateIteration);
 			if (bindings != null) {
 				installBindings(environmentView, eObject, bindings);
 			}
@@ -166,29 +199,7 @@ public class OperationFilter extends AbstractOperationFilter
 			if (expressions != candidateParameters.size()) {
 				return false;
 			}
-			Type sourceType = this.sourceType;
-			if (!(sourceType instanceof CollectionType) && (candidateOperation.getClass_() instanceof CollectionType)) {
-				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
-			}			
-			Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
-//			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
-			TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
-			if (templateSignature != null) {
-				for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
-					if (bindings == null) {
-						bindings = new HashMap<TemplateParameter, ParameterableElement>();
-					}
-					if ("oclAsType".equals(candidateOperation.getName())) {		// FIXME This should be modeled
-						NavigatingArgCS csExpression = csArguments.get(0);
-						TypeExp expression = PivotUtil.getPivot(TypeExp.class, csExpression);
-						Type expressionType = expression.getReferredType();
-						bindings.put(templateParameter, expressionType);
-					}
-					else {
-						bindings.put(templateParameter, null);
-					}
-				}
-			}
+			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(candidateOperation);
 			for (int i = 0; i < expressions; i++) {
 				Parameter candidateParameter = candidateParameters.get(i);
 				NavigatingArgCS csExpression = csArguments.get(i);

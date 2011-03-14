@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefCSImpl.java,v 1.4 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: DefCSImpl.java,v 1.5 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl;
 
@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#isStatic <em>Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getConstrainedName <em>Constrained Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#isOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.impl.DefCSImpl#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
@@ -89,6 +90,26 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 	 * @ordered
 	 */
 	protected String constrainedName = CONSTRAINED_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isOperation() <em>Operation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OPERATION_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOperation() <em>Operation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean operation = OPERATION_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -169,6 +190,29 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 		constrainedName = newConstrainedName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME, oldConstrainedName, constrainedName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOperation()
+	{
+		return operation;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperation(boolean newOperation)
+	{
+		boolean oldOperation = operation;
+		operation = newOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompleteOCLCSTPackage.DEF_CS__OPERATION, oldOperation, operation));
 	}
 
 	/**
@@ -262,6 +306,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 				return isStatic();
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
 				return getConstrainedName();
+			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
+				return isOperation();
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				return getParameters();
 			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:
@@ -285,6 +331,9 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
 				setConstrainedName((String)newValue);
+				return;
+			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
+				setOperation((Boolean)newValue);
 				return;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				getParameters().clear();
@@ -312,6 +361,9 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
 				setConstrainedName(CONSTRAINED_NAME_EDEFAULT);
 				return;
+			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
+				setOperation(OPERATION_EDEFAULT);
+				return;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				getParameters().clear();
 				return;
@@ -335,6 +387,8 @@ public class DefCSImpl extends ContextConstraintCSImpl implements DefCS {
 				return static_ != STATIC_EDEFAULT;
 			case CompleteOCLCSTPackage.DEF_CS__CONSTRAINED_NAME:
 				return CONSTRAINED_NAME_EDEFAULT == null ? constrainedName != null : !CONSTRAINED_NAME_EDEFAULT.equals(constrainedName);
+			case CompleteOCLCSTPackage.DEF_CS__OPERATION:
+				return operation != OPERATION_EDEFAULT;
 			case CompleteOCLCSTPackage.DEF_CS__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
 			case CompleteOCLCSTPackage.DEF_CS__OWNED_TYPE:

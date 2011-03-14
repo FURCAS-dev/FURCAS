@@ -23,7 +23,7 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-			<entry key="must.publish.javadoc" value="${create.javadoc}" />
+			<entry key="must.publish.javadoc" value="${manage.javadoc}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -244,7 +244,7 @@
 		<!-- Prepare the property which will dictate if the javadoc will be published -->
 
 		<condition property="publish.javadoc">
-			<equals arg1="${must.publish.javadoc}" arg2="true"/>
+			<equals arg1="${saved.must.publish.javadoc}" arg2="true"/>
 		</condition>
 		<antcall target="-publish.javadoc" inheritall="true" />
 	</target>
@@ -297,7 +297,7 @@
 		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
 	</target>
 	
-	<target name="-publish.javadoc" if="${publish.javadoc}">
+	<target name="-publish.javadoc" if="publish.javadoc">
 		<echo>Remove existing javadoc</echo>
 		<delete verbose="true">
 			<fileset dir="${project.javadoc.directory}"/>

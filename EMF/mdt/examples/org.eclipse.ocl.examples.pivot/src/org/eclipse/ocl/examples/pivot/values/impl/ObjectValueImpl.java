@@ -12,15 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.6 2011/03/05 05:57:46 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.8 2011/03/12 13:21:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -39,6 +35,11 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	public Object asObject() {
 		return object;
+	}
+
+	@Override
+	public ObjectValue asObjectValue() {
+		return this;
 	}
 
 	public Value asValidValue() {
@@ -74,31 +75,11 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	@Override
 	public String toString() {
-		if (object instanceof ENamedElement) {
-			ENamedElement eNamedElement = (ENamedElement)object;
-			return eNamedElement.getName(); // + ":" + eNamedElement.eClass().getName();
-		}
-		else if (object instanceof EObject) {
-			EObject eObject = (EObject) object;
-			EClass eClass = eObject.eClass();
-			EAttribute idAttribute = eClass.getEIDAttribute();
-			if (idAttribute == null) {
-				for (EAttribute eAttribute : eClass.getEAllAttributes()) {
-					if (eAttribute.getEType() == EcorePackage.Literals.ESTRING) {
-						idAttribute = eAttribute;
-						break;
-					}
-				}
-			}
-			if (idAttribute != null) {
-				return eObject.eGet(idAttribute) + ":" + eClass.getName();
-			}
-			else {
-				return "?:" + eClass.getName();
-			}
+		if (object instanceof EObject) {
+			return PivotUtil.getLabel((EObject) object);
 		}
 		else {
-			return object.toString();
+			return String.valueOf(object);
 		}
 	}
 }
