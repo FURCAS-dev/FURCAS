@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.2 2009/06/25 19:23:32 ewillink Exp $
+ * $Id: TupleFactory.java,v 1.3 2011/03/14 21:15:32 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -50,6 +50,7 @@ public class TupleFactory extends EFactoryImpl {
 	private static final class TupleInstance
 			extends DynamicEObjectImpl
 			implements Tuple<EOperation, EStructuralFeature> {
+		private int hashCode;
 		
 		@Override
         public boolean equals(Object o) {
@@ -92,15 +93,19 @@ public class TupleFactory extends EFactoryImpl {
 		
 		@Override
         public int hashCode() {
-			int result = 0;
-			
-			for (EStructuralFeature next : eClass().getEStructuralFeatures()) {
-				Object myValue = eGet(next);
-				
-				result = 31 * result + ObjectUtil.hashCode(myValue);
+			// if hash code really computes to 0, well, then we just happen to re-compute
+			if (hashCode == 0) {
+				int result = 0;
+
+				for (EStructuralFeature next : eClass()
+					.getEStructuralFeatures()) {
+					Object myValue = eGet(next);
+
+					result = 31 * result + ObjectUtil.hashCode(myValue);
+				}
+				hashCode = result;
 			}
-			
-			return result;
+			return hashCode;
 		}
 
 		public TupleType<EOperation, EStructuralFeature> getTupleType() {
