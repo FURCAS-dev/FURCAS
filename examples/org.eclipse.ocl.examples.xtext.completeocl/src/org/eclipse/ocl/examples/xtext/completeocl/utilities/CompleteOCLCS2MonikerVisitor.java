@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.8 2011/03/13 13:30:25 ewillink Exp $
+ * $Id: CompleteOCLCS2MonikerVisitor.java,v 1.9 2011/03/14 10:19:42 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.utilities;
 
@@ -125,9 +125,9 @@ public class CompleteOCLCS2MonikerVisitor
 		if (object.eContainer() instanceof InvCS) {
 			InvCS csInv = (InvCS)object.eContainer();
 			if (object == csInv.getMessageSpecification()) {
-				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
-				context.append(MONIKER_OPERATOR_SEPARATOR);
-				context.append(MONIKER_SCOPE_SEPARATOR);
+//				context.append("message");		// FIXME This and ContextSpecificationCS are a fudge 
+//				context.append(MONIKER_OPERATOR_SEPARATOR);
+//				context.append(MONIKER_SCOPE_SEPARATOR);
 			}
 		}
 		else if (object.eContainer() instanceof DefCS) {
