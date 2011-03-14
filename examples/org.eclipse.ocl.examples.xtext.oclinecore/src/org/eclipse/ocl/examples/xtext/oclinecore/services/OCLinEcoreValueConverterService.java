@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreValueConverterService.java,v 1.4 2011/01/24 22:28:40 ewillink Exp $
+ * $Id: OCLinEcoreValueConverterService.java,v 1.5 2011/03/14 17:06:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.services;
 
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
@@ -55,7 +56,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 			@Override
 			protected String internalToValue(String string, INode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
+					return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -63,7 +64,7 @@ public class OCLinEcoreValueConverterService extends EssentialOCLValueConverterS
 
 			@Override
 			protected String internalToString(String value) {
-				return value; //Strings.convertToJavaString(value.replace('\r', '\n'), false);
+				return value; //PivotUtil.convertToOCLString(value.replace('\r', '\n'));
 			}
 		};
 	}
