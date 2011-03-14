@@ -219,7 +219,7 @@ type Set(T) : SetType conformsTo NonOrderedCollection(T),UniqueCollection(T) {
 	iteration select(i : T) : Set(T) => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
-	operation "-"(s : Set(OclAny)) : Set(T) => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
+	operation "-"(s : Set(OclAny)) : Set(T) precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
 	operation excluding(object : OclAny) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
 	operation flatten(T2)() : Set(T2) => 'org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation';
 	operation including(object : T) : Set(T) => 'org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation';
