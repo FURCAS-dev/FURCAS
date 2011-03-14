@@ -28,7 +28,7 @@ junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTest
 junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with NavigationSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.navigationsteps.tests.xml"
 
 
-perform --properties "${checkout.location}/buildroot/build.properties" -Dbuckminster.reference.repository=${reference.repository} "org.eclipse.ocl.build:eclipse.feature#build" 
+perform --properties "${checkout.location}/buildroot/build.properties" "-Dbuckminster.reference.repository=${reference.repository}" "org.eclipse.ocl.build:eclipse.feature#build" 
 perform --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#setup.promoter"
 perform --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#setup.publisher"
 
