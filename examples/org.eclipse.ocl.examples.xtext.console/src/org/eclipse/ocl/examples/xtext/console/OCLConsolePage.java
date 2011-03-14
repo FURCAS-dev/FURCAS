@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.5 2011/03/12 10:56:31 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.6 2011/03/14 10:49:54 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -202,14 +202,10 @@ public class OCLConsolePage extends Page
 						}
 						history.add(0, getEditorDocument().get().trim());
 						currentHistoryPointer = 1;
-						String newText = history.get(currentHistoryPointer);
-						getEditorDocument().set(newText);
-						input.setSelectedRange(newText.length(), 0);
+						setTextFromHistory();
 					} else if (currentHistoryPointer < history.size() - 1) {
 						currentHistoryPointer++;
-						String newText = history.get(currentHistoryPointer);
-						getEditorDocument().set(newText);
-						input.setSelectedRange(newText.length(), 0);
+						setTextFromHistory();
 					}
 				}			
 				break;
@@ -218,9 +214,7 @@ public class OCLConsolePage extends Page
 					// history
 					if (currentHistoryPointer > 0) {
 						currentHistoryPointer--;
-						String newText = history.get(currentHistoryPointer);
-						getEditorDocument().set(newText);
-						input.setSelectedRange(newText.length(), 0);
+						setTextFromHistory();
 					}
 				}		
 				break;
@@ -250,6 +244,12 @@ public class OCLConsolePage extends Page
 //			        input.getContentAssistant().showPossibleCompletions();
 //			    }
 			}
+		}
+
+		protected void setTextFromHistory() {
+			String newText = history.get(currentHistoryPointer);
+			getEditorDocument().set(newText);
+			input.setSelectedRange(newText.length(), 0);
 		}
 	}
     
