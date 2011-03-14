@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.11 2011/03/12 18:44:41 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.12 2011/03/14 17:05:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -623,6 +623,7 @@ public class EssentialOCLLeft2RightVisitor
 			String iteratorRefMoniker = csMoniker + PivotConstants.MONIKER_SCOPE_SEPARATOR + "source" + PivotConstants.MONIKER_OPERATOR_SEPARATOR + "1_";
 			VariableExp variableExp = context.refreshMonikeredElement(VariableExp.class, PivotPackage.Literals.VARIABLE_EXP, iteratorRefMoniker);
 			variableExp.setReferredVariable(iterator);
+			variableExp.setImplicit(true);
 			context.setType(variableExp, resolvedIterator.getType());
 			callExp.setSource(variableExp);			
 			iteratorExp.setBody(callExp);
