@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.11 2011/03/14 07:27:52 ewillink Exp $
+ * $Id: TypeManager.java,v 1.12 2011/03/14 10:20:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1644,6 +1644,9 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		}
 		pivotPackage.setMoniker(packageMoniker);
 		packageMoniker2packageMap.put(packageMoniker, pivotPackage);
+		if ((suffix > 0) && (name != PivotConstants.NULL_ROOT)) {
+			logger.warn("Conflicting package " + pivotPackage);
+		}
 	}
 
 	public boolean isAdapterForType(Object type) {
