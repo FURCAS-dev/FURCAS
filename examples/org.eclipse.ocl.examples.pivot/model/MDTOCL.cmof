@@ -18,7 +18,7 @@
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_dkSmoDxsEeCYibdAWnk0AQ" name="MDT_OCL_Cache">
       <ownedMember xmi:type="cmof:Class" xmi:id="_ila-MDxsEeCYibdAWnk0AQ" name="ExpressionInOcl">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_f9bxID2REeC9A8BnhOyXOw" name="messageExpression" type="_ow1gcD2REeC9A8BnhOyXOw" lower="0"/>
+        <ownedAttribute xmi:type="cmof:Property" xmi:id="_f9bxID2REeC9A8BnhOyXOw" name="messageExpression" type="_ow1gcD2REeC9A8BnhOyXOw" lower="0" isComposite="true"/>
       </ownedMember>
       <ownedMember xmi:type="cmof:Class" xmi:id="_ow1gcD2REeC9A8BnhOyXOw" name="OclExpression" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_iYCCcDxsEeCYibdAWnk0AQ" name="OpaqueExpression">

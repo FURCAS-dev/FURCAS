@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOclImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: ExpressionInOclImpl.java,v 1.4 2011/03/14 07:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -100,7 +100,7 @@ public class ExpressionInOclImpl
 	protected EList<Variable> parameterVariables;
 
 	/**
-	 * The cached value of the '{@link #getMessageExpression() <em>Message Expression</em>}' reference.
+	 * The cached value of the '{@link #getMessageExpression() <em>Message Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMessageExpression()
@@ -414,6 +414,13 @@ public class ExpressionInOclImpl
 			messageExpression = (OclExpression)eResolveProxy(oldMessageExpression);
 			if (messageExpression != oldMessageExpression)
 			{
+				InternalEObject newMessageExpression = (InternalEObject)messageExpression;
+				NotificationChain msgs = oldMessageExpression.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, null);
+				if (newMessageExpression.eInternalContainer() == null)
+				{
+					msgs = newMessageExpression.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, msgs);
+				}
+				if (msgs != null) msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, oldMessageExpression, messageExpression));
 			}
@@ -436,12 +443,49 @@ public class ExpressionInOclImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMessageExpression(OclExpression newMessageExpression)
+	public NotificationChain basicSetMessageExpression(OclExpression newMessageExpression, NotificationChain msgs)
 	{
 		OclExpression oldMessageExpression = messageExpression;
 		messageExpression = newMessageExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, oldMessageExpression, messageExpression));
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, oldMessageExpression, newMessageExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMessageExpression(OclExpression newMessageExpression)
+	{
+		if (newMessageExpression != messageExpression)
+		{
+			NotificationChain msgs = null;
+			if (messageExpression != null)
+				msgs = ((InternalEObject)messageExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, msgs);
+			if (newMessageExpression != null)
+				msgs = ((InternalEObject)newMessageExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, null, msgs);
+			msgs = basicSetMessageExpression(newMessageExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION, newMessageExpression, newMessageExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclExpression createMessageExpression(EClass eClass)
+	{
+		OclExpression newMessageExpression = (OclExpression) create(eClass);
+		setMessageExpression(newMessageExpression);
+		return newMessageExpression;
 	}
 
 	/**
@@ -472,6 +516,8 @@ public class ExpressionInOclImpl
 				return basicSetResultVariable(null, msgs);
 			case PivotPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE:
 				return ((InternalEList<?>)getParameterVariables()).basicRemove(otherEnd, msgs);
+			case PivotPackage.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION:
+				return basicSetMessageExpression(null, msgs);
 		}
 		return eDynamicInverseRemove(otherEnd, featureID, msgs);
 	}
