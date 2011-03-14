@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.3 2011/03/08 15:15:20 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.5 2011/03/12 16:16:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -25,46 +25,15 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  * Tests for OclAny operations.
  */
 @SuppressWarnings("nls")
-public class EvaluateOclAnyOperationsTest extends PivotTestSuite
+public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 {
-	org.eclipse.ocl.examples.pivot.Package pkg1;
-	org.eclipse.ocl.examples.pivot.Package pkg2;
-	org.eclipse.ocl.examples.pivot.Package pkg3;
-	org.eclipse.ocl.examples.pivot.Package pkg4;
-	org.eclipse.ocl.examples.pivot.Package pkg5;
-	org.eclipse.ocl.examples.pivot.Package jim;
-	org.eclipse.ocl.examples.pivot.Package bob;
-	org.eclipse.ocl.examples.pivot.Package george;
-
     @Override
     protected void setUp() {
         super.setUp();
-		typeManager.addGlobalNamespace("pivot", typeManager.getPivotPackage());
-
-        // need a metamodel that has a reflexive EReference.
-        // Ecore will do nicely. Create the following structure:
-        // pkg1
-        //  pkg2
-        //   jim
-        //  bob
-        //  pkg3
-        //   pkg4
-        //   pkg5
-        //    george
-
-        pkg1 = typeManager.createPackage("pkg1");
-/*        pkg2 = reflection.createNestedPackage(pkg1, "pkg2");
-        jim = reflection.createNestedPackage(pkg2, "jim");
-        bob = reflection.createNestedPackage(pkg1, "bob");
-        pkg3 = reflection.createNestedPackage(pkg1, "pkg3");
-        pkg4 = reflection.createNestedPackage(pkg3, "pkg4");
-        pkg5 = reflection.createNestedPackage(pkg3, "pkg5");
-        george = reflection.createNestedPackage(pkg5, "george"); */
-//        helper.setContext(getMetaclass(denormalize("%Package")));
-        helper.setContext(getMetaclass(denormalize("OclAny")));
+        helper.setContext(getMetaclass("OclAny"));
     }
 
-	public void testEqualInvalid() {
+    public void testEqualInvalid() {
 		assertQueryInvalid(null, "invalid = 3");
 		assertQueryInvalid(null, "3 = invalid");
 		assertQueryInvalid(null, "invalid = 3.0");
@@ -612,21 +581,26 @@ public class EvaluateOclAnyOperationsTest extends PivotTestSuite
         assertQueryFalse(pkg1, "'null'.oclIsUndefined()");
         assertQueryFalse(pkg1, "self.oclIsUndefined()");
     }
-	
-	/**
-	 * Tests the allInstances() operator.
-	 */
-	public void test_allInstances() {
-		assertQueryEquals(pkg1, 1, "pivot::Package.allInstances()->size()");
-		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
-		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
-		assertQueryResults(null, "Set{}", "pivot::Package.allInstances()");
-		assertQueryEquals(pkg1, 1, "pivot::Package.allInstances()->size()");
-		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Integer");
-		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "String");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set(Integer)");
-		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "OclAny");
-		assertQueryInvalid(null, "OclInvalid.allInstances()");
-		// FIXME Subtest-not-implemented Enumeration
-	}
+
+    /**
+     * Tests the oclType() operator.
+     */
+    public void test_oclType() {
+    	assertQueryEquals(null, typeManager.getBooleanType(), "true.oclType()");
+    	assertQueryEquals(null, typeManager.getUnlimitedNaturalType(), "3.oclType()");
+    	assertQueryEquals(null, typeManager.getRealType(), "3.0.oclType()");
+    	assertQueryEquals(null, typeManager.getUnlimitedNaturalType(), "*.oclType()");
+    	assertQueryEquals(null, typeManager.getStringType(), "'string'.oclType()");
+// FIXME    	assertQueryEquals(null, typeManager.getSetType(), "Set{}.oclType()");
+// FIXME    	assertQueryEquals(null, typeManager.getSetType(), "Set{1}.oclType()");
+    	assertQueryEquals(null, typeManager.getOclVoidType(), "null.oclType()");
+    	assertQueryEquals(null, typeManager.getOclInvalidType(), "invalid.oclType()");
+    	assertQueryEquals(null, typeManager.getOclAnyType(), "self.oclType()");
+    	assertQueryEquals(pkg1, typeManager.getPivotType("Package"), "self.oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("PrimitiveType"), "3.oclType().oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("Class"), "3.oclType().oclType().oclType()");
+    	assertQueryEquals(null, typeManager.getPivotType("Class"), "3.oclType().oclType().oclType().oclType()");
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.MismatchedArgumentCount_ERROR_, 1, 0);
+    }
+
 }

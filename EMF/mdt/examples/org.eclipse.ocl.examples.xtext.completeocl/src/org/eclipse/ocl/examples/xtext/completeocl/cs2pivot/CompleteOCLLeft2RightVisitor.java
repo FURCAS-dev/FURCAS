@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLeft2RightVisitor.java,v 1.4 2011/03/04 13:56:19 ewillink Exp $
+ * $Id: CompleteOCLLeft2RightVisitor.java,v 1.6 2011/03/12 18:44:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -129,11 +130,21 @@ public class CompleteOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitDefCS(DefCS csDef) {
-		Operation contextOperation = PivotUtil.getPivot(Operation.class, csDef);
+		Feature contextFeature;
+		Operation contextOperation = null;
+		Property contextProperty = null;
+		if (csDef.isOperation()) {
+			contextOperation = PivotUtil.getPivot(Operation.class, csDef);
+			contextFeature = contextOperation;
+		}
+		else {
+			contextProperty = PivotUtil.getPivot(Property.class, csDef);
+			contextFeature = contextProperty;
+		}
 		ExpSpecificationCS csSpecification = (ExpSpecificationCS) csDef.getSpecification();
 		ExpCS csExpression = csSpecification.getOwnedExpression();
 		Constraint pivotConstraint = context.refreshMonikeredElement(Constraint.class,
-			PivotPackage.Literals.CONSTRAINT, csSpecification.getMoniker() + "xx");
+			PivotPackage.Literals.CONSTRAINT, csSpecification.getMoniker());
 		ExpressionInOcl pivotSpecification = context.refreshMonikeredElement(ExpressionInOcl.class,
 			PivotPackage.Literals.EXPRESSION_IN_OCL, csSpecification);
 		context.installPivotElement(csSpecification, pivotSpecification);
@@ -146,28 +157,33 @@ public class CompleteOCLLeft2RightVisitor
 			pivotSpecification.setContextVariable(contextVariable);
 		}
 		String selfVariableName = Environment.SELF_VARIABLE_NAME;
-		context.setType(contextVariable, contextOperation.getClass_());
-        pivotSpecification.getParameterVariables().clear();
-        for (Parameter parameter : contextOperation.getOwnedParameters()) {
-	        Variable param = PivotFactory.eINSTANCE.createVariable();
-	        param.setName(parameter.getName());
-	        param.setType(parameter.getType());
-	        param.setRepresentedParameter(parameter);
-	        pivotSpecification.getParameterVariables().add(param);
-        }
-/*	       if (csConstraint instanceof PostCS) {
-			Variable resultVariable = pivotSpecification.getResultVariable();
-			if (resultVariable == null) {
-				resultVariable = PivotFactory.eINSTANCE.createVariable();
-			}
-			resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
-			resultVariable.setType(contextOperation.getType());
-			pivotSpecification.setResultVariable(resultVariable);
-	       } */
+		if (contextOperation != null) {
+			context.setType(contextVariable, contextOperation.getClass_());
+	        pivotSpecification.getParameterVariables().clear();
+	        for (Parameter parameter : contextOperation.getOwnedParameters()) {
+		        Variable param = PivotFactory.eINSTANCE.createVariable();
+		        param.setName(parameter.getName());
+		        param.setType(parameter.getType());
+		        param.setRepresentedParameter(parameter);
+		        pivotSpecification.getParameterVariables().add(param);
+	        }
+	/*	       if (csConstraint instanceof PostCS) {
+				Variable resultVariable = pivotSpecification.getResultVariable();
+				if (resultVariable == null) {
+					resultVariable = PivotFactory.eINSTANCE.createVariable();
+				}
+				resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
+				resultVariable.setType(contextOperation.getType());
+				pivotSpecification.setResultVariable(resultVariable);
+		       } */
+		}
+		else if (contextProperty != null) {
+			context.setType(contextVariable, contextProperty.getClass_());
+		}
 		context.refreshName(contextVariable, selfVariableName);
 		OclExpression bodyExpression = context.visitLeft2Right(OclExpression.class, csExpression);		
 		pivotSpecification.setBodyExpression(bodyExpression);
-		contextOperation.getOwnedRules().add(pivotConstraint);
-		return contextOperation;
+		contextFeature.getOwnedRules().add(pivotConstraint);
+		return contextFeature;
 	}
 }

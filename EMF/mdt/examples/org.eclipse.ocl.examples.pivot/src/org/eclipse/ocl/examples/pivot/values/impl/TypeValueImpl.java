@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeValueImpl.java,v 1.3 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: TypeValueImpl.java,v 1.4 2011/03/12 13:21:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -33,11 +33,11 @@ public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 	}
 
 	public Type getType() {
-		return element;
+		return (Type) object;
 	}
 
 	@Override
 	public Type getType(TypeManager typeManager, Type staticType) {
-		return element;
+		return (Type) object;
 	}
 }

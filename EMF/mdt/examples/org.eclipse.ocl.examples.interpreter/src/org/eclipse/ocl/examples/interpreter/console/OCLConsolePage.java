@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.1 2010/03/11 10:13:26 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.2 2011/03/14 10:34:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.interpreter.console;
@@ -61,6 +61,7 @@ import org.eclipse.jface.text.TextViewer;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
@@ -91,13 +92,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.actions.ClearOutputAction;
+import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -209,7 +215,11 @@ public class OCLConsolePage
 		selectionService.addPostSelectionListener(selectionListener);
 		
 		// get current selection
-		selectionChanged(selectionService.getSelection());
+		ISelection selection = selectionService.getSelection();
+		if (selection == null) {
+			selection = getActiveSelection();
+		}
+		selectionChanged(selection);
 		
 		((SashForm) page).setWeights(new int[] {2, 1});
 		
@@ -359,6 +369,39 @@ public class OCLConsolePage
     	    action.run();
     	    action.setChecked(true);
 	    }
+	}
+
+	private ISelection getActiveSelection() {
+		try {
+			IPageSite site = getSite();
+			if (site == null) {
+				return null;
+			}
+			IWorkbenchWindow workbenchWindow = site.getWorkbenchWindow();
+			if (workbenchWindow == null) {
+				return null;
+			}
+			IWorkbenchPage activePage = workbenchWindow.getActivePage();
+			if (activePage == null) {
+				return null;
+			}
+			IEditorPart activeEditor = activePage.getActiveEditor();
+			if (activeEditor == null) {
+				return null;
+			}
+			IEditorSite editorSite = activeEditor.getEditorSite();
+			if (editorSite == null) {
+				return null;
+			}
+			ISelectionProvider selectionProvider = editorSite.getSelectionProvider();
+			if (selectionProvider == null) {
+				return null;
+			}
+			return selectionProvider.getSelection();
+		}
+		catch (Exception e) {
+			return  null;
+		}
 	}
 	
 	private void selectionChanged(ISelection sel) {
@@ -613,10 +656,10 @@ public class OCLConsolePage
 						}
 						history.add(0, document.get().trim());
 						currentHistoryPointer = 1;
-						document.set(history.get(currentHistoryPointer));
+						setTextFromHistory();
 					} else if (currentHistoryPointer < history.size() - 1) {
 						currentHistoryPointer++;
-						document.set(history.get(currentHistoryPointer));
+						setTextFromHistory();
 					}
 				}				
 				break;
@@ -626,7 +669,7 @@ public class OCLConsolePage
 					// history
 					if (currentHistoryPointer > 0) {
 						currentHistoryPointer--;
-						document.set(history.get(currentHistoryPointer));
+						setTextFromHistory();
 					}
 				}				
 				break;
@@ -656,6 +699,12 @@ public class OCLConsolePage
 			        input.getContentAssistant().showPossibleCompletions();
 			    }
 			}
+		}
+
+		protected void setTextFromHistory() {
+			String newText = history.get(currentHistoryPointer);
+			document.set(newText);
+			input.setSelectedRange(newText.length(), 0);
 		}
 	}
 

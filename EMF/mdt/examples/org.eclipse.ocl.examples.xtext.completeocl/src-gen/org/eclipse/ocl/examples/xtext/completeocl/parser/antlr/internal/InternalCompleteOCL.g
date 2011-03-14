@@ -719,11 +719,22 @@ ruleDefCS returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_5='(' 
+)((
+(
+		lv_operation_5_0=	'(' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getDefCSAccess().getLeftParenthesisKeyword_5_0());
+        newLeafNode(lv_operation_5_0, grammarAccess.getDefCSAccess().getOperationLeftParenthesisKeyword_5_0_0());
     }
-((
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getDefCSRule());
+	        }
+       		setWithLastConsumed($current, "operation", true, "(");
+	    }
+
+)
+)((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getDefCSAccess().getParametersParameterCSParserRuleCall_5_1_0_0()); 

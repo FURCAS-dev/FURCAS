@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.5 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.6 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePostOrderVisitor;
@@ -67,7 +68,12 @@ public class CompleteOCLPostOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			context.visitLeft2Right(Operation.class, csElement);
+			if (csElement.isOperation()) {
+				context.visitLeft2Right(Operation.class, csElement);
+			}
+			else {
+				context.visitLeft2Right(Property.class, csElement);
+			}
 			return null;
 		}
 	}
@@ -81,9 +87,11 @@ public class CompleteOCLPostOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			Map<NamedElement, List<ContextConstraintCS>> intermediate = context.getIntermediate(rulesKey);
-			for (NamedElement pivot : intermediate.keySet()) {
-				List<ContextConstraintCS> constraints = intermediate.get(pivot);
-				context.refreshList(Constraint.class, pivot.getOwnedRules(), constraints);
+			if (intermediate != null) {
+				for (NamedElement pivot : intermediate.keySet()) {
+					List<ContextConstraintCS> constraints = intermediate.get(pivot);
+					context.refreshList(Constraint.class, pivot.getOwnedRules(), constraints);
+				}
 			}
 			return null;
 		}

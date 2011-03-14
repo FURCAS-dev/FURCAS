@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefCS.java,v 1.4 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: DefCS.java,v 1.5 2011/03/11 20:23:52 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isStatic <em>Static</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getConstrainedName <em>Constrained Name</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#getOwnedType <em>Owned Type</em>}</li>
  * </ul>
@@ -91,6 +92,32 @@ public interface DefCS extends ContextConstraintCS {
 	 * @generated
 	 */
 	void setConstrainedName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Operation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operation</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operation</em>' attribute.
+	 * @see #setOperation(boolean)
+	 * @see org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage#getDefCS_Operation()
+	 * @model
+	 * @generated
+	 */
+	boolean isOperation();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.DefCS#isOperation <em>Operation</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operation</em>' attribute.
+	 * @see #isOperation()
+	 * @generated
+	 */
+	void setOperation(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
