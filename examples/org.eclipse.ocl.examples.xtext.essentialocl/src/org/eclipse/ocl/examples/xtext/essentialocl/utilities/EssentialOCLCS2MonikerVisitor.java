@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.6 2011/03/01 08:46:49 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.7 2011/03/14 10:19:41 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
@@ -30,6 +31,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
@@ -117,6 +119,18 @@ public class EssentialOCLCS2MonikerVisitor
 				context.append(MONIKER_OPERATOR_SEPARATOR);
 				context.append(MONIKER_LET_EXP);
 				context.append(MONIKER_SCOPE_SEPARATOR);
+			}
+		}
+		else if (pivotingFeature == EssentialOCLCSTPackage.Literals.EXP_SPECIFICATION_CS__OWNED_EXPRESSION) {
+			EObject pivotingParentParent = pivotingParent.eContainer();
+			if (pivotingParentParent instanceof ConstraintCS) {
+				ConstraintCS csConstraint = (ConstraintCS)pivotingParentParent;
+				if (pivotingParent == csConstraint.getSpecification()) {
+					pivotingFeature = PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION;
+				}
+				else if (pivotingParent == csConstraint.getMessageSpecification()) {
+					pivotingFeature = PivotPackage.Literals.EXPRESSION_IN_OCL__MESSAGE_EXPRESSION;
+				}
 			}
 		}
 		int index = 0;
