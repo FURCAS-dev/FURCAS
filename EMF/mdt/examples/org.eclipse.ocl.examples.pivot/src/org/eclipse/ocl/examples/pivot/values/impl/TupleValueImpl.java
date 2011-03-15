@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleValueImpl.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: TupleValueImpl.java,v 1.6 2011/03/14 17:04:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.values.impl;
@@ -39,7 +39,7 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 {
     private final TupleType type;
     private final Map<String, Value> parts = new java.util.HashMap<String, Value>();
-    private final int hashCode;			// FIXME just for debugging
+    private Integer hashCode = null;
 
     /**
      * Initializes me with a map of part values.
@@ -53,7 +53,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         for (Map.Entry<? extends TypedElement, Value> entry : values.entrySet()) {
             parts.put(entry.getKey().getName(), entry.getValue());
         }
-        this.hashCode = computeHashCode();
 //        System.out.println(this + " : " + getTupleType().getMoniker() + " @* " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
     
@@ -70,7 +69,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
         this.type = type;						// FIXME use optimised ProductTupleImpl
         parts.put("first", firstValue);			// FIXME define "first" elsewhere
         parts.put("second", secondValue);
-        this.hashCode = computeHashCode();
 //        System.out.println(this + " : " + getTupleType().getMoniker() + " @2 " + hashCode + " = " + type.hashCode() + " + " + parts.hashCode());
     }
 
@@ -81,12 +79,6 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
 	public Value asValidValue() {
 		return this;
 	}
-	
-    private int computeHashCode() {
-        int typeHashCode = type.hashCode();
-		int partsHashCode = parts.hashCode();
-		return 37 * typeHashCode + 17 * partsHashCode;
-    }
 
     // implements the inherited specification
     public TupleType getTupleType() {
@@ -125,6 +117,11 @@ public class TupleValueImpl extends AbstractValue implements TupleValue
     // overrides the inherited implementation
     @Override
     public int hashCode() {
+    	if (hashCode == null) {
+            int typeHashCode = type.hashCode();
+    		int partsHashCode = parts.hashCode();
+    		hashCode = 37 * typeHashCode + 17 * partsHashCode;
+    	}
 		return hashCode;
     }
 
