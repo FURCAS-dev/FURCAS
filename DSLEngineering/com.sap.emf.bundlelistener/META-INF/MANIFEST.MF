@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Bundlelistener
+Bundle-SymbolicName: com.sap.emf.bundlelistener;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.emf.bundlelistener.EMFBundleListener
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.emf.bundlelistener

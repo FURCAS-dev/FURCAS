@@ -13,29 +13,28 @@
  *
  * </copyright>
  *
- * $Id: XtextConsolePlugin.java,v 1.1 2011/03/04 22:18:03 ewillink Exp $
+ * $Id: XtextConsolePlugin.java,v 1.2 2011/03/11 15:26:21 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleContext;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+
+import com.google.inject.Module;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class XtextConsolePlugin extends AbstractUIPlugin {
-
-	
+public class XtextConsolePlugin extends EssentialOCLActivator
+{
 	// The shared instance.
 	private static XtextConsolePlugin plugin;
 
 	/**
-	 * The constructor.
+	 * Returns the shared instance.
 	 */
-	public XtextConsolePlugin() {
-		super();
-		plugin = this;
+	public static XtextConsolePlugin getInstance() {
+		return plugin;
 	}
 
 	/**
@@ -44,27 +43,30 @@ public class XtextConsolePlugin extends AbstractUIPlugin {
 	 * @return my plug-in ID
 	 */
 	public static String getPluginId() {
-		return getDefault().getBundle().getSymbolicName();
+		return getInstance().getBundle().getSymbolicName();
+	}
+
+	/**
+	 * The constructor.
+	 */
+	public XtextConsolePlugin() {
+		super();
+		plugin = this;
 	}
 	
-	/**
-	 * This method is called upon plug-in activation
-	 */
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
+	protected Module getRuntimeModule(String grammar) {
+		if (LANGUAGE_ID.equals(grammar)) {
+		  return new XtextConsoleRuntimeModule();
+		}
+		
+		throw new IllegalArgumentException(grammar);
 	}
-
-	/**
-	 * This method is called when the plug-in is stopped
-	 */
-	public void stop(BundleContext context) throws Exception {
-		super.stop(context);
-	}
-
-	/**
-	 * Returns the shared instance.
-	 */
-	public static XtextConsolePlugin getDefault() {
-		return plugin;
+	
+	protected Module getUiModule(String grammar) {
+		if (LANGUAGE_ID.equals(grammar)) {
+		  return new XtextConsoleUiModule(this);
+		}
+		
+		throw new IllegalArgumentException(grammar);
 	}
 }

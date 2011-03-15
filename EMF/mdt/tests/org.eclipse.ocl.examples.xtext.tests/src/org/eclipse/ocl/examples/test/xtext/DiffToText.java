@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DiffToText.java,v 1.2 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: DiffToText.java,v 1.4 2011/03/07 15:51:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 

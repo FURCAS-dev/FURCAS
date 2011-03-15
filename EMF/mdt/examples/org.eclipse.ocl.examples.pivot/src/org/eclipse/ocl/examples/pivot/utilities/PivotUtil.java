@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.8 2011/03/05 05:57:46 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.10 2011/03/14 17:01:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +38,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.DataType;
@@ -71,6 +75,13 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 public class PivotUtil
 {	
 	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
+
+	private static final AdapterFactory reflectiveAdapterFactory =
+		new ReflectiveItemProviderAdapterFactory();
+
+	private static final AdapterFactory defaultAdapterFactory =
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
 
 	/**
 	 * 'Highest' precedence first
@@ -132,6 +143,166 @@ public class PivotUtil
 			return false;
 		}
 		return ((EClass) targetType).isSuperTypeOf((EClass) contentType);
+	}
+
+	/**
+	 * Mostly copied from {@link java.util.Properties#loadConvert} via
+	 * {@link org.eclipse.xtext.util.Strings#convertFromJavaString}
+	 */
+	public static String convertFromOCLString(String javaString) {
+		char[] in = javaString.toCharArray();
+		int off = 0;
+		int len = javaString.length();
+		char[] convtBuf = new char[len];
+		char aChar;
+		char[] out = convtBuf;
+		int outLen = 0;
+		int end = off + len;
+
+		while (off < end) {
+			aChar = in[off++];
+			if (aChar == '\\') {
+				aChar = in[off++];
+				if (aChar == 'u') {
+					// Read the xxxx
+					int value = 0;
+					if(off+4 > end)
+						throw new IllegalArgumentException("Malformed \\uxxxx encoding.");
+					for (int i = 0; i < 4; i++) {
+						aChar = in[off++];
+						switch (aChar) {
+							case '0':
+							case '1':
+							case '2':
+							case '3':
+							case '4':
+							case '5':
+							case '6':
+							case '7':
+							case '8':
+							case '9':
+								value = (value << 4) + aChar - '0';
+								break;
+							case 'a':
+							case 'b':
+							case 'c':
+							case 'd':
+							case 'e':
+							case 'f':
+								value = (value << 4) + 10 + aChar - 'a';
+								break;
+							case 'A':
+							case 'B':
+							case 'C':
+							case 'D':
+							case 'E':
+							case 'F':
+								value = (value << 4) + 10 + aChar - 'A';
+								break;
+							default:
+								throw new IllegalArgumentException("Malformed \\uxxxx encoding.");
+						}
+					}
+					out[outLen++] = (char) value;
+				} else {
+					if (aChar == 't')
+						aChar = '\t';
+					else if (aChar == 'r')
+						aChar = '\r';
+					else if (aChar == 'n')
+						aChar = '\n';
+					else if (aChar == 'f')
+						aChar = '\f';
+					else if (aChar == 'b')
+						aChar = '\b';
+					else if (aChar == '"')
+						aChar = '\"';
+					else if (aChar == '\'')
+						aChar = '\'';
+					else if (aChar == '\\')
+						aChar = '\\';
+					else
+						throw new IllegalArgumentException("Illegal escape character \\" + aChar);
+					out[outLen++] = aChar;
+				}
+			} else {
+				out[outLen++] = aChar;
+			}
+		}
+		return new String(out, 0, outLen);
+	}
+
+	/**
+	 * Mostly copied from {@link java.util.Properties#saveConvert} via
+	 * {@link org.eclipse.xtext.util.Strings#convertToJavaString}
+	 */
+	public static String convertToOCLString(String theString) {
+		int len = theString.length();
+		int bufLen = len * 2;
+		if (bufLen < 0) {
+			bufLen = Integer.MAX_VALUE;
+		}
+		StringBuffer outBuffer = new StringBuffer(bufLen);
+
+		for (int x = 0; x < len; x++) {
+			char aChar = theString.charAt(x);
+			// Handle common case first, selecting largest block that
+			// avoids the specials below
+			if ((aChar > 61) && (aChar < 127)) {
+				if (aChar == '\\') {
+					outBuffer.append('\\');
+					outBuffer.append('\\');
+					continue;
+				}
+				outBuffer.append(aChar);
+				continue;
+			}
+			switch (aChar) {
+				case ' ':
+					outBuffer.append(' ');
+					break;
+				case '\t':
+					outBuffer.append('\\');
+					outBuffer.append('t');
+					break;
+				case '\n':
+					outBuffer.append('\\');
+					outBuffer.append('n');
+					break;
+				case '\r':
+					outBuffer.append('\\');
+					outBuffer.append('r');
+					break;
+				case '\f':
+					outBuffer.append('\\');
+					outBuffer.append('f');
+					break;
+				case '\b':
+					outBuffer.append('\\');
+					outBuffer.append('b');
+					break;
+				case '\'':
+					outBuffer.append('\\');
+					outBuffer.append('\'');
+					break;
+//				case '"':
+//					outBuffer.append('\\');
+//					outBuffer.append('"');
+//					break;
+				default:
+					if (((aChar < 0x0020) || (aChar > 0x007e))) {
+						outBuffer.append('\\');
+						outBuffer.append('u');
+						outBuffer.append(toHex((aChar >> 12) & 0xF));
+						outBuffer.append(toHex((aChar >> 8) & 0xF));
+						outBuffer.append(toHex((aChar >> 4) & 0xF));
+						outBuffer.append(toHex(aChar & 0xF));
+					} else {
+						outBuffer.append(aChar);
+					}
+			}
+		}
+		return outBuffer.toString();
 	}
 
 	/**
@@ -387,6 +558,18 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static String getLabel(EObject eObject) {
+		IItemLabelProvider labeler =
+			(IItemLabelProvider) defaultAdapterFactory.adapt(eObject, IItemLabelProvider.class);		
+		if (labeler == null) {
+			labeler = (IItemLabelProvider) reflectiveAdapterFactory.adapt(eObject, IItemLabelProvider.class);
+		}		
+		if (labeler != null) {
+			return labeler.getText(eObject);
+		}
+		return eObject.toString();
 	}
 
 	public static String getMessage(OpaqueExpression specification) {
@@ -657,4 +840,16 @@ public class PivotUtil
 		});
 		return list;
 	}
+
+	/**
+	 * Copied from {@link java.util.Properties}
+	 */
+	public static char toHex(int nibble) {
+		return hexDigit[(nibble & 0xF)];
+	}
+
+	/**
+	 * Copied from {@link java.util.Properties}
+	 */
+	private static final char[] hexDigit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 }

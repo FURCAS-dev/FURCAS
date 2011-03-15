@@ -1,6 +1,7 @@
 package com.sap.emf.ocl.trigger.impl;
 
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
@@ -20,6 +21,11 @@ public class TriggerManagerFactoryImpl implements TriggerManagerFactory {
     }
 
     @Override
+    public TriggerManager createTriggerManager(OppositeEndFinder oppositeEndFinder, EventManager eventManager) {
+        return new TriggerManagerImpl(oppositeEndFinder, eventManager);
+    }
+
+    @Override
     public TriggerManager createTriggerManager(OppositeEndFinder oppositeEndFinder, ActivationOption impactAnalysisConfiguration) {
         return new TriggerManagerImpl(oppositeEndFinder, impactAnalysisConfiguration);
     }
@@ -27,6 +33,12 @@ public class TriggerManagerFactoryImpl implements TriggerManagerFactory {
     @Override
     public TriggerManager createTriggerManager(ActivationOption impactAnalysisConfiguration) {
         return new TriggerManagerImpl(impactAnalysisConfiguration);
+    }
+
+    @Override
+    public TriggerManager createTriggerManager(OppositeEndFinder oppositeEndFinder,
+            ActivationOption impactAnalysisConfiguration, EventManager eventManager) {
+        return new TriggerManagerImpl(oppositeEndFinder, impactAnalysisConfiguration, eventManager);
     }
 
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.3 2011/02/11 20:00:46 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.4 2011/03/08 15:14:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -21,7 +21,11 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.OclExpression;
+import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -29,7 +33,9 @@ import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.osgi.util.NLS;
 
 public class EssentialOCLCS2Pivot extends BaseCS2Pivot
@@ -74,13 +80,37 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			String messageTemplate;
+			ExpCS navigationArgument = null;
 			if (context.eContainer() instanceof NavigatingExpCS) {
-				messageTemplate = OCLMessages.ErrorUnresolvedOperationName;
+				navigationArgument = (NavigatingExpCS)context.eContainer();
+				messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
+			}
+			else if (context instanceof ExpCS) {
+				navigationArgument = (ExpCS)context;
+				messageTemplate = OCLMessages.UnresolvedProperty_ERROR_;
 			}
 			else {
-				messageTemplate = OCLMessages.ErrorUnresolvedPropertyName;
+				messageTemplate = "Unknown unresolved context";
 			}
-			return NLS.bind(messageTemplate, linkText);
+			String typeText = "Unknown type";
+			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
+			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
+//				NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csOperator;
+				OclExpression source = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
+				if (source != null) {
+					Type sourceType;
+					if (source instanceof TypeExp) {			// FIXME regularize this
+						sourceType = ((TypeExp)source).getReferredType();
+					}
+					else {
+						sourceType = source.getType();
+					}
+					if (sourceType != null) {
+						typeText = sourceType.toString();
+					}
+				}
+			}
+			return NLS.bind(messageTemplate, linkText, typeText);
 		}
 	}
 		

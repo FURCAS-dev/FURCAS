@@ -241,9 +241,9 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         for (EStructuralFeature ref : value.eClass().getEAllStructuralFeatures()) {
             //init new Notification
             Notification notification=null;
-            Object valueOfRef = value.eGet(ref);
-            if(valueOfRef==null){
-                //no value so nothing to do here
+            Object valueOfRef = value.eGet(ref, /* resolve */ false);
+            if(valueOfRef==null || (valueOfRef instanceof EObject && ((EObject) valueOfRef).eIsProxy())) {
+                //no value or proxy pointing to other resource so nothing to do here
                 continue;
             }
             if (ref.isMany()) {

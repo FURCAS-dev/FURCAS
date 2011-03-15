@@ -337,6 +337,20 @@ public class QueryResultView extends ViewPart {
 
 	public void dispose() {
 	}
+	
+	/**
+	 * Clears the table view once the next query is executed
+	 */
+	public void resetTableView(){
+		int index=0;
+		while(tv.getElementAt(index)!=null){
+			tv.clear(index);
+			index++;
+		}
+		tv.setInput(null);
+		this.setInput(null,50);
+		tv.setItemCount(0);	
+	}
 
 	List<TableViewerColumn> cols = new ArrayList<TableViewerColumn>();
 
@@ -392,26 +406,28 @@ public class QueryResultView extends ViewPart {
 				}
 				treeColumn.getColumn().setText(string);
 
-				ColumnViewerSorter cSorter = new ColumnViewerSorter(tv, treeColumn, i) {
-
-					protected int doCompare(Viewer viewer, Object e1, Object e2, int pos) {
-						Row r1 = (Row) e1;
-						Row r2 = (Row) e2;
-
-						return r1.get(pos).toString().compareToIgnoreCase(r2.get(pos).toString());
-					}
-
-				};
-
-				if (i == 0) {
-					cSorter.setSorter(cSorter, ColumnViewerSorter.ASC);
-				}
+//				ColumnViewerSorter cSorter = new ColumnViewerSorter(tv, treeColumn, i) {
+//
+//					protected int doCompare(Viewer viewer, Object e1, Object e2, int pos) {
+//						Row r1 = (Row) e1;
+//						Row r2 = (Row) e2;
+//
+//						return r1.get(pos).toString().compareToIgnoreCase(r2.get(pos).toString());
+//					}
+//
+//				};
+//
+//				if (i == 0) {
+//					cSorter.setSorter(cSorter, ColumnViewerSorter.ASC);
+//				}
 
 			}
 
-			tv.setInput(rs);
 			int resultSize = rs.getSize();
 			tv.setItemCount(resultSize);
+			tv.getTable().setItemCount(resultSize);
+			tv.setInput(rs);
+			rs.flushResultSet();
 
 			for (int i = 0, n = table.getColumnCount(); i < n; i++) {
 				TableColumn column = table.getColumn(i);

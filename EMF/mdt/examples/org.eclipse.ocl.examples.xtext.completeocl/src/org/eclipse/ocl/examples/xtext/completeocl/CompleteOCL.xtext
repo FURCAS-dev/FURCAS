@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCL.xtext,v 1.10 2011/03/04 13:55:15 ewillink Exp $
+ * $Id: CompleteOCL.xtext,v 1.11 2011/03/11 20:23:52 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.completeocl.CompleteOCL
 with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
@@ -75,7 +75,7 @@ ContextDeclCS returns ContextDeclCS:
 
 DefCS returns DefCS:
 	(static?='static')? stereotype='def' (name=UnrestrictedName)? ':' constrainedName=UnrestrictedName
-	('(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
+	(operation?='(' (parameters+=ParameterCS (',' parameters+=ParameterCS)*)? ')')?
 	':' (ownedType=TypeExpCS)? '=' specification=SpecificationCS;
 
 DerCS returns DerCS:

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementImpl.java,v 1.2 2011/01/24 20:42:33 ewillink Exp $
+ * $Id: MonikeredElementImpl.java,v 1.3 2011/03/14 07:24:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -81,6 +81,9 @@ public abstract class MonikeredElementImpl
 	 * @generated NOT
 	 */
 	public String getMoniker() {
+		if (eIsProxy()) {
+			throw new IllegalStateException("Unresolved proxy for " + eClass().getName() + ": " + eProxyURI()); 
+		}
 		if (moniker == null) {
 			moniker = Pivot2Moniker.toString(this);
 		}

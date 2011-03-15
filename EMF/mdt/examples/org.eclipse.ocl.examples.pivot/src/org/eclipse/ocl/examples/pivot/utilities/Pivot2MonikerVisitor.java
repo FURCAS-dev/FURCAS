@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.7 2011/03/14 10:19:39 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -75,7 +75,7 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		if (!initialized) {
 			initialized = true;
 			roleNames.put(PivotPackage.Literals.LOOP_EXP__BODY, "argument");
-			roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "ownedExpression");
+//			roleNames.put(PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION, "ownedExpression");
 	
 			/*		roleNames.put(PivotPackage.Literals.CALL_EXP__SOURCE, "s");
 			roleNames.put(PivotPackage.Literals.CONSTRAINT__SPECIFICATION, "z");

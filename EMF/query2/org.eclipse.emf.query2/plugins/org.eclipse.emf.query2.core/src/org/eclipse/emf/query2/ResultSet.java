@@ -186,5 +186,10 @@ public interface ResultSet {
 	 * @return the result set pretty-printed as a CSV
 	 */
 	String toString();
+	
+	/**
+	 * Flushes the resultset after setting the result to the corresponding view
+	 */
+	public void flushResultSet();
 
 }

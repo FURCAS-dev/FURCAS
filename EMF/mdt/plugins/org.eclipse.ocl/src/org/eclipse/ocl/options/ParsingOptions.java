@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.9 2010/02/09 21:04:08 ewillink Exp $
+ * $Id: ParsingOptions.java,v 1.10 2011/03/09 13:07:03 auhl Exp $
  */
 
 package org.eclipse.ocl.options;

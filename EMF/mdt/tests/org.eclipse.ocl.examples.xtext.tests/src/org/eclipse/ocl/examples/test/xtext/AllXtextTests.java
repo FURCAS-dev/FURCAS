@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllXtextTests.java,v 1.5 2011/03/01 08:56:01 ewillink Exp $
+ * $Id: AllXtextTests.java,v 1.8 2011/03/14 17:01:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.xtext;
@@ -26,11 +26,14 @@ import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
 import org.eclipse.ocl.examples.pivot.tests.EvaluateBooleanOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateClassifierOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateCollectionOperationsTest;
+import org.eclipse.ocl.examples.pivot.tests.EvaluateNameVisibilityTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateNumericOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateOclAnyOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.EvaluateStringOperationsTest;
 import org.eclipse.ocl.examples.pivot.tests.IteratorsTest;
+import org.eclipse.ocl.examples.pivot.tests.PrettyPrinterTest;
 
 /**
  * Tests for the Xtext editor support.
@@ -55,12 +58,15 @@ public class AllXtextTests
 		result.addTestSuite(PivotTests.class);
 		result.addTestSuite(OCLstdlibTests.class);
 		result.addTestSuite(EvaluateBooleanOperationsTest.class);
+		result.addTestSuite(EvaluateClassifierOperationsTest.class);
 		result.addTestSuite(EvaluateCollectionOperationsTest.class);
+		result.addTestSuite(EvaluateNameVisibilityTest.class);
 		result.addTestSuite(EvaluateNumericOperationsTest.class);
 		result.addTestSuite(EvaluateOclAnyOperationsTest.class);
 		result.addTestSuite(EvaluateStringOperationsTest.class);
 		result.addTestSuite(IteratorsTest.class);
 		result.addTestSuite(LoadTests.class);
+		result.addTestSuite(PrettyPrinterTest.class);
 //		result.addTestSuite(SerializeTests.class);
 		result.addTestSuite(RoundTripTests.class);
 		result.addTestSuite(EditTests.class);

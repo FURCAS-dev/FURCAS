@@ -45,6 +45,7 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
     protected TextBlocksModelElementFactory modelFactory;
     protected Resource transientParsingResource;
     protected EObject rootElement;
+    protected TextBlock rootTextBlock;
     protected static ResourceSet resourceSet;
     protected static EPackage.Registry testMetamodelPackageRegistry;
 
@@ -76,9 +77,8 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         crossRefAdapter.setTarget(resourceSet);
         syntaxRegistry = SyntaxRegistry.getInstance();
         testMetamodelPackageRegistry = addMetamodelPackagesToLocalRegistry(resourceSet);
-        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, testMetamodelPackageRegistry,
-                DefaultOppositeEndFinder.getInstance(), /* progress monitor */ null,
-                incrementalParserFacade.getParserFactory());
+        triggerManager = syntaxRegistry.getTriggerManagerForSyntax(syntax, DefaultOppositeEndFinder.getInstance(),
+                /* progress monitor */ null, incrementalParserFacade.getParserFactory());
     }
 
     private static EPackage.Registry addMetamodelPackagesToLocalRegistry(ResourceSet resourceSet) {
@@ -121,11 +121,11 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         modelFactory = new EMFTextBlocksModelElementFactory();
         transientParsingResource = ResourceTestHelper.createTransientResource(resourceSet);
         AbstractToken content = modelFactory.createToken("");
-        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
-        transientParsingResource.getContents().add(root);
-        TextBlocksModel tbModel = new TextBlocksModel(root, null);
+        rootTextBlock = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, content);
+        transientParsingResource.getContents().add(rootTextBlock);
+        TextBlocksModel tbModel = new TextBlocksModel(rootTextBlock, null);
         tbModel.replace(0, 0, textToParse);
-        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(root);
+        TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(rootTextBlock);
         triggerManager.addToObservedResourceSets(resourceSet);
         EObject result = currentVersionTb.getCorrespondingModelElements().iterator().next();
         return result;
