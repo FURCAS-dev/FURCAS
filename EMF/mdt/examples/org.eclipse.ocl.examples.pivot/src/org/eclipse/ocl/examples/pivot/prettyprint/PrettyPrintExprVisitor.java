@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.4 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.5 2011/03/14 17:01:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -54,6 +54,7 @@ import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 /**
  */
@@ -113,7 +114,14 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		OclExpression source = object.getSource();
 		if (source != null) {
 			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
-				safeVisit(source);
+				if (source instanceof CallExp) {
+					delegate.append("(");
+					precedenceVisit(source, null);
+					delegate.append(")");
+				}
+				else {
+					safeVisit(source);
+				}
 				if (source.getType() instanceof CollectionType) {
 					delegate.append("->");
 				}
@@ -369,7 +377,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 	@Override
 	public Object visitStringLiteralExp(StringLiteralExp object) {
 		delegate.append("'");
-		delegate.append(object.getStringSymbol());
+		delegate.append(PivotUtil.convertToOCLString(object.getStringSymbol()));
 		delegate.append("'");
 		return null;
 	}
