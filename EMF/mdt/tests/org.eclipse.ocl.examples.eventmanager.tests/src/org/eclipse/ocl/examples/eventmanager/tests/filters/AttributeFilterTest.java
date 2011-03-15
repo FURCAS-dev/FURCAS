@@ -8,14 +8,16 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
 /**
@@ -48,7 +50,8 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 		super();
 	}
 
-	private EAttribute attribute;
+	private EAttribute attribute1;
+	private EAttribute attribute2;
 
 
 	/**
@@ -69,9 +72,10 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	@Override
 	public void setUp()  {
 		super.setUp();
-		setFixture(EventManagerFactory.eINSTANCE.createAttributeFilter(null));
-		this.attribute = EcoreFactory.eINSTANCE.createEAttribute();
-		attribute.setName("myAttribute");
+		this.attribute1 = EcoreFactory.eINSTANCE.createEAttribute();
+		this.attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
+		setFixture(EventManagerFactory.eINSTANCE.createAttributeFilter(attribute1));
+
 	}
 
 	/**
@@ -83,7 +87,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	public void tearDown()   {
 		super.tearDown();
 		setFixture(null);
-		this.attribute = null;
+		this.attribute1 = null;
 	}
 
 	/**
@@ -93,8 +97,22 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * @see org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
 	 */
 	public void testSetAttribute__EAttribute() {
-		AttributeFilter filter = EventManagerFactory.eINSTANCE.createAttributeFilter(attribute);
-		assertSame(filter.getFeature(), attribute);
+		assertSame(getFixture().getFeature(), attribute1);
+	}
+
+	@Override
+	StructuralFeatureFilter getFilterFor(Object f) {
+		return EventManagerFactory.eINSTANCE.createAttributeFilter((EAttribute) f);
+	}
+
+	@Override
+	EStructuralFeature getFilterCriterion1() {
+		return attribute1;
+	}
+
+	@Override
+	EStructuralFeature getFilterCriterion2() {
+		return attribute2;
 	}
 
 } //AttributeFilterTest

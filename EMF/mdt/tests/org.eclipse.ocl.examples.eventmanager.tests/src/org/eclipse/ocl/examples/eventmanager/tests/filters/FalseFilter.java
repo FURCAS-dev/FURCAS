@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
@@ -29,8 +29,13 @@ final class FalseFilter extends EventFilter {
 
     @Override
     public boolean equals(Object obj) {
-        return false;
-
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        return true;
     }
 
     @Override
