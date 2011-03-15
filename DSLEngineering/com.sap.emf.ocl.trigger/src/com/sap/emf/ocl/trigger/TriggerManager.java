@@ -22,7 +22,10 @@ public interface TriggerManager {
     void addToObservedResourceSets(ResourceSet resourceSet);
     
     /**
-     * Stops receiving and dispatching notifications coming from <code>resourceSet</code>.
+     * Stops receiving and dispatching notifications coming from <code>resourceSet</code>. Note, that
+     * this will make this trigger manager's {@link EventManager event manager} stop receiving events
+     * from the <code>resourceSet</code>. If the event manager is shared by other elements such as
+     * other trigger managers, those will also stop receiving events. Use with caution!
      * 
      * @see #addToObservedResourceSets(ResourceSet)
      */

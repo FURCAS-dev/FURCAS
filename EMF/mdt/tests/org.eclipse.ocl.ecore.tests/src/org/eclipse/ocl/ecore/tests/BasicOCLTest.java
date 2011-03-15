@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.16 2010/02/09 21:04:27 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.17 2011/03/09 13:07:05 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -61,7 +61,7 @@ public class BasicOCLTest
 	public void testAliasPackageName() throws ParserException {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar");
-		Registry r = new EPackageRegistryImpl(EPackage.Registry.INSTANCE); // delegating registry
+		Registry r = new EPackageRegistryImpl();
 		r.put("EMFEcore", EcorePackage.eINSTANCE);
 		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));
@@ -97,7 +97,7 @@ public class BasicOCLTest
 			throws ParserException {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
 		eCls.setName("bar");
-		Registry r = new EPackageRegistryImpl(EPackage.Registry.INSTANCE); // delegating registry
+		Registry r = new EPackageRegistryImpl();
 		r.put("EMFEcore", EcorePackage.eINSTANCE);
 		r.put("OCLEcore", org.eclipse.ocl.ecore.EcorePackage.eINSTANCE);
 		OCL ocl = OCL.newInstance(new EcoreEnvironmentFactory(r));

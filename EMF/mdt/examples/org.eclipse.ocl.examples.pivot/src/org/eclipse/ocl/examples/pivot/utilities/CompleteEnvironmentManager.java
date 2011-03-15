@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteEnvironmentManager.java,v 1.3 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: CompleteEnvironmentManager.java,v 1.4 2011/03/12 13:28:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -193,6 +193,22 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 		assert completeType.getModel().getMoniker().equals(type.getMoniker());
 		completeTypeMap.put(type, completeType);
 	}
+
+/*	public CompleteElement getCompleteElement(NamedElement namedElement) {
+		if (namedElement instanceof Operation) {
+			return getCompleteOperation((Operation)namedElement);
+		}
+		if (namedElement instanceof org.eclipse.ocl.examples.pivot.Package) {
+			return getCompletePackage((org.eclipse.ocl.examples.pivot.Package)namedElement);
+		}
+		if (namedElement instanceof Property) {
+			return getCompleteProperty((Property)namedElement);
+		}
+		if (namedElement instanceof Type) {
+			return getCompleteType((Type)namedElement);
+		}
+		return null;
+	} */
 
 	@Override
 	public CompleteOperation getCompleteOperation(Operation operation) {
@@ -391,7 +407,12 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 		else {
 			dynamicModelOperation = getDynamicOperationForOperation(completeType, staticModelOperation);
 		}
-		return getCompleteOperation(dynamicModelOperation);
+		if (dynamicModelOperation != null) {
+			return getCompleteOperation(dynamicModelOperation);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	protected Iteration getDynamicOperationForIteration(CompleteType completeType, Iteration staticModelIteration)
@@ -456,7 +477,12 @@ public class CompleteEnvironmentManager extends CompleteEnvironmentImpl
 		if ((modelOperations != null) && (modelOperations.size() == 1)) {
 			dynamicModelOperation = modelOperations.iterator().next();
 		}
-		return getCompleteOperation(dynamicModelOperation);
+		if (dynamicModelOperation != null) {
+			return getCompleteOperation(dynamicModelOperation);
+		}
+		else {
+			return null;
+		}
 	}
 
 	protected Iterable<Iteration> getLocalModelIterations(CompleteType completeType, String name) {

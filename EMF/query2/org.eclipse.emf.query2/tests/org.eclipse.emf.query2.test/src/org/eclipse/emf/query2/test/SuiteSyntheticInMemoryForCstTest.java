@@ -14,7 +14,6 @@ import java.util.LinkedList;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.Parameterized.Parameters;
 
@@ -64,6 +63,7 @@ public class SuiteSyntheticInMemoryForCstTest extends BaseSyntheticQueryTest {
         assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.basic_get_attributes_with_removal( ) );
     }
 
+    @Test
     public void test_like_and_not_like_2( ) throws Exception {
 
         assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.like_and_not_like_2( ) );
@@ -111,6 +111,7 @@ public class SuiteSyntheticInMemoryForCstTest extends BaseSyntheticQueryTest {
         assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_reference_2( ) );
     }
 
+    @Test
     public void test_nested_query_with_reference_and_not_2( ) throws Exception {
 
         assertTrue( Messages.Query2CoreTest_SuiteSyntheticInMemoryForCstTest_IncorrectResultSet, super.nested_query_with_reference_and_not_2( ) );

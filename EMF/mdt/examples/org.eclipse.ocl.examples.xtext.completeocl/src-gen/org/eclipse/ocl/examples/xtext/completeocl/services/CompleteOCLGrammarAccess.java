@@ -364,7 +364,8 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cConstrainedNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cConstrainedNameUnrestrictedNameParserRuleCall_4_0 = (RuleCall)cConstrainedNameAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cOperationAssignment_5_0 = (Assignment)cGroup_5.eContents().get(0);
+		private final Keyword cOperationLeftParenthesisKeyword_5_0_0 = (Keyword)cOperationAssignment_5_0.eContents().get(0);
 		private final Group cGroup_5_1 = (Group)cGroup_5.eContents().get(1);
 		private final Assignment cParametersAssignment_5_1_0 = (Assignment)cGroup_5_1.eContents().get(0);
 		private final RuleCall cParametersParameterCSParserRuleCall_5_1_0_0 = (RuleCall)cParametersAssignment_5_1_0.eContents().get(0);
@@ -381,12 +382,12 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSpecificationSpecificationCSParserRuleCall_9_0 = (RuleCall)cSpecificationAssignment_9.eContents().get(0);
 		
 		//DefCS:
-		//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName ("("
+		//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
 		//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
 		//	specification=SpecificationCS;
 		public ParserRule getRule() { return rule; }
 
-		//static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName ("("
+		//static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
 		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
 		//specification=SpecificationCS
 		public Group getGroup() { return cGroup; }
@@ -418,11 +419,14 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//UnrestrictedName
 		public RuleCall getConstrainedNameUnrestrictedNameParserRuleCall_4_0() { return cConstrainedNameUnrestrictedNameParserRuleCall_4_0; }
 
-		//("(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")?
+		//(operation?="(" (parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")?
 		public Group getGroup_5() { return cGroup_5; }
 
+		//operation?="("
+		public Assignment getOperationAssignment_5_0() { return cOperationAssignment_5_0; }
+
 		//"("
-		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
+		public Keyword getOperationLeftParenthesisKeyword_5_0_0() { return cOperationLeftParenthesisKeyword_5_0_0; }
 
 		//(parameters+=ParameterCS ("," parameters+=ParameterCS)*)?
 		public Group getGroup_5_1() { return cGroup_5_1; }
@@ -1262,7 +1266,7 @@ public class CompleteOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DefCS:
-	//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName ("("
+	//	static?="static"? stereotype="def" name=UnrestrictedName? ":" constrainedName=UnrestrictedName (operation?="("
 	//	(parameters+=ParameterCS ("," parameters+=ParameterCS)*)? ")")? ":" ownedType=TypeExpCS? "="
 	//	specification=SpecificationCS;
 	public DefCSElements getDefCSAccess() {

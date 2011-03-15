@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EclipseCon 2011 Tutorial Xtext States Editor
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.eclipse.ocl.tutorial.eclipsecon2011.states;singleton:=true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
+ org.eclipse.xtext.generator;bundle-version="2.0.0";resolution:=optional,
+ org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
+ de.itemis.xtext.antlr;bundle-version="2.0.0";resolution:=optional,
+ org.eclipse.emf.mwe.core;bundle-version="1.0.0",
+ org.eclipse.xtext.util;bundle-version="2.0.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtend;bundle-version="1.1.0",
+ org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1",
+ org.eclipse.emf.mwe2.launch;bundle-version="2.0.0";resolution:=optional,
+ org.antlr.runtime,
+ org.eclipse.ocl.examples.xtext.completeocl;bundle-version="3.1.0";visibility:=reexport
+Export-Package: org.eclipse.ocl.tutorial.eclipsecon2011,
+ org.eclipse.ocl.tutorial.eclipsecon2011.validation,
+ org.eclipse.ocl.tutorial.eclipsecon2011.services,
+ org.eclipse.ocl.tutorial.eclipsecon2011.states,
+ org.eclipse.ocl.tutorial.eclipsecon2011.states.impl,
+ org.eclipse.ocl.tutorial.eclipsecon2011.states.util,
+ org.eclipse.ocl.tutorial.eclipsecon2011.parseTreeConstruction,
+ org.eclipse.ocl.tutorial.eclipsecon2011.parser.antlr,
+ org.eclipse.ocl.tutorial.eclipsecon2011.parser.antlr.internal
+Import-Package: org.apache.commons.logging;version="1.0.4",
+ org.apache.log4j

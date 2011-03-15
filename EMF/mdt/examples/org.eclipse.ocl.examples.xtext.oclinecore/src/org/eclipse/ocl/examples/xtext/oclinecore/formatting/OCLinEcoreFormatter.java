@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreFormatter.java,v 1.7 2011/02/15 10:36:44 ewillink Exp $
+ * $Id: OCLinEcoreFormatter.java,v 1.8 2011/03/14 17:06:36 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.formatting;
 
@@ -155,6 +155,8 @@ public class OCLinEcoreFormatter extends AbstractEssentialOCLFormatter {
 	    }
 	    {
 			InvariantConstraintCSElements a = f.getInvariantConstraintCSAccess();
+			c.setNoSpace().around(a.getLeftParenthesisKeyword_1_1_0());
+			c.setNoSpace().around(a.getRightParenthesisKeyword_1_1_2());
 			c.setNoSpace().before(a.getColonKeyword_2());
 			setNoSpaceLineWrap(c, a.getSemicolonKeyword_4());
 	    }

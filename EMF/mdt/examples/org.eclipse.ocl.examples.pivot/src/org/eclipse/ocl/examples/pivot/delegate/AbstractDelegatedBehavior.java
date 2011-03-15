@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/03/14 17:04:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -21,17 +21,21 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.NamedElement;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.ValueSpecification;
+import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
@@ -134,10 +138,21 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 					expressionInOcl = PivotUtil.resolveSpecification(typeManager, namedElement, expression);
 					if (expressionInOcl != null) {
 						opaqueExpression.setValueExpression(expressionInOcl);
-					}
-					String message = PivotUtil.getMessage(opaqueExpression);
-					if ((message != null) && (message.length() > 0)) {
-						PivotUtil.resolveSpecification(typeManager, expressionInOcl, message);
+						String message = PivotUtil.getMessage(opaqueExpression);
+						if ((message != null) && (message.length() > 0)) {
+							ExpressionInOcl resolveSpecification = PivotUtil.resolveSpecification(typeManager, namedElement, message);
+							OclExpression messageExpression = resolveSpecification.getBodyExpression();
+							for (TreeIterator<EObject> tit = messageExpression.eAllContents(); tit.hasNext(); ) {
+								EObject eObject = tit.next();
+								if (eObject instanceof VariableExp) {
+									VariableExp variable = (VariableExp)eObject;
+									if (variable.getReferredVariable() == resolveSpecification.getContextVariable()) {
+										variable.setReferredVariable(expressionInOcl.getContextVariable());
+									}
+								}
+							}
+							expressionInOcl.setMessageExpression(messageExpression);
+						}
 					}
 					return expressionInOcl;
 				}

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -17,7 +16,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 
 public class SyntaxProviderImpl implements SyntaxProvider {
-    private ResourceSet resourceSet;
     private ConcreteSyntax syntax;
     private Resource syntaxResource;
     private final AbstractParserFactory<?, ?> parserFactory;
@@ -31,22 +29,23 @@ public class SyntaxProviderImpl implements SyntaxProvider {
     }
 
     @Override
-    public synchronized ResourceSet getResourceSet() throws ParserException, IOException {
-        if (resourceSet == null) {
-            resourceSet = new ResourceSetImpl();
-            triggerManager = SyntaxRegistry.getInstance().getTriggerManagerForSyntax(getSyntax(),
-                    EPackage.Registry.INSTANCE, oppositeEndFinder, /* monitor */ null, parserFactory);
-            triggerManager.addToObservedResourceSets(resourceSet);
+    public synchronized TriggerManager getTriggerManager(SyntaxRegistry syntaxRegistry) throws ParserException, IOException {
+        if (triggerManager == null) {
+            triggerManager = syntaxRegistry.getTriggerManagerForSyntax(getSyntax(null),
+                    oppositeEndFinder, /* monitor */ null, parserFactory);
         }
-        return resourceSet;
+        return triggerManager;
     }
 
     @Override
-    public synchronized ConcreteSyntax getSyntax() throws IOException, ParserException {
+    public synchronized ConcreteSyntax getSyntax(ResourceSet loadSyntaxIn) throws IOException, ParserException {
         if (syntax == null && syntaxResource == null) {
             URI syntaxUri = parserFactory.getSyntaxUri();
             if (syntaxUri != null) {
-                syntaxResource = getResourceSet().createResource(syntaxUri);
+                if (loadSyntaxIn == null) {
+                    loadSyntaxIn = new ResourceSetImpl();
+                }
+                syntaxResource = loadSyntaxIn.createResource(syntaxUri);
                 syntaxResource.load(/* options */null);
                 for (EObject e : syntaxResource.getContents()) {
                     if (e instanceof ConcreteSyntax) {

@@ -133,5 +133,10 @@ public interface SpiFqlQueryResultSet {
 	 * @return an Object array whose size conforms to the row size
 	 */
 	Object[] getEntireRow(int position);
+	
+	/**
+	 * Flushes the resultset after setting the result to the corresponding view
+	 */
+	public void flushResultSet();
 
 }

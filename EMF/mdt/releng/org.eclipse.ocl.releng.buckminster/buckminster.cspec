@@ -14,6 +14,18 @@
         <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
     </cs:dependencies>
     <cs:actions>
+        <cs:public name="create.javadoc" actor="ant">
+            <cs:actorProperties>
+                <cs:property key="buildFile" value="javadoc.ant"/>
+                <cs:property key="targets" value="create.javadoc"/>
+            </cs:actorProperties>
+            <cs:properties>
+                <cs:property key="checkoutLocation" value="${checkout.location}"/>
+                <cs:property key="mustCreateJavadoc" value="${manage.javadoc}"/>
+                <cs:property key="output" value="${buckminster.output}/javadoc/"/>
+                <cs:property key="targetPlatform" value="${targetPlatformPath}"/>
+            </cs:properties>
+        </cs:public>
         <cs:public name="setup.promoter" actor="ant">
             <cs:actorProperties>
                 <cs:property key="buildFile" value="promoter.ant"/>
@@ -27,16 +39,5 @@
                 <cs:property key="targets" value="setup.publisher"/>
             </cs:actorProperties>
         </cs:public>
-        <cs:public name="create.javadoc" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="javadoc.ant" />
-				<cs:property key="targets" value="create.javadoc" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="checkoutLocation" value="${checkout.location}" />
-				<cs:property key="output" value="${buckminster.output}/javadoc/" />
-				<cs:property key="targetPlatform" value="${targetPlatformPath}" />
-			</cs:properties>
-		</cs:public>
     </cs:actions>
 </cs:cspec>

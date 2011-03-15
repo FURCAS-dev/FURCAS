@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.5 2011/03/01 08:47:04 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.7 2011/03/12 18:44:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -24,6 +24,7 @@ import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.CompletePackage;
 import org.eclipse.ocl.examples.pivot.CompleteProperty;
 import org.eclipse.ocl.examples.pivot.CompleteType;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -59,9 +60,26 @@ public class CompleteOCLPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Operation pivotOperation = context.refreshMonikeredElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
-			context.installPivotElement(csElement, pivotOperation);
-			context.refreshName(pivotOperation, csElement.getConstrainedName());
+			Type type = ((ClassifierContextDeclCS) csElement.getContextDecl()).getClassifier();
+//			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)type;
+			org.eclipse.ocl.examples.pivot.Class classifier = getContextClassifier(type, csElement);
+			Operation pivotOperation = null;
+			Property pivotProperty = null;
+			Feature pivotFeature = null;
+			if (csElement.isOperation()) {
+				pivotOperation = context.refreshMonikeredElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+				pivotFeature = pivotOperation;
+			}
+			else {
+				pivotProperty = context.refreshMonikeredElement(Property.class, PivotPackage.Literals.PROPERTY, csElement);
+				pivotFeature = pivotProperty;
+			}
+			context.installPivotElement(csElement, pivotFeature);
+			context.refreshName(pivotFeature, csElement.getConstrainedName());
+			TypedRefCS csType = csElement.getOwnedType();
+			if (csType != null) {
+				pivotFeature.setType(PivotUtil.getPivot(Type.class, csType));
+			}
 //			context.refreshComments(pivotOperation, csElement);
 //			List<String> qualifiers = csTypedElement.getQualifier();
 //			pivotElement.setIsOrdered(qualifiers.contains("ordered"));
@@ -84,21 +102,21 @@ public class CompleteOCLPreOrderVisitor
 //				pivotElement.setUpper(BigInteger.valueOf(1));
 //			}
 //			context.refreshTemplateSignature(csElement, pivotOperation);
-			List<VariableCS> csParameters = csElement.getParameters();
-			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
-			for (VariableCS csParameter : csParameters) {
-//				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				pivotParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
-				newPivotParameters.add(pivotParameter);
+			if (pivotOperation != null) {
+				List<VariableCS> csParameters = csElement.getParameters();
+				List<Parameter> newPivotParameters = new ArrayList<Parameter>();
+				for (VariableCS csParameter : csParameters) {
+	//				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+					Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+					pivotParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
+					newPivotParameters.add(pivotParameter);
+				}
+				context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
+				classifier.getOwnedOperations().add(pivotOperation);
 			}
-			context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
-			TypedRefCS csType = csElement.getOwnedType();
-			if (csType != null) {
-				pivotOperation.setType(PivotUtil.getPivot(Type.class, csType));
+			else {
+				classifier.getOwnedAttributes().add(pivotProperty);
 			}
-			org.eclipse.ocl.examples.pivot.Class classifier = (org.eclipse.ocl.examples.pivot.Class)((ClassifierContextDeclCS) csElement.getContextDecl()).getClassifier();
-			classifier.getOwnedOperations().add(pivotOperation);
 			return null;
 		}
 	}
@@ -129,6 +147,9 @@ public class CompleteOCLPreOrderVisitor
 		@Override
 		public BasicContinuation<?> execute() {
 			Operation modelOperation = csElement.getOperation();
+			if ((modelOperation == null) || modelOperation.eIsProxy()) {
+				return null;
+			}
 			CompleteOperation completeOperation = completeEnvironmentManager.getCompleteOperation(modelOperation);
 			org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelOperation.getClass_(), csElement);
 //			completeEnvironmentManager.getCompleteOperation(element);
@@ -213,6 +234,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitClassifierContextDeclCS(ClassifierContextDeclCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		Type modelClassifier = object.getClassifier();
+		if ((modelClassifier == null) || modelClassifier.eIsProxy()) {
+			return null;
+		}
 		Type contextClassifier = getContextClassifier(modelClassifier, object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -238,6 +262,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitPackageDeclarationCS(PackageDeclarationCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		org.eclipse.ocl.examples.pivot.Package modelPackage = object.getPackage();
+		if ((modelPackage == null) || modelPackage.eIsProxy()) {
+			return null;
+		}
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getContextPackage(modelPackage, object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -251,6 +278,9 @@ public class CompleteOCLPreOrderVisitor
 	public Continuation<?> visitPropertyContextDeclCS(PropertyContextDeclCS object) {
 		context.resolveNamespaces(object.getNamespace());
 		Property modelProperty = object.getProperty();
+		if ((modelProperty == null) || modelProperty.eIsProxy()) {
+			return null;
+		}
 		CompleteProperty completeProperty = completeEnvironmentManager.getCompleteProperty(modelProperty);
 		org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelProperty.getClass_(), object);
 //		if ((element == null) || element.eIsProxy()) {

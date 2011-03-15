@@ -17,7 +17,7 @@
  *
  * </copyright>
  *
- * $Id: EmbeddedXtextEditor.java,v 1.2 2011/03/04 22:52:08 ewillink Exp $
+ * $Id: EmbeddedXtextEditor.java,v 1.4 2011/03/11 15:26:21 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
@@ -77,7 +77,6 @@ import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.eclipse.ui.internal.editors.text.EditorsPlugin;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.AnnotationPreference;
@@ -185,8 +184,7 @@ public class EmbeddedXtextEditor {
 	public EmbeddedXtextEditor(Composite control, Injector injector, int style) {
 		fControl = control;
 		fStyle = style;
-		fAnnotationPreferences= EditorsPlugin.getDefault().getMarkerAnnotationPreferences();
-//		fFoldingStructureProvider = new EmbeddedFoldingStructureProvider();
+		fAnnotationPreferences = new MarkerAnnotationPreferences();
 		
 		injector.injectMembers(this);
 
@@ -737,13 +735,19 @@ public class EmbeddedXtextEditor {
 	}
 
 	protected EmbeddedXtextResource createResource() {
-		ResourceSet resourceSet = fResourceSetProvider.get(null);
+		String dummyFileName = fGrammarAccess.getGrammar().getName() + "." + fFileExtension; //$NON-NLS-1$
+		URI dummyURI = URI.createURI(dummyFileName);
+		ResourceSet resourceSet = getResourceSet();
 //		XtextResource result = (XtextResource) resourceSet.createResource(
 //				URI.createURI(fGrammarAccess.getGrammar().getName() + "." + fFileExtension));
 		EmbeddedXtextResource result = fEmbeddedXtextResourceProvider.get();
-		result.setURI(URI.createURI(fGrammarAccess.getGrammar().getName() + "." + fFileExtension)); //$NON-NLS-1$
+		result.setURI(dummyURI);
 		resourceSet.getResources().add(result);
 		return result;
+	}
+
+	public ResourceSet getResourceSet() {
+		return fResourceSetProvider.get(null);
 	}
 
 /*	private static boolean equals(EObject expected, EObject actual) {
