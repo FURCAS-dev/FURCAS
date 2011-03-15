@@ -27,12 +27,9 @@ import org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased;
  */
 public class ContainmentFilter extends EventFilter {
 
-    private ContainmentFilter() {
+    public ContainmentFilter() {
         super();
     }
-
-    static final public ContainmentFilter INSTANCE = new ContainmentFilter();
-
     @Override
     public boolean matchesFor(Notification event) {
         if (event.getFeature() instanceof EReference) {
@@ -47,7 +44,6 @@ public class ContainmentFilter extends EventFilter {
     @Override
     public int hashCode() {
         return "ContainmentFilterImpl".hashCode() + 31*(isNegated() ? 43 : 0);
-
     }
 
     @Override
@@ -63,7 +59,7 @@ public class ContainmentFilter extends EventFilter {
 
     @Override
     public ContainmentFilter clone() {
-        return INSTANCE;
+        return new ContainmentFilter();
 
     }
 
