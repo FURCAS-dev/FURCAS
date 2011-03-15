@@ -13,61 +13,81 @@ package org.eclipse.ocl.examples.eventmanager.tests.framework;
 
 import java.util.Collection;
 
+import junit.framework.TestCase;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
-import org.eclipse.ocl.examples.testutils.NotificationHelper;
+import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import company.CompanyFactory;
-import company.Division;
-import company.Employee;
 
-
-public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTest {
+public class RecursiveContaimentNotificationCreatorTest extends TestCase {
 
     @Before
     public void setUp() {
-        super.setUp();
-        super.createInstances(3, 5, 6);
+        try {
+			super.setUp();
+		} catch (Exception e) {
+			/*...*/
+		}
     }
 
     @After
     public void tearDown(){
-        super.tearDown();
+        try {
+			super.tearDown();
+		} catch (Exception e) {
+			/*...*/
+		}
     }
 
     @Test
     public void testCreateNotificationForComposites() {
-        Division div = CompanyFactory.eINSTANCE.createDivision();
-        Employee aEmployee2 = CompanyFactory.eINSTANCE.createEmployee();
-        div.setDirector(aEmployee2);
-        aEmployee2.setSecretary(CompanyFactory.eINSTANCE.createEmployee());
-        Notification event = NotificationHelper.createElementAddNotification(div, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
-        Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
+    	EPackage root = EcoreFactory.eINSTANCE.createEPackage();
+    	EClass containerCls = EcoreFactory.eINSTANCE.createEClass();
+    	root.getEClassifiers().add(containerCls);
+    	EClass childCls = EcoreFactory.eINSTANCE.createEClass();
+    	root.getEClassifiers().add(childCls);
+
+    	EReference conRef = EcoreFactory.eINSTANCE.createEReference();
+    	conRef.setContainment(true);
+    	conRef.setEType(childCls);
+    	conRef.setLowerBound(0);
+    	conRef.setUpperBound(1);
+    	conRef.setName("contained");
+    	
+    	EAttribute attr = EcoreFactory.eINSTANCE.createEAttribute();
+    	attr.setEType(EcorePackage.eINSTANCE.getEInt());
+    	childCls.getEStructuralFeatures().add(attr);
+    	containerCls.getEStructuralFeatures().add(conRef);
+    	
+    	EObject container = new DynamicEObjectImpl(containerCls);
+    	EObject child = new DynamicEObjectImpl(childCls);
+    	container.eSet(conRef, child);
+    	child.eSet(attr, 2);
+
+    	
+    	Notification noti = new ENotificationImpl((InternalEObject) container, Notification.ADD, conRef, null, child);
+    	Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(noti
+    	);
         /*
          * Expect
-         * SET for departement budget
-         * SET for departement maxJuniors
-         * ADD departement to devision
+         * SET for child attr
+         * ADD of child
          */
-        assertTrue("Get "+list.size()+" events, expected 3",list.size()==3);
-    }
-    @Test
-    public void testCreateNotificationForComposite() {
-        Division div = CompanyFactory.eINSTANCE.createDivision();
-        Notification event = NotificationHelper.createElementAddNotification(div, directedRef.getEOpposite(), CompanyFactory.eINSTANCE.createEmployee());
-        Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
-        /*
-         * Expected
-         * SET employee as division director
-         * SET division as directed by employee
-         * SET employee name
-         * SET employee age
-         */
-        assertTrue("Get "+list.size()+" events, expected 4",list.size()==4);
+        assertTrue("Get "+list.size()+" events, expected 2",list.size()==2);
     }
 
 }

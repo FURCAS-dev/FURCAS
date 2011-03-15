@@ -8,14 +8,16 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
 /**
@@ -44,7 +46,8 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
         super();
     }
 
-    private EReference reference;
+    private EReference reference1;
+	private EReference reference2;
 
     /**
      * Returns the fixture for this Association Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -62,9 +65,10 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
     @Override
     public void setUp() {
         super.setUp();
-        this.createInstances(1, 5, 1);
-        this.reference = EcoreFactory.eINSTANCE.createEReference();
-        reference.setName("myReference");
+        this.reference1 = EcoreFactory.eINSTANCE.createEReference();
+        reference1.setName("myReference");
+        this.reference2 = EcoreFactory.eINSTANCE.createEReference();
+        setFixture(EventManagerFactory.eINSTANCE.createAssociationFilter(reference1));
 
     }
 
@@ -77,7 +81,8 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
     public void tearDown() {
         super.tearDown();
         setFixture(null);
-        this.reference = null;
+        this.reference1 = null;
+        this.reference2 = null;
     }
 
     /**
@@ -88,8 +93,22 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
      * @see org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference)
      */
     public void testSetReference__EReference() {
-        AssociationFilter filter = EventManagerFactory.eINSTANCE.createAssociationFilter(reference);
-        assertSame(filter.getFeature(), reference);
+        assertSame(getFixture().getFeature(), reference1);
     }
+
+	@Override
+	StructuralFeatureFilter getFilterFor(Object f) {
+		return  EventManagerFactory.eINSTANCE.createAssociationFilter((EReference) f);
+	}
+
+	@Override
+	EStructuralFeature getFilterCriterion1() {
+		return reference1;
+	}
+
+	@Override
+	EStructuralFeature getFilterCriterion2() {
+		return reference2;
+	}
 
 } // AssociationFilterTest

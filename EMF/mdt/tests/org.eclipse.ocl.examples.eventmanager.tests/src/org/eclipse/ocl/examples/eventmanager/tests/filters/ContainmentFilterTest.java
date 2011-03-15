@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
 /**
@@ -64,8 +65,6 @@ public class ContainmentFilterTest extends EventFilterTest {
     @SuppressWarnings("unchecked")
     @Override
     public void setUp() {
-        super.setUp();
-        super.createInstances(2, 3, 4);
         setFixture(EventManagerFactory.eINSTANCE.createContainmentFilter());
         EReference cFeature = EcoreFactory.eINSTANCE.createEReference();
         cFeature.setName("test");
@@ -105,4 +104,19 @@ public class ContainmentFilterTest extends EventFilterTest {
     public void testMatchesFor__Notification() {
         assertTrue(getFixture().matchesFor(matchingNotification));
     }
+
+	@Override
+	EventFilter getFilterFor(Object f) {
+		return EventManagerFactory.eINSTANCE.createContainmentFilter();
+	}
+
+	@Override
+	Object getFilterCriterion1() {
+		return null;
+	}
+
+	@Override
+	Object getFilterCriterion2() {
+		return null;
+	}
 } // ContainmentFilterTest
