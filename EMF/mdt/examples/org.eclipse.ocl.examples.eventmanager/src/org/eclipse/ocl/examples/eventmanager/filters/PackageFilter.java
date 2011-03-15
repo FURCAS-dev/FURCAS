@@ -36,11 +36,11 @@ public class PackageFilter extends EventFilter {
         if (event.getNotifier() != null && event.getNotifier() instanceof EObject) {
             for (EPackage p = ((EObject) event.getNotifier()).eClass().getEPackage(); p != null; p = p.getESuperPackage()) {
                 if (p.equals(getEPackage())) {
-                    return true;
+                    return !isNegated();
                 }
             }
         }
-        return false;
+        return isNegated();
 
     }
 
