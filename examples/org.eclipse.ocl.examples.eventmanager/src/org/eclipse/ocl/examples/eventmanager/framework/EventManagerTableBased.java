@@ -56,8 +56,8 @@ public class EventManagerTableBased implements EventManager {
 
     /**
      * listeners are not notified directly. The notification process is done by the appropriate AdapterCapsule. This Map provides
-     * the associated AdapterCapsule for a Listener. For each type of Listener there is a seperate AdapterCapsule (That's why
-     * there might be multiply AdapterCapsules for one Listener instance (the instance could have been registered multiple times))
+     * the associated AdapterCapsule for a Listener. For each type of Listener there is a separate AdapterCapsule (That's why
+     * there might be multiple AdapterCapsules for one Listener instance (the instance could have been registered multiple times))
      */
     protected WeakHashMap<Adapter, Collection<AdapterCapsule>> notifierByListener = new WeakHashMap<Adapter, Collection<AdapterCapsule>>();
 
