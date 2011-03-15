@@ -65,6 +65,14 @@ import org.eclipse.ocl.examples.eventmanager.filters.PackageFilter;
 public class RegistrationManagerTableBased {
     private Logger logger = Logger.getLogger(RegistrationManagerTableBased.class.getName());
     
+    // uncomment the following lines in case you want to record statistics about the minimum table size;
+    // but pay attention: this method runs in the innermost loop of the event manager, and even a method
+    // call to an empty method may consume some time
+    // /**
+    //  * group ID for {@link Statistics} capturing the minimum table sizes during event handling
+    //  */
+    // public static final String GROUP_ID_MINIMUM_TABLE_SIZE = "minimumTableSize*1000000";
+
     // needed to compute the affected registrations for an event
     private final HashMap<Integer, Set<TableForEventFilter>> tablesByEventType = new HashMap<Integer, Set<TableForEventFilter>>();
 
