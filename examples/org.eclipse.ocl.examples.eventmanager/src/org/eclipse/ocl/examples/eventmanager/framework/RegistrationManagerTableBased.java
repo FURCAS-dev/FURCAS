@@ -184,7 +184,7 @@ public class RegistrationManagerTableBased {
      *            the listener to register
      * @return an object of type RegistrationHandle (needed for deregistering purposes only)
      */
-    public synchronized RegistrationHandle register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
+    public synchronized void register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
             ListenerTypeEnum listenerType) {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
@@ -207,7 +207,6 @@ public class RegistrationManagerTableBased {
         }
         RegistrationSet result = new RegistrationSet(listener, listenerType, registrations);
         addRegistrationForListener(result, listener);
-        return new RegistrationHandle(listener.get(), result);
     }
 
     /**
@@ -279,18 +278,6 @@ public class RegistrationManagerTableBased {
             result |= filterTypeToBitMask.get(table.getIdentifier());
         }
         return result;
-    }
-
-    /**
-     * Removes the passed <code>registration</code> from all <code>EventFilterTables</code>. This method is synchronized because
-     * there must be no changes to the FilterTables while they are working.
-     * 
-     * @param the
-     *            registration to remove
-     */
-    public synchronized void deregister(RegistrationHandle registrationHandle) {
-        RegistrationSet rs = registrationHandle.getRegistrationSet();
-        deregister(rs);
     }
 
     private void deregister(RegistrationSet rs) {
