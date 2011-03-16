@@ -54,7 +54,7 @@ public class MessagePropertiesTest {
 		resourceBundleName = getResourceBundleName(query2IndexUI_MessagesClass);
 		query2IndexUI_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 
-		query2StringSyntaxUITools_MessagesClass = org.eclipse.emf.query2.tools.ui.Messages.class;
+		query2StringSyntaxUITools_MessagesClass = org.eclipse.emf.query2.stringsyntax.tools.ui.Messages.class;
 		resourceBundleName = getResourceBundleName(query2StringSyntaxUITools_MessagesClass);
 		query2StringSyntaxUITools_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 		

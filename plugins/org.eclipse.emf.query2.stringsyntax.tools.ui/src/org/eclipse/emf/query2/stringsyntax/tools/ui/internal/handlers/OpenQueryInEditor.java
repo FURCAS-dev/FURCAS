@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.tools.ui.internal.handlers;
+package org.eclipse.emf.query2.stringsyntax.tools.ui.internal.handlers;
 
 import java.io.IOException;
 import java.net.URL;

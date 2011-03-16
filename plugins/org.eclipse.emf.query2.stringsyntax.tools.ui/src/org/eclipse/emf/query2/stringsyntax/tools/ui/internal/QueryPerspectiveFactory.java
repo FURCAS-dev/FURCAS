@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.tools.ui.internal;
+package org.eclipse.emf.query2.stringsyntax.tools.ui.internal;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;

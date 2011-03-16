@@ -1,9 +1,9 @@
-package org.eclipse.emf.query2.tools.ui.internal.handlers;
+package org.eclipse.emf.query2.stringsyntax.tools.ui.internal.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.query2.tools.ui.QueryView;
+import org.eclipse.emf.query2.stringsyntax.tools.ui.QueryView;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 

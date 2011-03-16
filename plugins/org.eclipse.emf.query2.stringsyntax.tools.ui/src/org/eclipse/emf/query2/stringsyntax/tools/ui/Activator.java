@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.tools.ui;
+package org.eclipse.emf.query2.stringsyntax.tools.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
