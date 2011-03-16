@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.5 2011/03/08 15:14:52 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.6 2011/03/16 17:32:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -264,6 +264,7 @@ public class OCLMessages {
 	public static String UnresolvedOperationCall_ERROR_;
 	public static String UnresolvedProperty_ERROR_;
 	public static String UnresolvedType_ERROR_;
+	public static String Unresolved_ERROR_;
 	
 	//-----------------------------------------------------------
 		
