@@ -3,7 +3,7 @@ package org.eclipse.emf.query2.stringsyntax.tools.ui;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-	public static final String BUNDLE_NAME = "org.eclipse.emf.query2.tools.ui.messages"; //$NON-NLS-1$
+	public static final String BUNDLE_NAME = "org.eclipse.emf.query2.stringsyntax.tools.ui.messages"; //$NON-NLS-1$
 	public static String Query2StringSyntaxToolsUI_QueryResultView_Search;
 	public static String Query2StringSyntaxToolsUI_QueryResultView_StatusLabelText;
 	
