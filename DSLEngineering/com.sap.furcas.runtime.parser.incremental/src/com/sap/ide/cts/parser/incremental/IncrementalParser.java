@@ -458,7 +458,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         result = resultBean.textBlock;
-        partitionHandler.assignToDefaultTextBlocksPartition(result);
+        if (result.eResource() == null) {
+            partitionHandler.assignToDefaultTextBlocksPartition(result);
+        }
         if (resultBean.reuseType
                 .equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
             // the element that was created for the new textblock has to be

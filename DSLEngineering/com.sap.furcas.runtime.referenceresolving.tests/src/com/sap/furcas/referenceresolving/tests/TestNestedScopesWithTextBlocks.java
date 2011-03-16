@@ -16,7 +16,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -264,7 +263,7 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
                 aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
         
         renameElement(bDefinition, "a", RenameOn.MODEL);
-        assertTrue(aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
+        assertFalse(aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
     }
 
     private LexedToken findCurrentReferenceTokenReferencing(EObject aDefinition, OppositeEndFinder oppositeEndFinder) {
@@ -345,7 +344,10 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         } else if (method == RenameOn.TEXTBLOCK) {
             TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootTextBlock);
             OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-            LexedToken lexedToken = (LexedToken) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator().next();
+            LexedToken lexedToken = (LexedToken) oppositeEndFinder
+                    .navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator()
+                    .next();
             LexedToken lexedTokenInWorkingCopy = TbVersionUtil.getOtherVersion(lexedToken, Version.PREVIOUS);
             lexedTokenInWorkingCopy.setValue(newValue);
             TbMarkingUtil.mark(lexedTokenInWorkingCopy);

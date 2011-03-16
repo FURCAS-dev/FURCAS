@@ -65,6 +65,29 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
      * @generated
      */
         public Sequence getSeparatorSequence() {
+        if (separatorSequence != null && separatorSequence.eIsProxy()) {
+            InternalEObject oldSeparatorSequence = (InternalEObject)separatorSequence;
+            separatorSequence = (Sequence)eResolveProxy(oldSeparatorSequence);
+            if (separatorSequence != oldSeparatorSequence) {
+                InternalEObject newSeparatorSequence = (InternalEObject)separatorSequence;
+                NotificationChain msgs =  oldSeparatorSequence.eInverseRemove(this, TCSPackage.SEQUENCE__SEPARATOR_CONTAINER, Sequence.class, null);
+                if (newSeparatorSequence.eInternalContainer() == null) {
+                    msgs =  newSeparatorSequence.eInverseAdd(this, TCSPackage.SEQUENCE__SEPARATOR_CONTAINER, Sequence.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE, oldSeparatorSequence, separatorSequence));
+            }
+        }
+        return separatorSequence;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Sequence basicGetSeparatorSequence() {
         return separatorSequence;
     }
 
@@ -141,7 +164,8 @@ public class SeparatorPArgImpl extends PropertyArgImpl implements SeparatorPArg 
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE:
-                return getSeparatorSequence();
+                if (resolve) return getSeparatorSequence();
+                return basicGetSeparatorSequence();
         }
         return super.eGet(featureID, resolve, coreType);
     }

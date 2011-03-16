@@ -201,6 +201,16 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
      * <!-- end-user-doc -->
      * @generated
      */
+    public ForeachPredicatePropertyInit basicGetForeachParent() {
+        if (eContainerFeatureID() != TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT) return null;
+        return (ForeachPredicatePropertyInit)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public NotificationChain basicSetForeachParent(ForeachPredicatePropertyInit newForeachParent, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newForeachParent, TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT, msgs);
         return msgs;
@@ -287,7 +297,8 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 return getMode();
             case TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT:
-                return getForeachParent();
+                if (resolve) return getForeachParent();
+                return basicGetForeachParent();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -355,7 +366,7 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
             case TCSPackage.PREDICATE_SEMANTIC__MODE:
                 return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
             case TCSPackage.PREDICATE_SEMANTIC__FOREACH_PARENT:
-                return getForeachParent() != null;
+                return basicGetForeachParent() != null;
         }
         return super.eIsSet(featureID);
     }
