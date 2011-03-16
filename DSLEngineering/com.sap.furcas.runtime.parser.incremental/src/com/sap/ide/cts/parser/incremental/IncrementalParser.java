@@ -171,7 +171,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 
             // find the next changed region
             for (AbstractToken tok = findNextRegion(root); !isEOS(tok)
-                    && tok != null; tok = findNextRegion(tok)) {
+                    && tok != null; tok = tok==null?null:findNextRegion(tok)) {
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
                 // lookback count of
