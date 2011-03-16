@@ -253,9 +253,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             String fileExtension = f.getFileExtension();
             //only files with extension 'xmi', 'xml' or one of the registered ones include a resource
             if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
-                IProject project = f.getProject();
-                IPath projectRelativePath = f.getProjectRelativePath();
-                URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encode*/ true);
+                URI uri = URI.createURI(f.getLocationURI().toString());
                 addNewOrInMemoryResource(resources, uri, fileExtension);
             }
         }
@@ -312,13 +310,19 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         for (Resource r : getInMemoryResources()){
             URI resUri = r.getURI();
             if(uri.isFile() && resUri.isPlatformResource()){
-                uri = URI.createPlatformResourceURI(uri.toString(), /*encode*/ true);
+            	if (uri.toString().endsWith(resUri.toPlatformString(true))){
+            		inMemory = r;
+            	}
             }
-            if(uri.isPlatformResource() && resUri.isFile()){
-                resUri = URI.createPlatformResourceURI(resUri.toString(), /*encode*/ true);
+            else if(uri.isPlatformResource() && resUri.isFile()){
+            	if (resUri.toString().endsWith(uri.toPlatformString(true))){
+            		inMemory = r;
+            	}
             }
-            if (uri.equals(resUri))
-                inMemory = r;
+            else if (uri.equals(resUri))
+              {
+                  inMemory = r;
+              }
         }
         if(inMemory == null){
                 if(rs==null){            
@@ -400,6 +404,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         for (IResource f : modelDir.members()) {
             IProject project = f.getProject();
             IPath projectRelativePath = f.getProjectRelativePath();
+            //TODO correct?
             URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encoded*/ true);
             uris.add(uri);
         }
