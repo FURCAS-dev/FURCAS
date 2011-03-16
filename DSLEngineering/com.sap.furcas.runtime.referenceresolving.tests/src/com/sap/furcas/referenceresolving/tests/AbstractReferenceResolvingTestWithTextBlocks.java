@@ -24,7 +24,10 @@ import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryBasedTest;
 import com.sap.furcas.runtime.parser.incremental.testbase.GeneratedParserAndFactoryTestConfiguration;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
+import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
+import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
 import com.sap.furcas.runtime.textblocks.testutils.EMFTextBlocksModelElementFactory;
 import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.testutils.TextBlocksModelElementFactory;
@@ -126,6 +129,7 @@ public abstract class AbstractReferenceResolvingTestWithTextBlocks extends Gener
         TextBlocksModel tbModel = new TextBlocksModel(rootTextBlock, null);
         tbModel.replace(0, 0, textToParse);
         TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(rootTextBlock);
+        rootTextBlock = (TextBlock) TbChangeUtil.cleanUp(currentVersionTb);
         triggerManager.addToObservedResourceSets(resourceSet);
         EObject result = currentVersionTb.getCorrespondingModelElements().iterator().next();
         return result;

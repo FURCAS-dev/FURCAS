@@ -767,7 +767,7 @@ public class TextBlocksModel {
 
     /**
      * replaces the content of a textBlock tree by modifying and deleting
-     * tokens. assumes that root is passed in, and that there is a PREVIOUS
+     * tokens. Assumes that root is passed in, and that there is a PREVIOUS
      * version of root which contains PREVIOUS versions of all nodes. This
      * method currently does not create any PREVIOUS versions of anything.
      * Assumes all nodes (except root, BOS, EOS) have relative offsets !

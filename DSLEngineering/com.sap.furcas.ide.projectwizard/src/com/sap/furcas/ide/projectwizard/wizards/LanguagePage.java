@@ -42,7 +42,7 @@ public class LanguagePage extends WizardPage {
     /**
      * The instance of {@link}ProjectInfo that keeps track of the user input. Found everywhere in the wizard.
      */
-    private ProjectInfo projectInfo = new ProjectInfo();
+    private final ProjectInfo projectInfo = new ProjectInfo();
 
     /**
      * 
