@@ -46,7 +46,7 @@ public interface Sequence extends LocatedElement {
      * @return the value of the '<em>Elements</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getSequence_Elements()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement#getElementSequence
-     * @model opposite="elementSequence" containment="true"
+     * @model opposite="elementSequence" containment="true" resolveProxies="true"
      * @generated
      */
         EList<SequenceElement> getElements();

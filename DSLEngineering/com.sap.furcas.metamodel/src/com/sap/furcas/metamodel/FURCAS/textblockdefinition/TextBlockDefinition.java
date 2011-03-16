@@ -161,7 +161,7 @@ public interface TextBlockDefinition extends EObject {
      * @return the value of the '<em>Sub Definitions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage#getTextBlockDefinition_SubDefinitions()
      * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getContext
-     * @model opposite="context" containment="true"
+     * @model opposite="context" containment="true" resolveProxies="true"
      * @generated
      */
         EList<TextBlockDefinition> getSubDefinitions();

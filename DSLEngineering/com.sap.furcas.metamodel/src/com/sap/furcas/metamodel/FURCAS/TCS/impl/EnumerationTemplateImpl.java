@@ -113,7 +113,7 @@ public class EnumerationTemplateImpl extends TemplateImpl implements Enumeration
      */
         public EList<EnumLiteralMapping> getMappings() {
         if (mappings == null) {
-            mappings = new EObjectContainmentEList<EnumLiteralMapping>(EnumLiteralMapping.class, this, TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS);
+            mappings = new EObjectContainmentEList.Resolving<EnumLiteralMapping>(EnumLiteralMapping.class, this, TCSPackage.ENUMERATION_TEMPLATE__MAPPINGS);
         }
         return mappings;
     }
