@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.internal.ui.handlers;
+package org.eclipse.emf.query2.tools.ui.internal.handlers;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -27,10 +27,10 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.internal.ui.Messages;
-import org.eclipse.emf.query2.internal.ui.QueryResultView;
 import org.eclipse.emf.query2.syntax.query.NamedQuery;
 import org.eclipse.emf.query2.syntax.transformation.QueryTransformer;
+import org.eclipse.emf.query2.tools.ui.Messages;
+import org.eclipse.emf.query2.tools.ui.QueryResultView;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.ITextSelection;

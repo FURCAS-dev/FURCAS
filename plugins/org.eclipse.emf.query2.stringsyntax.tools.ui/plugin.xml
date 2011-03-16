@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
-            class="org.eclipse.emf.query2.internal.ui.QueryResultView"
+            class="org.eclipse.emf.query2.tools.ui.QueryResultView"
             icon="icons/file.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
             name="%Query2StringSyntaxToolsUI_QueryResultView"
@@ -13,7 +13,7 @@
       </view>
        <view
              category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
-             class="org.eclipse.emf.query2.internal.ui.QueryView"
+             class="org.eclipse.emf.query2.tools.ui.QueryView"
              icon="icons/magnifying-glass.gif"
              id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
              name="%Query2StringSyntaxToolsUI_QueryView"
@@ -56,7 +56,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.OpenQueryInEditor"
+            class="org.eclipse.emf.query2.tools.ui.internal.handlers.OpenQueryInEditor"
             commandId="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor">
          <activeWhen>
             <with
@@ -66,7 +66,7 @@
                         ifEmpty="false"
                         operator="and">
                      <instanceof
-                           value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                           value="org.eclipse.emf.query2.tools.ui.QueryView$QueryItem">
                      </instanceof>
                   </iterate>
                   <count
@@ -77,11 +77,11 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RefreshQueryView"
+            class="org.eclipse.emf.query2.tools.ui.internal.handlers.RefreshQueryView"
             commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView">
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RunQuery"
+            class="org.eclipse.emf.query2.tools.ui.internal.handlers.RunQuery"
             commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery">
          <activeWhen>
             <with
@@ -92,7 +92,7 @@
                            ifEmpty="false"
                            operator="and">
                         <instanceof
-                              value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                              value="org.eclipse.emf.query2.tools.ui.QueryView$QueryItem">
                         </instanceof>
                      </iterate>
                      <count
@@ -107,7 +107,7 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RunQuery"
+            class="org.eclipse.emf.query2.tools.ui.internal.handlers.RunQuery"
             commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex">
          <activeWhen>
             <with
@@ -118,7 +118,7 @@
                            ifEmpty="false"
                            operator="and">
                         <instanceof
-                              value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                              value="org.eclipse.emf.query2.tools.ui.QueryView$QueryItem">
                         </instanceof>
                      </iterate>
                      <count
@@ -204,7 +204,7 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.eclipse.emf.query2.internal.ui.QueryPerspectiveFactory"
+            class="org.eclipse.emf.query2.tools.ui.internal.QueryPerspectiveFactory"
             icon="icons/magnifying-glass.gif"
             id="org.eclipse.emf.query2.syntax.tools.ui.queryperspective"
             name="%Query2StringSyntaxToolsUI_QueryPerspective">

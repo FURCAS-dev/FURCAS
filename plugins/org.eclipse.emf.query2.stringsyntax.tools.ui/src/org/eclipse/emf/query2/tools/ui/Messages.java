@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.internal.ui;
+package org.eclipse.emf.query2.tools.ui;
 
 import org.eclipse.osgi.util.NLS;
 

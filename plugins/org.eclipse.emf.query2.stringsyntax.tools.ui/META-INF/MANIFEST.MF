@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Query2StringSyntaxToolsUI_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.stringsyntaxtools.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.emf.query2.internal.ui.Activator
+Bundle-Activator: org.eclipse.emf.query2.tools.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.query2.stringsyntax;bundle-version="1.0.0",
@@ -17,4 +17,3 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Query2StringSyntaxToolsUI_Bundle_Vendor
-Export-Package: org.eclipse.emf.query2.internal.ui
