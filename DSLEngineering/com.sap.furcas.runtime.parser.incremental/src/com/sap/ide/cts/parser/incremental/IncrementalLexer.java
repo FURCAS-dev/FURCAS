@@ -170,7 +170,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
             Activator.logError(ex);
             success = false;
             if (ex instanceof IllegalTextBlocksStateException) {
-                // TbChangeUtil.revertToVersion(root, Version.REFERENCE);
+                // some tokens may have already been created before the lexer crashed. Remove those.
+                TbChangeUtil.revertToVersion(root, Version.PREVIOUS);
                 throw (IllegalTextBlocksStateException) ex;
             }
         }
