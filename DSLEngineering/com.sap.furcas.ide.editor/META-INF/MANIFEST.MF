@@ -30,5 +30,4 @@ Export-Package: com.sap.furcas.ide.editor,
  com.sap.furcas.ide.editor.action,
  com.sap.furcas.ide.editor.deepcopy,
  com.sap.furcas.ide.editor.document,
- com.sap.furcas.ide.editor.imp.parsing,
  com.sap.furcas.ide.editor.junitcreate
