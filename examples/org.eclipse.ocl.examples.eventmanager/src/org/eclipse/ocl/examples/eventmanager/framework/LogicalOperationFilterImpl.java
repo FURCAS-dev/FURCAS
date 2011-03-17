@@ -20,28 +20,52 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
 
 
+/**
+ * Is the basis for any {@link LogicalOperationFilter} implementation.
+ * Contains a set of {@link EventFilter filters} and offers package intern methods to modify this set
+ * @author Philipp Berger
+ *
+ */
 abstract public class LogicalOperationFilterImpl extends EventFilter implements LogicalOperationFilter {
     private Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**
-     * Returns a read-only collection containing the filters
+     * Returns a  {@link Collections#unmodifiableSet(Set) read-only collection} containing the filters
      */
     public Set<EventFilter> getOperands() {
         return Collections.unmodifiableSet(filters);
     }
     
+    /**
+     * {@link Set#clear() Clears} the {@link #getOperands() operands}
+     */
     protected void clearOperands() {
         filters.clear();
     }
     
+    /**
+     * {@link Set#add(Object) Adds} an {@link EventFilter filter} to 
+     * the {@link #getOperands() operands}
+     * @param filter to add
+     */
     protected void addOperand(EventFilter filter) {
         filters.add(filter);
     }
 
+    /**
+     * {@link Set#addAll(Collection)Adds}  a {@link Collection collection} of {@link EventFilter filters} to 
+     * the {@link #getOperands() operands}
+     * @param filters to add
+     */
     protected void addOperands(Collection<EventFilter> filters) {
         this.filters.addAll(filters);
     }
 
+    /**
+     * Creates a new Array with {@link EventFilter#clone() clone} 
+     * for each contained {@link #getOperands() operand}
+     * @return the array of clones
+     */
     protected EventFilter[] cloneContents() {
         Set<EventFilter> clonedContent = new HashSet<EventFilter>();
         for(EventFilter filter : filters){
@@ -51,9 +75,16 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
         return cloned;
     }
 
-    public LogicalOperationFilterImpl(EventFilter... newFilters) {
-        filters.addAll(Arrays.asList(newFilters));
+    /**
+     * Creates a filter containing the given {@link EventFilter filters} as {@link #getOperands() operands}
+     * @param filters to be operands
+     */
+    public LogicalOperationFilterImpl(EventFilter... filters) {
+        this.filters.addAll(Arrays.asList(filters));
     }
+    /**
+     * @return a modifiable {@link Set set} of {@link #getOperands()}  
+     */
     @Override
     public Object getFilterCriterion() {
         Set<Object> result = new HashSet<Object>();
