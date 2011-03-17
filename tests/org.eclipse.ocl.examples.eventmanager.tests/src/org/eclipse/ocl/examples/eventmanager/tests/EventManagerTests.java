@@ -52,6 +52,7 @@ public class EventManagerTests extends TestSuite {
 	public static Test suite() {
 		TestSuite suite = new EventManagerTests("eventManager Tests");
 		suite.addTestSuite(EventManagerTest.class);
+		suite.addTestSuite(EventManagerFactoryImplTest.class);
 		suite.addTestSuite(EventTypeFilterTest.class);
 		suite.addTestSuite(AndFilterTest.class);
 		suite.addTestSuite(OrFilterTest.class);
