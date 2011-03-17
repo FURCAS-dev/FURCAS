@@ -74,7 +74,6 @@ public abstract class TestSourceTextBlockCreator {
 
 			rootBlock.setLength(contentToken.getLength());
 			//rootBlock.setIsComplete(true);
-			rootBlock.setEndColumn(contentToken.getLength());
 			rootBlock.setCachedString(contentToken.getValue());
 			eosToken.setOffset(contentToken.getLength());
 		}

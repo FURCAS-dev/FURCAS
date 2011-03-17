@@ -212,7 +212,6 @@ public class TbModelInitializationUtil {
         LexedToken contentToken = tbFactory.createLexedToken();
         contentToken.setValue("");
         contentToken.setLength(0);
-        contentToken.setEndColumn(0);
         contentToken.setType(0); // TODO What is the type of nothing?
         contentToken.setVersion(Version.REFERENCE);
         rootBlock.getSubNodes().add(contentToken);
@@ -224,7 +223,6 @@ public class TbModelInitializationUtil {
 
         rootBlock.setLength(0);
         rootBlock.setComplete(true);
-        rootBlock.setEndColumn(0);
         rootBlock.setCachedString("");
         rootBlock.setVersion(Version.REFERENCE);
 

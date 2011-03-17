@@ -77,10 +77,6 @@ public class DocumentNodeItemProvider
             addLengthPropertyDescriptor(object);
             addOtherVersionsPropertyDescriptor(object);
             addOffsetRelativePropertyDescriptor(object);
-            addStartRowPropertyDescriptor(object);
-            addStartColumnPropertyDescriptor(object);
-            addEndRowPropertyDescriptor(object);
-            addEndColumnPropertyDescriptor(object);
             addAbsoluteOffsetPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
@@ -307,100 +303,12 @@ public class DocumentNodeItemProvider
     }
 
         /**
-     * This adds a property descriptor for the Start Row feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addStartRowPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_startRow_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_startRow_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__START_ROW,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the Start Column feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addStartColumnPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_startColumn_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_startColumn_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__START_COLUMN,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the End Row feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addEndRowPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_endRow_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_endRow_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__END_ROW,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the End Column feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addEndColumnPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_endColumn_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_endColumn_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__END_COLUMN,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
      * This adds a property descriptor for the Absolute Offset feature.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected void addAbsoluteOffsetPropertyDescriptor(Object object) {
+    protected void addAbsoluteOffsetPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -449,10 +357,6 @@ public class DocumentNodeItemProvider
             case TextblocksPackage.DOCUMENT_NODE__OFFSET:
             case TextblocksPackage.DOCUMENT_NODE__LENGTH:
             case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
-            case TextblocksPackage.DOCUMENT_NODE__START_ROW:
-            case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
-            case TextblocksPackage.DOCUMENT_NODE__END_ROW:
-            case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
             case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;

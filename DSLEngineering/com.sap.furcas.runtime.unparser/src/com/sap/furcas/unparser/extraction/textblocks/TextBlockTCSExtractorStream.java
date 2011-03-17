@@ -100,10 +100,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	b.setChildrenChanged(false);
 	b.setVersion(Version.REFERENCE);
 	b.setRelexingNeeded(false);
-	b.setStartRow(0);
-	b.setStartColumn(0);
-	b.setEndRow(0);
-	b.setEndColumn(0);
 	b.setOffset(0);
 	b.setLength(0);
 	b.setOffsetRelative(true);
@@ -118,10 +114,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	t.setChildrenChanged(false);
 	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
-	t.setStartRow(0);
-	t.setStartColumn(0);
-	t.setEndRow(0);
-	t.setEndColumn(0);
 	t.setOffset(0);
 	t.setLength(0);
 	t.setOffsetRelative(true);
@@ -140,10 +132,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	t.setChildrenChanged(false);
 	t.setVersion(Version.REFERENCE);
 	t.setRelexingNeeded(false);
-	t.setStartRow(0);
-	t.setStartColumn(0);
-	t.setEndRow(0);
-	t.setEndColumn(0);
 	t.setOffset(0);
 	t.setLength(0);
 	t.setOffsetRelative(true);
