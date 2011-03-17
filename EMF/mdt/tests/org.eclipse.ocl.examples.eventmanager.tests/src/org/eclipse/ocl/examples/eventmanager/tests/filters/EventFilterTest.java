@@ -109,7 +109,7 @@ public abstract class EventFilterTest extends TestCase{
 		assertTrue(f1.hashCode() == f2.hashCode());
 		assertFalse(f1.hashCode() == f4.hashCode());
 	}
-	
+
 	abstract public EventFilter giveTestFilter();
 	abstract public Notification[] giveMatchingNotifications();
 	abstract public Notification giveNotMatchingNotifcation();
