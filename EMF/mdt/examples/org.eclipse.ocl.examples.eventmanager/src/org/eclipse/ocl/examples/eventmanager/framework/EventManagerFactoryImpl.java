@@ -62,7 +62,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      * may happen that the event manager is no longer referenced by the client. Yet, the client would expect the
      * subscriptions to get notified by the event manager.
      */
-    WeakHashMap<ResourceSet,EventManager> setToManager= new WeakHashMap<ResourceSet, EventManager>();
+    private final WeakHashMap<ResourceSet,EventManager> setToManager = new WeakHashMap<ResourceSet, EventManager>();
 
     /**
      * @return a new {@link EventManagerFactoryImpl}
