@@ -66,6 +66,7 @@ public class Analyzer {
     private int allInstanceNoInvalidEvalsColumnIndex = -1;
     private int sloppinessColumnIndex = -1;
     private int noIaAllInstanceCallsColumnIndex = -1;
+    private int noAllInstanceEvalAllInstanceCallsColumnIndex = -1;
 
     /**
      * Stores the sum of the model sizes, indexed by the modelId column value
@@ -144,6 +145,7 @@ public class Analyzer {
         private final Aggregator[] aggrAllInstanceFiltered = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] aggrIaFiltered = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] aggrIaFilteredWithoutAllInstancesDuringTraceback = new Aggregator[MAX_MODEL_ID];
+        private final Aggregator[] aggrIaFilteredWithoutAllInstancesAtAnyTime = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] sloppinessFiltered = new Aggregator[MAX_MODEL_ID];
 
         public Result(int optionId) {
@@ -154,10 +156,10 @@ public class Analyzer {
          * If <code>filtered</code> is <code>true</code>, the event of the record has passed the event filter. Its
          * <code>aiExecAndEvalTime</code> is added to the {@link #aggrAllInstanceFiltered} and {@link #aggrIaFiltered}
          * aggregators. In all cases it's added to the {@link #aggrAllInstanceUnfiltered} aggregator.
-         * @param noIaAllInstanceCalls TODO
          */
         public void recordMeasurement(long aiExecAndEvalTime, long iaExecAndEvalTime, long sloppiness,
-                boolean filtered, long noIaAllInstanceCalls, int modelId) {
+                boolean filtered, long numberOfAllInstanceCallsDuringTraceback,
+                long numberOfAllInstanceEvalsDuringEvalOnAllInstances, int modelId) {
             if (aggrAllInstanceUnfiltered[modelId] == null) {
                 aggrAllInstanceUnfiltered[modelId] = new Aggregator();
             }
@@ -171,11 +173,17 @@ public class Analyzer {
                     aggrIaFiltered[modelId] = new Aggregator();
                 }
                 aggrIaFiltered[modelId].aggregate(iaExecAndEvalTime);
-                if (noIaAllInstanceCalls == 0) {
+                if (numberOfAllInstanceCallsDuringTraceback == 0) {
                     if (aggrIaFilteredWithoutAllInstancesDuringTraceback[modelId] == null) {
                         aggrIaFilteredWithoutAllInstancesDuringTraceback[modelId] = new Aggregator();
                     }
                     aggrIaFilteredWithoutAllInstancesDuringTraceback[modelId].aggregate(iaExecAndEvalTime);
+                    if (numberOfAllInstanceEvalsDuringEvalOnAllInstances == 0) {
+                        if (aggrIaFilteredWithoutAllInstancesAtAnyTime[modelId] == null) {
+                            aggrIaFilteredWithoutAllInstancesAtAnyTime[modelId] = new Aggregator();
+                        }
+                        aggrIaFilteredWithoutAllInstancesAtAnyTime[modelId].aggregate(iaExecAndEvalTime);
+                    }
                 }
                 if (sloppinessFiltered[modelId] == null) {
                     sloppinessFiltered[modelId] = new Aggregator();
@@ -211,6 +219,15 @@ public class Analyzer {
          */
         public Map<Double, BigInteger> getAggrIaFilteredWithoutAllInstancesDuringTracebackSum() {
             return getSumByModelSize(aggrIaFilteredWithoutAllInstancesDuringTraceback);
+        }
+
+        /**
+         * Returns the {@link Aggregator#getSum() sums} of the
+         * {@link #aggrIaFilteredWithoutAllInstancesAtAnyTime} aggregator, keyed by the
+         * {@link Analyzer#getAverageModelSize(int) model sizes}.
+         */
+        public Map<Double, BigInteger> getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum() {
+            return getSumByModelSize(aggrIaFilteredWithoutAllInstancesAtAnyTime);
         }
 
         /**
@@ -299,7 +316,8 @@ public class Analyzer {
                         writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
                                 + unfilteredEntry.getKey() + "\t1\t" + unfilteredEntry.getValue() + "\t"
                                 + results[optionId].getAggrAllInstanceFilteredSum().get(unfilteredEntry.getKey()) + "\t"
-                                + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(unfilteredEntry.getKey())
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(unfilteredEntry.getKey()) + "\t"
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(unfilteredEntry.getKey())
                                 + "\n");
                     }
                     i = 0;
@@ -308,7 +326,8 @@ public class Analyzer {
                         writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t"
                                 + filteredEntry.getKey() + "\t2\t" + filteredEntry.getValue() + "\t"
                                 + results[optionId].getAggrAllInstanceFilteredSum().get(filteredEntry.getKey()) + "\t"
-                                + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(filteredEntry.getKey())
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(filteredEntry.getKey()) + "\t"
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(filteredEntry.getKey())
                                 + "\n");
                     }
                     i = 0;
@@ -317,7 +336,8 @@ public class Analyzer {
                     writer.write("" + results[optionId].getOptionId() + "\t" + (i++) + "\t" + ia.getKey() + "\t"
                             + optionIdToMeasurement[optionId] + "\t" + ia.getValue() + "\t"
                             + results[optionId].getAggrAllInstanceFilteredSum().get(ia.getKey()) + "\t"
-                            + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(ia.getKey())
+                            + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(ia.getKey()) + "\t"
+                            + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(ia.getKey())
                             + "\n");
                 }
             }
@@ -327,7 +347,7 @@ public class Analyzer {
     }
 
     private void writeHeader() throws IOException {
-        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\tallInstancesFilterdEvalAndExecTime\tmeasureTimeWithoutAllInstancesDuringTraceback\n");
+        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\tallInstancesFilterdEvalAndExecTime\tmeasureTimeWithoutAllInstancesDuringTraceback\tmeasureTimeWithoutAllInstancesAtAnyTime\n");
     }
 
     /**
@@ -336,7 +356,7 @@ public class Analyzer {
      * that at least one valid evaluation result was obtained for the expression on any model for any of its extent's
      * elements, this method updates the aggregates of this analyzer, particularly the model size for the record's
      * {@link #modelIdColumnIndex modelId} s well as the allInstances and impact analysis times. See
-     * {@link Result#recordMeasurement(long, long, long, boolean, int, int)}.
+     * {@link Result#recordMeasurement(long, long, long, boolean, int, long, int)}.
      */
     private void updateAggregates(Record record) {
         if (record.getValue(noAllInstancesColumnIndex) != record.getValue(allInstanceNoInvalidEvalsColumnIndex)) {
@@ -345,7 +365,8 @@ public class Analyzer {
             int optionId = (int) record.getValue(optionIdColumnIndex);
             getResult(optionId).recordMeasurement(record.getValue(allInstancesEvalAndExecTimeColumnIndex),
                     record.getValue(iaEvalAndExecTimeColumnIndex), record.getValue(sloppinessColumnIndex),
-                    record.isFiltered(), record.getValue(noIaAllInstanceCallsColumnIndex), modelId);
+                    record.isFiltered(), record.getValue(noIaAllInstanceCallsColumnIndex),
+                    record.getValue(noAllInstanceEvalAllInstanceCallsColumnIndex), modelId);
         }
     }
 
@@ -418,6 +439,8 @@ public class Analyzer {
                 optionIdColumnIndex = i;
             } else if (next.equals("noIaAllInstanceCalls")) {
                 noIaAllInstanceCallsColumnIndex = i;
+            } else if (next.equals("noAllInstanceEvalAllInstanceCalls")) {
+                noAllInstanceEvalAllInstanceCallsColumnIndex = i;
             }
         }
     }
