@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class PackageFilterTest extends EventFilterTest{
 	@Override
-	protected void setUp() {
+	protected void setUp() throws Exception{
 		super.setUp();
 		EPackage p = EcoreFactory.eINSTANCE.createEPackage();
 		PackageFilter f = new PackageFilter(p);
@@ -86,4 +86,26 @@ public class PackageFilterTest extends EventFilterTest{
 		return p2;
 	}
 
+	EPackage testPkg= EcoreFactory.eINSTANCE.createEPackage();
+
+	EClass testCls = EcoreFactory.eINSTANCE.createEClass();
+	{
+		testPkg.getEClassifiers().add(testCls);
+	}
+	
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		return new Notification[]{ new ENotificationImpl(new DynamicEObjectImpl(testCls), 0, null, null, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		EPackage otherPkg = EcoreFactory.eINSTANCE.createEPackage();
+		EClass otherCls = EcoreFactory.eINSTANCE.createEClass();
+		otherPkg.getEClassifiers().add(otherCls);
+		return new ENotificationImpl(new DynamicEObjectImpl(otherCls), 0, null, null, null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return getFilterFor(testPkg);
+	}
 }

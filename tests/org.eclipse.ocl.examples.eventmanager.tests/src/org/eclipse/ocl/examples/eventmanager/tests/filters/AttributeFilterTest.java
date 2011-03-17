@@ -12,11 +12,14 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -70,7 +73,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	@Override
-	public void setUp()  {
+	public void setUp() throws Exception {
 		super.setUp();
 		this.attribute1 = EcoreFactory.eINSTANCE.createEAttribute();
 		this.attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
@@ -84,7 +87,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 */
 	@Override
-	public void tearDown()   {
+	public void tearDown()  throws Exception {
 		super.tearDown();
 		setFixture(null);
 		this.attribute1 = null;
@@ -113,6 +116,19 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	@Override
 	EStructuralFeature getFilterCriterion2() {
 		return attribute2;
+	}
+	EAttribute attr = EcoreFactory.eINSTANCE.createEAttribute();
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		return new Notification[]{ new ENotificationImpl(null, 0, attr, null, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		return new ENotificationImpl(null, 0, EcoreFactory.eINSTANCE.createEAttribute(), null, null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createAttributeFilter(attr);
 	}
 
 } //AttributeFilterTest
