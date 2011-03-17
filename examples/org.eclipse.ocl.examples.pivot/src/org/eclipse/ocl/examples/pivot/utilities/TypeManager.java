@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.13 2011/03/14 17:05:06 ewillink Exp $
+ * $Id: TypeManager.java,v 1.14 2011/03/17 20:06:03 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -1436,6 +1436,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		specializedOperation.setImplementation(unspecializedOperation.getImplementation());
 		specializedOperation.setImplementationClass(unspecializedOperation.getImplementationClass());
 		specializedOperation.setPrecedence(unspecializedOperation.getPrecedence());
+		specializedOperation.setIsStatic(unspecializedOperation.isStatic());
 		addOrphanOperation(specializedOperation);
 		String specializedMoniker = specializedOperation.getMoniker();
 		if (!moniker.equals(specializedMoniker)) {				// FIXME Debugging
