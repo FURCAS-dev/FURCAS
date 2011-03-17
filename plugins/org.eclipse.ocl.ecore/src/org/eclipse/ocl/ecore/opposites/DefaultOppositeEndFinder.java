@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DefaultOppositeEndFinder.java,v 1.3 2011/02/23 10:56:34 auhl Exp $
+ * $Id: DefaultOppositeEndFinder.java,v 1.4 2011/03/17 16:16:51 auhl Exp $
  */
 package org.eclipse.ocl.ecore.opposites;
 
@@ -201,7 +201,7 @@ public class DefaultOppositeEndFinder
 			if (pkg instanceof EPackage) {
 				EPackage ePackage = (EPackage) pkg;
 				// ... and it hasn't been cached yet, cache it
-				if (!packages.contains(ePackage)) {
+				if (packages.add(ePackage)) {
 					cachePackage(ePackage);
 				}
 			}
