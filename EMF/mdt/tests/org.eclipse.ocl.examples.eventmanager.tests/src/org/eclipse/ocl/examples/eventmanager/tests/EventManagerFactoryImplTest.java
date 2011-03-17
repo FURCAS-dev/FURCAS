@@ -3,8 +3,7 @@
  */
 package org.eclipse.ocl.examples.eventmanager.tests;
 
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
+import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -19,7 +18,7 @@ import org.junit.Test;
  * @author Philipp
  *
  */
-public class EventManagerFactoryImplTest {
+public class EventManagerFactoryImplTest extends TestCase {
 
     /**
      * @throws java.lang.Exception
@@ -43,29 +42,24 @@ public class EventManagerFactoryImplTest {
         ResourceSet s1 = new ResourceSetImpl();
         ResourceSet s2 = new ResourceSetImpl();
 
-
-        EventManager em1 =EventManagerFactory.eINSTANCE.getEventManagerFor(s1);
-        EventManager em2 =EventManagerFactory.eINSTANCE.getEventManagerFor(s2);
-        EventManager em3 =EventManagerFactory.eINSTANCE.getEventManagerFor(s1);
-        EventManager em4 =EventManagerFactory.eINSTANCE.getEventManagerFor(s2);
+        EventManager em1 = EventManagerFactory.eINSTANCE.getEventManagerFor(s1);
+        EventManager em2 = EventManagerFactory.eINSTANCE.getEventManagerFor(s2);
+        EventManager em3 = EventManagerFactory.eINSTANCE.getEventManagerFor(s1);
+        EventManager em4 = EventManagerFactory.eINSTANCE.getEventManagerFor(s2);
         
         assertSame(em1, em3);
         assertSame(em2, em4);
         assertNotSame(em1, em2);
         assertNotSame(em3, em4);
-
-
-
-        
-
     }
 
     /**
-     * Test method for {@link EventManagerFactory#createContainmentFilter()}.
+     * Test method for {@link EventManagerFactory#createContainmentFilter()} ensuring that
+     * as opposed to earlier versions we get a new filter object for each call
      */
     @Test
     public void testCreateContainmentFilter() {
-        assertSame(EventManagerFactory.eINSTANCE.createContainmentFilter(), EventManagerFactory.eINSTANCE.createContainmentFilter());
+        assertNotSame(EventManagerFactory.eINSTANCE.createContainmentFilter(), EventManagerFactory.eINSTANCE.createContainmentFilter());
     }
 
 }
