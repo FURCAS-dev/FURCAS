@@ -238,7 +238,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      */
         public EList<Template> getTemplates() {
         if (templates == null) {
-            templates = new EObjectContainmentWithInverseEList<Template>(Template.class, this, TCSPackage.CONCRETE_SYNTAX__TEMPLATES, TCSPackage.TEMPLATE__CONCRETE_SYNTAX);
+            templates = new EObjectContainmentWithInverseEList.Resolving<Template>(Template.class, this, TCSPackage.CONCRETE_SYNTAX__TEMPLATES, TCSPackage.TEMPLATE__CONCRETE_SYNTAX);
         }
         return templates;
     }
@@ -250,7 +250,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      */
         public EList<Keyword> getKeywords() {
         if (keywords == null) {
-            keywords = new EObjectContainmentEList<Keyword>(Keyword.class, this, TCSPackage.CONCRETE_SYNTAX__KEYWORDS);
+            keywords = new EObjectContainmentEList.Resolving<Keyword>(Keyword.class, this, TCSPackage.CONCRETE_SYNTAX__KEYWORDS);
         }
         return keywords;
     }
@@ -262,7 +262,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      */
         public EList<Symbol> getSymbols() {
         if (symbols == null) {
-            symbols = new EObjectContainmentEList<Symbol>(Symbol.class, this, TCSPackage.CONCRETE_SYNTAX__SYMBOLS);
+            symbols = new EObjectContainmentEList.Resolving<Symbol>(Symbol.class, this, TCSPackage.CONCRETE_SYNTAX__SYMBOLS);
         }
         return symbols;
     }
@@ -274,7 +274,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      */
         public EList<OperatorList> getOperatorLists() {
         if (operatorLists == null) {
-            operatorLists = new EObjectContainmentEList<OperatorList>(OperatorList.class, this, TCSPackage.CONCRETE_SYNTAX__OPERATOR_LISTS);
+            operatorLists = new EObjectContainmentEList.Resolving<OperatorList>(OperatorList.class, this, TCSPackage.CONCRETE_SYNTAX__OPERATOR_LISTS);
         }
         return operatorLists;
     }
@@ -286,7 +286,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
      */
         public EList<Token> getTokens() {
         if (tokens == null) {
-            tokens = new EObjectContainmentEList<Token>(Token.class, this, TCSPackage.CONCRETE_SYNTAX__TOKENS);
+            tokens = new EObjectContainmentEList.Resolving<Token>(Token.class, this, TCSPackage.CONCRETE_SYNTAX__TOKENS);
         }
         return tokens;
     }

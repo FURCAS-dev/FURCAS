@@ -91,7 +91,7 @@ public interface AtomExp extends LocatedElement {
      * @return the value of the '<em>Property Reference</em>' containment reference.
      * @see #setPropertyReference(PropertyReference)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAtomExp_PropertyReference()
-     * @model containment="true"
+     * @model containment="true" resolveProxies="true"
      * @generated
      */
         PropertyReference getPropertyReference();

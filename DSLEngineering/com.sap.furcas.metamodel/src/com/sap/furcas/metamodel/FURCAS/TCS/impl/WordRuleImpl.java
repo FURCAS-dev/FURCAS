@@ -104,6 +104,29 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
      * @generated
      */
         public OrPattern getStart() {
+        if (start != null && start.eIsProxy()) {
+            InternalEObject oldStart = (InternalEObject)start;
+            start = (OrPattern)eResolveProxy(oldStart);
+            if (start != oldStart) {
+                InternalEObject newStart = (InternalEObject)start;
+                NotificationChain msgs = oldStart.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__START, null, null);
+                if (newStart.eInternalContainer() == null) {
+                    msgs = newStart.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__START, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.WORD_RULE__START, oldStart, start));
+            }
+        }
+        return start;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OrPattern basicGetStart() {
         return start;
     }
 
@@ -147,6 +170,29 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
      * @generated
      */
         public OrPattern getPart() {
+        if (part != null && part.eIsProxy()) {
+            InternalEObject oldPart = (InternalEObject)part;
+            part = (OrPattern)eResolveProxy(oldPart);
+            if (part != oldPart) {
+                InternalEObject newPart = (InternalEObject)part;
+                NotificationChain msgs = oldPart.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__PART, null, null);
+                if (newPart.eInternalContainer() == null) {
+                    msgs = newPart.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__PART, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.WORD_RULE__PART, oldPart, part));
+            }
+        }
+        return part;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OrPattern basicGetPart() {
         return part;
     }
 
@@ -190,6 +236,29 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
      * @generated
      */
         public OrPattern getEnd() {
+        if (end != null && end.eIsProxy()) {
+            InternalEObject oldEnd = (InternalEObject)end;
+            end = (OrPattern)eResolveProxy(oldEnd);
+            if (end != oldEnd) {
+                InternalEObject newEnd = (InternalEObject)end;
+                NotificationChain msgs = oldEnd.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__END, null, null);
+                if (newEnd.eInternalContainer() == null) {
+                    msgs = newEnd.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.WORD_RULE__END, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.WORD_RULE__END, oldEnd, end));
+            }
+        }
+        return end;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OrPattern basicGetEnd() {
         return end;
     }
 
@@ -234,7 +303,7 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
      */
         public EList<Word> getWords() {
         if (words == null) {
-            words = new EObjectContainmentEList<Word>(Word.class, this, TCSPackage.WORD_RULE__WORDS);
+            words = new EObjectContainmentEList.Resolving<Word>(Word.class, this, TCSPackage.WORD_RULE__WORDS);
         }
         return words;
     }
@@ -268,11 +337,14 @@ public class WordRuleImpl extends RuleImpl implements WordRule {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.WORD_RULE__START:
-                return getStart();
+                if (resolve) return getStart();
+                return basicGetStart();
             case TCSPackage.WORD_RULE__PART:
-                return getPart();
+                if (resolve) return getPart();
+                return basicGetPart();
             case TCSPackage.WORD_RULE__END:
-                return getEnd();
+                if (resolve) return getEnd();
+                return basicGetEnd();
             case TCSPackage.WORD_RULE__WORDS:
                 return getWords();
         }

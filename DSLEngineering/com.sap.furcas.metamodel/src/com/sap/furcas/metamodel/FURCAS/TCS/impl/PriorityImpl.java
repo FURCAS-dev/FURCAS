@@ -122,6 +122,16 @@ public class PriorityImpl extends LocatedElementImpl implements Priority {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OperatorList basicGetList() {
+        if (eContainerFeatureID() != TCSPackage.PRIORITY__LIST) return null;
+        return (OperatorList)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -200,7 +210,7 @@ public class PriorityImpl extends LocatedElementImpl implements Priority {
      */
         public EList<Operator> getOperators() {
         if (operators == null) {
-            operators = new EObjectContainmentWithInverseEList<Operator>(Operator.class, this, TCSPackage.PRIORITY__OPERATORS, TCSPackage.OPERATOR__PRIORITY);
+            operators = new EObjectContainmentWithInverseEList.Resolving<Operator>(Operator.class, this, TCSPackage.PRIORITY__OPERATORS, TCSPackage.OPERATOR__PRIORITY);
         }
         return operators;
     }
@@ -263,7 +273,8 @@ public class PriorityImpl extends LocatedElementImpl implements Priority {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PRIORITY__LIST:
-                return getList();
+                if (resolve) return getList();
+                return basicGetList();
             case TCSPackage.PRIORITY__VALUE:
                 return getValue();
             case TCSPackage.PRIORITY__ASSOCIATIVITY:
@@ -333,7 +344,7 @@ public class PriorityImpl extends LocatedElementImpl implements Priority {
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.PRIORITY__LIST:
-                return getList() != null;
+                return basicGetList() != null;
             case TCSPackage.PRIORITY__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
             case TCSPackage.PRIORITY__ASSOCIATIVITY:

@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.framework;
 
+import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -64,22 +65,40 @@ import org.eclipse.ocl.examples.eventmanager.filters.PackageFilter;
 public class RegistrationManagerTableBased {
     private Logger logger = Logger.getLogger(RegistrationManagerTableBased.class.getName());
     
-    /**
-     * group ID for {@link Statistics} capturing the minimum table sizes during event handling
-     */
-    public static final String GROUP_ID_MINIMUM_TABLE_SIZE = "minimumTableSize*1000000";
+    // uncomment the following lines in case you want to record statistics about the minimum table size;
+    // but pay attention: this method runs in the innermost loop of the event manager, and even a method
+    // call to an empty method may consume some time
+    // /**
+    //  * group ID for {@link Statistics} capturing the minimum table sizes during event handling
+    //  */
+    // public static final String GROUP_ID_MINIMUM_TABLE_SIZE = "minimumTableSize*1000000";
 
     // needed to compute the affected registrations for an event
-    protected HashMap<Integer, Set<TableForEventFilter>> tablesByEventType = new HashMap<Integer, Set<TableForEventFilter>>();
+    private final HashMap<Integer, Set<TableForEventFilter>> tablesByEventType = new HashMap<Integer, Set<TableForEventFilter>>();
 
     /*
      * needed for registering purposes. The key may consist of either java.lang.Class or a list containing the class and
      * additional identifying information
      */
-    protected HashMap<Object, TableForEventFilter> tableByFilterType = new HashMap<Object, TableForEventFilter>();
+    private final HashMap<Object, TableForEventFilter> tableByFilterType = new HashMap<Object, TableForEventFilter>();
 
-    // This hashmap is for deregistration purposes only
-    protected WeakHashMap<Adapter, List<RegistrationSet>> registrationSetByListener = new WeakHashMap<Adapter, List<RegistrationSet>>();
+    /**
+     * During {@link #register(EventFilter, WeakReference, ListenerTypeEnum) registration}, weak references
+     * to adapters are passed in. To enable {@link #deregister(Adapter) deregistration} by direct references
+     * to the adapter, this field keeps the mapping between the adapters and their weak references. It does
+     * so in a {@link WeakHashMap} such that again no strong references to the adapter are introduced by
+     * the event manager framework.
+     */
+	private final WeakHashMap<Adapter, Set<Reference<? extends Adapter>>> adaptersToWeakRefs = new WeakHashMap<Adapter, Set<Reference<? extends Adapter>>>();
+
+	/**
+	 * maps the weak references to the adapters passed to
+	 * {@link #register(EventFilter, WeakReference, ListenerTypeEnum)} to the
+	 * registration sets constructed for their event filter; when implicit
+	 * de-registration occurs due to the adapter getting garbage collected, this
+	 * structure is used to clean up the registrations.
+	 */
+	private final Map<Reference<? extends Adapter>, List<RegistrationSet>> registrationSetByListenerReference = new HashMap<Reference<? extends Adapter>, List<RegistrationSet>>();
 
     /**
      * Maintains the registrations keyed by their {@link AndFilter}. It is used to find existing registrations
@@ -184,7 +203,7 @@ public class RegistrationManagerTableBased {
      *            the listener to register
      * @return an object of type RegistrationHandle (needed for deregistering purposes only)
      */
-    public synchronized RegistrationHandle register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
+    public synchronized void register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
             ListenerTypeEnum listenerType) {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
@@ -207,7 +226,6 @@ public class RegistrationManagerTableBased {
         }
         RegistrationSet result = new RegistrationSet(listener, listenerType, registrations);
         addRegistrationForListener(result, listener);
-        return new RegistrationHandle(listener.get(), result);
     }
 
     /**
@@ -255,16 +273,24 @@ public class RegistrationManagerTableBased {
         return filterTablesToRegisterWith;
     }
 
-    private void addRegistrationForListener(RegistrationSet registrationSet, WeakReference<? extends Adapter> listener) {
+    private void addRegistrationForListener(RegistrationSet registrationSet, Reference<? extends Adapter> listenerRef) {
         // registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
-        Adapter adapter = listener.get();
+        Adapter adapter = listenerRef.get();
         if (adapter == null) {
-            logger.warning("Registered adapter got GCed: "+listener);
+            logger.warning("Registered adapter got GCed: "+listenerRef);
         } else {
-            if (registrationSetByListener.get(adapter) == null) {
-                registrationSetByListener.put(adapter, new ArrayList<RegistrationSet>());
+            Set<Reference<? extends Adapter>> listenerSet = adaptersToWeakRefs.get(adapter);
+            if (listenerSet == null) {
+            	listenerSet = new HashSet<Reference<? extends Adapter>>();
+            	adaptersToWeakRefs.put(adapter, listenerSet);
             }
-            registrationSetByListener.get(adapter).add(registrationSet);
+            listenerSet.add(listenerRef);
+            List<RegistrationSet> registrationSetList = registrationSetByListenerReference.get(listenerRef);
+			if (registrationSetList == null) {
+				registrationSetList = new ArrayList<RegistrationSet>();
+            	registrationSetByListenerReference.put(listenerRef, registrationSetList);
+            }
+			registrationSetList.add(registrationSet);
         }
     }
 
@@ -279,18 +305,6 @@ public class RegistrationManagerTableBased {
             result |= filterTypeToBitMask.get(table.getIdentifier());
         }
         return result;
-    }
-
-    /**
-     * Removes the passed <code>registration</code> from all <code>EventFilterTables</code>. This method is synchronized because
-     * there must be no changes to the FilterTables while they are working.
-     * 
-     * @param the
-     *            registration to remove
-     */
-    public synchronized void deregister(RegistrationHandle registrationHandle) {
-        RegistrationSet rs = registrationHandle.getRegistrationSet();
-        deregister(rs);
     }
 
     private void deregister(RegistrationSet rs) {
@@ -312,15 +326,26 @@ public class RegistrationManagerTableBased {
      */
 
     public synchronized void deregister(Adapter listener) {
-        List<RegistrationSet> registrationSets = registrationSetByListener.get(listener);
+    	for (Reference<? extends Adapter> listenerRef : adaptersToWeakRefs.get(listener)) {
+    		deregister(listenerRef);
+    	}
+    }
+    
+    public synchronized void deregister(Reference<? extends Adapter> listenerRef) {
+    	Adapter adapter = listenerRef.get();
+    	if (adapter != null) {
+    		// not yet collected
+    		adaptersToWeakRefs.remove(adapter);
+    	}
+        List<RegistrationSet> registrationSets = registrationSetByListenerReference.get(listenerRef);
         if (registrationSets != null) {
             for (RegistrationSet registrationSet : registrationSets) {
                 deregister(registrationSet);
             }
-            registrationSetByListener.remove(listener);
+            registrationSetByListenerReference.remove(listenerRef);
         }
     }
-
+    
     /**
      * This method returns a {@link java.util.Collection} of {@link Adapter}s that were registered for the passed event.
      * 
@@ -464,7 +489,7 @@ public class RegistrationManagerTableBased {
      * @return whether the listener is registered
      */
     public boolean isListenerRegistered(Adapter listener) {
-        return registrationSetByListener.containsKey(listener);
+        return adaptersToWeakRefs.containsKey(listener);
     }
 
     /**

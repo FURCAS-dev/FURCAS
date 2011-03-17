@@ -39,7 +39,7 @@ public interface ConditionalElement extends SequenceElement {
      * @see #setCondition(Expression)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConditionalElement_Condition()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Expression#getConditionalElement
-     * @model opposite="conditionalElement" containment="true" required="true" ordered="false"
+     * @model opposite="conditionalElement" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Expression getCondition();
@@ -67,7 +67,7 @@ public interface ConditionalElement extends SequenceElement {
      * @see #setThenSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConditionalElement_ThenSequence()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getThenContainer
-     * @model opposite="thenContainer" containment="true" required="true" ordered="false"
+     * @model opposite="thenContainer" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Sequence getThenSequence();
@@ -95,7 +95,7 @@ public interface ConditionalElement extends SequenceElement {
      * @see #setElseSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getConditionalElement_ElseSequence()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getElseContainer
-     * @model opposite="elseContainer" containment="true" required="true" ordered="false"
+     * @model opposite="elseContainer" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Sequence getElseSequence();

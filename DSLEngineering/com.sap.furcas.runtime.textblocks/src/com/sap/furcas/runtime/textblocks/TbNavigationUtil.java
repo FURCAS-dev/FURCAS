@@ -634,7 +634,7 @@ public class TbNavigationUtil {
         if (node instanceof AbstractToken) {
             return getUltraRoot(((AbstractToken) node).getParent());
         } else if (node instanceof TextBlock) {
-            if (isUltraRoot((TextBlock) node)) {
+            if (isUltraRoot(node)) {
                 return (TextBlock) node;
             } else {
                 return getUltraRoot(((TextBlock) node).getParent());
@@ -651,7 +651,7 @@ public class TbNavigationUtil {
      * @param node
      * @return
      */
-    public static boolean isUltraRoot(TextBlock node) {
+    public static boolean isUltraRoot(DocumentNode node) {
         // TODO If parent instance of UltraRoot if there will be an extra class for this kind of element
         return node.getParent() == null;
     }
