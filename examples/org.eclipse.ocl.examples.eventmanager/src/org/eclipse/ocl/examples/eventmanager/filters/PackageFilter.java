@@ -14,6 +14,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+/**
+ * Matches an event's {@link Notification#getNotifier() notifier}'s {@link EObject#eClass()#getEPackage() package}
+ * @author Philipp Berger
+ *
+ */
 public class PackageFilter extends EventFilter {
 
     private EPackage ePackage;

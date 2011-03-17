@@ -13,6 +13,11 @@ package org.eclipse.ocl.examples.eventmanager.filters;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+/**
+ * Matches a {@link Notification#getFeature() feature}.
+ * @author Philipp Berger
+ *
+ */
 public abstract class StructuralFeatureFilter extends EventFilter {
 
     private final EStructuralFeature feature;
@@ -26,11 +31,6 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         return feature;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -48,11 +48,6 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         return isNegated() == ((EventFilter) other).isNegated();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         final int prime = 31;

@@ -14,6 +14,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.framework.LogicalOperationFilterImpl;
 
 
+/**
+ * Is an {@link LogicalOperationFilter} implementing the or-operator, so it
+ * matches if any of the contained operand matches the {@link Notification}.
+ * @author Philipp Berger
+ *
+ */
 public class OrFilter extends LogicalOperationFilterImpl {
 
     public OrFilter() {
