@@ -12,6 +12,7 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.junit.Test;
 
@@ -31,28 +32,11 @@ import org.junit.Test;
  * 
  */
 public abstract class EventFilterTest extends TestCase{
-
 	/**
 	 * The fixture for this Event Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 */
 	protected EventFilter fixture = null;
-	@Override
-	protected void setUp() {
-		try {
-			super.setUp();
-		} catch (Exception e) {
-			/* ... */
-		}
-	}
-	@Override
-	protected void tearDown() {
-		try {
-			super.tearDown();
-		} catch (Exception e) {
-			/*...*/
-		}
-	}
 	/**
 	 * Sets the fixture for this Event Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -83,13 +67,30 @@ public abstract class EventFilterTest extends TestCase{
 		EventFilter f = getFixture();
 		EventFilter c = f.clone();
 		
-		assertTrue("Clone equals source", c.equals(f));
-		assertTrue("Clone has same hashkey", c.hashCode() == f.hashCode());
+		assertTrue("Clone not equals source", c.equals(f));
+		assertTrue("Clone has  not same hashkey", c.hashCode() == f.hashCode());
 
 	}
+    /**
+     * Helper method to test the equals/hashcode methods
+     * Creates a filter object dependent on the incoming object
+     * @param f influence the filter creation
+     * @return new FIlter
+     */
     abstract EventFilter getFilterFor(Object f);
+    /**
+     * Gives one object which create a filter by using {@link #getFilterFor(Object)}
+     * @return an object
+     */
     abstract Object getFilterCriterion1();
+    /**
+     * Gives a object which creates if applicable a different filter to {@link #getFilterCriterion2()}
+     * @return an object
+     */
     abstract Object getFilterCriterion2();
+	/**
+	 * Simple test for the hashCode / equals contract
+	 */
 	public void testSimpleForEqualsAndHashCode() {
 		EventFilter f1 = getFilterFor(getFilterCriterion1());
 		EventFilter f2 = getFilterFor(getFilterCriterion1());
@@ -108,5 +109,9 @@ public abstract class EventFilterTest extends TestCase{
 		assertTrue(f1.hashCode() == f2.hashCode());
 		assertFalse(f1.hashCode() == f4.hashCode());
 	}
+
+	abstract public EventFilter giveTestFilter();
+	abstract public Notification[] giveMatchingNotifications();
+	abstract public Notification giveNotMatchingNotifcation();
 
 } // EventFilterTest
