@@ -76,9 +76,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         if(cached!=null){
             return cached;
         }
-        EventManager eventManager = new org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased(set);
-        setToManager.put(set, eventManager);
-        return eventManager;
+		if (set != null) {
+			EventManager eventManager = new org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased(
+					set);
+			setToManager.put(set, eventManager);
+			return eventManager;
+		} else {
+			return null;
+        }
     }
 
     public EventManager createEventManager() {
