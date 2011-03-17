@@ -46,7 +46,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public int getEndColumn() {
-		return wrappedToken.getEndColumn();
+		return 0;
 	}
 
 	/*
@@ -56,7 +56,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public int getEndLine() {
-		return wrappedToken.getEndRow();
+		return 0;
 	}
 
 	/*
@@ -86,7 +86,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public void setEndColumn(int endColumn) {
-		wrappedToken.setEndColumn(endColumn);
+		
 
 	}
 
@@ -97,7 +97,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public void setEndLine(int endLine) {
-		wrappedToken.setEndRow(endLine);
+		
 
 	}
 
@@ -153,7 +153,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public int getLine() {
-		return wrappedToken.getStartRow();
+		return 0;
 	}
 
 	/*
@@ -216,8 +216,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public void setLine(int line) {
-		wrappedToken.setStartRow(line);
-		wrappedToken.setEndRow(line);
 
 	}
 
@@ -430,16 +428,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 		return wrappedToken.getCorrespondingModelElements();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#getEndRow()
-	 */
-	@Override
-	public int getEndRow()  {
-
-		return wrappedToken.getEndRow();
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -474,27 +462,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 		return wrappedToken.getOtherVersions();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#getStartColumn()
-	 */
-	@Override
-	public int getStartColumn()  {
-
-		return wrappedToken.getStartColumn();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#getStartRow()
-	 */
-	@Override
-	public int getStartRow()  {
-
-		return wrappedToken.getStartRow();
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -554,17 +521,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see textblocks.DocumentNode#setEndRow(int)
-	 */
-	@Override
-	public void setEndRow(int newValue)  {
-		wrappedToken.setEndRow(newValue);
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see textblocks.DocumentNode#setLength(int)
 	 */
 	@Override
@@ -606,27 +562,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#setStartColumn(int)
-	 */
-	@Override
-	public void setStartColumn(int newValue)  {
-		wrappedToken.setStartColumn(newValue);
-
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#setStartRow(int)
-	 */
-	@Override
-	public void setStartRow(int newValue)  {
-		wrappedToken.setStartRow(newValue);
-
-	}
 
 	/*
 	 * (non-Javadoc)

@@ -497,52 +497,12 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EAttribute getDocumentNode_StartRow() {
+    @Override
+    public EAttribute getDocumentNode_AbsoluteOffset() {
         return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(11);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_StartColumn() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(12);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_EndRow() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(13);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_EndColumn() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(14);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EAttribute getDocumentNode_AbsoluteOffset() {
-        return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(15);
     }
 
         /**
@@ -600,6 +560,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EAttribute getForEachContext_ContextString() {
         return (EAttribute)forEachContextEClass.getEStructuralFeatures().get(4);
     }
@@ -609,6 +570,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EReference getForEachContext_TemplateUsedForProduction() {
         return (EReference)forEachContextEClass.getEStructuralFeatures().get(5);
     }
@@ -708,10 +670,6 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEAttribute(documentNodeEClass, DOCUMENT_NODE__LENGTH);
         createEReference(documentNodeEClass, DOCUMENT_NODE__OTHER_VERSIONS);
         createEAttribute(documentNodeEClass, DOCUMENT_NODE__OFFSET_RELATIVE);
-        createEAttribute(documentNodeEClass, DOCUMENT_NODE__START_ROW);
-        createEAttribute(documentNodeEClass, DOCUMENT_NODE__START_COLUMN);
-        createEAttribute(documentNodeEClass, DOCUMENT_NODE__END_ROW);
-        createEAttribute(documentNodeEClass, DOCUMENT_NODE__END_COLUMN);
         createEAttribute(documentNodeEClass, DOCUMENT_NODE__ABSOLUTE_OFFSET);
 
         forEachContextEClass = createEClass(FOR_EACH_CONTEXT);
@@ -812,10 +770,6 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEAttribute(getDocumentNode_Length(), ecorePackage.getEInt(), "length", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDocumentNode_OtherVersions(), this.getDocumentNode(), null, "otherVersions", null, 0, 2, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentNode_OffsetRelative(), theEcorePackage_1.getEBoolean(), "offsetRelative", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentNode_StartRow(), ecorePackage.getEInt(), "startRow", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentNode_StartColumn(), ecorePackage.getEInt(), "startColumn", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentNode_EndRow(), ecorePackage.getEInt(), "endRow", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getDocumentNode_EndColumn(), ecorePackage.getEInt(), "endColumn", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentNode_AbsoluteOffset(), ecorePackage.getEInt(), "absoluteOffset", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(forEachContextEClass, ForEachContext.class, "ForEachContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
