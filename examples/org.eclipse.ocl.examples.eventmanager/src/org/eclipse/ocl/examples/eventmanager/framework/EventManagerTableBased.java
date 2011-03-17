@@ -20,7 +20,6 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
@@ -88,41 +87,13 @@ public class EventManagerTableBased implements EventManager {
 	 */
     private final ReferenceQueue<Adapter> adaptersNoLongerStronglyReferenced = new ReferenceQueue<Adapter>();
 
-	/**
-	 * A dummy adapter used by {@link #stopThreadMarker}. In order to stop the
-	 * {@link #adapterCleanupThread}, this field must be set to
-	 * <code>null</code>, causing the adapter to be no longer stongly
-	 * referenced. This, in turn, will cause the {@link #stopThreadAdapter}
-	 * reference to be enqueued in {@link #adaptersNoLongerStronglyReferenced}
-	 * from where it is removed by {@link #adapterCleanupThread}. Successful
-	 * comparison to {@link #stopThreadMarker} causes the thread to terminate.
-	 */
-    private Adapter stopThreadAdapter = new AdapterImpl();
-    
-    /**
-     * Used to signal the {@link #adapterCleanupThread} to stop the thread. 
-     */
-	private final WeakReference<Adapter> stopThreadMarker = new WeakReference<Adapter>(
-			stopThreadAdapter, adaptersNoLongerStronglyReferenced);
-
     /**
      * This thread polls the {@link #adaptersNoLongerStronglyReferenced}. For any {@link Adapter} that
-     * is enqueued, it {@link #deregister(Adapter) deregisters} the adapter.
+     * is enqueued, it {@link #deregister(Reference) deregisters} the adapter. The thread will only
+     * keep a weak reference to this event manager, hence not disabling the event manager's garbage
+     * collection.
      */
-	private Thread adapterCleanupThread = new Thread() {
-    	public void run() {
-    		try {
-				Reference<? extends Adapter> adapterRef = adaptersNoLongerStronglyReferenced.remove();
-				while (adapterRef != stopThreadMarker) {
-					deregister(adapterRef);
-					adapterRef = adaptersNoLongerStronglyReferenced.remove();
-				}
-			} catch (InterruptedException e) {
-				// Why are we being interrupted? log incident and terminate thread.
-				logger.throwing(this.getClass().getName(), "run", e);
-			}
-    	}
-    };
+	private CleanupThread adapterCleanupThread = new CleanupThread(adaptersNoLongerStronglyReferenced, this);
 
     public EventManagerTableBased(ResourceSet set) {
         this();
@@ -204,7 +175,7 @@ public class EventManagerTableBased implements EventManager {
         removeListener(listener);
     }
     
-    private void deregister(Reference<? extends Adapter> listenerRef) {
+    void deregister(Reference<? extends Adapter> listenerRef) {
     	Adapter adapter = listenerRef.get();
     	if (adapter == null) {
     		// WeakHashMaps with adapter as key don't need to be taken care of anymore
@@ -369,7 +340,7 @@ public class EventManagerTableBased implements EventManager {
 
     @Override
     protected void finalize() throws Throwable {
-    	stopThreadAdapter = null; // causes stopThreadMarker to get enqueued which stops adapterCleanupThread
+    	adapterCleanupThread.stopCleaner();
         for (ResourceSet rs : resourceSets.keySet()) {
             if (rs != null && adapter != null) {
                 rs.eAdapters().remove(adapter);
