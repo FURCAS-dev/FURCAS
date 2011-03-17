@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrinterTest.java,v 1.1 2011/03/14 17:01:30 ewillink Exp $
+ * $Id: PrettyPrinterTest.java,v 1.2 2011/03/17 20:24:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -56,6 +56,9 @@ public class PrettyPrinterTest extends PivotSimpleTestSuite
 	 */
 	public void test_SourceNavigationPrecedence() {
 		assertPrintResults(null, "let a : Set(Integer) = Set{1} in (a - a)->isEmpty()");
+		assertPrintResults(null, "let a : Set(Integer) = Set{1} in a->isEmpty()");
+		assertPrintResults(null, "let a : Set(Integer) = Set{1} in a->asSet()->asSet()");
+		assertPrintResults(null, "let a : Set(Integer) = Set{1} in a->select(true)->asSet()");
 	}
 
 	/**
