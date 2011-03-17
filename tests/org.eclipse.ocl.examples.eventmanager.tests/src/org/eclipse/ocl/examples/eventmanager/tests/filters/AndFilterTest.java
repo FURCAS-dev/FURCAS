@@ -44,7 +44,7 @@ public class AndFilterTest extends LogicalEventFilterTest {
      * @see junit.framework.TestCase#setUp()
      */
     @Override
-    public void setUp() {
+    public void setUp() throws Exception {
         super.setUp();
         setFixture(EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter));
     }
@@ -55,7 +55,8 @@ public class AndFilterTest extends LogicalEventFilterTest {
      * @see junit.framework.TestCase#tearDown()
      */
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception{
+    	super.tearDown();
         setFixture(null);
         this.falseFilter = null;
         this.trueFilter = null;

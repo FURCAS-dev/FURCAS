@@ -45,25 +45,6 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
     protected StructuralFeatureFilter getFixture() {
         return (StructuralFeatureFilter) fixture;
     }
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    @Override
-    public void setUp() {
-        super.setUp();
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    public void tearDown() {
-        setFixture(null);
-    }
 
     /**
      * Tests the '
