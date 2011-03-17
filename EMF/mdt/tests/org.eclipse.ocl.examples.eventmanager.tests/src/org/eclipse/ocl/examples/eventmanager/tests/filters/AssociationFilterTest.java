@@ -12,11 +12,14 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -63,7 +66,7 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
      * @see junit.framework.TestCase#setUp()
      */
     @Override
-    public void setUp() {
+    public void setUp() throws Exception{
         super.setUp();
         this.reference1 = EcoreFactory.eINSTANCE.createEReference();
         reference1.setName("myReference");
@@ -78,7 +81,7 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
      * @see junit.framework.TestCase#tearDown()
      */
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception{
         super.tearDown();
         setFixture(null);
         this.reference1 = null;
@@ -109,6 +112,19 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	@Override
 	EStructuralFeature getFilterCriterion2() {
 		return reference2;
+	}
+	EReference ref = EcoreFactory.eINSTANCE.createEReference();
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		return new Notification[]{ new ENotificationImpl(null, 0, ref, null, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		return new ENotificationImpl(null, 0, EcoreFactory.eINSTANCE.createEReference(), null, null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createAssociationFilter(ref);
 	}
 
 } // AssociationFilterTest

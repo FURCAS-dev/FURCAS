@@ -12,10 +12,12 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
@@ -83,7 +85,7 @@ public class ClassFilterTest extends EventFilterTest {
         cls.getESuperTypes().add(superCls);
         inst = new DynamicEObjectImpl(cls);
         noti = new TestNoti(0, false, false, inst);
-        setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(superCls));
+        setFixture(EventManagerFactory.eINSTANCE.createClassFilter(superCls));
     }
 
     /**
@@ -130,6 +132,21 @@ public class ClassFilterTest extends EventFilterTest {
 	@Override
 	Object getFilterCriterion2() {
 		return cls2;
+	}
+	
+	EClass testCls = EcoreFactory.eINSTANCE.createEClass();
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		return new Notification[]{ new ENotificationImpl(new DynamicEObjectImpl(testCls), 0, null, null, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		EClass otherCls = EcoreFactory.eINSTANCE.createEClass();
+		return new ENotificationImpl(new DynamicEObjectImpl(otherCls), 0, null, null, null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createClassFilter(testCls);
 	}
     
 } // ClassFilterTest

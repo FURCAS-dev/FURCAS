@@ -13,11 +13,15 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludingSubclasses;
 import org.junit.Test;
@@ -82,11 +86,31 @@ public class OldValueClassIncludingSubclassesFilterTest extends ClassFilterTest 
     public void testMatchesFor__SubclassNotification() {
     	EClass childCls = EcoreFactory.eINSTANCE.createEClass();
     	childCls.setName("child");
-    	
     	childCls.getESuperTypes().add(cls);
     	
     	noti = new ENotificationImpl(null, Notification.ADD, null, new DynamicEObjectImpl(childCls), null);
         assertTrue("exact class match", getFixture().matchesFor(noti));
     }
+	EClass testSuperCls = EcoreFactory.eINSTANCE.createEClass();
 
+	EClass testCls = EcoreFactory.eINSTANCE.createEClass();
+	{
+		testCls.getESuperTypes().add(testSuperCls);
+	}
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		EList<EObject> list = new BasicEList<EObject>();
+		list.add(new DynamicEObjectImpl(testCls));
+		return new Notification[]{ new ENotificationImpl(null, 0, null, new DynamicEObjectImpl(testCls), null),
+				new ENotificationImpl(null, 0, null, list, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		EClass otherCls = EcoreFactory.eINSTANCE.createEClass();
+		return new ENotificationImpl(null, 0, null, new DynamicEObjectImpl(otherCls), null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createOldValueClassFilterIncludingSubclasses(testSuperCls);
+	}
 } // OldValueClassFilterTest
