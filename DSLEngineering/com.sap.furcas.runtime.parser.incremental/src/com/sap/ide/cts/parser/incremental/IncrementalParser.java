@@ -171,7 +171,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 
             // find the next changed region
             for (AbstractToken tok = findNextRegion(root); !isEOS(tok)
-                    && tok != null; tok = findNextRegion(tok)) {
+                    && tok != null; tok = tok==null?null:findNextRegion(tok)) {
                 AbstractToken leftBoundary = tok;
                 // left boundary has to be the element that is reachable by the
                 // lookback count of
@@ -458,7 +458,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 
         TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
         result = resultBean.textBlock;
-        partitionHandler.assignToDefaultTextBlocksPartition(result);
+        if (result.eResource() == null) {
+            partitionHandler.assignToDefaultTextBlocksPartition(result);
+        }
         if (resultBean.reuseType
                 .equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
             // the element that was created for the new textblock has to be
@@ -658,8 +660,7 @@ public class IncrementalParser extends IncrementalRecognizer {
                             }
                         }
                         if (correspondingNew.size() > 0) {
-                            oldVersion.eResource().getContents()
-                                    .add(newVersion);
+                            partitionHandler.assignToDefaultTextBlocksPartition(newVersion);
                         }
 
                     } else {

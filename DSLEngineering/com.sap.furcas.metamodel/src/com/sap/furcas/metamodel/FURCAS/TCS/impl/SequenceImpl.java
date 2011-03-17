@@ -114,7 +114,7 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
      */
         public EList<SequenceElement> getElements() {
         if (elements == null) {
-            elements = new EObjectContainmentWithInverseEList<SequenceElement>(SequenceElement.class, this, TCSPackage.SEQUENCE__ELEMENTS, TCSPackage.SEQUENCE_ELEMENT__ELEMENT_SEQUENCE);
+            elements = new EObjectContainmentWithInverseEList.Resolving<SequenceElement>(SequenceElement.class, this, TCSPackage.SEQUENCE__ELEMENTS, TCSPackage.SEQUENCE_ELEMENT__ELEMENT_SEQUENCE);
         }
         return elements;
     }
@@ -207,6 +207,16 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FunctionTemplate basicGetFunctionContainer() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE__FUNCTION_CONTAINER) return null;
+        return (FunctionTemplate)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -244,6 +254,16 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         public Block getBlockContainer() {
         if (eContainerFeatureID() != TCSPackage.SEQUENCE__BLOCK_CONTAINER) return null;
         return (Block)eContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Block basicGetBlockContainer() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE__BLOCK_CONTAINER) return null;
+        return (Block)eInternalContainer();
     }
 
         /**
@@ -289,6 +309,16 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ConditionalElement basicGetThenContainer() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE__THEN_CONTAINER) return null;
+        return (ConditionalElement)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -330,6 +360,16 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ConditionalElement basicGetElseContainer() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE__ELSE_CONTAINER) return null;
+        return (ConditionalElement)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -367,6 +407,16 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
         public SeparatorPArg getSeparatorContainer() {
         if (eContainerFeatureID() != TCSPackage.SEQUENCE__SEPARATOR_CONTAINER) return null;
         return (SeparatorPArg)eContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SeparatorPArg basicGetSeparatorContainer() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE__SEPARATOR_CONTAINER) return null;
+        return (SeparatorPArg)eInternalContainer();
     }
 
         /**
@@ -536,15 +586,20 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
                 if (resolve) return getPrefixContainer();
                 return basicGetPrefixContainer();
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
-                return getFunctionContainer();
+                if (resolve) return getFunctionContainer();
+                return basicGetFunctionContainer();
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
-                return getBlockContainer();
+                if (resolve) return getBlockContainer();
+                return basicGetBlockContainer();
             case TCSPackage.SEQUENCE__THEN_CONTAINER:
-                return getThenContainer();
+                if (resolve) return getThenContainer();
+                return basicGetThenContainer();
             case TCSPackage.SEQUENCE__ELSE_CONTAINER:
-                return getElseContainer();
+                if (resolve) return getElseContainer();
+                return basicGetElseContainer();
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
-                return getSeparatorContainer();
+                if (resolve) return getSeparatorContainer();
+                return basicGetSeparatorContainer();
             case TCSPackage.SEQUENCE__OT_CONTAINER:
                 if (resolve) return getOtContainer();
                 return basicGetOtContainer();
@@ -647,15 +702,15 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
             case TCSPackage.SEQUENCE__PREFIX_CONTAINER:
                 return prefixContainer != null;
             case TCSPackage.SEQUENCE__FUNCTION_CONTAINER:
-                return getFunctionContainer() != null;
+                return basicGetFunctionContainer() != null;
             case TCSPackage.SEQUENCE__BLOCK_CONTAINER:
-                return getBlockContainer() != null;
+                return basicGetBlockContainer() != null;
             case TCSPackage.SEQUENCE__THEN_CONTAINER:
-                return getThenContainer() != null;
+                return basicGetThenContainer() != null;
             case TCSPackage.SEQUENCE__ELSE_CONTAINER:
-                return getElseContainer() != null;
+                return basicGetElseContainer() != null;
             case TCSPackage.SEQUENCE__SEPARATOR_CONTAINER:
-                return getSeparatorContainer() != null;
+                return basicGetSeparatorContainer() != null;
             case TCSPackage.SEQUENCE__OT_CONTAINER:
                 return otContainer != null;
         }

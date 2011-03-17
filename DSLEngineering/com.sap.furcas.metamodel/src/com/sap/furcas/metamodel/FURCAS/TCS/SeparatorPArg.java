@@ -37,7 +37,7 @@ public interface SeparatorPArg extends PropertyArg {
      * @see #setSeparatorSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getSeparatorPArg_SeparatorSequence()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getSeparatorContainer
-     * @model opposite="separatorContainer" containment="true" required="true" ordered="false"
+     * @model opposite="separatorContainer" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Sequence getSeparatorSequence();

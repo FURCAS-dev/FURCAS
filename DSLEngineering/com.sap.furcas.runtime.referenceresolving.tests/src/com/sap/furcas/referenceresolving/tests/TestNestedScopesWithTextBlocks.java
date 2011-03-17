@@ -26,15 +26,16 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.junit.After;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.metamodel.FURCAS.textblocks.impl.LexedTokenImpl;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
+import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 
 /**
  * Tests NestedScopes TCS and metamodel and impact analysis behavior on renames using the NestedScopes language.
@@ -242,7 +243,6 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * scope due to a textual rename of the usage's token value, Impact Analysis breaks the boundDefinition reference.
      */
     @Test
-    @Ignore("IA doesn't seem to break the boundDefinition reference after the usage is changed textually.")
     public void testCorrectBindingIfBoundElementIsNoLongerInLookupScopeAfterRenameWithoutShadowing() {
         String sample = "{ def a; { def b; use a;} }";
         setupModelFromTextToParse(sample);
@@ -255,14 +255,24 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         renameElement(aDefinition, "d", RenameOn.TEXTBLOCK);
         
         OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-        LexedTokenImpl newLexedTokenOfUsage = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition).iterator().next();
+        LexedToken newLexedTokenOfUsage = findCurrentReferenceTokenReferencing(aDefinition, oppositeEndFinder);
+        assertNotNull(newLexedTokenOfUsage);
         assertEquals("d", newLexedTokenOfUsage.getValue());
         assertEquals("a", aDefinition.eGet(aDefinition.eClass().getEStructuralFeature("name")));
-        assertFalse("boundDefinition reference should not be set",aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
+        assertFalse("boundDefinition reference should not be set",
+                aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
         
         renameElement(bDefinition, "a", RenameOn.MODEL);
         assertFalse(aUsage.eIsSet((aUsage.eClass().getEStructuralFeature("boundDefinition"))));
+    }
 
+    private LexedToken findCurrentReferenceTokenReferencing(EObject aDefinition, OppositeEndFinder oppositeEndFinder) {
+        for (EObject o : oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), aDefinition)) {
+            if (EcoreUtil.getRootContainer(o) == rootTextBlock) {
+                return (LexedToken) o;
+            }
+        }
+        return null;
     }
      
     /**
@@ -331,15 +341,19 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
     private void renameElement(EObject element, String newValue, RenameOn method) {
         if (method == RenameOn.MODEL) {
             element.eSet(element.eClass().getEStructuralFeature("name"), newValue);
-        }else if (method == RenameOn.TEXTBLOCK){
+        } else if (method == RenameOn.TEXTBLOCK) {
+            TextBlock workingCopy = (TextBlock) TbReplacingHelper.getOrCreateWorkingCopy(rootTextBlock);
             OppositeEndFinder oppositeEndFinder = DefaultOppositeEndFinder.getInstance();
-            LexedTokenImpl lexedToken = (LexedTokenImpl) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator().next();
-            TextBlock workingCopy = TbReplacingHelper.getWorkingCopy(rootTextBlock);
-            lexedToken.setValue(newValue);
-            TbMarkingUtil.mark(lexedToken);
+            LexedToken lexedToken = (LexedToken) oppositeEndFinder
+                    .navigateOppositePropertyWithBackwardScope(
+                            TextblocksPackage.eINSTANCE.getDocumentNode_ReferencedElements(), element).iterator()
+                    .next();
+            LexedToken lexedTokenInWorkingCopy = TbVersionUtil.getOtherVersion(lexedToken, Version.PREVIOUS);
+            lexedTokenInWorkingCopy.setValue(newValue);
+            TbMarkingUtil.mark(lexedTokenInWorkingCopy);
             TextBlock currentVersionTb = incrementalParserFacade.parseIncrementally(workingCopy);
-            TbChangeUtil.cleanUp(currentVersionTb);
-            }
+            rootTextBlock = (TextBlock) TbChangeUtil.cleanUp(currentVersionTb);
         }
+    }
 
 }
