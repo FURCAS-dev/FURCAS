@@ -10,17 +10,28 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.filters;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EReference;
 
+/**
+ * Matches a {@link Notification#getFeature() feature}.
+ * Essentially it delegates to the {@link StructuralFeatureFilter} methods, but is specific for 
+ * an {@link EReference reference}
+ * @author Philipp Berger
+ *
+ */
 public class AssociationFilter extends StructuralFeatureFilter {
-    public AssociationFilter(EStructuralFeature feature) {
+    public AssociationFilter(EReference feature) {
         super(feature);
     }
 
     @Override
     public AssociationFilter clone(){
         return new AssociationFilter(getFeature());
-
+    }
+    @Override
+    public EReference getFeature() {
+    	return (EReference)super.getFeature();
     }
 
 } // AssociationFilterImpl
