@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
