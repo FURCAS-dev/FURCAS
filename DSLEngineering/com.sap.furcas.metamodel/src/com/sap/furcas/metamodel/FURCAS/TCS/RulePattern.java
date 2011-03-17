@@ -35,7 +35,7 @@ public interface RulePattern extends SimplePattern {
      * @return the value of the '<em>Rule</em>' containment reference.
      * @see #setRule(Rule)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getRulePattern_Rule()
-     * @model containment="true" required="true" ordered="false"
+     * @model containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Rule getRule();

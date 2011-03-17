@@ -47,13 +47,22 @@ public interface EventManagerFactory {
      */
     EventManagerFactory eINSTANCE = org.eclipse.ocl.examples.eventmanager.framework.EventManagerFactoryImpl.init();
 
-    /**
-     * Creates a new or re-uses an existing {@link EventManager} that was previously created by calling this operation (and not by
-     * {@link #createEventManagerFor(ResourceSet)}). The event manager receives all change notifications from all notifiers
-     * contained directly or indirectly by <code>set</code>. Those events matching the filters provided by listeners in their call
-     * to {@link EventManager#subscribe(EventFilter, org.eclipse.emf.common.notify.Adapter)} will be passed on to those listener
-     * {@link Adapter}s.
-     */
+	/**
+	 * Creates a new or re-uses an existing {@link EventManager} that was
+	 * previously created by calling this operation (and not by
+	 * {@link #createEventManagerFor(ResourceSet)}). The event manager receives
+	 * all change notifications from all notifiers contained directly or
+	 * indirectly by <code>set</code>. Those events matching the filters
+	 * provided by listeners in their call to
+	 * {@link EventManager#subscribe(EventFilter, org.eclipse.emf.common.notify.Adapter)}
+	 * will be passed on to those listener {@link Adapter}s.
+	 * 
+	 * @param set
+	 *            if <code>null</code>, a <code>null</code> result will be
+	 *            returned
+	 * @return a valid, non-<code>null</code> {@link EventManager} if and only
+	 *         if <code>set!=null</code>
+	 */
     EventManager getEventManagerFor(ResourceSet set);
     
     /**

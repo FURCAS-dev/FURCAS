@@ -69,7 +69,7 @@ public class AndExpImpl extends ExpressionImpl implements AndExp {
      */
         public EList<AtomExp> getExpressions() {
         if (expressions == null) {
-            expressions = new EObjectContainmentWithInverseEList<AtomExp>(AtomExp.class, this, TCSPackage.AND_EXP__EXPRESSIONS, TCSPackage.ATOM_EXP__AND_EXP);
+            expressions = new EObjectContainmentWithInverseEList.Resolving<AtomExp>(AtomExp.class, this, TCSPackage.AND_EXP__EXPRESSIONS, TCSPackage.ATOM_EXP__AND_EXP);
         }
         return expressions;
     }

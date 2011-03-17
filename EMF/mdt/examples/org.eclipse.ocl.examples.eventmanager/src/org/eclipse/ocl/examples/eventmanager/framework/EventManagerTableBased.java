@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.framework;
 
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -69,9 +71,29 @@ public class EventManagerTableBased implements EventManager {
     /**
      * The RegistrationManager does the main work when finding out which listeners are affected by an event.
      */
-    private RegistrationManagerTableBased registrationManager = null;
+    private final RegistrationManagerTableBased registrationManager;
 
     private final WeakHashMap<ResourceSet, Object> resourceSets;
+
+	/**
+	 * Registered with all {@link WeakReference}s created for {@link Adapter}s
+	 * during {@link #register(Adapter, EventFilter, ListenerTypeEnum)
+	 * registration}. If any of these adapters is no longer strongly referenced
+	 * and hence eligible for garbage collection, it may not have been properly
+	 * {@link #deregister(Adapter) deregistered} from this event manager. This
+	 * would cause structures in the {@link #registrationManager} to remain in
+	 * place although no longer needed. This, in turn, would leak memory over
+	 * time.
+	 */
+    private final ReferenceQueue<Adapter> adaptersNoLongerStronglyReferenced = new ReferenceQueue<Adapter>();
+
+    /**
+     * This thread polls the {@link #adaptersNoLongerStronglyReferenced}. For any {@link Adapter} that
+     * is enqueued, it {@link #deregister(Reference) deregisters} the adapter. The thread will only
+     * keep a weak reference to this event manager, hence not disabling the event manager's garbage
+     * collection.
+     */
+	private CleanupThread adapterCleanupThread = new CleanupThread(adaptersNoLongerStronglyReferenced, this);
 
     public EventManagerTableBased(ResourceSet set) {
         this();
@@ -81,6 +103,7 @@ public class EventManagerTableBased implements EventManager {
     public EventManagerTableBased() {
         resourceSets = new WeakHashMap<ResourceSet, Object>();
         registrationManager = new RegistrationManagerTableBased();
+        adapterCleanupThread.start();
     }
     
     public void setActive(boolean active) {
@@ -129,7 +152,7 @@ public class EventManagerTableBased implements EventManager {
             throw new IllegalArgumentException("Event filter must not be null");
         }
         // Use WeakReference to avoid dangling registrations
-        WeakReference<Adapter> listenerRef = new WeakReference<Adapter>(listener);
+        WeakReference<Adapter> listenerRef = new WeakReference<Adapter>(listener, adaptersNoLongerStronglyReferenced);
         // delegate registration to RegistrationManager
         // The event filter is cloned, because the calculation of the DNF will modify the filter tree
         registrationManager.register(eventFilterTree.clone(), listenerRef, listenerType);
@@ -150,6 +173,16 @@ public class EventManagerTableBased implements EventManager {
         registrationManager.deregister(listener);
         // remove Notifier(s) for listener
         removeListener(listener);
+    }
+    
+    void deregister(Reference<? extends Adapter> listenerRef) {
+    	Adapter adapter = listenerRef.get();
+    	if (adapter == null) {
+    		// WeakHashMaps with adapter as key don't need to be taken care of anymore
+    		registrationManager.deregister(listenerRef);
+    	} else {
+    		deregister(adapter);
+    	}
     }
 
     /* Methods from EventManager interface */
@@ -307,6 +340,7 @@ public class EventManagerTableBased implements EventManager {
 
     @Override
     protected void finalize() throws Throwable {
+    	adapterCleanupThread.stopCleaner();
         for (ResourceSet rs : resourceSets.keySet()) {
             if (rs != null && adapter != null) {
                 rs.eAdapters().remove(adapter);
