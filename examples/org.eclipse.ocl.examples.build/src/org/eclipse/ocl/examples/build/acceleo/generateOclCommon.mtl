@@ -146,6 +146,9 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [for (parameter : Parameter | operation.ownedParameter)]
 [emitParameter(parameter)/]
 [/for]
+[if (operation.isStatic)]
+[operation.getSymbolName()/].setIsStatic(true);
+[/if]
 [if (operation.precedence->notEmpty())]
 [operation.getSymbolName()/].setPrecedence([operation.precedence.getSymbolName()/]);
 [/if]
@@ -306,5 +309,27 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 	[emitOperation(operation)/]
 }
 [/for]
+[type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
+[/template]
+
+[template public emitType(type : Enumeration)]
+//
+// [type.getSignature()/] [type.moniker/]
+//
+[type.getSymbolName()/].setName("[type.name/]");
+//[type.getSymbolName()/].setMoniker("[type.moniker/]");
+[for (superClass : Class | type.superClass)]
+[if (type._package.getRootPackage() = superClass._package.getRootPackage())]
+[type.getSymbolName()/].getSuperClasses().add([superClass.getSymbolName()/]); // [superClass.moniker/]
+[/if]
+[/for]
+{
+[for (literal : EnumerationLiteral | type.ownedLiteral)]
+	EnumerationLiteral [literal.getSymbolName()/] = PivotFactory.eINSTANCE.createEnumerationLiteral(); // [literal.getSignature()/] [literal.moniker/]
+	[literal.getSymbolName()/].setName("[literal.name/]");
+	[type.getSymbolName()/].getOwnedLiterals().add([literal.getSymbolName()/]);
+[/for]
+}
+
 [type.eContainer().getSymbolName()/].getOwnedTypes().add([type.getSymbolName()/]);
 [/template]
