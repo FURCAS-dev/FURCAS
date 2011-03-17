@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -84,6 +85,12 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // uncomment the following line in case you want to compare with the performance of the naive
         // event manager:
         // eventManager = new EventManagerNaive(rs);
+    }
+    
+    @After
+    public void tearDown() {
+        rs = null; // ensure that ResourceSet is no longer strongly referenced
+        EventManagerFactory.eINSTANCE.getEventManagerFor(null);
     }
     
     @Test
