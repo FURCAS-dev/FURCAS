@@ -13,7 +13,18 @@ package org.eclipse.ocl.examples.eventmanager.filters;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased;
 
+/**
+ * The Containment filter matches {@link Notification#getFeature()} is an {@link EReference} 
+ * and {@link EReference#isContainment()} is true
+ * or it matches if the {@link Notification#getNotifier()} is not an {@link EObject},
+ * so it might be a {@link ResourceSet} or a {@link Resource}
+ * @author Philipp Berger
+ *
+ */
 public class ContainmentFilter extends EventFilter {
 
     private ContainmentFilter() {
@@ -56,6 +67,10 @@ public class ContainmentFilter extends EventFilter {
 
     }
 
+    /**
+     * This method will only returns true, the logic is moved to the {@link EventManagerTableBased}
+     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#getFilterCriterion()
+     */
     @Override
     public Object getFilterCriterion() {
         return true;

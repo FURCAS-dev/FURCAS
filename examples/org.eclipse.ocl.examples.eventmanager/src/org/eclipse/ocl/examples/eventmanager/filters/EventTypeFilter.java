@@ -11,13 +11,25 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 
+/**
+ * Matches an {@link Notification#getEventType() event type}
+ * the constants are defined in {@link Notifier}
+ * @author Philipp Berger
+ *
+ */
 public class EventTypeFilter extends EventFilter {
     private final int eventType;
 
-    public EventTypeFilter(int eventType2) {
+    /**
+     * Creates a new {@link EventTypeFilter} with the given filter type.
+     * For the different types {@see Notifier}
+     * @param eventType
+     */
+    public EventTypeFilter(int eventType) {
         super();
-        eventType = eventType2;
+        this.eventType = eventType;
     }
 
     /*
@@ -40,6 +52,10 @@ public class EventTypeFilter extends EventFilter {
         return isNegated() == ((EventFilter) other).isNegated();
     }
 
+    /**
+     * Gives the event type of this filter object
+     * @return an integer representing the event type
+     */
     public int getEventType() {
         return eventType;
     }
