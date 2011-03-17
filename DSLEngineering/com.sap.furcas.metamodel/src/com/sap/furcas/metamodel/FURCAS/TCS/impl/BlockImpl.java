@@ -82,6 +82,29 @@ public class BlockImpl extends SequenceElementImpl implements Block {
      * @generated
      */
         public Sequence getBlockSequence() {
+        if (blockSequence != null && blockSequence.eIsProxy()) {
+            InternalEObject oldBlockSequence = (InternalEObject)blockSequence;
+            blockSequence = (Sequence)eResolveProxy(oldBlockSequence);
+            if (blockSequence != oldBlockSequence) {
+                InternalEObject newBlockSequence = (InternalEObject)blockSequence;
+                NotificationChain msgs =  oldBlockSequence.eInverseRemove(this, TCSPackage.SEQUENCE__BLOCK_CONTAINER, Sequence.class, null);
+                if (newBlockSequence.eInternalContainer() == null) {
+                    msgs =  newBlockSequence.eInverseAdd(this, TCSPackage.SEQUENCE__BLOCK_CONTAINER, Sequence.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.BLOCK__BLOCK_SEQUENCE, oldBlockSequence, blockSequence));
+            }
+        }
+        return blockSequence;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Sequence basicGetBlockSequence() {
         return blockSequence;
     }
 
@@ -126,7 +149,7 @@ public class BlockImpl extends SequenceElementImpl implements Block {
      */
         public EList<BlockArg> getBlockArgs() {
         if (blockArgs == null) {
-            blockArgs = new EObjectContainmentWithInverseEList<BlockArg>(BlockArg.class, this, TCSPackage.BLOCK__BLOCK_ARGS, TCSPackage.BLOCK_ARG__BLOCK);
+            blockArgs = new EObjectContainmentWithInverseEList.Resolving<BlockArg>(BlockArg.class, this, TCSPackage.BLOCK__BLOCK_ARGS, TCSPackage.BLOCK_ARG__BLOCK);
         }
         return blockArgs;
     }
@@ -175,7 +198,8 @@ public class BlockImpl extends SequenceElementImpl implements Block {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.BLOCK__BLOCK_SEQUENCE:
-                return getBlockSequence();
+                if (resolve) return getBlockSequence();
+                return basicGetBlockSequence();
             case TCSPackage.BLOCK__BLOCK_ARGS:
                 return getBlockArgs();
         }

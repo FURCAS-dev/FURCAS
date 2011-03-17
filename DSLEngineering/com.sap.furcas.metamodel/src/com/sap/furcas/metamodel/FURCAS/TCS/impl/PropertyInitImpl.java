@@ -107,6 +107,29 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
      * @generated
      */
         public PropertyReference getPropertyReference() {
+        if (propertyReference != null && propertyReference.eIsProxy()) {
+            InternalEObject oldPropertyReference = (InternalEObject)propertyReference;
+            propertyReference = (PropertyReference)eResolveProxy(oldPropertyReference);
+            if (propertyReference != oldPropertyReference) {
+                InternalEObject newPropertyReference = (InternalEObject)propertyReference;
+                NotificationChain msgs = oldPropertyReference.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE, null, null);
+                if (newPropertyReference.eInternalContainer() == null) {
+                    msgs = newPropertyReference.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE, oldPropertyReference, propertyReference));
+            }
+        }
+        return propertyReference;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyReference basicGetPropertyReference() {
         return propertyReference;
     }
 
@@ -209,7 +232,8 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
-                return getPropertyReference();
+                if (resolve) return getPropertyReference();
+                return basicGetPropertyReference();
             case TCSPackage.PROPERTY_INIT__VALUE:
                 return getValue();
             case TCSPackage.PROPERTY_INIT__DEFAULT:

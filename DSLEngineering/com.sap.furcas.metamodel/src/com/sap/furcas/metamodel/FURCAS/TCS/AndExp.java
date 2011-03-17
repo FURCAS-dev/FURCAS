@@ -38,7 +38,7 @@ public interface AndExp extends Expression {
      * @return the value of the '<em>Expressions</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getAndExp_Expressions()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.AtomExp#getAndExp
-     * @model opposite="andExp" containment="true"
+     * @model opposite="andExp" containment="true" resolveProxies="true"
      * @generated
      */
         EList<AtomExp> getExpressions();

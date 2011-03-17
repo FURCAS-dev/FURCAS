@@ -3,9 +3,10 @@ package com.sap.furcas.parser.tcs.syntaxmodel;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -56,7 +57,12 @@ public class TestContainmentTree extends GeneratedParserBasedTest {
     @Test
     public void testContainment() throws Exception {
         resource = syntaxBean.getSyntax().eResource();
-        EList<EObject> list = resource.getContents();
-        assertEquals("Resource contains more than the ConcreteSyntax", list.size(), 1);
+        List<EObject> roots= new ArrayList<EObject>(1);
+        for (EObject eo : resource.getContents()) {
+        	if (eo.eContainer() == null) {
+        		roots.add(eo);
+        	}
+        }
+        assertEquals("Resource contains more uncontained elements than the ConcreteSyntax", roots.size(), 1);
     }
 }

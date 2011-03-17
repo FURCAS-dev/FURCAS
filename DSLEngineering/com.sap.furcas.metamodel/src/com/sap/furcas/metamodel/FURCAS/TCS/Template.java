@@ -149,7 +149,7 @@ public interface Template extends QualifiedNamedElement {
      * @see #setTextBlockDefinition(TextBlockDefinition)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getTemplate_TextBlockDefinition()
      * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule
-     * @model opposite="parseRule" containment="true"
+     * @model opposite="parseRule" containment="true" resolveProxies="true"
      * @generated
      */
 	TextBlockDefinition getTextBlockDefinition();

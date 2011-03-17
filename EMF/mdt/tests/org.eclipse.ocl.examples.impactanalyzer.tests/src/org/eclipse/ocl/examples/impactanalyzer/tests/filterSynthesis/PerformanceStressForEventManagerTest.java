@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -84,6 +85,12 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // uncomment the following line in case you want to compare with the performance of the naive
         // event manager:
         // eventManager = new EventManagerNaive(rs);
+    }
+    
+    @After
+    public void tearDown() {
+        rs = null; // ensure that ResourceSet is no longer strongly referenced
+        EventManagerFactory.eINSTANCE.getEventManagerFor(null);
     }
     
     @Test
@@ -157,17 +164,19 @@ public class PerformanceStressForEventManagerTest extends TestCase {
     }
 
     private void printStats(String groupId) {
+    	String minTableSizeGroupId;
         try {
             Field gidmts = getRegistrationManager().getClass().getDeclaredField("GROUP_ID_MINIMUM_TABLE_SIZE");
             gidmts.setAccessible(true);
-            String minTableSizeGroupId = (String) gidmts.get(null);
-            System.out.println(groupId + "\t" + subscriptions + "\t" + notificationCount + "\t"
-                    + Statistics.getInstance().getAverage(minTableSizeGroupId) + "\t"
-                    + Statistics.getInstance().getAverage(groupId));
+            minTableSizeGroupId = (String) gidmts.get(null);
         } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
+            minTableSizeGroupId = "minimumTableSize*1000000";
+		}
+		System.out.println(groupId + "\t" + subscriptions + "\t"
+				+ notificationCount + "\t"
+				+ Statistics.getInstance().getAverage(minTableSizeGroupId)
+				+ "\t" + Statistics.getInstance().getAverage(groupId));
+	}
     
     private void registerFiltersForAllExpressions() {
         registerFiltersForANumberOfExpressions(expressions.size());

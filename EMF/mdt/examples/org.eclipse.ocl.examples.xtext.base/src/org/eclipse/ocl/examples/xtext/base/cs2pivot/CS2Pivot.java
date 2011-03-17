@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.7 2011/03/05 05:57:40 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.8 2011/03/16 17:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl;
+import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -108,7 +109,7 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 			return unresolvedProxyMessageProvider.getMessage(csContext, linkText);
 		}
 		else {
-			String messageTemplate = "Couldn't resolve reference to {0} '{1}'.";
+			String messageTemplate = OCLMessages.Unresolved_ERROR_;
 			EClass referenceType = eReference.getEReferenceType();
 			return NLS.bind(messageTemplate, referenceType.getName(), linkText);
 		}
