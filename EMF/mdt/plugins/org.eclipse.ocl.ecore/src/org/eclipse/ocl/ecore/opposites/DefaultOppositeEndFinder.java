@@ -203,6 +203,7 @@ public class DefaultOppositeEndFinder
 				EPackage ePackage = (EPackage) pkg;
 				// ... and it hasn't been cached yet, cache it
 				if (!packages.contains(ePackage)) {
+					packages.add(ePackage);
 					cachePackage(ePackage);
 				}
 			}

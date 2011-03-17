@@ -276,7 +276,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * for <code>element</code>, <code>null</code> is returned.
      */
     private Collection<LexedToken> getTokens(EObject elementToUpdate) {
-        // FIXME there may be multiple versions of such tokens; decide which version to return
+        // TODO there may be multiple versions of such tokens; decide which version to return
         Collection<EObject> documentNodeDocumentingExecutionOfQuery = getOppositeEndFinder()
         .navigateOppositePropertyWithBackwardScope(
                 TextblocksPackage.eINSTANCE.getDocumentNode_SequenceElement(), property);
