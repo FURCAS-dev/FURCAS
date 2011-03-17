@@ -53,9 +53,22 @@ import dataaccess.analytics.AnalyticsPackage;
 import dataaccess.expressions.literals.LiteralsFactory;
 import dataaccess.expressions.literals.StringLiteral;
 
-
+/**
+ * For each test there is a "small" and a "large" variant. The "small" variant
+ * tests that no notification is received twice. This requires recording the
+ * notifications received by a listener. For the "large" variants, notifications
+ * received are no longer recorded, and the duplicate check is not performed.
+ * The "small" or "large" variants differ in the value of
+ * {@link #NUMBER_OF_INNER_LOOP_EXECUTIONS} which defaults to 1000 iterations
+ * for the innermost loops in the "large" variant but is set to 3 for the
+ * "small" variant.
+ * 
+ * @author Axel Uhl (d043530)
+ * 
+ */
 public class PerformanceStressForEventManagerTest extends TestCase {
-    private static final String FILTERSUBSCRIPTION = "filtersubscription";
+    private int NUMBER_OF_INNER_LOOP_EXECUTIONS = 1000;
+	private static final String FILTERSUBSCRIPTION = "filtersubscription";
     private static final String FILTERCREATION = "filtercreation";
     private static final String NOTIFY_REFERENCE_INIT_EXPRESSION_478 = "Notify_Reference_InitExpression_478";
     private static final String NOTIFY_REFERENCE_CLAZZ_264 = "Notify_Reference_Clazz_264";
@@ -85,6 +98,13 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // event manager:
         // eventManager = new EventManagerNaive(rs);
     }
+
+    @Test
+    public void testCountRedundantFiltersSmall() throws IllegalArgumentException, SecurityException, IllegalAccessException,
+            NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
+    	NUMBER_OF_INNER_LOOP_EXECUTIONS = 3;
+    	testCountRedundantFilters();
+    }
     
     @Test
     public void testCountRedundantFilters() throws IllegalArgumentException, SecurityException, IllegalAccessException,
@@ -102,12 +122,24 @@ public class PerformanceStressForEventManagerTest extends TestCase {
     }
 
     @Test
+    public void testSingleAttributeValueChangeSmall() {
+    	NUMBER_OF_INNER_LOOP_EXECUTIONS = 3;
+    	testSingleAttributeValueChange();
+    }
+    
+    @Test
     public void testSingleAttributeValueChange() {
         registerFiltersForAllExpressions();
         handleAllTestEvents();
         printStats();
     }
 
+    @Test
+    public void testWithGrowingFilterSetSmall() {
+    	NUMBER_OF_INNER_LOOP_EXECUTIONS = 3;
+    	testWithGrowingFilterSet();
+    }
+    
     @Test
     public void testWithGrowingFilterSet() {
         for (int i=0; i<howManyMeasurements; i++) {
@@ -116,6 +148,13 @@ public class PerformanceStressForEventManagerTest extends TestCase {
             printStats();
             Statistics.getInstance().clear();
         }
+    }
+    
+    @Test
+    public void testIndividualNotificationsWithGrowingFilterSetSmall() throws IllegalArgumentException, SecurityException, IllegalAccessException,
+            NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
+    	NUMBER_OF_INNER_LOOP_EXECUTIONS = 3;
+    	testIndividualNotificationsWithGrowingFilterSet();
     }
     
     @Test
@@ -218,7 +257,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
     private void handle_Attribute_Name_290() {
         // name has 290 entries in TableForAttributeFilter
         InternalEObject notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ModelmanagementPackage.eINSTANCE.getNamedElement_Name(), "humba", "trala");
             Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_NAME_290, ""+i);
@@ -231,7 +270,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         InternalEObject notifier;
         // upperMultiplicity has 487 entries in TableForAttributeFilter
         notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getMultiplicity_UpperMultiplicity(), 1, -1);
             Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_UPPER_MULTIPLICITY_487, ""+i);
@@ -244,7 +283,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         InternalEObject notifier;
         // snapshot has 1 entry in TableForAttributeFilter
         notifier = (InternalEObject) ExpressionsFactory.eINSTANCE.createAll();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ExpressionsPackage.eINSTANCE.getAll_Snapshot(), 1, -1);
             Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_SNAPSHOT_1, ""+i);
@@ -258,7 +297,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // clazz has 264 entries in TableForAssociationFilter
         notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getClassTypeDefinition_Clazz(), null, c);
             Statistics.getInstance().begin(NOTIFY_REFERENCE_CLAZZ_264, ""+i);
@@ -272,7 +311,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // facts has 1 entry in TableForAssociationFilter
         notifier = (InternalEObject) AnalyticsFactory.eINSTANCE.createDimensionExpression();
         StringLiteral s = LiteralsFactory.eINSTANCE.createStringLiteral();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     AnalyticsPackage.eINSTANCE.getDimensionExpression_Facts(), null, s);
             Statistics.getInstance().begin(NOTIFY_REFERENCE_FACTS_1, ""+i);
@@ -286,7 +325,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         InternalEObject notifier;
         // initExpression has 478 entries in TableForAssociationFilter
         notifier = (InternalEObject) ActionsFactory.eINSTANCE.createNamedValueDeclaration();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ActionsPackage.eINSTANCE.getNamedValueWithOptionalInitExpression_InitExpression(), null, s);
             Statistics.getInstance().begin(NOTIFY_REFERENCE_INIT_EXPRESSION_478, ""+i);
@@ -300,7 +339,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         // ownerSignatures has 41 entries in TableForAssociationFilter and is composite
         notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
         MethodSignature m = ClassesFactory.eINSTANCE.createMethodSignature();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < NUMBER_OF_INNER_LOOP_EXECUTIONS; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures(), null, m);
             Statistics.getInstance().begin(NOTIFY_REFERENCE_OWNED_SIGNATURES_41, ""+i);
@@ -309,8 +348,13 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         }
     }
 
+	private boolean isSmallRun() {
+		return NUMBER_OF_INNER_LOOP_EXECUTIONS<10;
+	}
+	
     private class NotificationReceiverWithFilter implements Adapter {
-        private final Set<Notification> received = new HashSet<Notification>();
+        private final Set<Notification> received = isSmallRun() ? new HashSet<Notification>() : null;
+
         private final EventFilter filter;
         private Notifier target;
 
@@ -320,15 +364,20 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         
         public void notifyChanged(Notification notification) {
             notificationCount++;
-            if (received.contains(notification)) {
-                fail("Received same notification twice with filter "+filter);
-            } else {
-                received.add(notification);
-                // uncomment the following line in case you want to ensure that
-                // all notifications are actually matched by the filter; such a test would
-                // mostly be relevant for the table-based event manager to detect false positives
-                // assertTrue("Filter "+filter+" doesn't match notification "+notification, filter.matchesFor(notification));
-            }
+			if (received != null) {
+				if (received.contains(notification)) {
+					fail("Received same notification twice with filter "
+							+ filter);
+				} else {
+					received.add(notification);
+					// uncomment the following line in case you want to ensure
+					// that all notifications are actually matched by the filter;
+					// such a test would mostly be relevant for the table-based event manager to
+					// detect false positives
+					// assertTrue("Filter "+filter+" doesn't match notification "+notification,
+					// 			  filter.matchesFor(notification));
+				}
+			}
         }
 
         public Notifier getTarget() {
