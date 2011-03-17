@@ -147,7 +147,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public ContainmentFilter createContainmentFilter() {
-        ContainmentFilter containmentFilter = ContainmentFilter.INSTANCE;
+        ContainmentFilter containmentFilter = new ContainmentFilter();
         return containmentFilter;
     }
    
