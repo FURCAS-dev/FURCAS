@@ -22,11 +22,19 @@ public abstract class StructuralFeatureFilter extends EventFilter {
 
     private final EStructuralFeature feature;
 
-    public StructuralFeatureFilter(EStructuralFeature feature2) {
+    /**
+     * The standard constructor
+     * @param passes the {@link EStructuralFeature feature} to match
+     */
+    public StructuralFeatureFilter(EStructuralFeature feature) {
         super();
-        feature = feature2;
+        this.feature = feature;
     }
 
+    /**
+     * Gives the {@link EStructuralFeature feature} of the filter
+     * @return {@link EStructuralFeature feature}
+     */
     public EStructuralFeature getFeature() {
         return feature;
     }
@@ -61,9 +69,13 @@ public abstract class StructuralFeatureFilter extends EventFilter {
 
     public boolean matchesFor(Notification event) {
         if (event.getFeature() == null) {
-            return false;
+            return isNegated();
         }
-        return event.getFeature().equals(this.getFeature());
+        if( event.getFeature().equals(this.getFeature())){
+        	return !isNegated();
+        };
+        return isNegated();
+
 
     }
 

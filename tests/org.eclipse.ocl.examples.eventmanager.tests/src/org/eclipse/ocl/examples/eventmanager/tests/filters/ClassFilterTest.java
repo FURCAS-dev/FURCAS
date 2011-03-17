@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
 /**
@@ -110,9 +111,25 @@ public class ClassFilterTest extends EventFilterTest {
         assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
     }
 
-    public void testMatchesWithSubclasses() {
+    public void testMatchesFor__SubclassNotification() {
         setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(superCls));
         assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
     }
 
+	@Override
+	EventFilter getFilterFor(Object f) {
+		return EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses((EClass) f);
+	}
+	EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
+	@Override
+	Object getFilterCriterion1() {
+		return cls1;
+	}
+	EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
+
+	@Override
+	Object getFilterCriterion2() {
+		return cls2;
+	}
+    
 } // ClassFilterTest
