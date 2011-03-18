@@ -312,7 +312,7 @@ public class AbstractFurcasEditor extends UniversalEditor {
         // We can retrigger the parse controller via the parser scheduler.
         // The initialization of most other serivices cannot be delayed because
         // those are already required during super.createPartControl.
-        ((FurcasParseController) fLanguageServiceManager.getParseController()).completeInit(editingDomain, new ContentProvider(), parserCollection);
+        getParseController().completeInit(editingDomain, new ContentProvider(), parserCollection);
         
         // re-run IMP setup procedure with our fully configured services
         fParserScheduler.cancel();
@@ -322,6 +322,11 @@ public class AbstractFurcasEditor extends UniversalEditor {
     @Override
     public CtsDocumentProvider getDocumentProvider() {
         return documentProvoider;
+    }
+    
+    @Override
+    public FurcasParseController getParseController() {
+        return (FurcasParseController) super.getParseController();
     }
 
     /**
@@ -336,9 +341,4 @@ public class AbstractFurcasEditor extends UniversalEditor {
         return Collections.emptySet();
     }
             
-    @Override
-    public boolean isDirty() {
-        return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
-    }
-
 }

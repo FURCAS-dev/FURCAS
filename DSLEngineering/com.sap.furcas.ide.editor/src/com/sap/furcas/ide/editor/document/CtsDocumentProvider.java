@@ -44,10 +44,8 @@ public class CtsDocumentProvider extends AbstractDocumentProvider {
         ElementInfo info = getElementInfo(element);
         if (info != null) {
             CtsDocument ctsDocument = ((CtsDocument) info.fDocument);
-            if (ctsDocument.isCompletelyItitialized()) {
-                return ctsDocument.getRootBlock().eResource().isModified() ||
-                    ctsDocument.getRootObject().eResource().isModified();
-            }
+            return ctsDocument.isCompletelyItitialized() &&
+                ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded();
         }
         return false;
     }

@@ -28,7 +28,7 @@ import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
  * it is a big workaround and should not be needed at all </b> 
  * 
  * <p>
- * Beyond the normal {@link CleanUpTextBlocksCommand} this command tries to
+ * Beyond the normal {@link NullCommand} this command tries to
  * recover broken mappings and deletes all broken and unusable TextBlocks.
  * </p>
  *
