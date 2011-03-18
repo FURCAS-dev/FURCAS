@@ -8,9 +8,10 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 
 import junit.textui.TestRunner;
@@ -37,18 +38,9 @@ public class OrFilterTest extends LogicalEventFilterTest {
      * @see junit.framework.TestCase#setUp()
      */
     @Override
-    public void setUp() {
+    public void setUp() throws Exception{
         super.setUp();
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    public void tearDown() {
-        super.tearDown();
+        setFixture(EventManagerFactory.eINSTANCE.createOrFilterFor(trueFilter, trueFilter));
     }
 
     /**
@@ -72,5 +64,25 @@ public class OrFilterTest extends LogicalEventFilterTest {
         OrFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, trueFilter);
         assertTrue("Two true/false is true", or.matchesFor(null));
     }
+	@Override
+	Object getFilterCriterion1() {
+		return 1;
+	}
 
+	@Override
+	Object getFilterCriterion2() {
+		return 2;
+	}
+
+	@Override
+	EventFilter getFilterFor(Object f) {
+		if(f==null){
+			return EventManagerFactory.eINSTANCE.createOrFilterFor(trueFilter, trueFilter);
+		}else if((Integer)f==1){
+			return EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, trueFilter);
+		}else{
+			return EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, falseFilter);
+		}
+
+	}
 } // OrFilterTest

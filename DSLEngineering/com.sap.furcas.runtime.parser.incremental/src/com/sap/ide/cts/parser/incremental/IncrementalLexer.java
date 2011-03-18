@@ -131,7 +131,8 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
     /**
      * This is the main method of the incremental lexer. It should be called
      * whenever changes were made to the textblocks model so that tokens changed
-     * their values or were deleted.
+     * their values or were deleted. It operates on the {@link Version#PREVIOUS}
+     * version of the <code>root</code> text block.
      * 
      * @param root
      *            the root Textblock of the document that should be lexed

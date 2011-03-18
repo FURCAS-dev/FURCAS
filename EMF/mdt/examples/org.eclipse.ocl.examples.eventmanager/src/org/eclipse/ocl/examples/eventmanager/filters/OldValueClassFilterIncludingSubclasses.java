@@ -14,7 +14,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
+/**
+ * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()}
+ * and all subclasses of this {@link EClass}
+ * @author Philipp Berger
+ *
+ */
 public class OldValueClassFilterIncludingSubclasses extends ClassFilterIncludingSubclasses {
 
     public OldValueClassFilterIncludingSubclasses(EClass clazz, boolean isNegated) {

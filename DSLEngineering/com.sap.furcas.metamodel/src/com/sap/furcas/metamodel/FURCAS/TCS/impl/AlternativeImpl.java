@@ -92,7 +92,7 @@ public class AlternativeImpl extends SequenceElementImpl implements Alternative 
      */
         public EList<SequenceInAlternative> getSequences() {
         if (sequences == null) {
-            sequences = new EObjectContainmentWithInverseEList<SequenceInAlternative>(SequenceInAlternative.class, this, TCSPackage.ALTERNATIVE__SEQUENCES, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
+            sequences = new EObjectContainmentWithInverseEList.Resolving<SequenceInAlternative>(SequenceInAlternative.class, this, TCSPackage.ALTERNATIVE__SEQUENCES, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
         }
         return sequences;
     }

@@ -107,6 +107,29 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
      * @generated
      */
         public Sequence getFunctionSequence() {
+        if (functionSequence != null && functionSequence.eIsProxy()) {
+            InternalEObject oldFunctionSequence = (InternalEObject)functionSequence;
+            functionSequence = (Sequence)eResolveProxy(oldFunctionSequence);
+            if (functionSequence != oldFunctionSequence) {
+                InternalEObject newFunctionSequence = (InternalEObject)functionSequence;
+                NotificationChain msgs =  oldFunctionSequence.eInverseRemove(this, TCSPackage.SEQUENCE__FUNCTION_CONTAINER, Sequence.class, null);
+                if (newFunctionSequence.eInternalContainer() == null) {
+                    msgs =  newFunctionSequence.eInverseAdd(this, TCSPackage.SEQUENCE__FUNCTION_CONTAINER, Sequence.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE, oldFunctionSequence, functionSequence));
+            }
+        }
+        return functionSequence;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Sequence basicGetFunctionSequence() {
         return functionSequence;
     }
 
@@ -185,7 +208,8 @@ public class FunctionTemplateImpl extends TemplateImpl implements FunctionTempla
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_NAME:
                 return getFunctionName();
             case TCSPackage.FUNCTION_TEMPLATE__FUNCTION_SEQUENCE:
-                return getFunctionSequence();
+                if (resolve) return getFunctionSequence();
+                return basicGetFunctionSequence();
         }
         return super.eGet(featureID, resolve, coreType);
     }

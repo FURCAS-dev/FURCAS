@@ -66,6 +66,16 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
      * <!-- end-user-doc -->
      * @generated
      */
+    public InjectorActionsBlock basicGetInjectorActionsBlock() {
+        if (eContainerFeatureID() != TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK) return null;
+        return (InjectorActionsBlock)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public NotificationChain basicSetInjectorActionsBlock(InjectorActionsBlock newInjectorActionsBlock, NotificationChain msgs) {
         msgs = eBasicSetContainer((InternalEObject)newInjectorActionsBlock, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK, msgs);
         return msgs;
@@ -145,7 +155,8 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
-                return getInjectorActionsBlock();
+                if (resolve) return getInjectorActionsBlock();
+                return basicGetInjectorActionsBlock();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -189,7 +200,7 @@ public abstract class InjectorActionImpl extends EObjectImpl implements Injector
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK:
-                return getInjectorActionsBlock() != null;
+                return basicGetInjectorActionsBlock() != null;
         }
         return super.eIsSet(featureID);
     }

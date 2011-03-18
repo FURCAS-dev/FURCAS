@@ -95,6 +95,16 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AndExp basicGetAndExp() {
+        if (eContainerFeatureID() != TCSPackage.ATOM_EXP__AND_EXP) return null;
+        return (AndExp)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -151,6 +161,29 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
      * @generated
      */
         public PropertyReference getPropertyReference() {
+        if (propertyReference != null && propertyReference.eIsProxy()) {
+            InternalEObject oldPropertyReference = (InternalEObject)propertyReference;
+            propertyReference = (PropertyReference)eResolveProxy(oldPropertyReference);
+            if (propertyReference != oldPropertyReference) {
+                InternalEObject newPropertyReference = (InternalEObject)propertyReference;
+                NotificationChain msgs = oldPropertyReference.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, null, null);
+                if (newPropertyReference.eInternalContainer() == null) {
+                    msgs = newPropertyReference.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, oldPropertyReference, propertyReference));
+            }
+        }
+        return propertyReference;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PropertyReference basicGetPropertyReference() {
         return propertyReference;
     }
 
@@ -243,11 +276,13 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
-                return getAndExp();
+                if (resolve) return getAndExp();
+                return basicGetAndExp();
             case TCSPackage.ATOM_EXP__PROPERTY_NAME:
                 return getPropertyName();
             case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
-                return getPropertyReference();
+                if (resolve) return getPropertyReference();
+                return basicGetPropertyReference();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -303,7 +338,7 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.ATOM_EXP__AND_EXP:
-                return getAndExp() != null;
+                return basicGetAndExp() != null;
             case TCSPackage.ATOM_EXP__PROPERTY_NAME:
                 return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
             case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:

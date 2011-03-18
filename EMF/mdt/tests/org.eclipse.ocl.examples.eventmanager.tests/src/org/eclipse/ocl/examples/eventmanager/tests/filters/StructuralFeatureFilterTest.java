@@ -8,17 +8,13 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
-import org.eclipse.ocl.examples.testutils.NotificationHelper;
-
-import company.CompanyFactory;
 
 
 /**
@@ -51,29 +47,6 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    @Override
-    public void setUp() {
-        super.setUp();
-        this.createInstances(1, 5, 1);
-        noti = NotificationHelper.createReferenceAddNotification(aDivision, departmentRef,
-                CompanyFactory.eINSTANCE.createDepartment());
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    public void tearDown() {
-        setFixture(null);
-    }
-
-    /**
      * Tests the '
      * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -81,10 +54,41 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
      * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__Notification() {
-        EventFilter filter1 = EventManagerFactory.eINSTANCE.createAssociationFilter(this.departmentRef);
-        assertTrue(filter1.matchesFor(noti));
-        EventFilter filter2 = EventManagerFactory.eINSTANCE.createAssociationFilter(this.directedRef);
-        assertFalse(filter2.matchesFor(noti));
+        noti= new NotificationImpl(Notification.ADD, null, null){
+			@Override
+        	public Object getFeature() {
+        		return getFilterCriterion1();
+        	}
+        };
+        StructuralFeatureFilter filter1 = (StructuralFeatureFilter) getFilterFor(getFilterCriterion1());
+        StructuralFeatureFilter filter2 = (StructuralFeatureFilter) getFilterFor(getFilterCriterion2());
+        
+		assertTrue(filter1.matchesFor(noti));
+		assertFalse(filter2.matchesFor(noti));
+  
+        filter1.setNegated(true);
+        filter2.setNegated(true);
+        assertFalse(filter1.matchesFor(noti));
+		assertTrue(filter2.matchesFor(noti));
+
     }
+    
+    public void testSetNegated_Boolean(){
+        noti= new NotificationImpl(Notification.ADD, null, null){
+			@Override
+        	public Object getFeature() {
+        		return getFilterCriterion1();
+        	}
+        };
+        StructuralFeatureFilter filter1 = (StructuralFeatureFilter) getFilterFor(getFilterCriterion1());
+        StructuralFeatureFilter filter2 = (StructuralFeatureFilter) getFilterFor(getFilterCriterion2());
+        filter1.setNegated(true);
+        assertTrue(filter1.isNegated());
+        assertFalse(filter2.isNegated());
+        filter2.setNegated(true);
+        assertFalse(filter1.matchesFor(noti));
+		assertTrue(filter2.matchesFor(noti));
+    }
+   
 
 } // StructuralFeatureFilterTest

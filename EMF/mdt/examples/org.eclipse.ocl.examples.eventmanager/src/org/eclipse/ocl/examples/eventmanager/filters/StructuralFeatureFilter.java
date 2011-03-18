@@ -13,24 +13,32 @@ package org.eclipse.ocl.examples.eventmanager.filters;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+/**
+ * Matches a {@link Notification#getFeature() feature}.
+ * @author Philipp Berger
+ *
+ */
 public abstract class StructuralFeatureFilter extends EventFilter {
 
     private final EStructuralFeature feature;
 
-    public StructuralFeatureFilter(EStructuralFeature feature2) {
+    /**
+     * The standard constructor
+     * @param passes the {@link EStructuralFeature feature} to match
+     */
+    public StructuralFeatureFilter(EStructuralFeature feature) {
         super();
-        feature = feature2;
+        this.feature = feature;
     }
 
+    /**
+     * Gives the {@link EStructuralFeature feature} of the filter
+     * @return {@link EStructuralFeature feature}
+     */
     public EStructuralFeature getFeature() {
         return feature;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -48,11 +56,6 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         return isNegated() == ((EventFilter) other).isNegated();
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -66,9 +69,13 @@ public abstract class StructuralFeatureFilter extends EventFilter {
 
     public boolean matchesFor(Notification event) {
         if (event.getFeature() == null) {
-            return false;
+            return isNegated();
         }
-        return event.getFeature().equals(this.getFeature());
+        if( event.getFeature().equals(this.getFeature())){
+        	return !isNegated();
+        };
+        return isNegated();
+
 
     }
 

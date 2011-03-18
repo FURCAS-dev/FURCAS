@@ -19,6 +19,7 @@ import org.eclipse.ocl.examples.impactanalyzer.tests.deltaPropagation.PartialEva
 import org.eclipse.ocl.examples.impactanalyzer.tests.derivedPropertyHandling.DerivedPropertyAdapterTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisEMEnabledTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.FilterSynthesisTest;
+import org.eclipse.ocl.examples.impactanalyzer.tests.filterSynthesis.PerformanceStressForEventManagerTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.NavigationStepDebugGraphTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.NgpmModelBasedOclIaTest;
 import org.eclipse.ocl.examples.impactanalyzer.tests.instanceScope.OclIaTest;
@@ -54,6 +55,7 @@ public class ImpactAnalyzerAllTests extends TestSuite {
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
         suite.addTestSuite(NgpmModelBasedOclIaTest.class);
         suite.addTestSuite(DerivedPropertyAdapterTest.class);
+        suite.addTestSuite(PerformanceStressForEventManagerTest.class);
         return suite;
     }
 

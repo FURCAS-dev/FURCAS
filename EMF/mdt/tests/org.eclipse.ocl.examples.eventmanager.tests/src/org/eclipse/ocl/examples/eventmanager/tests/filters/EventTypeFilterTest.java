@@ -8,14 +8,15 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
 /**
@@ -52,6 +53,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 	@Override
 	public void setUp()   {
 		notification = new NotificationImpl(Notification.ADD, false, false);
+		setFixture(EventManagerFactory.eINSTANCE.createEventTypeFilter(Notification.ADD));
 	}
 
 	/**
@@ -72,8 +74,40 @@ public class EventTypeFilterTest extends EventFilterTest {
 	 * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void testMatchesFor__Notification() {
-		EventTypeFilter filter = EventManagerFactory.eINSTANCE.createEventTypeFilter(Notification.ADD);
-		assertTrue(filter.matchesFor(notification));
+		assertTrue(getFixture().matchesFor(notification));
+	}
+
+
+	@Override
+	EventFilter getFilterFor(Object f) {
+		if(f==null){
+			f= 0;
+		}
+		return EventManagerFactory.eINSTANCE.createEventTypeFilter((Integer)f);
+	}
+
+
+	@Override
+	Object getFilterCriterion1() {
+		return Notification.ADD;
+	}
+
+
+	@Override
+	Object getFilterCriterion2() {
+		return Notification.REMOVE;
+	}
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		return new Notification[]{ new ENotificationImpl(null, (Integer) getFilterCriterion1(), null, null, null)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		return new ENotificationImpl(null, (Integer) getFilterCriterion2(), null, null, null);
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createEventTypeFilter((Integer) getFilterCriterion1());
 	}
 
 } //EventTypeFilterTest
