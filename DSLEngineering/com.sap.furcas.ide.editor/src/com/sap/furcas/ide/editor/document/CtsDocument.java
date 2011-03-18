@@ -15,6 +15,7 @@ import org.eclipse.jface.text.ISynchronizable;
 import org.eclipse.ui.PartInitException;
 
 import com.sap.furcas.ide.editor.CtsActivator;
+import com.sap.furcas.ide.editor.commands.NullCommand;
 import com.sap.furcas.ide.editor.dialogs.PrettyPrintPreviewDialog;
 import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor.ParserCollection;
 import com.sap.furcas.ide.editor.imp.parsing.FurcasParseController;
@@ -229,6 +230,8 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
         for (DocumentEvent event : events) {
             model.replace(event.getOffset(), event.getLength(), event.getText());
         }
+        // FIXME: Use commands everywhere so that we don't have to fake modifications.
+        editingDomain.getCommandStack().execute(new NullCommand());
     }
 
     public void refreshContentFromTextBlocksModel() {
