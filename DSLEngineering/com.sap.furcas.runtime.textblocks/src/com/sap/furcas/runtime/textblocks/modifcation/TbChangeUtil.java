@@ -48,7 +48,6 @@ public class TbChangeUtil {
         makeReferenceVersion(currentVersion);
         return currentVersion;
     }
-<<<<<<< HEAD
 
     /**
      * Revert the textblocks model by delete all newer versions. 
