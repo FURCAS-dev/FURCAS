@@ -17,7 +17,7 @@
  *
  * </copyright>
  *
- * $Id: EmbeddedXtextEditor.java,v 1.4 2011/03/11 15:26:21 ewillink Exp $
+ * $Id: EmbeddedXtextEditor.java,v 1.5 2011/03/16 17:44:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.console.xtfo;
 
@@ -71,6 +71,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.ActiveShellExpression;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.contexts.IContextActivation;
 import org.eclipse.ui.contexts.IContextService;
@@ -698,17 +702,13 @@ public class EmbeddedXtextEditor {
 		
 		public void focusLost(FocusEvent e) {
 			if (fContextActivation != null) {
-
-				IEditorPart activeEditor = PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().
-					getActivePage().
-					getActiveEditor();
-
+				IWorkbench workbench = PlatformUI.getWorkbench();
+				IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+				IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+				IEditorPart activeEditor = activePage.getActiveEditor();
 				if (activeEditor != null) {
-					IContextService contextService = (IContextService) activeEditor.
-						getSite().
-						getService(IContextService.class);
-
+					IWorkbenchPartSite site = activeEditor.getSite();
+					IContextService contextService = (IContextService) site.getService(IContextService.class);
 					contextService.deactivateContext(fContextActivation);
 				}
 			}
@@ -718,15 +718,19 @@ public class EmbeddedXtextEditor {
 		}
 
 		public void focusGained(FocusEvent e) {
-			IContextService contextService = (IContextService) PlatformUI.getWorkbench().
-					getActiveWorkbenchWindow().
-					getActivePage().
-					getActiveEditor().
-					getSite().
-					getService(IContextService.class);
-			fContextActivation = contextService.activateContext(EMBEDEDXTEXT_EDITOR_CONTEXT);
-	
-			IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+			IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+			IEditorPart activeEditor = activePage.getActiveEditor();
+			if (activeEditor != null) {
+				IWorkbenchPartSite site = activeEditor.getSite();
+				IContextService contextService = (IContextService) site.getService(IContextService.class);
+				fContextActivation = contextService.activateContext(EMBEDEDXTEXT_EDITOR_CONTEXT);
+			}
+			else {
+				fContextActivation = null;
+			}
+			IHandlerService handlerService = (IHandlerService) workbench.getAdapter(IHandlerService.class);
 			
 			for (ActionHandler actionHandler : fActionHandlers) {
 				fHandlerActivations.add(handlerService.activateHandler(actionHandler.getAction().getId(), actionHandler, fExpression));

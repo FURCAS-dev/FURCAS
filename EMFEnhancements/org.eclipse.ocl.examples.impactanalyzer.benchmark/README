@@ -69,7 +69,7 @@ evaluationTimeWoInvalid | Like evaluationTimeAfter without including the evaluat
 beforeNoInvalidEvals | Number of evaluations on context objects returned by the IA before the notification or model change event occured. Maybe needed for measuring IA accuracy.
 afterNoInvalidEvals | Number of evaluation on context objects returned by the IA component after the model change event occured. Maybe needed for measuring IA accuracy.
 noEqualResultsBeforeAndAfter | Number of evaluations that returned the same result before and after the model change event. With this value the accuracy of the IA can be evaluated.
-noIaAllInstanceCalls | Number of getAllInstances() calls which are executed while re-evaluating OCL expressions on context objects.
+noIaAllInstanceCalls | Number of getAllInstances() calls which are executed during getContextObjects() traceback computation
 noIaFindOppositeEndCalls | Number of find opposite end calls which are executed internally while re-evaluating OCL expressions on context objects returned by IA
 noIaGetAllOppositeEndCalls|Number of get all opposite end calls which are executed internally while re-evaluating OCL expressions on context objects returned by IA
 noContextObjects | Number of context objects which are returned by the IA component e.g, needed for measuring accuracy.

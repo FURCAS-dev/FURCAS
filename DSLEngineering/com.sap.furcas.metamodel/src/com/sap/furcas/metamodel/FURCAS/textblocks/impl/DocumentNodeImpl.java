@@ -408,6 +408,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextBlock basicGetParent() {
+        if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
+        return (TextBlock)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -738,7 +748,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return isRelexingNeeded();
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                return getParent();
+                if (resolve) return getParent();
+                return basicGetParent();
             case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
                 return getCorrespondingModelElements();
             case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
@@ -907,7 +918,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                return getParent() != null;
+                return basicGetParent() != null;
             case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
                 return correspondingModelElements != null && !correspondingModelElements.isEmpty();
             case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:

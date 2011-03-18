@@ -235,6 +235,16 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Priority basicGetPriority() {
+        if (eContainerFeatureID() != TCSPackage.OPERATOR__PRIORITY) return null;
+        return (Priority)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -347,7 +357,8 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
                 if (resolve) return getLiteral();
                 return basicGetLiteral();
             case TCSPackage.OPERATOR__PRIORITY:
-                return getPriority();
+                if (resolve) return getPriority();
+                return basicGetPriority();
             case TCSPackage.OPERATOR__TEMPLATES:
                 return getTemplates();
         }
@@ -425,7 +436,7 @@ public class OperatorImpl extends NamedElementImpl implements Operator {
             case TCSPackage.OPERATOR__LITERAL:
                 return literal != null;
             case TCSPackage.OPERATOR__PRIORITY:
-                return getPriority() != null;
+                return basicGetPriority() != null;
             case TCSPackage.OPERATOR__TEMPLATES:
                 return templates != null && !templates.isEmpty();
         }

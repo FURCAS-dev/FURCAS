@@ -144,7 +144,7 @@ public interface ContextTemplate extends Template {
      * @return the value of the '<em>Scope</em>' containment reference.
      * @see #setScope(ScopeArg)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getContextTemplate_Scope()
-     * @model containment="true"
+     * @model containment="true" resolveProxies="true"
      * @generated
      */
         ScopeArg getScope();
@@ -170,7 +170,7 @@ public interface ContextTemplate extends Template {
      * @return the value of the '<em>Template Sequence</em>' containment reference.
      * @see #setTemplateSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getContextTemplate_TemplateSequence()
-     * @model containment="true" required="true" ordered="false"
+     * @model containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
     Sequence getTemplateSequence();

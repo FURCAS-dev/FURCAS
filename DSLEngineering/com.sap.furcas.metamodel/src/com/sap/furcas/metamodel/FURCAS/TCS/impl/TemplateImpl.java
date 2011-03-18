@@ -138,6 +138,16 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ConcreteSyntax basicGetConcreteSyntax() {
+        if (eContainerFeatureID() != TCSPackage.TEMPLATE__CONCRETE_SYNTAX) return null;
+        return (ConcreteSyntax)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -236,10 +246,33 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
      * @generated
      */
 	public TextBlockDefinition getTextBlockDefinition() {
+        if (textBlockDefinition != null && textBlockDefinition.eIsProxy()) {
+            InternalEObject oldTextBlockDefinition = (InternalEObject)textBlockDefinition;
+            textBlockDefinition = (TextBlockDefinition)eResolveProxy(oldTextBlockDefinition);
+            if (textBlockDefinition != oldTextBlockDefinition) {
+                InternalEObject newTextBlockDefinition = (InternalEObject)textBlockDefinition;
+                NotificationChain msgs =  oldTextBlockDefinition.eInverseRemove(this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, TextBlockDefinition.class, null);
+                if (newTextBlockDefinition.eInternalContainer() == null) {
+                    msgs =  newTextBlockDefinition.eInverseAdd(this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE, TextBlockDefinition.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.TEMPLATE__TEXT_BLOCK_DEFINITION, oldTextBlockDefinition, textBlockDefinition));
+            }
+        }
         return textBlockDefinition;
     }
 
 								/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextBlockDefinition basicGetTextBlockDefinition() {
+        return textBlockDefinition;
+    }
+
+                                /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -332,7 +365,8 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
-                return getConcreteSyntax();
+                if (resolve) return getConcreteSyntax();
+                return basicGetConcreteSyntax();
             case TCSPackage.TEMPLATE__DISAMBIGUATE:
                 return getDisambiguate();
             case TCSPackage.TEMPLATE__DISAMBIGUATE_V3:
@@ -340,7 +374,8 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
             case TCSPackage.TEMPLATE__SEM_DISAMBIGUATE:
                 return getSemDisambiguate();
             case TCSPackage.TEMPLATE__TEXT_BLOCK_DEFINITION:
-                return getTextBlockDefinition();
+                if (resolve) return getTextBlockDefinition();
+                return basicGetTextBlockDefinition();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -408,7 +443,7 @@ public abstract class TemplateImpl extends QualifiedNamedElementImpl implements 
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.TEMPLATE__CONCRETE_SYNTAX:
-                return getConcreteSyntax() != null;
+                return basicGetConcreteSyntax() != null;
             case TCSPackage.TEMPLATE__DISAMBIGUATE:
                 return DISAMBIGUATE_EDEFAULT == null ? disambiguate != null : !DISAMBIGUATE_EDEFAULT.equals(disambiguate);
             case TCSPackage.TEMPLATE__DISAMBIGUATE_V3:

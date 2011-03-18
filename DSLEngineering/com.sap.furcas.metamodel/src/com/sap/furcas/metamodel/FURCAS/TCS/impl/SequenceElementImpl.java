@@ -74,6 +74,16 @@ public abstract class SequenceElementImpl extends LocatedElementImpl implements 
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Sequence basicGetElementSequence() {
+        if (eContainerFeatureID() != TCSPackage.SEQUENCE_ELEMENT__ELEMENT_SEQUENCE) return null;
+        return (Sequence)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -194,7 +204,8 @@ public abstract class SequenceElementImpl extends LocatedElementImpl implements 
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_ELEMENT__ELEMENT_SEQUENCE:
-                return getElementSequence();
+                if (resolve) return getElementSequence();
+                return basicGetElementSequence();
             case TCSPackage.SEQUENCE_ELEMENT__PARENT_TEMPLATE:
                 if (resolve) return getParentTemplate();
                 return basicGetParentTemplate();
@@ -247,7 +258,7 @@ public abstract class SequenceElementImpl extends LocatedElementImpl implements 
         public boolean eIsSet(int featureID) {
         switch (featureID) {
             case TCSPackage.SEQUENCE_ELEMENT__ELEMENT_SEQUENCE:
-                return getElementSequence() != null;
+                return basicGetElementSequence() != null;
             case TCSPackage.SEQUENCE_ELEMENT__PARENT_TEMPLATE:
                 return parentTemplate != null;
         }

@@ -14,11 +14,22 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.framework.LogicalOperationFilterImpl;
 
 
+/**
+ * Is an {@link LogicalOperationFilter} and implements the not-operator.
+ * Not applies only for one {@link EventFilter} so the {@link NotFilter} 
+ * can only contain one
+ * @author Philipp Berger
+ *
+ */
 public class NotFilter extends LogicalOperationFilterImpl {
     public NotFilter() {
         super();
     }
 
+    /**
+     * The standard constructor
+     * @param subTypeFilterTree the filter to negate
+     */
     public NotFilter(EventFilter subTypeFilterTree) {
         super(subTypeFilterTree);
     }

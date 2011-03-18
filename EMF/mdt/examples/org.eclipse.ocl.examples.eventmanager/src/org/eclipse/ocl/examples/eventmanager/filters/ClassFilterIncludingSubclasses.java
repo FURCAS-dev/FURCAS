@@ -10,10 +10,23 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.filters;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Matches an event's {@link Notification#getNotifier() notifier}'s {@link EObject#eClass() class}
+ * and all subclasses of the given {@link EClass}
+ * @author Philipp Berger
+ *
+ */
 public class ClassFilterIncludingSubclasses extends ClassFilter {
 
+    /**
+     * The default constructor
+     * @param clazz the {@link EClass} to match for
+     * @param negated if the filter is negated
+     */
     public ClassFilterIncludingSubclasses(EClass clazz, boolean negated) {
         super(clazz, negated);
     }

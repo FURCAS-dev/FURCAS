@@ -14,6 +14,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
+/**
+ * Matches an event's {@link Notification#getNotifier() notifier}'s {@link EObject#eClass()#getEPackage() package}
+ * @author Philipp Berger
+ *
+ */
 public class PackageFilter extends EventFilter {
 
     private EPackage ePackage;
@@ -31,11 +36,11 @@ public class PackageFilter extends EventFilter {
         if (event.getNotifier() != null && event.getNotifier() instanceof EObject) {
             for (EPackage p = ((EObject) event.getNotifier()).eClass().getEPackage(); p != null; p = p.getESuperPackage()) {
                 if (p.equals(getEPackage())) {
-                    return true;
+                    return !isNegated();
                 }
             }
         }
-        return false;
+        return isNegated();
 
     }
 

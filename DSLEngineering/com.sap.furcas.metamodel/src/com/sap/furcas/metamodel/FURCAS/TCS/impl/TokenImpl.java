@@ -86,6 +86,29 @@ public class TokenImpl extends NamedElementImpl implements Token {
      * @generated
      */
         public OrPattern getPattern() {
+        if (pattern != null && pattern.eIsProxy()) {
+            InternalEObject oldPattern = (InternalEObject)pattern;
+            pattern = (OrPattern)eResolveProxy(oldPattern);
+            if (pattern != oldPattern) {
+                InternalEObject newPattern = (InternalEObject)pattern;
+                NotificationChain msgs = oldPattern.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.TOKEN__PATTERN, null, null);
+                if (newPattern.eInternalContainer() == null) {
+                    msgs = newPattern.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.TOKEN__PATTERN, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.TOKEN__PATTERN, oldPattern, pattern));
+            }
+        }
+        return pattern;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OrPattern basicGetPattern() {
         return pattern;
     }
 
@@ -167,7 +190,8 @@ public class TokenImpl extends NamedElementImpl implements Token {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.TOKEN__PATTERN:
-                return getPattern();
+                if (resolve) return getPattern();
+                return basicGetPattern();
             case TCSPackage.TOKEN__OMITTED:
                 return isOmitted();
         }

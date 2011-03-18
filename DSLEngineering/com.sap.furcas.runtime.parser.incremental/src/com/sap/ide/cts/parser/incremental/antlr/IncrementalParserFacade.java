@@ -232,13 +232,14 @@ public class IncrementalParserFacade {
 		}
 	}
 
-	/**
-	 * Preparse all components for a new parse run, such as resetting the batch
-	 * parser and setting the source for the lexer.
-	 * 
-	 * @param rootBlock
-	 *            the block that should be used to prepare parsing on
-	 */
+    /**
+     * Preparse all components for a new parse run, such as resetting the batch parser and setting the source for the
+     * lexer. Operates on the {@link Version#PREVIOUS} version of <code>rootBlock</code>.
+     * 
+     * @param rootBlock
+     *            the block that should be used to prepare parsing on
+     * @return <code>true</code> if and only if lexing was successful
+     */
 	private boolean lexAndPrepareParsing(TextBlock rootBlock) {
 		// reset parser states to beginning
 		domainParser.reset();

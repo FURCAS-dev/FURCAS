@@ -198,6 +198,16 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Template basicGetParseRule() {
+        if (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE) return null;
+        return (Template)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -239,6 +249,16 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextBlockDefinition basicGetContext() {
+        if (eContainerFeatureID() != TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT) return null;
+        return (TextBlockDefinition)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -275,7 +295,7 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
      */
         public EList<TextBlockDefinition> getSubDefinitions() {
         if (subDefinitions == null) {
-            subDefinitions = new EObjectContainmentWithInverseEList<TextBlockDefinition>(TextBlockDefinition.class, this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT);
+            subDefinitions = new EObjectContainmentWithInverseEList.Resolving<TextBlockDefinition>(TextBlockDefinition.class, this, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS, TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT);
         }
         return subDefinitions;
     }
@@ -409,9 +429,11 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                 return getDefaultTemplate();
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
-                return getParseRule();
+                if (resolve) return getParseRule();
+                return basicGetParseRule();
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
-                return getContext();
+                if (resolve) return getContext();
+                return basicGetContext();
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                 return getSubDefinitions();
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:
@@ -504,9 +526,9 @@ public class TextBlockDefinitionImpl extends EObjectImpl implements TextBlockDef
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__DEFAULT_TEMPLATE:
                 return DEFAULT_TEMPLATE_EDEFAULT == null ? defaultTemplate != null : !DEFAULT_TEMPLATE_EDEFAULT.equals(defaultTemplate);
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__PARSE_RULE:
-                return getParseRule() != null;
+                return basicGetParseRule() != null;
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__CONTEXT:
-                return getContext() != null;
+                return basicGetContext() != null;
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__SUB_DEFINITIONS:
                 return subDefinitions != null && !subDefinitions.isEmpty();
             case TextblockdefinitionPackage.TEXT_BLOCK_DEFINITION__GENERALISATION:

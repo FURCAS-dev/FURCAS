@@ -8,12 +8,13 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
+
+import junit.textui.TestRunner;
 
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-
-import junit.textui.TestRunner;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>And Filter</b></em>'. <!-- end-user-doc -->
@@ -43,8 +44,9 @@ public class AndFilterTest extends LogicalEventFilterTest {
      * @see junit.framework.TestCase#setUp()
      */
     @Override
-    public void setUp() {
+    public void setUp() throws Exception {
         super.setUp();
+        setFixture(EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter));
     }
 
     /**
@@ -53,7 +55,8 @@ public class AndFilterTest extends LogicalEventFilterTest {
      * @see junit.framework.TestCase#tearDown()
      */
     @Override
-    public void tearDown() {
+    public void tearDown() throws Exception{
+    	super.tearDown();
         setFixture(null);
         this.falseFilter = null;
         this.trueFilter = null;
@@ -80,5 +83,29 @@ public class AndFilterTest extends LogicalEventFilterTest {
         AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, trueFilter);
         assertFalse("Two true/false is false",andFilter.matchesFor(null));
     }
+
+
+
+	@Override
+	Object getFilterCriterion1() {
+		return 1;
+	}
+
+	@Override
+	Object getFilterCriterion2() {
+		return 2;
+	}
+
+	@Override
+	EventFilter getFilterFor(Object f) {
+		if(f==null){
+			return EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter);
+		}else if((Integer)f==1){
+			return EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, trueFilter);
+		}else{
+			return EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, falseFilter);
+		}
+
+	}
 
 } // AndFilterTest

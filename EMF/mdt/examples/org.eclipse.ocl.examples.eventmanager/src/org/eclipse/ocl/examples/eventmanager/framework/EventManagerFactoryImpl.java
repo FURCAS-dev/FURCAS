@@ -62,7 +62,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      * may happen that the event manager is no longer referenced by the client. Yet, the client would expect the
      * subscriptions to get notified by the event manager.
      */
-    WeakHashMap<ResourceSet,EventManager> setToManager= new WeakHashMap<ResourceSet, EventManager>();
+    private final WeakHashMap<ResourceSet,EventManager> setToManager = new WeakHashMap<ResourceSet, EventManager>();
 
     /**
      * @return a new {@link EventManagerFactoryImpl}
@@ -76,9 +76,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         if(cached!=null){
             return cached;
         }
-        EventManager eventManager = new org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased(set);
-        setToManager.put(set, eventManager);
-        return eventManager;
+		if (set != null) {
+			EventManager eventManager = new org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased(
+					set);
+			setToManager.put(set, eventManager);
+			return eventManager;
+		} else {
+			return null;
+        }
     }
 
     public EventManager createEventManager() {
@@ -142,7 +147,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public ContainmentFilter createContainmentFilter() {
-        ContainmentFilter containmentFilter = ContainmentFilter.INSTANCE;
+        ContainmentFilter containmentFilter = new ContainmentFilter();
         return containmentFilter;
     }
    

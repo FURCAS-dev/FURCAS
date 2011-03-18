@@ -65,6 +65,29 @@ public class EqualsExpImpl extends AtomExpImpl implements EqualsExp {
      * @generated
      */
         public Value getValue() {
+        if (value != null && value.eIsProxy()) {
+            InternalEObject oldValue = (InternalEObject)value;
+            value = (Value)eResolveProxy(oldValue);
+            if (value != oldValue) {
+                InternalEObject newValue = (InternalEObject)value;
+                NotificationChain msgs = oldValue.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.EQUALS_EXP__VALUE, null, null);
+                if (newValue.eInternalContainer() == null) {
+                    msgs = newValue.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.EQUALS_EXP__VALUE, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.EQUALS_EXP__VALUE, oldValue, value));
+            }
+        }
+        return value;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Value basicGetValue() {
         return value;
     }
 
@@ -125,7 +148,8 @@ public class EqualsExpImpl extends AtomExpImpl implements EqualsExp {
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
             case TCSPackage.EQUALS_EXP__VALUE:
-                return getValue();
+                if (resolve) return getValue();
+                return basicGetValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }

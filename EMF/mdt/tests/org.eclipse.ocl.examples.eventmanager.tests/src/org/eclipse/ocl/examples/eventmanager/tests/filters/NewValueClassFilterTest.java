@@ -8,26 +8,32 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
-import org.eclipse.ocl.examples.testutils.NotificationHelper;
 import org.junit.Test;
 
-import company.CompanyFactory;
-import company.Employee;
 
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>New Value Class Filter</b></em>'. <!-- end-user-doc -->
  */
-public class NewValueClassFilterTest extends EventFilterTest {
+public class NewValueClassFilterTest extends ClassFilterTest {
 
     private Notification noti;
+	private EClass cls;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -59,8 +65,10 @@ public class NewValueClassFilterTest extends EventFilterTest {
     @Override
     public void setUp() {
         super.setUp();
-        this.createInstances(1, 5, 1);
-        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee));
+    	cls = EcoreFactory.eINSTANCE.createEClass();
+    	cls.setName("my class");
+    	
+    	setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilter(cls));
     }
 
     /**
@@ -71,33 +79,48 @@ public class NewValueClassFilterTest extends EventFilterTest {
     @Override
     public void tearDown() {
         setFixture(null);
+        cls=null;
         super.tearDown();
     }
 
     @Override
     public void testMatchesFor__Notification() {
-        Employee boss = CompanyFactory.eINSTANCE.createEmployee();
-        noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
+    	noti = new ENotificationImpl(null, Notification.ADD, null, null, new DynamicEObjectImpl(cls));
         assertTrue("exact class match", getFixture().matchesFor(noti));
-        noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
-        assertFalse(getFixture().matchesFor(noti));
-        this.aDivision.getDepartment().clear();
-        noti = NotificationHelper.createReferenceAddNotification(this.aDivision, this.departmentRef,
-                CompanyFactory.eINSTANCE.createDepartment());
+        noti = new ENotificationImpl(null, Notification.ADD, null, null, EcoreFactory.eINSTANCE.createEClass());
         assertFalse(getFixture().matchesFor(noti));
     }
 
+    /**
+     * {@link NewValueClassFilter this filter} does not support subclasses 
+     */
     @Test
-    public void testMatchesFor__SubclassNotification() {
-        Employee boss = CompanyFactory.eINSTANCE.createFreelance();
-        noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
-        assertFalse("Should not have matched for subclass", getFixture().matchesFor(noti));
-        noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
-        assertFalse(getFixture().matchesFor(noti));
-        this.aDivision.getDepartment().clear();
-        noti = NotificationHelper.createReferenceAddNotification(this.aDivision, this.departmentRef,
-                CompanyFactory.eINSTANCE.createDepartment());
-        assertFalse(getFixture().matchesFor(noti));
+    public void testMatchesFor__SubclassNotification() {    	
+    	EClass childCls = EcoreFactory.eINSTANCE.createEClass();
+    	childCls.setName("child");
+    	
+    	childCls.getESuperTypes().add(cls);
+    	
+    	noti = new ENotificationImpl(null, Notification.ADD, null, null, new DynamicEObjectImpl(childCls));
+        assertFalse("exact class match", getFixture().matchesFor(noti));
     }
+	EClass testCls = EcoreFactory.eINSTANCE.createEClass();
+	@Override
+	public Notification[] giveMatchingNotifications() {
+		EList<EObject> list = new BasicEList<EObject>();
+		list.add(new DynamicEObjectImpl(testCls));
+		
+		return new Notification[]{ new ENotificationImpl(null, 0, null, null, new DynamicEObjectImpl(testCls)),
+				new ENotificationImpl(null, 0, null, null, list)};
+	}
+	@Override
+	public Notification giveNotMatchingNotifcation() {
+		EClass otherCls = EcoreFactory.eINSTANCE.createEClass();
+		return new ENotificationImpl(null, 0, null, null, new DynamicEObjectImpl(otherCls));
+	}
+	@Override
+	public EventFilter giveTestFilter() {
+		return EventManagerFactory.eINSTANCE.createNewValueClassFilter(testCls);
+	}
 
 } // NewValueClassFilterTest
