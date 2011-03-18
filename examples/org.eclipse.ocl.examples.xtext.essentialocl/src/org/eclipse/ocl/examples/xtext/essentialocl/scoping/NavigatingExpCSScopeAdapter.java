@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.6 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.7 2011/03/18 18:16:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -81,10 +81,12 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csParent;
 						ExpCS csSource = csNavigationOperator.getSource();
 						OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
-						Type type = source.getType();
-						if (csNavigationOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-							if (type instanceof CollectionType) {		// collection->collection-operation(name...
-								environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
+						if (source != null) {
+							Type type = source.getType();
+							if (csNavigationOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+								if (type instanceof CollectionType) {		// collection->collection-operation(name...
+									environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
+								}
 							}
 						}
 					}
