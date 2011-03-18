@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.3 2011/03/18 18:19:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -33,7 +33,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
 {	
 	protected final RootCSScopeAdapter root;
-	protected long unresolveableModificationCount = -1;
+//	protected long unresolveableModificationCount = -1;
 	
 	protected ElementCSScopeAdapter(TypeManager typeManager, CS csElement) {
 		this(typeManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
@@ -49,15 +49,15 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 		return root;
 	}
 	
-	public boolean isUnresolvable() {
-		return (root == null) || (unresolveableModificationCount >= root.getModificationCount());
-	}
+//	public boolean isUnresolvable() {
+//		return (root == null);// || (unresolveableModificationCount >= root.getModificationCount());
+//	}
 
-	public void setUnresolvable() {
-		if (root != null) {
-			unresolveableModificationCount = root.getModificationCount();
-		}
-	}
+//	public void setUnresolvable() {
+//		if (root != null) {
+//			unresolveableModificationCount = root.getModificationCount();
+//		}
+//	}
 
 	@Override
 	public String toString() {

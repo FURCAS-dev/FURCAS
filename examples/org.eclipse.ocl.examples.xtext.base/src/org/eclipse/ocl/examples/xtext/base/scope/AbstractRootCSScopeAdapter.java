@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.3 2011/03/18 18:19:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -33,8 +33,6 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 	extends MonikeredElementCSScopeAdapter<CS, P>
 	implements RootCSScopeAdapter
 {
-	private long modificationCount = 0;
-
 	public AbstractRootCSScopeAdapter(TypeManager typeManager, CS csElement, Class<P> pivotClass) {
 		super(typeManager, csElement, pivotClass);
 	}
@@ -54,8 +52,6 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 		return super.computeLookup(environmentView, scopeView);
 	}
 
-	public void endModification() {}
-
 	public String getAlias(PackageCS csPackage) {
 		for (ImportCS csImport : target.getOwnedImport()) {
 			if (csPackage.getPivot() == csImport.getNamespace()) {
@@ -65,40 +61,8 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 		return csPackage.getName();
 	}
 
-/*	public BoundDocumentCS getBoundDocument() {
-		if (boundDocument == null) {
-			Resource eResource = csElement.eResource();
-			ResourceSet resourceSet = eResource.getResourceSet();
-			for (Resource resource : resourceSet.getResources()) {
-				if (resource.getContents().size() == 1) {
-					EObject content = resource.getContents().get(0);
-					if (content instanceof BoundDocumentCS) {
-						boundDocument = (BoundDocumentCS) content;
-						break;
-					}
-				}
-			}
-			if (boundDocument == null) {
-				URI uri = URI.createURI("bound-document.xmi"); //$NON-NLS-1$
-				Resource resource = resourceSet.createResource(uri);
-				resourceSet.getResources().add(resource);
-				boundDocument = BaseCSTFactory.eINSTANCE.createBoundDocumentCS();
-				resource.getContents().add(boundDocument);
-			}
-		}
-		return boundDocument;
-	} */
-	
-	public long getModificationCount() {
-		return modificationCount;
-	}
-
 	@Override
 	public AbstractRootCSScopeAdapter<?,?> getRootScopeAdapter() {
 		return this;
-	}
-
-	public void startModification() {
-		modificationCount++;
 	}
 }

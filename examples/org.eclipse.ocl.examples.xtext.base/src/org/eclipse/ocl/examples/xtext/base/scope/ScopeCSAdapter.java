@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ScopeCSAdapter.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: ScopeCSAdapter.java,v 1.3 2011/03/18 18:19:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -20,8 +20,4 @@ package org.eclipse.ocl.examples.xtext.base.scope;
 public interface ScopeCSAdapter extends ScopeAdapter
 {	
 	RootCSScopeAdapter getRootScopeAdapter();
-	
-	boolean isUnresolvable();
-
-	void setUnresolvable();
 }
