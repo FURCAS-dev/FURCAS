@@ -33,6 +33,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
@@ -74,13 +75,8 @@ public class ModelEditorInputLoader {
         Resource resource = editingDomain.getResourceSet().getResource(uri, /*load*/ true);
         validateResource(resource);
 
-        ModelEditorInput modelInput;
         EObject root = resource.getContents().iterator().next();
-        if (root instanceof TextBlock) {
-            modelInput = createFromRootBlock(file, root);
-        } else {
-            modelInput = createFromRootObject(file, root);
-        }
+        ModelEditorInput modelInput = createFromRootObject(file, root);
         
         assert modelInput.getRootBlock() != null;
         assert modelInput.getRootObject() != null;
@@ -97,16 +93,6 @@ public class ModelEditorInputLoader {
             }
             throw new PartInitException(message.toString());
         }
-    }
-
-    private ModelEditorInput createFromRootBlock(IFile file, EObject root) throws PartInitException {
-        TextBlock rootBlock = (TextBlock) root;
-        EObject rootObject = rootBlock.getCorrespondingModelElements().iterator().next();
-        if (rootObject == null) {
-            throw new PartInitException(
-                    "The given TextBlocks Model is invalid. The root blocks has no corresponding model element.");
-        }
-        return new ModelEditorInput(file, rootObject, rootBlock);
     }
 
     private ModelEditorInput createFromRootObject(IFile file, EObject rootObject) throws PartInitException {
@@ -150,7 +136,9 @@ public class ModelEditorInputLoader {
                 if (!TbNavigationUtil.isUltraRoot(block)) {
                     continue;
                 }
-                block = (TextBlock) TbUtil.getNewestVersion(block);
+                if (block.getVersion() != Version.REFERENCE) {
+                    continue;
+                }
                 // type can only be checked if mapping is not broken
                 if (TbUtil.isTextBlockOfType(rootTemplate, block)) {
                     rootBlocks.add(block);
