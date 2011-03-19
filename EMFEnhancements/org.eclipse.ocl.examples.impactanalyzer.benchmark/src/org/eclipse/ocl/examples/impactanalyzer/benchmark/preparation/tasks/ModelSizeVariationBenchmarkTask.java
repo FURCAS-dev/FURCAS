@@ -183,6 +183,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	int noOfInvalidEvaluations = getNoOfInvalidEvaluations(evaluationResult);
 	additionalMeasurementInformation.put("noInvalidEvals", String.valueOf(noOfInvalidEvaluations));
+	
+	int numberOfTracebackStepsExecuted = ((AllInstanceCallCountingOppositeEndFinder) getOppositeEndFinder()).getTracebackStepExecutions();
+        additionalMeasurementInformation.put("noTracebackStepsExecuted", String.valueOf(numberOfTracebackStepsExecuted));
 
 	long timeToEvaluate = 0;
 	long timeToEvaluateWithoutInvalidResults = 0;

@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 /**
  * Implementation of the {@link ImpactAnalyzer}
  */
-public class ImpactAnalyzerImpl implements ImpactAnalyzer {
+public class ImpactAnalyzerImpl implements ImpactAnalyzer, TracebackStepExecutor {
 
     private final OCLExpression expression;
     private FilterSynthesisImpl filtersyn;
@@ -159,6 +159,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     protected OCLExpression getExpression() {
         return expression;
+    }
+
+    public int getNumberOfTracebackStepsPerformedDuringLastCallToGetContextObjects() {
+        return instanceScopeAnalysis.getNumberOfTracebackStepsPerformedDuringLastCallToGetContextObjects();
     }
 
 } // ImpactAnalyzerImpl
