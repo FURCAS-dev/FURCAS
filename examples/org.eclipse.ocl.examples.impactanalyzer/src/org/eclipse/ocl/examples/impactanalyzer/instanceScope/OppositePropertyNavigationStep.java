@@ -34,8 +34,8 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
     private final SemanticIdentity semanticIdentity;
 
     public OppositePropertyNavigationStep(EClass sourceType, EClass targetType, EStructuralFeature property,
-            OCLExpression debugInfo2, OppositeEndFinder oppositeEndFinder) {
-        super(sourceType, targetType, debugInfo2);
+            OCLExpression debugInfo, OppositeEndFinder oppositeEndFinder) {
+        super(sourceType, targetType, debugInfo);
         this.property = property;
 	this.oppositeEndFinder = oppositeEndFinder;
 	this.semanticIdentity = new OppositePropertyNavigationStepIdentity();
