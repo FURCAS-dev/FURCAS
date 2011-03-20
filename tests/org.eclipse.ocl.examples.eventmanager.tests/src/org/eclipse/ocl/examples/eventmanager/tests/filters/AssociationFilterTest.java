@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
@@ -56,8 +55,8 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
      * Returns the fixture for this Association Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
      */
     @Override
-    protected AssociationFilter getFixture() {
-        return (AssociationFilter) fixture;
+    protected StructuralFeatureFilter getFixture() {
+        return (StructuralFeatureFilter) fixture;
     }
 
     /**
@@ -71,7 +70,7 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
         this.reference1 = EcoreFactory.eINSTANCE.createEReference();
         reference1.setName("myReference");
         this.reference2 = EcoreFactory.eINSTANCE.createEReference();
-        setFixture(EventManagerFactory.eINSTANCE.createAssociationFilter(reference1));
+        setFixture(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(reference1));
 
     }
 
@@ -101,7 +100,7 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 
 	@Override
 	StructuralFeatureFilter getFilterFor(Object f) {
-		return  EventManagerFactory.eINSTANCE.createAssociationFilter((EReference) f);
+		return  EventManagerFactory.eINSTANCE.createStructuralFeatureFilter((EReference) f);
 	}
 
 	@Override
@@ -124,7 +123,7 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	}
 	@Override
 	public EventFilter giveTestFilter() {
-		return EventManagerFactory.eINSTANCE.createAssociationFilter(ref);
+		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(ref);
 	}
 
 } // AssociationFilterTest
