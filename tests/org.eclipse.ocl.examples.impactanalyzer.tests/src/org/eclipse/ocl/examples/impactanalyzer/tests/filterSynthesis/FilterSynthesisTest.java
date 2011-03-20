@@ -29,7 +29,6 @@ import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
@@ -557,7 +556,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
             for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
                 assertAllReferencesInPackage(o, comp);
             }
-        } else if (f instanceof AssociationFilter) {
+        } else if (f instanceof StructuralFeatureFilter) {
             assertTrue("AssociationFilter :::" + f + " has a NULL reference", ((StructuralFeatureFilter) f).getFeature() != null);
             EClass wantedClass = ((StructuralFeatureFilter) f).getFeature().getEContainingClass();
             assertTrue("AssociationFilter :::" + f + " has a reference which is not contained in a class", wantedClass != null);
