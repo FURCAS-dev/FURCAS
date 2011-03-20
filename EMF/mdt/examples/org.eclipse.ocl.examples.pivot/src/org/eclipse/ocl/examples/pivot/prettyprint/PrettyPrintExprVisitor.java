@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintExprVisitor.java,v 1.5 2011/03/14 17:01:29 ewillink Exp $
+ * $Id: PrettyPrintExprVisitor.java,v 1.6 2011/03/17 20:24:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -114,7 +114,7 @@ public class PrettyPrintExprVisitor extends PrettyPrintNameVisitor
 		OclExpression source = object.getSource();
 		if (source != null) {
 			if (!(source instanceof VariableExp) || !((VariableExp)source).isImplicit()) {
-				if (source instanceof CallExp) {
+				if ((source instanceof OperationCallExp) && (((OperationCallExp)source).getReferredOperation().getPrecedence() != null)) {
 					delegate.append("(");
 					precedenceVisit(source, null);
 					delegate.append(")");

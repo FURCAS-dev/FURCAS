@@ -31,8 +31,6 @@ import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
 import org.eclipse.ocl.examples.eventmanager.Statistics;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
@@ -116,14 +114,9 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return classFilter;
     }
 
-    public AttributeFilter createAttributeFilter(EAttribute attribute) {
-        AttributeFilter attributeFilter = new AttributeFilter(attribute);
-        return attributeFilter;
-    }
-
-    public AssociationFilter createAssociationFilter(EReference reference) {
-        AssociationFilter associationFilter = new AssociationFilter(reference);
-        return associationFilter;
+    public StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature property) {
+    	StructuralFeatureFilter structuralFeatureFilter = new StructuralFeatureFilter(property);
+        return structuralFeatureFilter;
     }
 
     public OldValueClassFilterIncludingSubclasses createOldValueClassFilterIncludingSubclasses(EClass cls) {
@@ -186,7 +179,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     public EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAttributeFilter(referredProperty);
+        sf = createStructuralFeatureFilter(referredProperty);
 
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
@@ -194,7 +187,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     public EventFilter createFilterForEReference(EClass eClass, EReference referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAssociationFilter(referredProperty);
+        sf = createStructuralFeatureFilter(referredProperty);
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
     }
