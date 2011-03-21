@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Philipp Berger
  *
  */
-public abstract class StructuralFeatureFilter extends EventFilter {
+public class StructuralFeatureFilter extends EventFilter {
 
     private final EStructuralFeature feature;
 
@@ -79,6 +79,11 @@ public abstract class StructuralFeatureFilter extends EventFilter {
 
     }
 
+    @Override
+    public StructuralFeatureFilter clone(){
+        return new StructuralFeatureFilter(getFeature());
+    }
+    
     @Override
     public String toString() {
         if (getFeature() != null)

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.11 2011/03/05 05:57:40 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.12 2011/03/18 18:19:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -119,7 +119,7 @@ public class EnvironmentView
 		if ((name != null) && !name.equals(elementName)) {
 			return 0;
 		}
-		if (matchers != null) {
+		if ((name != null) && (matchers != null)) {
 			for (Filter filter : matchers) {
 				if (!filter.matches(this, element)) {
 					return 0;

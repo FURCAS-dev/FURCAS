@@ -17,11 +17,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
@@ -33,6 +32,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
 /**
@@ -98,12 +98,7 @@ public interface EventManagerFactory {
     /**
      * {@see AttributeFilter#AttributeFilter()}
      */
-    AttributeFilter createAttributeFilter(EAttribute attribute);
-
-    /**
-     * {@see AssociationFilter#AssociationFilter()}
-     */
-    AssociationFilter createAssociationFilter(EReference reference);
+    StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature attribute);
 
     /**
      * {@see ContainmentFilter#INSTANCE}
@@ -144,13 +139,13 @@ public interface EventManagerFactory {
     NewValueClassFilterIncludingSubclasses createNewValueClassFilterIncludingSubclasses(EClass clazz);
 
     /**
-     * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link AttributeFilter} for
+     * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link PropertyFilter} for
      * <code>referredProperty</code>.
      */
     EventFilter createFilterForEReference(EClass eClass, EReference referredProperty);
 
     /**
-     * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link AttributeFilter} for
+     * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link PropertyFilter} for
      * <code>referredProperty</code>.
      */
     EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty);
