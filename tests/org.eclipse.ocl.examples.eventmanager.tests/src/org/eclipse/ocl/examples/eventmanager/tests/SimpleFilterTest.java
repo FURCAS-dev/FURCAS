@@ -14,8 +14,11 @@ package org.eclipse.ocl.examples.eventmanager.tests;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.EventManagerTest.Application;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AssociationFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AttributeFilterTest;
@@ -28,6 +31,7 @@ import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassIncludin
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassIncludingSubclassesFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.PackageFilterTest;
+import org.junit.Test;
 
 /**
  * This class test whether the {@link EventManagerFactory#createEventManager() event manager}
@@ -50,7 +54,26 @@ public class SimpleFilterTest extends TestCase{
 		fixture=null;
 		app=null;
 	}
-
+	private static class MyClassFilter extends ClassFilter{
+		public MyClassFilter(EClass clazz, boolean negated) {
+			super(clazz, negated);
+		}
+		@Override
+		public org.eclipse.ocl.examples.eventmanager.filters.ClassFilter clone() {
+			return new MyClassFilter(getWantedClass(), true);
+		}
+		
+	}
+    public void testBehaviourForUnknownFilter(){
+    	ClassFilter f = new MyClassFilter(null, false);
+    	boolean thrown=false;
+    	try {
+        	fixture.subscribe(f,app );
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No Exception thrown", thrown);
+    }
 	/**
 	 * Tests whether the {@link Notification notifications} defined by
 	 * the {@link EventFilterTest test} trigger the {@link EventManager manager}

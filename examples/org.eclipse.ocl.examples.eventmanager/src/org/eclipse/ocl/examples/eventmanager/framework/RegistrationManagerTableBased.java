@@ -326,7 +326,12 @@ public class RegistrationManagerTableBased {
      */
 
     public synchronized void deregister(Adapter listener) {
-    	for (Reference<? extends Adapter> listenerRef : adaptersToWeakRefs.get(listener)) {
+    	Set<Reference<? extends Adapter>> set = adaptersToWeakRefs.get(listener);
+    	if(set == null){
+    		// adapters anymore, already deregistered
+    		return;
+    	}
+		for (Reference<? extends Adapter> listenerRef : set) {
     		deregister(listenerRef);
     	}
     }
