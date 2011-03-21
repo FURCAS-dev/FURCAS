@@ -14,7 +14,7 @@
 <stringAttribute key="org.eclipse.hyades.trace.ui.ATTR_PROFILING_SET" value="tptp-dummy-profiling-set-ImpactAnalysisBenchmarkOnLargeTrace"/>
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_22"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.examples.impactanalyzer.benchmark.BenchmarkProcessor"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--warmups 1 --measures 1 --output /tmp/result.data --jobs 4 --delayprep true --modelpath NgpmModelWithCtsEditorTest.xmi --tracepath ctsEditorTestSuite.trace"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--warmups 1 --measures 1 --output /tmp/result.data --jobs 3 --delayprep true --modelpath NgpmModelWithCtsEditorTest.xmi --tracepath ctsEditorTestSuite.trace"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.examples.impactanalyzer.benchmark"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx4096m -Xms4096m -XX:PermSize=256m"/>
 <booleanAttribute key="org.eclipse.tptp.platform.jvmti.client.ATTR_EXEC_OBJ_ALLOC_SITE" value="true"/>
