@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.8 2011/03/03 20:09:21 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.9 2011/03/17 20:06:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -58,6 +58,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private PrimitiveType booleanType = null;
 	private org.eclipse.ocl.examples.pivot.Class classifierType = null;
 	private CollectionType collectionType = null;
+	private org.eclipse.ocl.examples.pivot.Enumeration enumerationType = null;
 	private PrimitiveType integerType = null;
 	private AnyType oclAnyType = null;
 	private InvalidType oclInvalidType = null;
@@ -136,6 +137,19 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			}		
 		}
 		return collectionType;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Enumeration getEnumerationType() {
+		if (enumerationType == null) {
+			Type type = getRequiredLibraryType("Enumeration");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+				enumerationType = (org.eclipse.ocl.examples.pivot.Enumeration) type;
+			}
+			else if (type != null) {
+				throw new IllegalStateException("Enumeration is not an Enumeration");
+			}		
+		}
+		return enumerationType;
 	}
 
 	public PrimitiveType getIntegerType() {

@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassFilterTe
 import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassIncludingSubclassesFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassIncludingSubclassesFilterTest;
-import org.eclipse.ocl.examples.eventmanager.tests.filters.PackageFilterTest;
 import org.junit.Test;
 
 /**
@@ -162,14 +161,5 @@ public class SimpleFilterTest extends TestCase{
 	public void testOldValueClassIncludingSubclassesFilter(){
 		assertHandleEmfEvent(new OldValueClassIncludingSubclassesFilterTest());
 	}
-	/**
-	 * @see PackageFilterTest#giveTestFilter()
-	 * @see PackageFilterTest#giveMatchingNotifications()
-	 * @see PackageFilterTest#giveNotMatchingNotifcation()
-	 */
-	public void testPackageFilter(){
-		assertHandleEmfEvent(new PackageFilterTest());
-	}
-	
 	
 }

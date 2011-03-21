@@ -28,14 +28,12 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.Statistics;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.PackageFilter;
 
 
 /**
@@ -157,9 +155,9 @@ public class RegistrationManagerTableBased {
         filterTypeToBitMask = new HashMap<Class<? extends EventFilter>, Integer>();
         @SuppressWarnings("unchecked")
         Class<? extends TableForEventFilter>[] tableTypes = (Class<? extends TableForEventFilter>[]) new Class<?>[] {
-                TableForAssociationFilter.class, TableForAttributeFilter.class, TableForClassFilter.class,
+                TableForStructuralFeatureFilter.class, TableForClassFilter.class,
                 TableForClassFilterIncludingSubClasses.class,
-                TableForEventTypeFilter.class, TableForPackageFilter.class, TableForContainmentFilter.class,
+                TableForEventTypeFilter.class, TableForContainmentFilter.class,
                 TableForNewValueClassFilter.class, TableForOldValueClassFilter.class,
                 TableForNewValueClassFilterIncludingSubclasses.class, TableForOldValueClassFilterIncludingSubclasses.class};
         createAllTables(tableTypes.length);
@@ -211,8 +209,6 @@ public class RegistrationManagerTableBased {
             LogicalOperationFilterImpl topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
             filterTree = topOfTree;
         }
-        // the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
-        filterTree = adjustFilter(filterTree);
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilterImpl) filterTree);
         // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
         List<Registration> registrations = new LinkedList<Registration>();
@@ -527,49 +523,6 @@ public class RegistrationManagerTableBased {
     }
 
     /**
-     * this method expands filters like "ClassFilter including subclasses" to an equivalent subtree
-     * 
-     * @param source
-     * @param parent
-     */
-    private static EventFilter adjustFilter(EventFilter source) {
-        // traverse tree recursively
-        if (source instanceof LogicalOperationFilterImpl) {
-            Set<EventFilter> sourceOperands = ((LogicalOperationFilterImpl) source).getOperands();
-            EventFilter[] targetOperands = new EventFilter[sourceOperands.size()];
-            int index = 0;
-            for (EventFilter operand : sourceOperands) {
-                targetOperands[index++] = adjustFilter(operand);
-            }
-            if (source instanceof AndFilter) {
-                return new AndFilter(targetOperands);
-            }
-            if (source instanceof OrFilter) {
-                return new OrFilter(targetOperands);
-            }
-            // if (source instanceof NotFilter) {
-            // return new NotFilter(targetOperands[0]);
-            // }
-        }
-//        if (source instanceof ClassFilter && ((ClassFilter) source).getIncludeSubClasses()) {
-//            // This method replaces ClassFilters that have a true <code>
-//            // includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
-//            ClassFilter classFilter = (ClassFilter) source;
-//            return getSubTypeFilterTree(classFilter);
-//        } else 
-            if (source instanceof PackageFilter) {
-             // This method replaces ExtentFilters that have a filterCriterion of type <code>
-             // EPackage</code> with a
-             // collection of OR-Connected ExtentFilterFilters that represent all transitively contained
-             // <code>RefClasses</code>
-             PackageFilter extentFilter = (PackageFilter) source;
-             return getExpandedExtentFilterTree(extentFilter);
-        } else {
-            return source;
-        }
-    }
-
-    /**
      * this is a private helper method. unfortunately there is no 1 to 1 mapping of event filter instances and EventFilterTable
      * instances because some of the filters have modifiers like <code>
      * includeSubclasses</code>. In this case, there is a seperate EventFilterTable instance for each value of the modifier. this
@@ -600,56 +553,6 @@ public class RegistrationManagerTableBased {
     }
 
     /**
-     * creates a filter tree which consists of an OR-Filter that connects several PackageFilters which represent all packages that
-     * are composite children of the original package
-     * 
-     * @see #getExpandedExtentFilterTree()
-     * @param extent
-     */
-    private static EventFilter getExpandedExtentFilterTree(PackageFilter filter) {
-
-        EPackage extent = filter.getEPackage();
-        EventFilter extentFilterTree = null;
-        Collection<EPackage> containedPackages = getContainedPackageExtents(extent);
-        if (containedPackages.size() == 0) {
-            return filter;
-        }
-
-        EventFilter[] orFilterOperands = new EventFilter[containedPackages.size() + 1];
-        int index = 0;
-        orFilterOperands[index++] = filter; // ad the top level package filter also
-        for (EPackage _package : containedPackages) {
-            orFilterOperands[index++] = new PackageFilter(_package);
-        }
-        LogicalOperationFilterImpl orFilter = new OrFilter(orFilterOperands);
-
-        if (filter.isNegated()) {
-            NotFilter notFilter = new NotFilter(orFilter);
-            extentFilterTree = notFilter;
-        } else
-            extentFilterTree = orFilter;
-
-        return extentFilterTree;
-    }
-
-    /**
-     * @see #computeExpandedExtentFilterTree(RefPackage)
-     * @param refPackage
-     * @return
-     */
-    private static Collection<EPackage> getContainedPackageExtents(EPackage refPackage) {
-
-        Collection<EPackage> result = new ArrayList<EPackage>();
-
-        for (Iterator<EPackage> it = refPackage.getESubpackages().iterator(); it.hasNext();) {
-            EPackage containedPackage = it.next();
-            result.add(containedPackage);
-            result.addAll(getContainedPackageExtents(containedPackage));
-        }
-        return result;
-    }
-
-      /**
      * Transforms the (sub-)tree into disjunctive normal form. This special form is needed internally for the following
      * processing. The tree is not cloned before processing, so the clients that plan to reuse their FilterTrees will have to
      * clone them using {@link #clone()} before registering to the EventFramework or invoking this method.

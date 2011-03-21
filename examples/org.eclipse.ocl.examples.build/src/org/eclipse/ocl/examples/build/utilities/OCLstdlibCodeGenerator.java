@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.3 2011/02/15 10:36:50 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.4 2011/03/17 20:01:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
@@ -33,7 +33,6 @@ import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.ocl.examples.build.acceleo.GenerateOCLstdlib;
-import org.eclipse.ocl.examples.build.acceleo.MyGenerateOCLstdlib;
 import org.eclipse.ocl.examples.pivot.utilities.PivotSaver;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -104,7 +103,7 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 			if ((orphanage != null) && (pivotModel instanceof org.eclipse.ocl.examples.pivot.Package)) {
 				((org.eclipse.ocl.examples.pivot.Package)pivotModel).getNestedPackages().add(orphanage);
 			}
-			GenerateOCLstdlib acceleo = new MyGenerateOCLstdlib(pivotModel, folder, arguments);
+			GenerateOCLstdlib acceleo = new GenerateOCLstdlib(pivotModel, folder, arguments);
 			log.info("Generating to ' " + folder + "'");
 			acceleo.generate(null);
 		} catch (RuntimeException e) {
