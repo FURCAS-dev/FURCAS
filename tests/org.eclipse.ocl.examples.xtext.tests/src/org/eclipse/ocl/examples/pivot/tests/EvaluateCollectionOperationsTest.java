@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateCollectionOperationsTest.java,v 1.2 2011/03/08 15:15:20 ewillink Exp $
+ * $Id: EvaluateCollectionOperationsTest.java,v 1.3 2011/03/22 12:33:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -247,6 +247,31 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, 1, "OrderedSet{3, null, 4.0, null, 'test'}->count(null)");
 	}
 
+	public void testCollectionEqual() {		
+		assertQueryFalse(null, "Bag{1} = 1");
+		assertQueryFalse(null, "OrderedSet{1} = 1");
+		assertQueryFalse(null, "Sequence{1} = 1");
+		assertQueryFalse(null, "Set{1} = 1");
+
+		assertQueryFalse(null, "1 = Bag{1}");
+		assertQueryFalse(null, "1 = OrderedSet{1}");
+		assertQueryFalse(null, "1 = Sequence{1}");
+		assertQueryFalse(null, "1 = Set{1}");
+		assertQueryFalse(null, "Set{1} = Set{Set{1}}");
+
+		assertQueryFalse(null, "Bag{1.01} = Bag{1}");
+		assertQueryFalse(null, "OrderedSet{1.01} = OrderedSet{1}");
+		assertQueryFalse(null, "Sequence{1.01} = Sequence{1}");
+		assertQueryFalse(null, "Set{1.01} = Set{1}");
+		assertQueryFalse(null, "Set{Set{1.01}} = Set{Set{1}}");
+
+		assertQueryTrue(null, "Bag{1.0} = Bag{1}");
+		assertQueryTrue(null, "OrderedSet{1.0} = OrderedSet{1}");
+		assertQueryTrue(null, "Sequence{1.0} = Sequence{1}");
+		assertQueryTrue(null, "Set{1.0} = Set{1}");
+		assertQueryTrue(null, "Set{Set{1.0}} = Set{Set{1}}");
+	}
+
 	public void testCollectionEqualOrderedXOrdered() {
 		// same order, same quantities
 		assertQueryTrue(null, "Sequence{4, 5, 'test'} = Sequence{4, 5, 'test'}");
@@ -306,17 +331,7 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryInvalid(null, "let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 = o2");
 	}
 
-	public void testCollectionEqualNull() {		
-		assertQueryFalse(null, "Bag{1} = 1");
-		assertQueryFalse(null, "OrderedSet{1} = 1");
-		assertQueryFalse(null, "Sequence{1} = 1");
-		assertQueryFalse(null, "Set{1} = 1");
-
-		assertQueryFalse(null, "1 = Bag{1}");
-		assertQueryFalse(null, "1 = OrderedSet{1}");
-		assertQueryFalse(null, "1 = Sequence{1}");
-		assertQueryFalse(null, "1 = Set{1}");
-		
+	public void testCollectionEqualNull() {				
 		assertQueryFalse(null, "Bag{} = null");
 		assertQueryFalse(null, "OrderedSet{} = null");
 		assertQueryFalse(null, "Sequence{} = null");
@@ -1064,6 +1079,31 @@ public class EvaluateCollectionOperationsTest extends PivotTestSuite
 		assertQueryTrue(null, "Bag{null}->notEmpty()");
 		assertQueryTrue(null, "Set{null}->notEmpty()");
 		assertQueryTrue(null, "OrderedSet{null}->notEmpty()");
+	}
+
+	public void testCollectionNotEqual() {		
+		assertQueryTrue(null, "Bag{1} <> 1");
+		assertQueryTrue(null, "OrderedSet{1} <> 1");
+		assertQueryTrue(null, "Sequence{1} <> 1");
+		assertQueryTrue(null, "Set{1} <> 1");
+
+		assertQueryTrue(null, "1 <> Bag{1}");
+		assertQueryTrue(null, "1 <> OrderedSet{1}");
+		assertQueryTrue(null, "1 <> Sequence{1}");
+		assertQueryTrue(null, "1 <> Set{1}");
+		assertQueryTrue(null, "Set{1} <> Set{Set{1}}");
+
+		assertQueryTrue(null, "Bag{1.01} <> Bag{1}");
+		assertQueryTrue(null, "OrderedSet{1.01} <> OrderedSet{1}");
+		assertQueryTrue(null, "Sequence{1.01} <> Sequence{1}");
+		assertQueryTrue(null, "Set{1.01} <> Set{1}");
+		assertQueryTrue(null, "Set{Set{1.01}} <> Set{Set{1}}");
+
+		assertQueryFalse(null, "Bag{1.0} <> Bag{1}");
+		assertQueryFalse(null, "OrderedSet{1.0} <> OrderedSet{1}");
+		assertQueryFalse(null, "Sequence{1.0} <> Sequence{1}");
+		assertQueryFalse(null, "Set{1.0} <> Set{1}");
+		assertQueryFalse(null, "Set{Set{1.0}} <> Set{Set{1}}");
 	}
 
 	public void testCollectionNotEqualInvalid() {
