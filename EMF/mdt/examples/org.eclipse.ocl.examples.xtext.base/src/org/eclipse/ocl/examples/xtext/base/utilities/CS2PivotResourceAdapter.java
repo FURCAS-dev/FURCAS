@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotResourceAdapter.java,v 1.7 2011/03/05 05:57:40 ewillink Exp $
+ * $Id: CS2PivotResourceAdapter.java,v 1.8 2011/03/18 18:19:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -29,11 +29,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
-import org.eclipse.ocl.examples.xtext.base.scope.RootCSScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 
 /**
  * A CS2PivotResourceAdapter enhances the Resource for a Concrete Syntax model
@@ -112,21 +109,6 @@ public class CS2PivotResourceAdapter extends TypeManagerResourceAdapter
 	
 	public CS2Pivot getConverter() {
 		return converter;
-	}
-
-	public long getModificationCount() {
-		List<EObject> contents = resource.getContents();
-		if (!contents.isEmpty()) {
-			ElementCS csElement = (ElementCS) contents.get(0);
-			ScopeCSAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
-			if (scopeAdapter != null) {
-				RootCSScopeAdapter documentScopeAdapter = scopeAdapter.getRootScopeAdapter();
-				if (documentScopeAdapter != null) {
-					return documentScopeAdapter.getModificationCount();
-				}
-			}
-		}
-		return -1;
 	}
 
 	@Override

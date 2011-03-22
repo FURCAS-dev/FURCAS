@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.4 2011/03/04 13:54:01 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.5 2011/03/18 18:19:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -26,12 +26,10 @@ import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.BaseScopeProvider;
 import org.eclipse.ocl.examples.xtext.base.scoping.cs.ImportScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -102,7 +100,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				}
 				return Collections.emptyList();
 			}
-			ScopeCSAdapter scopeAdapter = null;
+//			ScopeCSAdapter scopeAdapter = null;
 			IScope scope = null;
 			String uri = TypesPackage.eNS_URI;
 //			if (ref.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {	// FIXME this is costly; don't inflict it when not needed
@@ -110,13 +108,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				scope = globalScopeProvider.getScope(context.eResource(), ref, null);
 			}
 			else {
-				scopeAdapter = ElementUtil.getScopeCSAdapter((ElementCS) context);
-				if (scopeAdapter.isUnresolvable()) {
-					if (traceLookup) {
-						BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " already unresolvable");
-					}
-					return Collections.emptyList();
-				}
+//				scopeAdapter = ElementUtil.getScopeCSAdapter((ElementCS) context);
 				scope = getScope(context, ref);
 				if (traceLookup) {
 //					EObject target = ((ScopeView)scope).getTarget();
@@ -143,10 +135,6 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 				BaseScopeProvider.LOOKUP.println("" + depth + " Lookup " + text + " failed");
 			}
 			eObjectDescription = scope.getSingleElement(qualifiedName);	// FIXME conditionalise this retry for debug
-//			}
-			if (scopeAdapter != null) {
-				scopeAdapter.setUnresolvable();
-			}
 			return Collections.emptyList();
 		}
 		finally {
