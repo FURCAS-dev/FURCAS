@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseDocument.java,v 1.7 2011/03/11 20:23:40 ewillink Exp $
+ * $Id: BaseDocument.java,v 1.8 2011/03/18 18:19:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.model;
 
@@ -80,22 +80,6 @@ public class BaseDocument extends XtextDocument implements ConsoleContext
 					return resource.getResourceSet();
 				}
 			});
-	}
-
-	@Override
-	public <T> T modify(IUnitOfWork<T, XtextResource> work) {
-		RootCSScopeAdapter documentScopeAdapter = getDocumentScopeAdapter();
-		try {
-			if (documentScopeAdapter != null) {
-				documentScopeAdapter.startModification();
-			}
-			return super.modify(work);
-		}
-		finally {
-			if (documentScopeAdapter != null) {
-				documentScopeAdapter.endModification();
-			}
-		}
 	}
 
 	public void setContext(final EClassifier ecoreContext, final Map<String, EClassifier> ecoreParameters) {

@@ -388,6 +388,8 @@ public class XtextTestCase extends TestCase
 	}
 	
 	protected ResourceSet resourceSet;
+	protected Logger rootLogger = Logger.getRootLogger();
+	protected TestCaseAppender testCaseAppender = new TestCaseAppender();
 
 	protected XtextResource savePivotAsCS(TypeManager typeManager, Resource pivotResource, URI outputURI) throws IOException {
 //		ResourceSet csResourceSet = resourceSet; //new ResourceSetImpl();
@@ -532,9 +534,8 @@ public class XtextTestCase extends TestCase
 	
 	@Override
 	protected void setUp() throws Exception {
-		Logger rootLogger = Logger.getRootLogger();
 //		rootLogger.setLevel(Level.TRACE);
-		rootLogger.addAppender(new TestCaseAppender());
+		rootLogger.addAppender(testCaseAppender);
 //		rootLogger.removeAppender("default");
 		CompleteOCLStandaloneSetup.doSetup();
 		OCLinEcoreStandaloneSetup.doSetup();

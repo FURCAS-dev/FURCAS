@@ -11,41 +11,42 @@
 package org.eclipse.ocl.examples.eventmanager.framework;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
+
+
 
 /**
- * The AssociationFilterTable manages all Registrations containing
- * {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.AssociationFilter}.
+ * This filter table manages all Registrations containing {@link PropertyFilter}.
  * 
  * @see org.eclipse.ocl.examples.eventmanager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl
  */
-public class TableForAssociationFilter extends TableForEventFilter {
+public class TableForStructuralFeatureFilter extends TableForEventFilter {
 
-    public TableForAssociationFilter(int numberOfFilterTables) {
+    public TableForStructuralFeatureFilter(int numberOfFilterTables) {
         super(numberOfFilterTables);
     }
 
     /**
-     * @return the affected meta object of <code>LinkChangedEvents</code>. If the event is not of type
-     * <code>LinkChangeEvent</code>, <code>null</code> is returned.
+     * @return the affected meta object of <code>AttributeValueEvents</code>. If the event is not of type
+     * <code>AttributeValueEvent</code>, <code>null</code> is returned.
      */
     public Object getAffectedObject(Notification event) {
-
-        if (isEmpty() || !(event.getFeature()!=null && event.getFeature() instanceof EReference))
+        if (isEmpty() || event.getFeature() == null) {
             return null;
+        }
+        //TODO check if source obj is the right one
         return event.getFeature();
     }
 
     @Override
-    public Class<AssociationFilter> getIdentifier() {
-        return AssociationFilter.class;
-    }
-    
-    @Override
-    protected String criterionToString(Object criterion) {
-        return ((EReference) criterion).getName();
+    public Class<StructuralFeatureFilter> getIdentifier() {
+        return StructuralFeatureFilter.class;
     }
 
+    @Override
+    protected String criterionToString(Object criterion) {
+        return ((EStructuralFeature) criterion).getName();
+    }
 }

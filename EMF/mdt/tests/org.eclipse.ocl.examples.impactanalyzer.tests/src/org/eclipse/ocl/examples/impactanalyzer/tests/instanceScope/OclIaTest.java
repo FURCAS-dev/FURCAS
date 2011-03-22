@@ -88,7 +88,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
     private static final String testForIA2 = "context dataaccess::expressions::literals::ObjectLiteral \n" + "inv testForIA2: \n"
             + "self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).valueClass.getAssociationEnds().otherEnd()"
             + "->select(ae|ae.name='Assoc_to_Bob_changed')";
-
+    
     private EPackage cp;
     private ResourceSetImpl rs;
 
@@ -106,6 +106,93 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         this.cp = null;
     }
     
+
+    @Test
+    public void testSimpleClosure() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testSimpleClosure:\n" +
+                "self->closure(i | i.ownedSignatures.input.ownedTypeDefinition." +
+                          "oclAsType(data::classes::ClassTypeDefinition).clazz)",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        MethodSignature ms1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms1.setName("ms1");
+        c1.getOwnedSignatures().add(ms1);
+        Parameter p1 = ClassesFactory.eINSTANCE.createParameter();
+        p1.setName("p1");
+        ms1.getInput().add(p1);
+        ClassTypeDefinition ctd1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        p1.setOwnedTypeDefinition(ctd1);
+
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        ctd1.setClazz(c2);
+        c2.setName("c2");
+        MethodSignature ms2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms2.setName("ms2");
+        c2.getOwnedSignatures().add(ms2);
+        Parameter p2 = ClassesFactory.eINSTANCE.createParameter();
+        p2.setName("p2");
+        ms2.getInput().add(p2);
+        ClassTypeDefinition ctd2 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        p2.setOwnedTypeDefinition(ctd2);
+
+        SapClass c3 = ClassesFactory.eINSTANCE.createSapClass();
+        ctd2.setClazz(c3);
+        c3.setName("c3");
+        MethodSignature ms3 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms3.setName("ms3");
+        c3.getOwnedSignatures().add(ms3);
+        Parameter p3 = ClassesFactory.eINSTANCE.createParameter();
+        p3.setName("p3");
+        ms3.getInput().add(p3);
+        ClassTypeDefinition ctd3 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        p3.setOwnedTypeDefinition(ctd3);
+
+        SapClass c4 = ClassesFactory.eINSTANCE.createSapClass();
+        ctd3.setClazz(c4);
+        c4.setName("c4");
+        MethodSignature ms4 = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms3.setName("ms4");
+        c4.getOwnedSignatures().add(ms4);
+        
+        Collection<?> resultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(resultOnC1.contains(c2));
+        assertTrue(resultOnC1.contains(c3));
+        assertTrue(resultOnC1.contains(c4));
+
+        final Notification[] noti = new Notification[1];
+        Adapter adapter = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                noti[0] = msg;
+            }
+        };
+        ms2.eAdapters().add(adapter);
+        
+        // now add another parameter p22 with new type c5 to ms2; this should change expression
+        // for c2 and c1 whose ms1 argument p1 is using c2
+        SapClass c5 = ClassesFactory.eINSTANCE.createSapClass();
+        c5.setName("c5");
+        Parameter p22 = ClassesFactory.eINSTANCE.createParameter();
+        p22.setName("p22");
+        ClassTypeDefinition ctd22 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        p22.setOwnedTypeDefinition(ctd22);
+        ctd22.setClazz(c5);
+        ms2.getInput().add(p22);
+        Collection<?> newResultOnC1 = (Collection<?>) OCL.newInstance().evaluate(c1, expression);
+        assertTrue(newResultOnC1.contains(c2));
+        assertTrue(newResultOnC1.contains(c3));
+        assertTrue(newResultOnC1.contains(c4));
+        assertTrue(newResultOnC1.contains(c5));
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
+                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        Collection<EObject> impact = ia.getContextObjects(noti[0]);
+        assertEquals(2, impact.size()); // expecting c1 and c2 to be impacted
+        assertTrue(impact.contains(c1));
+        assertTrue(impact.contains(c2));
+    }
 
     @Test
     public void testResultUseInIterate() {
