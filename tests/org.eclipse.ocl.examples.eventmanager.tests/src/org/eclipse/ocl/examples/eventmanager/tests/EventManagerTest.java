@@ -140,6 +140,24 @@ public class EventManagerTest extends TestCase {
 	public void testUnsubscribe__Adapter() {
 		EventFilterTest test = new ClassFilterTest();
 		Application adapter = new Application();
+		assertSubscribeAndUnsubscribe(test, adapter);
+	}
+	/**
+	 * test whether one can subscribe an adapter twice
+	 */
+	public void testUnsubscribeDouble__Adapter() {
+		EventFilterTest test = new ClassFilterTest();
+		Application adapter = new Application();
+		assertSubscribeAndUnsubscribe(test, adapter);
+		assertSubscribeAndUnsubscribe(test, adapter);
+	}
+	public void testUnsubscribeDoubleAndDifferentFilters__Adapter() {
+		Application adapter = new Application();
+		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
+		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
+	}
+	private void assertSubscribeAndUnsubscribe(EventFilterTest test,
+			Application adapter) {
 		getFixture().subscribe(test.giveTestFilter(), adapter);
 		getFixture().handleEMFEvent(test.giveMatchingNotifications()[0]);
 		assertTrue("Subscription failed",adapter.isNotified());

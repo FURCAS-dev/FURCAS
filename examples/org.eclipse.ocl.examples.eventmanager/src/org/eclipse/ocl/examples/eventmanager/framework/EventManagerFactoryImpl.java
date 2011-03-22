@@ -95,7 +95,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public EventTypeFilter createEventTypeFilter(int eventType) {
-        EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType);
+        EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType, /* negated */  false);
         return eventTypeFilter;
     }
 
@@ -115,7 +115,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature property) {
-    	StructuralFeatureFilter structuralFeatureFilter = new StructuralFeatureFilter(property);
+    	StructuralFeatureFilter structuralFeatureFilter = new StructuralFeatureFilter(property, /* negated */ false);
         return structuralFeatureFilter;
     }
 
@@ -140,7 +140,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public ContainmentFilter createContainmentFilter() {
-        ContainmentFilter containmentFilter = new ContainmentFilter();
+        ContainmentFilter containmentFilter = new ContainmentFilter(/* negated */ false);
         return containmentFilter;
     }
    

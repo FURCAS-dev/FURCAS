@@ -40,4 +40,11 @@ public abstract class LogicalEventFilterTest extends EventFilterTest {
     public EventFilter giveTestFilter() {
     	throw new UnsupportedOperationException("Not applicable for this filter type");
     }
+   /**
+    * negation not supported by {@link LogicalEventFilter}
+    */
+    @Override
+    public void testNegatedForEqualsAndHashCode() {
+    	
+    }
 }

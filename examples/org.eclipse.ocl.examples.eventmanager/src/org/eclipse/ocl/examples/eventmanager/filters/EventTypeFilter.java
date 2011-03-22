@@ -26,9 +26,10 @@ public class EventTypeFilter extends EventFilter {
      * Creates a new {@link EventTypeFilter} with the given filter type.
      * For the different types {@see Notifier}
      * @param eventType
+     * @param negated defines whether the filter is negated
      */
-    public EventTypeFilter(int eventType) {
-        super();
+    public EventTypeFilter(int eventType, boolean negated) {
+        super(negated);
         this.eventType = eventType;
     }
 
@@ -119,7 +120,7 @@ public class EventTypeFilter extends EventFilter {
 
     @Override
     public EventTypeFilter clone() {
-        return new EventTypeFilter(getEventType());
+        return new EventTypeFilter(getEventType(), isNegated());
 
     }
 

@@ -22,13 +22,15 @@ import org.eclipse.ocl.examples.eventmanager.EventManager;
  */
 public abstract class EventFilter {
 
-    private boolean negated = false;
+    private boolean negated;
 
     /**
      * default constructor
+     * @param negated defines whether the filter is negated
      */
-    public EventFilter() {
+    public EventFilter(boolean negated) {
         super();
+        this.negated = negated;
     }
 
     /**
