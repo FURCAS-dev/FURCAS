@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNumericOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: EvaluateNumericOperationsTest.java,v 1.2 2011/03/22 12:33:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -117,6 +117,7 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryFalse(null, "1 = 4.0");
 		assertQueryFalse(null, "1.0 = 4");
 		assertQueryFalse(null, "1.0 = 4.0");
+		assertQueryFalse(null, "1.0 = 1.0000000000000001");
 
 		assertQueryTrue(null, "4 = 4");
 		assertQueryTrue(null, "1 = 1.0");
@@ -500,6 +501,7 @@ public class EvaluateNumericOperationsTest extends PivotTestSuite
 		assertQueryFalse(null, "1 <> 1.0");
 		assertQueryFalse(null, "1.0 <> 1");
 		assertQueryFalse(null, "1.0 <> 1.0");
+		assertQueryTrue(null, "1.0 <> 1.0000000000000001");
 		// invalid
 		assertQueryInvalid(null, "let i : Integer = invalid in i <> 0");
 		assertQueryInvalid(null, "let i : Integer = invalid in -1 <> i");
