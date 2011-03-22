@@ -4,8 +4,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 import data.classes.ClassesPackage;
 
@@ -18,9 +18,9 @@ public class MethodCallResolverCacheInvalidationListener extends AdapterImpl {
 
     public EventFilter getFilter() {
         EventManagerFactory emf = EventManagerFactory.eINSTANCE;
-        AssociationFilter ownedMethodSignaturesFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures());
-        AssociationFilter adaptedToFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
-        AssociationFilter adaptersFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_Adapted());
+        StructuralFeatureFilter ownedMethodSignaturesFilter = emf.createStructuralFeatureFilter(ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures());
+        StructuralFeatureFilter adaptedToFilter = emf.createStructuralFeatureFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
+        StructuralFeatureFilter adaptersFilter = emf.createStructuralFeatureFilter(ClassesPackage.eINSTANCE.getTypeAdapter_Adapted());
         // TODO what about watching delegation changes?
         AndFilter allFilter = emf.createAndFilterFor(ownedMethodSignaturesFilter, adaptedToFilter, adaptersFilter);
         return allFilter;
