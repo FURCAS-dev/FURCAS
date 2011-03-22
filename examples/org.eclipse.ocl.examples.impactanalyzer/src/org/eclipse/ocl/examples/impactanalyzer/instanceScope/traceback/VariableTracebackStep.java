@@ -41,6 +41,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.ocl.examples.impactanalyzer.util.OclHelper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OperationCallExpKeyedSet;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 
 
@@ -215,10 +216,25 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
 
     private Set<TracebackStepAndScopeChange> tracebackIteratorVariable(VariableExp variableExp, EClass context,
             TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
-        TracebackStepAndScopeChange result = createTracebackStepAndScopeChange(
-                variableExp, (OCLExpression) ((LoopExp) variableExp.getReferredVariable().eContainer()).getSource(), context, operationBodyToCallMapper,
+        LoopExp loopExp = (LoopExp) variableExp.getReferredVariable().eContainer();
+		OCLExpression source = (OCLExpression) loopExp.getSource();
+		TracebackStepAndScopeChange stepForSource = createTracebackStepAndScopeChange(
+                variableExp, source, context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache);
-        return Collections.singleton(result);
+		Set<TracebackStepAndScopeChange> result;
+        if (PredefinedType.CLOSURE_NAME.equals(loopExp.getName())) {
+        	// use a branching step, one branch pursuing the source expression, the other tracing
+        	// the body expression
+        	TracebackStepAndScopeChange stepForBody = createTracebackStepAndScopeChange(
+                    variableExp, (OCLExpression) loopExp.getBody(), context, operationBodyToCallMapper,
+                    tupleLiteralNamesToLookFor, tracebackStepCache);
+        	result = new HashSet<TracebackStepAndScopeChange>();
+        	result.add(stepForSource);
+        	result.add(stepForBody);
+        } else {
+        	result = Collections.singleton(stepForSource);
+        }
+        return result;
     }
 
     private Set<TracebackStepAndScopeChange> tracebackSelf(VariableExp variableExp, EClass context,
