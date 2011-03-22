@@ -32,6 +32,7 @@ import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 
 /**
@@ -212,9 +213,29 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
-        NavigationStep result = pathCache.getOrCreateNavigationPath(
-                (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(), context, operationBodyToCallMapper,
+        LoopExp loopExp = (LoopExp) getVariableDeclaration().eContainer();
+        // the source expression can't reference the iterator variable, therefore no recursive reference may occur here:
+    	NavigationStep stepForSource = pathCache.getOrCreateNavigationPath(
+                (OCLExpression) loopExp.getSource(), context, operationBodyToCallMapper,
                 getTupleLiteralPartNamesToLookFor(), oclFactory);
+        NavigationStep result;
+        if (PredefinedType.CLOSURE_NAME.equals(loopExp.getName())) {
+            // the body expression, however, may reference the iterator variable; computing the body's navigation step graph
+            // may therefore recursively look up the navigation step graph for the iterator variable. We therefore need to
+            // enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
+            IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(
+                    getExpression(), getTupleLiteralPartNamesToLookFor());
+            NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
+                    (OCLExpression) loopExp.getBody(), context, operationBodyToCallMapper,
+                    getTupleLiteralPartNamesToLookFor(), oclFactory);
+            NavigationStep actualStepForIterateResultVariableExp = pathCache.navigationStepForBranch(
+                    getInnermostElementType(getExpression().getType()), context, getExpression(),
+                    getTupleLiteralPartNamesToLookFor(), stepForSource, stepForBodyExpression);
+            indirectingStep.setActualStep(actualStepForIterateResultVariableExp);
+        	result = indirectingStep;
+        } else {
+			result = stepForSource;
+        }
         return result;
     }
 
