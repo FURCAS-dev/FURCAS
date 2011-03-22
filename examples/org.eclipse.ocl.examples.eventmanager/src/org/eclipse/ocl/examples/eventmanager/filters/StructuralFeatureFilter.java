@@ -24,10 +24,11 @@ public class StructuralFeatureFilter extends EventFilter {
 
     /**
      * The standard constructor
+     * @param negated set {@link #isNegated()}
      * @param passes the {@link EStructuralFeature feature} to match
      */
-    public StructuralFeatureFilter(EStructuralFeature feature) {
-        super();
+    public StructuralFeatureFilter(EStructuralFeature feature, boolean negated) {
+        super(negated);
         this.feature = feature;
     }
 
@@ -81,7 +82,7 @@ public class StructuralFeatureFilter extends EventFilter {
 
     @Override
     public StructuralFeatureFilter clone(){
-        return new StructuralFeatureFilter(getFeature());
+        return new StructuralFeatureFilter(getFeature(), isNegated());
     }
     
     @Override

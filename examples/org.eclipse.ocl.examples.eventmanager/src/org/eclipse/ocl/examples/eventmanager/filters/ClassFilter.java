@@ -25,9 +25,8 @@ public class ClassFilter extends EventFilter {
     protected EClass wantedClass;
 
     public ClassFilter(EClass clazz, boolean negated) {
-        super();
+        super(negated);
         setWantedClass(clazz);
-        setNegated(negated);
     }
 
     public EClass getWantedClass() {

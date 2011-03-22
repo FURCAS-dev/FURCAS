@@ -113,6 +113,9 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 		return reference2;
 	}
 	EReference ref = EcoreFactory.eINSTANCE.createEReference();
+	{
+		ref.setName("testRef");
+	}
 	@Override
 	public Notification[] giveMatchingNotifications() {
 		return new Notification[]{ new ENotificationImpl(null, 0, ref, null, null)};
