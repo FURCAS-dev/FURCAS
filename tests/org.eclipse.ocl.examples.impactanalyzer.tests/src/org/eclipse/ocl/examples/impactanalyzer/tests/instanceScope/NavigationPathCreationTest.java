@@ -32,7 +32,6 @@ import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivat
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.PathCache;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.Test;
 
 
@@ -96,7 +95,7 @@ public class NavigationPathCreationTest extends TestCase {
 
     @SuppressWarnings("unchecked")
     private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
-        OCLFactory oclFactory = new OCLFactoryImpl();
+        OCLFactory oclFactory = OCLFactory.getInstance();
         List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
 
         FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false,
