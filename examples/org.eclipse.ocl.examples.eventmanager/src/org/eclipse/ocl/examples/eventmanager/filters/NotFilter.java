@@ -47,5 +47,15 @@ public class NotFilter extends LogicalOperationFilterImpl {
         return new NotFilter(cloneContents()[0]);
 
     }
+    @Override
+    public String toString() {
+        StringBuilder bld = new StringBuilder();
+        for (EventFilter f : getOperands()) {
+            bld.append("NOT(");
+            bld.append(f.toString());
+            bld.append(")");
+        }
 
+        return bld.toString();
+    }
 }

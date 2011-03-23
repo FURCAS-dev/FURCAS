@@ -67,6 +67,7 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(CompositeSetTest.class);
 		suite.addTestSuite(RecursiveContaimentNotificationCreatorTest.class);
 		suite.addTestSuite(SimpleFilterTest.class);
+		suite.addTestSuite(LogicalFilterTest.class);
 		
 		return suite;
 	}

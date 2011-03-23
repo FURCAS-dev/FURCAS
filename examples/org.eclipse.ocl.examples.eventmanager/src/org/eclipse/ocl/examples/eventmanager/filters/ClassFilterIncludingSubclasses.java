@@ -50,7 +50,7 @@ public class ClassFilterIncludingSubclasses extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "wantedClass conformsTo " + getWantedClass().toString();
+            return (isNegated()?"negated ":"") + "wantedClass conformsTo " + getWantedClass().toString();
         return "empty ClassFilter";
     }
 }

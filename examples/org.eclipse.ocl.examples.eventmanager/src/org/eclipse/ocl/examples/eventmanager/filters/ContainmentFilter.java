@@ -71,4 +71,8 @@ public class ContainmentFilter extends EventFilter {
     public Object getFilterCriterion() {
         return true;
     }
+    @Override
+    public String toString() {
+    	return (isNegated()?"negated ":"") + "containment";
+    }
 } // ContainmentFilterImpl

@@ -611,7 +611,7 @@ public class RegistrationManagerTableBased {
         }
 
         if (!isInDisjunctiveNormalForm(result)) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("Could not create disjunctiv normalform");
         }
 
         return (OrFilter) result;
@@ -905,7 +905,7 @@ public class RegistrationManagerTableBased {
             for (EventFilter operand : ((LogicalOperationFilterImpl) filter).getOperands()) {
                 EventFilter negatedOperand = getNegatedSubTree(operand);
                 // simplify due to commutativity of AND/OR conjunction
-                if (operand.getClass().equals(result.getClass())) {
+                if (negatedOperand.getClass().equals(result.getClass())) {
                     result.addOperands(((LogicalOperationFilterImpl) negatedOperand).getOperands());
                 } else {
                     addOperand(result, negatedOperand);
