@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.impactanalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
@@ -67,22 +68,47 @@ public class ImpactAnalyzerFactoryImpl implements ImpactAnalyzerFactory {
 	public DerivedPropertyNotifier createDerivedPropertyNotifier(
 			EStructuralFeature property, ActivationOption configuration,
 			OCLFactory oclFactory) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DerivedPropertyNotifierImpl(configuration, DefaultOppositeEndFinder.getInstance(),
+				oclFactory, property);
 	}
 
 	public DerivedPropertyNotifier createDerivedPropertyNotifier(
 			EStructuralFeature property, OppositeEndFinder oppositeEndFinder,
 			OCLFactory oclFactory) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DerivedPropertyNotifierImpl(OptimizationActivation.getOption(), oppositeEndFinder,
+				oclFactory, property);
 	}
 
 	public DerivedPropertyNotifier createDerivedPropertyNotifier(
 			EStructuralFeature property, OppositeEndFinder oppositeEndFinder,
 			ActivationOption configuration, OCLFactory oclFactory) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DerivedPropertyNotifierImpl(configuration, oppositeEndFinder,
+				oclFactory, property);
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(EPackage pkg,
+			OCLFactory oclFactory) {
+		return new DerivedPropertyNotifierImpl(OptimizationActivation.getOption(), DefaultOppositeEndFinder.getInstance(),
+				oclFactory, pkg);
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(EPackage pkg,
+			ActivationOption configuration, OCLFactory oclFactory) {
+		return new DerivedPropertyNotifierImpl(configuration, DefaultOppositeEndFinder.getInstance(),
+				oclFactory, pkg);
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(EPackage pkg,
+			OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory) {
+		return new DerivedPropertyNotifierImpl(OptimizationActivation.getOption(), oppositeEndFinder,
+				oclFactory, pkg);
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(EPackage pkg,
+			OppositeEndFinder oppositeEndFinder,
+			ActivationOption configuration, OCLFactory oclFactory) {
+		return new DerivedPropertyNotifierImpl(configuration, oppositeEndFinder,
+				oclFactory, pkg);
 	}
 
 }

@@ -19,6 +19,8 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -69,6 +71,12 @@ public class DerivedPropertyNotifierImpl implements DerivedPropertyNotifier {
 
     public DerivedPropertyNotifierImpl(ActivationOption impactAnalyzerConfiguration,
     		OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory,
+    		EPackage pkg) {
+    	this(impactAnalyzerConfiguration, oppositeEndFinder, oclFactory, getAllDerivedProperties(pkg));
+    }
+    
+	public DerivedPropertyNotifierImpl(ActivationOption impactAnalyzerConfiguration,
+    		OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory,
     		EStructuralFeature... derivedProperties) {
     	this.oclFactory = oclFactory;
     	this.oppositeEndFinder = oppositeEndFinder;
@@ -81,6 +89,21 @@ public class DerivedPropertyNotifierImpl implements DerivedPropertyNotifier {
 			adapters.add(new DerivedPropertyAdapter(derivedProperty));
 		}
     }
+
+    private static EStructuralFeature[] getAllDerivedProperties(EPackage pkg) {
+    	List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
+		for (EClassifier classifier : pkg.getEClassifiers()) {
+			if (classifier instanceof EClass) {
+				EClass cls = (EClass) classifier;
+				for (EStructuralFeature property : cls.getEStructuralFeatures()) {
+					if (property.isDerived()) {
+						result.add(property);
+					}
+				}
+			}
+		}
+		return result.toArray(new EStructuralFeature[result.size()]);
+	}
 
 	public void subscribe(EventManager eventManager) {
     	for (DerivedPropertyAdapter adapter : adapters) {
@@ -145,10 +168,11 @@ public class DerivedPropertyNotifierImpl implements DerivedPropertyNotifier {
 	    
 	    private ImpactAnalyzer getImpactAnalyzer() {
 	    	if (ia == null) {
-	    		// notifications are also created for new context elements because
-	    		// their derived property is conceptually set at the time of creation
+	    		// notifications are not created for new context elements; the event
+	    		// manager implicitly produces change events for elements added to the
+	    		// resource set, so it's not necessary here
 				ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
-						derivationExp, /* notifyOnNewContextElements */true,
+						derivationExp, /* notifyOnNewContextElements */ false,
 						oppositeEndFinder, impactAnalyzerConfiguration,
 						oclFactory);
 			}

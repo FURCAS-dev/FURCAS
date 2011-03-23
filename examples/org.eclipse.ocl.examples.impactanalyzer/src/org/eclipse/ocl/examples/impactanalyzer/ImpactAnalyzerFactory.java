@@ -10,7 +10,9 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -234,5 +236,78 @@ public interface ImpactAnalyzerFactory {
 	 */
 	DerivedPropertyNotifier createDerivedPropertyNotifier(
 			EStructuralFeature property, OppositeEndFinder oppositeEndFinder,
+			ActivationOption configuration, OCLFactory oclFactory);
+
+	/**
+	 * Constructs a notifier for all derived properties in <code>pkg</code>
+	 * which efficiently, based on an {@link ImpactAnalyzer}, constructs and
+	 * emits {@link Notification}s for derived, OCL-specified
+	 * {@link EStructuralFeature properties}.
+	 * <p>
+	 * 
+	 * This variant uses a {@link DefaultOppositeEndFinder default opposite end
+	 * finder} for resolving and navigating {@link OppositePropertyCallExp}
+	 * expressions. The configuration is taken from the default
+	 * {@link OptimizationActivation#getOption()}.
+	 * 
+	 * @param property
+	 *            the {@link EStructuralFeature#isDerived() derived} property
+	 */
+	DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EPackage pkg, OCLFactory oclFactory);
+
+	/**
+	 * Constructs a notifier for all derived properties in <code>pkg</code>
+	 * which efficiently, based on an {@link ImpactAnalyzer}, constructs and
+	 * emits {@link Notification}s for derived, OCL-specified
+	 * {@link EStructuralFeature properties}.
+	 * <p>
+	 * 
+	 * This variant uses a {@link DefaultOppositeEndFinder default opposite end
+	 * finder} for resolving and navigating {@link OppositePropertyCallExp}
+	 * expressions.
+	 * 
+	 * @param property
+	 *            the {@link EStructuralFeature#isDerived() derived} property
+	 */
+	DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EPackage pkg, ActivationOption configuration, OCLFactory oclFactory);
+
+	/**
+	 * Constructs a notifier for all derived properties in <code>pkg</code>
+	 * which efficiently, based on an {@link ImpactAnalyzer}, constructs and
+	 * emits {@link Notification}s for derived, OCL-specified
+	 * {@link EStructuralFeature properties}.
+	 * <p>
+	 * 
+	 * The configuration is taken from the default
+	 * {@link OptimizationActivation#getOption()}.
+	 * 
+	 * @param property
+	 *            the {@link EStructuralFeature#isDerived() derived} property
+	 * @param oppositeEndFinder
+	 *            used to perform {@link OppositePropertyCallExp} when
+	 *            evaluating (parts of) <code>expression</code> and for
+	 *            evaluating <code>allInstances()</code> calls
+	 */
+	DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EPackage pkg, OppositeEndFinder oppositeEndFinder, OCLFactory oclFactory);
+
+	/**
+	 * Constructs a notifier for all derived properties in <code>pkg</code>
+	 * which efficiently, based on an {@link ImpactAnalyzer}, constructs and
+	 * emits {@link Notification}s for derived, OCL-specified
+	 * {@link EStructuralFeature properties}.
+	 * <p>
+	 * 
+	 * @param property
+	 *            the {@link EStructuralFeature#isDerived() derived} property
+	 * @param oppositeEndFinder
+	 *            used to perform {@link OppositePropertyCallExp} when
+	 *            evaluating (parts of) <code>expression</code> and for
+	 *            evaluating <code>allInstances()</code> calls
+	 */
+	DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EPackage pkg, OppositeEndFinder oppositeEndFinder,
 			ActivationOption configuration, OCLFactory oclFactory);
 }
