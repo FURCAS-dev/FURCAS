@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -1102,7 +1102,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
     private Collection<EObject> computeAffectedInstances(ExpressionInOCL eiocl, Notification noti) {
         return ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(),
                 (EClass) eiocl.getContextVariable().getType(), /* notifyOnNewContextElements */ false,
-                new OCLFactoryImpl())
+                OCLFactory.getInstance())
                 .getContextObjects(noti);
     }
 

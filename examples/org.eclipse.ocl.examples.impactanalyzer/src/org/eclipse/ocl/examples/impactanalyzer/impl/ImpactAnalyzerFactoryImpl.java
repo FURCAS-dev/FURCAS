@@ -11,8 +11,11 @@
 package org.eclipse.ocl.examples.impactanalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.DerivedPropertyNotifier;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
@@ -54,5 +57,32 @@ public class ImpactAnalyzerFactoryImpl implements ImpactAnalyzerFactory {
     public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, boolean notifyOnNewContextElements, OppositeEndFinder oppositeEndFinder, ActivationOption configuration, OCLFactory oclFactory) {
         return new ImpactAnalyzerImpl(expression, notifyOnNewContextElements, oppositeEndFinder, configuration, oclFactory);
     }
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EStructuralFeature property, OCLFactory oclFactory) {
+		return new DerivedPropertyNotifierImpl(OptimizationActivation.getOption(), DefaultOppositeEndFinder.getInstance(),
+				oclFactory, property);
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EStructuralFeature property, ActivationOption configuration,
+			OCLFactory oclFactory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EStructuralFeature property, OppositeEndFinder oppositeEndFinder,
+			OCLFactory oclFactory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public DerivedPropertyNotifier createDerivedPropertyNotifier(
+			EStructuralFeature property, OppositeEndFinder oppositeEndFinder,
+			ActivationOption configuration, OCLFactory oclFactory) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -24,7 +24,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.tests.helper.ExampleApp;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Test;
 
 import company.CompanyFactory;
@@ -441,7 +441,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
             EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
                     (OCLExpression) exp.getBodyExpression(), (EClass) exp
                     .getContextVariable().getType(), /* notifyOnNewContextElements */ true,
-                    new OCLFactoryImpl()).createFilterForExpression();
+                    OCLFactory.getInstance()).createFilterForExpression();
             ExampleApp app = new ExampleApp(exp, affectedStmts);
             m.subscribe(filter, app);
             eS.add(app);

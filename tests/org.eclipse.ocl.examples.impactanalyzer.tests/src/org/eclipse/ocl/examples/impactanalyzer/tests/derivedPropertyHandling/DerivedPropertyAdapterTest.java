@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2010 SAP AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     SAP AG - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.ocl.examples.impactanalyzer.tests.derivedPropertyHandling;
 
 import java.util.ArrayList;
@@ -9,14 +19,17 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.impactanalyzer.impl.DerivedPropertyAdapter;
+import org.eclipse.ocl.examples.impactanalyzer.DerivedPropertyNotifier;
+import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
+import org.eclipse.ocl.examples.impactanalyzer.impl.DerivedPropertyNotifierImpl;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Test;
 
 import company.Employee;
 
 /**
- * This test will check, if the {@link DerivedPropertyAdapter} works correctly.
+ * This test will check, if the {@link DerivedPropertyNotifierImpl} works correctly.
  * 
  * @author Martin Hanysz
  *
@@ -42,10 +55,15 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     // Afterwards simply make a change that will affect this derived feature and see if the correct notification comes along.
 
     @Test
+    public void testNewContextElementCausesNotification() {
+    	// TODO implement DerivedPropertyAdapterTest.testNewContextElementCausesNotification
+    }
+    
+    @Test
     public void testNonDerivedFeature() {
     	Exception exception = null;
 		try {
-    		new DerivedPropertyAdapter(this.employeeName);
+    		ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.employeeName, OCLFactory.getInstance());
     	}
     	catch(IllegalArgumentException e){
     		exception = e;
@@ -59,7 +77,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	// add a director to touch it by setting it again to the same value
     	this.aDivision.setDirector(this.aEmployee);
     	
-    	new DerivedPropertyAdapter(this.divisionDirector);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionDirector, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aCompany.eAdapters().add(notificationCatcher);
         
@@ -75,7 +94,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     
     @Test
     public void testSingleValuedFeatureSet() {
-    	new DerivedPropertyAdapter(this.numberEmployeesOfTheMonth);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.numberEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -99,7 +119,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	// unset the feature to set it later on
     	this.aDivision.unsetDirector();
     	
-    	new DerivedPropertyAdapter(this.divisionDirector);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionDirector, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aCompany.eAdapters().add(notificationCatcher);
         
@@ -122,7 +143,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	// add a director to unset
     	this.aDivision.setDirector(this.aEmployee);
     	
-    	new DerivedPropertyAdapter(this.divisionDirector);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionDirector, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aCompany.eAdapters().add(notificationCatcher);
         
@@ -142,7 +164,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
 
     @Test
     public void testMultiValuedFeatureAddOne() {
-    	new DerivedPropertyAdapter(this.divisionEmployeesOfTheMonth);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -163,7 +186,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     
     @Test
     public void testMultiValuedFeatureAddMany() {
-    	new DerivedPropertyAdapter(this.divisionEmployeesOfTheMonth);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -190,7 +214,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	// set an employee to remove
     	this.aDepartment.getEmployeeOfTheMonth().add(this.aEmployee);
     	
-    	new DerivedPropertyAdapter(this.divisionEmployeesOfTheMonth);
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -216,7 +241,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	employeesToRemove.add(this.createEmployee());
         this.aDepartment.getEmployeeOfTheMonth().addAll(employeesToRemove);
     	
-    	new DerivedPropertyAdapter(this.divisionEmployeesOfTheMonth);
+        DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -245,7 +271,8 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	employeesToShuffle.add(this.createEmployee());
         this.aDepartment.getEmployeeOfTheMonth().addAll(employeesToShuffle);
     	
-    	new DerivedPropertyAdapter(this.divisionEmployeesOfTheMonth);
+        DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(this.divisionEmployeesOfTheMonth, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
     	NotificationCatchAdapter notificationCatcher = new NotificationCatchAdapter();
     	this.aDivision.eAdapters().add(notificationCatcher);
         
@@ -294,7 +321,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
 	    }
 
 	    public boolean isAdapterForType(Object type) {
-	        return type == DerivedPropertyAdapter.class;
+	        return type == DerivedPropertyNotifierImpl.class;
 	    }
     	
     }

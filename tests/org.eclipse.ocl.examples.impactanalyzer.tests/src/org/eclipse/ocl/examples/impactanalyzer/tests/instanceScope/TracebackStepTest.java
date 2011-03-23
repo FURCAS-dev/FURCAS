@@ -25,7 +25,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Test;
 
 import data.classes.ClassesFactory;
@@ -68,7 +68,7 @@ public class TracebackStepTest extends BaseDepartmentTestWithOCL {
                 .getNamedElement_Name(), "Trala", "Humba");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
                 ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false,
-                new OCLFactoryImpl());
+                OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c1));
