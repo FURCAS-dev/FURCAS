@@ -89,13 +89,9 @@ import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.editor.Revalidator;
 import org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.Signature_and_callPackage;
 import org.eclipse.ocl.examples.impactanalyzer.example.signature_and_call.provider.Signature_and_callItemProviderAdapterFactory;
-import org.eclipse.ocl.examples.impactanalyzer.util.EcoreEnvironmentFactoryWithScopedExtentMap;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
@@ -930,14 +926,8 @@ public class Signature_and_callEditor
             resourceToDiagnosticMap.put(resource,  analyzeResourceProblems(resource, exception));
         }
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
-        OCLFactory oclFactory = new OCLFactory() {
-            public OCL createOCL(EcoreEnvironmentFactory environmentFactory) {
-                return OCL.newInstance(environmentFactory);
-            }
-            public OCL createOCL(OppositeEndFinder oppositeEndFinder) {
-                return OCL.newInstance(new EcoreEnvironmentFactoryWithScopedExtentMap(oppositeEndFinder));
-            }
-        };
+        // TODO is this special implementation of OCLFactory still required or could it be replaced by OCLFactory.INSTANCE?
+        OCLFactory oclFactory = OCLFactory.getInstance();
         revalidator = new Revalidator(editingDomain, oclFactory, new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()),
                 Signature_and_callPackage.eINSTANCE);
     }

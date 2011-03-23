@@ -163,7 +163,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
 
     private void handleChangeOfBaseExpressionValue(Collection<EObject> affectedContextObjects, Notification change) {
         PartialEvaluator partialEvaluator = PartialEvaluatorFactory.INSTANCE.createPartialEvaluator(change,
-                getOppositeEndFinder(), OCLFactory.INSTANCE);
+                getOppositeEndFinder(), OCLFactory.getInstance());
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
         for (EObject affectedContextObject : affectedContextObjects) {
             Object oldValue = partialEvaluator.evaluate(affectedContextObject, baseForeachExpression);
