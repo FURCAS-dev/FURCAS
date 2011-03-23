@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyPackage.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id: CompanyPackage.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
  */
 package company;
 
@@ -554,13 +554,22 @@ public interface CompanyPackage extends EPackage {
 	int COMPANY__DIVISION_DIRECTOR = 2;
 
 				/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPANY__NAME = 3;
+
+				/**
 	 * The number of structural features of the '<em>Company</em>' class.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-    int COMPANY_FEATURE_COUNT = 3;
+    int COMPANY_FEATURE_COUNT = 4;
 
 
     /**
@@ -921,6 +930,17 @@ public interface CompanyPackage extends EPackage {
 	EReference getCompany_DivisionDirector();
 
 				/**
+	 * Returns the meta object for the attribute '{@link company.Company#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see company.Company#getName()
+	 * @see #getCompany()
+	 * @generated
+	 */
+	EAttribute getCompany_Name();
+
+				/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1217,6 +1237,14 @@ public interface CompanyPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPANY__DIVISION_DIRECTOR = eINSTANCE.getCompany_DivisionDirector();
+
+								/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPANY__NAME = eINSTANCE.getCompany_Name();
 
     }
 
