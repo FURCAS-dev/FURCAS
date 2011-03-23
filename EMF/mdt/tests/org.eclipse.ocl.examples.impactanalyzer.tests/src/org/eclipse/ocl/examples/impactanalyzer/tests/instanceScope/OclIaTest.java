@@ -32,7 +32,7 @@ import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Test;
 
 import data.classes.Association;
@@ -187,7 +187,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         assertTrue(newResultOnC1.contains(c4));
         assertTrue(newResultOnC1.contains(c5));
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti[0]);
         assertEquals(2, impact.size()); // expecting c1 and c2 to be impacted
         assertTrue(impact.contains(c1));
@@ -234,7 +234,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         c5.eAdapters().add(adapter);
         connectWithMethodOutput(c5, c6);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti[0]);
         assertEquals(5, impact.size()); // expecting all c1..c6 to be impacted
         assertFalse(impact.contains(c6));
@@ -277,7 +277,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         c.eAdapters().add(adapter);
         c.getOwnedSignatures().move(0, 1); // swap first two signatures
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti[0]);
         assertEquals(0, impact.size());
         c.getOwnedSignatures().move(1, 2); // not the name of the element at position 3 should have changed
@@ -304,7 +304,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c));
@@ -325,7 +325,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c));
@@ -344,7 +344,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c));
@@ -364,7 +364,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c));
@@ -383,7 +383,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(c));
@@ -399,7 +399,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) ae.eClass().getEStructuralFeature(ClassesPackage.ASSOCIATION_END__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(ae, att, "oldName", "newName");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
-                .getAssociationEnd(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getAssociationEnd(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertTrue(impact.size() == 1 && impact.contains(ae));
     }
@@ -458,7 +458,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE
                 .getClassTypeDefinition(), /* notifyOnNewContextElements */ false,
-                new OCLFactoryImpl());
+                OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         Object newResult = ocl.evaluate(ctd, exp);
 
@@ -516,7 +516,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(sl.getOwnedTypeDefinition(), 0);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE
-                .getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getClassTypeDefinition(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertEquals(0, sl.getOwnedTypeDefinition().getLowerMultiplicity());
@@ -558,7 +558,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         Notification noti = NotificationHelper.createChangeClazzNotification(ctd, cl1);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ExpressionsPackage.eINSTANCE
-                .getMethodCallExpression(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .getMethodCallExpression(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertEquals(1, impact.size());
@@ -585,7 +585,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, "Alice", "Bob");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
-                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         // The expression has as its context ClassTypeDefinition. Therefore, the SapClass must not be returned
         // as impacted object. However, the change affects the ->select clause after allInstances(), so
@@ -610,7 +610,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         ctd.setClazz(cl1);
         r.getContents().add(ctd);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
-                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> contexts = ia.getContextObjects(cl1);
         assertTrue(contexts.isEmpty());
     }
@@ -632,7 +632,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         ctd.setClazz(cl1);
         r.getContents().add(ctd);
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp,
-                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> contexts = ia.getContextObjects(cl1);
         assertTrue(!contexts.isEmpty());
         assertTrue(contexts.contains(ctd));
@@ -668,7 +668,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         r.getContents().add(cl1);
         assertNotNull("Expected to receive one notification", notifications[0]);
         r.eAdapters().remove(a);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(notifications[0]);
         // The expression has as its context ClassTypeDefinition. Therefore, the SapClass must not be returned
         // as impacted object. However, the change affects the ->select clause after allInstances(), so
@@ -689,7 +689,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, "Alice", "Bob");
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertTrue(impact.size() == 1 && impact.contains(cl1));
@@ -717,7 +717,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EReference ref1 = (EReference) adapter.eClass().getEStructuralFeature(ClassesPackage.TYPE_ADAPTER__TO);
         Notification noti1 = NotificationHelper.createReferenceChangeNotification(adapter, ref1, null, cl2);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact1 = ia.getContextObjects(noti1);
 
         assertTrue(impact1.size() == 1 && impact1.contains(cl1));
@@ -736,7 +736,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, "Alice", "Bob");
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(cl1));
@@ -755,7 +755,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, "Alice", "Bob");
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertTrue(impact.size() == 1 && impact.contains(cl1));
@@ -815,7 +815,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         Notification noti = NotificationHelper.createAttributeChangeNotification(ae2, att, "Assoc_to_Bob",
                 "Assoc_to_Bob_changed");
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE
-                .createImpactAnalyzer(exp, LiteralsPackage.eINSTANCE.getObjectLiteral(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+                .createImpactAnalyzer(exp, LiteralsPackage.eINSTANCE.getObjectLiteral(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(1, impact.size());
         assertTrue(impact.contains(ol1));
@@ -850,7 +850,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) m3.eClass().getEStructuralFeature(ClassesPackage.METHOD_SIGNATURE__SIDE_EFFECT_FREE);
         Notification noti = NotificationHelper.createAttributeChangeNotification(m3, att, true, false);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertTrue(impact.size() == 1 && impact.contains(c3));
 
@@ -883,7 +883,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
         this.cp.eResource().getContents().add(pkg);
         Notification noti = NotificationHelper.createReferenceAddNotification(pkg, ModelmanagementPackage.eINSTANCE
                 .getPackage_Classes(), c1);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
         assertEquals(0, impact.size());
 
@@ -907,7 +907,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__VALUE_TYPE);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, false, true);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         if (OptimizationActivation.getOption().isTracebackStepISAActive() && OptimizationActivation.getOption().isUnusedDetectionActive()) {
@@ -934,7 +934,7 @@ public class OclIaTest extends BaseDepartmentTestWithOCL {
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__VALUE_TYPE);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, false, true);
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, new OCLFactoryImpl());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass(), /* notifyOnNewContextElements */ false, OCLFactory.getInstance());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
         if (OptimizationActivation.getOption().isUnusedDetectionActive()) {

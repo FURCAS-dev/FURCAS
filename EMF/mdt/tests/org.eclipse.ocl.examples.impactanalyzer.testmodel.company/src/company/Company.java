@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Company.java,v 1.2 2011/03/09 14:45:50 auhl Exp $
+ * $Id: Company.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
  */
 package company;
 
@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Company#getDivision <em>Division</em>}</li>
  *   <li>{@link company.Company#getEotmDelta <em>Eotm Delta</em>}</li>
  *   <li>{@link company.Company#getDivisionDirector <em>Division Director</em>}</li>
+ *   <li>{@link company.Company#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,5 +99,21 @@ public interface Company extends EObject {
 	 * @generated
 	 */
 	boolean isSetDivisionDirector();
+
+				/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see company.CompanyPackage#getCompany_Name()
+	 * @model dataType="primitivetypes.String" changeable="false" volatile="true" derived="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL derivation='if self.division->isEmpty() then\r\n  \'Company with no division\'\r\nelse\r\n  \'Company with division \'.concat(self.division.name)\r\nendif'"
+	 * @generated
+	 */
+	String getName();
 
 } // Company
