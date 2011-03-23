@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyPackageImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
+ * $Id: CompanyPackageImpl.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
  */
 package company.impl;
 
@@ -449,6 +449,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCompany_Name() {
+		return (EAttribute)companyEClass.getEStructuralFeatures().get(3);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -513,6 +522,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		createEReference(companyEClass, COMPANY__DIVISION);
 		createEAttribute(companyEClass, COMPANY__EOTM_DELTA);
 		createEReference(companyEClass, COMPANY__DIVISION_DIRECTOR);
+		createEAttribute(companyEClass, COMPANY__NAME);
 	}
 
     /**
@@ -592,6 +602,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		initEReference(getCompany_Division(), this.getDivision(), this.getDivision_Company(), "division", null, 0, 1, Company.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompany_EotmDelta(), thePrimitivetypesPackage.getInteger(), "eotmDelta", null, 0, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getCompany_DivisionDirector(), this.getEmployee(), null, "divisionDirector", null, 0, 1, Company.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompany_Name(), thePrimitivetypesPackage.getString(), "name", null, 0, 1, Company.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -656,7 +667,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "eotmDeltaMax"
-		   });		
+		   });			
 	}
 
     /**
@@ -754,6 +765,12 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		   source, 
 		   new String[] {
 			 "derivation", "self.division.director"
+		   });		
+		addAnnotation
+		  (getCompany_Name(), 
+		   source, 
+		   new String[] {
+			 "derivation", "if self.division->isEmpty() then\r\n  \'Company with no division\'\r\nelse\r\n  \'Company with division \'.concat(self.division.name)\r\nendif"
 		   });
 	}
 
@@ -782,7 +799,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "department2division"
-		   });								
+		   });									
 	}
 
 } //CompanyPackageImpl
