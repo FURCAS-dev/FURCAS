@@ -20,7 +20,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
  * that are properly and consistently configured. This factory interfaces allows for the
  * customization and extension of the creation process.<p>
  * 
- * A default instances is exposed by this interface: {@link #INSTANCE}.
+ * A default instance is exposed by this interface: {@link #INSTANCE}.
  * 
  * @author Axel Uhl
  *
