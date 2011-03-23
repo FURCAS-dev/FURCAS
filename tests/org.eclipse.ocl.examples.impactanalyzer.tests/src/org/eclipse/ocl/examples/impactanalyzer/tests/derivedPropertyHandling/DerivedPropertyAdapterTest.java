@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.DerivedPropertyNotifier;
@@ -54,9 +55,33 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     // Register an adapter at any derived feature we want to test and let it fetch the first notification it gets.
     // Afterwards simply make a change that will affect this derived feature and see if the correct notification comes along.
 
+    /**
+     * Creates a new Company instance, expecting an event to be thrown for the derived
+     * <code>name</code> property by the {@link EventManager} but not by the element itself.
+     */
     @Test
-    public void testNewContextElementCausesNotification() {
-    	// TODO implement DerivedPropertyAdapterTest.testNewContextElementCausesNotification
+    public void testNewContextElementCausesNoNotificationOnElement() {
+    	DerivedPropertyNotifier derivedPropertyNotifier = ImpactAnalyzerFactory.INSTANCE.createDerivedPropertyNotifier(
+    			comp, OCLFactory.getInstance());
+    	derivedPropertyNotifier.subscribe(EventManagerFactory.eINSTANCE.getEventManagerFor(this.aCompany.eResource().getResourceSet()));
+    	EObject newCompany = comp.getEFactoryInstance().create(companyClass);
+    	NotificationCatchAdapter notificationCatcher1 = new NotificationCatchAdapter();
+    	newCompany.eAdapters().add(notificationCatcher1);
+    	NotificationCatchAdapter notificationCatcher2 = new NotificationCatchAdapter();
+    	EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(comp.eResource().getResourceSet());
+    	em.subscribe(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(companyClass.getEStructuralFeature("name")),
+    			notificationCatcher2);
+
+    	// add newCompany to resource, triggering ADD event and hence the onNewContextNotification
+    	// for derived property "name"
+    	this.aCompany.eResource().getContents().add(newCompany);
+        Notification notification1 = notificationCatcher1.getCaughtNotification();
+        assertNull(notification1);
+        Notification notification2 = notificationCatcher2.getCaughtNotification();
+        assertNotNull(notification2);
+        assertEquals(companyClass.getEStructuralFeature("name"), notification2.getFeature());
+        assertNull(notification2.getOldStringValue());
+        assertNotNull(notification2.getNewStringValue());
     }
     
     @Test
@@ -86,7 +111,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
     	this.aDivision.setDirector(this.aEmployee);
         
         // The DerivedPropertyAdapter will simply exit on receiving a touch notification.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive no notification at all because the derivedProperty didn't change and can't be touched because it's unchangeable.
         assertNull(notification);   	
@@ -103,7 +128,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().add(this.aEmployee);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property numberEmployeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a SET of aDivision.numberEmployeesOfTheMonth to 1.
         assertNotNull(notification);
@@ -128,7 +153,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDivision.setDirector(this.aEmployee);
         
         // The DerivedPropertyAdapter will cause aCompany to send a change notification for it's derived property divisionDirector.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a SET of aCompany.divisionDirector to aEmployee.
         assertNotNull(notification);
@@ -152,7 +177,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDivision.unsetDirector();
         
         // The DerivedPropertyAdapter will cause aCompany to send a change notification for it's derived property divisionDirector.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a UNSET of aCompany.divisionDirector to null.
         assertNotNull(notification);
@@ -173,7 +198,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().add(this.aEmployee);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property employeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a ADD of aDivision.employeesOfTheMonth to a collection containing aEmployee only.
         assertNotNull(notification);
@@ -198,7 +223,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().addAll(employeesToAdd);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property employeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a ADD_MANY of aDivision.employeesOfTheMonth to a collection containing both employeesToAdd.
         assertNotNull(notification);
@@ -223,7 +248,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().remove(this.aEmployee);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property employeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a REMOVE of aDivision.employeesOfTheMonth to an empty collection.
         assertNotNull(notification);
@@ -250,7 +275,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().removeAll(employeesToRemove);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property employeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a REMOVE_MANY of aDivision.employeesOfTheMonth to an empty collection.
         assertNotNull(notification);
@@ -280,7 +305,7 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
         this.aDepartment.getEmployeeOfTheMonth().move(1, this.aEmployee);
         
         // The DerivedPropertyAdapter will cause aDivision to send a change notification for it's derived property employeesOfTheMonth.
-        Notification notification = notificationCatcher.getCatchedNotification();
+        Notification notification = notificationCatcher.getCaughtNotification();
         
         // We assert to receive a MOVE of aDivision.employeesOfTheMonth to a collection where aEmployee is the last entry.
         assertNotNull(notification);
@@ -300,16 +325,16 @@ public class DerivedPropertyAdapterTest extends BaseDepartmentTestWithOCL {
      */
     private class NotificationCatchAdapter implements Adapter{
     	
-    	private Notification catchedNotification = null;
+    	private Notification caughtNotification = null;
 		private Notifier target = null;
 
-		public Notification getCatchedNotification() {
-			return catchedNotification;
+		public Notification getCaughtNotification() {
+			return caughtNotification;
 		}
 
 		public void notifyChanged(Notification notification) {
-			if(catchedNotification == null)
-				catchedNotification = notification;
+			if(caughtNotification == null)
+				caughtNotification = notification;
 		}
 
 		public Notifier getTarget() {
