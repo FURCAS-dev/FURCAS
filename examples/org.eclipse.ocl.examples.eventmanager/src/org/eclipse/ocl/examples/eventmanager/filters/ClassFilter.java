@@ -95,7 +95,7 @@ public class ClassFilter extends EventFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "wantedClass :" + getWantedClass().toString();
+            return (isNegated()?"negated ":"") + "wantedClass :" + getWantedClass().toString();
         return "empty ClassFilter";
     }
     @Override

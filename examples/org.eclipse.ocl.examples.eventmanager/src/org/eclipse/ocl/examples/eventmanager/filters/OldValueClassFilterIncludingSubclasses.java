@@ -75,8 +75,8 @@ public class OldValueClassFilterIncludingSubclasses extends ClassFilterIncluding
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "old value filter incl subs for old " + getWantedClass().toString();
-        return "old value filter incl subs for undefined old";
+            return (isNegated()?"negated ":"") + "old value filter incl subs for old " + getWantedClass().toString();
+        return (isNegated()?"negated ":"") + "old value filter incl subs for undefined old";
     }
 
     @Override

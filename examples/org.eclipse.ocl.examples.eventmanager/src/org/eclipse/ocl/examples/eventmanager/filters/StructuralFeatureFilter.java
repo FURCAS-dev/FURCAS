@@ -88,8 +88,8 @@ public class StructuralFeatureFilter extends EventFilter {
     @Override
     public String toString() {
         if (getFeature() != null)
-            return "feature: " + getFeature().toString();
-        return "empty FeatureFilter";
+            return (isNegated()?"negated ":"") + "feature: " + getFeature().toString();
+        return (isNegated()?"negated ":"") + "empty FeatureFilter";
     }
 
     @Override
