@@ -22,7 +22,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.NotificationHelper;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,7 +76,7 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTestWithOCL  {
 	
 	Notification noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
 	Collection<EObject> instances = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(this.recursiveBudgetCalculationAST, this.dep1.eClass(), /* notifyOnNewContextElements */ false,
-	        new OCLFactoryImpl()).getContextObjects(noti);
+			OCLFactory.getInstance()).getContextObjects(noti);
 	
 	compareInstances(instances, new EObject[] { this.dep1, this.dep2, this.dep3 });
     }
