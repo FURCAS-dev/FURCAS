@@ -37,8 +37,7 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
 
 	@Override
 	public String[] getHiddenChannelTokenNames() {
-		// TODO Auto-generated method stub
-		return new String[0];
+        return new String[] { "WS", "NL", "COMMENT" };
 	}
 	
 	@Override 
