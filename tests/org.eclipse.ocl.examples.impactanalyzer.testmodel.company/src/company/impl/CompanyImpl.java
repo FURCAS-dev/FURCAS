@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CompanyImpl.java,v 1.2 2011/03/09 14:45:49 auhl Exp $
+ * $Id: CompanyImpl.java,v 1.3 2011/03/23 05:36:08 auhl Exp $
  */
 package company.impl;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link company.impl.CompanyImpl#getDivision <em>Division</em>}</li>
  *   <li>{@link company.impl.CompanyImpl#getEotmDelta <em>Eotm Delta</em>}</li>
  *   <li>{@link company.impl.CompanyImpl#getDivisionDirector <em>Division Director</em>}</li>
+ *   <li>{@link company.impl.CompanyImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +67,16 @@ public class CompanyImpl extends EObjectImpl implements Company {
 	 * @ordered
 	 */
 	protected EStructuralFeature.Internal.SettingDelegate DIVISION_DIRECTOR__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.COMPANY__DIVISION_DIRECTOR).getSettingDelegate();
+
+				/**
+	 * The cached setting delegate for the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NAME__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.COMPANY__NAME).getSettingDelegate();
 
 				/**
 	 * <!-- begin-user-doc -->
@@ -184,6 +195,15 @@ public class CompanyImpl extends EObjectImpl implements Company {
 
 				/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return (String)NAME__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -228,6 +248,8 @@ public class CompanyImpl extends EObjectImpl implements Company {
 			case CompanyPackage.COMPANY__DIVISION_DIRECTOR:
 				if (resolve) return getDivisionDirector();
 				return basicGetDivisionDirector();
+			case CompanyPackage.COMPANY__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -276,6 +298,8 @@ public class CompanyImpl extends EObjectImpl implements Company {
 				return EOTM_DELTA__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 			case CompanyPackage.COMPANY__DIVISION_DIRECTOR:
 				return isSetDivisionDirector();
+			case CompanyPackage.COMPANY__NAME:
+				return NAME__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
 	}
