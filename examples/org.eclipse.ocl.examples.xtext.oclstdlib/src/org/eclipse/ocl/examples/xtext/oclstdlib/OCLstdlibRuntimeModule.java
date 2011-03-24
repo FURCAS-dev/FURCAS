@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.2 2011/01/24 22:28:26 ewillink Exp $
+ * $Id: OCLstdlibRuntimeModule.java,v 1.3 2011/03/24 00:47:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
 
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
@@ -26,6 +27,7 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.resource.IFragmentProvider;
 import org.eclipse.xtext.resource.XtextResource;
@@ -55,6 +57,10 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	@Override
 	public Class<? extends ILinker> bindILinker() {
 		return CS2PivotLinker.class;
+	}
+	
+	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
+		return EssentialOCLLinkingDiagnosticMessageProvider.class;
 	}
 
 	// External reference loading and resolution.
