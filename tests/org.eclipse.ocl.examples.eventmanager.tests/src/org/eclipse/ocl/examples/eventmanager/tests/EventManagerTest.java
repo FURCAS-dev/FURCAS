@@ -17,11 +17,15 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -156,6 +160,23 @@ public class EventManagerTest extends TestCase {
 		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
 		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
 	}
+	public void testUnsubscribeFiltersWithListAsCrit__Adapter() {
+		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
+		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
+		cls1.getESuperTypes().add(cls2);
+		Application adapter = new Application();
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls2),
+				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls1));
+		getFixture().subscribe(f, adapter);
+		getFixture().unsubscribe(adapter);
+		EList<EObject> list = new BasicEList<EObject>();
+		list.add(new DynamicEObjectImpl(cls1));
+		list.add(new DynamicEObjectImpl(cls2));
+		getFixture().handleEMFEvent(new ENotificationImpl(null,	0, null, null, list));
+		assertFalse("App get wrongly notified", adapter.isNotified());
+	
+	}
 	private void assertSubscribeAndUnsubscribe(EventFilterTest test,
 			Application adapter) {
 		getFixture().subscribe(test.giveTestFilter(), adapter);
@@ -172,5 +193,85 @@ public class EventManagerTest extends TestCase {
 		EClass cls = EcoreFactory.eINSTANCE.createEClass();
 		res.getContents().add(new DynamicEObjectImpl(cls));
 		assertTrue("Not notified",app.isNotified());
+	}
+	public void testDoubleSubscribeOneFilter(){
+		EClass cls = EcoreFactory.eINSTANCE.createEClass();
+		
+		Application app1 = new Application();
+		Application app2 = new Application();
+		EventFilter f = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls);
+		
+		getFixture().subscribe(f, app1);
+		getFixture().subscribe(f, app2);
+		
+		getFixture().handleEMFEvent(new ENotificationImpl(new DynamicEObjectImpl(cls), 0, null, null, null));
+		
+		assertTrue("App1 not get notified", app1.isNotified());
+		assertTrue("App2 not get notified", app2.isNotified());
+	}
+	public void testDoubleSubscribeTwoFilter(){
+		EClass cls = EcoreFactory.eINSTANCE.createEClass();
+		
+		Application app1 = new Application();
+		Application app2 = new Application();
+		EventFilter f1 = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls);
+		EventFilter f2 = EventManagerFactory.eINSTANCE.createOrFilterFor(
+				EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls),
+				EventManagerFactory.eINSTANCE.createContainmentFilter());
+
+		getFixture().subscribe(f1, app1);
+		getFixture().subscribe(f2, app2);
+		
+		getFixture().handleEMFEvent(new ENotificationImpl(new DynamicEObjectImpl(cls), 0, null, null, null));
+		
+		assertTrue("App1 not get notified", app1.isNotified());
+		assertTrue("App2 not get notified", app2.isNotified());
+	}
+	public void testDoubleSubscribeCreate2MatchingFilterTableEntries(){
+		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
+		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
+		cls1.getESuperTypes().add(cls2);
+		Application app1 = new Application();
+		Application app2 = new Application();
+		EventFilter f1 = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls1);
+		EventFilter f2 = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls2);
+
+
+		getFixture().subscribe(f1, app1);
+		getFixture().subscribe(f2, app2);
+		
+		getFixture().handleEMFEvent(new ENotificationImpl(new DynamicEObjectImpl(cls1), 0, null, null, null));
+		
+		assertTrue("App1 not get notified", app1.isNotified());
+		assertTrue("App2 not get notified", app2.isNotified());
+	}
+	public void testDoubleSubscribeCreate2MatchingFilterTableEntriesSameApp(){
+		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
+		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
+		cls1.getESuperTypes().add(cls2);
+		EventFilter f1 = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls1);
+		EventFilter f2 = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls2);
+
+		 Application app = new Application(){
+			public Integer count = 0;
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				super.notifyChanged(msg);
+				count++;
+			}
+			@Override
+			public boolean isNotified() {
+				return count-->1;
+			}
+		};
+
+		getFixture().subscribe(f1, app);
+		getFixture().subscribe(f2, app);
+		
+		getFixture().handleEMFEvent(new ENotificationImpl(new DynamicEObjectImpl(cls1), 0, null, null, null));
+		
+		assertTrue("App not get notified", app.isNotified());
+		assertFalse("App get notified more than once", app.isNotified());
 	}
 } // EventManagerTest

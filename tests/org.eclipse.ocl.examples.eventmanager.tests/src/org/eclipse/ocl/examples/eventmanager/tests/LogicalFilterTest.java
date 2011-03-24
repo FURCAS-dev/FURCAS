@@ -201,7 +201,7 @@ public class LogicalFilterTest extends TestCase {
 		fixture.handleEMFEvent(n);
 		assertFalse("Get notified", app.isNotified());
 	}
-	public void testDeMorgan1(){
+	public void testDeMorgan(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
 				EventManagerFactory.eINSTANCE.createNotFilter(
 						EventManagerFactory.eINSTANCE.createAndFilterFor(
@@ -226,7 +226,8 @@ public class LogicalFilterTest extends TestCase {
 		fixture.handleEMFEvent(n4);
 		assertTrue("Get not notified",app.isNotified());
 	}
-	public void testDisjunktivConversion(){
+	
+	public void testDisjunctiveConversion(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
 				EventManagerFactory.eINSTANCE.createNotFilter(
 						EventManagerFactory.eINSTANCE.createAndFilterFor(

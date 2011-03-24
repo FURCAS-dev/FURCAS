@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.ocl.examples.eventmanager.tests;
+package org.eclipse.ocl.examples.eventmanager.tests.framework;
 
 import junit.framework.TestCase;
 
@@ -15,7 +15,7 @@ import org.junit.Test;
 
 
 /**
- * @author Philipp
+ * @author Philipp Berger
  *
  */
 public class EventManagerFactoryImplTest extends TestCase {
