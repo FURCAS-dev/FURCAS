@@ -201,7 +201,10 @@ public class LogicalFilterTest extends TestCase {
 		fixture.handleEMFEvent(n);
 		assertFalse("Get notified", app.isNotified());
 	}
-	public void testDeMorgan(){
+	/**
+	 * And for 2 identical expressions should get converted to one
+	 */
+	public void testDeMorgan1(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
 				EventManagerFactory.eINSTANCE.createNotFilter(
 						EventManagerFactory.eINSTANCE.createAndFilterFor(
@@ -226,7 +229,70 @@ public class LogicalFilterTest extends TestCase {
 		fixture.handleEMFEvent(n4);
 		assertTrue("Get not notified",app.isNotified());
 	}
-	
+	/**
+	 * And for 2 identical expressions should get converted to one
+	 */
+	public void testDeMorgan2(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				EventManagerFactory.eINSTANCE.createNotFilter(
+						EventManagerFactory.eINSTANCE.createOrFilterFor(
+								newValueFilterCls3, 
+								oldValueFilterCls2)),
+				EventManagerFactory.eINSTANCE.createAndFilterFor(
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								newValueFilterCls3
+								),
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								oldValueFilterCls2
+								))
+				);
+		fixture.subscribe(f, app);
+		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+		fixture.handleEMFEvent(n);
+		Notification n3 = new ENotificationImpl(null, 0, null, eObjectCls2, null);
+		fixture.handleEMFEvent(n3);
+		Notification n4 = new ENotificationImpl(null, 0, null, eObjectCls2, eObjectCls3);
+		fixture.handleEMFEvent(n4);
+		assertFalse("Get notified",app.isNotified());
+		Notification n5 = new ENotificationImpl(null, 0, null, null, null);
+		fixture.handleEMFEvent(n5);
+		assertTrue("Get not notified",app.isNotified());
+	}
+	/**
+	 * Tautology
+	 */
+	public void testDeMorgan3(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
+						EventManagerFactory.eINSTANCE.createOrFilterFor(
+								newValueFilterCls3, 
+								oldValueFilterCls2),
+				EventManagerFactory.eINSTANCE.createAndFilterFor(
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								newValueFilterCls3
+								),
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								oldValueFilterCls2
+								))
+				);
+		fixture.subscribe(f, app);
+		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+		fixture.handleEMFEvent(n);
+		assertTrue("Get not notified",app.isNotified());
+		app.reset();
+
+		Notification n3 = new ENotificationImpl(null, 0, null, eObjectCls2, null);
+		fixture.handleEMFEvent(n3);
+		assertTrue("Get not notified",app.isNotified());
+		app.reset();
+
+		Notification n4 = new ENotificationImpl(null, 0, null, eObjectCls2, eObjectCls3);
+		fixture.handleEMFEvent(n4);
+		assertTrue("Get not notified",app.isNotified());
+		app.reset();
+		Notification n5 = new ENotificationImpl(null, 0, null, null, null);
+		fixture.handleEMFEvent(n5);
+		assertTrue("Get not notified",app.isNotified());
+	}
 	public void testDisjunctiveConversion(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
 				EventManagerFactory.eINSTANCE.createNotFilter(

@@ -32,6 +32,7 @@ import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.Statistics;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 
@@ -602,16 +603,34 @@ public class RegistrationManagerTableBased {
                 result = tmp;
 
             } else if (result instanceof NotFilter) {
-                // TODO log an error, this may not happen (or does it? => test it!!)
-                LogicalOperationFilterImpl afilter = new AndFilter(result);
-                LogicalOperationFilterImpl tmp = new OrFilter(afilter);
-                result = tmp;
+               throw new IllegalStateException("Elimination of NotFilters failed");
 
             }
         }
 
         if (!isInDisjunctiveNormalForm(result)) {
-            throw new IllegalStateException("Could not create disjunctiv normalform");
+        	if(result instanceof OrFilter){
+        		/*
+        		 * there might be primitives left as direct children --> encapsulate them into AndFilters
+        		 *  a | b | (c & d) -- > (a &) | (b &) | (c & d)
+        		 */
+        		Set<EventFilter> oldO = result.getOperands();
+                LogicalOperationFilterImpl orfilter = new OrFilter();
+        		for(EventFilter f: oldO){
+        			if(!(f instanceof LogicalOperationFilter)){
+        				orfilter.addOperand(EventManagerFactory.eINSTANCE.createAndFilterFor(f));
+        			}else{
+        				orfilter.addOperand(f);
+        			}
+        		}
+        		result = orfilter;
+            	if (!isInDisjunctiveNormalForm(result)) {
+            		throw new IllegalStateException("Could not create disjunctiv normalform");
+            	}
+        	}else{
+        		throw new IllegalStateException("Could not create disjunctiv normalform");
+        	}
+
         }
 
         return (OrFilter) result;
@@ -716,7 +735,7 @@ public class RegistrationManagerTableBased {
             EventFilter expandedSubtree = getExpandedSubTree(lof, operand);
             if (lof.getClass().equals(expandedSubtree.getClass())) {
                 /*
-                 * simplyfy: due to commutativity of logical ORs and ANDs, the operands of the subtree can be added to this's
+                 * simplify: due to commutativity of logical ORs and ANDs, the operands of the subtree can be added to this's
                  * operands if the composite LogicalOperationFilter is of the same type
                  */
                 lof.addOperands(((LogicalOperationFilterImpl) expandedSubtree).getOperands());
@@ -860,7 +879,7 @@ public class RegistrationManagerTableBased {
         if (filter instanceof OrFilter) {
             return new AndFilter();
         }
-        throw new IllegalStateException();
+        throw new IllegalStateException("Unknown logical substitution for " + filter.getClass());
     }
 
     /**
