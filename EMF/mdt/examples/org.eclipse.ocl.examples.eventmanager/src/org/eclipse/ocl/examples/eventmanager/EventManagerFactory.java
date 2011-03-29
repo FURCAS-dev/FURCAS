@@ -34,10 +34,11 @@ import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludin
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
-
 /**
- * Used to obtain an {@link EventManager} instance that listens to change {@link Notification}s occurring on a {@link ResourceSet}
- * . Additionally, an event manager factory offers factory methods
+ * Used to obtain an {@link EventManager} instance that listens to change
+ * {@link Notification}s occurring on zero or more {@link ResourceSet}s.
+ * Additionally, an event manager factory offers factory methods for event
+ * filters.
  * 
  * @author Philipp Berger, Axel Uhl
  */
