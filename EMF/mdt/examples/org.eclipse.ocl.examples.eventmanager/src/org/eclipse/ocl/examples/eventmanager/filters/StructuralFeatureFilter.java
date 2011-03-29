@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Philipp Berger
  *
  */
-public class StructuralFeatureFilter extends EventFilter {
+public class StructuralFeatureFilter extends AbstractEventFilter {
 
     private final EStructuralFeature feature;
 
@@ -53,7 +53,7 @@ public class StructuralFeatureFilter extends EventFilter {
                 return false;
         } else if (!feature.equals(other.feature))
             return false;
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
     @Override

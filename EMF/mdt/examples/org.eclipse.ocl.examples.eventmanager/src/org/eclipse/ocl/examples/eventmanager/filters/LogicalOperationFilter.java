@@ -12,10 +12,15 @@ package org.eclipse.ocl.examples.eventmanager.filters;
 
 import java.util.Set;
 
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+
+
 /**
- * An {@link LogicalOperationFilter} applies one logical to a set of {@link EventFilter}s
- * @author Philipp Berger
- *
+ * A {@link LogicalOperationFilter} applies one logical operator to a set of
+ * {@link AbstractEventFilter}s
+ * 
+ * @author Philipp Berger, Axel Uhl
+ * 
  */
 public interface LogicalOperationFilter {
     /**

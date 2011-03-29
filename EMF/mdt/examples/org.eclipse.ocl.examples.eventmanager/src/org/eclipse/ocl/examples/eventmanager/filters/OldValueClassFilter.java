@@ -14,9 +14,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 /**
- * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()}
- * @author Philipp Berger
+ * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()}.
+ * An exact match, not considering any inheritance relations, is required. If the
+ * {@link Notification#getOldValue() new value} is a collection, e.g., because several
+ * elements were removed from a many-feature at once, this filter matches if at least
+ * one of the elements' class is matched.
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class OldValueClassFilter extends ClassFilter {
