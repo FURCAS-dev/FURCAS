@@ -13,7 +13,7 @@ package org.eclipse.ocl.examples.eventmanager;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -29,7 +29,7 @@ public interface EventManager {
      * the <code>caller</code> will get notified as many times as it subscribed.
      * 
      * @param filter
-     *            the {@link EventFilter} which is used to filter events for the given {@link Adapter}.
+     *            the {@link AbstractEventFilter} which is used to filter events for the given {@link Adapter}.
      *            Currently, there are still a few limitations as to the filter trees permissible. It is
      *            considered an error if the filter, after conversion into disjunctive normal form,
      *            contains more than one filter of a kind in an "AND" clause. Such filters, passed
@@ -43,7 +43,7 @@ public interface EventManager {
     void subscribe(EventFilter filter, Adapter listener);
 
     /**
-     * Removes the given {@link Adapter} from the {@link EventManager} and the linked {@link EventFilter}, so that the given
+     * Removes the given {@link Adapter} from the {@link EventManager} and the linked {@link AbstractEventFilter}, so that the given
      * {@link Adapter} will not be notified anymore
      * 
      * @param listener

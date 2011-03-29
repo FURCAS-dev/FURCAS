@@ -16,7 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -68,10 +68,10 @@ public class EventTypeFilterTest extends EventFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
+	 * Tests the '{@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void testMatchesFor__Notification() {
 		assertTrue(getFixture().matchesFor(notification));
@@ -79,7 +79,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 
 
 	@Override
-	EventFilter getFilterFor(Object f) {
+	AbstractEventFilter getFilterFor(Object f) {
 		if(f==null){
 			f= 0;
 		}
@@ -106,7 +106,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 		return new ENotificationImpl(null, (Integer) getFilterCriterion2(), null, null, null);
 	}
 	@Override
-	public EventFilter giveTestFilter() {
+	public AbstractEventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createEventTypeFilter((Integer) getFilterCriterion1());
 	}
 

@@ -28,10 +28,11 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.Statistics;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 
@@ -81,7 +82,7 @@ public class RegistrationManagerTableBased {
     private final HashMap<Object, TableForEventFilter> tableByFilterType = new HashMap<Object, TableForEventFilter>();
 
     /**
-     * During {@link #register(EventFilter, WeakReference, ListenerTypeEnum) registration}, weak references
+     * During {@link #register(AbstractEventFilter, WeakReference, ListenerTypeEnum) registration}, weak references
      * to adapters are passed in. To enable {@link #deregister(Adapter) deregistration} by direct references
      * to the adapter, this field keeps the mapping between the adapters and their weak references. It does
      * so in a {@link WeakHashMap} such that again no strong references to the adapter are introduced by
@@ -91,7 +92,7 @@ public class RegistrationManagerTableBased {
 
 	/**
 	 * maps the weak references to the adapters passed to
-	 * {@link #register(EventFilter, WeakReference, ListenerTypeEnum)} to the
+	 * {@link #register(AbstractEventFilter, WeakReference, ListenerTypeEnum)} to the
 	 * registration sets constructed for their event filter; when implicit
 	 * de-registration occurs due to the adapter getting garbage collected, this
 	 * structure is used to clean up the registrations.
@@ -141,7 +142,7 @@ public class RegistrationManagerTableBased {
      * Maps the class of a filter to the bit mask it has in finding the correct array position
      * in an array of registration sets
      */
-    private Map<Class<? extends EventFilter>, Integer> filterTypeToBitMask;
+    private Map<Class<? extends AbstractEventFilter>, Integer> filterTypeToBitMask;
 
     public RegistrationManagerTableBased() {
         init();
@@ -152,7 +153,7 @@ public class RegistrationManagerTableBased {
      * Performs the "configuration" of the RegistrationManager.
      */
     protected void init() {
-        filterTypeToBitMask = new HashMap<Class<? extends EventFilter>, Integer>();
+        filterTypeToBitMask = new HashMap<Class<? extends AbstractEventFilter>, Integer>();
         @SuppressWarnings("unchecked")
         Class<? extends TableForEventFilter>[] tableTypes = (Class<? extends TableForEventFilter>[]) new Class<?>[] {
                 TableForStructuralFeatureFilter.class, TableForClassFilter.class,
@@ -206,7 +207,7 @@ public class RegistrationManagerTableBased {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
-            LogicalOperationFilterImpl topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
+            EventFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
             filterTree = topOfTree;
         }
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilterImpl) filterTree);
@@ -257,6 +258,8 @@ public class RegistrationManagerTableBased {
     private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(AndFilter andFilter) {
         // determine tables to register with; needed already for construction of Registration
         Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
+        // The following table is used only for the possibility of error reporting
+        Map<TableForEventFilter, EventFilter> inverse = new HashMap<TableForEventFilter, EventFilter>();
         LogicalOperationFilterImpl level1OfTree = andFilter;
         for (EventFilter leafOfTree : level1OfTree.getOperands()) {
             TableForEventFilter filterTable = getFilterTable(leafOfTree);
@@ -264,11 +267,12 @@ public class RegistrationManagerTableBased {
                 throw new IllegalArgumentException("no table for type " + leafOfTree.getClass()
                         + " in RegistryManager defined");
             }
-            if (filterTablesToRegisterWith.values().contains(filterTable)) {
+            if (inverse.containsKey(filterTable)) {
             	throw new IllegalArgumentException("Cannot handle multiple potentially contradictory filter entries: "+
-            			andFilter);
+            			andFilter+". Opposing filters: ["+leafOfTree+", "+inverse.get(filterTable)+"]");
             }
             filterTablesToRegisterWith.put(leafOfTree, filterTable);
+            inverse.put(filterTable, leafOfTree);
         }
         return filterTablesToRegisterWith;
     }
@@ -621,7 +625,7 @@ public class RegistrationManagerTableBased {
      * 
      * @return true if the tree is in disjunctive normal form.
      */
-    private static boolean isInDisjunctiveNormalForm(EventFilter filter) {
+    private static boolean isInDisjunctiveNormalForm(AbstractEventFilter filter) {
         /*
          * "this" has to be an OrFilter which connects AndFilters which connect Non-LogicaloperationFilters
          */
@@ -731,7 +735,7 @@ public class RegistrationManagerTableBased {
         else
             return multiplyOut(lof, new LinkedList<LogicalOperationFilterImpl>(), 0);
     }
-    static long getLeafCount (EventFilter f){
+    static long getLeafCount(EventFilter f){
         if(f instanceof LogicalOperationFilterImpl){
             long count =0l;
             for(EventFilter o: ((LogicalOperationFilterImpl) f).getOperands()){
@@ -789,7 +793,7 @@ public class RegistrationManagerTableBased {
             }
 
             /*
-             * take the first 2 expressions ( (a | b) & (c | d) ) and tramsform them to (a & c) | (a & d) | (b & c) | (b & d)
+             * take the first 2 expressions ( (a | b) & (c | d) ) and transform them to (a & c) | (a & d) | (b & c) | (b & d)
              */
             LogicalOperationFilterImpl lof = null;
             for (EventFilter filter1 : tmp1) {
@@ -913,8 +917,8 @@ public class RegistrationManagerTableBased {
             return result;
         }
 
-        // By defaluts simple change the "negated" flag if the EventFilter
-        filter.setNegated(!filter.isNegated());
+        // By default simply change the "negated" flag if the EventFilter
+        ((AbstractEventFilter) filter).setNegated(!filter.isNegated());
         return filter;
     }
 
