@@ -96,10 +96,6 @@ public abstract class TableForEventFilter {
         if (entry == null) {
             entry = new FilterTableEntry(numberOfFilterTables);
             tableEntryByFilterCriterion.put(filter.getFilterCriterion(), entry);
-        } else {
-        	// check if registration is already on the opposite side of the entry and
-        	// remove there (and, if necessary, from completeNoSet):
-        	// TODO continue here...
         }
 
         if (filter.isNegated()) {

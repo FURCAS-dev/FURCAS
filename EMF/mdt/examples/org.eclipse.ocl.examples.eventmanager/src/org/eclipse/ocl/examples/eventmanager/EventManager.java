@@ -29,7 +29,11 @@ public interface EventManager {
      * the <code>caller</code> will get notified as many times as it subscribed.
      * 
      * @param filter
-     *            the {@link EventFilter} which is used to filter events for the given {@link Adapter}
+     *            the {@link EventFilter} which is used to filter events for the given {@link Adapter}.
+     *            Currently, there are still a few limitations as to the filter trees permissible. It is
+     *            considered an error if the filter, after conversion into disjunctive normal form,
+     *            contains more than one filter of a kind in an "AND" clause. Such filters, passed
+     *            to this method, cause an {@link IllegalArgumentException} to be thrown.
      * @param listener
      *            the adapter which should receive event which matches the filter. This event manager will only
      *            maintain weak references to the listener which means that the client should hold a strong reference
