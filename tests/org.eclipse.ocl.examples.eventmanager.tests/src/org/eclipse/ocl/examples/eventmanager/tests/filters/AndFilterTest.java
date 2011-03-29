@@ -12,9 +12,8 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import junit.textui.TestRunner;
 
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>And Filter</b></em>'. <!-- end-user-doc -->
@@ -64,23 +63,23 @@ public class AndFilterTest extends LogicalEventFilterTest {
 
     /**
      * Tests the '
-     * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__NotificationTwoTrue() {
-        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter);
+        EventFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter);
         assertTrue("Two true is true", andFilter.matchesFor(null));
     }
 
     public void testMatchesFor__NotificationTwoFalse() {
-        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, falseFilter);
+        EventFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, falseFilter);
         assertFalse("Two false is false", andFilter.matchesFor(null));
     }
 
     public void testMatchesFor__Notification() {
-        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, trueFilter);
+        EventFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, trueFilter);
         assertFalse("Two true/false is false",andFilter.matchesFor(null));
     }
 

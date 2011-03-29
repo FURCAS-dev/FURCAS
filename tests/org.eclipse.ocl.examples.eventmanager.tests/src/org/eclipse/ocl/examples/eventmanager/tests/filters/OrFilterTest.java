@@ -10,11 +10,10 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
-import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
-
 import junit.textui.TestRunner;
+
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>Or Filter</b></em>'. <!-- end-user-doc -->
@@ -45,23 +44,23 @@ public class OrFilterTest extends LogicalEventFilterTest {
 
     /**
      * Tests the '
-     * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__NotificationTwoTrue() {
-        OrFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(trueFilter, trueFilter);
+        EventFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(trueFilter, trueFilter);
         assertTrue("Two true is true", or.matchesFor(null));
     }
 
     public void testMatchesFor__NotificationTwoFalse() {
-        OrFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, falseFilter);
+        EventFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, falseFilter);
         assertFalse("Two false is false", or.matchesFor(null));
     }
 
     public void testMatchesFor__Notification() {
-        OrFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, trueFilter);
+        EventFilter or = EventManagerFactory.eINSTANCE.createOrFilterFor(falseFilter, trueFilter);
         assertTrue("Two true/false is true", or.matchesFor(null));
     }
 	@Override

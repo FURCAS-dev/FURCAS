@@ -23,13 +23,14 @@ import javax.swing.event.ChangeEvent;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.CompositeSet;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
 
 /**
- * EventFilterTables are used to connect {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
+ * EventFilterTables are used to connect {@link AbstractEventFilter.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
  * {@link Registration Registrations}. For each filter type exists a special subtype
  * of EventFilterTable which handles exactly all instances of this filter type. It is responsible for computing all
  * possible registration candidates that match an event in the context of the filter type it handles. Additionally it
@@ -289,7 +290,7 @@ public abstract class TableForEventFilter {
      *  
      * @return an Identifier that allows associating the instance to a filter type.
      */
-    public abstract Class<? extends EventFilter> getIdentifier();
+    public abstract Class<? extends AbstractEventFilter> getIdentifier();
 
     public String toString() {
         StringBuilder result = new StringBuilder();

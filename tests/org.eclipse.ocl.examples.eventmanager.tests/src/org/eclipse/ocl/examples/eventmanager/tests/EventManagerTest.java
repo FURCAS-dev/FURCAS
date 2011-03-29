@@ -25,9 +25,10 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.ClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.EventFilterTest;
@@ -134,7 +135,7 @@ public class EventManagerTest extends TestCase {
 
 
 	/**
-	 * Test whether a sucessfully {@link EventManager#subscribe(EventFilter, Adapter) subscribed} {@link Adapter adapter}
+	 * Test whether a sucessfully {@link EventManager#subscribe(AbstractEventFilter, Adapter) subscribed} {@link Adapter adapter}
 	 * get not {@link Adapter#notifyChanged(Notification) notified} after successful {@link EventManager#unsubscribe(Adapter) unsubscription}
 	 */
 	public void testUnsubscribe__Adapter() {
