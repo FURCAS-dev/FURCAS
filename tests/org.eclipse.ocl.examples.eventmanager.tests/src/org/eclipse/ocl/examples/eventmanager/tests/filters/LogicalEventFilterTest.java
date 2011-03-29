@@ -11,11 +11,11 @@
 package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 public abstract class LogicalEventFilterTest extends EventFilterTest {
-    protected EventFilter trueFilter;
-    protected EventFilter falseFilter;
+    protected AbstractEventFilter trueFilter;
+    protected AbstractEventFilter falseFilter;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,7 +37,7 @@ public abstract class LogicalEventFilterTest extends EventFilterTest {
     	throw new UnsupportedOperationException("Not applicable for this filter type");
     }
     @Override
-    public EventFilter giveTestFilter() {
+    public AbstractEventFilter giveTestFilter() {
     	throw new UnsupportedOperationException("Not applicable for this filter type");
     }
 }
