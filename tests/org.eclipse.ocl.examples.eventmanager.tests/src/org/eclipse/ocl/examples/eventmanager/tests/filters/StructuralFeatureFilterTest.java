@@ -48,10 +48,10 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
 
     /**
      * Tests the '
-     * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__Notification() {
         noti= new NotificationImpl(Notification.ADD, null, null){
