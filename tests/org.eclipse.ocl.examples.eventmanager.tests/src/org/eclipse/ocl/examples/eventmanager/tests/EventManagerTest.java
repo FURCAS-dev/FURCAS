@@ -59,6 +59,10 @@ public class EventManagerTest extends TestCase {
 			this.b = true;
 
 		}
+		@Override
+		public String toString() {
+			return isNotified()?"":"not " + "notfied app";
+		}
 
 	}
 
