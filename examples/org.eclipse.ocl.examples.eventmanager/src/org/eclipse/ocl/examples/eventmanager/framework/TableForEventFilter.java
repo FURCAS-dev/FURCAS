@@ -23,6 +23,7 @@ import javax.swing.event.ChangeEvent;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.CompositeSet;
+import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
@@ -80,28 +81,36 @@ public abstract class TableForEventFilter {
         return criterion.toString();
     }
 
-    /**
-     * stores the passed {@link Registration}. The Registration will stored as
-     * "interested in events meeting the filterCriterion of the passed event in the context of the appropriate
-     * EventFitlerTable subclass"
-     */
+	/**
+	 * stores the passed {@link Registration}. The Registration will be stored
+	 * as "interested in events meeting the filterCriterion of the passed event
+	 * in the context of the appropriate EventFilterTable subclass"
+	 * 
+	 * @param filter
+	 *            expected to be an elementary leaf predicate in an {@link AndFilter}
+	 *            in a filter tree in DNF
+	 */
     @SuppressWarnings("unchecked") 
     void register(EventFilter filter, Registration registration) {
         FilterTableEntry entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
         if (entry == null) {
             entry = new FilterTableEntry(numberOfFilterTables);
             tableEntryByFilterCriterion.put(filter.getFilterCriterion(), entry);
+        } else {
+        	// check if registration is already on the opposite side of the entry and
+        	// remove there (and, if necessary, from completeNoSet):
+        	// TODO continue here...
         }
 
         if (filter.isNegated()) {
             entry.addNegatedRegistrations(registration);
             int tableBitSet = registration.getBitSetForTablesRegisteredWith();
-            Set<Registration> registrationSetForTableCombination = completeNoSet[tableBitSet];
-            if (registrationSetForTableCombination == null) {
-                registrationSetForTableCombination = new HashSet<Registration>();
-                completeNoSet[tableBitSet] = registrationSetForTableCombination;
+            Set<Registration> completeNoSetForTableCombination = completeNoSet[tableBitSet];
+            if (completeNoSetForTableCombination == null) {
+                completeNoSetForTableCombination = new HashSet<Registration>();
+                completeNoSet[tableBitSet] = completeNoSetForTableCombination;
             }
-            registrationSetForTableCombination.add(registration);
+            completeNoSetForTableCombination.add(registration);
         } else {
             entry.addRegistrations(registration);
         }
