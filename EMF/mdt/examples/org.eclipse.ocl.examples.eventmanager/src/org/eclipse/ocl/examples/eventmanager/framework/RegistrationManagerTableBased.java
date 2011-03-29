@@ -264,6 +264,10 @@ public class RegistrationManagerTableBased {
                 throw new IllegalArgumentException("no table for type " + leafOfTree.getClass()
                         + " in RegistryManager defined");
             }
+            if (filterTablesToRegisterWith.values().contains(filterTable)) {
+            	throw new IllegalArgumentException("Cannot handle multiple potentially contradictory filter entries: "+
+            			andFilter);
+            }
             filterTablesToRegisterWith.put(leafOfTree, filterTable);
         }
         return filterTablesToRegisterWith;
