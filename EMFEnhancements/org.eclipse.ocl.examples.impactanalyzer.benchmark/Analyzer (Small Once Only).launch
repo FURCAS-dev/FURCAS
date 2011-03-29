@@ -7,7 +7,7 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.examples.impactanalyzer.benchmark.Analyzer"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="result_withTracebackCount.data result_preaggregated.data"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="result.data result_preaggregated.data 3"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.examples.impactanalyzer.benchmark"/>
-<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="c:\data\diss\myPapers\InstanceScopeAnalysis\resultSmall"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="c:\data\diss\myPapers\InstanceScopeAnalysis\resultSmall3ExecsFixed"/>
 </launchConfiguration>

@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 import behavioral.actions.ActionsFactory;
 import behavioral.actions.Block;
@@ -58,7 +58,7 @@ public class MetamodelTests extends TestCase {
 	resource.getContents().add(clazz);
 	resource.getContents().add(ta);
 	EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet);
-	StructuralFeatureFilter filter = EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
+	EventFilter filter = EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
 	em.subscribe(filter, new AdapterImpl() {
 	    public void notifyChanged(Notification event) {
 			if (event.getEventType() == Notification.SET && event.getNewValue() == null) {
