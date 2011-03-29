@@ -261,7 +261,7 @@ public class LogicalFilterTest extends TestCase {
 	/**
 	 * Tautology
 	 */
-	public void testDeMorgan3(){
+	public void testDeMorganTautology(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
 								newValueFilterCls3, 
@@ -292,6 +292,45 @@ public class LogicalFilterTest extends TestCase {
 		Notification n5 = new ENotificationImpl(null, 0, null, null, null);
 		fixture.handleEMFEvent(n5);
 		assertTrue("Get not notified",app.isNotified());
+	}
+	/**
+	 * Contradiction
+	 */
+	public void testDeMorganContradiction(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+						EventManagerFactory.eINSTANCE.createOrFilterFor(
+								newValueFilterCls3, 
+								oldValueFilterCls2),
+				EventManagerFactory.eINSTANCE.createAndFilterFor(
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								newValueFilterCls3
+								),
+						EventManagerFactory.eINSTANCE.createNotFilter(
+								oldValueFilterCls2
+								))
+				);
+		fixture.subscribe(f, app);
+		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+		fixture.handleEMFEvent(n);
+		assertFalse("Get wrongly notified",app.isNotified());
+		app.reset();
+
+		Notification n3 = new ENotificationImpl(null, 0, null, eObjectCls2, null);
+		fixture.handleEMFEvent(n3);
+		assertFalse("Get wrongly notified",app.isNotified());
+		app.reset();
+
+		Notification n4 = new ENotificationImpl(null, 0, null, eObjectCls2, eObjectCls3);
+		fixture.handleEMFEvent(n4);
+		assertFalse("Get wrongly notified",app.isNotified());
+		app.reset();
+		Notification n5 = new ENotificationImpl(null, 0, null, eObjectCls3, eObjectCls2);
+		fixture.handleEMFEvent(n5);
+		assertFalse("Get wrongly notified",app.isNotified());
+		app.reset();
+		Notification n6 = new ENotificationImpl(null, 0, null, null, null);
+		fixture.handleEMFEvent(n6);
+		assertFalse("Get wrongly notified",app.isNotified());
 	}
 	public void testDisjunctiveConversion(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
