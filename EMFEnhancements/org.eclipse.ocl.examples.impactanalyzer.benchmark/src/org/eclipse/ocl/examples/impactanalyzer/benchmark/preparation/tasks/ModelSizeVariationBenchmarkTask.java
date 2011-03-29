@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.model.ResourceWithSize;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notifications.RawNotification;

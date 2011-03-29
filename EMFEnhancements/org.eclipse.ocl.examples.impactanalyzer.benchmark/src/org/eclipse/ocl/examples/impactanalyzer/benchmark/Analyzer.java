@@ -78,6 +78,13 @@ public class Analyzer {
      * Results, aggregated by <code>optionId</code>
      */
     private final Result[] results;
+    
+    /**
+     * If provided, this tells the number of measurement runs that were executed which
+     * therefore is the quotient by which all numbers to be summed up will be divided
+     * during output.
+     */
+    private int quotient;
 
     /**
      * One row of the file. The <code>filtered</code> flag is separate; all other <code>long</code> columns match up
@@ -255,6 +262,9 @@ public class Analyzer {
         }
 
         /**
+         * Considers {@link Analyzer#quotient} and divides the sums by this quotient before putting them to the
+         * values of the map returned.
+         * 
          * @param aggregatorArray
          *            an array of {@link Aggregator}s where the array index is the model ID. Based on the model ID, the
          *            model size is computed using {@link Analyzer#getAverageModelSize(int)} and then used as the key
@@ -262,10 +272,11 @@ public class Analyzer {
          * @return a map whose key set is ordered for ascending model size
          */
         private Map<Double, BigInteger> getSumByModelSize(Aggregator[] aggregatorArray) {
+            BigInteger quotientAsBigInt = BigInteger.valueOf(quotient);
             Map<Double, BigInteger> result = new TreeMap<Double, BigInteger>();
             for (int i = 0; i < MAX_MODEL_ID; i++) {
                 if (aggregatorArray[i] != null) {
-                    result.put(getAverageModelSize(i), aggregatorArray[i].getSum());
+                    result.put(getAverageModelSize(i), aggregatorArray[i].getSum().divide(quotientAsBigInt));
                 }
             }
             return result;
@@ -289,7 +300,7 @@ public class Analyzer {
         }
     }
 
-    public Analyzer(String inFileName, String outFileName) throws IOException {
+    public Analyzer(String inFileName, String outFileName, int quotient) throws IOException {
         File inFile = new File(inFileName);
         long inFileSize = inFile.length();
         reader = new BufferedReader(new FileReader(inFile));
@@ -300,6 +311,7 @@ public class Analyzer {
         linesRead = 0;
         estimatedNumberOfLines = (int) (inFileSize / AVG_LINE_LENGTH);
         results = new Result[MAX_OPTION_ID];
+        this.quotient = quotient;
     }
 
     /**
@@ -309,7 +321,8 @@ public class Analyzer {
      */
     public static void main(String[] args) {
         try {
-            Analyzer analyzer = new Analyzer(args[0], args.length < 2 ? null : args[1]);
+            Analyzer analyzer = new Analyzer(args[0], args.length < 2 ? null : args[1],
+                    /* quotient */ args.length > 2 ? Integer.valueOf(args[2]).intValue() : 1);
             analyzer.run();
         } catch (Exception e) {
             e.printStackTrace();
