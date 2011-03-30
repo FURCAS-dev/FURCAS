@@ -18,8 +18,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -109,5 +111,105 @@ public class IncludeSubclassesTest extends TestCase {
        }
        assertTrue("Application not notified",app.noti);
         
+    }
+    public void testDoubleSubscriptionExpectSubclassButNoSuperClass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter = EventManagerFactory.eINSTANCE.createAndFilterFor(
+    			EventManagerFactory.eINSTANCE.createNotFilter(
+    					EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA)
+    					),
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classB));
+    	
+        App app = new App();
+		boolean thrown = false;
+		try {
+	        m.subscribe(filter, app);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries
+//    	EObject object = new DynamicEObjectImpl(classB);
+//    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+//        m.handleEMFEvent(noti);
+//        m.unsubscribe(app);
+//        
+//    	EObject object2 = new DynamicEObjectImpl(classA);
+//    	Notification noti2 = new ENotificationImpl((InternalEObject)object2, 0, null, null, null);
+//        App app2 = new App();
+//        m.subscribe(filter, app2);
+//        m.handleEMFEvent(noti2);
+//        assertFalse("Application wrongly notified",app2.noti);
+//        m.unsubscribe(app2);
+//
+//    	Notification noti3 = new ENotificationImpl(null, 0, null, null, null);
+//        App app3 = new App();
+//        m.subscribe(filter, app3);
+//        m.handleEMFEvent(noti3);
+//        assertFalse("Application wrongly notified",app3.noti);
+//        m.unsubscribe(app3);
+    }
+    public void testDoubleSubscriptionExpectSuperclassButNoSubClass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter = EventManagerFactory.eINSTANCE.createAndFilterFor(
+    			EventManagerFactory.eINSTANCE.createNotFilter(
+    					EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classB)
+    					),
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA));
+    	
+        App app = new App();
+		boolean thrown = false;
+		try {
+	        m.subscribe(filter, app);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries
+//    	EObject object = new DynamicEObjectImpl(classB);
+//    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+//        m.handleEMFEvent(noti);
+//        m.unsubscribe(app);
+//        
+//    	EObject object2 = new DynamicEObjectImpl(classA);
+//    	Notification noti2 = new ENotificationImpl((InternalEObject)object2, 0, null, null, null);
+//        App app2 = new App();
+//        m.subscribe(filter, app2);
+//        m.handleEMFEvent(noti2);
+//        assertTrue("Application not notified",app2.noti);
+//        m.unsubscribe(app2);
+//
+//    	Notification noti3 = new ENotificationImpl(null, 0, null, null, null);
+//        App app3 = new App();
+//        m.subscribe(filter, app3);
+//        m.handleEMFEvent(noti3);
+//        assertFalse("Application wrongly notified",app3.noti);
+//        m.unsubscribe(app3);
+    }
+    public void testNegatedSubscriptionClassANotificationSubclassB(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter =EventManagerFactory.eINSTANCE.createNotFilter(
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA));
+    	
+        App app = new App();
+        m.subscribe(filter, app);
+    	EObject object = new DynamicEObjectImpl(classB);
+    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+        m.handleEMFEvent(noti);
+        m.unsubscribe(app);
+        
+        assertFalse("Get wrongly notified", app.noti);
     }
 }

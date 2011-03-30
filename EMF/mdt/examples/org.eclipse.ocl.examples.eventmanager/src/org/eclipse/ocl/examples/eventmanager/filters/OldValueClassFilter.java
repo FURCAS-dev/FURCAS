@@ -80,8 +80,8 @@ public class OldValueClassFilter extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "old value filter for old " + getWantedClass().toString();
-        return "old value filter for undefined old";
+            return (isNegated()?"negated ":"") + "old value filter for old " + getWantedClass().toString();
+        return (isNegated()?"negated ":"") + "old value filter for undefined old";
     }
 
     @Override
