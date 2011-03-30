@@ -19,7 +19,6 @@ import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.EventManagerTest.Application;
-import org.junit.Test;
 
 public class LogicalFilterTest extends TestCase {
 	private EventManager fixture;
