@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @author Daniel Vocke, Philipp Berger, Axel Uhl
  *
  */
-public class ClassFilter extends EventFilter {
+public class ClassFilter extends AbstractEventFilter {
 
     protected EClass wantedClass;
 
@@ -68,7 +68,7 @@ public class ClassFilter extends EventFilter {
                 return false;
         } else if (!wantedClass.equals(other.wantedClass))
             return false;
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
     public boolean matchesFor(Notification event) {

@@ -16,8 +16,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Matches an event's {@link Notification#getNewValue()} to an {@link EObject#eClass()}
- * @author Philipp Berger
+ * Matches an event's {@link Notification#getNewValue()} to an {@link EObject#eClass()}.
+ * An exact match, not considering any inheritance relations, is required. If the
+ * {@link Notification#getNewValue() new value} is a collection, e.g., because several
+ * elements were assigned to a many-feature at once, this filter matches if at least
+ * one of the elements' class is matched.
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class NewValueClassFilter extends ClassFilter {

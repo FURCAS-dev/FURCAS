@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,7 +25,6 @@ import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilterIncludingSubclasses;
@@ -34,10 +34,11 @@ import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludin
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
-
 /**
- * Used to obtain an {@link EventManager} instance that listens to change {@link Notification}s occurring on a {@link ResourceSet}
- * . Additionally, an event manager factory offers factory methods
+ * Used to obtain an {@link EventManager} instance that listens to change
+ * {@link Notification}s occurring on zero or more {@link ResourceSet}s.
+ * Additionally, an event manager factory offers factory methods for event
+ * filters.
  * 
  * @author Philipp Berger, Axel Uhl
  */
@@ -91,23 +92,31 @@ public interface EventManagerFactory {
     EventTypeFilter createEventTypeFilter(int eventType);
 
     /**
-     * {@see NotFilter#NotFilter()}
+     * Creates a filter that matches if and only if <code>filter</code> does not match.
      */
     NotFilter createNotFilter(EventFilter filter);
 
     /**
-     * {@see AttributeFilter#AttributeFilter()}
+     * Creates a filter that matches a notification if its {@link Notification#getFeature() feature}
+     * equals <code>feature</code>.
      */
-    StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature attribute);
+    StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature feature);
 
-    /**
-     * {@see ContainmentFilter#INSTANCE}
-     */
+	/**
+	 * Creates a filter that matches a notification that indicates a change in
+	 * containment. This may be an {@link EReference} with its
+	 * {@link EReference#isContainer()} or {@link EReference#isContainment()}
+	 * set to <code>true</code>, or it may be a change in the containment of a
+	 * {@link Resource} in a {@link ResourceSet} or of an {@link EObject} in a
+	 * {@link Resource}.
+	 */
     ContainmentFilter createContainmentFilter();
 
-    /**
-     * Creates an not negated {@link ClassFilter} {@see ClassFilter#ClassFilter(EClass, boolean))}
-     */
+	/**
+	 * Creates a filter that matches a {@link Notification} if the
+	 * {@link Notification#getNotifier() object that changed}
+	 * {@link EObject#eClass() has <code>clazz</code> as its class}.
+	 */
     ClassFilter createClassFilter(EClass clazz);
 
     /**
@@ -175,25 +184,28 @@ public interface EventManagerFactory {
      *            filter to combine with an OR
      * @return the created {@link OrFilter}
      */
-    OrFilter createOrFilterFor(EventFilter... eventFilters);
+    EventFilter createOrFilterFor(EventFilter... eventFilters);
 
     /**
-     * Shortcut, to create an {@link AndFilter} for incoming {@link EventFilter}s
+     * Creates an {@link AndFilter} for incoming {@link EventFilter}s. The resulting filter
+     * matches a {@link Notification} if and only if the {@link Notification} is matched by
+     * all <code>eventFilters</code>.
      * 
      * @param eventFilters
-     *            filter to combine with an And
+     *            filter to combine with an <code>and</code>
      * @return the created {@link AndFilter}
      */
-    AndFilter createAndFilterFor(EventFilter... eventFilters);
+    EventFilter createAndFilterFor(EventFilter... eventFilters);
 
-    /**
-     * If <code>event</code> indicates the setting/adding/removal of/to/from a containment reference, then it is expanded into a
-     * collection of event notifications that document the creation or, respectively, dismantling of the entire containment
-     * hierarchy.
-     * <p>
-     * 
-     * In any case, <code>event</code> is part of the collection returned.
-     */
+	/**
+	 * If <code>event</code> indicates the setting/adding/removal of/to/from a
+	 * containment reference, then it is expanded into a collection of event
+	 * notifications that document the creation or, respectively, dismantling of
+	 * the entire containment hierarchy.
+	 * <p>
+	 * 
+	 * In any case, <code>event</code> is part of the collection returned.
+	 */
     Collection<Notification> createNotificationForComposites(Notification event);
 
 } // EventManagerFactory

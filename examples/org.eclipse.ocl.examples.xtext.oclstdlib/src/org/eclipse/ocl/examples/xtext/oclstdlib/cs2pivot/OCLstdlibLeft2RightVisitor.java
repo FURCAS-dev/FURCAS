@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLeft2RightVisitor.java,v 1.3 2011/03/01 08:46:57 ewillink Exp $
+ * $Id: OCLstdlibLeft2RightVisitor.java,v 1.4 2011/03/24 04:10:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -77,14 +80,23 @@ public class OCLstdlibLeft2RightVisitor
 			else if (eContainer instanceof OperationCS) {
 				Operation contextOperation = PivotUtil.getPivot(Operation.class, (OperationCS)eContainer);
 				context.setType(contextVariable, contextOperation.getClass_());
-		        pivotSpecification.getParameterVariables().clear();
+				List<Variable> oldVariables = new ArrayList<Variable>(pivotSpecification.getParameterVariables());
+				List<Variable> newVariables = new ArrayList<Variable>();
 		        for (Parameter parameter : contextOperation.getOwnedParameters()) {
-			        Variable param = PivotFactory.eINSTANCE.createVariable();
-			        param.setName(parameter.getName());
+			        String name = parameter.getName();
+					Variable param = PivotUtil.getNamedElement(oldVariables, name);
+			        if (param != null) {
+			        	oldVariables.remove(param);
+			        }
+			        else {
+			        	param = PivotFactory.eINSTANCE.createVariable();
+				        param.setName(name);
+			        }
 			        param.setType(parameter.getType());
 			        param.setRepresentedParameter(parameter);
-			        pivotSpecification.getParameterVariables().add(param);
+			        newVariables.add(param);
 		        }
+		        context.refreshList(pivotSpecification.getParameterVariables(), newVariables);
 		        if ("post".equals(csConstraint.getStereotype())) {		// FIXME constant
 					Variable resultVariable = pivotSpecification.getResultVariable();
 					if (resultVariable == null) {

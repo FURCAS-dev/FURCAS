@@ -74,7 +74,7 @@ public class Revalidator {
      * {@link DefaultOppositeEndFinder}.
      */
     public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage... pkgs) {
-        this(editingDomain, OCLFactory.INSTANCE, pkgs);
+        this(editingDomain, OCLFactory.getInstance(), pkgs);
     }
     
     /**
@@ -83,7 +83,7 @@ public class Revalidator {
      */
     public Revalidator(AdapterFactoryEditingDomain editingDomain, OppositeEndFinder oppositeEndFinder,
             EPackage... pkgs) {
-        this(editingDomain, OCLFactory.INSTANCE, oppositeEndFinder, pkgs);
+        this(editingDomain, OCLFactory.getInstance(), oppositeEndFinder, pkgs);
     }
     
     /**
@@ -113,8 +113,7 @@ public class Revalidator {
                         String[] constraintNames = spaceSeparatedConstraintNames.split(" ");
                         for (final String constraintName : constraintNames) {
                             // TODO this is slightly unclean; what if a non-standard validation domain has been used?
-                            // But
-                            // there is no common base interface above ValidationBehavior that lets us extract the
+                            // But there is no common base interface above ValidationBehavior that lets us extract the
                             // invariant
                             final OCLExpression invariant = ValidationBehavior.INSTANCE.getInvariant(cls,
                                     constraintName, oclFactory.createOCL(oppositeEndFinder));

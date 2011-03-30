@@ -13,6 +13,8 @@ Export-Package: org.eclipse.ocl.examples.eventmanager;
    org.eclipse.emf.common.notify,
    de.hpi.sam.bp2009.solution.eventManager.filters",
  org.eclipse.ocl.examples.eventmanager.filters;
+  x-friends:="org.eclipse.ocl.examples.eventmanager.tests,
+   org.eclipse.ocl.examples.impactanalyzer.tests";
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.common.util,
    de.hpi.sam.bp2009.solution.eventManager,

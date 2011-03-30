@@ -10,15 +10,16 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.EventManagerTest.Application;
+import org.junit.Test;
 
 public class LogicalFilterTest extends TestCase {
 	private EventManager fixture;
@@ -48,8 +49,8 @@ public class LogicalFilterTest extends TestCase {
 		eClass3.setName("c3");
 		eObjectCls3 = new DynamicEObjectImpl(eClass3);
 		ref = EcoreFactory.eINSTANCE.createEReference();
-		
-		
+
+
 		typeFilterAdd = EventManagerFactory.eINSTANCE.createEventTypeFilter(Notification.ADD);
 		classFilterCls1 = EventManagerFactory.eINSTANCE.createClassFilter(eClass1);
 		oldValueFilterCls2 = EventManagerFactory.eINSTANCE.createOldValueClassFilter(eClass2);
@@ -65,7 +66,7 @@ public class LogicalFilterTest extends TestCase {
 	public void testSimpleAndFilter1Stage(){
 		Notification n = new ENotificationImpl((InternalEObject) eObjectCls1, Notification.ADD, ref, eObjectCls2, eObjectCls3);
 
-		
+
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(typeFilterAdd,classFilterCls1,oldValueFilterCls2,newValueFilterCls3,featureFilterRef);
 
 		fixture.subscribe(f, app);
@@ -79,11 +80,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createAndFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createAndFilterFor(
-						oldValueFilterCls2,
 						EventManagerFactory.eINSTANCE.createAndFilterFor(
-								newValueFilterCls3,
-								featureFilterRef)));
+								oldValueFilterCls2,
+								EventManagerFactory.eINSTANCE.createAndFilterFor(
+										newValueFilterCls3,
+										featureFilterRef)));
 		fixture.subscribe(f7, app);
 		fixture.handleEMFEvent(n);
 		assertTrue("Get not notified", app.isNotified());
@@ -129,11 +130,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								oldValueFilterCls2,
-								newValueFilterCls3),
-				featureFilterRef));
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										oldValueFilterCls2,
+										newValueFilterCls3),
+										featureFilterRef));
 		fixture.subscribe(f, app);
 		fixture.handleEMFEvent(n);
 		assertTrue("Get not notified", app.isNotified());
@@ -144,11 +145,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								oldValueFilterCls2,
-								newValueFilterCls3),
-				featureFilterRef));
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										oldValueFilterCls2,
+										newValueFilterCls3),
+										featureFilterRef));
 		fixture.subscribe(f, app);
 		fixture.handleEMFEvent(n);
 		assertFalse("Get notified", app.isNotified());
@@ -159,11 +160,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								oldValueFilterCls2,
-								EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
-				featureFilterRef));
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										oldValueFilterCls2,
+										EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
+										featureFilterRef));
 		fixture.subscribe(f, app);
 		fixture.handleEMFEvent(n);
 		assertFalse("Get notified", app.isNotified());
@@ -174,11 +175,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								oldValueFilterCls2,
-								EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
-				featureFilterRef));
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										oldValueFilterCls2,
+										EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
+										featureFilterRef));
 		f = EventManagerFactory.eINSTANCE.createNotFilter(f);
 		fixture.subscribe(f, app);
 		fixture.handleEMFEvent(n);
@@ -190,11 +191,11 @@ public class LogicalFilterTest extends TestCase {
 				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						typeFilterAdd,
 						classFilterCls1),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								oldValueFilterCls2,
-								EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
-				featureFilterRef));
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										oldValueFilterCls2,
+										EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3)),
+										featureFilterRef));
 		f = EventManagerFactory.eINSTANCE.createNotFilter(f);
 		f = EventManagerFactory.eINSTANCE.createNotFilter(f);
 		fixture.subscribe(f, app);
@@ -210,14 +211,14 @@ public class LogicalFilterTest extends TestCase {
 						EventManagerFactory.eINSTANCE.createAndFilterFor(
 								newValueFilterCls3, 
 								oldValueFilterCls2)),
-				EventManagerFactory.eINSTANCE.createOrFilterFor(
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								newValueFilterCls3
-								),
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								oldValueFilterCls2
-								))
-				);
+								EventManagerFactory.eINSTANCE.createOrFilterFor(
+										EventManagerFactory.eINSTANCE.createNotFilter(
+												newValueFilterCls3
+										),
+										EventManagerFactory.eINSTANCE.createNotFilter(
+												oldValueFilterCls2
+										))
+		);
 		f = EventManagerFactory.eINSTANCE.createNotFilter(f);
 		fixture.subscribe(f, app);
 		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
@@ -238,14 +239,14 @@ public class LogicalFilterTest extends TestCase {
 						EventManagerFactory.eINSTANCE.createOrFilterFor(
 								newValueFilterCls3, 
 								oldValueFilterCls2)),
-				EventManagerFactory.eINSTANCE.createAndFilterFor(
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								newValueFilterCls3
-								),
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								oldValueFilterCls2
-								))
-				);
+								EventManagerFactory.eINSTANCE.createAndFilterFor(
+										EventManagerFactory.eINSTANCE.createNotFilter(
+												newValueFilterCls3
+										),
+										EventManagerFactory.eINSTANCE.createNotFilter(
+												oldValueFilterCls2
+										))
+		);
 		fixture.subscribe(f, app);
 		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
 		fixture.handleEMFEvent(n);
@@ -263,17 +264,17 @@ public class LogicalFilterTest extends TestCase {
 	 */
 	public void testDeMorganTautology(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
-						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								newValueFilterCls3, 
-								oldValueFilterCls2),
-				EventManagerFactory.eINSTANCE.createAndFilterFor(
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								newValueFilterCls3
+				EventManagerFactory.eINSTANCE.createOrFilterFor(
+						newValueFilterCls3, 
+						oldValueFilterCls2),
+						EventManagerFactory.eINSTANCE.createAndFilterFor(
+								EventManagerFactory.eINSTANCE.createNotFilter(
+										newValueFilterCls3
 								),
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								oldValueFilterCls2
+								EventManagerFactory.eINSTANCE.createNotFilter(
+										oldValueFilterCls2
 								))
-				);
+		);
 		fixture.subscribe(f, app);
 		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
 		fixture.handleEMFEvent(n);
@@ -294,43 +295,158 @@ public class LogicalFilterTest extends TestCase {
 		assertTrue("Get not notified",app.isNotified());
 	}
 	/**
-	 * Contradiction
+	 * Check that negated filters has the same influence as normal
 	 */
-	public void testDeMorganContradiction(){
+	public void testPriorityOfNegatedFilters(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
-						EventManagerFactory.eINSTANCE.createOrFilterFor(
-								newValueFilterCls3, 
-								oldValueFilterCls2),
-				EventManagerFactory.eINSTANCE.createAndFilterFor(
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								newValueFilterCls3
-								),
-						EventManagerFactory.eINSTANCE.createNotFilter(
-								oldValueFilterCls2
-								))
-				);
+				classFilterCls1, 
+				EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3));
 		fixture.subscribe(f, app);
 		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
 		fixture.handleEMFEvent(n);
 		assertFalse("Get wrongly notified",app.isNotified());
 		app.reset();
 
-		Notification n3 = new ENotificationImpl(null, 0, null, eObjectCls2, null);
+		Notification n2 = new ENotificationImpl(eObjectCls1, 0, null, null, eObjectCls2);
+		fixture.handleEMFEvent(n2);
+		assertTrue("Get not notified",app.isNotified());
+		app.reset();
+		
+		Notification n3 = new ENotificationImpl(eObjectCls1, 0, null, null, eObjectCls3);
 		fixture.handleEMFEvent(n3);
 		assertFalse("Get wrongly notified",app.isNotified());
 		app.reset();
 
-		Notification n4 = new ENotificationImpl(null, 0, null, eObjectCls2, eObjectCls3);
+		Notification n4 = new ENotificationImpl(null, 0, null, null, null);
 		fixture.handleEMFEvent(n4);
 		assertFalse("Get wrongly notified",app.isNotified());
+	}
+	/**
+	 * Check that negated filters has the same influence as normal
+	 */
+	public void testPriorityOfNegatedFiltersReversed(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				EventManagerFactory.eINSTANCE.createNotFilter(classFilterCls1), 
+				newValueFilterCls3);
+		fixture.subscribe(f, app);
+		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+		fixture.handleEMFEvent(n);
+		assertTrue("Get not notified",app.isNotified());
 		app.reset();
-		Notification n5 = new ENotificationImpl(null, 0, null, eObjectCls3, eObjectCls2);
-		fixture.handleEMFEvent(n5);
+
+		Notification n2 = new ENotificationImpl(eObjectCls1, 0, null, null, eObjectCls2);
+		fixture.handleEMFEvent(n2);
 		assertFalse("Get wrongly notified",app.isNotified());
 		app.reset();
-		Notification n6 = new ENotificationImpl(null, 0, null, null, null);
-		fixture.handleEMFEvent(n6);
+		
+		Notification n3 = new ENotificationImpl(eObjectCls1, 0, null, null, eObjectCls3);
+		fixture.handleEMFEvent(n3);
 		assertFalse("Get wrongly notified",app.isNotified());
+		app.reset();
+
+		Notification n4 = new ENotificationImpl(null, 0, null, null, null);
+		fixture.handleEMFEvent(n4);
+		assertFalse("Get wrongly notified",app.isNotified());
+	}
+	/**
+	 * Tests whether two filters of the same type in an And get handled correctly
+	 */
+	public void testAndForSameFilterType(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				EventManagerFactory.eINSTANCE.createClassFilter(eClass1),
+				EventManagerFactory.eINSTANCE.createClassFilter(eClass2));
+		boolean thrown = false;
+		try {
+			fixture.subscribe(f, app);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries
+//		Notification n = new ENotificationImpl(eObjectCls1, 0, null, null, null);
+//		fixture.handleEMFEvent(n);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//
+//		Notification n3 = new ENotificationImpl(eObjectCls2, 0, null, null, null);
+//		fixture.handleEMFEvent(n3);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//		Notification n6 = new ENotificationImpl(null, 0, null, null, null);
+//		fixture.handleEMFEvent(n6);
+//		assertFalse("Get wrongly notified",app.isNotified());
+	}
+	/**
+	 * Tests the behavior for a simple contradiction with the same filter once not and once negated
+	 */
+	public void testSimpleContradiction(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				newValueFilterCls3, 
+				EventManagerFactory.eINSTANCE.createNotFilter(newValueFilterCls3));
+		boolean thrown = false;
+		try {
+			fixture.subscribe(f, app);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries//		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+//		fixture.handleEMFEvent(n);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//
+//		Notification n3 = new ENotificationImpl(null, 0, null, null, eObjectCls2);
+//		fixture.handleEMFEvent(n3);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//		Notification n6 = new ENotificationImpl(null, 0, null, null, null);
+//		fixture.handleEMFEvent(n6);
+//		assertFalse("Get wrongly notified",app.isNotified());
+	}
+	/**
+	 * Contradiction
+	 */
+	public void testDeMorganContradiction(){
+		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
+				EventManagerFactory.eINSTANCE.createOrFilterFor(
+						newValueFilterCls3, 
+						oldValueFilterCls2),
+						EventManagerFactory.eINSTANCE.createAndFilterFor(
+								EventManagerFactory.eINSTANCE.createNotFilter(
+										newValueFilterCls3
+								),
+								EventManagerFactory.eINSTANCE.createNotFilter(
+										oldValueFilterCls2
+								))
+		);
+		boolean thrown = false;
+		try {
+			fixture.subscribe(f, app);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);
+//		fixture.handleEMFEvent(n);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//
+//		Notification n3 = new ENotificationImpl(null, 0, null, eObjectCls2, null);
+//		fixture.handleEMFEvent(n3);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//
+//		Notification n4 = new ENotificationImpl(null, 0, null, eObjectCls2, eObjectCls3);
+//		fixture.handleEMFEvent(n4);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//		Notification n5 = new ENotificationImpl(null, 0, null, eObjectCls3, eObjectCls2);
+//		fixture.handleEMFEvent(n5);
+//		assertFalse("Get wrongly notified",app.isNotified());
+//		app.reset();
+//		Notification n6 = new ENotificationImpl(null, 0, null, null, null);
+//		fixture.handleEMFEvent(n6);
+//		assertFalse("Get wrongly notified",app.isNotified());
 	}
 	public void testDisjunctiveConversion(){
 		EventFilter f = EventManagerFactory.eINSTANCE.createOrFilterFor(
@@ -339,7 +455,7 @@ public class LogicalFilterTest extends TestCase {
 								newValueFilterCls3, 
 								oldValueFilterCls2)),
 								newValueFilterCls3
-				);
+		);
 		fixture.subscribe(f, app);
 		boolean notNotfied = false;
 		Notification n = new ENotificationImpl(null, 0, null, null, eObjectCls3);

@@ -11,10 +11,10 @@
 package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
-final class FalseFilter extends EventFilter {
+final class FalseFilter extends AbstractEventFilter {
     FalseFilter() {
 		super(false);
 	}

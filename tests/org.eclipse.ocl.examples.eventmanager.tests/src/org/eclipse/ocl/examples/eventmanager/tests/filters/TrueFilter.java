@@ -11,10 +11,10 @@
 package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
-final class TrueFilter extends EventFilter {
+final class TrueFilter extends AbstractEventFilter {
     TrueFilter() {
 		super(false);
 	}
@@ -44,7 +44,7 @@ final class TrueFilter extends EventFilter {
     }
 
     @Override
-    public EventFilter clone() {
+    public AbstractEventFilter clone() {
         return new TrueFilter();
         
     }

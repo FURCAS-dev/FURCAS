@@ -18,14 +18,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased;
 
 /**
- * The Containment filter matches {@link Notification#getFeature()} is an {@link EReference} 
- * and {@link EReference#isContainment()} is true
- * or it matches if the {@link Notification#getNotifier()} is not an {@link EObject},
- * so it might be a {@link ResourceSet} or a {@link Resource}
- * @author Philipp Berger
- *
+ * The Containment filter matches a notification if its
+ * {@link Notification#getFeature()} is an {@link EReference} and
+ * {@link EReference#isContainment()} is true, or if the
+ * {@link Notification#getNotifier()} is not an {@link EObject}, so it might be
+ * a {@link ResourceSet} or a {@link Resource}.
+ * 
+ * @author Philipp Berger, Axel Uhl
+ * 
  */
-public class ContainmentFilter extends EventFilter {
+public class ContainmentFilter extends AbstractEventFilter {
 
     public ContainmentFilter(boolean negated) {
         super(negated);
@@ -54,7 +56,7 @@ public class ContainmentFilter extends EventFilter {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        return isNegated() == ((EventFilter) obj).isNegated();
+        return isNegated() == ((AbstractEventFilter) obj).isNegated();
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ContainmentFilter extends EventFilter {
 
     /**
      * This method will only returns true, the logic is moved to the {@link EventManagerTableBased}
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#getFilterCriterion()
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#getFilterCriterion()
      */
     @Override
     public Object getFilterCriterion() {

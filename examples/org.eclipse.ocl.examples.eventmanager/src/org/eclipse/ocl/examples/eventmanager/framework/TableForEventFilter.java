@@ -23,12 +23,14 @@ import javax.swing.event.ChangeEvent;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.CompositeSet;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 
 
 
 /**
- * EventFilterTables are used to connect {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
+ * EventFilterTables are used to connect {@link AbstractEventFilter.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
  * {@link Registration Registrations}. For each filter type exists a special subtype
  * of EventFilterTable which handles exactly all instances of this filter type. It is responsible for computing all
  * possible registration candidates that match an event in the context of the filter type it handles. Additionally it
@@ -80,11 +82,15 @@ public abstract class TableForEventFilter {
         return criterion.toString();
     }
 
-    /**
-     * stores the passed {@link Registration}. The Registration will stored as
-     * "interested in events meeting the filterCriterion of the passed event in the context of the appropriate
-     * EventFitlerTable subclass"
-     */
+	/**
+	 * stores the passed {@link Registration}. The Registration will be stored
+	 * as "interested in events meeting the filterCriterion of the passed event
+	 * in the context of the appropriate EventFilterTable subclass"
+	 * 
+	 * @param filter
+	 *            expected to be an elementary leaf predicate in an {@link AndFilter}
+	 *            in a filter tree in DNF
+	 */
     @SuppressWarnings("unchecked") 
     void register(EventFilter filter, Registration registration) {
         FilterTableEntry entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
@@ -96,12 +102,12 @@ public abstract class TableForEventFilter {
         if (filter.isNegated()) {
             entry.addNegatedRegistrations(registration);
             int tableBitSet = registration.getBitSetForTablesRegisteredWith();
-            Set<Registration> registrationSetForTableCombination = completeNoSet[tableBitSet];
-            if (registrationSetForTableCombination == null) {
-                registrationSetForTableCombination = new HashSet<Registration>();
-                completeNoSet[tableBitSet] = registrationSetForTableCombination;
+            Set<Registration> completeNoSetForTableCombination = completeNoSet[tableBitSet];
+            if (completeNoSetForTableCombination == null) {
+                completeNoSetForTableCombination = new HashSet<Registration>();
+                completeNoSet[tableBitSet] = completeNoSetForTableCombination;
             }
-            registrationSetForTableCombination.add(registration);
+            completeNoSetForTableCombination.add(registration);
         } else {
             entry.addRegistrations(registration);
         }
@@ -284,7 +290,7 @@ public abstract class TableForEventFilter {
      *  
      * @return an Identifier that allows associating the instance to a filter type.
      */
-    public abstract Class<? extends EventFilter> getIdentifier();
+    public abstract Class<? extends AbstractEventFilter> getIdentifier();
 
     public String toString() {
         StringBuilder result = new StringBuilder();

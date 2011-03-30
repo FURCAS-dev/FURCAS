@@ -15,10 +15,11 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.EventManagerTest.Application;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AssociationFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AttributeFilterTest;
@@ -98,7 +99,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void assertNegatedHandleEmfEvent(EventFilterTest test){
 		EventFilter f = test.giveTestFilter();
-		f.setNegated(true);
+		((AbstractEventFilter)f).setNegated(true);
 		app.reset();
 		fixture.subscribe(f, app);
 		fixture.handleEMFEvent(test.giveNotMatchingNotifcation());

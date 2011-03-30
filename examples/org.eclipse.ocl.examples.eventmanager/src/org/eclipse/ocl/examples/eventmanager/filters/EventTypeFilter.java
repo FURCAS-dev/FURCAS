@@ -14,12 +14,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 
 /**
- * Matches an {@link Notification#getEventType() event type}
- * the constants are defined in {@link Notifier}
- * @author Philipp Berger
- *
+ * Matches an {@link Notification#getEventType() event type}. The constants are
+ * defined in {@link Notifier}.
+ * 
+ * @author Philipp Berger, Axel Uhl
+ * 
  */
-public class EventTypeFilter extends EventFilter {
+public class EventTypeFilter extends AbstractEventFilter {
     private final int eventType;
 
     /**
@@ -50,7 +51,7 @@ public class EventTypeFilter extends EventFilter {
         if (eventType != other.eventType) {
             return false;
         }
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
     /**

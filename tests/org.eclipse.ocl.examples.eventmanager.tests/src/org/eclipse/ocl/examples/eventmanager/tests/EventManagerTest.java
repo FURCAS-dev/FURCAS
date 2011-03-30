@@ -29,9 +29,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.ClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.EventFilterTest;
@@ -142,7 +143,7 @@ public class EventManagerTest extends TestCase {
 
 
 	/**
-	 * Test whether a sucessfully {@link EventManager#subscribe(EventFilter, Adapter) subscribed} {@link Adapter adapter}
+	 * Test whether a sucessfully {@link EventManager#subscribe(AbstractEventFilter, Adapter) subscribed} {@link Adapter adapter}
 	 * get not {@link Adapter#notifyChanged(Notification) notified} after successful {@link EventManager#unsubscribe(Adapter) unsubscription}
 	 */
 	public void testUnsubscribe__Adapter() {
@@ -164,6 +165,7 @@ public class EventManagerTest extends TestCase {
 		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
 		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
 	}
+	
 	public void testUnsubscribeFiltersWithListAsCrit__Adapter() {
 		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
 		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
@@ -172,13 +174,20 @@ public class EventManagerTest extends TestCase {
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
 				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls2),
 				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls1));
-		getFixture().subscribe(f, adapter);
-		getFixture().unsubscribe(adapter);
-		EList<EObject> list = new BasicEList<EObject>();
-		list.add(new DynamicEObjectImpl(cls1));
-		list.add(new DynamicEObjectImpl(cls2));
-		getFixture().handleEMFEvent(new ENotificationImpl(null,	0, null, null, list));
-		assertFalse("App get wrongly notified", adapter.isNotified());
+		boolean thrown = false;
+		try {
+			getFixture().subscribe(f, adapter);
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No execption thrown",thrown);
+//		TODO uncomment this as soon as the eventmanager can handle multiple entries
+//		getFixture().unsubscribe(adapter);
+//		EList<EObject> list = new BasicEList<EObject>();
+//		list.add(new DynamicEObjectImpl(cls1));
+//		list.add(new DynamicEObjectImpl(cls2));
+//		getFixture().handleEMFEvent(new ENotificationImpl(null,	0, null, null, list));
+//		assertFalse("App get wrongly notified", adapter.isNotified());
 	
 	}
 	private void assertSubscribeAndUnsubscribe(EventFilterTest test,

@@ -13,7 +13,8 @@ package org.eclipse.ocl.examples.eventmanager.tests.filters;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.junit.Test;
 
 
@@ -22,10 +23,10 @@ import org.junit.Test;
  * <p>
  * The following operations are tested:
  * <ul>
- * <li>{@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+ * <li>{@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
  * <em>Matches For</em>}</li>
  * <li>
- * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
+ * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
  * <em>Build Notification Identifiers</em>}</li>
  * </ul>
  * </p>
@@ -55,10 +56,10 @@ public abstract class EventFilterTest extends TestCase{
 
 	/**
 	 * Tests the '
-	 * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+	 * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+	 * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 */
 	abstract public void testMatchesFor__Notification();
 	
@@ -78,11 +79,13 @@ public abstract class EventFilterTest extends TestCase{
      * @return new FIlter
      */
     abstract EventFilter getFilterFor(Object f);
+    
     /**
      * Gives one object which create a filter by using {@link #getFilterFor(Object)}
      * @return an object
      */
     abstract Object getFilterCriterion1();
+    
     /**
      * Gives a object which creates if applicable a different filter to {@link #getFilterCriterion2()}
      * @return an object
@@ -95,8 +98,7 @@ public abstract class EventFilterTest extends TestCase{
 		EventFilter f1 = getFilterFor(getFilterCriterion1());
 		EventFilter f2 = getFilterFor(getFilterCriterion1());
 		EventFilter f3 = getFilterFor(getFilterCriterion2());
-
-		
+		EventFilter f4 = getFilterFor(getFilterCriterion1());		
 		assertTrue(f1.equals(f1));
 		assertTrue(f1.equals(f2));
 		if (getFilterCriterion1()!=getFilterCriterion2()) {
@@ -112,11 +114,11 @@ public abstract class EventFilterTest extends TestCase{
 	public void testNegatedForEqualsAndHashCode(){
 		EventFilter f1 = getFilterFor(getFilterCriterion1());
 		EventFilter f4 = getFilterFor(getFilterCriterion1());
-		f4.setNegated(true);
+		((AbstractEventFilter)f4).setNegated(true);
 		assertFalse(f1.equals(f4));
 		assertFalse(f1.hashCode() == f4.hashCode());
 	}
-	abstract public EventFilter giveTestFilter();
+	abstract public AbstractEventFilter giveTestFilter();
 	abstract public Notification[] giveMatchingNotifications();
 	abstract public Notification giveNotMatchingNotifcation();
 

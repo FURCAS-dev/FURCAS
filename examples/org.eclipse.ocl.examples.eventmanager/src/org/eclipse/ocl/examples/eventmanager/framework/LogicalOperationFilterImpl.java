@@ -16,7 +16,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 
@@ -27,7 +28,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
  * @author Philipp Berger
  *
  */
-abstract public class LogicalOperationFilterImpl extends EventFilter implements LogicalOperationFilter {
+abstract public class LogicalOperationFilterImpl extends AbstractEventFilter implements LogicalOperationFilter {
     private Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**

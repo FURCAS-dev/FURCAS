@@ -29,14 +29,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.Statistics;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
+import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -225,7 +225,7 @@ public class PerformanceStressForEventManagerTest extends TestCase {
         Statistics.getInstance().begin(FILTERCREATION, e);
         EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e,
                 expression.getContext(), /* notifyOnNewContextElements */ false,
-                new OCLFactoryImpl()).createFilterForExpression();
+                OCLFactory.getInstance()).createFilterForExpression();
         Statistics.getInstance().end(FILTERCREATION, e);
         Statistics.getInstance().begin(FILTERSUBSCRIPTION, e);
         NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);

@@ -14,10 +14,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 /**
- * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()}
- * and all subclasses of this {@link EClass}
- * @author Philipp Berger
+ * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()} 
+ * and all subclasses of this {@link EClass}. If the new value is a collection then this
+ * filter matches if at least one of the collection's elements is matched.
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class OldValueClassFilterIncludingSubclasses extends ClassFilterIncludingSubclasses {
