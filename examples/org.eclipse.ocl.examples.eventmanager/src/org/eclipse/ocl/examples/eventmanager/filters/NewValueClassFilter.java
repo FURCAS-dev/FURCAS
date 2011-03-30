@@ -66,8 +66,8 @@ public class NewValueClassFilter extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "new value filter for new " + getWantedClass().toString();
-        return "new value filter for undefined new";
+            return (isNegated()?"negated ":"") + "new value filter for new " + getWantedClass().toString();
+        return (isNegated()?"negated ":"") + "new value filter for undefined new";
     }
 
     @Override

@@ -25,9 +25,8 @@ public class ClassFilter extends AbstractEventFilter {
     protected EClass wantedClass;
 
     public ClassFilter(EClass clazz, boolean negated) {
-        super();
+        super(negated);
         setWantedClass(clazz);
-        setNegated(negated);
     }
 
     public EClass getWantedClass() {
@@ -96,7 +95,7 @@ public class ClassFilter extends AbstractEventFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "wantedClass :" + getWantedClass().toString();
+            return (isNegated()?"negated ":"") + "wantedClass :" + getWantedClass().toString();
         return "empty ClassFilter";
     }
     @Override

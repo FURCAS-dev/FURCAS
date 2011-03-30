@@ -98,21 +98,25 @@ public abstract class EventFilterTest extends TestCase{
 		EventFilter f1 = getFilterFor(getFilterCriterion1());
 		EventFilter f2 = getFilterFor(getFilterCriterion1());
 		EventFilter f3 = getFilterFor(getFilterCriterion2());
-		EventFilter f4 = getFilterFor(getFilterCriterion1());
-		((AbstractEventFilter) f4).setNegated(true);
-		
 		assertTrue(f1.equals(f1));
 		assertTrue(f1.equals(f2));
-		assertFalse(f1.equals(f4));
 		if (getFilterCriterion1()!=getFilterCriterion2()) {
 			assertFalse(f1.equals(f3));
 			assertFalse(f1.hashCode() == f3.hashCode());
 		}
 		assertFalse(f1.equals(null));
 		assertTrue(f1.hashCode() == f2.hashCode());
+	}
+	/**
+	 * Simple test for the hashCode / equals contract with negated filters
+	 */
+	public void testNegatedForEqualsAndHashCode(){
+		EventFilter f1 = getFilterFor(getFilterCriterion1());
+		EventFilter f4 = getFilterFor(getFilterCriterion1());
+		((AbstractEventFilter)f4).setNegated(true);
+		assertFalse(f1.equals(f4));
 		assertFalse(f1.hashCode() == f4.hashCode());
 	}
-
 	abstract public AbstractEventFilter giveTestFilter();
 	abstract public Notification[] giveMatchingNotifications();
 	abstract public Notification giveNotMatchingNotifcation();

@@ -27,9 +27,10 @@ public class EventTypeFilter extends AbstractEventFilter {
      * Creates a new {@link EventTypeFilter} with the given filter type.
      * For the different types {@see Notifier}
      * @param eventType
+     * @param negated defines whether the filter is negated
      */
-    public EventTypeFilter(int eventType) {
-        super();
+    public EventTypeFilter(int eventType, boolean negated) {
+        super(negated);
         this.eventType = eventType;
     }
 
@@ -83,44 +84,46 @@ public class EventTypeFilter extends AbstractEventFilter {
 
     @Override
     public String toString() {
+    	String result;
         switch (getEventType()) {
         case 0:
-            return "filter CREATE";
+            result = "filter CREATE";
 
         case 1:
-            return "filter SET";
+            result = "filter SET";
 
         case 2:
-            return "filter UNSET";
+            result = "filter UNSET";
 
         case 3:
-            return "filter ADD";
+            result = "filter ADD";
 
         case 4:
-            return "filter REMOVE";
+            result = "filter REMOVE";
 
         case 5:
-            return "filter ADD_MANY";
+            result = "filter ADD_MANY";
 
         case 6:
-            return "filter REMOVE_MANY";
+            result = "filter REMOVE_MANY";
 
         case 7:
-            return "filter MOVE";
+            result = "filter MOVE";
 
         case 8:
-            return "filter REMOVING_ADAPTER";
+            result = "filter REMOVING_ADAPTER";
 
         case 9:
-            return "filter RESOLVE";
+            result = "filter RESOLVE";
         }
 
-        return "filter undefined";
+        result = "filter undefined";
+        return (isNegated()?"negated ":"") + result;
     }
 
     @Override
     public EventTypeFilter clone() {
-        return new EventTypeFilter(getEventType());
+        return new EventTypeFilter(getEventType(), isNegated());
 
     }
 
