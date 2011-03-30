@@ -61,7 +61,7 @@ public class SimpleFilterTest extends TestCase{
 		public org.eclipse.ocl.examples.eventmanager.filters.ClassFilter clone() {
 			return new MyClassFilter(getWantedClass(), true);
 		}
-		
+
 	}
     public void testBehaviourForUnknownFilter(){
     	ClassFilter f = new MyClassFilter(null, false);

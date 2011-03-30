@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2010 SAP AG and others.
+ * Copyright (c) 2009-2011 SAP AG and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,33 +19,31 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.event.ChangeEvent;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.CompositeSet;
 import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 
-
-
 /**
- * EventFilterTables are used to connect {@link AbstractEventFilter.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
- * {@link Registration Registrations}. For each filter type exists a special subtype
- * of EventFilterTable which handles exactly all instances of this filter type. It is responsible for computing all
- * possible registration candidates that match an event in the context of the filter type it handles. Additionally it
- * encapsulates the knowledge how to get the necessary information from the passed event (
- * {@link #getAffectedObject(ChangeEvent)}).<br>
+ * EventFilterTables are used to connect {@link EventFilter event filters} and
+ * {@link Registration Registrations}. For each filter type, a special
+ * subtype of this class exists which handles exactly all instances of this
+ * filter type. It is responsible for computing all possible registration
+ * candidates that match an event in the context of the filter type it handles.
+ * Additionally it encapsulates the knowledge how to get the necessary
+ * information from the passed event (see {@link #getAffectedObject}).
  * 
- * @author Daniel Vocke (D044825), Axel Uhl (D043530)
+ * @author Daniel Vocke, Axel Uhl
  */
 public abstract class TableForEventFilter {
 
-    /**
-     * list of all (negated) registration that are stored in this table, keyed by the bit set identifying the
-     * tables in which the registrations in the value set are stored. This means in particular that the array only
-     * contains values at bit set indexes that have the bit for this table set.
-     */
+	/**
+	 * list of all (negated) registration that are stored in this table, keyed
+	 * by the bit set identifying the tables in which the registrations in the
+	 * value set are stored. This means in particular that the array only
+	 * contains values at bit set indexes that have the bit for this table set.
+	 */
     private final Set<Registration>[] completeNoSet;
 
     private final int numberOfFilterTables;
@@ -59,10 +57,11 @@ public abstract class TableForEventFilter {
      */
     protected final HashMap<Registration, Object> filterCriteriaByRegistration = new HashMap<Registration, Object>();
 
-    /**
-     * registrations are contained in a FilterTableEntry. This structure is needed to find the registrations for a
-     * filter criterion which is being retrieved by an event.
-     */
+	/**
+	 * registrations are contained in a FilterTableEntry. This structure is
+	 * needed to find the registrations for a filter criterion which is being
+	 * retrieved by an event.
+	 */
     protected final Map<Object, FilterTableEntry> tableEntryByFilterCriterion = new HashMap<Object, FilterTableEntry>();
 
     @SuppressWarnings("unchecked")
@@ -72,10 +71,11 @@ public abstract class TableForEventFilter {
         emptyRegistrationArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
     }
 
-    /**
-     * This method encapsulates the knowlegde which information that is contained by the passed event is of interest in
-     * the context of the current EventFilterTable.
-     */
+	/**
+	 * This method encapsulates the knowledge which information that is
+	 * contained by the passed event is of interest in the context of the
+	 * current EventFilterTable.
+	 */
     public abstract Object getAffectedObject(Notification event);
     
     protected String criterionToString(Object criterion) {
@@ -173,31 +173,42 @@ public abstract class TableForEventFilter {
         }
     }
 
-    /**
-     * Fetches the "Yes" entries for the criterion specific to this table, extracted from <code>event</code>.
-     * See also {@link FilterTableEntry#getYesSets()} and {@link #getAffectedObject(Notification)}. The result is
-     * an array with <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements where each element
-     * represents the bit set corresponding to the element's index in the array. The caller must not modify the
-     * array returned.
-     */
+	/**
+	 * Fetches the "Yes" entries for the criterion specific to this table,
+	 * extracted from <code>event</code>. See also
+	 * {@link FilterTableEntry#getYesSets()} and
+	 * {@link #getAffectedObject(Notification)}. The result is an array with
+	 * <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements
+	 * where each element represents the bit set corresponding to the element's
+	 * index in the array. The caller must not modify the array returned.
+	 */
     Set<Registration>[] getYesSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
         return getSetsFor(event, SetSelection.YES, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
     }
-    
-    /**
-     * Fetches the "No" entries for the criterion specific to this table, extracted from <code>event</code>.
-     * See also {@link FilterTableEntry#getNoSets()} and {@link #getAffectedObject(Notification)}. The result is
-     * an array with <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements where each element
-     * represents the bit set corresponding to the element's index in the array. The caller must not modify the
-     * array returned.
-     */
-    Set<Registration>[] getNoSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
-        return getSetsFor(event, SetSelection.NO, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
-    }
+
+	/**
+	 * Fetches the "No" entries for the criterion specific to this table,
+	 * extracted from <code>event</code>. See also
+	 * {@link FilterTableEntry#getNoSets()} and
+	 * {@link #getAffectedObject(Notification)}. The result is an array with
+	 * <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements
+	 * where each element represents the bit set corresponding to the element's
+	 * index in the array. The caller must not modify the array returned.
+	 */
+	Set<Registration>[] getNoSetsFor(Notification event,
+			int numberOfBitSetsWithAtLeastOneRegistration,
+			int[] bitSetsWithAtLeastOneRegistration) {
+		return getSetsFor(event, SetSelection.NO,
+				numberOfBitSetsWithAtLeastOneRegistration,
+				bitSetsWithAtLeastOneRegistration);
+	}
     
     @SuppressWarnings("unchecked")
-    private Set<Registration>[] getSetsFor(Notification event, SetSelection yesNoSelection, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
-        // returns the filter criterion which is of interest in context of the current EventFilterTable
+	private Set<Registration>[] getSetsFor(Notification event,
+			SetSelection yesNoSelection,
+			int numberOfBitSetsWithAtLeastOneRegistration,
+			int[] bitSetsWithAtLeastOneRegistration) {
+		// returns the filter criterion which is of interest in context of the current EventFilterTable
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
         Set<Registration>[] resultSetArray;
         // will contain all affected FilterTableEntries that have a registration
@@ -280,16 +291,24 @@ public abstract class TableForEventFilter {
         return filterCriteriaByRegistration.containsKey(reg);
     }
 
-    /**
-     * Each type of {@link TableForEventFilter} is directly associated to a filter type, but some <code>MoinEventFilters</code> support
-     * additional modifiers that affect the filtering ( for example the <code>includeCompositions</code> flag on <code>InstanceFilterTable</code>
-     * or the <code>includeSubclasses</code> flag on <code>ClassFilter</code>). In those cases, there will be more than one instance of the
-     * EventFilterTable and in order to be able to determine the right instance for a given <code>MoinEventFilter</code>, both, the <code>MoinEventFilter</code>
-     * and the <code>EventFilterTable</code> must implement a <code>getIdentifier()</code> method. The default implementation simply returns its {@link Class}, but
-     * filters and their tables which support modifying flags return a {@link List} containing the {@link Class} and all modifiers.
-     *  
-     * @return an Identifier that allows associating the instance to a filter type.
-     */
+	/**
+	 * Each type of {@link TableForEventFilter} is directly associated to a
+	 * filter type, but some <code>MoinEventFilters</code> support additional
+	 * modifiers that affect the filtering ( for example the
+	 * <code>includeCompositions</code> flag on <code>InstanceFilterTable</code>
+	 * or the <code>includeSubclasses</code> flag on <code>ClassFilter</code>).
+	 * In those cases, there will be more than one instance of the
+	 * EventFilterTable and in order to be able to determine the right instance
+	 * for a given <code>MoinEventFilter</code>, both, the
+	 * <code>MoinEventFilter</code> and the <code>EventFilterTable</code> must
+	 * implement a <code>getIdentifier()</code> method. The default
+	 * implementation simply returns its {@link Class}, but filters and their
+	 * tables which support modifying flags return a {@link List} containing the
+	 * {@link Class} and all modifiers.
+	 * 
+	 * @return an Identifier that allows associating the instance to a filter
+	 *         type.
+	 */
     public abstract Class<? extends AbstractEventFilter> getIdentifier();
 
     public String toString() {
@@ -324,10 +343,11 @@ public abstract class TableForEventFilter {
         return result.toString();
     }
 
-    /**
-     * The registrations registered negatedly, grouped by the bit sets representing the set of tables
-     * in which the registrations from the set are registered
-     */
+	/**
+	 * The registrations registered negatedly, grouped by the bit sets
+	 * representing the set of tables in which the registrations from the set
+	 * are registered
+	 */
     public Set<Registration>[] getCompleteNoSet() {
         return completeNoSet;
     }

@@ -332,13 +332,11 @@ public class RegistrationManagerTableBased {
 
     public synchronized void deregister(Adapter listener) {
     	Set<Reference<? extends Adapter>> set = adaptersToWeakRefs.get(listener);
-    	if(set == null){
-    		// adapters anymore, already deregistered
-    		return;
-    	}
-		for (Reference<? extends Adapter> listenerRef : set) {
-    		deregister(listenerRef);
-    	}
+		if (set != null) {
+			for (Reference<? extends Adapter> listenerRef : set) {
+				deregister(listenerRef);
+			}
+		}
     }
     
     public synchronized void deregister(Reference<? extends Adapter> listenerRef) {
@@ -612,7 +610,6 @@ public class RegistrationManagerTableBased {
 
             } else if (result instanceof NotFilter) {
                throw new IllegalStateException("Elimination of NotFilters failed");
-
             }
         }
 
@@ -633,10 +630,10 @@ public class RegistrationManagerTableBased {
         		}
         		result = orfilter;
             	if (!isInDisjunctiveNormalForm(result)) {
-            		throw new IllegalStateException("Could not create disjunctiv normalform");
+            		throw new IllegalStateException("Could not create disjunctiv normal form");
             	}
         	}else{
-        		throw new IllegalStateException("Could not create disjunctiv normalform");
+        		throw new IllegalStateException("Could not create disjunctiv normal form");
         	}
 
         }
