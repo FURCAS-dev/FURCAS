@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.swing.event.ChangeEvent;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.CompositeSet;
 import org.eclipse.ocl.examples.eventmanager.EventFilter;
@@ -34,7 +32,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
  * filter type. It is responsible for computing all possible registration
  * candidates that match an event in the context of the filter type it handles.
  * Additionally it encapsulates the knowledge how to get the necessary
- * information from the passed event ( {@link #getAffectedObject(ChangeEvent)}).
+ * information from the passed event (see {@link #getAffectedObject}).
  * 
  * @author Daniel Vocke, Axel Uhl
  */
