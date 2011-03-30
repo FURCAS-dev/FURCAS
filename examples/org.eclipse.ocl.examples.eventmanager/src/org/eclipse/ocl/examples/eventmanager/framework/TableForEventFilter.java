@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2010 SAP AG and others.
+ * Copyright (c) 2009-2011 SAP AG and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,17 +27,16 @@ import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 
-
-
 /**
- * EventFilterTables are used to connect {@link AbstractEventFilter.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventFilter EventFilters} and
- * {@link Registration Registrations}. For each filter type exists a special subtype
- * of EventFilterTable which handles exactly all instances of this filter type. It is responsible for computing all
- * possible registration candidates that match an event in the context of the filter type it handles. Additionally it
- * encapsulates the knowledge how to get the necessary information from the passed event (
- * {@link #getAffectedObject(ChangeEvent)}).<br>
+ * EventFilterTables are used to connect {@link EventFilter event filters} and
+ * {@link Registration Registrations}. For each filter type, a special
+ * subtype of this class exists which handles exactly all instances of this
+ * filter type. It is responsible for computing all possible registration
+ * candidates that match an event in the context of the filter type it handles.
+ * Additionally it encapsulates the knowledge how to get the necessary
+ * information from the passed event ( {@link #getAffectedObject(ChangeEvent)}).
  * 
- * @author Daniel Vocke (D044825), Axel Uhl (D043530)
+ * @author Daniel Vocke, Axel Uhl
  */
 public abstract class TableForEventFilter {
 
