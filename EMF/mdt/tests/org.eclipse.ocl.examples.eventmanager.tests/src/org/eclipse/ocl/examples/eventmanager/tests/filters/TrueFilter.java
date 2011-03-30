@@ -15,7 +15,11 @@ import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 final class TrueFilter extends AbstractEventFilter {
-    @Override
+    TrueFilter() {
+		super(false);
+	}
+
+	@Override
     public boolean matchesFor(Notification event) {
         return true;
 

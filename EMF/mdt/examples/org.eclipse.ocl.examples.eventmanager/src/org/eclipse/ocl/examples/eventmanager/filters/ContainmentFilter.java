@@ -29,8 +29,8 @@ import org.eclipse.ocl.examples.eventmanager.framework.EventManagerTableBased;
  */
 public class ContainmentFilter extends AbstractEventFilter {
 
-    public ContainmentFilter() {
-        super();
+    public ContainmentFilter(boolean negated) {
+        super(negated);
     }
     @Override
     public boolean matchesFor(Notification event) {
@@ -61,7 +61,7 @@ public class ContainmentFilter extends AbstractEventFilter {
 
     @Override
     public ContainmentFilter clone() {
-        return new ContainmentFilter();
+        return new ContainmentFilter(isNegated());
 
     }
 
@@ -72,5 +72,9 @@ public class ContainmentFilter extends AbstractEventFilter {
     @Override
     public Object getFilterCriterion() {
         return true;
+    }
+    @Override
+    public String toString() {
+    	return (isNegated()?"negated ":"") + "containment";
     }
 } // ContainmentFilterImpl
