@@ -91,7 +91,7 @@ public class RecursiveContaimentNotificationCreatorTest extends TestCase {
          */
         assertTrue("Get "+list.size()+" events, expected 2",list.size()==2);
     }
-    
+
     public void testCreateNotificationForMultipleInsertedElements(){
     	EPackage root = EcoreFactory.eINSTANCE.createEPackage();
     	EClass container = EcoreFactory.eINSTANCE.createEClass();
