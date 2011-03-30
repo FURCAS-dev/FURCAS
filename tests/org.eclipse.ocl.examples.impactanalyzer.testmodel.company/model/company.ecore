@@ -156,5 +156,11 @@
         <details key="derivation" value="self.division.director"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"
+        changeable="false" volatile="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="if self.division->isEmpty() then&#xD;&#xA;  'Company with no division'&#xD;&#xA;else&#xD;&#xA;  'Company with division '.concat(self.division.name)&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

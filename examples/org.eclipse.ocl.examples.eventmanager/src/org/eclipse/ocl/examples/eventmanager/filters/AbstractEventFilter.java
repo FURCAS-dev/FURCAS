@@ -11,16 +11,18 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 
 /**
  * An EventFilter matches a given specification for the properties 
  * of a {@link Notification} against an incoming {@link Notification}.
  * It is used to pass a {@link Notification} specification to an {@link EventManager}
- * @author Philipp Berger
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
-public abstract class EventFilter {
+public abstract class AbstractEventFilter implements EventFilter {
 
     private boolean negated;
 
@@ -28,7 +30,7 @@ public abstract class EventFilter {
      * default constructor
      * @param negated defines whether the filter is negated
      */
-    public EventFilter(boolean negated) {
+    public AbstractEventFilter(boolean negated) {
         super();
         this.negated = negated;
     }
@@ -45,17 +47,18 @@ public abstract class EventFilter {
     public abstract boolean equals(Object obj);
 
     /**
-     * Returns the unique property for an {@link EventFilter} object
+     * Returns the unique property for an {@link AbstractEventFilter} object
      * @return
      */
     public abstract Object getFilterCriterion();
 
-    /**
-     * Returns whether the filter is negated
-     * if the filter is negated it will match every {@link Notification} 
-     * which is not matching the intern specification
-     * @return true if the filter is negated
-     */
+	/**
+	 * Returns whether the filter is negated. If the filter is negated it will
+	 * match every {@link Notification} which is not matching this filter's
+	 * regular specification.
+	 * 
+	 * @return <code>true</code> if the filter is negated
+	 */
     public boolean isNegated() {
         return negated;
 
@@ -63,7 +66,7 @@ public abstract class EventFilter {
     /* (non-Javadoc)
      * @see java.lang.Object#clone()
      */
-    public abstract EventFilter clone() ;
+    public abstract AbstractEventFilter clone() ;
 
     /**
      * Sets whether this filter is negated
@@ -73,8 +76,6 @@ public abstract class EventFilter {
      */
     public void setNegated(boolean b) {
         negated = b;
-        
     }
-
 
 } // EventFilterImpl
