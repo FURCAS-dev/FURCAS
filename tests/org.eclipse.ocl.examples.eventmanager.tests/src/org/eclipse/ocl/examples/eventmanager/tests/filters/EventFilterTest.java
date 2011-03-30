@@ -98,7 +98,6 @@ public abstract class EventFilterTest extends TestCase{
 		EventFilter f1 = getFilterFor(getFilterCriterion1());
 		EventFilter f2 = getFilterFor(getFilterCriterion1());
 		EventFilter f3 = getFilterFor(getFilterCriterion2());
-		EventFilter f4 = getFilterFor(getFilterCriterion1());		
 		assertTrue(f1.equals(f1));
 		assertTrue(f1.equals(f2));
 		if (getFilterCriterion1()!=getFilterCriterion2()) {
