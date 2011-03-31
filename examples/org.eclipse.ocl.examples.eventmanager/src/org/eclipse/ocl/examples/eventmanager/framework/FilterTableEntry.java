@@ -11,7 +11,9 @@
 package org.eclipse.ocl.examples.eventmanager.framework;
 
 import java.util.HashSet;
-import java.util.Set;
+
+import org.eclipse.ocl.examples.eventmanager.util.Bag;
+import org.eclipse.ocl.examples.eventmanager.util.SingleSetAsBag;
 
 /**
  * This class contains all registrations that are associated with a single filter
@@ -33,14 +35,14 @@ import java.util.Set;
  */
 public class FilterTableEntry {
 
-    private Set<Registration>[] registrations;
-    private Set<Registration>[] negatedRegistrations;
+    private SingleSetAsBag<Registration>[] registrations;
+    private SingleSetAsBag<Registration>[] negatedRegistrations;
     private int numberOfRegistrationSets;
     
     @SuppressWarnings("unchecked")
     FilterTableEntry(int numberOfFilterTables) {
-        registrations = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
-        negatedRegistrations = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
+        registrations = (SingleSetAsBag<Registration>[]) new SingleSetAsBag<?>[1<<numberOfFilterTables];
+        negatedRegistrations = (SingleSetAsBag<Registration>[]) new SingleSetAsBag<?>[1<<numberOfFilterTables];
     };
 
     /**
@@ -78,15 +80,15 @@ public class FilterTableEntry {
         addRegistrationTo(registration, negatedRegistrations);
     }
 
-    private void addRegistrationTo(Registration registration, Set<Registration>[] registrationSetArray) {
+    private void addRegistrationTo(Registration registration, SingleSetAsBag<Registration>[] registrationSetArray) {
         int bitSet = registration.getBitSetForTablesRegisteredWith();
-        Set<Registration> registrationSet = registrationSetArray[bitSet];
+        SingleSetAsBag<Registration> registrationSet = registrationSetArray[bitSet];
         if (registrationSet == null) {
-            registrationSet = new HashSet<Registration>();
+            registrationSet = new SingleSetAsBag<Registration>(new HashSet<Registration>());
             registrationSetArray[bitSet] = registrationSet;
             numberOfRegistrationSets++;
         }
-        registrationSet.add(registration);
+        registrationSet.getWrappedSet().add(registration);
     }
 
     public void remove(Registration registration) {
@@ -94,21 +96,21 @@ public class FilterTableEntry {
         removeFromRegistrationSet(registration, negatedRegistrations);
     }
     
-    private void removeFromRegistrationSet(Registration registration, Set<Registration>[] registrationSetArray) {
+    private void removeFromRegistrationSet(Registration registration, SingleSetAsBag<Registration>[] registrationSetArray) {
         int bitSet = registration.getBitSetForTablesRegisteredWith();
-        Set<Registration> set = registrationSetArray[bitSet];
-        if (set != null) {
-            if (set.remove(registration)) {
+        SingleSetAsBag<Registration> bag = registrationSetArray[bitSet];
+        if (bag != null) {
+            if (bag.getWrappedSet().remove(registration)) {
                 numberOfRegistrationSets--;
             }
         }
     }
     
-    public Set<Registration> getYesSet(int bitSetForTableCombination) {
+    public Bag<Registration> getYesSet(int bitSetForTableCombination) {
         return registrations[bitSetForTableCombination];
     }
     
-    public Set<Registration> getNoSet(int bitSetForTableCombination) {
+    public Bag<Registration> getNoSet(int bitSetForTableCombination) {
         return negatedRegistrations[bitSetForTableCombination];
     }
     
@@ -116,7 +118,7 @@ public class FilterTableEntry {
      * The explicit "yes" registrations, as an array where each element corresponds to one bit set
      * that describes in which tables the registration is registered. Clients must not modify the array returned!
      */
-    public Set<Registration>[] getYesSets() {
+    public Bag<Registration>[] getYesSets() {
         return registrations;
     }
     
@@ -124,7 +126,7 @@ public class FilterTableEntry {
      * The explicit "no" registrations, as an array where each element corresponds to one bit set
      * that describes in which tables the registration is registered. Clients must not modify the array returned!
      */
-    public Set<Registration>[] getNoSets() {
+    public Bag<Registration>[] getNoSets() {
         return negatedRegistrations;
     }
 }

@@ -8,10 +8,12 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager;
+package org.eclipse.ocl.examples.eventmanager.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+
+import org.eclipse.ocl.examples.eventmanager.CompositeIterable;
 
 /**
  * Forwards {@link #contains(Object)} to the individual sets. Iterates by pulling the iterators of the
@@ -22,7 +24,7 @@ import java.util.Iterator;
  * 
  * @author Axel Uhl
  */
-public class CompositeCollection<E> extends CompositeIterable<E> implements Collection<E> {
+public abstract class CompositeCollection<E> extends CompositeIterable<E> implements Collection<E> {
     private int size = -1; // not set yet
     
     public CompositeCollection(Collection<? extends E>... collections) {

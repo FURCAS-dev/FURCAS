@@ -32,7 +32,6 @@ public class OrFilter extends LogicalOperationFilterImpl {
     }
 
     public boolean matchesFor(Notification event) {
-
         for (EventFilter otherFilter : getOperands()) {
             if (otherFilter.matchesFor(event))
                 return true;
