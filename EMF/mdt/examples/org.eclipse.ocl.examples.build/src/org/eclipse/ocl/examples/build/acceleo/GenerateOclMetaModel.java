@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
@@ -283,20 +282,20 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
 	 * 
 	 * @param resourceSet
 	 *            The resource set which registry has to be updated.
-	 * @generated NOT // FIXME workaround for Bug 340086
+	 * @generated
 	 */
-	@Override
-	public void registerPackages(ResourceSet resourceSet) {
+	public void registerPackagesGen(ResourceSet resourceSet) {
         super.registerPackages(resourceSet);
-        if (!isInWorkspace(org.eclipse.emf.ecore.impl.EPackageImpl.class)) {
-//           resourceSet.getPackageRegistry().put(org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.getNsURI(), org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE.eINSTANCE);
-        	resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
-        }
         if (!isInWorkspace(org.eclipse.emf.ecore.impl.EcorePackageImpl.class)) {
             resourceSet.getPackageRegistry().put(org.eclipse.emf.ecore.impl.EcorePackageImpl.eINSTANCE.getNsURI(), org.eclipse.emf.ecore.impl.EcorePackageImpl.eINSTANCE);
         }
         // TODO If you need additional package registrations, do them here. The following line is an example for UML.
         // resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+    }
+	@Override
+	public void registerPackages(ResourceSet resourceSet) {
+        registerPackagesGen(resourceSet);
+        resourceSet.getPackageRegistry().put("/org.eclipse.ocl.examples.pivot/model/pivot.ecore", org.eclipse.ocl.examples.pivot.PivotPackage.eINSTANCE);
     }
 
 	/**
@@ -312,10 +311,4 @@ public class GenerateOclMetaModel extends AbstractAcceleoGenerator {
         // TODO If you need additional resource factories registrations, do them here. The following line is an example for UML.
         // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
     }
-
-	@Override
-	public boolean isInWorkspace(Class<? extends EPackage> ePackageClass) {
-		return false;			// FIXME Workaround Bug 340091
-	}
-	
 }
