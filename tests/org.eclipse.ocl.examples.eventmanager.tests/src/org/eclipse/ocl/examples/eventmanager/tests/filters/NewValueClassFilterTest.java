@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.junit.Test;
 
@@ -119,7 +119,7 @@ public class NewValueClassFilterTest extends ClassFilterTest {
 		return new ENotificationImpl(null, 0, null, null, new DynamicEObjectImpl(otherCls));
 	}
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createNewValueClassFilter(testCls);
 	}
 

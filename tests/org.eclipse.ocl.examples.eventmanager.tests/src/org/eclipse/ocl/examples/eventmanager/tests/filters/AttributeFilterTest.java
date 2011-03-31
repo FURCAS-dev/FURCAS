@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -103,7 +103,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	}
 
 	@Override
-	StructuralFeatureFilter getFilterFor(Object f) {
+	EventFilter getFilterFor(Object f) {
 		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter((EAttribute) f);
 	}
 
@@ -126,7 +126,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 		return new ENotificationImpl(null, 0, EcoreFactory.eINSTANCE.createEAttribute(), null, null);
 	}
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(attr);
 	}
 
