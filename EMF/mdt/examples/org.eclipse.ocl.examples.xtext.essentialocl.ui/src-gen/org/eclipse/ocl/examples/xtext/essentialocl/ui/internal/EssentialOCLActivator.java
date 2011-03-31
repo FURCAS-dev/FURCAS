@@ -22,7 +22,6 @@ import java.util.HashMap;
  * introduced subclass. 
  */
 public class EssentialOCLActivator extends AbstractUIPlugin {
-	public static final String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL";
 
 	private Map<String,Injector> injectors = new HashMap<String,Injector>();
 	private static EssentialOCLActivator INSTANCE;
@@ -36,7 +35,7 @@ public class EssentialOCLActivator extends AbstractUIPlugin {
 		super.start(context);
 		INSTANCE = this;
 		try {
-			registerInjectorFor(LANGUAGE_ID);
+			registerInjectorFor("org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL");
 			
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error(e.getMessage(), e);
@@ -61,7 +60,7 @@ public class EssentialOCLActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getRuntimeModule(String grammar) {
-		if (LANGUAGE_ID.equals(grammar)) {
+		if ("org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL".equals(grammar)) {
 		  return new org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule();
 		}
 		
@@ -69,7 +68,7 @@ public class EssentialOCLActivator extends AbstractUIPlugin {
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (LANGUAGE_ID.equals(grammar)) {
+		if ("org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL".equals(grammar)) {
 		  return new org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLUiModule(this);
 		}
 		

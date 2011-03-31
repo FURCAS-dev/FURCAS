@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.1 2011/03/12 13:22:51 ewillink Exp $
+ * $Id: EvaluateClassifierOperationsTest.java,v 1.2 2011/03/31 17:29:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -42,7 +42,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
 		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Integer");
 		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "String");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set(Integer)");
+		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<Integer>");
 		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "OclAny");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
 		// FIXME Subtest-not-implemented Enumeration
