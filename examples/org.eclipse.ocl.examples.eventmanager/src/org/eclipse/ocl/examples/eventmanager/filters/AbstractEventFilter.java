@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.ocl.examples.eventmanager.filters;
 
+import java.util.Collection;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
@@ -34,13 +37,6 @@ public abstract class AbstractEventFilter implements EventFilter {
         super();
         this.negated = negated;
     }
-
-    /**
-     * Tests if the incoming {@link Notification} matches the intern specification
-     * @param event the {@link Notification} to control
-     * @return whether the given {@link Notification} matches the intern specification
-     */
-    abstract public boolean matchesFor(Notification event);
 
     public abstract int hashCode();
 
@@ -76,6 +72,22 @@ public abstract class AbstractEventFilter implements EventFilter {
      */
     public void setNegated(boolean b) {
         negated = b;
+    }
+    
+    /**
+     * If any of <code>n.</code>{@link Notification#getOldValue() getOldValue()} and
+     * <code>n.</code>{@link Notification#getNewValue() getNewValue()} is a collection
+     * with more than one element, the notification is expanded into one notification
+     * per element in the collection. If both, <code>oldValue</code> and <code>newValue</code>
+     * are collections with more than one element, all combinations are produced.
+     */
+    protected Set<Notification> expandNewAndOldValueCollections(Notification n) {
+    	Set<Notification> result = null;
+    	if (n.getOldValue() instanceof Collection<?> && ((Collection<?>) n.getOldValue()).size()>1) {
+//    		if ()
+//    		for ()
+    	}
+    	return result;
     }
 
 } // EventFilterImpl

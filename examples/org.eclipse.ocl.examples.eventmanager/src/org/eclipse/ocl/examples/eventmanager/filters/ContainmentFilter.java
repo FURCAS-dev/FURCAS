@@ -32,7 +32,7 @@ public class ContainmentFilter extends AbstractEventFilter {
     public ContainmentFilter(boolean negated) {
         super(negated);
     }
-    @Override
+    
     public boolean matchesFor(Notification event) {
         if (event.getFeature() instanceof EReference) {
             return ((EReference) event.getFeature()).isContainment();

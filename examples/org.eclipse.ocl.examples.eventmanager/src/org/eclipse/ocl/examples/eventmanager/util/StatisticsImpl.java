@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.Statistics;
 
 
 public class StatisticsImpl extends Statistics {

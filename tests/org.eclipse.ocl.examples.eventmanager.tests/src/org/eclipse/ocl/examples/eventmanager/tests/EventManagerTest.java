@@ -17,7 +17,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -137,8 +140,6 @@ public class EventManagerTest extends TestCase {
 		assertTrue("Not notified",app.isNotified());
 	}
 
-
-
 	/**
 	 * Test whether a sucessfully {@link EventManager#subscribe(AbstractEventFilter, Adapter) subscribed} {@link Adapter adapter}
 	 * get not {@link Adapter#notifyChanged(Notification) notified} after successful {@link EventManager#unsubscribe(Adapter) unsubscription}
@@ -148,6 +149,7 @@ public class EventManagerTest extends TestCase {
 		Application adapter = new Application();
 		assertSubscribeAndUnsubscribe(test, adapter);
 	}
+	
 	/**
 	 * test whether one can subscribe an adapter twice
 	 */
@@ -157,6 +159,7 @@ public class EventManagerTest extends TestCase {
 		assertSubscribeAndUnsubscribe(test, adapter);
 		assertSubscribeAndUnsubscribe(test, adapter);
 	}
+	
 	public void testUnsubscribeDoubleAndDifferentFilters__Adapter() {
 		Application adapter = new Application();
 		assertSubscribeAndUnsubscribe(new ClassFilterTest(), adapter);
@@ -171,22 +174,15 @@ public class EventManagerTest extends TestCase {
 		EventFilter f = EventManagerFactory.eINSTANCE.createAndFilterFor(
 				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls2),
 				EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(cls1));
-		boolean thrown = false;
-		try {
-			getFixture().subscribe(f, adapter);
-		} catch (IllegalArgumentException e) {
-			thrown = true;
-		}
-		assertTrue("No execption thrown",thrown);
-//		TODO uncomment this as soon as the eventmanager can handle multiple entries
-//		getFixture().unsubscribe(adapter);
-//		EList<EObject> list = new BasicEList<EObject>();
-//		list.add(new DynamicEObjectImpl(cls1));
-//		list.add(new DynamicEObjectImpl(cls2));
-//		getFixture().handleEMFEvent(new ENotificationImpl(null,	0, null, null, list));
-//		assertFalse("App get wrongly notified", adapter.isNotified());
-	
+		getFixture().subscribe(f, adapter);
+		getFixture().unsubscribe(adapter);
+		EList<EObject> list = new BasicEList<EObject>();
+		list.add(new DynamicEObjectImpl(cls1));
+		list.add(new DynamicEObjectImpl(cls2));
+		getFixture().handleEMFEvent(new ENotificationImpl(null,	0, null, null, list));
+		assertFalse("App get wrongly notified", adapter.isNotified());
 	}
+	
 	private void assertSubscribeAndUnsubscribe(EventFilterTest test,
 			Application adapter) {
 		getFixture().subscribe(test.giveTestFilter(), adapter);
@@ -197,6 +193,7 @@ public class EventManagerTest extends TestCase {
 		getFixture().handleEMFEvent(test.giveMatchingNotifications()[0]);
 		assertFalse("Unsubscription failed", adapter.isNotified());
 	}
+	
 	public void testResourceAddContainmentFilter(){
 		Application app = new Application();
 		getFixture().subscribe(EventManagerFactory.eINSTANCE.createContainmentFilter(), app);
@@ -204,6 +201,7 @@ public class EventManagerTest extends TestCase {
 		res.getContents().add(new DynamicEObjectImpl(cls));
 		assertTrue("Not notified",app.isNotified());
 	}
+	
 	public void testDoubleSubscribeOneFilter(){
 		EClass cls = EcoreFactory.eINSTANCE.createEClass();
 		
@@ -219,6 +217,7 @@ public class EventManagerTest extends TestCase {
 		assertTrue("App1 not get notified", app1.isNotified());
 		assertTrue("App2 not get notified", app2.isNotified());
 	}
+	
 	public void testDoubleSubscribeTwoFilter(){
 		EClass cls = EcoreFactory.eINSTANCE.createEClass();
 		
@@ -237,6 +236,7 @@ public class EventManagerTest extends TestCase {
 		assertTrue("App1 not get notified", app1.isNotified());
 		assertTrue("App2 not get notified", app2.isNotified());
 	}
+	
 	public void testDoubleSubscribeCreate2MatchingFilterTableEntries(){
 		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
 		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();
@@ -255,6 +255,7 @@ public class EventManagerTest extends TestCase {
 		assertTrue("App1 not get notified", app1.isNotified());
 		assertTrue("App2 not get notified", app2.isNotified());
 	}
+	
 	public void testDoubleSubscribeCreate2MatchingFilterTableEntriesSameApp(){
 		EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
 		EClass cls2 = EcoreFactory.eINSTANCE.createEClass();

@@ -24,9 +24,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -107,7 +107,7 @@ public class ContainmentFilterTest extends EventFilterTest {
     }
 
 	@Override
-	AbstractEventFilter getFilterFor(Object f) {
+	EventFilter getFilterFor(Object f) {
 		return EventManagerFactory.eINSTANCE.createContainmentFilter();
 	}
 
@@ -138,7 +138,7 @@ public class ContainmentFilterTest extends EventFilterTest {
 		return new ENotificationImpl(null, 0, EcoreFactory.eINSTANCE.createEReference(), null, null);
 	}
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createContainmentFilter();
 	}
 } // ContainmentFilterTest
