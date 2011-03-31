@@ -1930,39 +1930,28 @@
       <type metamodel="/1/@metamodelDeclarations.3">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST#//TypeNameExpCS"/>
       </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" cardinality="?" value="::"/>
-        <elements xsi:type="xtext:Alternatives">
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
           <elements xsi:type="xtext:Group">
-            <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
+              <terminal xsi:type="xtext:CrossReference">
+                <type metamodel="/1/@metamodelDeclarations.1">
+                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
+                </type>
+                <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+              </terminal>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value="::"/>
+            <elements xsi:type="xtext:Group" cardinality="*">
               <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
                 <terminal xsi:type="xtext:CrossReference">
                   <type metamodel="/1/@metamodelDeclarations.1">
                     <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
                   </type>
-                  <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
                 </terminal>
               </elements>
               <elements xsi:type="xtext:Keyword" value="::"/>
-              <elements xsi:type="xtext:Group" cardinality="*">
-                <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
-                  <terminal xsi:type="xtext:CrossReference">
-                    <type metamodel="/1/@metamodelDeclarations.1">
-                      <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
-                    </type>
-                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
-                  </terminal>
-                </elements>
-                <elements xsi:type="xtext:Keyword" value="::"/>
-              </elements>
-            </elements>
-            <elements xsi:type="xtext:Assignment" feature="element" operator="=">
-              <terminal xsi:type="xtext:CrossReference">
-                <type metamodel="/1/@metamodelDeclarations.1">
-                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
-                </type>
-                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
-              </terminal>
             </elements>
           </elements>
           <elements xsi:type="xtext:Assignment" feature="element" operator="=">
@@ -1970,9 +1959,17 @@
               <type metamodel="/1/@metamodelDeclarations.1">
                 <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
               </type>
-              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
             </terminal>
           </elements>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="element" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/1/@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Type"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          </terminal>
         </elements>
       </alternatives>
     </rules>
@@ -2088,39 +2085,28 @@
       <type metamodel="/1/@metamodelDeclarations.3">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/EssentialOCLCST#//NameExpCS"/>
       </type>
-      <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" cardinality="?" value="::"/>
-        <elements xsi:type="xtext:Alternatives">
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:Group">
           <elements xsi:type="xtext:Group">
-            <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
+              <terminal xsi:type="xtext:CrossReference">
+                <type metamodel="/1/@metamodelDeclarations.1">
+                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
+                </type>
+                <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+              </terminal>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value="::"/>
+            <elements xsi:type="xtext:Group" cardinality="*">
               <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
                 <terminal xsi:type="xtext:CrossReference">
                   <type metamodel="/1/@metamodelDeclarations.1">
                     <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
                   </type>
-                  <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
                 </terminal>
               </elements>
               <elements xsi:type="xtext:Keyword" value="::"/>
-              <elements xsi:type="xtext:Group" cardinality="*">
-                <elements xsi:type="xtext:Assignment" feature="namespace" operator="+=">
-                  <terminal xsi:type="xtext:CrossReference">
-                    <type metamodel="/1/@metamodelDeclarations.1">
-                      <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//Namespace"/>
-                    </type>
-                    <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
-                  </terminal>
-                </elements>
-                <elements xsi:type="xtext:Keyword" value="::"/>
-              </elements>
-            </elements>
-            <elements xsi:type="xtext:Assignment" feature="element" operator="=">
-              <terminal xsi:type="xtext:CrossReference">
-                <type metamodel="/1/@metamodelDeclarations.1">
-                  <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
-                </type>
-                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
-              </terminal>
             </elements>
           </elements>
           <elements xsi:type="xtext:Assignment" feature="element" operator="=">
@@ -2128,9 +2114,17 @@
               <type metamodel="/1/@metamodelDeclarations.1">
                 <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
               </type>
-              <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
             </terminal>
           </elements>
+        </elements>
+        <elements xsi:type="xtext:Assignment" feature="element" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/1/@metamodelDeclarations.1">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/3.1.0/Pivot#//NamedElement"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          </terminal>
         </elements>
       </alternatives>
     </rules>
