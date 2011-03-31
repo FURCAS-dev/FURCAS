@@ -19,6 +19,28 @@ import org.eclipse.emf.ecore.EObject;
  * Matches an event's {@link Notification#getOldValue()} to an {@link EObject#eClass()} 
  * and all subclasses of this {@link EClass}. If the new value is a collection then this
  * filter matches if at least one of the collection's elements is matched.
+ * <p>
+ * 
+ * When several such filters are combined in an {@link AndFilter}, the
+ * {@link AndFilter} matches if all of its operand filters match. This does not
+ * require the individual {@link OldValueClassFilterIncludingSubclasses}s to
+ * match based on the same element in case the old value happens to be a
+ * collection. For example, assume there are two classes <code>X</code> and
+ * <code>Y</code> with a class <code>Z</code> that has both, <code>X</code> and
+ * <code>Y</code> as its superclasses (multiple inheritance). Assume there is an
+ * {@link AndFiter} with two {@link OldValueClassFilterIncludingSubclasses}s
+ * inside, one matching <code>X</code>, the other matching <code>Y</code>. If
+ * only a single element is the old value of a {@link Notification}, the
+ * {@link AndFilter} matches the notification if and only if the old value
+ * conforms to both, <code>X</code> and <code>Y</code>, for example if its type
+ * is <code>Z</code>. However, if there are two elements in the old value
+ * collection of the {@link Notification}, one of type <code>X</code> and the
+ * other of type <code>Y</code>, the first
+ * {@link OldValueClassFilterIncludingSubclasses} matches because of the
+ * <code>X</code> element, and the second
+ * {@link OldValueClassFilterIncludingSubclasses} matches because of the
+ * <code>Y</code> element and hence the {@link AndFilter} matches. However, no
+ * single element in the old value collection fulfills both criteria.
  * 
  * @author Philipp Berger, Axel Uhl
  *

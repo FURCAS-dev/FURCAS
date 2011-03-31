@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -119,7 +119,7 @@ public class ClassFilterTest extends EventFilterTest {
     }
 
 	@Override
-	AbstractEventFilter getFilterFor(Object f) {
+	EventFilter getFilterFor(Object f) {
 		return EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses((EClass) f);
 	}
 	EClass cls1 = EcoreFactory.eINSTANCE.createEClass();
@@ -145,7 +145,7 @@ public class ClassFilterTest extends EventFilterTest {
 		return new ENotificationImpl(new DynamicEObjectImpl(otherCls), 0, null, null, null);
 	}
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createClassFilter(testCls);
 	}
     

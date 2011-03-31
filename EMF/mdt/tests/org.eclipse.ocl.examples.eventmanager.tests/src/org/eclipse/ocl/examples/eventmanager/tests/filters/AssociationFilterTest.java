@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -99,8 +99,8 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
     }
 
 	@Override
-	StructuralFeatureFilter getFilterFor(Object f) {
-		return  EventManagerFactory.eINSTANCE.createStructuralFeatureFilter((EReference) f);
+	EventFilter getFilterFor(Object f) {
+		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter((EReference) f);
 	}
 
 	@Override
@@ -124,8 +124,9 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	public Notification giveNotMatchingNotifcation() {
 		return new ENotificationImpl(null, 0, EcoreFactory.eINSTANCE.createEReference(), null, null);
 	}
+	
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(ref);
 	}
 

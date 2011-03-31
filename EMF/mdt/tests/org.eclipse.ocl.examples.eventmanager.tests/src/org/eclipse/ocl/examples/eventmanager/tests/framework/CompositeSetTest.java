@@ -17,8 +17,8 @@ import java.util.Set;
 
 import junit.framework.TestCase;
 
-import org.eclipse.ocl.examples.eventmanager.CompositeCollection;
-import org.eclipse.ocl.examples.eventmanager.CompositeSet;
+import org.eclipse.ocl.examples.eventmanager.util.CompositeCollection;
+import org.eclipse.ocl.examples.eventmanager.util.CompositeSet;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testEmpty() {
         @SuppressWarnings("unchecked")
-        CompositeCollection<Integer> cs = new CompositeCollection<Integer>();
+        CompositeCollection<Integer> cs = new CompositeSet<Integer>();
         assertTrue(cs.isEmpty());
         assertEquals(0, cs.size());
     }
@@ -63,7 +63,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testTwoSets() {
         @SuppressWarnings("unchecked")
-        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(firstSet, secondSet);
+        CompositeCollection<Integer> cs = new CompositeSet<Integer>(firstSet, secondSet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size()+secondSet.size(), cs.size());
         assertTrue(cs.containsAll(firstSet));
@@ -75,7 +75,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testIntermittentEmptySets() {
         @SuppressWarnings("unchecked")
-        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(emptySet, firstSet, emptySet, secondSet, emptySet);
+        CompositeCollection<Integer> cs = new CompositeSet<Integer>(emptySet, firstSet, emptySet, secondSet, emptySet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size()+secondSet.size(), cs.size());
         assertTrue(cs.containsAll(firstSet));

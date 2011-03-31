@@ -36,12 +36,10 @@ public class NotFilter extends LogicalOperationFilterImpl {
         super(subTypeFilterTree);
     }
 
-    @Override
     public boolean matchesFor(Notification event) {
         if (getOperands().isEmpty())
             return true;
         return !(getOperands().iterator().next().matchesFor(event));
-
     }
 
     @Override
