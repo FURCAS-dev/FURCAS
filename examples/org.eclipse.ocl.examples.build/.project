@@ -34,7 +34,7 @@
 				</dictionary>
 				<dictionary>
 					<key>resource.kind</key>
-					<value>xmi</value>
+					<value>binary</value>
 				</dictionary>
 			</arguments>
 		</buildCommand>

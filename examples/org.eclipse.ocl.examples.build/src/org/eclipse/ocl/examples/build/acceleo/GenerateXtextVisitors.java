@@ -22,7 +22,6 @@ import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
@@ -308,9 +307,4 @@ public class GenerateXtextVisitors extends AbstractAcceleoGenerator {
         // TODO If you need additional resource factories registrations, do them here. The following line is an example for UML.
         // resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
     }
-
-	@Override
-	public boolean isInWorkspace(Class<? extends EPackage> ePackageClass) {
-		return false;			// FIXME Workaround Bug 340091
-	}		
 }
