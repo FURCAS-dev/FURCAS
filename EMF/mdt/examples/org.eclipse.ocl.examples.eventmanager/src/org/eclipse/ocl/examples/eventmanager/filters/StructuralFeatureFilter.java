@@ -76,8 +76,6 @@ public class StructuralFeatureFilter extends AbstractEventFilter {
         	return !isNegated();
         };
         return isNegated();
-
-
     }
 
     @Override

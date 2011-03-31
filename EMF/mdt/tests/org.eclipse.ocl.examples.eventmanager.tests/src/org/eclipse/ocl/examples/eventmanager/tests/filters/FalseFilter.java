@@ -19,10 +19,8 @@ final class FalseFilter extends AbstractEventFilter {
 		super(false);
 	}
 
-	@Override
     public boolean matchesFor(Notification event) {
         return false;
-
     }
 
     @Override
@@ -45,12 +43,10 @@ final class FalseFilter extends AbstractEventFilter {
     @Override
     public FalseFilter clone() {
         return new FalseFilter();
-        
     }
 
     @Override
     public Object getFilterCriterion() {
         return false;
-        
     }
 }

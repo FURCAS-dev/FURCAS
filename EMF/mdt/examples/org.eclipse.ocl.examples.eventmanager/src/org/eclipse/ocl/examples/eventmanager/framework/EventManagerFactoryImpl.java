@@ -30,7 +30,6 @@ import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
-import org.eclipse.ocl.examples.eventmanager.Statistics;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilterIncludingSubclasses;
@@ -43,6 +42,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
+import org.eclipse.ocl.examples.eventmanager.util.Statistics;
 
 
 /**
