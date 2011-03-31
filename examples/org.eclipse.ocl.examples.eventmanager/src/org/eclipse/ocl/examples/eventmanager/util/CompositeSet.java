@@ -8,9 +8,11 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager;
+package org.eclipse.ocl.examples.eventmanager.util;
 
 import java.util.Set;
+
+
 
 
 /**

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package org.eclipse.ocl.examples.eventmanager;
+package org.eclipse.ocl.examples.eventmanager.util;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,8 +16,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.util.StatisticsImpl;
-import org.eclipse.ocl.examples.eventmanager.util.StatisticsStub;
 
 /**
  * To gather statistics about the OCL Impact Analysis and EMF Event Manager, set the system property

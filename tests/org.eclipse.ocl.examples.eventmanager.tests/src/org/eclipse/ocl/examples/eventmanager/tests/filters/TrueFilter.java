@@ -19,17 +19,13 @@ final class TrueFilter extends AbstractEventFilter {
 		super(false);
 	}
 
-	@Override
     public boolean matchesFor(Notification event) {
         return true;
-
     }
 
     @Override
     public int hashCode() {
-
         return 2;
-
     }
 
     @Override
@@ -46,12 +42,10 @@ final class TrueFilter extends AbstractEventFilter {
     @Override
     public AbstractEventFilter clone() {
         return new TrueFilter();
-        
     }
 
     @Override
     public Object getFilterCriterion() {
         return true;
-        
     }
 }

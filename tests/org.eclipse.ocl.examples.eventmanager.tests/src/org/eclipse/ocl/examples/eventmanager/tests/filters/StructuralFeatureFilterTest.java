@@ -14,6 +14,7 @@ import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -42,7 +43,7 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
      * Returns the fixture for this Structural Feature Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
      */
     @Override
-    protected StructuralFeatureFilter getFixture() {
+    protected EventFilter getFixture() {
         return (StructuralFeatureFilter) fixture;
     }
 

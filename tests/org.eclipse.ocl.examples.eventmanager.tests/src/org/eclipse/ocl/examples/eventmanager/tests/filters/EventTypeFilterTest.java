@@ -15,8 +15,8 @@ import junit.textui.TestRunner;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -79,7 +79,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 
 
 	@Override
-	AbstractEventFilter getFilterFor(Object f) {
+	EventFilter getFilterFor(Object f) {
 		if(f==null){
 			f= 0;
 		}
@@ -106,7 +106,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 		return new ENotificationImpl(null, (Integer) getFilterCriterion2(), null, null, null);
 	}
 	@Override
-	public AbstractEventFilter giveTestFilter() {
+	public EventFilter giveTestFilter() {
 		return EventManagerFactory.eINSTANCE.createEventTypeFilter((Integer) getFilterCriterion1());
 	}
 

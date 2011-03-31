@@ -32,7 +32,7 @@ import org.junit.Test;
  * </p>
  * 
  */
-public abstract class EventFilterTest extends TestCase{
+public abstract class EventFilterTest extends TestCase {
 	/**
 	 * The fixture for this Event Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -117,7 +117,7 @@ public abstract class EventFilterTest extends TestCase{
 		assertFalse(f1.equals(f4));
 		assertFalse(f1.hashCode() == f4.hashCode());
 	}
-	abstract public AbstractEventFilter giveTestFilter();
+	abstract public EventFilter giveTestFilter();
 	abstract public Notification[] giveMatchingNotifications();
 	abstract public Notification giveNotMatchingNotifcation();
 
