@@ -12,7 +12,7 @@
  *
  * </copyright> =
  *
- * $Id: OCLstdlib.xtext,v 1.12 2011/03/08 16:20:19 ewillink Exp $
+ * $Id: OCLstdlib.xtext,v 1.13 2011/03/31 17:29:20 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -25,9 +25,9 @@ import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 //generate OCLstdlib "http://www.eclipse.org/ocl/examples/xtext/oclstdlib/OCLstdlibCST"
 
 Library returns LibRootPackageCS:
+	(ownedImport+=ImportCS)*
     ('library' | 'module') name=Name
 	(':' nsPrefix=Identifier '=' nsURI=SINGLE_QUOTED_STRING)?
-	(ownedImport+=ImportCS)*
 	'{' (ownedNestedPackage+=PackageCS
 		| ('precedence' (ownedPrecedence+=PrecedenceCS)+ ';')
 	    | ownedType+=ClassifierCS
@@ -48,9 +48,7 @@ UPPER returns ecore::EInt:
 Identifier:
 	ID
 |	RestrictedKeywords
-|	PrimitiveTypeIdentifier
-|	CollectionTypeIdentifier
-|	EssentialOCLReservedKeyword
+|	EssentialOCLUnrestrictedIdentifier
 ;
 
 RestrictedKeywords:
@@ -81,6 +79,8 @@ Name:
 |	DOUBLE_QUOTED_STRING
 |	EssentialOCLReservedKeyword
 |	RestrictedKeywords
+|	PrimitiveTypeIdentifier
+|	CollectionTypeIdentifier
 ;
 
 AccumulatorCS returns base::ParameterCS:
@@ -217,7 +217,7 @@ SpecificationCS returns essentialocl::ExpSpecificationCS:
 	ownedExpression=ExpCS;
 
 TemplateBindingCS returns base::TemplateBindingCS:
-	'(' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* ')'	
+	'<' ownedParameterSubstitution+=TemplateParameterSubstitutionCS (',' ownedParameterSubstitution+=TemplateParameterSubstitutionCS)* '>'	
 ;
 
 TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
@@ -225,11 +225,11 @@ TemplateParameterSubstitutionCS returns base::TemplateParameterSubstitutionCS:
 ;
 
 TemplateSignatureCS returns base::TemplateSignatureCS:
-	'(' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* ')'
+	'<' ownedTemplateParameter+=TypeParameterCS (',' ownedTemplateParameter+=TypeParameterCS)* '>'
 ;
 
 LibTupleCS returns base::TupleTypeCS:
-	name='Tuple' '(' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? ')'
+	name='Tuple' '<' (ownedParts+=LibTuplePartCS (',' ownedParts+=LibTuplePartCS)*)? '>'
 ;
 
 LibTuplePartCS returns base::TuplePartCS:
