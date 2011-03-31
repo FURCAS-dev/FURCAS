@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPlugin.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: EssentialOCLPlugin.java,v 1.3 2011/03/31 16:53:45 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -28,6 +28,7 @@ import org.osgi.framework.BundleContext;
  * @generated
  */
 public final class EssentialOCLPlugin extends EMFPlugin {
+	public static final String LANGUAGE_ID = "org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL";
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
