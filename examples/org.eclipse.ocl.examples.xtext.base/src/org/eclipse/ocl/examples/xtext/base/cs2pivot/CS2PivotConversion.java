@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.12 2011/03/05 05:57:40 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.13 2011/04/01 19:57:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -889,6 +889,7 @@ public class CS2PivotConversion extends AbstractConversion
 		for (TemplateParameterCS csTemplateParameter : csTemplateParameters) {
 			org.eclipse.ocl.examples.pivot.Class pivotTemplateParameterClass = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class,
 				PivotPackage.Literals.CLASS, csTemplateParameter);
+			pivotTemplateParameterClass.setMoniker(csTemplateParameter.getMoniker());
 			TemplateParameter pivotTemplateParameter = pivotTemplateParameterClass.getOwningTemplateParameter();
 			if (pivotTemplateParameter == null) {
 				pivotTemplateParameter = PivotFactory.eINSTANCE.createTypeTemplateParameter();
@@ -1144,7 +1145,7 @@ public class CS2PivotConversion extends AbstractConversion
 					resolvedProperties.add(part);
 				}
 			}
-			return typeManager.getTupleType(tupleType.getName(), resolvedProperties, null);
+			return typeManager.getTupleType(tupleType.getName(), resolvedProperties, null, null);
 		}
 		throw new UnsupportedOperationException();
 //		return null;
@@ -1362,6 +1363,7 @@ public class CS2PivotConversion extends AbstractConversion
 				Class<? extends Type> pivotClazz = (Class<? extends Type>) eClass.getInstanceClass();
 				Type pivotClass = refreshMonikeredElement(pivotClazz, eClass, csElement);
 				refreshName(pivotClass, ((Type)unspecializedPivotElement).getName());
+				pivotClass.setMoniker(moniker);
 				specializedPivotElement = pivotClass;
 				if (pivotClass instanceof CollectionType) {
 					Type elementType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());

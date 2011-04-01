@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.6 2011/04/01 19:57:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -27,7 +27,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
+import org.eclipse.ocl.examples.pivot.LoopExp;
+import org.eclipse.ocl.examples.pivot.Operation;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -76,20 +80,46 @@ public class PivotSaver
 
 		@Override
 		public Object visitLambdaType(LambdaType object) {
+			boolean doneIt = false;
 			Type referredType = object.getContextType();
 			if ((referredType != null) && (isOrphanType(referredType))) {
 				specializingElements.add(object);
+				doneIt = true;
 			}
-			for (Type parameterType : object.getParameterTypes()) {
-				if ((parameterType != null) && (isOrphanType(parameterType))) {
+			if (!doneIt) {
+				referredType = object.getResultType();
+				if ((referredType != null) && (isOrphanType(referredType))) {
 					specializingElements.add(object);
+					doneIt = true;
+				}
+				if (!doneIt) {
+					for (Type parameterType : object.getParameterTypes()) {
+						if ((parameterType != null) && (isOrphanType(parameterType))) {
+							specializingElements.add(object);
+							break;
+						}
+					}
 				}
 			}
-			referredType = object.getResultType();
-			if ((referredType != null) && (isOrphanType(referredType))) {
+			return super.visitLambdaType(object);
+		}
+
+		@Override
+		public Object visitLoopExp(LoopExp object) {
+			Iteration referredIteration = object.getReferredIteration();
+			if ((referredIteration != null) && (isOrphanOperation(referredIteration))) {
 				specializingElements.add(object);
 			}
-			return super.visitLambdaType(object);
+			return super.visitLoopExp(object);
+		}
+
+		@Override
+		public Object visitOperationCallExp(OperationCallExp object) {
+			Operation referredOperation = object.getReferredOperation();
+			if ((referredOperation != null) && (isOrphanOperation(referredOperation))) {
+				specializingElements.add(object);
+			}
+			return super.visitOperationCallExp(object);
 		}
 
 		@Override
@@ -154,6 +184,30 @@ public class PivotSaver
 		 * Return the resolved variant of referredType, which may require creation
 		 * of a local copy of a specialization.
 		 */
+		protected <T extends Operation> T resolveOperation(T referredOperation) {
+			if (!isOrphanOperation(referredOperation)) {
+				return referredOperation;
+			}
+			String moniker = referredOperation.getMoniker();
+			Operation operation = operations.get(moniker);
+			if (operation != null) {
+				@SuppressWarnings("unchecked") 
+				T castOperation = (T) operation;
+				return castOperation;
+			}
+			T resolvedOperation = EcoreUtil.copy(referredOperation);
+			orphanageClass.getOwnedOperations().add(resolvedOperation);
+			operations.put(moniker, resolvedOperation);
+			String newMoniker = resolvedOperation.getMoniker();
+			assert moniker.equals(newMoniker);
+			locateSpecializations(Collections.singletonList(resolvedOperation));
+			return resolvedOperation;
+		}
+
+		/**
+		 * Return the resolved variant of referredType, which may require creation
+		 * of a local copy of a specialization.
+		 */
 		protected <T extends Type> T resolveType(T referredType) {
 			if (!isOrphanType(referredType)) {
 				return referredType;
@@ -195,6 +249,49 @@ public class PivotSaver
 				object.setElementType(resolvedType);
 			}
 			return super.visitCollectionType(object);
+		}
+
+		@Override
+		public Object visitLambdaType(LambdaType object) {
+			Type referredType = object.getContextType();
+			Type resolvedType = resolveType(referredType);
+			if (resolvedType != null) {
+				object.setContextType(resolvedType);
+			}
+			referredType = object.getResultType();
+			resolvedType = resolveType(referredType);
+			if (resolvedType != null) {
+				object.setResultType(resolvedType);
+			}
+			List<Type> parameterTypes = object.getParameterTypes();
+			for (int i = 0; i < parameterTypes.size(); i++) {
+				referredType = parameterTypes.get(i);
+				resolvedType = resolveType(referredType);
+				if (resolvedType != null) {
+					parameterTypes.set(i, resolvedType);
+				}
+			}
+			return super.visitLambdaType(object);
+		}
+
+		@Override
+		public Object visitLoopExp(LoopExp object) {
+			Iteration referredIteration = object.getReferredIteration();
+			Iteration resolvedIteration = resolveOperation(referredIteration);
+			if (resolvedIteration != null) {
+				object.setReferredIteration(resolvedIteration);
+			}
+			return null;
+		}
+
+		@Override
+		public Object visitOperationCallExp(OperationCallExp object) {
+			Operation referredOperation = object.getReferredOperation();
+			Operation resolvedOperation = resolveOperation(referredOperation);
+			if (resolvedOperation != null) {
+				object.setReferredOperation(resolvedOperation);
+			}
+			return null;
 		}
 
 		@Override
@@ -248,14 +345,24 @@ public class PivotSaver
 	private Map<String, Type> types = new HashMap<String, Type>();
 
 	/**
+	 * The moniker to operation map for operations defined with the saved resource.
+	 */
+	private Map<String, Operation> operations = new HashMap<String, Operation>();
+
+	/**
 	 * TypedElements that refer to specializations.
 	 */
 	private List<Element> specializingElements = new ArrayList<Element>();
 
 	/**
-	 * The extra package for copies of specioalizations.
+	 * The extra package for copies of specializations.
 	 */
 	private org.eclipse.ocl.examples.pivot.Package orphanage = null;
+
+	/**
+	 * The extra package for copies of specializations.
+	 */
+	private org.eclipse.ocl.examples.pivot.Class orphanageClass = null;
 	
 	public PivotSaver(Resource resource) {
 		this.resource = resource;
@@ -267,8 +374,21 @@ public class PivotSaver
 			orphanage.setName(PivotConstants.ORPHANAGE_NAME);
 			orphanage.setMoniker(PivotConstants.ORPHANAGE_NAME);
 			resource.getContents().add(orphanage);
+			orphanageClass = PivotFactory.eINSTANCE.createClass();
+			orphanageClass.setName(PivotConstants.ORPHANAGE_NAME);
+//			orphanageClass.setMoniker(PivotConstants.ORPHANAGE_NAME);
+			orphanage.getOwnedTypes().add(orphanageClass);
 		}
 		return orphanage;
+	}
+
+	protected boolean isOrphanOperation(Operation operation) {		// FIXME Non-static PivotUtils
+		// FIXME surely an orphan is one for which eResource() is null,
+		//  or one that is in the orphanage.
+		if (operation.getTemplateBindings().size() > 0) {
+			return true;
+		}
+		return false;
 	}
 
 	protected boolean isOrphanType(Type type) {		// FIXME Non-static PivotUtils

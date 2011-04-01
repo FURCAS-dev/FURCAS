@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.7 2011/03/14 10:19:39 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.8 2011/04/01 19:57:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -176,13 +176,8 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		if (owningTemplateParameter != null) {		
 			if (templateBindings != null) {
 				ParameterableElement parameterableElement = templateBindings.get(owningTemplateParameter);
-				if (parameterableElement != null) {
-					if (parameterableElement == object) {
-						context.append(OVERFLOW_MARKER);
-					}
-					else {
-						context.appendElement(parameterableElement);
-					}
+				if ((parameterableElement != null) && (parameterableElement != object) ){
+					context.appendElement(parameterableElement);
 					return true;
 				}
 			}
