@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEssentialOCLFormatter.java,v 1.2 2011/01/24 21:31:47 ewillink Exp $
+ * $Id: AbstractEssentialOCLFormatter.java,v 1.3 2011/04/01 19:57:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.formatting;
 
@@ -44,8 +44,10 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureCollectionTypeCS(FormattingConfig c, CollectionTypeCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());
+		c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());
+		c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());
 	}
 
 	protected void configureIfExpCS(FormattingConfig c, IfExpCSElements a) {
@@ -112,9 +114,13 @@ public abstract class AbstractEssentialOCLFormatter extends AbstractBaseFormatte
 	}
 
 	protected void configureTupleTypeCS(FormattingConfig c, TupleTypeCSElements a) {
-		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0());
-		c.setNoSpace().before(a.getCommaKeyword_1_1_1_0());
-		c.setNoSpace().before(a.getRightParenthesisKeyword_1_2());
-		c.setIndentation(a.getLeftParenthesisKeyword_1_0(), a.getRightParenthesisKeyword_1_2());
+		c.setNoSpace().around(a.getLeftParenthesisKeyword_1_0_0());
+		c.setNoSpace().around(a.getLessThanSignKeyword_1_1_0());
+		c.setNoSpace().before(a.getCommaKeyword_1_0_1_1_0());
+		c.setNoSpace().before(a.getCommaKeyword_1_1_1_1_0());
+		c.setNoSpace().before(a.getRightParenthesisKeyword_1_0_2());
+		c.setNoSpace().before(a.getGreaterThanSignKeyword_1_1_2());
+		c.setIndentation(a.getLeftParenthesisKeyword_1_0_0(), a.getRightParenthesisKeyword_1_0_2());
+		c.setIndentation(a.getLessThanSignKeyword_1_1_0(), a.getGreaterThanSignKeyword_1_1_2());
 	}
 }
