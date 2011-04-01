@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.8 2011/03/16 17:32:32 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.9 2011/04/01 19:57:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -40,9 +40,12 @@ import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.AbstractConversion;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -205,7 +208,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 					assert moniker != null;
 					MonikeredElementCS oldMonikeredElement = map.get(moniker);
 					if (monikeredElement instanceof NamedElementCS) {
-						if ((oldMonikeredElement instanceof NamedElementCS) && !(oldMonikeredElement instanceof PrimitiveTypeRefCS)) {
+						if ((oldMonikeredElement instanceof NamedElementCS)
+						&& !(oldMonikeredElement instanceof PrimitiveTypeRefCS)
+						&& !(oldMonikeredElement instanceof LambdaTypeCS)
+						&& !(oldMonikeredElement instanceof TupleTypeCS)
+						&& !(oldMonikeredElement instanceof TuplePartCS)) {
 							logger.warn("Duplicate CS '" + moniker + "'");
 						}
 						else {
