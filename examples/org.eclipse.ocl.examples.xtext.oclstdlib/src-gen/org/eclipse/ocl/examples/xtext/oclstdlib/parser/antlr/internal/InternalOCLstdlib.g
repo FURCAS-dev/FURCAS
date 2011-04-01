@@ -4559,14 +4559,14 @@ ruleCollectionTypeCS returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1='(' 
+)((	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_0_1_0()); 
 	    }
 		lv_ownedType_2_0=ruleTypeExpCS		{
 	        if ($current==null) {
@@ -4583,9 +4583,36 @@ ruleCollectionTypeCS returns [EObject current=null]
 )
 )	otherlv_3=')' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_2());
+    	newLeafNode(otherlv_3, grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_0_2());
     }
-)?)
+)
+    |(	otherlv_4='<' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getCollectionTypeCSAccess().getLessThanSignKeyword_1_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_1_0()); 
+	    }
+		lv_ownedType_5_0=ruleTypeExpCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCollectionTypeCSRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedType",
+        		lv_ownedType_5_0, 
+        		"TypeExpCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_6='>' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getCollectionTypeCSAccess().getGreaterThanSignKeyword_1_1_2());
+    }
+))?)
 ;
 
 
@@ -4621,14 +4648,14 @@ ruleTupleTypeCS returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1='(' 
+)((	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0());
     }
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0()); 
+	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_0_1_0_0()); 
 	    }
 		lv_ownedParts_2_0=ruletuplePartCS		{
 	        if ($current==null) {
@@ -4645,12 +4672,12 @@ ruleTupleTypeCS returns [EObject current=null]
 )
 )(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_0());
+    	newLeafNode(otherlv_3, grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_0_1_1_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0()); 
+	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_0_1_1_1_0()); 
 	    }
 		lv_ownedParts_4_0=ruletuplePartCS		{
 	        if ($current==null) {
@@ -4667,9 +4694,58 @@ ruleTupleTypeCS returns [EObject current=null]
 )
 ))*)?	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2());
+    	newLeafNode(otherlv_5, grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2());
     }
-)?)
+)
+    |(	otherlv_6='<' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0());
+    }
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_0_0()); 
+	    }
+		lv_ownedParts_7_0=ruletuplePartCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTupleTypeCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedParts",
+        		lv_ownedParts_7_0, 
+        		"tuplePartCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_8=',' 
+    {
+    	newLeafNode(otherlv_8, grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_1_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_1_0()); 
+	    }
+		lv_ownedParts_9_0=ruletuplePartCS		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTupleTypeCSRule());
+	        }
+       		add(
+       			$current, 
+       			"ownedParts",
+        		lv_ownedParts_9_0, 
+        		"tuplePartCS");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*)?	otherlv_10='>' 
+    {
+    	newLeafNode(otherlv_10, grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2());
+    }
+))?)
 ;
 
 
