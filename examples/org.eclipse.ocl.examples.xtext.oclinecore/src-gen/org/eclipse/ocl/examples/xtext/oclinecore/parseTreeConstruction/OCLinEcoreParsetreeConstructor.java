@@ -14573,11 +14573,11 @@ protected class PrimitiveTypeCS_NameAssignment extends AssignmentToken  {
 /************ begin Rule CollectionTypeCS ****************
  *
  * CollectionTypeCS:
- * 	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
+ * 	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?;
  *
  **/
 
-// name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?
+// name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?
 protected class CollectionTypeCS_Group extends GroupToken {
 	
 	public CollectionTypeCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14592,7 +14592,7 @@ protected class CollectionTypeCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CollectionTypeCS_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CollectionTypeCS_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new CollectionTypeCS_NameAssignment_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -14640,22 +14640,45 @@ protected class CollectionTypeCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// ("(" ownedType=TypeExpCS ")")?
-protected class CollectionTypeCS_Group_1 extends GroupToken {
-	
-	public CollectionTypeCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+// ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?
+protected class CollectionTypeCS_Alternatives_1 extends AlternativesToken {
+
+	public CollectionTypeCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getCollectionTypeCSAccess().getGroup_1();
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getAlternatives_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CollectionTypeCS_RightParenthesisKeyword_1_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CollectionTypeCS_Group_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new CollectionTypeCS_Group_1_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "(" ownedType=TypeExpCS ")"
+protected class CollectionTypeCS_Group_1_0 extends GroupToken {
+	
+	public CollectionTypeCS_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getGroup_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CollectionTypeCS_RightParenthesisKeyword_1_0_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -14663,15 +14686,15 @@ protected class CollectionTypeCS_Group_1 extends GroupToken {
 }
 
 // "("
-protected class CollectionTypeCS_LeftParenthesisKeyword_1_0 extends KeywordToken  {
+protected class CollectionTypeCS_LeftParenthesisKeyword_1_0_0 extends KeywordToken  {
 	
-	public CollectionTypeCS_LeftParenthesisKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CollectionTypeCS_LeftParenthesisKeyword_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0();
+		return grammarAccess.getCollectionTypeCSAccess().getLeftParenthesisKeyword_1_0_0();
 	}
 
     @Override
@@ -14685,15 +14708,15 @@ protected class CollectionTypeCS_LeftParenthesisKeyword_1_0 extends KeywordToken
 }
 
 // ownedType=TypeExpCS
-protected class CollectionTypeCS_OwnedTypeAssignment_1_1 extends AssignmentToken  {
+protected class CollectionTypeCS_OwnedTypeAssignment_1_0_1 extends AssignmentToken  {
 	
-	public CollectionTypeCS_OwnedTypeAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CollectionTypeCS_OwnedTypeAssignment_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_1();
+		return grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_0_1();
 	}
 
     @Override
@@ -14706,13 +14729,13 @@ protected class CollectionTypeCS_OwnedTypeAssignment_1_1 extends AssignmentToken
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("ownedType",false)) == null) return null;
+		if((value = eObjectConsumer.getConsumable("ownedType",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedType");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTypeExpCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_0(); 
+				element = grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -14724,33 +14747,147 @@ protected class CollectionTypeCS_OwnedTypeAssignment_1_1 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new CollectionTypeCS_LeftParenthesisKeyword_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new CollectionTypeCS_LeftParenthesisKeyword_1_0_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // ")"
-protected class CollectionTypeCS_RightParenthesisKeyword_1_2 extends KeywordToken  {
+protected class CollectionTypeCS_RightParenthesisKeyword_1_0_2 extends KeywordToken  {
 	
-	public CollectionTypeCS_RightParenthesisKeyword_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public CollectionTypeCS_RightParenthesisKeyword_1_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_2();
+		return grammarAccess.getCollectionTypeCSAccess().getRightParenthesisKeyword_1_0_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CollectionTypeCS_OwnedTypeAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CollectionTypeCS_OwnedTypeAssignment_1_0_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
+
+
+// "<" ownedType=TypeExpCS ">"
+protected class CollectionTypeCS_Group_1_1 extends GroupToken {
+	
+	public CollectionTypeCS_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getGroup_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CollectionTypeCS_GreaterThanSignKeyword_1_1_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "<"
+protected class CollectionTypeCS_LessThanSignKeyword_1_1_0 extends KeywordToken  {
+	
+	public CollectionTypeCS_LessThanSignKeyword_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getLessThanSignKeyword_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CollectionTypeCS_NameAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ownedType=TypeExpCS
+protected class CollectionTypeCS_OwnedTypeAssignment_1_1_1 extends AssignmentToken  {
+	
+	public CollectionTypeCS_OwnedTypeAssignment_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getOwnedTypeAssignment_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TypeExpCS_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("ownedType",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedType");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTypeExpCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getCollectionTypeCSAccess().getOwnedTypeTypeExpCSParserRuleCall_1_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new CollectionTypeCS_LessThanSignKeyword_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ">"
+protected class CollectionTypeCS_GreaterThanSignKeyword_1_1_2 extends KeywordToken  {
+	
+	public CollectionTypeCS_GreaterThanSignKeyword_1_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getCollectionTypeCSAccess().getGreaterThanSignKeyword_1_1_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CollectionTypeCS_OwnedTypeAssignment_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
 
 
 
@@ -14760,11 +14897,13 @@ protected class CollectionTypeCS_RightParenthesisKeyword_1_2 extends KeywordToke
 /************ begin Rule TupleTypeCS ****************
  *
  * TupleTypeCS returns base::TupleTypeCS:
- * 	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
+ * 	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+ * 	ownedParts+=tuplePartCS)*)? ">")?;
  *
  **/
 
-// name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
+// name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+// ownedParts+=tuplePartCS)*)? ">")?
 protected class TupleTypeCS_Group extends GroupToken {
 	
 	public TupleTypeCS_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14779,7 +14918,7 @@ protected class TupleTypeCS_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TupleTypeCS_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new TupleTypeCS_NameAssignment_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
@@ -14827,22 +14966,46 @@ protected class TupleTypeCS_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
-protected class TupleTypeCS_Group_1 extends GroupToken {
-	
-	public TupleTypeCS_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+// ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+// ownedParts+=tuplePartCS)*)? ">")?
+protected class TupleTypeCS_Alternatives_1 extends AlternativesToken {
+
+	public TupleTypeCS_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getGroup_1();
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getAlternatives_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_RightParenthesisKeyword_1_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TupleTypeCS_Group_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TupleTypeCS_Group_1_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")"
+protected class TupleTypeCS_Group_1_0 extends GroupToken {
+	
+	public TupleTypeCS_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_RightParenthesisKeyword_1_0_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -14850,15 +15013,15 @@ protected class TupleTypeCS_Group_1 extends GroupToken {
 }
 
 // "("
-protected class TupleTypeCS_LeftParenthesisKeyword_1_0 extends KeywordToken  {
+protected class TupleTypeCS_LeftParenthesisKeyword_1_0_0 extends KeywordToken  {
 	
-	public TupleTypeCS_LeftParenthesisKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_LeftParenthesisKeyword_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0();
+		return grammarAccess.getTupleTypeCSAccess().getLeftParenthesisKeyword_1_0_0();
 	}
 
     @Override
@@ -14872,22 +15035,22 @@ protected class TupleTypeCS_LeftParenthesisKeyword_1_0 extends KeywordToken  {
 }
 
 // (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
-protected class TupleTypeCS_Group_1_1 extends GroupToken {
+protected class TupleTypeCS_Group_1_0_1 extends GroupToken {
 	
-	public TupleTypeCS_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_Group_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getGroup_1_1();
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_0_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_Group_1_1_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_1_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new TupleTypeCS_Group_1_0_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_0_1_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -14895,15 +15058,15 @@ protected class TupleTypeCS_Group_1_1 extends GroupToken {
 }
 
 // ownedParts+=tuplePartCS
-protected class TupleTypeCS_OwnedPartsAssignment_1_1_0 extends AssignmentToken  {
+protected class TupleTypeCS_OwnedPartsAssignment_1_0_1_0 extends AssignmentToken  {
 	
-	public TupleTypeCS_OwnedPartsAssignment_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_OwnedPartsAssignment_1_0_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_0();
+		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_0_1_0();
 	}
 
     @Override
@@ -14922,7 +15085,7 @@ protected class TupleTypeCS_OwnedPartsAssignment_1_1_0 extends AssignmentToken  
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTuplePartCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0(); 
+				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_0_1_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -14934,28 +15097,28 @@ protected class TupleTypeCS_OwnedPartsAssignment_1_1_0 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new TupleTypeCS_LeftParenthesisKeyword_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TupleTypeCS_LeftParenthesisKeyword_1_0_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // ("," ownedParts+=tuplePartCS)*
-protected class TupleTypeCS_Group_1_1_1 extends GroupToken {
+protected class TupleTypeCS_Group_1_0_1_1 extends GroupToken {
 	
-	public TupleTypeCS_Group_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_Group_1_0_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1();
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_0_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_OwnedPartsAssignment_1_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TupleTypeCS_OwnedPartsAssignment_1_0_1_1_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -14963,22 +15126,22 @@ protected class TupleTypeCS_Group_1_1_1 extends GroupToken {
 }
 
 // ","
-protected class TupleTypeCS_CommaKeyword_1_1_1_0 extends KeywordToken  {
+protected class TupleTypeCS_CommaKeyword_1_0_1_1_0 extends KeywordToken  {
 	
-	public TupleTypeCS_CommaKeyword_1_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_CommaKeyword_1_0_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_0();
+		return grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_0_1_1_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_Group_1_1_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_1_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new TupleTypeCS_Group_1_0_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_0_1_0(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -14986,15 +15149,15 @@ protected class TupleTypeCS_CommaKeyword_1_1_1_0 extends KeywordToken  {
 }
 
 // ownedParts+=tuplePartCS
-protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_1 extends AssignmentToken  {
+protected class TupleTypeCS_OwnedPartsAssignment_1_0_1_1_1 extends AssignmentToken  {
 	
-	public TupleTypeCS_OwnedPartsAssignment_1_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_OwnedPartsAssignment_1_0_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_1();
+		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_0_1_1_1();
 	}
 
     @Override
@@ -15013,7 +15176,7 @@ protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_1 extends AssignmentToken
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTuplePartCSRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0(); 
+				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_0_1_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -15025,7 +15188,7 @@ protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_1 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new TupleTypeCS_CommaKeyword_1_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new TupleTypeCS_CommaKeyword_1_0_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -15034,26 +15197,256 @@ protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_1 extends AssignmentToken
 
 
 // ")"
-protected class TupleTypeCS_RightParenthesisKeyword_1_2 extends KeywordToken  {
+protected class TupleTypeCS_RightParenthesisKeyword_1_0_2 extends KeywordToken  {
 	
-	public TupleTypeCS_RightParenthesisKeyword_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public TupleTypeCS_RightParenthesisKeyword_1_0_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_2();
+		return grammarAccess.getTupleTypeCSAccess().getRightParenthesisKeyword_1_0_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new TupleTypeCS_Group_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new TupleTypeCS_Group_1_0_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
 }
+
+
+// "<" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ">"
+protected class TupleTypeCS_Group_1_1 extends GroupToken {
+	
+	public TupleTypeCS_Group_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_GreaterThanSignKeyword_1_1_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "<"
+protected class TupleTypeCS_LessThanSignKeyword_1_1_0 extends KeywordToken  {
+	
+	public TupleTypeCS_LessThanSignKeyword_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getLessThanSignKeyword_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_NameAssignment_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
+protected class TupleTypeCS_Group_1_1_1 extends GroupToken {
+	
+	public TupleTypeCS_Group_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_Group_1_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_1_1_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ownedParts+=tuplePartCS
+protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_0 extends AssignmentToken  {
+	
+	public TupleTypeCS_OwnedPartsAssignment_1_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TuplePartCS_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("ownedParts",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedParts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTuplePartCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new TupleTypeCS_LessThanSignKeyword_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// ("," ownedParts+=tuplePartCS)*
+protected class TupleTypeCS_Group_1_1_1_1 extends GroupToken {
+	
+	public TupleTypeCS_Group_1_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getGroup_1_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_OwnedPartsAssignment_1_1_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ","
+protected class TupleTypeCS_CommaKeyword_1_1_1_1_0 extends KeywordToken  {
+	
+	public TupleTypeCS_CommaKeyword_1_1_1_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getCommaKeyword_1_1_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_Group_1_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new TupleTypeCS_OwnedPartsAssignment_1_1_1_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ownedParts+=tuplePartCS
+protected class TupleTypeCS_OwnedPartsAssignment_1_1_1_1_1 extends AssignmentToken  {
+	
+	public TupleTypeCS_OwnedPartsAssignment_1_1_1_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getOwnedPartsAssignment_1_1_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TuplePartCS_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("ownedParts",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("ownedParts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTuplePartCSRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getTupleTypeCSAccess().getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new TupleTypeCS_CommaKeyword_1_1_1_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+
+// ">"
+protected class TupleTypeCS_GreaterThanSignKeyword_1_1_2 extends KeywordToken  {
+	
+	public TupleTypeCS_GreaterThanSignKeyword_1_1_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getTupleTypeCSAccess().getGreaterThanSignKeyword_1_1_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TupleTypeCS_Group_1_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
 
 
 
