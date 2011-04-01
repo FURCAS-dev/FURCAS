@@ -3,8 +3,8 @@ library ocl : ocl = 'http://www.eclipse.org/ocl/3.1.0/OCL.oclstdlib'
 precedence left:NAVIGATION left:UNARY left:MULTIPLICATIVE left:ADDITIVE left:RELATIONAL left:EQUALITY left:AND left:OR left:XOR left:IMPLIES;
 
 type Bag<T> : BagType conformsTo NonOrderedCollection<T>,NonUniqueCollection<T> {
-	iteration reject(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
-	iteration select(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation excluding(object : OclAny) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation';
@@ -31,19 +31,19 @@ type Classifier conformsTo OclAny {
 }
 
 type Collection<T> : CollectionType conformsTo OclAny {
-	iteration any(i : T) : T => 'org.eclipse.ocl.examples.library.iterator.AnyIteration';
+	iteration any(i : T | body : Lambda T() : Boolean) : T => 'org.eclipse.ocl.examples.library.iterator.AnyIteration';
 	iteration collect<V>(i : T | body : Lambda T() : V) : Collection<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
-	iteration collectNested(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
-	iteration exists(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
-	iteration exists(i : T, j : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
-	iteration forAll(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
-	iteration forAll(i : T, j : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
-	iteration isUnique(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
+	iteration collectNested<V>(i : T | body : Lambda T() : V) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration exists(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
+	iteration exists(i : T, j : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ExistsIteration';
+	iteration forAll(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
+	iteration forAll(i : T, j : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.ForAllIteration';
+	iteration isUnique(i : T | body : Lambda T() : OclAny) : Boolean => 'org.eclipse.ocl.examples.library.iterator.IsUniqueIteration';
 	iteration iterate<Tacc>(i : T; acc : Tacc) : Tacc => 'org.eclipse.ocl.examples.library.iterator.IterateIteration';
-	iteration one(i : T) : Boolean => 'org.eclipse.ocl.examples.library.iterator.OneIteration';
-	iteration reject(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
-	iteration select(i : T) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
-	iteration sortedBy(i : T) : OrderedCollection<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration one(i : T | body : Lambda T() : Boolean) : Boolean => 'org.eclipse.ocl.examples.library.iterator.OneIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Collection<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedCollection<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation asBag() : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation';
@@ -87,9 +87,9 @@ type Integer : PrimitiveType conformsTo Real {
 }
 
 type NonOrderedCollection<T> : CollectionType conformsTo Collection<T> {
-	iteration closure(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
+	iteration closure(i : T | body : Lambda T() : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect<V>(i : T | body : Lambda T() : V) : Bag<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
-	iteration collectNested(i : T) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T | body : Lambda T() : V) : Bag<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
 	operation intersection(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
 	operation intersection(s : Set<T>) : Set<T> => 'org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation';
 	operation union(bag : Bag<T>) : Bag<T> => 'org.eclipse.ocl.examples.library.collection.CollectionUnionOperation';
@@ -97,7 +97,7 @@ type NonOrderedCollection<T> : CollectionType conformsTo Collection<T> {
 }
 
 type NonUniqueCollection<T> : CollectionType conformsTo Collection<T> {
-	iteration sortedBy(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
 type OclAny : AnyType {
@@ -148,9 +148,9 @@ type OclVoid : VoidType conformsTo OclAny {
 }
 
 type OrderedCollection<T> : CollectionType conformsTo Collection<T> {
-	iteration closure(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
+	iteration closure(i : T | body : Lambda T() : OrderedSet<T>) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.ClosureIteration';
 	iteration collect<V>(i : T | body : Lambda T() : V) : Sequence<V> => 'org.eclipse.ocl.examples.library.iterator.CollectIteration';
-	iteration collectNested(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
+	iteration collectNested<V>(i : T | body : Lambda T() : V) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.CollectNestedIteration';
 	operation at(index : Integer) : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation';
 	operation first() : T => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation';
 	operation indexOf(obj : OclAny) : Integer => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation';
@@ -159,8 +159,8 @@ type OrderedCollection<T> : CollectionType conformsTo Collection<T> {
 }
 
 type OrderedSet<T> : OrderedSetType conformsTo OrderedCollection<T>,UniqueCollection<T> {
-	iteration reject(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
-	iteration select(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<OclAny>) : OrderedSet<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
@@ -199,8 +199,8 @@ type Real : PrimitiveType conformsTo OclAny {
 }
 
 type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollection<T> {
-	iteration reject(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
-	iteration select(i : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Sequence<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation append(object : T) : Sequence<T> => 'org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation';
@@ -215,8 +215,8 @@ type Sequence<T> : SequenceType conformsTo OrderedCollection<T>,NonUniqueCollect
 }
 
 type Set<T> : SetType conformsTo NonOrderedCollection<T>,UniqueCollection<T> {
-	iteration reject(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
-	iteration select(i : T) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
+	iteration reject(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.RejectIteration';
+	iteration select(i : T | body : Lambda T() : Boolean) : Set<T> => 'org.eclipse.ocl.examples.library.iterator.SelectIteration';
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation "-"(s : Set<OclAny>) : Set<T> precedence=ADDITIVE => 'org.eclipse.ocl.examples.library.collection.SetMinusOperation';
@@ -253,7 +253,7 @@ type String : PrimitiveType conformsTo OclAny {
 }
 
 type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
-	iteration sortedBy(i : T) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
+	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';
 }
 
 type UnlimitedNatural : PrimitiveType conformsTo Integer {
