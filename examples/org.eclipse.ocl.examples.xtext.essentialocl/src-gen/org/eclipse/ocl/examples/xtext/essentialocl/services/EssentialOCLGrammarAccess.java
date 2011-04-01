@@ -535,17 +535,23 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameCollectionTypeIdentifierParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cOwnedTypeAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_1_0 = (RuleCall)cOwnedTypeAssignment_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_0_1_0 = (RuleCall)cOwnedTypeAssignment_1_0_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cOwnedTypeAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOwnedTypeTypeExpCSParserRuleCall_1_1_1_0 = (RuleCall)cOwnedTypeAssignment_1_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//CollectionTypeCS:
-		//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
+		//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?;
 		public ParserRule getRule() { return rule; }
 
-		//name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?
+		//name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?
 		public Group getGroup() { return cGroup; }
 
 		//name=CollectionTypeIdentifier
@@ -554,20 +560,38 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//CollectionTypeIdentifier
 		public RuleCall getNameCollectionTypeIdentifierParserRuleCall_0_0() { return cNameCollectionTypeIdentifierParserRuleCall_0_0; }
 
-		//("(" ownedType=TypeExpCS ")")?
-		public Group getGroup_1() { return cGroup_1; }
+		//("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//"(" ownedType=TypeExpCS ")"
+		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		public Keyword getLeftParenthesisKeyword_1_0_0() { return cLeftParenthesisKeyword_1_0_0; }
 
 		//ownedType=TypeExpCS
-		public Assignment getOwnedTypeAssignment_1_1() { return cOwnedTypeAssignment_1_1; }
+		public Assignment getOwnedTypeAssignment_1_0_1() { return cOwnedTypeAssignment_1_0_1; }
 
 		//TypeExpCS
-		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_1_0; }
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_0_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_0_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+		public Keyword getRightParenthesisKeyword_1_0_2() { return cRightParenthesisKeyword_1_0_2; }
+
+		//"<" ownedType=TypeExpCS ">"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_1_1_0() { return cLessThanSignKeyword_1_1_0; }
+
+		//ownedType=TypeExpCS
+		public Assignment getOwnedTypeAssignment_1_1_1() { return cOwnedTypeAssignment_1_1_1; }
+
+		//TypeExpCS
+		public RuleCall getOwnedTypeTypeExpCSParserRuleCall_1_1_1_0() { return cOwnedTypeTypeExpCSParserRuleCall_1_1_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_1_1_2() { return cGreaterThanSignKeyword_1_1_2; }
 	}
 
 	public class TupleTypeCSElements extends AbstractParserRuleElementFinder {
@@ -575,22 +599,35 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cNameTupleKeyword_0_0 = (Keyword)cNameAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Assignment cOwnedPartsAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
-		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_0_0 = (RuleCall)cOwnedPartsAssignment_1_1_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
+		private final Group cGroup_1_0_1 = (Group)cGroup_1_0.eContents().get(1);
+		private final Assignment cOwnedPartsAssignment_1_0_1_0 = (Assignment)cGroup_1_0_1.eContents().get(0);
+		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_0_1_0_0 = (RuleCall)cOwnedPartsAssignment_1_0_1_0.eContents().get(0);
+		private final Group cGroup_1_0_1_1 = (Group)cGroup_1_0_1.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0_1_1_0 = (Keyword)cGroup_1_0_1_1.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_1_0_1_1_1 = (Assignment)cGroup_1_0_1_1.eContents().get(1);
+		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_0_1_1_1_0 = (RuleCall)cOwnedPartsAssignment_1_0_1_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_0_2 = (Keyword)cGroup_1_0.eContents().get(2);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Group cGroup_1_1_1 = (Group)cGroup_1_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_1_0 = (Keyword)cGroup_1_1_1.eContents().get(0);
-		private final Assignment cOwnedPartsAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
-		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0 = (RuleCall)cOwnedPartsAssignment_1_1_1_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cOwnedPartsAssignment_1_1_1_0 = (Assignment)cGroup_1_1_1.eContents().get(0);
+		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_1_0_0 = (RuleCall)cOwnedPartsAssignment_1_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1_1 = (Group)cGroup_1_1_1.eContents().get(1);
+		private final Keyword cCommaKeyword_1_1_1_1_0 = (Keyword)cGroup_1_1_1_1.eContents().get(0);
+		private final Assignment cOwnedPartsAssignment_1_1_1_1_1 = (Assignment)cGroup_1_1_1_1.eContents().get(1);
+		private final RuleCall cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_1_0 = (RuleCall)cOwnedPartsAssignment_1_1_1_1_1.eContents().get(0);
+		private final Keyword cGreaterThanSignKeyword_1_1_2 = (Keyword)cGroup_1_1.eContents().get(2);
 		
 		//TupleTypeCS returns base::TupleTypeCS:
-		//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
+		//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+		//	ownedParts+=tuplePartCS)*)? ">")?;
 		public ParserRule getRule() { return rule; }
 
-		//name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
+		//name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+		//ownedParts+=tuplePartCS)*)? ">")?
 		public Group getGroup() { return cGroup; }
 
 		//name="Tuple"
@@ -599,35 +636,69 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 		//"Tuple"
 		public Keyword getNameTupleKeyword_0_0() { return cNameTupleKeyword_0_0; }
 
-		//("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?
-		public Group getGroup_1() { return cGroup_1; }
+		//("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+		//ownedParts+=tuplePartCS)*)? ">")?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//"(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")"
+		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		public Keyword getLeftParenthesisKeyword_1_0_0() { return cLeftParenthesisKeyword_1_0_0; }
 
 		//(ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
 
 		//ownedParts+=tuplePartCS
-		public Assignment getOwnedPartsAssignment_1_1_0() { return cOwnedPartsAssignment_1_1_0; }
+		public Assignment getOwnedPartsAssignment_1_0_1_0() { return cOwnedPartsAssignment_1_0_1_0; }
 
 		//tuplePartCS
-		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_0_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_0_0; }
+		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_0_1_0_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_0_1_0_0; }
 
 		//("," ownedParts+=tuplePartCS)*
-		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+		public Group getGroup_1_0_1_1() { return cGroup_1_0_1_1; }
 
 		//","
-		public Keyword getCommaKeyword_1_1_1_0() { return cCommaKeyword_1_1_1_0; }
+		public Keyword getCommaKeyword_1_0_1_1_0() { return cCommaKeyword_1_0_1_1_0; }
 
 		//ownedParts+=tuplePartCS
-		public Assignment getOwnedPartsAssignment_1_1_1_1() { return cOwnedPartsAssignment_1_1_1_1; }
+		public Assignment getOwnedPartsAssignment_1_0_1_1_1() { return cOwnedPartsAssignment_1_0_1_1_1; }
 
 		//tuplePartCS
-		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_0; }
+		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_0_1_1_1_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_0_1_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+		public Keyword getRightParenthesisKeyword_1_0_2() { return cRightParenthesisKeyword_1_0_2; }
+
+		//"<" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ">"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"<"
+		public Keyword getLessThanSignKeyword_1_1_0() { return cLessThanSignKeyword_1_1_0; }
+
+		//(ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)?
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
+		//ownedParts+=tuplePartCS
+		public Assignment getOwnedPartsAssignment_1_1_1_0() { return cOwnedPartsAssignment_1_1_1_0; }
+
+		//tuplePartCS
+		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_1_0_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_1_0_0; }
+
+		//("," ownedParts+=tuplePartCS)*
+		public Group getGroup_1_1_1_1() { return cGroup_1_1_1_1; }
+
+		//","
+		public Keyword getCommaKeyword_1_1_1_1_0() { return cCommaKeyword_1_1_1_1_0; }
+
+		//ownedParts+=tuplePartCS
+		public Assignment getOwnedPartsAssignment_1_1_1_1_1() { return cOwnedPartsAssignment_1_1_1_1_1; }
+
+		//tuplePartCS
+		public RuleCall getOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_1_0() { return cOwnedPartsTuplePartCSParserRuleCall_1_1_1_1_1_0; }
+
+		//">"
+		public Keyword getGreaterThanSignKeyword_1_1_2() { return cGreaterThanSignKeyword_1_1_2; }
 	}
 
 	public class TuplePartCSElements extends AbstractParserRuleElementFinder {
@@ -2514,7 +2585,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CollectionTypeCS:
-	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")")?;
+	//	name=CollectionTypeIdentifier ("(" ownedType=TypeExpCS ")" | "<" ownedType=TypeExpCS ">")?;
 	public CollectionTypeCSElements getCollectionTypeCSAccess() {
 		return (pCollectionTypeCS != null) ? pCollectionTypeCS : (pCollectionTypeCS = new CollectionTypeCSElements());
 	}
@@ -2524,7 +2595,8 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TupleTypeCS returns base::TupleTypeCS:
-	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")")?;
+	//	name="Tuple" ("(" (ownedParts+=tuplePartCS ("," ownedParts+=tuplePartCS)*)? ")" | "<" (ownedParts+=tuplePartCS (","
+	//	ownedParts+=tuplePartCS)*)? ">")?;
 	public TupleTypeCSElements getTupleTypeCSAccess() {
 		return (pTupleTypeCS != null) ? pTupleTypeCS : (pTupleTypeCS = new TupleTypeCSElements());
 	}
