@@ -76,11 +76,9 @@ public class ModelEditorInputLoader {
         validateResource(resource);
 
         EObject root = resource.getContents().iterator().next();
-        ModelEditorInput modelInput = createFromRootObject(file, root);
-        
-        assert modelInput.getRootBlock() != null;
-        assert modelInput.getRootObject() != null;
-        
+        TextBlock rootBlock = findOrCreateRootBlockForRootObject(root);
+        ModelEditorInput modelInput = new ModelEditorInput(file, root, rootBlock);
+                
         return modelInput;
     }
 
@@ -93,11 +91,6 @@ public class ModelEditorInputLoader {
             }
             throw new PartInitException(message.toString());
         }
-    }
-
-    private ModelEditorInput createFromRootObject(IFile file, EObject rootObject) throws PartInitException {
-        TextBlock rootBlock = findOrCreateRootBlockForRootObject(rootObject);
-        return new ModelEditorInput(file, rootObject, rootBlock);
     }
 
     /**
