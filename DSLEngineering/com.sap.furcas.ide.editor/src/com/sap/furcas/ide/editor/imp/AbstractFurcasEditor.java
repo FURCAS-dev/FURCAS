@@ -149,7 +149,6 @@ public class AbstractFurcasEditor extends UniversalEditor {
             return getDocumentProvider().getDocument(getEditorInput());
         }
     }
-
     
     private final EditingDomain editingDomain;
     private final ConcreteSyntax syntax;

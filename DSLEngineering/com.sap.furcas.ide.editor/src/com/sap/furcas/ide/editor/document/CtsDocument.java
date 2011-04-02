@@ -12,6 +12,7 @@ import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.GapTextStore;
 import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.ISynchronizable;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PartInitException;
 
 import com.sap.furcas.ide.editor.CtsActivator;
@@ -63,8 +64,13 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     
     private final ConcreteSyntax syntax;
     private final EditingDomain editingDomain;
-    
-    private final Collection<DocumentEvent> bufferedChanges = new ArrayList<DocumentEvent>(); 
+
+    /**
+     * True when changes are self-triggered and do not correspond to user actions
+     * which have to be forwarded to the TextBlocks model.
+     */
+    private boolean inDocumentRefreshMode = false; 
+    private final Collection<DocumentEvent> bufferedChanges = new ArrayList<DocumentEvent>();
 
     
     /**
@@ -99,7 +105,9 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
             @Override
             public void documentChanged(DocumentEvent event) {
                 synchronized (getLockObject()) {
-                    bufferedChanges.add(event);
+                    if (!inDocumentRefreshMode) {
+                        bufferedChanges.add(event);
+                    }
                 }
             }
             @Override
@@ -235,16 +243,21 @@ public class CtsDocument extends AbstractDocument implements ISynchronizable {
     }
 
     public void refreshContentFromTextBlocksModel() {
-        String text = model.get(0, model.getLength());
-        synchronized (getLockObject()) {
-            if (!bufferedChanges.isEmpty()) {
-                CtsActivator.logWarning("Overwriting user edits when refreshing the document content. User might get confused");
-                bufferedChanges.clear();
+        final String text = model.get(0, model.getLength());
+        Display.getDefault().asyncExec(new Runnable() {
+            @Override
+            public void run() {
+                synchronized (getLockObject()) {
+                    if (!bufferedChanges.isEmpty()) {
+                        CtsActivator.logWarning("Overwriting user edits when refreshing the document content. User might get confused");
+                        bufferedChanges.clear();
+                    }
+                    inDocumentRefreshMode = true;
+                    set(text);
+                    inDocumentRefreshMode = false;
+                }
             }
-            getStore().set(text);
-            getTracker().set(text);
-        }
-
+        });
     }
 
     public void expandToEditableVersion() {
