@@ -120,7 +120,7 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	The sub-bag of the source bag for which body is true.
 
 	source->select(iterator | body) =
-        source->iterate(iterator; result : Bag(T) = Bag{} |
+        source->iterate(iterator; result : Bag<T> = Bag{} |
                         if body then result->including(iterator)
                                 else result
                         endif)
@@ -135,7 +135,7 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 
 	source->sortedBy(iterator | body) =
-      iterate( iterator ; result : Sequence(T) : Sequence {} |
+      iterate( iterator ; result : Sequence<T> : Sequence {} |
          if result->isEmpty() then
            result.append(iterator)
          else
@@ -169,25 +169,25 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	**/
 	operation asOrderedSet() : OrderedSet<T>
 	{
-		post a: result->forAll(elem | self->includes(elem));
-		post b: self->forAll(elem | result->includes(elem));	
-		post c: self->forAll(elem | result->count(elem) = 1);
+		post: result->forAll(elem | self->includes(elem));
+		post: self->forAll(elem | result->includes(elem));	
+		post: self->forAll(elem | result->count(elem) = 1);
 	}
 	/**
 	Redefines the Collection operation. A Sequence that contains all the elements from self, in undefined order.
 	**/
 	operation asSequence() : Sequence<T>
 	{
-		post a: result->forAll(elem | self->count(elem) = result->count(elem));
-		post b: self->forAll(elem | self->count(elem) = result->count(elem));
+		post: result->forAll(elem | self->count(elem) = result->count(elem));
+		post: self->forAll(elem | self->count(elem) = result->count(elem));
 	}
 	/**
 	Redefines the Collection operation. The Set containing all the elements from self, with duplicates removed.
 	**/
 	operation asSet() : Set<T>
 	{
-		post a: result->forAll(elem | self  ->includes(elem));
-		post b: self->forAll(elem | result->includes(elem));
+		post: result->forAll(elem | self  ->includes(elem));
+		post: self->forAll(elem | result->includes(elem));
 	}
 	/**
 	The number of occurrences of object in self.
@@ -198,14 +198,14 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	**/
 	operation excluding(object : T) : Bag<T>
 	{
-		post a: result->forAll(elem | 
+		post: result->forAll(elem | 
 	        if elem = object then
 	           result->count(elem) = 0
 	        else
 	           result->count(elem) = self->count(elem)
 	        endif);
 	
-		post b: self->forAll(elem | 
+		post: self->forAll(elem | 
 	        if elem = object then
 	           result->count(elem) = 0
 	        else
@@ -215,79 +215,96 @@ type Bag<T> : BagType conformsTo Collection<T> {
 	/**
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same bag as self.
 	If the element type is a collection type, the result is the bag containing all the elements of all the recursively flattened elements of self. 
-
-		post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
-	                  self->iterate(c; acc : Bag(T2) = Bag{} | 
-	                       acc->union(c->flatten()->asBag() ) ) 
-	               else 
-	                  self 
-	               endif ;
 	**/
 	operation flatten<T2>() : Bag<T2>
 	{
+/*FIXME		post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
+	                  self->iterate(c; acc : Bag<T2> = Bag{} | 
+	                       acc->union(c->flatten()->asBag() ) )
+	               else 
+	                  self 
+	               endif; */
 	}
 	/**
 	The bag containing all elements of self plus object.
 	**/
 	operation including(object : T) : Bag<T>
 	{
-		post a: result->forAll(elem | 
+		post: result->forAll(elem | 
 	        if elem = object then
 	           result->count(elem) = self->count(elem) + 1
 	        else
 	           result->count(elem) = self->count(elem)
-	        endif);
-	
-		post b: self->forAll(elem | 
+	        endif
+	    );	
+		post: self->forAll(elem | 
 	        if elem = object then
 	           result->count(elem) = self->count(elem) + 1
 	        else
 	           result->count(elem) = self->count(elem)
-	        endif);
+	        endif
+	    );
 	}
 	/**
 	The intersection of self and bag.
-
-	post: result->forAll(elem | 
-      result->count(elem) = self->count(elem).min(bag->count(elem)) )
-
-	post: self->forAll(elem |
-      result->count(elem) = self->count(elem).min(bag->count(elem)) )
-
-	post: bag->forAll(elem |
-      result->count(elem) = self->count(elem).min(bag->count(elem)) )
 	**/
-	operation intersection(bag : Bag<T>) : Bag<T>;
+	operation intersection(bag : Bag<T>) : Bag<T>
+	{
+		post: result->forAll(elem | 
+	      result->count(elem) = self->count(elem).min(bag->count(elem))
+	    );
+		post: self->forAll(elem |
+	      result->count(elem) = self->count(elem).min(bag->count(elem))
+	    );
+		post: bag->forAll(elem |
+	      result->count(elem) = self->count(elem).min(bag->count(elem))
+	    );		 
+	}
 	/**
 	The intersection of self and set.
-
-	post: result->forAll(elem|result->count(elem) = self->count(elem).min(set->count(elem)) )
-
-	post: self  ->forAll(elem|result->count(elem) = self->count(elem).min(set->count(elem)) )
-
-	post: set   ->forAll(elem|result->count(elem) = self->count(elem).min(set->count(elem)) )
 	**/
-	operation intersection(s : Set<T>) : Set<T>;
+	operation intersection(set : Set<T>) : Set<T>
+	{
+		post: result->forAll(elem |
+			result->count(elem) = self->count(elem).min(set->count(elem))
+		);
+		post: self->forAll(elem |
+			result->count(elem) = self->count(elem).min(set->count(elem))
+		);
+		post: set->forAll(elem |
+			result->count(elem) = self->count(elem).min(set->count(elem))
+		);		
+	}
 	/**
 	The union of self and bag.
-
-	post: result->forAll( elem | result->count(elem) = self->count(elem) + bag->count(elem))
-
-	post: self  ->forAll( elem | result->count(elem) = self->count(elem) + bag->count(elem))
-
-	post: bag   ->forAll( elem | result->count(elem) = self->count(elem) + bag->count(elem))
 	**/
-	operation union(bag : Bag<T>) : Bag<T>;
+	operation union(bag : Bag<T>) : Bag<T>
+	{
+		post: result->forAll(elem |
+			result->count(elem) = self->count(elem) + bag->count(elem)
+		);	
+		post: self->forAll(elem |
+			result->count(elem) = self->count(elem) + bag->count(elem)
+		);
+		post: bag->forAll(elem |
+			result->count(elem) = self->count(elem) + bag->count(elem)
+		);
+	}
 	/**
 	The union of self and set.
-
-	post: result->forAll(elem | result->count(elem) = self->count(elem) + set->count(elem))
-
-	post: self  ->forAll(elem | result->count(elem) = self->count(elem) + set->count(elem))
-
-	post: set   ->forAll(elem | result->count(elem) = self->count(elem) + set->count(elem))
 	**/
-	operation union(s : Set<T>) : Bag<T>;
+	operation union(set : Set<T>) : Bag<T>
+	{
+		post: result->forAll(elem |
+			result->count(elem) = self->count(elem) + set->count(elem)
+		);
+		post: self->forAll(elem | 
+			result->count(elem) = self->count(elem) + set->count(elem)
+		);
+		post: set->forAll(elem | 
+			result->count(elem) = self->count(elem) + set->count(elem)
+		);
+	}
 }
 
 /**
@@ -305,18 +322,18 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	operation and(b : Boolean) : Boolean precedence=AND;
 	/**
 	True if self is false, or if self is true and b is true.
-
-	post: (not self) or (self and b) 
 	**/
-	operation implies(b : Boolean) : Boolean precedence=IMPLIES {
---		post: (not self) or (self and b);
+	operation implies(b : Boolean) : Boolean precedence=IMPLIES
+	{
+		post: (not self) or (self and b);
 	}
 	/**
 	True if self is false.
-
-	post: if self then result = false else result = true endif
 	**/
-	operation not() : Boolean precedence=UNARY;
+	operation not() : Boolean precedence=UNARY
+	{
+		post: if self then result = false else result = true endif;
+	}
 	/**
 	True if either self or b is true.
 	**/
@@ -327,10 +344,11 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	operation toString() : String;
 	/**
 	True if either self or b is true, but not both.
-
-	post: (self or b) and not (self = b)
 	**/
-	operation xor(b : Boolean) : Boolean precedence=XOR;
+	operation xor(b : Boolean) : Boolean precedence=XOR
+	{
+		post: (self or b) and not (self = b);
+	}
 }
 
 type Classifier conformsTo OclAny {
@@ -387,14 +405,14 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	anonRecurse is an invocation-site-specific helper function synthesized by lexical substitution of iterator, body, add and Result in: 
 
 	context OclAny
-	def: anonRecurse(anonSources : Collection(T), anonInit : Result(T)) : Result(T) =
-	   anonSources->iterate(iterator : T; anonAcc : Result(T) = anonInit |
+	def: anonRecurse(anonSources : Collection<T>, anonInit : Result<T>) : Result<T> =
+	   anonSources->iterate(iterator : T; anonAcc : Result<T> = anonInit |
 		   if anonAcc->includes(iterator)
 		   then anonAcc
 		   else let anonBody : OclAny = body in
-				  let anonResults : Result(T) = anonAcc->add(iterator) in
+				  let anonResults : Result<T> = anonAcc->add(iterator) in
 				  if anonBody.oclIsKindOf(CollectionType)
-				  then anonRecurse(anonBody.oclAsType(Collection(T)), anonResults)
+				  then anonRecurse(anonBody.oclAsType(Collection<T>), anonResults)
 				  else anonRecurse(anonBody.oclAsType(T)->asSet(), anonResults)
 				  endif
 		   endif)
@@ -454,7 +472,7 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	isUnique may have at most one iterator variable.
 	**/
 	iteration isUnique(i : T | expression : OclExpression) : Boolean;
---	iteration iterate<Tacc>(i : T; acc : Tacc | expression : OclExpression) : Tacc;
+	iteration iterate<Tacc>(i : T; acc : Tacc | expression : OclExpression) : Tacc;
 	/**
 	Results in true if there is exactly one element in the source collection for which body is true.
 
@@ -474,62 +492,66 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	operation "="(c : Collection<T>) : Boolean precedence=EQUALITY;
 	/**
 	True if c is not equal to self.
-
-	post: result = not (self = c)
 	**/
-	operation "<>"(c : Collection<T>) : Boolean precedence=EQUALITY;
+	operation "<>"(c : Collection<T>) : Boolean precedence=EQUALITY
+	{
+		post: result = not (self = c);
+	}
 	/**
 	The Bag that contains all the elements from self. 
-
-	post: result->forAll(elem | self->includes(elem)) 
-
-	post: self  ->forAll(elem | result->includes(elem)) 
 	**/
-	operation asBag() : Bag<T>;
+	operation asBag() : Bag<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+		post: self->forAll(elem | result->includes(elem));
+	}
 	/**
 	An OrderedSet that contains all the elements from self, with duplicates removed,
 	in an order dependent on the particular concrete collection type.
-
-	post: result->forAll(elem | self->includes(elem)) 
-
-	post: self  ->forAll(elem | result->includes(elem)) 
 	**/
-	operation asOrderedSet() : OrderedSet<T>;
+	operation asOrderedSet() : OrderedSet<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+		post: self  ->forAll(elem | result->includes(elem));
+	}
 	/**
 	A Sequence that contains all the elements from self, in an order dependent on the particular concrete collection type. 
-
-	post: result->forAll(elem | self->includes(elem)) 
-
-	post: self  ->forAll(elem | result->includes(elem)) 
 	**/
-	operation asSequence() : Sequence<T>;
+	operation asSequence() : Sequence<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+		post: self->forAll(elem | result->includes(elem));
+	}
 	/**
 	The Set containing all the elements from self, with duplicates removed.
-
-	post: result->forAll(elem | self  ->includes(elem))
-
-	post: self  ->forAll(elem | result->includes(elem))
 	**/
-	operation asSet() : Set<T>;
+	operation asSet() : Set<T>
+	{
+		post: result->forAll(elem | self  ->includes(elem));
+		post: self->forAll(elem | result->includes(elem));
+	}
 	/**
 	The number of times that object occurs in the collection self.
-
-	post: result = self->iterate( elem; acc : Integer = 0 |
-             if elem = object then acc + 1 else acc endif)
 	**/
-	operation count(object : T) : Integer;
+	operation count(object : T) : Integer
+	{
+		post: result = self->iterate(elem; acc : Integer = 0 |
+            if elem = object then acc + 1 else acc endif);
+	}
 	/**
 	True if object is not an element of self, false otherwise.
-
-	post: result = (self->count(object) = 0)
 	**/
-	operation excludes(object : T) : Boolean;
+	operation excludes(object : T) : Boolean
+	{
+		post: result = (self->count(object) = 0);
+	}
 	/**
 	Does self contain none of the elements of c2 ?
-
-	post: result = c2->forAll(elem | self->excludes(elem))
 	**/
-	operation excludesAll(c2 : Collection<T>) : Boolean;
+	operation excludesAll(c2 : Collection<T>) : Boolean
+	{
+		post: result = c2->forAll(elem | self->excludes(elem));
+	}
 --	operation excluding(object : OclAny) : Collection<T>;
 	/**
 	If the element type is not a collection type, this results in the same collection as self.
@@ -538,79 +560,89 @@ type Collection<T> : CollectionType conformsTo OclAny {
 	operation flatten<T2>() : Collection<T2>;
 	/**
 	True if object is an element of self, false otherwise.
-
-	post: result = (self->count(object) > 0)
 	**/
-	operation includes(object : T) : Boolean;
+	operation includes(object : T) : Boolean
+	{
+		post: result = (self->count(object) > 0);
+	}
 	/**
 	Does self contain all the elements of c2 ?
-
-	post: result = c2->forAll(elem | self->includes(elem))
 	**/
-	operation includesAll(c2 : Collection<T>) : Boolean;
+	operation includesAll(c2 : Collection<T>) : Boolean
+	{
+		post: result = c2->forAll(elem | self->includes(elem));
+	}
 --	operation including(object : T) : Collection<T>;
 	/**
 	Is self the empty collection?
 
-	post: result = ( self->size() = 0 )
-
 	Note: null->isEmpty() returns ‘true’ in virtue of the implicit casting from null to Bag{}
 	**/
-	operation isEmpty() : Boolean;
+	operation isEmpty() : Boolean
+	{
+		post: result = (self->size() = 0);
+	}
 	/**
 	The element with the maximum value of all elements in self.
 	Elements must be of a type supporting the max operation.
 	The max operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
 	UnlimitedNatural, Integer and Real fulfill this condition.
-
-	post: result = self->iterate( elem; acc : T = self.first() | acc.max(elem) )
 	**/
-	operation max() : T;
+	operation max() : T
+	{
+--FIXME		post: result = self->iterate(elem; acc : T = self.first() | acc.max(elem));
+	}
 	/**
 	The element with the minimum value of all elements in self.
 	Elements must be of a type supporting the min operation.
 	The min operation - supported by the elements - must take one parameter of type T and be both associative and commutative.
 	UnlimitedNatural, Integer and Real fulfill this condition.
-
-	post: result = self->iterate( elem; acc : T = self.first() | acc.min(elem) )
 	**/
-	operation min() : T;
+	operation min() : T
+	{
+--FIXME		post: result = self->iterate( elem; acc : T = self.first() | acc.min(elem) );
+	}
 	/**
 	Is self not the empty collection?
-
-	post: result = ( self->size() <> 0 )
 	
 	null->notEmpty() returns ‘false’ in virtue of the implicit casting from null to Bag{}.
 	**/
-	operation notEmpty() : Boolean;
+	operation notEmpty() : Boolean
+	{
+		post: result = (self->size() <> 0);
+	}
 	/**
 	The cartesian product operation of self and c2.
 
-	post: result = self->iterate (e1; acc: Set(Tuple(first: T, second: T2)) = Set{} | 
-                       c2->iterate (e2; acc2: Set(Tuple(first: T, second: T2)) = acc | 
-                           acc2->including (Tuple{first = e1, second = e2}) ) )
 	**/
-	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>>;
+	operation product<T2>(c2 : Collection<T2>) : Set<Tuple<first:T,second:T2>>
+	{
+/*FIXME		post: result = self->iterate (e1; acc: Set(Tuple(first: T, second: T2)) = Set{} | 
+	                       c2->iterate (e2; acc2: Set(Tuple(first: T, second: T2)) = acc | 
+	                           acc2->including (Tuple{first = e1, second = e2}) ) ); */
+	}
 	/**
 	The number of elements in the collection self.
-
-	post: result = self->iterate(elem; acc : Integer = 0 | acc + 1)
 	**/
-	operation size() : Integer;
+	operation size() : Integer
+	{
+		post: result = self->iterate(elem; acc : Integer = 0 | acc + 1);
+	}
 	/**
 	The addition of all elements in self.
 	Elements must be of a type supporting the + operation.
 	The + operation must take one parameter of type T and be both associative: (a+b)+c = a+(b+c), and commutative: a+b = b+a.
 	UnlimitedNatural, Integer and Real fulfill this condition.
 
-	post: result = self->iterate( elem; acc : T = 0 | acc + elem )
-
 	If the + operation is not both associative and commutative, the sum expression is not well-formed,
 	which may result in unpredictable results during evaluation.
 	If an implementation is able to detect a lack of associativity or commutativity,
 	the implementation may bypass the evaluation and return an invalid result.
 	**/
-	operation sum() : T;
+	operation sum() : T
+	{
+--FIXME		post: result = self->iterate( elem; acc : T = 0 | acc + elem);
+	}
 --	operation "->"<T>(object2 : OclAny) : T precedence=NAVIGATION;
 }
 
@@ -653,38 +685,43 @@ type Integer : PrimitiveType conformsTo Real {
 	operation "/"(i : Integer) : Real precedence=MULTIPLICATIVE;
 	/**
 	The absolute value of self.
-
-	post: if self < 0 then result = - self else result = self endif
 	**/
-	operation abs() : Integer;
+	operation abs() : Integer
+	{
+		post: if self < 0 then result = - self else result = self endif;
+	}
 	/**
 	The number of times that i fits completely within self.
-
-	pre : i <> 0
-
-	post: if self / i >= 0 then result = (self / i).floor() 
-    else result = -((-self/i).floor()) 
-    endif
 	**/
-	operation div(i : Integer) : Integer;
+	operation div(i : Integer) : Integer
+	{
+		pre: i <> 0;
+		post: if self / i >= 0
+			  then result = (self / i).floor() 
+			  else result = -((-self/i).floor()) 
+			  endif;
+	}
 	/**
 	The result is self modulo i.
-
-	post: result = self - (self.div(i) * i)
 	**/
-	operation mod(i : Integer) : Integer;
+	operation mod(i : Integer) : Integer
+	{
+		post: result = self - (self.div(i) * i);
+	}
 	/**
 	The maximum of self an i.
-
-	post: if self >= i then result = self else result = i endif
 	**/
-	operation max(i : Integer) : Integer;
+	operation max(i : Integer) : Integer
+	{
+		post: if self >= i then result = self else result = i endif;
+	}
 	/**
 	The minimum of self an i.
-
-	post: if self <= i then result = self else result = i endif
 	**/
-	operation min(i : Integer) : Integer;
+	operation min(i : Integer) : Integer
+	{
+		post: if self <= i then result = self else result = i endif;
+	}
 	/**
 	Converts self to a string value.
 	**/
@@ -720,10 +757,11 @@ type OclAny : AnyType {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY;
 	/**
 	True if self is a different object from object2. Infix operator.
-
-	post: result = not (self = object2)
 	**/
-	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY;
+	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY
+	{
+		post: result = not (self = object2);
+	}
 --	operation oclAsSet() : Collection<OclAny>;
 	/**
 	Evaluates to self, where self is of the type identified by T.
@@ -736,53 +774,64 @@ type OclAny : AnyType {
 	according to the semantics of redefinition, the redefined feature simply does not exist for the object.
 	However, when casting to a supertype, any features additionally defined by the subtype are suppressed.
 	
-	post: (result = self) and result.oclIsTypeOf( t ) 
 	**/
-	operation oclAsType<T>(_type : Classifier) : T;
+	operation oclAsType<T>(type : Classifier) : T
+	{
+		post: (result = self) and result.oclIsTypeOf(type); 
+	}
 	/**
 	Evaluates to true if the self is in the state indentified by statespec. 
 
 	post: -- TBD
 	**/
-	operation oclIsInState(statespec : OclState) : Boolean;
+	operation oclIsInState(statespec : OclState) : Boolean
+	{
+		
+	}
 	/**
 	Evaluates to true if the self is equal to OclInvalid.
-
-	post: result = self.isTypeOf( OclInvalid)
 	**/
-	operation oclIsInvalid() : Boolean;
+	operation oclIsInvalid() : Boolean
+	{
+		post: result = self.oclIsTypeOf(OclInvalid);
+	}
 	/**
 	Evaluates to true if the type of self conforms to t.
 	That is, self is of type t or a subtype of t. 
-
-	post: self.oclType().conformsTo(type)
 	**/
-	operation oclIsKindOf<T>(_type : Classifier) : Boolean;
+	operation oclIsKindOf<T>(type : Classifier) : Boolean
+	{
+--FIXME		post: self.oclType().conformsTo(type);
+	}
 	/**
 	Can only be used in a postcondition.
 	Evaluates to true if the self is created during performing the operation (for instance, it didn’t exist at precondition time). 
-
-	post: self@pre.oclIsUndefined()
 	**/
-	operation oclIsNew() : Boolean;
+	operation oclIsNew() : Boolean
+	{
+--FIXME		post: self@pre.oclIsUndefined();
+	}
 	/**
 	Evaluates to true if self is of the type t but not a subtype of t 
-
-	post: self.oclType() = type
 	*/
-	operation oclIsTypeOf(type : Classifier) : Boolean;
+	operation oclIsTypeOf(type : Classifier) : Boolean
+	{
+		post: self.oclType() = type;
+	}
 	/**
 	Evaluates to true if the self is equal to invalid or equal to null. 
-
-	post: result = self.isTypeOf( OclVoid )  or self.isTypeOf(OclInvalid)
 	**/
-	operation oclIsUndefined() : Boolean;
+	operation oclIsUndefined() : Boolean
+	{
+		post: result = self.oclIsTypeOf(OclVoid) or self.oclIsTypeOf(OclInvalid);
+	}
 	/**
 	Evaluates to the type of which self is an instance.
-	
-	post: self.oclIsTypeOf(result)
-	**/
-	operation oclType() : Classifier;
+		**/
+	operation oclType() : Classifier
+	{
+		post: self.oclIsTypeOf(result);
+	}
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION;
 }
 
@@ -832,10 +881,11 @@ type OclMessage conformsTo OclAny {
 	/**
 	Returns the result of the called operation, if type of template parameter is an operation call,
 	and the called operation has returned a value. Otherwise the invalid value is returned. 
-
-	pre: hasReturned()
 	**/
-	operation result<T>() : T;
+	operation result<T>() : T
+	{
+		pre: hasReturned();
+	}
 	/**
 	Returns true if the OclMessage represents the sending of a UML Operation call. 
 	**/
@@ -866,10 +916,11 @@ type OclVoid : VoidType conformsTo OclAny {
 	static operation allInstances() : Set<OclVoid>;
 	/**
 	Redefines the OclAny operation, returning true if object is null.
-
-	post: result = object.oclIsTypeOf(OclVoid)
 	**/
-	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY;
+	operation "="(object : OclAny) : Boolean precedence=EQUALITY
+	{
+		post: result = object.oclIsTypeOf(OclVoid);
+	}
 --	operation "<>"(object2 : OclVoid) : Boolean precedence=EQUALITY;
 --	operation and(b : Boolean) : Boolean precedence=AND;
 --	operation implies(b : Boolean) : Boolean precedence=IMPLIES;
@@ -907,7 +958,7 @@ type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {
 	The ordered set of the source ordered set for which body is true
 
 	source->select(iterator | body) =
-        source->iterate(iterator; result : OrderedSet(T) = OrderedSet{} |
+        source->iterate(iterator; result : OrderedSet<T> = OrderedSet{} |
 
 
              if body then result->including(iterator)
@@ -924,7 +975,7 @@ type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c, then a < c).
 
 	source->sortedBy(iterator | body) =
-      iterate( iterator ; result : OrderedSet(T) : OrderedSet {} |
+      iterate( iterator ; result : OrderedSet<T> : OrderedSet {} |
         if result->isEmpty() then
             result.append(iterator)
        else
@@ -945,65 +996,68 @@ type OrderedSet<T> : OrderedSetType conformsTo Collection<T> {
 	operation "-"(s : Set<T>) : OrderedSet<T> precedence=ADDITIVE;
 	/**
 	The set of elements, consisting of all elements of self, followed by object.
-
-	post: result->size() = self->size() + 1
-
-	post: result->at(result->size() ) = object
-
-	post:   Sequence{1..self->size() }->forAll(index : Integer |
-         result->at(index) = self ->at(index))
 	**/
-	operation append(object : T) : OrderedSet<T>;
+	operation append(object : T) : OrderedSet<T>
+	{
+		post: result->size() = self->size() + 1;
+		post: result->at(result->size()) = object;
+		post: Sequence{1..self->size()}->forAll(index : Integer |
+	         result->at(index) = self->at(index)
+	    );
+	}
 	/**
 	Redefines the Set operation. The Bag that contains all the elements from self, in undefined order. 
 	**/
 	operation asBag() : Bag<T>;
 	/**
 	Redefines the Set operation. An OrderedSet identical to self. 
-
-	post: result = self 
-
-	post: Sequence{1..self.size()}->forAll(i | result->at(i) = self->at(i)) 
 	**/
-	operation asOrderedSet() : OrderedSet<T>;
+	operation asOrderedSet() : OrderedSet<T>
+	{
+		post: result = self;
+		post: Sequence{1..self.size()}->forAll(i | result->at(i) = self->at(i));		
+	}
 	/**
 	Redefines the Set operation. A Sequence that contains all the elements from self, in the same order. 
-
-	post: Sequence{1..self.size()}->forAll(i | result->at(i) = self->at(i)) 
 	**/
-	operation asSequence() : Sequence<T>;
+	operation asSequence() : Sequence<T>
+	{
+		post: Sequence{1..self.size()}->forAll(i | result->at(i) = self->at(i));
+	}
 	/**
 	Redefines the Set operation. Returns a Set containing all of the elements of self, in undefined order. 
 	**/
 	operation asSet() : Set<T>;
 	/**
 	The i-th element of self.
-
-	pre : i >= 1 and i <= self->size()
 	**/
-	operation at(index : Integer) : T;
+	operation at(index : Integer) : T
+	{
+		pre: index >= 1 and index <= self->size();
+	}
 	/**
 	
 	**/
 	operation excluding(object : T) : OrderedSet<T>;
 	/**
 	The first element in self.
-
-	post: result = self->at(1)
 	**/
-	operation first() : T;
+	operation first() : T
+	{
+		post: result = self->at(1);
+	}
 	/**
 	
 	**/
 	operation including(object : T) : OrderedSet<T>;
 	/**
 	The index of object obj in the sequence.
-
-	pre  : self->includes(obj)
-
-	post : self->at(i) = obj
 	**/
-	operation indexOf(obj : T) : Integer;
+	operation indexOf(obj : T) : Integer
+	{
+		pre: self->includes(obj);
+		post: self->at(result) = obj;
+	}
 	/**
 	The set consisting of self with object inserted at position index.
 
@@ -1112,57 +1166,65 @@ type Real : PrimitiveType conformsTo OclAny {
 	operation "/"(r : Real) : Real precedence=MULTIPLICATIVE;
 	/**
 	True if self is greater than r.
-
-	post: result = not (self <= r)
 	**/
-	operation ">"(r : Real) : Boolean precedence=RELATIONAL;
+	operation ">"(r : Real) : Boolean precedence=RELATIONAL
+	{
+		post: result = not (self <= r);
+	}
 	/**
 	True if self is less than r.
 	**/
 	operation "<"(r : Real) : Boolean precedence=RELATIONAL;
 	/**
 	True if self is less than or equal to r.
-
-	post: result = ((self = r) or (self < r))
 	**/
-	operation "<="(r : Real) : Boolean precedence=RELATIONAL;
+	operation "<="(r : Real) : Boolean precedence=RELATIONAL
+	{
+		post: result = ((self = r) or (self < r));
+	}
 	/**
 	True if self is greater than or equal to r.
-
-	post: result = ((self = r) or (self > r))
 	**/
-	operation ">="(r : Real) : Boolean precedence=RELATIONAL;
+	operation ">="(r : Real) : Boolean precedence=RELATIONAL
+	{
+		post: result = ((self = r) or (self > r));
+	}
 	/**
 	The absolute value of self.
-
-	post: if self < 0 then result = - self else result = self endif
 	**/
-	operation abs() : Real;
+	operation abs() : Real
+	{
+		post: if self < 0 then result = - self else result = self endif;
+	}
 	/**
 	The largest integer that is less than or equal to self.
-
-	post: (result <= self) and (result + 1 > self)
 	**/
-	operation floor() : Integer;
+	operation floor() : Integer
+	{
+		post: (result <= self) and (result + 1 > self);
+	}
 	/**
 	The maximum of self and r.
-
-	post: if self >= r then result = self else result = r endif
 	**/
-	operation max(r : Real) : Real;
+	operation max(r : Real) : Real
+	{
+		post: if self >= r then result = self else result = r endif;
+	}
 	/**
 	The minimum of self and r.
-
-	post: if self <= r then result = self else result = r endif
 	**/
-	operation min(r : Real) : Real;
+	operation min(r : Real) : Real
+	{
+		post: if self <= r then result = self else result = r endif;
+	}
 --	operation oclAsType<T extends Real>(type : oclM2::Class<T>) : T;
 	/**
 	The integer that is closest to self. When there are two such integers, the largest one.
-
-	post: ((self - result).abs() < 0.5) or ((self - result).abs() = 0.5 and (result > self))
 	**/
-	operation round() : Integer;
+	operation round() : Integer
+	{
+		post: ((self - result).abs() < 0.5) or ((self - result).abs() = 0.5 and (result > self));
+	}
 	/**
 	Converts self to a string value.
 	**/
@@ -1201,7 +1263,7 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	The subsequence of the source sequence for which body is true.
 
 	source->select(iterator | body) =
-        source->iterate(iterator; result : Sequence(T) = Sequence{} |
+        source->iterate(iterator; result : Sequence<T> = Sequence{} |
                         if body then result->including(iterator)
                                 else result
                         endif)
@@ -1216,7 +1278,7 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 
 	source->sortedBy(iterator | body) =
-      iterate( iterator ; result : Sequence(T) : Sequence {} |
+      iterate( iterator ; result : Sequence<T> : Sequence {} |
          if result->isEmpty() then
            result.append(iterator)
          else
@@ -1231,67 +1293,67 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	iteration sortedBy(i : T | expression : OclExpression) : Sequence<T>;
 	/**
 	True if self contains the same elements as s in the same order.
-
-	post: result = Sequence{1..self->size()}->forAll(index : Integer |
+	**/
+	operation "="(s : Sequence<T>) : Boolean precedence=EQUALITY
+	{
+		post: result = Sequence{1..self->size()}->forAll(index : Integer |
                                  self->at(index) = s->at(index))
                                  and
-                                 self->size() = s->size()
-	**/
-	operation "="(s : Sequence<T>) : Boolean precedence=EQUALITY;
+                                 self->size() = s->size();
+	}
 --	operation "<>"(s : Sequence<OclAny>) : Boolean precedence=EQUALITY;
 	/**
 	The sequence of elements, consisting of all elements of self, followed by object.
-
-	post: result->size() = self->size() + 1
-
-	post: result->at(result->size() ) = object
-
-	post:   Sequence{1..self->size() }->forAll(index : Integer |
-         result->at(index) = self ->at(index))
 	**/
-	operation append(object : T) : Sequence<T>;
+	operation append(object : T) : Sequence<T>
+	{
+		post: result->size() = self->size() + 1;
+		post: result->at(result->size() ) = object;
+		post:   Sequence{1..self->size() }->forAll(index : Integer |
+	         result->at(index) = self ->at(index));
+	}
 	/**
 	Redefines the Collection operation. The Bag containing all the elements from self, including duplicates.
-
-	post: result->forAll(elem | self->count(elem) = result->count(elem) )
-
-	post: self->forAll(elem | self->count(elem) = result->count(elem) )
 	**/
-	operation asBag() : Bag<T>;
+	operation asBag() : Bag<T>
+	{
+		post: result->forAll(elem | self->count(elem) = result->count(elem));
+		post: self->forAll(elem | self->count(elem) = result->count(elem));
+	}
 	/**
 	Redefines the Collection operation. An OrderedSet that contains all the elements from self, in the same order, with duplicates removed.
-
-	post: result->forAll(elem | self  ->includes(elem))
-
-	post: self  ->forAll(elem | result->includes(elem))
-
-	post: self  ->forAll(elem | result->count(elem) = 1)
-
-	post: self  ->forAll(elem1, elem2 | 
-                         self->indexOf(elem1) < self->indexOf(elem2) 
-                               implies result->indexOf(elem1) < result->indexOf(elem2) )
 	**/
-	operation asOrderedSet() : OrderedSet<T>;
+	operation asOrderedSet() : OrderedSet<T>
+	{
+		post: result->forAll(elem | self  ->includes(elem));
+		post: self->forAll(elem | result->includes(elem));
+		post: self->forAll(elem | result->count(elem) = 1);
+		post: self->forAll(elem1, elem2 | 
+                 self->indexOf(elem1) < self->indexOf(elem2) 
+                       implies result->indexOf(elem1) < result->indexOf(elem2) );
+	}
 	/**
 	Redefines the Collection operation. The Sequence identical to the object itself. This operation exists for convenience reasons.
-
-	post: result = self
 	**/
-	operation asSequence() : Sequence<T>;
+	operation asSequence() : Sequence<T>
+	{
+		post: result = self;
+	}
 	/**
 	Redefines the Collection operation. The Set containing all the elements from self, with duplicates removed.
-
-	post: result->forAll(elem | self  ->includes(elem))
-
-	post: self  ->forAll(elem | result->includes(elem))
 	**/
-	operation asSet() : Set<T>;
+	operation asSet() : Set<T>
+	{
+		post: result->forAll(elem | self  ->includes(elem));
+		post: self  ->forAll(elem | result->includes(elem));
+	}
 	/**
 	The i-th element of sequence.
-
-	pre : i >= 1 and i <= self->size()
 	**/
-	operation at(index : Integer) : T;
+	operation at(index : Integer) : T
+	{
+		pre : index >= 1 and index <= self->size();
+	}
 	/**
 	The number of occurrences of object in self.
 	**/
@@ -1300,102 +1362,99 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	The sequence containing all elements of self apart from all occurrences of object.
 
 	The order of the remaining elements is not changed.
-
-	post:result->includes(object) = false
-
-	post: result->size() = self->size() - self->count(object)
-
-	post: result = self->iterate(elem; acc : Sequence(T)
-     = Sequence{}|
-         if elem = object then acc else acc->append(elem) endif )
 	**/
-	operation excluding(object : T) : Sequence<T>;
+	operation excluding(object : T) : Sequence<T>
+	{
+		post:result->includes(object) = false;
+		post: result->size() = self->size() - self->count(object);
+		post: result = self->iterate(elem; acc : Sequence<T>
+	     = Sequence{} |
+	         if elem = object then acc else acc->append(elem) endif );
+	}
 	/**
 	The first element in self.
-
-	post: result = self->at(1)
 	**/
-	operation first() : T;
+	operation first() : T
+	{
+		post: result = self->at(1);		
+	}
 	/**
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same sequence as self.
 	If the element type is a collection type, the result is the sequence containing all the elements
 	of all the recursively flattened elements of self. The order of the elements is partial. 
-
-	post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
-                  self->iterate(c; acc : Sequence(T2) = Sequence{} | 
+	**/
+	operation flatten<T2>() : Sequence<T2>
+	{
+/*FIXME	post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
+                  self->iterate(c; acc : Sequence<T2> = Sequence{} | 
                        acc->union(c->flatten()->asSequence() ) ) 
                else 
                   self 
-               endif 
-	**/
-	operation flatten<T2>() : Sequence<T2>;
+               endif; */
+	}
 	/**
 	The sequence containing all elements of self plus object added as the last element.
-
-	post: result = self.append(object)
 	**/
-	operation including(object : T) : Sequence<T>;
+	operation including(object : T) : Sequence<T>
+	{
+		post: result = self.append(object);
+	}
 	/**
 	The index of object obj in the sequence.
-
-	pre  : self->includes(obj)
-
-	post : self->at(i) = obj
 	**/
-	operation indexOf(obj : T) : Integer;
+	operation indexOf(obj : T) : Integer
+	{
+		pre  : self->includes(obj);
+		post : self->at(result) = obj;
+	}
 	/**
 	The sequence consisting of self with object inserted at position index.
-
-	post: result->size = self->size() + 1
-
-	post: result->at(index) = object
-
-	post: Sequence{1..(index - 1)}->forAll(i : Integer |
-        self->at(i) = result->at(i))
-
-	post: Sequence{(index + 1)..self->size()}->forAll(i : Integer |
-        self->at(i) = result->at(i + 1))
 	**/
-	operation insertAt(index : Integer, object : T) : Sequence<T>;
+	operation insertAt(index : Integer, object : T) : Sequence<T>
+	{
+		post: result->size() = self->size() + 1;
+		post: result->at(index) = object;
+		post: Sequence{1..(index - 1)}->forAll(i : Integer |
+	        self->at(i) = result->at(i));
+		post: Sequence{(index + 1)..self->size()}->forAll(i : Integer |
+	        self->at(i) = result->at(i + 1));
+	}
 	/**
 	The last element in self.
-
-	post: result = self->at(self->size() )
 	**/
-	operation last() : T;
+	operation last() : T
+	{
+		post: result = self->at(self->size());
+	}
 	/**
 	The sequence consisting of object, followed by all elements in self.
-
-	post: result->size = self->size() + 1
-
-	post: result->at(1) = object
-
-	post:   Sequence{1..self->size()}->forAll(index : Integer |
-        self->at(index) = result->at(index + 1))
 	**/
-	operation prepend(object : T) : Sequence<T>;
+	operation prepend(object : T) : Sequence<T>
+	{
+		post: result->size() = self->size() + 1;	
+		post: result->at(1) = object;
+		post:   Sequence{1..self->size()}->forAll(index : Integer |
+        	self->at(index) = result->at(index + 1));
+	}
 	/**
 	The sequence containing the same elements but with the opposite order.
-
-	post: result->size() = self->size()
 	**/
-	operation reverse() : Sequence<T>;
+	operation reverse() : Sequence<T>
+	{
+		post: result->size() = self->size();
+	}
 	/**
 	The sub-sequence of self starting at number lower, up to and including element number upper.
-
-	pre : 1 <= lower
-
-	pre : lower <= upper
-
-	pre : upper <= self->size()
-
-	post: result->size() = upper -lower + 1
-
-	post: Sequence{lower..upper}->forAll( index |
-         result->at(index - lower + 1) =
-                          self->at(index))
 	**/
-	operation subSequence(lower : Integer, upper : Integer) : Sequence<T>;
+	operation subSequence(lower : Integer, upper : Integer) : Sequence<T>
+	{
+		pre : 1 <= lower;
+		pre : lower <= upper;
+		pre : upper <= self->size();
+		post: result->size() = upper -lower + 1;
+		post: Sequence{lower..upper}->forAll( index |
+	         result->at(index - lower + 1) = self->at(index));
+	}
 	/**
 	Redefines the Collection operation to remove the requirement for the + operation to be associative and/or commutative,
 	since the order of evaluation is well-defined by the iteration over an ordered collection.
@@ -1403,16 +1462,15 @@ type Sequence<T> : SequenceType conformsTo Collection<T> {
 	operation sum() : T;
 	/**
 	The sequence consisting of all elements in self, followed by all elements in s.
-
-	post: result->size() = self->size() + s->size()
-
-	post: Sequence{1..self->size()}->forAll(index : Integer |
-                                                          self->at(index) = result->at(index))
-
-	post: Sequence{1..s->size()}->forAll(index : Integer |
-                                           s->at(index) =  result->at(index + self->size() )))
 	**/
-	operation union(s : Sequence<T>) : Sequence<T>;
+	operation union(s : Sequence<T>) : Sequence<T>
+	{
+		post: result->size() = self->size() + s->size();
+		post: Sequence{1..self->size()}->forAll(index : Integer |
+            self->at(index) = result->at(index));
+		post: Sequence{1..s->size()}->forAll(index : Integer |
+            s->at(index) =  result->at(index + self->size() ));
+	}
 }
 
 /**
@@ -1444,7 +1502,7 @@ type Set<T> : SetType conformsTo Collection<T> {
 	The subset of set for which expr is true.
 
 	source->select(iterator | body) =
-         source->iterate(iterator; result : Set(T) = Set{} |
+         source->iterate(iterator; result : Set<T> = Set{} |
                           if body then result->including(iterator)
                                   else result
                            endif)
@@ -1459,7 +1517,7 @@ type Set<T> : SetType conformsTo Collection<T> {
 	The < operation must return a Boolean value and must be transitive (i.e., if a < b and b < c then a < c).
 
 	source->sortedBy(iterator | body) =
-      iterate( iterator ; result : OrderedSet(T) : OrderedSet {} |
+      iterate( iterator ; result : OrderedSet<T> : OrderedSet {} |
          if result->isEmpty() then
            result.append(iterator)
          else
@@ -1474,132 +1532,132 @@ type Set<T> : SetType conformsTo Collection<T> {
 	iteration sortedBy(i : T | expression : OclExpression) : OrderedSet<T>;
 	/**
 	Evaluates to true if self and s contain the same elements.
-
-	post: result = (self->forAll(elem | s->includes(elem)) and 
-                                    s->forAll(elem | self->includes(elem)) )
 	**/
-	operation "="(s : Set<T>) : Boolean precedence=EQUALITY;
+	operation "="(s : Set<T>) : Boolean precedence=EQUALITY
+	{
+		post: result = (self->forAll(elem | s->includes(elem)) and 
+                                    s->forAll(elem | self->includes(elem)) );
+	}
 --	operation "<>"(s : Set<T>) : Boolean precedence=EQUALITY;
 	/**
 	The elements of self, which are not in s.
-
-	post: result->forAll(elem | self->includes(elem) and s->excludes(elem))
-
-	post: self  ->forAll(elem | result->includes(elem) = s->excludes(elem))
 	**/
-	operation "-"(s : Set<T>) : Set<T>;
+	operation "-"(s : Set<T>) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) and s->excludes(elem));
+		post: self  ->forAll(elem | result->includes(elem) = s->excludes(elem));
+	}
 	/**
 	Redefines the Collection operation. The Bag that contains all the elements from self.
-
-	post: result->forAll(elem | self->includes(elem))
-
-	post: self->forAll(elem | result->count(elem) = 1)
 	**/
-	operation asBag() : Bag<T>;
+	operation asBag() : Bag<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+		post: self->forAll(elem | result->count(elem) = 1);
+	}
 	/**
 	Redefines the Collection operation. An OrderedSet that contains all the elements from self, in undefined order.
-
-	post: result->forAll(elem | self->includes(elem))
 	**/
-	operation asOrderedSet() : OrderedSet<T>;
+	operation asOrderedSet() : OrderedSet<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+	}
 	/**
 	Redefines the Collection operation. A Sequence that contains all the elements from self, in undefined order.
-
-	post: result->forAll(elem | self->includes(elem))
-
-	post: self->forAll(elem | result->count(elem) = 1)
 	**/
-	operation asSequence() : Sequence<T>;
+	operation asSequence() : Sequence<T>
+	{
+		post: result->forAll(elem | self->includes(elem));
+		post: self->forAll(elem | result->count(elem) = 1);
+	}
 	/**
 	Redefines the Collection operation. A Set identical to self. This operation exists for convenience reasons.
-
-	post: result = self
 	**/
-	operation asSet() : Set<T>;
+	operation asSet() : Set<T>
+	{
+		post: result = self;
+	}
 	/**
 	The number of occurrences of object in self.
-
-	post: result <= 1
 	**/
-	operation count(object : T) : Integer;
+	operation count(object : T) : Integer
+	{
+		post: result <= 1;
+	}
 	/**
 	The set containing all elements of self without object.
-
-	post: result->forAll(elem | self->includes(elem) and (elem <> object))
-
-	post: self-  >forAll(elem | result->includes(elem) = (object <> elem))
-
-	post: result->excludes(object)
 	**/
-	operation excluding(object : T) : Set<T>;
+	operation excluding(object : T) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) and (elem <> object));
+		post: self->forAll(elem | result->includes(elem) = (object <> elem));
+		post: result->excludes(object);
+	}
 	/**
 	Redefines the Collection operation. If the element type is not a collection type, this results in the same set as self.
 	If the element type is a collection type, the result is the set containing all the elements of all the recursively flattened elements of self.
-
-	post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
-                  self->iterate(c; acc : Set(T2) = Set{} | 
+	**/
+	operation flatten<T2>() : Set<T2>
+	{
+/*FIXME	post: result = if self.oclType().elementType.oclIsKindOf(CollectionType) then 
+                  self->iterate(c; acc : Set<T2> = Set{} | 
                        acc->union(c->flatten()->asSet() ) ) 
                else 
                   self 
-               endif
-	**/
-	operation flatten<T2>() : Set<T2>;
+               endif; */
+	}
 	/**
 	The set containing all elements of self plus object.
-
-	post: result->forAll(elem | self->includes(elem) or (elem = object))
-
-	post: self-  >forAll(elem | result->includes(elem))
-
-	post: result->includes(object)
 	**/
-	operation including(object : T) : Set<T>;
+	operation including(object : T) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) or (elem = object));
+		post: self->forAll(elem | result->includes(elem));
+		post: result->includes(object);
+	}
 	/**
 	The intersection of self and s (i.e., the set of all elements that are in both self and s).
-
-	post: result->forAll(elem | self->includes(elem) and s->includes(elem))
-
-	post: self->forAll(elem | s   ->includes(elem) = result->includes(elem))
-
-	post: s   ->forAll(elem | self->includes(elem) = result->includes(elem))
 	**/
-	operation intersection(s : Set<T>) : Set<T>;
+	operation intersection(s : Set<T>) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) and s->includes(elem));
+		post: self->forAll(elem | s   ->includes(elem) = result->includes(elem));
+		post: s   ->forAll(elem | self->includes(elem) = result->includes(elem));
+	}
 	/**
 	The intersection of self and bag.
-
-	post: result = self->intersection( bag->asSet )
 	**/
-	operation intersection(bag : Bag<T>) : Set<T>;
+	operation intersection(bag : Bag<T>) : Set<T>
+	{
+		post: result = self->intersection( bag->asSet());
+	}
 	/**
 	The sets containing all the elements that are in self or s, but not in both.
-
-	post: result->forAll(elem | self->includes(elem) xor s->includes(elem))
-
-	post: self->forAll(elem | result->includes(elem) = s   ->excludes(elem))
-
-	post: s   ->forAll(elem | result->includes(elem) = self->excludes(elem))
 	**/
-	operation symmetricDifference(s : Set<T>) : Set<T>;
+	operation symmetricDifference(s : Set<T>) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) xor s->includes(elem));
+		post: self->forAll(elem | result->includes(elem) = s   ->excludes(elem));
+		post: s   ->forAll(elem | result->includes(elem) = self->excludes(elem));
+	}
 	/**
 	The union of self and bag. 
-
-	post: result->forAll(elem | result->count(elem) = self->count(elem) + bag->count(elem))
-
-	post: self->forAll(elem | result->includes(elem))
-
-	post: bag ->forAll(elem | result->includes(elem))
 	**/
-	operation union(bag : Bag<T>) : Bag<T>;
+	operation union(bag : Bag<T>) : Bag<T>
+	{
+		post: result->forAll(elem | result->count(elem) = self->count(elem) + bag->count(elem));
+		post: self->forAll(elem | result->includes(elem));
+		post: bag ->forAll(elem | result->includes(elem));
+	}
 	/**
 	The union of self and s.
-
-	post: result->forAll(elem | self->includes(elem) or s->includes(elem))
-
-	post: self  ->forAll(elem | result->includes(elem))
-
-	post: s     ->forAll(elem | result->includes(elem))
 	**/
-	operation union(s : Set<T>) : Set<T>;
+	operation union(s : Set<T>) : Set<T>
+	{
+		post: result->forAll(elem | self->includes(elem) or s->includes(elem));
+		post: self  ->forAll(elem | result->includes(elem));
+		post: s     ->forAll(elem | result->includes(elem));
+	}
 }
 
 /**
@@ -1612,74 +1670,73 @@ type String : PrimitiveType conformsTo OclAny {
 --	operation "<>"(object2 : String) : Boolean precedence=EQUALITY;
 	/**
 	The concatenation of self and s.
-
-	post: result = self.concat(s)
 	**/
-	operation "+"(s : String) : String precedence=ADDITIVE;
+	operation "+"(s : String) : String precedence=ADDITIVE
+	{
+		post: result = self.concat(s);
+	}
 	/**
 	Queries the character at position i in self.
-
-	pre: i > 0
-
-	pre: i <= self.size()
-
-	post: result = self.substring(i, i)
 	**/
-	operation at(i : Integer) : String;
+	operation at(i : Integer) : String
+	{
+		pre: i > 0;
+		pre: i <= self.size();
+		post: result = self.substring(i, i);
+	}
 	/**
 	Obtains the characters of self as a sequence.
-
-	post: result = 
+	**/
+	operation characters() : Sequence<String>
+	{
+		post: result = 
            if self.size() = 0 then
               Sequence{}
            else
-              Sequence{1..self.size()}->iterate(i; acc : Sequence(String) = Sequence{} |
+              Sequence{1..self.size()}->iterate(i; acc : Sequence<String> = Sequence{} |
                   acc->append(self.at(i)))
-           endif
-	**/
-	operation characters() : Sequence<String> ;
+           endif;
+	}
 	/**
 	The concatenation of self and s.
-
-	post: result.size() = self.size() + string.size()
-
-	post: result.substring(1, self.size() ) = self
-
-	post: result.substring(self.size() + 1, result.size() ) = s
 	**/
-	operation concat(s : String) : String;
+	operation concat(s : String) : String
+	{
+		post: result.size() = self.size() + s.size();
+		post: result.substring(1, self.size() ) = self;
+		post: result.substring(self.size() + 1, result.size() ) = s;
+	}
 	/**
 	Queries whether s and self are equivalent under case-insensitive collation.
-
-	post: result = (self.toUpperCase() = s.toUpperCase())
 	**/
-	operation equalsIgnoreCase(s : String) : Boolean;
+	operation equalsIgnoreCase(s : String) : Boolean
+	{
+		post: result = (self.toUpperCase() = s.toUpperCase());
+	}
 	/**
 	Queries the index in self at which s is a substring of self, or zero if s is not a substring of self.
 	The empty string is considered to be a substring of every string but the empty string, at index 1.
 	No string is a substring of the empty string.
-
-	post: self.size() = 0 implies result = 0
-
-	post: s.size() = 0 and self.size() > 0 implies result = 1
-
-	post: s.size() > 0 and result > 0 implies self.substring(result, result + s.size() - 1) = s
 	**/
-	operation indexOf(s : String) : Integer;
+	operation indexOf(s : String) : Integer
+	{
+		post: self.size() = 0 implies result = 0;
+		post: s.size() = 0 and self.size() > 0 implies result = 1;
+		post: s.size() > 0 and result > 0 implies self.substring(result, result + s.size() - 1) = s;
+	}
 	/**
 	The number of characters in self.
 	**/
 	operation size() : Integer;
 	/**
 	The sub-string of self starting at character number lower, up to and including character number upper. Character numbers run from 1 to self.size().
-
-	pre: 1 <= lower
-
-	pre: lower <= upper
-
-	pre: upper <= self.size()
 	**/
-	operation substring(lower : Integer, upper : Integer) : String;
+	operation substring(lower : Integer, upper : Integer) : String
+	{
+		pre: 1 <= lower;
+		pre: lower <= upper;
+		pre: upper <= self.size();
+	}
 	/**
 	Converts self to a boolean value.
 	**/
@@ -1707,26 +1764,29 @@ type String : PrimitiveType conformsTo OclAny {
 	operation toUpperCase() : String;
 	/**
 	True if self is greater than s, using the locale defined by looking up oclLocale in the current environment.
-
-	post: result = not (self <= s)
 	**/
-	operation ">"(s : String) : Boolean precedence=RELATIONAL;
+	operation ">"(s : String) : Boolean precedence=RELATIONAL
+	{
+		post: result = not (self <= s);
+	}
 	/**
 	True if self is less than s, using the locale defined by looking up oclLocale in the current environment.
 	**/
 	operation "<"(s : String) : Boolean precedence=RELATIONAL;
 	/**
 	True if self is less than or equal to s, using the locale defined by looking up oclLocale in the current environment.
-
-	post: result = ((self = s) or (self < s))
 	**/
-	operation "<="(s : String) : Boolean precedence=RELATIONAL;
+	operation "<="(s : String) : Boolean precedence=RELATIONAL
+	{
+		post: result = ((self = s) or (self < s));
+	}
 	/**
 	True if self is greater than or equal to s, using the locale defined by looking up oclLocale in the current environment.
-
-	post: result = ((self = s) or (self > s)) 
 	**/
-	operation ">="(s : String) : Boolean precedence=RELATIONAL;
+	operation ">="(s : String) : Boolean precedence=RELATIONAL
+	{
+		post: result = ((self = s) or (self > s));
+	}
 }
 
 /**
