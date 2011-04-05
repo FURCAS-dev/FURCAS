@@ -48,6 +48,7 @@ public class LeanMap<K, E> extends AbstractMapBase<K, E> {
 			throw new UnsupportedOperationException();
 		}
 
+		@SuppressWarnings("unchecked")
 		public E get(int index) {
 			return (E) a[index + 1];
 		}
@@ -83,6 +84,7 @@ public class LeanMap<K, E> extends AbstractMapBase<K, E> {
 		this.table = new Object[cap];
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E get(K keyElem) {
 		if (keyElem == null) {
@@ -204,6 +206,7 @@ public class LeanMap<K, E> extends AbstractMapBase<K, E> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void serialize(SerializationStrategy<K, E> strategy) {
 		Object[] tab = table;
@@ -249,5 +252,10 @@ public class LeanMap<K, E> extends AbstractMapBase<K, E> {
 		}
 
 		this.initialize(tab, size);
+	}
+	
+	public Object[] getUnderlyingMapTable(){
+		return table;
+		
 	}
 }

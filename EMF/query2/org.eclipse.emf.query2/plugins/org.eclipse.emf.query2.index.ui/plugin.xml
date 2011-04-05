@@ -47,5 +47,83 @@
       <startup
             class="org.eclipse.emf.query.index.ui.IndexingIntitializer"></startup>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
+            name="EMF Query 2">
+      </category>
+      <view
+            category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
+            class="org.eclipse.emf.query.index.ui.view.IndexView"
+            icon="icons/IndexView.gif"
+            id="org.eclipse.emf.query2.index.ui.indexview"
+            name="Index View"
+            restorable="false">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.emf.query2.index.ui.copyQualifiedName"
+            name="Copy Qualified Name">
+      </command>
+      <command
+            id="org.eclipse.emf.query2.index.ui.recreateIndices"
+            name="Recreate Indices">
+      </command>
+      <command
+            id="org.eclipse.emf.query2.index.ui.openInEditor"
+            name="Open In Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.query.index.ui.view.tree.handlers.CopyQualifiedNameHandler"
+            commandId="org.eclipse.emf.query2.index.ui.copyQualifiedName">
+      </handler>
+      <handler
+            class="org.eclipse.emf.query.index.ui.view.tree.handlers.RecreateIndicesHandler"
+            commandId="org.eclipse.emf.query2.index.ui.recreateIndices">
+      </handler>
+      <handler
+            class="org.eclipse.emf.query.index.ui.view.tree.handlers.OpenResourceinEditorHandler"
+            commandId="org.eclipse.emf.query2.index.ui.openInEditor">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.emf.query2.index.ui.indexview?after=additions">
+         <command
+               commandId="org.eclipse.emf.query2.index.ui.copyQualifiedName"
+               icon="icons/CopyQualifiedName.gif"
+               label="Copy Qualified Name"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.emf.query2.index.ui.indexview">
+         <command
+               commandId="org.eclipse.emf.query2.index.ui.recreateIndices"
+               icon="icons/RecreateIndices.gif"
+               label="Recreate Indices"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="true"
+            locationURI="popup:org.eclipse.emf.query2.index.ui.indexview?after=additions">
+         <command
+               commandId="org.eclipse.emf.query2.index.ui.openInEditor"
+               icon="icons/OpenInEditor.gif"
+               label="Open In Editor"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
 
 </plugin>

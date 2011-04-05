@@ -41,6 +41,7 @@ public class SerializationStrategyFactory {
 
 	private static final int MAX_SIZE = 262144;
 
+	@SuppressWarnings("unused")
 	private static final int INT_SIZE = Integer.SIZE / 8;
 
 	private static final int SHORT_SIZE = Short.SIZE / 8;

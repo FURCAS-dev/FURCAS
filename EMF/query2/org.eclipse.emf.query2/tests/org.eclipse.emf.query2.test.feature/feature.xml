@@ -28,13 +28,12 @@ Martin Strenge - initial API, implementation and documentation
       %license
    </license>
 
-   <plugin
+  <plugin
          id="org.eclipse.emf.query2.test"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
    <plugin
          id="org.eclipse.emf.query2.syntax.test"
          download-size="0"
@@ -47,14 +46,6 @@ Martin Strenge - initial API, implementation and documentation
          download-size="0"
          install-size="0"
          version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.query2.index.test"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
          unpack="false"/>
 
    <plugin

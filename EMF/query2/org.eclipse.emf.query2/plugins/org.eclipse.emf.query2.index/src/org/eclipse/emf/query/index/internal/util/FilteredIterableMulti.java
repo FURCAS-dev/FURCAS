@@ -40,6 +40,7 @@ public abstract class FilteredIterableMulti<T> implements Iterable<T> {
 	};
 
 	
+	@SuppressWarnings("unchecked")
 	public Iterator<T> iterator() {
 		this.scope = this.getNextIterator();
 		if (scope == null) {

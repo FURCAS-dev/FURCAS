@@ -1,4 +1,4 @@
-package org.eclipse.emf.query2.internal.ui;
+package org.eclipse.emf.query2.index.ui.test;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.emf.query2.stringsyntaxtools.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.emf.query2.index.ui.test"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
