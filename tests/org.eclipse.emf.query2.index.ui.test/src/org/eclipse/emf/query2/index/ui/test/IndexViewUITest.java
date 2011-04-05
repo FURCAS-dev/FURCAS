@@ -244,7 +244,7 @@ public class IndexViewUITest {
 		bot.viewByTitle("Index View").menu("Display Legends").click();//$NON-NLS-1$ //$NON-NLS-2$
 		assertTrue(bot.activeShell().getText().equals("Legends")); //$NON-NLS-1$
 		class UIThread implements Runnable {
-			@Override
+			
 			public void run() {
 				assertTrue(bot.activeShell().widget.getChildren().length ==4);
 			}
@@ -277,7 +277,7 @@ public class IndexViewUITest {
 		final String uri = tItem.getNode(0).getText();
 		tItem.getNode(0).contextMenu("Copy Qualified Name").click(); //$NON-NLS-1$
 		class UIThread implements Runnable {
-			@Override
+			
 			public void run() {
 				Transfer[] dataType = new Transfer[] { TextTransfer.getInstance() };
 				Clipboard clipBoard = new Clipboard(Display.getDefault());
