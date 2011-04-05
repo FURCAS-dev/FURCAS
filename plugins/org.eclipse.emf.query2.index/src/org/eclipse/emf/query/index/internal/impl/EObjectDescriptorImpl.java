@@ -12,16 +12,19 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.maps.MapEntry;
+import org.eclipse.emf.query.index.properties.EObjectDescriptorProperties;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
+import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
+public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry, IAdaptable {
 
 	private String eClass;
 	public static final int ECLASS = 1;
@@ -88,4 +91,46 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 	public URI getResourceURI() {
 		return this.resource.getURI();
 	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Object getAdapter(Class adapter) {
+		if (adapter == IPropertySource.class)
+			return new EObjectDescriptorProperties(this);
+		return null;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eClass == null) ? 0 : eClass.hashCode());
+		result = prime * result + ((fragment == null) ? 0 : fragment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EObjectDescriptorImpl other = (EObjectDescriptorImpl) obj;
+		if (eClass == null) {
+			if (other.eClass != null)
+				return false;
+		} else if (!eClass.equals(other.eClass))
+			return false;
+		if (fragment == null) {
+			if (other.fragment != null)
+				return false;
+		} else if (!fragment.equals(other.fragment))
+			return false;
+		return true;
+	}
+
+	
+
 }
