@@ -133,6 +133,11 @@
 			<url>http://download.eclipse.org/modeling/tmf/updates/releases/</url>
 			<layout>p2</layout>
 		</repository>
+		<repository>
+			<id>swtbot</id>
+			<url>http://download.eclipse.org/technology/swtbot/helios/dev-build/update-site/</url>
+			<layout>p2</layout>
+		</repository>
 	</repositories>
 </project>
 
