@@ -93,7 +93,6 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry, IAdap
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class)
 			return new EObjectDescriptorProperties(this);

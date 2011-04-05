@@ -87,7 +87,6 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal, IA
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class)
 			return new ReferenceDescriptorProperties(this);

@@ -330,7 +330,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		return String.valueOf(this.uri);
 	}
 
-	@Override
 	public Object[] getEObjectTable() {
 		if(eObjectTable==null){
 			return null;
@@ -338,7 +337,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		return eObjectTable.getUnderlyingMapTable();
 	}
 
-	@Override
 	public Object[] getIncomingLinksTable() {
 		if(incomingLinkTable==null){
 			return null;
@@ -346,7 +344,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		return incomingLinkTable.getUnderlyingMapTable();
 	}
 
-	@Override
 	public Object[] getOutgoingLinkTable() {
 		if(outgoingLinkTable==null){
 			return null;
@@ -355,7 +352,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class)
 			return new ResourceIndexProperties(this);
