@@ -37,4 +37,10 @@ public interface ResourceDescriptor {
 
 	String getUserData(String key);
 
+	Object[] getEObjectTable();
+
+	Object[] getIncomingLinksTable();
+
+	Object[] getOutgoingLinkTable();
+
 }

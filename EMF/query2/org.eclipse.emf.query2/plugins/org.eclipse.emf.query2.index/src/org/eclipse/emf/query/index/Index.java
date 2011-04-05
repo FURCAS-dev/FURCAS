@@ -11,6 +11,7 @@
 package org.eclipse.emf.query.index;
 
 import org.eclipse.emf.query.index.event.IndexChangeListenerRegistry;
+import org.eclipse.emf.query.index.internal.impl.GlobalTables;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.update.UpdateCommand;
 
@@ -68,5 +69,11 @@ public interface Index {
 	 * @return status whether the dump for Index exists already
 	 */
 	boolean isDumpExists();
+
+	/**
+	 * Retrieves the Global Tables stored inside the Indices.
+	 * @return Global Tables of the Indices.
+	 */
+	GlobalTables getGlobalTables();
 
 }
