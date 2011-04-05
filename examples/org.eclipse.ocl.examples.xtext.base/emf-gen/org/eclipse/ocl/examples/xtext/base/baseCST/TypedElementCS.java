@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
+ * $Id: TypedElementCS.java,v 1.3 2011/04/05 06:19:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
@@ -43,7 +43,7 @@ import org.eclipse.emf.common.util.EList;
 public interface TypedElementCS extends NamedElementCS {
 	/**
 	 * Returns the value of the '<em><b>Lower</b></em>' attribute.
-	 * The default value is <code>"0"</code>.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Lower</em>' attribute isn't clear,
@@ -53,7 +53,7 @@ public interface TypedElementCS extends NamedElementCS {
 	 * @return the value of the '<em>Lower</em>' attribute.
 	 * @see #setLower(int)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getTypedElementCS_Lower()
-	 * @model default="0"
+	 * @model default="1"
 	 * @generated
 	 */
 	int getLower();

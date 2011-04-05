@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypedElementCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: TypedElementCSImpl.java,v 1.3 2011/04/05 06:19:13 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -61,7 +61,7 @@ public abstract class TypedElementCSImpl extends NamedElementCSImpl implements T
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int LOWER_EDEFAULT = 0;
+	protected static final int LOWER_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getLower() <em>Lower</em>}' attribute.
