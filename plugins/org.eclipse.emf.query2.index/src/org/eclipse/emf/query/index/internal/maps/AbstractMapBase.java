@@ -38,6 +38,7 @@ public abstract class AbstractMapBase<K, E> implements Iterable<E>, Serializable
 			return true;
 		}
 
+		@SuppressWarnings("unchecked")
 		public K next() {
 			hasNext();
 			Object ret = prepared;

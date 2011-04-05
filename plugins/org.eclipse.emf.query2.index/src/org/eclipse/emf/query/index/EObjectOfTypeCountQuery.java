@@ -56,6 +56,7 @@ public class EObjectOfTypeCountQuery implements QueryInternal<Integer, Integer> 
 		return resDesc.typeTable.getAllWithEqualKey(type).size();
 	}
 
+	@SuppressWarnings("unused")
 	public Iterable<URI> getResourceScope(final GlobalTables globalTables) {
 		Collection<URI> ret = null;
 		if (this.resQuery != null) {
