@@ -49,7 +49,6 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 
 	}
 
-	@Override
 	public boolean hasChildren(Object element) {
 		if (element instanceof ResourceIndexGroup) {
 			return true;
@@ -69,12 +68,10 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 		return false;
 	}
 
-	@Override
 	public Object getParent(Object element) {
 		return null;
 	}
 
-	@Override
 	public Object[] getElements(Object inputElement) {
 		if (inputElement instanceof GlobalTables) {
 			ResourceIndexGroup resourceIndices = new ResourceIndexGroup();
@@ -122,7 +119,6 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 		return null;
 	}
 
-	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof ResourceIndexGroup) {
 			List<ResourceDescriptor> resourceIndices = ((ResourceIndexGroup) parentElement).getResourceIndexGroup();

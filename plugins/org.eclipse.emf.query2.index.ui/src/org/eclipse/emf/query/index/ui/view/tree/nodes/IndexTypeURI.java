@@ -15,7 +15,7 @@ public class IndexTypeURI implements IAdaptable {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
+	
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class)
 			return new IndexTypeURIProperties(this);
@@ -26,7 +26,7 @@ public class IndexTypeURI implements IAdaptable {
 		return uri;
 	}
 
-	@Override
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -34,7 +34,7 @@ public class IndexTypeURI implements IAdaptable {
 		return result;
 	}
 
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

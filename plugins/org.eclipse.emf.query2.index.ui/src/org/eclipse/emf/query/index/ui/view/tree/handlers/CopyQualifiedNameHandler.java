@@ -27,17 +27,17 @@ import org.eclipse.swt.widgets.Display;
  */
 public class CopyQualifiedNameHandler implements IHandler {
 
-	@Override
+	
 	public void addHandlerListener(IHandlerListener handlerListener) {
 
 	}
 
-	@Override
+	
 	public void dispose() {
 
 	}
 
-	@Override
+	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Object selectedElement = getSelectedElement();
 		if (selectedElement == null) {
@@ -79,7 +79,7 @@ public class CopyQualifiedNameHandler implements IHandler {
 		return selectedElement;
 	}
 
-	@Override
+	
 	public boolean isEnabled() {
 		Object selectedElement = getSelectedElement();
 		if (selectedElement instanceof ResourceDescriptor) {
@@ -98,12 +98,12 @@ public class CopyQualifiedNameHandler implements IHandler {
 
 	}
 
-	@Override
+	
 	public boolean isHandled() {
 		return true;
 	}
 
-	@Override
+	
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 
 	}

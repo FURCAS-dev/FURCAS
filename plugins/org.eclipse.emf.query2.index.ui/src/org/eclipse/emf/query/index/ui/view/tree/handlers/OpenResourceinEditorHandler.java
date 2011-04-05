@@ -17,23 +17,23 @@ import org.eclipse.jface.viewers.TreeViewer;
  */
 public class OpenResourceinEditorHandler implements IHandler {
 
-	@Override
+	
 	public void addHandlerListener(IHandlerListener handlerListener) {
 
 	}
 
-	@Override
+	
 	public void dispose() {
 
 	}
 
-	@Override
+	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IndexView.openInEditor(getSelectedElement());
 		return null;
 	}
 
-	@Override
+	
 	public boolean isEnabled() {
 		Object selectedElement = getSelectedElement();
 		if (selectedElement instanceof ResourceDescriptor || selectedElement instanceof EObjectDescriptor || selectedElement instanceof EReferenceDescriptor) {
@@ -50,12 +50,12 @@ public class OpenResourceinEditorHandler implements IHandler {
 		return selectedElement;
 	}
 
-	@Override
+	
 	public boolean isHandled() {
 		return true;
 	}
 
-	@Override
+	
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 
 	}

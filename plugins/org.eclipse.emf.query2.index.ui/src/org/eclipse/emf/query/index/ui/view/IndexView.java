@@ -82,7 +82,6 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 	 * @param parent
 	 */
 	@SuppressWarnings("deprecation")
-	@Override
 	public void createPartControl(Composite parent) {
 
 		Composite composite = new Composite(parent, SWT.NONE);
@@ -143,11 +142,11 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		treeViewer.getControl().setMenu(menu);
 		treeViewer.addDoubleClickListener(this);
 		IndexChangeListenerRegistry indexChangeRegistry = new IndexChangeListenerRegistry() {
-			@Override
+			
 			public void removeIndexChangeListener(IndexChangeListener listener) {
 			}
 
-			@Override
+			
 			public void addIndexChangeListener(IndexChangeListener listener) {
 			}
 		};
@@ -204,7 +203,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		{
 			actionEObjectTable = new Action(Messages.Query2IndexUI_IndexView_EObjectGroup) {
 
-				@Override
+				
 				public void run() {
 					refreshTreeViewer();
 				}
@@ -214,7 +213,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		}
 		{
 			actionInComingLinks = new Action(Messages.Query2IndexUI_IndexView_IncomingLinksGroup) {
-				@Override
+				
 				public void run() {
 					refreshTreeViewer();
 				}
@@ -223,7 +222,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		}
 		{
 			actionOutgoingLinks = new Action(Messages.Query2IndexUI_IndexView_OutgoingLinksGroup) {
-				@Override
+				
 				public void run() {
 					refreshTreeViewer();
 				}
@@ -234,7 +233,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		{
 			actionDisplayLegends = new Action(Messages.Query2IndexUI_IndexView_ActionDisplayLegends_Text, IndexUIImageRegistry.getImageDescriptor(IndexUIImageRegistry.LEGEND_ICON)) {
 
-				@Override
+				
 				public void run() {
 					ILegendManager legendManager = new IndexViewLegendManager();
 					new DisplayLegendsAction(Messages.Query2IndexUI_IndexView_Legend, legendManager).run();
@@ -261,13 +260,13 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		indexViewMenuManager.add(actionDisplayLegends);
 	}
 
-	@Override
+	
 	public void setFocus() {
 		// Set the focus
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
+	
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySheetPage.class)
 			return propertiesPage;
@@ -290,7 +289,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		return actionOutgoingLinks.isChecked();
 	}
 
-	@Override
+	
 	public void doubleClick(DoubleClickEvent event) {
 		ISelection selection = event.getSelection();
 		Object selectedElement = ((IStructuredSelection) selection).getFirstElement();
@@ -335,7 +334,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		}
 	}
 
-	@Override
+	
 	public void indexChanged(IndexChangeEvent event) {
 		treeViewer.refresh();
 	}

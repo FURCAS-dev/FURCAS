@@ -20,7 +20,6 @@ import org.eclipse.emf.query.index.ui.view.tree.nodes.TypeIndexGroup;
 @SuppressWarnings({ "rawtypes" })
 public class IndexComparator implements Comparator {
 
-	@Override
 	public int compare(Object arg0, Object o2) {
 		if (arg0 instanceof ResourceIndexGroup && o2 instanceof ResourceIndexGroup) {
 			if (((ResourceIndexGroup) arg0).getResourceIndexGroup().equals(((ResourceIndexGroup) o2).getResourceIndexGroup())) {

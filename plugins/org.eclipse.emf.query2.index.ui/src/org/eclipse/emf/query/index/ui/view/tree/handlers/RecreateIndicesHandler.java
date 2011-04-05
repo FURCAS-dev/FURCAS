@@ -27,15 +27,12 @@ import org.eclipse.ui.progress.IProgressConstants;
  */
 public class RecreateIndicesHandler implements IHandler {
 
-	@Override
 	public void addHandlerListener(IHandlerListener handlerListener) {
 	}
 
-	@Override
 	public void dispose() {
 	}
 
-	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Job job = new Job(Messages.Query2IndexUI_RecreateIndicesHandler_BuildingIndices) {
 			protected IStatus run(IProgressMonitor monitor) {
@@ -62,17 +59,14 @@ public class RecreateIndicesHandler implements IHandler {
 		return null;
 	}
 
-	@Override
 	public boolean isEnabled() {
 		return true;
 	}
 
-	@Override
 	public boolean isHandled() {
 		return true;
 	}
 
-	@Override
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
 

@@ -31,14 +31,14 @@ public class ResourceType implements IAdaptable {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Override
+	
 	public Object getAdapter(Class adapter) {
 		if (adapter == IPropertySource.class)
 			return new ElementTypeIndexProperties(this);
 		return null;
 	}
 
-	@Override
+	
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -46,7 +46,7 @@ public class ResourceType implements IAdaptable {
 		return result;
 	}
 
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;

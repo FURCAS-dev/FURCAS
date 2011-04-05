@@ -23,12 +23,12 @@ public class IndexTypeURIProperties implements IPropertySource {
 		setPropertyValue(PROPERTY_URI, uri);
 	}
 
-	@Override
+	
 	public Object getEditableValue() {
 		return null;
 	}
 
-	@Override
+	
 	public IPropertyDescriptor[] getPropertyDescriptors() {
 		IPropertyDescriptor[] propertyDescriptors = new IPropertyDescriptor[PropertiesTable.length];
 
@@ -44,23 +44,23 @@ public class IndexTypeURIProperties implements IPropertySource {
 		return propertyDescriptors;
 	}
 
-	@Override
+	
 	public Object getPropertyValue(Object name) {
 		if (name.equals(PROPERTY_URI))
 			return uri;
 		return null;
 	}
 
-	@Override
+	
 	public boolean isPropertySet(Object id) {
 		return false;
 	}
 
-	@Override
+	
 	public void resetPropertyValue(Object id) {
 	}
 
-	@Override
+	
 	public void setPropertyValue(Object name, Object value) {
 		if (name.equals(PROPERTY_URI)) {
 			uri = typeIndex.getURI().toString();
