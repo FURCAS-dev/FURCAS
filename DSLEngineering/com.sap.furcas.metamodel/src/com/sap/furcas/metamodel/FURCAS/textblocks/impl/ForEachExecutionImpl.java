@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
 /**
@@ -29,18 +29,18 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextElement <em>Context Element</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getResultModelElement <em>Result Model Element</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getSourceModelElement <em>Source Model Element</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getContextString <em>Context String</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl#getTemplateUsedForProduction <em>Template Used For Production</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getContextElement <em>Context Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getResultModelElement <em>Result Model Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getSourceModelElement <em>Source Model Element</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getContextString <em>Context String</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl#getTemplateUsedForProduction <em>Template Used For Production</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
+public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecution {
         /**
      * The cached value of the '{@link #getForeachPedicatePropertyInit() <em>Foreach Pedicate Property Init</em>}' reference.
      * <!-- begin-user-doc -->
@@ -116,7 +116,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
          * <!-- end-user-doc -->
      * @generated
      */
-        protected ForEachContextImpl() {
+        protected ForEachExecutionImpl() {
         super();
     }
 
@@ -127,7 +127,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
      */
         @Override
         protected EClass eStaticClass() {
-        return TextblocksPackage.Literals.FOR_EACH_CONTEXT;
+        return TextblocksPackage.Literals.FOR_EACH_EXECUTION;
     }
 
         /**
@@ -141,7 +141,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             foreachPedicatePropertyInit = (ForeachPredicatePropertyInit)eResolveProxy(oldForeachPedicatePropertyInit);
             if (foreachPedicatePropertyInit != oldForeachPedicatePropertyInit) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
             }
         }
         return foreachPedicatePropertyInit;
@@ -165,7 +165,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         ForeachPredicatePropertyInit oldForeachPedicatePropertyInit = foreachPedicatePropertyInit;
         foreachPedicatePropertyInit = newForeachPedicatePropertyInit;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT, oldForeachPedicatePropertyInit, foreachPedicatePropertyInit));
     }
 
         /**
@@ -179,7 +179,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             contextElement = eResolveProxy(oldContextElement);
             if (contextElement != oldContextElement) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT, oldContextElement, contextElement));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT, oldContextElement, contextElement));
             }
         }
         return contextElement;
@@ -203,7 +203,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         EObject oldContextElement = contextElement;
         contextElement = newContextElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT, oldContextElement, contextElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT, oldContextElement, contextElement));
     }
 
         /**
@@ -217,7 +217,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             resultModelElement = eResolveProxy(oldResultModelElement);
             if (resultModelElement != oldResultModelElement) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
             }
         }
         return resultModelElement;
@@ -241,7 +241,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         EObject oldResultModelElement = resultModelElement;
         resultModelElement = newResultModelElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT, oldResultModelElement, resultModelElement));
     }
 
         /**
@@ -255,7 +255,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             sourceModelElement = eResolveProxy(oldSourceModelElement);
             if (sourceModelElement != oldSourceModelElement) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
             }
         }
         return sourceModelElement;
@@ -279,7 +279,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         EObject oldSourceModelElement = sourceModelElement;
         sourceModelElement = newSourceModelElement;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT, oldSourceModelElement, sourceModelElement));
     }
 
         /**
@@ -300,7 +300,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         String oldContextString = contextString;
         contextString = newContextString;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING, oldContextString, contextString));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING, oldContextString, contextString));
     }
 
         /**
@@ -314,7 +314,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
             templateUsedForProduction = (Template)eResolveProxy(oldTemplateUsedForProduction);
             if (templateUsedForProduction != oldTemplateUsedForProduction) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
             }
         }
         return templateUsedForProduction;
@@ -338,7 +338,7 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         Template oldTemplateUsedForProduction = templateUsedForProduction;
         templateUsedForProduction = newTemplateUsedForProduction;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION, oldTemplateUsedForProduction, templateUsedForProduction));
     }
 
         /**
@@ -349,21 +349,21 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         @Override
         public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 if (resolve) return getForeachPedicatePropertyInit();
                 return basicGetForeachPedicatePropertyInit();
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT:
                 if (resolve) return getContextElement();
                 return basicGetContextElement();
-            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT:
                 if (resolve) return getResultModelElement();
                 return basicGetResultModelElement();
-            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT:
                 if (resolve) return getSourceModelElement();
                 return basicGetSourceModelElement();
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING:
                 return getContextString();
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+            case TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION:
                 if (resolve) return getTemplateUsedForProduction();
                 return basicGetTemplateUsedForProduction();
         }
@@ -379,22 +379,22 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT:
                 setContextElement((EObject)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT:
                 setResultModelElement((EObject)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING:
                 setContextString((String)newValue);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+            case TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION:
                 setTemplateUsedForProduction((Template)newValue);
                 return;
         }
@@ -409,22 +409,22 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         @Override
         public void eUnset(int featureID) {
         switch (featureID) {
-            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 setForeachPedicatePropertyInit((ForeachPredicatePropertyInit)null);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT:
                 setContextElement((EObject)null);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT:
                 setResultModelElement((EObject)null);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT:
                 setSourceModelElement((EObject)null);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING:
                 setContextString(CONTEXT_STRING_EDEFAULT);
                 return;
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+            case TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION:
                 setTemplateUsedForProduction((Template)null);
                 return;
         }
@@ -439,17 +439,17 @@ public class ForEachContextImpl extends EObjectImpl implements ForEachContext {
         @Override
         public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case TextblocksPackage.FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT:
                 return foreachPedicatePropertyInit != null;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_ELEMENT:
                 return contextElement != null;
-            case TextblocksPackage.FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT:
                 return resultModelElement != null;
-            case TextblocksPackage.FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT:
+            case TextblocksPackage.FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT:
                 return sourceModelElement != null;
-            case TextblocksPackage.FOR_EACH_CONTEXT__CONTEXT_STRING:
+            case TextblocksPackage.FOR_EACH_EXECUTION__CONTEXT_STRING:
                 return CONTEXT_STRING_EDEFAULT == null ? contextString != null : !CONTEXT_STRING_EDEFAULT.equals(contextString);
-            case TextblocksPackage.FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION:
+            case TextblocksPackage.FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION:
                 return templateUsedForProduction != null;
         }
         return super.eIsSet(featureID);

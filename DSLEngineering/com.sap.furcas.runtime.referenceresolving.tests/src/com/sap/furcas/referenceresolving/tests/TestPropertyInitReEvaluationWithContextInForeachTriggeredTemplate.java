@@ -135,7 +135,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
                             revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
                     1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
+                    TextblocksPackage.eINSTANCE.getForEachExecution_ResultModelElement(), revenueLedger).size());
             EObject author = revenueLedger.eContainer();
             TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();

@@ -28,7 +28,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
@@ -101,7 +101,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-        protected EList<ForEachContext> forEachContext;
+        protected EList<ForEachExecution> forEachContext;
 
         /**
      * The default value of the '{@link #getCachedString() <em>Cached String</em>}' attribute.
@@ -251,9 +251,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
-        public EList<ForEachContext> getForEachContext() {
+        public EList<ForEachExecution> getForEachContext() {
         if (forEachContext == null) {
-            forEachContext = new EObjectContainmentEList.Resolving<ForEachContext>(ForEachContext.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT);
+            forEachContext = new EObjectContainmentEList.Resolving<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT);
         }
         return forEachContext;
     }
@@ -307,7 +307,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      */
         public EList<TextBlock> getSubBlocks() {
         try {
-            return (EList<TextBlock>)GET_SUB_BLOCKS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<TextBlock>)GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -321,7 +321,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      */
         public EList<AbstractToken> getTokens() {
         try {
-            return (EList<AbstractToken>)GET_TOKENS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<AbstractToken>)GET_TOKENS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -348,7 +348,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
 
         /**
      * The cached invocation delegate for the '{@link #getTokens() <em>Get Tokens</em>}' operation.
@@ -358,7 +358,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
 
         /**
      * <!-- begin-user-doc -->
@@ -446,7 +446,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return;
             case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
                 getForEachContext().clear();
-                getForEachContext().addAll((Collection<? extends ForEachContext>)newValue);
+                getForEachContext().addAll((Collection<? extends ForEachExecution>)newValue);
                 return;
             case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
                 setCachedString((String)newValue);

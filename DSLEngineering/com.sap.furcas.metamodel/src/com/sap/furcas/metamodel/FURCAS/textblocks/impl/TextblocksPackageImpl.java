@@ -24,7 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -84,10 +84,10 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        private EClass forEachContextEClass = null;
+    private EClass forEachExecutionEClass = null;
 
         /**
      * <!-- begin-user-doc -->
@@ -547,52 +547,11 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EClass getForEachContext() {
-        return forEachContextEClass;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getForEachContext_ForeachPedicatePropertyInit() {
-        return (EReference)forEachContextEClass.getEStructuralFeatures().get(0);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getForEachContext_ContextElement() {
-        return (EReference)forEachContextEClass.getEStructuralFeatures().get(1);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getForEachContext_ResultModelElement() {
-        return (EReference)forEachContextEClass.getEStructuralFeatures().get(2);
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        @Override
-	public EReference getForEachContext_SourceModelElement() {
-        return (EReference)forEachContextEClass.getEStructuralFeatures().get(3);
+    public EClass getForEachExecution() {
+        return forEachExecutionEClass;
     }
 
         /**
@@ -600,8 +559,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getForEachContext_ContextString() {
-        return (EAttribute)forEachContextEClass.getEStructuralFeatures().get(4);
+    public EReference getForEachExecution_ForeachPedicatePropertyInit() {
+        return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(0);
     }
 
         /**
@@ -609,8 +568,44 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getForEachContext_TemplateUsedForProduction() {
-        return (EReference)forEachContextEClass.getEStructuralFeatures().get(5);
+    public EReference getForEachExecution_ContextElement() {
+        return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(1);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getForEachExecution_ResultModelElement() {
+        return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(2);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getForEachExecution_SourceModelElement() {
+        return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(3);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getForEachExecution_ContextString() {
+        return (EAttribute)forEachExecutionEClass.getEStructuralFeatures().get(4);
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getForEachExecution_TemplateUsedForProduction() {
+        return (EReference)forEachExecutionEClass.getEStructuralFeatures().get(5);
     }
 
         /**
@@ -714,13 +709,13 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEAttribute(documentNodeEClass, DOCUMENT_NODE__END_COLUMN);
         createEAttribute(documentNodeEClass, DOCUMENT_NODE__ABSOLUTE_OFFSET);
 
-        forEachContextEClass = createEClass(FOR_EACH_CONTEXT);
-        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT);
-        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__CONTEXT_ELEMENT);
-        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT);
-        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT);
-        createEAttribute(forEachContextEClass, FOR_EACH_CONTEXT__CONTEXT_STRING);
-        createEReference(forEachContextEClass, FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION);
+        forEachExecutionEClass = createEClass(FOR_EACH_EXECUTION);
+        createEReference(forEachExecutionEClass, FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT);
+        createEReference(forEachExecutionEClass, FOR_EACH_EXECUTION__CONTEXT_ELEMENT);
+        createEReference(forEachExecutionEClass, FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT);
+        createEReference(forEachExecutionEClass, FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT);
+        createEAttribute(forEachExecutionEClass, FOR_EACH_EXECUTION__CONTEXT_STRING);
+        createEReference(forEachExecutionEClass, FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION);
 
         eostokenEClass = createEClass(EOSTOKEN);
 
@@ -768,6 +763,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         omittedTokenEClass.getESuperTypes().add(this.getAbstractToken());
         lexedTokenEClass.getESuperTypes().add(this.getAbstractToken());
         unlexedTokenEClass.getESuperTypes().add(this.getAbstractToken());
+        forEachExecutionEClass.getESuperTypes().add(this.getTextBlock());
         eostokenEClass.getESuperTypes().add(this.getAbstractToken());
         bostokenEClass.getESuperTypes().add(this.getAbstractToken());
 
@@ -777,7 +773,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEReference(getTextBlock_SubNodes(), this.getDocumentNode(), this.getDocumentNode_Parent(), "subNodes", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_ParentAltChoices(), ecorePackage.getEInt(), "parentAltChoices", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_ElementsInContext(), ecorePackage.getEObject(), null, "elementsInContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTextBlock_ForEachContext(), this.getForEachContext(), null, "forEachContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTextBlock_ForEachContext(), this.getForEachExecution(), null, "forEachContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_CachedString(), theEcorePackage_1.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_Complete(), theEcorePackage_1.getEBoolean(), "complete", "false", 1, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_AdditionalTemplates(), theTCSPackage.getTemplate(), null, "additionalTemplates", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -818,13 +814,13 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEAttribute(getDocumentNode_EndColumn(), ecorePackage.getEInt(), "endColumn", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDocumentNode_AbsoluteOffset(), ecorePackage.getEInt(), "absoluteOffset", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(forEachContextEClass, ForEachContext.class, "ForEachContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getForEachContext_ForeachPedicatePropertyInit(), theTCSPackage.getForeachPredicatePropertyInit(), null, "foreachPedicatePropertyInit", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachContext_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachContext_ResultModelElement(), theEcorePackage_1.getEObject(), null, "resultModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachContext_SourceModelElement(), theEcorePackage_1.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getForEachContext_ContextString(), ecorePackage.getEString(), "contextString", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getForEachContext_TemplateUsedForProduction(), theTCSPackage.getTemplate(), null, "templateUsedForProduction", null, 1, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(forEachExecutionEClass, ForEachExecution.class, "ForEachExecution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getForEachExecution_ForeachPedicatePropertyInit(), theTCSPackage.getForeachPredicatePropertyInit(), null, "foreachPedicatePropertyInit", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_ContextElement(), theEcorePackage_1.getEObject(), null, "contextElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_ResultModelElement(), theEcorePackage_1.getEObject(), null, "resultModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_SourceModelElement(), theEcorePackage_1.getEObject(), null, "sourceModelElement", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getForEachExecution_ContextString(), ecorePackage.getEString(), "contextString", null, 0, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForEachExecution_TemplateUsedForProduction(), theTCSPackage.getTemplate(), null, "templateUsedForProduction", null, 1, 1, ForEachExecution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(eostokenEClass, Eostoken.class, "Eostoken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

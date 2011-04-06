@@ -29,7 +29,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
@@ -133,10 +133,10 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * 
      * <li>{@link SelfKind#FOREACH}: <code>self</code> is the element referred to as <code>#foreach</code> in the
      * original OCL expression, before <code>#foreach</code> was replaced by <code>self</code>. There must have been a
-     * {@link ForEachContext} whose {@link ForEachContext#getContextElement()} contains <code>self</code>. Once we've
-     * found this {@link ForEachContext}, we can fetch its {@link ForEachContext#getResultModelElement()}. This may be
+     * {@link ForEachExecution} whose {@link ForEachExecution#getContextElement()} contains <code>self</code>. Once we've
+     * found this {@link ForEachExecution}, we can fetch its {@link ForEachExecution#getResultModelElement()}. This may be
      * the element to be updated, if its production was actually selected by the <code>when</code> clauses of the
-     * <code>foreach</code> clause whose execution is described by the {@link ForEachContext}.</li>
+     * <code>foreach</code> clause whose execution is described by the {@link ForEachExecution}.</li>
      * 
      * </ul>
      * 
@@ -164,7 +164,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
      * <code>foreach</code> expression has evaluated to <code>self</code>, then determines which of the
      * <code>when</code> clauses matches the result and whose <code>as</code> template contains the
      * {@link #getSequenceElement() sequence element} whose execution trace we're searching. If such
-     * a {@link ForEachContext} is found, its {@link ForEachContext#getResultModelElement() result element}
+     * a {@link ForEachExecution} is found, its {@link ForEachExecution#getResultModelElement() result element}
      * is added to this method's result.
      */
     private Set<EObject> getElementToUpdateFromForeachElement(EObject self) throws ParserException {
@@ -180,12 +180,12 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         // template for the same #foreach element.
         Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
-                        TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), self);
+                        TextblocksPackage.eINSTANCE.getForEachExecution_ContextElement(), self);
         if (foreachContextsUsingSelfAsForeachElement != null) {
             Helper oclHelper = ocl.createOCLHelper();
             Template sequenceElementsParentTemplate = getSequenceElement().getParentTemplate();
             for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
-                ForEachContext foreachContext = (ForEachContext) eo;
+                ForEachExecution foreachContext = (ForEachExecution) eo;
                 ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
                 Template templateUsedForProduction = foreachContext.getTemplateUsedForProduction();
                 if (templateUsedForProduction == sequenceElementsParentTemplate) {

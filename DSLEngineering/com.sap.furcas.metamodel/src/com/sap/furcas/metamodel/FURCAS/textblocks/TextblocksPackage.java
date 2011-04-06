@@ -1301,50 +1301,266 @@ public interface TextblocksPackage extends EPackage {
         int UNLEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
 
         /**
-     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
+     * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl <em>For Each Execution</em>}' class.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl#getForEachContext()
+     * <!-- end-user-doc -->
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl#getForEachExecution()
      * @generated
      */
-        int FOR_EACH_CONTEXT = 6;
+    int FOR_EACH_EXECUTION = 6;
+
+        /**
+     * The feature id for the '<em><b>Version</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__VERSION = TEXT_BLOCK__VERSION;
+
+        /**
+     * The feature id for the '<em><b>Children Changed</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__CHILDREN_CHANGED = TEXT_BLOCK__CHILDREN_CHANGED;
+
+        /**
+     * The feature id for the '<em><b>Relexing Needed</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__RELEXING_NEEDED = TEXT_BLOCK__RELEXING_NEEDED;
+
+        /**
+     * The feature id for the '<em><b>Parent</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__PARENT = TEXT_BLOCK__PARENT;
+
+        /**
+     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__CORRESPONDING_MODEL_ELEMENTS = TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS;
+
+        /**
+     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__REFERENCED_ELEMENTS = TEXT_BLOCK__REFERENCED_ELEMENTS;
+
+        /**
+     * The feature id for the '<em><b>Sequence Element</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__SEQUENCE_ELEMENT = TEXT_BLOCK__SEQUENCE_ELEMENT;
+
+        /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__OFFSET = TEXT_BLOCK__OFFSET;
+
+        /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__LENGTH = TEXT_BLOCK__LENGTH;
+
+        /**
+     * The feature id for the '<em><b>Other Versions</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__OTHER_VERSIONS = TEXT_BLOCK__OTHER_VERSIONS;
+
+        /**
+     * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__OFFSET_RELATIVE = TEXT_BLOCK__OFFSET_RELATIVE;
+
+        /**
+     * The feature id for the '<em><b>Start Row</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__START_ROW = TEXT_BLOCK__START_ROW;
+
+        /**
+     * The feature id for the '<em><b>Start Column</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__START_COLUMN = TEXT_BLOCK__START_COLUMN;
+
+        /**
+     * The feature id for the '<em><b>End Row</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__END_ROW = TEXT_BLOCK__END_ROW;
+
+        /**
+     * The feature id for the '<em><b>End Column</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__END_COLUMN = TEXT_BLOCK__END_COLUMN;
+
+        /**
+     * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__ABSOLUTE_OFFSET = TEXT_BLOCK__ABSOLUTE_OFFSET;
+
+        /**
+     * The feature id for the '<em><b>Type</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__TYPE = TEXT_BLOCK__TYPE;
+
+        /**
+     * The feature id for the '<em><b>Sub Nodes</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__SUB_NODES = TEXT_BLOCK__SUB_NODES;
+
+        /**
+     * The feature id for the '<em><b>Parent Alt Choices</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__PARENT_ALT_CHOICES = TEXT_BLOCK__PARENT_ALT_CHOICES;
+
+        /**
+     * The feature id for the '<em><b>Elements In Context</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__ELEMENTS_IN_CONTEXT = TEXT_BLOCK__ELEMENTS_IN_CONTEXT;
+
+        /**
+     * The feature id for the '<em><b>For Each Context</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__FOR_EACH_CONTEXT = TEXT_BLOCK__FOR_EACH_CONTEXT;
+
+        /**
+     * The feature id for the '<em><b>Cached String</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__CACHED_STRING = TEXT_BLOCK__CACHED_STRING;
+
+        /**
+     * The feature id for the '<em><b>Complete</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__COMPLETE = TEXT_BLOCK__COMPLETE;
+
+        /**
+     * The feature id for the '<em><b>Additional Templates</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__ADDITIONAL_TEMPLATES = TEXT_BLOCK__ADDITIONAL_TEMPLATES;
 
         /**
      * The feature id for the '<em><b>Foreach Pedicate Property Init</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = 0;
+    int FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT = TEXT_BLOCK_FEATURE_COUNT + 0;
 
         /**
      * The feature id for the '<em><b>Context Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOR_EACH_CONTEXT__CONTEXT_ELEMENT = 1;
+    int FOR_EACH_EXECUTION__CONTEXT_ELEMENT = TEXT_BLOCK_FEATURE_COUNT + 1;
 
         /**
      * The feature id for the '<em><b>Result Model Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT = 2;
+    int FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT = TEXT_BLOCK_FEATURE_COUNT + 2;
 
         /**
      * The feature id for the '<em><b>Source Model Element</b></em>' reference.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = 3;
+    int FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT = TEXT_BLOCK_FEATURE_COUNT + 3;
 
         /**
      * The feature id for the '<em><b>Context String</b></em>' attribute.
@@ -1353,7 +1569,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOR_EACH_CONTEXT__CONTEXT_STRING = 4;
+    int FOR_EACH_EXECUTION__CONTEXT_STRING = TEXT_BLOCK_FEATURE_COUNT + 4;
 
         /**
      * The feature id for the '<em><b>Template Used For Production</b></em>' reference.
@@ -1362,16 +1578,16 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION = 5;
+    int FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION = TEXT_BLOCK_FEATURE_COUNT + 5;
 
         /**
-     * The number of structural features of the '<em>For Each Context</em>' class.
+     * The number of structural features of the '<em>For Each Execution</em>' class.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int FOR_EACH_CONTEXT_FEATURE_COUNT = 6;
+    int FOR_EACH_EXECUTION_FEATURE_COUNT = TEXT_BLOCK_FEATURE_COUNT + 6;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
@@ -2191,80 +2407,80 @@ public interface TextblocksPackage extends EPackage {
         EAttribute getDocumentNode_AbsoluteOffset();
 
         /**
-     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext <em>For Each Context</em>}'.
+     * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution <em>For Each Execution</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for class '<em>For Each Context</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>For Each Execution</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution
      * @generated
      */
-        EClass getForEachContext();
+    EClass getForEachExecution();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Foreach Pedicate Property Init</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getForeachPedicatePropertyInit()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getForeachPedicatePropertyInit()
+     * @see #getForEachExecution()
      * @generated
      */
-        EReference getForEachContext_ForeachPedicatePropertyInit();
+    EReference getForEachExecution_ForeachPedicatePropertyInit();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement <em>Context Element</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextElement <em>Context Element</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Context Element</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextElement()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextElement()
+     * @see #getForEachExecution()
      * @generated
      */
-        EReference getForEachContext_ContextElement();
+    EReference getForEachExecution_ContextElement();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getResultModelElement <em>Result Model Element</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Result Model Element</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getResultModelElement()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getResultModelElement()
+     * @see #getForEachExecution()
      * @generated
      */
-        EReference getForEachContext_ResultModelElement();
+    EReference getForEachExecution_ResultModelElement();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getSourceModelElement <em>Source Model Element</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Source Model Element</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getSourceModelElement()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getSourceModelElement()
+     * @see #getForEachExecution()
      * @generated
      */
-        EReference getForEachContext_SourceModelElement();
+    EReference getForEachExecution_SourceModelElement();
 
         /**
-     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString <em>Context String</em>}'.
+     * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextString <em>Context String</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Context String</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getContextString()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getContextString()
+     * @see #getForEachExecution()
      * @generated
      */
-    EAttribute getForEachContext_ContextString();
+    EAttribute getForEachExecution_ContextString();
 
         /**
-     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction <em>Template Used For Production</em>}'.
+     * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getTemplateUsedForProduction <em>Template Used For Production</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Template Used For Production</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext#getTemplateUsedForProduction()
-     * @see #getForEachContext()
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution#getTemplateUsedForProduction()
+     * @see #getForEachExecution()
      * @generated
      */
-    EReference getForEachContext_TemplateUsedForProduction();
+    EReference getForEachExecution_TemplateUsedForProduction();
 
         /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken <em>Eostoken</em>}'.
@@ -2619,46 +2835,46 @@ public interface TextblocksPackage extends EPackage {
                 EAttribute DOCUMENT_NODE__ABSOLUTE_OFFSET = eINSTANCE.getDocumentNode_AbsoluteOffset();
 
                 /**
-         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
+         * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl <em>For Each Execution</em>}' class.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachContextImpl
-         * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl#getForEachContext()
+         * <!-- end-user-doc -->
+         * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.ForEachExecutionImpl
+         * @see com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl#getForEachExecution()
          * @generated
          */
-                EClass FOR_EACH_CONTEXT = eINSTANCE.getForEachContext();
+        EClass FOR_EACH_EXECUTION = eINSTANCE.getForEachExecution();
 
                 /**
          * The meta object literal for the '<em><b>Foreach Pedicate Property Init</b></em>' reference feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = eINSTANCE.getForEachContext_ForeachPedicatePropertyInit();
+        EReference FOR_EACH_EXECUTION__FOREACH_PEDICATE_PROPERTY_INIT = eINSTANCE.getForEachExecution_ForeachPedicatePropertyInit();
 
                 /**
          * The meta object literal for the '<em><b>Context Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference FOR_EACH_CONTEXT__CONTEXT_ELEMENT = eINSTANCE.getForEachContext_ContextElement();
+        EReference FOR_EACH_EXECUTION__CONTEXT_ELEMENT = eINSTANCE.getForEachExecution_ContextElement();
 
                 /**
          * The meta object literal for the '<em><b>Result Model Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT = eINSTANCE.getForEachContext_ResultModelElement();
+        EReference FOR_EACH_EXECUTION__RESULT_MODEL_ELEMENT = eINSTANCE.getForEachExecution_ResultModelElement();
 
                 /**
          * The meta object literal for the '<em><b>Source Model Element</b></em>' reference feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = eINSTANCE.getForEachContext_SourceModelElement();
+        EReference FOR_EACH_EXECUTION__SOURCE_MODEL_ELEMENT = eINSTANCE.getForEachExecution_SourceModelElement();
 
                 /**
          * The meta object literal for the '<em><b>Context String</b></em>' attribute feature.
@@ -2666,7 +2882,7 @@ public interface TextblocksPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FOR_EACH_CONTEXT__CONTEXT_STRING = eINSTANCE.getForEachContext_ContextString();
+        EAttribute FOR_EACH_EXECUTION__CONTEXT_STRING = eINSTANCE.getForEachExecution_ContextString();
 
                 /**
          * The meta object literal for the '<em><b>Template Used For Production</b></em>' reference feature.
@@ -2674,7 +2890,7 @@ public interface TextblocksPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference FOR_EACH_CONTEXT__TEMPLATE_USED_FOR_PRODUCTION = eINSTANCE.getForEachContext_TemplateUsedForProduction();
+        EReference FOR_EACH_EXECUTION__TEMPLATE_USED_FOR_PRODUCTION = eINSTANCE.getForEachExecution_TemplateUsedForProduction();
 
                 /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
