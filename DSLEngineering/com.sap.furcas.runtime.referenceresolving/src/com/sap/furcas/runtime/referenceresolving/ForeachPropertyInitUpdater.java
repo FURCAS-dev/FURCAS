@@ -513,6 +513,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     // TODO this try/catch will probably disappear when we're compiling the OCL ASTs into the FURCAS mapping
                     try {
                         // TODO cache compiled expressions; caution: foreachElement.eClass() may be more specific than real context type; obtain context type from foreach expression's type
+                        // TODO use opposite direction of expressionToWhenClause, perhaps requiring another map?
                         when = oclHelper.createQuery(whenClause.getWhen());
                     } catch (ParserException e) {
                         throw new RuntimeException(e);
