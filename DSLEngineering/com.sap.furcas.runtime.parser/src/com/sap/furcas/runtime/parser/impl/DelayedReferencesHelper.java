@@ -28,7 +28,7 @@ import antlr.Token;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -211,14 +211,14 @@ public class DelayedReferencesHelper {
      * <p>
      * 
      * Prior executions of the same <code>foreach</code> predicate on the same source model element may have happened.
-     * In this case, there will be {@link ForEachContext} records documenting this. If no such records are found, all
+     * In this case, there will be {@link ForEachExecution} records documenting this. If no such records are found, all
      * proxies produced will be materialized as {@link EObject}s and
      * {@link #setReference(DelayedReference, Object, IModelAdapter, ModelElementProxy, int) added/set} to/into the target
      * feature described by the <code>reference</code>.
      * <p>
      * 
-     * If {@link ForEachContext} objects are found for the source element and <code>foreach</code> predicate, their
-     * {@link ForEachContext#getResultModelElement() result elements} are obtained and compared to the new
+     * If {@link ForEachExecution} objects are found for the source element and <code>foreach</code> predicate, their
+     * {@link ForEachExecution#getResultModelElement() result elements} are obtained and compared to the new
      * {@link ForeachProductionResult production instructions} which also contain the {@link Template} used to produce
      * the target element. The template is used to compare the element types in order to try to re-use already existing
      * elements.
@@ -230,19 +230,19 @@ public class DelayedReferencesHelper {
      * used to replace (single multiplicity) or to add to (many-multiplicity) the target feature.
      * <p>
      * 
-     * As to the re-use strategy, we distinguish between re-using the {@link ForEachContext} hull only and the
-     * {@link ForEachContext#getResultModelElement() result element} that was produced in an earlier run. Two element
-     * collections are compared, namely those listed as {@link ForEachContext#getResultModelElement() result elements}
+     * As to the re-use strategy, we distinguish between re-using the {@link ForEachExecution} hull only and the
+     * {@link ForEachExecution#getResultModelElement() result element} that was produced in an earlier run. Two element
+     * collections are compared, namely those listed as {@link ForEachExecution#getResultModelElement() result elements}
      * of earlier evaluations on the <code>reference</code>'s {@link DelayedReference#getTextBlock() text block} for the
      * same <code>foreach</code> predicate; and those described by <code>producedResults</code> which contains proxies
      * and the templates telling the types and modes with which they were created. The two collections are iterated in
-     * parallel. If the {@link ForEachContext}'s template matches that in the current <code>producedResults</code>
-     * element, the {@link ForEachContext#getResultModelElement() old result element} is re-used by
+     * parallel. If the {@link ForEachExecution}'s template matches that in the current <code>producedResults</code>
+     * element, the {@link ForEachExecution#getResultModelElement() old result element} is re-used by
      * {@link ModelElementProxy#setRealObject(Object) setting} it on the proxy. Otherwise, a new element is produced
      * using {@link ModelInjector#createOrResolve(ModelElementProxy, ANTLR3LocationToken, ANTLR3LocationToken)} and the
-     * existing {@link ForEachContext} is updated for the new result element, template, etc. If the collection of
-     * {@link ForEachContext} elements is shorter than that of the <code>producedResults</code>, additional
-     * {@link ForEachContext} elements are added to the <code>reference</code>'s {@link TextBlock#getForEachContext()
+     * existing {@link ForEachExecution} is updated for the new result element, template, etc. If the collection of
+     * {@link ForEachExecution} elements is shorter than that of the <code>producedResults</code>, additional
+     * {@link ForEachExecution} elements are added to the <code>reference</code>'s {@link TextBlock#getForEachContext()
      * textblock's foreach context list}. Extraneous elements are deleted from it.
      * <p>
      * 
@@ -255,8 +255,8 @@ public class DelayedReferencesHelper {
     private void setReferenceAndUpdateForeachContexts(DelayedReference reference, IModelAdapter modelAdapter,
             List<ForeachProductionResult> producedResults)
             throws ModelElementCreationException, ModelAdapterException {
-        Iterator<ForEachContext> foreachContextIterator = null;
-        ForEachContext nextOldForeachContext = null;
+        Iterator<ForEachExecution> foreachContextIterator = null;
+        ForEachExecution nextOldForeachContext = null;
         if (reference.getTextBlock() != null) {
             foreachContextIterator = ((TextBlock) reference.getTextBlock()).getForEachContext().iterator();
             nextOldForeachContext = getNextForeachContext(foreachContextIterator, reference);
@@ -282,7 +282,7 @@ public class DelayedReferencesHelper {
                     // re-use and update it:
                     if (nextOldForeachContext == null) {
                         // no ForEachContext element; produce a new one and append
-                        ForEachContext newContext = produceNewForEachContext(reference, producedResult);
+                        ForEachExecution newContext = produceNewForEachContext(reference, producedResult);
                         ((TextBlock) reference.getTextBlock()).getForEachContext().add(newContext);
                     } else {
                         // ForEachContext names a template/element that can't be re-used; update it correspondingly
@@ -314,8 +314,8 @@ public class DelayedReferencesHelper {
         }
     }
 
-    private ForEachContext produceNewForEachContext(DelayedReference reference, ForeachProductionResult producedResult) {
-        ForEachContext newContext = TextblocksFactory.eINSTANCE.createForEachContext();
+    private ForEachExecution produceNewForEachContext(DelayedReference reference, ForeachProductionResult producedResult) {
+        ForEachExecution newContext = TextblocksFactory.eINSTANCE.createForEachExecution();
         newContext.setForeachPedicatePropertyInit((ForeachPredicatePropertyInit) reference.getQueryElement());
         newContext.setSourceModelElement((EObject) reference.getModelElement());
         newContext.setContextElement((EObject) producedResult.getForeachExpressionResultForWhichProduced());
@@ -325,18 +325,18 @@ public class DelayedReferencesHelper {
     }
 
     /**
-     * For a {@link ForEachContext} that is known to be for the same source element and <code>foreach</code>
+     * For a {@link ForEachExecution} that is known to be for the same source element and <code>foreach</code>
      * clause as <code>producedResult</code>, checks if the template used by the previous execution as
      * documented by <code>nextOldForeachContext</code> is the same as that used in <code>producedResult</code>.
      */
-    private boolean isTargetElementReusable(ForEachContext nextOldForeachContext, ForeachProductionResult producedResult) {
+    private boolean isTargetElementReusable(ForEachExecution nextOldForeachContext, ForeachProductionResult producedResult) {
         return nextOldForeachContext.getTemplateUsedForProduction() == producedResult.getTemplateUsedForProduction();
     }
 
     /**
-     * Finds the next {@link ForEachContext} in the collection iterated by <code>foreachContextIterator</code>
+     * Finds the next {@link ForEachExecution} in the collection iterated by <code>foreachContextIterator</code>
      * that is for the same {@link DelayedReference#getQueryElement() property init} as the <code>reference</code>
-     * and that is for the same {@link ForEachContext#getSourceModelElement() source element} as the
+     * and that is for the same {@link ForEachExecution#getSourceModelElement() source element} as the
      * <code>reference</code>. If no such element is found, <code>null</code> is returned
      * 
      * Postcondition: if a non-<code>null</code> result is returned, the <code>foreachContextIterator</code>
@@ -344,11 +344,11 @@ public class DelayedReferencesHelper {
      * 
      * @param foreachContextIterator must not be <code>null</code>
      */
-    private ForEachContext getNextForeachContext(Iterator<ForEachContext> foreachContextIterator,
+    private ForEachExecution getNextForeachContext(Iterator<ForEachExecution> foreachContextIterator,
             DelayedReference reference) {
-        ForEachContext result = null;
+        ForEachExecution result = null;
         while (foreachContextIterator.hasNext() && result == null) {
-            ForEachContext fec = foreachContextIterator.next();
+            ForEachExecution fec = foreachContextIterator.next();
             if (fec.getForeachPedicatePropertyInit().equals(reference.getQueryElement())
                 && reference.getModelElement().equals(fec.getSourceModelElement())) {
                 result = fec;

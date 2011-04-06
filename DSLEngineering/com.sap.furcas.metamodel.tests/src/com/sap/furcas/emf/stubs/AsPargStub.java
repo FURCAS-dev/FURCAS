@@ -24,7 +24,7 @@ public class AsPargStub extends PargStub implements AsPArg {
 
     @Override
     public void setValue(String newValue) {
-        value = value;
+        value = newValue;
     }
 
     @Override

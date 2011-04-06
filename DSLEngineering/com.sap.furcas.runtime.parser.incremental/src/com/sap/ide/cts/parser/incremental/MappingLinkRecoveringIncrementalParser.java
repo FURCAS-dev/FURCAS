@@ -22,7 +22,7 @@ import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
@@ -203,7 +203,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void recoverForEachContext(TextBlock textBlock,
                 TextBlockProxy proxy) {
             DelayedReferencesHelper helper = new DelayedReferencesHelper(batchParser.getInjector());
-            for (ForEachContext fec : textBlock.getForEachContext()) {
+            for (ForEachExecution fec : textBlock.getForEachContext()) {
                 for (EObject ro : textBlock.getCorrespondingModelElements()) {
                     if(fec.getSourceModelElement().equals(ro)) {
                         for (DelayedReference ref : tBProxy2Reference.get(proxy)) {

@@ -114,7 +114,7 @@ public interface TextBlock extends DocumentNode {
 
         /**
      * Returns the value of the '<em><b>For Each Context</b></em>' containment reference list.
-     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext}.
+     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution}.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>For Each Context</em>' containment reference list isn't clear,
@@ -126,7 +126,7 @@ public interface TextBlock extends DocumentNode {
      * @model containment="true" resolveProxies="true"
      * @generated
      */
-        EList<ForEachContext> getForEachContext();
+        EList<ForEachExecution> getForEachContext();
 
         /**
      * Returns the value of the '<em><b>Cached String</b></em>' attribute.

@@ -32,7 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementsInContext" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forEachContext" upperBound="-1"
-        eType="#//ForEachContext" containment="true"/>
+        eType="#//ForEachExecution" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" lowerBound="1"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
@@ -87,7 +87,7 @@
     <eLiterals name="PREVIOUS" value="1"/>
     <eLiterals name="CURRENT" value="2"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ForEachContext">
+  <eClassifiers xsi:type="ecore:EClass" name="ForEachExecution" eSuperTypes="#//TextBlock">
     <eStructuralFeatures xsi:type="ecore:EReference" name="foreachPedicatePropertyInit"
         eType="ecore:EClass TCS.ecore#//ForeachPredicatePropertyInit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>

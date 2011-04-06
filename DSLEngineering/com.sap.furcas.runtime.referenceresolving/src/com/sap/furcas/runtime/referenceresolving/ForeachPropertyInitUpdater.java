@@ -41,7 +41,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
@@ -213,12 +213,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         for (EObject affectedContextObject : affectedContextObjects) {
             Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
-                        TextblocksPackage.eINSTANCE.getForEachContext_ContextElement(), affectedContextObject);
+                        TextblocksPackage.eINSTANCE.getForEachExecution_ContextElement(), affectedContextObject);
             if (foreachContextsUsingSelfAsForeachElement != null) {
                 for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
                     if (eo.eContainer() != null) { // ignore stale ForEachContext that for unknown reasons are still
                                                    // returned by opposite end finder
-                        ForEachContext foreachContext = (ForEachContext) eo;
+                        ForEachExecution foreachContext = (ForEachExecution) eo;
                         EObject elementToUpdate = foreachContext.getSourceModelElement();
                         TextBlock textBlock = (TextBlock) foreachContext.eContainer();
                         ForeachPredicatePropertyInit propInit = foreachContext.getForeachPedicatePropertyInit();
@@ -254,10 +254,10 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * getPropertyReference()}. {@link PropertyReference#getStrucfeature() getStrucfeature()}.
      * <p>
      * 
-     * With the current coarse-grained replacement strategy, all {@link ForEachContext} elements attached to the
+     * With the current coarse-grained replacement strategy, all {@link ForEachExecution} elements attached to the
      * {@link TextBlock} documenting the creation of each of the <code>elementsToUpdate</code> are removed first. Then,
      * the new elements are produced using {@link #produceElement(Object, TextBlock, ResourceSet, OppositeEndFinder)}
-     * operation. As a record of this, a new {@link ForEachContext} element is created for each object creation. They
+     * operation. As a record of this, a new {@link ForEachExecution} element is created for each object creation. They
      * are attached to the {@link TextBlock#getForEachContext()} collection of the text blocks documenting the creation
      * of the <code>elementsToUpdate</code>.
      */
@@ -291,8 +291,8 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
             TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
             if (foreachWasExecutedFor(textBlock)) {
-                Iterator<ForEachContext> foreachContextsIterator = textBlock.getForEachContext().iterator();
-                ForEachContext nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
+                Iterator<ForEachExecution> foreachContextsIterator = textBlock.getForEachContext().iterator();
+                ForEachExecution nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
                 Collection<Object> newFeatureValue = new BasicEList<Object>();
                 for (Object foreachElement : foreachElements) {
                     EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate,
@@ -331,9 +331,9 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
     /**
-     * Finds the next {@link ForEachContext} in the collection iterated by <code>foreachContextIterator</code> that is
+     * Finds the next {@link ForEachExecution} in the collection iterated by <code>foreachContextIterator</code> that is
      * for the same {@link #foreachPredicatePropertyInit property init} as this updater and has
-     * <code>elementToUpdate</code> as its {@link ForEachContext#getSourceModelElement() source element}. If no such
+     * <code>elementToUpdate</code> as its {@link ForEachExecution#getSourceModelElement() source element}. If no such
      * element is found, <code>null</code> is returned
      * 
      * Postcondition: if a non-<code>null</code> result is returned, the <code>foreachContextIterator</code> is at that
@@ -342,10 +342,10 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * @param foreachContextIterator
      *            must not be <code>null</code>
      */
-    private ForEachContext getNextForeachContext(Iterator<ForEachContext> foreachContextIterator, EObject elementToUpdate) {
-        ForEachContext result = null;
+    private ForEachExecution getNextForeachContext(Iterator<ForEachExecution> foreachContextIterator, EObject elementToUpdate) {
+        ForEachExecution result = null;
         while (foreachContextIterator.hasNext() && result == null) {
-            ForEachContext fec = foreachContextIterator.next();
+            ForEachExecution fec = foreachContextIterator.next();
             if (fec.getForeachPedicatePropertyInit().equals(foreachPredicatePropertyInit)) {
                 result = fec;
             }
@@ -354,10 +354,10 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     }
 
 
-    private ForEachContext createForeachContext(EObject elementToUpdate, Object foreachElement,
+    private ForEachExecution createForeachContext(EObject elementToUpdate, Object foreachElement,
             EObject producedElement, Template template) {
         // create ForEachContext element documenting what just happened in the TextBlocks model
-        ForEachContext foreachContext = TextblocksFactory.eINSTANCE.createForEachContext();
+        ForEachExecution foreachContext = TextblocksFactory.eINSTANCE.createForEachExecution();
         foreachContext.setForeachPedicatePropertyInit(foreachPredicatePropertyInit);
         foreachContext.setSourceModelElement(elementToUpdate);
         if (foreachElement instanceof EObject) {
@@ -383,23 +383,23 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
     /**
      * Determines the template to use to produce the element for the given <code>foreachElement</code> which is a result
      * object from the foreach-expression's evaluation result. If a <code>null</code> <code>forEachContext</code> is
-     * passed, a new element is produced and a new {@link ForEachContext} will be constructed and appended to the
+     * passed, a new element is produced and a new {@link ForEachExecution} will be constructed and appended to the
      * <code>textBlock</code>'s {@link TextBlock#getForEachContext() foreach contexts}, documenting this rule execution.
      * <p>
      * 
      * If a non-<code>null</code> <code>forEachContext</code> is passed, two cases are possible. If the template that
-     * would be used now for production is the same as the one pointed to by the {@link ForEachContext} and the same
-     * foreach result was used, no production is necessary. The {@link ForEachContext} as well as its element can be
-     * re-used. The {@link ForEachContext#getResultModelElement() result element} of the {@link ForEachContext} is used
+     * would be used now for production is the same as the one pointed to by the {@link ForEachExecution} and the same
+     * foreach result was used, no production is necessary. The {@link ForEachExecution} as well as its element can be
+     * re-used. The {@link ForEachExecution#getResultModelElement() result element} of the {@link ForEachExecution} is used
      * as this method's result in this case.
      * <p>
      * 
      * If the template to use for production differs from the one in the <code>forEachContext</code> or the production
-     * was carried out for a different foreach result, the production is executed and the {@link ForEachContext} is
+     * was carried out for a different foreach result, the production is executed and the {@link ForEachExecution} is
      * updated with the results.
      */
     private EObject produceElement(Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
-            OppositeEndFinder oppositeEndFinder, ForEachContext forEachContext) {
+            OppositeEndFinder oppositeEndFinder, ForEachExecution forEachContext) {
         Template template = null; // null means "don't produce"
         if (foreachElement instanceof Boolean) {
             if ((Boolean) foreachElement) {
@@ -417,7 +417,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     forEachContext.getContextElement() != foreachElement) {
                 result = produceWith(template, foreachElement, textBlock, elementToUpdate, oppositeEndFinder);
                 if (forEachContext == null) {
-                    ForEachContext newForEachContext = createForeachContext(elementToUpdate, foreachElement, result, template);
+                    ForEachExecution newForEachContext = createForeachContext(elementToUpdate, foreachElement, result, template);
                     // no concurrent modification exception can occur here because forEachContext is null
                     // which avoids further calls to the iterator's next() operation
                     textBlock.getForEachContext().add(newForEachContext);
