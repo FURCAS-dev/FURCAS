@@ -273,7 +273,7 @@ public class ForEachExecutionItemProvider
 
         boolean qualify =
             childFeature == TextblocksPackage.Literals.TEXT_BLOCK__SUB_NODES ||
-            childFeature == TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_CONTEXT;
+            childFeature == TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_EXECUTIONS;
 
         if (qualify) {
             return getString

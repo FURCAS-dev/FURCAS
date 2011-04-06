@@ -85,7 +85,7 @@ public class TextBlockTest extends DocumentNodeTest {
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubBlocks()
      * @generated
      */
-    public void testGetSubBlocks_1() {
+    public void testGetSubBlocks() {
         // TODO: implement this operation test method
         // Ensure that you remove @generated or mark it @generated NOT
         fail();
@@ -98,7 +98,7 @@ public class TextBlockTest extends DocumentNodeTest {
      * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getTokens()
      * @generated
      */
-    public void testGetTokens_1() {
+    public void testGetTokens() {
         // TODO: implement this operation test method
         // Ensure that you remove @generated or mark it @generated NOT
         fail();

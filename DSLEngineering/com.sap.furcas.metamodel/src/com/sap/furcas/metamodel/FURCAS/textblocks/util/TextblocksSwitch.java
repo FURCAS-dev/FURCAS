@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.util;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;

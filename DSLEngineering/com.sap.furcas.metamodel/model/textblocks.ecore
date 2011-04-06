@@ -31,7 +31,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementsInContext" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="forEachContext" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forEachExecutions" upperBound="-1"
         eType="#//ForEachExecution" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="complete" lowerBound="1"

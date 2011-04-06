@@ -242,7 +242,7 @@ public class DelayedReferencesHelper {
      * using {@link ModelInjector#createOrResolve(ModelElementProxy, ANTLR3LocationToken, ANTLR3LocationToken)} and the
      * existing {@link ForEachExecution} is updated for the new result element, template, etc. If the collection of
      * {@link ForEachExecution} elements is shorter than that of the <code>producedResults</code>, additional
-     * {@link ForEachExecution} elements are added to the <code>reference</code>'s {@link TextBlock#getForEachContext()
+     * {@link ForEachExecution} elements are added to the <code>reference</code>'s {@link TextBlock#getForEachExecutions()
      * textblock's foreach context list}. Extraneous elements are deleted from it.
      * <p>
      * 
@@ -258,7 +258,7 @@ public class DelayedReferencesHelper {
         Iterator<ForEachExecution> foreachContextIterator = null;
         ForEachExecution nextOldForeachContext = null;
         if (reference.getTextBlock() != null) {
-            foreachContextIterator = ((TextBlock) reference.getTextBlock()).getForEachContext().iterator();
+            foreachContextIterator = ((TextBlock) reference.getTextBlock()).getForEachExecutions().iterator();
             nextOldForeachContext = getNextForeachContext(foreachContextIterator, reference);
         }
         int i=0;
@@ -283,7 +283,7 @@ public class DelayedReferencesHelper {
                     if (nextOldForeachContext == null) {
                         // no ForEachContext element; produce a new one and append
                         ForEachExecution newContext = produceNewForEachContext(reference, producedResult);
-                        ((TextBlock) reference.getTextBlock()).getForEachContext().add(newContext);
+                        ((TextBlock) reference.getTextBlock()).getForEachExecutions().add(newContext);
                     } else {
                         // ForEachContext names a template/element that can't be re-used; update it correspondingly
                         Object result = producedResult.getForeachExpressionResultForWhichProduced();

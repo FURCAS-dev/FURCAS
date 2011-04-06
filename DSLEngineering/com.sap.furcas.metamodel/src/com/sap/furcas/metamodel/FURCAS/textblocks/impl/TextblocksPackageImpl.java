@@ -237,11 +237,10 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-	public EReference getTextBlock_ForEachContext() {
+    public EReference getTextBlock_ForEachExecutions() {
         return (EReference)textBlockEClass.getEStructuralFeatures().get(4);
     }
 
@@ -672,7 +671,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         createEReference(textBlockEClass, TEXT_BLOCK__SUB_NODES);
         createEAttribute(textBlockEClass, TEXT_BLOCK__PARENT_ALT_CHOICES);
         createEReference(textBlockEClass, TEXT_BLOCK__ELEMENTS_IN_CONTEXT);
-        createEReference(textBlockEClass, TEXT_BLOCK__FOR_EACH_CONTEXT);
+        createEReference(textBlockEClass, TEXT_BLOCK__FOR_EACH_EXECUTIONS);
         createEAttribute(textBlockEClass, TEXT_BLOCK__CACHED_STRING);
         createEAttribute(textBlockEClass, TEXT_BLOCK__COMPLETE);
         createEReference(textBlockEClass, TEXT_BLOCK__ADDITIONAL_TEMPLATES);
@@ -773,7 +772,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         initEReference(getTextBlock_SubNodes(), this.getDocumentNode(), this.getDocumentNode_Parent(), "subNodes", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_ParentAltChoices(), ecorePackage.getEInt(), "parentAltChoices", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_ElementsInContext(), ecorePackage.getEObject(), null, "elementsInContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTextBlock_ForEachContext(), this.getForEachExecution(), null, "forEachContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTextBlock_ForEachExecutions(), this.getForEachExecution(), null, "forEachExecutions", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_CachedString(), theEcorePackage_1.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getTextBlock_Complete(), theEcorePackage_1.getEBoolean(), "complete", "false", 1, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getTextBlock_AdditionalTemplates(), theTCSPackage.getTemplate(), null, "additionalTemplates", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

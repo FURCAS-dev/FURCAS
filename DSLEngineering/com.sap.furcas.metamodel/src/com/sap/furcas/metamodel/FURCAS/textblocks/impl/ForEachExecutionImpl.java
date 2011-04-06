@@ -6,16 +6,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
@@ -375,7 +370,6 @@ public class ForEachExecutionImpl extends TextBlockImpl implements ForEachExecut
          * <!-- end-user-doc -->
      * @generated
      */
-        @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
