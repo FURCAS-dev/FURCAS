@@ -10,7 +10,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.query.index.internal.ui.builder.QueryIndexBuilder;
@@ -82,7 +81,7 @@ public class RecreateIndicesHandler implements IHandler {
 					// for (int j = 0; j < natureIds.length; j++) {
 					// if (QueryIndexNature.NATURE_ID.equals(natureIds[j])) {
 					iProject.refreshLocal(IResource.DEPTH_INFINITE, null);
-					iProject.build(QueryIndexBuilder.FULL_BUILD, new NullProgressMonitor());
+					iProject.build(QueryIndexBuilder.FULL_BUILD, monitor);
 					monitor.worked(i);
 					// }
 					// }

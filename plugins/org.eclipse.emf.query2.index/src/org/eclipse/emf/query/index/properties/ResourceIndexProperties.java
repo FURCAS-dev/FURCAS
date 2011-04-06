@@ -1,6 +1,7 @@
 package org.eclipse.emf.query.index.properties;
 
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -12,7 +13,7 @@ public class ResourceIndexProperties implements IPropertySource {
 	final protected ResourceDescriptor resourceDescriptor;
 	private String uri;
 
-	protected static final String PROPERTY_URI = "uri";
+	protected static final String PROPERTY_URI = "uri"; //$NON-NLS-1$
 
 	public ResourceIndexProperties(ResourceDescriptor resourceDescriptor) {
 		super();
@@ -25,7 +26,7 @@ public class ResourceIndexProperties implements IPropertySource {
 
 	}
 
-	private final Object PropertiesTable[][] = { { PROPERTY_URI, new PropertyDescriptor(PROPERTY_URI, "Resource URI") }, };
+	private final Object PropertiesTable[][] = { { PROPERTY_URI, new PropertyDescriptor(PROPERTY_URI, Messages.Query2Index_ResourceIndexProperties_ResourceURI) }, };
 
 	
 	/**
@@ -54,7 +55,7 @@ public class ResourceIndexProperties implements IPropertySource {
 			PropertyDescriptor descriptor;
 			descriptor = (PropertyDescriptor) PropertiesTable[i][1];
 			propertyDescriptors[i] = (IPropertyDescriptor) descriptor;
-			descriptor.setCategory("Basic");
+			descriptor.setCategory(Messages.Query2Index_ResourceIndexProperties_Basic);
 		}
 
 		// Return it.

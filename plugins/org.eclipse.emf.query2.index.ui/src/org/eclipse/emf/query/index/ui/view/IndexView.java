@@ -3,7 +3,9 @@ package org.eclipse.emf.query.index.ui.view;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.Index;
@@ -16,6 +18,7 @@ import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.Activator;
 import org.eclipse.emf.query.index.ui.Messages;
 import org.eclipse.emf.query.index.ui.images.IndexUIImageRegistry;
 import org.eclipse.emf.query.index.ui.view.legends.DisplayLegendsAction;
@@ -24,9 +27,11 @@ import org.eclipse.emf.query.index.ui.view.legends.impl.IndexViewLegendManager;
 import org.eclipse.emf.query.index.ui.view.tree.IndexComparator;
 import org.eclipse.emf.query.index.ui.view.tree.IndexViewTreeContentProvider;
 import org.eclipse.emf.query.index.ui.view.tree.IndexViewTreeLabelProvider;
+import org.eclipse.emf.query.index.ui.view.tree.nodes.IndexTypeURI;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -309,7 +314,11 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 				openEditorFromURI(sourceResourceURI);
 				URI targetResourceURI = ((EReferenceDescriptor) selectedElement).getTargetResourceURI();
 				openEditorFromURI(targetResourceURI);
+			} else if (selectedElement instanceof IndexTypeURI) {
+				URI resourceURI = ((IndexTypeURI) selectedElement).getURI();
+				openEditorFromURI(resourceURI);
 			}
+
 		}
 	}
 
@@ -321,18 +330,29 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 			if (fileURI.toFileString() != null) {
 				path = new Path(fileURI.toFileString());
 				file = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(path);
-				try {
-					IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file);
+				if (file != null) {
+					try {
+						IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file);
 
-				} catch (PartInitException e) {
-					e.printStackTrace();
+					} catch (PartInitException e) {
+						e.printStackTrace();
+					}
+				} else {
+					IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.Query2IndexUI_IndexView_FileNotFound);
+					ErrorDialog.openError(Display.getDefault().getActiveShell(), Messages.Query2IndexUI_IndexView_ErrorInOpeningEditor,
+							Messages.Query2IndexUI_IndexView_InvalidFileForEditor, status);
+
 				}
+			} else {
+				MessageDialog.openError(Display.getDefault().getActiveShell(), Messages.Query2IndexUI_IndexView_ErrorInOpeningEditor,
+						Messages.Query2IndexUI_IndexView_InvalidFileForEditor);
 			}
 		} else {
 			MessageDialog.openError(Display.getDefault().getActiveShell(), Messages.Query2IndexUI_IndexView_ErrorInOpeningEditor,
 					Messages.Query2IndexUI_IndexView_InvalidFileForEditor);
 		}
 	}
+
 
 	
 	public void indexChanged(IndexChangeEvent event) {

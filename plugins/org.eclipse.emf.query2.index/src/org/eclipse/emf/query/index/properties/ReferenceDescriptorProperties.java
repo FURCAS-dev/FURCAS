@@ -1,5 +1,6 @@
 package org.eclipse.emf.query.index.properties;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -14,11 +15,11 @@ public class ReferenceDescriptorProperties implements IPropertySource {
 	private String targetFragment;
 	private String targetResource;
 
-	protected static final String PROPERTY_REF_URI = "refuri";
-	protected static final String PROPERTY_SRC_FRAGMENT = "srcFragment";
-	protected static final String PROPERTY_SRC_RESOURCE = "srcResource";
-	protected static final String PROPERTY_TAR_FRAGMENT = "targetFragment";
-	protected static final String PROPERTY_TAR_RESOURCE = "targetResource";
+	protected static final String PROPERTY_REF_URI = "refuri"; //$NON-NLS-1$
+	protected static final String PROPERTY_SRC_FRAGMENT = "srcFragment"; //$NON-NLS-1$
+	protected static final String PROPERTY_SRC_RESOURCE = "srcResource"; //$NON-NLS-1$
+	protected static final String PROPERTY_TAR_FRAGMENT = "targetFragment"; //$NON-NLS-1$
+	protected static final String PROPERTY_TAR_RESOURCE = "targetResource"; //$NON-NLS-1$
 
 	public ReferenceDescriptorProperties(EReferenceDescriptor RefDesc) {
 		super();
@@ -35,11 +36,11 @@ public class ReferenceDescriptorProperties implements IPropertySource {
 
 	}
 
-	private final Object PropertiesTable[][] = { { PROPERTY_REF_URI, new PropertyDescriptor(PROPERTY_REF_URI, "Reference URI") },
-			{ PROPERTY_SRC_FRAGMENT, new PropertyDescriptor(PROPERTY_SRC_FRAGMENT, "Source Fragment") },
-			{ PROPERTY_SRC_RESOURCE, new PropertyDescriptor(PROPERTY_SRC_RESOURCE, "Source Resource") },
-			{ PROPERTY_TAR_FRAGMENT, new PropertyDescriptor(PROPERTY_TAR_FRAGMENT, "Target Fragment") },
-			{ PROPERTY_TAR_RESOURCE, new PropertyDescriptor(PROPERTY_TAR_RESOURCE, "Target Resource") } };
+	private final Object PropertiesTable[][] = { { PROPERTY_REF_URI, new PropertyDescriptor(PROPERTY_REF_URI, Messages.Query2Index_ReferenceDescriptorProperties_ReferenceURI) },
+			{ PROPERTY_SRC_FRAGMENT, new PropertyDescriptor(PROPERTY_SRC_FRAGMENT, Messages.Query2Index_ReferenceDescriptorProperties_SourceFragment) },
+			{ PROPERTY_SRC_RESOURCE, new PropertyDescriptor(PROPERTY_SRC_RESOURCE, Messages.Query2Index_ReferenceDescriptorProperties_SourceResource) },
+			{ PROPERTY_TAR_FRAGMENT, new PropertyDescriptor(PROPERTY_TAR_FRAGMENT, Messages.Query2Index_ReferenceDescriptorProperties_TargetFragment) },
+			{ PROPERTY_TAR_RESOURCE, new PropertyDescriptor(PROPERTY_TAR_RESOURCE, Messages.Query2Index_ReferenceDescriptorProperties_TargetResource) } };
 
 	/**
 	 * Creates a new ResourceIndexProperties.
@@ -69,7 +70,7 @@ public class ReferenceDescriptorProperties implements IPropertySource {
 
 			descriptor = (PropertyDescriptor) PropertiesTable[i][1];
 			propertyDescriptors[i] = (IPropertyDescriptor) descriptor;
-			descriptor.setCategory("Basic");
+			descriptor.setCategory(Messages.Query2Index_ReferenceDescriptorProperties_Basic);
 		}
 
 		// Return it.
@@ -120,7 +121,7 @@ public class ReferenceDescriptorProperties implements IPropertySource {
 		}
 		if (name.equals(PROPERTY_SRC_FRAGMENT)) {
 			sourceFragment = RefDesc.getSourceFragment();
-			if(sourceFragment.equals("/"))
+			if(sourceFragment.equals("/")) //$NON-NLS-1$
 				sourceFragment = null;
 			return;
 		}

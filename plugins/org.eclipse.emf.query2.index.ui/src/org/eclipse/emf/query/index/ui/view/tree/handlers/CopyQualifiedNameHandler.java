@@ -4,13 +4,17 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.Activator;
 import org.eclipse.emf.query.index.ui.Messages;
 import org.eclipse.emf.query.index.ui.view.IndexView;
 import org.eclipse.emf.query.index.ui.view.tree.nodes.ResourceType;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -27,22 +31,21 @@ import org.eclipse.swt.widgets.Display;
  */
 public class CopyQualifiedNameHandler implements IHandler {
 
-	
 	public void addHandlerListener(IHandlerListener handlerListener) {
 
 	}
 
-	
 	public void dispose() {
 
 	}
 
-	
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Object selectedElement = getSelectedElement();
 		if (selectedElement == null) {
-			MessageDialog.openInformation(Display.getDefault().getActiveShell(), Messages.Query2IndexUI_CopyQualifiedNameHandler_ErrorStatus,
-					Messages.Query2IndexUI_CopyQualifiedNameHandler_SelectionErrorMessage);
+			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.Query2IndexUI_CopyQualifiedName_NullSelection);
+			ErrorDialog.openError(Display.getDefault().getActiveShell(), Messages.Query2IndexUI_CopyQualifiedNameHandler_ErrorStatus,
+					Messages.Query2IndexUI_CopyQualifiedNameHandler_SelectionErrorMessage, status);
+
 			return null;
 		}
 
@@ -79,7 +82,6 @@ public class CopyQualifiedNameHandler implements IHandler {
 		return selectedElement;
 	}
 
-	
 	public boolean isEnabled() {
 		Object selectedElement = getSelectedElement();
 		if (selectedElement instanceof ResourceDescriptor) {
@@ -98,12 +100,10 @@ public class CopyQualifiedNameHandler implements IHandler {
 
 	}
 
-	
 	public boolean isHandled() {
 		return true;
 	}
 
-	
 	public void removeHandlerListener(IHandlerListener handlerListener) {
 
 	}

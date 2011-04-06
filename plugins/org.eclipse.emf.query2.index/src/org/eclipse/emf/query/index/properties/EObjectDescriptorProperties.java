@@ -1,5 +1,6 @@
 package org.eclipse.emf.query.index.properties;
 
+import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -11,8 +12,8 @@ public class EObjectDescriptorProperties implements IPropertySource {
 	private String objName;
 	private String fragment;
 
-	protected static final String PROPERTY_NAME = "name";
-	protected static final String PROPERTY_FRAGMENT = "fragment";
+	protected static final String PROPERTY_NAME = "name"; //$NON-NLS-1$
+	protected static final String PROPERTY_FRAGMENT = "fragment"; //$NON-NLS-1$
 
 	public EObjectDescriptorProperties(EObjectDescriptor eObjectDescriptor) {
 		super();
@@ -26,8 +27,8 @@ public class EObjectDescriptorProperties implements IPropertySource {
 
 	}
 
-	private final Object PropertiesTable[][] = { { PROPERTY_NAME, new PropertyDescriptor(PROPERTY_NAME, "Name") },
-			{ PROPERTY_FRAGMENT, new PropertyDescriptor(PROPERTY_FRAGMENT, "Fragment") } };
+	private final Object PropertiesTable[][] = { { PROPERTY_NAME, new PropertyDescriptor(PROPERTY_NAME, Messages.Query2Index_EObjectDescriptorProperties_Name) }, 
+			{ PROPERTY_FRAGMENT, new PropertyDescriptor(PROPERTY_FRAGMENT, Messages.Query2Index_EObjectDescriptorProperties_Fragment) } }; 
 
 	public Object getEditableValue() {
 		return this;
@@ -47,7 +48,7 @@ public class EObjectDescriptorProperties implements IPropertySource {
 
 			descriptor = (PropertyDescriptor) PropertiesTable[i][1];
 			propertyDescriptors[i] = (IPropertyDescriptor) descriptor;
-			descriptor.setCategory("Basic");
+			descriptor.setCategory("Basic"); //$NON-NLS-1$
 		}
 
 		// Return it.
