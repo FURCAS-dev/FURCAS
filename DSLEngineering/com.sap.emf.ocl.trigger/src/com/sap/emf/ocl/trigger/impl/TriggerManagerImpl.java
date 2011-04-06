@@ -73,8 +73,9 @@ public class TriggerManagerImpl implements TriggerManager {
             ActivationOption impactAnalysisConfiguration) {
         Collection<AdapterForExpression> result = new LinkedList<AdapterForExpression>();
         for (ExpressionWithContext expWithContext : triggerable.getTriggerExpressionsWithContext()) {
-            result.add(new AdapterForExpression(triggerable, expWithContext.getExpression(),
-                    expWithContext.getContext(), triggerable.notifyOnNewContextElements(), oppositeEndFinder, impactAnalysisConfiguration));
+            result.add(new AdapterForExpression(triggerable, expWithContext.getExpression(), expWithContext
+                    .getContext(), triggerable.notifyOnNewContextElements(), oppositeEndFinder,
+                    impactAnalysisConfiguration));
         }
         for (OCLExpression expWithoutContext : triggerable.getTriggerExpressionsWithoutContext()) {
             result.add(new AdapterForExpression(triggerable, expWithoutContext,

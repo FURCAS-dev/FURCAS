@@ -38,6 +38,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
@@ -59,7 +60,7 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
  * @author Axel Uhl (d043530)
  * 
  */
-public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener {
+public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener, TokenChanger {
     private static Logger log = Logger.getLogger(SyntaxRegistry.class.getName());
     
     private static final String EXTENSION_POINT_ID = "furcas_syntax";
@@ -86,12 +87,22 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     
     private final Registry metamodelRegistry;
     
+    /**
+     * Components registered by {@link #addTokenChanger(TokenChanger)} and deregistered by
+     * {@link #removeTokenValueChanger(TokenChanger)} that get called when, e.g., due to a rename,
+     * a token shall change its value. However, as life cycle constraints such as read-only
+     * resources or wide-ranging queries may complicate matters, token updates are not performed
+     * immediately but are delegates to the components registered here.
+     */
+    private final Set<TokenChanger> tokenChangers;
+    
     public SyntaxRegistry() {
         triggerManagersForSyntax = new HashMap<URI, TriggerManager>();
         parserFactoriesForSyntax = new HashMap<URI, ParserFactory<? extends ObservableInjectingParser, ? extends Lexer>>();
         metamodelNsURIToSyntaxProviders = new HashMap<URI, Set<IConfigurationElement>>();
         eventManager = EventManagerFactory.eINSTANCE.createEventManager();
         metamodelRegistry = Registry.INSTANCE;
+        tokenChangers = new HashSet<TokenChanger>();
     }
     
     @Override
@@ -122,6 +133,14 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             instance = new SyntaxRegistry();
         }
         return instance;
+    }
+    
+    public void addTokenChanger(TokenChanger tokenChanger) {
+        tokenChangers.add(tokenChanger);
+    }
+    
+    public void removeTokenValueChanger(TokenChanger tokenChanger) {
+        tokenChangers.remove(tokenChanger);
     }
 
     /**
@@ -180,7 +199,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             }
             Template template = property.getParentTemplate();
             if (template != null && template instanceof ClassTemplate && PropertyArgumentUtil.getReferenceByPArg(property) != null) {
-                triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelRegistry, oppositeEndFinder));
+                triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelRegistry, oppositeEndFinder, this));
             }
         }
     }
@@ -266,4 +285,39 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     public void registerAllLoadedSyntaxesTriggerManagers(ResourceSet registerWith) {
         eventManager.addToObservedResourceSets(registerWith);
     }
+
+    /**
+     * Dispatches this request to all {@link TokenChanger}s that were {@link #addTokenChanger(TokenChanger) registered}
+     * with this syntax registry.
+     */
+    @Override
+    public void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue) {
+        for (TokenChanger tokenChanger : tokenChangers) {
+            tokenChanger.requestTokenValueChange(token, oldTokenValue, newTokenValue);
+        }
+    }
+
+    /**
+     * Dispatches this request to all {@link TokenChanger}s that were {@link #addTokenChanger(TokenChanger) registered}
+     * with this syntax registry.
+     */
+    @Override
+    public void requestClearReferencedElements(LexedToken token) {
+        for (TokenChanger tokenChanger : tokenChangers) {
+            tokenChanger.requestClearReferencedElements(token);
+        }
+    }
+
+    /**
+     * Dispatches this request to all {@link TokenChanger}s that were {@link #addTokenChanger(TokenChanger) registered}
+     * with this syntax registry.
+     */
+    @Override
+    public void requestAddToReferencedElements(LexedToken token, EObject referencedElement) {
+        for (TokenChanger tokenChanger : tokenChangers) {
+            tokenChanger.requestAddToReferencedElements(token, referencedElement);
+        }
+    }
+    
+    
 }
