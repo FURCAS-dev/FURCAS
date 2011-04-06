@@ -287,13 +287,15 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     }
 
     /**
-     * Dispatches this request to all {@link TokenChanger}s that were {@link #addTokenChanger(TokenChanger) registered}
-     * with this syntax registry.
+     * If <code>oldTokenValue</code> and <code>newTokenValue</code> differ, dispatches this request to all
+     * {@link TokenChanger}s that were {@link #addTokenChanger(TokenChanger) registered} with this syntax registry.
      */
     @Override
     public void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue) {
-        for (TokenChanger tokenChanger : tokenChangers) {
-            tokenChanger.requestTokenValueChange(token, oldTokenValue, newTokenValue);
+        if (oldTokenValue != newTokenValue || (oldTokenValue != null && !oldTokenValue.equals(newTokenValue))) {
+            for (TokenChanger tokenChanger : tokenChangers) {
+                tokenChanger.requestTokenValueChange(token, oldTokenValue, newTokenValue);
+            }
         }
     }
 
