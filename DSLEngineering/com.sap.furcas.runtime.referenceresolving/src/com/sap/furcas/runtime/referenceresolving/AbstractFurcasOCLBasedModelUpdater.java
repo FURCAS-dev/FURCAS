@@ -73,7 +73,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder, Notification change) {
         // FIXME only handle affectedContextObjects subset for which the propertyInit was actually applied
-       OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
+        OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
             // only assign if result was not "invalid"
