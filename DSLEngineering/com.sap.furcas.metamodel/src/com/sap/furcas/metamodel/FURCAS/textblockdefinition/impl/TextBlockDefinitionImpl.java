@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -20,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.FormatPolicy;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;

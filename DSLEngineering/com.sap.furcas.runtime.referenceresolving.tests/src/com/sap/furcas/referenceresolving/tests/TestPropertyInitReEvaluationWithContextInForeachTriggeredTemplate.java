@@ -140,7 +140,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
             TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
-                    author, revenues.size(), authorCreationRecord.getForEachContext().size());
+                    author, revenues.size(), authorCreationRecord.getForEachExecutions().size());
         }
         assertEquals("Mapping should have put ->first() of John's articles in here, no more, no less", 1, revenueLedgerArticles.size());
         assertTrue(johnsArticlesAsSet.containsAll(revenueLedgerArticles));

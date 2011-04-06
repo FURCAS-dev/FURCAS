@@ -238,7 +238,7 @@ public class TestPropertyInitReEvaluationWithComplexForeach extends AbstractRefe
                             TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author)
                     .iterator().next();
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "
-                    + author, revenues.size(), authorCreationRecord.getForEachContext().size());
+                    + author, revenues.size(), authorCreationRecord.getForEachExecutions().size());
         }
         assertEquals(johnsArticlesAsSet, revenueLedgerArticles);
     }

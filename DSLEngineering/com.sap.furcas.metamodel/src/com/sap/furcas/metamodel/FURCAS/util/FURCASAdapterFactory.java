@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.util;
 
-import com.sap.furcas.metamodel.FURCAS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;

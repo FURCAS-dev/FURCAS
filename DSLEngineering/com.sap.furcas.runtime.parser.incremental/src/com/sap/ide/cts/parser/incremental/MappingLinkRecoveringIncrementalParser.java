@@ -179,7 +179,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             textBlock.setType(tbDef);
             textBlock.getAdditionalTemplates().addAll(
                     proxy.getAdditionalTemplates());
-            if (textBlock.getForEachContext().size() > 0) {
+            if (textBlock.getForEachExecutions().size() > 0) {
                 recoverForEachContext(textBlock, proxy);
             }
             int i = 0;
@@ -203,7 +203,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void recoverForEachContext(TextBlock textBlock,
                 TextBlockProxy proxy) {
             DelayedReferencesHelper helper = new DelayedReferencesHelper(batchParser.getInjector());
-            for (ForEachExecution fec : textBlock.getForEachContext()) {
+            for (ForEachExecution fec : textBlock.getForEachExecutions()) {
                 for (EObject ro : textBlock.getCorrespondingModelElements()) {
                     if(fec.getSourceModelElement().equals(ro)) {
                         for (DelayedReference ref : tBProxy2Reference.get(proxy)) {

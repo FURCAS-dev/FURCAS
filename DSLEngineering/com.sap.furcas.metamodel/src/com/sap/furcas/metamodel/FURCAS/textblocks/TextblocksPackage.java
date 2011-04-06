@@ -415,13 +415,13 @@ public interface TextblocksPackage extends EPackage {
         int TEXT_BLOCK__ELEMENTS_IN_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 3;
 
         /**
-     * The feature id for the '<em><b>For Each Context</b></em>' containment reference list.
+     * The feature id for the '<em><b>For Each Executions</b></em>' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int TEXT_BLOCK__FOR_EACH_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 4;
+    int TEXT_BLOCK__FOR_EACH_EXECUTIONS = DOCUMENT_NODE_FEATURE_COUNT + 4;
 
         /**
      * The feature id for the '<em><b>Cached String</b></em>' attribute.
@@ -1491,13 +1491,13 @@ public interface TextblocksPackage extends EPackage {
     int FOR_EACH_EXECUTION__ELEMENTS_IN_CONTEXT = TEXT_BLOCK__ELEMENTS_IN_CONTEXT;
 
         /**
-     * The feature id for the '<em><b>For Each Context</b></em>' containment reference list.
+     * The feature id for the '<em><b>For Each Executions</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FOR_EACH_EXECUTION__FOR_EACH_CONTEXT = TEXT_BLOCK__FOR_EACH_CONTEXT;
+    int FOR_EACH_EXECUTION__FOR_EACH_EXECUTIONS = TEXT_BLOCK__FOR_EACH_EXECUTIONS;
 
         /**
      * The feature id for the '<em><b>Cached String</b></em>' attribute.
@@ -2071,15 +2071,15 @@ public interface TextblocksPackage extends EPackage {
         EReference getTextBlock_ElementsInContext();
 
         /**
-     * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}'.
+     * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachExecutions <em>For Each Executions</em>}'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>For Each Context</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachContext()
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>For Each Executions</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachExecutions()
      * @see #getTextBlock()
      * @generated
      */
-        EReference getTextBlock_ForEachContext();
+    EReference getTextBlock_ForEachExecutions();
 
         /**
      * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCachedString <em>Cached String</em>}'.
@@ -2577,12 +2577,12 @@ public interface TextblocksPackage extends EPackage {
                 EReference TEXT_BLOCK__ELEMENTS_IN_CONTEXT = eINSTANCE.getTextBlock_ElementsInContext();
 
                 /**
-         * The meta object literal for the '<em><b>For Each Context</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>For Each Executions</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
          * @generated
          */
-                EReference TEXT_BLOCK__FOR_EACH_CONTEXT = eINSTANCE.getTextBlock_ForEachContext();
+        EReference TEXT_BLOCK__FOR_EACH_EXECUTIONS = eINSTANCE.getTextBlock_ForEachExecutions();
 
                 /**
          * The meta object literal for the '<em><b>Cached String</b></em>' attribute feature.

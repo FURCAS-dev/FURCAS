@@ -232,7 +232,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                                 EObject newObject = produceWith(newTemplateToUse, affectedContextObject, textBlock,
                                         elementToUpdate, getOppositeEndFinder());
                                 if (getPropertyToUpdate().isMany()) {
-                                    int position = textBlock.getForEachContext().indexOf(foreachContext);
+                                    int position = textBlock.getForEachExecutions().indexOf(foreachContext);
                                     @SuppressWarnings("unchecked")
                                     List<EObject> l = (List<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
                                     l.set(position, newObject);
@@ -258,7 +258,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * {@link TextBlock} documenting the creation of each of the <code>elementsToUpdate</code> are removed first. Then,
      * the new elements are produced using {@link #produceElement(Object, TextBlock, ResourceSet, OppositeEndFinder)}
      * operation. As a record of this, a new {@link ForEachExecution} element is created for each object creation. They
-     * are attached to the {@link TextBlock#getForEachContext()} collection of the text blocks documenting the creation
+     * are attached to the {@link TextBlock#getForEachExecutions()} collection of the text blocks documenting the creation
      * of the <code>elementsToUpdate</code>.
      */
     private void updateFeature(Set<EObject> elementsToUpdate, Object newValueOfForeachBaseExpression) {
@@ -291,7 +291,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), elementToUpdate);
             TextBlock textBlock = (TextBlock) textBlocks.iterator().next();
             if (foreachWasExecutedFor(textBlock)) {
-                Iterator<ForEachExecution> foreachContextsIterator = textBlock.getForEachContext().iterator();
+                Iterator<ForEachExecution> foreachContextsIterator = textBlock.getForEachExecutions().iterator();
                 ForEachExecution nextForEachContext = getNextForeachContext(foreachContextsIterator, elementToUpdate);
                 Collection<Object> newFeatureValue = new BasicEList<Object>();
                 for (Object foreachElement : foreachElements) {
@@ -384,7 +384,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * Determines the template to use to produce the element for the given <code>foreachElement</code> which is a result
      * object from the foreach-expression's evaluation result. If a <code>null</code> <code>forEachContext</code> is
      * passed, a new element is produced and a new {@link ForEachExecution} will be constructed and appended to the
-     * <code>textBlock</code>'s {@link TextBlock#getForEachContext() foreach contexts}, documenting this rule execution.
+     * <code>textBlock</code>'s {@link TextBlock#getForEachExecutions() foreach contexts}, documenting this rule execution.
      * <p>
      * 
      * If a non-<code>null</code> <code>forEachContext</code> is passed, two cases are possible. If the template that
@@ -420,7 +420,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     ForEachExecution newForEachContext = createForeachContext(elementToUpdate, foreachElement, result, template);
                     // no concurrent modification exception can occur here because forEachContext is null
                     // which avoids further calls to the iterator's next() operation
-                    textBlock.getForEachContext().add(newForEachContext);
+                    textBlock.getForEachExecutions().add(newForEachContext);
                 } else {
                     forEachContext.setTemplateUsedForProduction(template);
                     forEachContext.setResultModelElement(result);
