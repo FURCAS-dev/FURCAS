@@ -518,7 +518,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     }
                     Object whenResult = ocl.evaluate(foreachElement, when);
                     if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != whenResult) {
-                        Boolean match = (Boolean) ocl.evaluate(foreachElement, when);
+                        Boolean match = (Boolean) whenResult;
                         if (match) {
                             result = whenClause.getAs();
                             break;
