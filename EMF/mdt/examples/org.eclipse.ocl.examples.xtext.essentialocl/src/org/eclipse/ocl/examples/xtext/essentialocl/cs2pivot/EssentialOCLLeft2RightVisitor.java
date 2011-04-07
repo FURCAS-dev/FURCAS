@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.12 2011/03/14 17:05:45 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.13 2011/04/01 19:57:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -698,12 +698,19 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression expression;
 			CallExp callExp;
 			if (operation instanceof Iteration) {
-				callExp = resolveIterationCall(csNavigatingExp, source, (Iteration)operation);
+				Iteration iteration = (Iteration)operation;
+				callExp = resolveIterationCall(csNavigatingExp, source, iteration);
 				expression = resolveNavigationFeature(csNavigatingExp, source, operation, callExp);
 				resolveIterationBody(csNavigatingExp, (LoopExp)callExp);
 				context.resolveIterationSpecialization((LoopExp)callExp);
 				if ((expression != callExp) && (expression instanceof LoopExp)) {				// Impossible implicit collect (all iterations on Collection)
 					context.resolveIterationSpecialization((LoopExp)expression);
+				}
+				for (Parameter iterator : iteration.getOwnedIterators()) {
+					context.putPivotElement(iterator);
+				}
+				for (Parameter accumulator : iteration.getOwnedAccumulators()) {
+					context.putPivotElement(accumulator);
 				}
 			}
 			else {
@@ -718,6 +725,10 @@ public class EssentialOCLLeft2RightVisitor
 					context.resolveIterationSpecialization((LoopExp)expression);
 				}
 			}
+			for (Parameter parameter : operation.getOwnedParameters()) {
+				context.putPivotElement(parameter);
+			}
+			context.putPivotElement(typeManager.getOrphanClass());
 			return checkImplementation(csNavigatingExp, operation, callExp, expression);
 		}
 		else {
@@ -1401,7 +1412,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		context.refreshPivotList(TupleLiteralPart.class, expression.getParts(), csTupleLiteralExp.getOwnedParts());
 		String tupleTypeName = "Tuple"; //ownedCollectionType.getName();
-		Type type = typeManager.getTupleType(tupleTypeName, expression.getParts(), null);
+		Type type = typeManager.getTupleType(tupleTypeName, expression.getParts(), null, null);
 		context.setType(expression, type);
 		return expression;
 	}

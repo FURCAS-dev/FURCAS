@@ -70,28 +70,28 @@ public class QuickOclParseAndEvalTest extends TestCase {
     }
 
     /**
-     * Check if it is possible to create an expression in context Boolean
-     */
-    @Test
-    public void testParseAndEvaluateOclExpressionInContextBoolean() throws ParserException {
-        oclHelper.setContext(EcorePackage.eINSTANCE.getEBoolean());
-        {
-            OCLExpression expression4 = oclHelper.createQuery("self");
-            Object result4 = ocl.evaluate(true, expression4);
-            assertTrue((Boolean) result4);
-            Object result5 = ocl.evaluate(false, expression4);
-            assertFalse((Boolean) result5);
-        }
-        {
-            OCLExpression expression4 = oclHelper.createQuery("not self");
-            Object result4 = ocl.evaluate(true, expression4);
-            assertFalse((Boolean) result4);
-            Object result5 = ocl.evaluate(false, expression4);
-            assertTrue((Boolean) result5);
-        }
-    }
+   * Check if it is possible to create an expression in context Boolean
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionInContextBoolean() throws ParserException {
+      oclHelper.setContext(EcorePackage.eINSTANCE.getEBoolean());
+      {
+          OCLExpression expression4 = oclHelper.createQuery("self");
+          Object result4 = ocl.evaluate(true, expression4);
+          assertTrue((Boolean) result4);
+          Object result5 = ocl.evaluate(false, expression4);
+          assertFalse((Boolean) result5);
+      }
+      {
+          OCLExpression expression4 = oclHelper.createQuery("not self");
+          Object result4 = ocl.evaluate(true, expression4);
+          assertFalse((Boolean) result4);
+          Object result5 = ocl.evaluate(false, expression4);
+          assertTrue((Boolean) result5);
+      }
+  }
 
-    /**
+  /**
      * Check if a type name parses as a type literal
      */
     @Test
