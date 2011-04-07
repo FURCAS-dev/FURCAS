@@ -211,11 +211,12 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
         // We assume here that no #context nor #foreach is used in the when-clause.
         // It wouldn't make much sense anyway because the when-clause should filter the foreach result.
         for (EObject affectedContextObject : affectedContextObjects) {
-            Collection<EObject> foreachContextsUsingSelfAsForeachElement = getOppositeEndFinder()
+            Collection<EObject> foreachExecutionsUsingSelfAsForeachElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
                         TextblocksPackage.eINSTANCE.getForEachExecution_ContextElement(), affectedContextObject);
-            if (foreachContextsUsingSelfAsForeachElement != null) {
-                for (EObject eo : foreachContextsUsingSelfAsForeachElement) {
+            // FIXME when a foreach element changed from no matching when-clause to at least one matching when-clause, no ForEachExecution exists so far
+            if (foreachExecutionsUsingSelfAsForeachElement != null) {
+                for (EObject eo : foreachExecutionsUsingSelfAsForeachElement) {
                     if (eo.eContainer() != null) { // ignore stale ForEachContext that for unknown reasons are still
                                                    // returned by opposite end finder
                         ForEachExecution foreachContext = (ForEachExecution) eo;
