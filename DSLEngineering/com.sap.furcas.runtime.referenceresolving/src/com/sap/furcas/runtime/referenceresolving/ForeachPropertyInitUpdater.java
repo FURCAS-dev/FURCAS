@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.OCL;
@@ -234,20 +235,27 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                             Template oldTemplateUsedForProduction = foreachExecution.getTemplateUsedForProduction();
                             // check if the template to use for producing really changed; if so, execute the one
                             // production rule and carefully update the existing ForEachExecution
-                            // FIXME consider the case that newTemplateToUse==null, meaning not to produce anything; need to remove old target element
                             if (newTemplateToUse != oldTemplateUsedForProduction) {
-                                // the supposed change really led to a change in production rule; produce anew
-                                EObject newObject = produceWith(newTemplateToUse, affectedContextObject, textBlock,
-                                        elementToUpdate, getOppositeEndFinder());
-                                if (getPropertyToUpdate().isMany()) {
-                                    int position = textBlock.getForEachExecutions().indexOf(foreachExecution);
+                                if (newTemplateToUse == null) {
+                                    // remove element and ForEachExecution record
                                     @SuppressWarnings("unchecked")
                                     List<EObject> l = (List<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
-                                    l.set(position, newObject);
+                                    l.remove(foreachExecution.getResultModelElement());
+                                    EcoreUtil.delete(foreachExecution);
                                 } else {
-                                    elementToUpdate.eSet(getPropertyToUpdate(), newObject);
+                                    // the supposed change really led to a change in production rule; produce anew
+                                    EObject newObject = produceWith(newTemplateToUse, affectedContextObject, textBlock,
+                                            elementToUpdate, getOppositeEndFinder());
+                                    if (getPropertyToUpdate().isMany()) {
+                                        int position = textBlock.getForEachExecutions().indexOf(foreachExecution);
+                                        @SuppressWarnings("unchecked")
+                                        List<EObject> l = (List<EObject>) elementToUpdate.eGet(getPropertyToUpdate());
+                                        l.set(position, newObject);
+                                    } else {
+                                        elementToUpdate.eSet(getPropertyToUpdate(), newObject);
+                                    }
+                                    foreachExecution.setResultModelElement(newObject);
                                 }
-                                foreachExecution.setResultModelElement(newObject);
                             }
                         }
                     }
