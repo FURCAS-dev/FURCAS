@@ -136,7 +136,7 @@ public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractRef
      * element for Jane.
      */
     @Test
-    public void testChangeArticleNameFromWhenClauseToNoClause() {
+    public void testChangeArticleNameFromNoClauseToWhenClause() {
         testInitialModel(); // just to make sure that for this particular test case evaluation the model is correct, too
         for (EObject article : articles) {
             if (article.eGet(articleClass.getEStructuralFeature("key")).equals("LongLongLong")) {
@@ -160,6 +160,39 @@ public class TestPropertyInitReEvaluationWithForeachWithWhen extends AbstractRef
                     }
                 }
                 assertTrue(found);
+            }
+        }
+    }
+    
+    /**
+     * By changing an article's "key" the article now no longer matches a when-clause and should cause
+     * the corresponding RevenueLedger object to be removed from author "John"
+     */
+    @Test
+    public void testChangeArticleNameFromWhenClauseToNoClause() {
+        testInitialModel(); // just to make sure that for this particular test case evaluation the model is correct, too
+        for (EObject article : articles) {
+            if (article.eGet(articleClass.getEStructuralFeature("key")).equals("Shrt")) {
+                String newArticleName = "NotSoShortAnymore";
+                article.eSet(articleClass.getEStructuralFeature("key"), newArticleName);
+                // testInitialModel(); // test if everything is still alright after the change
+                EObject author = (EObject) article.eGet(articleClass.getEStructuralFeature("author"));
+                assertEquals("Expected John to have authored the article with the Shrt key", johnDoe, author);
+                @SuppressWarnings("unchecked")
+                Collection<EObject> revenues = (Collection<EObject>) author.eGet(authorClass.getEStructuralFeature("revenues"));
+                assertEquals(1, revenues.size());
+                boolean found = false;
+                for (EObject revenue : revenues) {
+                    EObject articleOfRevenue = (EObject) revenue.eGet(revenue.eClass().getEStructuralFeature("article"));
+                    if (articleOfRevenue == article) {
+                        // We clearly had the case that the testInitialModel() call above succeeded but the following
+                        // assertion failed. This makes it likely that the article.eSet call above cause a model change
+                        // which can only have resulted from an event handler that reacted to the change
+                        assertEquals(newArticleName.length(), revenue.eGet(revenue.eClass().getEStructuralFeature("revenueInEUR")));
+                        found = true;
+                    }
+                }
+                assertFalse(found);
             }
         }
     }
