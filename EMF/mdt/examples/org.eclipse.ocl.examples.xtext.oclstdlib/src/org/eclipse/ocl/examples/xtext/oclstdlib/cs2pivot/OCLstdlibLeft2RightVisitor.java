@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibLeft2RightVisitor.java,v 1.4 2011/03/24 04:10:00 ewillink Exp $
+ * $Id: OCLstdlibLeft2RightVisitor.java,v 1.5 2011/04/01 19:57:09 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
@@ -67,6 +67,7 @@ public class OCLstdlibLeft2RightVisitor
 				contextVariable = PivotFactory.eINSTANCE.createVariable();
 				pivotSpecification.setContextVariable(contextVariable);
 			}
+			context.putPivotElement(contextVariable);
 			context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 			EObject eContainer = csConstraint.eContainer();
 			if (eContainer instanceof TypeCS) {
@@ -97,6 +98,9 @@ public class OCLstdlibLeft2RightVisitor
 			        newVariables.add(param);
 		        }
 		        context.refreshList(pivotSpecification.getParameterVariables(), newVariables);
+		        for (Variable parameterVariable : pivotSpecification.getParameterVariables()) {
+					context.putPivotElement(parameterVariable);
+		        }
 		        if ("post".equals(csConstraint.getStereotype())) {		// FIXME constant
 					Variable resultVariable = pivotSpecification.getResultVariable();
 					if (resultVariable == null) {
@@ -105,6 +109,7 @@ public class OCLstdlibLeft2RightVisitor
 					resultVariable.setName(Environment.RESULT_VARIABLE_NAME);
 					resultVariable.setType(contextOperation.getType());
 					pivotSpecification.setResultVariable(resultVariable);
+					context.putPivotElement(resultVariable);
 		        }
 			}
 			

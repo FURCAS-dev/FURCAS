@@ -1701,12 +1701,21 @@
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.30"/>
         </elements>
-        <elements xsi:type="xtext:Group" cardinality="?">
-          <elements xsi:type="xtext:Keyword" value="("/>
-          <elements xsi:type="xtext:Assignment" feature="ownedType" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.48"/>
+        <elements xsi:type="xtext:Alternatives" cardinality="?">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Keyword" value="("/>
+            <elements xsi:type="xtext:Assignment" feature="ownedType" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.48"/>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value=")"/>
           </elements>
-          <elements xsi:type="xtext:Keyword" value=")"/>
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Keyword" value="&lt;"/>
+            <elements xsi:type="xtext:Assignment" feature="ownedType" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.48"/>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value=">"/>
+          </elements>
         </elements>
       </alternatives>
     </rules>
@@ -1718,20 +1727,37 @@
         <elements xsi:type="xtext:Assignment" feature="name" operator="=">
           <terminal xsi:type="xtext:Keyword" value="Tuple"/>
         </elements>
-        <elements xsi:type="xtext:Group" cardinality="?">
-          <elements xsi:type="xtext:Keyword" value="("/>
-          <elements xsi:type="xtext:Group" cardinality="?">
-            <elements xsi:type="xtext:Assignment" feature="ownedParts" operator="+=">
-              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>
-            </elements>
-            <elements xsi:type="xtext:Group" cardinality="*">
-              <elements xsi:type="xtext:Keyword" value=","/>
+        <elements xsi:type="xtext:Alternatives" cardinality="?">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Keyword" value="("/>
+            <elements xsi:type="xtext:Group" cardinality="?">
               <elements xsi:type="xtext:Assignment" feature="ownedParts" operator="+=">
                 <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>
               </elements>
+              <elements xsi:type="xtext:Group" cardinality="*">
+                <elements xsi:type="xtext:Keyword" value=","/>
+                <elements xsi:type="xtext:Assignment" feature="ownedParts" operator="+=">
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>
+                </elements>
+              </elements>
             </elements>
+            <elements xsi:type="xtext:Keyword" value=")"/>
           </elements>
-          <elements xsi:type="xtext:Keyword" value=")"/>
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Keyword" value="&lt;"/>
+            <elements xsi:type="xtext:Group" cardinality="?">
+              <elements xsi:type="xtext:Assignment" feature="ownedParts" operator="+=">
+                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>
+              </elements>
+              <elements xsi:type="xtext:Group" cardinality="*">
+                <elements xsi:type="xtext:Keyword" value=","/>
+                <elements xsi:type="xtext:Assignment" feature="ownedParts" operator="+=">
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.33"/>
+                </elements>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:Keyword" value=">"/>
+          </elements>
         </elements>
       </alternatives>
     </rules>
