@@ -24,7 +24,7 @@
 		
 		<cs:private name="build.examples.zips" actor="ant">
 			<cs:actorProperties>
-				<cs:property key="buildFile" value="${checkout.location}/org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples/buildZips.xml" />
+				<cs:property key="buildFile" value="${buckminster.workspace}/plugins/org.eclipse.ocl.examples/buildZips.xml" />
 				<cs:property key="targets" value="zip.examples" />
 			</cs:actorProperties>
 		</cs:private>
