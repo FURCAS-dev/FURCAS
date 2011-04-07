@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.4 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.5 2011/04/07 16:00:30 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -138,7 +138,7 @@ public class ElementUtil
 
 	public static String getText(ElementCS csElement) {
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
-		return NodeModelUtils.getTextWithoutHidden(node);
+		return NodeModelUtils.getTokenText(node);
 	}
 
 	public static String getText(TypedTypeRefCS csElement, EReference feature) {
@@ -148,12 +148,12 @@ public class ElementUtil
 			return null;
 		}
 		else if (nodes.size() == 1) {
-			return NodeModelUtils.getTextWithoutHidden(nodes.get(0));
+			return NodeModelUtils.getTokenText(nodes.get(0));
 		}
 		else {
 			StringBuffer s = new StringBuffer();
 			for (INode node : nodes) {
-				s.append(NodeModelUtils.getTextWithoutHidden(node));
+				s.append(NodeModelUtils.getTokenText(node));
 			}
 			return s.toString();
 		}
