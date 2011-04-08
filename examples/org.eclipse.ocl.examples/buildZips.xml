@@ -7,11 +7,9 @@
 		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
 	
 	<target name="zip.examples" depends="init">
-		<!--<condition property="examplesDir" value="../../examples/" else="../">
+		<condition property="examplesDir" value="../../examples/" else="../">
 		    <available file="../../examples" type="dir"/>
-		</condition>-->
-		<property name="examplesDir" value="${workspace.root}/plugins/"/>
-		<echo message="Examples Directory: ${examplesDir}"/>
+		</condition>
 		<!-- This example may have been compiled already in the Master feature -->
 		<zip destfile="zips/interpreter.zip" basedir="${examplesDir}org.eclipse.ocl.examples.interpreter">
 			<patternset refid="zip.excludes"/>
