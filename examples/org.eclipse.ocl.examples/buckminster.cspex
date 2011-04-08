@@ -5,8 +5,8 @@
 	xmlns="http://www.eclipse.org/buckminster/CSpec-1.0">
 	<dependencies>
 		<!-- OCL Examples dependencies to build the zips -->
-		<dependency name="org.eclipse.ocl.examples.project.empty" componentType="osgi.bundle"/>
-		<dependency name="org.eclipse.ocl.examples.project.royalandloyal" componentType="osgi.bundle"/>
+		<dependency name="org.eclipse.ocl.examples.project.empty" componentType="unknown"/>
+		<dependency name="org.eclipse.ocl.examples.project.royalandloyal" componentType="unknown"/>
 		<!-- EMF Examples dependencies to build the zips -->
 		<dependency name="org.eclipse.emf.examples.library" componentType="osgi.bundle"/>
 		<dependency name="org.eclipse.emf.examples.library.edit" componentType="osgi.bundle"/>
