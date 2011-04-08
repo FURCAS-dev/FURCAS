@@ -11,7 +11,7 @@
 				    <available file="../../examples" type="dir"/>
 		</condition> -->
 		<!-- Bundles are materialized by buckminster into the plugins folder at the workspace root -->
-		<property name="bundlesDir" value="${workspace.root}/plugin"/>
+		<property name="bundlesDir" value="${workspace.root}/plugins"/>
 		<!-- Non-Bundles are materialized by buckminster into the workspace root -->
 		<property name="nonBundlesDir" value="${workspace.root}"/>
 		
