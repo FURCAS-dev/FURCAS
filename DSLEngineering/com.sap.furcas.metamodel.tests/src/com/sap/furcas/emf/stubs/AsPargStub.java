@@ -10,7 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 
 public class AsPargStub extends PargStub implements AsPArg {
@@ -36,4 +39,10 @@ public class AsPargStub extends PargStub implements AsPArg {
     public Template getTemplate() {
         return template;
     }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getAsPArg();
+    }
+
 }

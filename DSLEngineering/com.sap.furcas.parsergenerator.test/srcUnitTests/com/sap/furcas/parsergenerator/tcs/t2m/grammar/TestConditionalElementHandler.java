@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.AndExpStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.BooleanPropertyExpStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassTemplateStub;
@@ -373,6 +375,11 @@ public class TestConditionalElementHandler {
 	    
 	}
         
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getStringVal();
+	    }
+
     }
     
     class IntegerValStub extends LocatedElementStub implements IntegerVal {
@@ -399,6 +406,11 @@ public class TestConditionalElementHandler {
 	    
 	}
         
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getIntegerVal();
+	    }
+
     }
     
     class NegativeIntegerValStub extends LocatedElementStub implements NegativeIntegerVal {
@@ -422,6 +434,11 @@ public class TestConditionalElementHandler {
 	    
 	}
         
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getNegativeIntegerVal();
+	    }
+
     }
     
     class EnumLiteralValStub extends LocatedElementStub implements EnumLiteralVal {
@@ -436,6 +453,11 @@ public class TestConditionalElementHandler {
         @Override
 	public void setName(String value) {
             // not needed for the test
+        }
+
+        @Override
+        public EClass eClass() {
+            return TCSPackage.eINSTANCE.getEnumLiteralVal();
         }
 
         

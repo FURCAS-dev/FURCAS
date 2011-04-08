@@ -5,10 +5,12 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import junit.framework.Assert;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import com.sap.furcas.emf.stubs.EcoreAnyStub;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -45,4 +47,10 @@ public class PropertyReferenceStub extends LocatedElementStub implements
     public void setStrucfeature(EStructuralFeature value) {
         Assert.fail("not implemented.");
     }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPropertyReference();
+    }
+
 }

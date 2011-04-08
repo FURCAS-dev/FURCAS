@@ -4,9 +4,11 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -34,7 +36,9 @@ public class OperatorListStub extends LocatedElementStub implements OperatorList
         return priorities;
     }
 
-  
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getOperatorList();
+    }
 
-    
 }

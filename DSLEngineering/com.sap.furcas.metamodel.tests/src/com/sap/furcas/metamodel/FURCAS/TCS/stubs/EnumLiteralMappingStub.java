@@ -3,9 +3,12 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
 import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -89,6 +92,16 @@ public class EnumLiteralMappingStub extends SequenceElementStub implements EnumL
 	    name = value;
 	}
 
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getEnumLiteralVal();
+	    }
+
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getEnumLiteralMapping();
     }
 
 }

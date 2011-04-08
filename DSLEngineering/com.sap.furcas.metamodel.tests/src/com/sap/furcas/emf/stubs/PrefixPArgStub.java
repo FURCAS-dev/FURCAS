@@ -10,7 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class PrefixPArgStub extends PargStub implements PrefixPArg {
 
@@ -26,4 +29,9 @@ public class PrefixPArgStub extends PargStub implements PrefixPArg {
         prefix = value;
     }
     
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPrefixPArg();
+    }
+
 }

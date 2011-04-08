@@ -3,10 +3,13 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import junit.framework.Assert;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -33,5 +36,9 @@ public class OneExpStub extends AtomExpStub implements
         Assert.fail("not implemented.");
     }
 
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getOneExp();
+    }
 
 }
