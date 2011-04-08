@@ -80,7 +80,7 @@ import org.antlr.runtime.Token;
 
 
 @members {
-   private static final String syntaxUUID = "_pvm3oGH1EeCG2-l6Kl85Rw";
+   private static final String syntaxUUID = "_CFlAIGH6EeCMMvnNcfYSDw";
    public String getSyntaxUUID() {
         return syntaxUUID;
    }
@@ -135,10 +135,10 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/4");}'DB:'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/6");}( temp=identifier {setProperty(ret, "name", temp);
-setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/7");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/11");}(({_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/9");}( temp=bibtex_author {setProperty(ret, "author", temp);
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/4");}'DB:'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/6");}( temp=identifier {setProperty(ret, "name", temp);
+setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/7");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/11");}(({_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/9");}( temp=bibtex_author {setProperty(ret, "author", temp);
 setParent(temp,ret,"author");} ( temp=bibtex_author {setProperty(ret, "author", temp);
-setParent(temp,ret,"author");})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/12");}'}'{_afterSeqEl();})
+setParent(temp,ret,"author");})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/12");}'}'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -153,9 +153,9 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/17");}( temp=identifier {setProperty(ret, "id", temp);
-setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/18");}':'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/20");}( temp=identifier {setProperty(ret, "title", temp);
-setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/23");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/22 */_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/17");}( temp=identifier {setProperty(ret, "id", temp);
+setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/18");}':'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/20");}( temp=identifier {setProperty(ret, "title", temp);
+setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/23");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/22");_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -170,10 +170,10 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/28");}( temp=identifier {setProperty(ret, "name", temp);
-setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/29");}':'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/33");}(({_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/31");}( temp=bibtex_entry {setProperty(ret, "publications", temp);
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/28");}( temp=identifier {setProperty(ret, "name", temp);
+setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/29");}':'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/33");}(({_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/31");}( temp=bibtex_entry {setProperty(ret, "publications", temp);
 setParent(temp,ret,"publications");} ( temp=bibtex_entry {setProperty(ret, "publications", temp);
-setParent(temp,ret,"publications");})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/36");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_prt2IGH1EeCG2-l6Kl85Rw#/35 */_exitInjectorAction();}{_afterSeqEl();})
+setParent(temp,ret,"publications");})* )? {_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/36");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/35");_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 

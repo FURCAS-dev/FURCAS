@@ -876,17 +876,14 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      * @param query
      */
     public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query) {
-
-        ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
-
-        DelayedReference ref = new DelayedReference(getCurrentContextElement(), getCurrentForeachElement(), object,
-                propertyName, keyName, keyValue, query, false, lastToken);
-
-        onDelayedReferenceCreated(ref);
-
-        unResolvedDelayedReferenceList.add(ref);
+        setOclRef(object, propertyName, keyName, keyValue, query, /* optional */ false);
     }
 
+    public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query, String propInitURI) {
+        // TODO make use of propInitURI after bootstrap completed
+        setOclRef(object, propertyName, keyName, keyValue, query);
+    }
+    
     /**
      * 
      * @param object
@@ -908,6 +905,12 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         unResolvedDelayedReferenceList.add(ref);
     }
 
+    public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query,
+            boolean optional, String propInitURI) {
+        // TODO make use of propInitURI after bootstrap completed
+        setOclRef(object, propertyName, keyName, keyValue, query, optional);
+    }
+    
     /**
      * 
      * @param object
@@ -926,6 +929,12 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         onDelayedReferenceCreated(ref);
     }
 
+    public final void setPredicateRef(Object object, String propertyName, String mode, String query,
+            List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext, String propInitURI) {
+        // TODO make use of propInitURI after bootstrap completed
+        setPredicateRef(object, propertyName, mode, query, preds, ruleNameFinder, hasContext);
+    }
+    
     /**
      * 
      * @param enumName
