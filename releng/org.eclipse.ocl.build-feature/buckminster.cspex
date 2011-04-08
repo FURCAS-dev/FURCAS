@@ -21,13 +21,6 @@
 				<cs:property key="targets" value="-create.category.xml" />
 			</cs:actorProperties>
 		</cs:private>
-		
-		<cs:private name="build.examples.zips" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="${workspace.root}/plugins/org.eclipse.ocl.examples/buildZips.xml" />
-				<cs:property key="targets" value="zip.examples" />
-			</cs:actorProperties>
-		</cs:private>
 
 		<cs:public name="package.mdt-ocl-Update" actor="ant">
 			<cs:actorProperties>
@@ -38,7 +31,6 @@
 				<cs:property key="package.name" value="mdt-ocl-Update" />
 			</cs:properties>
 			<cs:prerequisites>
-			    <cs:attribute name="build.examples.zips" alias="build.examples.zips" />
                 <cs:attribute name="create.category.xml" alias="create.category" />
 				<cs:attribute name="site.p2" alias="repository" />
 			</cs:prerequisites>
