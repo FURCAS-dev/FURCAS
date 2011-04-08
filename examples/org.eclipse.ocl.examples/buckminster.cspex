@@ -10,12 +10,11 @@
 		<dependency name="org.eclipse.emf.examples.library.editor" componentType="osgi.bundle"/>
 	</dependencies>
 	<actions>
-		<private name="build.examples.zips" actor="ant" always="true">
+		<public name="buckminster.prebind" actor="ant" always="true">
 			<actorProperties>
 				<property key="buildFile" value="buildZips.xml" />
-				<property key="targets" value="zip.examples" />
 			</actorProperties>
 			<products alias="output" base="{buckminster.output}/zips/"/>
-		</private>
+		</public>
 	</actions>
 </cspecExtension>
