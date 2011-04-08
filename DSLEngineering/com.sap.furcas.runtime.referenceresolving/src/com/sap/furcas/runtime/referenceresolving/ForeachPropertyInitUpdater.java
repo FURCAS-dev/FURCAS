@@ -367,17 +367,20 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                 for (Object foreachElement : foreachElements) {
                     EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate,
                             getOppositeEndFinder(), nextForEachExecution);
-                    // FIXME consider the case that no element was produced, e.g., because foreachElement==Boolean.FALSE
-                    if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
-                            || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
-                                    .isContainment()) {
-                        // assign to elementToUpdate's Resource as a default, in case it's not added to a
-                        // containment reference
-                        elementToUpdate.eResource().getContents().add(producedElement);
-                    }
-                    newFeatureValue.add(producedElement);
-                    if (nextForEachExecution != null) {
-                        nextForEachExecution = getNextForeachExecution(foreachExecutionsIterator, elementToUpdate);
+                    if (producedElement != null) {
+                        // FIXME consider the case that no element was produced, e.g., because
+                        // foreachElement==Boolean.FALSE
+                        if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
+                                || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
+                                        .isContainment()) {
+                            // assign to elementToUpdate's Resource as a default, in case it's not added to a
+                            // containment reference
+                            elementToUpdate.eResource().getContents().add(producedElement);
+                        }
+                        newFeatureValue.add(producedElement);
+                        if (nextForEachExecution != null) {
+                            nextForEachExecution = getNextForeachExecution(foreachExecutionsIterator, elementToUpdate);
+                        }
                     }
                 }
                 // delete trailing ForEachExecutions
@@ -455,19 +458,23 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * Determines the template to use to produce the element for the given <code>foreachElement</code> which is a result
      * object from the foreach-expression's evaluation result. If a <code>null</code> <code>forEachExecution</code> is
      * passed, a new element is produced and a new {@link ForEachExecution} will be constructed and appended to the
-     * <code>textBlock</code>'s {@link TextBlock#getForEachExecutions() foreach contexts}, documenting this rule execution.
+     * <code>textBlock</code>'s {@link TextBlock#getForEachExecutions() foreach contexts}, documenting this rule
+     * execution.
      * <p>
      * 
      * If a non-<code>null</code> <code>forEachExecution</code> is passed, two cases are possible. If the template that
      * would be used now for production is the same as the one pointed to by the {@link ForEachExecution} and the same
      * foreach result was used, no production is necessary. The {@link ForEachExecution} as well as its element can be
-     * re-used. The {@link ForEachExecution#getResultModelElement() result element} of the {@link ForEachExecution} is used
-     * as this method's result in this case.
+     * re-used. The {@link ForEachExecution#getResultModelElement() result element} of the {@link ForEachExecution} is
+     * used as this method's result in this case.
      * <p>
      * 
      * If the template to use for production differs from the one in the <code>forEachExecution</code> or the production
      * was carried out for a different foreach result, the production is executed and the {@link ForEachExecution} is
      * updated with the results.
+     * 
+     * @return the element produced or <code>null</code> if no matching template was found, e.g., because no
+     *         "when"-clause matched the element
      */
     private EObject produceElement(Object foreachElement, TextBlock textBlock, EObject elementToUpdate,
             OppositeEndFinder oppositeEndFinder, ForEachExecution forEachExecution) {
