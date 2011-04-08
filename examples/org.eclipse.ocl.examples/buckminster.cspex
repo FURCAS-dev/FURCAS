@@ -13,7 +13,7 @@
 		<dependency name="org.eclipse.emf.examples.library.editor" componentType="osgi.bundle"/>
 	</dependencies>
 	<actions>
-		<public name="buckminster.prebind" actor="ant" always="true">
+		<public name="buckminster.prebind" actor="ant">
 			<actorProperties>
 				<property key="buildFile" value="buildZips.xml" />
 				<property key="targets" value="zip.examples" />
