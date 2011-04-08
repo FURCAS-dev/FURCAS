@@ -14,7 +14,6 @@
 			<actorProperties>
 				<property key="buildFile" value="buildZips.xml" />
 			</actorProperties>
-			<products alias="output" base="{buckminster.output}/zips/"/>
 		</public>
 	</actions>
 </cspecExtension>
