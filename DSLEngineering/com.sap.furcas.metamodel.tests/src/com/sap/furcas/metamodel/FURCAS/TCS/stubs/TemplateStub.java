@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
@@ -141,5 +142,10 @@ public class TemplateStub extends LocatedElementStub implements Template {
 	public void setTextBlockDefinition(TextBlockDefinition value) {
 		textBlockDefinition = value;
 	}
+
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getTemplate();
+	    }
 
 }

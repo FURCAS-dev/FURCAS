@@ -10,7 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class PostfixPArgStub extends PargStub implements PostfixPArg {
 
@@ -26,4 +29,9 @@ public class PostfixPArgStub extends PargStub implements PostfixPArg {
         postfix = value;
     }
     
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPostfixPArg();
+    }
+
 }

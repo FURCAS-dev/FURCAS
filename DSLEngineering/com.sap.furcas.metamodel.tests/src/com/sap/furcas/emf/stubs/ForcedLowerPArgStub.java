@@ -1,6 +1,9 @@
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -23,4 +26,10 @@ public class ForcedLowerPArgStub extends PargStub implements ForcedLowerPArg {
         // TODO Auto-generated method stub
 
     }
+    
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getForcedLowerPArg();
+    }
+
 }

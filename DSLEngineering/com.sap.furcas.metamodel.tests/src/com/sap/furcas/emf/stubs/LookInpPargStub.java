@@ -11,8 +11,10 @@
 package com.sap.furcas.emf.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class LookInpPargStub extends PargStub implements LookInPArg {
 
@@ -21,6 +23,11 @@ public class LookInpPargStub extends PargStub implements LookInPArg {
     @Override
     	public EList<String> getPropertyName() {
         return propertyName;
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getLookInPArg();
     }
 
 }
