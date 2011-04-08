@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cspecExtension
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
+	xmlns="http://www.eclipse.org/buckminster/CSpec-1.0">
+	<dependencies>
+		<!-- EMF Examples dependencies to build the zips -->
+		<dependency name="org.eclipse.emf.examples.library" componentType="osgi.bundle"/>
+		<dependency name="org.eclipse.emf.examples.library.edit" componentType="osgi.bundle"/>
+		<dependency name="org.eclipse.emf.examples.library.editor" componentType="osgi.bundle"/>
+	</dependencies>
+	<actions>
+		<public name="buckminster.prebind" actor="ant" always="true">
+			<actorProperties>
+				<property key="buildFile" value="buildZips.xml" />
+			</actorProperties>
+		</public>
+	</actions>
+</cspecExtension>
