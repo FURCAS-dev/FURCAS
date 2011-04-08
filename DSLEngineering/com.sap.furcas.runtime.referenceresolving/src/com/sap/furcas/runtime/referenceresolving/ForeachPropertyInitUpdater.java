@@ -368,8 +368,6 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
                     EObject producedElement = produceElement(foreachElement, textBlock, elementToUpdate,
                             getOppositeEndFinder(), nextForEachExecution);
                     if (producedElement != null) {
-                        // FIXME consider the case that no element was produced, e.g., because
-                        // foreachElement==Boolean.FALSE
                         if (!(foreachPredicatePropertyInit.getPropertyReference().getStrucfeature() instanceof EReference)
                                 || !((EReference) foreachPredicatePropertyInit.getPropertyReference().getStrucfeature())
                                         .isContainment()) {
