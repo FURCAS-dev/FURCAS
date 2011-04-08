@@ -13,16 +13,46 @@
 	<packaging>eclipse-test-plugin</packaging>
 	<name>EMF Query2 Index UI Tests</name>
 	
+	<repositories>
+   <repository>
+     <id>ganymede</id>
+     <layout>p2</layout>
+     <url>http://download.eclipse.org/releases/galileo</url>
+   </repository>
+   <repository>
+     <id>swtbot</id>
+     <layout>p2</layout>
+     <url>http://download.eclipse.org/technology/swtbot/galileo/dev-build/update-site</url>
+   </repository>
+  </repositories>
+	
+	
 	<build>
 		<plugins>
+			 <plugin>
+        	<groupId>org.sonatype.tycho</groupId>
+        	<artifactId>tycho-maven-plugin</artifactId>
+        	<version>${tycho-version}</version>
+        	<extensions>true</extensions>
+      		</plugin>
+      		 <plugin>
+        		<groupId>org.sonatype.tycho</groupId>
+	      		<artifactId>target-platform-configuration</artifactId>
+	        	<version>${tycho-version}</version>
+	        	<configuration>
+          			<resolver>p2</resolver>
+        		</configuration>
+     		 </plugin>
+      		
 			<plugin>
 				<groupId>org.sonatype.tycho</groupId>
 				<artifactId>maven-osgi-test-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
 					<testSuite>org.eclipse.emf.query2.index.ui.test</testSuite>
-					<testClass>org.eclipse.emf.query2.index.ui.test.IndexUITestSuite</testClass>
+					<testClass>org.eclipse.emf.query2.index.ui.test.IndexViewUITest</testClass>
 					<useUIHarness>true</useUIHarness> 
+					<useUIThread>false</useUIThread>
 					<argLine>-Xms128m -Xmx512m -XX:MaxPermSize=256m</argLine>
 					<product>org.eclipse.sdk.ide</product>
 					<application>org.eclipse.ui.ide.workbench</application>
