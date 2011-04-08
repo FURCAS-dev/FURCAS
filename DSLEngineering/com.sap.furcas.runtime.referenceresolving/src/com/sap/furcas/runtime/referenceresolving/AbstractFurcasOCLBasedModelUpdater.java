@@ -72,7 +72,6 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     @Override
     public void notify(OCLExpression expression, Collection<EObject> affectedContextObjects,
             OppositeEndFinder oppositeEndFinder, Notification change) {
-        // FIXME only handle affectedContextObjects subset for which the propertyInit was actually applied
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(oppositeEndFinder);
         for (EObject eo : affectedContextObjects) {
             Object newValue = ocl.evaluate(eo, expression);
@@ -148,7 +147,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
     protected Set<EObject> getElementsToUpdate(EObject self) throws ParserException {
         switch (selfKind) {
         case SELF:
-            return getElementsToUpdateFromSelf(self); // TODO enable this once the test has proven that the other won't work
+            return getElementsToUpdateFromSelf(self);
         case CONTEXT:
             return getElementsToUpdateFromContextElement(self);
         case FOREACH:
