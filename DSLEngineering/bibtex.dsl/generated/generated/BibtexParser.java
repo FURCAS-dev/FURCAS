@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2011-04-08 17:33:45
+// $ANTLR 3.1.1 C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g 2011-04-08 18:06:04
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -62,7 +62,7 @@ public class BibtexParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g"; }
 
 
-       private static final String syntaxUUID = "_kLRsYGH1EeCG2-l6Kl85Rw";
+       private static final String syntaxUUID = "_GMlRwGH6EeCMMvnNcfYSDw";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -240,7 +240,7 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:138:4: (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/5");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/5");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:138:95: (temp= identifier )
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:138:97: temp= identifier
@@ -262,21 +262,21 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/6");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/6");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb172); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/7");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/7");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/9");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/9");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:139:364: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt2=2;
@@ -343,28 +343,28 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/10");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/10");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb201); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/11");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/11");
             }
             match(input,18,FOLLOW_18_in_bibtex_literaturedb204); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/12");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/12");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/14");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/14");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:141:486: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt4=2;
@@ -431,7 +431,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/15");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/15");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb233); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -483,21 +483,21 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:4: '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/19");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/19");
             }
             match(input,19,FOLLOW_19_in_bibtex_entry273); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/20");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/20");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry276); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/44");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/44");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:325: ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) )
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:326: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
@@ -506,7 +506,7 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:327: (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/22");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/22");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:419: (temp= identifier )
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:158:421: temp= identifier
@@ -528,35 +528,35 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/23");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/23");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry292); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/24");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/24");
             }
             match(input,21,FOLLOW_21_in_bibtex_entry295); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/25");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/25");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry298); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/26");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/26");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry301); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/28");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/28");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:159:584: (temp= identifier )
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:159:586: temp= identifier
@@ -578,42 +578,42 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/29");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/29");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry314); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/30");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/30");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry317); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/31");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/31");
             }
             match(input,23,FOLLOW_23_in_bibtex_entry320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/32");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/32");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry323); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/33");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/33");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry326); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/41");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/41");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:699: (temp= identifier ( ( 'and' ) temp= identifier )* )?
             int alt6=2;
@@ -633,9 +633,9 @@ public class BibtexParser extends ObservableInjectingParser {
                     state._fsp--;
                     if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");
+                      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)", "http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/41");
                     }
-                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:901: ( ( 'and' ) temp= identifier )*
+                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:889: ( ( 'and' ) temp= identifier )*
                     loop5:
                     do {
                         int alt5=2;
@@ -648,18 +648,18 @@ public class BibtexParser extends ObservableInjectingParser {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:902: ( 'and' ) temp= identifier
+                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:890: ( 'and' ) temp= identifier
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	      _enterSepSeq();
                     	    }
-                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:919: ( 'and' )
-                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:920: 'and'
+                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:907: ( 'and' )
+                    	    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:160:908: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/36");
+                    	      _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/36");
                     	    }
-                    	    match(input,24,FOLLOW_24_in_bibtex_entry343); if (state.failed) return ret2;
+                    	    match(input,24,FOLLOW_24_in_bibtex_entry341); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -669,14 +669,14 @@ public class BibtexParser extends ObservableInjectingParser {
                     	    if ( state.backtracking==0 ) {
                     	      _exitSepSeq();
                     	    }
-                    	    pushFollow(FOLLOW_identifier_in_bibtex_entry350);
+                    	    pushFollow(FOLLOW_identifier_in_bibtex_entry348);
                     	    temp=identifier();
 
                     	    checkFollows();
                     	    state._fsp--;
                     	    if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
-                    	      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");
+                    	      setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)", "http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/41");
                     	    }
 
                     	    }
@@ -697,9 +697,9 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/42");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/42");
             }
-            match(input,17,FOLLOW_17_in_bibtex_entry363); if (state.failed) return ret2;
+            match(input,17,FOLLOW_17_in_bibtex_entry359); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -713,17 +713,17 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/45");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/45");
             }
-            match(input,17,FOLLOW_17_in_bibtex_entry369); if (state.failed) return ret2;
+            match(input,17,FOLLOW_17_in_bibtex_entry365); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/48");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/48");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/47 */_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/47");_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -774,12 +774,12 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:175:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/53");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/53");
             }
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:175:96: (temp= identifier )
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\Bibtex.g:175:98: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_bibtex_author416);
+            pushFollow(FOLLOW_identifier_in_bibtex_author412);
             temp=identifier();
 
             checkFollows();
@@ -796,10 +796,10 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/56");
+              _beforeSeqEl("http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/56");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/55 */_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_GIkUcGH6EeCMMvnNcfYSDw#/55");_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -861,10 +861,10 @@ public class BibtexParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_22_in_bibtex_entry323 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_bibtex_entry326 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_identifier_in_bibtex_entry333 = new BitSet(new long[]{0x0000000001020000L});
-    public static final BitSet FOLLOW_24_in_bibtex_entry343 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_entry350 = new BitSet(new long[]{0x0000000001020000L});
-    public static final BitSet FOLLOW_17_in_bibtex_entry363 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_bibtex_entry369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_author416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_bibtex_entry341 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_entry348 = new BitSet(new long[]{0x0000000001020000L});
+    public static final BitSet FOLLOW_17_in_bibtex_entry359 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_bibtex_entry365 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_author412 = new BitSet(new long[]{0x0000000000000002L});
 
 }

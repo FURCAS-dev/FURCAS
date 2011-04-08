@@ -249,15 +249,13 @@ public class PropertyTypeHandler<Type extends Object> {
         String propURI = ObservationDirectivesHelper.getId(prop);
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
-                // TODO not only as comment, but once setOclRef(...) takes the propInit URI as argument, generate argument passing here
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
-                        "\", temp, \"" + query + "\");} /* propURI: "+propURI+" */"));
+                        "\", temp, \"" + query + "\", \""+propURI+"\");}"));
             }
         } else {
             if (!skipDelayedReferences) {
-                // TODO not only as comment, but once setOclRef(...) takes the propInit URI as argument, generate argument passing here
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + query
-                        + "\");} /* propURI: " + propURI + " */"));
+                        + "\", \""+propURI+"\");}"));
             }
         }
     }
