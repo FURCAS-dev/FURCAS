@@ -13,6 +13,7 @@
 		<public name="buckminster.prebind" actor="ant" always="true">
 			<actorProperties>
 				<property key="buildFile" value="buildZips.xml" />
+				<property key="targets" value="zip.examples" />
 			</actorProperties>
 		</public>
 	</actions>
