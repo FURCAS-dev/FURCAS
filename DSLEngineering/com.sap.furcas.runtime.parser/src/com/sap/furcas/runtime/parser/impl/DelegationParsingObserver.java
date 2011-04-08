@@ -166,9 +166,9 @@ public class DelegationParsingObserver implements IParsingObserver {
     }
     
 	@Override
-	public void notifyEnterSequenceElement(String mri) {
+	public void notifyEnterSequenceElement(String sequenceElementURI) {
 		for (IParsingObserver observer : observers) {
-            observer.notifyEnterSequenceElement(mri);
+            observer.notifyEnterSequenceElement(sequenceElementURI);
         }
 	}
 

@@ -18,7 +18,7 @@ public class ObservationDirectivesHelper {
     public static final int ALL = 2;
     public static final int TEXT_BLOCK_ONLY = 1;
     public static final int NONE = 1;
-	private static final int ALL_WITH_MOFIDS = 3;
+    private static final int ALL_WITH_MOFIDS = 3;
 
     // since debugging the grammar may be either without the observation directives, this flag may be changed for debugging.
     public static int doAddObserverParts = ALL_WITH_MOFIDS;
@@ -98,7 +98,7 @@ public class ObservationDirectivesHelper {
      * @param eObject The element to get the ID from.
      * @return the ID of <code>se</code>. 
      */
-    private static String getId(EObject se) {
+    public static String getId(EObject se) {
         String uri = EcoreUtil.getURI(se).toString();
         if(uri.startsWith("platform:/resource/")) {
             uri = uri.replace("platform:/resource/", "platform:/plugin/");

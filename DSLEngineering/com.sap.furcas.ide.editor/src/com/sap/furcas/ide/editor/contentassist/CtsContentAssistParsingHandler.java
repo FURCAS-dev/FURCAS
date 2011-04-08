@@ -358,7 +358,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterSequenceElement(String mri) {
+    public void notifyEnterSequenceElement(String sequenceElementURI) {
         notifyEnterSequenceElement();
     }
 
@@ -554,6 +554,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     /**
      * @param string
      */
+    @SuppressWarnings("unused")
     private void logInfo(String string) {
         if (loglevel > 1) {
             System.out.println(string);
@@ -563,6 +564,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
     /**
      * @param string
      */
+    @SuppressWarnings("unused")
     private void logError(String string) {
         if (loglevel > 0) {
             System.out.println("ERROR: " + string);
