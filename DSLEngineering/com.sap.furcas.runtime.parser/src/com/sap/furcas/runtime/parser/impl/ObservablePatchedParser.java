@@ -181,13 +181,13 @@ extends Parser
     
     /**
      * called before parsing any sequence element of a TCS sequence
-     * with the given MOFID
+     * with the given URI (specified as String)
      */
-    protected void _beforeSeqEl(String mri) {
+    protected void _beforeSeqEl(String sequenceElementURI) {
         if (observer == null || getBacktrackingLevel() > 0) {
 		return;
 	}
-        	observer.notifyEnterSequenceElement(mri);
+        observer.notifyEnterSequenceElement(sequenceElementURI);
     }
     
     /**

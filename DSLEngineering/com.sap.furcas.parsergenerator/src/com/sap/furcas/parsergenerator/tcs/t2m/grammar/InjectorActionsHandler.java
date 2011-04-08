@@ -102,6 +102,7 @@ public class InjectorActionsHandler<Type> {
         }
         buffer.append(ObservationDirectivesHelper.getEnterInjectorActionNotification());
         String value = propInit.getValue();
+        String propInitURI = ObservationDirectivesHelper.getId(propInit);
         if (propInit instanceof PrimitivePropertyInit) {
             // TODO refer to and use Primitive template transformer to create
             // required
@@ -118,7 +119,9 @@ public class InjectorActionsHandler<Type> {
             if (value.startsWith(OCL_QUERY_PREFIX)) {
                 validateOclQuery(block.getParentTemplate(), value, propInit);
                 String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
-                buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional + ");");
+                // TODO not only as comment, but once setOclRef(...) takes the propInit URI as argument, generate argument passing here
+                buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional +
+                        "); /* propInitURI: "+propInitURI+" */");
             } else {
                 buffer.append("setRef(ret, \"" + propName + "\", " + resolvedTypeOfPropertyName + ", null, null, \"" + value
                         + "\", null, null, false, null, " + isOptional + ");");
@@ -156,11 +159,13 @@ public class InjectorActionsHandler<Type> {
             validateOclQuery(block.getParentTemplate(), value, propInit);
             String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
             if (mode == null) {
+                // TODO not only as comment, but once setPredicateRef(...) takes the propInit URI as argument, generate argument passing here
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",null,\"" + oclQuery + "\",list,finder," + hasContext
-                        + ");");
+                        + "); /* propInitURI: "+propInitURI+" */");
             } else {
+                // TODO not only as comment, but once setPredicateRef(...) takes the propInit URI as argument, generate argument passing here
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",\"" + mode + "\",\"" + oclQuery + "\",list,finder,"
-                        + hasContext + ");");
+                        + hasContext + "); /* propInitURI: "+propInitURI+" */");
             }
             buffer.append("\n}\n");
         }

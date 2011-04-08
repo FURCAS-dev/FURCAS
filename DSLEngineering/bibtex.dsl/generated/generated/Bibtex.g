@@ -46,6 +46,10 @@ public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
         // get rid of the starting and ending delimiters (e.g., '\'', '"')
        if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                 s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
+       } else if (s.length() >= 4 && s.charAt(0) == '\\' && s.charAt(s.length()-delimLength) == '\"' && s.charAt(1) == '\"' && s.charAt(s.length()-delimLength-1) == '\\') {
+             //also handle strings that are surrounded with an escaped string symbol \"value\"
+             delimLength += 1;
+             s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
         }
         return s;
     }
@@ -76,7 +80,7 @@ import org.antlr.runtime.Token;
 
 
 @members {
-   private static final String syntaxUUID = "_ZF2fEDB8EeCgBPkzl8rV-A";
+   private static final String syntaxUUID = "_kLRsYGH1EeCG2-l6Kl85Rw";
    public String getSyntaxUUID() {
         return syntaxUUID;
    }
@@ -85,8 +89,11 @@ import org.antlr.runtime.Token;
        int delimLength = 1; // for delimLength > 0, the following code needs to change
        if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                 s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
-        }
-        return s;
+       }
+       if(s.contains("\\\"")) {
+                s = s.replaceAll("\\\\\"", "\"");
+       }
+       return s;
     }
 
 }
@@ -128,12 +135,12 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.0");}( temp=identifier {setProperty(ret, "name", temp);
-setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.1");}'Entries:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.2");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.3");}( temp=bibtex_entry {setProperty(ret, "entries", temp);
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/5");}( temp=identifier {setProperty(ret, "name", temp);
+setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/6");}'Entries:'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/7");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/9");}( temp=bibtex_entry {setProperty(ret, "entries", temp);
 setParent(temp,ret,"entries");} ( temp=bibtex_entry {setProperty(ret, "entries", temp);
-setParent(temp,ret,"entries");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.4");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.5");}'Authors:'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.6");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.7");}( temp=bibtex_author {setProperty(ret, "author", temp);
+setParent(temp,ret,"entries");})* )? {_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/10");}'}'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/11");}'Authors:'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/12");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/14");}( temp=bibtex_author {setProperty(ret, "author", temp);
 setParent(temp,ret,"author");} ( temp=bibtex_author {setProperty(ret, "author", temp);
-setParent(temp,ret,"author");})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.2/@templateSequence/@elements.8");}'}'{_afterSeqEl();})
+setParent(temp,ret,"author");})* )? {_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/15");}'}'{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, true);
 
@@ -148,9 +155,9 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.0");}'@article'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.1");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2");}(({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.0");}( temp=identifier {setProperty(ret, "id", temp);
-setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.1");}','{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.2");}'title'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.3");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.4");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.5");}( temp=identifier {setProperty(ret, "title", temp);
-setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.6");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.7");}','{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.8");}'author'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.9");}'='{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.10");}'{'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11");}( temp=identifier {setRef(ret, "author", list("Bibtex","Author"), "name", temp, null, "never", null, false, null);} ({_enterSepSeq();}({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.11/@propertyArgs.1/@separatorSequence/@elements.0");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=identifier {setRef(ret, "author", list("Bibtex","Author"), "name", temp, null, "never", null, false, null);})* )? {_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.2/@blockSequence/@elements.12");}'}'{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.3");}'}'{_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.3/@templateSequence/@elements.4");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/19");}'@article'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/20");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/44");}(({_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/22");}( temp=identifier {setProperty(ret, "id", temp);
+setParent(temp,ret,"id");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/23");}','{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/24");}'title'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/25");}'='{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/26");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/28");}( temp=identifier {setProperty(ret, "title", temp);
+setParent(temp,ret,"title");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/29");}'}'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/30");}','{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/31");}'author'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/32");}'='{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/33");}'{'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/41");}( temp=identifier {setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");} /* propURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/41 */ ({_enterSepSeq();}({_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/36");}'and'{_afterSeqEl();}){_exitSepSeq();} temp=identifier {setOclRef(ret, "author", null, temp, "OCL:Bibtex::Author.allInstances()->select(name = ?)");} /* propURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/41 */)* )? {_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/42");}'}'{_afterSeqEl();})){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/45");}'}'{_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/48");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/47 */_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
@@ -165,8 +172,8 @@ onEnterTemplateRule(metaType);
 org.antlr.runtime.Token firstToken=input.LT(1);
 }
   :
-  ({_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.0");}( temp=identifier {setProperty(ret, "name", temp);
-setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/Bibtex.tcs#//@templates.4/@templateSequence/@elements.1");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true);_exitInjectorAction();}{_afterSeqEl();})
+  ({_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/53");}( temp=identifier {setProperty(ret, "name", temp);
+setParent(temp,ret,"name");}){_afterSeqEl();}{_beforeSeqEl("http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/56");}{_enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true); /* propInitURI: http://www.furcas.org/transientParsingResource_jnLg0WH1EeCG2-l6Kl85Rw#/55 */_exitInjectorAction();}{_afterSeqEl();})
   {
 ret2 = commitCreation(ret, firstToken, false);
 
