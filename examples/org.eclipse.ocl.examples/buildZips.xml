@@ -10,7 +10,7 @@
 		<condition property="examplesDir" value="../../examples/" else="../">
 		    <available file="../../examples" type="dir"/>
 		</condition>
-		<echo level="info" message="Examples Directory: ${examplesDir}"/>
+		<echo message="Examples Directory: ${examplesDir}"/>
 		<!-- This example may have been compiled already in the Master feature -->
 		<zip destfile="zips/interpreter.zip" basedir="${examplesDir}org.eclipse.ocl.examples.interpreter">
 			<patternset refid="zip.excludes"/>
