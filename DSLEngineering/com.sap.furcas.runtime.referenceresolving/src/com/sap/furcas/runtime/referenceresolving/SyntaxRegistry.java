@@ -37,8 +37,10 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
+import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
+import com.sap.furcas.runtime.parser.impl.ModelUpdaterRegistry;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;
 import com.sap.furcas.runtime.tcs.PropertyArgumentUtil;
@@ -60,7 +62,7 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
  * @author Axel Uhl (d043530)
  * 
  */
-public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener, TokenChanger {
+public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener, TokenChanger, ModelUpdaterRegistry {
     private static Logger log = Logger.getLogger(SyntaxRegistry.class.getName());
     
     private static final String EXTENSION_POINT_ID = "furcas_syntax";
@@ -74,7 +76,16 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
     private final Map<URI, Set<IConfigurationElement>> metamodelNsURIToSyntaxProviders;
     
     private final Map<URI, TriggerManager> triggerManagersForSyntax;
-    
+
+    /**
+     * For each {@link Property} registered in either
+     * {@link #registerPropertiesWithQuery(Collection, TriggerManager, OppositeEndFinder, IProgressMonitor)} or
+     * {@link #registerInjectorActions(Collection, TriggerManager, ParserFactory, OppositeEndFinder, IProgressMonitor)},
+     * stores the {@link Property}/{@link PropertyInit}'s {@link URI} and maps it to the model updater responsible for
+     * keeping the property up-to-date.
+     */
+    private final Map<URI, AbstractFurcasOCLBasedModelUpdater> updatersForPropertiesAndInjectorActions;
+
     /**
      * The single event manager to be used by all {@link TriggerManager}s created by this registry.
      * This ensures that only one adapter needs to be registered and that all event filters can be
@@ -103,6 +114,7 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
         eventManager = EventManagerFactory.eINSTANCE.createEventManager();
         metamodelRegistry = Registry.INSTANCE;
         tokenChangers = new HashSet<TokenChanger>();
+        updatersForPropertiesAndInjectorActions = new HashMap<URI, AbstractFurcasOCLBasedModelUpdater>();
     }
     
     @Override
@@ -171,10 +183,10 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             throws ParserException {
         // fetch all InjectorAction and Property elements from the syntax
         Collection<InjectorAction> injectorActions = getInjectorActions(syntax);
-        Collection<Property> propertyInits = getPropertiesWithQuery(syntax);
-        initMonitor(syntax, monitor, injectorActions.size()+propertyInits.size());
+        Collection<Property> propertiesWithQuery = getPropertiesWithQuery(syntax);
+        initMonitor(syntax, monitor, injectorActions.size()+propertiesWithQuery.size());
         registerInjectorActions(injectorActions, triggerManager, parserFactory, oppositeEndFinder, monitor);
-        registerPropertiesWithQuery(propertyInits, triggerManager, oppositeEndFinder, monitor);
+        registerPropertiesWithQuery(propertiesWithQuery, triggerManager, oppositeEndFinder, monitor);
         if (monitor != null) {
             monitor.done();
         }
@@ -199,7 +211,9 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             }
             Template template = property.getParentTemplate();
             if (template != null && template instanceof ClassTemplate && PropertyArgumentUtil.getReferenceByPArg(property) != null) {
-                triggerManager.register(new OCLQueryPropertyUpdater(property, metamodelRegistry, oppositeEndFinder, this));
+                OCLQueryPropertyUpdater updater = new OCLQueryPropertyUpdater(property, metamodelRegistry, oppositeEndFinder, this);
+                triggerManager.register(updater);
+                updatersForPropertiesAndInjectorActions.put(EcoreUtil.getURI(property), updater);
             }
         }
     }
@@ -215,14 +229,24 @@ public class SyntaxRegistry implements BundleActivator, EcorePackageLoadListener
             if (monitor != null) {
                 monitor.worked(1);
             }
+            AbstractFurcasOCLBasedModelUpdater updater = null;
             if (injectorAction instanceof LookupPropertyInit) {
-                triggerManager.register(new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction,
-                        metamodelRegistry, oppositeEndFinder));
+                updater = new SimplePropertyInitUpdater((LookupPropertyInit) injectorAction,
+                        metamodelRegistry, oppositeEndFinder);
+                triggerManager.register(updater);
             } else if (injectorAction instanceof ForeachPredicatePropertyInit) {
-                triggerManager.register(new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction,
-                        metamodelRegistry, parserFactory, oppositeEndFinder));
+                updater = new ForeachPropertyInitUpdater((ForeachPredicatePropertyInit) injectorAction,
+                        metamodelRegistry, parserFactory, oppositeEndFinder);
+                triggerManager.register(updater);
+            }
+            if (updater != null) {
+                updatersForPropertiesAndInjectorActions.put(EcoreUtil.getURI(injectorAction), updater);
             }
         }
+    }
+    
+    public AbstractFurcasOCLBasedModelUpdater getModelUpdater(URI propertyOrInjectorActionURI) {
+        return updatersForPropertiesAndInjectorActions.get(propertyOrInjectorActionURI);
     }
 
     private Collection<Property> getPropertiesWithQuery(ConcreteSyntax syntax) {

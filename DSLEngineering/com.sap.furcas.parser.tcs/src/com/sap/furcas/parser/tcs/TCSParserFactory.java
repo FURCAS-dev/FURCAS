@@ -20,7 +20,7 @@ import com.sap.furcas.parser.tcs.stable.TCSParser;
 
 public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer> {
 
-    private static final String LANGUAGE_ID = "Mydslx";
+    private static final String LANGUAGE_ID = "TCS";
 
     @Override
     public Class<TCSLexer> getLexerClass() {

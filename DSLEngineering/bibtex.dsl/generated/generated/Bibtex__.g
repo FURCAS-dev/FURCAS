@@ -74,14 +74,14 @@ T__22 : '=' ;
 T__23 : 'author' ;
 T__24 : 'and' ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 184
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 185
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
   ;
 
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 190
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 191
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -91,20 +91,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 199
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 200
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 205
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 206
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 210
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 211
 fragment
 ALPHA
     :   'a'..'z'
@@ -116,13 +116,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 221
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 222
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 226
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 227
 NAME
     :   (
             SNAME
@@ -136,15 +136,15 @@ NAME
         )
     ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 239
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 240
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 243
+    // $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 244
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 245
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 246
 fragment
 ESC
     :   '\\'!
@@ -174,7 +174,7 @@ ESC
         )
     ;
 
-// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 274
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\Bibtex.g" 275
 STRING
     :   '\''!
         (   ESC
