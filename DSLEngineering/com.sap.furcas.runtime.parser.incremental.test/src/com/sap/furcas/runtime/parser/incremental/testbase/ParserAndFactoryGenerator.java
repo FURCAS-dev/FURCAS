@@ -145,6 +145,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             String osgiFrameworkVersion = System.getProperty("osgi.framework.version", "3.6.2.R36x_v20110210");
             String osgiBundlePath = eclipseHome+"plugins/org.eclipse.osgi_"+
                 osgiFrameworkVersion+".jar";
+            System.out.println("OSGi Bundle Path: "+osgiBundlePath);
             int success = Main.compile(new String[] {
                     testConfig.getRelativePathToGeneratedParserFactoryClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
