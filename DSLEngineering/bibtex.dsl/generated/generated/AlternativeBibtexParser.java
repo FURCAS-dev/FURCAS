@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g 2011-04-08 18:05:33
+// $ANTLR 3.1.1 C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g 2011-04-11 10:37:36
 
 package generated;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
@@ -56,7 +56,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g"; }
 
 
-       private static final String syntaxUUID = "_CFlAIGH6EeCMMvnNcfYSDw";
+       private static final String syntaxUUID = "_82AvIGQWEeCwe_Sc5Muq-g";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -234,17 +234,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:138:4: 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/4");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.0");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb162); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/6");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.1");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:138:207: (temp= identifier )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:138:209: temp= identifier
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:138:269: (temp= identifier )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:138:271: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_literaturedb169);
             temp=identifier();
@@ -263,25 +263,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/7");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.2");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/11");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.3");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:248: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:249: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:309: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:310: ( (temp= bibtex_author (temp= bibtex_author )* )? )
             {
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:249: ( (temp= bibtex_author (temp= bibtex_author )* )? )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:250: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:310: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:311: (temp= bibtex_author (temp= bibtex_author )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/9");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.3/@blockSequence/@elements.0");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:341: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:460: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -290,7 +290,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:343: temp= bibtex_author (temp= bibtex_author )*
+                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:139:462: temp= bibtex_author (temp= bibtex_author )*
                     {
                     pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb185);
                     temp=bibtex_author();
@@ -355,7 +355,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/12");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.2/@templateSequence/@elements.4");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -407,10 +407,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:156:4: (temp= identifier ) ':' (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/17");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.3/@templateSequence/@elements.0");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:156:96: (temp= identifier )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:156:98: temp= identifier
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:156:126: (temp= identifier )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:156:128: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry251);
             temp=identifier();
@@ -429,17 +429,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/18");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.3/@templateSequence/@elements.1");
             }
             match(input,18,FOLLOW_18_in_bibtex_entry257); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/20");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.3/@templateSequence/@elements.2");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:157:247: (temp= identifier )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:157:249: temp= identifier
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:157:307: (temp= identifier )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:157:309: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry264);
             temp=identifier();
@@ -458,10 +458,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/23");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.3/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/22");_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.3/@templateSequence/@elements.3/@injectorActions.0");_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -512,10 +512,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:173:4: (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/28");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.0");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:173:96: (temp= identifier )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:173:98: temp= identifier
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:173:126: (temp= identifier )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:173:128: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_author314);
             temp=identifier();
@@ -534,25 +534,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/29");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.1");
             }
             match(input,18,FOLLOW_18_in_bibtex_author320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/33");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.2");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:249: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:250: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:309: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:310: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
             {
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:250: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:251: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:310: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:311: (temp= bibtex_entry (temp= bibtex_entry )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/31");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.2/@blockSequence/@elements.0");
             }
-            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:343: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:460: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -573,7 +573,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:345: temp= bibtex_entry (temp= bibtex_entry )*
+                    // C:\\Users\\d043530\\git\\DSLEngineering\\bibtex.dsl\\generated\\generated\\AlternativeBibtex.g:174:462: temp= bibtex_entry (temp= bibtex_entry )*
                     {
                     pushFollow(FOLLOW_bibtex_entry_in_bibtex_author330);
                     temp=bibtex_entry();
@@ -656,10 +656,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/36");
+              _beforeSeqEl("platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "http://www.furcas.org/transientParsingResource_CD1TsGH6EeCMMvnNcfYSDw#/35");_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "literaturedb", null, null, "OCL:#context", true, "platform:/plugin/bibtex.dsl/mappings/AlternativeBibtex.tcs#//@templates.4/@templateSequence/@elements.3/@injectorActions.0");_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
