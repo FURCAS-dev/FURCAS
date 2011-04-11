@@ -867,21 +867,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         contextManager.discardProxy(proxy, getCurrentContextElement());
     }
 
-    /**
-     * 
-     * @param object
-     * @param propertyName
-     * @param keyName
-     * @param keyValue
-     * @param query
-     */
-    public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query) {
-        setOclRef(object, propertyName, keyName, keyValue, query, /* optional */ false);
-    }
-
     public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query, String propInitURI) {
-        // TODO make use of propInitURI after bootstrap completed
-        setOclRef(object, propertyName, keyName, keyValue, query);
+        setOclRef(object, propertyName, keyName, keyValue, query, /* optional */ false, propInitURI);
     }
     
     /**
@@ -893,24 +880,15 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      * @param query
      */
     public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query,
-            boolean optional) {
-
+            boolean optional, String propInitURI) {
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
-
+        // TODO use propInitURI for DelayedReference construction to obtain Triggerable from SyntaxRegistry
         DelayedReference ref = new DelayedReference(getCurrentContextElement(), getCurrentForeachElement(), object,
                 propertyName, keyName, keyValue, query, optional, lastToken);
-
         onDelayedReferenceCreated(ref);
-
         unResolvedDelayedReferenceList.add(ref);
     }
 
-    public final void setOclRef(Object object, String propertyName, String keyName, Object keyValue, String query,
-            boolean optional, String propInitURI) {
-        // TODO make use of propInitURI after bootstrap completed
-        setOclRef(object, propertyName, keyName, keyValue, query, optional);
-    }
-    
     /**
      * 
      * @param object
@@ -919,8 +897,9 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
      * @param query
      */
     public final void setPredicateRef(Object object, String propertyName, String mode, String query,
-            List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext) {
+            List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext, String propInitURI) {
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
+        // TODO use propInitURI for DelayedReference construction to obtain Triggerable from SyntaxRegistry
         DelayedReference ref = new DelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE,
                 object, propertyName, query, mode, preds, ruleNameFinder,
                 lastToken, hasContext, /* isOptional: ForEach is always considered optional as 
@@ -929,12 +908,6 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         onDelayedReferenceCreated(ref);
     }
 
-    public final void setPredicateRef(Object object, String propertyName, String mode, String query,
-            List<PredicateSemantic> preds, IRuleName ruleNameFinder, boolean hasContext, String propInitURI) {
-        // TODO make use of propInitURI after bootstrap completed
-        setPredicateRef(object, propertyName, mode, query, preds, ruleNameFinder, hasContext);
-    }
-    
     /**
      * 
      * @param enumName
