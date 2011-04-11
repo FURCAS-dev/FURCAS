@@ -87,6 +87,13 @@ public class ParserGenerator {
         ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
         try {
+            String eclipseHome = System.getProperty("eclipse.home.location", "/eclipse");
+            if (eclipseHome.startsWith("file:/")) {
+                eclipseHome = eclipseHome.substring("file:/".length());
+            }
+            String osgiFrameworkVersion = System.getProperty("osgi.framework.version", "3.6.2.R36x_v20110210");
+            String osgiBundlePath = eclipseHome+"plugins/org.eclipse.osgi_"+
+                osgiFrameworkVersion+".jar";
             int success = Main.compile(new String[] {
                     testConfig.getRelativePathToGeneratedLexerClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
@@ -94,7 +101,10 @@ public class ParserGenerator {
                     "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
                             + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.tcs/bin" });
+                            + "../com.sap.furcas.runtime.referenceresolving/bin" + File.pathSeparator
+                            + "../com.sap.emf.bundlelistener/bin" + File.pathSeparator
+                            + "../com.sap.furcas.runtime.tcs/bin" + File.pathSeparator
+                            + osgiBundlePath});
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }

@@ -34,6 +34,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ModelUpdater;
 import com.sap.furcas.runtime.tcs.TcsUtil;
 
 
@@ -46,7 +47,7 @@ import com.sap.furcas.runtime.tcs.TcsUtil;
  * @author Axel Uhl (D043530)
  * 
  */
-public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater {
+public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBasedModelUpdater implements ModelUpdater {
     
     public enum SelfKind { SELF, CONTEXT, FOREACH };
     

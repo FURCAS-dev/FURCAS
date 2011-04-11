@@ -8,7 +8,7 @@ syntax AlternativeBibtex {
         
   primitiveTemplate integerSymbol for EInt default using INT:
         value = "Integer.valueOf(%token%)";
-        
+
   template LiteratureDb main context  
   : "DB:" name "{"
   		[ author ] 

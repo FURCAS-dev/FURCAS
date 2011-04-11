@@ -120,7 +120,7 @@ public class InjectorActionsHandler<Type> {
                 validateOclQuery(block.getParentTemplate(), value, propInit);
                 String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
                 buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional +
-                        ", \""+propInitURI+"\");");
+                        ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             } else {
                 buffer.append("setRef(ret, \"" + propName + "\", " + resolvedTypeOfPropertyName + ", null, null, \"" + value
                         + "\", null, null, false, null, " + isOptional + ");");
@@ -159,10 +159,10 @@ public class InjectorActionsHandler<Type> {
             String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
             if (mode == null) {
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",null,\"" + oclQuery + "\",list,finder," + hasContext
-                        + ", \""+propInitURI+"\");");
+                        + ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             } else {
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",\"" + mode + "\",\"" + oclQuery + "\",list,finder,"
-                        + hasContext + ", \""+propInitURI+"\");");
+                        + hasContext + ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             }
             buffer.append("\n}\n");
         }
