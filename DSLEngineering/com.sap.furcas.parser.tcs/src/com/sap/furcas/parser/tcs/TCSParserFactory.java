@@ -10,6 +10,7 @@
  ******************************************************************************/
 package com.sap.furcas.parser.tcs;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -46,4 +47,9 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
         return new String[] { "WS", "NL", "COMMENT" };
     }
         
+    @Override
+    public URI getSyntaxUri() {
+        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /* encode */ false);
+    }
+
 }
