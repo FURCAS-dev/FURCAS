@@ -178,6 +178,7 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 				}
 				localTables.add(outgoingLinkGroup);
 			}
+			resourceIndex.release((PageableResourceDescriptorImpl) parentElement);
 			return localTables.toArray();
 		} else if (parentElement instanceof EObjectsGroup) {
 			List<EObjectDescriptor> eObjectsGroup = ((EObjectsGroup) parentElement).getEObjectsGroup();

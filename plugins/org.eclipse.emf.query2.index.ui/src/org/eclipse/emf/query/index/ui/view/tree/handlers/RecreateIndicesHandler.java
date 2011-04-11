@@ -45,7 +45,7 @@ public class RecreateIndicesHandler implements IHandler {
 							if (treeViewer.getControl().isDisposed()) {
 								return;
 							}
-							treeViewer.refresh(true);
+							treeViewer.refresh();
 						}
 					});
 				}

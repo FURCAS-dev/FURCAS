@@ -210,7 +210,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 
 				
 				public void run() {
-					refreshTreeViewer();
+					treeViewer.refresh();
 				}
 
 			};
@@ -220,7 +220,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 			actionInComingLinks = new Action(Messages.Query2IndexUI_IndexView_IncomingLinksGroup) {
 				
 				public void run() {
-					refreshTreeViewer();
+					treeViewer.refresh();
 				}
 			};
 			actionInComingLinks.setChecked(true);
@@ -229,7 +229,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 			actionOutgoingLinks = new Action(Messages.Query2IndexUI_IndexView_OutgoingLinksGroup) {
 				
 				public void run() {
-					refreshTreeViewer();
+					treeViewer.refresh();
 				}
 			};
 			actionOutgoingLinks.setChecked(true);
@@ -278,9 +278,6 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		return super.getAdapter(adapter);
 	}
 
-	private void refreshTreeViewer() {
-		treeViewer.refresh(getSelectedElement());
-	}
 
 	public static boolean isActionEObjectTableChecked() {
 		return actionEObjectTable.isChecked();
