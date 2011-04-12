@@ -367,6 +367,15 @@ public class RegressionTest
      * Tests the validation the number of iterator variables for iterators that
      * do not support multiple variables.
      */
+    public void test_oclInvalidOnInvalidLetVariable_342644() {
+    	helper.setContext(apple);
+    	assertQueryTrue(null, "let a:Integer = '123a'.toInteger() in a.oclIsInvalid()");
+    }
+    
+    /**
+     * Tests the validation the number of iterator variables for iterators that
+     * do not support multiple variables.
+     */
     public void test_oclInvalidOnInvalidOperationCallResult_342561() {
     	helper.setContext(apple);
     	assertQueryTrue(null, "'123a'.toInteger().oclIsInvalid()");
