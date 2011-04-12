@@ -1,7 +1,10 @@
 setpref complianceLevel=1.5
 
-addbaseline -A "${checkout.location}/org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
+# We import a target definition which will be our API Base Line
+importtargetdefinition "${checkout.location}/org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
+addbaseline -A "MDT/OCL API Base Line"
 
+# We set the path of the new target platform
 setpref targetPlatformPath="${checkout.location}/buildroot/target.platform"
 
 import --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-platform.mspec"
