@@ -110,9 +110,18 @@ public class ParserGenerator {
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
         try {
             String osgiFrameworkVersion = System.getProperty("osgi.framework.version", "3.6.2.R36x_v20110210");
-            String osgiBundlePath = ParserGenerator.findBundleJar("org.eclipse.osgi_" + osgiFrameworkVersion + ".jar")
-                    .getAbsolutePath();
-            System.out.println("OSGi Bundle Path: " + osgiBundlePath);
+            File osgiBundleJarFile = ParserGenerator.findBundleJar("org.eclipse.osgi_" + osgiFrameworkVersion + ".jar");
+            if (osgiBundleJarFile == null) {
+                // try with - instead of _ instead
+                osgiBundleJarFile = ParserGenerator.findBundleJar("org.eclipse.osgi-" + osgiFrameworkVersion + ".jar");
+            }
+            String osgiBundlePath = "";
+            if (osgiBundleJarFile != null) {
+                osgiBundlePath = osgiBundleJarFile.getAbsolutePath();
+                System.out.println("OSGi Bundle Path: " + osgiBundlePath);
+            } else {
+                System.err.println("Didn't find OSGi Bundle for framework version "+osgiFrameworkVersion);
+            }
             int success = Main.compile(new String[] {
                     testConfig.getRelativePathToGeneratedLexerClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
