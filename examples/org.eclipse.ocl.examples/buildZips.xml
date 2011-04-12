@@ -11,9 +11,11 @@
 				    <available file="../../examples" type="dir"/>
 		</condition> -->
 		<!-- Bundles are materialized by buckminster into the plugins folder at the workspace root -->
-		<property name="bundlesDir" value="${workspace.root}/plugins"/>
+		<property name="bundlesDir" value="../"/>
 		<!-- Non-Bundles are materialized by buckminster into the workspace root -->
-		<property name="nonBundlesDir" value="${workspace.root}"/>
+		<condition property="nonBundlesDir" value="../../" else="../">
+			<available file="../../org.eclipse.ocl.examples.project.empty" type="dir"/>
+		</condition> 
 		
 		<!-- OCL plugin examples -->
 		<zip destfile="zips/interpreter.zip" basedir="${bundlesDir}/org.eclipse.ocl.examples.interpreter">
