@@ -928,8 +928,8 @@ public class Signature_and_callEditor
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
         // TODO is this special implementation of OCLFactory still required or could it be replaced by OCLFactory.INSTANCE?
         OCLFactory oclFactory = OCLFactory.getInstance();
-        revalidator = new Revalidator(editingDomain, oclFactory, new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()),
-                Signature_and_callPackage.eINSTANCE);
+        revalidator = new Revalidator(editingDomain.getResourceSet(), oclFactory, new Query2OppositeEndFinder(
+                new ProjectDependencyQueryContextProvider()), Signature_and_callPackage.eINSTANCE);
     }
 
     /**
