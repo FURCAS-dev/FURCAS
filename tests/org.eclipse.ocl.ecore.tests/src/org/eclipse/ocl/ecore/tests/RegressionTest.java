@@ -1221,6 +1221,16 @@ public class RegressionTest
 		assertInvalid(result);
 	}
 	
+	public void test_oclIsInvalidOnInvalidOperationResult_342561() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: '123a'.toInteger().oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid OperationCallExp results in TRUE
+		assertEquals(Boolean.TRUE, result);
+	}
+	
 	/**
 	 * Tests that we report an error on failing to find an operation matching
 	 * a call.  Moreover, the error is in parsing, not in validating.
