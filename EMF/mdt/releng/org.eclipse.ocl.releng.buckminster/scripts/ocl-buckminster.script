@@ -1,5 +1,10 @@
 setpref complianceLevel=1.5
 
+# We import a target definition which will be our API Base Line
+importtargetdefinition "${checkout.location}/org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/APIBaseLine.target"
+addbaseline -A "MDT/OCL API Base Line"
+
+# We set the path of the new target platform
 setpref targetPlatformPath="${checkout.location}/buildroot/target.platform"
 
 import --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-platform.mspec"
@@ -10,22 +15,22 @@ build
 
 perform -DtargetPlatformPath="${checkout.location}/buildroot/target.platform" --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#create.javadoc"
 
-#junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.tests.xml"
-#junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.backtracking.tests.xml"
-#junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Plugin).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.plugin.tests.xml"
+junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.tests.xml"
+junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.backtracking.tests.xml"
+junit --launch "org.eclipse.ocl.ecore.tests/launches/org.eclipse.ocl.ecore.tests\ \(Plugin).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.ecore.plugin.tests.xml"
 
-#junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.tests.xml"
-#junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.backtracking.tests.xml"
-#junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Plugin\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.plugin.tests.xml"
+junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.tests.xml"
+junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Standalone\ Backtracking\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.backtracking.tests.xml"
+junit --launch "org.eclipse.ocl.uml.tests/launches/org.eclipse.ocl.uml.tests\ \(Plugin\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.uml.plugin.tests.xml"
 
-#junit --launch "org.eclipse.ocl.examples.tests/.launches/org.eclipse.ocl.examples.test.AllExamplesTests\ \(standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.tests.xml"
+junit --launch "org.eclipse.ocl.examples.tests/.launches/org.eclipse.ocl.examples.test.AllExamplesTests\ \(standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.tests.xml"
 
-#junit --launch "org.eclipse.ocl.examples.xtext.tests/.settings/org.eclipse.ocl.examples.xtext.tests\ \(standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.xtext.tests.xml"
+junit --launch "org.eclipse.ocl.examples.xtext.tests/.settings/org.eclipse.ocl.examples.xtext.tests\ \(standalone\).launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.xtext.tests.xml"
 
-#junit --launch "org.eclipse.ocl.examples.eventmanager.tests/EventManagerTests.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.eventmanager.tests.xml"
-#junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with TracebackSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps.tests.xml"
-#junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with Traceback+UnusedChecks.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps_with_unused.tests.xml"
-#junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with NavigationSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.navigationsteps.tests.xml"
+junit --launch "org.eclipse.ocl.examples.eventmanager.tests/EventManagerTests.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.eventmanager.tests.xml"
+junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with TracebackSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps.tests.xml"
+junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with Traceback+UnusedChecks.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.tracebacksteps_with_unused.tests.xml"
+junit --launch "org.eclipse.ocl.examples.impactanalyzer.tests/ImpactAnalysisTests with NavigationSteps.launch" --flatXML --output "${checkout.location}/MDT-OCL.test.results/org.eclipse.ocl.examples.impactanalyzer.navigationsteps.tests.xml"
 
 perform --properties "${checkout.location}/buildroot/build.properties" "-Dbuckminster.reference.repository=${reference.repository}" "org.eclipse.ocl.build:eclipse.feature#build" 
 perform --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.ocl.releng.buckminster:buckminster#setup.promoter"
