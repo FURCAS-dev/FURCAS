@@ -109,7 +109,6 @@ public class ParserGenerator {
         ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
         try {
-            System.out.println("System.getProperty(osgi.framework.version): "+System.getProperty("osgi.framework.version"));
             String osgiFrameworkVersion = System.getProperty("osgi.framework.version", "3.6.2.R36x_v20110210");
             File osgiBundleJarFile = ParserGenerator.findBundleJar("org.eclipse.osgi_" + osgiFrameworkVersion + ".jar");
             if (osgiBundleJarFile == null) {
