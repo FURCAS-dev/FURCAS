@@ -1221,6 +1221,16 @@ public class RegressionTest
 		assertInvalid(result);
 	}
 	
+	public void test_oclIsInvalidOnInvalidLetVariable_342644() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: let a:Integer = '123a'.toInteger() in a.oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(Boolean.TRUE, result);
+	}
+	
 	public void test_oclIsInvalidOnInvalidOperationResult_342561() {
 		Object result = evaluate(parse(
 			"package ocltest context Fruit " +
