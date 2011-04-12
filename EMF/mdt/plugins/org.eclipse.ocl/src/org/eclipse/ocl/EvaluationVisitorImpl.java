@@ -1989,7 +1989,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> initExp = vd.getInitExpression();
 		Object initVal = null;
 		if (initExp != null) {
-            initVal = initExp.accept(getVisitor());
+            initVal = computeSourceTurningExceptionsIntoInvalid(initExp);
         }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;
