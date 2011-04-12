@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
@@ -46,7 +46,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
             ...
             public void createModel() {
                 ...
-                revalidator = new Revalidator(editingDomain, MyPackage.eINSTANCE);
+                revalidator = new Revalidator(editingDomain.getResourceSet(), MyPackage.eINSTANCE);
             }
             ...
          }
@@ -65,25 +65,25 @@ public class Revalidator {
     /**
      * Uses a {@link DefaultOppositeEndFinder}
      */
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, OCLFactory oclFactory, EPackage... pkgs) {
-        this(editingDomain, oclFactory, DefaultOppositeEndFinder.getInstance(), pkgs);
+    public Revalidator(ResourceSet resourceSet, OCLFactory oclFactory, EPackage... pkgs) {
+        this(resourceSet, oclFactory, DefaultOppositeEndFinder.getInstance(), pkgs);
     }
     
     /**
      * Uses the default {@link OCLFactory#INSTANCE} to create {@link OCL} objects, as well as a
      * {@link DefaultOppositeEndFinder}.
      */
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, EPackage... pkgs) {
-        this(editingDomain, OCLFactory.getInstance(), pkgs);
+    public Revalidator(ResourceSet resourceSet, EPackage... pkgs) {
+        this(resourceSet, OCLFactory.getInstance(), pkgs);
     }
     
     /**
      * Uses the default {@link OCLFactory#INSTANCE} with the provided opposite end finder to create
      * {@link OCL} instances
      */
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, OppositeEndFinder oppositeEndFinder,
+    public Revalidator(ResourceSet resourceSet, OppositeEndFinder oppositeEndFinder,
             EPackage... pkgs) {
-        this(editingDomain, OCLFactory.getInstance(), oppositeEndFinder, pkgs);
+        this(resourceSet, OCLFactory.getInstance(), oppositeEndFinder, pkgs);
     }
     
     /**
@@ -94,9 +94,9 @@ public class Revalidator {
      * <code>allInstances()</code> expressions
      * @param pkgs the metamodel packages whose invariants to observe
      */
-    public Revalidator(AdapterFactoryEditingDomain editingDomain, OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder,
+    public Revalidator(ResourceSet resourceSet, OCLFactory oclFactory, OppositeEndFinder oppositeEndFinder,
             EPackage... pkgs) {
-        eventManager = EventManagerFactory.eINSTANCE.createEventManagerFor(editingDomain.getResourceSet());
+        eventManager = EventManagerFactory.eINSTANCE.createEventManagerFor(resourceSet);
         this.oclFactory = oclFactory;
         this.oppositeEndFinder = oppositeEndFinder;
         adapters = registerInvariants(pkgs);
