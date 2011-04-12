@@ -1,5 +1,7 @@
 setpref complianceLevel=1.5
 
+addbaseline -A "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/API Base Line.target"
+
 setpref targetPlatformPath="${checkout.location}/buildroot/target.platform"
 
 import --properties "${checkout.location}/buildroot/build.properties" "org.eclipse.mdt/org.eclipse.ocl/releng/org.eclipse.ocl.releng.buckminster/releng/ocl-platform.mspec"
