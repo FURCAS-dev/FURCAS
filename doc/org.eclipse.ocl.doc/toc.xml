@@ -36,6 +36,11 @@
 	<anchor id="reference-before" />
 	<topic label="Reference">
 		<link toc="topics_Reference.xml"/>
+		<anchor id="reference-ext-pt-before" />
+		<topic label="Extension Points Reference">
+			<topic label="org.eclipse.ocl.environments" href="references/extension-points/org_eclipse_ocl_environments.html" />
+		</topic>
+		<anchor id="reference-ext-pt-after" />
 		<anchor id="other-reference"/>
 	</topic>
 	<anchor id="reference-after" />
