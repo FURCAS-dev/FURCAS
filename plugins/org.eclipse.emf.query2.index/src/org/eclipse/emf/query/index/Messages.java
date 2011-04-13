@@ -2,8 +2,18 @@ package org.eclipse.emf.query.index;
 
 import org.eclipse.osgi.util.NLS;
 
+/**
+ * Containers externalized strings used by index code
+ *
+ */
 public class Messages extends NLS {
+	
 	public static final String BUNDLE_NAME = "org.eclipse.emf.query.index.messages"; //$NON-NLS-1$
+	
+	static {
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+	}
+	
 	public static String QueryIndexUI_IndexFactory_ErrorIndexingURI;
 	public static String Query2Index_AbstractMapBase_NoElementFound;
 	public static String Query2Index_AbstractMapBase_SizeCounterDiffers;
@@ -36,12 +46,6 @@ public class Messages extends NLS {
 	public static String Query2Index_SingleMap_NullParameter;
 	public static String QueryIndexUI_IndexFactory_TimeTakenToDump;
 	public static String QueryIndexUI_IndexFactory_TimeTakenToLoad;
-	
-	
-	static {
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-	}
 
 	private Messages() {
 	}
