@@ -11,6 +11,6 @@
 /**
  * Utilities for Localization <br>
  * <br>
- * This API is for SAP-internal use only and subject to change
+ * 
  */
 package org.eclipse.emf.query2.internal.localization;

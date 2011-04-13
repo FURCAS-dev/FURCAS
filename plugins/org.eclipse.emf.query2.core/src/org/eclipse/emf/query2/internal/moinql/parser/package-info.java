@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * This package contains base functionality for all parsers used in MOIN. This
+ * This package contains base functionality for all parsers used. This
  * includes an abstract CstNode from which all generated nodes derive frome. All
  * general LPG messages are internationalized here. Moreover, two main LPG
  * templates which are shared among all parsers are kept here. Finally, the

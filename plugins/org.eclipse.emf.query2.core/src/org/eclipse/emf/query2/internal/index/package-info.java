@@ -9,8 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Facility functionality that is used by the other MOIN components. <br>
- * <br>
- * This API is for SAP-internal use only and subject to change
- */
+ * 
+ * 
+ * */
 package org.eclipse.emf.query2.internal.index;
