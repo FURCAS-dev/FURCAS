@@ -32,7 +32,7 @@ The problem is, that the OCL Specification does not indicate how expressions tha
 such demand-created types can be persisted, because it does not define what should own these
 types.    A similar problem exists for additional operations and attributes defined in OCL
 via <em class="CodeName">def:</em> expressions.  The
-<a href="../../javadoc/org/eclipse/ocl/TypeResolver.html"><em class="CodeName">TypeResolver</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/TypeResolver.html"><em class="CodeName">TypeResolver</em></a>
 API is responsible for the demand-creation of these types and for their persistence.
 </p>
 
@@ -42,7 +42,7 @@ API is responsible for the demand-creation of these types and for their persiste
 </blockquote>
 
 <p>
-Every <a href="../../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+Every <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
 has a <em class="CodeName">TypeResolver</em> that persists demand-created types and
 additional features.  For a client that doesn't require persistence, the
 <em class="CodeName">TypeResolver</em> will create a <em class="CodeName">Resource</em>
@@ -51,9 +51,9 @@ this scheme).
 </p><p>
 A client that does require persistence of OCL expressions and these demand-created elements
 should provide a specific resource in which to store them, either via the
-<a href="../../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a> class's
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a> class's
 <em class="CodeName">newInstance(EnvironmentFactory, Resource)</em> factory method or via
-the <a href="../../javadoc/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
+the <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
 interface's <em class="CodeName">load(Resource)</em> method.
 </p>
 <pre class="Code">
@@ -70,7 +70,7 @@ ocl = OCL.<b>newInstance</b>(EcoreEnvironmentFactory.INSTANCE, <b>myResource</b>
 ...
 </pre>
 <p>
-The <a href="../../javadoc/org/eclipse/ocl/AbstractTypeResolver.html"><em class="CodeName">AbstractTypeResolver</em></a>
+The <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/AbstractTypeResolver.html"><em class="CodeName">AbstractTypeResolver</em></a>
 class creates packages in which to store the different elements that it creates:  collection
 types, message types, tuple types, and additional operations and attributes.  These last
 are owned by classes that "shadow" the classifiers in which context they are defined, in
