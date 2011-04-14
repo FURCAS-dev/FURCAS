@@ -1,4 +1,4 @@
-package org.eclipse.emf.query.index.internal.ui.builder;
+package org.eclipse.emf.query.index.ui.internal.builder;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;

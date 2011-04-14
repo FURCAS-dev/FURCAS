@@ -9,7 +9,7 @@
       <builder
             hasNature="true">
          <run
-               class="org.eclipse.emf.query.index.internal.ui.builder.QueryIndexBuilder">
+               class="org.eclipse.emf.query.index.ui.internal.builder.QueryIndexBuilder">
          </run>
       </builder>
    </extension>
@@ -19,7 +19,7 @@
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
-               class="org.eclipse.emf.query.index.internal.ui.builder.QueryIndexNature">
+               class="org.eclipse.emf.query.index.ui.internal.builder.QueryIndexNature">
          </run>
       </runtime>
       <builder
@@ -35,7 +35,7 @@
             id="org.eclipse.emf.query.index.ui.contribution1">
          <action
                label="%Query2IndexUI_AddOrRemoveQueryIndexNatureAction"
-               class="org.eclipse.emf.query.index.internal.ui.builder.ToggleNatureAction"
+               class="org.eclipse.emf.query.index.ui.internal.builder.ToggleNatureAction"
                menubarPath="additions"
                enablesFor="+"
                id="org.eclipse.emf.query.index.ui.addRemoveNatureAction">

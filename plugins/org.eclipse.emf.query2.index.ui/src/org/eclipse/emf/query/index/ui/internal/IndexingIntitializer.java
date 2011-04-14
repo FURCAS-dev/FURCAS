@@ -7,8 +7,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.IndexFactory;
-import org.eclipse.emf.query.index.internal.ui.builder.QueryIndexBuilder;
-import org.eclipse.emf.query.index.internal.ui.builder.QueryIndexNature;
+import org.eclipse.emf.query.index.ui.internal.builder.QueryIndexBuilder;
+import org.eclipse.emf.query.index.ui.internal.builder.QueryIndexNature;
 import org.eclipse.ui.IStartup;
 
 /**
