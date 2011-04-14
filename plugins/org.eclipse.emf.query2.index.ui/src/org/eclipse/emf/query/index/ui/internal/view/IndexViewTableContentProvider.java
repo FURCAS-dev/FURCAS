@@ -19,17 +19,17 @@ import org.eclipse.jface.viewers.Viewer;
 
 public class IndexViewTableContentProvider implements ITreeContentProvider {
 
-	@Override
+	
 	public void dispose() {
 
 	}
 
-	@Override
+	
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 	}
 
-	@Override
+	
 	public Object[] getElements(Object inputElement) {
 		List<PropertyCategory> categories = new ArrayList<PropertyCategory>();
 		PropertyCategory category = new PropertyCategory();
@@ -39,7 +39,7 @@ public class IndexViewTableContentProvider implements ITreeContentProvider {
 
 	}
 
-	@Override
+	
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof PropertyCategory) {
 			if (((PropertyCategory) parentElement).getParent() instanceof ResourceDescriptor) {
@@ -68,12 +68,12 @@ public class IndexViewTableContentProvider implements ITreeContentProvider {
 		return null;
 	}
 
-	@Override
+	
 	public Object getParent(Object element) {
 		return null;
 	}
 
-	@Override
+	
 	public boolean hasChildren(Object element) {
 		if (element instanceof PropertyCategory)
 			return true;
