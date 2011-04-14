@@ -45,7 +45,7 @@
    <extension
          point="org.eclipse.ui.startup">
       <startup
-            class="org.eclipse.emf.query.index.ui.IndexingIntitializer"></startup>
+            class="org.eclipse.emf.query.index.ui.internal.IndexingIntitializer"></startup>
    </extension>
    <extension
          point="org.eclipse.ui.views">
@@ -55,7 +55,7 @@
       </category>
       <view
             category="org.eclipse.emf.query2.stringsyntax.tools.ui.emfQueryCategory"
-            class="org.eclipse.emf.query.index.ui.view.IndexView"
+            class="org.eclipse.emf.query.index.ui.internal.view.IndexView"
             icon="icons/IndexView.gif"
             id="org.eclipse.emf.query2.index.ui.indexview"
             name="Index View"
@@ -80,15 +80,15 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.emf.query.index.ui.view.tree.handlers.CopyQualifiedNameHandler"
+            class="org.eclipse.emf.query.index.ui.internal.view.tree.handlers.CopyQualifiedNameHandler"
             commandId="org.eclipse.emf.query2.index.ui.copyQualifiedName">
       </handler>
       <handler
-            class="org.eclipse.emf.query.index.ui.view.tree.handlers.RecreateIndicesHandler"
+            class="org.eclipse.emf.query.index.ui.internal.view.tree.handlers.RecreateIndicesHandler"
             commandId="org.eclipse.emf.query2.index.ui.recreateIndices">
       </handler>
       <handler
-            class="org.eclipse.emf.query.index.ui.view.tree.handlers.OpenResourceinEditorHandler"
+            class="org.eclipse.emf.query.index.ui.internal.view.tree.handlers.OpenResourceinEditorHandler"
             commandId="org.eclipse.emf.query2.index.ui.openInEditor">
       </handler>
    </extension>

@@ -12,19 +12,16 @@ package org.eclipse.emf.query.index.internal.impl;
 
 import java.util.Map;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.maps.MapEntry;
-import org.eclipse.emf.query.index.properties.EObjectDescriptorProperties;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
-import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry, IAdaptable {
+public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 
 	private String eClass;
 	public static final int ECLASS = 1;
@@ -90,13 +87,6 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry, IAdap
 
 	public URI getResourceURI() {
 		return this.resource.getURI();
-	}
-
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class adapter) {
-		if (adapter == IPropertySource.class)
-			return new EObjectDescriptorProperties(this);
-		return null;
 	}
 
 	@Override
