@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Contains all Utilities for Localization <br>
+ * Contains all Utilities for Localization. <br>
  * <br>
  * 
  */

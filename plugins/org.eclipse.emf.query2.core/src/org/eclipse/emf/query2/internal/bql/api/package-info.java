@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Contains all internal classes for BQL
+ * Contains all internal classes for BQL.
  * 
  */
 package org.eclipse.emf.query2.internal.bql.api;

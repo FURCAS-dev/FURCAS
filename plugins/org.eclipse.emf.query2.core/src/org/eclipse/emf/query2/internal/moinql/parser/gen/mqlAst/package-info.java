@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains all internal implementations for of LPG parser generator for AST
+ *  Contains all internal implementations for of LPG parser generator for AST.
  * 
  * */
 package org.eclipse.emf.query2.internal.moinql.parser.gen.mqlAst;

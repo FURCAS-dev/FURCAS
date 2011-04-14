@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains all internal implementations for JMX
+ *  Contains all internal implementations for JMX.
  * 
  * */
 package org.eclipse.emf.query2.internal.jmx;

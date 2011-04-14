@@ -10,7 +10,6 @@
  *******************************************************************************/
 /**
  *  Contains the internal implementations of Engine of Internal ASTs.
- *  <br>
- *  It has implementation of important classes like Interpreter, Scheduler and BQl Translator
+ *  It has implementation of important classes like Interpreter, Scheduler and BQl Translator.
  */
 package org.eclipse.emf.query2.internal.moinql.engine;

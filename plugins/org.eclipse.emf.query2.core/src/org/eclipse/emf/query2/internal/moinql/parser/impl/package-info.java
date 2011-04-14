@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains all internal implementations for of LPG parser
+ *  Contains all internal implementations for of LPG parser.
  * 
  * */
 package org.eclipse.emf.query2.internal.moinql.parser.impl;

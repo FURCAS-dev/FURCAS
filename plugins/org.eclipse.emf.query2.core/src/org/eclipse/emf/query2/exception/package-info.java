@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Contains all APIs for Exception that can be thrown <br>
+ * Contains all APIs for Exception that can be thrown. <br>
  * <br>
  * 
  */

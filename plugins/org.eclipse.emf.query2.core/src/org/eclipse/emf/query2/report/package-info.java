@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains the API for Query reporting
+ *  Contains the API for Query reporting.
  * 
  * */
 package org.eclipse.emf.query2.report;

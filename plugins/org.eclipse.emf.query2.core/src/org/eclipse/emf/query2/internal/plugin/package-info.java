@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains the activator of the plug-in
+ *  Contains the activator of the plug-in.
  * 
  * */
 package org.eclipse.emf.query2.internal.plugin;

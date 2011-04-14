@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains all internal implementations for Index from Query2 perspective
+ *  Contains all internal implementations for Index from Query2 perspective.
  * 
  * */
 package org.eclipse.emf.query2.internal.index;

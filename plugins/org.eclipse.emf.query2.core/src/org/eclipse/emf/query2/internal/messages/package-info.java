@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains all internal classes for Globalization
+ *  Contains all internal classes for Globalization.
  * 
  * */
 package org.eclipse.emf.query2.internal.messages;

@@ -1,5 +1,6 @@
 /**
- * Contains all the api's for emf query2
- * This API is internal use only and subject to change
- */
+ * Contains all the api's for emf query2 core.
+ * 
+ *  
+ *  */
 package org.eclipse.emf.query2;
