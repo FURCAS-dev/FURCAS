@@ -9,8 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- *  Contains the internal implementations of Engine of Internal ASTs.
- *  <br>
- *  It has implementation of important classes like Interpreter, Scheduler and BQl Translator
- */
-package org.eclipse.emf.query2.internal.moinql.engine;
+ *  Contains all internal implementations for JMX
+ * 
+ * */
+package org.eclipse.emf.query2.internal.jmx;

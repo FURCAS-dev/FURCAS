@@ -9,7 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Facility query language contract. <br>
+ * Contains all Intenral classes for Facility query language contract. <br>
  * <br>
  * 
  */

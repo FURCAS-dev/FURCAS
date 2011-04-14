@@ -9,6 +9,6 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * 
+ *  Contains all internal interfaces and enums for Logging
  */
 package org.eclipse.emf.query2.internal.logger;

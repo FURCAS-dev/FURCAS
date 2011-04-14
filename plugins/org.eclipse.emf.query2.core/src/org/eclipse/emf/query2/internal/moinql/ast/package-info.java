@@ -9,6 +9,6 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * 
+ *  Contains all internal implementations for Internal Query AST
  */
 package org.eclipse.emf.query2.internal.moinql.ast;
