@@ -284,10 +284,12 @@ public class CollectionUtil {
         int size2 = c.size();
         
         // if either collection is empty, then so is the result
-        if (size1 == 0) {
-            return createNewCollection(self);
-        } else if (size2 == 0) {
-            return createNewCollection(c);
+        if (size1 == 0 || size2 == 0) {
+        	if (self instanceof Set<?> || c instanceof Set<?>) {
+        		return Collections.emptySet();
+        	} else {
+        		return BagImpl.emptyBag();
+        	}
         }
         
         Collection<E> result = null;
