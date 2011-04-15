@@ -158,7 +158,7 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 				if (it.hasNext())
 					return true;
 				MutableInteger count = coll.get(curr);
-				return curr != null && offset < count.i - 1;
+				return currInitialized && offset < count.i - 1;
 			}
 
 			public E next() {
