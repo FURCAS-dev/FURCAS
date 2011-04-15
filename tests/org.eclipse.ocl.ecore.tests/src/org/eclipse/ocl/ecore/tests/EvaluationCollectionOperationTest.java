@@ -1392,7 +1392,12 @@ public class EvaluationCollectionOperationTest
 	}
 
 	public void testCollectionSizeNull() {
-		assertResultInvalid("let s : String = null in s->size()");
+		// converting a null value to a set has to result in an empty set;
+		// see OCL spec 11.2.3
+		assertResult(Integer.valueOf(0), "let s : String = null in s->size()");
+		// In the following case there is no implicit conversion to Set.
+		// Therefore, size() will be attempted on a null Sequence, required
+		// to evaluate to invalid.
 		assertResultInvalid("let s : Sequence(Integer) = null in s->size()");
 	}
 
