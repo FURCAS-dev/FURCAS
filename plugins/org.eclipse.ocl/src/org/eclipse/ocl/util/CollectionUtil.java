@@ -468,7 +468,9 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> excluding(Collection<E> self, Object object) {
         Collection<E> result = null;
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+        	result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
@@ -479,9 +481,9 @@ public class CollectionUtil {
             }
             return resultSeq;
         } else {
-            result = createNewOrderedSet(self);
+        	throw new RuntimeException("Unsupported collection type "+self.getClass().getName()); //$NON-NLS-1$
         }
-
+        
         // non-sequences (bags remove all occurrences internally)
         result.remove(object);
         return result;
