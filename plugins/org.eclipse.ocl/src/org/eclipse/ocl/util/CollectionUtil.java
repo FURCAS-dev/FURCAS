@@ -82,20 +82,15 @@ public class CollectionUtil {
      * @param object an object
      * @return the number of occurrences of the object in the collection
      */
-    public static int count(Collection<?> self, Object object) {
-    	int count;
-    	if (self instanceof Bag<?>) {
-    		count = ((Bag<?>) self).count(object);
-		} else {
-			count = 0;
-			for (Object next : self) {
-				if (ObjectUtil.equal(next, object)) {
-					count++;
-				}
+	public static int count(Collection<?> self, Object object) {
+		int count = 0;
+		for (Object next : self) {
+			if (ObjectUtil.equal(next, object)) {
+				count++;
 			}
 		}
-        return count;
-    }
+		return count;
+	}
 
     /**
      * Implementation of the OCL
