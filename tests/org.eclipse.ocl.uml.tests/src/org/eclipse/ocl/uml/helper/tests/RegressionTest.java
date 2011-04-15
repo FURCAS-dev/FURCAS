@@ -363,6 +363,24 @@ public class RegressionTest
 		assertChoice(choices, ChoiceKind.PROPERTY, "color");
 	}
 	
+    /**
+     * Tests the validation the number of iterator variables for iterators that
+     * do not support multiple variables.
+     */
+    public void test_oclIsInvalidOnInvalidLetVariable_342644() {
+    	helper.setContext(apple);
+    	assertQueryTrue(null, "let a:Integer = '123a'.toInteger() in a.oclIsInvalid()");
+    }
+    
+    /**
+     * Tests the validation the number of iterator variables for iterators that
+     * do not support multiple variables.
+     */
+    public void test_oclIsInvalidOnInvalidOperationCallResult_342561() {
+    	helper.setContext(apple);
+    	assertQueryTrue(null, "'123a'.toInteger().oclIsInvalid()");
+    }
+    
 	/**
 	 * Tests that the oclIsNew() operation is only suggested in postcondition
 	 * context.

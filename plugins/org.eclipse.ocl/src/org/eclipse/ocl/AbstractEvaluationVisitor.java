@@ -543,4 +543,30 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	    return EvaluationOptions.getValue(getEvaluationEnvironment(),
 	        EvaluationOptions.LAX_NULL_HANDLING);
 	}
+
+	/**
+	 * Evaluates <code>exp</code>. If the evaluation terminates with an
+	 * exception that does not have special semantics for the OCL evaluator
+	 * itself, such as {@link EvaluationHaltedException}, the exception is
+	 * caught, and {@link #getInvalid() invalid} is returned as the result of
+	 * the evaluation. If the evaluation terminates normally, the evaluation
+	 * result is returned.<p>
+	 * 
+	 * Subclasses may override this method to add exceptions to the list of
+	 * exceptions that are not caught because they have special meaning to a
+	 * specialized OCL evaluator.
+	 * 
+	 * @since 3.1
+	 */
+	protected Object saveVisitExpression(OCLExpression<C> exp) {
+		Object sourceVal;
+		try {
+			sourceVal = exp.accept(getVisitor());
+		} catch (EvaluationHaltedException ehe) {
+			throw ehe;
+		} catch (RuntimeException e) {
+			sourceVal = getInvalid();
+		}
+		return sourceVal;
+	}
 } //EvaluationVisitorImpl

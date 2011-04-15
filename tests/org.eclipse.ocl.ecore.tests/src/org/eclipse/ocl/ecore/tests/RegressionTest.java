@@ -958,6 +958,17 @@ public class RegressionTest
 		assertNotNull("Parse should have failed", err);
 	}
 	
+	public void test_ifWithNullConditionMustBeInvalid_342644() {
+		EObject apple = fruitFactory.create(this.apple);
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: let b:Boolean=null in (if b then 1 else 2 endif).oclIsInvalid()" +
+			" endpackage"), apple);
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(Boolean.TRUE, result);
+	}
+	
 	/**
 	 * When resolving unqualified property calls in an inner scope (such as in a loop
 	 * expression), the OCL language specification requires that the lookup of the
@@ -1219,6 +1230,37 @@ public class RegressionTest
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
+	}
+	
+	public void test_oclInvalidInIterateAccumulator_342644() {
+		EObject apple = fruitFactory.create(this.apple);
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: self->iterate(i; acc:Integer='123a'.toInteger() | if acc.oclIsInvalid() then 0 else acc+1 endif)" +
+			" endpackage"), apple);
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(0, result);
+	}
+	
+	public void test_oclIsInvalidOnInvalidLetVariable_342644() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: let a:Integer = '123a'.toInteger() in a.oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid variable value results in TRUE
+		assertEquals(Boolean.TRUE, result);
+	}
+	
+	public void test_oclIsInvalidOnInvalidOperationResult_342561() {
+		Object result = evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: '123a'.toInteger().oclIsInvalid() " +
+			" endpackage"));
+	
+		// oclIsInvalid() on an invalid OperationCallExp results in TRUE
+		assertEquals(Boolean.TRUE, result);
 	}
 	
 	/**

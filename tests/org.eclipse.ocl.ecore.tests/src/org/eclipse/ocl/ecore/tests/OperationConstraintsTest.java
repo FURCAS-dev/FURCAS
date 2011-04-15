@@ -69,7 +69,27 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"endpackage");
 	}
 	
-	/**
+    /**
+     * Now that body expressions can be specified as OCL intended, we can use
+     * them to evaluate operations at run-time. 
+     */
+    public void test_passingOclInvalidToOperation() {
+        parseConstraint(
+            "package ocltest context Fruit::ripen(color : Color) : Boolean " +
+            "body: color.oclIsInvalid() " +
+            "endpackage");
+        
+        OCLExpression<EClassifier> query = parse(
+            "package ocltest context Apple " +
+            "inv: self.ripen(if 1.3 / 0 > 1.3 then Color::black else Color::red endif) " +
+            "endpackage");
+        
+        EObject anApple = fruitFactory.create(apple);
+        anApple.eSet(fruit_color, color_black);
+        assertTrue((Boolean) evaluate(query, anApple));
+    }
+
+    /**
 	 * Tests a postcondition containing the "@ pre" construct.
 	 */
 	public void test_postcondition_atPre() {

@@ -432,6 +432,8 @@ public class EcoreEvaluationEnvironment
 		if ((object.getClass() == Integer.class)
 			&& (classifier.getInstanceClass() == Double.class)) {
 			return Boolean.TRUE;
+		} else if (classifier instanceof AnyType) {
+			return Boolean.TRUE;
 		}
 
 		return classifier.isInstance(object);
