@@ -203,13 +203,13 @@ public class EvaluationCollectionOperationTest
 	public void testCollectionCount() {
 		assertResult(Integer.valueOf(1),
 			"Sequence{3, 'test', 4.0, 4, 4.0, 'test'}->count(3)");
-		assertResult(Integer.valueOf(2),
+		assertResult(Integer.valueOf(3),
 			"Sequence{3, 'test', 4.0, 4, 4.0, 'test'}->count(4.0)");
 		assertResult(Integer.valueOf(2),
 			"Sequence{3, 'test', 4.0, 4, 4.0, 'test'}->count('test')");
 		assertResult(Integer.valueOf(1),
 			"Bag{3, 'test', 4.0, 4, 4.0, 'test'}->count(3)");
-		assertResult(Integer.valueOf(2),
+		assertResult(Integer.valueOf(3),
 			"Bag{3, 'test', 4.0, 4, 4.0, 'test'}->count(4.0)");
 		assertResult(Integer.valueOf(2),
 			"Bag{3, 'test', 4.0, 4, 4.0, 'test'}->count('test')");

@@ -145,11 +145,13 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			private Iterator<E> it;
 			private int offset;
 			private E curr;
+			private boolean currInitialized;
 			
 			public MyIterator() {
 				it = coll.keySet().iterator();
 				offset = 0;
 				curr = null;
+				currInitialized = false;
 			}
 
 			public boolean hasNext() {
@@ -162,12 +164,15 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			public E next() {
 				if (!hasNext())
 					throw new NoSuchElementException();
-				MutableInteger count = coll.get(curr);
-				if (count != null && offset < count.i - 1) {
-					offset++;
-					return curr;
+				if (currInitialized) {
+					MutableInteger count = coll.get(curr);
+					if (count != null && offset < count.i - 1) {
+						offset++;
+						return curr;
+					}
 				}
 				curr = it.next();
+				currInitialized = true;
 				offset = 0;
 				return curr;
 			}

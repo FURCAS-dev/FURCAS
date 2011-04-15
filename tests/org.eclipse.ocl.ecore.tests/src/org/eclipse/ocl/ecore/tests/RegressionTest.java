@@ -62,6 +62,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
+import org.eclipse.ocl.util.Bag;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.Tuple;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -840,6 +842,32 @@ public class RegressionTest
 		expected.add(null);
 		
 		assertEquals(expected, result);
+	}
+	
+	public void test_bagIterationWithNullOccurrences() {
+		Bag<Object> bag = CollectionUtil.createNewBag();
+		bag.add(3);
+		bag.add(null);
+		bag.add(4);
+		bag.add(null);
+		bag.add("test");
+		assertEquals(2, bag.count(null));
+		Iterator<Object> i = bag.iterator();
+		int nullCount = 0;
+		while (i.hasNext()) {
+			if (i.next() == null) {
+				nullCount++;
+			}
+		}
+		assertEquals(2, nullCount);
+		Bag<Object> bagWithSingleNull = CollectionUtil.createNewBag();
+		bagWithSingleNull.add(null);
+		assertEquals(1, bagWithSingleNull.count(null));
+		assertTrue(bagWithSingleNull.iterator().hasNext());
+		assertNull(bagWithSingleNull.iterator().next());
+		i = bagWithSingleNull.iterator();
+		i.next();
+		assertFalse(i.hasNext());
 	}
 	
 	/**
