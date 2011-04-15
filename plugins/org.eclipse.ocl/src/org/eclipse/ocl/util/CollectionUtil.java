@@ -938,7 +938,7 @@ public class CollectionUtil {
         int index = 1;
         
         for (E next : self) {
-            if (object.equals(next)) {
+            if (ObjectUtil.equal(object, next)) {
                 return index;
             }
             index++;
