@@ -531,7 +531,9 @@ public class CollectionUtil {
     public static <E> Collection<E> including(Collection<E> self, E object) {
         Collection<E> result;
         
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+            result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
