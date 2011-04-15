@@ -405,7 +405,12 @@ public class EcoreEvaluationEnvironment
 						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
 					value = ((Number) value).doubleValue();
 				}
-				tuple.eSet(property, value);
+				if (value != null || !(property.getEType() instanceof VoidType)) {
+					// don't try to set null on a VoidType property; it's already null; trying to
+					// set it will cause an exception in the EMF setting delegate infrastructure
+					// because VoidType does not conform to EClass.
+					tuple.eSet(property, value);
+				}
 			}
 		}
 
