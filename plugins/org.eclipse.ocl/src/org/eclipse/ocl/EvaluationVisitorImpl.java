@@ -1137,8 +1137,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.INDEX_OF:
 							// OrderedSet, Sequence::indexOf(T)
-							return CollectionUtil.indexOf(sourceColl,
+							Object indexOf = CollectionUtil.indexOf(sourceColl,
 								argVal);
+							if (indexOf == null) {
+								// according to OCL spec, precondition is violated, resulting in invalid
+								indexOf = getInvalid();
+							}
+							return indexOf;
 					} // end of collection type switch
 				} else if (sourceVal instanceof Comparable<?>) {
 
@@ -1183,16 +1188,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				// evaluate arg1
 				Object arg1 = args.get(0).accept(getVisitor());
 
-				// check if undefined
-				if (isUndefined(arg1)) {
+				// check if invalid
+				if (arg1 == getInvalid()) {
                     return getInvalid();
                 }
 
 				// evaluate arg2
 				Object arg2 = args.get(1).accept(getVisitor());
 
-				// check if undefined
-				if (isUndefined(arg2)) {
+				// check if invalid
+				if (arg2 == getInvalid()) {
                     return getInvalid();
                 }
 
