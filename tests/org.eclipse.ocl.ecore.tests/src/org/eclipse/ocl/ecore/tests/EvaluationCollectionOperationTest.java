@@ -486,7 +486,10 @@ public class EvaluationCollectionOperationTest
 		assertResultFalse("Bag{3, 4.0, null, 'test'}->excludes(null)");
 		assertResultFalse("Bag{null}->excludes(null)");
 		assertResultFalse("Set{3, 4.0, null, 'test'}->excludes(null)");
-		assertResultFalse("Set{null}->excludes(null)");
+		// Set{null} has special semantics due to the implicit set conversion
+		// in x->... for the case where x==null. Therefore, Set{null} evaluates
+		// to an empty set which therefore excludes null.
+		assertResultTrue("Set{null}->excludes(null)");
 		assertResultFalse("OrderedSet{3, 4.0, null, 'test'}->excludes(null)");
 		assertResultFalse("OrderedSet{null}->excludes(null)");
 

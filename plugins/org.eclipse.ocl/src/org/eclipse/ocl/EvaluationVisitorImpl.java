@@ -2200,8 +2200,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (itemVal == getInvalid()) {
 						return getInvalid(); // can't have an invalid element in a collection
 					}
-					// add it to the result set, even if null; See A.2.5.3 in OMG 10-11-42
-					result.add(itemVal);
+					// add it to the result set, even if null, except it's the only item;
+					// See A.2.5.3 and 11.2.3 in OMG 10-11-42
+					if (itemVal != null || parts.size() > 1 || kind != CollectionKind.SET_LITERAL) {
+						result.add(itemVal);
+					}
 				} else {
 					// Collection range
 					CollectionRange<C> range = (CollectionRange<C>) part;
