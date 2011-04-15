@@ -399,6 +399,12 @@ public class EcoreEvaluationEnvironment
 				tuple.eSet(property, CollectionUtil.createNewCollection(
 					collType.getKind(), (Collection<?>) value));
 			} else {
+				// do numeric coercion if necessary:
+				if (value instanceof Number && property.getEType().getInstanceClass() != null &&
+						!(value instanceof Double) &&
+						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
+					value = ((Number) value).doubleValue();
+				}
 				tuple.eSet(property, value);
 			}
 		}
