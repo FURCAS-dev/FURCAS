@@ -942,13 +942,13 @@ public class EvaluationCollectionOperationTest
 			"Bag{3, 4}->intersection(Set{})");
 
 		assertResult(CollectionUtil.createNewSet(),
-			"Set{}->intersection(Set{3, 4})");
+			"let s:Set(Integer)=Set{} in s->intersection(Set{3, 4})");
 		assertResult(CollectionUtil.createNewSet(),
-			"Set{}->intersection(Bag{3, 4})");
+			"let s:Set(Integer)=Set{} in s->intersection(Bag{3, 4})");
 		assertResult(CollectionUtil.createNewBag(),
-			"Bag{}->intersection(Bag{3, 4})");
+			"let b:Bag(Integer)=Bag{} in b->intersection(Bag{3, 4})");
 		assertResult(CollectionUtil.createNewSet(),
-			"Bag{}->intersection(Set{3, 4})");
+			"let b:Bag(Integer)=Bag{} in b->intersection(Set{3, 4})");
 	}
 
 	public void testCollectionIntersectionInvalid() {

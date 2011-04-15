@@ -13,6 +13,7 @@ package org.eclipse.ocl.ecore.tests;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -140,11 +141,11 @@ public abstract class AbstractEvaluationTest
 				((Double) result).doubleValue(), 0.001d);
 		} else if (expectedResult instanceof LinkedHashSet<?>) {
 			/*
-			 * Set is represented as HashSet, OrderedSet as LinkedHashSet. Java
-			 * does not check for the ordering when calling equals, we'll then
-			 * statically check for the instance type. Bag and Sequence do not
-			 * present the same issue because of the implementation of
-			 * BagImpl#equals().
+			 * Set is represented as HashSet but may also be emptySet,
+			 * OrderedSet as LinkedHashSet. Java does not check for the ordering
+			 * when calling equals, we'll then statically check for the instance
+			 * type. Bag and Sequence do not present the same issue because of
+			 * the implementation of BagImpl#equals().
 			 */
 			assertTrue(result instanceof LinkedHashSet<?>);
 			assertSame(((LinkedHashSet<?>) result).size(),
@@ -157,6 +158,9 @@ public abstract class AbstractEvaluationTest
 				assertEquals(resultIterator.next(), expectedResultIterator
 					.next());
 			}
+		} else if (expectedResult instanceof Set<?>) {
+			assertTrue(result instanceof Set<?>);
+			assertEquals(expectedResult, result);
 		} else if (expectedResult instanceof Collection<?>) {
 			assertTrue(expectedResult.getClass().isInstance(result));
 			assertEquals(expectedResult, result);
