@@ -78,6 +78,7 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -159,7 +160,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		int numArgs = args.size();
 
 		// evaluate source
-		Object sourceVal = source.accept(getVisitor());
+		Object sourceVal = saveVisitExpression(source);
 		
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
@@ -171,7 +172,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			int i = 0;
 			for (Iterator<OCLExpression<C>> it = args.iterator(); it.hasNext(); i++) {
 				OCLExpression<C> arg = it.next();
-				evalArgs[i] = arg.accept(getVisitor());
+				evalArgs[i] = saveVisitExpression(arg);
 			}
 	
 			// ask the environment to evaluate
@@ -501,6 +502,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	                case PredefinedType.OCL_IS_TYPE_OF:
 	                case PredefinedType.OCL_IS_KIND_OF:
 	                case PredefinedType.OCL_AS_TYPE:
+	                case PredefinedType.AND:
+	                case PredefinedType.OR:
+	                case PredefinedType.XOR:
+	                case PredefinedType.IMPLIES:
 	                    if (isLaxNullHandling()) {
 	                        break;
 	                    } else {
@@ -534,11 +539,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         return getInvalid();
                     }
 
-					if (sourceVal instanceof Double
+					if (sourceVal instanceof String
+						&& ((TypeExp<C>) arg).getReferredType() == getString()) {
+						return sourceVal;
+					} else if (sourceVal instanceof Double
 						&& (argType == getInteger())) {
                         return new Integer(((Double) sourceVal).intValue());
+					} else if (sourceVal instanceof Boolean
+						&& ((TypeExp<C>) arg).getReferredType() == getBoolean()) {
+						return sourceVal;
                     } else if (sourceVal instanceof Integer
-						&& (argType == getReal())) {
+						&& (((TypeExp<C>) arg).getReferredType() == getReal())) {
                         
                         if (sourceType == getUnlimitedNatural()) {
                             int sourceInt = (Integer) sourceVal;
@@ -550,15 +561,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         }
                         
 						return new Double(((Integer) sourceVal).doubleValue());
+                    } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
+                    	return sourceVal;
                     }
-                    
-					return sourceVal;
+					return getInvalid();
 				}
 				
 				// evaluate arg, unless we have a boolean operation
 				Object argVal = null;
-				if (!(sourceVal instanceof Boolean)) {
-					argVal = arg.accept(getVisitor());
+				if (!isBooleanOperation(opCode)) {
+					argVal = saveVisitExpression(arg);
 				}
 
 				if (sourceVal instanceof Number) {
@@ -911,7 +923,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Boolean) {
+				} else if (isBooleanOperation(opCode)) {
 					// the logic with an undefined value is basic 3-valued
 					// logic:
 					// null represents the undefined value
@@ -923,16 +935,23 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							if (Boolean.TRUE.equals(sourceVal)) {
                                 return Boolean.TRUE;
                             }
-							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
-							return argVal;
+							if (Boolean.TRUE.equals(argVal)) {
+								return Boolean.TRUE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
+							return Boolean.FALSE;
 
 						// Boolean::xor(Boolean)
 						case PredefinedType.XOR:
 							// XOR does not have a short-circuit
 							argVal = arg.accept(getVisitor());
-							
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
 							return (argVal == null) ? sourceVal
 								: (((Boolean) sourceVal).booleanValue()
 									^ ((Boolean) argVal).booleanValue() ? Boolean.TRUE
@@ -940,13 +959,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Boolean::and(Boolean)
 						case PredefinedType.AND:
-							if (!Boolean.TRUE.equals(sourceVal)) {
+							if (Boolean.FALSE.equals(sourceVal)) {
                                 return Boolean.FALSE;
                             }
-							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
-							return argVal;
+							if (Boolean.FALSE.equals(argVal)) {
+								return Boolean.FALSE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
+							return Boolean.TRUE;
 
 						// Boolean::implies
 						case PredefinedType.IMPLIES:
@@ -956,6 +980,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
+							if (Boolean.TRUE.equals(argVal)) {
+								return Boolean.TRUE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
 							return argVal;
 
 						default: {
@@ -1344,7 +1374,15 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return null;
 	}
-	
+
+	private boolean isBooleanOperation(int opCode) {
+		return opCode == PredefinedType.AND ||
+			opCode == PredefinedType.OR ||
+			opCode == PredefinedType.NOT ||
+			opCode == PredefinedType.XOR ||
+			opCode == PredefinedType.IMPLIES;
+	}
+
 	/**
 	 * Infers a standard operation code from the name of a user-defined
 	 * operation.  This applies for cases where a standard operation is not
@@ -1973,7 +2011,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> initExp = vd.getInitExpression();
 		Object initVal = null;
 		if (initExp != null) {
-            initVal = initExp.accept(getVisitor());
+			// if an unpropagated runtime exception is thrown, assign invalid to
+			// variable, allowing an oclIsInvalid() to detect it later
+			initVal = saveVisitExpression(initExp);
         }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;
@@ -1990,7 +2030,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// evaluate condition
 		Boolean condVal = (Boolean) condition.accept(getVisitor());
 		if (condVal == null) {
-            return null;
+            return getInvalid();
         }
 
 		if (condVal.booleanValue()) {
@@ -2157,10 +2197,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					CollectionItem<C> item = (CollectionItem<C>) part;
 					OCLExpression<C> itemExp = item.getItem();
 					Object itemVal = itemExp.accept(getVisitor());
-					if (itemVal != null) {
-						// add it to the result set
-						result.add(itemVal);
+					if (itemVal == getInvalid()) {
+						return getInvalid(); // can't have an invalid element in a collection
 					}
+					// add it to the result set, even if null; See A.2.5.3 in OMG 10-11-42
+					result.add(itemVal);
 				} else {
 					// Collection range
 					CollectionRange<C> range = (CollectionRange<C>) part;

@@ -111,6 +111,7 @@ public abstract class AbstractTestSuite
 	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
+		result.addTest(AbstractEvaluationTest.suite());
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
 		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
@@ -147,6 +148,9 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
 		result.createTestSuite(DelegatesTest.class, "Delegate Tests");
 		result.createTestSuite(OppositePropertyCallExpTest.class, "Opposite Property Call Expression Tests");
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expression Validation Tests");
+		result.createTestSuite(SerializationTest.class, "Serialization Tests");
+		result.createTestSuite(EvaluationHaltedTest.class, "EvaluationHalted Tests");
 	}
 	
 	/**
