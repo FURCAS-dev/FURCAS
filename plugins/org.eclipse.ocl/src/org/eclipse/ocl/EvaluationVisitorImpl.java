@@ -327,6 +327,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						
 					case PredefinedType.MINUS:
 						// Integer::minus()
+						// -* doesn't exist, so evaluate to invalid
+						if (sourceType == getUnlimitedNatural() && Integer.valueOf(-1).equals(sourceVal)) {
+							return getInvalid();
+						}
 						if (sourceVal instanceof Integer) {
                             return - (Integer) sourceVal;
                         } else if (sourceVal instanceof Long) {
