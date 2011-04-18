@@ -537,8 +537,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     // UnlimitedNatural is represented as Integer, so checking sourceVal's type
                     // doesn't work. Therefore, UnlimitedNatural needs to be handled here. It
                     // has no subtypes, so static type == dynamic type.
-					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
-						return true; 
+					if (sourceType == getUnlimitedNatural()) {
+						return targetType == getUnlimitedNatural();
 					}
 					return oclIsTypeOf(sourceVal, targetType);
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
