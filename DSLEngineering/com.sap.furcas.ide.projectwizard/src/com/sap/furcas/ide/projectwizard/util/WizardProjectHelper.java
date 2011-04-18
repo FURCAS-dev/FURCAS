@@ -118,7 +118,7 @@ public class WizardProjectHelper {
         	String mmBundleName = "";
         	if (!pi.isLoadMetamodel()) {
         		mmBundleName = pi.getBasePath().replaceAll(Path.SEPARATOR+"", ".")+".metamodel";
-        	} else if (pi.isFromWorkspace()) {
+        	} else {
         		mmBundleName = pi.getMmBundleName();
         	}
         		
