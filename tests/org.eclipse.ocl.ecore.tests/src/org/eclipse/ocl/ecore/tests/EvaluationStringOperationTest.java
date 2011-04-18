@@ -22,7 +22,8 @@ public class EvaluationStringOperationTest
 
 	public void testStringConcat() {
 		assertResult("concatenationTest", "'concatenation'.concat('Test')");
-		assertResult("concatenation\\n", "'concatenation'.concat('\\n')");
+		// according to 9.3.20, StringLiteralExpCS, '\' 'n' is the escape for a life feed LF
+		assertResult("concatenation\n", "'concatenation'.concat('\\n')");
 	}
 
 	public void testStringConcatInvalid() {

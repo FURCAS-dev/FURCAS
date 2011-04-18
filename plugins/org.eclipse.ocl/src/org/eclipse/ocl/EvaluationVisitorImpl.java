@@ -1029,9 +1029,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				}
 
-				else if (sourceVal instanceof String
-					&& argVal instanceof String) {
-
+				else if (sourceVal instanceof String) {
+					if (isUndefined(argVal)) {
+						return getInvalid();
+					}
 					switch (opCode) {
 						// String::concat(String)
 						case PredefinedType.CONCAT:
