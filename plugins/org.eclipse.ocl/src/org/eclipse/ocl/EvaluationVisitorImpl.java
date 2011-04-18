@@ -571,6 +571,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				Object argVal = null;
 				if (!isBooleanOperation(opCode)) {
 					argVal = saveVisitExpression(arg);
+					if (argVal == getInvalid()) {
+						return argVal; // an invalid argument leads to invalid operation call value
+					}                  // unless a boolean operation doesn't evaluate the arg
 				}
 
 				if (sourceVal instanceof Number) {
