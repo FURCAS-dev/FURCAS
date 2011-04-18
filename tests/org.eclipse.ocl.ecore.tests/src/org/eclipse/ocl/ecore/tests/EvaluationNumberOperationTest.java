@@ -500,7 +500,7 @@ public class EvaluationNumberOperationTest
 
 	public void testNumberModNull() {
 		assertResultInvalid("let i : Integer = null in 1.mod(i)");
-		assertResultInvalid("let i : Integer = null in mod(1)");
+		assertResultInvalid("let i : Integer = null in i.mod(1)");
 
 		assertResultInvalid("let i1 : Integer = null, i2 : Integer = null in i1.mod(i2)");
 	}
