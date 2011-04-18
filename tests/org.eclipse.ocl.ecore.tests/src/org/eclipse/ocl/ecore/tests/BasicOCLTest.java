@@ -669,9 +669,9 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "invalid.oclAsType(String)"));
             
             // lax null handling on for invalid values in non-OclInvalid expressions)
-            assertEquals(Boolean.TRUE,
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)"));
-            assertEquals(Boolean.TRUE,
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)"));
@@ -797,21 +797,21 @@ public class BasicOCLTest
         
         try {
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Set{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Set{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Set{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Sequence{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Sequence{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid = Set{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> OrderedSet{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = OrderedSet{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Sequence{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Bag{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Bag{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid = Sequence{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid <> OrderedSet{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid = OrderedSet{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Bag{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid = Bag{'foo'}).oclIsInvalid()"));
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
