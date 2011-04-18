@@ -657,9 +657,9 @@ public class BasicOCLTest
         try {
             // lax null handling on for literal invalids (which are handled
             // separately from invalid values in non-OclInvalid expressions)
-            assertEquals(Boolean.TRUE,
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)"));
-            assertEquals(Boolean.TRUE,
+            assertEquals(getInvalid(),
                 evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)"));
@@ -764,6 +764,28 @@ public class BasicOCLTest
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
+    }
+    
+    /**
+     * oclAsType must result in invalid for source not conforming to target type and
+     * in the source object in case it conforms to the target type
+     */
+    public void test_oclAsTypeConformingAndNonConforming() {
+    	helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+    	try {
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EAnnotation).oclIsInvalid()"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EClassifier) = self"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EClass) = self"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EDataType).oclIsInvalid()"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(ocl::ecore::TupleType).oclIsInvalid()"));
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
     }
     
     /**
