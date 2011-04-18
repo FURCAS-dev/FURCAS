@@ -1,26 +1,29 @@
-<?xml version="1.0" encoding="ASCII"?>
-<com.sap.furcas.TCS:ConcreteSyntax xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.TCS="http://www.furcas.org/TCS" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.furcas.org/TCS http://www.furcas.org#//TCS" name="$CapLangName$">
-  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" templateName="identifier" default="true" tokenName="NAME" value="%token%">
-    <textBlockDefinition/>
-  </templates>
-  <templates xsi:type="com.sap.furcas.TCS:PrimitiveTemplate" metaReference="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" templateName="integerSymbol" default="true" tokenName="INT" value="Integer.valueOf(%token%)">
-    <textBlockDefinition/>
-  </templates>
-  <templates xsi:type="com.sap.furcas.TCS:ClassTemplate" metaReference="ecore:EClass $URI$#//$FirstClass$" isContext="true" isMain="true">
-    <textBlockDefinition/>
-    <templateSequence>
-      <elements xsi:type="com.sap.furcas.TCS:Property" parentTemplate="#//@templates.2">
-        <propertyReference strucfeature="ecore:EAttribute $URI$#//$FirstClass$/name"/>
-      </elements>
-    </templateSequence>
-  </templates>
-<tokens name="COMMENT">
-    <pattern>
-      <simplePatterns xsi:type="com.sap.furcas.TCS:RulePattern">
-        <rule xsi:type="com.sap.furcas.TCS:EndOfLineRule">
-          <start name="--"/>
-        </rule>
-      </simplePatterns>
-    </pattern>
-  </tokens>
-</com.sap.furcas.TCS:ConcreteSyntax>
+--specify your DSL grammar rules here ...
+
+syntax Bibtex {
+
+  -- place templates here (at least one main template)
+  primitiveTemplate identifier for EString default using NAME:
+    value = "%token%";
+        
+  primitiveTemplate integerSymbol for EInt default using INT:
+        value = "Integer.valueOf(%token%)";
+
+  template LiteratureDb main context
+  : name "Entries:" "{" entries "}"
+  		 "Authors:"	"{" author "}"
+  ;
+ 
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+  token COMMENT : endOfLine(start = "--");
+
+  -- place lexer here (optional)
+
+}
