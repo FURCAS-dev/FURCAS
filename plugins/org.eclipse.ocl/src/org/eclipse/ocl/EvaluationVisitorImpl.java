@@ -602,7 +602,8 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						// TODO handle sourceType==getUnlimitedNatural() with target type Integer and UNLIMITED which has to evaluate to invalid
                     } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
                     	return sourceVal;
-                    } else if (oclIsKindOf(sourceVal, ((TypeExp<C>) arg).getReferredType())) {
+                    } else if ((sourceType == getUnlimitedNatural() && ((TypeExp<C>) arg).getReferredType() == getUnlimitedNatural()) ||
+                    		oclIsKindOf(sourceVal, ((TypeExp<C>) arg).getReferredType())) {
                     	return sourceVal;
                     } else {
                     	return getInvalid();
