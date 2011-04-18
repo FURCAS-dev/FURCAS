@@ -1,18 +1,17 @@
---specify your DSL grammar rules here ...
+syntax $CapLangName$ {
 
-syntax Bibtex {
+-- place templates here (at least one main template)
 
-  -- place templates here (at least one main template)
+        template $FirstClass$ main
+                 :"$FirstClass$"
+                 ;
+                 
   primitiveTemplate identifier for EString default using NAME:
     value = "%token%";
         
   primitiveTemplate integerSymbol for EInt default using INT:
         value = "Integer.valueOf(%token%)";
 
-  template LiteratureDb main context
-  : name "Entries:" "{" entries "}"
-  		 "Authors:"	"{" author "}"
-  ;
  
   -- place keywords here (optional, seldom used)
 
