@@ -530,8 +530,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// AnyType::oclIsTypeOf(OclType)
 				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
+					if (sourceVal == getInvalid()) {
+						return sourceVal;
+					}
                     return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
+    				if (sourceVal == getInvalid()) {
+    					return sourceVal;
+    				}
                     return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
                 } else if (opCode == PredefinedType.OCL_AS_TYPE) {
 					// Type conversions for the built-in, non-collection
@@ -575,8 +581,11 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						return new Double(((Integer) sourceVal).doubleValue());
                     } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
                     	return sourceVal;
+                    } else if (oclIsKindOf(sourceVal, ((TypeExp<C>) arg).getReferredType())) {
+                    	return sourceVal;
+                    } else {
+                    	return getInvalid();
                     }
-					return getInvalid();
 				}
 				
 				// evaluate arg, unless we have a boolean operation
@@ -1306,12 +1315,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			// AnyType::oclIsTypeOf(OclType)
 			if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
+				if (sourceVal == getInvalid()) {
+					return sourceVal;
+				}
 				OCLExpression<C> arg = args.get(0);
 				return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
 			}
 
 			// AnyType::oclIsKindOf(OclType)
 			else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
+				if (sourceVal == getInvalid()) {
+					return sourceVal;
+				}
 				OCLExpression<C> arg = args.get(0);
 				return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
 			}
@@ -1338,7 +1353,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				
 				@SuppressWarnings("unchecked")
 				C type = (C) arg.accept(getVisitor());
-				if (Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
+				if (sourceVal != getInvalid() && Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
 					return sourceVal;
 				} else {
 					return getInvalid();
