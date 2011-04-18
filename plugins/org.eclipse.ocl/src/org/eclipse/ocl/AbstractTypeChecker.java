@@ -184,19 +184,18 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// handle primitive types
+		// From OCL 2.3 (11.5.1): "Note that UnlimitedNatural is a subclass
+		// of Integer and that Integer is a subclass of Real"
 		if (type1 instanceof PrimitiveType<?>) {
-			if ((type1 == stdlib.getInteger())
-				|| (type1 == stdlib.getUnlimitedNatural())) {
-				if (type2 == stdlib.getReal()) {
+			int type1Order = (type1==stdlib.getUnlimitedNatural()?0:type1==stdlib.getInteger()?1:type1==stdlib.getReal()?2:-1);
+			int type2Order = (type2==stdlib.getUnlimitedNatural()?0:type2==stdlib.getInteger()?1:type2==stdlib.getReal()?2:-1);
+			if (type1Order >= 0 && type2Order >= 0) {
+				if (type1Order < type2Order) {
 					return STRICT_SUBTYPE;
-				}
-			} else if (type1 == stdlib.getReal()) {
-				if ((type2 == stdlib.getInteger())
-					|| (type2 == stdlib.getUnlimitedNatural())) {
+				} else if (type1Order > type2Order) {
 					return STRICT_SUPERTYPE;
 				}
 			}
-
 			return UNRELATED_TYPE;
 		} else if (type2 instanceof PrimitiveType<?>) {
 			// tested all possible primitive type conformances in the other case

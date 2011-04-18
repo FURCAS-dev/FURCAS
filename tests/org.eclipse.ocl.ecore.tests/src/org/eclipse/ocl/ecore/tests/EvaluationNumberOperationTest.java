@@ -779,11 +779,10 @@ public class EvaluationNumberOperationTest
 		assertResultFalse("1 = *");
 		assertResultFalse("* = 1.0");
 		assertResultFalse("1.0 = *");
-		// FIXME the AbstractOCLParser and UnlimitedNaturalLiteralExpImpl class currently equate * to -1
-		// assertResultFalse("* = -1");
-		// assertResultFalse("-1 = *");
-		// assertResultFalse("* = -1.0");
-		// assertResultFalse("-1.0 = *");
+		assertResultFalse("* = -1");
+		assertResultFalse("-1 = *");
+		assertResultFalse("* = -1.0");
+		assertResultFalse("-1.0 = *");
 
 		assertResultTrue("* = *");
 	}
@@ -1051,6 +1050,8 @@ public class EvaluationNumberOperationTest
 	}
 
 	public void testUnlimitedOclIsTypeOf() {
+		// From OCL 2.3 (11.5.1): "Note that UnlimitedNatural is a subclass
+		// of Integer and that Integer is a subclass of Real"
 		assertResultFalse("*.oclIsTypeOf(Integer)");
 		assertResultFalse("*.oclIsTypeOf(Real)");
 		assertResultTrue("*.oclIsTypeOf(UnlimitedNatural)");

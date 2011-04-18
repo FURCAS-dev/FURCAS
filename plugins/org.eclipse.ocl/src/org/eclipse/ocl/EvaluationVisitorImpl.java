@@ -533,12 +533,28 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (sourceVal == getInvalid()) {
 						return sourceVal;
 					}
-                    return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+                    Object targetType = arg.accept(getVisitor());
+                    // UnlimitedNatural is represented as Integer, so checking sourceVal's type
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here. It
+                    // has no subtypes, so static type == dynamic type.
+					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
+						return true; 
+					}
+					return oclIsTypeOf(sourceVal, targetType);
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
+                	// no special check for Integer representation of UnlimitedNatural necessary
+                	// because UnlimitedNatural is subtype of Integer
     				if (sourceVal == getInvalid()) {
     					return sourceVal;
     				}
-                    return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+                    Object targetType = arg.accept(getVisitor());
+                    // UnlimitedNatural is represented as Integer, so checking sourceVal's type
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here. It
+                    // has no subtypes, so static type == dynamic type.
+					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
+						return true; // other combinations properly handled since checked with Integer
+					}
+					return oclIsKindOf(sourceVal, targetType);
                 } else if (opCode == PredefinedType.OCL_AS_TYPE) {
 					// Type conversions for the built-in, non-collection
 					// types are completely checked in the parser. The only
@@ -579,6 +595,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         }
                         
 						return new Double(((Integer) sourceVal).doubleValue());
+						// TODO handle sourceType==getUnlimitedNatural() with target type Integer and UNLIMITED which has to evaluate to invalid
                     } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
                     	return sourceVal;
                     } else if (oclIsKindOf(sourceVal, ((TypeExp<C>) arg).getReferredType())) {
