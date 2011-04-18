@@ -316,7 +316,8 @@ public class EvaluationOclAnyOperationTest
 		assertResultTrue("null.oclIsTypeOf(Integer)");
 		assertResultTrue("null.oclIsTypeOf(EClass)");
 		assertResultTrue("null.oclIsTypeOf(OclVoid)");
-		assertResultTrue("null.oclIsTypeOf(OclInvalid)");
+		// OclVoid conforms to all other types *except* OclInvalid
+		assertResultFalse("null.oclIsTypeOf(OclInvalid)");
 	}
 
 	public void testOclIsTypeOfNullNoLaxNullHandling() {

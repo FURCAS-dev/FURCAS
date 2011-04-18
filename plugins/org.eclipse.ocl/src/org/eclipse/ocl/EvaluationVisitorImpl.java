@@ -1233,9 +1233,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// just one ternary string operation
 					// String::substring(Integer, Integer)
 					// index orgin 1 for OCL
-					int lower = ((Integer) arg1).intValue() - 1;
+					int lower = ((Integer) arg1).intValue();
 					int upper = ((Integer) arg2).intValue();
-					return ((String) sourceVal).substring(lower, upper);
+					if (!(1 <= lower &&
+							  lower <= upper &&
+							  upper <= ((String) sourceVal).length())) {
+						return getInvalid();
+					}
+					return ((String) sourceVal).substring(lower-1, upper);
 				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
