@@ -577,6 +577,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				}
 
 				if (sourceVal instanceof Number) {
+					if (argVal == null) {
+						// one-arg numeric operation is invalid for null / undefined arg
+						return getInvalid();
+					}
                     // we have a numeric operation.  Promote to high precision
                     sourceVal = higherPrecisionNumber((Number) sourceVal);
                     
