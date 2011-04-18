@@ -315,7 +315,7 @@ public class GeneratedClassesTest {
         ProjectInfo pi = new ProjectInfo();
         configureProjectInfo(pi);
         try {
-            String contents = codeFactory.createManifest(pi);
+            String contents = codeFactory.createManifest(pi,"");
             lines = contents.split("\n");
         } catch (CodeGenerationException e) {
             e.printStackTrace();

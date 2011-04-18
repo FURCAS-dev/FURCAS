@@ -53,6 +53,8 @@ public class ProjectInfo {
      */
     private boolean fromWorkspace = false;
 
+	private String mmBundleName;
+
     /**
      * 
      * @return The file extension.
@@ -197,5 +199,14 @@ public class ProjectInfo {
     public String getModelPath() {
         return modelPath;
     }
+
+	public void setMMBundleName(String mmBundleName) {
+		this.mmBundleName = mmBundleName;
+		
+	}
+
+	public String getMmBundleName() {
+		return mmBundleName;
+	}
 
 }
