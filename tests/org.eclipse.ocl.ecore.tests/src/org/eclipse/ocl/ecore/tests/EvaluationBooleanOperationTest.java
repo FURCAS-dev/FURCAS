@@ -51,10 +51,11 @@ public class EvaluationBooleanOperationTest
 	}
 
 	public void testBooleanEqualInvalid() {
-		assertResultFalse("let b : Boolean = invalid in b = true");
-		assertResultFalse("let b : Boolean = invalid in false = b");
+		// operation invocations on invalid except for oclIsInvalid and oclIsUndefined yield invalid
+		assertResultInvalid("let b : Boolean = invalid in b = true");
+		assertResultInvalid("let b : Boolean = invalid in false = b");
 
-		assertResultTrue("let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
+		assertResultInvalid("let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 = b2");
 	}
 
 	public void testBooleanEqualNull() {
@@ -100,10 +101,11 @@ public class EvaluationBooleanOperationTest
 	}
 
 	public void testBooleanNotEqualInvalid() {
-		assertResultTrue("let b : Boolean = invalid in b <> true");
-		assertResultTrue("let b : Boolean = invalid in false <> b");
+		// operation invocations on invalid except for oclIsInvalid and oclIsUndefined yield invalid
+		assertResultInvalid("let b : Boolean = invalid in b <> true");
+		assertResultInvalid("let b : Boolean = invalid in false <> b");
 
-		assertResultFalse("let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
+		assertResultInvalid("let b1 : Boolean = invalid, b2 : Boolean = invalid in b1 <> b2");
 	}
 
 	public void testBooleanNotEqualNull() {

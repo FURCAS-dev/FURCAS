@@ -254,9 +254,15 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// The semantics for inequality are dual.
 		// 
 		if (opCode == PredefinedType.EQUAL) {
+			if (sourceVal == getInvalid()) {
+				return getInvalid();
+			}
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
+			Object argVal = saveVisitExpression(arg);
+			if (argVal == getInvalid()) {
+				return argVal;
+			}
 	        
 	        if (sourceVal instanceof Number) {
 	            // coerce to Long or Double, if possible, for comparison
@@ -272,11 +278,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		else if (opCode == PredefinedType.NOT_EQUAL) {
+			if (sourceVal == getInvalid()) {
+				return getInvalid();
+			}
 			// notEquals
 
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
+			Object argVal = saveVisitExpression(arg);
+			if (argVal == getInvalid()) {
+				return argVal;
+			}
 		       
 	        if (sourceVal instanceof Number) {
 	            // coerce to Long or Double, if possible, for comparison

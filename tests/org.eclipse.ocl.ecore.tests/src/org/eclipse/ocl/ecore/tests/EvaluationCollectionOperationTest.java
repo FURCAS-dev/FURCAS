@@ -285,15 +285,16 @@ public class EvaluationCollectionOperationTest
 	}
 
 	public void testCollectionEqualInvalid() {
-		assertResultFalse("let s : Sequence(Integer) = invalid in s = Sequence{5}");
-		assertResultFalse("let b : Bag(Integer) = invalid in Bag{5} = b");
-		assertResultFalse("let s : Set(Integer) = invalid in s = Set{5}");
-		assertResultFalse("let o : OrderedSet(Integer) = invalid in OrderedSet{5} = o");
+		// operation invocations on invalid except for oclIsInvalid and oclIsUndefined yield invalid
+		assertResultInvalid("let s : Sequence(Integer) = invalid in s = Sequence{5}");
+		assertResultInvalid("let b : Bag(Integer) = invalid in Bag{5} = b");
+		assertResultInvalid("let s : Set(Integer) = invalid in s = Set{5}");
+		assertResultInvalid("let o : OrderedSet(Integer) = invalid in OrderedSet{5} = o");
 
-		assertResultTrue("let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 = s2");
-		assertResultTrue("let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 = b2");
-		assertResultTrue("let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 = s2");
-		assertResultTrue("let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 = o2");
+		assertResultInvalid("let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 = s2");
+		assertResultInvalid("let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 = b2");
+		assertResultInvalid("let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 = s2");
+		assertResultInvalid("let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 = o2");
 	}
 
 	public void testCollectionEqualNull() {
@@ -1158,15 +1159,16 @@ public class EvaluationCollectionOperationTest
 	}
 
 	public void testCollectionNotEqualInvalid() {
-		assertResultTrue("let s : Sequence(Integer) = invalid in s <> Sequence{5}");
-		assertResultTrue("let b : Bag(Integer) = invalid in Bag{5} <> b");
-		assertResultTrue("let s : Set(Integer) = invalid in s <> Set{5}");
-		assertResultTrue("let o : OrderedSet(Integer) = invalid in OrderedSet{5} <> o");
+		// operation invocations on invalid except for oclIsInvalid and oclIsUndefined yield invalid
+		assertResultInvalid("let s : Sequence(Integer) = invalid in s <> Sequence{5}");
+		assertResultInvalid("let b : Bag(Integer) = invalid in Bag{5} <> b");
+		assertResultInvalid("let s : Set(Integer) = invalid in s <> Set{5}");
+		assertResultInvalid("let o : OrderedSet(Integer) = invalid in OrderedSet{5} <> o");
 
-		assertResultFalse("let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 <> s2");
-		assertResultFalse("let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 <> b2");
-		assertResultFalse("let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 <> s2");
-		assertResultFalse("let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 <> o2");
+		assertResultInvalid("let s1 : Sequence(Integer) = invalid, s2 : Sequence(Integer) = invalid in s1 <> s2");
+		assertResultInvalid("let b1 : Bag(Integer) = invalid, b2 : Bag(Integer) = invalid in b1 <> b2");
+		assertResultInvalid("let s1 : Set(Integer) = invalid, s2 : Set(Integer) = invalid in s1 <> s2");
+		assertResultInvalid("let o1 : OrderedSet(Integer) = invalid, o2 : OrderedSet(Integer) = invalid in o1 <> o2");
 	}
 
 	public void testCollectionNotEqualNull() {

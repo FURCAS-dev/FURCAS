@@ -129,6 +129,7 @@ public class EvaluationNumberOperationTest
 	}
 
 	public void testNumberEqualInvalid() {
+		// operation invocations on invalid except for oclIsInvalid and oclIsUndefined yield invalid
 		assertResultInvalid("let i : Integer = invalid in i = 0");
 		assertResultInvalid("let i : Integer = invalid in -1 = i");
 		assertResultInvalid("let r : Real = invalid in r = 0.0");
