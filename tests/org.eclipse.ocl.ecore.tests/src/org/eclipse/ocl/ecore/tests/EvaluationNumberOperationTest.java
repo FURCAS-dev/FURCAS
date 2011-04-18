@@ -539,7 +539,8 @@ public class EvaluationNumberOperationTest
 
 	public void testNumberOclAsType() {
 		assertResult(Integer.valueOf(3), "3.oclAsType(Integer)");
-		assertResult(Integer.valueOf(3), "3.oclAsType(Real)");
+		// FIXME should this be Double or Integer?
+		assertResult(Double.valueOf(3), "3.oclAsType(Real)");
 		assertResultInvalid("3.oclAsType(String)");
 		assertResult(Integer.valueOf(3), "3.oclAsType(OclAny)");
 		assertResultInvalid("3.oclAsType(OclVoid)");
@@ -548,7 +549,8 @@ public class EvaluationNumberOperationTest
 		assertResultInvalid("(3.0).oclAsType(Integer)");
 		assertResult(Double.valueOf(3), "(3.0).oclAsType(Real)");
 		assertResultInvalid("(3.0).oclAsType(String)");
-		assertResult(Integer.valueOf(3), "(3.0).oclAsType(OclAny)");
+		// FIXME should this be Double or Integer?
+		assertResult(Double.valueOf(3), "(3.0).oclAsType(OclAny)");
 		assertResultInvalid("(3.0).oclAsType(OclVoid)");
 		assertResultInvalid("(3.0).oclAsType(OclInvalid)");
 	}
