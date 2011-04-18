@@ -115,7 +115,14 @@ public class WizardProjectHelper {
         }
 
         if (!metamodel) {
-            createManifestAndBuildProps(pi, progressMonitor, project);
+        	String mmBundleName = "";
+        	if (!pi.isLoadMetamodel()) {
+        		mmBundleName = pi.getBasePath().replaceAll(Path.SEPARATOR+"", ".")+".metamodel";
+        	} else if (pi.isFromWorkspace()) {
+        		mmBundleName = pi.getMmBundleName();
+        	}
+        		
+            createManifestAndBuildProps(pi, progressMonitor, project, mmBundleName);
         }
 
         progressMonitor.done();
@@ -131,7 +138,7 @@ public class WizardProjectHelper {
      * @param project
      * @throws CoreException
      */
-    private static void createManifestAndBuildProps(final ProjectInfo pi, final IProgressMonitor progressMonitor, IProject project)
+    private static void createManifestAndBuildProps(final ProjectInfo pi, final IProgressMonitor progressMonitor, IProject project, String mmBundleName)
             throws CodeGenerationException {
         SourceCodeFactory scf = new SourceCodeFactory();
         createFile("build.properties", project, scf.createBuildPropCode(pi), progressMonitor);
@@ -141,7 +148,7 @@ public class WizardProjectHelper {
         } catch (CoreException e) {
             throw new CodeGenerationException("Failed to create folder 'META-INF'", e.getCause());
         }
-        createFile("MANIFEST.MF", metaInf, scf.createManifest(pi), progressMonitor);
+        createFile("MANIFEST.MF", metaInf, scf.createManifest(pi,mmBundleName), progressMonitor);
     }
 
     /**

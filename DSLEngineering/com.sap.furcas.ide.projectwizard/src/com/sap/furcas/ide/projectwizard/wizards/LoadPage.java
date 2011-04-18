@@ -244,8 +244,9 @@ public class LoadPage extends WizardPage {
 						null, filters);
 				if (files.length > 0) {
 					// Set the appropriate values in ProjectInfo and eP
-					//
+					//				
 					pi.setModelPath(files[0].getFullPath().toString());
+					pi.setMMBundleName(files[0].getProject().getName());
 					try {
 						seteP(fileToEPack(files[0]));
 					} catch (CodeGenerationException e) {
