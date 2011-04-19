@@ -21,7 +21,7 @@ constraints.  For this, OCL provides a <em class="CodeName">Query</em> API.
 <p>
 Like the <em class="CodeName">OCLHelper</em> for parsing constraints, the OCL
 facade object provides
-<a href="../javadoc/org/eclipse/ocl/Query.html"><em class="CodeName">Query</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html"><em class="CodeName">Query</em></a>
 objects for evaluating constraints and query expressions.
 </p>
 
@@ -32,7 +32,7 @@ objects for evaluating constraints and query expressions.
 
 <p>
 The <em class="CodeName">Query</em> encapsulates an
-<a href="../javadoc/org/eclipse/ocl/EvaluationEnvironment.html"><em class="CodeName">EvaluationEnvironment</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EvaluationEnvironment.html"><em class="CodeName">EvaluationEnvironment</em></a>
 providing the run-time values of context variables to the OCL interpreter.  These
 context variables are set and retrieved using the following methods:
 </p>
@@ -59,11 +59,11 @@ other kinds of <em class="CodeName">DataType</em>s are undefined.  For
 <em class="CodeName">Class</em> extents, the <em class="CodeName">EvaluationEnvironment</em>
 provides support for an extent map, mapping classes to the sets of their
 instances, as determined by the client.  A client sets the extent map using the
-<a href="../javadoc/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">OCL.setExtentMap()</em></a>
 method.  The default extent map, if none is provided by the client, lazily
 computes the extent of a class from the EMF <em class="CodeName">Resource</em>
 containing the context element of the evaluation. An alternative extent map can be
-found in <a href="../javadoc/org/eclipse/ocl/ecore/opposites/ExtentMap.html"><em class="CodeName">org.eclipse.ocl.ecore.opposites.ExtentMap</em></a>.
+found in <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html"><em class="CodeName">org.eclipse.ocl.ecore.opposites.ExtentMap</em></a>.
 </p><p>
 So, after optionally setting values of context variables (other than
 <em class="CodeName">self</em>; the <em class="CodeName">Query</em> takes care
