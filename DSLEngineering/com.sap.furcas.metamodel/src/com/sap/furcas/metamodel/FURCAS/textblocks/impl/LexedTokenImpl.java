@@ -7,11 +7,15 @@
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
+import java.util.Collection;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +25,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.LexedTokenImpl#isOperator <em>Operator</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.LexedTokenImpl#getReferencedElements <em>Referenced Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,6 +51,16 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
      * @ordered
      */
         protected boolean operator = OPERATOR_EDEFAULT;
+
+        /**
+     * The cached value of the '{@link #getReferencedElements() <em>Referenced Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getReferencedElements()
+     * @generated
+     * @ordered
+     */
+    protected EList<EObject> referencedElements;
 
         /**
      * <!-- begin-user-doc -->
@@ -89,6 +104,18 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<EObject> getReferencedElements() {
+        if (referencedElements == null) {
+            referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS);
+        }
+        return referencedElements;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -97,6 +124,8 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 return isOperator();
+            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+                return getReferencedElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -106,11 +135,16 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
          * <!-- end-user-doc -->
      * @generated
      */
+        @SuppressWarnings("unchecked")
         @Override
         public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 setOperator((Boolean)newValue);
+                return;
+            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+                getReferencedElements().clear();
+                getReferencedElements().addAll((Collection<? extends EObject>)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -127,6 +161,9 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 setOperator(OPERATOR_EDEFAULT);
                 return;
+            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+                getReferencedElements().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -141,6 +178,8 @@ public class LexedTokenImpl extends AbstractTokenImpl implements LexedToken {
         switch (featureID) {
             case TextblocksPackage.LEXED_TOKEN__OPERATOR:
                 return operator != OPERATOR_EDEFAULT;
+            case TextblocksPackage.LEXED_TOKEN__REFERENCED_ELEMENTS:
+                return referencedElements != null && !referencedElements.isEmpty();
         }
         return super.eIsSet(featureID);
     }

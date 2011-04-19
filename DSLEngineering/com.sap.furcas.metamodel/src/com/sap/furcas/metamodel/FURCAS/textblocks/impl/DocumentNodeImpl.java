@@ -36,8 +36,6 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#isChildrenChanged <em>Children Changed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#isRelexingNeeded <em>Relexing Needed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getParent <em>Parent</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getReferencedElements <em>Referenced Elements</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getSequenceElement <em>Sequence Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getOffset <em>Offset</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getLength <em>Length</em>}</li>
@@ -109,26 +107,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
      * @ordered
      */
         protected boolean relexingNeeded = RELEXING_NEEDED_EDEFAULT;
-
-        /**
-     * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getCorrespondingModelElements()
-     * @generated
-     * @ordered
-     */
-        protected EList<EObject> correspondingModelElements;
-
-        /**
-     * The cached value of the '{@link #getReferencedElements() <em>Referenced Elements</em>}' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getReferencedElements()
-     * @generated
-     * @ordered
-     */
-        protected EList<EObject> referencedElements;
 
         /**
      * The cached value of the '{@link #getSequenceElement() <em>Sequence Element</em>}' reference.
@@ -358,30 +336,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
          * <!-- end-user-doc -->
      * @generated
      */
-        public EList<EObject> getCorrespondingModelElements() {
-        if (correspondingModelElements == null) {
-            correspondingModelElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS);
-        }
-        return correspondingModelElements;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        public EList<EObject> getReferencedElements() {
-        if (referencedElements == null) {
-            referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS);
-        }
-        return referencedElements;
-    }
-
-        /**
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
         public SequenceElement getSequenceElement() {
         if (sequenceElement != null && sequenceElement.eIsProxy()) {
             InternalEObject oldSequenceElement = (InternalEObject)sequenceElement;
@@ -571,10 +525,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return isRelexingNeeded();
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 return getParent();
-            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
-                return getCorrespondingModelElements();
-            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
-                return getReferencedElements();
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 if (resolve) return getSequenceElement();
                 return basicGetSequenceElement();
@@ -612,14 +562,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return;
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 setParent((TextBlock)newValue);
-                return;
-            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
-                getCorrespondingModelElements().clear();
-                getCorrespondingModelElements().addAll((Collection<? extends EObject>)newValue);
-                return;
-            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
-                getReferencedElements().clear();
-                getReferencedElements().addAll((Collection<? extends EObject>)newValue);
                 return;
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 setSequenceElement((SequenceElement)newValue);
@@ -664,12 +606,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 setParent((TextBlock)null);
                 return;
-            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
-                getCorrespondingModelElements().clear();
-                return;
-            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
-                getReferencedElements().clear();
-                return;
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 setSequenceElement((SequenceElement)null);
                 return;
@@ -708,10 +644,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 return getParent() != null;
-            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
-                return correspondingModelElements != null && !correspondingModelElements.isEmpty();
-            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
-                return referencedElements != null && !referencedElements.isEmpty();
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 return sequenceElement != null;
             case TextblocksPackage.DOCUMENT_NODE__OFFSET:

@@ -108,31 +108,13 @@ public interface TextblocksPackage extends EPackage {
         int DOCUMENT_NODE__PARENT = 3;
 
         /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS = 4;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int DOCUMENT_NODE__REFERENCED_ELEMENTS = 5;
-
-        /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE__SEQUENCE_ELEMENT = 6;
+        int DOCUMENT_NODE__SEQUENCE_ELEMENT = 4;
 
         /**
      * The feature id for the '<em><b>Offset</b></em>' attribute.
@@ -141,7 +123,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE__OFFSET = 7;
+        int DOCUMENT_NODE__OFFSET = 5;
 
         /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -150,7 +132,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE__LENGTH = 8;
+        int DOCUMENT_NODE__LENGTH = 6;
 
         /**
      * The feature id for the '<em><b>Other Versions</b></em>' reference list.
@@ -159,7 +141,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE__OTHER_VERSIONS = 9;
+        int DOCUMENT_NODE__OTHER_VERSIONS = 7;
 
         /**
      * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
@@ -168,7 +150,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE__OFFSET_RELATIVE = 10;
+        int DOCUMENT_NODE__OFFSET_RELATIVE = 8;
 
         /**
      * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
@@ -177,7 +159,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int DOCUMENT_NODE__ABSOLUTE_OFFSET = 11;
+    int DOCUMENT_NODE__ABSOLUTE_OFFSET = 9;
 
         /**
      * The number of structural features of the '<em>Document Node</em>' class.
@@ -186,7 +168,7 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      * @ordered
      */
-        int DOCUMENT_NODE_FEATURE_COUNT = 12;
+        int DOCUMENT_NODE_FEATURE_COUNT = 10;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl <em>Text Block</em>}' class.
@@ -233,24 +215,6 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
         int TEXT_BLOCK__PARENT = DOCUMENT_NODE__PARENT;
-
-        /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS = DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int TEXT_BLOCK__REFERENCED_ELEMENTS = DOCUMENT_NODE__REFERENCED_ELEMENTS;
 
         /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
@@ -379,13 +343,22 @@ public interface TextblocksPackage extends EPackage {
     int TEXT_BLOCK__ADDITIONAL_TEMPLATES = DOCUMENT_NODE_FEATURE_COUNT + 7;
 
                                 /**
+    * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+    * <!-- begin-user-doc -->
+                                 * <!-- end-user-doc -->
+    * @generated
+    * @ordered
+    */
+                                int TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS = DOCUMENT_NODE_FEATURE_COUNT + 8;
+
+                                /**
      * The number of structural features of the '<em>Text Block</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 8;
+        int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 9;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -432,24 +405,6 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
         int ABSTRACT_TOKEN__PARENT = DOCUMENT_NODE__PARENT;
-
-        /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS = DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int ABSTRACT_TOKEN__REFERENCED_ELEMENTS = DOCUMENT_NODE__REFERENCED_ELEMENTS;
 
         /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
@@ -606,24 +561,6 @@ public interface TextblocksPackage extends EPackage {
         int OMITTED_TOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
 
         /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int OMITTED_TOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int OMITTED_TOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
-
-        /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -778,24 +715,6 @@ public interface TextblocksPackage extends EPackage {
         int LEXED_TOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
 
         /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int LEXED_TOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int LEXED_TOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
-
-        /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -904,13 +823,22 @@ public interface TextblocksPackage extends EPackage {
         int LEXED_TOKEN__OPERATOR = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
 
         /**
+     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+        int LEXED_TOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
+
+        /**
      * The number of structural features of the '<em>Lexed Token</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
+        int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 2;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
@@ -957,24 +885,6 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
         int UNLEXED_TOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
-
-        /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int UNLEXED_TOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int UNLEXED_TOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
 
         /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
@@ -1204,24 +1114,6 @@ public interface TextblocksPackage extends EPackage {
         int EOSTOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
 
         /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int EOSTOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int EOSTOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
-
-        /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1374,24 +1266,6 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
         int BOSTOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
-
-        /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int BOSTOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-        int BOSTOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
 
         /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
@@ -1611,6 +1485,17 @@ public interface TextblocksPackage extends EPackage {
     EReference getTextBlock_AdditionalTemplates();
 
                                 /**
+     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCorrespondingModelElements <em>Corresponding Model Elements</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Corresponding Model Elements</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCorrespondingModelElements()
+     * @see #getTextBlock()
+     * @generated
+     */
+    EReference getTextBlock_CorrespondingModelElements();
+
+                                /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken <em>Abstract Token</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1707,6 +1592,17 @@ public interface TextblocksPackage extends EPackage {
         EAttribute getLexedToken_Operator();
 
         /**
+     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#getReferencedElements <em>Referenced Elements</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Referenced Elements</em>'.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken#getReferencedElements()
+     * @see #getLexedToken()
+     * @generated
+     */
+    EReference getLexedToken_ReferencedElements();
+
+        /**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.UnlexedToken <em>Unlexed Token</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1769,28 +1665,6 @@ public interface TextblocksPackage extends EPackage {
      * @generated
      */
         EReference getDocumentNode_Parent();
-
-        /**
-     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getCorrespondingModelElements <em>Corresponding Model Elements</em>}'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Corresponding Model Elements</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getCorrespondingModelElements()
-     * @see #getDocumentNode()
-     * @generated
-     */
-        EReference getDocumentNode_CorrespondingModelElements();
-
-        /**
-     * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getReferencedElements <em>Referenced Elements</em>}'.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Referenced Elements</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getReferencedElements()
-     * @see #getDocumentNode()
-     * @generated
-     */
-        EReference getDocumentNode_ReferencedElements();
 
         /**
      * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getSequenceElement <em>Sequence Element</em>}'.
@@ -2061,6 +1935,14 @@ public interface TextblocksPackage extends EPackage {
         EReference TEXT_BLOCK__ADDITIONAL_TEMPLATES = eINSTANCE.getTextBlock_AdditionalTemplates();
 
                                                                 /**
+         * The meta object literal for the '<em><b>Corresponding Model Elements</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS = eINSTANCE.getTextBlock_CorrespondingModelElements();
+
+                                                                /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
@@ -2139,6 +2021,14 @@ public interface TextblocksPackage extends EPackage {
                 EAttribute LEXED_TOKEN__OPERATOR = eINSTANCE.getLexedToken_Operator();
 
                 /**
+         * The meta object literal for the '<em><b>Referenced Elements</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference LEXED_TOKEN__REFERENCED_ELEMENTS = eINSTANCE.getLexedToken_ReferencedElements();
+
+                /**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
@@ -2189,22 +2079,6 @@ public interface TextblocksPackage extends EPackage {
          * @generated
          */
                 EReference DOCUMENT_NODE__PARENT = eINSTANCE.getDocumentNode_Parent();
-
-                /**
-         * The meta object literal for the '<em><b>Corresponding Model Elements</b></em>' reference list feature.
-         * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @generated
-         */
-                EReference DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS = eINSTANCE.getDocumentNode_CorrespondingModelElements();
-
-                /**
-         * The meta object literal for the '<em><b>Referenced Elements</b></em>' reference list feature.
-         * <!-- begin-user-doc -->
-                 * <!-- end-user-doc -->
-         * @generated
-         */
-                EReference DOCUMENT_NODE__REFERENCED_ELEMENTS = eINSTANCE.getDocumentNode_ReferencedElements();
 
                 /**
          * The meta object literal for the '<em><b>Sequence Element</b></em>' reference feature.

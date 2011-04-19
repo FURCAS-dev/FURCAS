@@ -51,7 +51,7 @@ public class LinkHelper implements ILinkHelper {
                 Collection<EObject> docNodes = oppositeEndFinder
                         .navigateOppositePropertyWithBackwardScope(
                                 TextblocksPackage.eINSTANCE
-                                        .getDocumentNode_CorrespondingModelElements(),
+                                        .getTextBlock_CorrespondingModelElements(),
                                 ro);
 		IDocumentProvider documentProvider = ctsEditor
 			.getDocumentProvider();

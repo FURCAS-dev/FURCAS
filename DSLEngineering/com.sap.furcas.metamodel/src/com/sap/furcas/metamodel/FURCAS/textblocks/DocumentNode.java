@@ -23,8 +23,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#isChildrenChanged <em>Children Changed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#isRelexingNeeded <em>Relexing Needed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getParent <em>Parent</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getReferencedElements <em>Referenced Elements</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getSequenceElement <em>Sequence Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getOffset <em>Offset</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode#getLength <em>Length</em>}</li>
@@ -147,38 +145,6 @@ public interface DocumentNode extends EObject {
      * @generated
      */
         void setParent(TextBlock value);
-
-        /**
-     * Returns the value of the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-     * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Corresponding Model Elements</em>' reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Corresponding Model Elements</em>' reference list.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getDocumentNode_CorrespondingModelElements()
-     * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='correspondingDocumentNode'"
-     * @generated
-     */
-        EList<EObject> getCorrespondingModelElements();
-
-        /**
-     * Returns the value of the '<em><b>Referenced Elements</b></em>' reference list.
-     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-     * <!-- begin-user-doc -->
-         * <p>
-         * If the meaning of the '<em>Referenced Elements</em>' reference list isn't clear,
-         * there really should be more of a description here...
-         * </p>
-         * <!-- end-user-doc -->
-     * @return the value of the '<em>Referenced Elements</em>' reference list.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getDocumentNode_ReferencedElements()
-     * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='referencingDocumentNode'"
-     * @generated
-     */
-        EList<EObject> getReferencedElements();
 
         /**
      * Returns the value of the '<em><b>Sequence Element</b></em>' reference.

@@ -251,8 +251,9 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						// is the correct one.
 						}
 					} else {
-						if (refToken.getReferencedElements().size() > 0) {
-							for (EObject value : refToken
+						if (refToken instanceof LexedToken && 
+						        ((LexedToken) refToken).getReferencedElements().size() > 0) {
+							for (EObject value : ((LexedToken) refToken)
 									.getReferencedElements()) {
 							    try {
 								batchParser.getInjector().unset(modelElement,
