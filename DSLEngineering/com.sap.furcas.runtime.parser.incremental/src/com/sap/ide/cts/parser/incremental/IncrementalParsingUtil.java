@@ -556,7 +556,6 @@ public class IncrementalParsingUtil {
 				try {
 					Collection<EObject> elements = new ArrayList<EObject>(
 						lt.getReferencedElements());
-					elements.addAll(lt.getCorrespondingModelElements());
 					injector.unset(ro,
 						((Property) lt.getSequenceElement())
 							.getPropertyReference().getStrucfeature()
@@ -575,9 +574,8 @@ public class IncrementalParsingUtil {
                 && tb.getSequenceElement() != null
                 && tb.getSequenceElement() instanceof Property) {
             for (EObject ro : oldVersion.getCorrespondingModelElements()) {
-                Collection<EObject> elements = new ArrayList<EObject>(tb
-                        .getReferencedElements());
-                elements.addAll(tb.getCorrespondingModelElements());
+                Collection<EObject> elements = new ArrayList<EObject>(tb.
+                        getCorrespondingModelElements());
                 for (EObject refObject : elements) {
                     try {
                         injector.unset(ro, ((Property) tb.getSequenceElement())
@@ -628,7 +626,6 @@ public class IncrementalParsingUtil {
 			if (parentRefObject != null) {
 				List<EObject> values = new ArrayList<EObject>(newVersion
 					.getCorrespondingModelElements());
-				values.addAll(newVersion.getReferencedElements());
 				Object value = null;
 				if (values.size() == 1) {
 					value = values.get(0);

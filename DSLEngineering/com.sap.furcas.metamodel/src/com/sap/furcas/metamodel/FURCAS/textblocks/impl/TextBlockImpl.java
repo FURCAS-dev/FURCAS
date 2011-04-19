@@ -47,6 +47,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#isComplete <em>Complete</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getAdditionalTemplates <em>Additional Templates</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -152,6 +153,16 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @ordered
      */
     protected EList<Template> additionalTemplates;
+
+                                /**
+     * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getCorrespondingModelElements()
+     * @generated
+     * @ordered
+     */
+    protected EList<EObject> correspondingModelElements;
 
                                 /**
      * <!-- begin-user-doc -->
@@ -307,7 +318,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      */
         public EList<TextBlock> getSubBlocks() {
         try {
-            return (EList<TextBlock>)GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<TextBlock>)GET_SUB_BLOCKS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -321,7 +332,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      */
         public EList<AbstractToken> getTokens() {
         try {
-            return (EList<AbstractToken>)GET_TOKENS_1__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+            return (EList<AbstractToken>)GET_TOKENS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
         }
         catch (InvocationTargetException ite) {
             throw new WrappedException(ite);
@@ -341,6 +352,18 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
     }
 
         /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<EObject> getCorrespondingModelElements() {
+        if (correspondingModelElements == null) {
+            correspondingModelElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS);
+        }
+        return correspondingModelElements;
+    }
+
+        /**
      * The cached invocation delegate for the '{@link #getSubBlocks() <em>Get Sub Blocks</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -348,7 +371,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
 
         /**
      * The cached invocation delegate for the '{@link #getTokens() <em>Get Tokens</em>}' operation.
@@ -358,7 +381,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
      * @generated
      * @ordered
      */
-    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS_1__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
+    protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
 
         /**
      * <!-- begin-user-doc -->
@@ -416,6 +439,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return isComplete();
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 return getAdditionalTemplates();
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                return getCorrespondingModelElements();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -458,6 +483,10 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 getAdditionalTemplates().clear();
                 getAdditionalTemplates().addAll((Collection<? extends Template>)newValue);
                 return;
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
+                getCorrespondingModelElements().addAll((Collection<? extends EObject>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -494,6 +523,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 getAdditionalTemplates().clear();
                 return;
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -522,6 +554,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return complete != COMPLETE_EDEFAULT;
             case TextblocksPackage.TEXT_BLOCK__ADDITIONAL_TEMPLATES:
                 return additionalTemplates != null && !additionalTemplates.isEmpty();
+            case TextblocksPackage.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS:
+                return correspondingModelElements != null && !correspondingModelElements.isEmpty();
         }
         return super.eIsSet(featureID);
     }

@@ -12,6 +12,7 @@ import org.eclipse.jface.text.source.ISourceViewer;
 
 import com.sap.furcas.ide.editor.document.CtsDocument;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.runtime.textblocks.TbUtil;
 
 public class CtsTextHover extends DefaultTextHover {
@@ -25,13 +26,9 @@ public class CtsTextHover extends DefaultTextHover {
 		String annotationText = super.getHoverInfo(viewer, hoverRegion);
 		AbstractToken token = ((CtsDocument)viewer.getDocument()).getTextBlocksModelStore().getFloorToken(hoverRegion.getOffset());
 		StringBuffer sb = new StringBuffer(annotationText == null ? "" : annotationText + "\n");
-		if (token.getCorrespondingModelElements().size() > 0) {
-			for (EObject element : token.getCorrespondingModelElements()) {
-				sb.append("Corresponding element of Token: ").append(toString(element)).append("\n");
-			}
-		}
-		if (token.getReferencedElements().size() > 0) {
-			for (EObject element : token.getReferencedElements()) {
+		
+		if (token instanceof LexedToken && ((LexedToken) token).getReferencedElements().size() > 0) {
+			for (EObject element : ((LexedToken) token).getReferencedElements()) {
 				sb.append("Referenced element of Token: ").append(toString(element)).append("\n");
 			}
 		}
@@ -41,11 +38,6 @@ public class CtsTextHover extends DefaultTextHover {
 			}
 		}
 		
-		if (token.getParent().getReferencedElements().size() > 0){
-			for (EObject element : token.getParent().getReferencedElements()) {
-				sb.append("Referenced element of Block: ").append(toString(element)).append("\n");
-			}
-		}
 		return sb.toString();
 	}
 

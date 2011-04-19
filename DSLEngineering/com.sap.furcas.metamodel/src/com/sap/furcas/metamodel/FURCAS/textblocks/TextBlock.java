@@ -28,6 +28,7 @@ import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#isComplete <em>Complete</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates <em>Additional Templates</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
  * </ul>
  * </p>
  *
@@ -212,5 +213,21 @@ public interface TextBlock extends DocumentNode {
      * @generated
      */
         EList<Template> getAdditionalTemplates();
+
+        /**
+     * Returns the value of the '<em><b>Corresponding Model Elements</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Corresponding Model Elements</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Corresponding Model Elements</em>' reference list.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_CorrespondingModelElements()
+     * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='correspondingDocumentNode'"
+     * @generated
+     */
+    EList<EObject> getCorrespondingModelElements();
 
 } // TextBlock

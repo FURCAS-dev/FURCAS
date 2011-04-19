@@ -70,8 +70,6 @@ public class DocumentNodeItemProvider
             addVersionPropertyDescriptor(object);
             addChildrenChangedPropertyDescriptor(object);
             addRelexingNeededPropertyDescriptor(object);
-            addCorrespondingModelElementsPropertyDescriptor(object);
-            addReferencedElementsPropertyDescriptor(object);
             addSequenceElementPropertyDescriptor(object);
             addOffsetPropertyDescriptor(object);
             addLengthPropertyDescriptor(object);
@@ -144,50 +142,6 @@ public class DocumentNodeItemProvider
                  false,
                  false,
                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the Corresponding Model Elements feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addCorrespondingModelElementsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_correspondingModelElements_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_correspondingModelElements_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
-    }
-
-        /**
-     * This adds a property descriptor for the Referenced Elements feature.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @generated
-     */
-        protected void addReferencedElementsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DocumentNode_referencedElements_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DocumentNode_referencedElements_feature", "_UI_DocumentNode_type"),
-                 TextblocksPackage.Literals.DOCUMENT_NODE__REFERENCED_ELEMENTS,
-                 true,
-                 false,
-                 true,
-                 null,
                  null,
                  null));
     }

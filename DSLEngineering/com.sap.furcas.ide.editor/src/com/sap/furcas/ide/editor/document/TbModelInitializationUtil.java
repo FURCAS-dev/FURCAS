@@ -53,7 +53,7 @@ public class TbModelInitializationUtil {
         Collection<EObject> nodes = oppositeEndFinder
                 .navigateOppositePropertyWithBackwardScope(
                         TextblocksPackage.eINSTANCE
-                                .getDocumentNode_CorrespondingModelElements(),
+                                .getTextBlock_CorrespondingModelElements(),
                         rootObject);
 
         if (nodes != null) {

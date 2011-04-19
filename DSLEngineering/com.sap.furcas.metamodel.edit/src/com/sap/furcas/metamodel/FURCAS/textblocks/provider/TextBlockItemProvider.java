@@ -69,6 +69,7 @@ public class TextBlockItemProvider
             addCachedStringPropertyDescriptor(object);
             addCompletePropertyDescriptor(object);
             addAdditionalTemplatesPropertyDescriptor(object);
+            addCorrespondingModelElementsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -197,6 +198,28 @@ public class TextBlockItemProvider
                  getString("_UI_TextBlock_additionalTemplates_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TextBlock_additionalTemplates_feature", "_UI_TextBlock_type"),
                  TextblocksPackage.Literals.TEXT_BLOCK__ADDITIONAL_TEMPLATES,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+                                /**
+     * This adds a property descriptor for the Corresponding Model Elements feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addCorrespondingModelElementsPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_TextBlock_correspondingModelElements_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_TextBlock_correspondingModelElements_feature", "_UI_TextBlock_type"),
+                 TextblocksPackage.Literals.TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS,
                  true,
                  false,
                  true,
