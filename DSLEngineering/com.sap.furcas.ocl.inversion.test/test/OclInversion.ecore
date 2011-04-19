@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="OclInversion" nsURI="urn:OclInversion.ecore" nsPrefix="OclInversion">
+  <eClassifiers xsi:type="ecore:EClass" name="Concat2Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="string_class">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//oclequation/OclEquation"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//oclequation/OclEquation"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftSource">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OCLExpression"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightSource">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightSource_opCallSrc">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OCLExpression"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightTarget">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//QMarkLiteralExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftTarget">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//IntegerLiteralExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="string_class">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerClass">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integer_class">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Concat1Rule">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="string_class">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="integer_class">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//oclequation/OclEquation"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//oclequation/OclEquation"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftSource">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OCLExpression"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightSource">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightTarget">
+      <eType xsi:type="ecore:EClass" href="http://www.furcas.org/oclinversion#//QMarkLiteralExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightSource_opCallArg">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OCLExpression"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftTarget">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromMinus1">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fromMinus2">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to">
+      <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/ocl/1.1.0/Ecore#//OperationCallExp"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

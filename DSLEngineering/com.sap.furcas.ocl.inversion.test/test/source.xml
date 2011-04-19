@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.sap.furcas.oclinversion:OclEquation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas.oclinversion="http://www.furcas.org/oclinversion/oclequation" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" xsi:schemaLocation="http://www.furcas.org/oclinversion/oclequation http://www.furcas.org/oclinversion#//oclequation" xmi:id="_OAziUFkCEeC3zLxwUnF4jA" isSource="true">
+  <right xsi:type="ocl.ecore:OperationCallExp" xmi:id="_OAziUlkCEeC3zLxwUnF4jA">
+    <referredOperation xsi:type="ecore:EOperation" href="source2.xml#_eCl6Jks8EeCVUsYc3QWFGQ"/>
+  </right>
+</com.sap.furcas.oclinversion:OclEquation>

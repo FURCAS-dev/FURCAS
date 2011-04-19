@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<com.sap.furcas.oclinversion:OclEquation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.sap.furcas="http://www.furcas.org/oclinversion" xmlns:com.sap.furcas.oclinversion="http://www.furcas.org/oclinversion/oclequation" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" xmi:id="_ONyOYFkCEeC3zLxwUnF4jA">
+  <left xsi:type="ocl.ecore:OperationCallExp" xmi:id="_ON_pwFkCEeC3zLxwUnF4jA">
+    <source xsi:type="ocl.ecore:StringLiteralExp" xmi:id="_OAziUVkCEeC3zLxwUnF4jA" name="result.ext" stringSymbol="result.ext"/>
+    <argument xsi:type="ocl.ecore:IntegerLiteralExp" xmi:id="_OPgFoFkCEeC3zLxwUnF4jA" integerSymbol="1"/>
+    <argument xsi:type="ocl.ecore:OperationCallExp" xmi:id="_OPhTwFkCEeC3zLxwUnF4jA">
+      <source xsi:type="ocl.ecore:StringLiteralExp" xmi:id="_OAziVFkCEeC3zLxwUnF4jA" name=".ext" stringSymbol=".ext"/>
+      <referredOperation xsi:type="ecore:EOperation" href="source2.xml#_eCl6JEs8EeCVUsYc3QWFGQ"/>
+    </argument>
+    <referredOperation xsi:type="ecore:EOperation" href="source2.xml#_eCl6Kks8EeCVUsYc3QWFGQ"/>
+  </left>
+  <right xsi:type="com.sap.furcas:QMarkLiteralExp" xmi:id="_OAziU1kCEeC3zLxwUnF4jA"/>
+</com.sap.furcas.oclinversion:OclEquation>
