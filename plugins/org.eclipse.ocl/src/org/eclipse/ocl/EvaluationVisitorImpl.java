@@ -650,13 +650,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     if (sourceUnlimited && argUnlimited) {
                         switch (opCode) {
                             case PredefinedType.LESS_THAN:
-                            case PredefinedType.LESS_THAN_EQUAL:
                             case PredefinedType.GREATER_THAN:
-                            case PredefinedType.GREATER_THAN_EQUAL:
-                                // two inifinte values cannot be compared.  We
-                                //   allow = and <> only to test for unbounded
-                                //   multiplicities
+                            	// See section 11.5.5 of 10-11-42 in OCL 2.3
                                 return Boolean.FALSE;
+                            case PredefinedType.GREATER_THAN_EQUAL:
+                            case PredefinedType.LESS_THAN_EQUAL:
+                            	// See section 11.5.5 of 10-11-42 in OCL 2.3
+                            	return Boolean.TRUE;
                             default:
                                 // cannot do arithmetic on the unlimited value
                                 return getInvalid();
