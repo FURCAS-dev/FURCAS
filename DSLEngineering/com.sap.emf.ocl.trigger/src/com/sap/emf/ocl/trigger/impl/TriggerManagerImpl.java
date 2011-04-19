@@ -8,9 +8,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
@@ -73,8 +73,9 @@ public class TriggerManagerImpl implements TriggerManager {
             ActivationOption impactAnalysisConfiguration) {
         Collection<AdapterForExpression> result = new LinkedList<AdapterForExpression>();
         for (ExpressionWithContext expWithContext : triggerable.getTriggerExpressionsWithContext()) {
-            result.add(new AdapterForExpression(triggerable, expWithContext.getExpression(),
-                    expWithContext.getContext(), triggerable.notifyOnNewContextElements(), oppositeEndFinder, impactAnalysisConfiguration));
+            result.add(new AdapterForExpression(triggerable, expWithContext.getExpression(), expWithContext
+                    .getContext(), triggerable.notifyOnNewContextElements(), oppositeEndFinder,
+                    impactAnalysisConfiguration));
         }
         for (OCLExpression expWithoutContext : triggerable.getTriggerExpressionsWithoutContext()) {
             result.add(new AdapterForExpression(triggerable, expWithoutContext,

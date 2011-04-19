@@ -14,7 +14,19 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
 
+import org.eclipse.ocl.examples.eventmanager.tests.filters.AndFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.AssociationFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.AttributeFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.ClassFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.ContainmentFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.EventTypeFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassIncludingSubclassesFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassIncludingSubclassesFilterTest;
+import org.eclipse.ocl.examples.eventmanager.tests.filters.OrFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.CompositeSetTest;
+import org.eclipse.ocl.examples.eventmanager.tests.framework.EventManagerFactoryImplTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.IncludeSubclassesTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.RecursiveContaimentNotificationCreatorTest;
 
@@ -40,6 +52,7 @@ public class EventManagerTests extends TestSuite {
 	public static Test suite() {
 		TestSuite suite = new EventManagerTests("eventManager Tests");
 		suite.addTestSuite(EventManagerTest.class);
+		suite.addTestSuite(EventManagerFactoryImplTest.class);
 		suite.addTestSuite(EventTypeFilterTest.class);
 		suite.addTestSuite(AndFilterTest.class);
 		suite.addTestSuite(OrFilterTest.class);
@@ -54,6 +67,9 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(IncludeSubclassesTest.class);
 		suite.addTestSuite(CompositeSetTest.class);
 		suite.addTestSuite(RecursiveContaimentNotificationCreatorTest.class);
+		suite.addTestSuite(SimpleFilterTest.class);
+		suite.addTestSuite(LogicalFilterTest.class);
+		
 		return suite;
 	}
 

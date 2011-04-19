@@ -6,12 +6,14 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
 
 /**
@@ -275,5 +277,10 @@ public class ClassTemplateStub extends TemplateStub implements ClassTemplate {
 	public void setSemDisambiguate(String value) {
 		semDisambiguate = value;
 	}
+
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getClassTemplate();
+	    }
 
 }

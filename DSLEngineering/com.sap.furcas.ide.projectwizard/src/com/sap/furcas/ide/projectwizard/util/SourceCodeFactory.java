@@ -112,12 +112,17 @@ public class SourceCodeFactory {
      * @return The content of the manifest file.
      * @throws CodeGenerationException
      */
-    public String createManifest(ProjectInfo pi) throws CodeGenerationException {
+    public String createManifest(ProjectInfo pi, String mmBundleName) throws CodeGenerationException {
         StringTemplate template = null;
         String templateString = null;
 
         templateString = readFile("manifest.txt");
         template = new StringTemplate(templateString);
+        if (mmBundleName.matches("")) {
+        	template.setAttribute("MMBundle","");	
+        } else {
+        	template.setAttribute("MMBundle", "\n "+mmBundleName+",");
+        }
         setTemplateAtts(template, pi);
 
         return template.toString();

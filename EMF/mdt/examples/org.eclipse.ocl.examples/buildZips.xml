@@ -7,23 +7,33 @@
 		excludes="src.zip,build.xml,javaCompiler*,temp.folder/**,@dot/**"/>
 	
 	<target name="zip.examples" depends="init">
-		<condition property="examplesDir" value="../../examples/" else="../">
-		    <available file="../../examples" type="dir"/>
-		</condition>
-		<!-- This example may have been compiled already in the Master feature -->
-		<zip destfile="zips/interpreter.zip" basedir="${examplesDir}org.eclipse.ocl.examples.interpreter">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		<zip destfile="zips/empty.zip" basedir="${examplesDir}org.eclipse.ocl.examples.project.empty">
-			<patternset refid="zip.excludes"/>
-		</zip>
-		<zip destfile="zips/royalandloyal.zip" basedir="${examplesDir}org.eclipse.ocl.examples.project.royalandloyal">
+		<!-- <condition property="examplesDir" value="../../examples/" else="../">
+				    <available file="../../examples" type="dir"/>
+		</condition> -->
+		<!-- Bundles are materialized by buckminster into the plugins folder at the workspace root -->
+		<property name="bundlesDir" value="../"/>
+		<!-- Non-Bundles are materialized by buckminster into the workspace root -->
+		<condition property="nonBundlesDir" value="../../" else="../">
+			<available file="../../org.eclipse.ocl.examples.project.empty" type="dir"/>
+		</condition> 
+		
+		<!-- OCL plugin examples -->
+		<zip destfile="zips/interpreter.zip" basedir="${bundlesDir}/org.eclipse.ocl.examples.interpreter">
 			<patternset refid="zip.excludes"/>
 		</zip>
 		
-		<zip destfile="zips/library.zip" basedir="${examplesDir}org.eclipse.emf.examples.library"/>
-		<zip destfile="zips/libraryEdit.zip" basedir="${examplesDir}org.eclipse.emf.examples.library.edit"/>
-		<zip destfile="zips/libraryEditor.zip" basedir="${examplesDir}org.eclipse.emf.examples.library.editor"/>
+		<!-- OCL non plugin examples -->
+		<zip destfile="zips/empty.zip" basedir="${nonBundlesDir}/org.eclipse.ocl.examples.project.empty">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		<zip destfile="zips/royalandloyal.zip" basedir="${nonBundlesDir}/org.eclipse.ocl.examples.project.royalandloyal">
+			<patternset refid="zip.excludes"/>
+		</zip>
+		
+		<!-- EMF plugin examples --> 
+		<zip destfile="zips/library.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library"/>
+		<zip destfile="zips/libraryEdit.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library.edit"/>
+		<zip destfile="zips/libraryEditor.zip" basedir="${bundlesDir}/org.eclipse.emf.examples.library.editor"/>
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.ocl.examples.">

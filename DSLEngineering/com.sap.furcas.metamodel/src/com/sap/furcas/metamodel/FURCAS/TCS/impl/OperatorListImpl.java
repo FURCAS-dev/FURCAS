@@ -113,7 +113,7 @@ public class OperatorListImpl extends LocatedElementImpl implements OperatorList
      */
         public EList<Priority> getPriorities() {
         if (priorities == null) {
-            priorities = new EObjectContainmentWithInverseEList<Priority>(Priority.class, this, TCSPackage.OPERATOR_LIST__PRIORITIES, TCSPackage.PRIORITY__LIST);
+            priorities = new EObjectContainmentWithInverseEList.Resolving<Priority>(Priority.class, this, TCSPackage.OPERATOR_LIST__PRIORITIES, TCSPackage.PRIORITY__LIST);
         }
         return priorities;
     }

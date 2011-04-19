@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.common.util.URI;
 
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 
@@ -127,12 +128,11 @@ public interface IParsingObserver {
      */
     void notifyEnterSequenceElement();
     
-	/**
-	 * Same as {@link #notifyEnterSequenceElement()} but additionally giving the mofid of the 
-	 * entered sequence element.
-	 * @param mofid
-	 */
-	void notifyEnterSequenceElement(String mofid);
+    /**
+     * Same as {@link #notifyEnterSequenceElement()} but additionally giving the {@link URI} of the 
+     * entered sequence element as String
+     */
+    void notifyEnterSequenceElement(String sequenceElementURI);
 
     /**
      * notifies the Observer that for the current Template, resolution of the corresponding model element has failed.

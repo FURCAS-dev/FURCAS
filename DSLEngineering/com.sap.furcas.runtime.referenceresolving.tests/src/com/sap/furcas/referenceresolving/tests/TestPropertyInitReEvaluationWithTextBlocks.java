@@ -177,12 +177,12 @@ public class TestPropertyInitReEvaluationWithTextBlocks extends AbstractReferenc
                             revenueLedger.eClass().getEStructuralFeature("revenueInEUR")));
             assertEquals("Expected to find exactly one ForEachContext for produced RevenueLedger element "+revenueLedger,
                     1, oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getForEachContext_ResultModelElement(), revenueLedger).size());
+                    TextblocksPackage.eINSTANCE.getForEachExecution_ResultModelElement(), revenueLedger).size());
             EObject author = revenueLedger.eContainer();
             TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
-                    author, revenues.size(), authorCreationRecord.getForEachContext().size());
+                    author, revenues.size(), authorCreationRecord.getForEachExecutions().size());
         }
         assertEquals(johnsArticlesAsSet, revenueLedgerArticles);
     }

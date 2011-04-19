@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.12 2011/03/14 10:20:04 ewillink Exp $
+ * $Id: TypeManager.java,v 1.15 2011/04/01 19:57:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -385,6 +385,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	}
 	
 	public void addOrphanType(Type pivotElement) {
+//		assert pivotElement.hasMoniker();
 		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
 		orphans.getOwnedTypes().add(pivotElement);
 	}
@@ -800,10 +801,12 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public UnspecifiedType createUnspecifiedType() {
+		String value = "<unspecified:" + unspecifiedTypeCount++ + ">";
 		UnspecifiedType unspecifiedType = PivotFactory.eINSTANCE.createUnspecifiedType();
-		unspecifiedType.setName("<unspecified:" + unspecifiedTypeCount++ + ">");
+		unspecifiedType.setName(value);
 		unspecifiedType.setLowerBound(getOclAnyType());
 		unspecifiedType.setUpperBound(getOclVoidType());
+		unspecifiedType.setMoniker(value);
 		addOrphanType(unspecifiedType);
 		return unspecifiedType;
 	}
@@ -928,7 +931,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 			return rightType;
 		}
 		else {
-			return getTupleType(leftType.getName(), commonProperties, bindings);
+			return getTupleType(leftType.getName(), commonProperties, bindings, null);
 		}
 	}
 
@@ -1071,11 +1074,13 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	}
 	   
 	public LambdaType getLambdaType(String typeName, Type contextType, List<? extends Type> parameterTypes, Type resultType,
-			Map<TemplateParameter, ParameterableElement> bindings) {
-		Pivot2Moniker s = new Pivot2Moniker(null);
-		s.append(typeName);
-		s.appendLambdaType(contextType, parameterTypes, resultType, bindings);
-		String moniker = s.toString();
+			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {
+		if (moniker == null) {
+			Pivot2Moniker s = new Pivot2Moniker(null);
+			s.append(typeName);
+			s.appendLambdaType(contextType, parameterTypes, resultType, bindings);
+			moniker = s.toString();
+		}
 		LambdaType existingLambdaType = findOrphanType(LambdaType.class, moniker);
 		if (existingLambdaType != null) {
 			return existingLambdaType;
@@ -1087,17 +1092,18 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 			lambdaType.getParameterTypes().add(getSpecializedType(parameterType, bindings));
 		}
 		lambdaType.setResultType(getSpecializedType(resultType, bindings));
-		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
-		for (Map.Entry<TemplateParameter, ParameterableElement> binding : bindings.entrySet()) {
-			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
-			templateParameterSubstitution.setFormal(binding.getKey());
-			templateParameterSubstitution.setActual(binding.getValue());
-			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+		if (bindings != null) {
+			TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
+			for (Map.Entry<TemplateParameter, ParameterableElement> binding : bindings.entrySet()) {
+				TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
+				templateParameterSubstitution.setFormal(binding.getKey());
+				templateParameterSubstitution.setActual(binding.getValue());
+				templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
+			}
+			lambdaType.getTemplateBindings().add(templateBinding);
 		}
-		lambdaType.getTemplateBindings().add(templateBinding);
+		lambdaType.setMoniker(moniker);
 		addOrphanType(lambdaType);
-		String lambdaMoniker = lambdaType.getMoniker();
-		assert moniker.equals(lambdaMoniker);
 		return lambdaType;
 	}
 
@@ -1156,9 +1162,8 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		if (specializedType instanceof CollectionType) {
 			((CollectionType)specializedType).setElementType((Type) templateArguments.get(0));
 		}
+		specializedType.setMoniker(moniker);
 		addOrphanType(specializedType);
-		String specializedMoniker = specializedType.getMoniker();
-		assert moniker.equals(specializedMoniker);
 		return specializedType;
 	}
 
@@ -1346,6 +1351,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //			throw new IllegalArgumentException(
 //				"Template bindings for non-template type");
 		}
+		boolean isSpecialized = false;
 		List<ParameterableElement> templateArguments = new ArrayList<ParameterableElement>();
 		for (List<TemplateParameter> templateParameters : templateParameterLists) {
 			for (TemplateParameter templateParameter : templateParameters) {
@@ -1353,8 +1359,14 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 //				if (binding instanceof UnspecifiedType) {		// FIXME this is a pragmatic fudge
 //					binding = ((UnspecifiedType)binding).getLowerBound();
 //				}
+				if (binding != templateParameter.getParameteredElement()) {
+					isSpecialized = true;
+				}
 				templateArguments.add(binding);
 			}
+		}
+		if (!isSpecialized) {
+			return unspecializedOperation;
 		}
 //		int iMax = templateParameters.size();
 //		if (templateArguments.size() != iMax) {
@@ -1435,6 +1447,8 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		specializedOperation.setType(specializedReturnType);
 		specializedOperation.setImplementation(unspecializedOperation.getImplementation());
 		specializedOperation.setImplementationClass(unspecializedOperation.getImplementationClass());
+		specializedOperation.setPrecedence(unspecializedOperation.getPrecedence());
+		specializedOperation.setIsStatic(unspecializedOperation.isStatic());
 		addOrphanOperation(specializedOperation);
 		String specializedMoniker = specializedOperation.getMoniker();
 		if (!moniker.equals(specializedMoniker)) {				// FIXME Debugging
@@ -1462,13 +1476,13 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 	}
 
 	public Type getSpecializedType(Type type, Map<TemplateParameter, ParameterableElement> usageBindings) {
+		if (usageBindings == null) {
+			return type;
+		}
 		TemplateParameter owningTemplateParameter = type.getOwningTemplateParameter();
 		if (owningTemplateParameter != null) {
 			ParameterableElement parameterableElement = usageBindings.get(owningTemplateParameter);
 			return parameterableElement instanceof Type ? (Type) parameterableElement : type;
-		}
-		else if (usageBindings == null) {
-			return type;
 		}
 		else if (type instanceof TupleType) {
 			return getSpecializedTupleType((TupleType) type, usageBindings);
@@ -1530,9 +1544,8 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 		return type;
 	}
 
-	protected Type getSpecializedLambdaType(LambdaType type,
-			Map<TemplateParameter, ParameterableElement> usageBindings) {
-		LambdaType specializedLambdaType = getLambdaType(type.getName(), type.getContextType(), type.getParameterTypes(), type.getResultType(), usageBindings);
+	protected Type getSpecializedLambdaType(LambdaType type, Map<TemplateParameter, ParameterableElement> usageBindings) {
+		LambdaType specializedLambdaType = getLambdaType(type.getName(), type.getContextType(), type.getParameterTypes(), type.getResultType(), usageBindings, null);
 		return specializedLambdaType;
 	}
 
@@ -1559,7 +1572,7 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 				}
 				parts.add(part);
 			}
-			specializedTupleType = getTupleType(type.getName(), parts, usageBindings);
+			specializedTupleType = getTupleType(type.getName(), parts, usageBindings, null);
 		}
 		return specializedTupleType;
 	}
@@ -1576,11 +1589,13 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
      * @return the new tuple instance
      */
 	public TupleType getTupleType(String typeName, Collection<? extends TypedElement> parts,
-			Map<TemplateParameter, ParameterableElement> bindings) {
-		Pivot2Moniker s = new Pivot2Moniker(null);
-		s.append(typeName);
-		s.appendTupleType(parts);
-		String moniker = s.toString();
+			Map<TemplateParameter, ParameterableElement> bindings, String moniker) {
+		if (moniker == null) {
+			Pivot2Moniker s = new Pivot2Moniker(null);
+			s.append(typeName);
+			s.appendTupleType(parts);
+			moniker = s.toString();
+		}
 		TupleType existingTupleType = findOrphanType(TupleType.class, moniker);
 		if (existingTupleType != null) {
 			return existingTupleType;
@@ -1593,9 +1608,8 @@ public class TypeManager extends PivotStandardLibrary implements Adapter
 			tuplePart.setType(getSpecializedType(part.getType(), bindings));
 			tupleType.getOwnedAttributes().add(tuplePart);
 		}
+		tupleType.setMoniker(moniker);
 		addOrphanType(tupleType);
-		String tupleMoniker = tupleType.getMoniker();
-		assert moniker.equals(tupleMoniker);
 		return tupleType;
 	}
 

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.6 2011/03/14 10:49:54 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.7 2011/03/31 16:53:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
@@ -60,6 +60,7 @@ import org.eclipse.ocl.examples.xtext.console.messages.OCLInterpreterMessages;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.custom.StyleRange;
@@ -514,7 +515,7 @@ public class OCLConsolePage extends Page
 //		client.setLayout(new GridLayout());
 //		client.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		Injector injector = XtextConsolePlugin.getInstance().getInjector(XtextConsolePlugin.LANGUAGE_ID);
+		Injector injector = XtextConsolePlugin.getInstance().getInjector(EssentialOCLPlugin.LANGUAGE_ID);
 		Composite editorComposite = client; //new Composite(client, SWT.NULL);
 		
 //		editorComposite.setLayout(new GridLayout());

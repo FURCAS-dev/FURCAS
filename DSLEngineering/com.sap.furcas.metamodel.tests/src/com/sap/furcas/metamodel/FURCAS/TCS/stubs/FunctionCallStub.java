@@ -3,8 +3,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -26,9 +29,9 @@ public class FunctionCallStub extends SequenceElementStub implements FunctionCal
     public void setCalledFunction(FunctionTemplate value) {
 
     }
-
-  
-
-  
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getFunctionCall();
+    }
 
 }

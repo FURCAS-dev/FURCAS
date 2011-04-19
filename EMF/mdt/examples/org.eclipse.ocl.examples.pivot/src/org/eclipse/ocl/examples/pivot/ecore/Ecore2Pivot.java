@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.7 2011/04/01 19:57:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -350,6 +350,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		for (List<TemplateableElement> pivotElements : specializations.values()) {
 			for (TemplateableElement pivotElement : pivotElements) {
+//				pivotElement.getMoniker();
 				typeManager.addOrphanType((Type)pivotElement);
 			}
 		}

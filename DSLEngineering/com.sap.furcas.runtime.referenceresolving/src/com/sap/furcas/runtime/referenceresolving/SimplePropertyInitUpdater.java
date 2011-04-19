@@ -18,7 +18,7 @@ import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
  * 
  */
 public class SimplePropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdater {
-    private LookupPropertyInit injectorAction;
+    private final LookupPropertyInit injectorAction;
 
     protected SimplePropertyInitUpdater(LookupPropertyInit injectorAction, EPackage.Registry metamodelPackageRegistry,
             OppositeEndFinder oppositeEndFinder) throws ParserException {

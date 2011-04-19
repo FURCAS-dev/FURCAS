@@ -4,10 +4,12 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -42,5 +44,9 @@ public class PropertyStub extends SequenceElementStub implements Property {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getProperty();
+    }
 
 }

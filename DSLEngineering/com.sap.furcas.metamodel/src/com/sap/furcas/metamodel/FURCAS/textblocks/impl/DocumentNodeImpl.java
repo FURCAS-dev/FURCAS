@@ -36,11 +36,17 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#isChildrenChanged <em>Children Changed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#isRelexingNeeded <em>Relexing Needed</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getCorrespondingModelElements <em>Corresponding Model Elements</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getReferencedElements <em>Referenced Elements</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getSequenceElement <em>Sequence Element</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getOffset <em>Offset</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getOtherVersions <em>Other Versions</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#isOffsetRelative <em>Offset Relative</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getStartRow <em>Start Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getStartColumn <em>Start Column</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getEndRow <em>End Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getEndColumn <em>End Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.DocumentNodeImpl#getAbsoluteOffset <em>Absolute Offset</em>}</li>
  * </ul>
  * </p>
@@ -107,6 +113,26 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
      * @ordered
      */
         protected boolean relexingNeeded = RELEXING_NEEDED_EDEFAULT;
+
+        /**
+     * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getCorrespondingModelElements()
+     * @generated
+     * @ordered
+     */
+        protected EList<EObject> correspondingModelElements;
+
+        /**
+     * The cached value of the '{@link #getReferencedElements() <em>Referenced Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getReferencedElements()
+     * @generated
+     * @ordered
+     */
+        protected EList<EObject> referencedElements;
 
         /**
      * The cached value of the '{@link #getSequenceElement() <em>Sequence Element</em>}' reference.
@@ -189,24 +215,104 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
         protected boolean offsetRelative = OFFSET_RELATIVE_EDEFAULT;
 
         /**
+     * The default value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getStartRow()
+     * @generated
+     * @ordered
+     */
+        protected static final int START_ROW_EDEFAULT = 0;
+
+        /**
+     * The cached value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getStartRow()
+     * @generated
+     * @ordered
+     */
+        protected int startRow = START_ROW_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getStartColumn()
+     * @generated
+     * @ordered
+     */
+        protected static final int START_COLUMN_EDEFAULT = 0;
+
+        /**
+     * The cached value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getStartColumn()
+     * @generated
+     * @ordered
+     */
+        protected int startColumn = START_COLUMN_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getEndRow()
+     * @generated
+     * @ordered
+     */
+        protected static final int END_ROW_EDEFAULT = 0;
+
+        /**
+     * The cached value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getEndRow()
+     * @generated
+     * @ordered
+     */
+        protected int endRow = END_ROW_EDEFAULT;
+
+        /**
+     * The default value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getEndColumn()
+     * @generated
+     * @ordered
+     */
+        protected static final int END_COLUMN_EDEFAULT = 0;
+
+        /**
+     * The cached value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @see #getEndColumn()
+     * @generated
+     * @ordered
+     */
+        protected int endColumn = END_COLUMN_EDEFAULT;
+
+        /**
      * The default value of the '{@link #getAbsoluteOffset() <em>Absolute Offset</em>}' attribute.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
      * @see #getAbsoluteOffset()
      * @generated
      * @ordered
      */
-    protected static final int ABSOLUTE_OFFSET_EDEFAULT = 0;
+        protected static final int ABSOLUTE_OFFSET_EDEFAULT = 0;
 
         /**
      * The cached value of the '{@link #getAbsoluteOffset() <em>Absolute Offset</em>}' attribute.
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
      * @see #getAbsoluteOffset()
      * @generated
      * @ordered
      */
-    protected int absoluteOffset = ABSOLUTE_OFFSET_EDEFAULT;
+        protected int absoluteOffset = ABSOLUTE_OFFSET_EDEFAULT;
 
         /**
      * <!-- begin-user-doc -->
@@ -302,6 +408,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 
         /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextBlock basicGetParent() {
+        if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
+        return (TextBlock)eInternalContainer();
+    }
+
+        /**
+     * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      */
@@ -329,6 +445,30 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
         }
         else if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, newParent, newParent));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public EList<EObject> getCorrespondingModelElements() {
+        if (correspondingModelElements == null) {
+            correspondingModelElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS);
+        }
+        return correspondingModelElements;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public EList<EObject> getReferencedElements() {
+        if (referencedElements == null) {
+            referencedElements = new EObjectResolvingEList<EObject>(EObject.class, this, TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS);
+        }
+        return referencedElements;
     }
 
         /**
@@ -446,19 +586,103 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
      * @generated
      */
-    public int getAbsoluteOffset() {
+        public int getStartRow() {
+        return startRow;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public void setStartRow(int newStartRow) {
+        int oldStartRow = startRow;
+        startRow = newStartRow;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__START_ROW, oldStartRow, startRow));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public int getStartColumn() {
+        return startColumn;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public void setStartColumn(int newStartColumn) {
+        int oldStartColumn = startColumn;
+        startColumn = newStartColumn;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__START_COLUMN, oldStartColumn, startColumn));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public int getEndRow() {
+        return endRow;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public void setEndRow(int newEndRow) {
+        int oldEndRow = endRow;
+        endRow = newEndRow;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__END_ROW, oldEndRow, endRow));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public int getEndColumn() {
+        return endColumn;
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public void setEndColumn(int newEndColumn) {
+        int oldEndColumn = endColumn;
+        endColumn = newEndColumn;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__END_COLUMN, oldEndColumn, endColumn));
+    }
+
+        /**
+     * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+     * @generated
+     */
+        public int getAbsoluteOffset() {
         return absoluteOffset;
     }
 
         /**
      * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+         * <!-- end-user-doc -->
      * @generated
      */
-    public void setAbsoluteOffset(int newAbsoluteOffset) {
+        public void setAbsoluteOffset(int newAbsoluteOffset) {
         int oldAbsoluteOffset = absoluteOffset;
         absoluteOffset = newAbsoluteOffset;
         if (eNotificationRequired())
@@ -524,7 +748,12 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return isRelexingNeeded();
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                return getParent();
+                if (resolve) return getParent();
+                return basicGetParent();
+            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
+                return getCorrespondingModelElements();
+            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
+                return getReferencedElements();
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 if (resolve) return getSequenceElement();
                 return basicGetSequenceElement();
@@ -536,6 +765,14 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return getOtherVersions();
             case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
                 return isOffsetRelative();
+            case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+                return getStartRow();
+            case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+                return getStartColumn();
+            case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+                return getEndRow();
+            case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+                return getEndColumn();
             case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
                 return getAbsoluteOffset();
         }
@@ -563,6 +800,14 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 setParent((TextBlock)newValue);
                 return;
+            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
+                getCorrespondingModelElements().addAll((Collection<? extends EObject>)newValue);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
+                getReferencedElements().clear();
+                getReferencedElements().addAll((Collection<? extends EObject>)newValue);
+                return;
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 setSequenceElement((SequenceElement)newValue);
                 return;
@@ -578,6 +823,18 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return;
             case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
                 setOffsetRelative((Boolean)newValue);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+                setStartRow((Integer)newValue);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+                setStartColumn((Integer)newValue);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+                setEndRow((Integer)newValue);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+                setEndColumn((Integer)newValue);
                 return;
             case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
                 setAbsoluteOffset((Integer)newValue);
@@ -606,6 +863,12 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
                 setParent((TextBlock)null);
                 return;
+            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
+                getCorrespondingModelElements().clear();
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
+                getReferencedElements().clear();
+                return;
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 setSequenceElement((SequenceElement)null);
                 return;
@@ -620,6 +883,18 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return;
             case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
                 setOffsetRelative(OFFSET_RELATIVE_EDEFAULT);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+                setStartRow(START_ROW_EDEFAULT);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+                setStartColumn(START_COLUMN_EDEFAULT);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+                setEndRow(END_ROW_EDEFAULT);
+                return;
+            case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+                setEndColumn(END_COLUMN_EDEFAULT);
                 return;
             case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
                 setAbsoluteOffset(ABSOLUTE_OFFSET_EDEFAULT);
@@ -643,7 +918,11 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
             case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
                 return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
             case TextblocksPackage.DOCUMENT_NODE__PARENT:
-                return getParent() != null;
+                return basicGetParent() != null;
+            case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
+                return correspondingModelElements != null && !correspondingModelElements.isEmpty();
+            case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
+                return referencedElements != null && !referencedElements.isEmpty();
             case TextblocksPackage.DOCUMENT_NODE__SEQUENCE_ELEMENT:
                 return sequenceElement != null;
             case TextblocksPackage.DOCUMENT_NODE__OFFSET:
@@ -654,6 +933,14 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
                 return otherVersions != null && !otherVersions.isEmpty();
             case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
                 return offsetRelative != OFFSET_RELATIVE_EDEFAULT;
+            case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+                return startRow != START_ROW_EDEFAULT;
+            case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+                return startColumn != START_COLUMN_EDEFAULT;
+            case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+                return endRow != END_ROW_EDEFAULT;
+            case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+                return endColumn != END_COLUMN_EDEFAULT;
             case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
                 return absoluteOffset != ABSOLUTE_OFFSET_EDEFAULT;
         }
@@ -682,6 +969,14 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
         result.append(length);
         result.append(", offsetRelative: ");
         result.append(offsetRelative);
+        result.append(", startRow: ");
+        result.append(startRow);
+        result.append(", startColumn: ");
+        result.append(startColumn);
+        result.append(", endRow: ");
+        result.append(endRow);
+        result.append(", endColumn: ");
+        result.append(endColumn);
         result.append(", absoluteOffset: ");
         result.append(absoluteOffset);
         result.append(')');

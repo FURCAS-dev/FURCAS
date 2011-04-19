@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.impl;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -17,7 +16,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -75,7 +74,7 @@ public class TextblocksFactoryImpl extends EFactoryImpl implements TextblocksFac
             case TextblocksPackage.OMITTED_TOKEN: return createOmittedToken();
             case TextblocksPackage.LEXED_TOKEN: return createLexedToken();
             case TextblocksPackage.UNLEXED_TOKEN: return createUnlexedToken();
-            case TextblocksPackage.FOR_EACH_CONTEXT: return createForEachContext();
+            case TextblocksPackage.FOR_EACH_EXECUTION: return createForEachExecution();
             case TextblocksPackage.EOSTOKEN: return createEostoken();
             case TextblocksPackage.BOSTOKEN: return createBostoken();
             default:
@@ -165,12 +164,12 @@ public class TextblocksFactoryImpl extends EFactoryImpl implements TextblocksFac
 
         /**
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        public ForEachContext createForEachContext() {
-        ForEachContextImpl forEachContext = new ForEachContextImpl();
-        return forEachContext;
+    public ForEachExecution createForEachExecution() {
+        ForEachExecutionImpl forEachExecution = new ForEachExecutionImpl();
+        return forEachExecution;
     }
 
         /**

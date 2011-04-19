@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLRuntimeModule.java,v 1.3 2011/02/11 20:00:46 ewillink Exp $
+ * $Id: EssentialOCLRuntimeModule.java,v 1.4 2011/03/24 00:47:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl;
 
@@ -62,6 +62,7 @@ public class EssentialOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.es
 	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
 		return EssentialOCLLinkingDiagnosticMessageProvider.class;
 	}
+
 	@Override
 	public Class<? extends XtextResource> bindXtextResource() {
 		return EssentialOCLCSResource.class;

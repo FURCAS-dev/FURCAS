@@ -32,7 +32,7 @@ public class RegistrationSet {
      * The MoinEventFramework only stores <code>WeakReferences</code> to the registered listeners. Clients will have to
      * keep a reference to their listener in order ro prevent the garbage collector from cleaning up the instance.
      */
-    private WeakReference<? extends Adapter> _listener = null;
+    private final WeakReference<? extends Adapter> _listener;
 
     /**
      * defines the type of the registration. (whether it is a registration for PreChangeEvent, ChangeEvents,...)

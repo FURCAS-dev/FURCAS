@@ -10,15 +10,18 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
+import org.eclipse.emf.query.index.properties.ReferenceDescriptorProperties;
+import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal {
+public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal, IAdaptable {
 
 	private final EObjectDescriptorImpl source;
 	public static final int SOURCE_FRAGMENT = 1;
@@ -82,4 +85,49 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal {
 	public boolean isIntraLink() {
 		return this.source.getResourceURI() == this.targetResource;
 	}
+
+	@SuppressWarnings("rawtypes")
+	public Object getAdapter(Class adapter) {
+		if (adapter == IPropertySource.class)
+			return new ReferenceDescriptorProperties(this);
+		return null;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
+		result = prime * result + ((source == null) ? 0 : source.hashCode());
+		result = prime * result + ((targetFragment == null) ? 0 : targetFragment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ReferenceDescriptorImpl other = (ReferenceDescriptorImpl) obj;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
+			return false;
+		if (source == null) {
+			if (other.source != null)
+				return false;
+		} else if (!source.equals(other.source))
+			return false;
+		if (targetFragment == null) {
+			if (other.targetFragment != null)
+				return false;
+		} else if (!targetFragment.equals(other.targetFragment))
+			return false;
+		return true;
+	}
+
 }

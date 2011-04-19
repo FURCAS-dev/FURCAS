@@ -71,13 +71,13 @@ public interface TextblocksFactory extends EFactory {
         UnlexedToken createUnlexedToken();
 
         /**
-     * Returns a new object of class '<em>For Each Context</em>'.
+     * Returns a new object of class '<em>For Each Execution</em>'.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @return a new object of class '<em>For Each Context</em>'.
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>For Each Execution</em>'.
      * @generated
      */
-        ForEachContext createForEachContext();
+    ForEachExecution createForEachExecution();
 
         /**
      * Returns a new object of class '<em>Eostoken</em>'.

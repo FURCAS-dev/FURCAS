@@ -82,7 +82,6 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage, EEnumL
         this.name = name;
     }
 
-    @Override
     public EClass eClass() {
 	fail("stub method not implemented");
 	return null;
@@ -803,6 +802,4 @@ public class EcoreAnyStub implements EClass, EReference, EEnum, EPackage, EEnumL
         return null;
     }
 
-    
-    
 }

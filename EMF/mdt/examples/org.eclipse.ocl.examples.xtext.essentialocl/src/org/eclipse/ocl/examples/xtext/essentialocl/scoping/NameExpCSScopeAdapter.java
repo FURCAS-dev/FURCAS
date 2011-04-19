@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.3 2011/02/08 17:44:57 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.4 2011/03/17 20:10:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
-import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NameExpCS;
@@ -70,13 +69,8 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__ELEMENT) {
 			List<Namespace> namespaces = target.getNamespace();
-			int namespaceCount = namespaces.size();
-			if (namespaceCount > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
-				if (scopeAdapter != null) {
-					return scopeAdapter.computeLookup(environmentView, scopeView);
-				}				
-				return null;
+			if (namespaces.size() > 0) {
+				return getNamespaceScope(environmentView, scopeView, namespaces);
 			}
 			EObject eContainer = target.eContainer();
 			if (eContainer instanceof NavigatingExpCS) {
@@ -85,6 +79,9 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			else {	// FIXME IndexedExpCS fpor Associations
 				environmentView.addFilter(noOperationsFilter);
 			}
+		}
+		else if (containmentFeature == EssentialOCLCSTPackage.Literals.NAME_EXP_CS__NAMESPACE) {
+			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 		}
 		return scopeView.getOuterScope();
 	}

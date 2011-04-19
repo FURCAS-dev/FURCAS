@@ -137,8 +137,9 @@ public class PageableIndexImpl implements PageableIndex {
 		}
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.emf.query.index.Index#load()
 	 */
 	public void load() {
@@ -176,6 +177,10 @@ public class PageableIndexImpl implements PageableIndex {
 		File dumpFile = this.chProv.getOutputFile(DUMP_FILE_ID);
 		dumpFileExists = dumpFile.exists();
 		return dumpFileExists;
+	}
+
+	public GlobalTables getGlobalTables() {
+		return globalTables;
 	}
 
 }

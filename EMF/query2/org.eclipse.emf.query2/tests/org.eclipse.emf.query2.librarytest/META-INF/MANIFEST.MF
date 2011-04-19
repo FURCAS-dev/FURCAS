@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: library,
  library.impl,
- library.util
+ library.util,
+ org.eclipse.emf.query2.librarytest
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.junit4;bundle-version="4.5.0",

@@ -64,7 +64,7 @@ public interface FunctionTemplate extends Template {
      * @see #setFunctionSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getFunctionTemplate_FunctionSequence()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getFunctionContainer
-     * @model opposite="functionContainer" containment="true" required="true" ordered="false"
+     * @model opposite="functionContainer" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Sequence getFunctionSequence();

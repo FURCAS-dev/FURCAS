@@ -6,10 +6,12 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -41,6 +43,11 @@ public class AndExpStub extends LocatedElementStub implements AndExp {
     @Override
     public void setConditionalElement(ConditionalElement value) {
         fail("not implemented");
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getAndExp();
     }
 
 }
