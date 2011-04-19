@@ -78,10 +78,11 @@ public class PrimitiveTypesTest
 			assertTrue(check(helper, 1, "* = *"));
 			assertFalse(check(helper, 1, "* <> *"));
 
+			// As defined by OCL 2.3 (OMG doc 10-11-42), section 11.5.5
 			assertFalse(check(helper, 1, "* < *"));
-			assertFalse(check(helper, 1, "* <= *"));
+			assertTrue(check(helper, 1, "* <= *"));
 			assertFalse(check(helper, 1, "* > *"));
-			assertFalse(check(helper, 1, "* >= *"));
+			assertTrue(check(helper, 1, "* >= *"));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}

@@ -30,10 +30,10 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.EvaluationVisitorDecorator;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.uml.OCL;
+import org.eclipse.ocl.uml.OCL.Query;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
-import org.eclipse.ocl.uml.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
@@ -153,20 +153,29 @@ public class EvaluationHaltedTest
 	}
 
 	public void testHaltedQuery() {
-		assertNull(OCLUtil.getEvaluationProblems(query));
+		org.eclipse.ocl.expressions.OCLExpression<Classifier> localQueryExp = null;
+		try {
+			localQueryExp = helper
+				.createQuery("Sequence {}->collect(i | i.halt(self))");
+		} catch (ParserException e) {
+			fail("Failed to parse: " + e.getLocalizedMessage());
+		}
+		assertNull(helper.getProblems());
+		Query localQuery = (Query) ocl.createQuery(localQueryExp);
+		assertNull(OCLUtil.getEvaluationProblems(localQuery));
 
-		assertListResult(query.evaluate(), Collections.emptyList());
-		assertNull(OCLUtil.getEvaluationProblems(query));
+		assertListResult(localQuery.evaluate(), Collections.emptyList());
+		assertNull(OCLUtil.getEvaluationProblems(localQuery));
 
 		envFactory.haltOnContextLessExecution = true;
-		assertInvalid(query.evaluate());
-		assertNotNull(OCLUtil.getEvaluationProblems(query));
-		assertNotNull(OCLUtil.getEvaluationProblems(query).getMessage().equals(
+		assertInvalid(localQuery.evaluate());
+		assertNotNull(OCLUtil.getEvaluationProblems(localQuery));
+		assertNotNull(OCLUtil.getEvaluationProblems(localQuery).getMessage().equals(
 			"Halt"));
 		envFactory.haltOnContextLessExecution = false;
 		// check we clear the problems on next evaluate
-		query.evaluate();
-		assertNull(OCLUtil.getEvaluationProblems(query));
+		localQuery.evaluate();
+		assertNull(OCLUtil.getEvaluationProblems(localQuery));
 	}
 
 	public void testEvaluateListHaltedQuery() {
