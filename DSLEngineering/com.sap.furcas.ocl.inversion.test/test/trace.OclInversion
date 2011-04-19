@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OclInversion="urn:OclInversion.ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <OclInversion:IntegerClass>
+    <integer_class href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/source2.xml#_eCNfo0s8EeCVUsYc3QWFGQ"/>
+  </OclInversion:IntegerClass>
+  <OclInversion:StringClass>
+    <string_class href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/source2.xml#_eCi200s8EeCVUsYc3QWFGQ"/>
+  </OclInversion:StringClass>
+  <OclInversion:Concat2Rule>
+    <string_class href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/source2.xml#_eCi200s8EeCVUsYc3QWFGQ"/>
+    <source href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/source.xml#_OAziUFkCEeC3zLxwUnF4jA"/>
+    <target href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_ONyOYFkCEeC3zLxwUnF4jA"/>
+    <leftSource xsi:type="ocl.ecore:StringLiteralExp" href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_OAziUVkCEeC3zLxwUnF4jA"/>
+    <rightSource href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/source.xml#_OAziUlkCEeC3zLxwUnF4jA"/>
+    <rightSource_opCallSrc xsi:type="ocl.ecore:StringLiteralExp" href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_OAziVFkCEeC3zLxwUnF4jA"/>
+    <rightTarget href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_OAziU1kCEeC3zLxwUnF4jA"/>
+    <leftTarget href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_ON_pwFkCEeC3zLxwUnF4jA"/>
+    <from href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_OPgFoFkCEeC3zLxwUnF4jA"/>
+    <to href="file:/Users/thomas/dev/furcas-emf/DSLEngineering/com.sap.furcas.ocl.inversion.test/test/target.xml#_OPhTwFkCEeC3zLxwUnF4jA"/>
+  </OclInversion:Concat2Rule>
+</xmi:XMI>
