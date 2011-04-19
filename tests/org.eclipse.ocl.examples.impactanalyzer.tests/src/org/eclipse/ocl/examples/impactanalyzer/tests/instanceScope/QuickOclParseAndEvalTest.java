@@ -189,10 +189,16 @@ public class QuickOclParseAndEvalTest extends TestCase
         assertEquals(true, result5);
         OCLExpression expression6 = oclHelper.createQuery("(invalid or true).oclIsInvalid()");
         Object result6 = ocl.evaluate(null, expression6);
-        assertEquals(true, result6);
+        assertEquals(false, result6);
         OCLExpression expression7 = oclHelper.createQuery("(invalid and false).oclIsInvalid()");
         Object result7 = ocl.evaluate(null, expression7);
-        assertEquals(true, result7);
+        assertEquals(false, result7);
+        OCLExpression expression8 = oclHelper.createQuery("(invalid or true)");
+        Object result8 = ocl.evaluate(null, expression8);
+        assertEquals(true, result8);
+        OCLExpression expression9 = oclHelper.createQuery("(invalid and false)");
+        Object result9 = ocl.evaluate(null, expression9);
+        assertEquals(false, result9);
     }
 
   /**
@@ -313,15 +319,14 @@ public class QuickOclParseAndEvalTest extends TestCase
   }
 
   /**
-   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
-   * returns a valid result
+   * Ensures that an OclInvalid value propagates from a collection literal to the overall expression
    */
   @Test
   public void testParseAndEvaluateOclExpressionWithSelectOverOclInvalid() throws ParserException
   {
     OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->select(i | i.name = 'p')");
     Object result5 = ocl.evaluate(param, expression5);
-    assertEquals(1, ((Collection<?>) result5).size());
+    assertTrue(((EObject) result5).eClass().getName().equals("OclInvalid_Class"));
   }
 
   @Test
