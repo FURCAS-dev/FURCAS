@@ -430,9 +430,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	}
 	
 	@Override
-	public void notifyEnterSequenceElement(String mofid) {
+	public void notifyEnterSequenceElement(String sequenceElementURI) {
 		SequenceElement sequenceElement = (SequenceElement) resourceSet
-				.getEObject(URI.createURI(mofid), true);
+				.getEObject(URI.createURI(sequenceElementURI), true);
 		if(sequenceElement != null) {
 		    traverser.setCurrentSequenceElement(sequenceElement);
 		}

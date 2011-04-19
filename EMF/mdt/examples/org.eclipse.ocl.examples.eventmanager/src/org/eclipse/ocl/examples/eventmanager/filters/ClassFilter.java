@@ -20,14 +20,13 @@ import org.eclipse.emf.ecore.EObject;
  * @author Daniel Vocke, Philipp Berger, Axel Uhl
  *
  */
-public class ClassFilter extends EventFilter {
+public class ClassFilter extends AbstractEventFilter {
 
     protected EClass wantedClass;
 
     public ClassFilter(EClass clazz, boolean negated) {
-        super();
+        super(negated);
         setWantedClass(clazz);
-        setNegated(negated);
     }
 
     public EClass getWantedClass() {
@@ -69,7 +68,7 @@ public class ClassFilter extends EventFilter {
                 return false;
         } else if (!wantedClass.equals(other.wantedClass))
             return false;
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
     public boolean matchesFor(Notification event) {
@@ -96,7 +95,7 @@ public class ClassFilter extends EventFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "wantedClass :" + getWantedClass().toString();
+            return (isNegated()?"negated ":"") + "wantedClass :" + getWantedClass().toString();
         return "empty ClassFilter";
     }
     @Override

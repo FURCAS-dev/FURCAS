@@ -10,11 +10,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.furcas.parsergenerator.GrammarGenerationException;
 import com.sap.furcas.parsergenerator.GrammarGenerationSourceConfiguration;
 import com.sap.furcas.parsergenerator.GrammarGenerationTargetConfiguration;
 import com.sap.furcas.parsergenerator.TCSParserGenerator;
@@ -24,11 +26,12 @@ import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationExcepti
 import com.sap.furcas.runtime.common.exceptions.ParserInvokationException;
 
 public class TCSBootstrap {
-    
+    private static final String LANGUAGE_NAME = "TCS";
     private static final String GENERATIONDIR = "./generationTemp/";
     private static final String PACKAGE = "generated";
-    private static final String GRAMMAR = GENERATIONDIR + PACKAGE + "/TCS.g";
-    private static final String SYNTAXDEFINITION = "./syntaxdefinition/TCS.tcs";
+    private static final String MAPPINGS = "mappings";
+    private static final String GRAMMAR = GENERATIONDIR + PACKAGE + "/"+LANGUAGE_NAME+".g";
+    private static final String SYNTAXDEFINITION = "./syntaxdefinition/"+LANGUAGE_NAME+".tcs";
     
     private static GrammarGenerationSourceConfiguration sourceConfiguration;
     private static GrammarGenerationTargetConfiguration targetConfiguration;
@@ -51,7 +54,7 @@ public class TCSBootstrap {
     public void phase1_step0_deleteOldBootstrapFiles() {
         File dir = new File(GENERATIONDIR + PACKAGE);
         for (File file : dir.listFiles()) {
-            if (file.isFile() && file.getName().startsWith("TCS")) {
+            if (file.isFile() && file.getName().startsWith(LANGUAGE_NAME)) {
                 file.delete();
             }
         }
@@ -64,9 +67,9 @@ public class TCSBootstrap {
     public void phase1_step1_parseSyntaxDefintion() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
-            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION));
+            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), targetConfiguration);
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
-            assertEquals("TCS", syntaxBean.getSyntax().getName());
+            assertEquals(LANGUAGE_NAME, syntaxBean.getSyntax().getName());
         } catch (ParserInvokationException e) {
             e.printStackTrace();
             fail("Failed to parse syntax:" + e.getMessage());
@@ -80,9 +83,19 @@ public class TCSBootstrap {
     public void phase1_step2_generateGrammar() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
+            // Move mapping to target resource. This will cause the appropriate
+            // URIs to be generated into the parser. Can't save to this resource because
+            // we want a platform plugin URI. Move again after parser generation to be
+            // able to save.
+            Resource mappingResource = sourceConfiguration.getResourceSet().createResource(URI.createPlatformPluginURI(
+                    "/com.sap.furcas.parser.tcs/"+MAPPINGS+"/"+LANGUAGE_NAME+".tcs", /* encode */ false));
+            mappingResource.getContents().add(syntaxBean.getSyntax());
             generator.generateGrammarFromSyntax(syntaxBean, sourceConfiguration, targetConfiguration, errorHandler);
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
-        } catch (GrammarGenerationException e) {
+            FileOutputStream outputStream = new FileOutputStream(new File(GENERATIONDIR+LANGUAGE_NAME+".tcs"));
+            mappingResource.save(outputStream, null);
+            outputStream.close();
+        } catch (Exception e) {
             e.printStackTrace();
             fail("Failed to parse syntax:" + e.getMessage());
         }

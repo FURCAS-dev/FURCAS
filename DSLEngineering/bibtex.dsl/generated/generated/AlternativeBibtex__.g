@@ -34,6 +34,10 @@ public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
         // get rid of the starting and ending delimiters (e.g., '\'', '"')
        if (s.charAt(0) == '\'' && s.charAt(s.length()-delimLength) == '\'' || s.charAt(0) == '\"' && s.charAt(s.length()-delimLength) == '\"') {
                 s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
+       } else if (s.length() >= 4 && s.charAt(0) == '\\' && s.charAt(s.length()-delimLength) == '\"' && s.charAt(1) == '\"' && s.charAt(s.length()-delimLength-1) == '\\') {
+             //also handle strings that are surrounded with an escaped string symbol \"value\"
+             delimLength += 1;
+             s = s.substring(delimLength, s.length()-(delimLength * 2 - 1));
         }
         return s;
     }
@@ -64,14 +68,14 @@ T__16 : '{' ;
 T__17 : '}' ;
 T__18 : ':' ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 177
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 185
 COMMENT
   :
      ((('--' (~('\r'| '\n'))*)))
   ;
 
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 183
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 191
 NL
     :   (   '\r' '\n'
         |   '\n' '\r'   //Improbable
@@ -81,20 +85,20 @@ NL
     {newline();$channel=HIDDEN;}
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 192
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 200
 WS
     :   (   ' '
         |   '\t'
         )
         {$channel=HIDDEN;}    ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 198
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 206
 fragment
 DIGIT
     :   '0'..'9'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 203
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 211
 fragment
 ALPHA
     :   'a'..'z'
@@ -106,13 +110,13 @@ ALPHA
     |   '\u00F8' .. '\u00FF'
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 214
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 222
 fragment
 SNAME
     :   (ALPHA) (ALPHA | DIGIT)*
 ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 219
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 227
 NAME
     :   (
             SNAME
@@ -126,15 +130,15 @@ NAME
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 232
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 240
 INT
     :   (DIGIT)+
     ;
 
-    // $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 236
+    // $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 244
 FLOAT   :   DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?   ;   // cannot accept DIGIT '.' because it would conflict with Navigation
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 238
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 246
 fragment
 ESC
     :   '\\'!
@@ -164,7 +168,7 @@ ESC
         )
     ;
 
-// $ANTLR src "/home/stephan/projekte/java/FURCAS-git/workspace/DSLEngineering/bibtex.dsl/generated/generated/AlternativeBibtex.g" 267
+// $ANTLR src "C:\Users\d043530\git\DSLEngineering\bibtex.dsl\generated\generated\AlternativeBibtex.g" 275
 STRING
     :   '\''!
         (   ESC

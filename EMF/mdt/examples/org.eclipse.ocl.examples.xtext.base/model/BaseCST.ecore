@@ -236,7 +236,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TypeRefCS" abstract="true" eSuperTypes="#//MonikeredElementCS #//ParameterableElementCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElementCS" abstract="true" eSuperTypes="#//NamedElementCS">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="0"/>
+        defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" eType="#//TypedRefCS"
         containment="true"/>

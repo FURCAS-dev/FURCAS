@@ -3,11 +3,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import junit.framework.Assert;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -80,4 +83,10 @@ public class PrimitivePropertyInitStub extends LocatedElementStub implements
     public void setDefault(boolean value) {
         Assert.fail("not implemented.");
     }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPrimitivePropertyInit();
+    }
+
 }

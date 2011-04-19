@@ -102,6 +102,7 @@ public class InjectorActionsHandler<Type> {
         }
         buffer.append(ObservationDirectivesHelper.getEnterInjectorActionNotification());
         String value = propInit.getValue();
+        String propInitURI = ObservationDirectivesHelper.getId(propInit);
         if (propInit instanceof PrimitivePropertyInit) {
             // TODO refer to and use Primitive template transformer to create
             // required
@@ -118,7 +119,8 @@ public class InjectorActionsHandler<Type> {
             if (value.startsWith(OCL_QUERY_PREFIX)) {
                 validateOclQuery(block.getParentTemplate(), value, propInit);
                 String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
-                buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional + ");");
+                buffer.append("setOclRef(ret, \"" + propName + "\", null, null, \"" + oclQuery + "\", " + isOptional +
+                        ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             } else {
                 buffer.append("setRef(ret, \"" + propName + "\", " + resolvedTypeOfPropertyName + ", null, null, \"" + value
                         + "\", null, null, false, null, " + isOptional + ");");
@@ -157,10 +159,10 @@ public class InjectorActionsHandler<Type> {
             String oclQuery = TcsUtil.escapeMultiLineOclQuery(value);
             if (mode == null) {
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",null,\"" + oclQuery + "\",list,finder," + hasContext
-                        + ");");
+                        + ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             } else {
                 buffer.append("setPredicateRef(ret,\"" + propName + "\",\"" + mode + "\",\"" + oclQuery + "\",list,finder,"
-                        + hasContext + ");");
+                        + hasContext + ", \""+propInitURI+"\", SyntaxRegistry.getInstance());");
             }
             buffer.append("\n}\n");
         }

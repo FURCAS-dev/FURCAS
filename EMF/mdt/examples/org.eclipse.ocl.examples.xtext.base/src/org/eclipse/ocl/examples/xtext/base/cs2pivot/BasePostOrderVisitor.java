@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePostOrderVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BasePostOrderVisitor.java,v 1.6 2011/04/01 19:57:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -52,6 +52,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
@@ -242,6 +243,11 @@ public class BasePostOrderVisitor extends AbstractExtendingBaseCSVisitor<Continu
 	
 	@Override
 	public Continuation<?> visitTemplateSignatureCS(TemplateSignatureCS csTemplateSignature) {
+		return null;
+	}
+
+	@Override
+	public Continuation<?> visitTuplePartCS(TuplePartCS object) {
 		return null;
 	}
 

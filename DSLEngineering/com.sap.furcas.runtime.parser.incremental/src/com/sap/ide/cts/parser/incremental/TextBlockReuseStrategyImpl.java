@@ -282,14 +282,14 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                     for (EObject ro : new ArrayList<EObject>(oldVersion.getParent()
                             .getCorrespondingModelElements())) {
                         for (EObject value : new ArrayList<EObject>(
-                                oldVersion.getReferencedElements())) {
+                                oldVersion.getCorrespondingModelElements())) {
                             try {
                                 SetNewFeatureBean bean = new SetNewFeatureBean(ro,
                                         ((Property) oldVersion.getSequenceElement())
                                                 .getPropertyReference()
                                                 .getStrucfeature().getName(), value, 0);
                                 referenceHandler.unsetFeature(bean);
-                                oldVersion.getReferencedElements().remove(ro);
+                                oldVersion.getCorrespondingModelElements().remove(ro);
                             } catch (Exception e) {
                                 continue;
                             }
@@ -786,16 +786,6 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			i++;
 		}
 		i = 0;
-		for (EObject ro : oldVersion.getReferencedElements()) {
-			if (newVersion.getReferencedElementProxies().size() >= i + 1) {
-				ModelElementProxy proxy = (ModelElementProxy) newVersion
-					.getReferencedElementProxies().get(i);
-				proxy.setRealObject(ro);
-			} else {
-				break;
-			}
-			i++;
-		}
 	}
 
         /**
@@ -815,27 +805,6 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                         // not reference only
                         if (TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
                             deleteElementsForRemovedSubBlocks(tb);
-                            if (tb.getReferencedElements().size() > 0
-                                    && tb.getSequenceElement() instanceof Property) {
-                                for (EObject ro : new ArrayList<EObject>(tb
-                                        .getCorrespondingModelElements())) {
-                                    for (EObject value : new ArrayList<EObject>(
-                                            tb.getReferencedElements())) {
-                                        try {
-                                            SetNewFeatureBean bean = new SetNewFeatureBean(
-                                                    ro, ((Property) oldVersion
-                                                            .getSequenceElement())
-                                                            .getPropertyReference()
-                                                            .getStrucfeature()
-                                                            .getName(), value, 0);
-                                            referenceHandler.unsetFeature(bean);
-                                        } catch (Exception ex) {
-                                            // do nothing just try next
-                                            // element
-                                        }
-                                    }
-                                }
-                            }
                             if (tb.getType() != null
                                     && tb.getType().getParseRule() != null) {
                                 if (!TcsUtil.isReferenceOnly(tb.getType()
@@ -875,11 +844,6 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                 && TbVersionUtil.getOtherVersion(tb,
                                         Version.CURRENT) == null) {
                             LexedToken lt = (LexedToken) tb;
-                            if (lt.getCorrespondingModelElements().size() > 0
-                                    && lt.getSequenceElement() instanceof Property) {
-                                referenceHandler.unsetPrimitiveFeature(oldVersion,
-                                        lt);
-                            }
                             if (lt.getReferencedElements().size() > 0
                                     && lt.getSequenceElement() instanceof Property) {
                                 referenceHandler.unsetPrimitiveFeature(oldVersion,

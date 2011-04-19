@@ -11,13 +11,27 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 
-public class EventTypeFilter extends EventFilter {
+/**
+ * Matches an {@link Notification#getEventType() event type}. The constants are
+ * defined in {@link Notifier}.
+ * 
+ * @author Philipp Berger, Axel Uhl
+ * 
+ */
+public class EventTypeFilter extends AbstractEventFilter {
     private final int eventType;
 
-    public EventTypeFilter(int eventType2) {
-        super();
-        eventType = eventType2;
+    /**
+     * Creates a new {@link EventTypeFilter} with the given filter type.
+     * For the different types {@see Notifier}
+     * @param eventType
+     * @param negated defines whether the filter is negated
+     */
+    public EventTypeFilter(int eventType, boolean negated) {
+        super(negated);
+        this.eventType = eventType;
     }
 
     /*
@@ -37,9 +51,13 @@ public class EventTypeFilter extends EventFilter {
         if (eventType != other.eventType) {
             return false;
         }
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
+    /**
+     * Gives the event type of this filter object
+     * @return an integer representing the event type
+     */
     public int getEventType() {
         return eventType;
     }
@@ -66,44 +84,46 @@ public class EventTypeFilter extends EventFilter {
 
     @Override
     public String toString() {
+    	String result;
         switch (getEventType()) {
         case 0:
-            return "filter CREATE";
+            result = "filter CREATE";
 
         case 1:
-            return "filter SET";
+            result = "filter SET";
 
         case 2:
-            return "filter UNSET";
+            result = "filter UNSET";
 
         case 3:
-            return "filter ADD";
+            result = "filter ADD";
 
         case 4:
-            return "filter REMOVE";
+            result = "filter REMOVE";
 
         case 5:
-            return "filter ADD_MANY";
+            result = "filter ADD_MANY";
 
         case 6:
-            return "filter REMOVE_MANY";
+            result = "filter REMOVE_MANY";
 
         case 7:
-            return "filter MOVE";
+            result = "filter MOVE";
 
         case 8:
-            return "filter REMOVING_ADAPTER";
+            result = "filter REMOVING_ADAPTER";
 
         case 9:
-            return "filter RESOLVE";
+            result = "filter RESOLVE";
         }
 
-        return "filter undefined";
+        result = "filter undefined";
+        return (isNegated()?"negated ":"") + result;
     }
 
     @Override
     public EventTypeFilter clone() {
-        return new EventTypeFilter(getEventType());
+        return new EventTypeFilter(getEventType(), isNegated());
 
     }
 

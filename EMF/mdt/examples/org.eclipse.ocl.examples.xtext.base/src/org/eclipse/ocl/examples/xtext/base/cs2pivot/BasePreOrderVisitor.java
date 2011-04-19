@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.7 2011/03/08 15:14:54 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.8 2011/04/01 19:57:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -135,17 +136,16 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			LambdaType pivotLambdaType = context.refreshNamedElement(LambdaType.class, PivotPackage.Literals.LAMBDA_TYPE, csElement);
-			pivotLambdaType.setContextType(PivotUtil.getPivot(Type.class, csElement.getOwnedContextType()));
-			pivotLambdaType.setResultType(PivotUtil.getPivot(Type.class, csElement.getOwnedResultType()));
-			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterType();
-			List<Type> newPivotParameterTypes = new ArrayList<Type>();
-			for (TypedRefCS csParameterType : csParameterTypes) {
+			String moniker = csElement.getMoniker();
+			Type contextType = PivotUtil.getPivot(Type.class, csElement.getOwnedContextType());
+			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
+			List<Type> parameterTypes = new ArrayList<Type>();
+			for (TypedRefCS csParameterType : csElement.getOwnedParameterType()) {
 				Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
-				newPivotParameterTypes.add(parameterType);
+				parameterTypes.add(parameterType);
 			}
-			context.refreshList(pivotLambdaType.getParameterTypes(), newPivotParameterTypes);
-			context.getTypeManager().addOrphanType(pivotLambdaType);
+			LambdaType lambdaType = context.getTypeManager().getLambdaType(csElement.getName(), contextType, parameterTypes, resultType, null, moniker);
+			context.reusePivotElement(csElement, lambdaType);
 			return null;
 		}
 	}
@@ -187,6 +187,21 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			context.refreshPivotList(Type.class, pivotElement.getOwnedTypes(), csElement.getOwnedType());
 			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
 			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
+			return null;
+		}
+	}
+
+	protected static class PrimitiveTypeRefContinuation extends SingleContinuation<PrimitiveTypeRefCS>
+	{
+		
+		public PrimitiveTypeRefContinuation(CS2PivotConversion context, PrimitiveTypeRefCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Type type = context.getTypeManager().getLibraryType(csElement.getName());
+			context.reusePivotElement(csElement, type);
 			return null;
 		}
 	}
@@ -309,17 +324,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			TupleType pivotTupleType = context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csElement);
-			List<TuplePartCS> csTupleParts = csElement.getOwnedParts();
-			List<Property> newPivotParts = new ArrayList<Property>();
-			for (TuplePartCS csTuplePart : csTupleParts) {
-				Property pivotPart = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csTuplePart);
+			List<TypeManager.TuplePart> tupleParts = new ArrayList<TypeManager.TuplePart>();
+			for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 				Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
-				pivotPart.setType(partType);
-				newPivotParts.add(pivotPart);
+				tupleParts.add(new TypeManager.TuplePart(csTuplePart.getName(), partType));
 			}
-			context.refreshList(pivotTupleType.getOwnedAttributes(), newPivotParts);
-			context.getTypeManager().addOrphanType(pivotTupleType);
+			TupleType tupleType = context.getTypeManager().getTupleType(csElement.getName(), tupleParts, null, csElement.getMoniker());
+			context.reusePivotElement(csElement, tupleType);
 			return null;
 		}
 	}
@@ -579,9 +590,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
-		Type type = context.getTypeManager().getLibraryType(csPrimitiveTypeRef.getName());
-		context.reusePivotElement(csPrimitiveTypeRef, type);
-		return null;
+		return new PrimitiveTypeRefContinuation(context, csPrimitiveTypeRef);
 	}
 
 	@Override

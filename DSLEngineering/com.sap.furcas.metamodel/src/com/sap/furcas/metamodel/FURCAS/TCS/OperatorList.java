@@ -65,7 +65,7 @@ public interface OperatorList extends LocatedElement {
      * @return the value of the '<em>Priorities</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getOperatorList_Priorities()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Priority#getList
-     * @model opposite="list" containment="true"
+     * @model opposite="list" containment="true" resolveProxies="true"
      * @generated
      */
         EList<Priority> getPriorities();

@@ -42,6 +42,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.OptimizationActivation;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.impl.OperationBodyToCallMapper;
+import org.eclipse.ocl.examples.impactanalyzer.impl.TracebackStepCounter;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
@@ -446,6 +447,9 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     public OperationCallExpKeyedSet traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         tracebackExecutions++;
+        if (getOppositeEndFinder() instanceof TracebackStepCounter) {
+            ((TracebackStepCounter) getOppositeEndFinder()).tracebackStepExecuted();
+        }
         OperationCallExpKeyedSet result;
         Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
         if (isCurrentlyEvaluatingFor(key)) {

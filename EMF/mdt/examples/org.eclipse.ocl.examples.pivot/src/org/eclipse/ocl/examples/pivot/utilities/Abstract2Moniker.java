@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.7 2011/04/01 19:57:10 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -211,7 +211,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			append(OVERFLOW_MARKER);
 		}
 		else if (element == null) {
-			append("<<null-element>>");	
+			append(NULL_MARKER);	
 		}
 		else {
 			EObject parent = element.eContainer();

@@ -39,7 +39,7 @@ public interface Block extends SequenceElement {
      * @see #setBlockSequence(Sequence)
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getBlock_BlockSequence()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.Sequence#getBlockContainer
-     * @model opposite="blockContainer" containment="true" required="true" ordered="false"
+     * @model opposite="blockContainer" containment="true" resolveProxies="true" required="true" ordered="false"
      * @generated
      */
         Sequence getBlockSequence();
@@ -67,7 +67,7 @@ public interface Block extends SequenceElement {
      * @return the value of the '<em>Block Args</em>' containment reference list.
      * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getBlock_BlockArgs()
      * @see com.sap.furcas.metamodel.FURCAS.TCS.BlockArg#getBlock
-     * @model opposite="block" containment="true"
+     * @model opposite="block" containment="true" resolveProxies="true"
      * @generated
      */
         EList<BlockArg> getBlockArgs();

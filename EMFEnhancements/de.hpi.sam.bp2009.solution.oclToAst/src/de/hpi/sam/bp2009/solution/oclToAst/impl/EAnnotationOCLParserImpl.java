@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,12 +42,14 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query.index.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.ecore.delegate.SettingBehavior;
+import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.utilities.UMLReflection;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -109,12 +112,12 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         for (EObject sPkg : r.getContents()) {
             if (sPkg instanceof EPackage) {
-                handlePackage(fileUri, (EPackage) sPkg);
+                handlePackage((EPackage) sPkg);
             }
         }
     }
 
-    private void handlePackage(URI fileUri, EPackage sPkg) { 
+    private void handlePackage(EPackage sPkg) { 
         /*
          * change the current resource to the ecore from the loaded packages
          */
@@ -155,7 +158,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
             if (constraint == null)
                 return;
-
             anno.getContents().add(constraint);
 
             /*
@@ -174,28 +176,52 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     }
 
     private OCLExpression createConstraint(EModelElement modelElement, String expr, String typ, Helper helper) {
-        Constraint constraint = null;
-        try {
-            if (UMLReflection.DERIVATION.equals(typ)) {
-                constraint = helper.createDerivedValueExpression(expr);
-            } else if (UMLReflection.INITIAL.equals(typ)) {
-                constraint = helper.createInitialValueExpression(expr);
-            } else if (UMLReflection.BODY.equals(typ)) {
-                constraint = helper.createBodyCondition(expr);
-            } else if (UMLReflection.POSTCONDITION.equals(typ)) {
-                constraint = helper.createPostcondition(expr);
-            } else if (UMLReflection.PRECONDITION.equals(typ)) {
-                constraint = helper.createPrecondition(expr);
-            } else if (UMLReflection.DEFINITION.equals(typ)) {
-                constraint = helper.createConstraint(ConstraintKind.DEFINITION, expr);
-            } else /* as default value, an invariant is expected */{
-                constraint = helper.createInvariant(expr);
-                constraint.setName(typ);
-            }
-        } catch (ParserException e1) {
-            parserExceptionHandling(modelElement, expr, e1);
+        OCLExpression constraint = null;
+//        try {
+//            if (UMLReflection.DERIVATION.equals(typ)) {
+//                constraint = helper.createDerivedValueExpression(expr);
+//            } else if (UMLReflection.INITIAL.equals(typ)) {
+//                constraint = helper.createInitialValueExpression(expr);
+//            } else if (UMLReflection.BODY.equals(typ)) {
+//                constraint = helper.createBodyCondition(expr);
+//            } else if (UMLReflection.POSTCONDITION.equals(typ)) {
+//                constraint = helper.createPostcondition(expr);
+//            } else if (UMLReflection.PRECONDITION.equals(typ)) {
+//                constraint = helper.createPrecondition(expr);
+//            } else if (UMLReflection.DEFINITION.equals(typ)) {
+//                constraint = helper.createConstraint(ConstraintKind.DEFINITION, expr);
+//            } else /* as default value, an invariant is expected */{
+//                constraint = helper.createInvariant(expr);
+//                constraint.setName(typ);
+//            }
+//        } catch (ParserException e1) {
+//            parserExceptionHandling(modelElement, expr, e1);
+//        }
+        try{
+	        if (UMLReflection.DERIVATION.equals(typ) || UMLReflection.INITIAL.equals(typ)) {
+	            constraint = SettingBehavior.INSTANCE.getFeatureBody(helper.getOCL(), (EStructuralFeature) modelElement);               
+	        } else if (UMLReflection.BODY.equals(typ)) {
+	            constraint = InvocationBehavior.INSTANCE.getOperationBody(helper.getOCL(), (EOperation) modelElement);
+	//            } else if (UMLReflection.POSTCONDITION.equals(typ)) {
+	//                constraint = helper.createPostcondition(expr);
+	//            } else if (UMLReflection.PRECONDITION.equals(typ)) {
+	//                constraint = helper.createPrecondition(expr);
+	//            } else if (UMLReflection.DEFINITION.equals(typ)) {
+	//                constraint = helper.createConstraint(ConstraintKind.DEFINITION, expr);
+	        } else /* as default value, an invariant is expected */{
+	            constraint = ValidationBehavior.INSTANCE.getInvariant((EClassifier) modelElement, typ, helper.getOCL());
+	            constraint.setName(typ);
+	        }
+        } catch(Exception e){
+        	SemanticException semExep = null;
+        	if (e.getCause() instanceof SemanticException){
+        		semExep = (SemanticException) e.getCause();
+        	}
+        	parserExceptionHandling(modelElement, expr, semExep);        	
         }
-        return (OCLExpression) constraint.getSpecification().getBodyExpression();
+        if (constraint == null){
+        }
+        return constraint;
     }
 
     private void setCorrectContext(Helper helper, EModelElement modelElement) {
@@ -224,9 +250,9 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         }
     }
 
-    private void parserExceptionHandling(EModelElement modelElement, String e, ParserException e1) {
+    private void parserExceptionHandling(EModelElement modelElement, String expression, ParserException e1) {
         String errorMessage = "Ocl expression parsing failed on element " + getQualifiedName(modelElement) + " "
-                + modelElement.toString() + ":\n for ocl expression:\n" + e + "\n with parser error: \n" + e1.getMessage() + "\n";
+                + modelElement.toString() + ":\n for ocl expression:\n" + expression + "\n with parser error: \n" + e1.getMessage() + "\n";
         if (e1.getDiagnostic() != null) {
             for (Diagnostic c : e1.getDiagnostic().getChildren()) {
                 errorMessage += c.getMessage() + "\n";
@@ -234,7 +260,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         }
         Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
         logger.log(Level.SEVERE, errorMessage);
-        getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
+        getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", expression));
     }
 
     private String getQualifiedName(EObject modelElement) {

@@ -4,11 +4,13 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
 import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -68,6 +70,11 @@ public class LiteralStub extends LiteralRefStub implements Symbol {
     public EList<SpaceKind> getSpaces() {
 	// TODO Auto-generated method stub
 	return null;
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getLiteral();
     }
 
 }

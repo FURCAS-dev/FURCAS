@@ -16,32 +16,58 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 
 
-abstract public class LogicalOperationFilterImpl extends EventFilter implements LogicalOperationFilter {
+/**
+ * Is the basis for any {@link LogicalOperationFilter} implementation.
+ * Contains a set of {@link EventFilter filters} and offers package intern methods to modify this set
+ * @author Philipp Berger
+ *
+ */
+abstract public class LogicalOperationFilterImpl extends AbstractEventFilter implements LogicalOperationFilter {
     private Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**
-     * Returns a read-only collection containing the filters
+     * Returns a  {@link Collections#unmodifiableSet(Set) read-only collection} containing the filters
      */
     public Set<EventFilter> getOperands() {
         return Collections.unmodifiableSet(filters);
     }
     
+    /**
+     * {@link Set#clear() Clears} the {@link #getOperands() operands}
+     */
     protected void clearOperands() {
         filters.clear();
     }
     
+    /**
+     * {@link Set#add(Object) Adds} an {@link EventFilter filter} to 
+     * the {@link #getOperands() operands}
+     * @param filter to add
+     */
     protected void addOperand(EventFilter filter) {
         filters.add(filter);
     }
 
+    /**
+     * {@link Set#addAll(Collection)Adds}  a {@link Collection collection} of {@link EventFilter filters} to 
+     * the {@link #getOperands() operands}
+     * @param filters to add
+     */
     protected void addOperands(Collection<EventFilter> filters) {
         this.filters.addAll(filters);
     }
 
+    /**
+     * Creates a new Array with {@link EventFilter#clone() clone} 
+     * for each contained {@link #getOperands() operand}
+     * @return the array of clones
+     */
     protected EventFilter[] cloneContents() {
         Set<EventFilter> clonedContent = new HashSet<EventFilter>();
         for(EventFilter filter : filters){
@@ -51,9 +77,17 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
         return cloned;
     }
 
-    public LogicalOperationFilterImpl(EventFilter... newFilters) {
-        filters.addAll(Arrays.asList(newFilters));
+    /**
+     * Creates a filter containing the given {@link EventFilter filters} as {@link #getOperands() operands}
+     * @param filters to be operands
+     */
+    public LogicalOperationFilterImpl(EventFilter... filters) {
+    	super(false);
+        this.filters.addAll(Arrays.asList(filters));
     }
+    /**
+     * @return a modifiable {@link Set set} of {@link #getOperands()}  
+     */
     @Override
     public Object getFilterCriterion() {
         Set<Object> result = new HashSet<Object>();
@@ -80,7 +114,26 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
             return false;
         return isNegated() == ((EventFilter) other).isNegated();
     }
-
+    /**
+     * {@link LogicalOperationFilterImpl filter} cannot be negated 
+     * @throws IllegalArgumentException
+     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#setNegated(boolean)
+     */
+    @Override
+    public void setNegated(boolean b) {
+    	if(b)
+    		throw new IllegalArgumentException("logical filters are not allowed to be negated");
+    }
+    /**
+     * {@link LogicalOperationFilter logical filters} are never negated, 
+     * negation is done by combining with a {@link NotFilter}
+     * @return <code>false</code>
+     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#isNegated()
+     */
+    @Override
+    public boolean isNegated() {
+    	return false;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;

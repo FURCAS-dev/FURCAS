@@ -12,16 +12,18 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.3 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.4 2011/04/01 19:56:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Iteration;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
@@ -198,9 +200,10 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	}
 	
 	protected void appendTemplateBindings(TemplateableElement typeRef) {
+		boolean useParentheses = typeRef instanceof CollectionType;
 		List<TemplateBinding> templateBindings = typeRef.getTemplateBindings();
 		if (!templateBindings.isEmpty()) {
-			append("(");
+			append(useParentheses ? "(" : "<");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
@@ -209,16 +212,17 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 					prefix = ", ";
 				}
 			}
-			append(")");
+			append(useParentheses ? ")" : ">");
 		}
 	}
 
 	public void appendTemplateParameters(TemplateableElement templateableElement) {
+		boolean useParentheses = templateableElement instanceof CollectionType;
 		TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
-				s.append("(");
+				s.append(useParentheses ? "(" : "<");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					s.append(prefix);
@@ -226,7 +230,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 					appendName((NamedElement) templateParameter.getParameteredElement());
 					prefix = ", ";
 				}
-				s.append(")");
+				s.append(useParentheses ? ")" : ">");
 			}
 		}
 	}
@@ -234,6 +238,25 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	@Override
 	public String toString() {
 		return s.toString();
+	}
+
+	@Override
+	public Object visitLambdaType(LambdaType object) {
+//		appendParent(object.eContainer(), object, "::");
+		appendName(object);
+		s.append(" ");
+		appendElement(object.getContextType());
+		append("(");
+		String prefix = ""; //$NON-NLS-1$
+		for (Type parameterType : object.getParameterTypes()) {
+			append(prefix);
+			appendElement(parameterType);
+//			appendMultiplicity(parameter);
+			prefix = ",";
+		}
+		append(") : ");
+		appendElement(object.getResultType());
+		return null;
 	}
 
 	@Override
@@ -285,7 +308,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 
 	@Override
 	public Object visitTupleType(TupleType object) {
-		appendParent(object.eContainer(), object, "::");
+//		appendParent(object.eContainer(), object, "::");
 		appendName(object);
 		s.append("(");
 		List<Property> tupleParts = object.getOwnedAttributes();

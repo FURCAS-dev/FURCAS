@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.6 2011/03/08 16:20:21 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.7 2011/04/01 06:33:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -49,7 +49,9 @@ import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
+import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
+import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LiteralExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
@@ -578,8 +580,27 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/IterateExp.gif";
 	}
 
+	protected String image(Iteration ele) {
+		return "/org.eclipse.ocl.examples.pivot/icons/full/obj16/Iteration.gif";
+	}
+
+	protected String text(Iteration ele) {
+		StringBuffer s = new StringBuffer();
+		appendName(s, ele);
+		appendTemplateSignature(s, ele);
+		appendParameters(s, ele.getOwnedIterators());
+		s.append(" : ");
+		appendType(s, ele.getType());
+		appendMultiplicity(s, ele);
+		return s.toString();
+	}
+
 	protected String image(IteratorExp ele) {
 		return "/org.eclipse.ocl.edit/icons/full/obj16/IteratorExp.gif";
+	}
+
+	protected String image(LambdaType ele) {
+		return "/org.eclipse.ocl.examples.pivot/icons/full/obj16/LambdaType.gif";
 	}
 
 	protected String image(LetExp ele) {

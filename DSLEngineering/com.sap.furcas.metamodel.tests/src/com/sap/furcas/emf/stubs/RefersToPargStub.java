@@ -10,7 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class RefersToPargStub extends PargStub implements RefersToPArg {
 
@@ -30,4 +33,10 @@ public class RefersToPargStub extends PargStub implements RefersToPArg {
     	public void setPropertyName(String value) {
 
     }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getRefersToPArg();
+    }
+
 }

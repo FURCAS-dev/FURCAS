@@ -90,7 +90,7 @@ public class TbUtil {
 
     /**
      * Creates a new copy of the given {@link DocumentNode} having the given newVersion set as
-     * version. THe whole containment structure will also be copied. The new version will also added
+     * version. THe whole containment structure will also be copied. The new version will also be added
      * to the <code>otherVersions</code> reference and vice versa.
      *
      * @param node

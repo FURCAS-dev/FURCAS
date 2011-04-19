@@ -6,14 +6,12 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->

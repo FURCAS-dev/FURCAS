@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.9 2011/03/03 20:05:13 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.10 2011/03/14 17:06:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Set;
 
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.Grammar;
@@ -46,7 +47,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 			@Override
 			protected String internalToValue(String string, INode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
+					return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -54,7 +55,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 			@Override
 			protected String internalToString(String value) {
-				return '"' + Strings.convertToJavaString(value, true) + '"';
+				return '"' + PivotUtil.convertToOCLString(value) + '"';
 			}
 		};
 	}
@@ -152,7 +153,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 			@Override
 			protected String internalToValue(String string, INode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(2, string.length() - 2), true);
+					return PivotUtil.convertFromOCLString(string.substring(2, string.length() - 2));
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -160,7 +161,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 			@Override
 			protected String internalToString(String value) {
-				return "'" + Strings.convertToJavaString(value, true) + "'";
+				return "'" + PivotUtil.convertToOCLString(value) + "'";
 			}
 		};
 	}
@@ -223,7 +224,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 			@Override
 			protected String internalToValue(String string, INode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
+					return PivotUtil.convertFromOCLString(string.substring(1, string.length() - 1));
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -231,7 +232,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 
 			@Override
 			protected String internalToString(String value) {
-				return "'" + Strings.convertToJavaString(value, true) + "'";
+				return "'" + PivotUtil.convertToOCLString(value) + "'";
 			}
 		};
 	}

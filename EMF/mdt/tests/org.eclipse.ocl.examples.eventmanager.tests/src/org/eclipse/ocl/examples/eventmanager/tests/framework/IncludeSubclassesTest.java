@@ -11,18 +11,30 @@
 package org.eclipse.ocl.examples.eventmanager.tests.framework;
 
 
+import junit.framework.TestCase;
+
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
-import org.eclipse.ocl.examples.testutils.BaseDepartmentTest;
-import org.eclipse.ocl.examples.testutils.NotificationHelper;
 
 
-public class IncludeSubclassesTest extends BaseDepartmentTest {
-    private EventManager m;
+public class IncludeSubclassesTest extends TestCase {	
+	private ResourceSet set;
 
     class App extends AdapterImpl{
         public boolean noti = false;
@@ -35,118 +47,156 @@ public class IncludeSubclassesTest extends BaseDepartmentTest {
     }
     @Override
     public void setUp() {
-        super.setUp();
-        // m = new EventManagerNaive(comp.eResource().getResourceSet());
-        m = EventManagerFactory.eINSTANCE.getEventManagerFor(comp.eResource().getResourceSet());
-    }
+        try {
+			super.setUp();
+		} catch (Exception e) {
+			/*...*/
+		}
+        set = new ResourceSetImpl();
+        Resource r = new ResourceImpl();
+        set.getResources().add(r);
+        
+     }
 
     @Override
     public void tearDown() {
-        m= null;
-        super.tearDown();
+    	set = null;
+        try {
+			super.tearDown();
+		} catch (Exception e) {
+			/*...*/
+		}
         
     }
     
-    public void testIncludingSubclassesFilterElementInsertionStudentGotStudent(){
-        EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(student);
+    public void testIncludingSubclassesFilterElementInsertionClassGetClass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+    	EClass cls = EcoreFactory.eINSTANCE.createEClass();
+        EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(cls);
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setContainment(true);
+        Notification noti = new ENotificationImpl(null, Notification.SET, ref, null, new DynamicEObjectImpl(cls));
         App app = new App();
         m.subscribe(filter, app);
-        NotificationHelper.createNewElementAddToResourceNotification(this.comp.getEFactoryInstance().create(student), this.comp.eResource());
+        m.handleEMFEvent(noti);
+        assertTrue("Application not notified",app.noti);
+        app.noti= false;
         
-        assertTrue(app.noti);
-        
+       EList<Adapter> eAdapters = set.getResources().get(0).eAdapters();
+       for(int i = 0; i< eAdapters.size(); i++){
+    	   eAdapters.get(i).notifyChanged(noti);
+       }
+       assertTrue("Application not notified",app.noti);
     }
-    public void testIncludingSubclassesFilterElementInsertionEmployeeGotStudent(){
-        EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(employee);
+    
+    public void testIncludingSubclassesFilterElementInsertionClassGetSubclass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+    	EClass cls = EcoreFactory.eINSTANCE.createEClass();
+    	EClass subcls = EcoreFactory.eINSTANCE.createEClass();
+    	subcls.getESuperTypes().add(cls);
+        EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(cls);
+        EReference ref = EcoreFactory.eINSTANCE.createEReference();
+        ref.setContainment(true);
+        Notification noti = new ENotificationImpl(null, Notification.SET, ref, null, new DynamicEObjectImpl(subcls));
         App app = new App();
         m.subscribe(filter, app);
-        NotificationHelper.createNewElementAddToResourceNotification(this.comp.getEFactoryInstance().create(student), this.comp.eResource());
+        m.handleEMFEvent(noti);
+        assertTrue("Application not notified",app.noti);
+        app.noti= false;
         
-        assertTrue(app.noti);
-        
+       EList<Adapter> eAdapters = set.getResources().get(0).eAdapters();
+       for(int i = 0; i< eAdapters.size(); i++){
+    	   eAdapters.get(i).notifyChanged(noti);
+       }
+       assertTrue("Application not notified",app.noti);
     }
     
-    public void testIncludingSubclassesFilterElementInsertionEmployeeGotFreelancer(){
-        EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(employee);
+    public void testDoubleSubscriptionExpectSubclassButNoSuperClass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter = EventManagerFactory.eINSTANCE.createAndFilterFor(
+    			EventManagerFactory.eINSTANCE.createNotFilter(
+    					EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA)
+    					),
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classB));
+    	
         App app = new App();
         m.subscribe(filter, app);
-        NotificationHelper.createNewElementAddToResourceNotification(this.comp.getEFactoryInstance().create(freelance), this.comp.eResource());
+    	EObject object = new DynamicEObjectImpl(classB);
+    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+        m.handleEMFEvent(noti);
+        m.unsubscribe(app);
         
-        assertTrue(app.noti);
-        
-    }
-    public void testIncludingSubclassesSimpleFreeLanceVSEmployee(){
-        EventFilter includeSubClass = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(employee);
-        App includeSubClassApp = new App();
-        m.subscribe(includeSubClass, includeSubClassApp);
+    	EObject object2 = new DynamicEObjectImpl(classA);
+    	Notification noti2 = new ENotificationImpl((InternalEObject)object2, 0, null, null, null);
+        App app2 = new App();
+        m.subscribe(filter, app2);
+        m.handleEMFEvent(noti2);
+        assertFalse("Application wrongly notified",app2.noti);
+        m.unsubscribe(app2);
 
-        EventFilter excludeSubClass = EventManagerFactory.eINSTANCE.createClassFilter(employee);
-        App excludeSubClassApp = new App();
-        m.subscribe(excludeSubClass, excludeSubClassApp);
-
-        EventFilter includeSubClassNew = EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(employee);
-        App includeSubClassNewApp = new App();
-        m.subscribe(includeSubClassNew, includeSubClassNewApp);
-
-        EventFilter excludeSubClassNew = EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee);
-        App excludeSubClassNewApp = new App();
-        m.subscribe(excludeSubClassNew, excludeSubClassNewApp);
-
-        EventFilter includeSubClassOld = EventManagerFactory.eINSTANCE.createOldValueClassFilterIncludingSubclasses(employee);
-        App includeSubClassOldApp = new App();
-        m.subscribe(includeSubClassOld, includeSubClassOldApp);
-
-        EventFilter excludeSubClassOld = EventManagerFactory.eINSTANCE.createOldValueClassFilter(employee);
-        App excludeSubClassOldApp = new App();
-        m.subscribe(excludeSubClassOld, excludeSubClassOldApp);
-
-        EObject freeLance = this.comp.getEFactoryInstance().create(freelance);
-        NotificationHelper.createNewElementAddToResourceNotification(freeLance, this.comp.eResource());
-        assertTrue(includeSubClassApp.noti);
-        assertFalse(excludeSubClassApp.noti);
-        assertTrue(includeSubClassNewApp.noti);
-        assertFalse(excludeSubClassNewApp.noti);
-        assertFalse(includeSubClassOldApp.noti);
-        assertFalse(excludeSubClassOldApp.noti);
-        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
-                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
-        
-        EObject emPloyee = this.comp.getEFactoryInstance().create(employee);
-        NotificationHelper.createNewElementAddToResourceNotification(emPloyee, this.comp.eResource());
-        assertTrue(includeSubClassApp.noti);
-        assertTrue(excludeSubClassApp.noti);
-        assertTrue(includeSubClassNewApp.noti);
-        assertTrue(excludeSubClassNewApp.noti);
-        assertFalse(includeSubClassOldApp.noti);
-        assertFalse(excludeSubClassOldApp.noti);
-        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
-                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
-        
-        NotificationHelper.createElementDeleteNotification(emPloyee);
-        assertTrue(includeSubClassApp.noti);
-        assertTrue(excludeSubClassApp.noti);
-        assertFalse(includeSubClassNewApp.noti);
-        assertFalse(excludeSubClassNewApp.noti);
-        assertTrue(includeSubClassOldApp.noti);
-        assertTrue(excludeSubClassOldApp.noti);
-        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
-                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);  
-        NotificationHelper.createElementDeleteNotification(freeLance);
-        assertTrue(includeSubClassApp.noti);
-        assertFalse(excludeSubClassApp.noti);
-        assertFalse(includeSubClassNewApp.noti);
-        assertFalse(excludeSubClassNewApp.noti);
-        assertTrue(includeSubClassOldApp.noti);
-        assertFalse(excludeSubClassOldApp.noti);
-        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
-                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
-        
+    	Notification noti3 = new ENotificationImpl(null, 0, null, null, null);
+        App app3 = new App();
+        m.subscribe(filter, app3);
+        m.handleEMFEvent(noti3);
+        assertFalse("Application wrongly notified",app3.noti);
+        m.unsubscribe(app3);
     }
     
+    public void testDoubleSubscriptionExpectSuperclassButNoSubClass(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter = EventManagerFactory.eINSTANCE.createAndFilterFor(
+    			EventManagerFactory.eINSTANCE.createNotFilter(
+    					EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classB)
+    					),
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA));
+    	
+        App app = new App();
+        m.subscribe(filter, app);
+    	EObject object = new DynamicEObjectImpl(classB);
+    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+        m.handleEMFEvent(noti);
+        m.unsubscribe(app);
+        
+    	EObject object2 = new DynamicEObjectImpl(classA);
+    	Notification noti2 = new ENotificationImpl((InternalEObject)object2, 0, null, null, null);
+        App app2 = new App();
+        m.subscribe(filter, app2);
+        m.handleEMFEvent(noti2);
+        assertTrue("Application not notified",app2.noti);
+        m.unsubscribe(app2);
+
+    	Notification noti3 = new ENotificationImpl(null, 0, null, null, null);
+        App app3 = new App();
+        m.subscribe(filter, app3);
+        m.handleEMFEvent(noti3);
+        assertFalse("Application wrongly notified",app3.noti);
+        m.unsubscribe(app3);
+    }
     
-    private void reset(App...apps){
-        for(App a:apps){
-            a.noti=false;
-        }
+    public void testNegatedSubscriptionClassANotificationSubclassB(){
+    	EventManager m = EventManagerFactory.eINSTANCE.createEventManagerFor(set);
+
+    	EClass classA = EcoreFactory.eINSTANCE.createEClass();
+    	EClass classB = EcoreFactory.eINSTANCE.createEClass();
+    	classB.getESuperTypes().add(classA);
+    	EventFilter filter =EventManagerFactory.eINSTANCE.createNotFilter(
+    			EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(classA));
+    	
+        App app = new App();
+        m.subscribe(filter, app);
+    	EObject object = new DynamicEObjectImpl(classB);
+    	Notification noti = new ENotificationImpl((InternalEObject)object, 0, null, null, null);
+        m.handleEMFEvent(noti);
+        m.unsubscribe(app);
+        
+        assertFalse("Get wrongly notified", app.noti);
     }
 }

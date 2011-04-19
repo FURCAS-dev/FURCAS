@@ -23,6 +23,7 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 	 * 
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
+	@SuppressWarnings("rawtypes")
 	public void run(IAction action) {
 		if (selection instanceof IStructuredSelection) {
 			for (Iterator it = ((IStructuredSelection) selection).iterator(); it
@@ -67,6 +68,7 @@ public class ToggleNatureAction implements IObjectActionDelegate {
 	 * @param project
 	 *            to have sample nature added or removed
 	 */
+	@SuppressWarnings("unused")
 	private void toggleNature(IProject project) {
 		IProjectNatureDescriptor[] natureDescriptors = ResourcesPlugin.getWorkspace().getNatureDescriptors();
 		

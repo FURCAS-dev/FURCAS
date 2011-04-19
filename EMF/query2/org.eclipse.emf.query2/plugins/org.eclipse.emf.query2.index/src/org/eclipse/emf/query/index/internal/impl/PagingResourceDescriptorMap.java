@@ -113,4 +113,8 @@ public class PagingResourceDescriptorMap<K, V extends ResourceDescriptorInternal
 		this.resourceMap.deserialize(strategy);
 	}
 
+	public Object[] getResourceMap() {
+		return this.resourceMap.getUnderlyingMapTable();
+	}
+
 }

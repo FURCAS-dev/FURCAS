@@ -83,7 +83,7 @@ public class ForeachParsingObserver implements IParsingObserver {
     }
 
     @Override
-    public void notifyEnterSequenceElement(String mofid) {
+    public void notifyEnterSequenceElement(String sequenceElementURI) {
         // TODO Auto-generated method stub
 
     }

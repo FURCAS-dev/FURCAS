@@ -61,6 +61,7 @@ public class StringKeyedListMap<E extends MapEntry> extends ListMap<String, E> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void serialize(SerializationStrategy<String, E> strategy) {
 		Object[] tab = table;

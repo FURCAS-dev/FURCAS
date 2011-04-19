@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.4 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.5 2011/03/17 20:06:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -56,7 +56,7 @@ public interface StandardLibrary
      * Obtains the single instance of the {@link ClassifierType} metatype, named
      * <tt>Classifier</tt>.
      * 
-     * @return the <tt>Classifier</tt> type (an instance of {@link Classifoer})
+     * @return the <tt>Classifier</tt> type (an instance of {@link Classifier})
      */
 	org.eclipse.ocl.examples.pivot.Class getClassifierType();
 	
@@ -67,6 +67,14 @@ public interface StandardLibrary
      * @return the <tt>Collection(T)</tt> type (an instance of {@link CollectionType})
      */
 	CollectionType getCollectionType();
+	
+    /**
+     * Obtains the single instance of the {@link EnumerationType} metatype, named
+     * <tt>Enumeration</tt>.
+     * 
+     * @return the <tt>Enumeration</tt> type (an instance of {@link Enumeration})
+     */
+	org.eclipse.ocl.examples.pivot.Enumeration getEnumerationType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named

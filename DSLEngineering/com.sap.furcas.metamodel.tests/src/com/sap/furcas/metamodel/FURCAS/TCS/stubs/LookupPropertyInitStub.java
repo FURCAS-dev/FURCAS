@@ -3,11 +3,14 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import junit.framework.Assert;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -78,6 +81,11 @@ public class LookupPropertyInitStub extends LocatedElementStub implements Lookup
     @Override
     public void setDefault(boolean value) {
         Assert.fail("not implemented.");
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getLookupPropertyInit();
     }
 
 }

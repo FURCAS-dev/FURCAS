@@ -15,108 +15,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
-import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.AsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
-import com.sap.furcas.metamodel.FURCAS.TCS.AtomExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreateKind;
-import com.sap.furcas.metamodel.FURCAS.TCS.AutoCreatePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Block;
-import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.BooleanPropertyExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
-import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
-import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateAsPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.CustomSeparator;
-import com.sap.furcas.metamodel.FURCAS.TCS.DisambiguatePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.EndNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumLiteralVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.EnumerationTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedLowerPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForcedUpperPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionCall;
-import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.HexadecimalMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.ImportContextPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.IndentIncrBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
-import com.sap.furcas.metamodel.FURCAS.TCS.InjectorActionsBlock;
-import com.sap.furcas.metamodel.FURCAS.TCS.InstanceOfExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.IntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.IsDefinedExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Keyword;
-import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
-import com.sap.furcas.metamodel.FURCAS.TCS.LiteralRef;
-import com.sap.furcas.metamodel.FURCAS.TCS.LocatedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookInPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupPropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Mapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.ModePArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
-import com.sap.furcas.metamodel.FURCAS.TCS.NamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.NbNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.NegativeIntegerVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.OclPropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.OctalMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.OneExp;
-import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
-import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
-import com.sap.furcas.metamodel.FURCAS.TCS.Property;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
-import com.sap.furcas.metamodel.FURCAS.TCS.PropertyVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.QualifiedNamedElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.ReferenceByPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToKeyPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.RefersToPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Rule;
-import com.sap.furcas.metamodel.FURCAS.TCS.RulePattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.ScopeKind;
-import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
-import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
-import com.sap.furcas.metamodel.FURCAS.TCS.SequenceInAlternative;
-import com.sap.furcas.metamodel.FURCAS.TCS.SimpleMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.SpaceKind;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.StartNbNLBArg;
-import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
-import com.sap.furcas.metamodel.FURCAS.TCS.StringVal;
-import com.sap.furcas.metamodel.FURCAS.TCS.Symbol;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSFactory;
-import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.TCS.TemplateModifiers;
-import com.sap.furcas.metamodel.FURCAS.TCS.Token;
-import com.sap.furcas.metamodel.FURCAS.TCS.Value;
-import com.sap.furcas.metamodel.FURCAS.TCS.WildcardMapping;
-import com.sap.furcas.metamodel.FURCAS.TCS.Word;
-import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import com.sap.furcas.metamodel.FURCAS.impl.FURCASPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
@@ -4012,24 +3910,24 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(concreteSyntaxEClass, ConcreteSyntax.class, "ConcreteSyntax", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getConcreteSyntax_K(), theEcorePackage_1.getEIntegerObject(), "k", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getConcreteSyntax_Templates(), this.getTemplate(), this.getTemplate_ConcreteSyntax(), "templates", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getConcreteSyntax_Keywords(), this.getKeyword(), null, "keywords", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getConcreteSyntax_Symbols(), this.getSymbol(), null, "symbols", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getConcreteSyntax_OperatorLists(), this.getOperatorList(), null, "operatorLists", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getConcreteSyntax_Tokens(), this.getToken(), null, "tokens", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConcreteSyntax_Templates(), this.getTemplate(), this.getTemplate_ConcreteSyntax(), "templates", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConcreteSyntax_Keywords(), this.getKeyword(), null, "keywords", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConcreteSyntax_Symbols(), this.getSymbol(), null, "symbols", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConcreteSyntax_OperatorLists(), this.getOperatorList(), null, "operatorLists", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getConcreteSyntax_Tokens(), this.getToken(), null, "tokens", null, 0, -1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getConcreteSyntax_Lexer(), ecorePackage.getEString(), "lexer", null, 1, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getConcreteSyntax_Uuid(), ecorePackage.getEString(), "uuid", null, 0, 1, ConcreteSyntax.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(templateEClass, Template.class, "Template", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getTemplate_ConcreteSyntax(), this.getConcreteSyntax(), this.getConcreteSyntax_Templates(), "concreteSyntax", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getTemplate_ConcreteSyntax(), this.getConcreteSyntax(), this.getConcreteSyntax_Templates(), "concreteSyntax", null, 1, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getTemplate_Disambiguate(), ecorePackage.getEString(), "disambiguate", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getTemplate_DisambiguateV3(), ecorePackage.getEString(), "disambiguateV3", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getTemplate_SemDisambiguate(), ecorePackage.getEString(), "semDisambiguate", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getTemplate_TextBlockDefinition(), theTextblockdefinitionPackage.getTextBlockDefinition(), theTextblockdefinitionPackage.getTextBlockDefinition_ParseRule(), "textBlockDefinition", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTemplate_TextBlockDefinition(), theTextblockdefinitionPackage.getTextBlockDefinition(), theTextblockdefinitionPackage.getTextBlockDefinition_ParseRule(), "textBlockDefinition", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(functionTemplateEClass, FunctionTemplate.class, "FunctionTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getFunctionTemplate_FunctionName(), ecorePackage.getEString(), "functionName", null, 1, 1, FunctionTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getFunctionTemplate_FunctionSequence(), this.getSequence(), this.getSequence_FunctionContainer(), "functionSequence", null, 1, 1, FunctionTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getFunctionTemplate_FunctionSequence(), this.getSequence(), this.getSequence_FunctionContainer(), "functionSequence", null, 1, 1, FunctionTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(classTemplateEClass, ClassTemplate.class, "ClassTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getClassTemplate_Modifiers(), this.getTemplateModifiers(), "modifiers", null, 0, -1, ClassTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4055,17 +3953,17 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getOperatorTemplate_Source(), ecorePackage.getEString(), "source", null, 1, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperatorTemplate_StoreOpTo(), ecorePackage.getEString(), "storeOpTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperatorTemplate_StoreRightTo(), ecorePackage.getEString(), "storeRightTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getOperatorTemplate_StoreOperatorTo(), this.getPropertyReference(), null, "storeOperatorTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getOperatorTemplate_StoreLeftSideTo(), this.getPropertyReference(), null, "storeLeftSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getOperatorTemplate_StoreRightSideTo(), this.getPropertyReference(), null, "storeRightSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOperatorTemplate_StoreOperatorTo(), this.getPropertyReference(), null, "storeOperatorTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOperatorTemplate_StoreLeftSideTo(), this.getPropertyReference(), null, "storeLeftSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOperatorTemplate_StoreRightSideTo(), this.getPropertyReference(), null, "storeRightSideTo", null, 0, 1, OperatorTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(enumerationTemplateEClass, EnumerationTemplate.class, "EnumerationTemplate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getEnumerationTemplate_Automatic(), ecorePackage.getEBoolean(), "automatic", null, 1, 1, EnumerationTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getEnumerationTemplate_Mappings(), this.getEnumLiteralMapping(), null, "mappings", null, 0, -1, EnumerationTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getEnumerationTemplate_Mappings(), this.getEnumLiteralMapping(), null, "mappings", null, 0, -1, EnumerationTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(enumLiteralMappingEClass, EnumLiteralMapping.class, "EnumLiteralMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEnumLiteralMapping_Literal(), this.getEnumLiteralVal(), null, "literal", null, 1, 1, EnumLiteralMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getEnumLiteralMapping_Element(), this.getSequenceElement(), null, "element", null, 0, 1, EnumLiteralMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getEnumLiteralMapping_Literal(), this.getEnumLiteralVal(), null, "literal", null, 1, 1, EnumLiteralMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getEnumLiteralMapping_Element(), this.getSequenceElement(), null, "element", null, 0, 1, EnumLiteralMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(literalEClass, Literal.class, "Literal", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getLiteral_Operators(), this.getOperator(), this.getOperator_Literal(), "operators", null, 0, -1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -4079,66 +3977,66 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
         initEClass(operatorListEClass, OperatorList.class, "OperatorList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getOperatorList_Name(), ecorePackage.getEString(), "name", null, 0, 1, OperatorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getOperatorList_Priorities(), this.getPriority(), this.getPriority_List(), "priorities", null, 0, -1, OperatorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOperatorList_Priorities(), this.getPriority(), this.getPriority_List(), "priorities", null, 0, -1, OperatorList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(priorityEClass, Priority.class, "Priority", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPriority_List(), this.getOperatorList(), this.getOperatorList_Priorities(), "list", null, 1, 1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getPriority_List(), this.getOperatorList(), this.getOperatorList_Priorities(), "list", null, 1, 1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getPriority_Value(), ecorePackage.getEIntegerObject(), "value", null, 1, 1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getPriority_Associativity(), this.getAssociativity(), "associativity", null, 1, 1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getPriority_Operators(), this.getOperator(), this.getOperator_Priority(), "operators", null, 0, -1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getPriority_Operators(), this.getOperator(), this.getOperator_Priority(), "operators", null, 0, -1, Priority.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getOperator_Postfix(), ecorePackage.getEBoolean(), "postfix", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getOperator_Arity(), ecorePackage.getEIntegerObject(), "arity", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperator_Literal(), this.getLiteral(), this.getLiteral_Operators(), "literal", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getOperator_Priority(), this.getPriority(), this.getPriority_Operators(), "priority", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getOperator_Priority(), this.getPriority(), this.getPriority_Operators(), "priority", null, 1, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getOperator_Templates(), this.getOperatorTemplate(), this.getOperatorTemplate_Operators(), "templates", null, 0, -1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(sequenceEClass, Sequence.class, "Sequence", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSequence_Elements(), this.getSequenceElement(), this.getSequenceElement_ElementSequence(), "elements", null, 0, -1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getSequence_Elements(), this.getSequenceElement(), this.getSequenceElement_ElementSequence(), "elements", null, 0, -1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getSequence_TemplateContainer(), this.getClassTemplate(), null, "templateContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_PrefixContainer(), this.getClassTemplate(), null, "prefixContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_FunctionContainer(), this.getFunctionTemplate(), this.getFunctionTemplate_FunctionSequence(), "functionContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_BlockContainer(), this.getBlock(), this.getBlock_BlockSequence(), "blockContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_ThenContainer(), this.getConditionalElement(), this.getConditionalElement_ThenSequence(), "thenContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_ElseContainer(), this.getConditionalElement(), this.getConditionalElement_ElseSequence(), "elseContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getSequence_SeparatorContainer(), this.getSeparatorPArg(), this.getSeparatorPArg_SeparatorSequence(), "separatorContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_FunctionContainer(), this.getFunctionTemplate(), this.getFunctionTemplate_FunctionSequence(), "functionContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_BlockContainer(), this.getBlock(), this.getBlock_BlockSequence(), "blockContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_ThenContainer(), this.getConditionalElement(), this.getConditionalElement_ThenSequence(), "thenContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_ElseContainer(), this.getConditionalElement(), this.getConditionalElement_ElseSequence(), "elseContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequence_SeparatorContainer(), this.getSeparatorPArg(), this.getSeparatorPArg_SeparatorSequence(), "separatorContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequence_OtContainer(), this.getOperatorTemplate(), null, "otContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(sequenceElementEClass, SequenceElement.class, "SequenceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSequenceElement_ElementSequence(), this.getSequence(), this.getSequence_Elements(), "elementSequence", null, 0, 1, SequenceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequenceElement_ElementSequence(), this.getSequence(), this.getSequence_Elements(), "elementSequence", null, 0, 1, SequenceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getSequenceElement_ParentTemplate(), this.getTemplate(), null, "parentTemplate", null, 0, 1, SequenceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(literalRefEClass, LiteralRef.class, "LiteralRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getLiteralRef_ReferredLiteral(), this.getLiteral(), this.getLiteral_LiteralRefs(), "referredLiteral", null, 1, 1, LiteralRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getProperty_PropertyArgs(), this.getPropertyArg(), this.getPropertyArg_Property(), "propertyArgs", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getProperty_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getProperty_PropertyArgs(), this.getPropertyArg(), this.getPropertyArg_Property(), "propertyArgs", null, 0, -1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getProperty_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(customSeparatorEClass, CustomSeparator.class, "CustomSeparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getCustomSeparator_Name(), ecorePackage.getEString(), "name", null, 1, 1, CustomSeparator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBlock_BlockSequence(), this.getSequence(), this.getSequence_BlockContainer(), "blockSequence", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getBlock_BlockArgs(), this.getBlockArg(), this.getBlockArg_Block(), "blockArgs", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getBlock_BlockSequence(), this.getSequence(), this.getSequence_BlockContainer(), "blockSequence", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getBlock_BlockArgs(), this.getBlockArg(), this.getBlockArg_Block(), "blockArgs", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(conditionalElementEClass, ConditionalElement.class, "ConditionalElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getConditionalElement_Condition(), this.getExpression(), this.getExpression_ConditionalElement(), "condition", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getConditionalElement_ThenSequence(), this.getSequence(), this.getSequence_ThenContainer(), "thenSequence", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getConditionalElement_ElseSequence(), this.getSequence(), this.getSequence_ElseContainer(), "elseSequence", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getConditionalElement_Condition(), this.getExpression(), this.getExpression_ConditionalElement(), "condition", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getConditionalElement_ThenSequence(), this.getSequence(), this.getSequence_ThenContainer(), "thenSequence", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getConditionalElement_ElseSequence(), this.getSequence(), this.getSequence_ElseContainer(), "elseSequence", null, 1, 1, ConditionalElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(primitivePropertyInitEClass, PrimitivePropertyInit.class, "PrimitivePropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(alternativeEClass, Alternative.class, "Alternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getAlternative_Sequences(), this.getSequenceInAlternative(), this.getSequenceInAlternative_AlternativeContainer(), "sequences", null, 2, -1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAlternative_Sequences(), this.getSequenceInAlternative(), this.getSequenceInAlternative_AlternativeContainer(), "sequences", null, 2, -1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getAlternative_IsMulti(), ecorePackage.getEBoolean(), "isMulti", null, 1, 1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getFunctionCall_CalledFunction(), this.getFunctionTemplate(), null, "calledFunction", null, 1, 1, FunctionCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(propertyArgEClass, PropertyArg.class, "PropertyArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPropertyArg_Property(), this.getProperty(), this.getProperty_PropertyArgs(), "property", null, 1, 1, PropertyArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getPropertyArg_Property(), this.getProperty(), this.getProperty_PropertyArgs(), "property", null, 1, 1, PropertyArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(refersToPArgEClass, RefersToPArg.class, "RefersToPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getRefersToPArg_PropertyName(), theEcorePackage_1.getEString(), "propertyName", null, 1, 1, RefersToPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4152,7 +4050,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(refersToKeyPArgEClass, RefersToKeyPArg.class, "RefersToKeyPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(separatorPArgEClass, SeparatorPArg.class, "SeparatorPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSeparatorPArg_SeparatorSequence(), this.getSequence(), this.getSequence_SeparatorContainer(), "separatorSequence", null, 1, 1, SeparatorPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSeparatorPArg_SeparatorSequence(), this.getSequence(), this.getSequence_SeparatorContainer(), "separatorSequence", null, 1, 1, SeparatorPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(autoCreatePArgEClass, AutoCreatePArg.class, "AutoCreatePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getAutoCreatePArg_Value(), this.getAutoCreateKind(), "value", null, 1, 1, AutoCreatePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4173,7 +4071,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getModePArg_Mode(), theEcorePackage_1.getEString(), "mode", null, 1, 1, ModePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(blockArgEClass, BlockArg.class, "BlockArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getBlockArg_Block(), this.getBlock(), this.getBlock_BlockArgs(), "block", null, 1, 1, BlockArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getBlockArg_Block(), this.getBlock(), this.getBlock_BlockArgs(), "block", null, 1, 1, BlockArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(nbNLBArgEClass, NbNLBArg.class, "NbNLBArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getNbNLBArg_Value(), ecorePackage.getEIntegerObject(), "value", null, 0, 1, NbNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4191,18 +4089,18 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getEndNLBArg_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, EndNLBArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getExpression_ConditionalElement(), this.getConditionalElement(), this.getConditionalElement_Condition(), "conditionalElement", null, 1, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getExpression_ConditionalElement(), this.getConditionalElement(), this.getConditionalElement_Condition(), "conditionalElement", null, 1, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(andExpEClass, AndExp.class, "AndExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getAndExp_Expressions(), this.getAtomExp(), this.getAtomExp_AndExp(), "expressions", null, 0, -1, AndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAndExp_Expressions(), this.getAtomExp(), this.getAtomExp_AndExp(), "expressions", null, 0, -1, AndExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(atomExpEClass, AtomExp.class, "AtomExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getAtomExp_AndExp(), this.getAndExp(), this.getAndExp_Expressions(), "andExp", null, 1, 1, AtomExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getAtomExp_AndExp(), this.getAndExp(), this.getAndExp_Expressions(), "andExp", null, 1, 1, AtomExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getAtomExp_PropertyName(), ecorePackage.getEString(), "propertyName", null, 1, 1, AtomExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getAtomExp_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, AtomExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getAtomExp_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, AtomExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(equalsExpEClass, EqualsExp.class, "EqualsExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEqualsExp_Value(), this.getValue(), null, "value", null, 1, 1, EqualsExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getEqualsExp_Value(), this.getValue(), null, "value", null, 1, 1, EqualsExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(booleanPropertyExpEClass, BooleanPropertyExp.class, "BooleanPropertyExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4216,37 +4114,37 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEClass(propertyValEClass, PropertyVal.class, "PropertyVal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(tokenEClass, Token.class, "Token", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getToken_Pattern(), this.getOrPattern(), null, "pattern", null, 1, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getToken_Pattern(), this.getOrPattern(), null, "pattern", null, 1, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getToken_Omitted(), theEcorePackage_1.getEBoolean(), "omitted", null, 0, 1, Token.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(orPatternEClass, OrPattern.class, "OrPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getOrPattern_SimplePatterns(), this.getSimplePattern(), null, "simplePatterns", null, 1, -1, OrPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getOrPattern_SimplePatterns(), this.getSimplePattern(), null, "simplePatterns", null, 1, -1, OrPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(simplePatternEClass, SimplePattern.class, "SimplePattern", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(rulePatternEClass, RulePattern.class, "RulePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getRulePattern_Rule(), this.getRule(), null, "rule", null, 1, 1, RulePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getRulePattern_Rule(), this.getRule(), null, "rule", null, 1, 1, RulePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(ruleEClass, Rule.class, "Rule", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
         initEClass(wordRuleEClass, WordRule.class, "WordRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getWordRule_Start(), this.getOrPattern(), null, "start", null, 1, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getWordRule_Part(), this.getOrPattern(), null, "part", null, 1, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getWordRule_End(), this.getOrPattern(), null, "end", null, 0, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getWordRule_Words(), this.getWord(), null, "words", null, 0, -1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getWordRule_Start(), this.getOrPattern(), null, "start", null, 1, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getWordRule_Part(), this.getOrPattern(), null, "part", null, 1, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getWordRule_End(), this.getOrPattern(), null, "end", null, 0, 1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getWordRule_Words(), this.getWord(), null, "words", null, 0, -1, WordRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(wordEClass, Word.class, "Word", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getWord_Token(), ecorePackage.getEString(), "token", null, 1, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(endOfLineRuleEClass, EndOfLineRule.class, "EndOfLineRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getEndOfLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getEndOfLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getEndOfLineRule_DropStart(), theEcorePackage_1.getEBoolean(), "dropStart", null, 0, 1, EndOfLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(multiLineRuleEClass, MultiLineRule.class, "MultiLineRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getMultiLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getMultiLineRule_End(), this.getStringPattern(), null, "end", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getMultiLineRule_Esc(), this.getStringPattern(), null, "esc", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEReference(getMultiLineRule_EscMappings(), this.getMapping(), null, "escMappings", null, 0, -1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getMultiLineRule_Start(), this.getStringPattern(), null, "start", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getMultiLineRule_End(), this.getStringPattern(), null, "end", null, 1, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getMultiLineRule_Esc(), this.getStringPattern(), null, "esc", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getMultiLineRule_EscMappings(), this.getMapping(), null, "escMappings", null, 0, -1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getMultiLineRule_DropStart(), theEcorePackage_1.getEBoolean(), "dropStart", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMultiLineRule_DropEnd(), theEcorePackage_1.getEBoolean(), "dropEnd", null, 0, 1, MultiLineRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4274,8 +4172,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getForcedUpperPArg_Value(), ecorePackage.getEIntegerObject(), "value", "0", 1, 1, ForcedUpperPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(injectorActionsBlockEClass, InjectorActionsBlock.class, "InjectorActionsBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), null, "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorActionsBlock_PropertyInits(), this.getInjectorAction(), null, "propertyInits", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorActionsBlock_InjectorActions(), this.getInjectorAction(), this.getInjectorAction_InjectorActionsBlock(), "injectorActions", null, 0, -1, InjectorActionsBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(lookupScopePArgEClass, LookupScopePArg.class, "LookupScopePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getLookupScopePArg_Query(), ecorePackage.getEString(), "query", null, 1, 1, LookupScopePArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4302,17 +4200,17 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getContextTemplate_IsAddToContext(), ecorePackage.getEBoolean(), "isAddToContext", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getContextTemplate_IsReferenceOnly(), ecorePackage.getEBoolean(), "isReferenceOnly", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getContextTemplate_ContextTags(), this.getContextTags(), null, "contextTags", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getContextTemplate_Scope(), this.getScopeArg(), null, "scope", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getContextTemplate_TemplateSequence(), this.getSequence(), null, "templateSequence", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getContextTemplate_Scope(), this.getScopeArg(), null, "scope", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getContextTemplate_TemplateSequence(), this.getSequence(), null, "templateSequence", null, 1, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(contextTagsEClass, ContextTags.class, "ContextTags", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getContextTags_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, ContextTags.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(injectorActionEClass, InjectorAction.class, "InjectorAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getInjectorAction_InjectorActionsBlock(), this.getInjectorActionsBlock(), this.getInjectorActionsBlock_InjectorActions(), "injectorActionsBlock", null, 0, 1, InjectorAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getInjectorAction_InjectorActionsBlock(), this.getInjectorActionsBlock(), this.getInjectorActionsBlock_InjectorActions(), "injectorActionsBlock", null, 0, 1, InjectorAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyInitEClass, PropertyInit.class, "PropertyInit", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPropertyInit_PropertyReference(), this.getPropertyReference(), null, "propertyReference", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Value(), theEcorePackage_1.getEString(), "value", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPropertyInit_Default(), ecorePackage.getEBoolean(), "default", null, 0, 1, PropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -4323,17 +4221,17 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
         initEAttribute(getScopeArg_Scope(), this.getScopeKind(), "scope", null, 1, 1, ScopeArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(foreachPredicatePropertyInitEClass, ForeachPredicatePropertyInit.class, "ForeachPredicatePropertyInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), this.getPredicateSemantic_ForeachParent(), "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getForeachPredicatePropertyInit_PredicateSemantic(), this.getPredicateSemantic(), this.getPredicateSemantic_ForeachParent(), "predicateSemantic", null, 0, -1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getForeachPredicatePropertyInit_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, ForeachPredicatePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getPredicateSemantic_When(), theEcorePackage_1.getEString(), "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getPredicateSemantic_Mode(), theEcorePackage_1.getEString(), "mode", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getPredicateSemantic_ForeachParent(), this.getForeachPredicatePropertyInit(), this.getForeachPredicatePropertyInit_PredicateSemantic(), "foreachParent", null, 1, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sequenceInAlternativeEClass, SequenceInAlternative.class, "SequenceInAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getSequenceInAlternative_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getSequenceInAlternative_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getSequenceInAlternative_Disambiguate(), ecorePackage.getEString(), "disambiguate", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(partialPArgEClass, PartialPArg.class, "PartialPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

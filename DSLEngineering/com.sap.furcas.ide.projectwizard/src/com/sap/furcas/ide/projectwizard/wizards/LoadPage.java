@@ -11,6 +11,10 @@
 package com.sap.furcas.ide.projectwizard.wizards;
 
 import java.io.IOException;
+/*import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;*/
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -162,6 +166,7 @@ public class LoadPage extends WizardPage {
 					URI location = ePackageNsURItoGenModelLocationMap
 							.get(result[i]);
 					Resource resource = resourceSet.getResource(location, true);
+					setMMBundleName(location);
 					EcoreUtil.resolveAll(resource);
 				}
 				for (Resource resource : resourceSet.getResources()) {
@@ -182,6 +187,41 @@ public class LoadPage extends WizardPage {
 				}
 			}
 
+			private void setMMBundleName(URI location) {
+				if (location.isPlatformPlugin()) {
+					/*ResourceSet resSet = new ResourceSetImpl();
+					Resource res = resSet.createResource(location);
+					URL manifest = res.getClass().getClassLoader()
+							.getResource("META-INF/MANIFEST.MF");
+					try {
+						InputStream stream = manifest.openStream();
+						final char[] buffer = new char[0x10000];
+						StringBuilder out = new StringBuilder();
+						Reader in = new InputStreamReader(stream, "UTF-8");
+						int read;
+						do {
+							read = in.read(buffer, 0, buffer.length);
+							if (read > 0) {
+								out.append(buffer, 0, read);
+							}
+						} while (read >= 0);
+						String manifestContent = out.toString();
+						String[] content = manifestContent.split("\n");
+						for (String line : content) {
+							if (line.contains("Bundle-SymbolicName")) {
+								String bundleName = line.split(" ")[1]
+										.split(";")[0];
+								pi.setMMBundleName(bundleName);
+							}
+						}
+
+					} catch (IOException e) {*/
+						pi.setMMBundleName(location.toString().split("/")[2]);
+				  //}
+				}
+
+			}
+
 			private boolean isMetamodelPackage(EPackage p) {
 				for (EObject object : p.eContents()) {
 					if (object instanceof EClass) {
@@ -195,7 +235,7 @@ public class LoadPage extends WizardPage {
 				EObject container = p.eContainer();
 				if (container instanceof EPackage) {
 					EPackage ePackage = (EPackage) container;
-					if (isMetamodelPackage(ePackage)){
+					if (isMetamodelPackage(ePackage)) {
 						return getOuterMostEPackage(ePackage);
 					}
 				}
@@ -246,6 +286,7 @@ public class LoadPage extends WizardPage {
 					// Set the appropriate values in ProjectInfo and eP
 					//
 					pi.setModelPath(files[0].getFullPath().toString());
+					pi.setMMBundleName(files[0].getProject().getName());
 					try {
 						seteP(fileToEPack(files[0]));
 					} catch (CodeGenerationException e) {

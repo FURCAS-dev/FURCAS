@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.InjectorAction;
@@ -82,7 +81,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getPropertyInits() {
         if (propertyInits == null) {
-            propertyInits = new EObjectContainmentEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
+            propertyInits = new EObjectContainmentEList.Resolving<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS);
         }
         return propertyInits;
     }
@@ -94,7 +93,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
      */
         public EList<InjectorAction> getInjectorActions() {
         if (injectorActions == null) {
-            injectorActions = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
+            injectorActions = new EObjectContainmentWithInverseEList.Resolving<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
         }
         return injectorActions;
     }

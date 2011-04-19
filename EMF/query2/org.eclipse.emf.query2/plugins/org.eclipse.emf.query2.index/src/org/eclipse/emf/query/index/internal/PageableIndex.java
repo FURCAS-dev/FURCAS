@@ -11,7 +11,6 @@
 package org.eclipse.emf.query.index.internal;
 
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
 
 /**
  * @author Martin Strenge - Initial API and implementation

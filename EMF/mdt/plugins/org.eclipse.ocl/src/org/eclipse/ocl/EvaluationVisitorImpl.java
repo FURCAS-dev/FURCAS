@@ -159,7 +159,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		int numArgs = args.size();
 
 		// evaluate source
-		Object sourceVal = source.accept(getVisitor());
+		Object sourceVal = computeSourceTurningExceptionsIntoInvalid(source);
 		
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
@@ -1344,6 +1344,22 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return null;
 	}
+
+	/**
+	 * @since 3.1
+	 */
+	protected Object computeSourceTurningExceptionsIntoInvalid(
+			OCLExpression<C> source) {
+		Object sourceVal;
+		try {
+			sourceVal = source.accept(getVisitor());
+		} catch (EvaluationHaltedException ehe) {
+			throw ehe;
+		} catch (RuntimeException e) {
+			sourceVal = getInvalid();
+		}
+		return sourceVal;
+	}
 	
 	/**
 	 * Infers a standard operation code from the name of a user-defined
@@ -1973,7 +1989,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> initExp = vd.getInitExpression();
 		Object initVal = null;
 		if (initExp != null) {
-            initVal = initExp.accept(getVisitor());
+            initVal = computeSourceTurningExceptionsIntoInvalid(initExp);
         }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;

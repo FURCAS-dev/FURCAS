@@ -11,11 +11,17 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.framework.LogicalOperationFilterImpl;
 
 
+/**
+ * Is an {@link LogicalOperationFilter} implementing the and-operator, so it
+ * matches if each contained operand matches the {@link Notification}.
+ * @author Philipp Berger
+ *
+ */
 public class AndFilter extends LogicalOperationFilterImpl {
-
 
     public AndFilter() {
         super();
@@ -25,6 +31,11 @@ public class AndFilter extends LogicalOperationFilterImpl {
     }
 
 
+    /**
+     * Returns true if every of the contained filter matches the given notification
+     * @param event the event to match
+     * @return true if every contained filter returns true
+     */
     public boolean matchesFor(Notification event) {
         for (EventFilter operator : this.getOperands()) {
             if (!(operator.matchesFor(event)))
