@@ -1090,6 +1090,11 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		if ((owner == lib.getOclVoid()) || (owner == lib.getOclInvalid())) {
 			return findOperationForVoidOrInvalid(owner, name, args);
 		}
+		// special case for UnlimitedNatural < Integer because otherwise *.div(1)
+		// and similar can't be resolved
+		if (owner == lib.getUnlimitedNatural()) {
+			return findOperationMatching(lib.getInteger(), name, args);
+		}
 
 		return null;
 	}
