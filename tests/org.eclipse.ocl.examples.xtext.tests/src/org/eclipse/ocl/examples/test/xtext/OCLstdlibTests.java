@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.3 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -27,17 +28,23 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
+import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+
+import com.google.common.collect.Iterables;
 
 /**
  * Tests.
@@ -51,15 +58,13 @@ public class OCLstdlibTests extends XtextTestCase
 		}
 	}
 
-//	private static final Logger logger = Logger.getLogger(OCLstdlibTests.class);
-
 	/**
 	 * Checks that the local oclstdlib.oclstdlib is the same as the pre-compiled
 	 * Java implementation.
 	 * 
 	 * FIXME check the library/model version instead.
 	 */
-	public void testOCLstdlib() throws IOException, InterruptedException {
+	public void testOCLstdlib() throws Exception {
 		//
 		//	Load oclstdlib.oclstdlib as a file.
 		//
@@ -107,10 +112,16 @@ public class OCLstdlibTests extends XtextTestCase
 				String fileClass = ((Feature)fileElement).getImplementationClass();
 				String javaClass = ((Feature)javaElement).getImplementationClass();
 				if (fileClass == null) {
-					fileClass = ((Feature)fileElement).getImplementation().getClass().getCanonicalName();
+					CallableImplementation implementation = ((Feature)fileElement).getImplementation();
+					if (implementation != null) {
+						fileClass = implementation.getClass().getCanonicalName();
+					}
 				}
 				if (javaClass == null) {
-					javaClass = ((Feature)javaElement).getImplementation().getClass().getCanonicalName();
+					CallableImplementation implementation = ((Feature)javaElement).getImplementation();
+					if (implementation != null) {
+						javaClass = implementation.getClass().getCanonicalName();
+					}
 				}
 				assertEquals(fileClass, javaClass);
 			}
@@ -182,6 +193,33 @@ public class OCLstdlibTests extends XtextTestCase
 		assertEquals(0, p2a.getOrder().intValue());
 		assertEquals(1, errors.size());
 	}
+
+	protected void doLoadFromString(String fileName, String testFile) throws Exception {
+		URI libraryURI = getProjectFileURI(fileName);
+		BaseCSResource xtextResource = (BaseCSResource) resourceSet.createResource(libraryURI);
+		InputStream inputStream = new ByteArrayInputStream(testFile.getBytes());
+		xtextResource.load(inputStream, null);
+		assertNoResourceErrors("Load failed", xtextResource);
+		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+//FIXME		adapter.refreshPivotMappings();
+		Resource fileResource = adapter.getPivotResource(xtextResource);
+		assertNoResourceErrors("File Model", fileResource);
+		assertNoUnresolvedProxies("File Model", fileResource);
+		assertNoValidationErrors("File Model", fileResource);
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		unloadCS(resourceSet);
+		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		if (adapter != null) {
+			TypeManager typeManager = adapter.getTypeManager();
+			if (typeManager != null) {
+				typeManager.dispose();
+			}
+		}
+		super.tearDown();
+	}
 	
 	public void testAmbiguousInternalAssignPrecedences() {
 		Collection<org.eclipse.ocl.examples.pivot.Package> rootPackages = new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
@@ -229,5 +267,45 @@ public class OCLstdlibTests extends XtextTestCase
 		precedence.setAssociativity(associativity);
 		root1.getOwnedPrecedences().add(precedence);
 		return precedence;
+	}
+	
+	
+	public void testLoadAsString() throws Exception {
+		String testFile =
+			"library lib {\n"+
+			"    type OclAny : AnyType {\n"+
+			"    	operation a(elem : Boolean) : Integer {\n"+
+			"           post a: elem;\n"+
+			"       }\n"+
+			"    }\n"+
+			"    type Classifier conformsTo OclAny {}\n"+
+			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
+			"    type Integer : PrimitiveType conformsTo Real {}\n"+
+			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
+			"    type OclInvalid : InvalidType {}\n"+
+			"    type UnlimitedNatural : PrimitiveType conformsTo Integer {}\n"+
+			"}\n";		
+		doLoadFromString("string.oclstdlib", testFile);
+	}
+	
+	public void testImport() throws Exception {
+		String testFile =
+			"import 'minimal.oclstdlib'\n"+
+			"import 'minimal.oclstdlib'\n"+
+			"library lib {\n"+
+			"    type OclAny : AnyType {\n"+
+			"    	operation a(elem : Boolean) : Integer {\n"+
+			"           post a: elem;\n"+
+			"       }\n"+
+			"    }\n"+
+			"}\n";		
+		doLoadFromString("string.oclstdlib", testFile);
+// FIXME		doLoadFromString("string.oclstdlib", testFile);
+		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		TypeManager typeManager = adapter.getTypeManager();
+		AnyType oclAnyType = typeManager.getOclAnyType();
+		Iterable<Operation> ownedOperations = typeManager.getLocalOperations(oclAnyType);
+		assertEquals(1, Iterables.size(ownedOperations));
+		unloadPivot(typeManager);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.ClassScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EmptyScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.EnumerationScopeAdapter;
@@ -72,7 +73,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	public ScopeAdapter visitDataType(DataType pivotElement) {
 		Type behavioralType = pivotElement.getBehavioralType();
 		if (behavioralType != null) {
-			return behavioralType.accept(this);
+			return AbstractScopeAdapter.getScopeAdapter(context, behavioralType);
 		}
 		else {
 			return super.visitDataType(pivotElement);
@@ -156,7 +157,7 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 
 	@Override
 	public ScopeAdapter visitUnspecifiedType(UnspecifiedType pivotElement) {
-		return pivotElement.getLowerBound().accept(this);
+		return AbstractScopeAdapter.getScopeAdapter(context, pivotElement.getLowerBound());
 	}
 
 	@Override

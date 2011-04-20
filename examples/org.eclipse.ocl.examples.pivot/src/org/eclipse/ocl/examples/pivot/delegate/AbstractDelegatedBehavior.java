@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractDelegatedBehavior.java,v 1.4 2011/03/14 17:04:15 ewillink Exp $
+ * $Id: AbstractDelegatedBehavior.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
@@ -135,12 +136,14 @@ public abstract class AbstractDelegatedBehavior<E extends EModelElement, R, F>
 			try {
 				String expression = PivotUtil.getBody(opaqueExpression);
 				if (expression != null) {
-					expressionInOcl = PivotUtil.resolveSpecification(typeManager, namedElement, expression);
+					URI uriBody = typeManager.getResourceIdentifier(constraint, "body");
+					expressionInOcl = PivotUtil.resolveSpecification(typeManager, uriBody, namedElement, expression);
 					if (expressionInOcl != null) {
 						opaqueExpression.setValueExpression(expressionInOcl);
 						String message = PivotUtil.getMessage(opaqueExpression);
 						if ((message != null) && (message.length() > 0)) {
-							ExpressionInOcl resolveSpecification = PivotUtil.resolveSpecification(typeManager, namedElement, message);
+							URI uriMessage = typeManager.getResourceIdentifier(constraint, "message");
+							ExpressionInOcl resolveSpecification = PivotUtil.resolveSpecification(typeManager, uriMessage, namedElement, message);
 							OclExpression messageExpression = resolveSpecification.getBodyExpression();
 							for (TreeIterator<EObject> tit = messageExpression.eAllContents(); tit.hasNext(); ) {
 								EObject eObject = tit.next();

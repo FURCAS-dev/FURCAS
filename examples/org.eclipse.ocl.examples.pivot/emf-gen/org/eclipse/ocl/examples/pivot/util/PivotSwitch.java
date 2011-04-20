@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.7 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -33,11 +33,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -396,91 +391,6 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseComment(comment);
 				if (result == null) result = caseElement(comment);
 				if (result == null) result = caseVisitable(comment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.COMPLETE_ENVIRONMENT:
-			{
-				CompleteEnvironment completeEnvironment = (CompleteEnvironment)theEObject;
-				T result = caseCompleteEnvironment(completeEnvironment);
-				if (result == null) result = casePackage(completeEnvironment);
-				if (result == null) result = caseNamespace(completeEnvironment);
-				if (result == null) result = caseTemplateableElement(completeEnvironment);
-				if (result == null) result = caseNamedElement(completeEnvironment);
-				if (result == null) result = caseMonikeredElement(completeEnvironment);
-				if (result == null) result = caseNameable(completeEnvironment);
-				if (result == null) result = caseElement(completeEnvironment);
-				if (result == null) result = caseVisitable(completeEnvironment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.COMPLETE_OPERATION:
-			{
-				CompleteOperation completeOperation = (CompleteOperation)theEObject;
-				T result = caseCompleteOperation(completeOperation);
-				if (result == null) result = caseOperation(completeOperation);
-				if (result == null) result = caseFeature(completeOperation);
-				if (result == null) result = caseNamespace(completeOperation);
-				if (result == null) result = caseParameterableElement(completeOperation);
-				if (result == null) result = caseTemplateableElement(completeOperation);
-				if (result == null) result = caseTypedMultiplicityElement(completeOperation);
-				if (result == null) result = caseTypedElement(completeOperation);
-				if (result == null) result = caseMultiplicityElement(completeOperation);
-				if (result == null) result = caseNamedElement(completeOperation);
-				if (result == null) result = caseMonikeredElement(completeOperation);
-				if (result == null) result = caseNameable(completeOperation);
-				if (result == null) result = caseElement(completeOperation);
-				if (result == null) result = caseVisitable(completeOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.COMPLETE_PACKAGE:
-			{
-				CompletePackage completePackage = (CompletePackage)theEObject;
-				T result = caseCompletePackage(completePackage);
-				if (result == null) result = casePackage(completePackage);
-				if (result == null) result = caseNamespace(completePackage);
-				if (result == null) result = caseTemplateableElement(completePackage);
-				if (result == null) result = caseNamedElement(completePackage);
-				if (result == null) result = caseMonikeredElement(completePackage);
-				if (result == null) result = caseNameable(completePackage);
-				if (result == null) result = caseElement(completePackage);
-				if (result == null) result = caseVisitable(completePackage);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.COMPLETE_PROPERTY:
-			{
-				CompleteProperty completeProperty = (CompleteProperty)theEObject;
-				T result = caseCompleteProperty(completeProperty);
-				if (result == null) result = caseProperty(completeProperty);
-				if (result == null) result = caseFeature(completeProperty);
-				if (result == null) result = caseParameterableElement(completeProperty);
-				if (result == null) result = caseTypedMultiplicityElement(completeProperty);
-				if (result == null) result = caseTypedElement(completeProperty);
-				if (result == null) result = caseMultiplicityElement(completeProperty);
-				if (result == null) result = caseNamedElement(completeProperty);
-				if (result == null) result = caseMonikeredElement(completeProperty);
-				if (result == null) result = caseNameable(completeProperty);
-				if (result == null) result = caseElement(completeProperty);
-				if (result == null) result = caseVisitable(completeProperty);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PivotPackage.COMPLETE_TYPE:
-			{
-				CompleteType completeType = (CompleteType)theEObject;
-				T result = caseCompleteType(completeType);
-				if (result == null) result = caseClass(completeType);
-				if (result == null) result = caseType(completeType);
-				if (result == null) result = caseNamespace(completeType);
-				if (result == null) result = caseNamedElement(completeType);
-				if (result == null) result = caseParameterableElement(completeType);
-				if (result == null) result = caseTemplateableElement(completeType);
-				if (result == null) result = caseMonikeredElement(completeType);
-				if (result == null) result = caseNameable(completeType);
-				if (result == null) result = caseElement(completeType);
-				if (result == null) result = caseVisitable(completeType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1471,7 +1381,9 @@ public class PivotSwitch<T> extends Switch<T> {
 			{
 				UnspecifiedType unspecifiedType = (UnspecifiedType)theEObject;
 				T result = caseUnspecifiedType(unspecifiedType);
+				if (result == null) result = caseClass(unspecifiedType);
 				if (result == null) result = caseType(unspecifiedType);
+				if (result == null) result = caseNamespace(unspecifiedType);
 				if (result == null) result = caseNamedElement(unspecifiedType);
 				if (result == null) result = caseParameterableElement(unspecifiedType);
 				if (result == null) result = caseTemplateableElement(unspecifiedType);
@@ -1794,82 +1706,6 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCollectionRange(CollectionRange object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complete Environment</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complete Environment</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompleteEnvironment(CompleteEnvironment object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complete Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complete Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompleteOperation(CompleteOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complete Package</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompletePackage(CompletePackage object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complete Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complete Property</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompleteProperty(CompleteProperty object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Complete Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Complete Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompleteType(CompleteType object)
-	{
 		return null;
 	}
 

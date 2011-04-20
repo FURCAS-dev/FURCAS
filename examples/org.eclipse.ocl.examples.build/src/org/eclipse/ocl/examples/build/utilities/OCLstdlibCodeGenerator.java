@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibCodeGenerator.java,v 1.4 2011/03/17 20:01:45 ewillink Exp $
+ * $Id: OCLstdlibCodeGenerator.java,v 1.5 2011/04/20 19:02:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.build.utilities;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,7 +108,7 @@ public class OCLstdlibCodeGenerator extends AbstractWorkflowComponent
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 			throw e;
-		} catch (IOException e) {
+		} catch (Exception e) {
 			issues.addError(this, "libraryFile not specified.", null, e, null);
 			e.printStackTrace();
 		}

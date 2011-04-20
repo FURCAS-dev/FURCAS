@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: EObjectOperation.java,v 1.4 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: EObjectOperation.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
 import java.util.List;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -58,7 +59,9 @@ public class EObjectOperation implements CallableImplementation
 			Operation operation = PivotUtil.getReferredOperation(callExp);
 			String string = PivotUtil.getBody((OpaqueExpression) specification);
 			try {
-				specification = PivotUtil.resolveSpecification(evaluationVisitor.getTypeManager(), operation, string);
+				TypeManager typeManager = evaluationVisitor.getTypeManager();
+				URI uri = typeManager.getResourceIdentifier(operation, null);
+				specification = PivotUtil.resolveSpecification(typeManager, uri, operation, string);
 			} catch (ParserException e) {
 				return evaluationVisitor.throwInvalidEvaluation("parse failure", e, callExp, sourceValue);
 			}
