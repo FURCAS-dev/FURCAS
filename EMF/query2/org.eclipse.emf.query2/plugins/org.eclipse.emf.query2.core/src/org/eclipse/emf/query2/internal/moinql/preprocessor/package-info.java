@@ -9,6 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * 
+ * Contains all internal implementations of Query pre-processor like Type Checker
+ * and FacilityAssigner.
  */
 package org.eclipse.emf.query2.internal.moinql.preprocessor;

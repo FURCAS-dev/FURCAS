@@ -14,8 +14,7 @@ import org.eclipse.emf.query.index.internal.maps.MapEntry;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
+ * Internal implementation for EReferenceDescriptor
  * 
  */
 public interface EReferenceDescriptorInternal extends EReferenceDescriptor, MapEntry {

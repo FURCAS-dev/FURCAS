@@ -9,8 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * <B>Deprecated</B>. <br>
- * <br>
- * This API is for SAP-internal use only and subject to change
+ * Contains all internal classes for BQL.
+ * 
  */
 package org.eclipse.emf.query2.internal.bql.api;
