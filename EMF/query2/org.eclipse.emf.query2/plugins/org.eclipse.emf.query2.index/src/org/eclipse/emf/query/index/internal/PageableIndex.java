@@ -13,8 +13,7 @@ package org.eclipse.emf.query.index.internal;
 import org.eclipse.emf.query.index.Index;
 
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
+ * Represents an Index which supports paging
  * 
  */
 public interface PageableIndex extends Index {

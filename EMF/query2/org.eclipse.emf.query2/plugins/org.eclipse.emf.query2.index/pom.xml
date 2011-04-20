@@ -13,5 +13,8 @@
   <packaging>eclipse-plugin</packaging>
   <name>EMF Query2 Core</name>	
 
+				<configuration>
+	          		<excludePackageNames>com.eclipse.emf.query.index.internal.*</excludePackageNames>
+    	    	</configuration>
 
 </project>

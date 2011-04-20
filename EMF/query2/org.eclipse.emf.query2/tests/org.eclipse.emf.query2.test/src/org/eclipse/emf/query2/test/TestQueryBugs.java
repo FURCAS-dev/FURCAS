@@ -188,11 +188,11 @@ public class TestQueryBugs extends QueryTestCase {
 
 		// check the results
 		if (!resultSet.isEmpty()) {
-		    Set<String> names = new HashSet<String>();
-		    for (int i=0; i<resultSet.getSize(); i++) {
-			names.add((String) resultSet.getAttribute(i, "div", "name"));
-		    }
-		    assertTrue(names.contains(this.div1.getName()));
+			 Set<String> names = new HashSet<String>();
+			 for (int i=0; i<resultSet.getSize(); i++) {
+				 names.add((String) resultSet.getAttribute(i, "div", "name"));
+			 }
+			 assertTrue(names.contains(this.div1.getName()));
 		}
 	}
 
