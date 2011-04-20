@@ -10,18 +10,15 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
-import org.eclipse.emf.query.index.properties.ReferenceDescriptorProperties;
-import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal, IAdaptable {
+public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal{
 
 	private final EObjectDescriptorImpl source;
 	public static final int SOURCE_FRAGMENT = 1;
@@ -84,13 +81,6 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal, IA
 
 	public boolean isIntraLink() {
 		return this.source.getResourceURI() == this.targetResource;
-	}
-
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class adapter) {
-		if (adapter == IPropertySource.class)
-			return new ReferenceDescriptorProperties(this);
-		return null;
 	}
 
 	@Override
