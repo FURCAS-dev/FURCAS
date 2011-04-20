@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractRootCSScopeAdapter.java,v 1.3 2011/03/18 18:19:07 ewillink Exp $
+ * $Id: AbstractRootCSScopeAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -39,6 +39,7 @@ public abstract class AbstractRootCSScopeAdapter<CS extends RootCS & MonikeredEl
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		TypeManager typeManager = environmentView.getTypeManager();
 		if (environmentView.accepts(PivotPackage.Literals.TYPE)) {
 			for (Type type : typeManager.getGlobalTypes()) {
 				environmentView.addNamedElement(type);

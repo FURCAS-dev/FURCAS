@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.4 2011/03/08 15:14:56 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.5 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseCS2Pivot;
@@ -92,7 +93,7 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			else {
 				messageTemplate = "Unknown unresolved context";
 			}
-			String typeText = "Unknown type";
+			String typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
 			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
 			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
 //				NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csOperator;

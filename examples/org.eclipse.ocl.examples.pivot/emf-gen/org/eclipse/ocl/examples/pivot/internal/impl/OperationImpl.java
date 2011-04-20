@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OperationImpl.java,v 1.4 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: OperationImpl.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -54,6 +55,8 @@ import org.eclipse.ocl.examples.pivot.internal.operations.OperationOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+
+import com.google.common.collect.Iterators;
 
 /**
  * <!-- begin-user-doc -->
@@ -1088,5 +1091,9 @@ public class OperationImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitOperation(this);
+	}
+
+	public Iterator<Operation> iterator() {
+		return Iterators.singletonIterator((Operation)this);
 	}
 } //OperationImpl

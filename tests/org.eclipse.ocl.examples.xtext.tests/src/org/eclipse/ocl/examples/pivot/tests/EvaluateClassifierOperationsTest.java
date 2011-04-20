@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.2 2011/03/31 17:29:48 ewillink Exp $
+ * $Id: EvaluateClassifierOperationsTest.java,v 1.3 2011/04/20 19:02:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -35,6 +35,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the allInstances() operator.
 	 */
 	public void test_allInstances() {
+// FIXME		assertQueryResults(pkg1, "Set{}", "pivot::CollectionKind.allInstances()");
 		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
 		assertQueryResults(null, "Set{}", "pivot::Package.allInstances()");

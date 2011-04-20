@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Property.java,v 1.4 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: Property.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property</b></em>'.
+ * @implements Iterable<Property>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -56,7 +57,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property
-		extends Feature, ParameterableElement {
+		extends Feature, ParameterableElement, Iterable<Property> {
 
 	/**
 	 * Returns the value of the '<em><b>Is Read Only</b></em>' attribute.

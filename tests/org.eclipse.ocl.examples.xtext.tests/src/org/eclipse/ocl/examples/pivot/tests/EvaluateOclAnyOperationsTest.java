@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.6 2011/03/17 20:11:48 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.7 2011/04/20 19:02:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -246,6 +246,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testOclIsInvalidInvalid() {
 		assertQueryTrue(null, "invalid.oclIsInvalid()");
+		assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
+		assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
 	}
 
 	public void testOclIsInvalidNull() {

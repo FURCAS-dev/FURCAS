@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.4 2011/03/31 17:29:48 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.5 2011/04/20 19:02:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -28,6 +28,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -64,7 +66,7 @@ public class IteratorsTest extends PivotTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-		typeManager.addGlobalNamespace("pivot", typeManager.getPivotPackage());
+		typeManager.addGlobalNamespace("pivot", typeManager.getPivotMetaModel());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -77,14 +79,14 @@ public class IteratorsTest extends PivotTestSuite
         // pkg1::pkg3::pkg5
         // pkg1::pkg3::pkg5::george
 
-        pkg1 = typeManager.createPackage("pkg1");
-        pkg2 = createNestedPackage(pkg1, "pkg2");
-        jim = createNestedPackage(pkg2, "jim");
-        bob = createNestedPackage(pkg1, "bob");
-        pkg3 = createNestedPackage(pkg1, "pkg3");
-        pkg4 = createNestedPackage(pkg3, "pkg4");
-        pkg5 = createNestedPackage(pkg3, "pkg5");
-        george = createNestedPackage(pkg5, "george");
+        pkg1 = createPackage(null, "pkg1");
+        pkg2 = createPackage(pkg1, "pkg2");
+        jim = createPackage(pkg2, "jim");
+        bob = createPackage(pkg1, "bob");
+        pkg3 = createPackage(pkg1, "pkg3");
+        pkg4 = createPackage(pkg3, "pkg4");
+        pkg5 = createPackage(pkg3, "pkg5");
+        george = createPackage(pkg5, "george");
         helper.setContext(typeManager.getPivotType("Package"));
     }
 
@@ -389,7 +391,9 @@ public class IteratorsTest extends PivotTestSuite
      * Tests parsing the closure of operation calls.
      */
     public void test_closure_operations() {
+    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
     	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+    	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
         getFakes.setUpper(BigInteger.valueOf(-1));
@@ -413,7 +417,9 @@ public class IteratorsTest extends PivotTestSuite
      * body type with the iterator variable (source element) type.
      */
     public void test_closureValidation_typeConformance_154695() {
+    	Resource fakeResource = new XMIResourceFactoryImpl().createResource(null);
     	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
+    	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
         getFakes.setUpper(BigInteger.valueOf(-1));
@@ -709,6 +715,8 @@ public class IteratorsTest extends PivotTestSuite
         
         // EDate defines '<' by having a Comparable instance class
         assertQuery(context, "let dates : Sequence(ecore::EDate) = Sequence{} in dates->sortedBy(e | e)");
+        // EInt defines '<' by having a behavioral mapping to the Integer type
+        assertQueryResults(context, "Sequence{1,7,9}", "let values : Sequence<ecore::EInt> = Sequence{1,9,7} in values->sortedBy(e | e)");
     }
 	
 	public void loadEPackage(String alias, EPackage ePackage) {		
