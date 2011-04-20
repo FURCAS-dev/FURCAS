@@ -7,9 +7,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
+import org.eclipse.xtext.validation.CompositeEValidator;
  
-public class OCLstdlibCompositeEValidator extends NoEObjectCompositeEValidator
+public class OCLstdlibCompositeEValidator extends CompositeEValidator
 {
 	@Override
 	public boolean validate(EObject csObject, DiagnosticChain diagnostics,
