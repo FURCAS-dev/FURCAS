@@ -12,26 +12,18 @@
  * 
  * </copyright>
  *
- * $Id: OCLDelegateDomain.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: OCLDelegateDomain.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.PivotFactory;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
-import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
@@ -83,8 +75,8 @@ public class OCLDelegateDomain implements DelegateDomain
 	protected final TypeManager typeManager;
 	private Ecore2Pivot ecore2Pivot = null;
 	// FIXME Introduce a lightweight function (? a lambda function) to avoid the need for a CompleteEnvironment for queries
-	private Map<CompletePackage, org.eclipse.ocl.examples.pivot.Package> queryPackages = null;
-	private Map<CompleteType, org.eclipse.ocl.examples.pivot.Class> queryTypes = null;
+//	private Map<CompletePackage, org.eclipse.ocl.examples.pivot.Package> queryPackages = null;
+//	private Map<CompleteType, org.eclipse.ocl.examples.pivot.Class> queryTypes = null;
 	
 	/**
 	 * Initializes me with my delegate URI and package.
@@ -112,23 +104,23 @@ public class OCLDelegateDomain implements DelegateDomain
 		}
 	}
 
-	public PivotEnvironmentFactory getEnvironmentFactory() {
+	private PivotEnvironmentFactory getEnvironmentFactory() {
 		Resource res = ePackage.eResource();
 		PivotEnvironmentFactory envFactory = null;
 		if (res != null) {
 			TypeManager typeManager = null;
-			Ecore2Pivot ecore2Pivot = Ecore2Pivot.findAdapter(res);
-			if (ecore2Pivot != null) {
-				typeManager = ecore2Pivot.getTypeManager();
-			}
+//			Ecore2Pivot ecore2Pivot = null; //Ecore2Pivot.findAdapter(res);
+//			if (ecore2Pivot != null) {
+//				typeManager = ecore2Pivot.getTypeManager();
+//			}
 			ResourceSet resourceSet = res.getResourceSet();
 			if (resourceSet != null) {
-				if (typeManager != null) {
+//				if (typeManager != null) {
 					TypeManagerResourceSetAdapter rsAdapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
 					if (rsAdapter != null) {
 						typeManager = rsAdapter.getTypeManager();
 					}
-				}
+//				}
 				// it's a dynamic package. Use the local package registry
 				EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
 				envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
@@ -153,7 +145,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		return ecore2Pivot.getCreated(requiredClass, eObject);
 	}
 
-	public org.eclipse.ocl.examples.pivot.Package getQueryPackage(org.eclipse.ocl.examples.pivot.Package modelPackage) {
+/*	public org.eclipse.ocl.examples.pivot.Package getQueryPackage(org.eclipse.ocl.examples.pivot.Package modelPackage) {
 		CompleteEnvironmentManager completeEnvironmentManager = typeManager.useCompleteEnvironmentManager();
 		CompletePackage completePackage = typeManager.getCompletePackage(modelPackage);
 		if (queryPackages == null) {
@@ -173,9 +165,9 @@ public class OCLDelegateDomain implements DelegateDomain
 			}
 		}
 		return queryPackage;
-	}
+	} */
 
-	public org.eclipse.ocl.examples.pivot.Class getQueryType(Type modelType) {
+/*	public org.eclipse.ocl.examples.pivot.Class getQueryType(Type modelType) {
 		CompleteEnvironmentManager completeEnvironmentManager = typeManager.useCompleteEnvironmentManager();
 		org.eclipse.ocl.examples.pivot.Package contextPackage = getQueryPackage(modelType.getPackage());
 		CompleteType completeType = typeManager.getCompleteType(modelType);
@@ -191,7 +183,7 @@ public class OCLDelegateDomain implements DelegateDomain
 			completeEnvironmentManager.addType(completeType, queryType);
 		}
 		return queryType;
-	}
+	} */
 
 	public TypeManager getTypeManager() {
 		return typeManager;

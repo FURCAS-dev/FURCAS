@@ -12,11 +12,9 @@
  *
  * </copyright>
  *
- * $Id: TestPrettyPrinter.java,v 1.3 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: TestPrettyPrinter.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
-
-import java.io.IOException;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -32,7 +30,7 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
 
 public class TestPrettyPrinter extends XtextTestCase
 {
-	public void testDeclarations() throws IOException {
+	public void testDeclarations() throws Exception {
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
@@ -47,7 +45,7 @@ public class TestPrettyPrinter extends XtextTestCase
 		}
 	}
 	
-	public void testSignatures() throws IOException {
+	public void testSignatures() throws Exception {
 		URI libraryURI = getProjectFileURI("OCL-2.3.oclstdlib");
 		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(libraryURI, true);
 		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);

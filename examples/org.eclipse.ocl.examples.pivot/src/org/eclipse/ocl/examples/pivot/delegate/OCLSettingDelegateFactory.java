@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLSettingDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLSettingDelegateFactory.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -27,12 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 public class OCLSettingDelegateFactory extends AbstractOCLDelegateFactory
 		implements EStructuralFeature.Internal.SettingDelegate.Factory
 {
-	public OCLSettingDelegateFactory() {}
-
-	public OCLSettingDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
-
 	public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
 		EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
 		return new OCLSettingDelegate(getDelegateDomain(ePackage), structuralFeature);

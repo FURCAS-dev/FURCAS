@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLinkingService.java,v 1.5 2011/03/18 18:19:09 ewillink Exp $
+ * $Id: EssentialOCLLinkingService.java,v 1.6 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -60,7 +60,7 @@ public class EssentialOCLLinkingService extends DefaultLinkingService
 	private IGlobalScopeProvider globalScopeProvider;
 
 	protected List<EObject> getLinkedImport(ModelElementCS context, INode node) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(context);
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(context);
 		String text = getText(node);
 		if ((scopeAdapter instanceof ImportScopeAdapter) && (text != null)) {
 			BaseCSResource csResource = (BaseCSResource) context.eResource();

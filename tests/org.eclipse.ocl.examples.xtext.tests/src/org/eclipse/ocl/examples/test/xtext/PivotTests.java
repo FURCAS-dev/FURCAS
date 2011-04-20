@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTests.java,v 1.5 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: PivotTests.java,v 1.6 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -26,6 +26,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -33,8 +34,11 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Moniker;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
@@ -51,9 +55,6 @@ import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
  */
 public class PivotTests extends XtextTestCase
 {
-
-//	private static final Logger logger = Logger.getLogger(PivotTests.class);
-
 	public static class Checker extends CS2Pivot
 	{
 		private Checker(CS2Pivot aConverter) {
@@ -61,13 +62,15 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertContainedBy(CS2Pivot thatConverter) {
-			List<String> theseMonikers = new ArrayList<String>(moniker2PivotMap.keySet());
-			List<String> thoseMonikers = new ArrayList<String>(thatConverter.getMonikers());
+			Map<String, MonikeredElement> thisMoniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
+			Map<String, MonikeredElement> thatMoniker2PivotMap = typeManager.computeMoniker2PivotMap(thatConverter.getPivotResources());
+			List<String> theseMonikers = new ArrayList<String>(thisMoniker2PivotMap.keySet());
+			List<String> thoseMonikers = new ArrayList<String>(thatMoniker2PivotMap.keySet());
 			Collections.sort(theseMonikers);
 			Collections.sort(thoseMonikers);
-			for (String moniker : moniker2PivotMap.keySet()) {
-				MonikeredElement thisPivotElement = getPivotElement(moniker);
-				MonikeredElement thatPivotElement = thatConverter.getPivotElement(moniker);
+			for (String moniker : thisMoniker2PivotMap.keySet()) {
+				MonikeredElement thisPivotElement = thisMoniker2PivotMap.get(moniker);
+				MonikeredElement thatPivotElement = thatMoniker2PivotMap.get(moniker);
 				if (isValidPivot(thisPivotElement) && isValidPivot(thatPivotElement)) {
 					assertEquals("Preserved pivot", thisPivotElement, thatPivotElement);
 				}
@@ -75,6 +78,7 @@ public class PivotTests extends XtextTestCase
 		}
 
 		public void assertSameContents() {
+			Map<String, MonikeredElement> moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 			Collection<? extends Resource> csResources = cs2pivotResourceMap.keySet();
 			for (Resource csResource : csResources) {
 				for (TreeIterator<EObject> tit = csResource.getAllContents(); tit.hasNext(); ) {
@@ -86,7 +90,7 @@ public class PivotTests extends XtextTestCase
 							MonikeredElement actualPivotElement = (MonikeredElement) csMonikeredElement.getPivot();
 							if (actualPivotElement == null) {
 								@SuppressWarnings("unused")
-								MonikeredElement pivotElement = getPivotElement(csMoniker);
+								MonikeredElement pivotElement = moniker2PivotMap.get(csMoniker);
 								fail("Missing pivot for '" + csMoniker + "'");
 							}
 							else {
@@ -177,6 +181,8 @@ public class PivotTests extends XtextTestCase
 			}
 		}
 	} */
+	
+	protected TypeManager typeManager = null;
 
 	public void assertHasMonikers(Collection<? extends Resource> pivotResources) {
 		for (Resource pivotResource : pivotResources) {
@@ -198,6 +204,23 @@ public class PivotTests extends XtextTestCase
 				}
 			}
 		}
+	}
+
+	public void checkPivotMonikers(Package pivotRoot) {
+		for (TreeIterator<EObject> tit = pivotRoot.eAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if ((eObject instanceof MonikeredElement) && !(eObject instanceof org.eclipse.ocl.examples.pivot.Package)) {
+				MonikeredElement pivotElement = (MonikeredElement)eObject;
+				String actualMoniker = pivotElement.getMoniker();
+				String computedMoniker = Pivot2Moniker.toString(pivotElement);
+				if (!actualMoniker.equals(computedMoniker)) {
+					Ecore2Moniker.toString((EModelElement)pivotElement.getETarget());
+					Pivot2Moniker.toString(pivotElement);
+					assert false : computedMoniker + " is not equal to " + actualMoniker;
+				}
+			}
+		}
+		
 	}
 
 /*	public CS2Pivot createPivot(Map<? extends Resource,? extends Resource> cs2pivotResourceMap) {
@@ -296,11 +319,14 @@ public class PivotTests extends XtextTestCase
 //		damager.update();
 //		damager.assertSameContents();
 		//
-		assertPivotIsValid(pivotURI);	
+		assertPivotIsValid(pivotURI);
+		TypeManager typeManager = adapter.getTypeManager();
+		adapter.dispose();
+		typeManager.dispose();
 	}
 	
 	public void doPivotTestEcore(String stem) throws IOException {
-		TypeManager typeManager = new TypeManager();
+		typeManager = new TypeManager();
 		ResourceSet pivotResourceSet = typeManager.getPivotResourceSet();
 //		long startTime = System.currentTimeMillis();
 //		System.out.println("Start at " + startTime);
@@ -326,6 +352,8 @@ public class PivotTests extends XtextTestCase
 		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreResource, typeManager);
 		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
 		
+		
+		checkPivotMonikers(pivotRoot);
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
 //		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
@@ -357,7 +385,7 @@ public class PivotTests extends XtextTestCase
 		Pivot2CS pivot2cs = new OCLinEcorePivot2CS(cs2PivotResourceMap, typeManager);
 		pivot2cs.update();
 		csResource.save(null);
-	
+//		adapter.dispose();
 	}
 	
 //	public Damager damagePivot(CS2Pivot aConverter) {
@@ -381,6 +409,15 @@ public class PivotTests extends XtextTestCase
 //		doPivotTestOCLstdlib("midi");
 //	}
 
+	@Override
+	protected void tearDown() throws Exception {
+		if (typeManager != null) {
+			typeManager.dispose();
+			typeManager = null;
+		}		
+		super.tearDown();
+	}
+
 	public void testPivot_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 		doPivotTestOCLstdlib("oclstdlib");
 	}
@@ -394,10 +431,17 @@ public class PivotTests extends XtextTestCase
 //	}
 
 	public void testPivot_Ecore_ecore() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doPivotTestEcore("Ecore");
 	}
 
 	public void testPivot_Names_ecore() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doPivotTestEcore("Names");
 	}
+
+//	public void testPivot_Temp_ecore() throws IOException, InterruptedException {
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
+//		doPivotTestEcore("Temp");
+//	}
 }

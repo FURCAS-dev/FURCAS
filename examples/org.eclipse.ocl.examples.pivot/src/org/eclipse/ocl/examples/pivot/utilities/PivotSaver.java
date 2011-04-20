@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.6 2011/04/01 19:57:10 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -223,7 +223,7 @@ public class PivotSaver
 			orphanage.getOwnedTypes().add(resolvedType);
 			types.put(moniker, resolvedType);
 			String newMoniker = resolvedType.getMoniker();
-			assert moniker.equals(newMoniker);
+			assert moniker.equals(newMoniker) : newMoniker + " is not equal to " + moniker;
 			locateSpecializations(Collections.singletonList(resolvedType));
 			return resolvedType;
 		}

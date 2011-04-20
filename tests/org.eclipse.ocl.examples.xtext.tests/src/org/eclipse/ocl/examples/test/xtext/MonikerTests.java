@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikerTests.java,v 1.4 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: MonikerTests.java,v 1.5 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -233,6 +233,8 @@ public class MonikerTests extends XtextTestCase
 			}
 		}
 //		assertEquals(csMonikerMap.size(), pivotMonikerMap.size());
+		adapter.dispose();
+		typeManager.dispose();
 	}
 
 	public void testMoniker_Ecore_ecore() throws IOException, InterruptedException {
@@ -260,6 +262,7 @@ public class MonikerTests extends XtextTestCase
 
 	public void testMoniker_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 //		BaseScopeProvider.LOOKUP.setState(true);
+//		Abstract2Moniker.TRACE_MONIKERS.setState(true);
 		doMonikerTestOCLstdlib("oclstdlib");
 	}
 

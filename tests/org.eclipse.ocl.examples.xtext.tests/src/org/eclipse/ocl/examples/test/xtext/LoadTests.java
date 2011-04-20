@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.19 2011/03/03 20:10:19 ewillink Exp $
+ * $Id: LoadTests.java,v 1.20 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -30,9 +30,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
@@ -46,7 +46,7 @@ public class LoadTests extends XtextTestCase
 {	
 	protected TypeManager typeManager = null;
 
-	public void checkSignatures(Resource resource) {
+	public void checkMonikers(Resource resource) {
 		Map<String, NamedElementCS> sigMap = new HashMap<String, NamedElementCS>();
 		for (Iterator<EObject> it = resource.getAllContents(); it.hasNext(); ) {
 			EObject eObject = it.next();
@@ -54,17 +54,17 @@ public class LoadTests extends XtextTestCase
 			String toString = eObject.toString();
 			if (eObject instanceof NamedElementCS) {
 				NamedElementCS namedElementCS = (NamedElementCS)eObject;
-				String signature = namedElementCS.getMoniker();
-				if (sigMap.containsKey(signature)) {
-					System.out.println("Duplicate signature " + signature + " from "  + namedElementCS.eClass().getName());
+				String moniker = namedElementCS.getMoniker();
+				if (sigMap.containsKey(moniker)) {
+					System.out.println("Duplicate moniker " + moniker + " from "  + namedElementCS.eClass().getName());
 					namedElementCS.getMoniker();
 				}
-				sigMap.put(signature, namedElementCS);
+				sigMap.put(moniker, namedElementCS);
 			}
 			else if (eObject instanceof MonikeredElementCS) {
 				MonikeredElementCS nameableElementCS = (MonikeredElementCS)eObject;
-				String signature = nameableElementCS.getMoniker();
-				System.out.println(signature + "                              -> " + nameableElementCS.eClass().getName()); // + " : " + value.toString());
+				String moniker = nameableElementCS.getMoniker();
+				System.out.println(moniker + "                              -> " + nameableElementCS.eClass().getName()); // + " : " + value.toString());
 			}
 		}
 		List<String> keys = new ArrayList<String>(sigMap.keySet());
@@ -84,20 +84,33 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
-		Resource xtextResource = resourceSet.getResource(inputURI, true);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
-		assertNoResourceErrors("Load failed", xtextResource);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
-		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
-		xtextResource.setURI(output2URI);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
-		xtextResource.save(null);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
-		assertNoResourceErrors("Save failed", xtextResource);
+		TypeManager typeManager = new TypeManager();
+		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		Resource xtextResource = null;
+		try {
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " getResource()");
+			xtextResource = resourceSet.getResource(inputURI, true);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " gotResource()");
+			assertNoResourceErrors("Load failed", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " resolveProxies()");
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+			xtextResource.setURI(output2URI);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
+			xtextResource.save(null);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " saved()");
+			assertNoResourceErrors("Save failed", xtextResource);
+		}
+		finally {
+			unloadCS(resourceSet);
+			if (xtextResource instanceof BaseCSResource) {
+				CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter((BaseCSResource)xtextResource, null);
+				adapter.dispose();
+			}
+			unloadPivot(typeManager);
+		}
 		Resource xmiResource = resourceSet.createResource(outputURI);
 		xmiResource.getContents().addAll(xtextResource.getContents());
 //		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " save()");
@@ -116,23 +129,34 @@ public class LoadTests extends XtextTestCase
 		URI cstURI = getProjectFileURI(cstName);
 		URI pivotURI = getProjectFileURI(pivotName);
 		URI savedURI = getProjectFileURI(savedName);
-		BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
-		assertNoResourceErrors("Load failed", xtextResource);
-		CS2PivotResourceAdapter adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
-		Resource pivotResource = adapter.getPivotResource(xtextResource);
-		assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
-//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
-//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
-		xtextResource.setURI(savedURI);
-		xtextResource.save(null);
-		xtextResource.setURI(inputURI);
-		assertNoResourceErrors("Save failed", xtextResource);
-		saveAsXMI(xtextResource, cstURI);
-		pivotResource.setURI(pivotURI);
-		assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
-		pivotResource.save(null);
-		return pivotResource;
+//		TypeManager typeManager = new TypeManager();
+//		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
+		CS2PivotResourceAdapter adapter = null;
+		try {
+			BaseCSResource xtextResource = (BaseCSResource) resourceSet.getResource(inputURI, true);
+			assertNoResourceErrors("Load failed", xtextResource);
+			adapter = CS2PivotResourceAdapter.getAdapter(xtextResource, null);
+			Resource pivotResource = adapter.getPivotResource(xtextResource);
+			assertNoUnresolvedProxies("Unresolved proxies", xtextResource);
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validate()");
+	//FIXME		assertNoValidationErrors("Validation errors", xtextResource.getContents().get(0));
+	//		System.out.println(Long.toString(System.currentTimeMillis() - startTime) + " validated()");
+			xtextResource.setURI(savedURI);
+			xtextResource.save(null);
+			xtextResource.setURI(inputURI);
+			assertNoResourceErrors("Save failed", xtextResource);
+			saveAsXMI(xtextResource, cstURI);
+			pivotResource.setURI(pivotURI);
+			assertNoValidationErrors("Pivot validation errors", pivotResource.getContents().get(0));
+			pivotResource.save(null);
+			return pivotResource;
+		}
+		finally {
+			if (adapter != null) {
+				adapter.dispose();
+				adapter.getTypeManager().dispose();
+			}
+		}
 	}
 
 	protected void saveAsXMI(Resource resource, URI xmiURI) throws IOException {
@@ -155,7 +179,18 @@ public class LoadTests extends XtextTestCase
 
 	@Override
 	protected void tearDown() throws Exception {
-		typeManager = null;
+		unloadCS(resourceSet);
+		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
+		if (adapter != null) {
+			TypeManager typeManager = adapter.getTypeManager();
+			if (typeManager != null) {
+				typeManager.dispose();
+			}
+		}
+		if (typeManager != null) {
+			typeManager.dispose();
+			typeManager = null;
+		}
 		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, null);
 		super.tearDown();
 	}
@@ -173,8 +208,8 @@ public class LoadTests extends XtextTestCase
 	}	
 
 	public void testLoad_Expression_oclinecore() throws IOException, InterruptedException {
-		typeManager = new TypeManager();
-		typeManager.loadLibrary(OCLstdlib.INSTANCE);
+//		typeManager = new TypeManager();
+//		typeManager.loadLibrary(OCLstdlib.INSTANCE);
 		doLoad_Concrete("Expression", "oclinecore");
 	}	
 
@@ -197,7 +232,7 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_oclstdlib_oclstdlib() throws IOException, InterruptedException {
 //		StandardLibraryContribution.REGISTRY.put(TypeManager.DEFAULT_OCL_STDLIB_URI, StandardLibraryContribution.NULL);
 		Resource resource = doLoad_Concrete("oclstdlib", "oclstdlib");
-		checkSignatures(resource);
+		checkMonikers(resource);
 	}
 
 	public void testLoad_OCL_ecore() throws IOException, InterruptedException {
