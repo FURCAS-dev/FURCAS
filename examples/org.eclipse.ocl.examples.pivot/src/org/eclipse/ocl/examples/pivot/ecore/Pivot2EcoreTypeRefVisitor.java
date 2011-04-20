@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Pivot2EcoreTypeRefVisitor.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -25,11 +25,13 @@ import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -67,6 +69,11 @@ public class Pivot2EcoreTypeRefVisitor
 	public EClassifier visiting(Visitable visitable) {
 		throw new IllegalArgumentException("Unsupported " + visitable.eClass().getName() + " for Pivot2Ecore TypeRef pass");
 	}
+
+	@Override
+	public EObject visitInvalidType(InvalidType object) {
+		return EcorePackage.Literals.EOBJECT;			// FIXME Something more reversible
+	}	
 
 	@Override
 	public EClassifier visitPrimitiveType(PrimitiveType pivotType) {
@@ -122,7 +129,7 @@ public class Pivot2EcoreTypeRefVisitor
 			if (eClassifier != null) {
 				return eClassifier;
 			}
-			return pivotType.getETarget();
+			return pivotType.getETarget();		// FIXME may be null if not from Ecore
 		}
 		EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
 		EObject rawType = safeVisit(PivotUtil.getUnspecializedTemplateableElement(pivotType));
@@ -130,5 +137,10 @@ public class Pivot2EcoreTypeRefVisitor
 		// FIXME signature ordering, multiple bindings
 		safeVisitAll(eGenericType.getETypeArguments(), templateBindings.get(0).getParameterSubstitutions());
 		return eGenericType;
+	}
+
+	@Override
+	public EObject visitVoidType(VoidType object) {
+		return EcorePackage.Literals.EOBJECT;			// FIXME Something more reversible
 	}	
 }

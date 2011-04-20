@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Class.java,v 1.2 2011/01/24 20:42:34 ewillink Exp $
+ * $Id: Class.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class</b></em>'.
+ * @implements Iterable<Class>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -45,7 +46,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Class
-		extends Type, Namespace {
+		extends Type, Namespace, Iterable<Class> {
 
 	/**
 	 * Returns the value of the '<em><b>Is Abstract</b></em>' attribute.
@@ -89,17 +90,6 @@ public interface Class
 	 * @generated
 	 */
 	EList<Property> getOwnedAttributes();
-
-	/**
-	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param eClass The Ecore class of the {@link org.eclipse.ocl.examples.pivot.Property} to create.
-	 * @return The new {@link org.eclipse.ocl.examples.pivot.Property}.
-	 * @see #getOwnedAttributes()
-	 * @generated
-	 */
-	Property createOwnedAttribute(EClass eClass);
 
 	/**
 	 * Creates a new {@link org.eclipse.ocl.examples.pivot.Property} and appends it to the '<em><b>Owned Attribute</b></em>' containment reference list.

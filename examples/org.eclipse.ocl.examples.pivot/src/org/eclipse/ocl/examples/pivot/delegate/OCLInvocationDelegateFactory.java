@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLInvocationDelegateFactory.java,v 1.2 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLInvocationDelegateFactory.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -25,14 +25,8 @@ import org.eclipse.emf.ecore.EPackage;
  * @since 3.0
  */
 public class OCLInvocationDelegateFactory extends AbstractOCLDelegateFactory
-		implements EOperation.Internal.InvocationDelegate.Factory {
-	
-	public OCLInvocationDelegateFactory() {}
-	
-	public OCLInvocationDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
-
+		implements EOperation.Internal.InvocationDelegate.Factory
+{
 	public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
 		EPackage ePackage = operation.getEContainingClass().getEPackage();
 		return new OCLInvocationDelegate(getDelegateDomain(ePackage), operation);

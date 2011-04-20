@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCLBase.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: OCLBase.java,v 1.7 2011/04/20 19:02:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -198,6 +198,10 @@ public abstract class OCLBase {
 	 */
 	public Environment getEnvironment() {
 		return rootEnvironment;
+	}
+
+	public EnvironmentFactory getEnvironmentFactory() {
+		return environmentFactory;
 	}
 
 	/**
@@ -696,5 +700,6 @@ public abstract class OCLBase {
 			Environment.Internal env = (Environment.Internal) getEnvironment();
 			env.dispose();
 		}
+		getTypeManager().dispose();
 	}
 }

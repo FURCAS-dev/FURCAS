@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractExtendingVisitor.java,v 1.10 2011/03/17 20:08:13 ewillink Exp $
+ * $Id: AbstractExtendingVisitor.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -103,26 +103,6 @@ public abstract class AbstractExtendingVisitor<R, C>
 
 	public R visitComment(org.eclipse.ocl.examples.pivot.Comment object) {
 		return visitElement(object);
-	}
-
-	public R visitCompleteEnvironment(org.eclipse.ocl.examples.pivot.CompleteEnvironment object) {
-		return visitPackage(object);
-	}
-
-	public R visitCompleteOperation(org.eclipse.ocl.examples.pivot.CompleteOperation object) {
-		return visitOperation(object);
-	}
-
-	public R visitCompletePackage(org.eclipse.ocl.examples.pivot.CompletePackage object) {
-		return visitPackage(object);
-	}
-
-	public R visitCompleteProperty(org.eclipse.ocl.examples.pivot.CompleteProperty object) {
-		return visitProperty(object);
-	}
-
-	public R visitCompleteType(org.eclipse.ocl.examples.pivot.CompleteType object) {
-		return visitClass(object);
 	}
 
 	public R visitConstraint(org.eclipse.ocl.examples.pivot.Constraint object) {
@@ -402,7 +382,7 @@ public abstract class AbstractExtendingVisitor<R, C>
 	}
 
 	public R visitUnspecifiedType(org.eclipse.ocl.examples.pivot.UnspecifiedType object) {
-		return visitType(object);
+		return visitClass(object);
 	}
 
 	public R visitUnspecifiedValueExp(org.eclipse.ocl.examples.pivot.UnspecifiedValueExp object) {

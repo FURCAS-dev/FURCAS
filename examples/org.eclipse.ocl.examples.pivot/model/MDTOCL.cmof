@@ -54,9 +54,7 @@
       </ownedMember>
     </ownedMember>
     <ownedMember xmi:type="cmof:Package" xmi:id="_A11esMerEd-sJIf4tYBt-g" name="MDT_OCL_Evaluation">
-      <ownedMember xmi:type="cmof:Class" xmi:id="_CJbYcB_aEeCxNNh5B6u04A" name="CallExp" isAbstract="true">
-        <ownedAttribute xmi:type="cmof:Property" xmi:id="_MrWfEB_aEeCxNNh5B6u04A" name="referredFeature" type="_dIPu8MesEd-sJIf4tYBt-g" lower="0" isReadOnly="true" isDerived="true"/>
-      </ownedMember>
+      <ownedMember xmi:type="cmof:Class" xmi:id="_CJbYcB_aEeCxNNh5B6u04A" name="CallExp" isAbstract="true"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_dIPu8MesEd-sJIf4tYBt-g" name="Feature" isAbstract="true">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_3M8_UN9YEd-5RuvZBdnt0A" name="implementationClass" type="_7Yq00Mk-Ed-bx742yyafXQ" lower="0"/>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_ZQ3woN9ZEd-5RuvZBdnt0A" name="implementation" type="_0Xb0cAFqEeCxa8jNFLJGww" lower="0"/>
@@ -86,7 +84,7 @@
       <ownedMember xmi:type="cmof:Interface" xmi:id="_h0T4sN9WEd-5RuvZBdnt0A" name="Pivotable" isAbstract="true"/>
       <ownedMember xmi:type="cmof:PrimitiveType" xmi:id="_-0G3sMpAEd-ZL8lMORCEkg" name="String"/>
       <ownedMember xmi:type="cmof:Class" xmi:id="_gqL8MDAZEeCQxbz5jr7q5g" name="Type" isAbstract="true"/>
-      <ownedMember xmi:type="cmof:Class" xmi:id="_jyLn4DAZEeCQxbz5jr7q5g" name="UnspecifiedType" superClass="_gqL8MDAZEeCQxbz5jr7q5g">
+      <ownedMember xmi:type="cmof:Class" xmi:id="_jyLn4DAZEeCQxbz5jr7q5g" name="UnspecifiedType" superClass="_V3s5sMpCEd-ZL8lMORCEkg">
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_teCpMDAZEeCQxbz5jr7q5g" name="lowerBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
         <ownedAttribute xmi:type="cmof:Property" xmi:id="_2kURMDAZEeCQxbz5jr7q5g" name="upperBound" type="_gqL8MDAZEeCQxbz5jr7q5g"/>
       </ownedMember>
@@ -264,7 +262,7 @@
     <Ecore:EReference xmi:id="_aRlrEB1EEeCzDcYDg75xng" isTransient="true" isResolveProxies="false"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
-    <Ecore:EReference xmi:id="_Z87C0B_aEeCxNNh5B6u04A" isTransient="true" isVolatile="true" base_Property="_MrWfEB_aEeCxNNh5B6u04A" isResolveProxies="false"/>
+    <Ecore:EReference xmi:id="_Z87C0B_aEeCxNNh5B6u04A" isTransient="true" isVolatile="true" isResolveProxies="false"/>
   </xmi:Extension>
   <xmi:Extension extender="http://www.eclipse.org/uml2/3.0.0/UML">
     <Ecore:EReference xmi:id="_14bf8DxsEeCYibdAWnk0AQ" isTransient="true" base_Property="_oQ4sMDxsEeCYibdAWnk0AQ"/>

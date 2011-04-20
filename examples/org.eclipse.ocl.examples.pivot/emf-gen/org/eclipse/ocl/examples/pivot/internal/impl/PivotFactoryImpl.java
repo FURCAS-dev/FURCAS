@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.6 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,11 +39,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -167,11 +162,6 @@ public class PivotFactoryImpl
 			case PivotPackage.COLLECTION_RANGE: return (EObject)createCollectionRange();
 			case PivotPackage.COLLECTION_TYPE: return (EObject)createCollectionType();
 			case PivotPackage.COMMENT: return (EObject)createComment();
-			case PivotPackage.COMPLETE_ENVIRONMENT: return (EObject)createCompleteEnvironment();
-			case PivotPackage.COMPLETE_OPERATION: return (EObject)createCompleteOperation();
-			case PivotPackage.COMPLETE_PACKAGE: return (EObject)createCompletePackage();
-			case PivotPackage.COMPLETE_PROPERTY: return (EObject)createCompleteProperty();
-			case PivotPackage.COMPLETE_TYPE: return (EObject)createCompleteType();
 			case PivotPackage.CONSTRAINT: return (EObject)createConstraint();
 			case PivotPackage.DATA_TYPE: return (EObject)createDataType();
 			case PivotPackage.DETAIL: return (EObject)createDetail();
@@ -573,57 +563,6 @@ public class PivotFactoryImpl
 	public CollectionRange createCollectionRange() {
 		CollectionRangeImpl collectionRange = new CollectionRangeImpl();
 		return collectionRange;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteEnvironment createCompleteEnvironment() {
-		CompleteEnvironmentImpl completeEnvironment = new CompleteEnvironmentImpl();
-		return completeEnvironment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteOperation createCompleteOperation() {
-		CompleteOperationImpl completeOperation = new CompleteOperationImpl();
-		return completeOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompletePackage createCompletePackage() {
-		CompletePackageImpl completePackage = new CompletePackageImpl();
-		return completePackage;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteProperty createCompleteProperty() {
-		CompletePropertyImpl completeProperty = new CompletePropertyImpl();
-		return completeProperty;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompleteType createCompleteType()
-	{
-		CompleteTypeImpl completeType = new CompleteTypeImpl();
-		return completeType;
 	}
 
 	/**

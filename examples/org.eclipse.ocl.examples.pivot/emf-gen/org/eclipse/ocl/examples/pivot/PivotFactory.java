@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.7 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -279,51 +279,6 @@ public interface PivotFactory
 	 * @generated
 	 */
 	CollectionRange createCollectionRange();
-
-	/**
-	 * Returns a new object of class '<em>Complete Environment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Environment</em>'.
-	 * @generated
-	 */
-	CompleteEnvironment createCompleteEnvironment();
-
-	/**
-	 * Returns a new object of class '<em>Complete Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Operation</em>'.
-	 * @generated
-	 */
-	CompleteOperation createCompleteOperation();
-
-	/**
-	 * Returns a new object of class '<em>Complete Package</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Package</em>'.
-	 * @generated
-	 */
-	CompletePackage createCompletePackage();
-
-	/**
-	 * Returns a new object of class '<em>Complete Property</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Property</em>'.
-	 * @generated
-	 */
-	CompleteProperty createCompleteProperty();
-
-	/**
-	 * Returns a new object of class '<em>Complete Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Complete Type</em>'.
-	 * @generated
-	 */
-	CompleteType createCompleteType();
 
 	/**
 	 * Returns a new object of class '<em>Enum Literal Exp</em>'.

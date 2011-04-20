@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.5 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -47,6 +48,8 @@ import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.operations.ParameterableElementOperations;
 import org.eclipse.ocl.examples.pivot.internal.operations.PropertyOperations;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+
+import com.google.common.collect.Iterators;
 
 /**
  * <!-- begin-user-doc -->
@@ -1424,5 +1427,9 @@ public class PropertyImpl
 	@Override
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitProperty(this);
+	}
+
+	public Iterator<Property> iterator() {
+		return Iterators.singletonIterator((Property)this);
 	}
 } //PropertyImpl
