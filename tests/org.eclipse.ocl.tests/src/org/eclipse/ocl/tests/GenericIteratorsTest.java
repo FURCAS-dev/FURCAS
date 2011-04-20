@@ -352,6 +352,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
+	    @SuppressWarnings("unchecked")
         Collection<PK> expected4 = createCollection(nestingIsOrdered, true);
         assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
         // empty closure
