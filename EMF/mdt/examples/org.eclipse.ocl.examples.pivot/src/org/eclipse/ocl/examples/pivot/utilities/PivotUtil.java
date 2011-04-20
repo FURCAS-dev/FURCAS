@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.10 2011/03/14 17:01:29 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -74,7 +74,7 @@ import org.eclipse.ocl.examples.pivot.util.Pivotable;
 
 public class PivotUtil
 {	
-	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
+//	public static final URI INTERNAL_URI = URI.createURI("internal.essentialocl");
 
 	private static final AdapterFactory reflectiveAdapterFactory =
 		new ReflectiveItemProviderAdapterFactory();
@@ -320,13 +320,13 @@ public class PivotUtil
 	 * @param expression to be parsed
 	 * @return the Xtext resource which may be cast to XtextResource
 	 * 
-	 * @throws IOException if reasource loading fails
+	 * @throws IOException if resource loading fails
 	 */
-	public static Resource createXtextResource(TypeManager typeManager,
+	public static Resource createXtextResource(TypeManager typeManager, URI uri,
 			NamedElement typeContext, String expression) throws IOException {
 		InputStream inputStream = new ByteArrayInputStream(expression.getBytes());
 		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(INTERNAL_URI);
+		Resource resource = resourceSet.createResource(uri);
 		TypeManagerResourceAdapter.getAdapter(resource, typeManager);
 		if (resource instanceof EvaluationContext) {
 			((EvaluationContext)resource).setContext(typeContext, null);
@@ -335,10 +335,10 @@ public class PivotUtil
 		return resource;
 	}
 
-	public static Type findTypeOf(EClassifier eClass) {
+	public static Type findTypeOf(TypeManager typeManager, EClassifier eClass) {
 		Resource resource = eClass.eResource();
 		if (resource != null) {
-			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource);
+			Ecore2Pivot adapter = Ecore2Pivot.findAdapter(resource, typeManager);
 			if (adapter != null) {
 				Type type = adapter.getCreated(Type.class, eClass);
 				if (type != null) {
@@ -499,7 +499,7 @@ public class PivotUtil
 		return bindings;
 	}
 
-	public static Type getBehavioralType(Type type) {
+	public static Type getBehavioralType(Type type) {		// FIXME fold this into normal code
 		if (type instanceof DataType) {
 			DataType dataType = (DataType)type;
 			Type behavioralType = dataType.getBehavioralType();
@@ -739,6 +739,12 @@ public class PivotUtil
 	}
 
 	public static <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
+		for (int k = elements.size(); k-- > 0; ) {
+			Object oldElement = elements.get(k);
+			if (!newElements.contains(oldElement)) {
+				elements.remove(k);			// Lose oldContent before adding possible 'duplicates'
+			}
+		}
 		int newMax = newElements.size();
 		for (int i = 0; i < newMax; i++) {					// Invariant: lists are equal up to index i
 			T newElement = newElements.get(i);
@@ -785,9 +791,10 @@ public class PivotUtil
 		}
 	}
 
-	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, NamedElement contextClassifier, String expression) throws ParserException {
+	public static ExpressionInOcl resolveSpecification(TypeManager typeManager, URI uri, NamedElement contextClassifier, String expression) throws ParserException {
+		Resource resource = null;
 		try {
-			Resource resource = createXtextResource(typeManager, contextClassifier, expression);
+			resource = createXtextResource(typeManager, uri, contextClassifier, expression);
 			checkResourceErrors("Errors in '" + expression + "'", resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {
@@ -796,12 +803,19 @@ public class PivotUtil
 			OclExpression invalidValueBody = typeManager.createInvalidExpression();
 			specification.setBodyExpression(invalidValueBody);
 			return specification;
-		}			
+		} finally {
+			if (resource != null) {
+				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				if (adapter != null) {
+					adapter.dispose();
+				}
+			}
+		}
 	}
 
-	public static ExpressionInOcl resolveMessage(TypeManager typeManager, ExpressionInOcl specification, String expression) throws ParserException {
+	public static ExpressionInOcl resolveMessage(TypeManager typeManager, URI uri, ExpressionInOcl specification, String expression) throws ParserException {
 		try {
-			Resource resource = createXtextResource(typeManager, specification, expression);
+			Resource resource = createXtextResource(typeManager, uri, specification, expression);
 			checkResourceErrors("Errors in '" + expression + "'", resource);
 			return getExpressionInOcl(resource);
 		} catch (IOException e) {

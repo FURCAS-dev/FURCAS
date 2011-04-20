@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.6 2011/04/01 19:57:07 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.7 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -45,7 +45,6 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigationRol
 
 public class OperationFilter extends AbstractOperationFilter
 {
-//	private final ExpCS csNavigatingExp;
 	private final List<NavigatingArgCS> csArguments;
 	private final int iterators;
 	private final int accumulators;
@@ -53,7 +52,6 @@ public class OperationFilter extends AbstractOperationFilter
 	
 	public OperationFilter(TypeManager typeManager, Type sourceType, NavigatingExpCS csNavigatingExp) {
 		super(typeManager, sourceType);
-//		this.csNavigatingExp = csNavigatingExp;
 		int accumulators = 0;
 		int iterators = 0;
 		int expressions = 0;
@@ -124,7 +122,14 @@ public class OperationFilter extends AbstractOperationFilter
 				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 			}			
 			bindings = new HashMap<TemplateParameter, ParameterableElement>();
-			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), ((CollectionType)sourceType).getElementType());
+			Type elementType = ((CollectionType)sourceType).getElementType();
+			if (sourceType instanceof CollectionType) {
+				elementType = ((CollectionType)sourceType).getElementType();
+			}
+			else {
+				elementType = typeManager.getOclInvalidType();
+			}
+			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
 		}			
 		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
 //		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);

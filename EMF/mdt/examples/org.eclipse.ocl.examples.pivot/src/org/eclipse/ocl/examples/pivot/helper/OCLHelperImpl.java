@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.5 2011/02/11 20:00:29 ewillink Exp $
+ * $Id: OCLHelperImpl.java,v 1.6 2011/04/20 19:02:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.helper;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
@@ -65,6 +66,7 @@ public class OCLHelperImpl extends OCLBaseHelperImpl
 		PivotEnvironment environment = (PivotEnvironment) getEnvironment();
 		TypeManager typeManager = environment.getTypeManager();
 		Type contextClassifier = environment.getContextClassifier();
-		return PivotUtil.resolveSpecification(typeManager, contextClassifier, expression);
+		URI uri = typeManager.getResourceIdentifier(expression, null);
+		return PivotUtil.resolveSpecification(typeManager, uri, contextClassifier, expression);
 	}
 }

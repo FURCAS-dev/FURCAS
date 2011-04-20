@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterateExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: IterateExpImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -227,8 +227,6 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return basicGetSource();
 			case PivotPackage.ITERATE_EXP__IMPLICIT:
 				return isImplicit();
-			case PivotPackage.ITERATE_EXP__REFERRED_FEATURE:
-				return getReferredFeature();
 			case PivotPackage.ITERATE_EXP__BODY:
 				if (resolve) return getBody();
 				return basicGetBody();
@@ -383,8 +381,6 @@ public class IterateExpImpl extends LoopExpImpl implements IterateExp
 				return source != null;
 			case PivotPackage.ITERATE_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.ITERATE_EXP__REFERRED_FEATURE:
-				return getReferredFeature() != null;
 			case PivotPackage.ITERATE_EXP__BODY:
 				return body != null;
 			case PivotPackage.ITERATE_EXP__ITERATOR:

@@ -12,15 +12,16 @@
  *
  * </copyright>
  *
- * $Id: CompleteElementIterable.java,v 1.3 2011/03/14 10:19:39 ewillink Exp $
+ * $Id: CompleteElementIterable.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
 import java.util.List;
-import java.util.NoSuchElementException;
+
+import com.google.common.collect.Iterators;
 
 /**
- * A CompleteElementIterable supports iteration over the multiple model contributions
+ * A CompleteElementIterable supports iteration over the multiple iterable contributions
  * to a Complete Element as if all were merged in a composite element.
  *
  * @param <O> The Outer type of the Complete Element
@@ -28,20 +29,13 @@ import java.util.NoSuchElementException;
  */
 public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 {
-	public static java.util.Iterator<?> EMPTY_ITERATOR = new EmptyIterator();
- 
-	@SuppressWarnings("unchecked")
-	public static final <T> java.util.Iterator<T> emptyIterator() {
-    	return (java.util.Iterator<T>) EMPTY_ITERATOR;
-        }
-	
 	protected class Iterator implements java.util.Iterator<I>
 	{
 		private final java.util.Iterator<? extends O> outerIterator;
 		private java.util.Iterator<I> innerIterator;
 		
-		public Iterator(Iterable<? extends O> models) {
-			outerIterator = models.iterator();
+		public Iterator(Iterable<? extends O> iterables) {
+			outerIterator = iterables.iterator();
 			advance();
 		}
 
@@ -76,53 +70,48 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 			throw new IllegalStateException();
 		}
 	}
-
-    public static class EmptyIterator implements java.util.Iterator<Object>
-    {
-        public boolean hasNext() {
-            return false;
-        }
-        
-        public Object next() {
-            throw new NoSuchElementException();
-        }
-        
-        public void remove() {
-            throw new IllegalStateException();
-        }
-    }
 	
-	protected final List<? extends O> models;
+	protected final Iterable<? extends O> iterables;
 	
-	public CompleteElementIterable(List<? extends O> models) {
-		this.models = models;
+	public CompleteElementIterable(Iterable<? extends O> iterables) {
+		this.iterables = iterables;
 	}
 	
 	/**
-	 * Return the iterables for an inner iteration over the model. A null
+	 * Return the iterables for an inner iteration over the iterable. A null
 	 * return may be used to indicate no inner iterations are necessary.
 	 * 
-	 * @param model
+	 * @param iterable
 	 * @return the inner iterable or null for none.
 	 */
-	protected abstract Iterable<I> getInnerIterable(O model);
+	protected abstract Iterable<I> getInnerIterable(O iterable);
 
 	protected I getInnerValue(I element) {
 		return element;
 	}
 
 	public java.util.Iterator<I> iterator() {
-		if (models.size() > 1 ) {
-			return new Iterator(models);
+		if (iterables instanceof List<?>) {
+			@SuppressWarnings("unchecked")
+			List<O> list = (List<O>)iterables;
+			if (list.size() == 0) {
+				return Iterators.emptyIterator();
+			}
+			else if (list.size() == 1) {
+				Iterable<I> innerIterable = getInnerIterable(list.get(0));
+				if (innerIterable != null) {
+					return innerIterable.iterator();
+				}
+				else {
+					return Iterators.emptyIterator();
+				}
+			}
+		}
+		if (iterables != null) {
+			return new Iterator(iterables);
 		}
 		else {
-			Iterable<I> innerIterable = getInnerIterable(models.get(0));
-			if (innerIterable != null) {
-				return innerIterable.iterator();
-			}
-			else {
-				return emptyIterator();
-			}
+			return Iterators.emptyIterator();
 		}
 	}
 }
