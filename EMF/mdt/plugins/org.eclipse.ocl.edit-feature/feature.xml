@@ -3,27 +3,17 @@
       id="org.eclipse.ocl.edit"
       label="%featureName"
       version="3.1.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      license-feature="org.eclipse.ocl.license"
+      license-feature-version="1.0.0.qualifier">
 
    <description url="http://www.eclipse.org/modeling/mdt/ocl">
       %description
    </description>
 
-   <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2009-2011 E.D.Willink and others.
-All rights reserved.   This program and the accompanying materials
-are made available under the terms of the Eclipse Public License v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
-
-      Contributors:
-         E.D.Willink - Initial API and implementation
-         Adolfo Sanchez-Barbudo Herrera (Open Canarias)
+   <copyright>
+      [Documentation] Copyright text will be taken from the shared license feature
    </copyright>
-
-   <license url="%licenseURL">
-      %license
-   </license>
 
    <url>
       <update label="%updateSiteName" url="http://www.eclipse.org/modeling/updates"/>

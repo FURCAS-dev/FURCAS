@@ -9,10 +9,10 @@
 <h1>Parsing Constraints and Queries</h1>
 <p>
 The OCL parser provides two APIs for parsing constraint and query expressions.
-The <a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+The <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
 interface is designed primarily for parsing constraints and query expressions
 embedded in models, such as Ecore or UML models.  The
-<a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
 class serves as the main entrypoint into the parsing API but also implements the
 parsing of <a href="parsingDocuments.html">OCL documents</a>, for example from
 text files.  In both cases, the concept of <em class="CodeName">Environment</em>
@@ -31,7 +31,7 @@ API, that clients of the OCL parser interact with:
 </blockquote>
 
 <p>
-The <a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+The <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
 class is a generic type; its type parameters represent the various metaclasses
 of the metamodels that OCL works with in the UML/MOF family of OMG specifications.
 For example, <em class="CodeName">&lt;C&gt;</em> represents the Classifier
@@ -43,9 +43,9 @@ throughout the OCL APIs to represent the same metaclasses.
 <p>
 The <em class="CodeName">OCL</em> class defines instances of autonomous OCL
 parsing and evaluation environments.  It has a single root
-<a href="../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
 created by an
-<a href="../javadoc/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
 implementation for a particular EMF-based metamodel.  The OCL environment
 consists, conceptually, of the model that is to be constrained together with
 all of the constraints and additional operations and attributes defined (via
@@ -70,7 +70,7 @@ classifier that defines these features, or it may inherit them from some more
 general classifier.
 </p><p>
 An <em class="CodeName">Environment</em> may contain named
-<a href="../javadoc/org/eclipse/ocl/expressions/Variable.html"><em class="CodeName">Variable</em></a>s
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/expressions/Variable.html"><em class="CodeName">Variable</em></a>s
 to which OCL expressions can refer.  The most common of these is
 <em class="CodeName">self</em>.  Others include the parameters defined by an
 operation (and its <em class="CodeName">result</em>), in the case of an
@@ -104,10 +104,10 @@ signature are useful mostly within the OCL API.  We leave them, here, as wildcar
 <p>
 From an OCL instance, we can create a helper object with which to parse constraints
 and additional operation/attribute definitions.  This
-<a href="../javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
 stores all of the instantiations of OCL template metaclasses (such as
-<a href="../javadoc/org/eclipse/ocl/types/CollectionType.html"><em class="CodeName">CollectionType(T)</em></a>
-and <a href="../javadoc/org/eclipse/ocl/types/TupleType.html"><em class="CodeName">TupleType</em></a>)
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/types/CollectionType.html"><em class="CodeName">CollectionType(T)</em></a>
+and <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/types/TupleType.html"><em class="CodeName">TupleType</em></a>)
 and additional operation/attribute definitions in the root environment of the
 <em class="CodeName">OCL</em> that created it.  This ensures that all of these
 constructs are available for reuse in subsequent parsing.
@@ -146,7 +146,7 @@ instance's root environment.
 
 <p>
 The result of parsing a query expression is an
-<a href="../javadoc/org/eclipse/ocl/expressions/OCLExpression.html"><em class="CodeName">OCLExpression</em></a>,
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/expressions/OCLExpression.html"><em class="CodeName">OCLExpression</em></a>,
 an instance of the <a href="abstractSyntax.html">Abstract Syntax Model</a>.  The
 result of parsing a constraint is an instance of the
 <em class="CodeName">Constraint</em> metaclass defined by the
