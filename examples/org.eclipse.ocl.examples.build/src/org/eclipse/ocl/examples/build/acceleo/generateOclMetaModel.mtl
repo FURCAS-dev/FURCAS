@@ -49,6 +49,11 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class [javaClass/] extends XMLResourceImpl
 {
 	/**
+	 *	The static package-of-types pivot model of the Pivot Model.
+	 */
+	public static final [javaClass/] INSTANCE = new [javaClass/]();
+
+	/**
 	 *	Create and return a pivot model of the Pivot Model.
 	 */
 	public static Package create(StandardLibrary standardLibrary)
@@ -99,6 +104,9 @@ public class [javaClass/] extends XMLResourceImpl
 		Class elementClass = (Class) PivotUtil.getNamedElement(symbol_1.getOwnedTypes(), "Element");
 		elementClass.getSuperClasses().clear();
 		elementClass.getSuperClasses().add(standardLibrary.getClassifierType());
+
+		[javaClass/] resource = new [javaClass/]();
+		resource.getContents().add([pkg.getSymbolName()/]);
 		
 		return [pkg.getSymbolName()/];
 	}
