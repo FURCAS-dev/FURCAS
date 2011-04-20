@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Moniker.java,v 1.3 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Ecore2Moniker.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
@@ -29,8 +28,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
+import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
@@ -49,13 +51,21 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	public static String toString(EModelElement eElement) {
 		Ecore2Moniker moniker = new Ecore2Moniker(false);
 		moniker.appendElement(eElement);
-		return moniker.toString();
+		String string = moniker.toString();
+		if (Abstract2Moniker.TRACE_MONIKERS.isActive()) {
+			Abstract2Moniker.TRACE_MONIKERS.println(eElement.eClass().getName() + " ==> " + string);
+		}
+		return string;
 	}
 	
 	public static String toString(EGenericType eElement) {
 		Ecore2Moniker moniker = new Ecore2Moniker(false);
 		moniker.appendType(eElement);
-		return moniker.toString();
+		String string = moniker.toString();
+		if (Abstract2Moniker.TRACE_MONIKERS.isActive()) {
+			Abstract2Moniker.TRACE_MONIKERS.println(eElement.eClass().getName() + " ==> " + string);
+		}
+		return string;
 	}
 	
 	/**
@@ -155,6 +165,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 		ETypeParameter eTypeParameter = eGenericType.getETypeParameter();
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		if (eClassifier != null) {
+			appendParent(eClassifier, MONIKER_SCOPE_SEPARATOR);
 			append(eClassifier.getName());
 			appendTypeArguments(eGenericType.getETypeArguments(), eClassifier.getETypeParameters());
 		}
@@ -163,10 +174,28 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 			assert eGenericType.getETypeArguments().size() == 0;
 		}
 		else {
+			EStructuralFeature eContainingFeature = eGenericType.eContainingFeature();
 			if (s.length() == 0) {
 				appendParent(eGenericType, MONIKER_SCOPE_SEPARATOR);
+				s.append(WILDCARD_INDICATOR);
 			}
-			append(WILDCARD_INDICATOR);
+			else if (eContainingFeature == EcorePackage.Literals.EGENERIC_TYPE__ETYPE_ARGUMENTS) {
+				EGenericType eContainer = (EGenericType)eGenericType.eContainer();
+				List<?> eTypeArguments = (List<?>) eContainer.eGet(eContainingFeature);
+				int index = eTypeArguments.indexOf(eGenericType);
+				EClassifier unspecializedClassifier = eContainer.getEClassifier();
+				appendElement(unspecializedClassifier);
+				s.append(BINDINGS_PREFIX);
+				List<ETypeParameter> eTypeParameters = unspecializedClassifier.getETypeParameters();
+				eTypeParameter = eTypeParameters.get(index);
+				appendName(eTypeParameter);
+				s.append(MONIKER_SCOPE_SEPARATOR);
+				s.append(WILDCARD_INDICATOR);
+				s.append(index);
+			}
+			else {
+				s.append(WILDCARD_INDICATOR);
+			}
 			assert eGenericType.getETypeArguments().size() == 0;
 		}
 	}
@@ -247,7 +276,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	}
 
 	@Override
-	public Object caseEClass(EClass eElement) {
+	public Object caseEClassifier(EClassifier eElement) {
 		caseENamedElement(eElement);
 		appendTypeParameters(eElement.getETypeParameters());
 		return true;
@@ -289,7 +318,7 @@ public class Ecore2Moniker extends EcoreSwitch<Object> implements PivotConstants
 	public Object caseETypeParameter(ETypeParameter eElement) {
 		if (!hasEmitted(eElement)) {
 			if (toString().length() < MONIKER_OVERFLOW_LIMIT) {
-				appendParent(eElement, MONIKER_SCOPE_SEPARATOR);
+				appendParent(eElement, TEMPLATE_PARAMETER_PREFIX);
 			}
 			else {
 				append(OVERFLOW_MARKER);

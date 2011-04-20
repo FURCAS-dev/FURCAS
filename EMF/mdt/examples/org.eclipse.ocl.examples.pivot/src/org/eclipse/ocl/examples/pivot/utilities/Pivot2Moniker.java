@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2Moniker.java,v 1.3 2011/02/15 10:38:46 ewillink Exp $
+ * $Id: Pivot2Moniker.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -30,9 +30,6 @@ public class Pivot2Moniker extends Abstract2Moniker
 		Pivot2Moniker moniker = new Pivot2Moniker(pivotElement);
 		moniker.appendElement(pivotElement);
 		String string = moniker.toString();
-		if (TRACE_MONIKERS.isActive()) {
-			TRACE_MONIKERS.println(pivotElement.eClass().getName() + " ==> " + string);
-		}
 		assert !"".equals(string);
 		return string;
 	}

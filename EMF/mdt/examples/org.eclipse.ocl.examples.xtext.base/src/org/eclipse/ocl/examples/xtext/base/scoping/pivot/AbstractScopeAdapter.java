@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -65,7 +64,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public static RootScopeAdapter getDocumentScopeAdapter(ModelElementCS context) {
-		for (ScopeAdapter scopeAdapter = getScopeAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
+		for (ScopeAdapter scopeAdapter = getScopeCSAdapter(context); scopeAdapter != null; scopeAdapter = scopeAdapter.getParent()) {
 			if (scopeAdapter instanceof RootScopeAdapter) {
 				return (RootScopeAdapter) scopeAdapter;
 			}
@@ -92,37 +91,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return eObject.accept(visitor);	
 	}
 
-	public static ScopeAdapter getScopeAdapter(ModelElementCS csElement) {
-		if (csElement == null) {
-			logger.warn("getScopeAdapter for null");
-			return null;
-		}
-		if (csElement.eIsProxy()) {			// Shouldn't happen, but certainly does during development
-			logger.warn("getScopeAdapter for proxy " + csElement);
-			return null;
-		}
-		Element pivotElement = csElement.getPivot();
-		if (pivotElement == null) {
-//			logger.warn("getScopeAdapter for null pivot");
-			return getScopeCSAdapter(csElement);
-		}
-		if (pivotElement.eResource() == null) {
-//			logger.warn("getScopeAdapter for null resource");
-			return getScopeCSAdapter(csElement);
-		}
-		ScopeAdapter adapter = PivotUtil.getAdapter(ScopeAdapter.class, pivotElement);
-		if (adapter != null) {
-			return adapter;
-		}
-		Resource csResource = csElement.eResource();
-		if (csResource == null) {
-			return null;
-		}
-		TypeManager typeManager = PivotUtil.getTypeManager(csResource);//		TypeManager typeManager = TypeManager.getAdapter(resourceSet);
-		PivotScopeVisitor visitor = new PivotScopeVisitor(typeManager);
-		return pivotElement.accept(visitor);	
-	}
-
 	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
 		if (csElement == null) {
 			logger.warn("getScopeCSAdapter for null");
@@ -144,8 +112,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		BaseCSVisitor<ScopeCSAdapter, TypeManager> visitor = converter.getScopeVisitor(ePackage);		
 		return csElement.accept(visitor);	
 	}
-	
-	protected final TypeManager typeManager;
 
 	/**
 	 * The last notifier set to this adapter.
@@ -155,8 +121,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	protected final ScopeAdapter parent;
 
 	protected AbstractScopeAdapter(TypeManager typeManager, ScopeAdapter parent, T target) {
-		this.typeManager = typeManager;
-		assert typeManager != null;
 		this.parent = parent;
 		this.target = target;
 		target.eAdapters().add(this);
@@ -166,7 +130,7 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		if (libType == null) {
 			return;
 		}
-		environmentView.addElementsOfScope(typeManager, libType, scopeView);
+		environmentView.addElementsOfScope(libType, scopeView);
 		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
 				addLibContents(environmentView, superClass, scopeView);
@@ -179,17 +143,23 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 	}
 
 	public final void computeLookup(EnvironmentView environmentView, EReference targetReference) {
-		ScopeView scopeView = getInnerScopeView(targetReference);
+		ScopeView scopeView = getInnerScopeView(environmentView.getTypeManager(), targetReference);
 		computeLookup(environmentView, scopeView);
 	}
 
-	public ScopeView getInnerScopeView(EReference targetReference) {
-		return new BaseScopeView(this, null, null, targetReference);
+	public void dispose() {
+		if (target != null) {
+			target.eAdapters().remove(this);
+		}		
 	}
 
-	public ScopeView getOuterScopeView(EReference targetReference) {
+	public ScopeView getInnerScopeView(TypeManager typeManager, EReference targetReference) {
+		return new BaseScopeView(typeManager, this, null, null, targetReference);
+	}
+
+	public ScopeView getOuterScopeView(TypeManager typeManager, EReference targetReference) {
 		ScopeAdapter parent = getParent();
-		return new BaseScopeView(parent, target, target.eContainingFeature(), targetReference);
+		return new BaseScopeView(typeManager, parent, target, target.eContainingFeature(), targetReference);
 	}
 
 	public ScopeAdapter getParent() {
@@ -204,8 +174,12 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		return target;
 	}
 
-	public final TypeManager getTypeManager() {
-		return typeManager;
+//	public final TypeManager getTypeManager() {
+//		return typeManager;
+//	}
+
+	public boolean isAdapterFor(TypeManager typeManager) {
+		return false;
 	}
 	
 	public boolean isAdapterForType(Object type) {
@@ -221,6 +195,13 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 
 	public void setTarget(Notifier newTarget) {
 		assert newTarget == target;
+		int count = 0;
+		for (Adapter adapter : newTarget.eAdapters()) {
+			if (adapter instanceof ScopeAdapter) {
+				count++;
+			}
+		}
+		assert count == 1;
 	}
 
 	public void unsetTarget(Notifier oldTarget) {

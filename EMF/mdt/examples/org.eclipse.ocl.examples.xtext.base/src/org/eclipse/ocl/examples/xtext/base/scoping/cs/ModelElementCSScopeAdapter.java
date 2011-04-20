@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.5 2011/03/01 08:47:45 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -131,6 +131,6 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 				break;
 			}
 		}
-		return null;
+		return null;		// FIXME Import alias names
 	}
 }
