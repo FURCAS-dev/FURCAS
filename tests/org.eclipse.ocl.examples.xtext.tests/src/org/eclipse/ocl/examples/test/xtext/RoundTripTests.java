@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RoundTripTests.java,v 1.7 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: RoundTripTests.java,v 1.8 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -57,39 +57,45 @@ public class RoundTripTests extends XtextTestCase
 		assertNoValidationErrors("Ecore load", inputResource);
 		
 		TypeManager typeManager = new TypeManager();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, typeManager);
-		org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
-		Resource pivotResource = pivotRoot.eResource();
-		pivotResource.setURI(pivotURI);
-		assertNoResourceErrors("Ecore2Pivot failed", pivotResource);
-		pivotResource.save(null);
-		assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
-		
-		List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource));
-		outputObjects.remove(EcoreUtils.getNamedElement((List<? extends ENamedElement>)outputObjects, PivotConstants.ORPHANAGE_NAME));
-		if (outputObjects.size() == 1) {
-			outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
+		try {
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(inputResource, typeManager);
+			org.eclipse.ocl.examples.pivot.Package pivotRoot = ecore2Pivot.getPivotRoot();
+			Resource pivotResource = pivotRoot.eResource();
+			pivotResource.setURI(pivotURI);
+			assertNoResourceErrors("Ecore2Pivot failed", pivotResource);
+			pivotResource.save(null);
+			assertNoValidationErrors("Ecore2Pivot invalid", pivotResource);
+			
+			List<? extends EObject> outputObjects = new ArrayList<EObject>(Pivot2Ecore.createResource(typeManager, pivotResource));
+			@SuppressWarnings("unchecked")
+			List<? extends ENamedElement> castOutputObjects = (List<? extends ENamedElement>)outputObjects;
+			outputObjects.remove(EcoreUtils.getNamedElement(castOutputObjects, PivotConstants.ORPHANAGE_NAME));
+			if (outputObjects.size() == 1) {
+				outputObjects = ((EPackage)outputObjects.get(0)).getESubpackages();
+			}
+			Resource outputResource = resourceSet.createResource(outputURI);
+			outputResource.getContents().addAll(outputObjects);
+			assertNoResourceErrors("Ecore2Pivot failed", outputResource);
+			outputResource.save(null);
+			assertNoValidationErrors("Ecore2Pivot invalid", outputResource);
+			
+	//		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
+	//		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
+	//		List<PackageCS> csObjects = new ArrayList<PackageCS>();
+	//		csObjects.addAll(csDocument.getPackages());
+	//		Resource middleResource = resourceSet.createResource(middleURI);
+	//		middleResource.getContents().addAll(csObjects);
+	//		middleResource.getContents().add(csDocument);
+	//		middleResource.save(null);
+	//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
+	//		Resource rightResource = cs2e.exportToEcore();
+	//		assertNoResourceErrors("To Ecore errors", rightResource);
+	//		rightResource.save(null);
+	//		resourceSet.getResources().add(rightResource);
+			assertSameModel(inputResource, outputResource);
+		} finally {
+			typeManager.dispose();
 		}
-		Resource outputResource = resourceSet.createResource(outputURI);
-		outputResource.getContents().addAll(outputObjects);
-		assertNoResourceErrors("Ecore2Pivot failed", outputResource);
-		outputResource.save(null);
-		assertNoValidationErrors("Ecore2Pivot invalid", outputResource);
-		
-//		RootPackageCS csDocument = null; // FIXME Ecore2OCLinEcore.importFromEcore(resourceSet, null, leftResource);
-//		assertNoResourceErrors("From Ecore errors", csDocument.eResource());
-//		List<PackageCS> csObjects = new ArrayList<PackageCS>();
-//		csObjects.addAll(csDocument.getPackages());
-//		Resource middleResource = resourceSet.createResource(middleURI);
-//		middleResource.getContents().addAll(csObjects);
-//		middleResource.getContents().add(csDocument);
-//		middleResource.save(null);
-//		OCLinEcore2Ecore cs2e = new OCLinEcore2Ecore(resourceSet, middleResource, outputURI);
-//		Resource rightResource = cs2e.exportToEcore();
-//		assertNoResourceErrors("To Ecore errors", rightResource);
-//		rightResource.save(null);
-//		resourceSet.getResources().add(rightResource);
-		assertSameModel(inputResource, outputResource);
 	}
 
 	public void doRoundTripFromOclInEcore(String stem) throws IOException, InterruptedException {

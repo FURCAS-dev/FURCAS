@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManagerResourceAdapter.java,v 1.5 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: TypeManagerResourceAdapter.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -21,6 +21,9 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
@@ -58,6 +61,20 @@ public class TypeManagerResourceAdapter implements Adapter
 //		System.out.println(Thread.currentThread().getName() + " Create " + getClass().getSimpleName() + "@" + hashCode()
 //			+ " " + resource.getClass().getSimpleName() + " " + resource.hashCode() + " " + resource.getURI()
 //			+ " " + typeManager.getClass().getSimpleName() + "@" + typeManager.hashCode());		
+	}
+
+	public void dispose() {
+		for (TreeIterator<EObject> tit = resource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			EList<Adapter> adapters = eObject.eAdapters();
+			for (int i = adapters.size(); i-- > 0; ) {
+				Adapter adapter = adapters.get(i);
+				if (adapter instanceof TypeManagedAdapter) {
+					adapters.remove(adapter);
+//					typeManager.debugRemoveAdapter(adapter);
+				}
+			}
+		}		
 	}
 	
 	public Resource getPivotResource(Resource csResource) {

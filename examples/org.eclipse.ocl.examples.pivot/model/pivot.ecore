@@ -71,9 +71,6 @@
         eType="#//OclExpression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implicit" ordered="false"
         eType="#//Boolean" defaultValueLiteral="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="referredFeature" ordered="false"
-        eType="#//Feature" changeable="false" volatile="true" transient="true" derived="true"
-        resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CallOperationAction" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" ordered="false"
@@ -154,81 +151,6 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="References the Element(s) being commented."/>
       </eAnnotations>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompleteEnvironment" eSuperTypes="#//Package">
-    <eOperations name="getCompleteOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
-      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Operation"/>
-    </eOperations>
-    <eOperations name="getCompletePackage" ordered="false" lowerBound="1" eType="#//CompletePackage">
-      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Package"/>
-    </eOperations>
-    <eOperations name="getCompleteProperty" ordered="false" lowerBound="1" eType="#//CompleteProperty">
-      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Property"/>
-    </eOperations>
-    <eOperations name="getCompleteType" ordered="false" lowerBound="1" eType="#//CompleteType">
-      <eParameters name="model" ordered="false" lowerBound="1" eType="#//Type"/>
-    </eOperations>
-    <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
-      <eParameters name="type" ordered="false" lowerBound="1" eType="#//CompleteType"/>
-      <eParameters name="operation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
-    </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompleteOperation" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Operation"
-        changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
-        upperBound="-1" eType="#//Operation"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
-        lowerBound="1" eType="#//CompleteEnvironment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeParameter" ordered="false"
-        upperBound="-1" eType="#//Parameter" changeable="false" volatile="true" derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompletePackage" eSuperTypes="#//Package">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Package"
-        changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
-        upperBound="-1" eType="#//Package"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
-        lowerBound="1" eType="#//CompleteEnvironment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completePackage" ordered="false"
-        upperBound="-1" eType="#//CompletePackage">
-      <eAnnotations source="redefines" references="#//Package/nestedPackage"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeType" ordered="false"
-        upperBound="-1" eType="#//CompleteType">
-      <eAnnotations source="redefines" references="#//Package/ownedType"/>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompleteProperty" eSuperTypes="#//Property">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Property"
-        changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
-        upperBound="-1" eType="#//Property"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
-        lowerBound="1" eType="#//CompleteEnvironment"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompleteType" eSuperTypes="#//Class">
-    <eOperations name="getDynamicOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation">
-      <eParameters name="staticOperation" ordered="false" lowerBound="1" eType="#//CompleteOperation"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="#//Type"
-        changeable="false" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="models" lowerBound="1"
-        upperBound="-1" eType="#//Type"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeEnvironment" ordered="false"
-        lowerBound="1" eType="#//CompleteEnvironment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeOperation" ordered="false"
-        upperBound="-1" eType="#//CompleteOperation">
-      <eAnnotations source="redefines" references="#//Class/ownedOperation"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeProperty" ordered="false"
-        upperBound="-1" eType="#//CompleteProperty">
-      <eAnnotations source="redefines" references="#//Class/ownedAttribute"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="completeSuperType" ordered="false"
-        upperBound="-1" eType="#//CompleteType">
-      <eAnnotations source="redefines" references="#//Class/superClass"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" eSuperTypes="#//NamedElement">
@@ -1206,7 +1128,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unlimitedNaturalSymbol"
         ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedType" eSuperTypes="#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="UnspecifiedType" eSuperTypes="#//Class">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lowerBound" ordered="false"
         lowerBound="1" eType="#//Type"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="upperBound" ordered="false"

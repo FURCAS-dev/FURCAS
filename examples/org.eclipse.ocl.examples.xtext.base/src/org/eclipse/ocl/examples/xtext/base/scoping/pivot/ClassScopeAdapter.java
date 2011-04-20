@@ -12,11 +12,9 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.5 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
-
-import java.util.List;
 
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -31,13 +29,13 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 	}
 
 	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
-		if (superClasses.size() > 0) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-				environmentView.addElementsOfScope(typeManager, superClass, scopeView);
-			}
+		TypeManager typeManager = environmentView.getTypeManager();
+		boolean hasSuperType = false;
+		for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(target)) {
+			environmentView.addElementsOfScope(superClass, scopeView);
+			hasSuperType = true;
 		}
-		else {
+		if (!hasSuperType) {
 			Type anyType = typeManager.getOclAnyType();
 			Type libType = typeManager.getClassifierType();
 			if ((libType != target) && (anyType != target)){		// FIXME Is this the right place for the trap
@@ -56,6 +54,7 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 			unspecializedPivot = target;
 			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
 		}
+		TypeManager typeManager = environmentView.getTypeManager();
 		environmentView.addNamedElements(typeManager.getLocalOperations(unspecializedPivot));
 		environmentView.addNamedElements(typeManager.getLocalProperties(unspecializedPivot));
 		if (!environmentView.hasFinalResult()) {

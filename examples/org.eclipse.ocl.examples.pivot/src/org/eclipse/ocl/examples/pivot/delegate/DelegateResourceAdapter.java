@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DelegateResourceAdapter.java,v 1.1 2011/01/30 11:16:29 ewillink Exp $
+ * $Id: DelegateResourceAdapter.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -71,6 +71,18 @@ public class DelegateResourceAdapter extends AdapterImpl
 	    		unloadDelegates(contents);
 	    	}
 	    }
+	    else if (featureID == Resource.RESOURCE__CONTENTS) 
+	    {
+	    	if (eventType == Notification.REMOVE) {
+	    		EObject oldValue = (EObject) notification.getOldValue();
+				unloadDelegate(oldValue);
+	    	}
+	    	else if (eventType == Notification.REMOVE_MANY) {
+	    		@SuppressWarnings("unchecked")
+				List<? extends EObject> oldValues = (List<? extends EObject>) notification.getOldValue();
+				unloadDelegates(oldValues);
+	    	}
+	    }
 	}
 
 	protected void installPackages(EPackage.Registry packageRegistry, List<? extends EObject> contents) {
@@ -89,14 +101,20 @@ public class DelegateResourceAdapter extends AdapterImpl
 		super.setTarget(resource);
 	}
 
+	protected void unloadDelegate(EObject eObject) {
+		if (eObject instanceof EPackage) {
+			EPackage ePackage = (EPackage)eObject;
+			DelegateEPackageAdapter adapter = DelegateEPackageAdapter.findAdapter(ePackage);
+			if (adapter != null) {
+				adapter.unloadDelegates();
+			}
+			unloadDelegates(ePackage.getESubpackages());
+		}
+	}
+
 	protected void unloadDelegates(List<? extends EObject> contents) {
 		for (EObject eObject : contents) {
-			if (eObject instanceof EPackage) {
-				EPackage ePackage = (EPackage)eObject;
-				DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
-				adapter.unloadDelegates();
-				unloadDelegates(ePackage.getESubpackages());
-			}
+			unloadDelegate(eObject);
 		}		
 	}
 }

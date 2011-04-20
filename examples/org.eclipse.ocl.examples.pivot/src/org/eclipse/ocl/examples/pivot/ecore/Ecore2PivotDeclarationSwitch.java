@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.8 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.9 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -73,6 +73,7 @@ import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaGreaterThanOrEqualOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaLessThanOperation;
 import org.eclipse.ocl.examples.pivot.library.JavaLessThanOrEqualOperation;
+import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotObjectImpl;
 
@@ -176,6 +177,8 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public Operation caseEOperation(EOperation eObject) {
 		Operation pivotElement = converter.refreshNamedElement(Operation.class, PivotPackage.Literals.OPERATION, eObject);
+		String moniker = Ecore2Moniker.toString(eObject);
+		pivotElement.setMoniker(moniker);
 		List<EAnnotation> excludedAnnotations =  null;
 		EAnnotation oclAnnotation = eObject.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 		if (oclAnnotation == null) {
@@ -237,17 +240,22 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package caseEPackage(EPackage eObject) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, eObject);
-		converter.getTypeManager().installPackage(pivotElement);
+		if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
+			pivotElement.setNsURI(eObject.getNsURI());
+		}
+		if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
+			pivotElement.setNsPrefix(eObject.getNsPrefix());
+		}
+		converter.getTypeManager().installPackageMoniker(pivotElement);
+		String moniker = pivotElement.getMoniker();
+		AliasAdapter adapter = AliasAdapter.getAdapter(eObject.eResource());
+		if (adapter != null) {
+			adapter.getAliasMap().put(eObject, moniker);
+		}
 		EAnnotation eAnnotation = eObject.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		copyNamedElement(pivotElement, eObject);
 		copyAnnotatedElement(pivotElement, eObject, exclusions);
-		if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
-			pivotElement.setNsPrefix(eObject.getNsPrefix());
-		}
-		if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_URI)) {
-			pivotElement.setNsURI(eObject.getNsURI());
-		}
 		doSwitchAll(pivotElement.getNestedPackages(), eObject.getESubpackages());
 		doSwitchAll(pivotElement.getOwnedTypes(), eObject.getEClassifiers());
 		return pivotElement;
@@ -375,36 +383,59 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		Class<?> instanceClass = eDataType.getInstanceClass();
 		if (instanceClass != null) {
 			try {
-				Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
-				List<Operation> ownedOperations = pivotElement.getOwnedOperations();
-				ownedOperations.add(createJavaComparisonOperation(
-					PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
-				ownedOperations.add(createJavaComparisonOperation(
-					PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
-				ownedOperations.add(createJavaComparisonOperation(
-					PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
-				ownedOperations.add(createJavaComparisonOperation(
-					PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
-				if ((instanceClass == Boolean.class) || (instanceClass == boolean.class)) {
+				if (instanceClass == boolean.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
 				}
-				else if ((instanceClass == Byte.class) || (instanceClass == byte.class)) {
+				else if (instanceClass == byte.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
 				}
-				else if ((instanceClass == Double.class) || (instanceClass == double.class)) {
+				else if (instanceClass == double.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
 				}
-				else if ((instanceClass == Float.class) || (instanceClass == float.class)) {
+				else if (instanceClass == float.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
 				}
-				else if ((instanceClass == Integer.class) || (instanceClass == int.class)) {
+				else if (instanceClass == int.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
 				}
-				else if ((instanceClass == Long.class) || (instanceClass == long.class)) {
+				else if (instanceClass == long.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
 				}
-				else if ((instanceClass == Short.class) || (instanceClass == short.class)) {
+				else if (instanceClass == short.class) {
 					pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+				}
+				else {
+					if (instanceClass == Boolean.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getBooleanType());
+					}
+					else if (instanceClass == Byte.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Double.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+					}
+					else if (instanceClass == Float.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getRealType());
+					}
+					else if (instanceClass == Integer.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Long.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == Short.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
+					List<Operation> ownedOperations = pivotElement.getOwnedOperations();
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.GREATER_THAN_OPERATOR, new JavaGreaterThanOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, new JavaGreaterThanOrEqualOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.LESS_THAN_OPERATOR, new JavaLessThanOperation(declaredMethod)));
+					ownedOperations.add(createJavaComparisonOperation(
+						PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, new JavaLessThanOrEqualOperation(declaredMethod)));
 				}
 			} catch (Exception e) {
 			}
