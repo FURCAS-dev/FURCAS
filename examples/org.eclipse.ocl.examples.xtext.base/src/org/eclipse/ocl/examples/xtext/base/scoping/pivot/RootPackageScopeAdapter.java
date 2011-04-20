@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: RootPackageScopeAdapter.java,v 1.3 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -31,8 +31,9 @@ implements RootScopeAdapter
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		environmentView.addNamedElements(target.getNestedPackages());
-		environmentView.addNamedElements(target.getOwnedTypes());
+		TypeManager typeManager = environmentView.getTypeManager();
+		environmentView.addNamedElements(typeManager.getLocalPackages(target));
+		environmentView.addNamedElements(typeManager.getLocalClasses(target));
 		environmentView.addNamedElements(target.getOwnedPrecedences());
 		return scopeView.getOuterScope();
 	}

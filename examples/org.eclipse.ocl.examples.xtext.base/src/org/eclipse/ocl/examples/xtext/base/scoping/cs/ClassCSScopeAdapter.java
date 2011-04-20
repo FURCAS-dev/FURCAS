@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.5 2011/03/01 08:47:45 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -37,7 +37,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 		List<org.eclipse.ocl.examples.pivot.Class> superClasses = target.getSuperClasses();
 		if (superClasses.size() > 0) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : superClasses) {
-					environmentView.addElementsOfScope(typeManager, superClass, scopeView);
+					environmentView.addElementsOfScope(superClass, scopeView);
 			}
 		}
 		else {
@@ -65,8 +65,8 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
-				environmentView.addNamedElements(pivot.getOwnedOperations());
-				environmentView.addNamedElements(pivot.getOwnedAttributes());
+				environmentView.addNamedElements(typeManager.getLocalOperations(pivot));
+				environmentView.addNamedElements(typeManager.getLocalProperties(pivot));
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters

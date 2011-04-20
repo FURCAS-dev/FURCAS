@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageCSScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: PackageCSScopeAdapter.java,v 1.3 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -31,8 +31,8 @@ public class PackageCSScopeAdapter extends MonikeredElementCSScopeAdapter<Packag
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
 		if (pivot != null) {
-			environmentView.addNamedElements(pivot.getNestedPackages());
-			environmentView.addNamedElements(pivot.getOwnedTypes());
+			environmentView.addNamedElements(typeManager.getLocalPackages(pivot));
+			environmentView.addNamedElements(typeManager.getLocalClasses(pivot));
 		}
 		return scopeView.getOuterScope();
 	}

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOclScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ExpressionInOclScopeAdapter.java,v 1.3 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -35,7 +35,7 @@ public class ExpressionInOclScopeAdapter extends AbstractPivotScopeAdapter<Expre
 		if (contextVariable != null) {
 			environmentView.addNamedElement(contextVariable);
 			Type type = contextVariable.getType();
-			environmentView.addElementsOfScope(typeManager, type, scopeView);
+			environmentView.addElementsOfScope(type, scopeView);
 		}
 		Variable resultVariable = target.getResultVariable();
 		if (resultVariable != null) {

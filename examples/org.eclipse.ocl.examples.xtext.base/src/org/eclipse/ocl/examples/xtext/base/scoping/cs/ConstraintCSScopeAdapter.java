@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ConstraintCSScopeAdapter.java,v 1.2 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: ConstraintCSScopeAdapter.java,v 1.3 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -47,7 +47,7 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 				if (contextVariable != null) {
 					environmentView.addNamedElement(contextVariable);
 					Type type = contextVariable.getType();
-					environmentView.addElementsOfScope(typeManager, type, scopeView);
+					environmentView.addElementsOfScope(type, scopeView);
 				}
 				Variable resultVariable = ((ExpressionInOcl)specification).getResultVariable();
 				if (resultVariable != null) {
@@ -64,6 +64,6 @@ public class ConstraintCSScopeAdapter extends BaseCSScopeAdapter<ConstraintCS, C
 		if (eContainer instanceof FeatureCS) {
 			eContainer = eContainer.eContainer();
 		}
-		return getScopeAdapter((ModelElementCS)eContainer);
+		return getScopeCSAdapter((ElementCS)eContainer);
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImportScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: ImportScopeAdapter.java,v 1.3 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -37,10 +37,10 @@ public class ImportScopeAdapter extends MonikeredElementCSScopeAdapter<ImportCS,
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == null) {
-			environmentView.addElementsOfScope(typeManager, importedElement, scopeView);
+			environmentView.addElementsOfScope(importedElement, scopeView);
 		}
 		else {
-			environmentView.addElementsOfScope(typeManager, importedElement, scopeView);
+			environmentView.addElementsOfScope(importedElement, scopeView);
 		}
 		return scopeView.getOuterScope();
 	}

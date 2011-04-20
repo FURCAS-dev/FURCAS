@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorExpScopeAdapter.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: IteratorExpScopeAdapter.java,v 1.3 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -37,12 +37,12 @@ public class IteratorExpScopeAdapter extends AbstractPivotScopeAdapter<IteratorE
 		EStructuralFeature containmentFeature = scopeView.getContainmentFeature();
 		if (containmentFeature == PivotPackage.Literals.LOOP_EXP__BODY) {
 			OclExpression source = target.getSource();
-			environmentView.addElementsOfScope(typeManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(source.getType(), scopeView);
 			environmentView.addElements(target.getIterators());
 		}
 		else if (containmentFeature == PivotPackage.Literals.LOOP_EXP__ITERATOR) {
 			OclExpression source = target.getSource();
-			environmentView.addElementsOfScope(typeManager, source.getType(), scopeView);
+			environmentView.addElementsOfScope(source.getType(), scopeView);
 			EObject child = scopeView.getChild();
 			for (Variable iterator : target.getIterators()) {
 				environmentView.addNamedElement(iterator);

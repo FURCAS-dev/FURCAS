@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeProvider.java,v 1.2 2011/01/24 21:00:31 ewillink Exp $
+ * $Id: PivotScopeProvider.java,v 1.3 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -23,6 +23,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.BaseScopeView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
+import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
@@ -39,10 +40,12 @@ public class PivotScopeProvider extends AbstractDeclarativeScopeProvider
 
 	@Override
 	public ScopeView getScope(EObject context, EReference reference) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter((ModelElementCS)context);
+		ModelElementCS csContext = (ModelElementCS)context;
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csContext);
 		if (scopeAdapter == null) {
 			return null;
 		}
-		return new BaseScopeView(scopeAdapter, null, reference, reference);
+		CS2PivotResourceAdapter csAdapter = (CS2PivotResourceAdapter) CS2PivotResourceAdapter.findAdapter(csContext.eResource());
+		return new BaseScopeView(csAdapter.getTypeManager(), scopeAdapter, null, reference, reference);
 	}
 }

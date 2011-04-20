@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTValidator.java,v 1.5 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BaseCSTValidator.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
 
@@ -25,58 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.examples.xtext.base.baseCST.*;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.CollectionTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ConstraintCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DataTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.EnumerationLiteralCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.FeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.IteratorKind;
-import org.eclipse.ocl.examples.xtext.base.baseCST.LambdaTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.LibraryCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.NamespaceRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateSignatureCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateableElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TupleTypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeParameterCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.WildcardTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.util.VisitableCS;
 
 /**
@@ -900,6 +848,13 @@ public class BaseCSTValidator extends EObjectValidator
 		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
+	}
+	
+	@Override
+	public boolean validate_EveryProxyResolves(EObject eObject, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		// don't check, we have our own implementation, which creates nicer messages
+		return true;
 	}
 
 } //BaseCSTValidator

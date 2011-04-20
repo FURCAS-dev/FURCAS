@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ScopeAdapter.java,v 1.3 2011/01/24 21:00:30 ewillink Exp $
+ * $Id: ScopeAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagedAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
 /**
@@ -29,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
  *
  * @param <T>
  */
-public interface ScopeAdapter extends Adapter
+public interface ScopeAdapter extends TypeManagedAdapter
 {	
 	public static interface Switch {
 		ScopeAdapter createVisitor(EObject eObject);
@@ -57,13 +57,13 @@ public interface ScopeAdapter extends Adapter
 
 	void computeLookup(EnvironmentView environmentView, EReference targetReference);
 
-	ScopeView getInnerScopeView(EReference targetReference);
+	ScopeView getInnerScopeView(TypeManager typeManager, EReference targetReference);
 
-	ScopeView getOuterScopeView(EReference targetReference);
+	ScopeView getOuterScopeView(TypeManager typeManager, EReference targetReference);
 	
 	ScopeAdapter getParent();
 
-	TypeManager getTypeManager();
+//	TypeManager getTypeManager();
 
 	RootScopeAdapter getRootScopeAdapter();
 	
