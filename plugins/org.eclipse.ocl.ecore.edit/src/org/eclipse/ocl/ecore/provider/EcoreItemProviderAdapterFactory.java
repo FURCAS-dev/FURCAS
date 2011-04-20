@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreItemProviderAdapterFactory.java,v 1.4 2010/12/15 17:33:18 ewillink Exp $
+ * $Id: EcoreItemProviderAdapterFactory.java,v 1.5 2011/04/20 23:20:44 auhl Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -1125,6 +1125,7 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.1
 	 */
 	@Override
 	public Adapter createOppositePropertyCallExpAdapter() {
