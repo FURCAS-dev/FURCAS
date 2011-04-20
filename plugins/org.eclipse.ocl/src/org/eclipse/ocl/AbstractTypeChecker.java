@@ -40,10 +40,14 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.AnyType;
+import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -1094,6 +1098,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		// and similar can't be resolved
 		if (owner == lib.getUnlimitedNatural()) {
 			return findOperationMatching(lib.getInteger(), name, args);
+		} else if (owner instanceof SequenceType<?, ?> ||
+				owner instanceof SetType<?, ?> ||
+				owner instanceof BagType<?, ?> ||
+				owner instanceof OrderedSetType<?, ?>) {
+			// nothing found in the specific collection class; perform
+			// lookup in Collection(T)
+			return findOperationMatching(lib.getCollection(), name, args);
 		}
 
 		return null;

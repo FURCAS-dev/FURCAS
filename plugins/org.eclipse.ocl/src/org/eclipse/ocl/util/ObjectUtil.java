@@ -18,6 +18,7 @@ package org.eclipse.ocl.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -82,8 +83,13 @@ public class ObjectUtil {
 			return ((EEnumLiteral) anObject).getInstance() == anotherObject;
 		} else if ((anotherObject instanceof EEnumLiteral) && (anObject instanceof Enumerator)) {
 			return ((EEnumLiteral) anotherObject).getInstance() == anObject;
+		} else if ((anObject instanceof LinkedHashSet<?> && !(anotherObject instanceof LinkedHashSet<?>)) ||
+				(!(anObject instanceof LinkedHashSet<?>) && anotherObject instanceof LinkedHashSet<?>)) {
+			// a regular Java equals comparison would consider LinkedHashSets and Sets
+			// with equals contents equals. However, according to OCL 2.3 (OMG 10-11-42) section 11.7.1,
+			// two collections need to be of the same kind to be considered equal.
+			return false;
 		}
-		
 		return anObject.equals(anotherObject);
 	}
 	

@@ -345,11 +345,21 @@ public class CollectionUtil {
     public static <E> Collection<E> union(
     		Collection<? extends E> self, Collection<? extends E> c) {
     	
-    	// if either argument is empty, then the union is the other
+    	// if either argument is empty, then the union is the other,
+    	// except the source is a set and the other is a bag in which
+    	// case the result has to be a bag
     	if (self.isEmpty()) {
-            return createNewCollection(c);
+    		if (self instanceof Bag || c instanceof Bag) {
+    			return createNewBag(c);
+    		} else {
+    			return createNewCollection(c);
+    		}
         } else if (c.isEmpty()) {
-            return createNewCollection(self);
+    		if (self instanceof Bag || c instanceof Bag) {
+    			return createNewBag(self);
+    		} else {
+    			return createNewCollection(self);
+    		}
         }
     	
         Collection<E> result = null;
@@ -379,7 +389,16 @@ public class CollectionUtil {
      * @return the flattened collection
      */
     public static Collection<?> flatten(Collection<?> self) {
-        Collection<?> result = self;
+        Collection<?> result;
+        // As OCL 2.3 (OMG 10-11-42) section A.2.5.8 fails to specify how to
+        // flatten an OrderedSet, we choose to flatten it into a Set because
+        // ordering cannot be preserved when duplicates are removed during
+        // the flattening.
+        if (self instanceof LinkedHashSet<?>) {
+        	result = createNewSet(self);
+        } else {
+        	result = self;
+        }
         
         for (;;) {
             if (result.isEmpty()) {
@@ -485,7 +504,7 @@ public class CollectionUtil {
         } else {
         	throw new RuntimeException("Unsupported collection type "+self.getClass().getName()); //$NON-NLS-1$
         }
-        
+
         // non-sequences (bags remove all occurrences internally)
         result.remove(object);
         return result;

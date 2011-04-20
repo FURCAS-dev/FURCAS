@@ -1569,6 +1569,11 @@ public final class OCLStandardLibraryUtil {
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
 
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			EQUAL_NAME, stdlib.getCollection(), "c"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			NOT_EQUAL_NAME, stdlib.getCollection(), "c"));//$NON-NLS-1$
+
 		result.add(createBinaryOperation(uml, stdlib.getInteger(), COUNT_NAME,
 			stdlib.getT(), "object")); //$NON-NLS-1$
 		result.add(createBinaryOperation(uml, stdlib.getBoolean(),

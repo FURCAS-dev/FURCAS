@@ -1087,6 +1087,21 @@ public class CollectionsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
+	
+	/**
+	 * Tests that in ordering of UnlimitedNatural::UNLIMITED is consider greatest element
+	 */
+	public void test_sortedByOverUnlimitedNatural() {
+		helper.setContext(EcorePackage.Literals.ECLASS);
+
+		try {
+			assertTrue(check(helper, EcorePackage.Literals.ECLASS,
+				"self.eAllStructuralFeatures->sortedBy(upperBound)->first().upperBound = 1"+
+				" and self.eAllStructuralFeatures->sortedBy(upperBound)->last().upperBound = *"));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+	}
 
 	/**
 	 * Tests that evaluating an EEList-typed operation call does not result in a
