@@ -105,6 +105,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
+	private static final Integer UNLIMITED = Integer.valueOf(-1);
+
 	private static int tempCounter = 0;
 
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
@@ -125,6 +127,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		super(env, evalEnv, extentMap);
 		
 		enumerations = OCLUtil.getAdapter(evalEnv, EvaluationEnvironment.Enumerations.class);
+	}
+
+	private boolean isBooleanOperation(int opCode) {
+		return opCode == PredefinedType.AND ||
+			opCode == PredefinedType.OR ||
+			opCode == PredefinedType.NOT ||
+			opCode == PredefinedType.XOR ||
+			opCode == PredefinedType.IMPLIES;
 	}
 
 	/**
@@ -328,7 +338,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					case PredefinedType.MINUS:
 						// Integer::minus()
 						// -* doesn't exist, so evaluate to invalid
-						if (sourceType == getUnlimitedNatural() && Integer.valueOf(-1).equals(sourceVal)) {
+						if (sourceType == getUnlimitedNatural() && UNLIMITED.equals(sourceVal)) {
 							return getInvalid();
 						}
 						if (sourceVal instanceof Integer) {
@@ -1441,15 +1451,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return null;
 	}
-
-	private boolean isBooleanOperation(int opCode) {
-		return opCode == PredefinedType.AND ||
-			opCode == PredefinedType.OR ||
-			opCode == PredefinedType.NOT ||
-			opCode == PredefinedType.XOR ||
-			opCode == PredefinedType.IMPLIES;
-	}
-
+	
 	/**
 	 * Infers a standard operation code from the name of a user-defined
 	 * operation.  This applies for cases where a standard operation is not
@@ -1881,14 +1883,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// body expression evaluations
 		List<Object> result = new ArrayList<Object>(coll);
 
-		Collections.sort(result, new Comparator<Object>() {
-
-			public int compare(Object o1, Object o2) {
-				Comparable<Object> b1 = map.get(o1);
-				Comparable<Object> b2 = map.get(o2);
-				return (b1.compareTo(b2));
-			}
-		});
+		Collections.sort(result, getComparatorForSortedBy(map, ie));
 
 		// create result
 		// type is Sequence if source is a sequence or a Bag,
@@ -1899,6 +1894,36 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         } else {
             return CollectionUtil.createNewSequence(result);
         }
+	}
+
+	private Comparator<Object> getComparatorForSortedBy(
+			final Map<Object, Comparable<Object>> map, IteratorExp<C, PM> ie) {
+		// special case: UnlimitedNatural::UNLIMITED is greater than
+		// everything except for itself
+		if (ie.getBody().getType() == getUnlimitedNatural()) {
+			return new Comparator<Object>() {
+				public int compare(Object o1, Object o2) {
+					Comparable<Object> b1 = map.get(o1);
+					Comparable<Object> b2 = map.get(o2);
+					return (b1.equals(UNLIMITED) ?
+						       b2.equals(UNLIMITED) ?
+						    	   0 : // both are UNLIMITED
+						           1 : // b1 is UNLIMITED, b2 not, so b1>b2
+						       b2.equals(UNLIMITED) ?
+						    	   -1 : // b2 is UNLIMITED, b1 not, so b1 < b2
+						    	   b1.compareTo(b2));
+				}
+			};
+		} else {
+			return new Comparator<Object>() {
+
+				public int compare(Object o1, Object o2) {
+					Comparable<Object> b1 = map.get(o1);
+					Comparable<Object> b2 = map.get(o2);
+					return (b1.compareTo(b2));
+				}
+			};
+		}
 	}
 
 	private Object evaluateIsUnique(IteratorExp<C, PM> ie, Collection<?> coll) {

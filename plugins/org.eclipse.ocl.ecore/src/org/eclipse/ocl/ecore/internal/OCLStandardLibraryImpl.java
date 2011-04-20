@@ -323,6 +323,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		OCL_BOOLEAN.setInstanceClass(Boolean.class);
 		OCL_STRING.setInstanceClass(String.class);
 		OCL_INTEGER.setInstanceClass(Integer.class);
+		OCL_UNLIMITED_NATURAL.setInstanceClass(Integer.class);
 		OCL_REAL.setInstanceClass(Double.class);
 		
 		register(OCL_ANY).getEOperations().addAll(
