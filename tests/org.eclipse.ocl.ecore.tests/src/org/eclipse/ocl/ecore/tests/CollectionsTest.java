@@ -434,6 +434,11 @@ public class CollectionsTest
 				"Set{'a', 'b', 'c', 'd'}->flatten()" +
 					" = Set{'b', 'c', 'a', 'd'}"));
 
+			// collections of different kind are not equal, however, our
+			// implementation chooses to flatten an OrderedSet into a Set
+			// because Section A.2.5.8 of OCL 2.3 (OMG 10-11-42) leaves it
+			// unclear, but ordering cannot be preserved during flattening
+			// when duplicates are removed
 			assertTrue(check(helper, "",
 				"OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
 					" = Set{'b', 'c', 'a', 'd'}"));
@@ -461,6 +466,11 @@ public class CollectionsTest
 				"Set{}->flatten()" +
 					" = Set{}"));
 
+			// collections of different kind are not equal, however
+			// the flatten() operation on OrderedSet is underspecified
+			// in OCL 2.3 (OMG 10-11-42) section A.2.5.8, and we choose
+			// to flatten an OrderedSet into a Set because ordering cannot
+			// be preserved.
 			assertTrue(check(helper, "",
 				"OrderedSet{}->flatten()" +
 					" = Set{}"));

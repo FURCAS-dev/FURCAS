@@ -581,7 +581,9 @@ public class EvaluationCollectionOperationTest
 			"Sequence{}->flatten()");
 		assertResult(CollectionUtil.createNewBag(), "Bag{}->flatten()");
 		assertResult(CollectionUtil.createNewSet(), "Set{}->flatten()");
-		assertResult(CollectionUtil.createNewOrderedSet(),
+		// Our implementation chooses to flatten an OrderedSet into a Set because
+		// Section A.2.5.8 of OCL 2.3 (OMG 10-11-42) leaves it unspecified
+		assertResult(CollectionUtil.createNewSet(),
 			"OrderedSet{}->flatten()");
 
 		String expression = "Sequence{Set{1,2,3}, Sequence{2.0, 3.0}, Bag{'test'}}->flatten()";
@@ -1188,24 +1190,22 @@ public class EvaluationCollectionOperationTest
 		assertResultFalse("Sequence{4, 5, 'test'} <> Sequence{4, 5, 'test'}");
 		assertResultFalse("Sequence{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
 		assertResultFalse("OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test'}");
-		// FIXME Comparison operations on differently-typed collections don't exist
-		//assertResultFalse("Sequence{4, 5, 'test'} <> OrderedSet{4, 5, 'test', 5}");
-		//assertResultFalse("OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
+		// Collections are equal only if they are of the same kind
+		assertResultTrue("Sequence{4, 5, 'test'} <> OrderedSet{4, 5, 'test', 5}");
+		assertResultTrue("OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
 
 		// distinct order, same quantities
 		assertResultTrue("Sequence{4, 5, 'test'} <> Sequence{4, 'test', 5}");
 		assertResultTrue("Sequence{4, 5, 'test', 5} <> Sequence{5, 4, 'test', 5}");
 		// FIXME unclear semantics of ordering in OrderedSet collection literal with multiple occurrences of equal values
 		// assertResultTrue("OrderedSet{4, 5, 'test', 5} <> OrderedSet{4, 'test', 5}");
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultTrue("Sequence{4, 5, 'test'} <> OrderedSet{5, 4, 'test', 5}");
-		// assertResultTrue("OrderedSet{4, 5, 'test', 5} <> Sequence{5, 4, 'test'}");
+		assertResultTrue("Sequence{4, 5, 'test'} <> OrderedSet{5, 4, 'test', 5}");
+		assertResultTrue("OrderedSet{4, 5, 'test', 5} <> Sequence{5, 4, 'test'}");
 
 		// distinct quantities
 		assertResultTrue("Sequence{4, 5, 'test', 5} <> Sequence{4, 5, 'test'}");
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultTrue("Sequence{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test', 5}");
-		// assertResultTrue("OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
+		assertResultTrue("Sequence{4, 5, 'test', 5} <> OrderedSet{4, 5, 'test', 5}");
+		assertResultTrue("OrderedSet{4, 5, 'test', 5} <> Sequence{4, 5, 'test', 5}");
 	}
 
 	public void testCollectionNotEqualOrderedXUnordered() {
@@ -1214,8 +1214,6 @@ public class EvaluationCollectionOperationTest
 		 * true or false when containing the elements in the same quantities?
 		 */
 		// same quantities
-		// FIXME Comparison operations on differently-typed collections don't exist
-		/*
 		assertResultTrue("Sequence{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
 		assertResultTrue("Sequence{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
 		assertResultTrue("OrderedSet{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
@@ -1225,24 +1223,21 @@ public class EvaluationCollectionOperationTest
 		assertResultTrue("Sequence{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
 		assertResultTrue("Sequence{4, 5, 'test'} <> Bag{4, 'test', 5, 4}");
 		assertResultTrue("OrderedSet{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
-		*/
 	}
 
 	public void testCollectionNotEqualUnorderedXUnordered() {
 		// same quantities
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultFalse("Bag{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
+		// collections are only equal if they are of the same kind
+		assertResultTrue("Bag{4, 5, 'test'} <> Set{4, 'test', 5, 4}");
 		assertResultFalse("Bag{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
 		assertResultFalse("Set{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultFalse("Set{4, 5, 'test', 4} <> Bag{4, 'test', 5}");
+		// collections are only equal if they are of the same kind
+		assertResultTrue("Set{4, 5, 'test', 4} <> Bag{4, 'test', 5}");
 
 		// distinct quantities
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultTrue("Bag{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
+		assertResultTrue("Bag{4, 5, 'test', 4} <> Set{4, 'test', 5, 4}");
 		assertResultTrue("Bag{4, 5, 'test'} <> Bag{4, 'test', 5, 4}");
-		// FIXME Comparison operations on differently-typed collections don't exist
-		// assertResultTrue("Set{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
+		assertResultTrue("Set{4, 5, 'test', 4} <> Bag{4, 'test', 5, 4}");
 	}
 
 	public void testCollectionPrepend() {
@@ -1536,19 +1531,15 @@ public class EvaluationCollectionOperationTest
 
 	public void testCollectionUnionEmptyCollection() {
 		assertExpressionResults("Set{3, 4}", "Set{3, 4}->union(Set{})");
-		// FIXME no collection operations for differently-types collections
-		// assertExpressionResults("Bag{3, 4}", "Set{3, 4}->union(Bag{})");
+		assertExpressionResults("Bag{3, 4}", "Set{3, 4}->union(Bag{})");
 		assertExpressionResults("Bag{3, 4}", "Bag{3, 4}->union(Bag{})");
-		// FIXME no collection operations for differently-types collections
-		// assertExpressionResults("Bag{3, 4}", "Bag{3, 4}->union(Set{})");
+		assertExpressionResults("Bag{3, 4}", "Bag{3, 4}->union(Set{})");
 		assertExpressionResults("Sequence{3, 4}", "Sequence{3, 4}->union(Sequence{})");
 
 		assertExpressionResults("Set{3, 4}", "let s:Set(Integer)=Set{} in s->union(Set{3, 4})");
-		// FIXME no collection operations for differently-types collections
-		// assertExpressionResults("Bag{3, 4}", "Set{}->union(Bag{3, 4})");
+		assertExpressionResults("Bag{3, 4}", "let s:Set(Integer)=Set{} in s->union(Bag{3, 4})");
 		assertExpressionResults("Bag{3, 4}", "let b:Bag(Integer)=Bag{} in b->union(Bag{3, 4})");
-		// FIXME no collection operations for differently-types collections
-		// assertExpressionResults("Bag{3, 4}", "Bag{}->union(Set{3, 4})");
+		assertExpressionResults("Bag{3, 4}", "let b:Bag(Integer)=Bag{} in b->union(Set{3, 4})");
 		assertExpressionResults("Sequence{3, 4}", "let s:Sequence(Integer)=Sequence{} in s->union(Sequence{3, 4})");
 	}
 
