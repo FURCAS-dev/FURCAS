@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLPreOrderVisitor.java,v 1.5 2011/03/08 15:14:56 ewillink Exp $
+ * $Id: EssentialOCLPreOrderVisitor.java,v 1.6 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -123,7 +123,7 @@ public class EssentialOCLPreOrderVisitor
 			Type element = csElement.getElement();
 			if ((element == null) || element.eIsProxy()) {
 				String boundMessage = NLS.bind(OCLMessages.UnresolvedType_ERROR_, csElement.toString());
-				context.addBadExpressionError(csElement, boundMessage);
+				context.addDiagnostic(csElement, boundMessage);
 				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
 			}
 			context.installPivotElement(csElement, element);
