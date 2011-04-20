@@ -65,7 +65,7 @@ against the semantic well-formedness rules).
 </p>
 <p>
 The main entrypoint into the OCL API is the
-<a href="../references/javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
 class.  An <em class="CodeName">OCL</em>
 provides an autonomous OCL parsing environment.  It tracks all constraints that
 are parsed in this environment, including the definitions of additional
@@ -77,7 +77,7 @@ binding.
 </p>
 <p>
 To parse a query expression, we will use the
-<a href="../references/javadoc/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html"><em class="CodeName">OCLHelper</em></a>
 object, which provides convenient operations for parsing queries and constraints
 (intended for processing constraints embedded in models).
 </p>
@@ -165,13 +165,13 @@ and <tt>oclIsNew()</tt> may only be used in operation post-condition constraints
 <p>
 More interesting than parsing an OCL expression or constraint is evaluating it
 on some object.  The
-<code><a href="../references/javadoc/org/eclipse/ocl/Query.html">Query</a></code>
+<code><a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html">Query</a></code>
 interface provides two methods for evaluating expressions.  Queries are
 constructed by factory methods on the <em class="CodeName">OCL</em> class.
 </p>
 <ul>
 	<li>
-		<a href="../references/javadoc/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject)"><em class="CodeName">Object evaluate(Object)</em></a>:
+		<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html#evaluate(org.eclipse.emf.ecore.EObject)"><em class="CodeName">Object evaluate(Object)</em></a>:
 		evaluates the expression on the specified object, returning the result.
 		The caller is expected to know the result type, which could be a
 		primitive, <em class="CodeName">EObject</em>, or a collection.  There
@@ -180,7 +180,7 @@ constructed by factory methods on the <em class="CodeName">OCL</em> class.
 		context).
 	</li>
 	<li>
-		<a href="../references/javadoc/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject)"><em class="CodeName">boolean evaluate(Object)</em></a>:
+		<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Query.html#check(org.eclipse.emf.ecore.EObject)"><em class="CodeName">boolean evaluate(Object)</em></a>:
 		This method evaluates a special kind of OCL expression called a
 		<i>constraint</i>.  Constraints are distinguished from other OCL queries
 		by having a boolean value; thus, they can be used to implement invariant
@@ -192,13 +192,13 @@ constructed by factory methods on the <em class="CodeName">OCL</em> class.
 <p>
 In order to support the <code>allInstances()</code> operation on OCL types,
 the <em class="CodeName">OCL</em> API provides the
-<a href="../references/javadoc/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">setExtentMap(Map&lt;CLS, ? extends Set&lt;? extends E&gt;&gt; extentMap)</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html#setExtentMap(java.util.Map)"><em class="CodeName">setExtentMap(Map&lt;CLS, ? extends Set&lt;? extends E&gt;&gt; extentMap)</em></a>
 method.  This assigns a mapping of classes (in the Ecore binding,
 <em class="CodeName">EClass</em>es) to the sets of their instances.  By default,
 the <em class="CodeName">OCL</em> provides a dynamic map that computes the
 extents on demand from the contents of a <em class="CodeName">Resource</em>.
 An alternative extent map can be
-found in <a href="../javadoc/org/eclipse/ocl/ecore/opposites/ExtentMap.html"><em class="CodeName">org.eclipse.ocl.ecore.opposites.ExtentMap</em></a>.
+found in <a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/ecore/opposites/ExtentMap.html"><em class="CodeName">org.eclipse.ocl.ecore.opposites.ExtentMap</em></a>.
 We will use a custom extent map in evaluating a query expression that finds
 books that have the same title as a designated book:
 </p>
@@ -264,14 +264,14 @@ System.out.println(ok);
 <p>
 The <em class="CodeName">OCLHelper</em> interface provides an operation that
 computes content-assist proposals in an abstract form, as
-<a href="../references/javadoc/org/eclipse/ocl/helper/Choice.html"><em class="CodeName">Choice</em></a>s.
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/Choice.html"><em class="CodeName">Choice</em></a>s.
 An application's UI can then convert these to JFace's
 <em class="CodeName">ICompletionProposal</em> type.
 </p>
 <p>
 Obtaining completion choices consists of supplying a partial OCL expression
 (up to the cursor location in the UI editor) to the
-<a href="../references/javadoc/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind, java.lang.String)"><em class="CodeName">OCLHelper::getSyntaxHelp(ConstraintKind, String)</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/helper/OCLHelper.html#getSyntaxHelp(org.eclipse.ocl.helper.ConstraintKind, java.lang.String)"><em class="CodeName">OCLHelper::getSyntaxHelp(ConstraintKind, String)</em></a>
 method.  This method requires a <em class="CodeName">ConstraintKind</em>
 enumeration indicating the type of constraint that is to be parsed (some OCL
 constructs are restricted in the kinds of constraints in which they may be used).
@@ -330,9 +330,9 @@ support persistence in or as an adjunct to Ecore and UML models.
 <p>
 For processing the abstract syntax tree (AST) parsed from OCL text, the API
 supplies a 
-<a href="../references/javadoc/org/eclipse/ocl/utilities/Visitor.html"><em class="CodeName">Visitor</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/Visitor.html"><em class="CodeName">Visitor</em></a>
 interface.  By implementing this interface (or extending the
-<a href="../references/javadoc/org/eclipse/ocl/utilities/AbstractVisitor.html"><em class="CodeName">AbstractVisitor</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/AbstractVisitor.html"><em class="CodeName">AbstractVisitor</em></a>
 class, which is recommended), we can walk the AST of an OCL expression to
 transform it in some way.
 This is exactly what the interpreter, itself, does to evaluate an
