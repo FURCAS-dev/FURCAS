@@ -107,7 +107,7 @@ public class MqlMapperTest extends TestCase {
       
         expressionStringSelect3 = "Employee.allInstances()->select(e:Employee|e.secretary.age = 55)";//navigation
 
-        expressionStringSelect4 = "Employee.allInstances()->select(e:Employee|e.name = e.secretary.name)";//comparison with navigation
+        expressionStringSelect4 = "Employee.allInstances()->select(e:Employee|e.name = (if e.secretary->isEmpty() then null else e.secretary.name endif))";//comparison with navigation
 
         expressionStringSelect5 = "Employee.allInstances()->select(e:Employee|e.age = e.salary)";//comp without navigation
 
