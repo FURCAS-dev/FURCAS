@@ -538,6 +538,12 @@
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
       </eOperations>
+      <eOperations name="=" eType="#/0/Boolean">
+        <eParameters name="c" eType="#/0/Collection(T)"/>
+      </eOperations>
+      <eOperations name="&lt;>" eType="#/0/Boolean">
+        <eParameters name="c" eType="#/0/Collection(T)"/>
+      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
         elementType="#/0/T"/>

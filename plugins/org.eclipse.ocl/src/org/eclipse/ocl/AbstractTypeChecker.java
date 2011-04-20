@@ -177,11 +177,13 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// and so does OclAny, also
-		if (type1 == stdlib.getOclAny()) {
-			return (type2 instanceof CollectionType<?, ?>)
+		if (type1 instanceof AnyType) {
+			return type2 instanceof AnyType
+				? SAME_TYPE :
+				(type2 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUPERTYPE;
-		} else if (type2 == stdlib.getOclAny()) {
+		} else if (type2 instanceof AnyType) {
 			return (type1 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUBTYPE;
