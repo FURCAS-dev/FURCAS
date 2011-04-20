@@ -389,16 +389,10 @@ public class CollectionUtil {
      * @return the flattened collection
      */
     public static Collection<?> flatten(Collection<?> self) {
-        Collection<?> result;
-        // As OCL 2.3 (OMG 10-11-42) section A.2.5.8 fails to specify how to
-        // flatten an OrderedSet, we choose to flatten it into a Set because
-        // ordering cannot be preserved when duplicates are removed during
-        // the flattening.
-        if (self instanceof LinkedHashSet<?>) {
-        	result = createNewSet(self);
-        } else {
-        	result = self;
-        }
+        // Note: As OCL 2.3 (OMG 10-11-42) section A.2.5.8 fails to specify how to
+        // flatten an OrderedSet, we choose to flatten it into an OrderedSet
+        // represented by a LinkedHashSet.
+        Collection<?> result = self;
         
         for (;;) {
             if (result.isEmpty()) {
