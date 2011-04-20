@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageDeclarationScopeAdapter.java,v 1.7 2011/03/01 08:47:03 ewillink Exp $
+ * $Id: PackageDeclarationScopeAdapter.java,v 1.8 2011/04/20 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.scoping;
 
@@ -43,7 +43,7 @@ public class PackageDeclarationScopeAdapter extends EssentialOCLCSScopeAdapter<P
 //			return getNextNamespaceScope(environmentView, scopeView, target.getNamespace());
 			org.eclipse.ocl.examples.pivot.Package pkg = target.getPackage();
 			environmentView.addNamedElements(typeManager.getLocalPackages(pkg));
-			environmentView.addNamedElements(typeManager.getLocalTypes(pkg));
+			environmentView.addNamedElements(typeManager.getLocalClasses(pkg));
 //			environmentView.addNamedElements(pkge.getOwnedPrecedences());
 		}
 		return scopeView.getOuterScope();

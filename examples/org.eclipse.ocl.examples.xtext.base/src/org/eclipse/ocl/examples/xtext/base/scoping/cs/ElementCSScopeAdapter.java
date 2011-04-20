@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementCSScopeAdapter.java,v 1.3 2011/03/18 18:19:08 ewillink Exp $
+ * $Id: ElementCSScopeAdapter.java,v 1.4 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -32,8 +32,8 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.AbstractScopeAdapter;
  */
 public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends AbstractScopeAdapter<CS> implements ScopeCSAdapter
 {	
-	protected final RootCSScopeAdapter root;
-//	protected long unresolveableModificationCount = -1;
+	protected final RootCSScopeAdapter root;	
+	protected final TypeManager typeManager;
 	
 	protected ElementCSScopeAdapter(TypeManager typeManager, CS csElement) {
 		this(typeManager, getScopeCSAdapter((ElementCS) csElement.eContainer()), csElement);
@@ -41,23 +41,24 @@ public abstract class ElementCSScopeAdapter<CS extends ElementCS> extends Abstra
 
 	protected ElementCSScopeAdapter(TypeManager typeManager, ScopeCSAdapter parent, CS target) {
 		super(typeManager, parent, target);
+		this.typeManager = typeManager;
 		this.root = parent != null ? parent.getRootScopeAdapter() : null;	// Seems to be null on Outline refresh ?? thread conflict ??
 		assert (root != null) || (target instanceof RootCS);
+//		typeManager.debugAddAdapter(this);
 	}	
 
 	public RootCSScopeAdapter getRootScopeAdapter() {
 		return root;
 	}
-	
-//	public boolean isUnresolvable() {
-//		return (root == null);// || (unresolveableModificationCount >= root.getModificationCount());
-//	}
 
-//	public void setUnresolvable() {
-//		if (root != null) {
-//			unresolveableModificationCount = root.getModificationCount();
-//		}
-//	}
+	public final TypeManager getTypeManager() {
+		return typeManager;
+	}
+
+	@Override
+	public boolean isAdapterFor(TypeManager typeManager) {
+		return this.typeManager == typeManager;
+	}
 
 	@Override
 	public String toString() {

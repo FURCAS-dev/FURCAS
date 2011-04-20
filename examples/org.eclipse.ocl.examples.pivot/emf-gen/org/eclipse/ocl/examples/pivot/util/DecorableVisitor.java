@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: DecorableVisitor.java,v 1.10 2011/03/17 20:08:14 ewillink Exp $
+ * $Id: DecorableVisitor.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 

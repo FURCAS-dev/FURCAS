@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegateFactory.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: OCLValidationDelegateFactory.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -32,14 +32,8 @@ import org.eclipse.emf.ecore.EPackage;
  * @since 3.0
  */
 public class OCLValidationDelegateFactory extends AbstractOCLDelegateFactory
-		implements ValidationDelegate.Factory, ValidationDelegate {
-
-	public OCLValidationDelegateFactory() {}
-
-	public OCLValidationDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
-
+		implements ValidationDelegate.Factory, ValidationDelegate
+{
 	public ValidationDelegate createValidationDelegate(EClassifier classifier) {
 		EPackage ePackage = classifier.getEPackage();
 		return new OCLValidationDelegate(getDelegateDomain(ePackage), classifier);

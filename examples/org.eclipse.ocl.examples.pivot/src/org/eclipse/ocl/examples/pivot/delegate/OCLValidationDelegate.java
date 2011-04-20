@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLValidationDelegate.java,v 1.5 2011/03/03 20:09:21 ewillink Exp $
+ * $Id: OCLValidationDelegate.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -69,7 +69,7 @@ public class OCLValidationDelegate implements ValidationDelegate
 
 
 	public EvaluationVisitor createEvaluationVisitor(Object object, ExpressionInOcl query) {
-		EnvironmentFactory environmentFactory = delegateDomain.getEnvironmentFactory();
+		EnvironmentFactory environmentFactory = delegateDomain.getOCL().getEnvironmentFactory();
 		Environment rootEnvironment = environmentFactory.createEnvironment();
 		// can determine a more appropriate context from the context
 		// variable of the expression, to account for stereotype constraints

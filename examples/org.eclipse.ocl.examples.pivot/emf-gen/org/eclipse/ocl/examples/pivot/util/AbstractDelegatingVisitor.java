@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractDelegatingVisitor.java,v 1.10 2011/03/17 20:08:13 ewillink Exp $
+ * $Id: AbstractDelegatingVisitor.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.pivot.util;
 
@@ -119,26 +119,6 @@ public abstract class AbstractDelegatingVisitor<R, C, D extends Visitor<R, C>>
 
 	public R visitComment(org.eclipse.ocl.examples.pivot.Comment object) {
 		return delegate.visitComment(object);
-	}
-
-	public R visitCompleteEnvironment(org.eclipse.ocl.examples.pivot.CompleteEnvironment object) {
-		return delegate.visitCompleteEnvironment(object);
-	}
-
-	public R visitCompleteOperation(org.eclipse.ocl.examples.pivot.CompleteOperation object) {
-		return delegate.visitCompleteOperation(object);
-	}
-
-	public R visitCompletePackage(org.eclipse.ocl.examples.pivot.CompletePackage object) {
-		return delegate.visitCompletePackage(object);
-	}
-
-	public R visitCompleteProperty(org.eclipse.ocl.examples.pivot.CompleteProperty object) {
-		return delegate.visitCompleteProperty(object);
-	}
-
-	public R visitCompleteType(org.eclipse.ocl.examples.pivot.CompleteType object) {
-		return delegate.visitCompleteType(object);
 	}
 
 	public R visitConstraint(org.eclipse.ocl.examples.pivot.Constraint object) {

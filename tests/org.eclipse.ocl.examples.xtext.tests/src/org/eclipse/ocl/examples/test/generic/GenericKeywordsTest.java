@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericKeywordsTest.java,v 1.3 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: GenericKeywordsTest.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.test.generic;
@@ -97,8 +97,8 @@ public abstract class GenericKeywordsTest
 
         // create some qualified classifier and package names that need
         // escaping of one or more segments. Likewise state names
-        org.eclipse.ocl.examples.pivot.Package nested = createNestedPackage(smalltalk, "runtime");
-        org.eclipse.ocl.examples.pivot.Package contextPackage = createNestedPackage(nested, "context");
+        org.eclipse.ocl.examples.pivot.Package nested = createPackage(smalltalk, "runtime");
+        org.eclipse.ocl.examples.pivot.Package contextPackage = createPackage(nested, "context");
 
         createOwnedClass(contextPackage, "language", false);
         elseClass = createOwnedClass(contextPackage, "else", false);

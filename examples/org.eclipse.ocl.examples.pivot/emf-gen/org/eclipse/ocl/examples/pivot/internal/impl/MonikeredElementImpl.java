@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MonikeredElementImpl.java,v 1.3 2011/03/14 07:24:49 ewillink Exp $
+ * $Id: MonikeredElementImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+import org.eclipse.ocl.examples.pivot.utilities.Abstract2Moniker;
 import org.eclipse.ocl.examples.pivot.utilities.Pivot2Moniker;
 
 /**
@@ -85,7 +86,8 @@ public abstract class MonikeredElementImpl
 			throw new IllegalStateException("Unresolved proxy for " + eClass().getName() + ": " + eProxyURI()); 
 		}
 		if (moniker == null) {
-			moniker = Pivot2Moniker.toString(this);
+			String moniker = Pivot2Moniker.toString(this);
+			setMoniker(moniker);
 		}
 		return moniker;
 	}
@@ -96,6 +98,9 @@ public abstract class MonikeredElementImpl
 	 * @generated NOT
 	 */
 	public void setMoniker(String newMoniker) {
+		if (Abstract2Moniker.TRACE_MONIKERS.isActive()) {
+			Abstract2Moniker.TRACE_MONIKERS.println(eClass().getName() + " ==> " + newMoniker);
+		}
 		moniker = newMoniker;
 	}
 

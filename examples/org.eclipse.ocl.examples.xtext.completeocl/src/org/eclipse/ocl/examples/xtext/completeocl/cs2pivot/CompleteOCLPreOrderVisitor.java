@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.7 2011/03/12 18:44:10 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.8 2011/04/20 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -20,10 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -31,8 +27,8 @@ import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
@@ -56,6 +52,24 @@ public class CompleteOCLPreOrderVisitor
 	{
 		private DefCSContinuation(CS2PivotConversion context, DefCS csElement) {
 			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
+		}
+
+		@Override
+		public boolean canExecute() {
+			if (!super.canExecute()) {
+				return true;
+			}
+			TypedRefCS ownedType = csElement.getOwnedType();
+			if ((ownedType != null) && (ownedType.getPivot() == null)) {
+				return false;
+			}
+			for (VariableCS csParameter : csElement.getParameters()) {
+				ownedType = csParameter.getOwnedType();
+				if (ownedType.getPivot() == null) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		@Override
@@ -150,7 +164,6 @@ public class CompleteOCLPreOrderVisitor
 			if ((modelOperation == null) || modelOperation.eIsProxy()) {
 				return null;
 			}
-			CompleteOperation completeOperation = completeEnvironmentManager.getCompleteOperation(modelOperation);
 			org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelOperation.getClass_(), csElement);
 //			completeEnvironmentManager.getCompleteOperation(element);
 //			if ((element == null) || element.eIsProxy()) {
@@ -158,6 +171,8 @@ public class CompleteOCLPreOrderVisitor
 //				element = context.getTypeManager().getOclInvalidType();	// FIXME with reason
 //			}
 			Operation contextOperation = context.refreshMonikeredElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+			String moniker = csElement.getMoniker();
+			contextOperation.setMoniker(moniker);
 			contextOperation.setName(modelOperation.getName());
 			List<Parameter> modelParameters = modelOperation.getOwnedParameters();
 			List<VariableCS> csParameters = csElement.getParameters();
@@ -177,21 +192,21 @@ public class CompleteOCLPreOrderVisitor
 			}
 			context.installPivotElement(csElement, contextOperation);
 			contextType.getOwnedOperations().add(contextOperation);
-			completeEnvironmentManager.addOperation(completeOperation, contextOperation);
+//			typeManager.addContextOperation(modelOperation, contextOperation);
 			return null;
 		}
 	}
 	
-	protected final CompleteEnvironmentManager completeEnvironmentManager;
+	protected final TypeManager typeManager;
 
 	public CompleteOCLPreOrderVisitor(CS2PivotConversion context) {
 		super(new EssentialOCLPreOrderVisitor(context), context);
-		completeEnvironmentManager = context.getTypeManager().useCompleteEnvironmentManager();
+		typeManager = context.getTypeManager();
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Class getContextClassifier(Type modelType, ModelElementCS csElement) {
 		String moniker = modelType.getMoniker();
-		MonikeredElement monikeredElement = context.getConverter().getPivotElement(moniker);
+		MonikeredElement monikeredElement = context.getPivotElement(moniker);
 		if (monikeredElement != null) {
 			return (org.eclipse.ocl.examples.pivot.Class)monikeredElement;
 		}
@@ -200,8 +215,7 @@ public class CompleteOCLPreOrderVisitor
 //		context.installPivotElement(csElement, contextType);
 		contextType.setName(modelType.getName());
 		contextPackage.getOwnedTypes().add(contextType);
-		CompleteType completeType = completeEnvironmentManager.getCompleteType(modelType);
-		completeEnvironmentManager.addType(completeType, contextType);
+//		typeManager.addContextType(modelType, contextType);
 		return contextType;
 	}
 
@@ -210,7 +224,7 @@ public class CompleteOCLPreOrderVisitor
 			return null;
 		}
 		String moniker = modelPackage.getMoniker();
-		MonikeredElement monikeredElement = context.getConverter().getPivotElement(moniker);
+		MonikeredElement monikeredElement = context.getPivotElement(moniker);
 		if (monikeredElement != null) {
 			return (org.eclipse.ocl.examples.pivot.Package)monikeredElement;
 		}
@@ -220,13 +234,13 @@ public class CompleteOCLPreOrderVisitor
 		contextPackage.setMoniker(modelPackage.getMoniker());
 		if (contextNestingPackage != null) {
 			contextNestingPackage.getNestedPackages().add(contextPackage);
-			CompletePackage completePackage = completeEnvironmentManager.getCompletePackage(modelPackage);
-			completeEnvironmentManager.addPackage(completePackage, contextPackage);
+//			typeManager.addContextPackage(modelPackage, contextPackage);
 		}
 		else {
 			Resource pivotResource = context.getConverter().getPivotResource(csElement.eResource());
 			pivotResource.getContents().add(contextPackage);
 		}
+		typeManager.installPackage(contextPackage);
 		return contextPackage;
 	}
 
@@ -281,7 +295,6 @@ public class CompleteOCLPreOrderVisitor
 		if ((modelProperty == null) || modelProperty.eIsProxy()) {
 			return null;
 		}
-		CompleteProperty completeProperty = completeEnvironmentManager.getCompleteProperty(modelProperty);
 		org.eclipse.ocl.examples.pivot.Class contextType = getContextClassifier(modelProperty.getClass_(), object);
 //		if ((element == null) || element.eIsProxy()) {
 //			context.addBadPackageError(csElement, OCLMessages.ErrorUnresolvedPackageName, csElement.toString());
@@ -290,9 +303,9 @@ public class CompleteOCLPreOrderVisitor
 		Property contextProperty = context.refreshMonikeredElement(Property.class, PivotPackage.Literals.PROPERTY, object);
 		contextProperty.setName(modelProperty.getName());
 		contextProperty.setType(modelProperty.getType());
-		context.installPivotElement(object, completeProperty);
+		context.installPivotElement(object, contextProperty);
 		contextType.getOwnedAttributes().add(contextProperty);
-		completeEnvironmentManager.addProperty(completeProperty, contextProperty);
+//		typeManager.addContextProperty(modelProperty, contextProperty);
 		return null;
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExpImpl.java,v 1.3 2011/03/01 08:47:18 ewillink Exp $
+ * $Id: CallExpImpl.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -44,7 +44,6 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#isImplicit <em>Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl#getReferredFeature <em>Referred Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -266,8 +265,6 @@ public abstract class CallExpImpl
 				return basicGetSource();
 			case PivotPackage.CALL_EXP__IMPLICIT:
 				return isImplicit();
-			case PivotPackage.CALL_EXP__REFERRED_FEATURE:
-				return getReferredFeature();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -383,8 +380,6 @@ public abstract class CallExpImpl
 				return source != null;
 			case PivotPackage.CALL_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.CALL_EXP__REFERRED_FEATURE:
-				return getReferredFeature() != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

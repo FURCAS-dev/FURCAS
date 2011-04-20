@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2Pivot.java,v 1.7 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: UML2Pivot.java,v 1.8 2011/04/20 19:02:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -426,6 +426,7 @@ public class UML2Pivot extends AbstractConversion implements External2Pivot, Piv
 					pivotAliasMap.put(element, alias);
 				}
 			}
+			typeManager.installResource(pivotResource);
 		}
 		return pivotRoot;
 	}
