@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.3 2011/03/01 08:56:01 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -80,6 +80,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.CollectionValue;
 import org.eclipse.ocl.examples.pivot.values.OrderedSetValue;
@@ -180,14 +181,15 @@ public abstract class PivotTestSuite
 	 * resolved by bindings.
 	 */
     protected void assertBadInvariant(Class<?> exception, int severity,
-   		 String expression, String messageTemplate, String... bindings) {
+   		String expression, String messageTemplate, String... bindings) {
 		String denormalized = denormalize(expression);
 		Resource resource = null;
         try {
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
     		TypeManager typeManager = environment.getTypeManager();
     		Type contextClassifier = environment.getContextClassifier();
-			resource = PivotUtil.createXtextResource(typeManager, contextClassifier, expression);
+    		URI uri = typeManager.getResourceIdentifier(expression, null);
+			resource = PivotUtil.createXtextResource(typeManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
@@ -200,6 +202,13 @@ public abstract class PivotTestSuite
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
         } catch (IOException e) {
 			fail(e.getMessage());
+		} finally {
+			if (resource != null) {
+				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				if (adapter != null) {
+					adapter.dispose();
+				}
+			}
 		}	   
     }
 	 
@@ -217,7 +226,8 @@ public abstract class PivotTestSuite
     		PivotEnvironment environment = (PivotEnvironment) helper.getEnvironment();
     		TypeManager typeManager = environment.getTypeManager();
     		Type contextClassifier = environment.getContextClassifier();
-			resource = PivotUtil.createXtextResource(typeManager, contextClassifier, expression);
+    		URI uri = typeManager.getResourceIdentifier(expression, null);
+			resource = PivotUtil.createXtextResource(typeManager, uri, contextClassifier, expression);
 			PivotUtil.checkResourceErrors("Errors in '" + expression + "'", resource);
             fail("Should not have parsed \"" + denormalized + "\"");
         } catch (ParserException e) {
@@ -230,6 +240,13 @@ public abstract class PivotTestSuite
         	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
         } catch (IOException e) {
 			fail(e.getMessage());
+		} finally {
+			if (resource != null) {
+				TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(resource);
+				if (adapter != null) {
+					adapter.dispose();
+				}
+			}
 		}	   
 	}
      
@@ -804,12 +821,6 @@ public abstract class PivotTestSuite
 		return assertInvariant(context, expression);
 	}
 
-	protected org.eclipse.ocl.examples.pivot.Package createNestedPackage(org.eclipse.ocl.examples.pivot.Package aPackage, String name) {
-		org.eclipse.ocl.examples.pivot.Package nestedPackage = typeManager.createPackage(name);
-		aPackage.getNestedPackages().add(nestedPackage);
-		return nestedPackage;
-	}
-
 	protected Property createOwnedAttribute(org.eclipse.ocl.examples.pivot.Class aClass, String name, Type type) {
 		Property eAttribute = PivotFactory.eINSTANCE.createProperty();
 		eAttribute.setName(name);
@@ -884,6 +895,17 @@ public abstract class PivotTestSuite
 		Registry packageRegistry = resourceSet.getPackageRegistry();
 		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(packageRegistry, typeManager);
 		return OCL.newInstance(envFactory);
+	}
+
+	protected org.eclipse.ocl.examples.pivot.Package createPackage(org.eclipse.ocl.examples.pivot.Package parentPackage, String name) {
+		org.eclipse.ocl.examples.pivot.Package aPackage = typeManager.createPackage(name);
+		if (parentPackage != null) {
+			parentPackage.getNestedPackages().add(aPackage);
+		}
+		else {
+			typeManager.installPackage(aPackage);
+		}
+		return aPackage;
 	}
 	
 	protected ExpressionInOcl createPostcondition(Operation context, String text) {
@@ -1162,7 +1184,7 @@ public abstract class PivotTestSuite
 	}
 
 	protected org.eclipse.ocl.examples.pivot.Package getUMLMetamodel() {
-		return typeManager.getPivotPackage();
+		return typeManager.getPivotMetaModel();
 	}
 	
 	protected Type getUMLString() {
@@ -1303,14 +1325,15 @@ public abstract class PivotTestSuite
 	
 	@Override
     protected void setUp() {
+//    	System.out.println("-----Starting " + getClass().getSimpleName() + "." + getName() + "-----");
 		Logger rootLogger = Logger.getRootLogger();
 //		rootLogger.setLevel(Level.TRACE);
 		rootLogger.addAppender(new TestCaseAppender());
 //		rootLogger.removeAppender("default");
+		OCLstdlib.install();
 		EssentialOCLStandaloneSetup.doSetup();
 		typeManager = new TypeManager();
 		valueFactory = typeManager.getValueFactory();
-		typeManager.loadLibrary(OCLstdlib.INSTANCE);
 		if ((resourceSet != null) && DISPOSE_RESOURCE_SET) {
         	disposeResourceSet();
         }
@@ -1410,6 +1433,8 @@ public abstract class PivotTestSuite
 	protected void tearDown_ocl() {
 		ocl.dispose();
 		ocl = null;
+		typeManager = null;
+		valueFactory = null;
 	}
     
     /**
