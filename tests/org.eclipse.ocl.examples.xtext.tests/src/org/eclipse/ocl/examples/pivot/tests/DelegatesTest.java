@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.5 2011/03/11 20:23:59 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.6 2011/04/20 19:02:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -53,7 +53,6 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import org.eclipse.ocl.examples.library.oclstdlib.OCLstdlib;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.Operation;
@@ -63,6 +62,7 @@ import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateDomain;
+import org.eclipse.ocl.examples.pivot.delegate.DelegateEPackageAdapter;
 import org.eclipse.ocl.examples.pivot.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.examples.pivot.delegate.InvocationBehavior;
 import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
@@ -78,20 +78,17 @@ import org.eclipse.ocl.examples.pivot.delegate.ValidationDelegate;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.completeocl.CompleteOCLStandaloneSetup;
-import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLStandaloneSetup;
 import org.eclipse.ocl.examples.xtext.oclinecore.validation.OCLinEcoreEObjectValidator;
 import org.eclipse.osgi.util.NLS;
 
 import company.CompanyPackage;
-
-
 
 /**
  * Tests for the OCL delegate implementations.
@@ -137,8 +134,6 @@ public class DelegatesTest extends PivotTestSuite
 		super.setUp();
 		eclipseIsRunning = eclipseIsRunning();
 		usedLocalRegistry = false;
-		EssentialOCLStandaloneSetup.doSetup();
-		OCLstdlib.install();
 		EValidator.Registry.INSTANCE.put(null, new OCLinEcoreEObjectValidator());
 
 		String oclDelegateURI = OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT;
@@ -222,10 +217,13 @@ public class DelegatesTest extends PivotTestSuite
 		adapter.putRegistry(QueryDelegate.Factory.Registry.class, queryDelegateFactoryRegistry);			
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		PivotEnvironmentFactory.getGlobalRegistryInstance().getTypeManager().getPivotResourceSet().getResources().clear();
-		super.tearDown();
+	protected void configureTypeManagerForDelegate(EPackage ePackage) {
+		if (typeManager != null) {
+			typeManager.dispose();
+		}
+		DelegateEPackageAdapter adapter = DelegateEPackageAdapter.getAdapter(ePackage);
+		DelegateDomain delegateDomain = adapter.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
+		typeManager = ((OCLDelegateDomain)delegateDomain).getOCL().getTypeManager();
 	}
 
 	protected void initModel(String testModelName) {
@@ -276,8 +274,9 @@ public class DelegatesTest extends PivotTestSuite
 
 	protected void initModelWithErrorsAndOcl() {
 		CompleteOCLStandaloneSetup.doSetup();
-		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
 		Resource ecoreResource = initModelWithErrors();
+		configureTypeManagerForDelegate(companyPackage);
+		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
 		String message = PivotUtil.getResourceErrorsString(ecoreResource, "Model load");
 		if (message != null)
 			fail(message);
@@ -404,7 +403,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void doTest_queryExecution(String modelName) {
 		initModel(modelName);
-
+		configureTypeManagerForDelegate(companyPackage);
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
@@ -423,7 +422,7 @@ public class DelegatesTest extends PivotTestSuite
 		Map<String, Object> badArguments = new HashMap<String, Object>();
 		badArguments.put(n, amy);
 		executeWithException(delegate, acme, badArguments,
-			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(EcorePackage.Literals.ESTRING));
+			OCLMessages.MismatchedArgumentType_ERROR_, n, getType(amy), PivotUtil.findTypeOf(typeManager, EcorePackage.Literals.ESTRING));
 
 		Map<String, Object> arguments = new HashMap<String, Object>();
 		arguments.put(n, "Amy");
@@ -457,7 +456,7 @@ public class DelegatesTest extends PivotTestSuite
 
 	public void doTest_queryExecutionWithExceptions(String modelName) throws InvocationTargetException {
 		initModel(modelName);
-
+		configureTypeManagerForDelegate(companyPackage);
 		QueryDelegate.Factory factory = QueryDelegate.Factory.Registry.INSTANCE
 			.getFactory(OCLDelegateDomain.OCL_DELEGATE_URI_PIVOT);
 
@@ -480,7 +479,7 @@ public class DelegatesTest extends PivotTestSuite
 		//
 		delegate = factory.createQueryDelegate(companyClass, variables, badName);
 		executeWithException(delegate, acme, null, getErrorsInMessage("'" + badName + "'") +
-			getBoundMessage(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'Unknown type'"));
+			getBoundMessage(OCLMessages.UnresolvedProperty_ERROR_, "'" + badName + "'", "'" + PivotConstants.UNKNOWN_TYPE_TEXT + "'"));
 		//
 		//	Definition of undeclared variable
 		//
@@ -1004,7 +1003,6 @@ public class DelegatesTest extends PivotTestSuite
 	
 	public void test_validationWithCompleteOCL() {
 		initModelWithErrorsAndOcl();
-//		EValidator.Registry.INSTANCE.put(null, new MyEObjectValidator());
 		
 		EClass eClassifier = (EClass) companyPackage.getEClassifier("Detritus");
 		EObject badClassInstance = create(acme, companyDetritus, eClassifier, null);

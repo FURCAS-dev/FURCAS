@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: RootPackageCSScopeAdapter.java,v 1.4 2011/02/11 20:00:52 ewillink Exp $
+ * $Id: RootPackageCSScopeAdapter.java,v 1.5 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -33,10 +33,10 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		org.eclipse.ocl.examples.pivot.Package pivot = getPivot();
-		if (pivot != null) {
-			environmentView.addNamedElements(pivot.getNestedPackages());
-			environmentView.addNamedElements(pivot.getOwnedTypes());
+		org.eclipse.ocl.examples.pivot.Package pivotPackage = getPivot();
+		if (pivotPackage != null) {
+			environmentView.addNamedElements(typeManager.getLocalPackages(pivotPackage));
+			environmentView.addNamedElements(typeManager.getLocalClasses(pivotPackage));
 		}
 		if (environmentView.accepts(PivotPackage.Literals.NAMESPACE)) {
 			for (ImportCS anImport : getTarget().getOwnedImport()) {
@@ -44,7 +44,7 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 				String importName = anImport.getName();
 				if (importName == null) {
 					if (namespace instanceof org.eclipse.ocl.examples.pivot.Package) {
-						environmentView.addNamedElements(((org.eclipse.ocl.examples.pivot.Package)namespace).getNestedPackages());
+						environmentView.addNamedElements(typeManager.getLocalPackages((org.eclipse.ocl.examples.pivot.Package)namespace));
 					}
 				}
 				else {
@@ -54,13 +54,13 @@ public class RootPackageCSScopeAdapter extends AbstractRootCSScopeAdapter<RootPa
 					environmentView.addElement(importName, namespace);
 				}
 			}
-			if (pivot != null) {
-				environmentView.addNamedElements(pivot.getNestedPackages());		// Overrides imports
+			if (pivotPackage != null) {
+				environmentView.addNamedElements(typeManager.getLocalPackages(pivotPackage));		// Overrides imports
 			}
 		}
 		if (environmentView.accepts(PivotPackage.Literals.PRECEDENCE)) {
-			if (pivot != null) {
-				environmentView.addNamedElements(pivot.getOwnedPrecedences());		// Overrides imports
+			if (pivotPackage != null) {
+				environmentView.addNamedElements(typeManager.getPrecedences(pivotPackage));		// Overrides imports
 			}
 		}
 /*		if (environmentView.accepts(BaseCSTPackage.Literals.PACKAGE_CS)) {

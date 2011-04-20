@@ -12,12 +12,9 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.6 2011/02/19 12:00:41 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.7 2011/04/20 19:03:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
@@ -25,12 +22,12 @@ import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
-import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasePreOrderVisitor.OperationContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BasicContinuation;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2PivotConversion;
@@ -70,29 +67,13 @@ public class OCLstdlibPreOrderVisitor
 
 		@Override
 		public BasicContinuation<?> execute() {
-			Iteration pivotIteration = context.refreshNamedElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
+			String moniker = csElement.getMoniker();
+			Iteration pivotIteration = context.refreshTypedMultiplicityElement(Iteration.class, PivotPackage.Literals.ITERATION, csElement);
+			pivotIteration.setMoniker(moniker);
 			context.refreshTemplateSignature(csElement, pivotIteration);
-			List<ParameterCS> csIterators = csElement.getOwnedIterator();
-			List<Parameter> newPivotIterators = new ArrayList<Parameter>();
-			for (ParameterCS csIterator : csIterators) {
-				Parameter pivotIterator = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csIterator);
-				newPivotIterators.add(pivotIterator);
-			}
-			context.refreshList(pivotIteration.getOwnedIterators(), newPivotIterators);
-			List<ParameterCS> csAccumulators = csElement.getOwnedAccumulator();
-			List<Parameter> newPivotAccumulators = new ArrayList<Parameter>();
-			for (ParameterCS csAccumulator : csAccumulators) {
-				Parameter pivotIterator = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csAccumulator);
-				newPivotAccumulators.add(pivotIterator);
-			}
-			context.refreshList(pivotIteration.getOwnedAccumulators(), newPivotAccumulators);
-			List<ParameterCS> csParameters = csElement.getOwnedParameter();
-			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
-			for (ParameterCS csParameter : csParameters) {
-				Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				newPivotParameters.add(pivotParameter);
-			}
-			context.refreshList(pivotIteration.getOwnedParameters(), newPivotParameters);
+			refreshParameters(csElement.getOwnedIterator(), pivotIteration.getOwnedIterators());
+			refreshParameters(csElement.getOwnedAccumulator(), pivotIteration.getOwnedAccumulators());
+			refreshParameters(csElement.getOwnedParameter(), pivotIteration.getOwnedParameters());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
 			return null;
 		}
@@ -127,7 +108,10 @@ public class OCLstdlibPreOrderVisitor
 		if (eClass == null) {
 			eClass = PivotPackage.Literals.CLASS;
 		}
-		Type type = context.refreshNamedElement((Class<Type>)eClass.getInstanceClass(), eClass, csLibClass);
+		@SuppressWarnings("unchecked")
+		Class<Type> instanceClass = (Class<Type>)eClass.getInstanceClass();
+		Type type = context.refreshNamedElement(instanceClass, eClass, csLibClass);
+		type.setMoniker(csLibClass.getMoniker());
 		Continuation<?> continuation = super.visitLibClassCS(csLibClass);
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,
@@ -143,6 +127,10 @@ public class OCLstdlibPreOrderVisitor
 
 	@Override
 	public Continuation<?> visitLibRootPackageCS(LibRootPackageCS csLibRootPackage) {
+		for (ImportCS anImport : csLibRootPackage.getOwnedImport()) {
+			@SuppressWarnings("unused")
+			Namespace namespace = anImport.getNamespace();
+		}
 		@SuppressWarnings("unused")
 		Library pivotElement = context.refreshPackage(Library.class, PivotPackage.Literals.LIBRARY, csLibRootPackage);
 		Continuation<?> superContinuation = visitPackageCS(csLibRootPackage);

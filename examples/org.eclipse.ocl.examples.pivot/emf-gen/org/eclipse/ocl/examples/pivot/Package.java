@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Package.java,v 1.2 2011/01/24 20:49:35 ewillink Exp $
+ * $Id: Package.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package</b></em>'.
+ * @implements Iterable<Package>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -46,7 +47,7 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public interface Package
-		extends Namespace, TemplateableElement {
+		extends Namespace, TemplateableElement, Iterable<Package> {
 
 	/**
 	 * Returns the value of the '<em><b>Ns Prefix</b></em>' attribute.

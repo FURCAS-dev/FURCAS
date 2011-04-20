@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SortedByIteration.java,v 1.5 2011/03/08 15:14:50 ewillink Exp $
+ * $Id: SortedByIteration.java,v 1.6 2011/04/20 19:02:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.iterator;
 
@@ -28,7 +28,6 @@ import org.eclipse.ocl.examples.library.AbstractIteration;
 import org.eclipse.ocl.examples.library.IterationManager;
 import org.eclipse.ocl.examples.library.ValidationWarning;
 import org.eclipse.ocl.examples.pivot.CallExp;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -40,7 +39,6 @@ import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.utilities.CompleteEnvironmentManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -144,26 +142,25 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 	public Value evaluate(EvaluationVisitor evaluationVisitor, CollectionValue sourceVal, LoopExp iteratorExp) {
 		EvaluationEnvironment evaluationEnvironment = evaluationVisitor.getEvaluationEnvironment();
 		TypeManager typeManager = evaluationEnvironment.getTypeManager();
-		CompleteEnvironmentManager completeManager = typeManager.getCompleteEnvironmentManager();
 		OclExpression body = iteratorExp.getBody();		
-		Type staticValueType = body.getType();
+		Type staticValueType = PivotUtil.getBehavioralType(body.getType());
 //		CompleteType completeStaticValueType = completeManager.getCompleteType(staticValueType);
 		Operation staticLessThanOperation = typeManager.resolveOperation(staticValueType, PivotConstants.LESS_THAN_OPERATOR, staticValueType);
 		if (staticLessThanOperation == null) {
-			evaluationEnvironment.throwInvalidEvaluation("No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null, iteratorExp, sourceVal);
+			return evaluationEnvironment.throwInvalidEvaluation("No '" + PivotConstants.LESS_THAN_OPERATOR + "' operation defined", null, iteratorExp, sourceVal);
 		}
-		CompleteOperation staticCompleteOperation = completeManager.getCompleteOperation(staticLessThanOperation);
+//		CompleteOperation staticCompleteOperation = typeManager.getCompleteOperation(staticLessThanOperation);
 //		Type dynamicSourceType = sourceValue.getType(getStandardLibrary(), staticSourceType);
 //		CompleteType dynamicCompleteType = completeManager.getCompleteType(dynamicSourceType);
 //		CompleteOperation dynamicOperation = dynamicCompleteType.getDynamicOperation(staticCompleteOperation);
 		CallableImplementation implementation = null;
 		try {
-			implementation = typeManager.getImplementation(staticCompleteOperation);
+			implementation = typeManager.getImplementation(staticLessThanOperation);
 		} catch (Exception e) {
-			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", e, iteratorExp, sourceVal);
+			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticLessThanOperation.getImplementationClass() + "'", e, iteratorExp, sourceVal);
 		}
 		if (implementation == null) {
-			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticCompleteOperation.getImplementationClass() + "'", null, iteratorExp, sourceVal);
+			evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + staticLessThanOperation.getImplementationClass() + "'", null, iteratorExp, sourceVal);
 		}
 		if (!(implementation instanceof Value.BinaryOperation)) {
 			evaluationEnvironment.throwInvalidEvaluation("'<' is not a binary operation", null, iteratorExp, sourceVal);
@@ -205,6 +202,7 @@ public class SortedByIteration extends AbstractIteration<SortedByIteration.Sorti
 //			templateParameterSubstitutions = PivotUtil.getAllTemplateParameterSubstitutions(templateParameterSubstitutions, callExp.getReferredOperation());
 			type = (Type) templateParameterSubstitutions.get(templateParameter);
 		}
+		type = PivotUtil.getBehavioralType(type);			// FIXME make this a general facility
 		Operation operation = typeManager.resolveOperation(type, PivotConstants.LESS_THAN_OPERATOR, type);
 		if (operation == null) {
 			return new ValidationWarning(OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type);

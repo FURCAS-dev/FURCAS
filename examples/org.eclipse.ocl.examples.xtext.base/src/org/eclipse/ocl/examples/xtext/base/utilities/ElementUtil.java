@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.5 2011/04/07 16:00:30 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
@@ -126,10 +125,6 @@ public class ElementUtil
 
 	public static ScopeAdapter getScopeAdapter(TypeManager typeManager, Element element) {
 		return ModelElementCSScopeAdapter.getScopeAdapter(typeManager, element);
-	}
-
-	public static ScopeAdapter getScopeAdapter(ModelElementCS csElement) {
-		return ModelElementCSScopeAdapter.getScopeAdapter(csElement);
 	}
 
 	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
