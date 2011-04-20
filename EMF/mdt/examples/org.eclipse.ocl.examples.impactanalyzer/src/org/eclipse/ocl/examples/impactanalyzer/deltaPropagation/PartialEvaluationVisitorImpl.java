@@ -164,21 +164,6 @@ public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
     }
 
     @Override
-	protected Object computeSourceTurningExceptionsIntoInvalid(OCLExpression<EClassifier> source) {
-		Object sourceVal;
-		try {
-			sourceVal = source.accept(getVisitor());
-		} catch (EvaluationHaltedException ehe) {
-			throw ehe;
-		} catch (ValueNotFoundException vnfe) {
-			throw vnfe;
-		} catch (RuntimeException e) {
-			sourceVal = getInvalid();
-		}
-		return sourceVal;
-	}
-	
-    @Override
     public Object visitIterateExp(IterateExp<EClassifier, EParameter> ie) {
         if (ie == sourceExpression) {
             sourceExpression = null;

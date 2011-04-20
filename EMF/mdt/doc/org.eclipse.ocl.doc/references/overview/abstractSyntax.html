@@ -29,11 +29,11 @@ an Ecore reference that has no opposite defined in the opposite direction.
 <p>
 All of the metaclasses in the Abstract Syntax Model (nodes in the AST) that can
 be visited implement the
-<a href="../javadoc/org/eclipse/ocl/utilities/Visitable.html"><em class="CodeName">Visitable</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/Visitable.html"><em class="CodeName">Visitable</em></a>
 interface.  It define a single operation <em class="CodeName">accept(Visitor)</em>.
 This method delegates to the appropriate <em class="CodeName">visitXyz(Xyz)</em>
 method of the
-<a href="../javadoc/org/eclipse/ocl/utilities/Visitor.html"><em class="CodeName">Visitor</em></a>.
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/Visitor.html"><em class="CodeName">Visitor</em></a>.
 The direct implementors of the <em class="CodeName">Visitable</em> interface are
 the <em class="CodeName">OCLExpression</em> and those metaclasses of the
 <em class="CodeName">Expressions</em> package that do not conform to
@@ -53,7 +53,7 @@ elements in models.
 The OCL parser, internally, defines a few implementations of visitors, including
 a <em class="CodeName">ValidationVisitor</em> for validating OCL expressions
 and an
-<a href="../javadoc/org/eclipse/ocl/EvaluationVisitor.html"><em class="CodeName">EvaluationVisitor</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EvaluationVisitor.html"><em class="CodeName">EvaluationVisitor</em></a>
 for evaluating OCL expressions.
 </p>
 
@@ -61,7 +61,7 @@ for evaluating OCL expressions.
 
 <p>
 The best way to implement a visitor is to extend the
-<a href="../javadoc/org/eclipse/ocl/utilities/AbstractVisitor.html"><em class="CodeName">AbstractVisitor</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/utilities/AbstractVisitor.html"><em class="CodeName">AbstractVisitor</em></a>
 class.  It provides a <em class="CodeName">result</em> variable of the generic
 type parameter type <em class="CodeName">T</em> to store the result computed
 by the visitor (optional) and a convenient pattern of selective method overrides
@@ -154,7 +154,7 @@ OCL environment, e.g., by passing such an object to the <em class="CodeName">OCL
 method.</p>
 
 <p>The name for the reverse navigation can be specified by an
-<a href="../javadoc/org/eclipse/emf/ecore/EAnnotation.html"><em class="CodeName">EAnnotation</em></a> with
+<a href="http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/org/eclipse/emf/ecore/EAnnotation.html"><em class="CodeName">EAnnotation</em></a> with
 source <em class="CodeName">http://schema.omg.org/spec/MOF/2.0/emof.xml</em> and with
 details key <em class="CodeName">Property.oppositeRoleName</em>. The details value
 contains the name by which the "hidden" opposite can be referred to in OCL
