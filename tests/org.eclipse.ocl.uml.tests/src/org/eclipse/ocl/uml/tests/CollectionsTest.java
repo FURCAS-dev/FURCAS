@@ -425,7 +425,11 @@ public class CollectionsTest
                 "Set{'a', 'b', 'c', 'd'}->flatten()" +
                     " = Set{'b', 'c', 'a', 'd'}"));
 
-            assertTrue(check(helper, "",
+			// Collections of different kind are not equal. The behavior
+			// of the flatten() operation on OrderedSet is unspecified
+			// in OCL 2.3 (OMG 10-11-42) section A.2.5.8, and we choose
+			// to flatten an OrderedSet into an OrderedSet.
+            assertFalse(check(helper, "",
                 "OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
                     " = Set{'b', 'c', 'a', 'd'}"));
 
