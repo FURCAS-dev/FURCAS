@@ -120,12 +120,8 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 		return true;
 	}
 	
-	@Override
 	public Map<String, String> getEObjectUserData() {
 		return this.userData;
 	}
-
-
-	
 
 }

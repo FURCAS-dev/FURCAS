@@ -373,11 +373,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		return true;
 	}
 
-	@Override
 	public Map<String, String> getUserData() {
 		return userData;
 	
 	}
 	
-
 }
