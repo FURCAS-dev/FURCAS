@@ -2,7 +2,10 @@ package org.eclipse.emf.query.index.ui.internal.view.tree;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.impl.GlobalTables;
@@ -13,6 +16,7 @@ import org.eclipse.emf.query.index.internal.maps.MapEntry;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.IndexView;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.EObjectsGroup;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.IncomingLinksGroup;
@@ -21,6 +25,7 @@ import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.OutgoingLinksGrou
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceIndexGroup;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceType;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.TypeIndexGroup;
+import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.UserData;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.deferred.DeferredContentProvider;
@@ -64,6 +69,17 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 			return true;
 		} else if (element instanceof ResourceType) {
 			return true;
+		}
+		else if(element instanceof UserData){
+			if(((UserData)element).getUserData()!=null){
+				return ((UserData)element).getUserData().size()>0;
+			}
+			return false;
+		} else if(element instanceof EObjectDescriptor){
+			if(IndexView.isUserDataTableChecked())
+				return true;
+			else
+				return false;
 		}
 		return false;
 	}
@@ -178,6 +194,22 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 				}
 				localTables.add(outgoingLinkGroup);
 			}
+			
+			if(IndexView.isUserDataTableChecked()){
+				UserData userData = new UserData(parentElement);
+				if( ((ResourceDescriptor) parentElement).getUserData()!=null){
+					ArrayList<IndexViewProperty> userDataProperties = new ArrayList<IndexViewProperty>();
+					Iterator<Entry<String, String>> itr = ((ResourceDescriptor) parentElement).getUserData().entrySet().iterator();
+					while(itr.hasNext()){
+						Map.Entry<String, String> entry = itr.next();
+						IndexViewProperty property = new IndexViewProperty(entry.getKey(),entry.getValue());
+						property.setParent(parentElement);
+						userDataProperties.add(property);
+					}
+					userData.getUserData().addAll(userDataProperties);
+				}
+			localTables.add(userData);
+			}
 			resourceIndex.release((PageableResourceDescriptorImpl) parentElement);
 			return localTables.toArray();
 		} else if (parentElement instanceof EObjectsGroup) {
@@ -192,7 +224,29 @@ public class IndexViewTreeContentProvider extends DeferredContentProvider implem
 		} else if (parentElement instanceof ResourceType) {
 			List<IndexTypeURI> resourceDescriptors = ((ResourceType) parentElement).getResourceDescriptors();
 			return resourceDescriptors.toArray();
+		}else if(parentElement instanceof EObjectDescriptor){
+			if(IndexView.isUserDataTableChecked()){
+				List<Object> localTables = new ArrayList<Object>();
+				UserData userdata = new UserData(parentElement);
+				if(((EObjectDescriptor)parentElement).getEObjectUserData()!=null){
+					ArrayList<IndexViewProperty> userDataProperties = new ArrayList<IndexViewProperty>();
+					Iterator<Entry<String, String>> itr = ((EObjectDescriptor) parentElement).getEObjectUserData().entrySet().iterator();
+					while(itr.hasNext()){
+						Map.Entry<String, String> entry = itr.next();
+						IndexViewProperty property = new IndexViewProperty(entry.getKey(),entry.getValue());
+						property.setParent(parentElement);
+						userDataProperties.add(property);
+					}
+					userdata.getUserData().addAll(userDataProperties);
+				}
+				localTables.add(userdata);
+				return localTables.toArray();
+			}
+		}
+		else if(parentElement instanceof UserData){
+			return ((UserData)parentElement).getUserData().toArray();
 		}
 		return null;
 	}
 }
+
