@@ -13,16 +13,23 @@
  */
 package org.eclipse.emf.query2.internal.moinql.preprocessor;
 
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -34,6 +41,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xml.type.internal.XMLCalendar;
 import org.eclipse.emf.query2.EmfHelper;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
@@ -1064,16 +1072,26 @@ final public class TypeCheckerImpl implements TypeChecker {
 						}
 					}
 				} else if (mqlWhereClause instanceof WhereString) {
-					if (!(attrRes.attrType.equals(SpiFqlPrimitiveType.STRING))) {
+					if (attrRes.attrType.equals(SpiFqlPrimitiveType.DATE)){
+						try{
+						String sDt = ((WhereString) mqlWhereClause).getStringValue();
+						value = new SimpleDateFormat("MM/dd/yyyy").parse(sDt);
+						}catch(ParseException p){
+							throw new BugException(BugMessages.INVALID_DATE_FORMAT, mqlWhereClause.getClass().getCanonicalName(),
+							p.getMessage()); //$NON-NLS-1$
+							
+						}
+					}else if (!(attrRes.attrType.equals(SpiFqlPrimitiveType.STRING))) {
 						this.reportError(mqlWhereClause, ApiMessages.COMPARISON_INCOMPATIBLE_TYPE_CHECK, new Object[] { attrName,
 								attrRes.attrType, SpiFqlPrimitiveType.STRING });
+						value=null;
+					}else{
+						value = ((WhereString) mqlWhereClause).getStringValue();
 					}
-					value = ((WhereString) mqlWhereClause).getStringValue();
 				} else {
 					throw new BugException(BugMessages.UNEXPECTED_SUBTYPE, mqlWhereClause.getClass().getCanonicalName(),
 							"WhereComparator"); //$NON-NLS-1$
 				}
-
 				// if we are dealing with strings, check if we have trailing
 				// blanks
 				// in the constant or pattern. Also, a string cannot exceed a
@@ -1695,6 +1713,9 @@ final public class TypeCheckerImpl implements TypeChecker {
 			// the caller permits like-operations)
 			ok = (operation.equals(Operation.EQUAL) || operation.equals(Operation.NOTEQUAL) || (operation.equals(Operation.LIKE) && likeOperationAllowed));
 			break;
+		case DATE:
+			ok = operation.equals(Operation.EQUAL) || operation.equals(Operation.NOTEQUAL) || operation.equals(Operation.SMALLER) || operation.equals(Operation.SMALLEREQUAL) || operation.equals(Operation.GREATER) || operation.equals(Operation.GREATEREQUAL);
+			break;	
 		default:
 			// all other types do not allow liking under any circumstances
 			ok = !operation.equals(Operation.LIKE);
@@ -1992,15 +2013,17 @@ final public class TypeCheckerImpl implements TypeChecker {
 			Class<?> instanceClass = attrMofType.getInstanceClass();
 			if (primName.equals("EBoolean") || instanceClass == boolean.class || instanceClass == Boolean.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.BOOLEAN;
-			} else if (primName.equals("EInt") || instanceClass == int.class || instanceClass == Integer.class) { //$NON-NLS-1$
+			} else if (primName.equals("EInt") || instanceClass == int.class || instanceClass == Integer.class ) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.INTEGER;
-			} else if (primName.equals("ELong") || instanceClass == long.class || instanceClass == Integer.class) { //$NON-NLS-1$
+			} else if (primName.equals("ELong") || instanceClass == long.class || instanceClass == Integer.class || instanceClass == BigInteger.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.LONG;
 			} else if (primName.equals("EFloat") || instanceClass == float.class || instanceClass == Float.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.FLOAT;
 			} else if (primName.equals("EDouble") || instanceClass == double.class || instanceClass == Double.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.DOUBLE;
-			} else if (primName.equals("EString") || instanceClass == String.class) { //$NON-NLS-1$
+			} else if (primName.equals("Date") || instanceClass == Date.class||instanceClass==XMLCalendar.class || instanceClass==XMLGregorianCalendar.class) { //$NON-NLS-1$
+				attrType = SpiFqlPrimitiveType.DATE;	
+			}else if (primName.equals("EString") || instanceClass == String.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.STRING;
 			} else {
 				throw new BugException(BugMessages.UNKNOWN_PRIMITIVE_TYPE, primName);
