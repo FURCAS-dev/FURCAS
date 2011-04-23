@@ -16,12 +16,15 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -62,6 +65,16 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	
+	/**
+	 * If the annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
+	 * value of "true", the {@link EcoreEnvironmentFactoryWithHiddenOpposites} is used instead of
+	 * the default {@link EcoreEnvironmentFactory}, making the OCL environment used by the delegates
+	 * support "hidden opposites" and the {@link OppositePropertyCallExp}.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites"; //$NON-NLS-1$
 
 	protected final String uri;
 	protected final EPackage ePackage;
@@ -81,19 +94,39 @@ public class OCLDelegateDomain implements DelegateDomain
 	public OCLDelegateDomain(String delegateURI, EPackage ePackage) {
 		this.uri = delegateURI;
 		this.ePackage = ePackage;
+		boolean useHiddenOpposites = getUseHiddenOpposites(ePackage);
 		Resource res = ePackage.eResource();
 		ResourceSet resourceSet = res.getResourceSet();
 		EcoreEnvironmentFactory envFactory;
 		if (res != null && resourceSet != null) {
 			// it's a dynamic package. Use the local package registry
 			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-			envFactory = new EcoreEnvironmentFactory(packageRegistry);
+			if (useHiddenOpposites) {
+				envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry);
+			} else {
+				envFactory = new EcoreEnvironmentFactory(packageRegistry);
+			}
 			DelegateResourceAdapter.getAdapter(res);
 		} else {
 			// the shared instance uses the static package registry
-			envFactory = EcoreEnvironmentFactory.INSTANCE;
+			if (useHiddenOpposites) {
+				envFactory = EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE;
+			} else {
+				envFactory = EcoreEnvironmentFactory.INSTANCE;
+			}
 		}
 		this.ocl = OCL.newInstance(envFactory);
+	}
+
+	private boolean getUseHiddenOpposites(EPackage ePackage) {
+		EAnnotation ea = ePackage.getEAnnotation(OCL_DELEGATE_URI);
+		if (ea != null) {
+			String value = ea.getDetails().get(OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY);
+			if (value != null && Boolean.valueOf(value)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void dispose() {
