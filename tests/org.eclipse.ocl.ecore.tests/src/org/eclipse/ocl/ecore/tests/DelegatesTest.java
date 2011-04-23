@@ -53,6 +53,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.QueryDelegate;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
@@ -626,6 +627,33 @@ public class DelegatesTest extends AbstractTestSuite
 			directReportsAnn.getDetails().put(SettingBehavior.DERIVATION_CONSTRAINT_KEY, derivationExpression);
 			SettingBehavior.INSTANCE.cacheOCLExpression(directReportsRef, null);
 		}
+	}
+	
+	public void test_hiddenOppositeInOperation() throws InvocationTargetException {
+		URI uri = getTestModelURI("/model/HiddenOpposites.ecore");
+		Resource res = resourceSet.getResource(uri, true);
+		res.eAdapters().add(new ECrossReferenceAdapter());
+		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
+		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
+		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
+		EClass sup2 = (EClass) hiddenOppositesPackage.getEClassifier("Sup2");
+		EClass unrelated = (EClass) hiddenOppositesPackage.getEClassifier("Unrelated");
+		EObject unrelatedObj = hiddenOppositesFactory.create(unrelated);
+		EObject sup2Obj = hiddenOppositesFactory.create(sup2);
+		res.getContents().add(unrelatedObj);
+		res.getContents().add(sup2Obj);
+		unrelatedObj.eSet(unrelated.getEStructuralFeature("forward"), sup2Obj);
+		EOperation getUnrelated = null;
+		for (EOperation eo : sup2.getEOperations()) {
+			if (eo.getName().equals("getUnrelated")) {
+				getUnrelated = eo;
+				break;
+			}
+		}
+		assertNotNull(getUnrelated);
+		Object o = sup2Obj.eInvoke(getUnrelated, null);
+		assertEquals(unrelatedObj, o);
+
 	}
 
 	public void test_invariantCacheBeingUsed() throws ParserException {
