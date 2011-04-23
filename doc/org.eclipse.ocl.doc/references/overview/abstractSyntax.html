@@ -160,6 +160,18 @@ details key <em class="CodeName">Property.oppositeRoleName</em>. The details val
 contains the name by which the "hidden" opposite can be referred to in OCL
 expressions.</p>
 
+<p>If OCL delegates are used, e.g., by providing package annotations with source
+<em class="CodeName">http://www.eclipse.org/emf/2002/Ecore/OCL</em> and detail keys
+<em class="CodeName">invocationDelegate</em>, <em class="CodeName">settingDelegate</em>,
+or <em class="CodeName">validationDelegate</em>, these delegates by default won't know
+about hidden opposites. To have the delegates support hidden opposites during parsing
+and evaluation of OCL expressions, add an annotation with source
+<em class="CodeName">http://www.eclipse.org/emf/2002/Ecore/OCL</em> containing a detail
+with key <em class="CodeName">hiddenOpposites</em> and value
+<em class="CodeName">true</em>. This will have the delegates' OCL instance use the
+<em class="CodeName">EcoreEnvironmentFactoryWithHiddenOpposites</em> which then
+supports hidden opposites in parsing and evaluation.
+
 <hr/>
 
 <p>
