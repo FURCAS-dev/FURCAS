@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.7 2011/04/25 09:49:14 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.8 2011/04/25 19:39:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -476,6 +476,12 @@ public class ValueFactoryImpl implements ValueFactory
 				return createSequenceValue(values);
 			}
 		}
+/* FIXME		if (object instanceof EEnumLiteral) {
+			Resource resource = ((EEnumLiteral)object).eResource();
+			Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, null);
+			EnumerationLiteral pivotLiteral = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)object);
+			return createElementValue(pivotLiteral);
+		} */
 		return createObjectValue(object);
 	}
 
