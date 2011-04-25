@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.5 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.6 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -74,6 +75,7 @@ import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
@@ -375,6 +377,11 @@ public abstract class PivotTestSuite
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
+			if (expected instanceof EEnumLiteral) {
+				Resource resource = ((EEnumLiteral)expected).eResource();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				expected = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)expected);
+			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
 			Value value = evaluate(helper, context, denormalized);
 //			String expectedAsString = String.valueOf(expected);
@@ -1023,7 +1030,13 @@ public abstract class PivotTestSuite
             String expression) throws ParserException {
 		if (context instanceof EObject) {
 			EClass eClass = ((EObject)context).eClass();
-			aHelper.setContext(typeManager.getPivotType(eClass.getName()));
+			Type pivotType = typeManager.getPivotType(eClass.getName());
+			if (pivotType == null) {
+				Resource resource = eClass.eResource();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+			}
+			aHelper.setContext(pivotType);
 		}
 		ExpressionInOcl query = aHelper.createQuery(expression);
 //        @SuppressWarnings("unused")

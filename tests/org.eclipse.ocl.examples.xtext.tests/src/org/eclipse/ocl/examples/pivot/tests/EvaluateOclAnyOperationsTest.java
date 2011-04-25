@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.8 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.9 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -88,7 +88,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 	
 	public void testGreaterThanInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid > 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, typeManager.getOclInvalidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "invalid > 0");
 //		assertSemanticErrorQuery("0 > invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > invalid");
 		assertSemanticErrorQuery("invalid > invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, typeManager.getOclInvalidType(), typeManager.getOclInvalidType());
@@ -98,7 +98,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testGreaterThanNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null > 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, typeManager.getOclVoidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "null > 0");
 //		assertSemanticErrorQuery("0 > null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 > null");
 		assertSemanticErrorQuery("null > null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OPERATOR, typeManager.getOclVoidType(), typeManager.getOclVoidType());
@@ -106,7 +106,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testGreaterThanOrEqualInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, typeManager.getOclInvalidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "invalid >= 0");
 //		assertSemanticErrorQuery("0 >= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= invalid");
 		assertSemanticErrorQuery("invalid >= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, typeManager.getOclInvalidType(), typeManager.getOclInvalidType());
@@ -114,7 +114,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testGreaterThanOrEqualNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null >= 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, typeManager.getOclVoidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "null >= 0");
 //		assertSemanticErrorQuery("0 >= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 >= null");
 		assertSemanticErrorQuery("null >= null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.GREATER_THAN_OR_EQUAL_OPERATOR, typeManager.getOclVoidType(), typeManager.getOclVoidType());
@@ -122,7 +122,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testLessThanInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid < 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, typeManager.getOclInvalidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "invalid < 0");
 //		assertSemanticErrorQuery("0 < invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < invalid");
 		assertSemanticErrorQuery("invalid < invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, typeManager.getOclInvalidType(), typeManager.getOclInvalidType());
@@ -130,7 +130,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testLessThanNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null < 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, typeManager.getOclVoidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "null < 0");
 //		assertSemanticErrorQuery("0 < null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OPERATOR);
 		assertQueryInvalid(null, "0 < null");
 		assertSemanticErrorQuery("null < null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OPERATOR, typeManager.getOclVoidType(), typeManager.getOclVoidType());
@@ -138,7 +138,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testLessThanOrEqualInvalid() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("invalid <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, typeManager.getOclInvalidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "invalid <= 0");
 //		assertSemanticErrorQuery("0 <= invalid", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= invalid");
 		assertSemanticErrorQuery("invalid <= invalid", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, typeManager.getOclInvalidType(), typeManager.getOclInvalidType());
@@ -146,7 +146,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testLessThanOrEqualNull() {
 		// FIXME Analyzer-extraOperation OclAny::< should not be defined
-		assertSemanticErrorQuery("null <= 0", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, typeManager.getOclVoidType(), typeManager.getUnlimitedNaturalType());
+		assertQueryInvalid(null, "null <= 0");
 //		assertSemanticErrorQuery("0 <= null", OCLMessages.OperationCallNotFound_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR);
 		assertQueryInvalid(null, "0 <= null");
 		assertSemanticErrorQuery("null <= null", OCLMessages.UnresolvedOperationCall_ERROR_, PivotConstants.LESS_THAN_OR_EQUAL_OPERATOR, typeManager.getOclVoidType(), typeManager.getOclVoidType());
@@ -771,7 +771,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getUnlimitedNaturalType()))), "3.oclType().oclType().oclType()");
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getBooleanType())), "Boolean.oclType()");
     	assertQueryEquals(null, "Classifier", "Boolean.oclType().name");
-    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.MismatchedArgumentCount_ERROR_, 1, 0);
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural value", "OclAny");
     }
 
 }
