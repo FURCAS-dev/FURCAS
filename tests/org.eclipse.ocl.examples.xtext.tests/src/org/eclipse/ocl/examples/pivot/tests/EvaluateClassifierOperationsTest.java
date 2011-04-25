@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.4 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: EvaluateClassifierOperationsTest.java,v 1.5 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -60,7 +60,6 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(pkg2, "null.oclContainer()");
 		assertQueryResults(pkg1, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-        helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
 		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural value");
 	}
 	
@@ -73,7 +72,6 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(pkg1, valueFactory.createSetOf(bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, valueFactory.createSetOf(jim), "oclContents()");
 		assertQueryEquals(george, valueFactory.createSetOf(), "oclContents()");
-        helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
 		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural value");
 	}
 }

@@ -12,11 +12,15 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNameVisibilityTest.java,v 1.3 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: EvaluateNameVisibilityTest.java,v 1.4 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
@@ -25,7 +29,7 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  * Tests for Name access.
  */
 @SuppressWarnings("nls")
-public class EvaluateNameVisibilityTest extends PivotSimpleTestSuite
+public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 {
     @Override
     protected void setUp() {
@@ -34,15 +38,68 @@ public class EvaluateNameVisibilityTest extends PivotSimpleTestSuite
     }
 
 	/**
+	 * Tests the basic name accesses
+	 */
+	public void test_bad_navigation() throws InvocationTargetException {
+		assertSemanticErrorQuery("let a : Type = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type value");
+		assertSemanticErrorQuery("let a : Type = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type value");
+		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type> value");
+		assertSemanticErrorQuery("let a : Set<Type> = null in a.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type> value");
+		assertSemanticErrorQuery("Type.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type type");
+		assertSemanticErrorQuery("Type.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type type");
+		assertSemanticErrorQuery("Set<Type>.Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type> type");
+		assertSemanticErrorQuery("Set<Type>.Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type> type");
+		assertSemanticErrorQuery("let a : Type = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type value");
+		assertSemanticErrorQuery("let a : Type = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type value");
+		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type> value");
+		assertSemanticErrorQuery("let a : Set<Type> = null in a->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type> value");
+		assertSemanticErrorQuery("Type->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Type type");
+		assertSemanticErrorQuery("Type->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Type type");
+		assertSemanticErrorQuery("Set<Type>->Package", OCLMessages.UnresolvedProperty_ERROR_, "Package", "Set<Type> type");
+		assertSemanticErrorQuery("Set<Type>->Package()", OCLMessages.UnresolvedOperation_ERROR_, "Package", "Set<Type> type");
+		assertSemanticErrorQuery("let a : Type = null in a.if", "missing EOF at ''.''");
+		assertSemanticErrorQuery("let a : Type = null in a->if", "missing EOF at ''->''");
+	}
+
+	public void test_iterator_scope() {
+		assertQueryInvalid(null, "let s : Set(String) = invalid in Set{'a'}->union(s)");
+	}
+
+	/**
 	 * Tests the let in operator.
 	 */
 	public void test_let() {
-		assertQueryEquals(pkg1, 11, "let a : Integer = 4, b : Integer = 7, c : Integer = a + b in c");
+		assertQueryEquals(null, 11, "let a : Integer = 4, b : Integer = 7, c : Integer = a + b in c");
 		assertSemanticErrorQuery("let a : Boolean = true, b : Boolean = a and b, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", "Boolean value");
 		assertSemanticErrorQuery("let a : Boolean = b and c, b : Boolean = true, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", PivotConstants.UNKNOWN_TYPE_TEXT);
-		assertQueryResults(pkg1, "Set{2,3}", "let a : Set(Integer) = Set{1,2,3,4}, b : Set(Integer) = Set{1,4}, c : Set(Integer) = a - b in c");
+		assertQueryResults(null, "Set{2,3}", "let a : Set(Integer) = Set{1,2,3,4}, b : Set(Integer) = Set{1,4}, c : Set(Integer) = a - b in c");
 
-		assertQueryEquals(pkg1, 16, "let a : Integer = 4 in let a : Integer = 7, b : Integer = a + 9 in b");
-		assertQueryEquals(pkg1, 16, "let a : Integer = 4 in let a : Integer = 7 in a + 9 ");
+		assertQueryEquals(null, 16, "let a : Integer = 4 in let a : Integer = 7, b : Integer = a + 9 in b");
+		assertQueryEquals(null, 16, "let a : Integer = 4 in let a : Integer = 7 in a + 9 ");
+	}
+
+	/**
+	 * Tests the basic name accesses
+	 */
+	public void test_fruit() throws InvocationTargetException {
+		initFruitPackage();
+		typeManager.addGlobalNamespace("fruit", fruitPackage);
+//		ResourceSet resourceSet = new ResourceSetImpl();
+//		Resource resource = resourceSet.createResource(URI.createURI("temp.xmi"));
+		EObject redApple = fruitEFactory.create(apple);
+		redApple.eSet(fruit_color, color_red);
+		EObject greenApple = fruitEFactory.create(apple);
+		greenApple.eSet(fruit_color, color_green);
+		EObject aTree = fruitEFactory.create(tree);
+//		resource.getContents().add(aTree);
+		EList<Object> treeFruits = (EList<Object>) aTree.eGet(tree_fruits);
+		treeFruits.add(redApple);
+		assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
+		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "let aTree : fruit::Tree = self in aTree.fruits");
+		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "self.fruits");
+		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "fruits");
+		assertQueryEquals(redApple, aTree, "self.oclContainer()");
+
+//		assertQueryEquals(redApple, aTree, "self.Tree");
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.15 2011/04/25 09:49:49 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.16 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -864,31 +864,27 @@ public class EssentialOCLLeft2RightVisitor
 			if (contextVariable == null) {
 				contextVariable = PivotFactory.eINSTANCE.createVariable();
 			}
-//			Resource resource = csContext.eResource();
-//			if (resource instanceof EvaluationContext) {	
-//				NamedElement specificationContext = ((EvaluationContext)resource).getSpecificationContext();
-				Type contextType =  null;
-				if (specificationContext instanceof Type) {
-					contextType = (Type) specificationContext;
+			Type contextType;
+			if (specificationContext instanceof Type) {
+				contextType = (Type) specificationContext;
+			}
+			else if (specificationContext instanceof Feature) {
+				contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
+				if (specificationContext instanceof Operation) {
+					context.setType(contextVariable, contextType);
+			        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
+				        Variable param = PivotFactory.eINSTANCE.createVariable();
+				        param.setName(parameter.getName());
+				        context.setType(param, parameter.getType());
+				        param.setRepresentedParameter(parameter);
+				        pivotElement.getParameterVariables().add(param);
+			        }					
 				}
-				else if (specificationContext instanceof Feature) {
-					contextType = PivotUtil.getFeaturingClass((Feature)specificationContext);
-					if (specificationContext instanceof Operation) {
-						context.setType(contextVariable, contextType);
-				        for (Parameter parameter : ((Operation)specificationContext).getOwnedParameters()) {
-					        Variable param = PivotFactory.eINSTANCE.createVariable();
-					        param.setName(parameter.getName());
-					        context.setType(param, parameter.getType());
-					        param.setRepresentedParameter(parameter);
-					        pivotElement.getParameterVariables().add(param);
-				        }					
-					}
-				}
-//				if (contextType instanceof CompleteType) {
-//					contextType = ((CompleteType)contextType).getModel();
-//				}
-				context.setType(contextVariable, contextType);
-//			}
+			}
+			else {
+				contextType = typeManager.getOclInvalidType();
+			}
+			context.setType(contextVariable, contextType);
 
 			context.refreshName(contextVariable, Environment.SELF_VARIABLE_NAME);
 			pivotElement.setContextVariable(contextVariable);
@@ -909,22 +905,6 @@ public class EssentialOCLLeft2RightVisitor
 	public MonikeredElement visitExpCS(ExpCS object) {
 		return null;
 	}
-
-/*	@Override
-	public MonikeredElement visitExpSpecificationCS(ExpSpecificationCS csExpConstraint) {
-		ExpressionInOcl specification = PivotUtil.getPivot(ExpressionInOcl.class, csExpConstraint);
-		ExpCS csExpression = csExpConstraint.getOwnedExpression();
-		if (csExpression != null) {
-			OclExpression expression = context.visitLeft2Right(OclExpression.class, csExpression);
-			specification.setBodyExpression(expression);
-		}
-//		ExpCS csMessage = csExpConstraint.getOwnedMessage();
-//		if (csMessage != null) {
-//			OclExpression message = context.visitLeft2Right(OclExpression.class, csMessage);
-//			specification.setMessageExpression(message);
-//		}
-		return specification;
-	} */
 
 	@Override
 	public MonikeredElement visitExpSpecificationCS(ExpSpecificationCS object) {
@@ -1105,7 +1085,8 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public OclExpression visitNavigationOperatorCS(NavigationOperatorCS csOperator) {
-		context.visitLeft2Right(OclExpression.class, csOperator.getSource());
+		@SuppressWarnings("unused")
+		OclExpression sourceExp = context.visitLeft2Right(OclExpression.class, csOperator.getSource());
 		OclExpression navigatingExp;
 		ExpCS argument = csOperator.getArgument();
 		if (argument instanceof NavigatingExpCS) {
@@ -1115,6 +1096,7 @@ public class EssentialOCLLeft2RightVisitor
 			navigatingExp = resolvePropertyNavigation((NamedExpCS) argument);
 		}
 		context.reusePivotElement(csOperator, navigatingExp);
+//		assert sourceExp.eContainer() != null; -- need to insert into invalidLiteralExp for bad navigation
 		return navigatingExp;
 	}
 

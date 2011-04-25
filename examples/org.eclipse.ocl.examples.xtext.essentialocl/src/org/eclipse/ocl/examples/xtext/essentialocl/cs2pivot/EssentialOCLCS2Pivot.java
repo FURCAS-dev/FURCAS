@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.6 2011/04/25 09:49:49 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.7 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -35,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.osgi.util.NLS;
@@ -81,10 +83,23 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			String messageTemplate;
+			String argumentText = null;
 			ExpCS navigationArgument = null;
 			if (context.eContainer() instanceof NavigatingExpCS) {
-				navigationArgument = (NavigatingExpCS)context.eContainer();
-				messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
+				NavigatingExpCS eContainer = (NavigatingExpCS)context.eContainer();
+				navigationArgument = eContainer;
+				List<NavigatingArgCS> arguments = eContainer.getArgument();
+				if (arguments.size() <= 0) {
+					messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
+				}
+				else {
+					StringBuffer s = new StringBuffer();
+					for (NavigatingArgCS csArgument : arguments) {
+						s.append(csArgument.toString());
+					}
+					argumentText = s.toString();
+					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+				}
 			}
 			else if (context instanceof ExpCS) {
 				navigationArgument = (ExpCS)context;
@@ -112,7 +127,12 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 					}
 				}
 			}
-			return NLS.bind(messageTemplate, linkText, typeText);
+			if (argumentText == null) {
+				return NLS.bind(messageTemplate, linkText, typeText);
+			}
+			else {
+				return NLS.bind(messageTemplate, new Object[]{linkText, typeText, argumentText});
+			}
 		}
 	}
 		
