@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.9 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.10 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -30,6 +30,7 @@ import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
@@ -39,12 +40,14 @@ import org.eclipse.ocl.examples.pivot.LetExp;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.NullLiteralExp;
+import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
+import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
@@ -116,7 +119,10 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 						return;
 					}
 					else {
-						object = callExpParent;
+						context.appendParent(callExpParent, MONIKER_SCOPE_SEPARATOR);
+						context.appendRole(callExpParent);
+						context.append(MONIKER_OPERATOR_SEPARATOR);
+						return;
 					}
 				}
 				else if (callExpParent.getSource() == object) {
@@ -205,6 +211,12 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		}
 		return true;
 	}
+
+//	@Override
+//	public Object visitClassifierType(ClassifierType object) {
+//		context.appendName(object);
+//		return true;
+//	}
 
 	@Override
 	public Object visitCollectionLiteralExp(CollectionLiteralExp object) {
@@ -323,6 +335,14 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	@Override
 	public Object visitLoopExp(LoopExp object) {
 		appendExpPrefix(object);
+		if (object.isImplicit()) {
+			OclExpression body = object.getBody();
+			if (body instanceof CallExp) {
+				Feature referredFeature = PivotUtil.getReferredFeature((CallExp) body);
+				context.appendName(referredFeature);
+				return true;
+			}
+		}
 		context.appendName(object.getReferredIteration());
 		return true;
 	}
@@ -471,8 +491,14 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 
 	@Override
 	public Object visitTupleType(TupleType object) {
-		context.appendName(object);
-		context.appendTupleType(object.getOwnedAttributes());
+		List<Property> ownedAttributes = object.getOwnedAttributes();
+		if (ownedAttributes.isEmpty()) {
+			super.visitTupleType(object);
+		}
+		else {
+			context.appendName(object);
+			context.appendTupleType(ownedAttributes);
+		}
 		return true;
 	}
 

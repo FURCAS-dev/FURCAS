@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTFactory.java,v 1.7 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BaseCSTFactory.java,v 1.8 2011/04/25 09:50:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -62,15 +62,6 @@ public interface BaseCSTFactory extends EFactory {
 	 * @generated
 	 */
 	AttributeCSRef createAttributeCSRef();
-
-	/**
-	 * Returns a new object of class '<em>Bound Document CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound Document CS</em>'.
-	 * @generated
-	 */
-	BoundDocumentCS createBoundDocumentCS();
 
 	/**
 	 * Returns a new object of class '<em>Class CS</em>'.

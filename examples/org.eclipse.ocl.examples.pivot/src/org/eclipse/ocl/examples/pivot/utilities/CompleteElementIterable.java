@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteElementIterable.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: CompleteElementIterable.java,v 1.5 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -33,37 +33,57 @@ public abstract class CompleteElementIterable<O,I> implements Iterable<I>
 	{
 		private final java.util.Iterator<? extends O> outerIterator;
 		private java.util.Iterator<I> innerIterator;
+		private I nextValue;
 		
 		public Iterator(Iterable<? extends O> iterables) {
 			outerIterator = iterables.iterator();
+			innerIterator = null;
 			advance();
 		}
 
 		protected boolean advance() {
-			while (outerIterator.hasNext()) {
-				Iterable<I> innerIterable = getInnerIterable(outerIterator.next());
-				if (innerIterable != null) {
-					innerIterator = innerIterable.iterator();
-					if (innerIterator.hasNext()) {
-						return true;
+			while (true) {
+				if (innerIterator != null) {
+					while (innerIterator.hasNext()) {
+						nextValue = getInnerValue(innerIterator.next());
+						if (nextValue != null) {
+							return true;
+						}
 					}
 				}
+				if (outerIterator.hasNext()) {
+					Iterable<I> innerIterable = getInnerIterable(outerIterator.next());
+					if (innerIterable != null) {
+						innerIterator = innerIterable.iterator();
+					}
+				}
+				else {
+					break;
+				}
 			}
+			nextValue = null;
 			return false;
 		}
 
 		public boolean hasNext() {
-			if (innerIterator == null) {
-				return false;
-			}
-			if (innerIterator.hasNext()) {
-				return true;
-			}
-			return advance();
+			return nextValue != null;
+//			if (innerIterator == null) {
+//				return false;
+//			}
+//			if (innerIterator.hasNext()) {
+//				return true;
+//			}
+//			return advance();
 		}
 
 		public I next() {
-			return innerIterator != null ? getInnerValue(innerIterator.next()) : null;
+			try {
+				return nextValue;
+			}
+			finally {
+				advance();
+			}
+//			return innerIterator != null ? getInnerValue(innerIterator.next()) : null;
 		}
 
 		public void remove() {

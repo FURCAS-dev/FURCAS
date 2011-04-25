@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.5 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.6 2011/04/25 09:49:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -66,7 +66,7 @@ public class IteratorsTest extends PivotTestSuite
     @Override
     protected void setUp() {
         super.setUp();
-		typeManager.addGlobalNamespace("pivot", typeManager.getPivotMetaModel());
+		typeManager.addGlobalNamespace(PivotConstants.OCL_NAME, typeManager.getPivotMetaModel());
 
         // need a metamodel that has a reflexive EReference.
         // Ecore will do nicely. Create the following structure:
@@ -115,7 +115,7 @@ public class IteratorsTest extends PivotTestSuite
 		CollectionValue expected = valueFactory.createSetOf(pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "nestedPackage->select(p : pivot::Package | p.name <> 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->select(p : ocl::Package | p.name <> 'bob')");
 
         // shorter form
         assertQueryEquals(pkg1, expected, "nestedPackage->select(p | p.name <> 'bob')");
@@ -134,7 +134,7 @@ public class IteratorsTest extends PivotTestSuite
 		CollectionValue expected = valueFactory.createSetOf(pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p : pivot::Package | p.name = 'bob')");
+        assertQueryEquals(pkg1, expected, "nestedPackage->reject(p : ocl::Package | p.name = 'bob')");
 
         // shorter form
         assertQueryEquals(pkg1, expected, "nestedPackage->reject(p | p.name = 'bob')");
@@ -151,7 +151,7 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_any() {
         // complete form
-    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p : pivot::Package | p.name = 'bob')");
+    	assertQueryEquals(pkg1, bob, "nestedPackage->any(p : ocl::Package | p.name = 'bob')");
 
         // shorter form
     	assertQueryEquals(pkg1, bob, "nestedPackage->any(p | p.name = 'bob')");
@@ -239,7 +239,7 @@ public class IteratorsTest extends PivotTestSuite
         CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p : pivot::Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p : ocl::Package | p.name)");
 
         // shorter form
         assertQueryEquals(pkg1, expected1, "nestedPackage->collect(p | p.name)");
@@ -264,7 +264,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownAttribute_232669() {
         assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownAttribute",
-        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set<pivot::Package>");
+        	OCLMessages.UnresolvedProperty_ERROR_, "unknownAttribute", "Set<Package> value");
    }
 
     /**
@@ -275,7 +275,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "unknownOperation", "Set<pivot::Package>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "unknownOperation", "Set<Package> value");
    }
 
     /**
@@ -305,7 +305,7 @@ public class IteratorsTest extends PivotTestSuite
         CollectionValue expected1 = valueFactory.createBagOf("pkg2", "bob", "pkg3");
 
         // complete form
-        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p : pivot::Package | p.name)");
+        assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p : ocl::Package | p.name)");
 
         // shorter form
         assertQueryEquals(pkg1, expected1, "nestedPackage->collectNested(p | p.name)");
@@ -329,7 +329,7 @@ public class IteratorsTest extends PivotTestSuite
     	OrderedSetValue expectedSet = valueFactory.createOrderedSetOf(bob, pkg2, pkg3);
 
         // complete form
-        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p : pivot::Package | p.name)");
+        assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p : ocl::Package | p.name)");
 
         // shorter form
         assertQueryEquals(pkg1, expectedSet, "nestedPackage->sortedBy(p | p.name)");
@@ -379,9 +379,6 @@ public class IteratorsTest extends PivotTestSuite
         Type packageMetaclass = typeManager.getPivotType("Package");
         Property nestedPackage = getAttribute(packageMetaclass, "nestedPackage", packageMetaclass);
         Property nestingPackage = getAttribute(packageMetaclass, "nestingPackage", packageMetaclass);
-
-        helper.setContext(typeManager.getPivotType("Property"));
-
         SetValue expected = valueFactory.createSetOf(nestedPackage, nestingPackage); // cyclic closure *does* include self
         assertQueryEquals(nestingPackage, expected, "self->closure(opposite)");
         assertQueryEquals(nestedPackage, expected, "self->closure(opposite)");
@@ -395,6 +392,7 @@ public class IteratorsTest extends PivotTestSuite
     	org.eclipse.ocl.examples.pivot.Package fakePkg = typeManager.createPackage("fake");
     	fakeResource.getContents().add(fakePkg);
         org.eclipse.ocl.examples.pivot.Class fake = createOwnedClass(fakePkg, "Fake", false);
+        createGeneralization(fake, typeManager.getOclAnyType());
         Operation getFakes = createOwnedOperation(fake, "getFakes", null, null, fake, true);
         getFakes.setUpper(BigInteger.valueOf(-1));
 
@@ -427,6 +425,7 @@ public class IteratorsTest extends PivotTestSuite
         // subclass the Fake class
         org.eclipse.ocl.examples.pivot.Class subFake = createOwnedClass(fakePkg, "Subfake", false);
         createGeneralization(subFake, fake);
+        createGeneralization(fake, typeManager.getOclAnyType());
 
         // get sub-fakes from a fake
         Operation getSubFakes = createOwnedOperation(fake, "getSubFakes", null, null, subFake, true);
@@ -582,16 +581,16 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_closure_invalidBody_142518() {
         assertQueryInvalid(getUMLMetamodel(),
-            "let c : pivot::Type = invalid in ownedType->closure(c)");
+            "let c : ocl::Type = invalid in ownedType->closure(c)");
 
         // in the case of a null value, null is allowed in a collection, so
         // it does not result in invalid
         assertQueryResults(getUMLMetamodel(), "Set{null}",
-    		"let c : Set(pivot::Type) = Set{null} in ownedType->closure(c)");
+    		"let c : Set(ocl::Type) = Set{null} in ownedType->closure(c)");
  
 //        Set<Object> expected = Collections.singleton(getNull());
 //        assertQueryEquals(EcorePackage.eINSTANCE, expected,
-//        	"let c : Set(pivot::Type) = Set{null} in ownedType->closure(c)");
+//        	"let c : Set(ocl::Type) = Set{null} in ownedType->closure(c)");
     }
 
 	/**
@@ -614,12 +613,12 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_iterateWithNullSource_143996() {
         assertQueryInvalid(pkg1,
-            "let e : Collection(pivot::Package) = null in e->iterate(" +
-                "p : pivot::Package; s : String = '' | s.concat(p.name))");
+            "let e : Collection(ocl::Package) = null in e->iterate(" +
+                "p : ocl::Package; s : String = '' | s.concat(p.name))");
 
         assertQueryInvalid(pkg1,
-            "let e : Collection(pivot::Package) = invalid in e->iterate(" +
-                "p : pivot::Package; s : String = '' | s.concat(p.name))");
+            "let e : Collection(ocl::Package) = invalid in e->iterate(" +
+                "p : ocl::Package; s : String = '' | s.concat(p.name))");
     }
 
     /**
@@ -628,12 +627,12 @@ public class IteratorsTest extends PivotTestSuite
      */
     public void test_existsWithNullSource_143996() {
     	assertQueryInvalid(pkg1,
-            "let e : Collection(pivot::Package) = null in e->exists(" +
-                "p : pivot::Package | p.name = 'bob')");
+            "let e : Collection(ocl::Package) = null in e->exists(" +
+                "p : ocl::Package | p.name = 'bob')");
 
     	assertQueryInvalid(pkg1,
-            "let e : Collection(pivot::Package) = invalid in e->exists(" +
-                "p : pivot::Package | p.name = 'bob')");
+            "let e : Collection(ocl::Package) = invalid in e->exists(" +
+                "p : ocl::Package | p.name = 'bob')");
     }
 
     /**
@@ -668,35 +667,35 @@ public class IteratorsTest extends PivotTestSuite
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "exists", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "exists", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "forAll", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "forAll", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedOperation_ERROR_, "collect", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "collect", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "any", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "any", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "one", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "one", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "select", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "select", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "reject", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "reject", "Sequence<String> value");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "isUnique", "Sequence<String>");
+        	OCLMessages.UnresolvedOperation_ERROR_, "isUnique", "Sequence<String> value");
     }
 
 	/**
@@ -708,7 +707,7 @@ public class IteratorsTest extends PivotTestSuite
     	Type type = typeManager.getPivotType("Type");
      	assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		"ownedType->sortedBy(e | e)",
-        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type);
+        	OCLMessages.UnresolvedOperation_ERROR_, PivotConstants.LESS_THAN_OPERATOR, type + " value");
        
     	assertQuery(context, "%ownedType->sortedBy(e | e.name)");
     	loadEPackage("ecore", EcorePackage.eINSTANCE);

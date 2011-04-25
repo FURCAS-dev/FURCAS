@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.7 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.8 2011/04/25 09:49:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -22,7 +22,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.NamedElement;
@@ -33,7 +35,6 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -132,28 +133,18 @@ public class OperationFilter extends AbstractOperationFilter
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
 		}			
 		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
-//		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
-//			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, ParameterableElement>();
 				}
-				Type expressionType = null;
-				if ("oclAsType".equals(candidateOperation.getName())) {		// FIXME This should be modeled
-					NavigatingArgCS csExpression = csArguments.get(0);
-					TypeExp expression = PivotUtil.getPivot(TypeExp.class, csExpression);
-					if (expression != null) {
-						expressionType = expression.getReferredType();
-					}
-				}
-				bindings.put(templateParameter, expressionType);
+				bindings.put(templateParameter, null);
 			}
 		}
 		return bindings;
 	}
-	
+
 	@Override
 	protected void installBindings(EnvironmentView environmentView, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
@@ -162,7 +153,12 @@ public class OperationFilter extends AbstractOperationFilter
 			if (parameteredElement instanceof NamedElement) {
 				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
 					if (bindings.get(templateParameter) == null) {
-						bindings.put(templateParameter, sourceType);
+						if ((sourceType instanceof ClassifierType) && (eObject instanceof Feature) && ((Feature)eObject).isStatic()) {
+							bindings.put(templateParameter, ((ClassifierType)sourceType).getInstanceType());
+						}
+						else {
+							bindings.put(templateParameter, sourceType);
+						}
 						break;
 					}
 				}
