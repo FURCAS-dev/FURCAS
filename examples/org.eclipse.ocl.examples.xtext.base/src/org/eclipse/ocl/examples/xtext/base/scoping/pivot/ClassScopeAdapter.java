@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.7 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -24,50 +25,50 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
+	private static void addAllContents(EnvironmentView environmentView, ScopeView scopeView,
+			org.eclipse.ocl.examples.pivot.Class pivotClass, Boolean selectStatic) {
+		TypeManager typeManager = environmentView.getTypeManager();
+		environmentView.addNamedElements(typeManager.getLocalOperations(pivotClass, selectStatic));
+		environmentView.addNamedElements(typeManager.getLocalProperties(pivotClass, selectStatic));
+		if (!environmentView.hasFinalResult()) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(pivotClass)) {
+				addAllContents(environmentView, scopeView, superClass, selectStatic);
+			}
+		}
+	}
+	
 	public ClassScopeAdapter(TypeManager typeManager, org.eclipse.ocl.examples.pivot.Class pivotElement) {
 		super(typeManager, pivotElement);
 	}
 
-	public void addInheritedContents(EnvironmentView environmentView, org.eclipse.ocl.examples.pivot.Class target, ScopeView scopeView) {
-		TypeManager typeManager = environmentView.getTypeManager();
-		boolean hasSuperType = false;
-		for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(target)) {
-			environmentView.addElementsOfScope(superClass, scopeView);
-			hasSuperType = true;
-		}
-		if (!hasSuperType) {
-			Type anyType = typeManager.getOclAnyType();
-			Type libType = typeManager.getClassifierType();
-			if ((libType != target) && (anyType != target)){		// FIXME Is this the right place for the trap
-				addLibContents(environmentView, libType, scopeView);
-			}
-		}
-	}
-
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		org.eclipse.ocl.examples.pivot.Class unspecializedPivot;
-		if (target.getTemplateBindings().size() > 0) {
-			unspecializedPivot = PivotUtil.getUnspecializedTemplateableElement(target);
+		if (target.getOwningTemplateParameter() != null) {
+			return null;
 		}
-		else {
-			unspecializedPivot = target;
+		if (target.getTemplateBindings().size() == 0) {
 			environmentView.addElements(PivotUtil.getTypeTemplateParameterables(target));
 		}
 		TypeManager typeManager = environmentView.getTypeManager();
-		environmentView.addNamedElements(typeManager.getLocalOperations(unspecializedPivot));
-		environmentView.addNamedElements(typeManager.getLocalProperties(unspecializedPivot));
+		if (target instanceof ClassifierType) {
+			Type instanceType = ((ClassifierType)target).getInstanceType();
+			if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
+				environmentView.addNamedElements(typeManager.getLocalOperations(instanceType, Boolean.TRUE));
+				environmentView.addNamedElements(typeManager.getLocalProperties(instanceType, Boolean.TRUE));
+			}
+		}
+		environmentView.addNamedElements(typeManager.getLocalOperations(target, Boolean.FALSE));
+		environmentView.addNamedElements(typeManager.getLocalProperties(target, Boolean.FALSE));
 		if (!environmentView.hasFinalResult()) {
-//			if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters
-			addInheritedContents(environmentView, unspecializedPivot, scopeView);
-//			if ((environmentView.getSize() == 0) && (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS)) { // Avoid creating bindings for nested type parameters
-//				for (org.eclipse.ocl.examples.pivot.Class superClass : pivot.getSuperClasses()) {
-//					ScopeView nestedScopeView = scopeView;
-//	//				if (csType instanceof BoundClassifierCS) {
-//	//					nestedScopeView = new BaseScopeView(scopeView, ((BoundClassifierCS)csType).getBindings());
-//	//				}
-//					environmentView.addElementsOfScope(superClass, nestedScopeView);
-//				}
+			if (target instanceof ClassifierType) {
+				Type instanceType = ((ClassifierType)target).getInstanceType();
+				if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
+					addAllContents(environmentView, scopeView, (org.eclipse.ocl.examples.pivot.Class)instanceType, Boolean.TRUE);
+				}
+			}	// FIXME don't shorten non-static search after static match
+			for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(target)) {
+				addAllContents(environmentView, scopeView, superClass, Boolean.FALSE);
+			}
 		}
 		return scopeView.getOuterScope();
 	}

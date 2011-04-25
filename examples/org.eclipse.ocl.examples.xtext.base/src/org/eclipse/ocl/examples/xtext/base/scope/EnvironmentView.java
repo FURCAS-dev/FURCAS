@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.13 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.14 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -200,6 +200,18 @@ public class EnvironmentView
 			matchers = new ArrayList<Filter>();
 		}
 		matchers.add(filter);
+	}
+
+	public void addLibContents(Type libType, ScopeView scopeView) {
+		if (libType == null) {
+			return;
+		}
+		addElementsOfScope(libType, scopeView);
+		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
+				addLibContents(superClass, scopeView);
+			}
+		}
 	}
 
 	public int addNamedElement(Nameable namedElement) {
