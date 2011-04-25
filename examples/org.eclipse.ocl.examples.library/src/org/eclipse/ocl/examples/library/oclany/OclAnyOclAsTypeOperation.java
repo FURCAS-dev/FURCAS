@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclAsTypeOperation.java,v 1.5 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: OclAnyOclAsTypeOperation.java,v 1.6 2011/04/25 09:48:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
@@ -38,24 +38,16 @@ public class OclAnyOclAsTypeOperation extends AbstractOperation
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
 		if (sourceType == null) {
-			return null;
+			return evaluationVisitor.throwInvalidEvaluation("Missing source type", null, operationCall, sourceType);
 		}
 		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
 		TypeValue typeVal = argVal.asTypeValue();
-		Type argType = typeVal.getType();
+		Type argType = typeVal.getInstanceType();
 		if (typeManager.conformsTo(sourceType, argType, null)) {
-			return evaluateConforming(evaluationVisitor, sourceVal, argType);
+			return sourceVal;
 		}
 		else {
-			return evaluateNonConforming(evaluationVisitor, sourceVal, argType);
+			return evaluationVisitor.throwInvalidEvaluation("Incompatible argument type", null, operationCall, argType);
 		}
-	}
-
-	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
-		return sourceVal;
-	}
-
-	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
-		return null;
 	}
 }
