@@ -14,7 +14,7 @@
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.6 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.7 2011/04/25 09:49:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.tests;
 
@@ -815,7 +815,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, badClassClass, null);
 		invokeWithException(badClassInstance, "operationParsingToSemanticError",
-			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperation_ERROR_, "'at'", "'ModelWithErrors.ecore::modelWithErrors::BadClass'"));
+			getErrorsInMessage("'self->at(1)'") + getBoundMessage(OCLMessages.UnresolvedOperation_ERROR_, "'at'", "'ModelWithErrors.ecore::modelWithErrors::BadClass value'"));
 	}
 
 	public void test_operationParsingToSyntacticError() {
@@ -983,7 +983,7 @@ public class DelegatesTest extends PivotTestSuite
 		initModelWithErrors();
 		EObject badClassInstance = create(acme, companyDetritus, (EClass) companyPackage.getEClassifier("ValidationParsingToSemanticError"), null);
 		validateWithDelegationError("parsingToSemanticError", badClassInstance, "not '5'",
-			OCLMessages.UnresolvedOperation_ERROR_, "not", "String");
+			OCLMessages.UnresolvedOperation_ERROR_, "not", "String value");
 	}
 	
 	public void test_validationParsingToSyntacticError() {

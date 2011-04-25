@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EditTests.java,v 1.3 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: EditTests.java,v 1.4 2011/04/25 09:49:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -235,7 +235,7 @@ public class EditTests extends XtextTestCase
 		//
 		doRename(xtextResource, pivotResource, "testProperty1", "tProperty",
 //			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", PivotConstants.UNKNOWN_TYPE_TEXT),
-			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1));
+			NLS.bind(OCLMessages.UnresolvedProperty_ERROR_, "testProperty1", pivotTestClass1 + " value"));
 		//
 		//	Changing "tProperty" back to "testProperty" restores the property and the invariant.
 		//
@@ -244,7 +244,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation", "tOperation",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
@@ -253,7 +253,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation()",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -262,7 +262,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation(s : String)",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1));
+			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
