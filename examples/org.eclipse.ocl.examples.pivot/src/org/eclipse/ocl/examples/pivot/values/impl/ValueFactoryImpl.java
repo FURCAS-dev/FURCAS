@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactoryImpl.java,v 1.6 2011/03/01 08:47:20 ewillink Exp $
+ * $Id: ValueFactoryImpl.java,v 1.7 2011/04/25 09:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -31,11 +31,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
@@ -57,6 +57,7 @@ import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
+import org.eclipse.osgi.util.NLS;
 
 public class ValueFactoryImpl implements ValueFactory
 {
@@ -170,7 +171,7 @@ public class ValueFactoryImpl implements ValueFactory
 			case SEQUENCE: return createSequenceValue(values);
 			case SET: return createSetValue(values);
 		}
-		String message = OCLMessages.bind(OCLMessages.OCLCollectionKindNotImpl_ERROR_, kind);
+		String message = NLS.bind(OCLMessages.OCLCollectionKindNotImpl_ERROR_, kind);
 		IllegalArgumentException error = new IllegalArgumentException(message);
 		PivotPlugin.throwing(ValueFactoryImpl.class, "createNewCollection", error);//$NON-NLS-1$
 		throw error;
@@ -183,7 +184,7 @@ public class ValueFactoryImpl implements ValueFactory
 			case SEQUENCE: return createSequenceValue(values);
 			case SET: return createSetValue(values);
 		}
-		String message = OCLMessages.bind(OCLMessages.OCLCollectionKindNotImpl_ERROR_, kind);
+		String message = NLS.bind(OCLMessages.OCLCollectionKindNotImpl_ERROR_, kind);
 		IllegalArgumentException error = new IllegalArgumentException(message);
 		PivotPlugin.throwing(ValueFactoryImpl.class, "createNewCollection", error);//$NON-NLS-1$
 		throw error;
@@ -268,7 +269,7 @@ public class ValueFactoryImpl implements ValueFactory
 		return new TupleValueImpl(this, type, values);
 	}
 
-	public Value createTypeValue(Type type) {
+	public Value createTypeValue(ClassifierType type) {
 		return new TypeValueImpl(this, type);
 	}
 
@@ -436,8 +437,8 @@ public class ValueFactoryImpl implements ValueFactory
 			return booleanValueOf((Boolean) object);
 		}
 		if (object instanceof Element) {
-			if (object instanceof Type) {
-				return createTypeValue((Type) object);
+			if (object instanceof ClassifierType) {
+				return createTypeValue((ClassifierType) object);
 			}
 			return createElementValue((Element) object);
 		}

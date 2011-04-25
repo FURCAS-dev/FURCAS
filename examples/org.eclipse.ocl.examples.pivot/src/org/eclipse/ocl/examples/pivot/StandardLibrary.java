@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StandardLibrary.java,v 1.5 2011/03/17 20:06:59 ewillink Exp $
+ * $Id: StandardLibrary.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -74,7 +74,7 @@ public interface StandardLibrary
      * 
      * @return the <tt>Enumeration</tt> type (an instance of {@link Enumeration})
      */
-	org.eclipse.ocl.examples.pivot.Enumeration getEnumerationType();
+	org.eclipse.ocl.examples.pivot.Class getEnumerationType();
 	
     /**
      * Obtains the instance of the {@link PrimitiveType} metatype, named

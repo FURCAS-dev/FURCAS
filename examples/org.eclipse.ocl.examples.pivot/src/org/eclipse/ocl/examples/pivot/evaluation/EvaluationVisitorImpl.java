@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.10 2011/03/17 20:07:44 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.11 2011/04/25 09:49:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -149,15 +150,13 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		catch (InvalidEvaluationException e) {
 			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
-		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
-		if (staticOperation.isStatic()) {
-			Value typeValue = valueFactory.createElementValue(dynamicSourceType);
-//			dynamicSourceType = typeValue.getType(typeManager, staticSourceType);
-//			dynamicSourceType.getType();
-		}
- 		Operation dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
-		if (dynamicOperation == null) {
-			return evaluationEnvironment.throwInvalidEvaluation("No implementable element", callExp, sourceValue);
+ 		Operation dynamicOperation = staticOperation;
+		if (!staticOperation.isStatic()) {
+			Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
+	 		dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
+	 		if (dynamicOperation == null) {
+	 			dynamicOperation = staticOperation;
+	 		}
 		}
 		CallableImplementation implementation;
 		try {
@@ -208,6 +207,21 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			return evaluationEnvironment.throwInvalidEvaluation("Evaluation failure", e, callExp, sourceValue);
 		}
 	}
+
+	@Override
+	public Value safeVisit(Visitable v) {
+		if (v == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("null expression");
+		}
+		try {
+			return v.accept(this);
+		} catch (InvalidEvaluationException e) {
+			throw e;
+		} catch (Exception e) {
+			return evaluationEnvironment.throwInvalidEvaluation("Evaluation Failure", e, null, v);
+		}
+	}
+
 
 	/**
 	 * Callback for an AssociationClassCallExp visit. Evaluates the source of the
@@ -540,6 +554,9 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 				}
 			}
 			Object object = sourceValue.asObject();
+			if ((object instanceof ClassifierType) && !(property.getClass_() instanceof ClassifierType)) {
+				object = ((ClassifierType)object).getInstanceType(); // FIXME ?? Classifier property call of something	
+			}
 			if (object instanceof EObject) {
 				EObject eObject = (EObject)object;
 				EClass eClass = eObject.eClass();
@@ -638,11 +655,11 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	/**
-	 * Callback for a TypeExp visiy.
+	 * Callback for a TypeExp visit.
 	 */
 	@Override
     public Value visitTypeExp(TypeExp t) {
-		return valueFactory.createTypeValue(t.getReferredType());
+		return valueFactory.createTypeValue((ClassifierType)t.getType());
 	}
     
     /**
