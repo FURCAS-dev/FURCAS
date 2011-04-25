@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.14 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.15 2011/04/25 09:49:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -276,7 +276,7 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected EnumLiteralExp resolveEnumLiteral(ExpCS csExp, EnumerationLiteral enumerationLiteral) {
 		EnumLiteralExp expression = context.refreshExpression(EnumLiteralExp.class, PivotPackage.Literals.ENUM_LITERAL_EXP, csExp);
-		context.setType(expression, enumerationLiteral.getEnumeration());
+		context.setType(expression, typeManager.getClassifierType(enumerationLiteral.getEnumeration()));
 		expression.setReferredEnumLiteral(enumerationLiteral);
 		return expression;
 	}
@@ -335,10 +335,10 @@ public class EssentialOCLLeft2RightVisitor
 				pivotBodies.add(exp);
 			}
 		}
-		if (pivotBodies.size() > 0) {
-			if (pivotBodies.size() > 1) {
-				context.addDiagnostic(csNavigatingExp, "Iteration calls cannot have more than one body");			
-			}
+		if (pivotBodies.size() != 1) {
+			expression.setBody(context.addBadExpressionError(csNavigatingExp, "Iteration calls must have exactly one body"));
+		}
+		else {
 			expression.setBody(pivotBodies.get(0));
 		}
 	}
@@ -462,7 +462,11 @@ public class EssentialOCLLeft2RightVisitor
 		CallExp navigationExp = callExp;
 		Type actualSourceType = source.getType();
 		Type requiredSourceType = PivotUtil.getFeaturingClass(feature);
-		if (!(requiredSourceType instanceof CollectionType) && (actualSourceType instanceof CollectionType)) {
+		boolean isDotNavigation = false;
+		if (csElement.getParent() instanceof NavigationOperatorCS) {
+			isDotNavigation = PivotConstants.OBJECT_NAVIGATION_OPERATOR.equals(((NavigationOperatorCS)csElement.getParent()).getName());
+		}
+		if (isDotNavigation && !(requiredSourceType instanceof CollectionType) && (actualSourceType instanceof CollectionType)) {
 			Type elementType = ((CollectionType)actualSourceType).getElementType();
 			String csMoniker = csElement.getMoniker();
 			int lastIndex = csMoniker.lastIndexOf(PivotConstants.MONIKER_OPERATOR_SEPARATOR);
@@ -670,7 +674,7 @@ public class EssentialOCLLeft2RightVisitor
 				boundMessage = NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{csOperator, sourceType, s.toString()});
 			}
 			else {
-				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType});
+				boundMessage = NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, new Object[]{csOperator, sourceType + " value"});
 			}
 //			context.addBadExpressionError(csOperator, boundMessage);
 			context.addDiagnostic(csOperator, boundMessage);
@@ -709,7 +713,7 @@ public class EssentialOCLLeft2RightVisitor
 
 	protected TypeExp resolveTypeExp(ExpCS csExp, Type type) {
 		TypeExp expression = context.refreshExpression(TypeExp.class, PivotPackage.Literals.TYPE_EXP, csExp);
-		context.setType(expression, typeManager.getClassifierType());
+		context.setType(expression, typeManager.getClassifierType(type));
 		expression.setReferredType(type);
 		return expression;
 	}
@@ -1208,7 +1212,7 @@ public class EssentialOCLLeft2RightVisitor
 
 	@Override
 	public MonikeredElement visitTupleLiteralExpCS(TupleLiteralExpCS csTupleLiteralExp) {
-		TupleLiteralExp expression = context.refreshMonikeredElement(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csTupleLiteralExp);	
+		TupleLiteralExp expression = context.refreshExpression(TupleLiteralExp.class, PivotPackage.Literals.TUPLE_LITERAL_EXP, csTupleLiteralExp);	
 		for (TupleLiteralPartCS csPart : csTupleLiteralExp.getOwnedParts()) {
 			@SuppressWarnings("unused")
 			TupleLiteralPart pivotPart = context.visitLeft2Right(TupleLiteralPart.class, csPart);

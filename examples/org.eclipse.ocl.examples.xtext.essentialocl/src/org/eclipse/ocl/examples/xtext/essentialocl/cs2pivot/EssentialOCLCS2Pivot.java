@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.5 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.6 2011/04/25 09:49:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -21,9 +21,9 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -96,18 +96,19 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			String typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
 			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
 			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
-//				NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csOperator;
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
 				if (source != null) {
-					Type sourceType;
-					if (source instanceof TypeExp) {			// FIXME regularize this
-						sourceType = ((TypeExp)source).getReferredType();
+					Type sourceType = source.getType();
+					if (sourceType instanceof ClassifierType) {
+						sourceType = ((ClassifierType)sourceType).getInstanceType();
+						if (sourceType != null) {
+							typeText = sourceType.toString() + " type";
+						}
 					}
 					else {
-						sourceType = source.getType();
-					}
-					if (sourceType != null) {
-						typeText = sourceType.toString();
+						if (sourceType != null) {
+							typeText = sourceType.toString() + " value";
+						}
 					}
 				}
 			}

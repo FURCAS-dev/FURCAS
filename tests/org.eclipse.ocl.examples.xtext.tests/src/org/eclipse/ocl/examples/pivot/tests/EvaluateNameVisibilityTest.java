@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNameVisibilityTest.java,v 1.2 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: EvaluateNameVisibilityTest.java,v 1.3 2011/04/25 09:49:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -38,7 +38,7 @@ public class EvaluateNameVisibilityTest extends PivotSimpleTestSuite
 	 */
 	public void test_let() {
 		assertQueryEquals(pkg1, 11, "let a : Integer = 4, b : Integer = 7, c : Integer = a + b in c");
-		assertSemanticErrorQuery("let a : Boolean = true, b : Boolean = a and b, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", "Boolean");
+		assertSemanticErrorQuery("let a : Boolean = true, b : Boolean = a and b, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", "Boolean value");
 		assertSemanticErrorQuery("let a : Boolean = b and c, b : Boolean = true, c : Boolean = true in c", OCLMessages.UnresolvedProperty_ERROR_, "b", PivotConstants.UNKNOWN_TYPE_TEXT);
 		assertQueryResults(pkg1, "Set{2,3}", "let a : Set(Integer) = Set{1,2,3,4}, b : Set(Integer) = Set{1,4}, c : Set(Integer) = a - b in c");
 

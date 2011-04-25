@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.5 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -73,6 +73,10 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 			org.eclipse.ocl.examples.pivot.Class classifierType = converter.getTypeManager().getClassifierType();
 			if (classifierType != null) {
 				pivotElement.getSuperClasses().add(classifierType);
+			}		// FIXME Why aren't these synonymous
+			org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)converter.getTypeManager().getPivotType("Class");
+			if (classType != null) {
+				pivotElement.getSuperClasses().add(classType);
 			}
 		}
 		return null;

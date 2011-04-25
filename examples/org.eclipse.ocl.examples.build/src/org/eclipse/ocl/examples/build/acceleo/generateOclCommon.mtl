@@ -272,6 +272,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 //
 [type.getSymbolName()/].setName("[type.name/]");
 //[type.getSymbolName()/].setMoniker("[type.moniker/]");
+[if (type.oclIsKindOf(ClassifierType))]
+[type.getSymbolName()/].setInstanceType([type.oclAsType(ClassifierType).instanceType.getSymbolName()/]);
+[/if]
 [if (type.oclIsKindOf(CollectionType))]
 [type.getSymbolName()/].setElementType([type.oclAsType(CollectionType).elementType.getSymbolName()/]);
 [/if]

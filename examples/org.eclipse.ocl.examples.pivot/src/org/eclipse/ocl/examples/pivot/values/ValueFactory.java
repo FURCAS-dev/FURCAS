@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValueFactory.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: ValueFactory.java,v 1.5 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -25,11 +25,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.TupleType;
-import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 
@@ -77,7 +77,7 @@ public interface ValueFactory
 	
 	public Value createTupleValue(TupleType type, Map<? extends TypedElement, Value> values);
 
-	public Value createTypeValue(Type type);
+	public Value createTypeValue(ClassifierType type);
 
 	public Object getEcoreValueOf(Value result);
 
