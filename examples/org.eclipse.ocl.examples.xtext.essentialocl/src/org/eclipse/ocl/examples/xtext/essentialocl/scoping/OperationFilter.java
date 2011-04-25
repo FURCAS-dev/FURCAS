@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.8 2011/04/25 09:49:49 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.9 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -22,12 +22,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Class;
-import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -36,7 +33,6 @@ import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -146,24 +142,9 @@ public class OperationFilter extends AbstractOperationFilter
 	}
 
 	@Override
-	protected void installBindings(EnvironmentView environmentView, EObject eObject,
+	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		for (TemplateParameter templateParameter : bindings.keySet()) {
-			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
-			if (parameteredElement instanceof NamedElement) {
-				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
-					if (bindings.get(templateParameter) == null) {
-						if ((sourceType instanceof ClassifierType) && (eObject instanceof Feature) && ((Feature)eObject).isStatic()) {
-							bindings.put(templateParameter, ((ClassifierType)sourceType).getInstanceType());
-						}
-						else {
-							bindings.put(templateParameter, sourceType);
-						}
-						break;
-					}
-				}
-			}
-		}
+		installOclSelfBinding(forType, eObject, bindings);
 		List<Parameter> parameters = ((Operation)eObject).getOwnedParameters();
 		int iMax = parameters.size();
 		if (iMax > 0) {
@@ -178,10 +159,10 @@ public class OperationFilter extends AbstractOperationFilter
 				}
 			}
 		}
-		super.installBindings(environmentView, eObject, bindings);
+		super.installBindings(environmentView, forType, eObject, bindings);
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {
 			Iteration candidateIteration = (Iteration)eObject;
 			int iteratorCount = candidateIteration.getOwnedIterators().size();
@@ -194,7 +175,7 @@ public class OperationFilter extends AbstractOperationFilter
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(candidateIteration);
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}
@@ -222,7 +203,7 @@ public class OperationFilter extends AbstractOperationFilter
 				}
 			}
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}

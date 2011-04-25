@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.7 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.8 2011/04/25 19:39:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -25,14 +25,14 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
 public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl.examples.pivot.Class>
 {
-	private static void addAllContents(EnvironmentView environmentView, ScopeView scopeView,
+	private static void addAllContents(EnvironmentView environmentView, Type forType, ScopeView scopeView,
 			org.eclipse.ocl.examples.pivot.Class pivotClass, Boolean selectStatic) {
 		TypeManager typeManager = environmentView.getTypeManager();
-		environmentView.addNamedElements(typeManager.getLocalOperations(pivotClass, selectStatic));
-		environmentView.addNamedElements(typeManager.getLocalProperties(pivotClass, selectStatic));
+		environmentView.addNamedElements(forType, typeManager.getLocalOperations(pivotClass, selectStatic));
+		environmentView.addNamedElements(forType, typeManager.getLocalProperties(pivotClass, selectStatic));
 		if (!environmentView.hasFinalResult()) {
 			for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(pivotClass)) {
-				addAllContents(environmentView, scopeView, superClass, selectStatic);
+				addAllContents(environmentView, forType, scopeView, superClass, selectStatic);
 			}
 		}
 	}
@@ -53,21 +53,21 @@ public class ClassScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.ocl
 		if (target instanceof ClassifierType) {
 			Type instanceType = ((ClassifierType)target).getInstanceType();
 			if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
-				environmentView.addNamedElements(typeManager.getLocalOperations(instanceType, Boolean.TRUE));
-				environmentView.addNamedElements(typeManager.getLocalProperties(instanceType, Boolean.TRUE));
+				environmentView.addNamedElements(instanceType, typeManager.getLocalOperations(instanceType, Boolean.TRUE));
+				environmentView.addNamedElements(instanceType, typeManager.getLocalProperties(instanceType, Boolean.TRUE));
 			}
 		}
-		environmentView.addNamedElements(typeManager.getLocalOperations(target, Boolean.FALSE));
-		environmentView.addNamedElements(typeManager.getLocalProperties(target, Boolean.FALSE));
+		environmentView.addNamedElements(target, typeManager.getLocalOperations(target, Boolean.FALSE));
+		environmentView.addNamedElements(target, typeManager.getLocalProperties(target, Boolean.FALSE));
 		if (!environmentView.hasFinalResult()) {
 			if (target instanceof ClassifierType) {
 				Type instanceType = ((ClassifierType)target).getInstanceType();
 				if ((instanceType instanceof org.eclipse.ocl.examples.pivot.Class) && (instanceType.getOwningTemplateParameter() == null)) {		// Maybe null
-					addAllContents(environmentView, scopeView, (org.eclipse.ocl.examples.pivot.Class)instanceType, Boolean.TRUE);
+					addAllContents(environmentView, instanceType, scopeView, (org.eclipse.ocl.examples.pivot.Class)instanceType, Boolean.TRUE);
 				}
 			}	// FIXME don't shorten non-static search after static match
 			for (org.eclipse.ocl.examples.pivot.Class superClass : typeManager.getSuperClasses(target)) {
-				addAllContents(environmentView, scopeView, superClass, Boolean.FALSE);
+				addAllContents(environmentView, target, scopeView, superClass, Boolean.FALSE);
 			}
 		}
 		return scopeView.getOuterScope();

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.6 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.7 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -275,7 +275,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "unknownOperation", "Set<Package> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package> value", "self");
    }
 
     /**
@@ -667,35 +667,35 @@ public class IteratorsTest extends PivotTestSuite
     public void test_invalidMultipleIteratorVariables() {
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "exists", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "exists", "Sequence<String> value", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,		// FIXME Bug 296990
         	"Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "forAll", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "forAll", "Sequence<String> value", "e1, e2, e3| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->collect(e1, e2 | Tuple{a : String = e1, b : String = e2})",
-        	OCLMessages.UnresolvedOperation_ERROR_, "collect", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "collect", "Sequence<String> value", "e1, e2| Tuple{a : String = e1, b : String = e2}");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->any(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "any", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "any", "Sequence<String> value", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->one(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "one", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "one", "Sequence<String> value", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->select(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "select", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "select", "Sequence<String> value", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->reject(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "reject", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "reject", "Sequence<String> value", "e1, e2| e1 = e2");
 
         assertBadQuery(SemanticException.class, Diagnostic.ERROR,
         	"Sequence{'a', 'b', 'c'}->isUnique(e1, e2 | e1 = e2)",
-        	OCLMessages.UnresolvedOperation_ERROR_, "isUnique", "Sequence<String> value");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "isUnique", "Sequence<String> value", "e1, e2| e1 = e2");
     }
 
 	/**

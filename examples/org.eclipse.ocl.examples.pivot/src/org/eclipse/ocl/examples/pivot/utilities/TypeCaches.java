@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.2 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.3 2011/04/25 19:39:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -921,6 +921,10 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		Iterable<Operation> iterable = operation2operations.get(operation.getMoniker());
 		assert iterable != null;
 		return iterable;
+	}
+
+	public Iterable<String> getAllPackages() {
+		return package2packages.keySet();
 	}
 
 	public Iterable<org.eclipse.ocl.examples.pivot.Package> getAllPackages(org.eclipse.ocl.examples.pivot.Package pkg) {

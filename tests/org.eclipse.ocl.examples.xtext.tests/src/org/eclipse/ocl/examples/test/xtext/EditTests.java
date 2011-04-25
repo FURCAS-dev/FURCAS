@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EditTests.java,v 1.4 2011/04/25 09:49:25 ewillink Exp $
+ * $Id: EditTests.java,v 1.5 2011/04/25 19:40:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -244,7 +244,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation" to "tOperation" renames the operation and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation", "tOperation",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
+			NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "123456"}));
 		//
 		//	Changing "tOperation" back to "testOperation" restores the operation and the invariant.
 		//
@@ -253,7 +253,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation()" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation()",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
+				NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "123456"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
@@ -262,7 +262,7 @@ public class EditTests extends XtextTestCase
 		//	Changing "testOperation(i : Integer)" to "testOperation(s : String)" mismatches the operation signature and breaks the invariant.
 		//
 		doRename(xtextResource, pivotResource, "testOperation(i : Integer)", "testOperation(s : String)",
-			NLS.bind(OCLMessages.UnresolvedOperation_ERROR_, "testOperation", pivotTestClass1 + " value"));
+				NLS.bind(OCLMessages.UnresolvedOperationCall_ERROR_, new Object[]{"testOperation", pivotTestClass1 + " value", "123456"}));
 		//
 		//	Changing "testOperation()" back to "testOperation(i : Integer)" restores the operation and the invariant.
 		//
