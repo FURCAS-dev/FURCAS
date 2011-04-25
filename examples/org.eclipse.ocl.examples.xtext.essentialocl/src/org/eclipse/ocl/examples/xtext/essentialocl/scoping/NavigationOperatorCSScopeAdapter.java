@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.9 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.10 2011/04/25 09:49:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -56,41 +56,26 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			try {
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
 				if (source != null) {
-					Type type;
-					if (source instanceof TypeExp) {		// FIXME Is this fundamentally necessary
-						type = ((TypeExp)source).getReferredType();
-					}
-					else {
-						type = source.getType();
-					}
+					Type type = source.getType();
 					if (target.getArgument() instanceof NavigatingExpCS) {
 						filter = new OperationFilter(typeManager, type, (NavigatingExpCS)target.getArgument());
 						environmentView.addFilter(filter);
 					}
-//					if (source instanceof TypeExp) {
-//						environmentView.addElementsOfScope(typeManager, type, scopeView);
-//					}
-//					else {
-//						Type type = csSource.getType();
-						if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-							if (type instanceof CollectionType) {		// collection->collection-operation
-								environmentView.addElementsOfScope(type, scopeView);
-							}
-							else {										// object.oclAsSet()->collection-operation
-								Type setType = typeManager.getSetType(type);
-								environmentView.addElementsOfScope(setType, scopeView);
-							}
+					if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+						if (type instanceof CollectionType) {		// collection->collection-operation
+							environmentView.addElementsOfScope(type, scopeView);
 						}
-						else {
-							if (type == typeManager.getClassifierType()) {
-								type = typeManager.getPivotType("Class");			// FIXME Unify Class/Classifier properly
-							}
-							environmentView.addElementsOfScope(type, scopeView);					
-							if (type instanceof CollectionType) {
-								environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
-							}
+						else {										// object.oclAsSet()->collection-operation
+							Type setType = typeManager.getSetType(type);
+							environmentView.addElementsOfScope(setType, scopeView);
 						}
-//					}
+					}
+					else {
+						environmentView.addElementsOfScope(type, scopeView);			// object.object-operation, collection.collection-as-object-operation		
+						if (type instanceof CollectionType) {
+							environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView); // collection->collect(object-operation)
+						}
+					}
 				}
 			}
 			finally {

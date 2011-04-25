@@ -686,9 +686,9 @@ ruleEssentialOCLUnreservedName returns [AntlrDatatypeRuleToken current=new Antlr
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-
+(
     { 
-        newCompositeNode(grammarAccess.getEssentialOCLUnreservedNameAccess().getUnrestrictedNameParserRuleCall()); 
+        newCompositeNode(grammarAccess.getEssentialOCLUnreservedNameAccess().getUnrestrictedNameParserRuleCall_0()); 
     }
     this_UnrestrictedName_0=ruleUnrestrictedName    {
 		$current.merge(this_UnrestrictedName_0);
@@ -698,6 +698,37 @@ ruleEssentialOCLUnreservedName returns [AntlrDatatypeRuleToken current=new Antlr
         afterParserOrEnumRuleCall();
     }
 
+    |
+    { 
+        newCompositeNode(grammarAccess.getEssentialOCLUnreservedNameAccess().getCollectionTypeIdentifierParserRuleCall_1()); 
+    }
+    this_CollectionTypeIdentifier_1=ruleCollectionTypeIdentifier    {
+		$current.merge(this_CollectionTypeIdentifier_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getEssentialOCLUnreservedNameAccess().getPrimitiveTypeIdentifierParserRuleCall_2()); 
+    }
+    this_PrimitiveTypeIdentifier_2=rulePrimitiveTypeIdentifier    {
+		$current.merge(this_PrimitiveTypeIdentifier_2);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+	kw='Tuple' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getEssentialOCLUnreservedNameAccess().getTupleKeyword_3()); 
+    }
+)
     ;
 
 
