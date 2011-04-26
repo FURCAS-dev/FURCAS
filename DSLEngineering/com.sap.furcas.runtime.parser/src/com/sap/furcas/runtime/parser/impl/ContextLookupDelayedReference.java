@@ -24,14 +24,14 @@ public class ContextLookupDelayedReference extends DelayedReference {
             String lookIn, String autoCreate, List<String> createAs, boolean importContext, String createIn, boolean b,
             ANTLR3LocationToken lastToken) {
         super(currentContextElement, currentForeachElement, modelElement, propertyName, valueTypeName, keyName,
-                keyValue, lookIn, autoCreate, createAs, importContext, createIn, b, lastToken);
+                keyValue, lookIn, autoCreate, createAs, importContext, createIn, b, ReferenceType.CONTEXT_LOOKUP, lastToken);
     }
 
     public ContextLookupDelayedReference(IModelElementProxy currentContextElement, Object currentForeachElement,
             Object object, String propertyName, String keyName, Object keyValue, String query, boolean optional,
             ANTLR3LocationToken lastToken) {
-        super(currentContextElement, currentForeachElement, object, propertyName, keyName, keyValue, query, optional,
-                lastToken);
+        super(currentContextElement, currentForeachElement, object, propertyName, keyName, keyValue, query, ReferenceType.CONTEXT_LOOKUP,
+                optional, lastToken);
     }
 
     /**
