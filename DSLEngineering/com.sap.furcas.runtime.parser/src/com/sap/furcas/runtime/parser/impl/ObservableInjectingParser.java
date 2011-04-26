@@ -811,7 +811,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
 
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 
-        DelayedReference ref = new DefaultLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(),
+        ContextLookupDelayedReference ref = new ContextLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(),
                 modelElement, propertyName, valueTypeName, keyName, keyValue, lookIn, autoCreate, createAs,
                 importContext, createIn, false, lastToken);
 
@@ -840,7 +840,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
 
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
 
-        DelayedReference ref = new DefaultLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(),
+        ContextLookupDelayedReference ref = new ContextLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(),
                 modelElement, propertyName, valueTypeName, keyName, keyValue, lookIn, autoCreate, createAs,
                 importContext, createIn, isOptional, lastToken);
 
@@ -887,7 +887,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         if (modelUpdaterRegistry != null) {
             ModelUpdater modelUpdater = modelUpdaterRegistry.getModelUpdater(URI.createURI(propInitURI));
         }
-        DelayedReference ref = new DefaultLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(), object,
+        DefaultLookupDelayedReference ref = new DefaultLookupDelayedReference(getCurrentContextElement(), getCurrentForeachElement(), object,
                 propertyName, keyName, keyValue, query, optional, lastToken);
         onDelayedReferenceCreated(ref);
         unResolvedDelayedReferenceList.add(ref);

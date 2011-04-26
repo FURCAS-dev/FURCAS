@@ -63,7 +63,6 @@ public class ForeachDelayedReference extends DelayedReference {
     public boolean setDelayedReference(DelayedReference reference, IModelAdapter modelAdapter, ContextManager contextManager,
             ObservableInjectingParser parser) throws ModelAdapterException, ModelElementCreationException {
         Object contextElement = reference.getContextElement();
-
         if (contextElement instanceof IModelElementProxy) {
             IModelElementProxy proxyContext = (IModelElementProxy) contextElement;
             contextElement = proxyContext.getRealObject();
