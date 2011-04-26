@@ -129,7 +129,7 @@ public class DelayedReference implements Cloneable {
 	
 	private Object semanticObject;
 
-	private Object opTemplateLefthand;
+	protected Object opTemplateLefthand;
 
     /**
      * Used by
@@ -648,8 +648,7 @@ public class DelayedReference implements Cloneable {
 		return opTemplateLefthand;
 	}
     
-	public boolean isSemanticDisambiguatedOperatorRule()
-	{
-		return type == ReferenceType.SEMANTIC_DISAMBIGUATE && opTemplateLefthand != null;
+	public boolean isSemanticDisambiguatedOperatorRule() {
+	    return false;
 	}
 }
