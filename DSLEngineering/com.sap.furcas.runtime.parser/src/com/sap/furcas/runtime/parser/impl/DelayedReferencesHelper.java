@@ -20,7 +20,6 @@ import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
 import com.sap.furcas.runtime.parser.IModelAdapter;
-import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
@@ -31,18 +30,10 @@ import com.sap.furcas.runtime.parser.impl.context.ContextManager;
  */
 public class DelayedReferencesHelper {
 
-    /** The injector. */
-    ModelInjector injector;
-
     /**
      * Instantiates a new injector helper.
-     * 
-     * @param injector
-     *            the injector
      */
-    public DelayedReferencesHelper(IModelInjector injector) {
-        super();
-        this.injector = (ModelInjector) injector;
+    public DelayedReferencesHelper() {
     }
 
     /**
@@ -63,13 +54,7 @@ public class DelayedReferencesHelper {
     public boolean setDelayedReference(DelayedReference reference, IModelAdapter modelAdapter,
             ContextManager contextManager, ObservableInjectingParser parser) throws ModelAdapterException,
             ModelElementCreationException {
-        if (reference instanceof ForeachDelayedReference) {
-            return ((ForeachDelayedReference) reference).setDelayedReference(reference, modelAdapter, contextManager, parser);
-        } else if (reference instanceof SemanticDisambiguateDelayedReference) {
-            return ((SemanticDisambiguateDelayedReference) reference).setDelayedReference(reference, modelAdapter, contextManager, parser);
-        } else {
-            return ((DefaultLookupDelayedReference) reference).setDelayedReference(reference, modelAdapter, contextManager, parser);
-        }
+        return reference.setDelayedReference(reference, modelAdapter, contextManager, parser);
     }
 
     public static Collection<?> evaluateForeachOcl(EObject sourceElement, DelayedReference reference,

@@ -245,7 +245,6 @@ public class DefaultLookupDelayedReference extends DelayedReference {
      * @param modelAdapter
      *            the model handler
      * @param contextManager
-     * @param parser TODO
      * @param referenceContext
      * @throws ModelAdapterException
      *             the model handler exception
