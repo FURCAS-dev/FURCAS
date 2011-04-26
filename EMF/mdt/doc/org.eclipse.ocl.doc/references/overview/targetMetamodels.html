@@ -15,12 +15,12 @@ and an
 additional EMF-based metamodels to be plugged in.
 </p><p>
 The OCL API implements support for different target metamodels via the
-<a href="../javadoc/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/EnvironmentFactory.html"><em class="CodeName">EnvironmentFactory</em></a>
 interface.  An implementation of this interface binds the metamodel's metaclasses
 to the generic type parameters of the
-<a href="../javadoc/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/OCL.html"><em class="CodeName">OCL</em></a>
 class.  The metamodel-specific
-<a href="../javadoc/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/Environment.html"><em class="CodeName">Environment</em></a>
 implementation constructed by this factory implements the reflection capability
 required by OCL to discover the elements of the model being constrained and the
 relationships between them.
@@ -37,7 +37,7 @@ the genmodel) and on dynamic EObjects.
 </p><p>
 As is illustrated by most of the examples in this documentation, the Ecore binding
 is provided by the
-<a href="../javadoc/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/ecore/EcoreEnvironmentFactory.html"><em class="CodeName">EcoreEnvironmentFactory</em></a>
 class.  By default, the Ecore environment uses the static <em class="CodeName">EPackage</em>
 registry to look up package names.  It can also be supplied with an alternative
 package registry (for example, one local to a <em class="CodeName">ResourceSet</em>)
@@ -122,7 +122,7 @@ UML-to-Ecore converter), and on <em class="CodeName">InstanceSpecification</em>
 elements in the UML model.
 </p><p>
 The UML binding is provided by the
-<a href="../javadoc/org/eclipse/ocl/uml/UMLEnvironmentFactory.html"><em class="CodeName">UMLEnvironmentFactory</em></a>
+<a href="http://download.eclipse.org/modeling/mdt/ocl/javadoc/3.1.0/org/eclipse/ocl/uml/UMLEnvironmentFactory.html"><em class="CodeName">UMLEnvironmentFactory</em></a>
 class.  By default, the UML environment factory and all of the environment contexts
 that it creates use a private <em class="CodeName">ResourceSet</em> to look up
 the corresponding UML model(s) against which OCL constraints are parsed.

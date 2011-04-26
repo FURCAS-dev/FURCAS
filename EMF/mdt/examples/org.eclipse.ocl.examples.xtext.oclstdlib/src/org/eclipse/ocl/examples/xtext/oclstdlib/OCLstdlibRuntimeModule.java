@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibRuntimeModule.java,v 1.3 2011/03/24 00:47:10 ewillink Exp $
+ * $Id: OCLstdlibRuntimeModule.java,v 1.4 2011/04/20 19:03:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.oclstdlib;
@@ -20,8 +20,8 @@ package org.eclipse.ocl.examples.xtext.oclstdlib;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.BaseFragmentProvider;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
-import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.scoping.OCLstdlibScopeProvider;
+import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibLinkingService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.services.OCLstdlibValueConverterService;
 import org.eclipse.ocl.examples.xtext.oclstdlib.utilities.OCLstdlibCSResource;
 import org.eclipse.ocl.examples.xtext.oclstdlib.validation.OCLstdlibCompositeEValidator;
@@ -34,11 +34,20 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.validation.CompositeEValidator;
 
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
+
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclstdlib.AbstractOCLstdlibRuntimeModule
 {	
+	@Override
+	public void configure(Binder binder) {
+		super.configure(binder);
+		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
+	}
+
 	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
 		return OCLstdlibCompositeEValidator.class;
 	}
@@ -66,7 +75,7 @@ public class OCLstdlibRuntimeModule extends org.eclipse.ocl.examples.xtext.oclst
 	// External reference loading and resolution.
 	@Override
 	public Class<? extends ILinkingService> bindILinkingService() {
-		return EssentialOCLLinkingService.class;
+		return OCLstdlibLinkingService.class;
 	}
 
 	@Override

@@ -12,8 +12,7 @@ package org.eclipse.emf.query.index.internal;
 
 import java.io.File;
 /**
- * @author Martin Strenge - Initial API and implementation
- * @author Bernd Kolb - Initial API and implementation
+ * Represent provider that give the file to read and write PageableElement to file(s)
  * 
  */
 public interface PageFileProvider {

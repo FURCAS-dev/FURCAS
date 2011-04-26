@@ -9,6 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * 
+ * Contains all internal implementations for Shared classes amongnst the Query core.
+ * Important classes include AuxServices.
  */
 package org.eclipse.emf.query2.internal.shared;

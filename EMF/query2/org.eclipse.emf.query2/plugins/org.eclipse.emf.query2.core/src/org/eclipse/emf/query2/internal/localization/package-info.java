@@ -9,8 +9,8 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Utilities for Localization <br>
+ * Contains all Utilities for Localization. <br>
  * <br>
- * This API is for SAP-internal use only and subject to change
+ * 
  */
 package org.eclipse.emf.query2.internal.localization;

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLQueryDelegateFactory.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: OCLQueryDelegateFactory.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -21,13 +21,11 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.util.QueryDelegate;
-import org.eclipse.ocl.examples.pivot.Constraint;
-import org.eclipse.ocl.examples.pivot.OpaqueExpression;
-import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
+import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 
 /**
@@ -54,43 +52,29 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
  * 
  * @since 3.1
  */
-public class OCLQueryDelegateFactory
-		extends AbstractOCLDelegateFactory
+public class OCLQueryDelegateFactory extends AbstractOCLDelegateFactory
 		implements QueryDelegate.Factory {
-
-	private int counter = 0;
-	
-	public OCLQueryDelegateFactory() {
-	}
-
-	public OCLQueryDelegateFactory(OCLDelegateDomain delegateDomain) {
-		super(delegateDomain);
-	}
-
 	public QueryDelegate createQueryDelegate(EClassifier context, Map<String, EClassifier> parameters, String expression) {
 		OCLDelegateDomain delegateDomain = getDelegateDomain(context.getEPackage());
 		Type modelType = delegateDomain.getPivot(Type.class, context);
-		org.eclipse.ocl.examples.pivot.Class contextType = delegateDomain.getQueryType(modelType);
-		Operation query = PivotFactory.eINSTANCE.createOperation();
-		query.setName("queryDelegate_" + counter++);
-		contextType.getOwnedOperations().add(query);
-		List<Parameter> pivotParameters = query.getOwnedParameters();
-		if (parameters != null) {
-			for (Map.Entry<String, EClassifier> entry : parameters.entrySet()) {
-				Parameter pivotParameter = PivotFactory.eINSTANCE.createParameter();
-				pivotParameter.setName(entry.getKey());
-				pivotParameter.setType(delegateDomain.getPivot(Type.class, entry.getValue()));
-				pivotParameters.add(pivotParameter);
-			}
-		}
-		Constraint constraint = PivotFactory.eINSTANCE.createConstraint();
-		constraint.setStereotype(UMLReflection.BODY);
-		query.getOwnedRules().add(constraint);
-		OpaqueExpression specification = PivotFactory.eINSTANCE.createOpaqueExpression();
+		ExpressionInOcl specification = PivotFactory.eINSTANCE.createExpressionInOcl();
 		specification.getBodies().add(expression);
 		specification.getLanguages().add(PivotConstants.OCL_LANGUAGE);
-		constraint.setSpecification(specification);
-		return new OCLQueryDelegate(delegateDomain, query);
+		Variable contextVariable = PivotFactory.eINSTANCE.createVariable();
+		contextVariable.setName(Environment.SELF_VARIABLE_NAME);
+		contextVariable.setType(modelType);
+		specification.setContextVariable(contextVariable);
+		if (parameters != null) {
+			List<Variable> parameterVariables = specification.getParameterVariables();
+			for (Map.Entry<String, EClassifier> entry : parameters.entrySet()) {
+				Variable parameterVariable = PivotFactory.eINSTANCE.createVariable();
+				parameterVariable.setName(entry.getKey());
+				Type parameterType = delegateDomain.getPivot(Type.class, entry.getValue());
+				parameterVariable.setType(parameterType);
+				parameterVariables.add(parameterVariable);
+			}
+		}
+		return new OCLQueryDelegate(delegateDomain, specification);
 	}
 	
 	/**

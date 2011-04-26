@@ -17,6 +17,10 @@ import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 
+/**
+ * Utility query that can be send to search for getting count of EObjects of a particular type
+ *
+ */
 public class EObjectOfTypeCountQuery implements QueryInternal<Integer, Integer> {
 
 	private String type;
@@ -56,7 +60,6 @@ public class EObjectOfTypeCountQuery implements QueryInternal<Integer, Integer> 
 		return resDesc.typeTable.getAllWithEqualKey(type).size();
 	}
 
-	@SuppressWarnings("unused")
 	public Iterable<URI> getResourceScope(final GlobalTables globalTables) {
 		Collection<URI> ret = null;
 		if (this.resQuery != null) {

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyCallExpImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: PropertyCallExpImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -149,8 +149,6 @@ public class PropertyCallExpImpl
 				return basicGetSource();
 			case PivotPackage.PROPERTY_CALL_EXP__IMPLICIT:
 				return isImplicit();
-			case PivotPackage.PROPERTY_CALL_EXP__REFERRED_FEATURE:
-				return getReferredFeature();
 			case PivotPackage.PROPERTY_CALL_EXP__IS_PRE:
 				return isPre();
 			case PivotPackage.PROPERTY_CALL_EXP__QUALIFIER:
@@ -301,8 +299,6 @@ public class PropertyCallExpImpl
 				return source != null;
 			case PivotPackage.PROPERTY_CALL_EXP__IMPLICIT:
 				return ((eFlags & IMPLICIT_EFLAG) != 0) != IMPLICIT_EDEFAULT;
-			case PivotPackage.PROPERTY_CALL_EXP__REFERRED_FEATURE:
-				return getReferredFeature() != null;
 			case PivotPackage.PROPERTY_CALL_EXP__IS_PRE:
 				return ((eFlags & IS_PRE_EFLAG) != 0) != IS_PRE_EDEFAULT;
 			case PivotPackage.PROPERTY_CALL_EXP__QUALIFIER:

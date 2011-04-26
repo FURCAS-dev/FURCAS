@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageScopeAdapter.java,v 1.3 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: PackageScopeAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -28,8 +28,9 @@ public class PackageScopeAdapter extends AbstractPivotScopeAdapter<org.eclipse.o
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
+		TypeManager typeManager = environmentView.getTypeManager();
 		environmentView.addNamedElements(typeManager.getLocalPackages(target));
-		environmentView.addNamedElements(typeManager.getLocalTypes(target));
+		environmentView.addNamedElements(typeManager.getLocalClasses(target));
 		environmentView.addNamedElements(target.getOwnedPrecedences());
 		return scopeView.getOuterScope();
 	}

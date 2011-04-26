@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CallExp.java,v 1.3 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: CallExp.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CallExp#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.CallExp#isImplicit <em>Implicit</em>}</li>
- *   <li>{@link org.eclipse.ocl.examples.pivot.CallExp#getReferredFeature <em>Referred Feature</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,20 +101,5 @@ public interface CallExp
 	 * @generated
 	 */
 	void setImplicit(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Referred Feature</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Referred Feature</em>' reference.
-	 * @see org.eclipse.ocl.examples.pivot.PivotPackage#getCallExp_ReferredFeature()
-	 * @model resolveProxies="false" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	Feature getReferredFeature();
 
 } // CallExp

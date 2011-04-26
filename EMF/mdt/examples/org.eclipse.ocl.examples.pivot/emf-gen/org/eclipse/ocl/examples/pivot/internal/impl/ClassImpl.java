@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: ClassImpl.java,v 1.2 2011/01/24 20:42:31 ewillink Exp $
+ * $Id: ClassImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -38,6 +39,8 @@ import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
+
+import com.google.common.collect.Iterators;
 
 /**
  * <!-- begin-user-doc -->
@@ -233,19 +236,10 @@ public class ClassImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property createOwnedAttribute(EClass eClass) {
-		Property newOwnedAttribute = (Property) create(eClass);
+	public Property createOwnedAttribute() {
+		Property newOwnedAttribute = (Property) create(PivotPackage.Literals.PROPERTY);
 		getOwnedAttributes().add(newOwnedAttribute);
 		return newOwnedAttribute;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Property createOwnedAttribute() {
-		return createOwnedAttribute(PivotPackage.Literals.PROPERTY);
 	}
 
 	/**
@@ -660,15 +654,8 @@ public class ClassImpl
 	public <R, C> R accept(Visitor<R, C> visitor) {
 		return visitor.visitClass(this);
 	}
-/*
-	@Override
-	public org.eclipse.ocl.examples.pivot.Package getPackage() {
-		EObject container = eContainer();
-		if (container instanceof org.eclipse.ocl.examples.pivot.Class) {
-			return ((org.eclipse.ocl.examples.pivot.Class) container)
-				.getPackage();
-		}
-		return super.getPackage();
-	} */
 
+	public Iterator<org.eclipse.ocl.examples.pivot.Class> iterator() {
+		return Iterators.singletonIterator((org.eclipse.ocl.examples.pivot.Class)this);
+	}
 } //ClassImpl

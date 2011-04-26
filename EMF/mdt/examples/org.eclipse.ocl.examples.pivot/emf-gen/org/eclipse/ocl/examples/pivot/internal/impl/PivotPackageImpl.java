@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.9 2011/03/14 07:24:49 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.10 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -46,11 +46,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -143,7 +138,7 @@ import org.eclipse.ocl.examples.pivot.util.Visitor;
  */
 public class PivotPackageImpl
 		extends EPackageImpl
-		implements PivotPackage {
+		implements PivotPackage  {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,41 +244,6 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass collectionRangeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass completeEnvironmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass completeOperationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass completePackageEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass completePropertyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass completeTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1291,285 +1251,6 @@ public class PivotPackageImpl
 	 */
 	public EReference getCollectionRange_Last() {
 		return (EReference)collectionRangeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompleteEnvironment() {
-		return completeEnvironmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteEnvironment__GetCompleteOperation__Operation() {
-		return completeEnvironmentEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteEnvironment__GetCompletePackage__Package() {
-		return completeEnvironmentEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteEnvironment__GetCompleteProperty__Property() {
-		return completeEnvironmentEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteEnvironment__GetCompleteType__Type()
-	{
-		return completeEnvironmentEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation()
-	{
-		return completeEnvironmentEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompleteOperation() {
-		return completeOperationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteOperation_Model()
-	{
-		return (EReference)completeOperationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteOperation_Models()
-	{
-		return (EReference)completeOperationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteOperation_CompleteEnvironment() {
-		return (EReference)completeOperationEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteOperation_CompleteParameter() {
-		return (EReference)completeOperationEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompletePackage() {
-		return completePackageEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompletePackage_Model()
-	{
-		return (EReference)completePackageEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompletePackage_Models()
-	{
-		return (EReference)completePackageEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompletePackage_CompleteEnvironment() {
-		return (EReference)completePackageEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompletePackage_CompletePackage()
-	{
-		return (EReference)completePackageEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompletePackage_CompleteType()
-	{
-		return (EReference)completePackageEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompleteProperty() {
-		return completePropertyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteProperty_Model()
-	{
-		return (EReference)completePropertyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteProperty_Models()
-	{
-		return (EReference)completePropertyEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteProperty_CompleteEnvironment() {
-		return (EReference)completePropertyEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompleteType()
-	{
-		return completeTypeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_Model()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_Models()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_CompleteEnvironment()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_CompleteOperation()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_CompleteProperty()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompleteType_CompleteSuperType()
-	{
-		return (EReference)completeTypeEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getCompleteType__GetDynamicOperation__CompleteOperation()
-	{
-		return completeTypeEClass.getEOperations().get(0);
 	}
 
 	/**
@@ -3763,16 +3444,6 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCallExp_ReferredFeature()
-	{
-		return (EReference)callExpEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getVisitor() {
 		return visitorEClass;
 	}
@@ -3918,7 +3589,6 @@ public class PivotPackageImpl
 		callExpEClass = createEClass(CALL_EXP);
 		createEReference(callExpEClass, CALL_EXP__SOURCE);
 		createEAttribute(callExpEClass, CALL_EXP__IMPLICIT);
-		createEReference(callExpEClass, CALL_EXP__REFERRED_FEATURE);
 
 		callOperationActionEClass = createEClass(CALL_OPERATION_ACTION);
 		createEReference(callOperationActionEClass, CALL_OPERATION_ACTION__OPERATION);
@@ -3950,40 +3620,6 @@ public class PivotPackageImpl
 		commentEClass = createEClass(COMMENT);
 		createEAttribute(commentEClass, COMMENT__BODY);
 		createEReference(commentEClass, COMMENT__ANNOTATED_ELEMENT);
-
-		completeEnvironmentEClass = createEClass(COMPLETE_ENVIRONMENT);
-		createEOperation(completeEnvironmentEClass, COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION);
-		createEOperation(completeEnvironmentEClass, COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE);
-		createEOperation(completeEnvironmentEClass, COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY);
-		createEOperation(completeEnvironmentEClass, COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE);
-		createEOperation(completeEnvironmentEClass, COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION);
-
-		completeOperationEClass = createEClass(COMPLETE_OPERATION);
-		createEReference(completeOperationEClass, COMPLETE_OPERATION__MODEL);
-		createEReference(completeOperationEClass, COMPLETE_OPERATION__MODELS);
-		createEReference(completeOperationEClass, COMPLETE_OPERATION__COMPLETE_ENVIRONMENT);
-		createEReference(completeOperationEClass, COMPLETE_OPERATION__COMPLETE_PARAMETER);
-
-		completePackageEClass = createEClass(COMPLETE_PACKAGE);
-		createEReference(completePackageEClass, COMPLETE_PACKAGE__MODEL);
-		createEReference(completePackageEClass, COMPLETE_PACKAGE__MODELS);
-		createEReference(completePackageEClass, COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT);
-		createEReference(completePackageEClass, COMPLETE_PACKAGE__COMPLETE_PACKAGE);
-		createEReference(completePackageEClass, COMPLETE_PACKAGE__COMPLETE_TYPE);
-
-		completePropertyEClass = createEClass(COMPLETE_PROPERTY);
-		createEReference(completePropertyEClass, COMPLETE_PROPERTY__MODEL);
-		createEReference(completePropertyEClass, COMPLETE_PROPERTY__MODELS);
-		createEReference(completePropertyEClass, COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT);
-
-		completeTypeEClass = createEClass(COMPLETE_TYPE);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__MODEL);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__MODELS);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__COMPLETE_ENVIRONMENT);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__COMPLETE_OPERATION);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__COMPLETE_PROPERTY);
-		createEReference(completeTypeEClass, COMPLETE_TYPE__COMPLETE_SUPER_TYPE);
-		createEOperation(completeTypeEClass, COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEReference(constraintEClass, CONSTRAINT__CONSTRAINED_ELEMENT);
@@ -4362,11 +3998,6 @@ public class PivotPackageImpl
 		collectionRangeEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionTypeEClass.getESuperTypes().add(this.getDataType());
 		commentEClass.getESuperTypes().add(this.getElement());
-		completeEnvironmentEClass.getESuperTypes().add(this.getPackage());
-		completeOperationEClass.getESuperTypes().add(this.getOperation());
-		completePackageEClass.getESuperTypes().add(this.getPackage());
-		completePropertyEClass.getESuperTypes().add(this.getProperty());
-		completeTypeEClass.getESuperTypes().add(this.getClass_());
 		constraintEClass.getESuperTypes().add(this.getNamedElement());
 		dataTypeEClass.getESuperTypes().add(this.getClass_());
 		detailEClass.getESuperTypes().add(this.getNamedElement());
@@ -4446,7 +4077,7 @@ public class PivotPackageImpl
 		typedMultiplicityElementEClass.getESuperTypes().add(this.getTypedElement());
 		typedMultiplicityElementEClass.getESuperTypes().add(this.getMultiplicityElement());
 		unlimitedNaturalLiteralExpEClass.getESuperTypes().add(this.getNumericLiteralExp());
-		unspecifiedTypeEClass.getESuperTypes().add(this.getType());
+		unspecifiedTypeEClass.getESuperTypes().add(this.getClass_());
 		unspecifiedValueExpEClass.getESuperTypes().add(this.getOclExpression());
 		valueSpecificationEClass.getESuperTypes().add(this.getTypedElement());
 		valueSpecificationEClass.getESuperTypes().add(this.getParameterableElement());
@@ -4477,7 +4108,6 @@ public class PivotPackageImpl
 		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCallExp_Source(), this.getOclExpression(), null, "source", null, 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getCallExp_Implicit(), this.getBoolean(), "implicit", "false", 0, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getCallExp_ReferredFeature(), this.getFeature(), null, "referredFeature", null, 0, 1, CallExp.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(callOperationActionEClass, CallOperationAction.class, "CallOperationAction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCallOperationAction_Operation(), this.getOperation(), null, "operation", null, 1, 1, CallOperationAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4510,60 +4140,13 @@ public class PivotPackageImpl
 		initEAttribute(getComment_Body(), this.getString(), "body", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getComment_AnnotatedElement(), this.getElement(), null, "annotatedElement", null, 0, -1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		initEClass(completeEnvironmentEClass, CompleteEnvironment.class, "CompleteEnvironment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-		EOperation op = initEOperation(getCompleteEnvironment__GetCompleteOperation__Operation(), this.getCompleteOperation(), "getCompleteOperation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getOperation(), "model", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getCompleteEnvironment__GetCompletePackage__Package(), this.getCompletePackage(), "getCompletePackage", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getPackage(), "model", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getCompleteEnvironment__GetCompleteProperty__Property(), this.getCompleteProperty(), "getCompleteProperty", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getProperty(), "model", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getCompleteEnvironment__GetCompleteType__Type(), this.getCompleteType(), "getCompleteType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getType(), "model", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation(), this.getCompleteOperation(), "getDynamicOperation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getCompleteType(), "type", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getCompleteOperation(), "operation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(completeOperationEClass, CompleteOperation.class, "CompleteOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCompleteOperation_Model(), this.getOperation(), null, "model", null, 1, 1, CompleteOperation.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteOperation_Models(), this.getOperation(), null, "models", null, 1, -1, CompleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteOperation_CompleteEnvironment(), this.getCompleteEnvironment(), null, "completeEnvironment", null, 1, 1, CompleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteOperation_CompleteParameter(), this.getParameter(), null, "completeParameter", null, 0, -1, CompleteOperation.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(completePackageEClass, CompletePackage.class, "CompletePackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCompletePackage_Model(), this.getPackage(), null, "model", null, 1, 1, CompletePackage.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompletePackage_Models(), this.getPackage(), null, "models", null, 1, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompletePackage_CompleteEnvironment(), this.getCompleteEnvironment(), null, "completeEnvironment", null, 1, 1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompletePackage_CompletePackage(), this.getCompletePackage(), null, "completePackage", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompletePackage_CompleteType(), this.getCompleteType(), null, "completeType", null, 0, -1, CompletePackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(completePropertyEClass, CompleteProperty.class, "CompleteProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCompleteProperty_Model(), this.getProperty(), null, "model", null, 1, 1, CompleteProperty.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteProperty_Models(), this.getProperty(), null, "models", null, 1, -1, CompleteProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteProperty_CompleteEnvironment(), this.getCompleteEnvironment(), null, "completeEnvironment", null, 1, 1, CompleteProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		initEClass(completeTypeEClass, CompleteType.class, "CompleteType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCompleteType_Model(), this.getType(), null, "model", null, 1, 1, CompleteType.class, !IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteType_Models(), this.getType(), null, "models", null, 1, -1, CompleteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteType_CompleteEnvironment(), this.getCompleteEnvironment(), null, "completeEnvironment", null, 1, 1, CompleteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteType_CompleteOperation(), this.getCompleteOperation(), null, "completeOperation", null, 0, -1, CompleteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteType_CompleteProperty(), this.getCompleteProperty(), null, "completeProperty", null, 0, -1, CompleteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-		initEReference(getCompleteType_CompleteSuperType(), this.getCompleteType(), null, "completeSuperType", null, 0, -1, CompleteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
-
-		op = initEOperation(getCompleteType__GetDynamicOperation__CompleteOperation(), this.getCompleteOperation(), "getDynamicOperation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-		addEParameter(op, this.getCompleteOperation(), "staticOperation", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getConstraint_ConstrainedElement(), this.getElement(), null, "constrainedElement", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_Specification(), this.getValueSpecification(), null, "specification", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getConstraint_Context(), this.getNamedElement(), null, "context", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getConstraint_Stereotype(), this.getString(), "stereotype", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
-		op = initEOperation(getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotApplyToSelf", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		EOperation op = initEOperation(getConstraint__ValidateNotApplyToSelf__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validateNotApplyToSelf", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -5023,8 +4606,6 @@ public class PivotPackageImpl
 		createEcoreAnnotations();
 		// duplicates
 		createDuplicatesAnnotations();
-		// redefines
-		createRedefinesAnnotations();
 		// subsets
 		createSubsetsAnnotations();
 	}
@@ -5046,7 +4627,7 @@ public class PivotPackageImpl
 			 "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
 			 "settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$ //$NON-NLS-2$
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL" //$NON-NLS-1$ //$NON-NLS-2$
-		   });																																																																																																																																																										
+		   });																																																																																																																																																					
 	}
 
 	/**
@@ -5063,7 +4644,7 @@ public class PivotPackageImpl
 		   source, 
 		   new String[] 
 		   {
-		   });																														
+		   });																									
 		addAnnotation
 		  (featureEClass, 
 		   source, 
@@ -5097,67 +4678,6 @@ public class PivotPackageImpl
 	}
 
 	/**
-	 * Initializes the annotations for <b>redefines</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createRedefinesAnnotations()
-	{
-		String source = "redefines"; //$NON-NLS-1$																
-		addAnnotation
-		  (getCompletePackage_CompletePackage(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//Package/nestedPackage") //$NON-NLS-1$
-		   });		
-		addAnnotation
-		  (getCompletePackage_CompleteType(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//Package/ownedType") //$NON-NLS-1$
-		   });		
-		addAnnotation
-		  (getCompleteType_CompleteOperation(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//Class/ownedOperation") //$NON-NLS-1$
-		   });		
-		addAnnotation
-		  (getCompleteType_CompleteProperty(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//Class/ownedAttribute") //$NON-NLS-1$
-		   });		
-		addAnnotation
-		  (getCompleteType_CompleteSuperType(), 
-		   source, 
-		   new String[] 
-		   {
-		   },
-		   new URI[] 
-		   {
-			 URI.createURI(eNS_URI).appendFragment("//Class/superClass") //$NON-NLS-1$
-		   });																																																																																																																																								
-	}
-
-	/**
 	 * Initializes the annotations for <b>subsets</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5165,7 +4685,7 @@ public class PivotPackageImpl
 	 */
 	protected void createSubsetsAnnotations()
 	{
-		String source = "subsets"; //$NON-NLS-1$																																																																																		
+		String source = "subsets"; //$NON-NLS-1$																																																																													
 		addAnnotation
 		  (getParameterableElement_OwningTemplateParameter(), 
 		   source, 
@@ -5217,5 +4737,4 @@ public class PivotPackageImpl
 			 URI.createURI(eNS_URI).appendFragment("//TemplateSignature/parameter") //$NON-NLS-1$
 		   });																									
 	}
-
 } //PivotPackageImpl
