@@ -49,6 +49,7 @@ public abstract class DelayedReference implements Cloneable {
         TYPE_DEFAULT,
         /** Constant for reference type semantic predicate */
         TYPE_FOREACH_PREDICATE,
+        CONTEXT_LOOKUP,
         SEMANTIC_DISAMBIGUATE
     }
 
@@ -167,6 +168,7 @@ public abstract class DelayedReference implements Cloneable {
      * @param isOptional
      *            If isOptional the non-resolved reference won't result in an
      *            error.
+     * @param type TODO
      * @param token
      *            used to determine location, which is used for error messages
      */
@@ -174,7 +176,7 @@ public abstract class DelayedReference implements Cloneable {
             Object object, String propertyName, List<String> valueTypeName,
             String keyName, Object keyValue, String lookIn,
             String autoCreate, List<String> createAs, boolean importContext,
-            String createIn, boolean isOptional, ANTLR3LocationToken token) {
+            String createIn, boolean isOptional, ReferenceType type, ANTLR3LocationToken token) {
         this.referenceContextObject = currentContextElement;
         this.currentForeachElement = currentForeachElement;
         this.modelElement = object;
@@ -189,7 +191,7 @@ public abstract class DelayedReference implements Cloneable {
         this.createIn = createIn;
         this.isOptional = isOptional;
         this.token = token;
-        this.type = ReferenceType.TYPE_OCL;
+        this.type = type;
     }
 
     /**
@@ -222,6 +224,7 @@ public abstract class DelayedReference implements Cloneable {
      *            substituted by <tt>keyValue</tt>; if <tt>#context</tt> or
      *            <tt>#context(name)</tt> is used in the query, it will be
      *            substituted by the respective context element.
+     * @param type TODO
      * @param isOptional
      *            If a reference is defined as being optional, if it is optional
      *            a not resolving of the reference won't result in an error.
@@ -232,7 +235,7 @@ public abstract class DelayedReference implements Cloneable {
      */
     protected DelayedReference(IModelElementProxy currentContext, Object currentForeachElement,
             Object object, String propertyName, String keyName,
-            Object keyValue, String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
+            Object keyValue, String oclQuery, ReferenceType type, boolean isOptional, ANTLR3LocationToken token) {
         this.referenceContextObject = currentContext;
         this.currentForeachElement = currentForeachElement;
         this.modelElement = object;
@@ -242,7 +245,7 @@ public abstract class DelayedReference implements Cloneable {
         this.oclQuery = oclQuery;
         this.token = token;
         this.isOptional = isOptional;
-        this.type = ReferenceType.TYPE_OCL;
+        this.type = type;
     }
 
     /**
