@@ -64,7 +64,6 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Template/disambiguate"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Template/disambiguateV3"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//Template/semDisambiguate"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Template/textBlockDefinition"/>
       </genClasses>
       <genClasses ecoreClass="TCS.ecore#//FunctionTemplate">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//FunctionTemplate/functionName"/>
@@ -416,11 +415,13 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/parentAltChoices"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/elementsInContext"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/forEachContext"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/forEachExecutions"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/cachedString"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//TextBlock/complete"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/additionalTemplates"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//TextBlock/correspondingModelElements"/>
         <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getSubBlocks"/>
         <genOperations ecoreOperation="textblocks.ecore#//TextBlock/getTokens"/>
       </genClasses>
@@ -434,6 +435,8 @@
       <genClasses ecoreClass="textblocks.ecore#//OmittedToken"/>
       <genClasses ecoreClass="textblocks.ecore#//LexedToken">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//LexedToken/operator"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference textblocks.ecore#//LexedToken/referencedElements"/>
       </genClasses>
       <genClasses ecoreClass="textblocks.ecore#//UnlexedToken"/>
       <genClasses image="false" ecoreClass="textblocks.ecore#//DocumentNode">
@@ -442,57 +445,29 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/relexingNeeded"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/parent"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/correspondingModelElements"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/referencedElements"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/sequenceElement"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offset"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/length"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference textblocks.ecore#//DocumentNode/otherVersions"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/offsetRelative"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startRow"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/startColumn"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endRow"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/endColumn"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//DocumentNode/absoluteOffset"/>
       </genClasses>
-      <genClasses ecoreClass="textblocks.ecore#//ForEachContext">
+      <genClasses ecoreClass="textblocks.ecore#//ForEachExecution">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/foreachPedicatePropertyInit"/>
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachExecution/foreachPedicatePropertyInit"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/contextElement"/>
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachExecution/contextElement"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/resultModelElement"/>
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachExecution/resultModelElement"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/sourceModelElement"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//ForEachContext/contextString"/>
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachExecution/sourceModelElement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblocks.ecore#//ForEachExecution/contextString"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachContext/templateUsedForProduction"/>
+            ecoreFeature="ecore:EReference textblocks.ecore#//ForEachExecution/templateUsedForProduction"/>
       </genClasses>
       <genClasses ecoreClass="textblocks.ecore#//Eostoken"/>
       <genClasses ecoreClass="textblocks.ecore#//Bostoken"/>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Textblockdefinition" basePackage="com.sap.furcas.metamodel.FURCAS"
-        resource="XML" disposableProviderFactory="true" ecorePackage="textblockdefinition.ecore#/">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="textblockdefinition.ecore#//FormatPolicy">
-        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_ALWAYS"/>
-        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_NEVER"/>
-        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_BEFORE"/>
-        <genEnumLiterals ecoreEnumLiteral="textblockdefinition.ecore#//FormatPolicy/KEEP_AFTER"/>
-      </genEnums>
-      <genClasses ecoreClass="textblockdefinition.ecore#//TextBlockDefinition">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/formatPolicy"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/defaultTemplate"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/parseRule"/>
-        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/context"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/subDefinitions"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference textblockdefinition.ecore#//TextBlockDefinition/generalisation"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute textblockdefinition.ecore#//TextBlockDefinition/name"/>
-      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

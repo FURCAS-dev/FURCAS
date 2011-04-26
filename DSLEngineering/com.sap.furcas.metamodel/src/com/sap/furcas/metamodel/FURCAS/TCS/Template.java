@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 
 
 /**
@@ -21,7 +20,6 @@ import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getDisambiguate <em>Disambiguate</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getDisambiguateV3 <em>Disambiguate V3</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getSemDisambiguate <em>Sem Disambiguate</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition <em>Text Block Definition</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,33 +133,5 @@ public interface Template extends QualifiedNamedElement {
      * @generated
      */
 	void setSemDisambiguate(String value);
-
-								/**
-     * Returns the value of the '<em><b>Text Block Definition</b></em>' containment reference.
-     * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule <em>Parse Rule</em>}'.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Text Block Definition</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Text Block Definition</em>' containment reference.
-     * @see #setTextBlockDefinition(TextBlockDefinition)
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage#getTemplate_TextBlockDefinition()
-     * @see com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition#getParseRule
-     * @model opposite="parseRule" containment="true" resolveProxies="true"
-     * @generated
-     */
-	TextBlockDefinition getTextBlockDefinition();
-
-								/**
-     * Sets the value of the '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition <em>Text Block Definition</em>}' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Text Block Definition</em>' containment reference.
-     * @see #getTextBlockDefinition()
-     * @generated
-     */
-	void setTextBlockDefinition(TextBlockDefinition value);
 
 } // Template

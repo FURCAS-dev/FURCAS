@@ -286,7 +286,7 @@ public abstract class AbstractFurcasOCLBasedModelUpdater extends AbstractOCLBase
         Set<TextBlock> textBlocks = new HashSet<TextBlock>();
         Collection<EObject> textBlockDocumentingCreationOfContextElement = getOppositeEndFinder()
                 .navigateOppositePropertyWithBackwardScope(
-                        TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), element);
+                        TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), element);
         if (textBlockDocumentingCreationOfContextElement != null) {
             for (EObject eo : textBlockDocumentingCreationOfContextElement) {
                 if (eo instanceof TextBlock) {

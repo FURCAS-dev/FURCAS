@@ -444,22 +444,13 @@ public interface TCSPackage extends EPackage {
 	int TEMPLATE__SEM_DISAMBIGUATE = QUALIFIED_NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int TEMPLATE__TEXT_BLOCK_DEFINITION = QUALIFIED_NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-								/**
      * The number of structural features of the '<em>Template</em>' class.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-        int TEMPLATE_FEATURE_COUNT = QUALIFIED_NAMED_ELEMENT_FEATURE_COUNT + 5;
+        int TEMPLATE_FEATURE_COUNT = QUALIFIED_NAMED_ELEMENT_FEATURE_COUNT + 4;
 
         /**
      * The meta object id for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FunctionTemplateImpl <em>Function Template</em>}' class.
@@ -551,15 +542,6 @@ public interface TCSPackage extends EPackage {
      * @ordered
      */
 	int FUNCTION_TEMPLATE__SEM_DISAMBIGUATE = TEMPLATE__SEM_DISAMBIGUATE;
-
-								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int FUNCTION_TEMPLATE__TEXT_BLOCK_DEFINITION = TEMPLATE__TEXT_BLOCK_DEFINITION;
 
 								/**
      * The feature id for the '<em><b>Function Name</b></em>' attribute.
@@ -678,15 +660,6 @@ public interface TCSPackage extends EPackage {
      * @ordered
      */
 	int CONTEXT_TEMPLATE__SEM_DISAMBIGUATE = TEMPLATE__SEM_DISAMBIGUATE;
-
-								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CONTEXT_TEMPLATE__TEXT_BLOCK_DEFINITION = TEMPLATE__TEXT_BLOCK_DEFINITION;
 
 								/**
      * The feature id for the '<em><b>Is Context</b></em>' attribute.
@@ -841,15 +814,6 @@ public interface TCSPackage extends EPackage {
      * @ordered
      */
 	int CLASS_TEMPLATE__SEM_DISAMBIGUATE = CONTEXT_TEMPLATE__SEM_DISAMBIGUATE;
-
-								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int CLASS_TEMPLATE__TEXT_BLOCK_DEFINITION = CONTEXT_TEMPLATE__TEXT_BLOCK_DEFINITION;
 
 								/**
      * The feature id for the '<em><b>Is Context</b></em>' attribute.
@@ -1087,15 +1051,6 @@ public interface TCSPackage extends EPackage {
 	int PRIMITIVE_TEMPLATE__SEM_DISAMBIGUATE = TEMPLATE__SEM_DISAMBIGUATE;
 
 								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int PRIMITIVE_TEMPLATE__TEXT_BLOCK_DEFINITION = TEMPLATE__TEXT_BLOCK_DEFINITION;
-
-								/**
      * The feature id for the '<em><b>Template Name</b></em>' attribute.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1248,15 +1203,6 @@ public interface TCSPackage extends EPackage {
      * @ordered
      */
 	int OPERATOR_TEMPLATE__SEM_DISAMBIGUATE = CONTEXT_TEMPLATE__SEM_DISAMBIGUATE;
-
-								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int OPERATOR_TEMPLATE__TEXT_BLOCK_DEFINITION = CONTEXT_TEMPLATE__TEXT_BLOCK_DEFINITION;
 
 								/**
      * The feature id for the '<em><b>Is Context</b></em>' attribute.
@@ -1474,15 +1420,6 @@ public interface TCSPackage extends EPackage {
      * @ordered
      */
 	int ENUMERATION_TEMPLATE__SEM_DISAMBIGUATE = TEMPLATE__SEM_DISAMBIGUATE;
-
-								/**
-     * The feature id for the '<em><b>Text Block Definition</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-	int ENUMERATION_TEMPLATE__TEXT_BLOCK_DEFINITION = TEMPLATE__TEXT_BLOCK_DEFINITION;
 
 								/**
      * The feature id for the '<em><b>Automatic</b></em>' attribute.
@@ -7326,17 +7263,6 @@ public interface TCSPackage extends EPackage {
 	EAttribute getTemplate_SemDisambiguate();
 
 								/**
-     * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition <em>Text Block Definition</em>}'.
-     * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Text Block Definition</em>'.
-     * @see com.sap.furcas.metamodel.FURCAS.TCS.Template#getTextBlockDefinition()
-     * @see #getTemplate()
-     * @generated
-     */
-	EReference getTemplate_TextBlockDefinition();
-
-								/**
      * Returns the meta object for class '{@link com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate <em>Function Template</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -10113,14 +10039,6 @@ public interface TCSPackage extends EPackage {
          * @generated
          */
 		EAttribute TEMPLATE__SEM_DISAMBIGUATE = eINSTANCE.getTemplate_SemDisambiguate();
-
-																/**
-         * The meta object literal for the '<em><b>Text Block Definition</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-         * @generated
-         */
-		EReference TEMPLATE__TEXT_BLOCK_DEFINITION = eINSTANCE.getTemplate_TextBlockDefinition();
 
 																/**
          * The meta object literal for the '{@link com.sap.furcas.metamodel.FURCAS.TCS.impl.FunctionTemplateImpl <em>Function Template</em>}' class.

@@ -6,5 +6,4 @@
   <eClassifiers xsi:type="ecore:EClass" name="EmptyDummyClassToWorkaroundGeneratorBug"/>
   <eSubpackages href="TCS.ecore#/"/>
   <eSubpackages href="textblocks.ecore#/"/>
-  <eSubpackages href="textblockdefinition.ecore#/"/>
 </ecore:EPackage>
