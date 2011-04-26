@@ -13,10 +13,14 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.common.interfaces.IRuleName;
 import com.sap.furcas.runtime.common.util.ContextAndForeachHelper;
 import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ModelElementCreationException;
+import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
 /**
  * a delayed reference is a temporary object created during parsing. It
@@ -25,7 +29,7 @@ import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
  * stores all information necessary to resolve an object and set the reference
  * on a source object.
  */
-public class DelayedReference implements Cloneable {
+public abstract class DelayedReference implements Cloneable {
 
     /** The Constant AUTOCREATE_ALWAYS. */
     public static final String AUTOCREATE_ALWAYS = "always";
@@ -45,7 +49,6 @@ public class DelayedReference implements Cloneable {
         TYPE_DEFAULT,
         /** Constant for reference type semantic predicate */
         TYPE_FOREACH_PREDICATE,
-        CONTEXT_LOOKUP,
         SEMANTIC_DISAMBIGUATE
     }
 
@@ -167,7 +170,7 @@ public class DelayedReference implements Cloneable {
      * @param token
      *            used to determine location, which is used for error messages
      */
-    DelayedReference(IModelElementProxy currentContextElement, Object currentForeachElement,
+    protected DelayedReference(IModelElementProxy currentContextElement, Object currentForeachElement,
             Object object, String propertyName, List<String> valueTypeName,
             String keyName, Object keyValue, String lookIn,
             String autoCreate, List<String> createAs, boolean importContext,
@@ -227,7 +230,7 @@ public class DelayedReference implements Cloneable {
      *            specific cases an unescaping from the token is necessary to
      *            obtain the <tt>keyValue</tt>.
      */
-    public DelayedReference(IModelElementProxy currentContext, Object currentForeachElement,
+    protected DelayedReference(IModelElementProxy currentContext, Object currentForeachElement,
             Object object, String propertyName, String keyName,
             Object keyValue, String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
         this.referenceContextObject = currentContext;
@@ -246,7 +249,7 @@ public class DelayedReference implements Cloneable {
      * Used by
      * {@link ObservableInjectingParser#setPredicateRef(Object, String, String, String, List, IRuleName, boolean, String, ModelUpdaterRegistry)}
      */
-    public DelayedReference(Object referenceContextObject, ReferenceType type,
+    protected DelayedReference(Object referenceContextObject, ReferenceType type,
             Object modelElement, String propertyName, String oclQuery,
             String mode, List<PredicateSemantic> list,
             IRuleName ruleNameFinder, ANTLR3LocationToken token,
@@ -265,7 +268,7 @@ public class DelayedReference implements Cloneable {
         this.isOptional = isOptional;
     }
     
-    public DelayedReference(Object currentContextElement,
+    protected DelayedReference(Object currentContextElement,
                         ReferenceType type, Object modelElement, Object semanticObject,
 			Object opTemplateLefthand, String opName, List<SemanticDisambRuleData> ruleData,
 			ANTLR3LocationToken lastToken, ANTLR3LocationToken firstToken,
@@ -284,6 +287,10 @@ public class DelayedReference implements Cloneable {
 		this.opTemplateLefthand = opTemplateLefthand;
 	}
 
+    public abstract boolean setDelayedReference(DelayedReference reference, IModelAdapter modelAdapter,
+            ContextManager contextManager, ObservableInjectingParser parser) throws ModelAdapterException,
+            ModelElementCreationException;
+    
     /**
      * Gets the current context.
      * 
