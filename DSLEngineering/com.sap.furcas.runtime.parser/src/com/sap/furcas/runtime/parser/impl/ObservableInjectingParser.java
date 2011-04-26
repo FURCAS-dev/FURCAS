@@ -909,7 +909,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         if (modelUpdaterRegistry != null) {
             ModelUpdater modelUpdater = modelUpdaterRegistry.getModelUpdater(URI.createURI(propInitURI));
         }
-        DelayedReference ref = new DelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE,
+        ForeachDelayedReference ref = new ForeachDelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE,
                 object, propertyName, query, mode, preds, ruleNameFinder,
                 lastToken, hasContext, /* isOptional: ForEach is always considered optional as 
                  * error reporting will be done based on metamodel constraints. */ true);
