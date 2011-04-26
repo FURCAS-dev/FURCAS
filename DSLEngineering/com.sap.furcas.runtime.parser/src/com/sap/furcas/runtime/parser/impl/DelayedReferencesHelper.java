@@ -8,9 +8,6 @@
  *******************************************************************************/
 package com.sap.furcas.runtime.parser.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,11 +15,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
-
-import antlr.Token;
 
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
@@ -35,7 +29,6 @@ import com.sap.furcas.runtime.parser.IModelInjector;
 import com.sap.furcas.runtime.parser.ModelElementCreationException;
 import com.sap.furcas.runtime.parser.ParsingError;
 import com.sap.furcas.runtime.parser.TextLocation;
-import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.furcas.runtime.parser.impl.context.AmbiguousLookupException;
 import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
@@ -79,7 +72,6 @@ public class DelayedReferencesHelper {
             ContextManager contextManager, ObservableInjectingParser parser) throws ModelAdapterException,
             ModelElementCreationException {
         Object contextElement = reference.getContextElement();
-
         if (contextElement instanceof IModelElementProxy) {
             IModelElementProxy proxyContext = (IModelElementProxy) contextElement;
             contextElement = proxyContext.getRealObject();
@@ -87,9 +79,8 @@ public class DelayedReferencesHelper {
 
         if (reference instanceof ForeachDelayedReference) {
             return ((ForeachDelayedReference) reference).setDelayedReference(reference, modelAdapter, contextManager, parser);
-        } else if (reference.getType() == DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE) {
-            return setDelayedReferenceWithSemanticDisambiguate(reference, modelAdapter, contextManager, contextElement,
-                    parser);
+        } else if (reference instanceof SemanticDisambiguateDelayedReference) {
+            return ((SemanticDisambiguateDelayedReference) reference).setDelayedReference(reference, modelAdapter, contextManager, parser);
         }
         if (reference.getOclQuery() != null && reference.getType() != DelayedReference.ReferenceType.CONTEXT_LOOKUP) {
             return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
@@ -107,73 +98,7 @@ public class DelayedReferencesHelper {
         return result;
     }
 
-    private void setReferenceForSemanticDisambiguatedRule(ObservableInjectingParser parser, DelayedReference reference,
-            String ruleName, IModelAdapter modelAdapter) throws SecurityException, UnknownProductionRuleException,
-            NoSuchMethodException, IllegalArgumentException, IllegalAccessException, InvocationTargetException,
-            ModelElementCreationException, ModelAdapterException {
-        // invoke the parser to execute the template
-        Method methodToCall = parser.getClass().getMethod(ruleName, String.class, Object.class, Token.class);
-        if (!Modifier.isFinal(methodToCall.getModifiers())) {
-            throw new UnknownProductionRuleException(ruleName + " is not a production rule in generated Parser.");
-        }
-        boolean originalResolveProxiesValue = parser.isResolveProxies();
-        parser.setResolveProxies(false);
-        parser.reset();
-
-        IModelElementProxy proxyForContextElement = null;
-        if (reference.getContextElement() instanceof IModelElementProxy) {
-            proxyForContextElement = (IModelElementProxy) reference.getContextElement();
-        } else {
-            proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
-        }
-
-        if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
-            parser.addContext(proxyForContextElement);
-            if (proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof EObject) {
-                parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement,
-                        reference.getContextElement(), /*
-                                                        * no creation context element needs to be provided here because
-                                                        * the proxy has just been created and has not been added to any
-                                                        * other context
-                                                        */null);
-            }
-        } else {
-            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created
-                                                                          // elsewhere
-        }
-        try {
-            parser.getTokenStream().seek(reference.getFirstToken().getTokenIndex());
-            Object parseReturn;
-            if (reference.isSemanticDisambiguatedOperatorRule()) {
-                parseReturn = methodToCall.invoke(parser, reference.getPropertyName(),
-                        reference.getOpTemplateLefthand(), reference.getFirstToken());
-            } else {
-                parseReturn = methodToCall.invoke(parser);
-            }
-            // add the parsed part to the object
-            parser.setResolveProxies(originalResolveProxiesValue);
-            reference.setRealValue(injector.createOrResolve((ModelElementProxy) parseReturn, null, null));
-            // by default use partition of reference.getModelElement
-            if (reference.getModelElement() instanceof EObject && reference.getRealValue() instanceof EObject) {
-                ((EObject) reference.getContextElement()).eResource().getContents()
-                        .add((EObject) reference.getRealValue());
-            }
-
-            ModelElementProxy oldModelElement = ((ModelElementProxy) reference.getModelElement());
-            oldModelElement.setRealObject(reference.getRealValue());
-            Object parentProxy = oldModelElement.getParent();
-            Object parentElement = ((ModelElementProxy) parentProxy).getRealObject();
-            String parentPropertyName = oldModelElement.getParentPropertyName();
-            modelAdapter.set(parentElement, parentPropertyName, reference.getRealValue());
-        } finally {
-            if (reference.hasContext()) {
-                parser.leaveContext();
-            }
-            parser.getCurrentContextStack().pop();
-        }
-    }
-
-    private static String appendFlattenToOclQuery(String ocl) {
+    static String appendFlattenToOclQuery(String ocl) {
         String flattenOCL = "";
         if (ocl.startsWith("OCL:")) {
             flattenOCL = "OCL:(" + ocl.substring(4) + ")->asSequence()->flatten()";
@@ -430,116 +355,6 @@ public class DelayedReferencesHelper {
         Object result = modelAdapter.setReferenceWithLookup(reference.getModelElement(), reference.getPropertyName(),
                 reference.getValueTypeName(), reference.getKeyName(), reference.getKeyValue());
         return result;
-    }
-
-    private boolean setDelayedReferenceWithSemanticDisambiguate(DelayedReference reference, IModelAdapter modelAdapter,
-            ContextManager contextManager, Object contextElement, ObservableInjectingParser parser) {
-        try {
-            Iterator<SemanticDisambRuleData> dataIt = reference.getSemRulData().iterator();
-            boolean resultFound = false;
-            while (dataIt.hasNext()) {
-                SemanticDisambRuleData nextRuleData = dataIt.next();
-                int beginRef = nextRuleData.getOcl().indexOf("${");
-                String flattenOCL = appendFlattenToOclQuery(nextRuleData.getOcl());
-                if (beginRef >= 0) {
-                    String semReference = nextRuleData.getOcl().substring(beginRef,
-                            nextRuleData.getOcl().indexOf('}', beginRef + 1) + 1);
-                    String replacedBy;
-                    // TODO support other types than string
-                    if (isBasicType(reference.getSemanticObject())) {
-                        replacedBy = "'" + reference.getSemanticObject().toString() + "'";
-                    } else {
-                        replacedBy = "?";
-                    }
-                    String replacedOCL = nextRuleData.getOcl().replaceAll(Pattern.quote(semReference), replacedBy);
-                    if (replacedOCL.contains("#source")) {
-                        replacedOCL = replacedOCL.replace("#source", "self");
-                    }
-                    flattenOCL = appendFlattenToOclQuery(replacedOCL);
-                }
-
-                // evaluate the predicate by OCL, return value is a list of
-                // objects
-                Object currentContextElement;
-                if (nextRuleData.getOcl().contains("#source") && reference.isSemanticDisambiguatedOperatorRule()) {
-                    if (reference.getOpTemplateLefthand() instanceof ModelElementProxy) {
-                        currentContextElement = ((ModelElementProxy) reference.getOpTemplateLefthand()).getRealObject();
-                    } else {
-                        currentContextElement = reference.getOpTemplateLefthand();
-                    }
-                } else {
-                    currentContextElement = contextElement;
-                }
-                Collection<?> result = modelAdapter.evaluateOCLQuery(currentContextElement, null, flattenOCL,
-                        currentContextElement);
-                // if there is no result it will be null
-                if (result.isEmpty()) {
-                    resultFound = false;
-                } else {
-                    Iterator<?> resultIt = result.iterator();
-                    // loop over the results to handle them one by one
-                    boolean ruleFound = false;
-                    while (resultIt.hasNext()) {
-                        Object nextResult = resultIt.next();
-                        if (nextResult instanceof Boolean) {
-                            if (((Boolean) nextResult).booleanValue()) {
-                                if (ruleFound) {
-                                    reportProblem("The semantic disambiguate matches more than one rule",
-                                            reference.getToken());
-                                    return false;
-                                }
-                                ruleFound = true;
-                                resultFound = true;
-                                setReferenceForSemanticDisambiguatedRule(parser, reference, nextRuleData.getRule(),
-                                        modelAdapter);
-                            }
-                        } else {
-                            reportProblem("The rule " + nextRuleData.getRule()
-                                    + " has a semantic disambiguate which does not evaluate to a bool value",
-                                    reference.getToken());
-                            return false;
-                        }
-                    }
-                }
-            }
-            if (!resultFound) {
-                reportProblem("The semantic disambiguate did not match any rule", reference.getToken());
-                return false;
-            }
-        } catch (IllegalAccessException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (SecurityException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (IllegalArgumentException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (UnknownProductionRuleException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (NoSuchMethodException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (InvocationTargetException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (ModelElementCreationException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        } catch (ModelAdapterException e) {
-            reportProblem(e.getMessage(), reference.getToken());
-            return false;
-        }
-        return true;
-    }
-
-    // TODO support the other basic types as well
-    private boolean isBasicType(Object ref) {
-        if (ref instanceof String) {
-            return true;
-        }
-        return false;
     }
 
     // /**

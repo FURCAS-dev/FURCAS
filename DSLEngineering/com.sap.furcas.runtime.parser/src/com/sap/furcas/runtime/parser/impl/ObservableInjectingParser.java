@@ -313,7 +313,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
                         tempResolvedDelayedReferenceList.add(ref);
                     }
                     // Those with a context lookup will be handled below
-                } else if (ref.getType() == DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE) {
+                } else if (ref instanceof SemanticDisambiguateDelayedReference) {
                     tempResolvedDelayedReferenceList.add(ref);
                 }
                 // TODO what if the context-Proxy gets resolved before the
@@ -786,9 +786,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
     public final void setSemDisambiguate(Object proxy, Object opTemplateLefthand, String opName, Object element,
             List<SemanticDisambRuleData> preds, boolean hasContext, ANTLR3LocationToken firstToken) {
         ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
-        DelayedReference ref = new DelayedReference(getCurrentContextElement(),
-                DelayedReference.ReferenceType.SEMANTIC_DISAMBIGUATE, proxy, element, opTemplateLefthand, opName,
-                preds, lastToken, firstToken, hasContext, true);
+        SemanticDisambiguateDelayedReference ref = new SemanticDisambiguateDelayedReference(getCurrentContextElement(), proxy, element,
+                opTemplateLefthand, opName, preds, lastToken, firstToken, hasContext, true);
         unResolvedDelayedReferenceList.add(ref);
     }
 
@@ -909,7 +908,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser 
         if (modelUpdaterRegistry != null) {
             ModelUpdater modelUpdater = modelUpdaterRegistry.getModelUpdater(URI.createURI(propInitURI));
         }
-        ForeachDelayedReference ref = new ForeachDelayedReference(getCurrentContextElement(), DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE,
+        ForeachDelayedReference ref = new ForeachDelayedReference(getCurrentContextElement(), 
                 object, propertyName, query, mode, preds, ruleNameFinder,
                 lastToken, hasContext, /* isOptional: ForEach is always considered optional as 
                  * error reporting will be done based on metamodel constraints. */ true);

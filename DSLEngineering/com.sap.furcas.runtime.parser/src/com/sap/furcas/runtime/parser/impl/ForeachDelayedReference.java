@@ -36,13 +36,13 @@ public class ForeachDelayedReference extends DelayedReference {
      * Used by
      * {@link ObservableInjectingParser#setPredicateRef(Object, String, String, String, List, IRuleName, boolean, String, ModelUpdaterRegistry)}
      */
-    public ForeachDelayedReference(Object referenceContextObject, ReferenceType type,
+    public ForeachDelayedReference(Object referenceContextObject,
             Object modelElement, String propertyName, String oclQuery,
             String mode, List<PredicateSemantic> list,
             IRuleName ruleNameFinder, ANTLR3LocationToken token,
             boolean hasContext, boolean isOptional) {
-        super(referenceContextObject, type, modelElement, propertyName, oclQuery, mode, list, ruleNameFinder, token,
-                hasContext, isOptional);
+        super(referenceContextObject, DelayedReference.ReferenceType.TYPE_FOREACH_PREDICATE, modelElement,
+                propertyName, oclQuery, mode, list, ruleNameFinder, token, hasContext, isOptional);
     }
 
     /**
