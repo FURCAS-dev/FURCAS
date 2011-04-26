@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;

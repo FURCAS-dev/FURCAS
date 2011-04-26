@@ -138,7 +138,7 @@ public class TestPropertyInitReEvaluationWithContextInForeachTriggeredTemplate e
                     TextblocksPackage.eINSTANCE.getForEachExecution_ResultModelElement(), revenueLedger).size());
             EObject author = revenueLedger.eContainer();
             TextBlock authorCreationRecord = (TextBlock) oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    TextblocksPackage.eINSTANCE.getDocumentNode_CorrespondingModelElements(), author).iterator().next();
+                    TextblocksPackage.eINSTANCE.getTextBlock_CorrespondingModelElements(), author).iterator().next();
             assertEquals("Expected exactly as many ForEachContext records as we have RevenueLedger objects for author "+
                     author, revenues.size(), authorCreationRecord.getForEachExecutions().size());
         }

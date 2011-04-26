@@ -343,12 +343,12 @@ public interface TextblocksPackage extends EPackage {
     int TEXT_BLOCK__ADDITIONAL_TEMPLATES = DOCUMENT_NODE_FEATURE_COUNT + 7;
 
                                 /**
-    * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-    * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
                                  * <!-- end-user-doc -->
-    * @generated
-    * @ordered
-    */
+     * @generated
+     * @ordered
+     */
                                 int TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS = DOCUMENT_NODE_FEATURE_COUNT + 8;
 
                                 /**
@@ -1041,24 +1041,6 @@ public interface TextblocksPackage extends EPackage {
     int FOR_EACH_EXECUTION__PARENT = TEXT_BLOCK__PARENT;
 
         /**
-     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__CORRESPONDING_MODEL_ELEMENTS = TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS;
-
-        /**
-     * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__REFERENCED_ELEMENTS = TEXT_BLOCK__REFERENCED_ELEMENTS;
-
-        /**
      * The feature id for the '<em><b>Sequence Element</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1102,42 +1084,6 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
     int FOR_EACH_EXECUTION__OFFSET_RELATIVE = TEXT_BLOCK__OFFSET_RELATIVE;
-
-        /**
-     * The feature id for the '<em><b>Start Row</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__START_ROW = TEXT_BLOCK__START_ROW;
-
-        /**
-     * The feature id for the '<em><b>Start Column</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__START_COLUMN = TEXT_BLOCK__START_COLUMN;
-
-        /**
-     * The feature id for the '<em><b>End Row</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__END_ROW = TEXT_BLOCK__END_ROW;
-
-        /**
-     * The feature id for the '<em><b>End Column</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FOR_EACH_EXECUTION__END_COLUMN = TEXT_BLOCK__END_COLUMN;
 
         /**
      * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
@@ -1219,6 +1165,15 @@ public interface TextblocksPackage extends EPackage {
      * @ordered
      */
     int FOR_EACH_EXECUTION__ADDITIONAL_TEMPLATES = TEXT_BLOCK__ADDITIONAL_TEMPLATES;
+
+        /**
+     * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FOR_EACH_EXECUTION__CORRESPONDING_MODEL_ELEMENTS = TEXT_BLOCK__CORRESPONDING_MODEL_ELEMENTS;
 
         /**
      * The feature id for the '<em><b>Foreach Pedicate Property Init</b></em>' reference.

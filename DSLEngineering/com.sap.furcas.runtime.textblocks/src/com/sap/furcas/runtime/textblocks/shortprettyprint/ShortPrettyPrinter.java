@@ -118,11 +118,7 @@ public class ShortPrettyPrinter {
 	    //it is always the first element as all others do not have a syntax contribution!
 	    EObject referencedObject = null;
 	    List<EObject> correspondingElements = token.getParent().getCorrespondingModelElements();
-	    if (correspondingElements.isEmpty()) {
-	    	if( token.getParent().getReferencedElements().size() > 0) {
-	            referencedObject = token.getParent().getReferencedElements().iterator().next();
-	        }
-	    } else {
+	    if (!correspondingElements.isEmpty()) {
 	    	referencedObject = correspondingElements.get(0);
 	    }
             try {

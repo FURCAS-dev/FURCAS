@@ -417,17 +417,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 		return wrappedToken.getAbsoluteOffset();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.DocumentNode#getCorrespondingModelElements()
-	 */
-	@Override
-	public EList<EObject> getCorrespondingModelElements()  {
-
-		return wrappedToken.getCorrespondingModelElements();
-	}
-
 
 	/*
 	 * (non-Javadoc)

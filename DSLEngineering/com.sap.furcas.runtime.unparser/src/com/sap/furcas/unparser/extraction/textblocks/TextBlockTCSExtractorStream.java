@@ -378,7 +378,6 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 
 		currentBlock.setParent(null);
 		parent.getCorrespondingModelElements().addAll(currentBlock.getCorrespondingModelElements());
-		parent.getReferencedElements().addAll(currentBlock.getReferencedElements());
                 EcoreUtil.delete(currentBlock);
 	    }
 
@@ -419,11 +418,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    setType(rootBlock, template);
 	    rootBlock.setOffsetRelative(false);
             if (correspondingModelElement != null) {
-                if (template instanceof ContextTemplate && ((ContextTemplate) template).isIsReferenceOnly()) {
-                    rootBlock.getReferencedElements().add(correspondingModelElement);
-                } else {
-                    rootBlock.getCorrespondingModelElements().add(correspondingModelElement);
-                }
+                rootBlock.getCorrespondingModelElements().add(correspondingModelElement);
             }
 	    rootBlock.setSequenceElement(se);
 	    currentBlock = rootBlock;
@@ -450,11 +445,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
 	    b.setOffset(currentOffset);
 
 	    if (correspondingModelElement != null) {
-		if (template instanceof ContextTemplate && ((ContextTemplate) template).isIsReferenceOnly()) {
-		    b.getReferencedElements().add(correspondingModelElement);
-		} else {
-		    b.getCorrespondingModelElements().add(correspondingModelElement);
-		}
+	        b.getCorrespondingModelElements().add(correspondingModelElement);
 	    }
 	    b.setSequenceElement(se);
 	    setType(b, template);

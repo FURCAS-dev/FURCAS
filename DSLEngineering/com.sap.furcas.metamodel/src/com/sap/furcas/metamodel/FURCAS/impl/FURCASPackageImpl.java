@@ -86,19 +86,16 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
         // Obtain or create and register interdependencies
         TCSPackageImpl theTCSPackage = (TCSPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) instanceof TCSPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI) : TCSPackage.eINSTANCE);
         TextblocksPackageImpl theTextblocksPackage = (TextblocksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) instanceof TextblocksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI) : TextblocksPackage.eINSTANCE);
-        TextblockdefinitionPackageImpl theTextblockdefinitionPackage = (TextblockdefinitionPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) instanceof TextblockdefinitionPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI) : TextblockdefinitionPackage.eINSTANCE);
 
         // Create package meta-data objects
         theFURCASPackage.createPackageContents();
         theTCSPackage.createPackageContents();
         theTextblocksPackage.createPackageContents();
-        theTextblockdefinitionPackage.createPackageContents();
 
         // Initialize created meta-data
         theFURCASPackage.initializePackageContents();
         theTCSPackage.initializePackageContents();
         theTextblocksPackage.initializePackageContents();
-        theTextblockdefinitionPackage.initializePackageContents();
 
         // Mark meta-data to indicate it can't be changed
         theFURCASPackage.freeze();
@@ -175,12 +172,10 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
         // Obtain other dependent packages
         TCSPackage theTCSPackage = (TCSPackage)EPackage.Registry.INSTANCE.getEPackage(TCSPackage.eNS_URI);
         TextblocksPackage theTextblocksPackage = (TextblocksPackage)EPackage.Registry.INSTANCE.getEPackage(TextblocksPackage.eNS_URI);
-        TextblockdefinitionPackage theTextblockdefinitionPackage = (TextblockdefinitionPackage)EPackage.Registry.INSTANCE.getEPackage(TextblockdefinitionPackage.eNS_URI);
 
         // Add subpackages
         getESubpackages().add(theTCSPackage);
         getESubpackages().add(theTextblocksPackage);
-        getESubpackages().add(theTextblockdefinitionPackage);
 
         // Create type parameters
 
