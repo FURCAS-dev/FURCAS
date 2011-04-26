@@ -181,8 +181,9 @@ public class EmfHelper {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 			
 			public void execute(IndexUpdater updater) {
-				ResourceIndexer rd = ResourceIndexer.INSTANCE;
-				rd.resourceChanged(updater, r);
+				ResourceIndexer rd = new ResourceIndexer();
+				ResourceIndexer indexer = rd.getInstance();
+				indexer.resourceChanged(updater, r);
 			}
 		});
 	}
