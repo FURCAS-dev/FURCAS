@@ -202,13 +202,12 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
         private void recoverForEachContext(TextBlock textBlock,
                 TextBlockProxy proxy) {
-            DelayedReferencesHelper helper = new DelayedReferencesHelper(batchParser.getInjector());
             for (ForEachExecution fec : textBlock.getForEachExecutions()) {
                 for (EObject ro : textBlock.getCorrespondingModelElements()) {
                     if(fec.getSourceModelElement().equals(ro)) {
                         for (DelayedReference ref : tBProxy2Reference.get(proxy)) {
                             try {
-                                Collection<?> result = helper.evaluateForeachOcl(ro, ref, 
+                                Collection<?> result = DelayedReferencesHelper.evaluateForeachOcl(ro, ref, 
                                         batchParser.getInjector().getModelAdapter(), 
                                         ro);
                                 if(result.contains(fec.getContextElement())) {

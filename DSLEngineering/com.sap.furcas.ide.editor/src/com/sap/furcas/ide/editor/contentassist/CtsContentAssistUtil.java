@@ -484,47 +484,40 @@ public class CtsContentAssistUtil {
 				if (queryArg != null) {
 					// first execute query, then apply invert OCL expression to
 					// each result to generate proposal strings
-
 					String invert = PropertyArgumentUtil.getReferenceByAsOCL(referenceByArg);
-					if (invert != null) {
-						// if invert is null, we don't really know how to derive
-						// the proposal string as the filter could be any OCL
-						// expression using the ? placeholder
+					// if invert is null, we don't really know how to derive
+					// the proposal string as the filter could be any OCL
+					// expression using the ? placeholder
 
-						List<EObject> oclElements = getQueryResult(viewer,
-								line, charPositionInLine, tbModel, prop,
-								queryArg, oclEvaluator);
+					List<EObject> oclElements = getQueryResult(viewer,
+							line, charPositionInLine, tbModel, prop,
+							queryArg, oclEvaluator);
 
-						for (EObject refObj : oclElements) {
-							String displayString = null;
-							String replacementString = null;
-							try {
-								Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj,
-										invert, null, null, null);
-								
-								if (result instanceof Collection<?>) {
-								    result = ((Collection<?>) result).iterator().next();
-								}
-								if (result instanceof String) {
-								    replacementString = (String) result;
-								    displayString = replacementString + " : " + refObj.eClass().getName() + " (by: " + invert +  ")";
-                                                            }
-							} catch (Exception e1) {
-//								System.out
-//										.println("Error executing invert-query: "
-//												+ e1.getMessage());
-							    //this is not necessarily an error
-							    //as we investigate whether the current property fits the element
-							    //if this is not the case this caught exception may occur
+					for (EObject refObj : oclElements) {
+						String displayString = null;
+						String replacementString = null;
+						try {
+							Object result = TcsUtil.executeOclQuery(oclEvaluator, refObj,
+									invert, null, null, null);
+							
+							if (result instanceof Collection<?>) {
+							    result = ((Collection<?>) result).iterator().next();
 							}
-
-							if (displayString != null) {
-								results
-										.add(createPropValueProposal(
-												displayString,
-												replacementString, viewer,
-												line, charPositionInLine, token));
-							}
+							if (result instanceof String) {
+							    replacementString = (String) result;
+							    displayString = replacementString + " : " + refObj.eClass().getName() + " (by: " + invert +  ")";
+                                                        }
+						} catch (Exception e1) {
+						    //this is not necessarily an error
+						    //as we investigate whether the current property fits the element
+						    //if this is not the case this caught exception may occur
+						}
+						if (displayString != null) {
+							results
+									.add(createPropValueProposal(
+											displayString,
+											replacementString, viewer,
+											line, charPositionInLine, token));
 						}
 					}
 				}

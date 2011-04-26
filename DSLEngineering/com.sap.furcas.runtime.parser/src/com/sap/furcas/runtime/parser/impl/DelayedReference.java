@@ -244,9 +244,8 @@ public class DelayedReference implements Cloneable {
 
     /**
      * Used by
-     * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
+     * {@link ObservableInjectingParser#setPredicateRef(Object, String, String, String, List, IRuleName, boolean, String, ModelUpdaterRegistry)}
      */
-
     public DelayedReference(Object referenceContextObject, ReferenceType type,
             Object modelElement, String propertyName, String oclQuery,
             String mode, List<PredicateSemantic> list,
