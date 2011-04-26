@@ -17,24 +17,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.maps.ListMap;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 import org.eclipse.emf.query.index.internal.maps.SingleMap;
-import org.eclipse.emf.query.index.properties.ResourceIndexProperties;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
-import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class PageableResourceDescriptorImpl implements ResourceDescriptorInternal, IAdaptable {
+public class PageableResourceDescriptorImpl implements ResourceDescriptorInternal {
 
 	private URI uri;
 	public static final int URI = 1;
@@ -349,13 +346,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 			return null;
 		}
 		return outgoingLinkTable.getUnderlyingMapTable();
-	}
-
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class adapter) {
-		if (adapter == IPropertySource.class)
-			return new ResourceIndexProperties(this);
-		return null;
 	}
 
 	@Override

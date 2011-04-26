@@ -9,6 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
+ * Contains all internal implementation of QueryProcessor and the result set of the query.
  * 
  */
 package org.eclipse.emf.query2.internal.moinql.controller;

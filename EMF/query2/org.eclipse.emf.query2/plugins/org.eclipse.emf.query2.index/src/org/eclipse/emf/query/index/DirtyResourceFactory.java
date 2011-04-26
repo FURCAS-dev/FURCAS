@@ -11,8 +11,7 @@ import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 /**
  * This class keeps the instance of the dirty index.
- * Clients must add  this class as an adapter to their resources or resource set
- * when they wish to load any resource and want to make any changes to the resource.
+ * Clients must add  this class as an adapter to their resources or resource set when they wish to load any resource and want to make any changes to the resource.
  * Once done with the query execution clients must remove the adapter from the resource.
  * Check link @TestQueryBugs for example
  * @author Saurav Sarkar

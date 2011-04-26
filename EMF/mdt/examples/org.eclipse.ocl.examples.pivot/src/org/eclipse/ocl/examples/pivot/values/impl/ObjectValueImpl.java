@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ObjectValueImpl.java,v 1.8 2011/03/12 13:21:46 ewillink Exp $
+ * $Id: ObjectValueImpl.java,v 1.9 2011/04/20 19:02:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -60,7 +60,7 @@ public class ObjectValueImpl extends AbstractValue implements ObjectValue
 
 	public Type getType(TypeManager typeManager, Type staticType) {
 		if (object instanceof EObject) {
-			Type type = PivotUtil.findTypeOf(((EObject)object).eClass());
+			Type type = PivotUtil.findTypeOf(typeManager, ((EObject)object).eClass());
 			if (type != null) {
 				return type;
 			}

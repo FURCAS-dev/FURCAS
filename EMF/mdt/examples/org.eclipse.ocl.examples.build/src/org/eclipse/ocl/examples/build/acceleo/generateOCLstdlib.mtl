@@ -32,8 +32,6 @@
  */
 package	[javaPackage/];
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
@@ -64,6 +62,11 @@ public class [javaClass/] extends XMLResourceImpl
 	public static final [javaClass/] INSTANCE = new [javaClass/]();
 	
 	/**
+	 *	The static library loader instance
+	 */
+	public static final Loader LOADER = new Loader();
+	
+	/**
 	 *	The URI of this Standard Library.
 	 */
 	public static final String STDLIB_URI = "[uri/]";
@@ -75,7 +78,7 @@ public class [javaClass/] extends XMLResourceImpl
 	 * extension when running within Eclipse. 
 	 */
 	public static void install() {
-		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, new Loader());
+		StandardLibraryContribution.REGISTRY.put(STDLIB_URI, LOADER);
 	}
 	
 	/**

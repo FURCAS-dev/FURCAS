@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.9 2011/03/24 00:47:09 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.10 2011/04/20 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
-import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
@@ -33,15 +32,19 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.validation.CompositeEValidator;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
-	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
-		return NoEObjectCompositeEValidator.class;
+	@Override
+	public void configure(Binder binder) {
+		super.configure(binder);
+		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
 	}
 
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
