@@ -12,6 +12,7 @@
  
 package org.eclipse.emf.query2.test.mm.Company;
 
+import java.math.BigInteger;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Transport#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.test.mm.Company.Transport#getDistance <em>Distance</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,5 +58,31 @@ public interface Transport extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Distance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Distance</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Distance</em>' attribute.
+	 * @see #setDistance(BigInteger)
+	 * @see org.eclipse.emf.query2.test.mm.Company.CompanyPackage#getTransport_Distance()
+	 * @model
+	 * @generated
+	 */
+	BigInteger getDistance();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.query2.test.mm.Company.Transport#getDistance <em>Distance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Distance</em>' attribute.
+	 * @see #getDistance()
+	 * @generated
+	 */
+	void setDistance(BigInteger value);
 
 } // Transport

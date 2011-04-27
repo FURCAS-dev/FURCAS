@@ -377,6 +377,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTransport_Distance() {
+		return (EAttribute)transportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompanyFactory getCompanyFactory() {
 		return (CompanyFactory)getEFactoryInstance();
 	}
@@ -431,6 +440,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 
 		transportEClass = createEClass(TRANSPORT);
 		createEAttribute(transportEClass, TRANSPORT__NAME);
+		createEAttribute(transportEClass, TRANSPORT__DISTANCE);
 	}
 
 	/**
@@ -498,6 +508,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
 
 		initEClass(transportEClass, Transport.class, "Transport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTransport_Name(), ecorePackage.getEString(), "name", null, 0, 1, Transport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTransport_Distance(), ecorePackage.getEBigInteger(), "distance", null, 0, 1, Transport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

@@ -373,6 +373,9 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		return true;
 	}
 
+	public Map<String, String> getUserData() {
+		return userData;
 	
-
+	}
+	
 }

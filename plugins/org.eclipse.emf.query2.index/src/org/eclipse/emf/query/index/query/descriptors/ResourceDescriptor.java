@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query.descriptors;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -42,5 +44,7 @@ public interface ResourceDescriptor {
 	Object[] getIncomingLinksTable();
 
 	Object[] getOutgoingLinkTable();
+	
+	Map<String,String> getUserData();
 
 }

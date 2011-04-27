@@ -1,6 +1,7 @@
 package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -84,6 +85,7 @@ public class TestQueryBugs extends QueryTestCase {
 		dep1.getEmployee().add(director);
 		truck = CompanyFactory.eINSTANCE.createTransport();
 		truck.setName("truck"); //$NON-NLS-1$
+		truck.setDistance(new BigInteger("1000000"));
 
 		div1.setBudget(70);
 		dep2 = CompanyFactory.eINSTANCE.createDepartment();
@@ -196,7 +198,25 @@ public class TestQueryBugs extends QueryTestCase {
 			 assertTrue(names.contains(this.div1.getName()));
 		}
 	}
+	
+	@Test
+	public void testBigIntegerSupport_Bug338164() {
+		String query = "select trans.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.TRANSPORT) + "] as trans  where trans.distance > 999999"; //$NON-NLS-1$ //$NON-NLS-2$
 
+		QueryProcessor createQueryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(getDefaultIndexStore());
+		ResultSet resultSet = createQueryProcessor.execute(query, this.getQueryContextWithEmptyRS());
+
+		// check the results
+		if (!resultSet.isEmpty()) {
+			 Set<String> names = new HashSet<String>();
+			 for (int i=0; i<resultSet.getSize(); i++) {
+				 names.add((String) resultSet.getAttribute(i, "trans", "name"));
+			 }
+			 assertTrue(names.contains(this.truck.getName()));
+		}
+	}
+
+	
 	@After
 	public void cleanUp() {
 		// remove the DirtyResourceFactory when done with the query execution

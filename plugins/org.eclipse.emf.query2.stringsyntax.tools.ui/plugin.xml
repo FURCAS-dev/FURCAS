@@ -224,7 +224,7 @@
          <view
                id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
                minimized="false"
-               ratio="0.7"
+               ratio="0.5"
                relationship="bottom"
                relative="org.eclipse.ui.editorss">
          </view>
@@ -246,6 +246,17 @@
          </viewShortcut>
          <viewShortcut
                id="org.eclipse.ui.views.ContentOutline">
+         </viewShortcut>
+         <view
+               id="org.eclipse.emf.query2.index.ui.indexview"
+               minimized="false"
+               ratio="0.5"
+               relationship="left"
+               relative="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
+               showTitle="true">
+         </view>
+         <viewShortcut
+               id="org.eclipse.emf.query2.index.ui.indexview">
          </viewShortcut>
       </perspectiveExtension>
    </extension>

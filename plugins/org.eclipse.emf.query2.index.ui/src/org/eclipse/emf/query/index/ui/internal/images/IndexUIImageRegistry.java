@@ -23,6 +23,8 @@ public class IndexUIImageRegistry {
 	public static final String TYPE_ICON = ROOT_ICON_PATH + "Type.gif"; //$NON-NLS-1$
 	public static final String FILTER_ICON = ROOT_ICON_PATH + "filter.gif"; //$NON-NLS-1$
 	public static final String LEGEND_ICON = ROOT_ICON_PATH + "legends.gif"; //$NON-NLS-1$
+	public static final String USERDATA_GROUPICON = ROOT_ICON_PATH + "PropertyGroup.gif";//$NON-NLS-1$
+	public static final String USERDATA_SINGLEICON = ROOT_ICON_PATH + "Property.gif";//$NON-NLS-1$
 	
 	/**
 	 * * Don't dispose the image retrieved from the registry

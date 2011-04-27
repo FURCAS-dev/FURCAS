@@ -32,7 +32,8 @@ public class IndexFactory {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			public void execute(final IndexUpdater updater) {
-				final ResourceIndexer indexer = new ResourceIndexer();
+				final ResourceIndexer resourceIndexer = new ResourceIndexer();
+				ResourceIndexer indexer = resourceIndexer.getInstance();
 				List<String> uris = new ArrayList<String>();
 				for (String packUri : EPackage.Registry.INSTANCE.keySet()) {
 					uris.add(packUri);

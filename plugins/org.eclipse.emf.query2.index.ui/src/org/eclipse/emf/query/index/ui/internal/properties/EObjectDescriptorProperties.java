@@ -1,6 +1,6 @@
 package org.eclipse.emf.query.index.ui.internal.properties;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
@@ -14,9 +14,8 @@ public class EObjectDescriptorProperties{
 	private EObjectDescriptor objDesc;
 	private String objName;
 	private String fragment;
-	private HashMap<String, String> propertiesMap = new HashMap<String,String>();
-
-
+	private ArrayList<IndexViewProperty> properties = new ArrayList<IndexViewProperty>();
+	
 	private String PROPERTY_NAME =  Messages.Query2Index_EObjectDescriptorProperties_Name;
 	private String PROPERTY_FRAGMENT = Messages.Query2Index_EObjectDescriptorProperties_Fragment;
 
@@ -38,12 +37,12 @@ public class EObjectDescriptorProperties{
 			}else if(property.equals(PROPERTY_FRAGMENT)){
 				value= objDesc.getFragment();
 			}
-			propertiesMap.put(property,value);
+			properties.add(new IndexViewProperty(property,value));
 		}
 		return;
 	}
 	
-	public HashMap<String,String> getProperties() {
-		return propertiesMap;
+	public ArrayList<IndexViewProperty> getProperties() {
+		return properties;
 	}
 }
