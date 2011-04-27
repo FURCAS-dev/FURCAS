@@ -28,7 +28,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 /**
  * Use at the end of your EMF sample editor's <code>createModel()</code> method to request
  * instant re-validation of your editor's EMF model with corresponding error marker creation/deletion.
- * Example:
+ * Example: "´"
  * <pre>
         public class MyEditor 
         extends MultiPageEditorPart
