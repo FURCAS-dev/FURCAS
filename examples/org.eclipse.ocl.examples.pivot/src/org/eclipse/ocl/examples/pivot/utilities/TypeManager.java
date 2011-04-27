@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.17 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: TypeManager.java,v 1.18 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -49,7 +49,9 @@ import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -79,12 +81,21 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedProperty;
+import org.eclipse.ocl.examples.pivot.library.ExplicitNavigationProperty;
+import org.eclipse.ocl.examples.pivot.library.ImplicitCompositionProperty;
+import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
+import org.eclipse.ocl.examples.pivot.library.UnimplementedOperation;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -464,6 +475,27 @@ public class TypeManager extends TypeCaches implements Adapter
 		}
 	}
 
+	protected CallableImplementation computeOperationImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = operation.getImplementation();
+		String implementationClassName = operation.getImplementationClass();
+		if (implementationClassName != null) {
+			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
+				Class<?> theClass = Class.forName(implementationClassName);
+				Field field = theClass.getField("INSTANCE");
+				return (CallableImplementation) field.get(null);
+			}
+		}
+		for (Constraint constraint : getLocalConstraints(operation)) {
+			if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+				ValueSpecification specification = constraint.getSpecification();
+				if (specification instanceof ExpressionInOcl) {
+					return new ConstrainedOperation((ExpressionInOcl) specification);
+				}
+			}
+		}
+		return UnimplementedOperation.INSTANCE;
+	}
+
 	public Collection<org.eclipse.ocl.examples.pivot.Package> computePivotRootPackages() {
 		List<org.eclipse.ocl.examples.pivot.Package> rootPackages =
 			new ArrayList<org.eclipse.ocl.examples.pivot.Package>();
@@ -482,6 +514,41 @@ public class TypeManager extends TypeCaches implements Adapter
 			}
 		}
 		return rootPackages;
+	}
+
+	protected CallableImplementation computePropertyImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = property.getImplementation();
+		String implementationClassName = property.getImplementationClass();
+		if (implementationClassName != null) {
+			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
+				Class<?> theClass = Class.forName(implementationClassName);
+				Field field = theClass.getField("INSTANCE");
+				return (CallableImplementation) field.get(null);
+			}
+		}
+		for (Constraint constraint : getLocalConstraints(property)) {
+			if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+				ValueSpecification specification = constraint.getSpecification();
+				if (specification instanceof ExpressionInOcl) {
+					return new ConstrainedProperty((ExpressionInOcl) specification);
+				}
+			}
+		}
+		if (property.isImplicit()) {
+			Property opposite = property.getOpposite();
+			if (opposite.isComposite()) {
+				return ImplicitCompositionProperty.INSTANCE;
+			}
+			else {
+				return ImplicitNonCompositionProperty.INSTANCE;
+			}
+		}
+		else if (property.getClass_() instanceof TupleType){
+			return TuplePartProperty.INSTANCE;
+		}
+		else {
+			return ExplicitNavigationProperty.INSTANCE;
+		}
 	}
 
 	@Deprecated
@@ -1007,6 +1074,22 @@ public class TypeManager extends TypeCaches implements Adapter
 				Field field = theClass.getField("INSTANCE");
 				implementation = (CallableImplementation) field.get(null);
 			}
+		}
+		return implementation;
+	}
+	public CallableImplementation getImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = operation.getImplementation();
+		if (implementation == null) {
+			implementation = computeOperationImplementation(operation);
+			operation.setImplementation(implementation);
+		}
+		return implementation;
+	}
+	public CallableImplementation getImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = property.getImplementation();
+		if (implementation == null) {
+			implementation = computePropertyImplementation(property);
+			property.setImplementation(implementation);
 		}
 		return implementation;
 	}
