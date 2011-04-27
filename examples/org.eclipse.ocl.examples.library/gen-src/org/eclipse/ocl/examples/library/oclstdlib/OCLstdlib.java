@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: OCLstdlib.java,v 1.16 2011/04/25 09:48:56 ewillink Exp $
+ * $Id: OCLstdlib.java,v 1.17 2011/04/27 06:20:07 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.library.oclstdlib;
 
@@ -315,287 +315,287 @@ public class OCLstdlib extends XMLResourceImpl
 		Package symbol_150 = PivotFactory.eINSTANCE.createPackage(); // $orphanage
 		Class symbol_151 = PivotFactory.eINSTANCE.createClass(); // $orphanage!$orphanage
 		
-		BagType symbol_152 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		BagType symbol_152 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 		
-		BagType symbol_153 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Bag{T}?T]
+		BagType symbol_153 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
 		
-		BagType symbol_154 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Collection{T}?T]
+		BagType symbol_154 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		BagType symbol_155 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+		BagType symbol_155 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Collection{T}?T]
 		
-		BagType symbol_156 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
+		BagType symbol_156 = PivotFactory.eINSTANCE.createBagType(); // ocl!Bag[ocl!Bag{T}?T]
 		
 		ClassifierType symbol_157 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]
 		
-		ClassifierType symbol_158 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
+		ClassifierType symbol_158 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
 		
 		ClassifierType symbol_159 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!Classifier{T}!oclContainer{U}()?U]
 		
-		ClassifierType symbol_160 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
+		ClassifierType symbol_160 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
 		
-		ClassifierType symbol_161 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
+		ClassifierType symbol_161 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
 		
-		ClassifierType symbol_162 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
+		ClassifierType symbol_162 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
 		
-		ClassifierType symbol_163 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
+		ClassifierType symbol_163 = PivotFactory.eINSTANCE.createClassifierType(); // ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
 		
-		CollectionType symbol_164 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_164 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_165 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
+		CollectionType symbol_165 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Sequence{T}?T]
 		
-		CollectionType symbol_166 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
+		CollectionType symbol_166 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		
-		CollectionType symbol_167 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_167 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_168 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!UniqueCollection{T}?T]
+		CollectionType symbol_168 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclAny]
 		
-		CollectionType symbol_169 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_169 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_170 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Set{T}?T]
+		CollectionType symbol_170 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedSet{T}?T]
 		
-		CollectionType symbol_171 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
+		CollectionType symbol_171 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_172 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		CollectionType symbol_172 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
 		
-		CollectionType symbol_173 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[String]
+		CollectionType symbol_173 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}?T]
 		
-		CollectionType symbol_174 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
+		CollectionType symbol_174 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Bag{T}?T]
 		
-		CollectionType symbol_175 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedSet{T}?T]
+		CollectionType symbol_175 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
 		
-		CollectionType symbol_176 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Sequence{T}?T]
+		CollectionType symbol_176 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_177 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_177 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		
-		CollectionType symbol_178 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
+		CollectionType symbol_178 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_179 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}?T]
+		CollectionType symbol_179 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_180 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
+		CollectionType symbol_180 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Set{T}?T]
 		
-		CollectionType symbol_181 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedCollection{T}?T]
+		CollectionType symbol_181 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!UniqueCollection{T}?T]
 		
-		CollectionType symbol_182 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclAny]
+		CollectionType symbol_182 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_183 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_183 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedCollection{T}?T]
 		
 		CollectionType symbol_184 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_185 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
+		CollectionType symbol_185 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		
 		CollectionType symbol_186 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[Boolean!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_187 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		CollectionType symbol_187 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_188 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		CollectionType symbol_188 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
 		
-		CollectionType symbol_189 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		CollectionType symbol_189 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[String]
 		
-		CollectionType symbol_190 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_190 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_191 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		CollectionType symbol_191 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_192 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_192 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_193 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Bag{T}?T]
+		CollectionType symbol_193 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
 		
-		LambdaType symbol_194 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
+		LambdaType symbol_194 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
 		
-		LambdaType symbol_195 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
+		LambdaType symbol_195 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
 		
-		LambdaType symbol_196 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedSet{T}?T()Boolean
+		LambdaType symbol_196 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
 		
-		LambdaType symbol_197 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Set{T}?T()Boolean
+		LambdaType symbol_197 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]
 		
-		LambdaType symbol_198 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
+		LambdaType symbol_198 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Set{T}?T()Boolean
 		
-		LambdaType symbol_199 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]
+		LambdaType symbol_199 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedSet{T}?T()Boolean
 		
-		LambdaType symbol_200 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
+		LambdaType symbol_200 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
 		
-		LambdaType symbol_201 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!OclAny
+		LambdaType symbol_201 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
 		
-		LambdaType symbol_202 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
+		LambdaType symbol_202 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Sequence{T}?T()Boolean
 		
-		LambdaType symbol_203 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
+		LambdaType symbol_203 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!OclAny
 		
 		LambdaType symbol_204 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
 		
-		LambdaType symbol_205 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Sequence{T}?T()Boolean
+		LambdaType symbol_205 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Bag{T}?T()Boolean
 		
-		LambdaType symbol_206 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
+		LambdaType symbol_206 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
 		
-		LambdaType symbol_207 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
+		LambdaType symbol_207 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()Boolean
 		
-		LambdaType symbol_208 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Bag{T}?T()Boolean
+		LambdaType symbol_208 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
 		
-		LambdaType symbol_209 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!Collection{T}?T()Boolean
+		LambdaType symbol_209 = PivotFactory.eINSTANCE.createLambdaType(); // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
 		
-		CollectionType symbol_210 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		CollectionType symbol_210 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_211 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_211 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Set{T}?T]
 		
 		CollectionType symbol_212 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Bag{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_213 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
+		CollectionType symbol_213 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
 		
-		CollectionType symbol_214 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Set{T}?T]
+		CollectionType symbol_214 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_215 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_215 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		
-		CollectionType symbol_216 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_216 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_217 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_217 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_218 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		CollectionType symbol_218 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_219 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
+		CollectionType symbol_219 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
 		
-		CollectionType symbol_220 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
+		CollectionType symbol_220 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclAny]
 		
-		CollectionType symbol_221 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclAny]
+		CollectionType symbol_221 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_222 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		CollectionType symbol_222 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		
 		CollectionType symbol_223 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
 		
-		CollectionType symbol_224 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_224 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
 		
-		CollectionType symbol_225 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_225 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_226 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		CollectionType symbol_226 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		
-		CollectionType symbol_227 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
+		CollectionType symbol_227 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
 		
-		CollectionType symbol_228 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
+		CollectionType symbol_228 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
 		
-		CollectionType symbol_229 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_229 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
 		
-		CollectionType symbol_230 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
+		CollectionType symbol_230 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_231 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
+		CollectionType symbol_231 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
 		
 		CollectionType symbol_232 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[String]
 		
-		CollectionType symbol_233 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
+		CollectionType symbol_233 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_234 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_234 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
 		
-		CollectionType symbol_235 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
+		CollectionType symbol_235 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_236 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		CollectionType symbol_236 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
 		
-		CollectionType symbol_237 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
+		CollectionType symbol_237 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
 		
-		CollectionType symbol_238 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		CollectionType symbol_238 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_239 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
+		CollectionType symbol_239 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Collection{T}?T]
 		
-		CollectionType symbol_240 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
+		CollectionType symbol_240 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		CollectionType symbol_241 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[String]
+		CollectionType symbol_241 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_242 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		CollectionType symbol_242 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Sequence{T}?T]
 		
-		CollectionType symbol_243 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		CollectionType symbol_243 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[String]
 		
-		CollectionType symbol_244 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Collection{T}?T]
+		CollectionType symbol_244 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
 		
-		CollectionType symbol_245 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!Sequence{T}?T]
+		CollectionType symbol_245 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
 		
-		CollectionType symbol_246 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
+		CollectionType symbol_246 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
 		
-		CollectionType symbol_247 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
+		CollectionType symbol_247 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
 		
-		OrderedSetType symbol_248 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!Collection{T}?T]
+		OrderedSetType symbol_248 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!UniqueCollection{T}?T]
 		
 		OrderedSetType symbol_249 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!OrderedCollection{T}?T]
 		
-		OrderedSetType symbol_250 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!UniqueCollection{T}?T]
+		OrderedSetType symbol_250 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 		
-		OrderedSetType symbol_251 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		OrderedSetType symbol_251 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!Collection{T}?T]
 		
-		OrderedSetType symbol_252 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+		OrderedSetType symbol_252 = PivotFactory.eINSTANCE.createOrderedSetType(); // ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		
-		SequenceType symbol_253 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		SequenceType symbol_253 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!NonUniqueCollection{T}?T]
 		
-		SequenceType symbol_254 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[String]
+		SequenceType symbol_254 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
 		
-		SequenceType symbol_255 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Collection{T}?T]
+		SequenceType symbol_255 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[String]
 		
-		SequenceType symbol_256 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!NonUniqueCollection{T}?T]
+		SequenceType symbol_256 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Sequence{T}?T]
 		
-		SequenceType symbol_257 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
+		SequenceType symbol_257 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Collection{T}?T]
 		
-		SequenceType symbol_258 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!Sequence{T}?T]
+		SequenceType symbol_258 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!OrderedCollection{T}?T]
 		
-		SequenceType symbol_259 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!OrderedCollection{T}?T]
+		SequenceType symbol_259 = PivotFactory.eINSTANCE.createSequenceType(); // ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		
-		SetType symbol_260 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		SetType symbol_260 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		
-		SetType symbol_261 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		SetType symbol_261 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		
-		SetType symbol_262 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
+		SetType symbol_262 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		
-		SetType symbol_263 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclAny]
+		SetType symbol_263 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
 		
-		SetType symbol_264 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!NonOrderedCollection{T}?T]
+		SetType symbol_264 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		
-		SetType symbol_265 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Collection{T}?T]
+		SetType symbol_265 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclAny]
 		
-		SetType symbol_266 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		SetType symbol_266 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		
-		SetType symbol_267 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OrderedSet{T}?T]
+		SetType symbol_267 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		
-		SetType symbol_268 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		SetType symbol_268 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!NonOrderedCollection{T}?T]
 		
-		SetType symbol_269 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Set{T}?T]
+		SetType symbol_269 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
 		
-		SetType symbol_270 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		SetType symbol_270 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Set{T}?T]
 		
-		SetType symbol_271 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
+		SetType symbol_271 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		
-		SetType symbol_272 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		SetType symbol_272 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OrderedSet{T}?T]
 		
-		SetType symbol_273 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		SetType symbol_273 = PivotFactory.eINSTANCE.createSetType(); // ocl!Set[ocl!Collection{T}?T]
 		
 		TupleType symbol_274 = PivotFactory.eINSTANCE.createTupleType(); // Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}
 		Property symbol_275 = PivotFactory.eINSTANCE.createProperty(); // ocl::$orphanage::Tuple::first Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}!first
 		Property symbol_276 = PivotFactory.eINSTANCE.createProperty(); // ocl::$orphanage::Tuple::second Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}!second
 		
-		CollectionType symbol_277 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		CollectionType symbol_277 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_278 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
+		CollectionType symbol_278 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_279 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Set{T}?T]
+		CollectionType symbol_279 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Collection{T}?T]
 		
-		CollectionType symbol_280 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_280 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_281 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_281 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_282 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
+		CollectionType symbol_282 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Set{T}?T]
 		
-		CollectionType symbol_283 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Collection{T}?T]
+		CollectionType symbol_283 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		
-		CollectionType symbol_284 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_284 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
 		
-		CollectionType symbol_285 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		CollectionType symbol_285 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
 		
-		CollectionType symbol_286 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclAny]
+		CollectionType symbol_286 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
 		
-		CollectionType symbol_287 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_287 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
 		
-		CollectionType symbol_288 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		CollectionType symbol_288 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_289 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		CollectionType symbol_289 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		
-		CollectionType symbol_290 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
+		CollectionType symbol_290 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_291 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
+		CollectionType symbol_291 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
 		
-		CollectionType symbol_292 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		CollectionType symbol_292 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		
-		CollectionType symbol_293 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
+		CollectionType symbol_293 = PivotFactory.eINSTANCE.createCollectionType(); // ocl!UniqueCollection[ocl!OclAny]
 		
 		
 
@@ -644,8 +644,8 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_13.getOwnedParameters().add(symbol_14);
 		
 		symbol_12.setOwnedTemplateSignature(symbol_13);
-		symbol_12.getSuperClasses().add(symbol_233); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
-		symbol_12.getSuperClasses().add(symbol_220); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
+		symbol_12.getSuperClasses().add(symbol_237); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
+		symbol_12.getSuperClasses().add(symbol_213); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
 		{	// ocl::Bag::<>() ocl!Bag{T}!<>(ocl!OclAny)
 			Operation symbol_294 = PivotFactory.eINSTANCE.createOperation();
 			symbol_294.setName("<>");
@@ -659,6 +659,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_294.getOwnedParameters().add(symbol_295);
 			symbol_294.setPrecedence(symbol_7);
+			symbol_294.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_294.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_294);
 		}
@@ -675,6 +676,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_296.getOwnedParameters().add(symbol_297);
 			symbol_296.setPrecedence(symbol_7);
+			symbol_296.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_296.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_296);
 		}
@@ -682,7 +684,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_298 = PivotFactory.eINSTANCE.createOperation();
 			symbol_298.setName("excluding");
 			//symbol_298.setMoniker("ocl!Bag{T}!excluding(ocl!OclAny)");
-			symbol_298.setType(symbol_153);  // ocl!Bag[ocl!Bag{T}?T]
+			symbol_298.setType(symbol_156);  // ocl!Bag[ocl!Bag{T}?T]
 			
 			Parameter symbol_299 = PivotFactory.eINSTANCE.createParameter();
 			symbol_299.setName("object");
@@ -690,6 +692,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_299.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_298.getOwnedParameters().add(symbol_299);
+			symbol_298.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation");
 			symbol_298.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_298);
 		}
@@ -702,8 +705,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_300.setOwnedTemplateSignature(symbol_16);
 			symbol_300.setName("flatten");
 			//symbol_300.setMoniker("ocl!Bag{T}!flatten{T2}()");
-			symbol_300.setType(symbol_156);  // ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
+			symbol_300.setType(symbol_153);  // ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
 			
+			symbol_300.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation");
 			symbol_300.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_300);
 		}
@@ -711,7 +715,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_301 = PivotFactory.eINSTANCE.createOperation();
 			symbol_301.setName("including");
 			//symbol_301.setMoniker("ocl!Bag{T}!including(T)");
-			symbol_301.setType(symbol_153);  // ocl!Bag[ocl!Bag{T}?T]
+			symbol_301.setType(symbol_156);  // ocl!Bag[ocl!Bag{T}?T]
 			
 			Parameter symbol_302 = PivotFactory.eINSTANCE.createParameter();
 			symbol_302.setName("object");
@@ -719,6 +723,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_302.setType(symbol_15);  // ocl!Bag{T}?T
 			
 			symbol_301.getOwnedParameters().add(symbol_302);
+			symbol_301.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation");
 			symbol_301.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_301);
 		}
@@ -726,7 +731,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_303 = PivotFactory.eINSTANCE.createIteration();
 			symbol_303.setName("reject");
 			//symbol_303.setMoniker("ocl!Bag{T}!reject(T|Lambda~T()Boolean)");
-			symbol_303.setType(symbol_153);  // ocl!Bag[ocl!Bag{T}?T]
+			symbol_303.setType(symbol_156);  // ocl!Bag[ocl!Bag{T}?T]
 			
 			Parameter symbol_304 = PivotFactory.eINSTANCE.createParameter();
 			symbol_304.setName("i");
@@ -735,9 +740,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_305 = PivotFactory.eINSTANCE.createParameter();
 			symbol_305.setName("body");
 			//symbol_305.setMoniker("ocl!Bag{T}!reject(T|Lambda~T()Boolean)!body");
-			symbol_305.setType(symbol_208);  // Lambda~ocl!Bag{T}?T()Boolean
+			symbol_305.setType(symbol_205);  // Lambda~ocl!Bag{T}?T()Boolean
 			
 			symbol_303.getOwnedParameters().add(symbol_305);
+			symbol_303.setImplementationClass("org.eclipse.ocl.examples.library.iterator.RejectIteration");
 			symbol_303.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_303);
 		}
@@ -745,7 +751,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_306 = PivotFactory.eINSTANCE.createIteration();
 			symbol_306.setName("select");
 			//symbol_306.setMoniker("ocl!Bag{T}!select(T|Lambda~T()Boolean)");
-			symbol_306.setType(symbol_153);  // ocl!Bag[ocl!Bag{T}?T]
+			symbol_306.setType(symbol_156);  // ocl!Bag[ocl!Bag{T}?T]
 			
 			Parameter symbol_307 = PivotFactory.eINSTANCE.createParameter();
 			symbol_307.setName("i");
@@ -754,9 +760,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_308 = PivotFactory.eINSTANCE.createParameter();
 			symbol_308.setName("body");
 			//symbol_308.setMoniker("ocl!Bag{T}!select(T|Lambda~T()Boolean)!body");
-			symbol_308.setType(symbol_208);  // Lambda~ocl!Bag{T}?T()Boolean
+			symbol_308.setType(symbol_205);  // Lambda~ocl!Bag{T}?T()Boolean
 			
 			symbol_306.getOwnedParameters().add(symbol_308);
+			symbol_306.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SelectIteration");
 			symbol_306.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_12.getOwnedOperations().add(symbol_306);
 		}
@@ -780,6 +787,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_309.getOwnedParameters().add(symbol_310);
 			symbol_309.setPrecedence(symbol_7);
+			symbol_309.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_309.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_309);
 		}
@@ -796,6 +804,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_311.getOwnedParameters().add(symbol_312);
 			symbol_311.setPrecedence(symbol_7);
+			symbol_311.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_311.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_311);
 		}
@@ -808,9 +817,10 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_313.setOwnedTemplateSignature(symbol_20);
 			symbol_313.setName("allInstances");
 			//symbol_313.setMoniker("Boolean!allInstances{OclSelf}()");
-			symbol_313.setType(symbol_271);  // ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
+			symbol_313.setType(symbol_269);  // ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
 			
 			symbol_313.setIsStatic(true);
+			symbol_313.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation");
 			symbol_313.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAllInstancesOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_313);
 		}
@@ -827,6 +837,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_314.getOwnedParameters().add(symbol_315);
 			symbol_314.setPrecedence(symbol_8);
+			symbol_314.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanAndOperation");
 			symbol_314.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanAndOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_314);
 		}
@@ -843,6 +854,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_316.getOwnedParameters().add(symbol_317);
 			symbol_316.setPrecedence(symbol_11);
+			symbol_316.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation");
 			symbol_316.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanImpliesOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_316);
 		}
@@ -853,6 +865,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_318.setType(symbol_19);  // Boolean
 			
 			symbol_318.setPrecedence(symbol_3);
+			symbol_318.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanNotOperation");
 			symbol_318.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanNotOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_318);
 		}
@@ -869,6 +882,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_319.getOwnedParameters().add(symbol_320);
 			symbol_319.setPrecedence(symbol_9);
+			symbol_319.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanOrOperation");
 			symbol_319.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanOrOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_319);
 		}
@@ -878,6 +892,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_321.setMoniker("Boolean!toString()");
 			symbol_321.setType(symbol_143);  // String
 			
+			symbol_321.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_321.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_321);
 		}
@@ -894,6 +909,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_322.getOwnedParameters().add(symbol_323);
 			symbol_322.setPrecedence(symbol_10);
+			symbol_322.setImplementationClass("org.eclipse.ocl.examples.library.logical.BooleanXorOperation");
 			symbol_322.setImplementation(org.eclipse.ocl.examples.library.logical.BooleanXorOperation.INSTANCE);
 			symbol_19.getOwnedOperations().add(symbol_322);
 		}
@@ -919,9 +935,10 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_324.setOwnedTemplateSignature(symbol_27);
 			symbol_324.setName("allInstances");
 			//symbol_324.setMoniker("ocl!Classifier{T}!allInstances{OclSelf}()");
-			symbol_324.setType(symbol_261);  // ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+			symbol_324.setType(symbol_267);  // ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 			
 			symbol_324.setIsStatic(true);
+			symbol_324.setImplementationClass("org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation");
 			symbol_324.setImplementation(org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation.INSTANCE);
 			symbol_23.getOwnedOperations().add(symbol_324);
 		}
@@ -936,6 +953,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_325.setMoniker("ocl!Classifier{T}!oclContainer{U}()");
 			symbol_325.setType(symbol_159);  // ocl!Classifier[ocl!Classifier{T}!oclContainer{U}()?U]
 			
+			symbol_325.setImplementationClass("org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation");
 			symbol_325.setImplementation(org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation.INSTANCE);
 			symbol_23.getOwnedOperations().add(symbol_325);
 		}
@@ -948,8 +966,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_326.setOwnedTemplateSignature(symbol_33);
 			symbol_326.setName("oclContents");
 			//symbol_326.setMoniker("ocl!Classifier{T}!oclContents{U}()");
-			symbol_326.setType(symbol_270);  // ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+			symbol_326.setType(symbol_264);  // ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 			
+			symbol_326.setImplementationClass("org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation");
 			symbol_326.setImplementation(org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation.INSTANCE);
 			symbol_23.getOwnedOperations().add(symbol_326);
 		}
@@ -979,6 +998,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_327.getOwnedParameters().add(symbol_328);
 			symbol_327.setPrecedence(symbol_7);
+			symbol_327.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_327.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_327);
 		}
@@ -995,6 +1015,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_329.getOwnedParameters().add(symbol_330);
 			symbol_329.setPrecedence(symbol_7);
+			symbol_329.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_329.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_329);
 		}
@@ -1011,9 +1032,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_333 = PivotFactory.eINSTANCE.createParameter();
 			symbol_333.setName("body");
 			//symbol_333.setMoniker("ocl!Collection{T}!any(T|Lambda~T()Boolean)!body");
-			symbol_333.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_333.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_331.getOwnedParameters().add(symbol_333);
+			symbol_331.setImplementationClass("org.eclipse.ocl.examples.library.iterator.AnyIteration");
 			symbol_331.setImplementation(org.eclipse.ocl.examples.library.iterator.AnyIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_331);
 		}
@@ -1021,8 +1043,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_334 = PivotFactory.eINSTANCE.createOperation();
 			symbol_334.setName("asBag");
 			//symbol_334.setMoniker("ocl!Collection{T}!asBag()");
-			symbol_334.setType(symbol_154);  // ocl!Bag[ocl!Collection{T}?T]
+			symbol_334.setType(symbol_155);  // ocl!Bag[ocl!Collection{T}?T]
 			
+			symbol_334.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation");
 			symbol_334.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsBagOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_334);
 		}
@@ -1030,8 +1053,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_335 = PivotFactory.eINSTANCE.createOperation();
 			symbol_335.setName("asOrderedSet");
 			//symbol_335.setMoniker("ocl!Collection{T}!asOrderedSet()");
-			symbol_335.setType(symbol_248);  // ocl!OrderedSet[ocl!Collection{T}?T]
+			symbol_335.setType(symbol_251);  // ocl!OrderedSet[ocl!Collection{T}?T]
 			
+			symbol_335.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation");
 			symbol_335.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsOrderedSetOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_335);
 		}
@@ -1039,8 +1063,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_336 = PivotFactory.eINSTANCE.createOperation();
 			symbol_336.setName("asSequence");
 			//symbol_336.setMoniker("ocl!Collection{T}!asSequence()");
-			symbol_336.setType(symbol_255);  // ocl!Sequence[ocl!Collection{T}?T]
+			symbol_336.setType(symbol_257);  // ocl!Sequence[ocl!Collection{T}?T]
 			
+			symbol_336.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation");
 			symbol_336.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSequenceOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_336);
 		}
@@ -1048,8 +1073,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_337 = PivotFactory.eINSTANCE.createOperation();
 			symbol_337.setName("asSet");
 			//symbol_337.setMoniker("ocl!Collection{T}!asSet()");
-			symbol_337.setType(symbol_265);  // ocl!Set[ocl!Collection{T}?T]
+			symbol_337.setType(symbol_273);  // ocl!Set[ocl!Collection{T}?T]
 			
+			symbol_337.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation");
 			symbol_337.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionAsSetOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_337);
 		}
@@ -1062,7 +1088,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_338.setOwnedTemplateSignature(symbol_40);
 			symbol_338.setName("collect");
 			//symbol_338.setMoniker("ocl!Collection{T}!collect{V}(T|Lambda~T()V)");
-			symbol_338.setType(symbol_192);  // ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
+			symbol_338.setType(symbol_169);  // ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
 			
 			Parameter symbol_339 = PivotFactory.eINSTANCE.createParameter();
 			symbol_339.setName("i");
@@ -1071,9 +1097,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_340 = PivotFactory.eINSTANCE.createParameter();
 			symbol_340.setName("body");
 			//symbol_340.setMoniker("ocl!Collection{T}!collect{V}(T|Lambda~T()V)!body");
-			symbol_340.setType(symbol_194);  // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
+			symbol_340.setType(symbol_201);  // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
 			
 			symbol_338.getOwnedParameters().add(symbol_340);
+			symbol_338.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectIteration");
 			symbol_338.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_338);
 		}
@@ -1086,7 +1113,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_341.setOwnedTemplateSignature(symbol_43);
 			symbol_341.setName("collectNested");
 			//symbol_341.setMoniker("ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)");
-			symbol_341.setType(symbol_179);  // ocl!Collection[ocl!Collection{T}?T]
+			symbol_341.setType(symbol_173);  // ocl!Collection[ocl!Collection{T}?T]
 			
 			Parameter symbol_342 = PivotFactory.eINSTANCE.createParameter();
 			symbol_342.setName("i");
@@ -1095,9 +1122,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_343 = PivotFactory.eINSTANCE.createParameter();
 			symbol_343.setName("body");
 			//symbol_343.setMoniker("ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)!body");
-			symbol_343.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
+			symbol_343.setType(symbol_200);  // Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
 			
 			symbol_341.getOwnedParameters().add(symbol_343);
+			symbol_341.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectNestedIteration");
 			symbol_341.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_341);
 		}
@@ -1113,6 +1141,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_345.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_344.getOwnedParameters().add(symbol_345);
+			symbol_344.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionCountOperation");
 			symbol_344.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionCountOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_344);
 		}
@@ -1128,6 +1157,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_347.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_346.getOwnedParameters().add(symbol_347);
+			symbol_346.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation");
 			symbol_346.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_346);
 		}
@@ -1145,9 +1175,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_349 = PivotFactory.eINSTANCE.createParameter();
 			symbol_349.setName("c2");
 			//symbol_349.setMoniker("ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])!c2");
-			symbol_349.setType(symbol_174);  // ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
+			symbol_349.setType(symbol_172);  // ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
 			
 			symbol_348.getOwnedParameters().add(symbol_349);
+			symbol_348.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation");
 			symbol_348.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludesAllOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_348);
 		}
@@ -1155,7 +1186,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_350 = PivotFactory.eINSTANCE.createOperation();
 			symbol_350.setName("excluding");
 			//symbol_350.setMoniker("ocl!Collection{T}!excluding(ocl!OclAny)");
-			symbol_350.setType(symbol_179);  // ocl!Collection[ocl!Collection{T}?T]
+			symbol_350.setType(symbol_173);  // ocl!Collection[ocl!Collection{T}?T]
 			
 			Parameter symbol_351 = PivotFactory.eINSTANCE.createParameter();
 			symbol_351.setName("object");
@@ -1163,6 +1194,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_351.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_350.getOwnedParameters().add(symbol_351);
+			symbol_350.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation");
 			symbol_350.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_350);
 		}
@@ -1179,9 +1211,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_354 = PivotFactory.eINSTANCE.createParameter();
 			symbol_354.setName("body");
 			//symbol_354.setMoniker("ocl!Collection{T}!exists(T|Lambda~T()Boolean)!body");
-			symbol_354.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_354.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_352.getOwnedParameters().add(symbol_354);
+			symbol_352.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ExistsIteration");
 			symbol_352.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_352);
 		}
@@ -1192,19 +1225,20 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_355.setType(symbol_19);  // Boolean
 			
 			Parameter symbol_356 = PivotFactory.eINSTANCE.createParameter();
-			symbol_356.setName("i");
+			symbol_356.setName("j");
 			symbol_356.setType(symbol_39);  // ocl!Collection{T}?T
 			symbol_355.getOwnedIterators().add(symbol_356);
 			Parameter symbol_357 = PivotFactory.eINSTANCE.createParameter();
-			symbol_357.setName("j");
+			symbol_357.setName("i");
 			symbol_357.setType(symbol_39);  // ocl!Collection{T}?T
 			symbol_355.getOwnedIterators().add(symbol_357);
 			Parameter symbol_358 = PivotFactory.eINSTANCE.createParameter();
 			symbol_358.setName("body");
 			//symbol_358.setMoniker("ocl!Collection{T}!exists(T,T|Lambda~T()Boolean)!body");
-			symbol_358.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_358.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_355.getOwnedParameters().add(symbol_358);
+			symbol_355.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ExistsIteration");
 			symbol_355.setImplementation(org.eclipse.ocl.examples.library.iterator.ExistsIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_355);
 		}
@@ -1219,6 +1253,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_359.setMoniker("ocl!Collection{T}!flatten{T2}()");
 			symbol_359.setType(symbol_184);  // ocl!Collection[ocl!Collection{T}!flatten{T2}()?T2]
 			
+			symbol_359.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation");
 			symbol_359.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_359);
 		}
@@ -1235,9 +1270,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_362 = PivotFactory.eINSTANCE.createParameter();
 			symbol_362.setName("body");
 			//symbol_362.setMoniker("ocl!Collection{T}!forAll(T|Lambda~T()Boolean)!body");
-			symbol_362.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_362.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_360.getOwnedParameters().add(symbol_362);
+			symbol_360.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ForAllIteration");
 			symbol_360.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_360);
 		}
@@ -1248,19 +1284,20 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_363.setType(symbol_19);  // Boolean
 			
 			Parameter symbol_364 = PivotFactory.eINSTANCE.createParameter();
-			symbol_364.setName("j");
+			symbol_364.setName("i");
 			symbol_364.setType(symbol_39);  // ocl!Collection{T}?T
 			symbol_363.getOwnedIterators().add(symbol_364);
 			Parameter symbol_365 = PivotFactory.eINSTANCE.createParameter();
-			symbol_365.setName("i");
+			symbol_365.setName("j");
 			symbol_365.setType(symbol_39);  // ocl!Collection{T}?T
 			symbol_363.getOwnedIterators().add(symbol_365);
 			Parameter symbol_366 = PivotFactory.eINSTANCE.createParameter();
 			symbol_366.setName("body");
 			//symbol_366.setMoniker("ocl!Collection{T}!forAll(T,T|Lambda~T()Boolean)!body");
-			symbol_366.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_366.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_363.getOwnedParameters().add(symbol_366);
+			symbol_363.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ForAllIteration");
 			symbol_363.setImplementation(org.eclipse.ocl.examples.library.iterator.ForAllIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_363);
 		}
@@ -1276,6 +1313,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_368.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_367.getOwnedParameters().add(symbol_368);
+			symbol_367.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation");
 			symbol_367.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_367);
 		}
@@ -1293,9 +1331,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_370 = PivotFactory.eINSTANCE.createParameter();
 			symbol_370.setName("c2");
 			//symbol_370.setMoniker("ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])!c2");
-			symbol_370.setType(symbol_166);  // ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
+			symbol_370.setType(symbol_188);  // ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
 			
 			symbol_369.getOwnedParameters().add(symbol_370);
+			symbol_369.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation");
 			symbol_369.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludesAllOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_369);
 		}
@@ -1303,7 +1342,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_371 = PivotFactory.eINSTANCE.createOperation();
 			symbol_371.setName("including");
 			//symbol_371.setMoniker("ocl!Collection{T}!including(T)");
-			symbol_371.setType(symbol_179);  // ocl!Collection[ocl!Collection{T}?T]
+			symbol_371.setType(symbol_173);  // ocl!Collection[ocl!Collection{T}?T]
 			
 			Parameter symbol_372 = PivotFactory.eINSTANCE.createParameter();
 			symbol_372.setName("object");
@@ -1311,6 +1350,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_372.setType(symbol_39);  // ocl!Collection{T}?T
 			
 			symbol_371.getOwnedParameters().add(symbol_372);
+			symbol_371.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation");
 			symbol_371.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_371);
 		}
@@ -1320,6 +1360,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_373.setMoniker("ocl!Collection{T}!isEmpty()");
 			symbol_373.setType(symbol_19);  // Boolean
 			
+			symbol_373.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation");
 			symbol_373.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIsEmptyOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_373);
 		}
@@ -1336,9 +1377,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_376 = PivotFactory.eINSTANCE.createParameter();
 			symbol_376.setName("body");
 			//symbol_376.setMoniker("ocl!Collection{T}!isUnique(T|Lambda~T()ocl!OclAny)!body");
-			symbol_376.setType(symbol_201);  // Lambda~ocl!Collection{T}?T()ocl!OclAny
+			symbol_376.setType(symbol_203);  // Lambda~ocl!Collection{T}?T()ocl!OclAny
 			
 			symbol_374.getOwnedParameters().add(symbol_376);
+			symbol_374.setImplementationClass("org.eclipse.ocl.examples.library.iterator.IsUniqueIteration");
 			symbol_374.setImplementation(org.eclipse.ocl.examples.library.iterator.IsUniqueIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_374);
 		}
@@ -1361,6 +1403,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_379.setName("acc");
 			symbol_379.setType(symbol_57);  // ocl!Collection{T}!iterate{Tacc}(T;Tacc)?Tacc
 			symbol_377.getOwnedAccumulators().add(symbol_379);
+			symbol_377.setImplementationClass("org.eclipse.ocl.examples.library.iterator.IterateIteration");
 			symbol_377.setImplementation(org.eclipse.ocl.examples.library.iterator.IterateIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_377);
 		}
@@ -1370,6 +1413,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_380.setMoniker("ocl!Collection{T}!max()");
 			symbol_380.setType(symbol_39);  // ocl!Collection{T}?T
 			
+			symbol_380.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionMaxOperation");
 			symbol_380.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMaxOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_380);
 		}
@@ -1379,6 +1423,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_381.setMoniker("ocl!Collection{T}!min()");
 			symbol_381.setType(symbol_39);  // ocl!Collection{T}?T
 			
+			symbol_381.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionMinOperation");
 			symbol_381.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionMinOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_381);
 		}
@@ -1388,6 +1433,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_382.setMoniker("ocl!Collection{T}!notEmpty()");
 			symbol_382.setType(symbol_19);  // Boolean
 			
+			symbol_382.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation");
 			symbol_382.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionNotEmptyOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_382);
 		}
@@ -1404,9 +1450,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_385 = PivotFactory.eINSTANCE.createParameter();
 			symbol_385.setName("body");
 			//symbol_385.setMoniker("ocl!Collection{T}!one(T|Lambda~T()Boolean)!body");
-			symbol_385.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_385.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_383.getOwnedParameters().add(symbol_385);
+			symbol_383.setImplementationClass("org.eclipse.ocl.examples.library.iterator.OneIteration");
 			symbol_383.setImplementation(org.eclipse.ocl.examples.library.iterator.OneIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_383);
 		}
@@ -1419,14 +1466,15 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_386.setOwnedTemplateSignature(symbol_58);
 			symbol_386.setName("product");
 			//symbol_386.setMoniker("ocl!Collection{T}!product{T2}(ocl!Collection[T2])");
-			symbol_386.setType(symbol_266);  // ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+			symbol_386.setType(symbol_260);  // ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 			
 			Parameter symbol_387 = PivotFactory.eINSTANCE.createParameter();
 			symbol_387.setName("c2");
 			//symbol_387.setMoniker("ocl!Collection{T}!product{T2}(ocl!Collection[T2])!c2");
-			symbol_387.setType(symbol_185);  // ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
+			symbol_387.setType(symbol_193);  // ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
 			
 			symbol_386.getOwnedParameters().add(symbol_387);
+			symbol_386.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionProductOperation");
 			symbol_386.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionProductOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_386);
 		}
@@ -1434,7 +1482,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_388 = PivotFactory.eINSTANCE.createIteration();
 			symbol_388.setName("reject");
 			//symbol_388.setMoniker("ocl!Collection{T}!reject(T|Lambda~T()Boolean)");
-			symbol_388.setType(symbol_179);  // ocl!Collection[ocl!Collection{T}?T]
+			symbol_388.setType(symbol_173);  // ocl!Collection[ocl!Collection{T}?T]
 			
 			Parameter symbol_389 = PivotFactory.eINSTANCE.createParameter();
 			symbol_389.setName("i");
@@ -1443,9 +1491,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_390 = PivotFactory.eINSTANCE.createParameter();
 			symbol_390.setName("body");
 			//symbol_390.setMoniker("ocl!Collection{T}!reject(T|Lambda~T()Boolean)!body");
-			symbol_390.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_390.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_388.getOwnedParameters().add(symbol_390);
+			symbol_388.setImplementationClass("org.eclipse.ocl.examples.library.iterator.RejectIteration");
 			symbol_388.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_388);
 		}
@@ -1453,7 +1502,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_391 = PivotFactory.eINSTANCE.createIteration();
 			symbol_391.setName("select");
 			//symbol_391.setMoniker("ocl!Collection{T}!select(T|Lambda~T()Boolean)");
-			symbol_391.setType(symbol_179);  // ocl!Collection[ocl!Collection{T}?T]
+			symbol_391.setType(symbol_173);  // ocl!Collection[ocl!Collection{T}?T]
 			
 			Parameter symbol_392 = PivotFactory.eINSTANCE.createParameter();
 			symbol_392.setName("i");
@@ -1462,9 +1511,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_393 = PivotFactory.eINSTANCE.createParameter();
 			symbol_393.setName("body");
 			//symbol_393.setMoniker("ocl!Collection{T}!select(T|Lambda~T()Boolean)!body");
-			symbol_393.setType(symbol_209);  // Lambda~ocl!Collection{T}?T()Boolean
+			symbol_393.setType(symbol_207);  // Lambda~ocl!Collection{T}?T()Boolean
 			
 			symbol_391.getOwnedParameters().add(symbol_393);
+			symbol_391.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SelectIteration");
 			symbol_391.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_391);
 		}
@@ -1474,6 +1524,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_394.setMoniker("ocl!Collection{T}!size()");
 			symbol_394.setType(symbol_65);  // Integer
 			
+			symbol_394.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionSizeOperation");
 			symbol_394.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSizeOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_394);
 		}
@@ -1481,7 +1532,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_395 = PivotFactory.eINSTANCE.createIteration();
 			symbol_395.setName("sortedBy");
 			//symbol_395.setMoniker("ocl!Collection{T}!sortedBy(T|Lambda~T()ocl!OclAny)");
-			symbol_395.setType(symbol_244);  // ocl!OrderedCollection[ocl!Collection{T}?T]
+			symbol_395.setType(symbol_239);  // ocl!OrderedCollection[ocl!Collection{T}?T]
 			
 			Parameter symbol_396 = PivotFactory.eINSTANCE.createParameter();
 			symbol_396.setName("i");
@@ -1490,9 +1541,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_397 = PivotFactory.eINSTANCE.createParameter();
 			symbol_397.setName("body");
 			//symbol_397.setMoniker("ocl!Collection{T}!sortedBy(T|Lambda~T()ocl!OclAny)!body");
-			symbol_397.setType(symbol_201);  // Lambda~ocl!Collection{T}?T()ocl!OclAny
+			symbol_397.setType(symbol_203);  // Lambda~ocl!Collection{T}?T()ocl!OclAny
 			
 			symbol_395.getOwnedParameters().add(symbol_397);
+			symbol_395.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SortedByIteration");
 			symbol_395.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_395);
 		}
@@ -1502,6 +1554,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_398.setMoniker("ocl!Collection{T}!sum()");
 			symbol_398.setType(symbol_39);  // ocl!Collection{T}?T
 			
+			symbol_398.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionSumOperation");
 			symbol_398.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionSumOperation.INSTANCE);
 			symbol_36.getOwnedOperations().add(symbol_398);
 		}
@@ -1521,9 +1574,10 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_399.setOwnedTemplateSignature(symbol_62);
 			symbol_399.setName("allInstances");
 			//symbol_399.setMoniker("ocl!Enumeration!allInstances{OclSelf}()");
-			symbol_399.setType(symbol_272);  // ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+			symbol_399.setType(symbol_262);  // ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 			
 			symbol_399.setIsStatic(true);
+			symbol_399.setImplementationClass("org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation");
 			symbol_399.setImplementation(org.eclipse.ocl.examples.library.enumeration.EnumerationAllInstancesOperation.INSTANCE);
 			symbol_61.getOwnedOperations().add(symbol_399);
 		}
@@ -1547,6 +1601,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_400.getOwnedParameters().add(symbol_401);
 			symbol_400.setPrecedence(symbol_4);
+			symbol_400.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericTimesOperation");
 			symbol_400.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_400);
 		}
@@ -1563,6 +1618,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_402.getOwnedParameters().add(symbol_403);
 			symbol_402.setPrecedence(symbol_5);
+			symbol_402.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericPlusOperation");
 			symbol_402.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_402);
 		}
@@ -1573,6 +1629,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_404.setType(symbol_65);  // Integer
 			
 			symbol_404.setPrecedence(symbol_3);
+			symbol_404.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericNegateOperation");
 			symbol_404.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_404);
 		}
@@ -1589,6 +1646,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_405.getOwnedParameters().add(symbol_406);
 			symbol_405.setPrecedence(symbol_5);
+			symbol_405.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinusOperation");
 			symbol_405.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_405);
 		}
@@ -1605,6 +1663,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_407.getOwnedParameters().add(symbol_408);
 			symbol_407.setPrecedence(symbol_4);
+			symbol_407.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericDivideOperation");
 			symbol_407.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_407);
 		}
@@ -1614,6 +1673,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_409.setMoniker("Integer!abs()");
 			symbol_409.setType(symbol_65);  // Integer
 			
+			symbol_409.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericAbsOperation");
 			symbol_409.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_409);
 		}
@@ -1629,6 +1689,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_411.setType(symbol_65);  // Integer
 			
 			symbol_410.getOwnedParameters().add(symbol_411);
+			symbol_410.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericDivOperation");
 			symbol_410.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_410);
 		}
@@ -1644,6 +1705,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_413.setType(symbol_65);  // Integer
 			
 			symbol_412.getOwnedParameters().add(symbol_413);
+			symbol_412.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMaxOperation");
 			symbol_412.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_412);
 		}
@@ -1659,6 +1721,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_415.setType(symbol_65);  // Integer
 			
 			symbol_414.getOwnedParameters().add(symbol_415);
+			symbol_414.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinOperation");
 			symbol_414.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_414);
 		}
@@ -1674,6 +1737,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_417.setType(symbol_65);  // Integer
 			
 			symbol_416.getOwnedParameters().add(symbol_417);
+			symbol_416.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericModOperation");
 			symbol_416.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericModOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_416);
 		}
@@ -1683,6 +1747,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_418.setMoniker("Integer!toString()");
 			symbol_418.setType(symbol_143);  // String
 			
+			symbol_418.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_418.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_65.getOwnedOperations().add(symbol_418);
 		}
@@ -1698,12 +1763,12 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_67.getOwnedParameters().add(symbol_68);
 		
 		symbol_66.setOwnedTemplateSignature(symbol_67);
-		symbol_66.getSuperClasses().add(symbol_189); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		symbol_66.getSuperClasses().add(symbol_185); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		{	// ocl::NonOrderedCollection::closure() ocl!NonOrderedCollection{T}!closure(T|Lambda~T()ocl!Set[T])
 			Iteration symbol_419 = PivotFactory.eINSTANCE.createIteration();
 			symbol_419.setName("closure");
 			//symbol_419.setMoniker("ocl!NonOrderedCollection{T}!closure(T|Lambda~T()ocl!Set[T])");
-			symbol_419.setType(symbol_264);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
+			symbol_419.setType(symbol_268);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_420 = PivotFactory.eINSTANCE.createParameter();
 			symbol_420.setName("i");
@@ -1712,9 +1777,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_421 = PivotFactory.eINSTANCE.createParameter();
 			symbol_421.setName("body");
 			//symbol_421.setMoniker("ocl!NonOrderedCollection{T}!closure(T|Lambda~T()ocl!Set[T])!body");
-			symbol_421.setType(symbol_199);  // Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]
+			symbol_421.setType(symbol_197);  // Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]
 			
 			symbol_419.getOwnedParameters().add(symbol_421);
+			symbol_419.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ClosureIteration");
 			symbol_419.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_419);
 		}
@@ -1727,7 +1793,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_422.setOwnedTemplateSignature(symbol_70);
 			symbol_422.setName("collect");
 			//symbol_422.setMoniker("ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)");
-			symbol_422.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+			symbol_422.setType(symbol_154);  // ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 			
 			Parameter symbol_423 = PivotFactory.eINSTANCE.createParameter();
 			symbol_423.setName("i");
@@ -1739,6 +1805,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_424.setType(symbol_204);  // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
 			
 			symbol_422.getOwnedParameters().add(symbol_424);
+			symbol_422.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectIteration");
 			symbol_422.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_422);
 		}
@@ -1751,7 +1818,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_425.setOwnedTemplateSignature(symbol_73);
 			symbol_425.setName("collectNested");
 			//symbol_425.setMoniker("ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)");
-			symbol_425.setType(symbol_155);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+			symbol_425.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_426 = PivotFactory.eINSTANCE.createParameter();
 			symbol_426.setName("i");
@@ -1760,9 +1827,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_427 = PivotFactory.eINSTANCE.createParameter();
 			symbol_427.setName("body");
 			//symbol_427.setMoniker("ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)!body");
-			symbol_427.setType(symbol_195);  // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
+			symbol_427.setType(symbol_196);  // Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
 			
 			symbol_425.getOwnedParameters().add(symbol_427);
+			symbol_425.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectNestedIteration");
 			symbol_425.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_425);
 		}
@@ -1770,14 +1838,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_428 = PivotFactory.eINSTANCE.createOperation();
 			symbol_428.setName("intersection");
 			//symbol_428.setMoniker("ocl!NonOrderedCollection{T}!intersection(ocl!Bag[T])");
-			symbol_428.setType(symbol_155);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+			symbol_428.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_429 = PivotFactory.eINSTANCE.createParameter();
 			symbol_429.setName("bag");
 			//symbol_429.setMoniker("ocl!NonOrderedCollection{T}!intersection(ocl!Bag[T])!bag");
-			symbol_429.setType(symbol_155);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+			symbol_429.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 			
 			symbol_428.getOwnedParameters().add(symbol_429);
+			symbol_428.setImplementationClass("org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation");
 			symbol_428.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_428);
 		}
@@ -1785,14 +1854,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_430 = PivotFactory.eINSTANCE.createOperation();
 			symbol_430.setName("intersection");
 			//symbol_430.setMoniker("ocl!NonOrderedCollection{T}!intersection(ocl!Set[T])");
-			symbol_430.setType(symbol_264);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
+			symbol_430.setType(symbol_268);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_431 = PivotFactory.eINSTANCE.createParameter();
 			symbol_431.setName("s");
 			//symbol_431.setMoniker("ocl!NonOrderedCollection{T}!intersection(ocl!Set[T])!s");
-			symbol_431.setType(symbol_264);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
+			symbol_431.setType(symbol_268);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
 			
 			symbol_430.getOwnedParameters().add(symbol_431);
+			symbol_430.setImplementationClass("org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation");
 			symbol_430.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_430);
 		}
@@ -1800,14 +1870,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_432 = PivotFactory.eINSTANCE.createOperation();
 			symbol_432.setName("union");
 			//symbol_432.setMoniker("ocl!NonOrderedCollection{T}!union(ocl!Bag[T])");
-			symbol_432.setType(symbol_155);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+			symbol_432.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_433 = PivotFactory.eINSTANCE.createParameter();
 			symbol_433.setName("bag");
 			//symbol_433.setMoniker("ocl!NonOrderedCollection{T}!union(ocl!Bag[T])!bag");
-			symbol_433.setType(symbol_155);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
+			symbol_433.setType(symbol_152);  // ocl!Bag[ocl!NonOrderedCollection{T}?T]
 			
 			symbol_432.getOwnedParameters().add(symbol_433);
+			symbol_432.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionUnionOperation");
 			symbol_432.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_432);
 		}
@@ -1815,14 +1886,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_434 = PivotFactory.eINSTANCE.createOperation();
 			symbol_434.setName("union");
 			//symbol_434.setMoniker("ocl!NonOrderedCollection{T}!union(ocl!Set[T])");
-			symbol_434.setType(symbol_264);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
+			symbol_434.setType(symbol_268);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
 			
 			Parameter symbol_435 = PivotFactory.eINSTANCE.createParameter();
 			symbol_435.setName("s");
 			//symbol_435.setMoniker("ocl!NonOrderedCollection{T}!union(ocl!Set[T])!s");
-			symbol_435.setType(symbol_264);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
+			symbol_435.setType(symbol_268);  // ocl!Set[ocl!NonOrderedCollection{T}?T]
 			
 			symbol_434.getOwnedParameters().add(symbol_435);
+			symbol_434.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionUnionOperation");
 			symbol_434.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_66.getOwnedOperations().add(symbol_434);
 		}
@@ -1838,12 +1910,12 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_77.getOwnedParameters().add(symbol_78);
 		
 		symbol_76.setOwnedTemplateSignature(symbol_77);
-		symbol_76.getSuperClasses().add(symbol_171); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
+		symbol_76.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
 		{	// ocl::NonUniqueCollection::sortedBy() ocl!NonUniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)
 			Iteration symbol_436 = PivotFactory.eINSTANCE.createIteration();
 			symbol_436.setName("sortedBy");
 			//symbol_436.setMoniker("ocl!NonUniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)");
-			symbol_436.setType(symbol_256);  // ocl!Sequence[ocl!NonUniqueCollection{T}?T]
+			symbol_436.setType(symbol_253);  // ocl!Sequence[ocl!NonUniqueCollection{T}?T]
 			
 			Parameter symbol_437 = PivotFactory.eINSTANCE.createParameter();
 			symbol_437.setName("i");
@@ -1852,9 +1924,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_438 = PivotFactory.eINSTANCE.createParameter();
 			symbol_438.setName("body");
 			//symbol_438.setMoniker("ocl!NonUniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)!body");
-			symbol_438.setType(symbol_198);  // Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
+			symbol_438.setType(symbol_194);  // Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
 			
 			symbol_436.getOwnedParameters().add(symbol_438);
+			symbol_436.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SortedByIteration");
 			symbol_436.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_76.getOwnedOperations().add(symbol_436);
 		}
@@ -1877,6 +1950,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_439.getOwnedParameters().add(symbol_440);
 			symbol_439.setPrecedence(symbol_7);
+			symbol_439.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_439.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_439);
 		}
@@ -1893,6 +1967,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_441.getOwnedParameters().add(symbol_442);
 			symbol_441.setPrecedence(symbol_7);
+			symbol_441.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_441.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_441);
 		}
@@ -1905,8 +1980,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_443.setOwnedTemplateSignature(symbol_81);
 			symbol_443.setName("oclAsSet");
 			//symbol_443.setMoniker("ocl!OclAny!oclAsSet{OclSelf}()");
-			symbol_443.setType(symbol_260);  // ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+			symbol_443.setType(symbol_261);  // ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 			
+			symbol_443.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation");
 			symbol_443.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_443);
 		}
@@ -1924,9 +2000,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_445 = PivotFactory.eINSTANCE.createParameter();
 			symbol_445.setName("type");
 			//symbol_445.setMoniker("ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])!type");
-			symbol_445.setType(symbol_162);  // ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
+			symbol_445.setType(symbol_161);  // ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
 			
 			symbol_444.getOwnedParameters().add(symbol_445);
+			symbol_444.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation");
 			symbol_444.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_444);
 		}
@@ -1942,6 +2019,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_447.setType(symbol_102);  // ocl!OclState
 			
 			symbol_446.getOwnedParameters().add(symbol_447);
+			symbol_446.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation");
 			symbol_446.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_446);
 		}
@@ -1951,6 +2029,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_448.setMoniker("ocl!OclAny!oclIsInvalid()");
 			symbol_448.setType(symbol_19);  // Boolean
 			
+			symbol_448.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation");
 			symbol_448.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_448);
 		}
@@ -1968,9 +2047,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_450 = PivotFactory.eINSTANCE.createParameter();
 			symbol_450.setName("type");
 			//symbol_450.setMoniker("ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])!type");
-			symbol_450.setType(symbol_158);  // ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
+			symbol_450.setType(symbol_162);  // ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
 			
 			symbol_449.getOwnedParameters().add(symbol_450);
+			symbol_449.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation");
 			symbol_449.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_449);
 		}
@@ -1980,6 +2060,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_451.setMoniker("ocl!OclAny!oclIsNew()");
 			symbol_451.setType(symbol_19);  // Boolean
 			
+			symbol_451.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation");
 			symbol_451.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_451);
 		}
@@ -1997,9 +2078,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_453 = PivotFactory.eINSTANCE.createParameter();
 			symbol_453.setName("type");
 			//symbol_453.setMoniker("ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])!type");
-			symbol_453.setType(symbol_160);  // ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
+			symbol_453.setType(symbol_163);  // ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
 			
 			symbol_452.getOwnedParameters().add(symbol_453);
+			symbol_452.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation");
 			symbol_452.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_452);
 		}
@@ -2009,6 +2091,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_454.setMoniker("ocl!OclAny!oclIsUndefined()");
 			symbol_454.setType(symbol_19);  // Boolean
 			
+			symbol_454.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation");
 			symbol_454.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_454);
 		}
@@ -2021,8 +2104,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_455.setOwnedTemplateSignature(symbol_93);
 			symbol_455.setName("oclType");
 			//symbol_455.setMoniker("ocl!OclAny!oclType{OclSelf}()");
-			symbol_455.setType(symbol_163);  // ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
+			symbol_455.setType(symbol_160);  // ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
 			
+			symbol_455.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation");
 			symbol_455.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation.INSTANCE);
 			symbol_80.getOwnedOperations().add(symbol_455);
 		}
@@ -2053,6 +2137,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_456.getOwnedParameters().add(symbol_457);
 			symbol_456.setPrecedence(symbol_7);
+			symbol_456.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_456.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_96.getOwnedOperations().add(symbol_456);
 		}
@@ -2069,6 +2154,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_458.getOwnedParameters().add(symbol_459);
 			symbol_458.setPrecedence(symbol_7);
+			symbol_458.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_458.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_96.getOwnedOperations().add(symbol_458);
 		}
@@ -2081,9 +2167,10 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_460.setOwnedTemplateSignature(symbol_98);
 			symbol_460.setName("allInstances");
 			//symbol_460.setMoniker("ocl!OclInvalid!allInstances{OclSelf}()");
-			symbol_460.setType(symbol_273);  // ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+			symbol_460.setType(symbol_271);  // ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 			
 			symbol_460.setIsStatic(true);
+			symbol_460.setImplementationClass("org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation");
 			symbol_460.setImplementation(org.eclipse.ocl.examples.library.oclinvalid.OclInvalidAllInstancesOperation.INSTANCE);
 			symbol_96.getOwnedOperations().add(symbol_460);
 		}
@@ -2101,6 +2188,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_462.setMoniker("ocl!OclInvalid!toString()");
 			symbol_462.setType(symbol_143);  // String
 			
+			symbol_462.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_462.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_96.getOwnedOperations().add(symbol_462);
 		}
@@ -2117,6 +2205,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_463.setMoniker("ocl!OclMessage!hasReturned()");
 			symbol_463.setType(symbol_19);  // Boolean
 			
+			symbol_463.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation");
 			symbol_463.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_101.getOwnedOperations().add(symbol_463);
 		}
@@ -2126,6 +2215,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_464.setMoniker("ocl!OclMessage!isOperationCall()");
 			symbol_464.setType(symbol_19);  // Boolean
 			
+			symbol_464.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation");
 			symbol_464.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_101.getOwnedOperations().add(symbol_464);
 		}
@@ -2135,6 +2225,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_465.setMoniker("ocl!OclMessage!isSignalSent()");
 			symbol_465.setType(symbol_19);  // Boolean
 			
+			symbol_465.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation");
 			symbol_465.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_101.getOwnedOperations().add(symbol_465);
 		}
@@ -2144,6 +2235,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_466.setMoniker("ocl!OclMessage!result()");
 			symbol_466.setType(symbol_80);  // ocl!OclAny
 			
+			symbol_466.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation");
 			symbol_466.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation.INSTANCE);
 			symbol_101.getOwnedOperations().add(symbol_466);
 		}
@@ -2174,6 +2266,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_467.getOwnedParameters().add(symbol_468);
 			symbol_467.setPrecedence(symbol_7);
+			symbol_467.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_467.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_103.getOwnedOperations().add(symbol_467);
 		}
@@ -2190,6 +2283,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_469.getOwnedParameters().add(symbol_470);
 			symbol_469.setPrecedence(symbol_7);
+			symbol_469.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_469.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_103.getOwnedOperations().add(symbol_469);
 		}
@@ -2213,6 +2307,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_471.getOwnedParameters().add(symbol_472);
 			symbol_471.setPrecedence(symbol_7);
+			symbol_471.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_471.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_471);
 		}
@@ -2229,6 +2324,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_473.getOwnedParameters().add(symbol_474);
 			symbol_473.setPrecedence(symbol_7);
+			symbol_473.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_473.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_473);
 		}
@@ -2241,9 +2337,10 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_475.setOwnedTemplateSignature(symbol_105);
 			symbol_475.setName("allInstances");
 			//symbol_475.setMoniker("ocl!OclVoid!allInstances{OclSelf}()");
-			symbol_475.setType(symbol_268);  // ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+			symbol_475.setType(symbol_266);  // ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 			
 			symbol_475.setIsStatic(true);
+			symbol_475.setImplementationClass("org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation");
 			symbol_475.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAllInstancesOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_475);
 		}
@@ -2260,6 +2357,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_476.getOwnedParameters().add(symbol_477);
 			symbol_476.setPrecedence(symbol_8);
+			symbol_476.setImplementationClass("org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation");
 			symbol_476.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidAndOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_476);
 		}
@@ -2276,6 +2374,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_478.getOwnedParameters().add(symbol_479);
 			symbol_478.setPrecedence(symbol_11);
+			symbol_478.setImplementationClass("org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation");
 			symbol_478.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidImpliesOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_478);
 		}
@@ -2292,6 +2391,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_480.getOwnedParameters().add(symbol_481);
 			symbol_480.setPrecedence(symbol_9);
+			symbol_480.setImplementationClass("org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation");
 			symbol_480.setImplementation(org.eclipse.ocl.examples.library.oclvoid.OclVoidOrOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_480);
 		}
@@ -2301,6 +2401,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_482.setMoniker("ocl!OclVoid!toString()");
 			symbol_482.setType(symbol_143);  // String
 			
+			symbol_482.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_482.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_104.getOwnedOperations().add(symbol_482);
 		}
@@ -2316,7 +2417,7 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_109.getOwnedParameters().add(symbol_110);
 		
 		symbol_108.setOwnedTemplateSignature(symbol_109);
-		symbol_108.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!OrderedCollection{T}?T]
+		symbol_108.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!OrderedCollection{T}?T]
 		{	// ocl::OrderedCollection::at() ocl!OrderedCollection{T}!at(Integer)
 			Operation symbol_483 = PivotFactory.eINSTANCE.createOperation();
 			symbol_483.setName("at");
@@ -2329,6 +2430,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_484.setType(symbol_65);  // Integer
 			
 			symbol_483.getOwnedParameters().add(symbol_484);
+			symbol_483.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation");
 			symbol_483.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAtOperation.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_483);
 		}
@@ -2345,9 +2447,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_487 = PivotFactory.eINSTANCE.createParameter();
 			symbol_487.setName("body");
 			//symbol_487.setMoniker("ocl!OrderedCollection{T}!closure(T|Lambda~T()ocl!OrderedSet[T])!body");
-			symbol_487.setType(symbol_206);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
+			symbol_487.setType(symbol_195);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
 			
 			symbol_485.getOwnedParameters().add(symbol_487);
+			symbol_485.setImplementationClass("org.eclipse.ocl.examples.library.iterator.ClosureIteration");
 			symbol_485.setImplementation(org.eclipse.ocl.examples.library.iterator.ClosureIteration.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_485);
 		}
@@ -2360,7 +2463,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_488.setOwnedTemplateSignature(symbol_112);
 			symbol_488.setName("collect");
 			//symbol_488.setMoniker("ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)");
-			symbol_488.setType(symbol_253);  // ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+			symbol_488.setType(symbol_259);  // ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 			
 			Parameter symbol_489 = PivotFactory.eINSTANCE.createParameter();
 			symbol_489.setName("i");
@@ -2369,9 +2472,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_490 = PivotFactory.eINSTANCE.createParameter();
 			symbol_490.setName("body");
 			//symbol_490.setMoniker("ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)!body");
-			symbol_490.setType(symbol_200);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
+			symbol_490.setType(symbol_206);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
 			
 			symbol_488.getOwnedParameters().add(symbol_490);
+			symbol_488.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectIteration");
 			symbol_488.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectIteration.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_488);
 		}
@@ -2384,7 +2488,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_491.setOwnedTemplateSignature(symbol_115);
 			symbol_491.setName("collectNested");
 			//symbol_491.setMoniker("ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)");
-			symbol_491.setType(symbol_259);  // ocl!Sequence[ocl!OrderedCollection{T}?T]
+			symbol_491.setType(symbol_258);  // ocl!Sequence[ocl!OrderedCollection{T}?T]
 			
 			Parameter symbol_492 = PivotFactory.eINSTANCE.createParameter();
 			symbol_492.setName("i");
@@ -2393,9 +2497,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_493 = PivotFactory.eINSTANCE.createParameter();
 			symbol_493.setName("body");
 			//symbol_493.setMoniker("ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)!body");
-			symbol_493.setType(symbol_203);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
+			symbol_493.setType(symbol_209);  // Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
 			
 			symbol_491.getOwnedParameters().add(symbol_493);
+			symbol_491.setImplementationClass("org.eclipse.ocl.examples.library.iterator.CollectNestedIteration");
 			symbol_491.setImplementation(org.eclipse.ocl.examples.library.iterator.CollectNestedIteration.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_491);
 		}
@@ -2405,6 +2510,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_494.setMoniker("ocl!OrderedCollection{T}!first()");
 			symbol_494.setType(symbol_111);  // ocl!OrderedCollection{T}?T
 			
+			symbol_494.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation");
 			symbol_494.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionFirstOperation.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_494);
 		}
@@ -2420,6 +2526,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_496.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_495.getOwnedParameters().add(symbol_496);
+			symbol_495.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation");
 			symbol_495.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionIndexOfOperation.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_495);
 		}
@@ -2429,6 +2536,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_497.setMoniker("ocl!OrderedCollection{T}!last()");
 			symbol_497.setType(symbol_111);  // ocl!OrderedCollection{T}?T
 			
+			symbol_497.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation");
 			symbol_497.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionLastOperation.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_497);
 		}
@@ -2436,8 +2544,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_498 = PivotFactory.eINSTANCE.createOperation();
 			symbol_498.setName("reverse");
 			//symbol_498.setMoniker("ocl!OrderedCollection{T}!reverse()");
-			symbol_498.setType(symbol_247);  // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
+			symbol_498.setType(symbol_246);  // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
 			
+			symbol_498.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation");
 			symbol_498.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
 			symbol_108.getOwnedOperations().add(symbol_498);
 		}
@@ -2453,21 +2562,22 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_119.getOwnedParameters().add(symbol_120);
 		
 		symbol_118.setOwnedTemplateSignature(symbol_119);
-		symbol_118.getSuperClasses().add(symbol_240); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
-		symbol_118.getSuperClasses().add(symbol_290); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
+		symbol_118.getSuperClasses().add(symbol_244); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
+		symbol_118.getSuperClasses().add(symbol_285); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
 		{	// ocl::OrderedSet::-() ocl!OrderedSet{T}!-(ocl!Set[ocl!OclAny])
 			Operation symbol_499 = PivotFactory.eINSTANCE.createOperation();
 			symbol_499.setName("-");
 			//symbol_499.setMoniker("ocl!OrderedSet{T}!-(ocl!Set[ocl!OclAny])");
-			symbol_499.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_499.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_500 = PivotFactory.eINSTANCE.createParameter();
 			symbol_500.setName("s");
 			//symbol_500.setMoniker("ocl!OrderedSet{T}!-(ocl!Set[ocl!OclAny])!s");
-			symbol_500.setType(symbol_263);  // ocl!Set[ocl!OclAny]
+			symbol_500.setType(symbol_265);  // ocl!Set[ocl!OclAny]
 			
 			symbol_499.getOwnedParameters().add(symbol_500);
 			symbol_499.setPrecedence(symbol_5);
+			symbol_499.setImplementationClass("org.eclipse.ocl.examples.library.collection.SetMinusOperation");
 			symbol_499.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_499);
 		}
@@ -2484,6 +2594,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_501.getOwnedParameters().add(symbol_502);
 			symbol_501.setPrecedence(symbol_7);
+			symbol_501.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_501.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_501);
 		}
@@ -2500,6 +2611,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_503.getOwnedParameters().add(symbol_504);
 			symbol_503.setPrecedence(symbol_7);
+			symbol_503.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_503.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_503);
 		}
@@ -2507,7 +2619,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_505 = PivotFactory.eINSTANCE.createOperation();
 			symbol_505.setName("append");
 			//symbol_505.setMoniker("ocl!OrderedSet{T}!append(T)");
-			symbol_505.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_505.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_506 = PivotFactory.eINSTANCE.createParameter();
 			symbol_506.setName("object");
@@ -2515,6 +2627,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_506.setType(symbol_121);  // ocl!OrderedSet{T}?T
 			
 			symbol_505.getOwnedParameters().add(symbol_506);
+			symbol_505.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation");
 			symbol_505.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_505);
 		}
@@ -2522,7 +2635,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_507 = PivotFactory.eINSTANCE.createOperation();
 			symbol_507.setName("excluding");
 			//symbol_507.setMoniker("ocl!OrderedSet{T}!excluding(ocl!OclAny)");
-			symbol_507.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_507.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_508 = PivotFactory.eINSTANCE.createParameter();
 			symbol_508.setName("object");
@@ -2530,6 +2643,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_508.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_507.getOwnedParameters().add(symbol_508);
+			symbol_507.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation");
 			symbol_507.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_507);
 		}
@@ -2542,8 +2656,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_509.setOwnedTemplateSignature(symbol_122);
 			symbol_509.setName("flatten");
 			//symbol_509.setMoniker("ocl!OrderedSet{T}!flatten{T2}()");
-			symbol_509.setType(symbol_251);  // ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
+			symbol_509.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
 			
+			symbol_509.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation");
 			symbol_509.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_509);
 		}
@@ -2551,7 +2666,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_510 = PivotFactory.eINSTANCE.createOperation();
 			symbol_510.setName("including");
 			//symbol_510.setMoniker("ocl!OrderedSet{T}!including(T)");
-			symbol_510.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_510.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_511 = PivotFactory.eINSTANCE.createParameter();
 			symbol_511.setName("object");
@@ -2559,6 +2674,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_511.setType(symbol_121);  // ocl!OrderedSet{T}?T
 			
 			symbol_510.getOwnedParameters().add(symbol_511);
+			symbol_510.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation");
 			symbol_510.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_510);
 		}
@@ -2566,7 +2682,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_512 = PivotFactory.eINSTANCE.createOperation();
 			symbol_512.setName("insertAt");
 			//symbol_512.setMoniker("ocl!OrderedSet{T}!insertAt(Integer,T)");
-			symbol_512.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_512.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_513 = PivotFactory.eINSTANCE.createParameter();
 			symbol_513.setName("index");
@@ -2580,6 +2696,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_514.setType(symbol_121);  // ocl!OrderedSet{T}?T
 			
 			symbol_512.getOwnedParameters().add(symbol_514);
+			symbol_512.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation");
 			symbol_512.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_512);
 		}
@@ -2587,14 +2704,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_515 = PivotFactory.eINSTANCE.createOperation();
 			symbol_515.setName("intersection");
 			//symbol_515.setMoniker("ocl!OrderedSet{T}!intersection(ocl!Set[T])");
-			symbol_515.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_515.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_516 = PivotFactory.eINSTANCE.createParameter();
 			symbol_516.setName("o");
 			//symbol_516.setMoniker("ocl!OrderedSet{T}!intersection(ocl!Set[T])!o");
-			symbol_516.setType(symbol_267);  // ocl!Set[ocl!OrderedSet{T}?T]
+			symbol_516.setType(symbol_272);  // ocl!Set[ocl!OrderedSet{T}?T]
 			
 			symbol_515.getOwnedParameters().add(symbol_516);
+			symbol_515.setImplementationClass("org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation");
 			symbol_515.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_515);
 		}
@@ -2602,7 +2720,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_517 = PivotFactory.eINSTANCE.createOperation();
 			symbol_517.setName("prepend");
 			//symbol_517.setMoniker("ocl!OrderedSet{T}!prepend(T)");
-			symbol_517.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_517.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_518 = PivotFactory.eINSTANCE.createParameter();
 			symbol_518.setName("object");
@@ -2610,6 +2728,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_518.setType(symbol_121);  // ocl!OrderedSet{T}?T
 			
 			symbol_517.getOwnedParameters().add(symbol_518);
+			symbol_517.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation");
 			symbol_517.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_517);
 		}
@@ -2617,7 +2736,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_519 = PivotFactory.eINSTANCE.createIteration();
 			symbol_519.setName("reject");
 			//symbol_519.setMoniker("ocl!OrderedSet{T}!reject(T|Lambda~T()Boolean)");
-			symbol_519.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_519.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_520 = PivotFactory.eINSTANCE.createParameter();
 			symbol_520.setName("i");
@@ -2626,9 +2745,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_521 = PivotFactory.eINSTANCE.createParameter();
 			symbol_521.setName("body");
 			//symbol_521.setMoniker("ocl!OrderedSet{T}!reject(T|Lambda~T()Boolean)!body");
-			symbol_521.setType(symbol_196);  // Lambda~ocl!OrderedSet{T}?T()Boolean
+			symbol_521.setType(symbol_199);  // Lambda~ocl!OrderedSet{T}?T()Boolean
 			
 			symbol_519.getOwnedParameters().add(symbol_521);
+			symbol_519.setImplementationClass("org.eclipse.ocl.examples.library.iterator.RejectIteration");
 			symbol_519.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_519);
 		}
@@ -2636,8 +2756,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_522 = PivotFactory.eINSTANCE.createOperation();
 			symbol_522.setName("reverse");
 			//symbol_522.setMoniker("ocl!OrderedSet{T}!reverse()");
-			symbol_522.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_522.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
+			symbol_522.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation");
 			symbol_522.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_522);
 		}
@@ -2645,7 +2766,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_523 = PivotFactory.eINSTANCE.createIteration();
 			symbol_523.setName("select");
 			//symbol_523.setMoniker("ocl!OrderedSet{T}!select(T|Lambda~T()Boolean)");
-			symbol_523.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_523.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_524 = PivotFactory.eINSTANCE.createParameter();
 			symbol_524.setName("i");
@@ -2654,9 +2775,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_525 = PivotFactory.eINSTANCE.createParameter();
 			symbol_525.setName("body");
 			//symbol_525.setMoniker("ocl!OrderedSet{T}!select(T|Lambda~T()Boolean)!body");
-			symbol_525.setType(symbol_196);  // Lambda~ocl!OrderedSet{T}?T()Boolean
+			symbol_525.setType(symbol_199);  // Lambda~ocl!OrderedSet{T}?T()Boolean
 			
 			symbol_523.getOwnedParameters().add(symbol_525);
+			symbol_523.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SelectIteration");
 			symbol_523.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_523);
 		}
@@ -2664,7 +2786,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_526 = PivotFactory.eINSTANCE.createOperation();
 			symbol_526.setName("subOrderedSet");
 			//symbol_526.setMoniker("ocl!OrderedSet{T}!subOrderedSet(Integer,Integer)");
-			symbol_526.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_526.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_527 = PivotFactory.eINSTANCE.createParameter();
 			symbol_527.setName("lower");
@@ -2678,6 +2800,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_528.setType(symbol_65);  // Integer
 			
 			symbol_526.getOwnedParameters().add(symbol_528);
+			symbol_526.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation");
 			symbol_526.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedSetSubOrderedSetOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_526);
 		}
@@ -2685,14 +2808,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_529 = PivotFactory.eINSTANCE.createOperation();
 			symbol_529.setName("symmetricDifference");
 			//symbol_529.setMoniker("ocl!OrderedSet{T}!symmetricDifference(ocl!Set[ocl!OclAny])");
-			symbol_529.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_529.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_530 = PivotFactory.eINSTANCE.createParameter();
 			symbol_530.setName("s");
 			//symbol_530.setMoniker("ocl!OrderedSet{T}!symmetricDifference(ocl!Set[ocl!OclAny])!s");
-			symbol_530.setType(symbol_263);  // ocl!Set[ocl!OclAny]
+			symbol_530.setType(symbol_265);  // ocl!Set[ocl!OclAny]
 			
 			symbol_529.getOwnedParameters().add(symbol_530);
+			symbol_529.setImplementationClass("org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation");
 			symbol_529.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_529);
 		}
@@ -2700,14 +2824,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_531 = PivotFactory.eINSTANCE.createOperation();
 			symbol_531.setName("union");
 			//symbol_531.setMoniker("ocl!OrderedSet{T}!union(ocl!OrderedSet[T])");
-			symbol_531.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_531.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_532 = PivotFactory.eINSTANCE.createParameter();
 			symbol_532.setName("o");
 			//symbol_532.setMoniker("ocl!OrderedSet{T}!union(ocl!OrderedSet[T])!o");
-			symbol_532.setType(symbol_252);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
+			symbol_532.setType(symbol_250);  // ocl!OrderedSet[ocl!OrderedSet{T}?T]
 			
 			symbol_531.getOwnedParameters().add(symbol_532);
+			symbol_531.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionUnionOperation");
 			symbol_531.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_531);
 		}
@@ -2715,14 +2840,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_533 = PivotFactory.eINSTANCE.createOperation();
 			symbol_533.setName("union");
 			//symbol_533.setMoniker("ocl!OrderedSet{T}!union(ocl!Set[T])");
-			symbol_533.setType(symbol_267);  // ocl!Set[ocl!OrderedSet{T}?T]
+			symbol_533.setType(symbol_272);  // ocl!Set[ocl!OrderedSet{T}?T]
 			
 			Parameter symbol_534 = PivotFactory.eINSTANCE.createParameter();
 			symbol_534.setName("s");
 			//symbol_534.setMoniker("ocl!OrderedSet{T}!union(ocl!Set[T])!s");
-			symbol_534.setType(symbol_267);  // ocl!Set[ocl!OrderedSet{T}?T]
+			symbol_534.setType(symbol_272);  // ocl!Set[ocl!OrderedSet{T}?T]
 			
 			symbol_533.getOwnedParameters().add(symbol_534);
+			symbol_533.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionUnionOperation");
 			symbol_533.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_118.getOwnedOperations().add(symbol_533);
 		}
@@ -2746,6 +2872,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_535.getOwnedParameters().add(symbol_536);
 			symbol_535.setPrecedence(symbol_4);
+			symbol_535.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericTimesOperation");
 			symbol_535.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericTimesOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_535);
 		}
@@ -2762,6 +2889,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_537.getOwnedParameters().add(symbol_538);
 			symbol_537.setPrecedence(symbol_5);
+			symbol_537.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericPlusOperation");
 			symbol_537.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericPlusOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_537);
 		}
@@ -2778,6 +2906,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_539.getOwnedParameters().add(symbol_540);
 			symbol_539.setPrecedence(symbol_5);
+			symbol_539.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinusOperation");
 			symbol_539.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinusOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_539);
 		}
@@ -2788,6 +2917,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_541.setType(symbol_125);  // Real
 			
 			symbol_541.setPrecedence(symbol_3);
+			symbol_541.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericNegateOperation");
 			symbol_541.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericNegateOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_541);
 		}
@@ -2804,6 +2934,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_542.getOwnedParameters().add(symbol_543);
 			symbol_542.setPrecedence(symbol_4);
+			symbol_542.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericDivideOperation");
 			symbol_542.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericDivideOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_542);
 		}
@@ -2820,6 +2951,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_544.getOwnedParameters().add(symbol_545);
 			symbol_544.setPrecedence(symbol_6);
+			symbol_544.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation");
 			symbol_544.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_544);
 		}
@@ -2836,6 +2968,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_546.getOwnedParameters().add(symbol_547);
 			symbol_546.setPrecedence(symbol_6);
+			symbol_546.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation");
 			symbol_546.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericLessThanEqualOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_546);
 		}
@@ -2852,6 +2985,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_548.getOwnedParameters().add(symbol_549);
 			symbol_548.setPrecedence(symbol_7);
+			symbol_548.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_548.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_548);
 		}
@@ -2868,6 +3002,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_550.getOwnedParameters().add(symbol_551);
 			symbol_550.setPrecedence(symbol_7);
+			symbol_550.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_550.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_550);
 		}
@@ -2884,6 +3019,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_552.getOwnedParameters().add(symbol_553);
 			symbol_552.setPrecedence(symbol_6);
+			symbol_552.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation");
 			symbol_552.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_552);
 		}
@@ -2900,6 +3036,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_554.getOwnedParameters().add(symbol_555);
 			symbol_554.setPrecedence(symbol_6);
+			symbol_554.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation");
 			symbol_554.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericGreaterThanEqualOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_554);
 		}
@@ -2909,6 +3046,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_556.setMoniker("Real!abs()");
 			symbol_556.setType(symbol_125);  // Real
 			
+			symbol_556.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericAbsOperation");
 			symbol_556.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericAbsOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_556);
 		}
@@ -2918,6 +3056,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_557.setMoniker("Real!floor()");
 			symbol_557.setType(symbol_65);  // Integer
 			
+			symbol_557.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericFloorOperation");
 			symbol_557.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericFloorOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_557);
 		}
@@ -2933,6 +3072,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_559.setType(symbol_125);  // Real
 			
 			symbol_558.getOwnedParameters().add(symbol_559);
+			symbol_558.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMaxOperation");
 			symbol_558.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMaxOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_558);
 		}
@@ -2948,6 +3088,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_561.setType(symbol_125);  // Real
 			
 			symbol_560.getOwnedParameters().add(symbol_561);
+			symbol_560.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericMinOperation");
 			symbol_560.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericMinOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_560);
 		}
@@ -2965,9 +3106,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_563 = PivotFactory.eINSTANCE.createParameter();
 			symbol_563.setName("type");
 			//symbol_563.setMoniker("Real!oclAsType{TT}(ocl!Classifier[TT])!type");
-			symbol_563.setType(symbol_161);  // ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
+			symbol_563.setType(symbol_158);  // ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
 			
 			symbol_562.getOwnedParameters().add(symbol_563);
+			symbol_562.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation");
 			symbol_562.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_562);
 		}
@@ -2977,6 +3119,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_564.setMoniker("Real!round()");
 			symbol_564.setType(symbol_65);  // Integer
 			
+			symbol_564.setImplementationClass("org.eclipse.ocl.examples.library.numeric.NumericRoundOperation");
 			symbol_564.setImplementation(org.eclipse.ocl.examples.library.numeric.NumericRoundOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_564);
 		}
@@ -2986,6 +3129,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_565.setMoniker("Real!toString()");
 			symbol_565.setType(symbol_143);  // String
 			
+			symbol_565.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_565.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_125.getOwnedOperations().add(symbol_565);
 		}
@@ -3001,8 +3145,8 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_130.getOwnedParameters().add(symbol_131);
 		
 		symbol_129.setOwnedTemplateSignature(symbol_130);
-		symbol_129.getSuperClasses().add(symbol_245); // ocl!OrderedCollection[ocl!Sequence{T}?T]
-		symbol_129.getSuperClasses().add(symbol_231); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
+		symbol_129.getSuperClasses().add(symbol_242); // ocl!OrderedCollection[ocl!Sequence{T}?T]
+		symbol_129.getSuperClasses().add(symbol_227); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
 		{	// ocl::Sequence::<>() ocl!Sequence{T}!<>(ocl!OclAny)
 			Operation symbol_566 = PivotFactory.eINSTANCE.createOperation();
 			symbol_566.setName("<>");
@@ -3016,6 +3160,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_566.getOwnedParameters().add(symbol_567);
 			symbol_566.setPrecedence(symbol_7);
+			symbol_566.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_566.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_566);
 		}
@@ -3032,6 +3177,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_568.getOwnedParameters().add(symbol_569);
 			symbol_568.setPrecedence(symbol_7);
+			symbol_568.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_568.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_568);
 		}
@@ -3039,7 +3185,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_570 = PivotFactory.eINSTANCE.createOperation();
 			symbol_570.setName("append");
 			//symbol_570.setMoniker("ocl!Sequence{T}!append(T)");
-			symbol_570.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_570.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_571 = PivotFactory.eINSTANCE.createParameter();
 			symbol_571.setName("object");
@@ -3047,6 +3193,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_571.setType(symbol_132);  // ocl!Sequence{T}?T
 			
 			symbol_570.getOwnedParameters().add(symbol_571);
+			symbol_570.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation");
 			symbol_570.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionAppendOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_570);
 		}
@@ -3054,7 +3201,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_572 = PivotFactory.eINSTANCE.createOperation();
 			symbol_572.setName("excluding");
 			//symbol_572.setMoniker("ocl!Sequence{T}!excluding(ocl!OclAny)");
-			symbol_572.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_572.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_573 = PivotFactory.eINSTANCE.createParameter();
 			symbol_573.setName("object");
@@ -3062,6 +3209,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_573.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_572.getOwnedParameters().add(symbol_573);
+			symbol_572.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation");
 			symbol_572.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_572);
 		}
@@ -3074,8 +3222,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_574.setOwnedTemplateSignature(symbol_133);
 			symbol_574.setName("flatten");
 			//symbol_574.setMoniker("ocl!Sequence{T}!flatten{T2}()");
-			symbol_574.setType(symbol_257);  // ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
+			symbol_574.setType(symbol_254);  // ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
 			
+			symbol_574.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation");
 			symbol_574.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_574);
 		}
@@ -3083,7 +3232,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_575 = PivotFactory.eINSTANCE.createOperation();
 			symbol_575.setName("including");
 			//symbol_575.setMoniker("ocl!Sequence{T}!including(T)");
-			symbol_575.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_575.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_576 = PivotFactory.eINSTANCE.createParameter();
 			symbol_576.setName("object");
@@ -3091,6 +3240,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_576.setType(symbol_132);  // ocl!Sequence{T}?T
 			
 			symbol_575.getOwnedParameters().add(symbol_576);
+			symbol_575.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation");
 			symbol_575.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_575);
 		}
@@ -3098,7 +3248,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_577 = PivotFactory.eINSTANCE.createOperation();
 			symbol_577.setName("insertAt");
 			//symbol_577.setMoniker("ocl!Sequence{T}!insertAt(Integer,T)");
-			symbol_577.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_577.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_578 = PivotFactory.eINSTANCE.createParameter();
 			symbol_578.setName("index");
@@ -3112,6 +3262,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_579.setType(symbol_132);  // ocl!Sequence{T}?T
 			
 			symbol_577.getOwnedParameters().add(symbol_579);
+			symbol_577.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation");
 			symbol_577.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionInsertAtOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_577);
 		}
@@ -3119,7 +3270,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_580 = PivotFactory.eINSTANCE.createOperation();
 			symbol_580.setName("prepend");
 			//symbol_580.setMoniker("ocl!Sequence{T}!prepend(T)");
-			symbol_580.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_580.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_581 = PivotFactory.eINSTANCE.createParameter();
 			symbol_581.setName("object");
@@ -3127,6 +3278,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_581.setType(symbol_132);  // ocl!Sequence{T}?T
 			
 			symbol_580.getOwnedParameters().add(symbol_581);
+			symbol_580.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation");
 			symbol_580.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionPrependOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_580);
 		}
@@ -3134,7 +3286,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_582 = PivotFactory.eINSTANCE.createIteration();
 			symbol_582.setName("reject");
 			//symbol_582.setMoniker("ocl!Sequence{T}!reject(T|Lambda~T()Boolean)");
-			symbol_582.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_582.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_583 = PivotFactory.eINSTANCE.createParameter();
 			symbol_583.setName("i");
@@ -3143,9 +3295,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_584 = PivotFactory.eINSTANCE.createParameter();
 			symbol_584.setName("body");
 			//symbol_584.setMoniker("ocl!Sequence{T}!reject(T|Lambda~T()Boolean)!body");
-			symbol_584.setType(symbol_205);  // Lambda~ocl!Sequence{T}?T()Boolean
+			symbol_584.setType(symbol_202);  // Lambda~ocl!Sequence{T}?T()Boolean
 			
 			symbol_582.getOwnedParameters().add(symbol_584);
+			symbol_582.setImplementationClass("org.eclipse.ocl.examples.library.iterator.RejectIteration");
 			symbol_582.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_582);
 		}
@@ -3153,8 +3306,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_585 = PivotFactory.eINSTANCE.createOperation();
 			symbol_585.setName("reverse");
 			//symbol_585.setMoniker("ocl!Sequence{T}!reverse()");
-			symbol_585.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_585.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
+			symbol_585.setImplementationClass("org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation");
 			symbol_585.setImplementation(org.eclipse.ocl.examples.library.collection.OrderedCollectionReverseOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_585);
 		}
@@ -3162,7 +3316,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_586 = PivotFactory.eINSTANCE.createIteration();
 			symbol_586.setName("select");
 			//symbol_586.setMoniker("ocl!Sequence{T}!select(T|Lambda~T()Boolean)");
-			symbol_586.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_586.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_587 = PivotFactory.eINSTANCE.createParameter();
 			symbol_587.setName("i");
@@ -3171,9 +3325,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_588 = PivotFactory.eINSTANCE.createParameter();
 			symbol_588.setName("body");
 			//symbol_588.setMoniker("ocl!Sequence{T}!select(T|Lambda~T()Boolean)!body");
-			symbol_588.setType(symbol_205);  // Lambda~ocl!Sequence{T}?T()Boolean
+			symbol_588.setType(symbol_202);  // Lambda~ocl!Sequence{T}?T()Boolean
 			
 			symbol_586.getOwnedParameters().add(symbol_588);
+			symbol_586.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SelectIteration");
 			symbol_586.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_586);
 		}
@@ -3181,7 +3336,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_589 = PivotFactory.eINSTANCE.createOperation();
 			symbol_589.setName("subSequence");
 			//symbol_589.setMoniker("ocl!Sequence{T}!subSequence(Integer,Integer)");
-			symbol_589.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_589.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_590 = PivotFactory.eINSTANCE.createParameter();
 			symbol_590.setName("lower");
@@ -3195,6 +3350,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_591.setType(symbol_65);  // Integer
 			
 			symbol_589.getOwnedParameters().add(symbol_591);
+			symbol_589.setImplementationClass("org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation");
 			symbol_589.setImplementation(org.eclipse.ocl.examples.library.collection.SequenceSubSequenceOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_589);
 		}
@@ -3202,14 +3358,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_592 = PivotFactory.eINSTANCE.createOperation();
 			symbol_592.setName("union");
 			//symbol_592.setMoniker("ocl!Sequence{T}!union(ocl!Sequence[T])");
-			symbol_592.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_592.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			Parameter symbol_593 = PivotFactory.eINSTANCE.createParameter();
 			symbol_593.setName("s");
 			//symbol_593.setMoniker("ocl!Sequence{T}!union(ocl!Sequence[T])!s");
-			symbol_593.setType(symbol_258);  // ocl!Sequence[ocl!Sequence{T}?T]
+			symbol_593.setType(symbol_256);  // ocl!Sequence[ocl!Sequence{T}?T]
 			
 			symbol_592.getOwnedParameters().add(symbol_593);
+			symbol_592.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionUnionOperation");
 			symbol_592.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionUnionOperation.INSTANCE);
 			symbol_129.getOwnedOperations().add(symbol_592);
 		}
@@ -3225,21 +3382,22 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_137.getOwnedParameters().add(symbol_138);
 		
 		symbol_136.setOwnedTemplateSignature(symbol_137);
-		symbol_136.getSuperClasses().add(symbol_214); // ocl!NonOrderedCollection[ocl!Set{T}?T]
-		symbol_136.getSuperClasses().add(symbol_279); // ocl!UniqueCollection[ocl!Set{T}?T]
+		symbol_136.getSuperClasses().add(symbol_282); // ocl!UniqueCollection[ocl!Set{T}?T]
+		symbol_136.getSuperClasses().add(symbol_211); // ocl!NonOrderedCollection[ocl!Set{T}?T]
 		{	// ocl::Set::-() ocl!Set{T}!-(ocl!Set[ocl!OclAny])
 			Operation symbol_594 = PivotFactory.eINSTANCE.createOperation();
 			symbol_594.setName("-");
 			//symbol_594.setMoniker("ocl!Set{T}!-(ocl!Set[ocl!OclAny])");
-			symbol_594.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_594.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_595 = PivotFactory.eINSTANCE.createParameter();
 			symbol_595.setName("s");
 			//symbol_595.setMoniker("ocl!Set{T}!-(ocl!Set[ocl!OclAny])!s");
-			symbol_595.setType(symbol_263);  // ocl!Set[ocl!OclAny]
+			symbol_595.setType(symbol_265);  // ocl!Set[ocl!OclAny]
 			
 			symbol_594.getOwnedParameters().add(symbol_595);
 			symbol_594.setPrecedence(symbol_5);
+			symbol_594.setImplementationClass("org.eclipse.ocl.examples.library.collection.SetMinusOperation");
 			symbol_594.setImplementation(org.eclipse.ocl.examples.library.collection.SetMinusOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_594);
 		}
@@ -3256,6 +3414,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_596.getOwnedParameters().add(symbol_597);
 			symbol_596.setPrecedence(symbol_7);
+			symbol_596.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_596.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_596);
 		}
@@ -3272,6 +3431,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_598.getOwnedParameters().add(symbol_599);
 			symbol_598.setPrecedence(symbol_7);
+			symbol_598.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_598.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_598);
 		}
@@ -3279,7 +3439,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_600 = PivotFactory.eINSTANCE.createOperation();
 			symbol_600.setName("excluding");
 			//symbol_600.setMoniker("ocl!Set{T}!excluding(ocl!OclAny)");
-			symbol_600.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_600.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_601 = PivotFactory.eINSTANCE.createParameter();
 			symbol_601.setName("object");
@@ -3287,6 +3447,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_601.setType(symbol_80);  // ocl!OclAny
 			
 			symbol_600.getOwnedParameters().add(symbol_601);
+			symbol_600.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation");
 			symbol_600.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionExcludingOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_600);
 		}
@@ -3299,8 +3460,9 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_602.setOwnedTemplateSignature(symbol_140);
 			symbol_602.setName("flatten");
 			//symbol_602.setMoniker("ocl!Set{T}!flatten{T2}()");
-			symbol_602.setType(symbol_262);  // ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
+			symbol_602.setType(symbol_263);  // ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
 			
+			symbol_602.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation");
 			symbol_602.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionFlattenOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_602);
 		}
@@ -3308,7 +3470,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_603 = PivotFactory.eINSTANCE.createOperation();
 			symbol_603.setName("including");
 			//symbol_603.setMoniker("ocl!Set{T}!including(T)");
-			symbol_603.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_603.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_604 = PivotFactory.eINSTANCE.createParameter();
 			symbol_604.setName("object");
@@ -3316,6 +3478,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_604.setType(symbol_139);  // ocl!Set{T}?T
 			
 			symbol_603.getOwnedParameters().add(symbol_604);
+			symbol_603.setImplementationClass("org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation");
 			symbol_603.setImplementation(org.eclipse.ocl.examples.library.collection.CollectionIncludingOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_603);
 		}
@@ -3323,14 +3486,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_605 = PivotFactory.eINSTANCE.createOperation();
 			symbol_605.setName("intersection");
 			//symbol_605.setMoniker("ocl!Set{T}!intersection(ocl!Set[T])");
-			symbol_605.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_605.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_606 = PivotFactory.eINSTANCE.createParameter();
 			symbol_606.setName("s");
 			//symbol_606.setMoniker("ocl!Set{T}!intersection(ocl!Set[T])!s");
-			symbol_606.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_606.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			symbol_605.getOwnedParameters().add(symbol_606);
+			symbol_605.setImplementationClass("org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation");
 			symbol_605.setImplementation(org.eclipse.ocl.examples.library.collection.UniqueCollectionIntersectionOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_605);
 		}
@@ -3338,7 +3502,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_607 = PivotFactory.eINSTANCE.createIteration();
 			symbol_607.setName("reject");
 			//symbol_607.setMoniker("ocl!Set{T}!reject(T|Lambda~T()Boolean)");
-			symbol_607.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_607.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_608 = PivotFactory.eINSTANCE.createParameter();
 			symbol_608.setName("i");
@@ -3347,9 +3511,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_609 = PivotFactory.eINSTANCE.createParameter();
 			symbol_609.setName("body");
 			//symbol_609.setMoniker("ocl!Set{T}!reject(T|Lambda~T()Boolean)!body");
-			symbol_609.setType(symbol_197);  // Lambda~ocl!Set{T}?T()Boolean
+			symbol_609.setType(symbol_198);  // Lambda~ocl!Set{T}?T()Boolean
 			
 			symbol_607.getOwnedParameters().add(symbol_609);
+			symbol_607.setImplementationClass("org.eclipse.ocl.examples.library.iterator.RejectIteration");
 			symbol_607.setImplementation(org.eclipse.ocl.examples.library.iterator.RejectIteration.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_607);
 		}
@@ -3357,7 +3522,7 @@ public class OCLstdlib extends XMLResourceImpl
 			Iteration symbol_610 = PivotFactory.eINSTANCE.createIteration();
 			symbol_610.setName("select");
 			//symbol_610.setMoniker("ocl!Set{T}!select(T|Lambda~T()Boolean)");
-			symbol_610.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_610.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_611 = PivotFactory.eINSTANCE.createParameter();
 			symbol_611.setName("i");
@@ -3366,9 +3531,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_612 = PivotFactory.eINSTANCE.createParameter();
 			symbol_612.setName("body");
 			//symbol_612.setMoniker("ocl!Set{T}!select(T|Lambda~T()Boolean)!body");
-			symbol_612.setType(symbol_197);  // Lambda~ocl!Set{T}?T()Boolean
+			symbol_612.setType(symbol_198);  // Lambda~ocl!Set{T}?T()Boolean
 			
 			symbol_610.getOwnedParameters().add(symbol_612);
+			symbol_610.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SelectIteration");
 			symbol_610.setImplementation(org.eclipse.ocl.examples.library.iterator.SelectIteration.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_610);
 		}
@@ -3376,14 +3542,15 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_613 = PivotFactory.eINSTANCE.createOperation();
 			symbol_613.setName("symmetricDifference");
 			//symbol_613.setMoniker("ocl!Set{T}!symmetricDifference(ocl!Set[ocl!OclAny])");
-			symbol_613.setType(symbol_269);  // ocl!Set[ocl!Set{T}?T]
+			symbol_613.setType(symbol_270);  // ocl!Set[ocl!Set{T}?T]
 			
 			Parameter symbol_614 = PivotFactory.eINSTANCE.createParameter();
 			symbol_614.setName("s");
 			//symbol_614.setMoniker("ocl!Set{T}!symmetricDifference(ocl!Set[ocl!OclAny])!s");
-			symbol_614.setType(symbol_263);  // ocl!Set[ocl!OclAny]
+			symbol_614.setType(symbol_265);  // ocl!Set[ocl!OclAny]
 			
 			symbol_613.getOwnedParameters().add(symbol_614);
+			symbol_613.setImplementationClass("org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation");
 			symbol_613.setImplementation(org.eclipse.ocl.examples.library.collection.SetSymmetricDifferenceOperation.INSTANCE);
 			symbol_136.getOwnedOperations().add(symbol_613);
 		}
@@ -3407,6 +3574,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_615.getOwnedParameters().add(symbol_616);
 			symbol_615.setPrecedence(symbol_5);
+			symbol_615.setImplementationClass("org.eclipse.ocl.examples.library.string.StringConcatOperation");
 			symbol_615.setImplementation(org.eclipse.ocl.examples.library.string.StringConcatOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_615);
 		}
@@ -3423,6 +3591,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_617.getOwnedParameters().add(symbol_618);
 			symbol_617.setPrecedence(symbol_6);
+			symbol_617.setImplementationClass("org.eclipse.ocl.examples.library.string.StringLessThanOperation");
 			symbol_617.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_617);
 		}
@@ -3439,6 +3608,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_619.getOwnedParameters().add(symbol_620);
 			symbol_619.setPrecedence(symbol_6);
+			symbol_619.setImplementationClass("org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation");
 			symbol_619.setImplementation(org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_619);
 		}
@@ -3455,6 +3625,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_621.getOwnedParameters().add(symbol_622);
 			symbol_621.setPrecedence(symbol_7);
+			symbol_621.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation");
 			symbol_621.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_621);
 		}
@@ -3471,6 +3642,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_623.getOwnedParameters().add(symbol_624);
 			symbol_623.setPrecedence(symbol_7);
+			symbol_623.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation");
 			symbol_623.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_623);
 		}
@@ -3487,6 +3659,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_625.getOwnedParameters().add(symbol_626);
 			symbol_625.setPrecedence(symbol_6);
+			symbol_625.setImplementationClass("org.eclipse.ocl.examples.library.string.StringGreaterThanOperation");
 			symbol_625.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_625);
 		}
@@ -3503,6 +3676,7 @@ public class OCLstdlib extends XMLResourceImpl
 			
 			symbol_627.getOwnedParameters().add(symbol_628);
 			symbol_627.setPrecedence(symbol_6);
+			symbol_627.setImplementationClass("org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation");
 			symbol_627.setImplementation(org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_627);
 		}
@@ -3518,6 +3692,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_630.setType(symbol_65);  // Integer
 			
 			symbol_629.getOwnedParameters().add(symbol_630);
+			symbol_629.setImplementationClass("org.eclipse.ocl.examples.library.string.StringAtOperation");
 			symbol_629.setImplementation(org.eclipse.ocl.examples.library.string.StringAtOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_629);
 		}
@@ -3525,8 +3700,9 @@ public class OCLstdlib extends XMLResourceImpl
 			Operation symbol_631 = PivotFactory.eINSTANCE.createOperation();
 			symbol_631.setName("characters");
 			//symbol_631.setMoniker("String!characters()");
-			symbol_631.setType(symbol_254);  // ocl!Sequence[String]
+			symbol_631.setType(symbol_255);  // ocl!Sequence[String]
 			
+			symbol_631.setImplementationClass("org.eclipse.ocl.examples.library.string.StringCharactersOperation");
 			symbol_631.setImplementation(org.eclipse.ocl.examples.library.string.StringCharactersOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_631);
 		}
@@ -3542,6 +3718,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_633.setType(symbol_143);  // String
 			
 			symbol_632.getOwnedParameters().add(symbol_633);
+			symbol_632.setImplementationClass("org.eclipse.ocl.examples.library.string.StringConcatOperation");
 			symbol_632.setImplementation(org.eclipse.ocl.examples.library.string.StringConcatOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_632);
 		}
@@ -3557,6 +3734,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_635.setType(symbol_143);  // String
 			
 			symbol_634.getOwnedParameters().add(symbol_635);
+			symbol_634.setImplementationClass("org.eclipse.ocl.examples.library.string.StringEqualsIgnoreCaseOperation");
 			symbol_634.setImplementation(org.eclipse.ocl.examples.library.string.StringEqualsIgnoreCaseOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_634);
 		}
@@ -3572,6 +3750,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_637.setType(symbol_143);  // String
 			
 			symbol_636.getOwnedParameters().add(symbol_637);
+			symbol_636.setImplementationClass("org.eclipse.ocl.examples.library.string.StringIndexOfOperation");
 			symbol_636.setImplementation(org.eclipse.ocl.examples.library.string.StringIndexOfOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_636);
 		}
@@ -3581,6 +3760,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_638.setMoniker("String!size()");
 			symbol_638.setType(symbol_65);  // Integer
 			
+			symbol_638.setImplementationClass("org.eclipse.ocl.examples.library.string.StringSizeOperation");
 			symbol_638.setImplementation(org.eclipse.ocl.examples.library.string.StringSizeOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_638);
 		}
@@ -3602,6 +3782,7 @@ public class OCLstdlib extends XMLResourceImpl
 			symbol_641.setType(symbol_65);  // Integer
 			
 			symbol_639.getOwnedParameters().add(symbol_641);
+			symbol_639.setImplementationClass("org.eclipse.ocl.examples.library.string.StringSubstringOperation");
 			symbol_639.setImplementation(org.eclipse.ocl.examples.library.string.StringSubstringOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_639);
 		}
@@ -3611,6 +3792,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_642.setMoniker("String!toBoolean()");
 			symbol_642.setType(symbol_19);  // Boolean
 			
+			symbol_642.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToBooleanOperation");
 			symbol_642.setImplementation(org.eclipse.ocl.examples.library.string.StringToBooleanOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_642);
 		}
@@ -3620,6 +3802,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_643.setMoniker("String!toInteger()");
 			symbol_643.setType(symbol_65);  // Integer
 			
+			symbol_643.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToIntegerOperation");
 			symbol_643.setImplementation(org.eclipse.ocl.examples.library.string.StringToIntegerOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_643);
 		}
@@ -3629,6 +3812,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_644.setMoniker("String!toLower()");
 			symbol_644.setType(symbol_143);  // String
 			
+			symbol_644.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation");
 			symbol_644.setImplementation(org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_644);
 		}
@@ -3638,6 +3822,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_645.setMoniker("String!toLowerCase()");
 			symbol_645.setType(symbol_143);  // String
 			
+			symbol_645.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation");
 			symbol_645.setImplementation(org.eclipse.ocl.examples.library.string.StringToLowerCaseOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_645);
 		}
@@ -3647,6 +3832,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_646.setMoniker("String!toReal()");
 			symbol_646.setType(symbol_125);  // Real
 			
+			symbol_646.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToRealOperation");
 			symbol_646.setImplementation(org.eclipse.ocl.examples.library.string.StringToRealOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_646);
 		}
@@ -3656,6 +3842,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_647.setMoniker("String!toString()");
 			symbol_647.setType(symbol_143);  // String
 			
+			symbol_647.setImplementationClass("org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation");
 			symbol_647.setImplementation(org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_647);
 		}
@@ -3665,6 +3852,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_648.setMoniker("String!toUpper()");
 			symbol_648.setType(symbol_143);  // String
 			
+			symbol_648.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation");
 			symbol_648.setImplementation(org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_648);
 		}
@@ -3674,6 +3862,7 @@ public class OCLstdlib extends XMLResourceImpl
 			//symbol_649.setMoniker("String!toUpperCase()");
 			symbol_649.setType(symbol_143);  // String
 			
+			symbol_649.setImplementationClass("org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation");
 			symbol_649.setImplementation(org.eclipse.ocl.examples.library.string.StringToUpperCaseOperation.INSTANCE);
 			symbol_143.getOwnedOperations().add(symbol_649);
 		}
@@ -3696,12 +3885,12 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_146.getOwnedParameters().add(symbol_147);
 		
 		symbol_145.setOwnedTemplateSignature(symbol_146);
-		symbol_145.getSuperClasses().add(symbol_168); // ocl!Collection[ocl!UniqueCollection{T}?T]
+		symbol_145.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!UniqueCollection{T}?T]
 		{	// ocl::UniqueCollection::sortedBy() ocl!UniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)
 			Iteration symbol_650 = PivotFactory.eINSTANCE.createIteration();
 			symbol_650.setName("sortedBy");
 			//symbol_650.setMoniker("ocl!UniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)");
-			symbol_650.setType(symbol_250);  // ocl!OrderedSet[ocl!UniqueCollection{T}?T]
+			symbol_650.setType(symbol_248);  // ocl!OrderedSet[ocl!UniqueCollection{T}?T]
 			
 			Parameter symbol_651 = PivotFactory.eINSTANCE.createParameter();
 			symbol_651.setName("i");
@@ -3710,9 +3899,10 @@ public class OCLstdlib extends XMLResourceImpl
 			Parameter symbol_652 = PivotFactory.eINSTANCE.createParameter();
 			symbol_652.setName("body");
 			//symbol_652.setMoniker("ocl!UniqueCollection{T}!sortedBy(T|Lambda~T()ocl!OclAny)!body");
-			symbol_652.setType(symbol_202);  // Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
+			symbol_652.setType(symbol_208);  // Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
 			
 			symbol_650.getOwnedParameters().add(symbol_652);
+			symbol_650.setImplementationClass("org.eclipse.ocl.examples.library.iterator.SortedByIteration");
 			symbol_650.setImplementation(org.eclipse.ocl.examples.library.iterator.SortedByIteration.INSTANCE);
 			symbol_145.getOwnedOperations().add(symbol_650);
 		}
@@ -3736,104 +3926,104 @@ public class OCLstdlib extends XMLResourceImpl
 		//symbol_151.setMoniker("$orphanage!$orphanage");
 		symbol_150.getOwnedTypes().add(symbol_151);
 		//
-		// ocl::$orphanage::Bag ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::Bag ocl!Bag[ocl!NonOrderedCollection{T}?T]
 		//
 		symbol_152.setName("Bag");
-		//symbol_152.setMoniker("ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_152.setElementType(symbol_72);
+		//symbol_152.setMoniker("ocl!Bag[ocl!NonOrderedCollection{T}?T]");
+		symbol_152.setElementType(symbol_69);
 		{
 			TemplateBinding symbol_653 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_653.setSignature(symbol_13);
 			{
 				TemplateParameterSubstitution symbol_654 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_654.setFormal(symbol_14);	
-				symbol_654.setActual(symbol_72);	
+				symbol_654.setActual(symbol_69);	
 				symbol_653.getParameterSubstitutions().add(symbol_654);
 			}
 			symbol_152.getTemplateBindings().add(symbol_653);
 		}
-		symbol_152.getSuperClasses().add(symbol_229); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
-		symbol_152.getSuperClasses().add(symbol_216); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_152.getSuperClasses().add(symbol_223); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
+		symbol_152.getSuperClasses().add(symbol_228); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_152);
 		//
-		// ocl::$orphanage::Bag ocl!Bag[ocl!Bag{T}?T]
+		// ocl::$orphanage::Bag ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
 		//
 		symbol_153.setName("Bag");
-		//symbol_153.setMoniker("ocl!Bag[ocl!Bag{T}?T]");
-		symbol_153.setElementType(symbol_15);
+		//symbol_153.setMoniker("ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]");
+		symbol_153.setElementType(symbol_18);
 		{
 			TemplateBinding symbol_655 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_655.setSignature(symbol_13);
 			{
 				TemplateParameterSubstitution symbol_656 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_656.setFormal(symbol_14);	
-				symbol_656.setActual(symbol_15);	
+				symbol_656.setActual(symbol_18);	
 				symbol_655.getParameterSubstitutions().add(symbol_656);
 			}
 			symbol_153.getTemplateBindings().add(symbol_655);
 		}
-		symbol_153.getSuperClasses().add(symbol_233); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
-		symbol_153.getSuperClasses().add(symbol_220); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
+		symbol_153.getSuperClasses().add(symbol_212); // ocl!NonOrderedCollection[ocl!Bag{T}!flatten{T2}()?T2]
+		symbol_153.getSuperClasses().add(symbol_230); // ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_153);
 		//
-		// ocl::$orphanage::Bag ocl!Bag[ocl!Collection{T}?T]
+		// ocl::$orphanage::Bag ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_154.setName("Bag");
-		//symbol_154.setMoniker("ocl!Bag[ocl!Collection{T}?T]");
-		symbol_154.setElementType(symbol_39);
+		//symbol_154.setMoniker("ocl!Bag[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_154.setElementType(symbol_72);
 		{
 			TemplateBinding symbol_657 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_657.setSignature(symbol_13);
 			{
 				TemplateParameterSubstitution symbol_658 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_658.setFormal(symbol_14);	
-				symbol_658.setActual(symbol_39);	
+				symbol_658.setActual(symbol_72);	
 				symbol_657.getParameterSubstitutions().add(symbol_658);
 			}
 			symbol_154.getTemplateBindings().add(symbol_657);
 		}
-		symbol_154.getSuperClasses().add(symbol_235); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
-		symbol_154.getSuperClasses().add(symbol_226); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		symbol_154.getSuperClasses().add(symbol_214); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_154.getSuperClasses().add(symbol_233); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_154);
 		//
-		// ocl::$orphanage::Bag ocl!Bag[ocl!NonOrderedCollection{T}?T]
+		// ocl::$orphanage::Bag ocl!Bag[ocl!Collection{T}?T]
 		//
 		symbol_155.setName("Bag");
-		//symbol_155.setMoniker("ocl!Bag[ocl!NonOrderedCollection{T}?T]");
-		symbol_155.setElementType(symbol_69);
+		//symbol_155.setMoniker("ocl!Bag[ocl!Collection{T}?T]");
+		symbol_155.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_659 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_659.setSignature(symbol_13);
 			{
 				TemplateParameterSubstitution symbol_660 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_660.setFormal(symbol_14);	
-				symbol_660.setActual(symbol_69);	
+				symbol_660.setActual(symbol_39);	
 				symbol_659.getParameterSubstitutions().add(symbol_660);
 			}
 			symbol_155.getTemplateBindings().add(symbol_659);
 		}
-		symbol_155.getSuperClasses().add(symbol_227); // ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
-		symbol_155.getSuperClasses().add(symbol_223); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
+		symbol_155.getSuperClasses().add(symbol_219); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		symbol_155.getSuperClasses().add(symbol_236); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_155);
 		//
-		// ocl::$orphanage::Bag ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Bag ocl!Bag[ocl!Bag{T}?T]
 		//
 		symbol_156.setName("Bag");
-		//symbol_156.setMoniker("ocl!Bag[ocl!Bag{T}!flatten{T2}()?T2]");
-		symbol_156.setElementType(symbol_18);
+		//symbol_156.setMoniker("ocl!Bag[ocl!Bag{T}?T]");
+		symbol_156.setElementType(symbol_15);
 		{
 			TemplateBinding symbol_661 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_661.setSignature(symbol_13);
 			{
 				TemplateParameterSubstitution symbol_662 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_662.setFormal(symbol_14);	
-				symbol_662.setActual(symbol_18);	
+				symbol_662.setActual(symbol_15);	
 				symbol_661.getParameterSubstitutions().add(symbol_662);
 			}
 			symbol_156.getTemplateBindings().add(symbol_661);
 		}
-		symbol_156.getSuperClasses().add(symbol_212); // ocl!NonOrderedCollection[ocl!Bag{T}!flatten{T2}()?T2]
-		symbol_156.getSuperClasses().add(symbol_228); // ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
+		symbol_156.getSuperClasses().add(symbol_237); // ocl!NonUniqueCollection[ocl!Bag{T}?T]
+		symbol_156.getSuperClasses().add(symbol_213); // ocl!NonOrderedCollection[ocl!Bag{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_156);
 		//
 		// ocl::$orphanage::Classifier ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]
@@ -3855,18 +4045,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_157.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_157);
 		//
-		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
+		// ocl::$orphanage::Classifier ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
 		//
 		symbol_158.setName("Classifier");
-		//symbol_158.setMoniker("ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]");
-		symbol_158.setInstanceType(symbol_89);
+		//symbol_158.setMoniker("ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]");
+		symbol_158.setInstanceType(symbol_128);
 		{
 			TemplateBinding symbol_665 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_665.setSignature(symbol_24);
 			{
 				TemplateParameterSubstitution symbol_666 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_666.setFormal(symbol_25);	
-				symbol_666.setActual(symbol_89);	
+				symbol_666.setActual(symbol_128);	
 				symbol_665.getParameterSubstitutions().add(symbol_666);
 			}
 			symbol_158.getTemplateBindings().add(symbol_665);
@@ -3893,18 +4083,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_159.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_159);
 		//
-		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
+		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
 		//
 		symbol_160.setName("Classifier");
-		//symbol_160.setMoniker("ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]");
-		symbol_160.setInstanceType(symbol_92);
+		//symbol_160.setMoniker("ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]");
+		symbol_160.setInstanceType(symbol_95);
 		{
 			TemplateBinding symbol_669 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_669.setSignature(symbol_24);
 			{
 				TemplateParameterSubstitution symbol_670 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_670.setFormal(symbol_25);	
-				symbol_670.setActual(symbol_92);	
+				symbol_670.setActual(symbol_95);	
 				symbol_669.getParameterSubstitutions().add(symbol_670);
 			}
 			symbol_160.getTemplateBindings().add(symbol_669);
@@ -3912,18 +4102,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_160.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_160);
 		//
-		// ocl::$orphanage::Classifier ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]
+		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
 		//
 		symbol_161.setName("Classifier");
-		//symbol_161.setMoniker("ocl!Classifier[Real!oclAsType{TT}(ocl!Classifier[TT])?TT]");
-		symbol_161.setInstanceType(symbol_128);
+		//symbol_161.setMoniker("ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]");
+		symbol_161.setInstanceType(symbol_86);
 		{
 			TemplateBinding symbol_671 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_671.setSignature(symbol_24);
 			{
 				TemplateParameterSubstitution symbol_672 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_672.setFormal(symbol_25);	
-				symbol_672.setActual(symbol_128);	
+				symbol_672.setActual(symbol_86);	
 				symbol_671.getParameterSubstitutions().add(symbol_672);
 			}
 			symbol_161.getTemplateBindings().add(symbol_671);
@@ -3931,18 +4121,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_161.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_161);
 		//
-		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]
+		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]
 		//
 		symbol_162.setName("Classifier");
-		//symbol_162.setMoniker("ocl!Classifier[ocl!OclAny!oclAsType{TT}(ocl!Classifier[TT])?TT]");
-		symbol_162.setInstanceType(symbol_86);
+		//symbol_162.setMoniker("ocl!Classifier[ocl!OclAny!oclIsKindOf{T}(ocl!Classifier[T])?T]");
+		symbol_162.setInstanceType(symbol_89);
 		{
 			TemplateBinding symbol_673 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_673.setSignature(symbol_24);
 			{
 				TemplateParameterSubstitution symbol_674 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_674.setFormal(symbol_25);	
-				symbol_674.setActual(symbol_86);	
+				symbol_674.setActual(symbol_89);	
 				symbol_673.getParameterSubstitutions().add(symbol_674);
 			}
 			symbol_162.getTemplateBindings().add(symbol_673);
@@ -3950,18 +4140,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_162.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_162);
 		//
-		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Classifier ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]
 		//
 		symbol_163.setName("Classifier");
-		//symbol_163.setMoniker("ocl!Classifier[ocl!OclAny!oclType{OclSelf}()?OclSelf]");
-		symbol_163.setInstanceType(symbol_95);
+		//symbol_163.setMoniker("ocl!Classifier[ocl!OclAny!oclIsTypeOf{T}(ocl!Classifier[T])?T]");
+		symbol_163.setInstanceType(symbol_92);
 		{
 			TemplateBinding symbol_675 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_675.setSignature(symbol_24);
 			{
 				TemplateParameterSubstitution symbol_676 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_676.setFormal(symbol_25);	
-				symbol_676.setActual(symbol_95);	
+				symbol_676.setActual(symbol_92);	
 				symbol_675.getParameterSubstitutions().add(symbol_676);
 			}
 			symbol_163.getTemplateBindings().add(symbol_675);
@@ -3969,18 +4159,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_163.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_163);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
 		//
 		symbol_164.setName("Collection");
-		//symbol_164.setMoniker("ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
-		symbol_164.setElementType(symbol_64);
+		//symbol_164.setMoniker("ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]");
+		symbol_164.setElementType(symbol_18);
 		{
 			TemplateBinding symbol_677 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_677.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_678 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_678.setFormal(symbol_38);	
-				symbol_678.setActual(symbol_64);	
+				symbol_678.setActual(symbol_18);	
 				symbol_677.getParameterSubstitutions().add(symbol_678);
 			}
 			symbol_164.getTemplateBindings().add(symbol_677);
@@ -3988,18 +4178,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_164.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_164);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Sequence{T}?T]
 		//
 		symbol_165.setName("Collection");
-		//symbol_165.setMoniker("ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]");
-		symbol_165.setElementType(symbol_135);
+		//symbol_165.setMoniker("ocl!Collection[ocl!Sequence{T}?T]");
+		symbol_165.setElementType(symbol_132);
 		{
 			TemplateBinding symbol_679 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_679.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_680 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_680.setFormal(symbol_38);	
-				symbol_680.setActual(symbol_135);	
+				symbol_680.setActual(symbol_132);	
 				symbol_679.getParameterSubstitutions().add(symbol_680);
 			}
 			symbol_165.getTemplateBindings().add(symbol_679);
@@ -4007,18 +4197,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_165.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_165);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
+		// ocl::$orphanage::Collection ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		//
 		symbol_166.setName("Collection");
-		//symbol_166.setMoniker("ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]");
-		symbol_166.setElementType(symbol_54);
+		//symbol_166.setMoniker("ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
+		symbol_166.setElementType(symbol_274);
 		{
 			TemplateBinding symbol_681 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_681.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_682 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_682.setFormal(symbol_38);	
-				symbol_682.setActual(symbol_54);	
+				symbol_682.setActual(symbol_274);	
 				symbol_681.getParameterSubstitutions().add(symbol_682);
 			}
 			symbol_166.getTemplateBindings().add(symbol_681);
@@ -4026,18 +4216,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_166.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_166);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_167.setName("Collection");
-		//symbol_167.setMoniker("ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
-		symbol_167.setElementType(symbol_107);
+		//symbol_167.setMoniker("ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
+		symbol_167.setElementType(symbol_64);
 		{
 			TemplateBinding symbol_683 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_683.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_684 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_684.setFormal(symbol_38);	
-				symbol_684.setActual(symbol_107);	
+				symbol_684.setActual(symbol_64);	
 				symbol_683.getParameterSubstitutions().add(symbol_684);
 			}
 			symbol_167.getTemplateBindings().add(symbol_683);
@@ -4045,18 +4235,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_167.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_167);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!UniqueCollection{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OclAny]
 		//
 		symbol_168.setName("Collection");
-		//symbol_168.setMoniker("ocl!Collection[ocl!UniqueCollection{T}?T]");
-		symbol_168.setElementType(symbol_148);
+		//symbol_168.setMoniker("ocl!Collection[ocl!OclAny]");
+		symbol_168.setElementType(symbol_80);
 		{
 			TemplateBinding symbol_685 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_685.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_686 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_686.setFormal(symbol_38);	
-				symbol_686.setActual(symbol_148);	
+				symbol_686.setActual(symbol_80);	
 				symbol_685.getParameterSubstitutions().add(symbol_686);
 			}
 			symbol_168.getTemplateBindings().add(symbol_685);
@@ -4064,18 +4254,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_168.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_168);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_169.setName("Collection");
-		//symbol_169.setMoniker("ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_169.setElementType(symbol_114);
+		//symbol_169.setMoniker("ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_169.setElementType(symbol_42);
 		{
 			TemplateBinding symbol_687 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_687.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_688 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_688.setFormal(symbol_38);	
-				symbol_688.setActual(symbol_114);	
+				symbol_688.setActual(symbol_42);	
 				symbol_687.getParameterSubstitutions().add(symbol_688);
 			}
 			symbol_169.getTemplateBindings().add(symbol_687);
@@ -4083,18 +4273,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_169.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_169);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Set{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedSet{T}?T]
 		//
 		symbol_170.setName("Collection");
-		//symbol_170.setMoniker("ocl!Collection[ocl!Set{T}?T]");
-		symbol_170.setElementType(symbol_139);
+		//symbol_170.setMoniker("ocl!Collection[ocl!OrderedSet{T}?T]");
+		symbol_170.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_689 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_689.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_690 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_690.setFormal(symbol_38);	
-				symbol_690.setActual(symbol_139);	
+				symbol_690.setActual(symbol_121);	
 				symbol_689.getParameterSubstitutions().add(symbol_690);
 			}
 			symbol_170.getTemplateBindings().add(symbol_689);
@@ -4102,18 +4292,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_170.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_170);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!NonUniqueCollection{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
 		//
 		symbol_171.setName("Collection");
-		//symbol_171.setMoniker("ocl!Collection[ocl!NonUniqueCollection{T}?T]");
-		symbol_171.setElementType(symbol_79);
+		//symbol_171.setMoniker("ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]");
+		symbol_171.setElementType(symbol_135);
 		{
 			TemplateBinding symbol_691 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_691.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_692 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_692.setFormal(symbol_38);	
-				symbol_692.setActual(symbol_79);	
+				symbol_692.setActual(symbol_135);	
 				symbol_691.getParameterSubstitutions().add(symbol_692);
 			}
 			symbol_171.getTemplateBindings().add(symbol_691);
@@ -4121,18 +4311,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_171.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_171);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
 		//
 		symbol_172.setName("Collection");
-		//symbol_172.setMoniker("ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
-		symbol_172.setElementType(symbol_83);
+		//symbol_172.setMoniker("ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]");
+		symbol_172.setElementType(symbol_48);
 		{
 			TemplateBinding symbol_693 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_693.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_694 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_694.setFormal(symbol_38);	
-				symbol_694.setActual(symbol_83);	
+				symbol_694.setActual(symbol_48);	
 				symbol_693.getParameterSubstitutions().add(symbol_694);
 			}
 			symbol_172.getTemplateBindings().add(symbol_693);
@@ -4140,18 +4330,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_172.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_172);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[String]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}?T]
 		//
 		symbol_173.setName("Collection");
-		//symbol_173.setMoniker("ocl!Collection[String]");
-		symbol_173.setElementType(symbol_143);
+		//symbol_173.setMoniker("ocl!Collection[ocl!Collection{T}?T]");
+		symbol_173.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_695 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_695.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_696 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_696.setFormal(symbol_38);	
-				symbol_696.setActual(symbol_143);	
+				symbol_696.setActual(symbol_39);	
 				symbol_695.getParameterSubstitutions().add(symbol_696);
 			}
 			symbol_173.getTemplateBindings().add(symbol_695);
@@ -4159,18 +4349,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_173.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_173);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Bag{T}?T]
 		//
 		symbol_174.setName("Collection");
-		//symbol_174.setMoniker("ocl!Collection[ocl!Collection{T}!excludesAll{T2}(ocl!Collection[T2])?T2]");
-		symbol_174.setElementType(symbol_48);
+		//symbol_174.setMoniker("ocl!Collection[ocl!Bag{T}?T]");
+		symbol_174.setElementType(symbol_15);
 		{
 			TemplateBinding symbol_697 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_697.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_698 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_698.setFormal(symbol_38);	
-				symbol_698.setActual(symbol_48);	
+				symbol_698.setActual(symbol_15);	
 				symbol_697.getParameterSubstitutions().add(symbol_698);
 			}
 			symbol_174.getTemplateBindings().add(symbol_697);
@@ -4178,18 +4368,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_174.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_174);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!NonUniqueCollection{T}?T]
 		//
 		symbol_175.setName("Collection");
-		//symbol_175.setMoniker("ocl!Collection[ocl!OrderedSet{T}?T]");
-		symbol_175.setElementType(symbol_121);
+		//symbol_175.setMoniker("ocl!Collection[ocl!NonUniqueCollection{T}?T]");
+		symbol_175.setElementType(symbol_79);
 		{
 			TemplateBinding symbol_699 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_699.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_700 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_700.setFormal(symbol_38);	
-				symbol_700.setActual(symbol_121);	
+				symbol_700.setActual(symbol_79);	
 				symbol_699.getParameterSubstitutions().add(symbol_700);
 			}
 			symbol_175.getTemplateBindings().add(symbol_699);
@@ -4197,18 +4387,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_175.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_175);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Sequence{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_176.setName("Collection");
-		//symbol_176.setMoniker("ocl!Collection[ocl!Sequence{T}?T]");
-		symbol_176.setElementType(symbol_132);
+		//symbol_176.setMoniker("ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
+		symbol_176.setElementType(symbol_100);
 		{
 			TemplateBinding symbol_701 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_701.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_702 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_702.setFormal(symbol_38);	
-				symbol_702.setActual(symbol_132);	
+				symbol_702.setActual(symbol_100);	
 				symbol_701.getParameterSubstitutions().add(symbol_702);
 			}
 			symbol_176.getTemplateBindings().add(symbol_701);
@@ -4216,18 +4406,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_176.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_176);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		//
 		symbol_177.setName("Collection");
-		//symbol_177.setMoniker("ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_177.setElementType(symbol_72);
+		//symbol_177.setMoniker("ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
+		symbol_177.setElementType(symbol_157);
 		{
 			TemplateBinding symbol_703 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_703.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_704 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_704.setFormal(symbol_38);	
-				symbol_704.setActual(symbol_72);	
+				symbol_704.setActual(symbol_157);	
 				symbol_703.getParameterSubstitutions().add(symbol_704);
 			}
 			symbol_177.getTemplateBindings().add(symbol_703);
@@ -4235,18 +4425,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_177.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_177);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_178.setName("Collection");
-		//symbol_178.setMoniker("ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]");
-		symbol_178.setElementType(symbol_142);
+		//symbol_178.setMoniker("ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_178.setElementType(symbol_72);
 		{
 			TemplateBinding symbol_705 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_705.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_706 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_706.setFormal(symbol_38);	
-				symbol_706.setActual(symbol_142);	
+				symbol_706.setActual(symbol_72);	
 				symbol_705.getParameterSubstitutions().add(symbol_706);
 			}
 			symbol_178.getTemplateBindings().add(symbol_705);
@@ -4254,18 +4444,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_178.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_178);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_179.setName("Collection");
-		//symbol_179.setMoniker("ocl!Collection[ocl!Collection{T}?T]");
-		symbol_179.setElementType(symbol_39);
+		//symbol_179.setMoniker("ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_179.setElementType(symbol_114);
 		{
 			TemplateBinding symbol_707 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_707.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_708 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_708.setFormal(symbol_38);	
-				symbol_708.setActual(symbol_39);	
+				symbol_708.setActual(symbol_114);	
 				symbol_707.getParameterSubstitutions().add(symbol_708);
 			}
 			symbol_179.getTemplateBindings().add(symbol_707);
@@ -4273,18 +4463,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_179.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_179);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Set{T}?T]
 		//
 		symbol_180.setName("Collection");
-		//symbol_180.setMoniker("ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]");
-		symbol_180.setElementType(symbol_18);
+		//symbol_180.setMoniker("ocl!Collection[ocl!Set{T}?T]");
+		symbol_180.setElementType(symbol_139);
 		{
 			TemplateBinding symbol_709 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_709.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_710 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_710.setFormal(symbol_38);	
-				symbol_710.setActual(symbol_18);	
+				symbol_710.setActual(symbol_139);	
 				symbol_709.getParameterSubstitutions().add(symbol_710);
 			}
 			symbol_180.getTemplateBindings().add(symbol_709);
@@ -4292,18 +4482,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_180.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_180);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedCollection{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!UniqueCollection{T}?T]
 		//
 		symbol_181.setName("Collection");
-		//symbol_181.setMoniker("ocl!Collection[ocl!OrderedCollection{T}?T]");
-		symbol_181.setElementType(symbol_111);
+		//symbol_181.setMoniker("ocl!Collection[ocl!UniqueCollection{T}?T]");
+		symbol_181.setElementType(symbol_148);
 		{
 			TemplateBinding symbol_711 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_711.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_712 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_712.setFormal(symbol_38);	
-				symbol_712.setActual(symbol_111);	
+				symbol_712.setActual(symbol_148);	
 				symbol_711.getParameterSubstitutions().add(symbol_712);
 			}
 			symbol_181.getTemplateBindings().add(symbol_711);
@@ -4311,18 +4501,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_181.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_181);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OclAny]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
 		//
 		symbol_182.setName("Collection");
-		//symbol_182.setMoniker("ocl!Collection[ocl!OclAny]");
-		symbol_182.setElementType(symbol_80);
+		//symbol_182.setMoniker("ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]");
+		symbol_182.setElementType(symbol_142);
 		{
 			TemplateBinding symbol_713 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_713.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_714 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_714.setFormal(symbol_38);	
-				symbol_714.setActual(symbol_80);	
+				symbol_714.setActual(symbol_142);	
 				symbol_713.getParameterSubstitutions().add(symbol_714);
 			}
 			symbol_182.getTemplateBindings().add(symbol_713);
@@ -4330,18 +4520,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_182.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_182);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedCollection{T}?T]
 		//
 		symbol_183.setName("Collection");
-		//symbol_183.setMoniker("ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
-		symbol_183.setElementType(symbol_29);
+		//symbol_183.setMoniker("ocl!Collection[ocl!OrderedCollection{T}?T]");
+		symbol_183.setElementType(symbol_111);
 		{
 			TemplateBinding symbol_715 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_715.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_716 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_716.setFormal(symbol_38);	
-				symbol_716.setActual(symbol_29);	
+				symbol_716.setActual(symbol_111);	
 				symbol_715.getParameterSubstitutions().add(symbol_716);
 			}
 			symbol_183.getTemplateBindings().add(symbol_715);
@@ -4368,18 +4558,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_184.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_184);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		//
 		symbol_185.setName("Collection");
-		//symbol_185.setMoniker("ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]");
-		symbol_185.setElementType(symbol_60);
+		//symbol_185.setMoniker("ocl!Collection[ocl!NonOrderedCollection{T}?T]");
+		symbol_185.setElementType(symbol_69);
 		{
 			TemplateBinding symbol_719 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_719.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_720 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_720.setFormal(symbol_38);	
-				symbol_720.setActual(symbol_60);	
+				symbol_720.setActual(symbol_69);	
 				symbol_719.getParameterSubstitutions().add(symbol_720);
 			}
 			symbol_185.getTemplateBindings().add(symbol_719);
@@ -4406,18 +4596,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_186.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_186);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		//
 		symbol_187.setName("Collection");
-		//symbol_187.setMoniker("ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
-		symbol_187.setElementType(symbol_274);
+		//symbol_187.setMoniker("ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
+		symbol_187.setElementType(symbol_124);
 		{
 			TemplateBinding symbol_723 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_723.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_724 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_724.setFormal(symbol_38);	
-				symbol_724.setActual(symbol_274);	
+				symbol_724.setActual(symbol_124);	
 				symbol_723.getParameterSubstitutions().add(symbol_724);
 			}
 			symbol_187.getTemplateBindings().add(symbol_723);
@@ -4425,18 +4615,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_187.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_187);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]
 		//
 		symbol_188.setName("Collection");
-		//symbol_188.setMoniker("ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
-		symbol_188.setElementType(symbol_124);
+		//symbol_188.setMoniker("ocl!Collection[ocl!Collection{T}!includesAll{T2}(ocl!Collection[T2])?T2]");
+		symbol_188.setElementType(symbol_54);
 		{
 			TemplateBinding symbol_725 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_725.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_726 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_726.setFormal(symbol_38);	
-				symbol_726.setActual(symbol_124);	
+				symbol_726.setActual(symbol_54);	
 				symbol_725.getParameterSubstitutions().add(symbol_726);
 			}
 			symbol_188.getTemplateBindings().add(symbol_725);
@@ -4444,18 +4634,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_188.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_188);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[String]
 		//
 		symbol_189.setName("Collection");
-		//symbol_189.setMoniker("ocl!Collection[ocl!NonOrderedCollection{T}?T]");
-		symbol_189.setElementType(symbol_69);
+		//symbol_189.setMoniker("ocl!Collection[String]");
+		symbol_189.setElementType(symbol_143);
 		{
 			TemplateBinding symbol_727 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_727.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_728 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_728.setFormal(symbol_38);	
-				symbol_728.setActual(symbol_69);	
+				symbol_728.setActual(symbol_143);	
 				symbol_727.getParameterSubstitutions().add(symbol_728);
 			}
 			symbol_189.getTemplateBindings().add(symbol_727);
@@ -4463,18 +4653,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_189.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_189);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		//
 		symbol_190.setName("Collection");
-		//symbol_190.setMoniker("ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
-		symbol_190.setElementType(symbol_100);
+		//symbol_190.setMoniker("ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
+		symbol_190.setElementType(symbol_83);
 		{
 			TemplateBinding symbol_729 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_729.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_730 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_730.setFormal(symbol_38);	
-				symbol_730.setActual(symbol_100);	
+				symbol_730.setActual(symbol_83);	
 				symbol_729.getParameterSubstitutions().add(symbol_730);
 			}
 			symbol_190.getTemplateBindings().add(symbol_729);
@@ -4482,18 +4672,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_190.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_190);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_191.setName("Collection");
-		//symbol_191.setMoniker("ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
-		symbol_191.setElementType(symbol_157);
+		//symbol_191.setMoniker("ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
+		symbol_191.setElementType(symbol_29);
 		{
 			TemplateBinding symbol_731 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_731.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_732 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_732.setFormal(symbol_38);	
-				symbol_732.setActual(symbol_157);	
+				symbol_732.setActual(symbol_29);	
 				symbol_731.getParameterSubstitutions().add(symbol_732);
 			}
 			symbol_191.getTemplateBindings().add(symbol_731);
@@ -4501,18 +4691,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_191.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_191);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_192.setName("Collection");
-		//symbol_192.setMoniker("ocl!Collection[ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_192.setElementType(symbol_42);
+		//symbol_192.setMoniker("ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
+		symbol_192.setElementType(symbol_107);
 		{
 			TemplateBinding symbol_733 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_733.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_734 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_734.setFormal(symbol_38);	
-				symbol_734.setActual(symbol_42);	
+				symbol_734.setActual(symbol_107);	
 				symbol_733.getParameterSubstitutions().add(symbol_734);
 			}
 			symbol_192.getTemplateBindings().add(symbol_733);
@@ -4520,18 +4710,18 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_192.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_192);
 		//
-		// ocl::$orphanage::Collection ocl!Collection[ocl!Bag{T}?T]
+		// ocl::$orphanage::Collection ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]
 		//
 		symbol_193.setName("Collection");
-		//symbol_193.setMoniker("ocl!Collection[ocl!Bag{T}?T]");
-		symbol_193.setElementType(symbol_15);
+		//symbol_193.setMoniker("ocl!Collection[ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2]");
+		symbol_193.setElementType(symbol_60);
 		{
 			TemplateBinding symbol_735 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_735.setSignature(symbol_37);
 			{
 				TemplateParameterSubstitution symbol_736 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_736.setFormal(symbol_38);	
-				symbol_736.setActual(symbol_15);	
+				symbol_736.setActual(symbol_60);	
 				symbol_735.getParameterSubstitutions().add(symbol_736);
 			}
 			symbol_193.getTemplateBindings().add(symbol_735);
@@ -4539,84 +4729,84 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_193.getSuperClasses().add(symbol_80); // ocl!OclAny
 		symbol_150.getOwnedTypes().add(symbol_193);
 		//
-		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
+		// ocl::$orphanage::Lambda Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
 		//
 		symbol_194.setName("Lambda");
-		//symbol_194.setMoniker("Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V");
-		symbol_194.setContextType(symbol_39);
-		symbol_194.setResultType(symbol_42);
+		//symbol_194.setMoniker("Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny");
+		symbol_194.setContextType(symbol_79);
+		symbol_194.setResultType(symbol_80);
 		symbol_150.getOwnedTypes().add(symbol_194);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
+		//
+		symbol_195.setName("Lambda");
+		//symbol_195.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]");
+		symbol_195.setContextType(symbol_111);
+		symbol_195.setResultType(symbol_249);
+		symbol_150.getOwnedTypes().add(symbol_195);
 		//
 		// ocl::$orphanage::Lambda Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
 		//
-		symbol_195.setName("Lambda");
-		//symbol_195.setMoniker("Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V");
-		symbol_195.setContextType(symbol_69);
-		symbol_195.setResultType(symbol_75);
-		symbol_150.getOwnedTypes().add(symbol_195);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!OrderedSet{T}?T()Boolean
-		//
 		symbol_196.setName("Lambda");
-		//symbol_196.setMoniker("Lambda~ocl!OrderedSet{T}?T()Boolean");
-		symbol_196.setContextType(symbol_121);
-		symbol_196.setResultType(symbol_19);
+		//symbol_196.setMoniker("Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V");
+		symbol_196.setContextType(symbol_69);
+		symbol_196.setResultType(symbol_75);
 		symbol_150.getOwnedTypes().add(symbol_196);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!Set{T}?T()Boolean
-		//
-		symbol_197.setName("Lambda");
-		//symbol_197.setMoniker("Lambda~ocl!Set{T}?T()Boolean");
-		symbol_197.setContextType(symbol_139);
-		symbol_197.setResultType(symbol_19);
-		symbol_150.getOwnedTypes().add(symbol_197);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny
-		//
-		symbol_198.setName("Lambda");
-		//symbol_198.setMoniker("Lambda~ocl!NonUniqueCollection{T}?T()ocl!OclAny");
-		symbol_198.setContextType(symbol_79);
-		symbol_198.setResultType(symbol_80);
-		symbol_150.getOwnedTypes().add(symbol_198);
 		//
 		// ocl::$orphanage::Lambda Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]
 		//
+		symbol_197.setName("Lambda");
+		//symbol_197.setMoniker("Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]");
+		symbol_197.setContextType(symbol_69);
+		symbol_197.setResultType(symbol_268);
+		symbol_150.getOwnedTypes().add(symbol_197);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!Set{T}?T()Boolean
+		//
+		symbol_198.setName("Lambda");
+		//symbol_198.setMoniker("Lambda~ocl!Set{T}?T()Boolean");
+		symbol_198.setContextType(symbol_139);
+		symbol_198.setResultType(symbol_19);
+		symbol_150.getOwnedTypes().add(symbol_198);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!OrderedSet{T}?T()Boolean
+		//
 		symbol_199.setName("Lambda");
-		//symbol_199.setMoniker("Lambda~ocl!NonOrderedCollection{T}?T()ocl!Set[T]");
-		symbol_199.setContextType(symbol_69);
-		symbol_199.setResultType(symbol_264);
+		//symbol_199.setMoniker("Lambda~ocl!OrderedSet{T}?T()Boolean");
+		symbol_199.setContextType(symbol_121);
+		symbol_199.setResultType(symbol_19);
 		symbol_150.getOwnedTypes().add(symbol_199);
 		//
-		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
+		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
 		//
 		symbol_200.setName("Lambda");
-		//symbol_200.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V");
-		symbol_200.setContextType(symbol_111);
-		symbol_200.setResultType(symbol_114);
+		//symbol_200.setMoniker("Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V");
+		symbol_200.setContextType(symbol_39);
+		symbol_200.setResultType(symbol_45);
 		symbol_150.getOwnedTypes().add(symbol_200);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V
+		//
+		symbol_201.setName("Lambda");
+		//symbol_201.setMoniker("Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collect{V}(T|Lambda~T()V)?V");
+		symbol_201.setContextType(symbol_39);
+		symbol_201.setResultType(symbol_42);
+		symbol_150.getOwnedTypes().add(symbol_201);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!Sequence{T}?T()Boolean
+		//
+		symbol_202.setName("Lambda");
+		//symbol_202.setMoniker("Lambda~ocl!Sequence{T}?T()Boolean");
+		symbol_202.setContextType(symbol_132);
+		symbol_202.setResultType(symbol_19);
+		symbol_150.getOwnedTypes().add(symbol_202);
 		//
 		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()ocl!OclAny
 		//
-		symbol_201.setName("Lambda");
-		//symbol_201.setMoniker("Lambda~ocl!Collection{T}?T()ocl!OclAny");
-		symbol_201.setContextType(symbol_39);
-		symbol_201.setResultType(symbol_80);
-		symbol_150.getOwnedTypes().add(symbol_201);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
-		//
-		symbol_202.setName("Lambda");
-		//symbol_202.setMoniker("Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny");
-		symbol_202.setContextType(symbol_148);
-		symbol_202.setResultType(symbol_80);
-		symbol_150.getOwnedTypes().add(symbol_202);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
-		//
 		symbol_203.setName("Lambda");
-		//symbol_203.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V");
-		symbol_203.setContextType(symbol_111);
-		symbol_203.setResultType(symbol_117);
+		//symbol_203.setMoniker("Lambda~ocl!Collection{T}?T()ocl!OclAny");
+		symbol_203.setContextType(symbol_39);
+		symbol_203.setResultType(symbol_80);
 		symbol_150.getOwnedTypes().add(symbol_203);
 		//
 		// ocl::$orphanage::Lambda Lambda~ocl!NonOrderedCollection{T}?T()ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
@@ -4627,82 +4817,82 @@ public class OCLstdlib extends XMLResourceImpl
 		symbol_204.setResultType(symbol_72);
 		symbol_150.getOwnedTypes().add(symbol_204);
 		//
-		// ocl::$orphanage::Lambda Lambda~ocl!Sequence{T}?T()Boolean
+		// ocl::$orphanage::Lambda Lambda~ocl!Bag{T}?T()Boolean
 		//
 		symbol_205.setName("Lambda");
-		//symbol_205.setMoniker("Lambda~ocl!Sequence{T}?T()Boolean");
-		symbol_205.setContextType(symbol_132);
+		//symbol_205.setMoniker("Lambda~ocl!Bag{T}?T()Boolean");
+		symbol_205.setContextType(symbol_15);
 		symbol_205.setResultType(symbol_19);
 		symbol_150.getOwnedTypes().add(symbol_205);
 		//
-		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]
+		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V
 		//
 		symbol_206.setName("Lambda");
-		//symbol_206.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedSet[T]");
+		//symbol_206.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V");
 		symbol_206.setContextType(symbol_111);
-		symbol_206.setResultType(symbol_249);
+		symbol_206.setResultType(symbol_114);
 		symbol_150.getOwnedTypes().add(symbol_206);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V
-		//
-		symbol_207.setName("Lambda");
-		//symbol_207.setMoniker("Lambda~ocl!Collection{T}?T()ocl!Collection{T}!collectNested{V}(T|Lambda~T()V)?V");
-		symbol_207.setContextType(symbol_39);
-		symbol_207.setResultType(symbol_45);
-		symbol_150.getOwnedTypes().add(symbol_207);
-		//
-		// ocl::$orphanage::Lambda Lambda~ocl!Bag{T}?T()Boolean
-		//
-		symbol_208.setName("Lambda");
-		//symbol_208.setMoniker("Lambda~ocl!Bag{T}?T()Boolean");
-		symbol_208.setContextType(symbol_15);
-		symbol_208.setResultType(symbol_19);
-		symbol_150.getOwnedTypes().add(symbol_208);
 		//
 		// ocl::$orphanage::Lambda Lambda~ocl!Collection{T}?T()Boolean
 		//
+		symbol_207.setName("Lambda");
+		//symbol_207.setMoniker("Lambda~ocl!Collection{T}?T()Boolean");
+		symbol_207.setContextType(symbol_39);
+		symbol_207.setResultType(symbol_19);
+		symbol_150.getOwnedTypes().add(symbol_207);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny
+		//
+		symbol_208.setName("Lambda");
+		//symbol_208.setMoniker("Lambda~ocl!UniqueCollection{T}?T()ocl!OclAny");
+		symbol_208.setContextType(symbol_148);
+		symbol_208.setResultType(symbol_80);
+		symbol_150.getOwnedTypes().add(symbol_208);
+		//
+		// ocl::$orphanage::Lambda Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V
+		//
 		symbol_209.setName("Lambda");
-		//symbol_209.setMoniker("Lambda~ocl!Collection{T}?T()Boolean");
-		symbol_209.setContextType(symbol_39);
-		symbol_209.setResultType(symbol_19);
+		//symbol_209.setMoniker("Lambda~ocl!OrderedCollection{T}?T()ocl!OrderedCollection{T}!collectNested{V}(T|Lambda~T()V)?V");
+		symbol_209.setContextType(symbol_111);
+		symbol_209.setResultType(symbol_117);
 		symbol_150.getOwnedTypes().add(symbol_209);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_210.setName("NonOrderedCollection");
-		//symbol_210.setMoniker("ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
-		symbol_210.setElementType(symbol_157);
+		//symbol_210.setMoniker("ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
+		symbol_210.setElementType(symbol_100);
 		{
 			TemplateBinding symbol_737 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_737.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_738 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_738.setFormal(symbol_68);	
-				symbol_738.setActual(symbol_157);	
+				symbol_738.setActual(symbol_100);	
 				symbol_737.getParameterSubstitutions().add(symbol_738);
 			}
 			symbol_210.getTemplateBindings().add(symbol_737);
 		}
-		symbol_210.getSuperClasses().add(symbol_191); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		symbol_210.getSuperClasses().add(symbol_176); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_210);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Set{T}?T]
 		//
 		symbol_211.setName("NonOrderedCollection");
-		//symbol_211.setMoniker("ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]");
-		symbol_211.setElementType(symbol_22);
+		//symbol_211.setMoniker("ocl!NonOrderedCollection[ocl!Set{T}?T]");
+		symbol_211.setElementType(symbol_139);
 		{
 			TemplateBinding symbol_739 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_739.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_740 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_740.setFormal(symbol_68);	
-				symbol_740.setActual(symbol_22);	
+				symbol_740.setActual(symbol_139);	
 				symbol_739.getParameterSubstitutions().add(symbol_740);
 			}
 			symbol_211.getTemplateBindings().add(symbol_739);
 		}
-		symbol_211.getSuperClasses().add(symbol_186); // ocl!Collection[Boolean!allInstances{OclSelf}()?OclSelf]
+		symbol_211.getSuperClasses().add(symbol_180); // ocl!Collection[ocl!Set{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_211);
 		//
 		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Bag{T}!flatten{T2}()?T2]
@@ -4721,197 +4911,197 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_212.getTemplateBindings().add(symbol_741);
 		}
-		symbol_212.getSuperClasses().add(symbol_180); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
+		symbol_212.getSuperClasses().add(symbol_164); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_212);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Bag{T}?T]
 		//
 		symbol_213.setName("NonOrderedCollection");
-		//symbol_213.setMoniker("ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]");
-		symbol_213.setElementType(symbol_121);
+		//symbol_213.setMoniker("ocl!NonOrderedCollection[ocl!Bag{T}?T]");
+		symbol_213.setElementType(symbol_15);
 		{
 			TemplateBinding symbol_743 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_743.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_744 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_744.setFormal(symbol_68);	
-				symbol_744.setActual(symbol_121);	
+				symbol_744.setActual(symbol_15);	
 				symbol_743.getParameterSubstitutions().add(symbol_744);
 			}
 			symbol_213.getTemplateBindings().add(symbol_743);
 		}
-		symbol_213.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!OrderedSet{T}?T]
+		symbol_213.getSuperClasses().add(symbol_174); // ocl!Collection[ocl!Bag{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_213);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Set{T}?T]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_214.setName("NonOrderedCollection");
-		//symbol_214.setMoniker("ocl!NonOrderedCollection[ocl!Set{T}?T]");
-		symbol_214.setElementType(symbol_139);
+		//symbol_214.setMoniker("ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_214.setElementType(symbol_72);
 		{
 			TemplateBinding symbol_745 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_745.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_746 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_746.setFormal(symbol_68);	
-				symbol_746.setActual(symbol_139);	
+				symbol_746.setActual(symbol_72);	
 				symbol_745.getParameterSubstitutions().add(symbol_746);
 			}
 			symbol_214.getTemplateBindings().add(symbol_745);
 		}
-		symbol_214.getSuperClasses().add(symbol_170); // ocl!Collection[ocl!Set{T}?T]
+		symbol_214.getSuperClasses().add(symbol_178); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_214);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		//
 		symbol_215.setName("NonOrderedCollection");
-		//symbol_215.setMoniker("ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
-		symbol_215.setElementType(symbol_64);
+		//symbol_215.setMoniker("ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
+		symbol_215.setElementType(symbol_274);
 		{
 			TemplateBinding symbol_747 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_747.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_748 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_748.setFormal(symbol_68);	
-				symbol_748.setActual(symbol_64);	
+				symbol_748.setActual(symbol_274);	
 				symbol_747.getParameterSubstitutions().add(symbol_748);
 			}
 			symbol_215.getTemplateBindings().add(symbol_747);
 		}
-		symbol_215.getSuperClasses().add(symbol_164); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		symbol_215.getSuperClasses().add(symbol_166); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		symbol_150.getOwnedTypes().add(symbol_215);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_216.setName("NonOrderedCollection");
-		//symbol_216.setMoniker("ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_216.setElementType(symbol_72);
+		//symbol_216.setMoniker("ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
+		symbol_216.setElementType(symbol_64);
 		{
 			TemplateBinding symbol_749 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_749.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_750 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_750.setFormal(symbol_68);	
-				symbol_750.setActual(symbol_72);	
+				symbol_750.setActual(symbol_64);	
 				symbol_749.getParameterSubstitutions().add(symbol_750);
 			}
 			symbol_216.getTemplateBindings().add(symbol_749);
 		}
-		symbol_216.getSuperClasses().add(symbol_177); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_216.getSuperClasses().add(symbol_167); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_216);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_217.setName("NonOrderedCollection");
-		//symbol_217.setMoniker("ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
-		symbol_217.setElementType(symbol_29);
+		//symbol_217.setMoniker("ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
+		symbol_217.setElementType(symbol_107);
 		{
 			TemplateBinding symbol_751 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_751.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_752 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_752.setFormal(symbol_68);	
-				symbol_752.setActual(symbol_29);	
+				symbol_752.setActual(symbol_107);	
 				symbol_751.getParameterSubstitutions().add(symbol_752);
 			}
 			symbol_217.getTemplateBindings().add(symbol_751);
 		}
-		symbol_217.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		symbol_217.getSuperClasses().add(symbol_192); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_217);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_218.setName("NonOrderedCollection");
-		//symbol_218.setMoniker("ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
-		symbol_218.setElementType(symbol_83);
+		//symbol_218.setMoniker("ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]");
+		symbol_218.setElementType(symbol_22);
 		{
 			TemplateBinding symbol_753 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_753.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_754 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_754.setFormal(symbol_68);	
-				symbol_754.setActual(symbol_83);	
+				symbol_754.setActual(symbol_22);	
 				symbol_753.getParameterSubstitutions().add(symbol_754);
 			}
 			symbol_218.getTemplateBindings().add(symbol_753);
 		}
-		symbol_218.getSuperClasses().add(symbol_172); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		symbol_218.getSuperClasses().add(symbol_186); // ocl!Collection[Boolean!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_218);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Collection{T}?T]
 		//
 		symbol_219.setName("NonOrderedCollection");
-		//symbol_219.setMoniker("ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]");
-		symbol_219.setElementType(symbol_142);
+		//symbol_219.setMoniker("ocl!NonOrderedCollection[ocl!Collection{T}?T]");
+		symbol_219.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_755 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_755.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_756 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_756.setFormal(symbol_68);	
-				symbol_756.setActual(symbol_142);	
+				symbol_756.setActual(symbol_39);	
 				symbol_755.getParameterSubstitutions().add(symbol_756);
 			}
 			symbol_219.getTemplateBindings().add(symbol_755);
 		}
-		symbol_219.getSuperClasses().add(symbol_178); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
+		symbol_219.getSuperClasses().add(symbol_173); // ocl!Collection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_219);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Bag{T}?T]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclAny]
 		//
 		symbol_220.setName("NonOrderedCollection");
-		//symbol_220.setMoniker("ocl!NonOrderedCollection[ocl!Bag{T}?T]");
-		symbol_220.setElementType(symbol_15);
+		//symbol_220.setMoniker("ocl!NonOrderedCollection[ocl!OclAny]");
+		symbol_220.setElementType(symbol_80);
 		{
 			TemplateBinding symbol_757 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_757.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_758 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_758.setFormal(symbol_68);	
-				symbol_758.setActual(symbol_15);	
+				symbol_758.setActual(symbol_80);	
 				symbol_757.getParameterSubstitutions().add(symbol_758);
 			}
 			symbol_220.getTemplateBindings().add(symbol_757);
 		}
-		symbol_220.getSuperClasses().add(symbol_193); // ocl!Collection[ocl!Bag{T}?T]
+		symbol_220.getSuperClasses().add(symbol_168); // ocl!Collection[ocl!OclAny]
 		symbol_150.getOwnedTypes().add(symbol_220);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclAny]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
 		//
 		symbol_221.setName("NonOrderedCollection");
-		//symbol_221.setMoniker("ocl!NonOrderedCollection[ocl!OclAny]");
-		symbol_221.setElementType(symbol_80);
+		//symbol_221.setMoniker("ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]");
+		symbol_221.setElementType(symbol_142);
 		{
 			TemplateBinding symbol_759 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_759.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_760 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_760.setFormal(symbol_68);	
-				symbol_760.setActual(symbol_80);	
+				symbol_760.setActual(symbol_142);	
 				symbol_759.getParameterSubstitutions().add(symbol_760);
 			}
 			symbol_221.getTemplateBindings().add(symbol_759);
 		}
-		symbol_221.getSuperClasses().add(symbol_182); // ocl!Collection[ocl!OclAny]
+		symbol_221.getSuperClasses().add(symbol_182); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_221);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_222.setName("NonOrderedCollection");
-		//symbol_222.setMoniker("ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
-		symbol_222.setElementType(symbol_274);
+		//symbol_222.setMoniker("ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
+		symbol_222.setElementType(symbol_29);
 		{
 			TemplateBinding symbol_761 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_761.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_762 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_762.setFormal(symbol_68);	
-				symbol_762.setActual(symbol_274);	
+				symbol_762.setActual(symbol_29);	
 				symbol_761.getParameterSubstitutions().add(symbol_762);
 			}
 			symbol_222.getTemplateBindings().add(symbol_761);
 		}
-		symbol_222.getSuperClasses().add(symbol_187); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		symbol_222.getSuperClasses().add(symbol_191); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_222);
 		//
 		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
@@ -4930,159 +5120,159 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_223.getTemplateBindings().add(symbol_763);
 		}
-		symbol_223.getSuperClasses().add(symbol_189); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		symbol_223.getSuperClasses().add(symbol_185); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_223);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
 		//
 		symbol_224.setName("NonOrderedCollection");
-		//symbol_224.setMoniker("ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
-		symbol_224.setElementType(symbol_100);
+		//symbol_224.setMoniker("ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]");
+		symbol_224.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_765 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_765.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_766 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_766.setFormal(symbol_68);	
-				symbol_766.setActual(symbol_100);	
+				symbol_766.setActual(symbol_121);	
 				symbol_765.getParameterSubstitutions().add(symbol_766);
 			}
 			symbol_224.getTemplateBindings().add(symbol_765);
 		}
-		symbol_224.getSuperClasses().add(symbol_190); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		symbol_224.getSuperClasses().add(symbol_170); // ocl!Collection[ocl!OrderedSet{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_224);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		//
 		symbol_225.setName("NonOrderedCollection");
-		//symbol_225.setMoniker("ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
-		symbol_225.setElementType(symbol_107);
+		//symbol_225.setMoniker("ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
+		symbol_225.setElementType(symbol_83);
 		{
 			TemplateBinding symbol_767 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_767.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_768 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_768.setFormal(symbol_68);	
-				symbol_768.setActual(symbol_107);	
+				symbol_768.setActual(symbol_83);	
 				symbol_767.getParameterSubstitutions().add(symbol_768);
 			}
 			symbol_225.getTemplateBindings().add(symbol_767);
 		}
-		symbol_225.getSuperClasses().add(symbol_167); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		symbol_225.getSuperClasses().add(symbol_190); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_225);
 		//
-		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		// ocl::$orphanage::NonOrderedCollection ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		//
 		symbol_226.setName("NonOrderedCollection");
-		//symbol_226.setMoniker("ocl!NonOrderedCollection[ocl!Collection{T}?T]");
-		symbol_226.setElementType(symbol_39);
+		//symbol_226.setMoniker("ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
+		symbol_226.setElementType(symbol_157);
 		{
 			TemplateBinding symbol_769 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_769.setSignature(symbol_67);
 			{
 				TemplateParameterSubstitution symbol_770 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_770.setFormal(symbol_68);	
-				symbol_770.setActual(symbol_39);	
+				symbol_770.setActual(symbol_157);	
 				symbol_769.getParameterSubstitutions().add(symbol_770);
 			}
 			symbol_226.getTemplateBindings().add(symbol_769);
 		}
-		symbol_226.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!Collection{T}?T]
+		symbol_226.getSuperClasses().add(symbol_177); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		symbol_150.getOwnedTypes().add(symbol_226);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Sequence{T}?T]
 		//
 		symbol_227.setName("NonUniqueCollection");
-		//symbol_227.setMoniker("ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]");
-		symbol_227.setElementType(symbol_69);
+		//symbol_227.setMoniker("ocl!NonUniqueCollection[ocl!Sequence{T}?T]");
+		symbol_227.setElementType(symbol_132);
 		{
 			TemplateBinding symbol_771 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_771.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_772 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_772.setFormal(symbol_78);	
-				symbol_772.setActual(symbol_69);	
+				symbol_772.setActual(symbol_132);	
 				symbol_771.getParameterSubstitutions().add(symbol_772);
 			}
 			symbol_227.getTemplateBindings().add(symbol_771);
 		}
-		symbol_227.getSuperClasses().add(symbol_189); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		symbol_227.getSuperClasses().add(symbol_165); // ocl!Collection[ocl!Sequence{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_227);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]
 		//
 		symbol_228.setName("NonUniqueCollection");
-		//symbol_228.setMoniker("ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]");
-		symbol_228.setElementType(symbol_18);
+		//symbol_228.setMoniker("ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}?T]");
+		symbol_228.setElementType(symbol_69);
 		{
 			TemplateBinding symbol_773 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_773.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_774 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_774.setFormal(symbol_78);	
-				symbol_774.setActual(symbol_18);	
+				symbol_774.setActual(symbol_69);	
 				symbol_773.getParameterSubstitutions().add(symbol_774);
 			}
 			symbol_228.getTemplateBindings().add(symbol_773);
 		}
-		symbol_228.getSuperClasses().add(symbol_180); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
+		symbol_228.getSuperClasses().add(symbol_185); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_228);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
 		//
 		symbol_229.setName("NonUniqueCollection");
-		//symbol_229.setMoniker("ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_229.setElementType(symbol_72);
+		//symbol_229.setMoniker("ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]");
+		symbol_229.setElementType(symbol_79);
 		{
 			TemplateBinding symbol_775 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_775.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_776 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_776.setFormal(symbol_78);	
-				symbol_776.setActual(symbol_72);	
+				symbol_776.setActual(symbol_79);	
 				symbol_775.getParameterSubstitutions().add(symbol_776);
 			}
 			symbol_229.getTemplateBindings().add(symbol_775);
 		}
-		symbol_229.getSuperClasses().add(symbol_177); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_229.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_229);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]
 		//
 		symbol_230.setName("NonUniqueCollection");
-		//symbol_230.setMoniker("ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]");
-		symbol_230.setElementType(symbol_79);
+		//symbol_230.setMoniker("ocl!NonUniqueCollection[ocl!Bag{T}!flatten{T2}()?T2]");
+		symbol_230.setElementType(symbol_18);
 		{
 			TemplateBinding symbol_777 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_777.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_778 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_778.setFormal(symbol_78);	
-				symbol_778.setActual(symbol_79);	
+				symbol_778.setActual(symbol_18);	
 				symbol_777.getParameterSubstitutions().add(symbol_778);
 			}
 			symbol_230.getTemplateBindings().add(symbol_777);
 		}
-		symbol_230.getSuperClasses().add(symbol_171); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
+		symbol_230.getSuperClasses().add(symbol_164); // ocl!Collection[ocl!Bag{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_230);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Sequence{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
 		//
 		symbol_231.setName("NonUniqueCollection");
-		//symbol_231.setMoniker("ocl!NonUniqueCollection[ocl!Sequence{T}?T]");
-		symbol_231.setElementType(symbol_132);
+		//symbol_231.setMoniker("ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]");
+		symbol_231.setElementType(symbol_135);
 		{
 			TemplateBinding symbol_779 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_779.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_780 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_780.setFormal(symbol_78);	
-				symbol_780.setActual(symbol_132);	
+				symbol_780.setActual(symbol_135);	
 				symbol_779.getParameterSubstitutions().add(symbol_780);
 			}
 			symbol_231.getTemplateBindings().add(symbol_779);
 		}
-		symbol_231.getSuperClasses().add(symbol_176); // ocl!Collection[ocl!Sequence{T}?T]
+		symbol_231.getSuperClasses().add(symbol_171); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_231);
 		//
 		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[String]
@@ -5101,312 +5291,312 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_232.getTemplateBindings().add(symbol_781);
 		}
-		symbol_232.getSuperClasses().add(symbol_173); // ocl!Collection[String]
+		symbol_232.getSuperClasses().add(symbol_189); // ocl!Collection[String]
 		symbol_150.getOwnedTypes().add(symbol_232);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Bag{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_233.setName("NonUniqueCollection");
-		//symbol_233.setMoniker("ocl!NonUniqueCollection[ocl!Bag{T}?T]");
-		symbol_233.setElementType(symbol_15);
+		//symbol_233.setMoniker("ocl!NonUniqueCollection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_233.setElementType(symbol_72);
 		{
 			TemplateBinding symbol_783 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_783.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_784 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_784.setFormal(symbol_78);	
-				symbol_784.setActual(symbol_15);	
+				symbol_784.setActual(symbol_72);	
 				symbol_783.getParameterSubstitutions().add(symbol_784);
 			}
 			symbol_233.getTemplateBindings().add(symbol_783);
 		}
-		symbol_233.getSuperClasses().add(symbol_193); // ocl!Collection[ocl!Bag{T}?T]
+		symbol_233.getSuperClasses().add(symbol_178); // ocl!Collection[ocl!NonOrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_233);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
 		//
 		symbol_234.setName("NonUniqueCollection");
-		//symbol_234.setMoniker("ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_234.setElementType(symbol_114);
+		//symbol_234.setMoniker("ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]");
+		symbol_234.setElementType(symbol_111);
 		{
 			TemplateBinding symbol_785 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_785.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_786 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_786.setFormal(symbol_78);	
-				symbol_786.setActual(symbol_114);	
+				symbol_786.setActual(symbol_111);	
 				symbol_785.getParameterSubstitutions().add(symbol_786);
 			}
 			symbol_234.getTemplateBindings().add(symbol_785);
 		}
-		symbol_234.getSuperClasses().add(symbol_169); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_234.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!OrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_234);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Collection{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_235.setName("NonUniqueCollection");
-		//symbol_235.setMoniker("ocl!NonUniqueCollection[ocl!Collection{T}?T]");
-		symbol_235.setElementType(symbol_39);
+		//symbol_235.setMoniker("ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_235.setElementType(symbol_114);
 		{
 			TemplateBinding symbol_787 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_787.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_788 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_788.setFormal(symbol_78);	
-				symbol_788.setActual(symbol_39);	
+				symbol_788.setActual(symbol_114);	
 				symbol_787.getParameterSubstitutions().add(symbol_788);
 			}
 			symbol_235.getTemplateBindings().add(symbol_787);
 		}
-		symbol_235.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!Collection{T}?T]
+		symbol_235.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_235);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Collection{T}?T]
 		//
 		symbol_236.setName("NonUniqueCollection");
-		//symbol_236.setMoniker("ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]");
-		symbol_236.setElementType(symbol_135);
+		//symbol_236.setMoniker("ocl!NonUniqueCollection[ocl!Collection{T}?T]");
+		symbol_236.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_789 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_789.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_790 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_790.setFormal(symbol_78);	
-				symbol_790.setActual(symbol_135);	
+				symbol_790.setActual(symbol_39);	
 				symbol_789.getParameterSubstitutions().add(symbol_790);
 			}
 			symbol_236.getTemplateBindings().add(symbol_789);
 		}
-		symbol_236.getSuperClasses().add(symbol_165); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
+		symbol_236.getSuperClasses().add(symbol_173); // ocl!Collection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_236);
 		//
-		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
+		// ocl::$orphanage::NonUniqueCollection ocl!NonUniqueCollection[ocl!Bag{T}?T]
 		//
 		symbol_237.setName("NonUniqueCollection");
-		//symbol_237.setMoniker("ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]");
-		symbol_237.setElementType(symbol_111);
+		//symbol_237.setMoniker("ocl!NonUniqueCollection[ocl!Bag{T}?T]");
+		symbol_237.setElementType(symbol_15);
 		{
 			TemplateBinding symbol_791 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_791.setSignature(symbol_77);
 			{
 				TemplateParameterSubstitution symbol_792 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_792.setFormal(symbol_78);	
-				symbol_792.setActual(symbol_111);	
+				symbol_792.setActual(symbol_15);	
 				symbol_791.getParameterSubstitutions().add(symbol_792);
 			}
 			symbol_237.getTemplateBindings().add(symbol_791);
 		}
-		symbol_237.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!OrderedCollection{T}?T]
+		symbol_237.getSuperClasses().add(symbol_174); // ocl!Collection[ocl!Bag{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_237);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
 		//
 		symbol_238.setName("OrderedCollection");
-		//symbol_238.setMoniker("ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_238.setElementType(symbol_114);
+		//symbol_238.setMoniker("ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]");
+		symbol_238.setElementType(symbol_135);
 		{
 			TemplateBinding symbol_793 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_793.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_794 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_794.setFormal(symbol_110);	
-				symbol_794.setActual(symbol_114);	
+				symbol_794.setActual(symbol_135);	
 				symbol_793.getParameterSubstitutions().add(symbol_794);
 			}
 			symbol_238.getTemplateBindings().add(symbol_793);
 		}
-		symbol_238.getSuperClasses().add(symbol_169); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_238.getSuperClasses().add(symbol_171); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_238);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Collection{T}?T]
 		//
 		symbol_239.setName("OrderedCollection");
-		//symbol_239.setMoniker("ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]");
-		symbol_239.setElementType(symbol_79);
+		//symbol_239.setMoniker("ocl!OrderedCollection[ocl!Collection{T}?T]");
+		symbol_239.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_795 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_795.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_796 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_796.setFormal(symbol_110);	
-				symbol_796.setActual(symbol_79);	
+				symbol_796.setActual(symbol_39);	
 				symbol_795.getParameterSubstitutions().add(symbol_796);
 			}
 			symbol_239.getTemplateBindings().add(symbol_795);
 		}
-		symbol_239.getSuperClasses().add(symbol_171); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
+		symbol_239.getSuperClasses().add(symbol_173); // ocl!Collection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_239);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_240.setName("OrderedCollection");
-		//symbol_240.setMoniker("ocl!OrderedCollection[ocl!OrderedSet{T}?T]");
-		symbol_240.setElementType(symbol_121);
+		//symbol_240.setMoniker("ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_240.setElementType(symbol_114);
 		{
 			TemplateBinding symbol_797 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_797.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_798 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_798.setFormal(symbol_110);	
-				symbol_798.setActual(symbol_121);	
+				symbol_798.setActual(symbol_114);	
 				symbol_797.getParameterSubstitutions().add(symbol_798);
 			}
 			symbol_240.getTemplateBindings().add(symbol_797);
 		}
-		symbol_240.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!OrderedSet{T}?T]
+		symbol_240.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_240);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[String]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		//
 		symbol_241.setName("OrderedCollection");
-		//symbol_241.setMoniker("ocl!OrderedCollection[String]");
-		symbol_241.setElementType(symbol_143);
+		//symbol_241.setMoniker("ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
+		symbol_241.setElementType(symbol_124);
 		{
 			TemplateBinding symbol_799 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_799.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_800 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_800.setFormal(symbol_110);	
-				symbol_800.setActual(symbol_143);	
+				symbol_800.setActual(symbol_124);	
 				symbol_799.getParameterSubstitutions().add(symbol_800);
 			}
 			symbol_241.getTemplateBindings().add(symbol_799);
 		}
-		symbol_241.getSuperClasses().add(symbol_173); // ocl!Collection[String]
+		symbol_241.getSuperClasses().add(symbol_187); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_241);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Sequence{T}?T]
 		//
 		symbol_242.setName("OrderedCollection");
-		//symbol_242.setMoniker("ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
-		symbol_242.setElementType(symbol_124);
+		//symbol_242.setMoniker("ocl!OrderedCollection[ocl!Sequence{T}?T]");
+		symbol_242.setElementType(symbol_132);
 		{
 			TemplateBinding symbol_801 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_801.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_802 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_802.setFormal(symbol_110);	
-				symbol_802.setActual(symbol_124);	
+				symbol_802.setActual(symbol_132);	
 				symbol_801.getParameterSubstitutions().add(symbol_802);
 			}
 			symbol_242.getTemplateBindings().add(symbol_801);
 		}
-		symbol_242.getSuperClasses().add(symbol_188); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		symbol_242.getSuperClasses().add(symbol_165); // ocl!Collection[ocl!Sequence{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_242);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[String]
 		//
 		symbol_243.setName("OrderedCollection");
-		//symbol_243.setMoniker("ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]");
-		symbol_243.setElementType(symbol_135);
+		//symbol_243.setMoniker("ocl!OrderedCollection[String]");
+		symbol_243.setElementType(symbol_143);
 		{
 			TemplateBinding symbol_803 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_803.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_804 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_804.setFormal(symbol_110);	
-				symbol_804.setActual(symbol_135);	
+				symbol_804.setActual(symbol_143);	
 				symbol_803.getParameterSubstitutions().add(symbol_804);
 			}
 			symbol_243.getTemplateBindings().add(symbol_803);
 		}
-		symbol_243.getSuperClasses().add(symbol_165); // ocl!Collection[ocl!Sequence{T}!flatten{T2}()?T2]
+		symbol_243.getSuperClasses().add(symbol_189); // ocl!Collection[String]
 		symbol_150.getOwnedTypes().add(symbol_243);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Collection{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedSet{T}?T]
 		//
 		symbol_244.setName("OrderedCollection");
-		//symbol_244.setMoniker("ocl!OrderedCollection[ocl!Collection{T}?T]");
-		symbol_244.setElementType(symbol_39);
+		//symbol_244.setMoniker("ocl!OrderedCollection[ocl!OrderedSet{T}?T]");
+		symbol_244.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_805 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_805.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_806 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_806.setFormal(symbol_110);	
-				symbol_806.setActual(symbol_39);	
+				symbol_806.setActual(symbol_121);	
 				symbol_805.getParameterSubstitutions().add(symbol_806);
 			}
 			symbol_244.getTemplateBindings().add(symbol_805);
 		}
-		symbol_244.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!Collection{T}?T]
+		symbol_244.getSuperClasses().add(symbol_170); // ocl!Collection[ocl!OrderedSet{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_244);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!Sequence{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
 		//
 		symbol_245.setName("OrderedCollection");
-		//symbol_245.setMoniker("ocl!OrderedCollection[ocl!Sequence{T}?T]");
-		symbol_245.setElementType(symbol_132);
+		//symbol_245.setMoniker("ocl!OrderedCollection[ocl!UniqueCollection{T}?T]");
+		symbol_245.setElementType(symbol_148);
 		{
 			TemplateBinding symbol_807 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_807.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_808 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_808.setFormal(symbol_110);	
-				symbol_808.setActual(symbol_132);	
+				symbol_808.setActual(symbol_148);	
 				symbol_807.getParameterSubstitutions().add(symbol_808);
 			}
 			symbol_245.getTemplateBindings().add(symbol_807);
 		}
-		symbol_245.getSuperClasses().add(symbol_176); // ocl!Collection[ocl!Sequence{T}?T]
+		symbol_245.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!UniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_245);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
 		//
 		symbol_246.setName("OrderedCollection");
-		//symbol_246.setMoniker("ocl!OrderedCollection[ocl!UniqueCollection{T}?T]");
-		symbol_246.setElementType(symbol_148);
+		//symbol_246.setMoniker("ocl!OrderedCollection[ocl!OrderedCollection{T}?T]");
+		symbol_246.setElementType(symbol_111);
 		{
 			TemplateBinding symbol_809 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_809.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_810 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_810.setFormal(symbol_110);	
-				symbol_810.setActual(symbol_148);	
+				symbol_810.setActual(symbol_111);	
 				symbol_809.getParameterSubstitutions().add(symbol_810);
 			}
 			symbol_246.getTemplateBindings().add(symbol_809);
 		}
-		symbol_246.getSuperClasses().add(symbol_168); // ocl!Collection[ocl!UniqueCollection{T}?T]
+		symbol_246.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!OrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_246);
 		//
-		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
+		// ocl::$orphanage::OrderedCollection ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
 		//
 		symbol_247.setName("OrderedCollection");
-		//symbol_247.setMoniker("ocl!OrderedCollection[ocl!OrderedCollection{T}?T]");
-		symbol_247.setElementType(symbol_111);
+		//symbol_247.setMoniker("ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]");
+		symbol_247.setElementType(symbol_79);
 		{
 			TemplateBinding symbol_811 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_811.setSignature(symbol_109);
 			{
 				TemplateParameterSubstitution symbol_812 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_812.setFormal(symbol_110);	
-				symbol_812.setActual(symbol_111);	
+				symbol_812.setActual(symbol_79);	
 				symbol_811.getParameterSubstitutions().add(symbol_812);
 			}
 			symbol_247.getTemplateBindings().add(symbol_811);
 		}
-		symbol_247.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!OrderedCollection{T}?T]
+		symbol_247.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!NonUniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_247);
 		//
-		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!Collection{T}?T]
+		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!UniqueCollection{T}?T]
 		//
 		symbol_248.setName("OrderedSet");
-		//symbol_248.setMoniker("ocl!OrderedSet[ocl!Collection{T}?T]");
-		symbol_248.setElementType(symbol_39);
+		//symbol_248.setMoniker("ocl!OrderedSet[ocl!UniqueCollection{T}?T]");
+		symbol_248.setElementType(symbol_148);
 		{
 			TemplateBinding symbol_813 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_813.setSignature(symbol_119);
 			{
 				TemplateParameterSubstitution symbol_814 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_814.setFormal(symbol_120);	
-				symbol_814.setActual(symbol_39);	
+				symbol_814.setActual(symbol_148);	
 				symbol_813.getParameterSubstitutions().add(symbol_814);
 			}
 			symbol_248.getTemplateBindings().add(symbol_813);
 		}
-		symbol_248.getSuperClasses().add(symbol_283); // ocl!UniqueCollection[ocl!Collection{T}?T]
-		symbol_248.getSuperClasses().add(symbol_244); // ocl!OrderedCollection[ocl!Collection{T}?T]
+		symbol_248.getSuperClasses().add(symbol_287); // ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
+		symbol_248.getSuperClasses().add(symbol_245); // ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_248);
 		//
 		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!OrderedCollection{T}?T]
@@ -5425,488 +5615,488 @@ public class OCLstdlib extends XMLResourceImpl
 			}
 			symbol_249.getTemplateBindings().add(symbol_815);
 		}
-		symbol_249.getSuperClasses().add(symbol_247); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
-		symbol_249.getSuperClasses().add(symbol_278); // ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
+		symbol_249.getSuperClasses().add(symbol_284); // ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
+		symbol_249.getSuperClasses().add(symbol_246); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_249);
 		//
-		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!UniqueCollection{T}?T]
+		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!OrderedSet{T}?T]
 		//
 		symbol_250.setName("OrderedSet");
-		//symbol_250.setMoniker("ocl!OrderedSet[ocl!UniqueCollection{T}?T]");
-		symbol_250.setElementType(symbol_148);
+		//symbol_250.setMoniker("ocl!OrderedSet[ocl!OrderedSet{T}?T]");
+		symbol_250.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_817 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_817.setSignature(symbol_119);
 			{
 				TemplateParameterSubstitution symbol_818 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_818.setFormal(symbol_120);	
-				symbol_818.setActual(symbol_148);	
+				symbol_818.setActual(symbol_121);	
 				symbol_817.getParameterSubstitutions().add(symbol_818);
 			}
 			symbol_250.getTemplateBindings().add(symbol_817);
 		}
-		symbol_250.getSuperClasses().add(symbol_246); // ocl!OrderedCollection[ocl!UniqueCollection{T}?T]
-		symbol_250.getSuperClasses().add(symbol_293); // ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
+		symbol_250.getSuperClasses().add(symbol_244); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
+		symbol_250.getSuperClasses().add(symbol_285); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_250);
 		//
-		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!Collection{T}?T]
 		//
 		symbol_251.setName("OrderedSet");
-		//symbol_251.setMoniker("ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]");
-		symbol_251.setElementType(symbol_124);
+		//symbol_251.setMoniker("ocl!OrderedSet[ocl!Collection{T}?T]");
+		symbol_251.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_819 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_819.setSignature(symbol_119);
 			{
 				TemplateParameterSubstitution symbol_820 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_820.setFormal(symbol_120);	
-				symbol_820.setActual(symbol_124);	
+				symbol_820.setActual(symbol_39);	
 				symbol_819.getParameterSubstitutions().add(symbol_820);
 			}
 			symbol_251.getTemplateBindings().add(symbol_819);
 		}
-		symbol_251.getSuperClasses().add(symbol_242); // ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
-		symbol_251.getSuperClasses().add(symbol_285); // ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		symbol_251.getSuperClasses().add(symbol_239); // ocl!OrderedCollection[ocl!Collection{T}?T]
+		symbol_251.getSuperClasses().add(symbol_279); // ocl!UniqueCollection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_251);
 		//
-		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::OrderedSet ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		//
 		symbol_252.setName("OrderedSet");
-		//symbol_252.setMoniker("ocl!OrderedSet[ocl!OrderedSet{T}?T]");
-		symbol_252.setElementType(symbol_121);
+		//symbol_252.setMoniker("ocl!OrderedSet[ocl!OrderedSet{T}!flatten{T2}()?T2]");
+		symbol_252.setElementType(symbol_124);
 		{
 			TemplateBinding symbol_821 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_821.setSignature(symbol_119);
 			{
 				TemplateParameterSubstitution symbol_822 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_822.setFormal(symbol_120);	
-				symbol_822.setActual(symbol_121);	
+				symbol_822.setActual(symbol_124);	
 				symbol_821.getParameterSubstitutions().add(symbol_822);
 			}
 			symbol_252.getTemplateBindings().add(symbol_821);
 		}
-		symbol_252.getSuperClasses().add(symbol_240); // ocl!OrderedCollection[ocl!OrderedSet{T}?T]
-		symbol_252.getSuperClasses().add(symbol_290); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
+		symbol_252.getSuperClasses().add(symbol_241); // ocl!OrderedCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		symbol_252.getSuperClasses().add(symbol_277); // ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_252);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!NonUniqueCollection{T}?T]
 		//
 		symbol_253.setName("Sequence");
-		//symbol_253.setMoniker("ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
-		symbol_253.setElementType(symbol_114);
+		//symbol_253.setMoniker("ocl!Sequence[ocl!NonUniqueCollection{T}?T]");
+		symbol_253.setElementType(symbol_79);
 		{
 			TemplateBinding symbol_823 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_823.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_824 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_824.setFormal(symbol_131);	
-				symbol_824.setActual(symbol_114);	
+				symbol_824.setActual(symbol_79);	
 				symbol_823.getParameterSubstitutions().add(symbol_824);
 			}
 			symbol_253.getTemplateBindings().add(symbol_823);
 		}
-		symbol_253.getSuperClasses().add(symbol_238); // ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
-		symbol_253.getSuperClasses().add(symbol_234); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_253.getSuperClasses().add(symbol_247); // ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
+		symbol_253.getSuperClasses().add(symbol_229); // ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_253);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[String]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
 		//
 		symbol_254.setName("Sequence");
-		//symbol_254.setMoniker("ocl!Sequence[String]");
-		symbol_254.setElementType(symbol_143);
+		//symbol_254.setMoniker("ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]");
+		symbol_254.setElementType(symbol_135);
 		{
 			TemplateBinding symbol_825 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_825.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_826 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_826.setFormal(symbol_131);	
-				symbol_826.setActual(symbol_143);	
+				symbol_826.setActual(symbol_135);	
 				symbol_825.getParameterSubstitutions().add(symbol_826);
 			}
 			symbol_254.getTemplateBindings().add(symbol_825);
 		}
-		symbol_254.getSuperClasses().add(symbol_241); // ocl!OrderedCollection[String]
-		symbol_254.getSuperClasses().add(symbol_232); // ocl!NonUniqueCollection[String]
+		symbol_254.getSuperClasses().add(symbol_238); // ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		symbol_254.getSuperClasses().add(symbol_231); // ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_254);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Collection{T}?T]
+		// ocl::$orphanage::Sequence ocl!Sequence[String]
 		//
 		symbol_255.setName("Sequence");
-		//symbol_255.setMoniker("ocl!Sequence[ocl!Collection{T}?T]");
-		symbol_255.setElementType(symbol_39);
+		//symbol_255.setMoniker("ocl!Sequence[String]");
+		symbol_255.setElementType(symbol_143);
 		{
 			TemplateBinding symbol_827 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_827.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_828 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_828.setFormal(symbol_131);	
-				symbol_828.setActual(symbol_39);	
+				symbol_828.setActual(symbol_143);	
 				symbol_827.getParameterSubstitutions().add(symbol_828);
 			}
 			symbol_255.getTemplateBindings().add(symbol_827);
 		}
-		symbol_255.getSuperClasses().add(symbol_235); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
-		symbol_255.getSuperClasses().add(symbol_244); // ocl!OrderedCollection[ocl!Collection{T}?T]
+		symbol_255.getSuperClasses().add(symbol_243); // ocl!OrderedCollection[String]
+		symbol_255.getSuperClasses().add(symbol_232); // ocl!NonUniqueCollection[String]
 		symbol_150.getOwnedTypes().add(symbol_255);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!NonUniqueCollection{T}?T]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Sequence{T}?T]
 		//
 		symbol_256.setName("Sequence");
-		//symbol_256.setMoniker("ocl!Sequence[ocl!NonUniqueCollection{T}?T]");
-		symbol_256.setElementType(symbol_79);
+		//symbol_256.setMoniker("ocl!Sequence[ocl!Sequence{T}?T]");
+		symbol_256.setElementType(symbol_132);
 		{
 			TemplateBinding symbol_829 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_829.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_830 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_830.setFormal(symbol_131);	
-				symbol_830.setActual(symbol_79);	
+				symbol_830.setActual(symbol_132);	
 				symbol_829.getParameterSubstitutions().add(symbol_830);
 			}
 			symbol_256.getTemplateBindings().add(symbol_829);
 		}
-		symbol_256.getSuperClasses().add(symbol_239); // ocl!OrderedCollection[ocl!NonUniqueCollection{T}?T]
-		symbol_256.getSuperClasses().add(symbol_230); // ocl!NonUniqueCollection[ocl!NonUniqueCollection{T}?T]
+		symbol_256.getSuperClasses().add(symbol_242); // ocl!OrderedCollection[ocl!Sequence{T}?T]
+		symbol_256.getSuperClasses().add(symbol_227); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_256);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Collection{T}?T]
 		//
 		symbol_257.setName("Sequence");
-		//symbol_257.setMoniker("ocl!Sequence[ocl!Sequence{T}!flatten{T2}()?T2]");
-		symbol_257.setElementType(symbol_135);
+		//symbol_257.setMoniker("ocl!Sequence[ocl!Collection{T}?T]");
+		symbol_257.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_831 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_831.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_832 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_832.setFormal(symbol_131);	
-				symbol_832.setActual(symbol_135);	
+				symbol_832.setActual(symbol_39);	
 				symbol_831.getParameterSubstitutions().add(symbol_832);
 			}
 			symbol_257.getTemplateBindings().add(symbol_831);
 		}
-		symbol_257.getSuperClasses().add(symbol_236); // ocl!NonUniqueCollection[ocl!Sequence{T}!flatten{T2}()?T2]
-		symbol_257.getSuperClasses().add(symbol_243); // ocl!OrderedCollection[ocl!Sequence{T}!flatten{T2}()?T2]
+		symbol_257.getSuperClasses().add(symbol_239); // ocl!OrderedCollection[ocl!Collection{T}?T]
+		symbol_257.getSuperClasses().add(symbol_236); // ocl!NonUniqueCollection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_257);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!Sequence{T}?T]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!OrderedCollection{T}?T]
 		//
 		symbol_258.setName("Sequence");
-		//symbol_258.setMoniker("ocl!Sequence[ocl!Sequence{T}?T]");
-		symbol_258.setElementType(symbol_132);
+		//symbol_258.setMoniker("ocl!Sequence[ocl!OrderedCollection{T}?T]");
+		symbol_258.setElementType(symbol_111);
 		{
 			TemplateBinding symbol_833 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_833.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_834 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_834.setFormal(symbol_131);	
-				symbol_834.setActual(symbol_132);	
+				symbol_834.setActual(symbol_111);	
 				symbol_833.getParameterSubstitutions().add(symbol_834);
 			}
 			symbol_258.getTemplateBindings().add(symbol_833);
 		}
-		symbol_258.getSuperClasses().add(symbol_245); // ocl!OrderedCollection[ocl!Sequence{T}?T]
-		symbol_258.getSuperClasses().add(symbol_231); // ocl!NonUniqueCollection[ocl!Sequence{T}?T]
+		symbol_258.getSuperClasses().add(symbol_246); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
+		symbol_258.getSuperClasses().add(symbol_234); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_258);
 		//
-		// ocl::$orphanage::Sequence ocl!Sequence[ocl!OrderedCollection{T}?T]
+		// ocl::$orphanage::Sequence ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		//
 		symbol_259.setName("Sequence");
-		//symbol_259.setMoniker("ocl!Sequence[ocl!OrderedCollection{T}?T]");
-		symbol_259.setElementType(symbol_111);
+		//symbol_259.setMoniker("ocl!Sequence[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]");
+		symbol_259.setElementType(symbol_114);
 		{
 			TemplateBinding symbol_835 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_835.setSignature(symbol_130);
 			{
 				TemplateParameterSubstitution symbol_836 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_836.setFormal(symbol_131);	
-				symbol_836.setActual(symbol_111);	
+				symbol_836.setActual(symbol_114);	
 				symbol_835.getParameterSubstitutions().add(symbol_836);
 			}
 			symbol_259.getTemplateBindings().add(symbol_835);
 		}
-		symbol_259.getSuperClasses().add(symbol_237); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}?T]
-		symbol_259.getSuperClasses().add(symbol_247); // ocl!OrderedCollection[ocl!OrderedCollection{T}?T]
+		symbol_259.getSuperClasses().add(symbol_235); // ocl!NonUniqueCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
+		symbol_259.getSuperClasses().add(symbol_240); // ocl!OrderedCollection[ocl!OrderedCollection{T}!collect{V}(T|Lambda~T()V)?V]
 		symbol_150.getOwnedTypes().add(symbol_259);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		//
 		symbol_260.setName("Set");
-		//symbol_260.setMoniker("ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
-		symbol_260.setElementType(symbol_83);
+		//symbol_260.setMoniker("ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
+		symbol_260.setElementType(symbol_274);
 		{
 			TemplateBinding symbol_837 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_837.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_838 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_838.setFormal(symbol_138);	
-				symbol_838.setActual(symbol_83);	
+				symbol_838.setActual(symbol_274);	
 				symbol_837.getParameterSubstitutions().add(symbol_838);
 			}
 			symbol_260.getTemplateBindings().add(symbol_837);
 		}
-		symbol_260.getSuperClasses().add(symbol_292); // ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
-		symbol_260.getSuperClasses().add(symbol_218); // ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		symbol_260.getSuperClasses().add(symbol_283); // ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		symbol_260.getSuperClasses().add(symbol_215); // ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		symbol_150.getOwnedTypes().add(symbol_260);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		//
 		symbol_261.setName("Set");
-		//symbol_261.setMoniker("ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
-		symbol_261.setElementType(symbol_29);
+		//symbol_261.setMoniker("ocl!Set[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
+		symbol_261.setElementType(symbol_83);
 		{
 			TemplateBinding symbol_839 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_839.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_840 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_840.setFormal(symbol_138);	
-				symbol_840.setActual(symbol_29);	
+				symbol_840.setActual(symbol_83);	
 				symbol_839.getParameterSubstitutions().add(symbol_840);
 			}
 			symbol_261.getTemplateBindings().add(symbol_839);
 		}
-		symbol_261.getSuperClasses().add(symbol_289); // ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
-		symbol_261.getSuperClasses().add(symbol_217); // ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		symbol_261.getSuperClasses().add(symbol_288); // ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		symbol_261.getSuperClasses().add(symbol_225); // ocl!NonOrderedCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_261);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::Set ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_262.setName("Set");
-		//symbol_262.setMoniker("ocl!Set[ocl!Set{T}!flatten{T2}()?T2]");
-		symbol_262.setElementType(symbol_142);
+		//symbol_262.setMoniker("ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
+		symbol_262.setElementType(symbol_64);
 		{
 			TemplateBinding symbol_841 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_841.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_842 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_842.setFormal(symbol_138);	
-				symbol_842.setActual(symbol_142);	
+				symbol_842.setActual(symbol_64);	
 				symbol_841.getParameterSubstitutions().add(symbol_842);
 			}
 			symbol_262.getTemplateBindings().add(symbol_841);
 		}
-		symbol_262.getSuperClasses().add(symbol_219); // ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
-		symbol_262.getSuperClasses().add(symbol_291); // ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
+		symbol_262.getSuperClasses().add(symbol_216); // ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		symbol_262.getSuperClasses().add(symbol_278); // ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_262);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!OclAny]
+		// ocl::$orphanage::Set ocl!Set[ocl!Set{T}!flatten{T2}()?T2]
 		//
 		symbol_263.setName("Set");
-		//symbol_263.setMoniker("ocl!Set[ocl!OclAny]");
-		symbol_263.setElementType(symbol_80);
+		//symbol_263.setMoniker("ocl!Set[ocl!Set{T}!flatten{T2}()?T2]");
+		symbol_263.setElementType(symbol_142);
 		{
 			TemplateBinding symbol_843 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_843.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_844 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_844.setFormal(symbol_138);	
-				symbol_844.setActual(symbol_80);	
+				symbol_844.setActual(symbol_142);	
 				symbol_843.getParameterSubstitutions().add(symbol_844);
 			}
 			symbol_263.getTemplateBindings().add(symbol_843);
 		}
-		symbol_263.getSuperClasses().add(symbol_221); // ocl!NonOrderedCollection[ocl!OclAny]
-		symbol_263.getSuperClasses().add(symbol_286); // ocl!UniqueCollection[ocl!OclAny]
+		symbol_263.getSuperClasses().add(symbol_286); // ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
+		symbol_263.getSuperClasses().add(symbol_221); // ocl!NonOrderedCollection[ocl!Set{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_263);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!NonOrderedCollection{T}?T]
+		// ocl::$orphanage::Set ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		//
 		symbol_264.setName("Set");
-		//symbol_264.setMoniker("ocl!Set[ocl!NonOrderedCollection{T}?T]");
-		symbol_264.setElementType(symbol_69);
+		//symbol_264.setMoniker("ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
+		symbol_264.setElementType(symbol_157);
 		{
 			TemplateBinding symbol_845 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_845.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_846 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_846.setFormal(symbol_138);	
-				symbol_846.setActual(symbol_69);	
+				symbol_846.setActual(symbol_157);	
 				symbol_845.getParameterSubstitutions().add(symbol_846);
 			}
 			symbol_264.getTemplateBindings().add(symbol_845);
 		}
-		symbol_264.getSuperClasses().add(symbol_223); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
-		symbol_264.getSuperClasses().add(symbol_282); // ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
+		symbol_264.getSuperClasses().add(symbol_226); // ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		symbol_264.getSuperClasses().add(symbol_289); // ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		symbol_150.getOwnedTypes().add(symbol_264);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Collection{T}?T]
+		// ocl::$orphanage::Set ocl!Set[ocl!OclAny]
 		//
 		symbol_265.setName("Set");
-		//symbol_265.setMoniker("ocl!Set[ocl!Collection{T}?T]");
-		symbol_265.setElementType(symbol_39);
+		//symbol_265.setMoniker("ocl!Set[ocl!OclAny]");
+		symbol_265.setElementType(symbol_80);
 		{
 			TemplateBinding symbol_847 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_847.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_848 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_848.setFormal(symbol_138);	
-				symbol_848.setActual(symbol_39);	
+				symbol_848.setActual(symbol_80);	
 				symbol_847.getParameterSubstitutions().add(symbol_848);
 			}
 			symbol_265.getTemplateBindings().add(symbol_847);
 		}
-		symbol_265.getSuperClasses().add(symbol_283); // ocl!UniqueCollection[ocl!Collection{T}?T]
-		symbol_265.getSuperClasses().add(symbol_226); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		symbol_265.getSuperClasses().add(symbol_220); // ocl!NonOrderedCollection[ocl!OclAny]
+		symbol_265.getSuperClasses().add(symbol_293); // ocl!UniqueCollection[ocl!OclAny]
 		symbol_150.getOwnedTypes().add(symbol_265);
 		//
-		// ocl::$orphanage::Set ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		// ocl::$orphanage::Set ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_266.setName("Set");
-		//symbol_266.setMoniker("ocl!Set[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
-		symbol_266.setElementType(symbol_274);
+		//symbol_266.setMoniker("ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
+		symbol_266.setElementType(symbol_107);
 		{
 			TemplateBinding symbol_849 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_849.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_850 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_850.setFormal(symbol_138);	
-				symbol_850.setActual(symbol_274);	
+				symbol_850.setActual(symbol_107);	
 				symbol_849.getParameterSubstitutions().add(symbol_850);
 			}
 			symbol_266.getTemplateBindings().add(symbol_849);
 		}
-		symbol_266.getSuperClasses().add(symbol_277); // ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
-		symbol_266.getSuperClasses().add(symbol_222); // ocl!NonOrderedCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		symbol_266.getSuperClasses().add(symbol_292); // ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		symbol_266.getSuperClasses().add(symbol_217); // ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_266);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::Set ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_267.setName("Set");
-		//symbol_267.setMoniker("ocl!Set[ocl!OrderedSet{T}?T]");
-		symbol_267.setElementType(symbol_121);
+		//symbol_267.setMoniker("ocl!Set[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
+		symbol_267.setElementType(symbol_29);
 		{
 			TemplateBinding symbol_851 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_851.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_852 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_852.setFormal(symbol_138);	
-				symbol_852.setActual(symbol_121);	
+				symbol_852.setActual(symbol_29);	
 				symbol_851.getParameterSubstitutions().add(symbol_852);
 			}
 			symbol_267.getTemplateBindings().add(symbol_851);
 		}
-		symbol_267.getSuperClasses().add(symbol_290); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
-		symbol_267.getSuperClasses().add(symbol_213); // ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
+		symbol_267.getSuperClasses().add(symbol_222); // ocl!NonOrderedCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		symbol_267.getSuperClasses().add(symbol_280); // ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_267);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[ocl!NonOrderedCollection{T}?T]
 		//
 		symbol_268.setName("Set");
-		//symbol_268.setMoniker("ocl!Set[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
-		symbol_268.setElementType(symbol_107);
+		//symbol_268.setMoniker("ocl!Set[ocl!NonOrderedCollection{T}?T]");
+		symbol_268.setElementType(symbol_69);
 		{
 			TemplateBinding symbol_853 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_853.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_854 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_854.setFormal(symbol_138);	
-				symbol_854.setActual(symbol_107);	
+				symbol_854.setActual(symbol_69);	
 				symbol_853.getParameterSubstitutions().add(symbol_854);
 			}
 			symbol_268.getTemplateBindings().add(symbol_853);
 		}
-		symbol_268.getSuperClasses().add(symbol_225); // ocl!NonOrderedCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
-		symbol_268.getSuperClasses().add(symbol_281); // ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		symbol_268.getSuperClasses().add(symbol_291); // ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
+		symbol_268.getSuperClasses().add(symbol_223); // ocl!NonOrderedCollection[ocl!NonOrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_268);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Set{T}?T]
+		// ocl::$orphanage::Set ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_269.setName("Set");
-		//symbol_269.setMoniker("ocl!Set[ocl!Set{T}?T]");
-		symbol_269.setElementType(symbol_139);
+		//symbol_269.setMoniker("ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]");
+		symbol_269.setElementType(symbol_22);
 		{
 			TemplateBinding symbol_855 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_855.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_856 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_856.setFormal(symbol_138);	
-				symbol_856.setActual(symbol_139);	
+				symbol_856.setActual(symbol_22);	
 				symbol_855.getParameterSubstitutions().add(symbol_856);
 			}
 			symbol_269.getTemplateBindings().add(symbol_855);
 		}
-		symbol_269.getSuperClasses().add(symbol_214); // ocl!NonOrderedCollection[ocl!Set{T}?T]
-		symbol_269.getSuperClasses().add(symbol_279); // ocl!UniqueCollection[ocl!Set{T}?T]
+		symbol_269.getSuperClasses().add(symbol_290); // ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		symbol_269.getSuperClasses().add(symbol_218); // ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_269);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		// ocl::$orphanage::Set ocl!Set[ocl!Set{T}?T]
 		//
 		symbol_270.setName("Set");
-		//symbol_270.setMoniker("ocl!Set[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
-		symbol_270.setElementType(symbol_157);
+		//symbol_270.setMoniker("ocl!Set[ocl!Set{T}?T]");
+		symbol_270.setElementType(symbol_139);
 		{
 			TemplateBinding symbol_857 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_857.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_858 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_858.setFormal(symbol_138);	
-				symbol_858.setActual(symbol_157);	
+				symbol_858.setActual(symbol_139);	
 				symbol_857.getParameterSubstitutions().add(symbol_858);
 			}
 			symbol_270.getTemplateBindings().add(symbol_857);
 		}
-		symbol_270.getSuperClasses().add(symbol_210); // ocl!NonOrderedCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
-		symbol_270.getSuperClasses().add(symbol_288); // ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		symbol_270.getSuperClasses().add(symbol_282); // ocl!UniqueCollection[ocl!Set{T}?T]
+		symbol_270.getSuperClasses().add(symbol_211); // ocl!NonOrderedCollection[ocl!Set{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_270);
 		//
-		// ocl::$orphanage::Set ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_271.setName("Set");
-		//symbol_271.setMoniker("ocl!Set[Boolean!allInstances{OclSelf}()?OclSelf]");
-		symbol_271.setElementType(symbol_22);
+		//symbol_271.setMoniker("ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
+		symbol_271.setElementType(symbol_100);
 		{
 			TemplateBinding symbol_859 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_859.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_860 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_860.setFormal(symbol_138);	
-				symbol_860.setActual(symbol_22);	
+				symbol_860.setActual(symbol_100);	
 				symbol_859.getParameterSubstitutions().add(symbol_860);
 			}
 			symbol_271.getTemplateBindings().add(symbol_859);
 		}
-		symbol_271.getSuperClasses().add(symbol_211); // ocl!NonOrderedCollection[Boolean!allInstances{OclSelf}()?OclSelf]
-		symbol_271.getSuperClasses().add(symbol_280); // ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		symbol_271.getSuperClasses().add(symbol_281); // ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		symbol_271.getSuperClasses().add(symbol_210); // ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_271);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[ocl!OrderedSet{T}?T]
 		//
 		symbol_272.setName("Set");
-		//symbol_272.setMoniker("ocl!Set[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
-		symbol_272.setElementType(symbol_64);
+		//symbol_272.setMoniker("ocl!Set[ocl!OrderedSet{T}?T]");
+		symbol_272.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_861 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_861.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_862 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_862.setFormal(symbol_138);	
-				symbol_862.setActual(symbol_64);	
+				symbol_862.setActual(symbol_121);	
 				symbol_861.getParameterSubstitutions().add(symbol_862);
 			}
 			symbol_272.getTemplateBindings().add(symbol_861);
 		}
-		symbol_272.getSuperClasses().add(symbol_215); // ocl!NonOrderedCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
-		symbol_272.getSuperClasses().add(symbol_284); // ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		symbol_272.getSuperClasses().add(symbol_285); // ocl!UniqueCollection[ocl!OrderedSet{T}?T]
+		symbol_272.getSuperClasses().add(symbol_224); // ocl!NonOrderedCollection[ocl!OrderedSet{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_272);
 		//
-		// ocl::$orphanage::Set ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::Set ocl!Set[ocl!Collection{T}?T]
 		//
 		symbol_273.setName("Set");
-		//symbol_273.setMoniker("ocl!Set[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
-		symbol_273.setElementType(symbol_100);
+		//symbol_273.setMoniker("ocl!Set[ocl!Collection{T}?T]");
+		symbol_273.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_863 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_863.setSignature(symbol_137);
 			{
 				TemplateParameterSubstitution symbol_864 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_864.setFormal(symbol_138);	
-				symbol_864.setActual(symbol_100);	
+				symbol_864.setActual(symbol_39);	
 				symbol_863.getParameterSubstitutions().add(symbol_864);
 			}
 			symbol_273.getTemplateBindings().add(symbol_863);
 		}
-		symbol_273.getSuperClasses().add(symbol_287); // ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
-		symbol_273.getSuperClasses().add(symbol_224); // ocl!NonOrderedCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		symbol_273.getSuperClasses().add(symbol_219); // ocl!NonOrderedCollection[ocl!Collection{T}?T]
+		symbol_273.getSuperClasses().add(symbol_279); // ocl!UniqueCollection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_273);
 		//
 		// ocl::$orphanage::Tuple Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}
@@ -5930,327 +6120,327 @@ public class OCLstdlib extends XMLResourceImpl
 		}
 		symbol_150.getOwnedTypes().add(symbol_274);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		//
 		symbol_277.setName("UniqueCollection");
-		//symbol_277.setMoniker("ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
-		symbol_277.setElementType(symbol_274);
+		//symbol_277.setMoniker("ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
+		symbol_277.setElementType(symbol_124);
 		{
 			TemplateBinding symbol_865 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_865.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_866 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_866.setFormal(symbol_147);	
-				symbol_866.setActual(symbol_274);	
+				symbol_866.setActual(symbol_124);	
 				symbol_865.getParameterSubstitutions().add(symbol_866);
 			}
 			symbol_277.getTemplateBindings().add(symbol_865);
 		}
-		symbol_277.getSuperClasses().add(symbol_187); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
+		symbol_277.getSuperClasses().add(symbol_187); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_277);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_278.setName("UniqueCollection");
-		//symbol_278.setMoniker("ocl!UniqueCollection[ocl!OrderedCollection{T}?T]");
-		symbol_278.setElementType(symbol_111);
+		//symbol_278.setMoniker("ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
+		symbol_278.setElementType(symbol_64);
 		{
 			TemplateBinding symbol_867 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_867.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_868 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_868.setFormal(symbol_147);	
-				symbol_868.setActual(symbol_111);	
+				symbol_868.setActual(symbol_64);	
 				symbol_867.getParameterSubstitutions().add(symbol_868);
 			}
 			symbol_278.getTemplateBindings().add(symbol_867);
 		}
-		symbol_278.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!OrderedCollection{T}?T]
+		symbol_278.getSuperClasses().add(symbol_167); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_278);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Set{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Collection{T}?T]
 		//
 		symbol_279.setName("UniqueCollection");
-		//symbol_279.setMoniker("ocl!UniqueCollection[ocl!Set{T}?T]");
-		symbol_279.setElementType(symbol_139);
+		//symbol_279.setMoniker("ocl!UniqueCollection[ocl!Collection{T}?T]");
+		symbol_279.setElementType(symbol_39);
 		{
 			TemplateBinding symbol_869 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_869.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_870 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_870.setFormal(symbol_147);	
-				symbol_870.setActual(symbol_139);	
+				symbol_870.setActual(symbol_39);	
 				symbol_869.getParameterSubstitutions().add(symbol_870);
 			}
 			symbol_279.getTemplateBindings().add(symbol_869);
 		}
-		symbol_279.getSuperClasses().add(symbol_170); // ocl!Collection[ocl!Set{T}?T]
+		symbol_279.getSuperClasses().add(symbol_173); // ocl!Collection[ocl!Collection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_279);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_280.setName("UniqueCollection");
-		//symbol_280.setMoniker("ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]");
-		symbol_280.setElementType(symbol_22);
+		//symbol_280.setMoniker("ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
+		symbol_280.setElementType(symbol_29);
 		{
 			TemplateBinding symbol_871 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_871.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_872 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_872.setFormal(symbol_147);	
-				symbol_872.setActual(symbol_22);	
+				symbol_872.setActual(symbol_29);	
 				symbol_871.getParameterSubstitutions().add(symbol_872);
 			}
 			symbol_280.getTemplateBindings().add(symbol_871);
 		}
-		symbol_280.getSuperClasses().add(symbol_186); // ocl!Collection[Boolean!allInstances{OclSelf}()?OclSelf]
+		symbol_280.getSuperClasses().add(symbol_191); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_280);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_281.setName("UniqueCollection");
-		//symbol_281.setMoniker("ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
-		symbol_281.setElementType(symbol_107);
+		//symbol_281.setMoniker("ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
+		symbol_281.setElementType(symbol_100);
 		{
 			TemplateBinding symbol_873 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_873.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_874 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_874.setFormal(symbol_147);	
-				symbol_874.setActual(symbol_107);	
+				symbol_874.setActual(symbol_100);	
 				symbol_873.getParameterSubstitutions().add(symbol_874);
 			}
 			symbol_281.getTemplateBindings().add(symbol_873);
 		}
-		symbol_281.getSuperClasses().add(symbol_167); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
+		symbol_281.getSuperClasses().add(symbol_176); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_281);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Set{T}?T]
 		//
 		symbol_282.setName("UniqueCollection");
-		//symbol_282.setMoniker("ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]");
-		symbol_282.setElementType(symbol_69);
+		//symbol_282.setMoniker("ocl!UniqueCollection[ocl!Set{T}?T]");
+		symbol_282.setElementType(symbol_139);
 		{
 			TemplateBinding symbol_875 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_875.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_876 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_876.setFormal(symbol_147);	
-				symbol_876.setActual(symbol_69);	
+				symbol_876.setActual(symbol_139);	
 				symbol_875.getParameterSubstitutions().add(symbol_876);
 			}
 			symbol_282.getTemplateBindings().add(symbol_875);
 		}
-		symbol_282.getSuperClasses().add(symbol_189); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
+		symbol_282.getSuperClasses().add(symbol_180); // ocl!Collection[ocl!Set{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_282);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Collection{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		//
 		symbol_283.setName("UniqueCollection");
-		//symbol_283.setMoniker("ocl!UniqueCollection[ocl!Collection{T}?T]");
-		symbol_283.setElementType(symbol_39);
+		//symbol_283.setMoniker("ocl!UniqueCollection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]");
+		symbol_283.setElementType(symbol_274);
 		{
 			TemplateBinding symbol_877 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_877.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_878 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_878.setFormal(symbol_147);	
-				symbol_878.setActual(symbol_39);	
+				symbol_878.setActual(symbol_274);	
 				symbol_877.getParameterSubstitutions().add(symbol_878);
 			}
 			symbol_283.getTemplateBindings().add(symbol_877);
 		}
-		symbol_283.getSuperClasses().add(symbol_179); // ocl!Collection[ocl!Collection{T}?T]
+		symbol_283.getSuperClasses().add(symbol_166); // ocl!Collection[Tuple{first:ocl!Collection{T}?T,second:ocl!Collection{T}!product{T2}(ocl!Collection[T2])?T2}]
 		symbol_150.getOwnedTypes().add(symbol_283);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedCollection{T}?T]
 		//
 		symbol_284.setName("UniqueCollection");
-		//symbol_284.setMoniker("ocl!UniqueCollection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]");
-		symbol_284.setElementType(symbol_64);
+		//symbol_284.setMoniker("ocl!UniqueCollection[ocl!OrderedCollection{T}?T]");
+		symbol_284.setElementType(symbol_111);
 		{
 			TemplateBinding symbol_879 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_879.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_880 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_880.setFormal(symbol_147);	
-				symbol_880.setActual(symbol_64);	
+				symbol_880.setActual(symbol_111);	
 				symbol_879.getParameterSubstitutions().add(symbol_880);
 			}
 			symbol_284.getTemplateBindings().add(symbol_879);
 		}
-		symbol_284.getSuperClasses().add(symbol_164); // ocl!Collection[ocl!Enumeration!allInstances{OclSelf}()?OclSelf]
+		symbol_284.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!OrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_284);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedSet{T}?T]
 		//
 		symbol_285.setName("UniqueCollection");
-		//symbol_285.setMoniker("ocl!UniqueCollection[ocl!OrderedSet{T}!flatten{T2}()?T2]");
-		symbol_285.setElementType(symbol_124);
+		//symbol_285.setMoniker("ocl!UniqueCollection[ocl!OrderedSet{T}?T]");
+		symbol_285.setElementType(symbol_121);
 		{
 			TemplateBinding symbol_881 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_881.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_882 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_882.setFormal(symbol_147);	
-				symbol_882.setActual(symbol_124);	
+				symbol_882.setActual(symbol_121);	
 				symbol_881.getParameterSubstitutions().add(symbol_882);
 			}
 			symbol_285.getTemplateBindings().add(symbol_881);
 		}
-		symbol_285.getSuperClasses().add(symbol_188); // ocl!Collection[ocl!OrderedSet{T}!flatten{T2}()?T2]
+		symbol_285.getSuperClasses().add(symbol_170); // ocl!Collection[ocl!OrderedSet{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_285);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclAny]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
 		//
 		symbol_286.setName("UniqueCollection");
-		//symbol_286.setMoniker("ocl!UniqueCollection[ocl!OclAny]");
-		symbol_286.setElementType(symbol_80);
+		//symbol_286.setMoniker("ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]");
+		symbol_286.setElementType(symbol_142);
 		{
 			TemplateBinding symbol_883 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_883.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_884 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_884.setFormal(symbol_147);	
-				symbol_884.setActual(symbol_80);	
+				symbol_884.setActual(symbol_142);	
 				symbol_883.getParameterSubstitutions().add(symbol_884);
 			}
 			symbol_286.getTemplateBindings().add(symbol_883);
 		}
-		symbol_286.getSuperClasses().add(symbol_182); // ocl!Collection[ocl!OclAny]
+		symbol_286.getSuperClasses().add(symbol_182); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
 		symbol_150.getOwnedTypes().add(symbol_286);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
 		//
 		symbol_287.setName("UniqueCollection");
-		//symbol_287.setMoniker("ocl!UniqueCollection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]");
-		symbol_287.setElementType(symbol_100);
+		//symbol_287.setMoniker("ocl!UniqueCollection[ocl!UniqueCollection{T}?T]");
+		symbol_287.setElementType(symbol_148);
 		{
 			TemplateBinding symbol_885 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_885.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_886 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_886.setFormal(symbol_147);	
-				symbol_886.setActual(symbol_100);	
+				symbol_886.setActual(symbol_148);	
 				symbol_885.getParameterSubstitutions().add(symbol_886);
 			}
 			symbol_287.getTemplateBindings().add(symbol_885);
 		}
-		symbol_287.getSuperClasses().add(symbol_190); // ocl!Collection[ocl!OclInvalid!allInstances{OclSelf}()?OclSelf]
+		symbol_287.getSuperClasses().add(symbol_181); // ocl!Collection[ocl!UniqueCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_287);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		//
 		symbol_288.setName("UniqueCollection");
-		//symbol_288.setMoniker("ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
-		symbol_288.setElementType(symbol_157);
+		//symbol_288.setMoniker("ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
+		symbol_288.setElementType(symbol_83);
 		{
 			TemplateBinding symbol_887 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_887.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_888 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_888.setFormal(symbol_147);	
-				symbol_888.setActual(symbol_157);	
+				symbol_888.setActual(symbol_83);	
 				symbol_887.getParameterSubstitutions().add(symbol_888);
 			}
 			symbol_288.getTemplateBindings().add(symbol_887);
 		}
-		symbol_288.getSuperClasses().add(symbol_191); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
+		symbol_288.getSuperClasses().add(symbol_190); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_288);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		//
 		symbol_289.setName("UniqueCollection");
-		//symbol_289.setMoniker("ocl!UniqueCollection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]");
-		symbol_289.setElementType(symbol_29);
+		//symbol_289.setMoniker("ocl!UniqueCollection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]");
+		symbol_289.setElementType(symbol_157);
 		{
 			TemplateBinding symbol_889 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_889.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_890 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_890.setFormal(symbol_147);	
-				symbol_890.setActual(symbol_29);	
+				symbol_890.setActual(symbol_157);	
 				symbol_889.getParameterSubstitutions().add(symbol_890);
 			}
 			symbol_289.getTemplateBindings().add(symbol_889);
 		}
-		symbol_289.getSuperClasses().add(symbol_183); // ocl!Collection[ocl!Classifier{T}!allInstances{OclSelf}()?OclSelf]
+		symbol_289.getSuperClasses().add(symbol_177); // ocl!Collection[ocl!Classifier[ocl!Classifier{T}!oclContents{U}()?U]]
 		symbol_150.getOwnedTypes().add(symbol_289);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OrderedSet{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_290.setName("UniqueCollection");
-		//symbol_290.setMoniker("ocl!UniqueCollection[ocl!OrderedSet{T}?T]");
-		symbol_290.setElementType(symbol_121);
+		//symbol_290.setMoniker("ocl!UniqueCollection[Boolean!allInstances{OclSelf}()?OclSelf]");
+		symbol_290.setElementType(symbol_22);
 		{
 			TemplateBinding symbol_891 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_891.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_892 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_892.setFormal(symbol_147);	
-				symbol_892.setActual(symbol_121);	
+				symbol_892.setActual(symbol_22);	
 				symbol_891.getParameterSubstitutions().add(symbol_892);
 			}
 			symbol_290.getTemplateBindings().add(symbol_891);
 		}
-		symbol_290.getSuperClasses().add(symbol_175); // ocl!Collection[ocl!OrderedSet{T}?T]
+		symbol_290.getSuperClasses().add(symbol_186); // ocl!Collection[Boolean!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_290);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]
 		//
 		symbol_291.setName("UniqueCollection");
-		//symbol_291.setMoniker("ocl!UniqueCollection[ocl!Set{T}!flatten{T2}()?T2]");
-		symbol_291.setElementType(symbol_142);
+		//symbol_291.setMoniker("ocl!UniqueCollection[ocl!NonOrderedCollection{T}?T]");
+		symbol_291.setElementType(symbol_69);
 		{
 			TemplateBinding symbol_893 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_893.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_894 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_894.setFormal(symbol_147);	
-				symbol_894.setActual(symbol_142);	
+				symbol_894.setActual(symbol_69);	
 				symbol_893.getParameterSubstitutions().add(symbol_894);
 			}
 			symbol_291.getTemplateBindings().add(symbol_893);
 		}
-		symbol_291.getSuperClasses().add(symbol_178); // ocl!Collection[ocl!Set{T}!flatten{T2}()?T2]
+		symbol_291.getSuperClasses().add(symbol_185); // ocl!Collection[ocl!NonOrderedCollection{T}?T]
 		symbol_150.getOwnedTypes().add(symbol_291);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		//
 		symbol_292.setName("UniqueCollection");
-		//symbol_292.setMoniker("ocl!UniqueCollection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]");
-		symbol_292.setElementType(symbol_83);
+		//symbol_292.setMoniker("ocl!UniqueCollection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]");
+		symbol_292.setElementType(symbol_107);
 		{
 			TemplateBinding symbol_895 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_895.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_896 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_896.setFormal(symbol_147);	
-				symbol_896.setActual(symbol_83);	
+				symbol_896.setActual(symbol_107);	
 				symbol_895.getParameterSubstitutions().add(symbol_896);
 			}
 			symbol_292.getTemplateBindings().add(symbol_895);
 		}
-		symbol_292.getSuperClasses().add(symbol_172); // ocl!Collection[ocl!OclAny!oclAsSet{OclSelf}()?OclSelf]
+		symbol_292.getSuperClasses().add(symbol_192); // ocl!Collection[ocl!OclVoid!allInstances{OclSelf}()?OclSelf]
 		symbol_150.getOwnedTypes().add(symbol_292);
 		//
-		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!UniqueCollection{T}?T]
+		// ocl::$orphanage::UniqueCollection ocl!UniqueCollection[ocl!OclAny]
 		//
 		symbol_293.setName("UniqueCollection");
-		//symbol_293.setMoniker("ocl!UniqueCollection[ocl!UniqueCollection{T}?T]");
-		symbol_293.setElementType(symbol_148);
+		//symbol_293.setMoniker("ocl!UniqueCollection[ocl!OclAny]");
+		symbol_293.setElementType(symbol_80);
 		{
 			TemplateBinding symbol_897 = PivotFactory.eINSTANCE.createTemplateBinding();
 			symbol_897.setSignature(symbol_146);
 			{
 				TemplateParameterSubstitution symbol_898 = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 				symbol_898.setFormal(symbol_147);	
-				symbol_898.setActual(symbol_148);	
+				symbol_898.setActual(symbol_80);	
 				symbol_897.getParameterSubstitutions().add(symbol_898);
 			}
 			symbol_293.getTemplateBindings().add(symbol_897);
 		}
-		symbol_293.getSuperClasses().add(symbol_168); // ocl!Collection[ocl!UniqueCollection{T}?T]
+		symbol_293.getSuperClasses().add(symbol_168); // ocl!Collection[ocl!OclAny]
 		symbol_150.getOwnedTypes().add(symbol_293);
 		symbol_1.getNestedPackages().add(symbol_150);
 		return symbol_1;

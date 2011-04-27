@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.3 2011/04/25 19:39:54 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.4 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.pivot.Constraint;
+import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -1232,6 +1234,16 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 	}
 
+	public Operation getPrimaryOperation(String moniker) {
+		Iterable<Operation> iterable = operation2operations.get(moniker);
+		if (iterable != null) {
+			return iterable.iterator().next();
+		}
+		else {
+			return null;
+		}
+	}
+
 	public Operation getPrimaryOperation(Operation pivotOperation) {
 		Iterable<Operation> iterable = operation2operations.get(pivotOperation.getMoniker());
 		if (iterable != null) {
@@ -1259,6 +1271,16 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		}
 		else {
 			return pivotPackage;
+		}
+	}
+
+	public Property getPrimaryProperty(String moniker) {
+		Iterable<Property> iterable = property2properties.get(moniker);
+		if (iterable != null) {
+			return iterable.iterator().next();
+		}
+		else {
+			return null;
 		}
 	}
 	
@@ -1304,14 +1326,6 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		if (pivotPackage instanceof Library) {
 			pivotPackage.setMoniker(packageMoniker);
 			addPackage(pivotPackage);
-//			Iterable<org.eclipse.ocl.examples.pivot.Package> oldPackages = package2packages.get(pivotPackage);
-//			if (oldPackages != null) {
-//				CompletePackage completePackage = getCompleteEnvironmentManager().getCompletePackage(oldPackage);
-//				getCompleteEnvironmentManager().addPackage(pivotPackage);
-//			}
-//			else {
-//				package2packages.put(packageMoniker, pivotPackage);
-//			}
 		}
 		else {
 			int suffix = 0;
@@ -1328,6 +1342,58 @@ public abstract class TypeCaches extends PivotStandardLibrary
 				logger.warn("Conflicting package " + pivotPackage);
 			}
 		}
+	}
+	
+	/**
+	 * Create implicit an opposite property if there is no explicit opposite.
+	 */
+	public void installPropertyDeclaration(Property thisProperty) {
+		if (thisProperty.isTransient() || thisProperty.isVolatile() || thisProperty.isDerived()) {
+			return;
+		}
+		Property opposite = thisProperty.getOpposite();
+		if (opposite != null) {
+			return;
+		}
+		org.eclipse.ocl.examples.pivot.Class thatType = (org.eclipse.ocl.examples.pivot.Class)thisProperty.getType();
+		if (thatType instanceof DataType) {
+			return;
+		}
+		org.eclipse.ocl.examples.pivot.Class thisType = thisProperty.getClass_();
+		String name = thisType.getName();
+		// If there is an explicit property with the implicit name do nothing.
+		for (Property thatProperty : thatType.getOwnedAttributes()) {
+			if (name.equals(thatProperty.getName())) {
+				if (!thatProperty.isImplicit()) {
+					return;
+				}
+				opposite = thatProperty;
+			}
+		}
+		// If there is an implicit property with the implicit name, set its opposite null
+		//   and do no more; result one name with no opposites
+		if (opposite != null) {
+			opposite.setOpposite(null);
+			thisProperty.setOpposite(null);
+			opposite.setUpper(BigInteger.valueOf(-1));
+			return;
+		}
+		// If there is no implicit property with the implicit name, create one
+		//   result a pair of mutual opposites		
+		opposite = PivotFactory.eINSTANCE.createProperty();
+		opposite.setImplicit(true);
+		opposite.setName(name);
+		opposite.setType(thisType);
+		opposite.setLower(BigInteger.valueOf(0));
+		if (thisProperty.isComposite()) {
+			opposite.setUpper(BigInteger.valueOf(1));
+		}
+		else {
+			opposite.setUpper(BigInteger.valueOf(-1));
+		}
+		opposite.setOpposite(thisProperty);
+		thisProperty.setOpposite(opposite);
+		thatType.getOwnedAttributes().add(opposite);
 	}
 
 	public void installResource(Resource pivotResource) {

@@ -12,18 +12,18 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNameVisibilityTest.java,v 1.4 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: EvaluateNameVisibilityTest.java,v 1.5 2011/04/27 06:20:03 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
-
 
 /**
  * Tests for Name access.
@@ -81,25 +81,29 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 	/**
 	 * Tests the basic name accesses
 	 */
-	public void test_fruit() throws InvocationTargetException {
+	public void test_container_navigation() throws InvocationTargetException {
 		initFruitPackage();
 		typeManager.addGlobalNamespace("fruit", fruitPackage);
-//		ResourceSet resourceSet = new ResourceSetImpl();
-//		Resource resource = resourceSet.createResource(URI.createURI("temp.xmi"));
+		//
+		//	Simple model: aTree contains redApple
+		//
 		EObject redApple = fruitEFactory.create(apple);
 		redApple.eSet(fruit_color, color_red);
-		EObject greenApple = fruitEFactory.create(apple);
-		greenApple.eSet(fruit_color, color_green);
+//		EObject greenApple = fruitEFactory.create(apple);
+//		greenApple.eSet(fruit_color, color_green);
 		EObject aTree = fruitEFactory.create(tree);
-//		resource.getContents().add(aTree);
-		EList<Object> treeFruits = (EList<Object>) aTree.eGet(tree_fruits);
+		@SuppressWarnings("unchecked")
+		List<Object> treeFruits = (List<Object>) aTree.eGet(tree_fruits);
 		treeFruits.add(redApple);
+		//
+		Type pivotTree = typeManager.getPivotOfEcore(Type.class, tree);
+		//
 		assertQueryEquals(redApple, color_red, "let aFruit : fruit::Fruit = self in aFruit.color");
 		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "let aTree : fruit::Tree = self in aTree.fruits");
 		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "self.fruits");
 		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "fruits");
 		assertQueryEquals(redApple, aTree, "self.oclContainer()");
-
-//		assertQueryEquals(redApple, aTree, "self.Tree");
+		assertQueryEquals(redApple, aTree, "self.Tree");
+		assertQueryEquals(redApple, typeManager.getClassifierType(pivotTree), "Tree");
 	}
 }
