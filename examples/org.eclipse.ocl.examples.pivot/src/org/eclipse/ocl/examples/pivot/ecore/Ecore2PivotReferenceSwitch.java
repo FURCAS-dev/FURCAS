@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.7 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -132,7 +132,12 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 				}
 			}
 		}
-		pivotElement.setOpposite(oppositeProperty);
+		if (oppositeProperty != null) {
+			pivotElement.setOpposite(oppositeProperty);
+		}
+		else {
+			converter.getTypeManager().installPropertyDeclaration(pivotElement);
+		}
 		return pivotElement;
 	}
 

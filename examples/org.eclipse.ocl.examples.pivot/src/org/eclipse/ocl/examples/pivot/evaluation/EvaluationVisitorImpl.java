@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.11 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.12 2011/04/27 06:19:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,11 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
@@ -41,9 +36,7 @@ import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
-import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
-import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -72,19 +65,14 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
-import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
-import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
-import org.eclipse.ocl.examples.pivot.library.TuplePartOperation;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
-import org.eclipse.ocl.examples.pivot.values.TupleValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.impl.IntegerRangeValueImpl;
 
@@ -128,24 +116,14 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
     	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
 		return new EvaluationVisitorImpl(environment, nestedEvalEnv, modelManager);
 	}
-
-	public Object getValueOfVariable(VariableDeclaration variable) {
-		if (variable == null) {
-			return null;
-		}
-		Object value = evaluationEnvironment.getValueOf(variable);
-		if (value instanceof Visitable) {
-			return ((Visitable) value).accept(getUndecoratedVisitor());
-		}
-		return value;
-	}
 	
 	protected Value handleCallExp(CallExp callExp, Operation staticOperation) throws InvalidEvaluationException {
+		EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
 		OclExpression source = callExp.getSource();
 		Type staticSourceType = source.getType();
 		Value sourceValue;
 		try {
-			sourceValue = source.accept(getUndecoratedVisitor());
+			sourceValue = source.accept(undecoratedVisitor);
 		}
 		catch (InvalidEvaluationException e) {
 			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
@@ -162,41 +140,17 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		try {
 			implementation = typeManager.getImplementation(dynamicOperation);
 		} catch (Exception e) {
-			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + dynamicOperation.getImplementationClass() + "'", e, callExp, sourceValue);
-		}
-		if (implementation == null) {
-			if (callExp instanceof OperationCallExp) {
-				for (Constraint constraint : typeManager.getLocalConstraints(dynamicOperation)) {
-					if (UMLReflection.BODY.equals(constraint.getStereotype())) {
-						ValueSpecification specification = constraint.getSpecification();
-						if (specification instanceof ExpressionInOcl) {
-							ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;
-							EvaluationVisitor nestedVisitor = createNestedVisitor();
-							EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-							nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-							List<Variable> parameters = expressionInOcl.getParameterVariables();
-							if (!parameters.isEmpty()) {
-								List<OclExpression> arguments = ((OperationCallExp)callExp).getArguments();
-								for (int i = 0; i < parameters.size(); i++) {
-									OclExpression argument = arguments.get(i);
-									Value value = argument.accept(this);
-									nestedEvaluationEnvironment.add(parameters.get(i).getRepresentedParameter(), value);
-								}
-							}
-							return expressionInOcl.accept(nestedVisitor);
-						}
-					}
-				}
+			String implementationClass = dynamicOperation.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + implementationClass + "'", e, callExp, null);
 			}
-			return evaluationEnvironment.throwInvalidEvaluation("No implementation for '" + dynamicOperation + "'",  callExp, sourceValue);
+			else {
+				return evaluationEnvironment.throwInvalidEvaluation("Failed to load implementation for '" + dynamicOperation + "'", e, callExp, null);
+			}
 		}
+		Value result = null;
 		try {
-			EvaluationVisitor undecoratedVisitor = getUndecoratedVisitor();
-			Value result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
-			if (result == null) {
-				result = evaluationEnvironment.throwInvalidEvaluation("Java-Null", callExp, sourceValue);
-			}
-			return result;
+			result = implementation.evaluate(undecoratedVisitor, sourceValue, callExp);
 		}
 		catch (InvalidEvaluationException e) {
 			throw e;
@@ -204,8 +158,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation("Evaluation failure", e, callExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation("Failed to evaluate '" + dynamicOperation + "'", e, callExp, sourceValue);
 		}
+		if (result == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + dynamicOperation + "'", callExp, sourceValue);
+		}
+		return result;
 	}
 
 	@Override
@@ -518,85 +476,43 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 	}
 
 	/**
-	 * Callback for a Parameter visit.
-	 *
-	@Override
-    public Value visitParameter(Parameter parameter) {
-		Value value = evaluationEnvironment.getValueOf(parameter.getName());
-		return value;
-	} */
-
-	/**
 	 * Callback for a PropertyCallExp visit.
 	 */
 	@Override
     public Value visitPropertyCallExp(PropertyCallExp propertyCallExp) {
-		OclExpression source = propertyCallExp.getSource();
-		Value sourceValue = source.accept(getUndecoratedVisitor());
 		Property property = propertyCallExp.getReferredProperty();
 		CallableImplementation implementation;
 		try {
 			implementation = typeManager.getImplementation(property);
 		} catch (Exception e) {
-			return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + property.getImplementationClass() + "'", e, propertyCallExp, sourceValue);
-		}
-		if (implementation == null) {
-			for (Constraint constraint : typeManager.getLocalConstraints(property)) {
-				if (UMLReflection.BODY.equals(constraint.getStereotype())) {
-					ValueSpecification specification = constraint.getSpecification();
-					if (specification instanceof ExpressionInOcl) {
-						ExpressionInOcl expressionInOcl = (ExpressionInOcl)specification;
-						EvaluationVisitor nestedVisitor = createNestedVisitor();
-						EvaluationEnvironment nestedEvaluationEnvironment = nestedVisitor.getEvaluationEnvironment();
-						nestedEvaluationEnvironment.add(expressionInOcl.getContextVariable(), sourceValue);
-						return expressionInOcl.accept(nestedVisitor);
-					}
-				}
-			}
-			Object object = sourceValue.asObject();
-			if ((object instanceof ClassifierType) && !(property.getClass_() instanceof ClassifierType)) {
-				object = ((ClassifierType)object).getInstanceType(); // FIXME ?? Classifier property call of something	
-			}
-			if (object instanceof EObject) {
-				EObject eObject = (EObject)object;
-				EClass eClass = eObject.eClass();
-				EStructuralFeature eFeature = eClass.getEStructuralFeature(property.getName());
-				// FIXME Cache a source specific implementation in a CompleteProperty
-//				implementation = new EObjectProperty(eFeature, null);
-//				property.setImplementation(implementation);
-				Object eValue = eObject.eGet(eFeature);
-				if (eValue instanceof Enumerator) {
-					Enumerator eEnumerator = (Enumerator) eValue;
-					EClassifier eEnum = eFeature.getEType();
-					org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = typeManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
-					EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
-					return valueFactory.createElementValue(pivotEnumLiteral);
-				}
-				else {
-					return valueFactory.valueOf(eValue, eFeature);
-				}
-			}
-			else if (sourceValue instanceof TupleValue) {
-				implementation = TuplePartOperation.INSTANCE;
-				property.setImplementation(implementation);
+			String implementationClass = property.getImplementationClass();
+			if (implementationClass != null) {
+				return evaluationEnvironment.throwInvalidEvaluation("Failed to load '" + implementationClass + "'", e, propertyCallExp, null);
 			}
 			else {
-				return evaluationEnvironment.throwInvalidEvaluation("non-object", propertyCallExp, sourceValue);
+				return evaluationEnvironment.throwInvalidEvaluation("Failed to load implementation for '" + property + "'", e, propertyCallExp, null);
 			}
 		}
+		OclExpression source = propertyCallExp.getSource();
+		Value sourceValue = source.accept(getUndecoratedVisitor());
+		Value resultValue = null;
 		try {
-			Value resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
-			if (resultValue == null) {
-				resultValue = evaluationEnvironment.throwInvalidEvaluation("Java-Null", propertyCallExp, sourceValue);
-			}
-			return resultValue;
+			resultValue = implementation.evaluate(getUndecoratedVisitor(), sourceValue, propertyCallExp);
+		}
+		catch (InvalidEvaluationException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			// This is a backstop. Library operations should catch their own exceptions
 			//  and produce a better reason as a result.
-			return evaluationEnvironment.throwInvalidEvaluation("Evaluation failure", e, propertyCallExp, sourceValue);
+			return evaluationEnvironment.throwInvalidEvaluation("Failed to evaluate '" + property + "'", e, propertyCallExp, sourceValue);
 		}
+		if (resultValue == null) {
+			return evaluationEnvironment.throwInvalidEvaluation("Java-Null result from '" + property + "'", propertyCallExp, sourceValue);
+		}
+		return resultValue;
 	}
+	
 	/**
 	 * Callback for a RealLiteralExp visit.
 	 * 
