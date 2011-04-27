@@ -12,14 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.8 2011/04/25 19:39:48 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.9 2011/04/27 06:20:05 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 
