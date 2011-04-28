@@ -122,7 +122,7 @@ public class ANTLR3GrammarWriter {
 		+ "import java.text.CharacterIterator;\n"
 		+ "import java.text.StringCharacterIterator;\n" + "import %superclass%;\n"
 		+ "import org.antlr.runtime.Token;\n"
-		+ "import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;\n"+ "}\n";
+		+ "import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;\n"+ "}\n";
 
 	/** The parser members template. */
 	private final String parserMembersTemplate = "@members {\n"

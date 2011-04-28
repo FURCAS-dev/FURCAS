@@ -41,7 +41,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParserGenerator;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
@@ -138,19 +138,6 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         ByteArrayOutputStream errByteStream = new ByteArrayOutputStream();
         PrintStream systemErrOld = redirectSystemErrTo(errByteStream);
         try {
-            String osgiFrameworkVersion = System.getProperty("osgi.framework.version", "3.6.2.R36x_v20110210");
-            File osgiBundleJarFile = ParserGenerator.findBundleJar("org.eclipse.osgi_" + osgiFrameworkVersion + ".jar");
-            if (osgiBundleJarFile == null) {
-                // try with - instead of _ instead
-                osgiBundleJarFile = ParserGenerator.findBundleJar("org.eclipse.osgi-" + osgiFrameworkVersion + ".jar");
-            }
-            String osgiBundlePath = "";
-            if (osgiBundleJarFile != null) {
-                osgiBundlePath = osgiBundleJarFile.getAbsolutePath();
-                System.out.println("OSGi Bundle Path: " + osgiBundlePath);
-            } else {
-                System.err.println("Didn't find OSGi Bundle for framework version "+osgiFrameworkVersion);
-            }
             int success = Main.compile(new String[] {
                     testConfig.getRelativePathToGeneratedParserFactoryClass(),
                     testConfig.getRelativePathToGeneratedParserClass(),
@@ -164,9 +151,8 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
                     + File.pathSeparator + getSourceRoot(RuleNameFinder.class)
                     + File.pathSeparator + getSourceRoot(IModelElementProxy.class)
                     + File.pathSeparator + getSourceRoot(Lexer.class)
-                    + File.pathSeparator + getSourceRoot(SyntaxRegistry.class)
-                    + File.pathSeparator + getSourceRoot(EcorePackageLoadListener.class)
-                    + File.pathSeparator + osgiBundlePath});
+                    + File.pathSeparator + getSourceRoot(SyntaxRegistryFacade.class)
+                    + File.pathSeparator + getSourceRoot(EcorePackageLoadListener.class)});
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }

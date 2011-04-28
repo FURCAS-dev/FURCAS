@@ -250,12 +250,12 @@ public class PropertyTypeHandler<Type extends Object> {
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
-                        "\", temp, \"" + query + "\", \""+propURI+"\", SyntaxRegistry.getInstance());}"));
+                        "\", temp, \"" + query + "\", \""+propURI+"\", SyntaxRegistryFacade.getModelUpdaterRegistry());}"));
             }
         } else {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + query
-                        + "\", \""+propURI+"\", SyntaxRegistry.getInstance());}"));
+                        + "\", \""+propURI+"\", SyntaxRegistryFacade.getModelUpdaterRegistry());}"));
             }
         }
     }
