@@ -6,6 +6,7 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTags;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
@@ -14,6 +15,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyReference;
 import com.sap.furcas.metamodel.FURCAS.TCS.ScopeArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -231,5 +233,9 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
 		
 	}
 
+	@Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getOperatorTemplate();
+	    }
 
 }

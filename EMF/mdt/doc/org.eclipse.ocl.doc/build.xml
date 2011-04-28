@@ -43,7 +43,7 @@
 		<property name="build.result.folder" value="${basedir}"/>
 		<property name="temp.folder" value="${basedir}/temp.folder"/>
 		<property name="plugin.destination" value="${basedir}"/>
-		
+				
 		<available property="javadoc.already.built" file="references/javadoc/org/eclipse/ocl/package-summary.html"/>
 	</target>
 
@@ -64,11 +64,13 @@
 	</target>
 
 	<target name="build.jars" depends="init" unless="javadoc.already.built" description="Build all the jars for the plug-in: ${docPlugin}.">
+		<!-- adolfosbh: javadoc wont' be included in the doc plugin. See bugzilla 337202-->
 		<!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
+		<!--
 		<exec executable="sh">
 			<arg value="build/antJavadoc.sh"/>
 			<arg value="${eclipse.home}/../eclipse"/>
-		</exec>
+		</exec>-->
 			
 		<antcall target="convertSchemaToHtml"/>
 		

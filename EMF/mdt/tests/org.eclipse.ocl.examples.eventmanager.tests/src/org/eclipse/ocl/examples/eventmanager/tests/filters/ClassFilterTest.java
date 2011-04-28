@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 
 
 /**
@@ -103,10 +103,10 @@ public class ClassFilterTest extends EventFilterTest {
 
     /**
      * Tests the '
-     * {@link org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * {@link org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * @see org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__Notification() {
         setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls));

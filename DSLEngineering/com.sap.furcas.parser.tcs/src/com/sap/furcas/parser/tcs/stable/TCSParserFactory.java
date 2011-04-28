@@ -8,15 +8,16 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package com.sap.furcas.parser.tcs.stable;
+package com.sap.furcas.parser.tcs;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
- 
+import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import com.sap.furcas.parser.tcs.stable.TCSLexer;
+import com.sap.furcas.parser.tcs.stable.TCSParser;
 
 public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer> {
 
@@ -46,11 +47,10 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
     public String[] getHiddenChannelTokenNames() {
         return new String[] { "WS", "NL", "COMMENT" };
     }
-
+        
     @Override
     public URI getSyntaxUri() {
-        String packagePath = TCSParserFactory.class.getPackage().getName().replace(".", "/");
-        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/src/" + packagePath + "/TCS.tcs", true);
+        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /* encode */ false);
     }
-        
+
 }

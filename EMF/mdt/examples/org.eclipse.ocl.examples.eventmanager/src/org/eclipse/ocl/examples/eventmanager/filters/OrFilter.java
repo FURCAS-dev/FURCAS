@@ -11,6 +11,7 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.framework.LogicalOperationFilterImpl;
 
 
@@ -31,7 +32,6 @@ public class OrFilter extends LogicalOperationFilterImpl {
     }
 
     public boolean matchesFor(Notification event) {
-
         for (EventFilter otherFilter : getOperands()) {
             if (otherFilter.matchesFor(event))
                 return true;

@@ -28,7 +28,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.Template;
 import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 
@@ -43,7 +43,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getElementsInContext <em>Elements In Context</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getForEachContext <em>For Each Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getForEachExecutions <em>For Each Executions</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#isComplete <em>Complete</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextBlockImpl#getAdditionalTemplates <em>Additional Templates</em>}</li>
@@ -94,14 +94,14 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         protected EList<EObject> elementsInContext;
 
         /**
-     * The cached value of the '{@link #getForEachContext() <em>For Each Context</em>}' containment reference list.
+     * The cached value of the '{@link #getForEachExecutions() <em>For Each Executions</em>}' containment reference list.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getForEachContext()
+     * <!-- end-user-doc -->
+     * @see #getForEachExecutions()
      * @generated
      * @ordered
      */
-        protected EList<ForEachContext> forEachContext;
+    protected EList<ForEachExecution> forEachExecutions;
 
         /**
      * The default value of the '{@link #getCachedString() <em>Cached String</em>}' attribute.
@@ -251,11 +251,11 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
-        public EList<ForEachContext> getForEachContext() {
-        if (forEachContext == null) {
-            forEachContext = new EObjectContainmentEList.Resolving<ForEachContext>(ForEachContext.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT);
+        public EList<ForEachExecution> getForEachExecutions() {
+        if (forEachExecutions == null) {
+            forEachExecutions = new EObjectContainmentEList.Resolving<ForEachExecution>(ForEachExecution.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
         }
-        return forEachContext;
+        return forEachExecutions;
     }
 
         /**
@@ -305,6 +305,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @SuppressWarnings("unchecked")
         public EList<TextBlock> getSubBlocks() {
         try {
             return (EList<TextBlock>)GET_SUB_BLOCKS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
@@ -319,6 +320,7 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * <!-- end-user-doc -->
      * @generated
      */
+        @SuppressWarnings("unchecked")
         public EList<AbstractToken> getTokens() {
         try {
             return (EList<AbstractToken>)GET_TOKENS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
@@ -385,8 +387,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         switch (featureID) {
             case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
                 return ((InternalEList<?>)getSubNodes()).basicRemove(otherEnd, msgs);
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
-                return ((InternalEList<?>)getForEachContext()).basicRemove(otherEnd, msgs);
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
+                return ((InternalEList<?>)getForEachExecutions()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -408,8 +410,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return getParentAltChoices();
             case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
                 return getElementsInContext();
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
-                return getForEachContext();
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
+                return getForEachExecutions();
             case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
                 return getCachedString();
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:
@@ -444,9 +446,9 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 getElementsInContext().clear();
                 getElementsInContext().addAll((Collection<? extends EObject>)newValue);
                 return;
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
-                getForEachContext().clear();
-                getForEachContext().addAll((Collection<? extends ForEachContext>)newValue);
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
+                getForEachExecutions().clear();
+                getForEachExecutions().addAll((Collection<? extends ForEachExecution>)newValue);
                 return;
             case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
                 setCachedString((String)newValue);
@@ -482,8 +484,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
             case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
                 getElementsInContext().clear();
                 return;
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
-                getForEachContext().clear();
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
+                getForEachExecutions().clear();
                 return;
             case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
                 setCachedString(CACHED_STRING_EDEFAULT);
@@ -514,8 +516,8 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
                 return parentAltChoices != null && !parentAltChoices.isEmpty();
             case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
                 return elementsInContext != null && !elementsInContext.isEmpty();
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
-                return forEachContext != null && !forEachContext.isEmpty();
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
+                return forEachExecutions != null && !forEachExecutions.isEmpty();
             case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
                 return CACHED_STRING_EDEFAULT == null ? cachedString != null : !CACHED_STRING_EDEFAULT.equals(cachedString);
             case TextblocksPackage.TEXT_BLOCK__COMPLETE:

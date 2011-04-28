@@ -16,7 +16,6 @@
 
   <modules>
     <module>org.eclipse.emf.query2.test</module>
-    <module>org.eclipse.emf.query.index.test</module>
   </modules>
 
 </project>

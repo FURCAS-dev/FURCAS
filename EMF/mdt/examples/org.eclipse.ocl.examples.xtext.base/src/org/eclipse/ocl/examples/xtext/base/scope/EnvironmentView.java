@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.11 2011/03/05 05:57:40 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.13 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -116,10 +116,11 @@ public class EnvironmentView
 		if (element == null) {
 			return 0;
 		}
+		element = typeManager.getPrimaryElement(element);
 		if ((name != null) && !name.equals(elementName)) {
 			return 0;
 		}
-		if (matchers != null) {
+		if ((name != null) && (matchers != null)) {
 			for (Filter filter : matchers) {
 				if (!filter.matches(this, element)) {
 					return 0;
@@ -138,6 +139,7 @@ public class EnvironmentView
 			}
 			resolvers.addAll(matchers);
 		}
+		
 		Object value = contentsByName.get(elementName);
 		if (value == element) {
 			;	// Already present
@@ -177,16 +179,17 @@ public class EnvironmentView
 		return additions;
 	}
 
-	public void addElementsOfScope(TypeManager typeManager, Element element,
-			ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
-		if (scopeAdapter != null) {
-			scopeAdapter.computeLookup(this, scopeView);
+	public void addElementsOfScope(Element element, ScopeView scopeView) {
+		if (element !=  null) {
+			ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(typeManager, element);
+			if (scopeAdapter != null) {
+				scopeAdapter.computeLookup(this, scopeView);
+			}
 		}
 	}
 
 	public void addElementsOfScope(ModelElementCS csElement, ScopeView scopeView) {
-		ScopeAdapter scopeAdapter = ElementUtil.getScopeAdapter(csElement);
+		ScopeAdapter scopeAdapter = ElementUtil.getScopeCSAdapter(csElement);
 		if (scopeAdapter != null) {
 			scopeAdapter.computeLookup(this, scopeView);
 		}
@@ -218,7 +221,7 @@ public class EnvironmentView
 
 	public int computeLookups(Type type) {
 		ScopeAdapter scopeAdapter = AbstractScopeAdapter.getScopeAdapter(typeManager, type);
-		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(null);
+		ScopeView innerScopeView = scopeAdapter.getInnerScopeView(typeManager, null);
 		return computeLookups(innerScopeView);
 	}
 	
@@ -331,6 +334,10 @@ public class EnvironmentView
 
 	public int getSize() {
 		return contentsSize;
+	}
+
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	/**

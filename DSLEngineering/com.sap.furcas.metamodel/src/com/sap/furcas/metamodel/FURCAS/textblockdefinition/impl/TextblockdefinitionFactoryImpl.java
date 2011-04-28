@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl;
 
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

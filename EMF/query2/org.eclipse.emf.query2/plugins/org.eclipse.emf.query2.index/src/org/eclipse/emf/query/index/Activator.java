@@ -7,11 +7,9 @@ import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * The activator class controls the plug-in life cycle
+ * The activator class controls the plug-in life cycle for index plugin
  */
 public class Activator extends Plugin {
-	// The plug-in ID
-	
 
 	// The shared instance
 	private static Activator plugin;

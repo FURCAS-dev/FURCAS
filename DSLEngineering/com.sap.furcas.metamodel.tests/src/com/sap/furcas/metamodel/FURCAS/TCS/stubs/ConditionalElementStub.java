@@ -3,9 +3,12 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.ConditionalElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Expression;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -46,5 +49,8 @@ public class ConditionalElementStub extends SequenceElementStub implements Condi
     }
     
     
-    
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getConditionalElement();
+    }
 }

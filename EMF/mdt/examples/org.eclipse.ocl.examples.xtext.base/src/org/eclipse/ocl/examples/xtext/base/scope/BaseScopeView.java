@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseScopeView.java,v 1.6 2011/03/01 08:47:48 ewillink Exp $
+ * $Id: BaseScopeView.java,v 1.7 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -38,31 +38,34 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 public class BaseScopeView extends AbstractScope implements ScopeView
 {
 	@Deprecated
-	private static ScopeView getParent(ScopeAdapter scopeAdapter, EReference targetReference) {
+	private static ScopeView getParent(TypeManager typeManager, ScopeAdapter scopeAdapter, EReference targetReference) {
 		ScopeAdapter parent = scopeAdapter.getParent();
 		if (parent == null) {
 			return ScopeView.NULLSCOPEVIEW;
 		}
 		EObject target = scopeAdapter.getTarget();
 		EStructuralFeature eContainingFeature = target.eContainingFeature();
-		return new BaseScopeView(parent, target, eContainingFeature, targetReference);
+		return new BaseScopeView(typeManager, parent, target, eContainingFeature, targetReference);
 	}
 	
+	protected final TypeManager typeManager;
 	protected final ScopeAdapter scopeAdapter;					// Adapting the CST node
 	protected final EObject child;								// Child targeted by containmentFeature, null for child-independent
 	protected final EStructuralFeature containmentFeature;		// Selecting child-specific candidates, null for child-independent
 	protected final EReference targetReference;					// Selecting permissible candidate types
 	
-	public BaseScopeView(ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
-		super(getParent(scopeAdapter, targetReference), false);
+	public BaseScopeView(TypeManager typeManager, ScopeAdapter scopeAdapter, EObject child, EStructuralFeature containmentFeature, EReference targetReference) {
+		super(getParent(typeManager, scopeAdapter, targetReference), false);
+		this.typeManager = typeManager;
 		this.scopeAdapter = scopeAdapter;
 		this.child = child;
 		this.containmentFeature = containmentFeature;
 		this.targetReference = targetReference;
 	}
 
-	public BaseScopeView(ScopeView scopeView) {
-		super(getParent(scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
+	public BaseScopeView(TypeManager typeManager, ScopeView scopeView) {
+		super(getParent(typeManager, scopeView.getScopeAdapter(), scopeView.getTargetReference()), false);
+		this.typeManager = typeManager;
 		this.scopeAdapter = scopeView.getScopeAdapter();
 		this.child = scopeView.getChild();
 		this.containmentFeature = scopeView.getContainmentFeature();
@@ -81,7 +84,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 
 	@Override
 	public Iterable<IEObjectDescription> getAllElements() {
-		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, null);
 		computeLookupWithParents(environmentView);
 		return environmentView.getDescriptions();
 	}
@@ -106,7 +109,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	public Iterable<IEObjectDescription> getElements(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
@@ -140,7 +143,7 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 	public IEObjectDescription getSingleElement(QualifiedName name) {
 		if (name == null)
 			throw new NullPointerException("name"); //$NON-NLS-1$
-		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, name.toString());
+		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, name.toString());
 		int size = environmentView.computeLookups(this);
 		if (size <= 0) {
 			return null;
@@ -171,13 +174,13 @@ public class BaseScopeView extends AbstractScope implements ScopeView
 		return targetReference;
 	}
 
-	private TypeManager getTypeManager() {
-		return scopeAdapter.getTypeManager();
+	public TypeManager getTypeManager() {
+		return typeManager;
 	}
 
 	@Override
 	protected final Iterable<IEObjectDescription> getAllLocalElements() {
-		EnvironmentView environmentView = new EnvironmentView(getTypeManager(), targetReference, null);
+		EnvironmentView environmentView = new EnvironmentView(typeManager, targetReference, null);
 		scopeAdapter.computeLookup(environmentView, this);
 		return environmentView.getDescriptions();
 	}

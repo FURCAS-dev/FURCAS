@@ -10,7 +10,10 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.LookupScopePArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class LookupScopePargStub extends PargStub implements LookupScopePArg {
 
@@ -25,4 +28,10 @@ public class LookupScopePargStub extends PargStub implements LookupScopePArg {
     public void setQuery(String value) {
         query = value;
     }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getLookupScopePArg();
+    }
+
 }

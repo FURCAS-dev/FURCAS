@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.util;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -16,7 +15,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -104,8 +103,8 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
                 return createDocumentNodeAdapter();
             }
             @Override
-            public Adapter caseForEachContext(ForEachContext object) {
-                return createForEachContextAdapter();
+            public Adapter caseForEachExecution(ForEachExecution object) {
+                return createForEachExecutionAdapter();
             }
             @Override
             public Adapter caseEostoken(Eostoken object) {
@@ -220,16 +219,16 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
     }
 
         /**
-     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext <em>For Each Context</em>}'.
+     * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution <em>For Each Execution</em>}'.
      * <!-- begin-user-doc -->
-         * This default implementation returns null so that we can easily ignore cases;
-         * it's useful to ignore a case when inheritance will catch all the cases anyway.
-         * <!-- end-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution
      * @generated
      */
-        public Adapter createForEachContextAdapter() {
+    public Adapter createForEachExecutionAdapter() {
         return null;
     }
 

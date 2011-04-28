@@ -199,6 +199,7 @@ public class EMFModelAdapterDelegate {
                         + ", when the property has " + multiProperty.size() + " elements.");
             }
         }
+        removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, value);
     }
 
     @SuppressWarnings("unchecked")
@@ -231,6 +232,19 @@ public class EMFModelAdapterDelegate {
             } else {
                 throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of "
                         + feat.getUpperBound());
+            }
+        }
+        removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, value);
+    }
+
+    private void removeExplicitTransientResourceAssignmentIfAddedToContainment(EStructuralFeature feat, Object value) {
+        if (feat instanceof EReference && ((EReference) feat).isContainment()) {
+            if (value instanceof Collection<?>) {
+                for (Object o : (Collection<?>) value) {
+                    removeExplicitTransientResourceAssignmentIfAddedToContainment(feat, o);
+                }
+            } else if (value instanceof EObject) {
+                transientResource.getContents().remove(value);
             }
         }
     }

@@ -27,11 +27,10 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
@@ -39,7 +38,6 @@ import org.eclipse.ocl.examples.impactanalyzer.benchmark.preparation.notificatio
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.testutils.BaseDepartmentTestWithOCL;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -427,7 +425,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
     public void testFilterConsistencyClassBased() {
         for (ExpressionInOCL exp : this.stmts) {
             EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(),
-                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, new OCLFactoryImpl())
+                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, OCLFactory.getInstance())
                     .createFilterForExpression();
             assertAllReferencesInPackage(f, this.comp);
             assertAllClassesOfClassFiltersInPackage(f, this.comp);
@@ -447,7 +445,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
         EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(
                 (OCLExpression) getSimpleAllInstancesAST().getBodyExpression(), CompanyPackage.eINSTANCE.getEmployee(), /* notifyOnNewContextElements */
-                false, new OCLFactoryImpl()).createFilterForExpression();
+                false, OCLFactory.getInstance()).createFilterForExpression();
         eventManager.subscribe(filter, listener);
 
         // now construct subtree that contains an Employee subclass's instance:
@@ -477,7 +475,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
      */
     @Test
     public void testDerivedPropertyCollection() {
-        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        OCL ocl = OCLFactory.getInstance().createOCL(DefaultOppositeEndFinder.getInstance());
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl((OCLExpression) this.getLimitEmployeesOfTheMonthAST()
                 .getBodyExpression(), false, ocl);
         Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
@@ -495,7 +493,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
      */
     @Test
     public void testNestedDerivations() {
-        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        OCL ocl = OCLFactory.getInstance().createOCL(DefaultOppositeEndFinder.getInstance());
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(
                 (OCLExpression) this.getNestedDerivationAST().getBodyExpression(), false, ocl);
         Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
@@ -517,7 +515,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
      */
     @Test
     public void testMultipleDerivationUsage() {
-        OCL ocl = OCLFactory.INSTANCE.createOCL(DefaultOppositeEndFinder.getInstance());
+        OCL ocl = OCLFactory.getInstance().createOCL(DefaultOppositeEndFinder.getInstance());
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(
                 (OCLExpression) this.getEotmDeltaMaxAST().getBodyExpression(), false, ocl);
         Map<OCLExpression, Set<PropertyCallExp>> derivedProperties = filtersyn.getDerivedProperties();
@@ -557,7 +555,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
             for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
                 assertAllReferencesInPackage(o, comp);
             }
-        } else if (f instanceof AssociationFilter) {
+        } else if (f instanceof StructuralFeatureFilter) {
             assertTrue("AssociationFilter :::" + f + " has a NULL reference", ((StructuralFeatureFilter) f).getFeature() != null);
             EClass wantedClass = ((StructuralFeatureFilter) f).getFeature().getEContainingClass();
             assertTrue("AssociationFilter :::" + f + " has a reference which is not contained in a class", wantedClass != null);
@@ -584,7 +582,7 @@ public class FilterSynthesisTest extends BaseDepartmentTestWithOCL {
         for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
             EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(),
-                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, new OCLFactoryImpl())
+                    (EClass) exp.getContextVariable().getType(), /* notifyOnNewContextElements */true, OCLFactory.getInstance())
                     .createFilterForExpression();
             if (filter.matchesFor(noti)) {
                 affectedStmts.add(exp);

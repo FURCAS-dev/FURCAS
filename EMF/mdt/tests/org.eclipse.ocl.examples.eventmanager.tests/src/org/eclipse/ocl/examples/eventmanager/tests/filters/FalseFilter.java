@@ -11,14 +11,16 @@
 package org.eclipse.ocl.examples.eventmanager.tests.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
-final class FalseFilter extends EventFilter {
-    @Override
+final class FalseFilter extends AbstractEventFilter {
+    FalseFilter() {
+		super(false);
+	}
+
     public boolean matchesFor(Notification event) {
         return false;
-
     }
 
     @Override
@@ -41,12 +43,10 @@ final class FalseFilter extends EventFilter {
     @Override
     public FalseFilter clone() {
         return new FalseFilter();
-        
     }
 
     @Override
     public Object getFilterCriterion() {
         return false;
-        
     }
 }

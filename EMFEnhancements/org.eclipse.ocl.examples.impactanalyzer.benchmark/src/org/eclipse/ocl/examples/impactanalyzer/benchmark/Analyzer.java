@@ -67,6 +67,7 @@ public class Analyzer {
     private int sloppinessColumnIndex = -1;
     private int noIaAllInstanceCallsColumnIndex = -1;
     private int noAllInstanceEvalAllInstanceCallsColumnIndex = -1;
+    private int noTracebackStepsExecutedColumnIndex = -1;
 
     /**
      * Stores the sum of the model sizes, indexed by the modelId column value
@@ -77,6 +78,13 @@ public class Analyzer {
      * Results, aggregated by <code>optionId</code>
      */
     private final Result[] results;
+    
+    /**
+     * If provided, this tells the number of measurement runs that were executed which
+     * therefore is the quotient by which all numbers to be summed up will be divided
+     * during output.
+     */
+    private int quotient;
 
     /**
      * One row of the file. The <code>filtered</code> flag is separate; all other <code>long</code> columns match up
@@ -147,6 +155,7 @@ public class Analyzer {
         private final Aggregator[] aggrIaFilteredWithoutAllInstancesDuringTraceback = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] aggrIaFilteredWithoutAllInstancesAtAnyTime = new Aggregator[MAX_MODEL_ID];
         private final Aggregator[] sloppinessFiltered = new Aggregator[MAX_MODEL_ID];
+        private final Aggregator[] aggrNumberOfTracebackStepsExecuted = new Aggregator[MAX_MODEL_ID];
 
         public Result(int optionId) {
             this.optionId = optionId;
@@ -156,14 +165,19 @@ public class Analyzer {
          * If <code>filtered</code> is <code>true</code>, the event of the record has passed the event filter. Its
          * <code>aiExecAndEvalTime</code> is added to the {@link #aggrAllInstanceFiltered} and {@link #aggrIaFiltered}
          * aggregators. In all cases it's added to the {@link #aggrAllInstanceUnfiltered} aggregator.
+         * @param noTracebackStepsExecuted 
          */
         public void recordMeasurement(long aiExecAndEvalTime, long iaExecAndEvalTime, long sloppiness,
                 boolean filtered, long numberOfAllInstanceCallsDuringTraceback,
-                long numberOfAllInstanceEvalsDuringEvalOnAllInstances, int modelId) {
+                long numberOfAllInstanceEvalsDuringEvalOnAllInstances, long noTracebackStepsExecuted, int modelId) {
             if (aggrAllInstanceUnfiltered[modelId] == null) {
                 aggrAllInstanceUnfiltered[modelId] = new Aggregator();
             }
             aggrAllInstanceUnfiltered[modelId].aggregate(aiExecAndEvalTime);
+            if (aggrNumberOfTracebackStepsExecuted[modelId] == null) {
+                aggrNumberOfTracebackStepsExecuted[modelId] = new Aggregator();
+            }
+            aggrNumberOfTracebackStepsExecuted[modelId].aggregate(noTracebackStepsExecuted);
             if (filtered) {
                 if (aggrAllInstanceFiltered[modelId] == null) {
                     aggrAllInstanceFiltered[modelId] = new Aggregator();
@@ -231,11 +245,41 @@ public class Analyzer {
         }
 
         /**
+         * Returns the {@link Aggregator#getSum() sums} of the
+         * {@link #aggrIaFilteredWithoutAllInstancesAtAnyTime} aggregator, keyed by the
+         * {@link Analyzer#getAverageModelSize(int) model sizes}.
+         */
+        public Map<Double, Double> getAggrNumberOfTracebackStepsExecutedAverage() {
+            return getAverageByModelSize(aggrNumberOfTracebackStepsExecuted);
+        }
+
+        /**
          * Returns the {@link Aggregator#getSum() sums} of the {@link #aggrIaFiltered} aggregator, keyed by the
          * {@link Analyzer#getAverageModelSize(int) model sizes}.
          */
         public Map<Double, BigInteger> getAggrIaFilteredSum() {
             return getSumByModelSize(aggrIaFiltered);
+        }
+
+        /**
+         * Considers {@link Analyzer#quotient} and divides the sums by this quotient before putting them to the
+         * values of the map returned.
+         * 
+         * @param aggregatorArray
+         *            an array of {@link Aggregator}s where the array index is the model ID. Based on the model ID, the
+         *            model size is computed using {@link Analyzer#getAverageModelSize(int)} and then used as the key
+         *            for the resulting map.
+         * @return a map whose key set is ordered for ascending model size
+         */
+        private Map<Double, BigInteger> getSumByModelSize(Aggregator[] aggregatorArray) {
+            BigInteger quotientAsBigInt = BigInteger.valueOf(quotient);
+            Map<Double, BigInteger> result = new TreeMap<Double, BigInteger>();
+            for (int i = 0; i < MAX_MODEL_ID; i++) {
+                if (aggregatorArray[i] != null) {
+                    result.put(getAverageModelSize(i), aggregatorArray[i].getSum().divide(quotientAsBigInt));
+                }
+            }
+            return result;
         }
 
         /**
@@ -245,19 +289,18 @@ public class Analyzer {
          *            for the resulting map.
          * @return a map whose key set is ordered for ascending model size
          */
-        private Map<Double, BigInteger> getSumByModelSize(Aggregator[] aggregatorArray) {
-            Map<Double, BigInteger> result = new TreeMap<Double, BigInteger>();
+        private Map<Double, Double> getAverageByModelSize(Aggregator[] aggregatorArray) {
+            Map<Double, Double> result = new TreeMap<Double, Double>();
             for (int i = 0; i < MAX_MODEL_ID; i++) {
                 if (aggregatorArray[i] != null) {
-                    result.put(getAverageModelSize(i), aggregatorArray[i].getSum());
+                    result.put(getAverageModelSize(i), aggregatorArray[i].getAverage());
                 }
             }
             return result;
         }
-
     }
 
-    public Analyzer(String inFileName, String outFileName) throws IOException {
+    public Analyzer(String inFileName, String outFileName, int quotient) throws IOException {
         File inFile = new File(inFileName);
         long inFileSize = inFile.length();
         reader = new BufferedReader(new FileReader(inFile));
@@ -268,6 +311,7 @@ public class Analyzer {
         linesRead = 0;
         estimatedNumberOfLines = (int) (inFileSize / AVG_LINE_LENGTH);
         results = new Result[MAX_OPTION_ID];
+        this.quotient = quotient;
     }
 
     /**
@@ -277,7 +321,8 @@ public class Analyzer {
      */
     public static void main(String[] args) {
         try {
-            Analyzer analyzer = new Analyzer(args[0], args.length < 2 ? null : args[1]);
+            Analyzer analyzer = new Analyzer(args[0], args.length < 2 ? null : args[1],
+                    /* quotient */ args.length > 2 ? Integer.valueOf(args[2]).intValue() : 1);
             analyzer.run();
         } catch (Exception e) {
             e.printStackTrace();
@@ -317,7 +362,8 @@ public class Analyzer {
                                 + unfilteredEntry.getKey() + "\t1\t" + unfilteredEntry.getValue() + "\t"
                                 + results[optionId].getAggrAllInstanceFilteredSum().get(unfilteredEntry.getKey()) + "\t"
                                 + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(unfilteredEntry.getKey()) + "\t"
-                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(unfilteredEntry.getKey())
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(unfilteredEntry.getKey()) + "\t"
+                                + results[optionId].getAggrNumberOfTracebackStepsExecutedAverage().get(unfilteredEntry.getKey())
                                 + "\n");
                     }
                     i = 0;
@@ -327,7 +373,8 @@ public class Analyzer {
                                 + filteredEntry.getKey() + "\t2\t" + filteredEntry.getValue() + "\t"
                                 + results[optionId].getAggrAllInstanceFilteredSum().get(filteredEntry.getKey()) + "\t"
                                 + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(filteredEntry.getKey()) + "\t"
-                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(filteredEntry.getKey())
+                                + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(filteredEntry.getKey()) + "\t"
+                                + results[optionId].getAggrNumberOfTracebackStepsExecutedAverage().get(filteredEntry.getKey())
                                 + "\n");
                     }
                     i = 0;
@@ -337,7 +384,8 @@ public class Analyzer {
                             + optionIdToMeasurement[optionId] + "\t" + ia.getValue() + "\t"
                             + results[optionId].getAggrAllInstanceFilteredSum().get(ia.getKey()) + "\t"
                             + results[optionId].getAggrIaFilteredWithoutAllInstancesDuringTracebackSum().get(ia.getKey()) + "\t"
-                            + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(ia.getKey())
+                            + results[optionId].getAggrIaFilteredWithoutAllInstancesAtAnyTimeSum().get(ia.getKey()) + "\t"
+                            + results[optionId].getAggrNumberOfTracebackStepsExecutedAverage().get(ia.getKey())
                             + "\n");
                 }
             }
@@ -347,7 +395,7 @@ public class Analyzer {
     }
 
     private void writeHeader() throws IOException {
-        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\tallInstancesFilterdEvalAndExecTime\tmeasureTimeWithoutAllInstancesDuringTraceback\tmeasureTimeWithoutAllInstancesAtAnyTime\n");
+        writer.write("optionId\tmodelId\tmodelSize\tmeasurement\tmeasureTime\tallInstancesFilterdEvalAndExecTime\tmeasureTimeWithoutAllInstancesDuringTraceback\tmeasureTimeWithoutAllInstancesAtAnyTime\tnumberOfTracebackStepsExecuted\n");
     }
 
     /**
@@ -366,7 +414,8 @@ public class Analyzer {
             getResult(optionId).recordMeasurement(record.getValue(allInstancesEvalAndExecTimeColumnIndex),
                     record.getValue(iaEvalAndExecTimeColumnIndex), record.getValue(sloppinessColumnIndex),
                     record.isFiltered(), record.getValue(noIaAllInstanceCallsColumnIndex),
-                    record.getValue(noAllInstanceEvalAllInstanceCallsColumnIndex), modelId);
+                    record.getValue(noAllInstanceEvalAllInstanceCallsColumnIndex),
+                    record.getValue(noTracebackStepsExecutedColumnIndex), modelId);
         }
     }
 
@@ -441,6 +490,8 @@ public class Analyzer {
                 noIaAllInstanceCallsColumnIndex = i;
             } else if (next.equals("noAllInstanceEvalAllInstanceCalls")) {
                 noAllInstanceEvalAllInstanceCallsColumnIndex = i;
+            } else if (next.equals("noTracebackStepsExecuted")) {
+                noTracebackStepsExecutedColumnIndex = i;
             }
         }
     }

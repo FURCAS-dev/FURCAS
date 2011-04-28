@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.9 2011/03/08 16:20:12 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -32,10 +32,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
@@ -79,6 +75,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.UnspecifiedValueExp;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
@@ -255,7 +252,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	protected void appendTemplateBindings(List<TemplateBinding> templateBindings) {
 		if (templateBindings.size() > 0) {
-			append("(");
+			append("<");
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
 				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding
@@ -265,7 +262,7 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 					prefix = ",";
 				}
 			}
-			append(")");
+			append(">");
 		}
 	}
 
@@ -273,14 +270,14 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		if (templateSignature != null) {
 			List<TemplateParameter> templateParameters = templateSignature.getOwnedParameters();
 			if (!templateParameters.isEmpty()) {
-				append("(");
+				append("<");
 				String prefix = ""; //$NON-NLS-1$
 				for (TemplateParameter templateParameter : templateParameters) {
 					append(prefix);
 					safeVisit(templateParameter.getParameteredElement());
 					prefix = ",";
 				}
-				append(")");
+				append(">");
 			}
 		}
 	}
@@ -422,35 +419,6 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		appendName(object);
 		appendTemplateBindings(object.getTemplateBindings());
 		appendTemplateSignature(object.getOwnedTemplateSignature());
-		return null;
-	}
-
-	@Override
-	public String visitCompleteOperation(CompleteOperation object) {
-		safeVisit(object.getModel());
-		return null;
-	}
-
-	@Override
-	public String visitCompletePackage(CompletePackage object) {
-		if (object.getModels().size() > 0) {
-			safeVisit(object.getModel());
-		}
-		else {
-			appendName(object);
-		}
-		return null;
-	}
-
-	@Override
-	public String visitCompleteProperty(CompleteProperty object) {
-		safeVisit(object.getModel());
-		return null;
-	}
-
-	@Override
-	public String visitCompleteType(CompleteType object) {
-		safeVisit(object.getModel());
 		return null;
 	}
 
@@ -918,16 +886,17 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitTemplateParameter(TemplateParameter object) {
-		appendName((NamedElement) object.getSignature().getTemplate());
+		TemplateSignature signature = object.getSignature();
+		appendName(signature != null ? (NamedElement) signature.getTemplate() : null);
 		append(".");
 		appendName((NamedElement) object.getParameteredElement());
 		return null;
 	}
 
 	@Override
-	public String visitTemplateParameterSubstitution(
-			TemplateParameterSubstitution object) {
-		appendName((NamedElement) object.getFormal().getParameteredElement());
+	public String visitTemplateParameterSubstitution(TemplateParameterSubstitution object) {
+		TemplateParameter formal = object.getFormal();
+		appendName(formal != null ? (NamedElement) formal.getParameteredElement() : null);
 		append("/");
 		appendName((NamedElement) object.getActual());
 		return null;
@@ -1019,6 +988,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 		return null;
 	}
 
+	@Override
+	public String visitUnspecifiedType(UnspecifiedType object) {
+		appendName(object);
+		return null;
+	}
+
 	/**
 	 * Callback for an UnspecifiedValueExp visit.
 	 * 
@@ -1076,8 +1051,12 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 	}
 
 	public String visiting(Visitable visitable) {
-		return (visitable == null)
-			? NULL_PLACEHOLDER
-			: visitable.getClass().getName();
+		if (visitable == null) {
+			append(NULL_PLACEHOLDER);
+		}
+		else {
+			append(visitable.getClass().getName());
+		}
+		return null;
 	}
 } // ToStringVisitorImpl

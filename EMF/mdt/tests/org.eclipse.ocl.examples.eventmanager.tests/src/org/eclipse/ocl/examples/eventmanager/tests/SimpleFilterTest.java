@@ -14,8 +14,12 @@ package org.eclipse.ocl.examples.eventmanager.tests;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.tests.EventManagerTest.Application;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AssociationFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.AttributeFilterTest;
@@ -27,7 +31,6 @@ import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassFilterTe
 import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassIncludingSubclassesFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassIncludingSubclassesFilterTest;
-import org.eclipse.ocl.examples.eventmanager.tests.filters.PackageFilterTest;
 
 /**
  * This class test whether the {@link EventManagerFactory#createEventManager() event manager}
@@ -50,13 +53,33 @@ public class SimpleFilterTest extends TestCase{
 		fixture=null;
 		app=null;
 	}
+	private static class MyClassFilter extends ClassFilter{
+		public MyClassFilter(EClass clazz, boolean negated) {
+			super(clazz, negated);
+		}
+		@Override
+		public org.eclipse.ocl.examples.eventmanager.filters.ClassFilter clone() {
+			return new MyClassFilter(getWantedClass(), true);
+		}
 
+	}
+    public void testBehaviourForUnknownFilter(){
+    	ClassFilter f = new MyClassFilter(null, false);
+    	boolean thrown=false;
+    	try {
+        	fixture.subscribe(f,app );
+		} catch (IllegalArgumentException e) {
+			thrown = true;
+		}
+		assertTrue("No Exception thrown", thrown);
+    }
 	/**
 	 * Tests whether the {@link Notification notifications} defined by
 	 * the {@link EventFilterTest test} trigger the {@link EventManager manager}
 	 * @param test
 	 */
 	public void assertHandleEmfEvent(EventFilterTest test){
+		app.reset();
 		fixture.subscribe(test.giveTestFilter(), app);
 		fixture.handleEMFEvent(test.giveNotMatchingNotifcation());
 		assertFalse("Get wrongly notified", app.isNotified());
@@ -66,6 +89,28 @@ public class SimpleFilterTest extends TestCase{
 			assertTrue("Get not notified", app.isNotified());
 			app.reset();
 		}
+		fixture.unsubscribe(app);
+	}
+	/**
+	 * Tests whether the {@link Notification notifications} defined by
+	 * the {@link EventFilterTest test} trigger the {@link EventManager manager}
+	 * as difference to {@link #assertHandleEmfEvent(EventFilterTest)} here the filter are used negated
+	 * @param test
+	 */
+	public void assertNegatedHandleEmfEvent(EventFilterTest test){
+		EventFilter f = test.giveTestFilter();
+		((AbstractEventFilter)f).setNegated(true);
+		app.reset();
+		fixture.subscribe(f, app);
+		fixture.handleEMFEvent(test.giveNotMatchingNotifcation());
+		assertTrue("Get not notfied negated", app.isNotified());
+		app.reset();
+		for(Notification n: test.giveMatchingNotifications()){
+			fixture.handleEMFEvent(n);
+			assertFalse("Get wrongly notified negated", app.isNotified());
+			app.reset();
+		}
+		fixture.unsubscribe(app);
 	}
 	/**
 	 * @see AssociationFilterTest#giveTestFilter()
@@ -74,6 +119,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testReferenceFilter(){
 		assertHandleEmfEvent(new AssociationFilterTest());
+		assertNegatedHandleEmfEvent(new AssociationFilterTest());
 	}
 	/**
 	 * @see AttributeFilterTest#giveTestFilter()
@@ -82,14 +128,16 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testAttributeFilter(){
 		assertHandleEmfEvent(new AttributeFilterTest());
+		assertNegatedHandleEmfEvent(new AttributeFilterTest());
 	}
 	/**
 	 * @see ClassFilterTest#giveTestFilter()
 	 * @see ClassFilterTest#giveMatchingNotifications()
 	 * @see ClassFilterTest#giveNotMatchingNotifcation()
 	 */
-	public void ClassFilter(){
+	public void testClassFilter(){
 		assertHandleEmfEvent(new ClassFilterTest());
+		assertNegatedHandleEmfEvent(new ClassFilterTest());
 	}
 	/**
 	 * @see ContainmentFilterTest#giveTestFilter()
@@ -98,6 +146,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testContainmentFilter(){
 		assertHandleEmfEvent(new ContainmentFilterTest());
+		assertNegatedHandleEmfEvent(new ContainmentFilterTest());
 	}
 	/**
 	 * @see EventTypeFilterTest#giveTestFilter()
@@ -106,6 +155,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testEventTypeFilter(){
 		assertHandleEmfEvent(new EventTypeFilterTest());
+		assertNegatedHandleEmfEvent(new EventTypeFilterTest());
 	}
 	/**
 	 * @see NewValueClassFilterTest#giveTestFilter()
@@ -114,6 +164,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testNewValueClassFilter(){
 		assertHandleEmfEvent(new NewValueClassFilterTest());
+		assertNegatedHandleEmfEvent(new NewValueClassFilterTest());
 	}
 	/**
 	 * @see NewValueClassIncludingSubclassesFilterTest#giveTestFilter()
@@ -122,6 +173,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testNewValueClassIncludingSubclassesFilter(){
 		assertHandleEmfEvent(new NewValueClassIncludingSubclassesFilterTest());
+		assertNegatedHandleEmfEvent(new NewValueClassIncludingSubclassesFilterTest());
 	}
 	/**
 	 * @see OldValueClassFilterTest#giveTestFilter()
@@ -130,6 +182,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testOldValueClassFilter(){
 		assertHandleEmfEvent(new OldValueClassFilterTest());
+		assertNegatedHandleEmfEvent(new OldValueClassFilterTest());
 	}
 	/**
 	 * @see OldValueClassIncludingSubclassesFilterTest#giveTestFilter()
@@ -138,15 +191,7 @@ public class SimpleFilterTest extends TestCase{
 	 */
 	public void testOldValueClassIncludingSubclassesFilter(){
 		assertHandleEmfEvent(new OldValueClassIncludingSubclassesFilterTest());
+		assertNegatedHandleEmfEvent(new OldValueClassIncludingSubclassesFilterTest());
 	}
-	/**
-	 * @see PackageFilterTest#giveTestFilter()
-	 * @see PackageFilterTest#giveMatchingNotifications()
-	 * @see PackageFilterTest#giveNotMatchingNotifcation()
-	 */
-	public void testPackageFilter(){
-		assertHandleEmfEvent(new PackageFilterTest());
-	}
-	
 	
 }

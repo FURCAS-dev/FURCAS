@@ -16,8 +16,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 
 
 /**
@@ -26,7 +28,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
  * @author Philipp Berger
  *
  */
-abstract public class LogicalOperationFilterImpl extends EventFilter implements LogicalOperationFilter {
+abstract public class LogicalOperationFilterImpl extends AbstractEventFilter implements LogicalOperationFilter {
     private Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**
@@ -80,6 +82,7 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
      * @param filters to be operands
      */
     public LogicalOperationFilterImpl(EventFilter... filters) {
+    	super(false);
         this.filters.addAll(Arrays.asList(filters));
     }
     /**
@@ -111,7 +114,26 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
             return false;
         return isNegated() == ((EventFilter) other).isNegated();
     }
-
+    /**
+     * {@link LogicalOperationFilterImpl filter} cannot be negated 
+     * @throws IllegalArgumentException
+     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#setNegated(boolean)
+     */
+    @Override
+    public void setNegated(boolean b) {
+    	if(b)
+    		throw new IllegalArgumentException("logical filters are not allowed to be negated");
+    }
+    /**
+     * {@link LogicalOperationFilter logical filters} are never negated, 
+     * negation is done by combining with a {@link NotFilter}
+     * @return <code>false</code>
+     * @see org.eclipse.ocl.examples.eventmanager.filters.EventFilter#isNegated()
+     */
+    @Override
+    public boolean isNegated() {
+    	return false;
+    }
     @Override
     public int hashCode() {
         final int prime = 31;

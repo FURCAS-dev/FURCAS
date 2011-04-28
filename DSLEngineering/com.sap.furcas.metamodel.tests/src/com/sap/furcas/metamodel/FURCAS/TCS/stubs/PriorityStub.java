@@ -5,11 +5,13 @@ package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Associativity;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -53,5 +55,10 @@ public class PriorityStub extends LocatedElementStub implements Priority {
         return operators;
     }
     
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPriority();
+    }
+
 
 }

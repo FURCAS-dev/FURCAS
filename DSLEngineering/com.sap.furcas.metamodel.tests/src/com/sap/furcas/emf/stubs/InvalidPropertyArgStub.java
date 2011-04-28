@@ -13,5 +13,4 @@ package com.sap.furcas.emf.stubs;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
 
 public class InvalidPropertyArgStub extends PargStub implements PropertyArg {
-
 }

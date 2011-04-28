@@ -1,14 +1,17 @@
 package com.sap.furcas.test.testutils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
+import junit.framework.Assert;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 
@@ -32,7 +35,14 @@ public class ResourceTestHelper {
     }
     
     public static Resource createTransientResource(ResourceSet resourceSet) {
-        return resourceSet.createResource(URI.createURI("TransientResourceForTests/" 
-                + EcoreUtil.generateUUID()));
+        File tempFile = null;
+        try {
+            tempFile = File.createTempFile("temporaryTestResource", "xmi");
+            tempFile.deleteOnExit();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Assert.fail("Unable to create transient resource");
+        }
+        return resourceSet.createResource(URI.createFileURI(tempFile.getAbsolutePath())); 
     }
 }

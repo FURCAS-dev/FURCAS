@@ -455,4 +455,8 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 		return (E) tab[j];
 	}
 
+	public Object[] getUnderlyingMapTable() {
+		return table;
+	}
+
 }

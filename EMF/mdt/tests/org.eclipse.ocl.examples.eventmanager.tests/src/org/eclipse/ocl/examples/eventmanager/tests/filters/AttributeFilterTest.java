@@ -17,9 +17,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
 
 
@@ -30,7 +29,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
  * <p>
  * The following operations are tested:
  * <ul>
- *   <li>{@link org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.eventmanager.filters.PropertyFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}</li>
  * </ul>
  * </p>
  */
@@ -63,8 +62,8 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- end-user-doc -->
 	 */
 	@Override
-	protected AttributeFilter getFixture() {
-		return (AttributeFilter)fixture;
+	protected StructuralFeatureFilter getFixture() {
+		return (StructuralFeatureFilter)fixture;
 	}
 
 	/**
@@ -77,7 +76,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 		super.setUp();
 		this.attribute1 = EcoreFactory.eINSTANCE.createEAttribute();
 		this.attribute2 = EcoreFactory.eINSTANCE.createEAttribute();
-		setFixture(EventManagerFactory.eINSTANCE.createAttributeFilter(attribute1));
+		setFixture(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(attribute1));
 
 	}
 
@@ -94,18 +93,18 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	}
 
 	/**
-	 * Tests the '{@link org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}' operation.
+	 * Tests the '{@link org.eclipse.ocl.examples.eventmanager.filters.PropertyFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
+	 * @see org.eclipse.ocl.examples.eventmanager.filters.PropertyFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
 	 */
 	public void testSetAttribute__EAttribute() {
 		assertSame(getFixture().getFeature(), attribute1);
 	}
 
 	@Override
-	StructuralFeatureFilter getFilterFor(Object f) {
-		return EventManagerFactory.eINSTANCE.createAttributeFilter((EAttribute) f);
+	EventFilter getFilterFor(Object f) {
+		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter((EAttribute) f);
 	}
 
 	@Override
@@ -128,7 +127,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	}
 	@Override
 	public EventFilter giveTestFilter() {
-		return EventManagerFactory.eINSTANCE.createAttributeFilter(attr);
+		return EventManagerFactory.eINSTANCE.createStructuralFeatureFilter(attr);
 	}
 
 } //AttributeFilterTest

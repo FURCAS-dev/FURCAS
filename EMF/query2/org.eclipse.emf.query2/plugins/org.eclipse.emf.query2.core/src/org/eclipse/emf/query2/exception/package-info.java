@@ -9,8 +9,8 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * Exceptions that can be thrown by MOIN and JMI classes. <br>
+ * Contains all APIs for Exception that can be thrown. <br>
  * <br>
- * This API is for SAP-internal use only and subject to change
+ * 
  */
 package org.eclipse.emf.query2.exception;

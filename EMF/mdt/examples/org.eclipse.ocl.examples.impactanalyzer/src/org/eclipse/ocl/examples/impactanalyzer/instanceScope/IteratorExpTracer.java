@@ -49,7 +49,7 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
                         new PredicateCheckNavigationStep(getInnermostElementType(getExpression().getType()), iteratorType,
                                 getExpression(), pathCache, oclFactory), result);
             }
-        } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
+        } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED || opCode == PredefinedType.CLOSURE) {
             result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context, operationBodyToCallMapper,
                     getTupleLiteralPartNamesToLookFor(), oclFactory);
         } else {

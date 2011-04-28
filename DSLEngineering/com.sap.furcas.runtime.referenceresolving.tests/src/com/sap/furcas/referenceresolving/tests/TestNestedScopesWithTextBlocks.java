@@ -16,6 +16,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
@@ -32,6 +33,8 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Version;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.referenceresolving.TokenChanger;
 import com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbMarkingUtil;
 import com.sap.furcas.runtime.textblocks.modifcation.TbReplacingHelper;
@@ -197,10 +200,25 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
      * reference according to the result of referenceBy on the bound element. Thus after renaming the definition of "b" to "a" the
      * usage should still be bound to this definition (meaning that the usage is also renamed since it was directly bound to this
      * definition).
+     * 
+     * This test case also asserts that a {@link TokenChanger} registered with the
+     * {@link SyntaxRegistry} will be requested to update the token value.
      */
     @Test
     public void testCorrectBindingIfBoundElementIsStillInLookupScopeAfterRename() {
         String sample = "{ def b; use b; }";
+        final boolean[] receivedRequestToUpdateTokenValue = new boolean[1];
+        TokenChanger tokenChanger = new TokenChanger() {
+            @Override
+            public void requestTokenValueChange(LexedToken token, String oldTokenValue, String newTokenValue) {
+                receivedRequestToUpdateTokenValue[0] = oldTokenValue.equals("b") && newTokenValue.equals("a");
+            }
+            @Override
+            public void requestClearReferencedElements(LexedToken token) {}
+            @Override
+            public void requestAddToReferencedElements(LexedToken token, EObject referencedElement) {}
+        };
+        SyntaxRegistry.getInstance().addTokenChanger(tokenChanger);
         setupModelFromTextToParse(sample);
         assertNotNull(rootElement);
 
@@ -215,7 +233,9 @@ public class TestNestedScopesWithTextBlocks extends AbstractReferenceResolvingTe
         renameElement(bDefinition, "a", RenameOn.MODEL);
 
         assertSame(bUsage.eGet(bUsage.eClass().getEStructuralFeature("boundDefinition")), bDefinition);
-
+        assertTrue("Expected to receive request to update token value for a token with value \"b\" to \"a\" but didn't",
+                receivedRequestToUpdateTokenValue[0]);
+        SyntaxRegistry.getInstance().removeTokenValueChanger(tokenChanger);
     }
 
     /**

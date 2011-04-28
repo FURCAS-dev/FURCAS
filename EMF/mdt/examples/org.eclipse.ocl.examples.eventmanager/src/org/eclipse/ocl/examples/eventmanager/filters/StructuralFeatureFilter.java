@@ -18,16 +18,17 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Philipp Berger
  *
  */
-public abstract class StructuralFeatureFilter extends EventFilter {
+public class StructuralFeatureFilter extends AbstractEventFilter {
 
     private final EStructuralFeature feature;
 
     /**
      * The standard constructor
+     * @param negated set {@link #isNegated()}
      * @param passes the {@link EStructuralFeature feature} to match
      */
-    public StructuralFeatureFilter(EStructuralFeature feature) {
-        super();
+    public StructuralFeatureFilter(EStructuralFeature feature, boolean negated) {
+        super(negated);
         this.feature = feature;
     }
 
@@ -53,7 +54,7 @@ public abstract class StructuralFeatureFilter extends EventFilter {
                 return false;
         } else if (!feature.equals(other.feature))
             return false;
-        return isNegated() == ((EventFilter) other).isNegated();
+        return isNegated() == ((AbstractEventFilter) other).isNegated();
     }
 
     @Override
@@ -75,15 +76,18 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         	return !isNegated();
         };
         return isNegated();
-
-
     }
 
     @Override
+    public StructuralFeatureFilter clone(){
+        return new StructuralFeatureFilter(getFeature(), isNegated());
+    }
+    
+    @Override
     public String toString() {
         if (getFeature() != null)
-            return "feature: " + getFeature().toString();
-        return "empty FeatureFilter";
+            return (isNegated()?"negated ":"") + "feature: " + getFeature().toString();
+        return (isNegated()?"negated ":"") + "empty FeatureFilter";
     }
 
     @Override

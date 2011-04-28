@@ -191,26 +191,26 @@ public class TextblocksItemProviderAdapterFactory extends TextblocksAdapterFacto
     }
 
         /**
-     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext} instances.
+     * This keeps track of the one adapter used for all {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution} instances.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        protected ForEachContextItemProvider forEachContextItemProvider;
+    protected ForEachExecutionItemProvider forEachExecutionItemProvider;
 
         /**
-     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext}.
+     * This creates an adapter for a {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution}.
      * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-        @Override
-        public Adapter createForEachContextAdapter() {
-        if (forEachContextItemProvider == null) {
-            forEachContextItemProvider = new ForEachContextItemProvider(this);
+    @Override
+    public Adapter createForEachExecutionAdapter() {
+        if (forEachExecutionItemProvider == null) {
+            forEachExecutionItemProvider = new ForEachExecutionItemProvider(this);
         }
 
-        return forEachContextItemProvider;
+        return forEachExecutionItemProvider;
     }
 
         /**
@@ -363,7 +363,7 @@ public class TextblocksItemProviderAdapterFactory extends TextblocksAdapterFacto
         if (omittedTokenItemProvider != null) omittedTokenItemProvider.dispose();
         if (lexedTokenItemProvider != null) lexedTokenItemProvider.dispose();
         if (unlexedTokenItemProvider != null) unlexedTokenItemProvider.dispose();
-        if (forEachContextItemProvider != null) forEachContextItemProvider.dispose();
+        if (forEachExecutionItemProvider != null) forEachExecutionItemProvider.dispose();
         if (eostokenItemProvider != null) eostokenItemProvider.dispose();
         if (bostokenItemProvider != null) bostokenItemProvider.dispose();
     }

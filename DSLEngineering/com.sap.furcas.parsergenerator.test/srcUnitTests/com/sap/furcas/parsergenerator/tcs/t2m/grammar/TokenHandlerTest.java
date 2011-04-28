@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.EndOfLineRule;
@@ -18,6 +19,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.MultiLineRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.SimplePattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.StringPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Word;
 import com.sap.furcas.metamodel.FURCAS.TCS.WordRule;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.ClassPatternStub;
@@ -563,7 +565,10 @@ public class TokenHandlerTest {
         @Override
         public void setStart(StringPattern newValue) { }
 
-        
+        @Override
+        public EClass eClass() {
+            return TCSPackage.eINSTANCE.getMultiLineRule();
+        }
     }
     
     class  WordRuleStub extends LocatedElementStub implements WordRule {
@@ -611,6 +616,11 @@ public class TokenHandlerTest {
 	    return null;
 	}
 
+	    @Override
+	    public EClass eClass() {
+	        return TCSPackage.eINSTANCE.getWordRule();
+	    }
+
     }
     
     class  EndOfLineRuleStub extends LocatedElementStub implements EndOfLineRule {
@@ -646,7 +656,11 @@ public class TokenHandlerTest {
         @Override
         public void setStart(StringPattern newValue) { }
 
-     
+        @Override
+        public EClass eClass() {
+            return TCSPackage.eINSTANCE.getEndOfLineRule();
+        }
+
     }
 
 }

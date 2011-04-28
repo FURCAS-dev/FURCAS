@@ -75,7 +75,6 @@ public class CleanupThread extends Thread {
 	 * the {@link #run} loop to terminate.
 	 */
 	public void stopCleaner() {
-		logger.info("Stopping CleanupThread "+this+"...");
 		stopThreadAdapter = null;  // causes stopThreadMarker to get enqueued which stops adapterCleanupThread
 	}
 
@@ -90,7 +89,6 @@ public class CleanupThread extends Thread {
 				}
 				adapterRef = adaptersNoLongerStronglyReferenced.remove();
 			}
-			logger.info("CleanupThread "+this+" stopped.");
 		} catch (InterruptedException e) {
 			// Why are we being interrupted? log incident and terminate thread.
 			logger.throwing(this.getClass().getName(), "run", e);

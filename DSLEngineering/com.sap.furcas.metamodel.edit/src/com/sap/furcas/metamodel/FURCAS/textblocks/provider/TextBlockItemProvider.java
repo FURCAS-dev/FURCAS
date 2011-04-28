@@ -218,7 +218,7 @@ public class TextBlockItemProvider
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
             childrenFeatures.add(TextblocksPackage.Literals.TEXT_BLOCK__SUB_NODES);
-            childrenFeatures.add(TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_CONTEXT);
+            childrenFeatures.add(TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_EXECUTIONS);
         }
         return childrenFeatures;
     }
@@ -280,7 +280,7 @@ public class TextBlockItemProvider
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
             case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+            case TextblocksPackage.TEXT_BLOCK__FOR_EACH_EXECUTIONS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -326,6 +326,11 @@ public class TextBlockItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (TextblocksPackage.Literals.TEXT_BLOCK__SUB_NODES,
+                 TextblocksFactory.eINSTANCE.createForEachExecution()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TextblocksPackage.Literals.TEXT_BLOCK__SUB_NODES,
                  TextblocksFactory.eINSTANCE.createEostoken()));
 
         newChildDescriptors.add
@@ -335,8 +340,31 @@ public class TextBlockItemProvider
 
         newChildDescriptors.add
             (createChildParameter
-                (TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_CONTEXT,
-                 TextblocksFactory.eINSTANCE.createForEachContext()));
+                (TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_EXECUTIONS,
+                 TextblocksFactory.eINSTANCE.createForEachExecution()));
+    }
+
+        /**
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+        Object childFeature = feature;
+        Object childObject = child;
+
+        boolean qualify =
+            childFeature == TextblocksPackage.Literals.TEXT_BLOCK__SUB_NODES ||
+            childFeature == TextblocksPackage.Literals.TEXT_BLOCK__FOR_EACH_EXECUTIONS;
+
+        if (qualify) {
+            return getString
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+        }
+        return super.getCreateChildText(owner, feature, child, selection);
     }
 
 }

@@ -13,12 +13,13 @@
  *
  * </copyright>
  *
- * $Id: XtextConsolePlugin.java,v 1.2 2011/03/11 15:26:21 ewillink Exp $
+ * $Id: XtextConsolePlugin.java,v 1.3 2011/03/31 16:53:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
 
 import com.google.inject.Module;
 
@@ -55,7 +56,7 @@ public class XtextConsolePlugin extends EssentialOCLActivator
 	}
 	
 	protected Module getRuntimeModule(String grammar) {
-		if (LANGUAGE_ID.equals(grammar)) {
+		if (EssentialOCLPlugin.LANGUAGE_ID.equals(grammar)) {
 		  return new XtextConsoleRuntimeModule();
 		}
 		
@@ -63,7 +64,7 @@ public class XtextConsolePlugin extends EssentialOCLActivator
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if (LANGUAGE_ID.equals(grammar)) {
+		if (EssentialOCLPlugin.LANGUAGE_ID.equals(grammar)) {
 		  return new XtextConsoleUiModule(this);
 		}
 		

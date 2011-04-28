@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Alternative;
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
@@ -17,6 +18,7 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 
 /**
@@ -192,6 +194,11 @@ public class SequenceStub extends LocatedElementStub implements Sequence {
     public void setThenContainer(ConditionalElement value) {
         fail("not implemented yet");
         
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getSequence();
     }
 
 

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.9 2011/03/12 10:49:31 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.10 2011/03/17 20:07:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -27,7 +27,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
@@ -40,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
+import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
 import org.eclipse.ocl.examples.pivot.Environment;
 import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -77,6 +80,7 @@ import org.eclipse.ocl.examples.pivot.VariableDeclaration;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.library.TuplePartOperation;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
+import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.values.BooleanValue;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.TupleValue;
@@ -146,7 +150,12 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 			sourceValue = typeManager.getValueFactory().getInvalid();	// FIXME ?? propagate part of environment
 		}
 		Type dynamicSourceType = sourceValue.getType(typeManager, staticSourceType);
-		Operation dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
+		if (staticOperation.isStatic()) {
+			Value typeValue = valueFactory.createElementValue(dynamicSourceType);
+//			dynamicSourceType = typeValue.getType(typeManager, staticSourceType);
+//			dynamicSourceType.getType();
+		}
+ 		Operation dynamicOperation = typeManager.getDynamicOperation(dynamicSourceType, staticOperation);
 		if (dynamicOperation == null) {
 			return evaluationEnvironment.throwInvalidEvaluation("No implementable element", callExp, sourceValue);
 		}
@@ -539,7 +548,16 @@ public class EvaluationVisitorImpl extends AbstractEvaluationVisitor
 //				implementation = new EObjectProperty(eFeature, null);
 //				property.setImplementation(implementation);
 				Object eValue = eObject.eGet(eFeature);
-				return valueFactory.valueOf(eValue, eFeature);
+				if (eValue instanceof Enumerator) {
+					Enumerator eEnumerator = (Enumerator) eValue;
+					EClassifier eEnum = eFeature.getEType();
+					org.eclipse.ocl.examples.pivot.Enumeration pivotEnum = typeManager.getPivotOfEcore(org.eclipse.ocl.examples.pivot.Enumeration.class, eEnum);
+					EnumerationLiteral pivotEnumLiteral = PivotUtil.getNamedElement(pivotEnum.getOwnedLiterals(), eEnumerator.getName());
+					return valueFactory.createElementValue(pivotEnumLiteral);
+				}
+				else {
+					return valueFactory.valueOf(eValue, eFeature);
+				}
 			}
 			else if (sourceValue instanceof TupleValue) {
 				implementation = TuplePartOperation.INSTANCE;

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreFactory;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCL;
@@ -24,6 +25,10 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import org.eclipse.ocl.ecore.utilities.AbstractVisitor;
 import org.eclipse.ocl.ecore.utilities.VisitorExtension;
+import org.eclipse.ocl.types.OrderedSetType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.trigger.ExpressionWithContext;
@@ -61,33 +66,39 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     /**
      * The OCL expression compiled from the {@link LookupScopePArg} attached to the {@link #property}
      */
-    private OCLExpression lookupScopeExp;
+    private final OCLExpression lookupScopeExp;
     
     /**
      * The OCLK expression extracted from the {@link ReferenceByPArg} attached to the {@link #property}
      */
-    private OCLExpression referenceByExp;
+    private final OCLExpression referenceByExp;
     
     /**
      * The OCL expression synthesized by constructing a "collect" iterator expression whose source is a copy
      * of the {@link #lookupScopeExpression} and whose body expression is a copy of the
      * {@link #referenceByExpression}
      */
-    private IteratorExp collectExp;
+    private final IteratorExp collectExp;
 
     /**
      * the prefix to be prepended to the identifier provided by a token before the concatenated string
      * is compared to the result of the {@link #referenceByExp} evaluated on the elements returned by
      * the {@link #lookupScopeExp}.
      */
-    private String prefix;
+    private final String prefix;
 
     /**
      * the postfix to be appended to the identifier provided by a token before the concatenated string
      * is compared to the result of the {@link #referenceByExp} evaluated on the elements returned by
      * the {@link #lookupScopeExp}.
      */
-    private String postfix;
+    private final String postfix;
+    
+    /**
+     * The {@link SyntaxRegistry} to notify when a token is changed. The syntax registry will, in turn,
+     * notify the {@link TokenChanger}s registered with it.
+     */
+    private final SyntaxRegistry syntaxRegistryToNotifyAboutTokenChanges;
     
     /**
      * The visitor returns the first "self" variable found referenced by the expression. If no such variable
@@ -132,7 +143,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
     }
 
     protected OCLQueryPropertyUpdater(Property property, EPackage.Registry metamodelPackageRegistry,
-            OppositeEndFinder oppositeEndFinder) throws ParserException {
+            OppositeEndFinder oppositeEndFinder, SyntaxRegistry syntaxRegistryToNotifyAboutTokenChanges) throws ParserException {
         super(property.getPropertyReference().getStrucfeature(), metamodelPackageRegistry, oppositeEndFinder,
                 null, // triggerExpressionsWithContext are computed in getTriggerExpressionsWithContext
                 /* notifyNewContextElements */true,
@@ -142,10 +153,53 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         PrefixPArg prefixPArg = PropertyArgumentUtil.getPrefixPArg(property);
         if (prefixPArg != null) {
             prefix = prefixPArg.getPrefix();
+        } else {
+            prefix = null;
         }
         PostfixPArg postfixPArg = PropertyArgumentUtil.getPostfixPArg(property);
         if (postfixPArg != null) {
-            this.postfix = postfixPArg.getPostfix();
+            postfix = postfixPArg.getPostfix();
+        } else {
+            postfix = null;
+        }
+        String unpreparedLookupScopeQuery = getExpressionString(property);
+        String lookupScopeAsString = ContextAndForeachHelper.prepareOclQuery(unpreparedLookupScopeQuery);
+        Helper oclHelper = createOCLHelper(unpreparedLookupScopeQuery, property.getParentTemplate(), getOppositeEndFinder());
+        lookupScopeExp = oclHelper.createQuery(lookupScopeAsString);
+        OCLExpression collectSource = oclHelper.createQuery(lookupScopeAsString);
+        String referenceByAsString = PropertyArgumentUtil.getReferenceByAsOCL(PropertyArgumentUtil
+                .getReferenceByPArg(property));
+        // The following is an OCL expression where "self" refers to an element produced by
+        // the lookupScope expression. Therefore, its type is goverend by the lookupScope expression's
+        // result type.
+        oclHelper.setContext(((CollectionType) lookupScopeExp.getType()).getElementType());
+        referenceByExp = oclHelper.createQuery(referenceByAsString);
+        // Now modify a copy of referenceByExp such that all "self" expressions have their variable
+        // renamed to a unique iterator variable name which will then be used in a "collect"
+        // LoopExp expression of which the referenceByExp is the body and the
+        // lookupScopeExp is the source
+        OCLExpression collectBody = oclHelper.createQuery(referenceByAsString);
+        Variable firstSelf = renameAllSelf(collectBody, "i___84923___");
+        collectExp = EcoreFactory.eINSTANCE.createIteratorExp();
+        collectExp.setName(PredefinedType.COLLECT_NAME);
+        collectExp.setSource(collectSource);
+        collectExp.setBody(collectBody);
+        collectExp.getIterator().add(firstSelf);
+        collectExp.setType(getCollectType(collectExp, (EcoreEnvironment) oclHelper.getEnvironment()));
+        this.syntaxRegistryToNotifyAboutTokenChanges = syntaxRegistryToNotifyAboutTokenChanges;
+    }
+    
+    private EClassifier getCollectType(IteratorExp collectExp, EcoreEnvironment env) {
+        EClassifier elementType = collectExp.getBody().getType();
+        if (elementType instanceof CollectionType) {
+                CollectionType ct = (CollectionType) elementType;
+                elementType = CollectionUtil.getFlattenedElementType(ct);
+        }
+        if (collectExp.getSource().getType() instanceof SequenceType
+                || collectExp.getSource().getType() instanceof OrderedSetType<?, ?>) {
+                return TypeUtil.resolveSequenceType(env, elementType);
+        } else {
+            return TypeUtil.resolveBagType(env, elementType);
         }
     }
 
@@ -162,28 +216,6 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         Collection<ExpressionWithContext> result = new ArrayList<ExpressionWithContext>();
         try {
             String unpreparedLookupScopeQuery = getExpressionString(property);
-            String lookupScopeAsString = ContextAndForeachHelper.prepareOclQuery(unpreparedLookupScopeQuery);
-            Helper oclHelper = createOCLHelper(unpreparedLookupScopeQuery, property.getParentTemplate(), getOppositeEndFinder());
-            lookupScopeExp = oclHelper.createQuery(lookupScopeAsString);
-            OCLExpression collectSource = oclHelper.createQuery(lookupScopeAsString);
-            oclHelper.setContext(((CollectionType) lookupScopeExp.getType()).getElementType());
-            String referenceByAsString = PropertyArgumentUtil.getReferenceByAsOCL(PropertyArgumentUtil
-                    .getReferenceByPArg(property));
-            // The following is an OCL expression where "self" refers to an element produced by
-            // the lookupScope expression. Therefore, its type is goverend by the lookupScope expression's
-            // result type.
-            referenceByExp = oclHelper.createQuery(referenceByAsString);
-            // Now modify a copy of referenceByExp such that all "self" expressions have their variable
-            // renamed to a unique iterator variable name which will then be used in a "collect"
-            // LoopExp expression of which the referenceByExp is the body and the
-            // lookupScopeExp is the source
-            OCLExpression collectBody = oclHelper.createQuery(referenceByAsString);
-            Variable firstSelf = renameAllSelf(collectBody, "i___84923___");
-            collectExp = EcoreFactory.eINSTANCE.createIteratorExp();
-            collectExp.setName(PredefinedType.COLLECT_NAME);
-            collectExp.setSource(collectSource);
-            collectExp.setBody(collectBody);
-            collectExp.getIterator().add(firstSelf);
             EClass parsingContextForLookupScope = (EClass) ContextAndForeachHelper.getParsingContext(
                     unpreparedLookupScopeQuery, property.getParentTemplate());
             ExpressionWithContext lookupScopeExpWithContext = new ExpressionWithContext(lookupScopeExp,
@@ -224,12 +256,9 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
             try {
                 for (EObject elementToUpdate : getElementsToUpdate(eo)) {
                     for (LexedToken token : getTokens(elementToUpdate)) {
-                        boolean shallUpdateReferencingTokenInTextBlockModel = shallUpdateReferencingTokenInTextBlockModel(token);
                         if (!isResolved(elementToUpdate)) {
-                            if (shallUpdateReferencingTokenInTextBlockModel) {
-                                token.getReferencedElements().clear();
-                            }
-                            resolve(elementToUpdate, token, shallUpdateReferencingTokenInTextBlockModel);
+                            syntaxRegistryToNotifyAboutTokenChanges.requestClearReferencedElements(token);
+                            resolve(elementToUpdate, token);
                         } else {
                             if (expression == lookupScopeExp) {
                                 OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL
@@ -247,13 +276,15 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                                     if (newValueAsCol.contains(oldValue)) {
                                         // resolved element still in scope; update token if desired
                                         String newTokenValue = getNewTokenValue(ocl, (EObject) oldValue);
-                                        if (token != null && shallUpdateReferencingTokenInTextBlockModel) {
-                                            token.setValue(newTokenValue);
+                                        if (token != null) {
+                                            String oldTokenValue = token.getValue();
+                                            syntaxRegistryToNotifyAboutTokenChanges.requestTokenValueChange(token,
+                                                    oldTokenValue, newTokenValue);
                                         }
                                     } else {
                                         // element to which identifier resolved so far is no longer in scope;
                                         // resolve again, now based on modified scope
-                                        resolve(elementToUpdate, token, shallUpdateReferencingTokenInTextBlockModel);
+                                        resolve(elementToUpdate, token);
                                     }
                                 } else {
                                     // TODO decide what to do: lookupScopeExp evaluates to invalid; break resolved ref?
@@ -345,7 +376,7 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
      * If the {@link #lookupScopeExp} evaluates to <code>invalid</code>, resolution fails; the property
      * is not updated.
      */
-    private void resolve(EObject elementToUpdate, LexedToken token, boolean shallUpdateReferencingTokenInTextBlockModel) {
+    private void resolve(EObject elementToUpdate, LexedToken token) {
         OCL ocl = org.eclipse.ocl.examples.impactanalyzer.util.OCL.newInstance(getOppositeEndFinder());
         Object newValue = ocl.evaluate(elementToUpdate, lookupScopeExp);
         if (ocl.getEnvironment().getOCLStandardLibrary().getInvalid() != newValue) {
@@ -356,8 +387,8 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
                 String referenceBy = (String) ocl.evaluate(o, referenceByExp);
                 if (prepostfixed.equals(referenceBy)) {
                     elementToUpdate.eSet(getPropertyToUpdate(), o);
-                    if (shallUpdateReferencingTokenInTextBlockModel && o instanceof EObject) {
-                        token.getReferencedElements().add((EObject) o);
+                    if (o instanceof EObject) {
+                        syntaxRegistryToNotifyAboutTokenChanges.requestAddToReferencedElements(token, (EObject) o);
                     }
                     break;
                 }
@@ -372,18 +403,6 @@ public class OCLQueryPropertyUpdater extends AbstractFurcasOCLBasedModelUpdater 
         return getPropertyToUpdate().isMany() && element.eGet(getPropertyToUpdate()) != null
                 && ((List<?>) element.eGet(getPropertyToUpdate())).get(getPosition()) != null
                 || element.eGet(getPropertyToUpdate()) != null;
-    }
-
-    /**
-     * Determines if the <code>token</code> shall be updated. This can be decided, e.g., based on user preferences
-     * regarding whether other text block models shall become dirty just because of such an update. Dirty state of the
-     * token's resource may be one aspect influencing the decision. The update is not performed here. The caller is
-     * responsible to perform it if this method returns <code>true</code>.
-     */
-    private boolean shallUpdateReferencingTokenInTextBlockModel(LexedToken token) {
-        // TODO Stephan's comment: only the short-PP should update tokens. Does everyone agree?
-        // return !token.eResource().isTrackingModification() || token.eResource().isModified();
-        return false;
     }
 
     private Variable renameAllSelf(OCLExpression collectBody, String newNameForSelf) {

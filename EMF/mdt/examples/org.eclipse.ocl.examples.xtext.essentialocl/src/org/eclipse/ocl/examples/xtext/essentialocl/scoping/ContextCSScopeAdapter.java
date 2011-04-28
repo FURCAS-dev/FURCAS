@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.8 2011/03/05 05:57:43 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.9 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -52,9 +52,9 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				environmentView.addNamedElement(contextVariable);
 				if (!environmentView.hasFinalResult()) {
 					Type type = contextVariable.getType();
-					environmentView.addElementsOfScope(typeManager, type, scopeView);
+					environmentView.addElementsOfScope(type, scopeView);
 					if (!environmentView.hasFinalResult()) {
-						environmentView.addElementsOfScope(typeManager, type.getPackage(), scopeView);
+						environmentView.addElementsOfScope(type.getPackage(), scopeView);
 					}
 				}
 			}
@@ -66,14 +66,14 @@ public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS,
 				if (specificationContext != null) {
 					ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, specificationContext);
 					if (scopeAdapter != null) {		// FIXME just redirect; it will do OclAny at its root
-						ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
+						ScopeView ruleScopeView = scopeAdapter.getInnerScopeView(typeManager, PivotPackage.Literals.NAMED_ELEMENT__OWNED_RULE);
 						environmentView.computeLookups(ruleScopeView);
 					}	
 				}
 			}
 		}
 		if (!environmentView.hasFinalResult()) {
-			environmentView.addElementsOfScope(typeManager, typeManager.getOclAnyType().getPackage(), scopeView);
+			environmentView.addElementsOfScope(typeManager.getOclAnyType().getPackage(), scopeView);
 		}
 		return super.computeLookup(environmentView, scopeView);
 	}

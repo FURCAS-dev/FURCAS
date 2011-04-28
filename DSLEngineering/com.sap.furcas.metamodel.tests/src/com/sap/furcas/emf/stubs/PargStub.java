@@ -10,8 +10,11 @@
  ******************************************************************************/
 package com.sap.furcas.emf.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.Property;
 import com.sap.furcas.metamodel.FURCAS.TCS.PropertyArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.stubs.LocatedElementStub;
 
 public class PargStub extends LocatedElementStub implements PropertyArg {
@@ -26,4 +29,10 @@ public class PargStub extends LocatedElementStub implements PropertyArg {
     	public final void setProperty(Property property) {
         this.property = property;
     }
+    
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getPropertyArg();
+    }
+
 }

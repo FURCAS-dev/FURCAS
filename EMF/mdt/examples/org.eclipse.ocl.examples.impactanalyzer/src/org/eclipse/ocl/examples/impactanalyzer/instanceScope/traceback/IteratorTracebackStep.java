@@ -75,7 +75,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
                 acceptIfPredicateTrue = false;
                 oppositeEndFinder = null;
             }
-        } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
+        } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED || opCode == PredefinedType.CLOSURE) {
             strategy = Strategy.MAP;
             requiredType = null;
             checkPredicate = false;

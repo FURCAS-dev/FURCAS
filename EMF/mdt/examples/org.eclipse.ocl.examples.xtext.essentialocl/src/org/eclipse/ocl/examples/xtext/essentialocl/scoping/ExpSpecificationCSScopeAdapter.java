@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpSpecificationCSScopeAdapter.java,v 1.1 2011/03/01 08:46:48 ewillink Exp $
+ * $Id: ExpSpecificationCSScopeAdapter.java,v 1.2 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -46,9 +46,9 @@ public class ExpSpecificationCSScopeAdapter extends EssentialOCLCSScopeAdapter<E
 				environmentView.addNamedElement(contextVariable);
 				if (!environmentView.hasFinalResult()) {
 					Type type = contextVariable.getType();
-					environmentView.addElementsOfScope(typeManager, type, scopeView);
+					environmentView.addElementsOfScope(type, scopeView);
 					if (!environmentView.hasFinalResult()) {
-						environmentView.addElementsOfScope(typeManager, type.getPackage(), scopeView);
+						environmentView.addElementsOfScope(type.getPackage(), scopeView);
 					}
 				}
 			}

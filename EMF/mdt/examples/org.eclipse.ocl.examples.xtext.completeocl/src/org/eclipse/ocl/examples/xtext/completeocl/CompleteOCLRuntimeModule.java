@@ -12,34 +12,39 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLRuntimeModule.java,v 1.8 2011/03/04 13:53:57 ewillink Exp $
+ * $Id: CompleteOCLRuntimeModule.java,v 1.10 2011/04/20 19:02:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl;
 
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotLinker;
-import org.eclipse.ocl.examples.xtext.base.utilities.NoEObjectCompositeEValidator;
 import org.eclipse.ocl.examples.xtext.completeocl.scoping.CompleteOCLScopeProvider;
 import org.eclipse.ocl.examples.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLCrossReferenceSerializer;
+import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingDiagnosticMessageProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLLinkingService;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLQualifiedNameProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.services.EssentialOCLValueConverterService;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parsetree.reconstr.ITokenSerializer.ICrossReferenceSerializer;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.scoping.IScopeProvider;
-import org.eclipse.xtext.validation.CompositeEValidator;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.completeocl.AbstractCompleteOCLRuntimeModule
 {
-	public Class<? extends CompositeEValidator> bindCompositeEValidator() {
-		return NoEObjectCompositeEValidator.class;
+	@Override
+	public void configure(Binder binder) {
+		super.configure(binder);
+		binder.bindConstant().annotatedWith(Names.named(org.eclipse.xtext.validation.CompositeEValidator.USE_EOBJECT_VALIDATOR)).to(false);
 	}
 
 	public Class<? extends ICrossReferenceSerializer> bindICrossReferenceSerializer() {
@@ -55,6 +60,10 @@ public class CompleteOCLRuntimeModule extends org.eclipse.ocl.examples.xtext.com
 	@Override
 	public Class<? extends ILinker> bindILinker() {
 		return CS2PivotLinker.class;
+	}
+	
+	public Class<? extends ILinkingDiagnosticMessageProvider> bindILinkingDiagnosticMessageProvider() {
+		return EssentialOCLLinkingDiagnosticMessageProvider.class;
 	}
 
 	@Override

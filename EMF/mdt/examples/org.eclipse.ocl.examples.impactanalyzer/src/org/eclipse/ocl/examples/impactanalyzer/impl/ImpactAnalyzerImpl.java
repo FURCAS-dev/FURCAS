@@ -19,7 +19,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
@@ -31,7 +31,7 @@ import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
 /**
  * Implementation of the {@link ImpactAnalyzer}
  */
-public class ImpactAnalyzerImpl implements ImpactAnalyzer {
+public class ImpactAnalyzerImpl implements ImpactAnalyzer, TracebackStepExecutor {
 
     private final OCLExpression expression;
     private FilterSynthesisImpl filtersyn;
@@ -159,6 +159,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     protected OCLExpression getExpression() {
         return expression;
+    }
+
+    public int getNumberOfTracebackStepsPerformedDuringLastCallToGetContextObjects() {
+        return instanceScopeAnalysis.getNumberOfTracebackStepsPerformedDuringLastCallToGetContextObjects();
     }
 
 } // ImpactAnalyzerImpl

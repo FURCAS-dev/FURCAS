@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -41,11 +41,6 @@ import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
-import org.eclipse.ocl.examples.pivot.CompleteEnvironment;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Detail;
@@ -334,16 +329,6 @@ public class PivotValidator
 				return validateCollectionType((CollectionType)value, diagnostics, context);
 			case PivotPackage.COMMENT:
 				return validateComment((Comment)value, diagnostics, context);
-			case PivotPackage.COMPLETE_ENVIRONMENT:
-				return validateCompleteEnvironment((CompleteEnvironment)value, diagnostics, context);
-			case PivotPackage.COMPLETE_OPERATION:
-				return validateCompleteOperation((CompleteOperation)value, diagnostics, context);
-			case PivotPackage.COMPLETE_PACKAGE:
-				return validateCompletePackage((CompletePackage)value, diagnostics, context);
-			case PivotPackage.COMPLETE_PROPERTY:
-				return validateCompleteProperty((CompleteProperty)value, diagnostics, context);
-			case PivotPackage.COMPLETE_TYPE:
-				return validateCompleteType((CompleteType)value, diagnostics, context);
 			case PivotPackage.CONSTRAINT:
 				return validateConstraint((Constraint)value, diagnostics, context);
 			case PivotPackage.DATA_TYPE:
@@ -1024,82 +1009,6 @@ public class PivotValidator
 	public boolean validateComment(Comment comment,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)comment, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompleteEnvironment(
-			CompleteEnvironment completeEnvironment,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)completeEnvironment, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompleteOperation(
-			CompleteOperation completeOperation, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		if (!validate_NoCircularContainment((EObject)completeOperation, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(completeOperation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateOperation_validateTestConstraint(completeOperation, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompletePackage(CompletePackage completePackage,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint((EObject)completePackage, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompleteProperty(CompleteProperty completeProperty,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment((EObject)completeProperty, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique((EObject)completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateLowerGe0(completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMultiplicityElement_validateUpperGeLower(completeProperty, diagnostics, context);
-		if (result || diagnostics != null) result &= validateProperty_validateBindingToAttribute(completeProperty, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateCompleteType(CompleteType completeType, DiagnosticChain diagnostics, Map<Object, Object> context)
-	{
-		return validate_EveryDefaultConstraint((EObject)completeType, diagnostics, context);
 	}
 
 	/**

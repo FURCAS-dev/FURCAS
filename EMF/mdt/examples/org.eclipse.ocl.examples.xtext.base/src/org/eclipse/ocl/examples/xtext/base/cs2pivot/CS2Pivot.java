@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2Pivot.java,v 1.8 2011/03/16 17:32:32 ewillink Exp $
+ * $Id: CS2Pivot.java,v 1.10 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.notify.Adapter;
@@ -42,7 +41,8 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PrimitiveTypeRefCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TuplePartCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.impl.MonikeredElementCSImpl;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
@@ -162,12 +162,9 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	protected final Map<? extends Resource, ? extends Resource> cs2pivotResourceMap;
 	
 	/**
-	 * The pivot element for CS monikers
-	 */
-	protected final Map<String, MonikeredElement> moniker2PivotMap;
-	
-	/**
-	 * The pivot element for CS monikers
+	 * The moniker to CS element map, which is computed lazily to support the
+	 * BaseLocationInFileProvider navigation from pivot to CS to line. The mapping
+	 * is destroyed by each CS to Pivot update.
 	 */
 	protected Map<String, MonikeredElementCS> moniker2PivotCSMap = null;
 
@@ -176,15 +173,12 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public CS2Pivot(Map<? extends Resource, ? extends Resource> cs2pivotResourceMap, TypeManager typeManager) {
 		this.cs2pivotResourceMap = cs2pivotResourceMap;
 		this.typeManager = typeManager;
-//		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
-		moniker2PivotMap = typeManager.computeMoniker2PivotMap(cs2pivotResourceMap.values());
 		typeManager.getPivotResourceSet().eAdapters().add(this);	// FIXME Dispose somehow
 	}
 	
 	public CS2Pivot(CS2Pivot aConverter) {
 		this.cs2pivotResourceMap = aConverter.cs2pivotResourceMap;
 		this.typeManager = aConverter.typeManager;
-		moniker2PivotMap = typeManager.computeMoniker2PivotMap(getPivotResources());
 	}
 
 	public Map<String, MonikeredElementCS> computeMoniker2CSMap() {
@@ -204,8 +198,12 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 					String moniker = monikeredElement.getMoniker();
 					assert moniker != null;
 					MonikeredElementCS oldMonikeredElement = map.get(moniker);
-					if (monikeredElement instanceof NamedElementCS) {
-						if ((oldMonikeredElement instanceof NamedElementCS) && !(oldMonikeredElement instanceof PrimitiveTypeRefCS)) {
+					if ((monikeredElement instanceof NamedElementCS) 
+					&& !(monikeredElement instanceof TypeRefCS)
+					&& !(monikeredElement instanceof TuplePartCS)) {
+						if ((oldMonikeredElement instanceof NamedElementCS)
+						&& !(oldMonikeredElement instanceof TypeRefCS)
+						&& !(oldMonikeredElement instanceof TuplePartCS)) {
 							logger.warn("Duplicate CS '" + moniker + "'");
 						}
 						else {
@@ -227,14 +225,6 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 
 	public Factory getFactory(EPackage ePackage) {
 		return factoryMap.get(ePackage);
-	}
-
-	public Set<String> getMonikers() {
-		return moniker2PivotMap.keySet();
-	}
-	
-	public MonikeredElement getPivotElement(String moniker) {
-		return moniker2PivotMap.get(moniker);
 	}
 
 	public Resource getPivotResource(Resource csResource) {
@@ -283,19 +273,6 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	public void notifyChanged(Notification notification) {
 		// Do nothing.
 	}
-	
-	public MonikeredElement putPivotElement(String moniker, MonikeredElement pivotElement) {
-		MonikeredElement oldElement = moniker2PivotMap.put(moniker, pivotElement);
-		if (oldElement != null) {
-			assert oldElement == pivotElement;
-		}
-		return oldElement;
-	}
-	
-	public MonikeredElement reputPivotElement(String moniker, MonikeredElement pivotElement) {
-		MonikeredElement oldElement = moniker2PivotMap.put(moniker, pivotElement);
-		return oldElement;
-	}
 
 	/**
 	 * Reset all the CS monikers for test purposes.
@@ -330,7 +307,11 @@ public class CS2Pivot extends AbstractConversion implements Adapter
 	}
 	
 	public void update() {
-		CS2PivotConversion conversion = new CS2PivotConversion(this);
-		conversion.update(getCSResources());
+//		System.out.println("==========================================================================");
+		moniker2PivotCSMap = null;			// Recomputation necessary
+		CS2PivotConversion conversion = new CS2PivotConversion(this, getCSResources());
+		conversion.update();
+//		System.out.println("---------------------------------------------------------------------------");
+		conversion.garbageCollect();
 	}
 }

@@ -16,8 +16,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.ocl.examples.eventmanager.Statistics;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
+import org.eclipse.ocl.examples.eventmanager.util.Statistics;
 
 
 /**
@@ -48,18 +50,57 @@ class Registration {
      */
     private final AndFilter andFilter;
 
-    /**
-     * @param bitSetForTablesRegisteredWith a bit set indicating for which tables this listener is registered.
-     * This bit set corresponds with what {@link RegistrationManagerTableBased#getTablesForBitSet(int)} takes as
-     * an argument.
-     * @param andFilter when running in "debug mode" with the {@link Statistics} capturing turned on, the
-     * <code>andFilter</code> will be remembered (otherwise, a {@link Registration} doesn't know its filter, hence
-     * the filter can eventually get garbage-collected) and will be shown in the {@link #toString()} output.
-     */
-    Registration(int bitSetForTablesRegisteredWith, AndFilter andFilter) {
+	/**
+	 * For each table, holds the number of times this registration must be
+	 * matched for a {@link Notification} to pass. Assume, for example, a
+	 * registration is created for an {@link AndFilter} that has two operands
+	 * asking for two different criteria of the same sort, e.g., two different
+	 * {@link EClass}es. (Such a filter would, e.g., be matched by an
+	 * <code>ADD_MANY</code> notification whose new value collection holds at
+	 * least one object of each class requested. In this case, the
+	 * {@link Registration} must only be considered "matched" if two matches
+	 * were produced for the objects delivered by the
+	 * {@link TableForEventFilter#getAffectedObject(org.eclipse.emf.common.notify.Notification)}
+	 * operation.<p>
+	 * 
+	 * This array stores the numbers of matches required per table. It will hold 0
+	 * for those tables where the registration is not registered, and at least 1
+	 * for all tables where it is registered.
+	 */
+    private int[] requiredMatchesPerTable;
+
+	/**
+	 * @param bitSetForTablesRegisteredWith
+	 *            a bit set indicating for which tables this listener is
+	 *            registered. This bit set corresponds with what
+	 *            {@link RegistrationManagerTableBased#getTablesForBitSet(int)}
+	 *            takes as an argument.
+	 * @param andFilter
+	 *            when running in "debug mode" with the {@link Statistics}
+	 *            capturing turned on, the <code>andFilter</code> will be
+	 *            remembered (otherwise, a {@link Registration} doesn't know its
+	 *            filter, hence the filter can eventually get garbage-collected)
+	 *            and will be shown in the {@link #toString()} output.
+	 * @param requiredMatchesPerTable
+	 *            the total number of tables that are managed by the
+	 *            {@link EventManagerTableBased} for which this is a
+	 *            registration
+	 */
+    Registration(int bitSetForTablesRegisteredWith, AndFilter andFilter, int[] requiredMatchesPerTable) {
         this.bitSetForTablesRegisteredWith = bitSetForTablesRegisteredWith;
         this.andFilter = andFilter;
         registrationSets = new HashSet<RegistrationSet>();
+        this.requiredMatchesPerTable = requiredMatchesPerTable;
+    }
+    
+	/**
+	 * @param i
+	 *            number of the table (0-based, as in
+	 *            {@link RegistrationManagerTableBased}'s tables, for which to
+	 *            tell how many matches this registration requires from this table
+	 */
+    public int getMatchesRequiredForTable(int i) {
+    	return requiredMatchesPerTable[i];
     }
 
     /**

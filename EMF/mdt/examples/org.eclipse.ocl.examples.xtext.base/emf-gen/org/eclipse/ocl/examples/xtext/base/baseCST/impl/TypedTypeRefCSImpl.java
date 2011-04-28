@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: TypedTypeRefCSImpl.java,v 1.8 2011/02/15 10:36:55 ewillink Exp $
+ * $Id: TypedTypeRefCSImpl.java,v 1.9 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -25,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
@@ -325,8 +325,9 @@ public class TypedTypeRefCSImpl extends TypedRefCSImpl implements TypedTypeRefCS
 	}
 
 	@Override
-	public void setPivot(Element newPivot) {
-		// TODO Auto-generated method stub
-		super.setPivot(newPivot);
+	public void resetPivot() {
+		super.resetPivot();
+//		type = null;
+//		namespace.clear();
 	}
 } //TypedTypeRefCSImpl

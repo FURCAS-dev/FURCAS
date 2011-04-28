@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzer;
 import org.eclipse.ocl.examples.impactanalyzer.ImpactAnalyzerFactory;
 import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
@@ -47,7 +47,7 @@ public class AdapterForExpression extends AdapterImpl {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, notifyOnNewContextElements, oppositeEndFinder, configuration,
-                OCLFactory.INSTANCE);
+                OCLFactory.getInstance());
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
@@ -71,7 +71,7 @@ public class AdapterForExpression extends AdapterImpl {
         this.triggerableToNotify = triggerableToNotify;
         this.expression = expression;
         this.impactAnalyzer = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context, notifyOnNewContextElements, oppositeEndFinder, configuration,
-                OCLFactory.INSTANCE);
+                OCLFactory.getInstance());
         this.oppositeEndFinder = oppositeEndFinder;
     }
     

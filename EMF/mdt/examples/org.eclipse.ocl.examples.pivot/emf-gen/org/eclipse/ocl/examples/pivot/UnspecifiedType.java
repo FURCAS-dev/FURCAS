@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedType.java,v 1.1 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: UnspecifiedType.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -34,7 +34,7 @@ package org.eclipse.ocl.examples.pivot;
  * @model
  * @generated
  */
-public interface UnspecifiedType extends Type
+public interface UnspecifiedType extends org.eclipse.ocl.examples.pivot.Class
 {
 	/**
 	 * Returns the value of the '<em><b>Lower Bound</b></em>' reference.
