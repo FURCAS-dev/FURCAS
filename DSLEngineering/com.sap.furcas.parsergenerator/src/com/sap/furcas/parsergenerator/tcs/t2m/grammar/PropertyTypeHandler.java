@@ -246,14 +246,16 @@ public class PropertyTypeHandler<Type extends Object> {
         query = TcsUtil.escapeMultiLineOclQuery(query);
         
         // creates the bit that sets the temp from above as reference to modelElement "ret" of this rule
+        String propURI = ObservationDirectivesHelper.getId(prop);
         if (args.refersTo != null) {
             if (!skipDelayedReferences) {
                 ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", \"", args.refersTo.getPropertyName(),
-                        "\", temp, \"" + query + "\");}"));
+                        "\", temp, \"" + query + "\", \""+propURI+"\", SyntaxRegistryFacade.getModelUpdaterRegistry());}"));
             }
         } else {
             if (!skipDelayedReferences) {
-                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + query + "\");}"));
+                ruleBodyPart.append(concatBuf(" {setOclRef(ret, \"", propertyName, "\", null, temp, \"" + query
+                        + "\", \""+propURI+"\", SyntaxRegistryFacade.getModelUpdaterRegistry());}"));
             }
         }
     }

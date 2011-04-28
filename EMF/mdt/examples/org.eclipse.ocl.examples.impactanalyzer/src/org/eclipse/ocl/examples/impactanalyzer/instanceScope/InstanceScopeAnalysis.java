@@ -58,6 +58,7 @@ import org.eclipse.ocl.examples.impactanalyzer.configuration.ActivationOption;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorFactoryImpl;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
+import org.eclipse.ocl.examples.impactanalyzer.impl.TracebackStepExecutor;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStep;
 import org.eclipse.ocl.examples.impactanalyzer.instanceScope.traceback.TracebackStepCache;
 import org.eclipse.ocl.examples.impactanalyzer.util.AnnotatedEObject;
@@ -75,7 +76,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * may be called directly of indirectly by the root expression.
  *
  */
-public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
+public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl implements TracebackStepExecutor {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
@@ -86,6 +87,7 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
     private final ActivationOption configuration;
     private final OCLFactory oclFactory;
     private final PartialEvaluatorImpl partialEvaluatorForAllInstancesDeltaPropagation;
+    private int numberOfTracebackStepsPerformedDuringLastCallToGetContextObjects;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
@@ -668,6 +670,10 @@ public class InstanceScopeAnalysis extends PartialEvaluatorFactoryImpl {
 
     public PartialEvaluatorFactory getPartialEvaluatorFactory() {
         return this;
+    }
+
+    public int getNumberOfTracebackStepsPerformedDuringLastCallToGetContextObjects() {
+        return numberOfTracebackStepsPerformedDuringLastCallToGetContextObjects;
     }
 
 }

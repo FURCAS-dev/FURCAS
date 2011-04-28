@@ -175,7 +175,7 @@ public class ConsistencyChecksObserver implements IParsingObserver {
      * (String)
      */
     @Override
-    public void notifyEnterSequenceElement(String mri) {
+    public void notifyEnterSequenceElement(String sequenceElementURI) {
         sequenceElementsEnteredNotLeft++;
     }
 

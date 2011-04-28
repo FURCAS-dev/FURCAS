@@ -25,8 +25,8 @@ import org.eclipse.ocl.examples.eventmanager.tests.filters.NewValueClassIncludin
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OldValueClassIncludingSubclassesFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.filters.OrFilterTest;
-import org.eclipse.ocl.examples.eventmanager.tests.filters.PackageFilterTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.CompositeSetTest;
+import org.eclipse.ocl.examples.eventmanager.tests.framework.EventManagerFactoryImplTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.IncludeSubclassesTest;
 import org.eclipse.ocl.examples.eventmanager.tests.framework.RecursiveContaimentNotificationCreatorTest;
 
@@ -67,8 +67,8 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(IncludeSubclassesTest.class);
 		suite.addTestSuite(CompositeSetTest.class);
 		suite.addTestSuite(RecursiveContaimentNotificationCreatorTest.class);
-		suite.addTestSuite(PackageFilterTest.class);
 		suite.addTestSuite(SimpleFilterTest.class);
+		suite.addTestSuite(LogicalFilterTest.class);
 		
 		return suite;
 	}

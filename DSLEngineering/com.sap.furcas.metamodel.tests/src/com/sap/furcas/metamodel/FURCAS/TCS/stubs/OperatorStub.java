@@ -7,11 +7,13 @@ import junit.framework.Assert;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Literal;
 import com.sap.furcas.metamodel.FURCAS.TCS.Operator;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -106,6 +108,9 @@ public class OperatorStub extends LocatedElementStub implements Operator {
         Assert.fail("not implemented.");
     }
 
-    
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getOperator();
+    }
 
 }

@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.util;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -72,7 +71,9 @@ import com.sap.furcas.metamodel.FURCAS.TCS.OperatorList;
 import com.sap.furcas.metamodel.FURCAS.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
 import com.sap.furcas.metamodel.FURCAS.TCS.PartialPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.PostfixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.FURCAS.TCS.PrefixPArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Priority;

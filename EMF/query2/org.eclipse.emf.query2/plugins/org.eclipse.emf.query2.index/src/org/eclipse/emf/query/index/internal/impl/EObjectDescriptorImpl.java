@@ -88,4 +88,38 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 	public URI getResourceURI() {
 		return this.resource.getURI();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eClass == null) ? 0 : eClass.hashCode());
+		result = prime * result + ((fragment == null) ? 0 : fragment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EObjectDescriptorImpl other = (EObjectDescriptorImpl) obj;
+		if (eClass == null) {
+			if (other.eClass != null)
+				return false;
+		} else if (!eClass.equals(other.eClass))
+			return false;
+		if (fragment == null) {
+			if (other.fragment != null)
+				return false;
+		} else if (!fragment.equals(other.fragment))
+			return false;
+		return true;
+	}
+
+	
+
 }

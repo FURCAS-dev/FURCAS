@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.impl;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -14,8 +13,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;

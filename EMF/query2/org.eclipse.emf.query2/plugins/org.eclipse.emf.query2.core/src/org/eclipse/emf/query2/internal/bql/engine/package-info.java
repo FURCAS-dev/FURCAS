@@ -9,6 +9,7 @@
  *     SAP AG - initial API and implementation
  *******************************************************************************/
 /**
- * 
+ * Contains all classes for BQL Engine.
+ * These classes are actually used to evaluate the results.
  */
 package org.eclipse.emf.query2.internal.bql.engine;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.5 2011/03/12 16:16:31 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.7 2011/04/20 19:02:31 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -74,6 +74,11 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryTrue(null, "Set(String) = Set(String)");
 		assertQueryFalse(null, "Set(String) = Set(Integer)");
 		assertQueryFalse(null, "Set(String) = Sequence(String)");
+	}
+
+	public void testEqualEnumeration() {
+		assertQueryTrue(null, "pivot::CollectionKind::_'Collection' = pivot::CollectionKind::_'Collection'");
+		assertQueryFalse(null, "pivot::CollectionKind::_'Collection' = pivot::CollectionKind::_'Set'");
 	}
 	
 	public void testGreaterThanInvalid() {
@@ -174,6 +179,11 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryFalse(null, "null <> null");
 	}
 
+	public void testNotEqualEnumeration() {
+		assertQueryFalse(null, "pivot::CollectionKind::_'Collection' <> pivot::CollectionKind::_'Collection'");
+		assertQueryTrue(null, "pivot::CollectionKind::_'Collection' <> pivot::CollectionKind::_'Set'");
+	}
+
 	public void testOclAsTypeInvalidLaxNullHandlingInvalid() {
 		assertQueryInvalid(null, "invalid.oclAsType(String)");
 		assertQueryInvalid(null, "invalid.oclAsType(Classifier)");
@@ -236,6 +246,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 
 	public void testOclIsInvalidInvalid() {
 		assertQueryTrue(null, "invalid.oclIsInvalid()");
+		assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
+		assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
 	}
 
 	public void testOclIsInvalidNull() {

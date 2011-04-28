@@ -28,14 +28,15 @@ import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.Statistics;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.LogicalOperationFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NotFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.PackageFilter;
+import org.eclipse.ocl.examples.eventmanager.util.Bag;
+import org.eclipse.ocl.examples.eventmanager.util.Statistics;
 
 
 /**
@@ -83,7 +84,7 @@ public class RegistrationManagerTableBased {
     private final HashMap<Object, TableForEventFilter> tableByFilterType = new HashMap<Object, TableForEventFilter>();
 
     /**
-     * During {@link #register(EventFilter, WeakReference, ListenerTypeEnum) registration}, weak references
+     * During {@link #register(AbstractEventFilter, WeakReference, ListenerTypeEnum) registration}, weak references
      * to adapters are passed in. To enable {@link #deregister(Adapter) deregistration} by direct references
      * to the adapter, this field keeps the mapping between the adapters and their weak references. It does
      * so in a {@link WeakHashMap} such that again no strong references to the adapter are introduced by
@@ -93,7 +94,7 @@ public class RegistrationManagerTableBased {
 
 	/**
 	 * maps the weak references to the adapters passed to
-	 * {@link #register(EventFilter, WeakReference, ListenerTypeEnum)} to the
+	 * {@link #register(AbstractEventFilter, WeakReference, ListenerTypeEnum)} to the
 	 * registration sets constructed for their event filter; when implicit
 	 * de-registration occurs due to the adapter getting garbage collected, this
 	 * structure is used to clean up the registrations.
@@ -144,6 +145,12 @@ public class RegistrationManagerTableBased {
      * in an array of registration sets
      */
     private Map<Class<? extends EventFilter>, Integer> filterTypeToBitMask;
+    
+    /**
+     * Maps the filter tables from {@link #allTables} to the integer positions they have in {@link #allTables}
+     * for fast look-up.
+     */
+    private final Map<TableForEventFilter, Integer> tableToIndexInAllTables = new HashMap<TableForEventFilter, Integer>();
 
     public RegistrationManagerTableBased() {
         init();
@@ -157,9 +164,9 @@ public class RegistrationManagerTableBased {
         filterTypeToBitMask = new HashMap<Class<? extends EventFilter>, Integer>();
         @SuppressWarnings("unchecked")
         Class<? extends TableForEventFilter>[] tableTypes = (Class<? extends TableForEventFilter>[]) new Class<?>[] {
-                TableForAssociationFilter.class, TableForAttributeFilter.class, TableForClassFilter.class,
+                TableForStructuralFeatureFilter.class, TableForClassFilter.class,
                 TableForClassFilterIncludingSubClasses.class,
-                TableForEventTypeFilter.class, TableForPackageFilter.class, TableForContainmentFilter.class,
+                TableForEventTypeFilter.class, TableForContainmentFilter.class,
                 TableForNewValueClassFilter.class, TableForOldValueClassFilter.class,
                 TableForNewValueClassFilterIncludingSubclasses.class, TableForOldValueClassFilterIncludingSubclasses.class};
         createAllTables(tableTypes.length);
@@ -208,11 +215,9 @@ public class RegistrationManagerTableBased {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
-            LogicalOperationFilterImpl topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
+            EventFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
             filterTree = topOfTree;
         }
-        // the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
-        filterTree = adjustFilter(filterTree);
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilterImpl) filterTree);
         // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
         List<Registration> registrations = new LinkedList<Registration>();
@@ -232,15 +237,21 @@ public class RegistrationManagerTableBased {
      * Creates the registration and adds it to {@link #allRegistrations}
      */
     private Registration createRegistration(AndFilter andFilter) {
-        Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = getFilterTablesToRegisterWith(andFilter);
-        Registration result = new Registration(getBitSet(filterTablesToRegisterWith.values()), andFilter);
-        allRegistrations.put(andFilter, result);
-        updateBitSetsWithAtLeastOneRegistration(result);
-        for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith.entrySet()) {
-            filterTableEntry.getValue().register(filterTableEntry.getKey(), result);
-        }
-        return result;
-    }
+    	int[] requiredMatchesPerTable = new int[allTables.length];
+		Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = getFilterTablesToRegisterWith(
+				andFilter, requiredMatchesPerTable);
+		Registration result = new Registration(
+				getBitSet(filterTablesToRegisterWith.values()), andFilter,
+				requiredMatchesPerTable);
+		allRegistrations.put(andFilter, result);
+		updateBitSetsWithAtLeastOneRegistration(result);
+		for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith
+				.entrySet()) {
+			filterTableEntry.getValue().register(filterTableEntry.getKey(),
+					result);
+		}
+		return result;
+	}
 
     /**
      * Ensures that {@link #bitSetsWithAtLeastOneRegistration} contains <code>registration</code>.
@@ -258,9 +269,24 @@ public class RegistrationManagerTableBased {
         bitSetsWithAtLeastOneRegistration[numberOfBitSetsWithAtLeastOneRegistration++] = bitset;
     }
 
-    private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(AndFilter andFilter) {
-        // determine tables to register with; needed already for construction of Registration
-        Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
+	/**
+	 * @param requiredMatchesPerTable
+	 *            Expected to contain only 0 values upon invocation. Updated by
+	 *            this method with the number of matches that the
+	 *            {@link Registration} to be created from the results of this
+	 *            method expects to find in the respective table. Indices in
+	 *            this array correspond to the indices in {@link #allTables}.
+	 *            When this method completes normally, this array will contain 0
+	 *            for all tables (see also {@link #tableToIndexInAllTables})
+	 *            that don't occur in the results {@link Map#values() values}
+	 *            and at least 1 for all tables that do occur.
+	 */
+	private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(
+			AndFilter andFilter, int[] requiredMatchesPerTable) {
+		// determine tables to register with; needed already for construction of
+		// Registration
+		Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
+		// The following table is used only for the possibility of error reporting
         LogicalOperationFilterImpl level1OfTree = andFilter;
         for (EventFilter leafOfTree : level1OfTree.getOperands()) {
             TableForEventFilter filterTable = getFilterTable(leafOfTree);
@@ -268,6 +294,7 @@ public class RegistrationManagerTableBased {
                 throw new IllegalArgumentException("no table for type " + leafOfTree.getClass()
                         + " in RegistryManager defined");
             }
+            requiredMatchesPerTable[tableToIndexInAllTables.get(filterTable)]++;
             filterTablesToRegisterWith.put(leafOfTree, filterTable);
         }
         return filterTablesToRegisterWith;
@@ -326,9 +353,12 @@ public class RegistrationManagerTableBased {
      */
 
     public synchronized void deregister(Adapter listener) {
-    	for (Reference<? extends Adapter> listenerRef : adaptersToWeakRefs.get(listener)) {
-    		deregister(listenerRef);
-    	}
+    	Set<Reference<? extends Adapter>> set = adaptersToWeakRefs.get(listener);
+		if (set != null) {
+			for (Reference<? extends Adapter> listenerRef : set) {
+				deregister(listenerRef);
+			}
+		}
     }
     
     public synchronized void deregister(Reference<? extends Adapter> listenerRef) {
@@ -380,14 +410,14 @@ public class RegistrationManagerTableBased {
         Set<Registration> result = new HashSet<Registration>();
         // for the following two lists, the index corresponds to the table index in allTables
         @SuppressWarnings("unchecked")
-        Set<Registration>[][] yesSetsForTables = (Set<Registration>[][]) new Set<?>[allTables.length][];
+        Bag<Registration>[][] yesSetsForTables = (Bag<Registration>[][]) new Bag<?>[allTables.length][];
         @SuppressWarnings("unchecked")
-        Set<Registration>[][] noSetsForTables = (Set<Registration>[][]) new Set<?>[allTables.length][];
+        Bag<Registration>[][] noSetsForTables = (Bag<Registration>[][]) new Bag<?>[allTables.length][];
         int i=0;
         for (TableForEventFilter table : allTables) {
-            Set<Registration>[] yesSetsForTable = table.getYesSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
+            Bag<Registration>[] yesSetsForTable = table.getYesSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
             yesSetsForTables[i] = yesSetsForTable;
-            Set<Registration>[] noSetsForTable = table.getNoSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
+            Bag<Registration>[] noSetsForTable = table.getNoSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
             noSetsForTables[i] = noSetsForTable;
             i++;
         }
@@ -401,9 +431,13 @@ public class RegistrationManagerTableBased {
         return result;  
     }
 
-    private void addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(int bitSetForTableCombination,
-            Set<Registration>[][] yesSetsForTables, Set<Registration>[][] noSetsForTables, Set<Registration> result, HashSet<Registration> startSetToReuseToAvoidHashSetCreation) {
-        // first, determine maximum size of (yesSet "union" allNo \ no) for each table in the bit set;
+	private void addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(
+			int bitSetForTableCombination,
+			Bag<Registration>[][] yesSetsForTables,
+			Bag<Registration>[][] noSetsForTables, Set<Registration> result,
+			HashSet<Registration> startSetToReuseToAvoidHashSetCreation) {
+		// first, determine maximum size of (yesSet "union" allNo \ no) for each
+		// table in the bit set;
         // if the maximum size of one of them is 0, we're done; otherwise, start with the table promising the
         // smallest size
         int tableWithMinSize = getTableWithMinSizeForIntersection(bitSetForTableCombination, yesSetsForTables);
@@ -430,25 +464,39 @@ public class RegistrationManagerTableBased {
         result.addAll(resultForTablesInBitSet);
     }
 
-    private Collection<Registration> getStartCollectionFromMinSizeTable(int bitSetForTableCombination,
-            Set<Registration>[][] yesSetsForTables, Set<Registration>[][] noSetsForTables, int tableWithMinSize, HashSet<Registration> resultForTablesInBitSet) {
-        resultForTablesInBitSet.clear();
-        Set<Registration> yesSetForMinSizeTable = yesSetsForTables[tableWithMinSize][bitSetForTableCombination];
-        if (yesSetForMinSizeTable != null) {
-            resultForTablesInBitSet.addAll(yesSetForMinSizeTable);
-        }
-        Set<Registration> allNoForMinSizeTable = allTables[tableWithMinSize].getCompleteNoSet()[bitSetForTableCombination];
+	private Collection<Registration> getStartCollectionFromMinSizeTable(
+			int bitSetForTableCombination,
+			Bag<Registration>[][] yesSetsForTables,
+			Bag<Registration>[][] noSetsForTables, int tableWithMinSize,
+			HashSet<Registration> resultForTablesInBitSet) {
+		resultForTablesInBitSet.clear();
+        Bag<Registration> yesSetForMinSizeTable = yesSetsForTables[tableWithMinSize][bitSetForTableCombination];
+        Bag<Registration> allNoForMinSizeTable = allTables[tableWithMinSize].getCompleteNoBag()[bitSetForTableCombination];
+        Bag<Registration> noSetForMinSizeTable = noSetsForTables[tableWithMinSize][bitSetForTableCombination];
+        // add those registrations that got exactly as many matches in the table as they require
+		if (yesSetForMinSizeTable != null) {
+			for (Registration r : yesSetForMinSizeTable) {
+				if ((noSetForMinSizeTable == null || !noSetForMinSizeTable.contains(r))
+						&& r.getMatchesRequiredForTable(tableWithMinSize) ==
+							yesSetForMinSizeTable.count(r) + (allNoForMinSizeTable == null ? 0 : allNoForMinSizeTable.count(r))) {
+					resultForTablesInBitSet.add(r);
+				}
+			}
+		}
         if (allNoForMinSizeTable != null) {
-            resultForTablesInBitSet.addAll(allNoForMinSizeTable);
-        }
-        Set<Registration> noSetForMinSizeTable = noSetsForTables[tableWithMinSize][bitSetForTableCombination];
-        if (noSetForMinSizeTable != null) {
-            resultForTablesInBitSet.removeAll(noSetForMinSizeTable);
+			for (Registration r : allNoForMinSizeTable) {
+				if ((noSetForMinSizeTable == null || !noSetForMinSizeTable.contains(r))
+						&& r.getMatchesRequiredForTable(tableWithMinSize) == (yesSetForMinSizeTable == null ? 0
+								: yesSetForMinSizeTable.count(r))
+								+ allNoForMinSizeTable.count(r)) {
+					resultForTablesInBitSet.add(r);
+				}
+			}
         }
         return resultForTablesInBitSet;
     }
 
-    private int getTableWithMinSizeForIntersection(int bitSetForTableCombination, Set<Registration>[][] yesSetsForTables) {
+    private int getTableWithMinSizeForIntersection(int bitSetForTableCombination, Bag<Registration>[][] yesSetsForTables) {
         int[] maxSizes = new int[allTables.length]; // only those elements from the bit set will be populated
         int minSize = Integer.MAX_VALUE; // minimum value that got explicitly set in sizes[]
         int tableWithMinSize = -1;       // position of minimum value in sizes[]; that's the table to start with for intersection
@@ -456,8 +504,8 @@ public class RegistrationManagerTableBased {
         for (int i=allTables.length-1; i>=0; i--) {
             if ((bitSetForTableCombination & tableBit) != 0) {
                 // table identified by tableBit occurs in the combination represented by bitSetForTableCombination
-                Set<Registration> yesSet = yesSetsForTables[i][bitSetForTableCombination];
-                Set<Registration> allNo = allTables[i].getCompleteNoSet()[bitSetForTableCombination];
+            	Bag<Registration> yesSet = yesSetsForTables[i][bitSetForTableCombination];
+            	Bag<Registration> allNo = allTables[i].getCompleteNoBag()[bitSetForTableCombination];
                 maxSizes[i] = (yesSet == null ? 0 : yesSet.size()) + (allNo == null ? 0 : allNo.size());
                 if (maxSizes[i] < minSize) {
                     // will be executed at least once because we start with minSize=Integer.MAX_VALUE and
@@ -475,13 +523,26 @@ public class RegistrationManagerTableBased {
         return tableWithMinSize;
     }
 
-    private boolean is_InYesOrCompleteNo_And_NotInNo_OfTable(Registration registration, int table, int bitSetForTableCombination,
-            Set<Registration>[][] yesSetsForTable, Set<Registration>[][] noSetsForTables) {
-        Set<Registration> yesSet = yesSetsForTable[table][bitSetForTableCombination];
-        Set<Registration> allNo = allTables[table].getCompleteNoSet()[bitSetForTableCombination];
-        Set<Registration> noSet = noSetsForTables[table][bitSetForTableCombination];
-        return ((yesSet != null && yesSet.contains(registration)) || (allNo != null && allNo.contains(registration)))
-           && (noSet == null || !noSet.contains(registration));
+	private boolean is_InYesOrCompleteNo_And_NotInNo_OfTable(
+			Registration registration, int table,
+			int bitSetForTableCombination,
+			Bag<Registration>[][] yesSetsForTable,
+			Bag<Registration>[][] noSetsForTables) {
+		Bag<Registration> yesSet = yesSetsForTable[table][bitSetForTableCombination];
+    	Bag<Registration> allNo = allTables[table].getCompleteNoBag()[bitSetForTableCombination];
+        Bag<Registration> noSet = noSetsForTables[table][bitSetForTableCombination];
+
+        // add those registrations that got exactly as many matches in the table as they require
+        return 
+			((yesSet != null) &&
+			((noSet == null || !noSet.contains(registration)) &&
+			 registration.getMatchesRequiredForTable(table) ==
+				yesSet.count(registration) + (allNo == null ? 0 : allNo.count(registration))))
+			||
+	        ((allNo != null) &&
+			((noSet == null || !noSet.contains(registration)) &&
+			 registration.getMatchesRequiredForTable(table) ==
+				(yesSet == null ? 0 : yesSet.count(registration)) + allNo.count(registration)));
     }
 
     /**
@@ -522,49 +583,6 @@ public class RegistrationManagerTableBased {
     }
 
     /**
-     * this method expands filters like "ClassFilter including subclasses" to an equivalent subtree
-     * 
-     * @param source
-     * @param parent
-     */
-    private static EventFilter adjustFilter(EventFilter source) {
-        // traverse tree recursively
-        if (source instanceof LogicalOperationFilterImpl) {
-            Set<EventFilter> sourceOperands = ((LogicalOperationFilterImpl) source).getOperands();
-            EventFilter[] targetOperands = new EventFilter[sourceOperands.size()];
-            int index = 0;
-            for (EventFilter operand : sourceOperands) {
-                targetOperands[index++] = adjustFilter(operand);
-            }
-            if (source instanceof AndFilter) {
-                return new AndFilter(targetOperands);
-            }
-            if (source instanceof OrFilter) {
-                return new OrFilter(targetOperands);
-            }
-            // if (source instanceof NotFilter) {
-            // return new NotFilter(targetOperands[0]);
-            // }
-        }
-//        if (source instanceof ClassFilter && ((ClassFilter) source).getIncludeSubClasses()) {
-//            // This method replaces ClassFilters that have a true <code>
-//            // includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
-//            ClassFilter classFilter = (ClassFilter) source;
-//            return getSubTypeFilterTree(classFilter);
-//        } else 
-            if (source instanceof PackageFilter) {
-             // This method replaces ExtentFilters that have a filterCriterion of type <code>
-             // EPackage</code> with a
-             // collection of OR-Connected ExtentFilterFilters that represent all transitively contained
-             // <code>RefClasses</code>
-             PackageFilter extentFilter = (PackageFilter) source;
-             return getExpandedExtentFilterTree(extentFilter);
-        } else {
-            return source;
-        }
-    }
-
-    /**
      * this is a private helper method. unfortunately there is no 1 to 1 mapping of event filter instances and EventFilterTable
      * instances because some of the filters have modifiers like <code>
      * includeSubclasses</code>. In this case, there is a seperate EventFilterTable instance for each value of the modifier. this
@@ -595,56 +613,6 @@ public class RegistrationManagerTableBased {
     }
 
     /**
-     * creates a filter tree which consists of an OR-Filter that connects several PackageFilters which represent all packages that
-     * are composite children of the original package
-     * 
-     * @see #getExpandedExtentFilterTree()
-     * @param extent
-     */
-    private static EventFilter getExpandedExtentFilterTree(PackageFilter filter) {
-
-        EPackage extent = filter.getEPackage();
-        EventFilter extentFilterTree = null;
-        Collection<EPackage> containedPackages = getContainedPackageExtents(extent);
-        if (containedPackages.size() == 0) {
-            return filter;
-        }
-
-        EventFilter[] orFilterOperands = new EventFilter[containedPackages.size() + 1];
-        int index = 0;
-        orFilterOperands[index++] = filter; // ad the top level package filter also
-        for (EPackage _package : containedPackages) {
-            orFilterOperands[index++] = new PackageFilter(_package);
-        }
-        LogicalOperationFilterImpl orFilter = new OrFilter(orFilterOperands);
-
-        if (filter.isNegated()) {
-            NotFilter notFilter = new NotFilter(orFilter);
-            extentFilterTree = notFilter;
-        } else
-            extentFilterTree = orFilter;
-
-        return extentFilterTree;
-    }
-
-    /**
-     * @see #computeExpandedExtentFilterTree(RefPackage)
-     * @param refPackage
-     * @return
-     */
-    private static Collection<EPackage> getContainedPackageExtents(EPackage refPackage) {
-
-        Collection<EPackage> result = new ArrayList<EPackage>();
-
-        for (Iterator<EPackage> it = refPackage.getESubpackages().iterator(); it.hasNext();) {
-            EPackage containedPackage = it.next();
-            result.add(containedPackage);
-            result.addAll(getContainedPackageExtents(containedPackage));
-        }
-        return result;
-    }
-
-      /**
      * Transforms the (sub-)tree into disjunctive normal form. This special form is needed internally for the following
      * processing. The tree is not cloned before processing, so the clients that plan to reuse their FilterTrees will have to
      * clone them using {@link #clone()} before registering to the EventFramework or invoking this method.
@@ -694,16 +662,33 @@ public class RegistrationManagerTableBased {
                 result = tmp;
 
             } else if (result instanceof NotFilter) {
-                // TODO log an error, this may not happen (or does it? => test it!!)
-                LogicalOperationFilterImpl afilter = new AndFilter(result);
-                LogicalOperationFilterImpl tmp = new OrFilter(afilter);
-                result = tmp;
-
+               throw new IllegalStateException("Elimination of NotFilters failed");
             }
         }
 
         if (!isInDisjunctiveNormalForm(result)) {
-            throw new IllegalStateException();
+        	if(result instanceof OrFilter){
+        		/*
+        		 * there might be primitives left as direct children --> encapsulate them into AndFilters
+        		 *  a | b | (c & d) -- > (a &) | (b &) | (c & d)
+        		 */
+        		Set<EventFilter> oldO = result.getOperands();
+                LogicalOperationFilterImpl orfilter = new OrFilter();
+        		for(EventFilter f: oldO){
+        			if(!(f instanceof LogicalOperationFilter)){
+        				orfilter.addOperand(EventManagerFactory.eINSTANCE.createAndFilterFor(f));
+        			}else{
+        				orfilter.addOperand(f);
+        			}
+        		}
+        		result = orfilter;
+            	if (!isInDisjunctiveNormalForm(result)) {
+            		throw new IllegalStateException("Could not create disjunctiv normal form");
+            	}
+        	}else{
+        		throw new IllegalStateException("Could not create disjunctiv normal form");
+        	}
+
         }
 
         return (OrFilter) result;
@@ -808,7 +793,7 @@ public class RegistrationManagerTableBased {
             EventFilter expandedSubtree = getExpandedSubTree(lof, operand);
             if (lof.getClass().equals(expandedSubtree.getClass())) {
                 /*
-                 * simplyfy: due to commutativity of logical ORs and ANDs, the operands of the subtree can be added to this's
+                 * simplify: due to commutativity of logical ORs and ANDs, the operands of the subtree can be added to this's
                  * operands if the composite LogicalOperationFilter is of the same type
                  */
                 lof.addOperands(((LogicalOperationFilterImpl) expandedSubtree).getOperands());
@@ -824,7 +809,7 @@ public class RegistrationManagerTableBased {
         else
             return multiplyOut(lof, new LinkedList<LogicalOperationFilterImpl>(), 0);
     }
-    static long getLeafCount (EventFilter f){
+    static long getLeafCount(EventFilter f){
         if(f instanceof LogicalOperationFilterImpl){
             long count =0l;
             for(EventFilter o: ((LogicalOperationFilterImpl) f).getOperands()){
@@ -882,7 +867,7 @@ public class RegistrationManagerTableBased {
             }
 
             /*
-             * take the first 2 expressions ( (a | b) & (c | d) ) and tramsform them to (a & c) | (a & d) | (b & c) | (b & d)
+             * take the first 2 expressions ( (a | b) & (c | d) ) and transform them to (a & c) | (a & d) | (b & c) | (b & d)
              */
             LogicalOperationFilterImpl lof = null;
             for (EventFilter filter1 : tmp1) {
@@ -952,7 +937,7 @@ public class RegistrationManagerTableBased {
         if (filter instanceof OrFilter) {
             return new AndFilter();
         }
-        throw new IllegalStateException();
+        throw new IllegalStateException("Unknown logical substitution for " + filter.getClass());
     }
 
     /**
@@ -997,7 +982,7 @@ public class RegistrationManagerTableBased {
             for (EventFilter operand : ((LogicalOperationFilterImpl) filter).getOperands()) {
                 EventFilter negatedOperand = getNegatedSubTree(operand);
                 // simplify due to commutativity of AND/OR conjunction
-                if (operand.getClass().equals(result.getClass())) {
+                if (negatedOperand.getClass().equals(result.getClass())) {
                     result.addOperands(((LogicalOperationFilterImpl) negatedOperand).getOperands());
                 } else {
                     addOperand(result, negatedOperand);
@@ -1006,8 +991,8 @@ public class RegistrationManagerTableBased {
             return result;
         }
 
-        // By defaluts simple change the "negated" flag if the EventFilter
-        filter.setNegated(!filter.isNegated());
+        // By default simply change the "negated" flag if the EventFilter
+        ((AbstractEventFilter) filter).setNegated(!filter.isNegated());
         return filter;
     }
 
@@ -1060,6 +1045,7 @@ public class RegistrationManagerTableBased {
         allTables[posInAllTables] = table;
         tableByFilterType.put(table.getIdentifier(), table);
         filterTypeToBitMask.put(table.getIdentifier(), 1<<filterTypeToBitMask.size());
+        tableToIndexInAllTables.put(table, posInAllTables);
     }
     
     /**

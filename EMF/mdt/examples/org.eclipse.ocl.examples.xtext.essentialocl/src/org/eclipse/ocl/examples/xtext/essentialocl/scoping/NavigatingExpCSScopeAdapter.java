@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.6 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.8 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -58,7 +58,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}
-						environmentView.addElementsOfScope(typeManager, iterator.getType(), scopeView);
+						environmentView.addElementsOfScope(iterator.getType(), scopeView);
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}
@@ -69,7 +69,7 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}
-						environmentView.addElementsOfScope(typeManager, result.getType(), scopeView);
+						environmentView.addElementsOfScope(result.getType(), scopeView);
 						if (environmentView.hasFinalResult()) {
 							return null;
 						}
@@ -81,10 +81,12 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 						NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csParent;
 						ExpCS csSource = csNavigationOperator.getSource();
 						OclExpression source = PivotUtil.getPivot(OclExpression.class, csSource);
-						Type type = source.getType();
-						if (csNavigationOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-							if (type instanceof CollectionType) {		// collection->collection-operation(name...
-								environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
+						if (source != null) {
+							Type type = source.getType();
+							if (csNavigationOperator.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+								if (type instanceof CollectionType) {		// collection->collection-operation(name...
+									environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
+								}
 							}
 						}
 					}
@@ -104,19 +106,20 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 			}
 		}
 //		EObject csParent = getParent().getTarget();
+		TypeManager typeManager = environmentView.getTypeManager();
 		EObject csParent = target.eContainer();
 		if (csParent instanceof InfixExpCS) {
 			OperatorCS csOperator = target.getParent();
 			if (csOperator != null) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(csOperator);
+				ScopeAdapter scopeAdapter = getScopeCSAdapter(csOperator);
 				ExpCS csSource = csOperator.getSource();
 				if (target == csSource) {									// Implicit source
-					return new BaseScopeView(scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
+					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
 				} else {
-					return new BaseScopeView(scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
 				}
 			}
 		}
-		return getOuterScopeView(null);
+		return getOuterScopeView(typeManager, null);
 	}
 }

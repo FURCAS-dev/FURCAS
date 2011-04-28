@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationOperatorCSScopeAdapter.java,v 1.7 2011/03/12 13:22:08 ewillink Exp $
+ * $Id: NavigationOperatorCSScopeAdapter.java,v 1.9 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -26,7 +26,7 @@ import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
@@ -55,41 +55,43 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 			EnvironmentView.Filter filter = null;
 			try {
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, target.getSource());
-				Type type;
-				if (source instanceof TypeExp) {		// FIXME Is this fundamentally necessary
-					type = ((TypeExp)source).getReferredType();
-				}
-				else {
-					type = source.getType();
-				}
-				if (target.getArgument() instanceof NavigatingExpCS) {
-					filter = new OperationFilter(typeManager, type, (NavigatingExpCS)target.getArgument());
-					environmentView.addFilter(filter);
-				}
-//				if (source instanceof TypeExp) {
-//					environmentView.addElementsOfScope(typeManager, type, scopeView);
-//				}
-//				else {
-//					Type type = csSource.getType();
-					if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
-						if (type instanceof CollectionType) {		// collection->collection-operation
-							environmentView.addElementsOfScope(typeManager, type, scopeView);
-						}
-						else {										// object.oclAsSet()->collection-operation
-							Type setType = typeManager.getSetType(type);
-							environmentView.addElementsOfScope(typeManager, setType, scopeView);
-						}
+				if (source != null) {
+					Type type;
+					if (source instanceof TypeExp) {		// FIXME Is this fundamentally necessary
+						type = ((TypeExp)source).getReferredType();
 					}
 					else {
-						if (type == typeManager.getClassifierType()) {
-							type = typeManager.getPivotType("Class");			// FIXME Unify Class/Classifier properly
-						}
-						environmentView.addElementsOfScope(typeManager, type, scopeView);					
-						if (type instanceof CollectionType) {
-							environmentView.addElementsOfScope(typeManager, ((CollectionType)type).getElementType(), scopeView);
-						}
+						type = source.getType();
 					}
-//				}
+					if (target.getArgument() instanceof NavigatingExpCS) {
+						filter = new OperationFilter(typeManager, type, (NavigatingExpCS)target.getArgument());
+						environmentView.addFilter(filter);
+					}
+//					if (source instanceof TypeExp) {
+//						environmentView.addElementsOfScope(typeManager, type, scopeView);
+//					}
+//					else {
+//						Type type = csSource.getType();
+						if (target.getName().equals(PivotConstants.COLLECTION_NAVIGATION_OPERATOR)) {
+							if (type instanceof CollectionType) {		// collection->collection-operation
+								environmentView.addElementsOfScope(type, scopeView);
+							}
+							else {										// object.oclAsSet()->collection-operation
+								Type setType = typeManager.getSetType(type);
+								environmentView.addElementsOfScope(setType, scopeView);
+							}
+						}
+						else {
+							if (type == typeManager.getClassifierType()) {
+								type = typeManager.getPivotType("Class");			// FIXME Unify Class/Classifier properly
+							}
+							environmentView.addElementsOfScope(type, scopeView);					
+							if (type instanceof CollectionType) {
+								environmentView.addElementsOfScope(((CollectionType)type).getElementType(), scopeView);
+							}
+						}
+//					}
+				}
 			}
 			finally {
 				if (filter != null) {
@@ -100,7 +102,7 @@ public class NavigationOperatorCSScopeAdapter extends ExpCSScopeAdapter<Navigati
 		}
 		else {
 			ExpCS parent = target.getParent();
-			return getScopeAdapter(parent != null ? parent : (ModelElementCS)target.eContainer()).getOuterScopeView(null);
+			return getScopeCSAdapter(parent != null ? parent : (ElementCS)target.eContainer()).getOuterScopeView(typeManager, null);
 		}
 	}
 }

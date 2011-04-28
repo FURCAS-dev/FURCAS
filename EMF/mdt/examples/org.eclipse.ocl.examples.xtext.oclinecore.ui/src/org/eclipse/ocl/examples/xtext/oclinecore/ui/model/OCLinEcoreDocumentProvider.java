@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.10 2011/02/08 17:49:26 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.11 2011/04/13 17:06:06 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.Document;
@@ -48,6 +49,7 @@ import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.uml.UML2Pivot;
+import org.eclipse.ocl.examples.pivot.utilities.PivotResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.pivot2cs.Pivot2CS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
@@ -249,6 +251,27 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 //				resourceSet.getResources().remove(pivotResource);
 				resourceSet.getResources().remove(xmiResource);
 				inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+			}
+			else if (inputStream.available() == 0) {		// Empty document
+				URI uri = uriMap.get(document);
+				Resource.Factory factory = Resource.Factory.Registry.INSTANCE.getFactory(uri);
+				if (factory instanceof EcoreResourceFactoryImpl) {
+					persistAs = PERSIST_AS_ECORE;
+				}
+				else if (factory instanceof PivotResourceFactoryImpl) {
+					persistAs = PERSIST_AS_PIVOT;
+				}
+//				else if (factory instanceof UMLResourceFactoryImpl) {
+//					persistAs = PERSIST_AS_UML;
+//				}
+				String lastSegment = uri.trimFileExtension().lastSegment();
+				if (lastSegment == null) {
+					lastSegment = "Default";
+				}
+				String testDocument = 
+						"package " + lastSegment + " : pfx = '"+ uri + "' {\n" +
+						"}\n";
+				inputStream = new ByteArrayInputStream(testDocument.getBytes());				
 			}
 			loadedAsMap.put(document, persistAs);
 			saveAsMap.put(document, persistAs);

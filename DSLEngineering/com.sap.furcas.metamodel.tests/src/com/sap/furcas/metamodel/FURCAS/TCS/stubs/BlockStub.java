@@ -4,10 +4,12 @@
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.Block;
 import com.sap.furcas.metamodel.FURCAS.TCS.BlockArg;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -41,5 +43,8 @@ public class BlockStub extends SequenceElementStub implements Block {
         
     }
 
-
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getBlock();
+    }
 }

@@ -3,7 +3,10 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.OrPattern;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Token;
 
 /**
@@ -50,6 +53,11 @@ public class TokenStub extends LocatedElementStub implements Token {
     @Override
     public void setOmitted(boolean newValue) {
 
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getToken();
     }
 
 }

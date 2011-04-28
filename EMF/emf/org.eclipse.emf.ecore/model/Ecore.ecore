@@ -234,7 +234,7 @@
     <eOperations name="eInvoke" eType="#//EJavaObject" eExceptions="#//EInvocationTargetException">
       <eParameters name="operation" eType="#//EOperation"/>
       <eParameters name="arguments">
-        <eGenericType eClassifier="#//EEList">
+        <eGenericType eClassifier="ecore:EDataType #//EEList">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>

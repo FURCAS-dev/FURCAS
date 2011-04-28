@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.ResourceDescriptorInternal;
 import org.eclipse.emf.query.index.internal.maps.ListMap;
-import org.eclipse.emf.query.index.internal.maps.SingleMap;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
+import org.eclipse.emf.query.index.internal.maps.SingleMap;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 
@@ -179,8 +179,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 				}
 			} // is there a faster alternative?
 
-			IncomingReferenceDescriptorImpl extRefDesc = new IncomingReferenceDescriptorImpl(this, key, fromResDesc.getURI(), incomingLink.getSource().getFragment(), incomingLink
-					.getEReferenceURI());
+			IncomingReferenceDescriptorImpl extRefDesc = new IncomingReferenceDescriptorImpl(this, key, fromResDesc.getURI(), incomingLink.getSource().getFragment(),
+					incomingLink.getEReferenceURI());
 			this.incomingLinkTable.put(extRefDesc);
 		}
 	}
@@ -252,8 +252,8 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 				this.outgoingLinkTable.deserialize(strategyFactory.createOutgoingLinkMapStrategy(this.eObjectTable, this.resourceTable.getUnderlyingMap()));
 			}
 			this.initIncomingContentTables();
-			this.incomingLinkTable.deserialize(strategyFactory
-					.createIncomingLinkMapStrategy(this, this.eObjectTable, this.resourceTable.getUnderlyingMap(), this.outgoingLinkTable));
+			this.incomingLinkTable
+					.deserialize(strategyFactory.createIncomingLinkMapStrategy(this, this.eObjectTable, this.resourceTable.getUnderlyingMap(), this.outgoingLinkTable));
 		}
 	}
 
@@ -326,4 +326,53 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	public String toString() {
 		return String.valueOf(this.uri);
 	}
+
+	public Object[] getEObjectTable() {
+		if(eObjectTable==null){
+			return null;
+		}
+		return eObjectTable.getUnderlyingMapTable();
+	}
+
+	public Object[] getIncomingLinksTable() {
+		if(incomingLinkTable==null){
+			return null;
+		}
+		return incomingLinkTable.getUnderlyingMapTable();
+	}
+
+	public Object[] getOutgoingLinkTable() {
+		if(outgoingLinkTable==null){
+			return null;
+		}
+		return outgoingLinkTable.getUnderlyingMapTable();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((uri == null) ? 0 : uri.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PageableResourceDescriptorImpl other = (PageableResourceDescriptorImpl) obj;
+		if (uri == null) {
+			if (other.uri != null)
+				return false;
+		} else if (!uri.equals(other.uri))
+			return false;
+		return true;
+	}
+
+	
+
 }

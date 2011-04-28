@@ -5,7 +5,8 @@ Bundle-SymbolicName: com.sap.furcas.runtime.parser.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit;bundle-version="4.8.1",
+Require-Bundle: org.eclipse.osgi,
+ org.junit;bundle-version="4.8.1",
  org.antlr,
  com.sap.furcas.test,
  com.sap.furcas.runtime.textblocks,

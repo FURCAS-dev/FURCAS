@@ -22,11 +22,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
+import org.eclipse.ocl.examples.impactanalyzer.impl.TracebackStepCounter;
 
-public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder{
+public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFinder, TracebackStepCounter {
     private int allInstancesCalled = 0;
     private int findOppositeEndsCalled = 0;
     private int getAllOppositeEndsCalled = 0;
+    private int tracebackStepExecutions = 0;
 
     private final OppositeEndFinder delegate = DefaultOppositeEndFinder.getInstance();
 
@@ -60,6 +62,10 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
 	setAllInstancesCalled(getAllInstancesCalled() + 1);
 	return delegate.getAllInstancesSeenBy(cls, context);
     }
+    
+    public void tracebackStepExecuted() {
+        tracebackStepExecutions++;
+    }
 
     public void setAllInstancesCalled(int allInstancesCalled) {
 	this.allInstancesCalled = allInstancesCalled;
@@ -85,6 +91,15 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
 	resetAllInstancesCalled();
 	resetFindOppositeEndsCalled();
 	resetGetAllOppositeEndsCalled();
+	resetTracebackStepExecutions();
+    }
+
+    private void resetTracebackStepExecutions() {
+        tracebackStepExecutions = 0;
+    }
+    
+    public int getTracebackStepExecutions() {
+        return tracebackStepExecutions;
     }
 
     public int getFindOppositeEndsCalled() {

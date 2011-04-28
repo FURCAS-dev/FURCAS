@@ -1,6 +1,7 @@
 package org.eclipse.emf.query2.globalization.test;
 
 import java.lang.reflect.Field;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Iterator;
@@ -49,11 +50,11 @@ public class MessagePropertiesTest {
 		resourceBundleName = getResourceBundleName(query2Index_MessagesClass);
 		query2Index_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 
-		query2IndexUI_MessagesClass = org.eclipse.emf.query.index.ui.Messages.class;
+		query2IndexUI_MessagesClass = org.eclipse.emf.query.index.ui.internal.Messages.class;
 		resourceBundleName = getResourceBundleName(query2IndexUI_MessagesClass);
 		query2IndexUI_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 
-		query2StringSyntaxUITools_MessagesClass = org.eclipse.emf.query2.internal.ui.Messages.class;
+		query2StringSyntaxUITools_MessagesClass = org.eclipse.emf.query2.stringsyntax.tools.ui.Messages.class;
 		resourceBundleName = getResourceBundleName(query2StringSyntaxUITools_MessagesClass);
 		query2StringSyntaxUITools_ResourceBundle = (PropertyResourceBundle) ResourceBundle.getBundle(resourceBundleName);
 		

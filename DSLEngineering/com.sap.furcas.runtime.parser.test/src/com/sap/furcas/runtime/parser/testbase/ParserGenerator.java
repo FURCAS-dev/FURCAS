@@ -94,7 +94,9 @@ public class ParserGenerator {
                     "../org.antlr/bin" + File.pathSeparator + "../com.sap.furcas.runtime.parser/bin"
                             + File.pathSeparator + "../com.sap.furcas.runtime.common/bin" + File.pathSeparator
                             + "../com.sap.furcas.parsergenerator.emf/bin" + File.pathSeparator
-                            + "../com.sap.furcas.runtime.tcs/bin" });
+                            + "../com.sap.furcas.runtime.referenceresolving/bin" + File.pathSeparator
+                            + "../com.sap.emf.bundlelistener/bin" + File.pathSeparator
+                            + "../com.sap.furcas.runtime.tcs/bin"});
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }

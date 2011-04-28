@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.7 2011/03/14 10:19:41 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.8 2011/04/20 19:02:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -82,7 +82,7 @@ public class EssentialOCLCS2MonikerVisitor
 			CS2Moniker.addFactory(EssentialOCLCSTPackage.eINSTANCE, this);
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__EXPRESSION_CS, "first");
 			roleNames.put(EssentialOCLCSTPackage.Literals.COLLECTION_LITERAL_PART_CS__LAST_EXPRESSION_CS, "last");
-//			roleNames.put(EssentialOCLCSTPackage.Literals.EXP_CONSTRAINT_CS__OWNED_EXPRESSION, "specification" + PivotConstants.MONIKER_SCOPE_SEPARATOR + "ownedExpression");
+			roleNames.put(EssentialOCLCSTPackage.Literals.CONTEXT_CS__OWNED_EXPRESSION, PivotPackage.Literals.EXPRESSION_IN_OCL__BODY_EXPRESSION.getName());
 			roleNames.put(EssentialOCLCSTPackage.Literals.INFIX_EXP_CS__OWNED_EXPRESSION, "source");
 //			roleNames.put(EssentialOCLCSTPackage.Literals.NAVIGATING_EXP_CS__ARGUMENT, "argument");
 		}
@@ -244,6 +244,10 @@ public class EssentialOCLCS2MonikerVisitor
 
 	@Override
 	public Boolean visitInfixExpCS(InfixExpCS object) {
+		if (object.getOwnedOperator().get(0).getSource() == null) {
+			context.append("%%tree-less%%");
+			return true;
+		}
 		appendExpPrefix(object);
 		context.append("infix");
 		return true;

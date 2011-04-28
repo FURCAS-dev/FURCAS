@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Operation.java,v 1.3 2011/02/15 19:58:28 ewillink Exp $
+ * $Id: Operation.java,v 1.4 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation</b></em>'.
+ * @implements Iterable<Operation>
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
@@ -46,7 +47,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Operation
-		extends Feature, Namespace, ParameterableElement, TemplateableElement {
+		extends Feature, Namespace, ParameterableElement, TemplateableElement, Iterable<Operation> {
 
 	/**
 	 * Returns the value of the '<em><b>Precedence</b></em>' reference.

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
+import com.sap.emf.bundlelistener.EcorePackageLoadListener;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
@@ -40,6 +41,7 @@ import com.sap.furcas.runtime.parser.testbase.GeneratedParserBasedTest;
 import com.sap.furcas.runtime.parser.testbase.GeneratedParserTestConfiguration;
 import com.sap.furcas.runtime.parser.testbase.ParserGenerator;
 import com.sap.furcas.runtime.parser.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 import com.sap.furcas.runtime.tcs.RuleNameFinder;
 import com.sap.ide.cts.parser.incremental.PartitionAssignmentHandler;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
@@ -148,7 +150,9 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
                     + File.pathSeparator + getSourceRoot(ITokenFactory.class)
                     + File.pathSeparator + getSourceRoot(RuleNameFinder.class)
                     + File.pathSeparator + getSourceRoot(IModelElementProxy.class)
-                    + File.pathSeparator + getSourceRoot(Lexer.class) });
+                    + File.pathSeparator + getSourceRoot(Lexer.class)
+                    + File.pathSeparator + getSourceRoot(SyntaxRegistryFacade.class)
+                    + File.pathSeparator + getSourceRoot(EcorePackageLoadListener.class)});
             if (success != 0) {
                 fail("Parser compilation failed with code '" + success + "'. Messages: \n" + errByteStream.toString());
             }

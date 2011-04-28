@@ -3,8 +3,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.Sequence;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 /**
  *
@@ -30,8 +33,10 @@ public class FunctionTemplateStub extends TemplateStub implements FunctionTempla
     public void setFunctionSequence(Sequence functionSequence) {
         this.functionSequence = functionSequence;
     }
-    
-    
 
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getFunctionTemplate();
+    }
 
 }

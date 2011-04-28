@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.7 2011/03/08 15:14:54 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.9 2011/04/20 19:02:27 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -37,6 +37,7 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
@@ -79,18 +80,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		@Override
 		public BasicContinuation<?> execute() {
 			org.eclipse.ocl.examples.pivot.Class pivotElement = PivotUtil.getPivot(org.eclipse.ocl.examples.pivot.Class.class, csElement);
-			refreshOperations(csElement, pivotElement);
-			return null;
-		}
-
-		protected void refreshOperations(ClassCS csClass, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-			List<OperationCS> csOperations = csClass.getOwnedOperation();
 			List<Operation> newPivotOperations = new ArrayList<Operation>();
-			for (OperationCS csOperation : csOperations) {
+			for (OperationCS csOperation : csElement.getOwnedOperation()) {
 				Operation pivotOperation = PivotUtil.getPivot(Operation.class, csOperation);
 				newPivotOperations.add(pivotOperation);
 			}
 			context.refreshList(pivotElement.getOwnedOperations(), newPivotOperations);
+			return null;
 		}
 	}
 
@@ -135,17 +131,16 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			LambdaType pivotLambdaType = context.refreshNamedElement(LambdaType.class, PivotPackage.Literals.LAMBDA_TYPE, csElement);
-			pivotLambdaType.setContextType(PivotUtil.getPivot(Type.class, csElement.getOwnedContextType()));
-			pivotLambdaType.setResultType(PivotUtil.getPivot(Type.class, csElement.getOwnedResultType()));
-			List<TypedRefCS> csParameterTypes = csElement.getOwnedParameterType();
-			List<Type> newPivotParameterTypes = new ArrayList<Type>();
-			for (TypedRefCS csParameterType : csParameterTypes) {
+			String moniker = csElement.getMoniker();
+			Type contextType = PivotUtil.getPivot(Type.class, csElement.getOwnedContextType());
+			Type resultType = PivotUtil.getPivot(Type.class, csElement.getOwnedResultType());
+			List<Type> parameterTypes = new ArrayList<Type>();
+			for (TypedRefCS csParameterType : csElement.getOwnedParameterType()) {
 				Type parameterType = PivotUtil.getPivot(Type.class, csParameterType);
-				newPivotParameterTypes.add(parameterType);
+				parameterTypes.add(parameterType);
 			}
-			context.refreshList(pivotLambdaType.getParameterTypes(), newPivotParameterTypes);
-			context.getTypeManager().addOrphanType(pivotLambdaType);
+			LambdaType lambdaType = context.getTypeManager().getLambdaType(csElement.getName(), contextType, parameterTypes, resultType, null, moniker);
+			context.reusePivotElement(csElement, lambdaType);
 			return null;
 		}
 	}
@@ -153,24 +148,31 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	public static class OperationContinuation<T extends OperationCS> extends SingleContinuation<T>
 	{
 		public OperationContinuation(CS2PivotConversion context, T csElement) {
-			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
+			super(context, null, null, csElement); //, context.getTypesHaveSignaturesInterDependency());
 			context.getOperationsHaveTemplateParametersInterDependency().addDependency(this);
 		}
 
 		@Override
 		public BasicContinuation<?> execute() {
+			String moniker = csElement.getMoniker();
 			Operation pivotOperation = context.refreshTypedMultiplicityElement(Operation.class, PivotPackage.Literals.OPERATION, csElement);
+			pivotOperation.setMoniker(moniker);
 			context.refreshTemplateSignature(csElement, pivotOperation);
-			List<ParameterCS> csParameters = csElement.getOwnedParameter();
-			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
-			for (ParameterCS csParameter : csParameters) {
-				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
-				newPivotParameters.add(pivotParameter);
-			}
-			context.refreshList(pivotOperation.getOwnedParameters(), newPivotParameters);
+			refreshParameters(csElement.getOwnedParameter(), pivotOperation.getOwnedParameters());
 			context.refreshList(Type.class, pivotOperation.getRaisedExceptions(), csElement.getOwnedException());
 			context.getOperationsHaveTemplateParametersInterDependency().setSatisfied(this);
 			return null;
+		}
+
+		protected void refreshParameters(List<ParameterCS> csParameters, List<Parameter> pivotParameters) {
+			List<Parameter> newPivotParameters = new ArrayList<Parameter>();
+			for (ParameterCS csParameter : csParameters) {
+				String moniker = csParameter.getMoniker();
+				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+				pivotParameter.setMoniker(moniker);
+				newPivotParameters.add(pivotParameter);
+			}
+			context.refreshList(pivotParameters, newPivotParameters);
 		}
 	}
 	
@@ -187,6 +189,21 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 			context.refreshPivotList(Type.class, pivotElement.getOwnedTypes(), csElement.getOwnedType());
 			context.refreshPivotList(org.eclipse.ocl.examples.pivot.Package.class, pivotElement.getNestedPackages(), csElement.getOwnedNestedPackage());
 			context.getPackagesHaveTypesInterDependency().setSatisfied(this);
+			return null;
+		}
+	}
+
+	protected static class PrimitiveTypeRefContinuation extends SingleContinuation<PrimitiveTypeRefCS>
+	{
+		
+		public PrimitiveTypeRefContinuation(CS2PivotConversion context, PrimitiveTypeRefCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			Type type = context.getTypeManager().getLibraryType(csElement.getName());
+			context.reusePivotElement(csElement, type);
 			return null;
 		}
 	}
@@ -309,17 +326,13 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 		@Override
 		public BasicContinuation<?> execute() {
-			TupleType pivotTupleType = context.refreshNamedElement(TupleType.class, PivotPackage.Literals.TUPLE_TYPE, csElement);
-			List<TuplePartCS> csTupleParts = csElement.getOwnedParts();
-			List<Property> newPivotParts = new ArrayList<Property>();
-			for (TuplePartCS csTuplePart : csTupleParts) {
-				Property pivotPart = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csTuplePart);
+			List<TypeManager.TuplePart> tupleParts = new ArrayList<TypeManager.TuplePart>();
+			for (TuplePartCS csTuplePart : csElement.getOwnedParts()) {
 				Type partType = PivotUtil.getPivot(Type.class, csTuplePart.getOwnedType());
-				pivotPart.setType(partType);
-				newPivotParts.add(pivotPart);
+				tupleParts.add(new TypeManager.TuplePart(csTuplePart.getName(), partType));
 			}
-			context.refreshList(pivotTupleType.getOwnedAttributes(), newPivotParts);
-			context.getTypeManager().addOrphanType(pivotTupleType);
+			TupleType tupleType = context.getTypeManager().getTupleType(csElement.getName(), tupleParts, null, csElement.getMoniker());
+			context.reusePivotElement(csElement, tupleType);
 			return null;
 		}
 	}
@@ -363,9 +376,9 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		}
 
 		private static Dependency[] computeDependencies(CS2PivotConversion context, TypedTypeRefCS csElement) {
-			Dependency typeDependency = ElementUtil.isInOperation(csElement)
+			Dependency typeDependency = /*ElementUtil.isInOperation(csElement)
 				? context.getOperationsHaveTemplateParametersInterDependency()
-				: context.getPackagesHaveTypesInterDependency();
+				:*/ context.getPackagesHaveTypesInterDependency();
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding == null) {
 				return new Dependency[] {typeDependency};
@@ -463,11 +476,12 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	protected void refreshEnumerationLiterals(EnumerationCS csEnumeration, org.eclipse.ocl.examples.pivot.Enumeration pivotElement) {
-		List<EnumerationLiteralCS> csEnumerationLiterals = csEnumeration.getOwnedLiterals();
 		List<EnumerationLiteral> newPivotLiterals = new ArrayList<EnumerationLiteral>();
-		for (EnumerationLiteralCS csEnumerationLiteral : csEnumerationLiterals) {
+		for (EnumerationLiteralCS csEnumerationLiteral : csEnumeration.getOwnedLiterals()) {
+			String moniker = csEnumerationLiteral.getMoniker();
 			EnumerationLiteral pivotEnumerationLiteral = context.refreshNamedElement(EnumerationLiteral.class,
 				PivotPackage.Literals.ENUMERATION_LITERAL, csEnumerationLiteral);
+			pivotEnumerationLiteral.setMoniker(moniker);
 			newPivotLiterals.add(pivotEnumerationLiteral);
 			pivotEnumerationLiteral.setValue(BigInteger.valueOf(csEnumerationLiteral.getValue()));
 		}
@@ -475,10 +489,11 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	}
 
 	protected void refreshProperties(ClassCS csClass, org.eclipse.ocl.examples.pivot.Class pivotElement) {
-		List<StructuralFeatureCS> csProperties = csClass.getOwnedProperty();
 		List<Property> newPivotProperties = new ArrayList<Property>();
-		for (StructuralFeatureCS csProperty : csProperties) {
+		for (StructuralFeatureCS csProperty : csClass.getOwnedProperty()) {
+			String moniker = csProperty.getMoniker();
 			Property pivotProperty = context.refreshNamedElement(Property.class, PivotPackage.Literals.PROPERTY, csProperty);
+			pivotProperty.setMoniker(moniker);
 			newPivotProperties.add(pivotProperty);
 		}
 		context.refreshList(pivotElement.getOwnedAttributes(), newPivotProperties);
@@ -502,6 +517,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		pivotElement.setIsInterface(qualifiers.contains("interface"));
 		pivotElement.setIsStatic(qualifiers.contains("static"));
 		refreshProperties(csClass, pivotElement);
+//		refreshOperations(csClass, pivotElement);
 		Continuations continuations = new Continuations();
 		continuations.add(refreshClassifier(csClass, pivotElement));
 		continuations.add(new ClassContentContinuation(context, pivotElement, csClass));
@@ -579,9 +595,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 
 	@Override
 	public Continuation<?> visitPrimitiveTypeRefCS(PrimitiveTypeRefCS csPrimitiveTypeRef) {
-		Type type = context.getTypeManager().getLibraryType(csPrimitiveTypeRef.getName());
-		context.reusePivotElement(csPrimitiveTypeRef, type);
-		return null;
+		return new PrimitiveTypeRefContinuation(context, csPrimitiveTypeRef);
 	}
 
 	@Override

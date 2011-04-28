@@ -2,7 +2,9 @@ package org.eclipse.emf.query2.test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
@@ -17,7 +19,6 @@ import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
@@ -187,8 +188,11 @@ public class TestQueryBugs extends QueryTestCase {
 
 		// check the results
 		if (!resultSet.isEmpty()) {
-			assertEquals(resultSet.getAttribute(0, "div", "name"), this.div1.getName()); //$NON-NLS-1$ //$NON-NLS-2$
-
+			 Set<String> names = new HashSet<String>();
+			 for (int i=0; i<resultSet.getSize(); i++) {
+				 names.add((String) resultSet.getAttribute(i, "div", "name"));
+			 }
+			 assertTrue(names.contains(this.div1.getName()));
 		}
 	}
 

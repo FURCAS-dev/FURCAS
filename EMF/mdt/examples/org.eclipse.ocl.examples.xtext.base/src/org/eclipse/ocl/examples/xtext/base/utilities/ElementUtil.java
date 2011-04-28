@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ElementUtil.java,v 1.4 2011/02/19 12:00:36 ewillink Exp $
+ * $Id: ElementUtil.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.utilities;
 
@@ -29,7 +29,6 @@ import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.OperationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterableElementCS;
@@ -128,17 +127,13 @@ public class ElementUtil
 		return ModelElementCSScopeAdapter.getScopeAdapter(typeManager, element);
 	}
 
-	public static ScopeAdapter getScopeAdapter(ModelElementCS csElement) {
-		return ModelElementCSScopeAdapter.getScopeAdapter(csElement);
-	}
-
 	public static ScopeCSAdapter getScopeCSAdapter(ElementCS csElement) {
 		return ModelElementCSScopeAdapter.getScopeCSAdapter(csElement);
 	}
 
 	public static String getText(ElementCS csElement) {
 		ICompositeNode node = NodeModelUtils.getNode(csElement);
-		return NodeModelUtils.getTextWithoutHidden(node);
+		return NodeModelUtils.getTokenText(node);
 	}
 
 	public static String getText(TypedTypeRefCS csElement, EReference feature) {
@@ -148,12 +143,12 @@ public class ElementUtil
 			return null;
 		}
 		else if (nodes.size() == 1) {
-			return NodeModelUtils.getTextWithoutHidden(nodes.get(0));
+			return NodeModelUtils.getTokenText(nodes.get(0));
 		}
 		else {
 			StringBuffer s = new StringBuffer();
 			for (INode node : nodes) {
-				s.append(NodeModelUtils.getTextWithoutHidden(node));
+				s.append(NodeModelUtils.getTokenText(node));
 			}
 			return s.toString();
 		}

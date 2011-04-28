@@ -3,14 +3,18 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %Query2IndexUI_Bundle_Name
 Bundle-SymbolicName: org.eclipse.emf.query2.index.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.emf.query.index.ui.Activator
+Bundle-Activator: org.eclipse.emf.query.index.ui.internal.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.emf.query2.index;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.5.0",
- org.eclipse.emf.ecore.xmi;bundle-version="2.5.0"
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.ui.forms;bundle-version="3.2.0",
+ org.eclipse.ui.ide
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.emf.query.index.ui
+Export-Package: org.eclipse.emf.query.index.ui.internal
 Bundle-Vendor: %Query2IndexUI_Bundle_Vendor
+Import-Package: org.eclipse.ui.ide,
+ org.eclipse.ui.views.properties

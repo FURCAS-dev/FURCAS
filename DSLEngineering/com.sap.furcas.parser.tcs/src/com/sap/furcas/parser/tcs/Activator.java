@@ -10,6 +10,7 @@ import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 
 public class Activator extends SyntaxProviderImpl implements BundleActivator {
     private static Activator instance;
+    private String bundleName;
     
     public Activator() {
         super(new TCSParserFactory(), DefaultOppositeEndFinder.getInstance());
@@ -22,6 +23,11 @@ public class Activator extends SyntaxProviderImpl implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         instance = this;
+        bundleName = context.getBundle().getSymbolicName();
+    }
+
+    public String getBundleName() {
+        return bundleName;
     }
 
     @Override

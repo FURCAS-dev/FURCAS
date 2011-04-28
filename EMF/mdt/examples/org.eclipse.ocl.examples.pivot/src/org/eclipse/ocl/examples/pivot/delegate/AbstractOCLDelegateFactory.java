@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: AbstractOCLDelegateFactory.java,v 1.2 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: AbstractOCLDelegateFactory.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -36,21 +36,11 @@ public abstract class AbstractOCLDelegateFactory
 		this.delegateDomain = null;
 	}
 
-	/**
-	 * Construct a factory for a known delegate domain.
-	 * 
-	 * @param delegateDomain the delegate domain.
-	 */
-	protected AbstractOCLDelegateFactory(OCLDelegateDomain delegateDomain) {
-		this.delegateURI = delegateDomain.getURI();
-		this.delegateDomain = delegateDomain;
-	}
-
 	protected OCLDelegateDomain getDelegateDomain(EPackage ePackage) {
 		if (delegateDomain == null) {
 //			DelegateDomain.Factory.Registry.INSTANCE.put(OCLDelegateDomain.OCL_DELEGATE_URI, GLOBAL);
 			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) ePackageAdapter.createDelegateDomain(delegateURI);
+			delegateDomain = (OCLDelegateDomain) ePackageAdapter.getDelegateDomain(delegateURI);
 		}
 		return delegateDomain;
 	}

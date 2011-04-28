@@ -11,8 +11,10 @@
 package com.sap.furcas.emf.stubs;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 
 public class CreateInPArgStub extends PargStub implements CreateInPArg {
 
@@ -21,6 +23,11 @@ public class CreateInPArgStub extends PargStub implements CreateInPArg {
     @Override
     public EList<String> getPropertyName() {
         return pName;
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getCreateInPArg();
     }
 
 }

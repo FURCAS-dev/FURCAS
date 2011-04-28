@@ -24,7 +24,7 @@ import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getElementsInContext <em>Elements In Context</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getForEachExecutions <em>For Each Executions</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getCachedString <em>Cached String</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#isComplete <em>Complete</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock#getAdditionalTemplates <em>Additional Templates</em>}</li>
@@ -113,20 +113,20 @@ public interface TextBlock extends DocumentNode {
         EList<EObject> getElementsInContext();
 
         /**
-     * Returns the value of the '<em><b>For Each Context</b></em>' containment reference list.
-     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext}.
+     * Returns the value of the '<em><b>For Each Executions</b></em>' containment reference list.
+     * The list contents are of type {@link com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution}.
      * <!-- begin-user-doc -->
          * <p>
          * If the meaning of the '<em>For Each Context</em>' containment reference list isn't clear,
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>For Each Context</em>' containment reference list.
-     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ForEachContext()
+     * @return the value of the '<em>For Each Executions</em>' containment reference list.
+     * @see com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage#getTextBlock_ForEachExecutions()
      * @model containment="true" resolveProxies="true"
      * @generated
      */
-        EList<ForEachContext> getForEachContext();
+        EList<ForEachExecution> getForEachExecutions();
 
         /**
      * Returns the value of the '<em><b>Cached String</b></em>' attribute.

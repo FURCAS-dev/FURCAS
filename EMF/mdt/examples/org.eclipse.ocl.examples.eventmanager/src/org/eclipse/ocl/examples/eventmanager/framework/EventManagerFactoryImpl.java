@@ -26,17 +26,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
 import org.eclipse.ocl.examples.eventmanager.NotificationHelper;
-import org.eclipse.ocl.examples.eventmanager.Statistics;
 import org.eclipse.ocl.examples.eventmanager.filters.AndFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AssociationFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.AttributeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.ClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.ContainmentFilter;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.EventTypeFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.NewValueClassFilterIncludingSubclasses;
@@ -45,6 +42,7 @@ import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.OldValueClassFilterIncludingSubclasses;
 import org.eclipse.ocl.examples.eventmanager.filters.OrFilter;
 import org.eclipse.ocl.examples.eventmanager.filters.StructuralFeatureFilter;
+import org.eclipse.ocl.examples.eventmanager.util.Statistics;
 
 
 /**
@@ -97,7 +95,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public EventTypeFilter createEventTypeFilter(int eventType) {
-        EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType);
+        EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType, /* negated */  false);
         return eventTypeFilter;
     }
 
@@ -116,14 +114,9 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return classFilter;
     }
 
-    public AttributeFilter createAttributeFilter(EAttribute attribute) {
-        AttributeFilter attributeFilter = new AttributeFilter(attribute);
-        return attributeFilter;
-    }
-
-    public AssociationFilter createAssociationFilter(EReference reference) {
-        AssociationFilter associationFilter = new AssociationFilter(reference);
-        return associationFilter;
+    public StructuralFeatureFilter createStructuralFeatureFilter(EStructuralFeature property) {
+    	StructuralFeatureFilter structuralFeatureFilter = new StructuralFeatureFilter(property, /* negated */ false);
+        return structuralFeatureFilter;
     }
 
     public OldValueClassFilterIncludingSubclasses createOldValueClassFilterIncludingSubclasses(EClass cls) {
@@ -147,7 +140,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     public ContainmentFilter createContainmentFilter() {
-        ContainmentFilter containmentFilter = new ContainmentFilter();
+        ContainmentFilter containmentFilter = new ContainmentFilter(/* negated */ false);
         return containmentFilter;
     }
    
@@ -186,7 +179,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     public EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAttributeFilter(referredProperty);
+        sf = createStructuralFeatureFilter(referredProperty);
 
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
@@ -194,7 +187,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     public EventFilter createFilterForEReference(EClass eClass, EReference referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAssociationFilter(referredProperty);
+        sf = createStructuralFeatureFilter(referredProperty);
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
     }
@@ -214,7 +207,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     /**
-     * Calls for each value of the given {@link Notification} {@link #addNotification(EObject, boolean, Notification, Set)}
+     * Calls for each value of the given {@link Notification} {@link #addNotification(EObject, boolean, Set)}
      * @param event the {@link Notification} to handle
      * @param result the output {@link Set} of {@link Notification}s
      */
@@ -225,12 +218,12 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
             Collection<?> valueCol = (Collection<?>) value;
             for (Object o : valueCol) {
                 if (o instanceof EObject) {
-                    addNotification((EObject) o, NotificationHelper.isAddEvent(event), event, result);
+                    addNotification((EObject) o, NotificationHelper.isAddEvent(event), result);
                 }
             }
         } else {
             if (value instanceof EObject) {
-                addNotification((EObject) value, NotificationHelper.isAddEvent(event), event, result);
+                addNotification((EObject) value, NotificationHelper.isAddEvent(event), result);
             }
         }
     }
@@ -239,44 +232,57 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      * Creates a new {@link Notification} for the given parameters and adds it to the result set
      * @param value the {@link Notifier} for the new {@link Notification}
      * @param add is it a add or remove {@link Notification}
-     * @param event the parent {@link Notification}
      * @param result the ouput set
      */
-    private void addNotification(EObject value, boolean add, Notification event, Set<Notification> result) {
+    private void addNotification(EObject value, boolean add, Set<Notification> result) {
         for (EStructuralFeature ref : value.eClass().getEAllStructuralFeatures()) {
-            //init new Notification
+            // init new Notification
             Notification notification=null;
-            Object valueOfRef = value.eGet(ref, /* resolve */ false);
-            if(valueOfRef==null || (valueOfRef instanceof EObject && ((EObject) valueOfRef).eIsProxy())) {
-                //no value or proxy pointing to other resource so nothing to do here
-                continue;
-            }
-            if (ref.isMany()) {
-                //can cast value to list
-                EList<?> values = (EList<?>) valueOfRef;
-                switch (values.size()) {
-                case 0:
-                    // no content
-                    break;
-                case 1:
-                    //create single add notification
-                    notification= new EventManagerGeneratedNotification(add ? Notification.ADD : Notification.REMOVE, add ? null : values
-                            .get(0), !add ? null : values.get(0), value, ref);
-                    break;
-                default:
-                    //create many add notification
-                    notification= new EventManagerGeneratedNotification(add ? Notification.ADD_MANY : Notification.REMOVE_MANY, add ? null : values
-                            , !add ? null : values,  value, ref);
-                    break;
-                }
-            }else{
-                //simple set notification
-                    notification= new EventManagerGeneratedNotification(Notification.SET, add ? null : valueOfRef
-                            , !add ? null : valueOfRef, value, ref);
-                
+			try {
+				Object valueOfRef = value.eGet(ref, /* resolve */false);
+				if (valueOfRef == null
+						|| (valueOfRef instanceof EObject && ((EObject) valueOfRef)
+								.eIsProxy())) {
+					// no value or proxy pointing to other resource so nothing
+					// to do here
+					continue;
+				}
+				if (ref.isMany()) {
+					// can cast value to list
+					EList<?> values = (EList<?>) valueOfRef;
+					switch (values.size()) {
+					case 0:
+						// no content
+						break;
+					case 1:
+						// create single add notification
+						notification = new EventManagerGeneratedNotification(
+								add ? Notification.ADD : Notification.REMOVE,
+								add ? null : values.get(0), !add ? null
+										: values.get(0), value, ref);
+						break;
+					default:
+						// create many add notification
+						notification = new EventManagerGeneratedNotification(
+								add ? Notification.ADD_MANY
+										: Notification.REMOVE_MANY, add ? null
+										: values, !add ? null : values, value,
+								ref);
+						break;
+					}
+				} else {
+					// simple set notification
+					notification = new EventManagerGeneratedNotification(
+							Notification.SET, add ? null : valueOfRef,
+							!add ? null : valueOfRef, value, ref);
+
+				}
+			} catch (Exception e) {
+            	// the computation of an OCL-defined feature went wrong; don't create a notification
+				// for such features
             }
             if(notification!=null ){
-                //recursive call for new notification
+                // recursive call for new notification
                 if(ref instanceof EReference && ((EReference)ref).isContainment()){
                     handleValues(notification, result);
                 }

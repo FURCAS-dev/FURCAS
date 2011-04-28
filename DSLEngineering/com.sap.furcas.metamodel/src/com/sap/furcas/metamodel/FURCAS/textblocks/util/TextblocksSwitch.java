@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.FURCAS.textblocks.util;
 
-import com.sap.furcas.metamodel.FURCAS.textblocks.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,7 +15,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
-import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -141,9 +140,11 @@ public class TextblocksSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case TextblocksPackage.FOR_EACH_CONTEXT: {
-                ForEachContext forEachContext = (ForEachContext)theEObject;
-                T result = caseForEachContext(forEachContext);
+            case TextblocksPackage.FOR_EACH_EXECUTION: {
+                ForEachExecution forEachExecution = (ForEachExecution)theEObject;
+                T result = caseForEachExecution(forEachExecution);
+                if (result == null) result = caseTextBlock(forEachExecution);
+                if (result == null) result = caseDocumentNode(forEachExecution);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -258,17 +259,17 @@ public class TextblocksSwitch<T> {
     }
 
         /**
-     * Returns the result of interpreting the object as an instance of '<em>For Each Context</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>For Each Execution</em>'.
      * <!-- begin-user-doc -->
-         * This implementation returns null;
-         * returning a non-null result will terminate the switch.
-         * <!-- end-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>For Each Context</em>'.
+     * @return the result of interpreting the object as an instance of '<em>For Each Execution</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-        public T caseForEachContext(ForEachContext object) {
+    public T caseForEachExecution(ForEachExecution object) {
         return null;
     }
 

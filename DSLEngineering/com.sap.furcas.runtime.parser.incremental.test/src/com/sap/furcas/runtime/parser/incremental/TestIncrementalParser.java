@@ -82,7 +82,6 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
     @After
     public void cleanup() throws Exception {
         transientParsingResource.getContents().clear();
-        //transientParsingResource.delete(/*options*/ null);
     }
 
     @Test
@@ -158,82 +157,4 @@ public class TestIncrementalParser extends GeneratedParserAndFactoryBasedTest {
          assertEquals("2010", newYear.eGet(newYear.eClass().getEStructuralFeature("value")));
      }
     
-    
-    
-//     /**
-//     * Tests whether a reference where the reference by value was replaced is
-//     * correctly set to thw new value;
-//     *
-//     * @throws Exception
-//     */
-//     @Test
-//     public void testParseBibTextReplaceReference() throws Exception {
-//     // create TCS mapping on connection
-//     TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
-//    
-//     IncrementalParserFacade facade = getParserFacade();
-//     File syntaxDefFile = new File("scenarioTestResource/Bibtext.tcs");
-//    
-//     AbstractToken content = createToken("");
-//     TextBlock root = TestSourceTextBlockCreator
-//     .initialiseTextBlocksWithContentToken(modelFactory, content);
-//    
-//     TextBlocksModel tbModel = new TextBlocksModel(root, null);
-//     tbModel.replace(0, 0, getTcsFileContent(syntaxDefFile));
-//    
-//     TextBlock currentVersionTb = facade.parseIncrementally(root);
-//     ConcreteSyntax syntaxObject = (ConcreteSyntax) currentVersionTb
-//     .getCorrespondingModelElements().iterator().next();
-//     // assert no exception
-//     assertNotNull(syntaxObject);
-//     ConcreteSyntax syntax = syntaxObject;
-//     assertEquals("Bibtext", syntax.getName());
-//     assertEquals(7, syntax.getTemplates().size());
-//    
-//     Template article = syntaxObject.getTemplates().get(3);
-//    
-//     assertNotNull(currentVersionTb); // future version
-//     assertEquals(88, currentVersionTb.getSubNodes().size());
-//    
-//     TbChangeUtil.cleanUp(currentVersionTb);
-//     // replace a reference that referred to the "." token with one that
-//     // refers to the "{" token
-//     tbModel = new TextBlocksModel(currentVersionTb, null);
-//     tbModel.replace(423, 1, "{");
-//     TextBlock currentVersionTbNew = facade
-//     .parseIncrementally(currentVersionTb);
-//     // textBlock shouldn't have changed
-//     assertEquals(currentVersionTb, currentVersionTb);
-//     ConcreteSyntax syntaxObject2 = (ConcreteSyntax) currentVersionTbNew
-//     .getCorrespondingModelElements().iterator().next();
-//    
-//     // syntax element shouldn't have changed
-//     assertEquals(syntaxObject, syntaxObject2);
-//    
-//     ClassTemplate article2 = (ClassTemplate) syntaxObject2.getTemplates()
-//     .get(3);
-//     assertEquals(article, article2);
-//     Block b = (Block) article2.getTemplateSequence().getElements().get(2);
-//     LiteralRef lit = (LiteralRef) b.getBlockSequence().getElements().get(3);
-//     assertEquals("{", lit.getReferredLiteral().getValue());
-//     }
-//    
-//     private String getTcsFileContent(File syntaxDefFile) {
-//     String content = null;
-//     if (syntaxDefFile != null) {
-//     try {
-//     FileInputStream inputStream = new FileInputStream(syntaxDefFile);
-//     StringBuilder out = new StringBuilder();
-//     byte[] b = new byte[4096];
-//     for (int n; (n = inputStream.read(b)) != -1;) {
-//     out.append(new String(b, 0, n));
-//     }
-//     content = out.toString();
-//     inputStream.close();
-//     } catch (IOException e) {
-//     throw new RuntimeException(e);
-//     }
-//     }
-//     return content;
-//     }
 }

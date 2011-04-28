@@ -11,14 +11,16 @@
 package org.eclipse.ocl.examples.eventmanager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.framework.LogicalOperationFilterImpl;
 
 
 /**
  * Is an {@link LogicalOperationFilter} and implements the not-operator.
  * Not applies only for one {@link EventFilter} so the {@link NotFilter} 
- * can only contain one
- * @author Philipp Berger
+ * can only contain one operand.
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class NotFilter extends LogicalOperationFilterImpl {
@@ -34,12 +36,10 @@ public class NotFilter extends LogicalOperationFilterImpl {
         super(subTypeFilterTree);
     }
 
-    @Override
     public boolean matchesFor(Notification event) {
         if (getOperands().isEmpty())
             return true;
         return !(getOperands().iterator().next().matchesFor(event));
-
     }
 
     @Override
@@ -47,5 +47,15 @@ public class NotFilter extends LogicalOperationFilterImpl {
         return new NotFilter(cloneContents()[0]);
 
     }
+    @Override
+    public String toString() {
+        StringBuilder bld = new StringBuilder();
+        for (EventFilter f : getOperands()) {
+            bld.append("NOT(");
+            bld.append(f.toString());
+            bld.append(")");
+        }
 
+        return bld.toString();
+    }
 }

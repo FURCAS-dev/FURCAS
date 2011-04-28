@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -59,25 +60,34 @@ import org.eclipse.ocl.examples.pivot.utilities.AliasAdapter;
 import org.eclipse.ocl.examples.pivot.utilities.External2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 
 public class Ecore2Pivot extends AbstractConversion implements External2Pivot, PivotConstants
 {
 	private static final Logger logger = Logger.getLogger(Ecore2Pivot.class);
 
-	public static Ecore2Pivot findAdapter(Resource resource) {
+	public static Ecore2Pivot findAdapter(Resource resource, TypeManager typeManager) {
+		assert typeManager != null;
 		if (resource == null) {
 			return null;
 		}
-		return PivotUtil.getAdapter(Ecore2Pivot.class, resource);
+		for (Adapter adapter : resource.eAdapters()) {
+			if (adapter instanceof Ecore2Pivot) {
+				Ecore2Pivot ecore2Pivot = (Ecore2Pivot)adapter;
+				if (ecore2Pivot.getTypeManager() == typeManager) {
+					return ecore2Pivot;
+				}
+			}
+		}
+		return null;
 	}
 
 	public static Ecore2Pivot getAdapter(Resource resource, TypeManager typeManager) {
+		assert typeManager != null;
 		if (resource == null) {
 			return null;
 		}
 		List<Adapter> eAdapters = resource.eAdapters();
-		Ecore2Pivot adapter = PivotUtil.getAdapter(Ecore2Pivot.class, resource);
+		Ecore2Pivot adapter = findAdapter(resource, typeManager);
 		if (adapter != null) {
 			return adapter;
 		}
@@ -297,17 +307,46 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 	
 	public org.eclipse.ocl.examples.pivot.Package getPivotRoot() {
 		if (pivotRoot == null) {
-			Resource pivotResource = importObjects(ecoreResource.getContents(), ecoreResource.getURI());
-			AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
-			if (ecoreAdapter != null) {
-				Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
-				AliasAdapter pivotAdapter = AliasAdapter.getAdapter(pivotResource);
-				Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
-				for (EObject eObject : ecoreAliasMap.keySet()) {
-					String alias = ecoreAliasMap.get(eObject);
-					Element element = createMap.get(eObject);
-					pivotAliasMap.put(element, alias);
+			Resource pivotResource = null;
+			for (EObject eObject : ecoreResource.getContents()) {
+				if (eObject instanceof EPackage) {
+					String nsURI = ((EPackage)eObject).getNsURI();
+					String moniker = typeManager.getPackageMoniker(nsURI);
+					if (moniker != null) {
+						logger.error("Unsupported '" + nsURI + "' conflict");
+						return null;	// FIXME Need Ecore2Pivot to be able to refresh 2 Ecores to 1 Pivot
+/*						org.eclipse.ocl.examples.pivot.Package existingPackage = typeManager.getPrimaryPackage(moniker);
+						if (existingPackage != null) {
+							Resource existingResource = existingPackage.eResource();
+							if (pivotResource == null) {
+								pivotResource = existingResource;
+							}
+							else if (existingResource != pivotResource) {
+								logger.warn("Conflicting content for '" + nsURI + "'");
+								pivotResource = existingResource;
+								break;
+							}
+						} */
+					}
 				}
+			}
+			if (pivotResource != null) {
+				pivotRoot = (org.eclipse.ocl.examples.pivot.Package)pivotResource.getContents().get(0);
+			}
+			else {
+				pivotResource = importObjects(ecoreResource.getContents(), ecoreResource.getURI());
+				AliasAdapter ecoreAdapter = AliasAdapter.findAdapter(ecoreResource);
+				if (ecoreAdapter != null) {
+					Map<EObject, String> ecoreAliasMap = ecoreAdapter.getAliasMap();
+					AliasAdapter pivotAdapter = AliasAdapter.getAdapter(pivotResource);
+					Map<EObject, String> pivotAliasMap = pivotAdapter.getAliasMap();
+					for (EObject eObject : ecoreAliasMap.keySet()) {
+						String alias = ecoreAliasMap.get(eObject);
+						Element element = createMap.get(eObject);
+						pivotAliasMap.put(element, alias);
+					}
+				}
+				typeManager.installResource(pivotResource);
 			}
 		}
 		return pivotRoot;
@@ -350,7 +389,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		}
 		for (List<TemplateableElement> pivotElements : specializations.values()) {
 			for (TemplateableElement pivotElement : pivotElements) {
-				typeManager.addOrphanType((Type)pivotElement);
+				typeManager.addOrphanClass((Type)pivotElement);
 			}
 		}
 		for (EObject eObject : referencers) {
@@ -439,8 +478,12 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 		EClassifier eClassifier = eGenericType.getEClassifier();
 		List<ETypeParameter> eTypeParameters = eClassifier.getETypeParameters();
 		assert eTypeParameters.size() == eTypeArguments.size();
-		Type specializedPivotElement;
-		Type unspecializedPivotType = getPivotType(eClassifier);
+		Type unspecializedPivotType = getPivotType(eClassifier);		
+		String moniker = Ecore2Moniker.toString(eGenericType);
+		Type specializedPivotElement = typeManager.findOrphanClass(unspecializedPivotType.getClass(), moniker);
+		if (specializedPivotElement != null) {
+			return specializedPivotElement;
+		}	
 		if (unspecializedPivotType instanceof DataType) {
 			specializedPivotElement = refreshNamedElement(DataType.class, PivotPackage.Literals.DATA_TYPE, null);
 		}
@@ -448,6 +491,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			specializedPivotElement = refreshNamedElement(org.eclipse.ocl.examples.pivot.Class.class, PivotPackage.Literals.CLASS, null);
 		}
 		specializedPivotElement.setName(unspecializedPivotType.getName());
+		specializedPivotElement.setMoniker(moniker);
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		TemplateSignature templateSignature = unspecializedPivotType.getOwnedTemplateSignature();
 		templateBinding.setSignature(templateSignature);

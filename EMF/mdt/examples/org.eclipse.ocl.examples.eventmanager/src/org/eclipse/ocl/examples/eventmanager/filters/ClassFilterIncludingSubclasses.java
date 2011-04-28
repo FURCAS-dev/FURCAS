@@ -15,9 +15,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Matches an event's {@link Notification#getNotifier() notifier}'s {@link EObject#eClass() class}
- * and all subclasses of the given {@link EClass}
- * @author Philipp Berger
+ * Matches an event if its {@link Notification#getNotifier() notifier}'s {@link EObject#eClass() class}
+ * equals the class passed to this filter's constructor or any subclasses thereof.
+ * 
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class ClassFilterIncludingSubclasses extends ClassFilter {
@@ -50,7 +51,7 @@ public class ClassFilterIncludingSubclasses extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "wantedClass conformsTo " + getWantedClass().toString();
+            return (isNegated()?"negated ":"") + "wantedClass conformsTo " + getWantedClass().toString();
         return "empty ClassFilter";
     }
 }

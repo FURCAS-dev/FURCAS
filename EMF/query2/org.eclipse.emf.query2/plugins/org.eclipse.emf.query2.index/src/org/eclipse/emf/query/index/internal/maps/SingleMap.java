@@ -15,7 +15,6 @@ import java.util.Iterator;
 import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.internal.maps.SerializationStrategy.Channel;
 
-
 /**
  * A hash table that accepts only one element per key. I.e. a hash set. Keys are
  * compared as usual by identity.
@@ -31,6 +30,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		private int tablePos = -1;
 		private E prepared = null;
 
+		@SuppressWarnings("unchecked")
 		public boolean hasNext() {
 			if (prepared == null) {
 				while (++tablePos < table.length) {
@@ -72,6 +72,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		this.table = new MapEntry[cap];
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void put(E element) {
 
@@ -96,6 +97,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		this.addToTable(i, element);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E get(K keyElem) {
 
@@ -119,6 +121,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public void remove(E element) {
 
 		if (element == null) {
@@ -142,6 +145,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected Object getKey(Object entry) {
 		return ((E) entry).getKeyElement(keyNr);
@@ -154,6 +158,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		return -1;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object obj) {
 
@@ -187,6 +192,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	public E getEqual(K keyElem) {
 
 		if (keyElem == null) {
@@ -214,6 +220,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		return new ValueIterator();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void serialize(SerializationStrategy<K, E> strategy) {
 		Object[] tab = table;
@@ -249,6 +256,7 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		this.initialize(tab, size);
 	}
 
+	@SuppressWarnings("unchecked")
 	public int getPosition(K key) {
 
 		if (key == null) {
@@ -271,8 +279,13 @@ public class SingleMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, 
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public E get(int pos) {
 		return (E) table[pos];
+	}
+
+	public Object[] getUnderlyingMapTable() {
+		return table;
 	}
 
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackage.java,v 1.9 2011/03/14 07:24:49 ewillink Exp $
+ * $Id: PivotPackage.java,v 1.10 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -42,7 +42,8 @@ import org.eclipse.emf.ecore.EReference;
  * @generated
  */
 public interface PivotPackage
-		extends EPackage {
+		extends EPackage
+{
 
 	/**
 	 * The package name.
@@ -92,7 +93,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOclExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 52;
+	int OCL_EXPRESSION = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -112,7 +113,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 29;
+	int FEATURE_CALL_EXP = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
@@ -122,7 +123,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 49;
+	int NAVIGATION_CALL_EXP = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
@@ -142,7 +143,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDataType()
 	 * @generated
 	 */
-	int DATA_TYPE = 21;
+	int DATA_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
@@ -172,7 +173,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 40;
+	int LITERAL_EXP = 35;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
@@ -182,7 +183,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 64;
+	int PRIMITIVE_LITERAL_EXP = 59;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
@@ -245,46 +246,6 @@ public interface PivotPackage
 	int COLLECTION_RANGE = 12;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteEnvironment()
-	 * @generated
-	 */
-	int COMPLETE_ENVIRONMENT = 15;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteOperation()
-	 * @generated
-	 */
-	int COMPLETE_OPERATION = 16;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl <em>Complete Package</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompletePackage()
-	 * @generated
-	 */
-	int COMPLETE_PACKAGE = 17;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl <em>Complete Property</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteProperty()
-	 * @generated
-	 */
-	int COMPLETE_PROPERTY = 18;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,7 +253,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 24;
+	int ENUM_LITERAL_EXP = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationLiteralImpl <em>Enumeration Literal</em>}' class.
@@ -302,7 +263,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumerationLiteral()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL = 26;
+	int ENUMERATION_LITERAL = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumerationImpl <em>Enumeration</em>}' class.
@@ -312,7 +273,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getEnumeration()
 	 * @generated
 	 */
-	int ENUMERATION = 25;
+	int ENUMERATION = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OpaqueExpressionImpl <em>Opaque Expression</em>}' class.
@@ -322,7 +283,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOpaqueExpression()
 	 * @generated
 	 */
-	int OPAQUE_EXPRESSION = 53;
+	int OPAQUE_EXPRESSION = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ExpressionInOclImpl <em>Expression In Ocl</em>}' class.
@@ -332,7 +293,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getExpressionInOcl()
 	 * @generated
 	 */
-	int EXPRESSION_IN_OCL = 27;
+	int EXPRESSION_IN_OCL = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableImpl <em>Variable</em>}' class.
@@ -342,7 +303,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 94;
+	int VARIABLE = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IfExpImpl <em>If Exp</em>}' class.
@@ -352,7 +313,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 30;
+	int IF_EXP = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
@@ -362,7 +323,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 51;
+	int NUMERIC_LITERAL_EXP = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
@@ -372,7 +333,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 31;
+	int INTEGER_LITERAL_EXP = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
@@ -382,7 +343,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 32;
+	int INVALID_LITERAL_EXP = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
@@ -392,7 +353,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInvalidType()
 	 * @generated
 	 */
-	int INVALID_TYPE = 33;
+	int INVALID_TYPE = 28;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LetExpImpl <em>Let Exp</em>}' class.
@@ -402,7 +363,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 38;
+	int LET_EXP = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LoopExpImpl <em>Loop Exp</em>}' class.
@@ -412,7 +373,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 41;
+	int LOOP_EXP = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageExpImpl <em>Message Exp</em>}' class.
@@ -422,7 +383,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 42;
+	int MESSAGE_EXP = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
@@ -432,7 +393,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 69;
+	int SEND_SIGNAL_ACTION = 64;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SignalImpl <em>Signal</em>}' class.
@@ -442,7 +403,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSignal()
 	 * @generated
 	 */
-	int SIGNAL = 72;
+	int SIGNAL = 67;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MessageTypeImpl <em>Message Type</em>}' class.
@@ -452,7 +413,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMessageType()
 	 * @generated
 	 */
-	int MESSAGE_TYPE = 43;
+	int MESSAGE_TYPE = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
@@ -462,7 +423,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 50;
+	int NULL_LITERAL_EXP = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
@@ -472,7 +433,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 55;
+	int OPERATION_CALL_EXP = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
@@ -482,7 +443,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOrderedSetType()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE = 57;
+	int ORDERED_SET_TYPE = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageableElementImpl <em>Packageable Element</em>}' class.
@@ -492,7 +453,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackageableElement()
 	 * @generated
 	 */
-	int PACKAGEABLE_ELEMENT = 59;
+	int PACKAGEABLE_ELEMENT = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
@@ -502,7 +463,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrimitiveType()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE = 65;
+	int PRIMITIVE_TYPE = 60;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
@@ -512,7 +473,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 67;
+	int PROPERTY_CALL_EXP = 62;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
@@ -522,7 +483,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 68;
+	int REAL_LITERAL_EXP = 63;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
@@ -532,7 +493,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSequenceType()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE = 70;
+	int SEQUENCE_TYPE = 65;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.SetTypeImpl <em>Set Type</em>}' class.
@@ -542,7 +503,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getSetType()
 	 * @generated
 	 */
-	int SET_TYPE = 71;
+	int SET_TYPE = 66;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateImpl <em>State</em>}' class.
@@ -552,7 +513,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getState()
 	 * @generated
 	 */
-	int STATE = 73;
+	int STATE = 68;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StateExpImpl <em>State Exp</em>}' class.
@@ -562,7 +523,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 74;
+	int STATE_EXP = 69;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
@@ -572,7 +533,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 75;
+	int STRING_LITERAL_EXP = 70;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
@@ -582,7 +543,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterType()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_TYPE = 79;
+	int TEMPLATE_PARAMETER_TYPE = 74;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
@@ -592,7 +553,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 82;
+	int TUPLE_LITERAL_EXP = 77;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
@@ -602,7 +563,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 83;
+	int TUPLE_LITERAL_PART = 78;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
@@ -612,7 +573,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 84;
+	int TUPLE_TYPE = 79;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeExpImpl <em>Type Exp</em>}' class.
@@ -622,7 +583,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 86;
+	int TYPE_EXP = 81;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
@@ -632,7 +593,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 90;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
@@ -642,7 +603,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 92;
+	int UNSPECIFIED_VALUE_EXP = 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableExpImpl <em>Variable Exp</em>}' class.
@@ -652,7 +613,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 96;
+	int VARIABLE_EXP = 91;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VoidTypeImpl <em>Void Type</em>}' class.
@@ -662,7 +623,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 99;
+	int VOID_TYPE = 94;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Pivotable <em>Pivotable</em>}' class.
@@ -672,7 +633,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPivotable()
 	 * @generated
 	 */
-	int PIVOTABLE = 62;
+	int PIVOTABLE = 57;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Visitable <em>Visitable</em>}' class.
@@ -682,7 +643,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitable()
 	 * @generated
 	 */
-	int VISITABLE = 97;
+	int VISITABLE = 92;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ElementImpl <em>Element</em>}' class.
@@ -692,7 +653,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getElement()
 	 * @generated
 	 */
-	int ELEMENT = 23;
+	int ELEMENT = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MonikeredElementImpl <em>Monikered Element</em>}' class.
@@ -702,7 +663,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMonikeredElement()
 	 * @generated
 	 */
-	int MONIKERED_ELEMENT = 44;
+	int MONIKERED_ELEMENT = 39;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamedElementImpl <em>Named Element</em>}' class.
@@ -712,7 +673,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamedElement()
 	 * @generated
 	 */
-	int NAMED_ELEMENT = 47;
+	int NAMED_ELEMENT = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -732,7 +693,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getType()
 	 * @generated
 	 */
-	int TYPE = 85;
+	int TYPE = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ClassImpl <em>Class</em>}' class.
@@ -752,7 +713,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateableElement()
 	 * @generated
 	 */
-	int TEMPLATEABLE_ELEMENT = 81;
+	int TEMPLATEABLE_ELEMENT = 76;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateBindingImpl <em>Template Binding</em>}' class.
@@ -762,7 +723,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 76;
+	int TEMPLATE_BINDING = 71;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateSignatureImpl <em>Template Signature</em>}' class.
@@ -772,7 +733,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateSignature()
 	 * @generated
 	 */
-	int TEMPLATE_SIGNATURE = 80;
+	int TEMPLATE_SIGNATURE = 75;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterImpl <em>Template Parameter</em>}' class.
@@ -782,7 +743,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameter()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER = 77;
+	int TEMPLATE_PARAMETER = 72;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
@@ -792,7 +753,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameterableElement()
 	 * @generated
 	 */
-	int PARAMETERABLE_ELEMENT = 61;
+	int PARAMETERABLE_ELEMENT = 56;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateParameterSubstitutionImpl <em>Template Parameter Substitution</em>}' class.
@@ -802,7 +763,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 78;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 73;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl <em>Package</em>}' class.
@@ -812,7 +773,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPackage()
 	 * @generated
 	 */
-	int PACKAGE = 58;
+	int PACKAGE = 53;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.NamespaceImpl <em>Namespace</em>}' class.
@@ -822,7 +783,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNamespace()
 	 * @generated
 	 */
-	int NAMESPACE = 48;
+	int NAMESPACE = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PrecedenceImpl <em>Precedence</em>}' class.
@@ -832,7 +793,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getPrecedence()
 	 * @generated
 	 */
-	int PRECEDENCE = 63;
+	int PRECEDENCE = 58;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypeTemplateParameterImpl <em>Type Template Parameter</em>}' class.
@@ -842,7 +803,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypeTemplateParameter()
 	 * @generated
 	 */
-	int TYPE_TEMPLATE_PARAMETER = 87;
+	int TYPE_TEMPLATE_PARAMETER = 82;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.MultiplicityElementImpl <em>Multiplicity Element</em>}' class.
@@ -852,7 +813,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getMultiplicityElement()
 	 * @generated
 	 */
-	int MULTIPLICITY_ELEMENT = 45;
+	int MULTIPLICITY_ELEMENT = 40;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedMultiplicityElementImpl <em>Typed Multiplicity Element</em>}' class.
@@ -862,7 +823,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedMultiplicityElement()
 	 * @generated
 	 */
-	int TYPED_MULTIPLICITY_ELEMENT = 89;
+	int TYPED_MULTIPLICITY_ELEMENT = 84;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.PropertyImpl <em>Property</em>}' class.
@@ -872,7 +833,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 66;
+	int PROPERTY = 61;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl <em>Typed Element</em>}' class.
@@ -882,7 +843,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 88;
+	int TYPED_ELEMENT = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AssociationClassImpl <em>Association Class</em>}' class.
@@ -902,7 +863,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCallableImplementation()
 	 * @generated
 	 */
-	int CALLABLE_IMPLEMENTATION = 103;
+	int CALLABLE_IMPLEMENTATION = 98;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationImpl <em>Operation</em>}' class.
@@ -912,7 +873,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 54;
+	int OPERATION = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -922,7 +883,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 60;
+	int PARAMETER = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -932,7 +893,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 95;
+	int VARIABLE_DECLARATION = 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.OperationTemplateParameterImpl <em>Operation Template Parameter</em>}' class.
@@ -942,7 +903,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getOperationTemplateParameter()
 	 * @generated
 	 */
-	int OPERATION_TEMPLATE_PARAMETER = 56;
+	int OPERATION_TEMPLATE_PARAMETER = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CommentImpl <em>Comment</em>}' class.
@@ -962,7 +923,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 20;
+	int CONSTRAINT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -972,7 +933,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 93;
+	int VALUE_SPECIFICATION = 88;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.util.Nameable <em>Nameable</em>}' class.
@@ -982,7 +943,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getNameable()
 	 * @generated
 	 */
-	int NAMEABLE = 46;
+	int NAMEABLE = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.DetailImpl <em>Detail</em>}' class.
@@ -992,7 +953,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getDetail()
 	 * @generated
 	 */
-	int DETAIL = 22;
+	int DETAIL = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.AnyTypeImpl <em>Any Type</em>}' class.
@@ -1012,7 +973,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getFeature()
 	 * @generated
 	 */
-	int FEATURE = 28;
+	int FEATURE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
@@ -1022,7 +983,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 34;
+	int ITERATE_EXP = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IterationImpl <em>Iteration</em>}' class.
@@ -1032,7 +993,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteration()
 	 * @generated
 	 */
-	int ITERATION = 35;
+	int ITERATION = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
@@ -1042,7 +1003,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 36;
+	int ITERATOR_EXP = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.LibraryImpl <em>Library</em>}' class.
@@ -1052,7 +1013,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLibrary()
 	 * @generated
 	 */
-	int LIBRARY = 39;
+	int LIBRARY = 34;
 
 	/**
 	 * The number of structural features of the '<em>Visitable</em>' class.
@@ -2414,22 +2375,13 @@ public interface PivotPackage
 	int CALL_EXP__IMPLICIT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CALL_EXP__REFERRED_FEATURE = OCL_EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 3;
+	int CALL_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -2529,15 +2481,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int FEATURE_CALL_EXP__IMPLICIT = CALL_EXP__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_CALL_EXP__REFERRED_FEATURE = CALL_EXP__REFERRED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -2655,15 +2598,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int NAVIGATION_CALL_EXP__IMPLICIT = FEATURE_CALL_EXP__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAVIGATION_CALL_EXP__REFERRED_FEATURE = FEATURE_CALL_EXP__REFERRED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -2799,15 +2733,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ASSOCIATION_CLASS_CALL_EXP__IMPLICIT = NAVIGATION_CALL_EXP__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_CLASS_CALL_EXP__REFERRED_FEATURE = NAVIGATION_CALL_EXP__REFERRED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -4418,2806 +4343,6 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__MONIKER = NAMED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__NAME = NAMED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The number of structural features of the '<em>Namespace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The number of operations of the '<em>Namespace</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAMESPACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__MONIKER = NAMESPACE__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NAME = NAMESPACE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_RULE = NAMESPACE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__IS_STATIC = NAMESPACE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_ANNOTATION = NAMESPACE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__TEMPLATE_BINDING = NAMESPACE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NESTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NESTING_PACKAGE = NAMESPACE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NS_PREFIX = NAMESPACE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__NS_URI = NAMESPACE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_PRECEDENCE = NAMESPACE_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE__OWNED_TYPE = NAMESPACE_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of structural features of the '<em>Package</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___HAS_MONIKER = NAMESPACE___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___PARAMETERABLE_ELEMENTS = NAMESPACE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE___IS_TEMPLATE = NAMESPACE_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Package</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_COMMENT = PACKAGE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__MONIKER = PACKAGE__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__NAME = PACKAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__IS_STATIC = PACKAGE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_ANNOTATION = PACKAGE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__TEMPLATE_BINDING = PACKAGE__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__NESTED_PACKAGE = PACKAGE__NESTED_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__NESTING_PACKAGE = PACKAGE__NESTING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__NS_PREFIX = PACKAGE__NS_PREFIX;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__NS_URI = PACKAGE__NS_URI;
-
-	/**
-	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_PRECEDENCE = PACKAGE__OWNED_PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT__OWNED_TYPE = PACKAGE__OWNED_TYPE;
-
-	/**
-	 * The number of structural features of the '<em>Complete Environment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___HAS_MONIKER = PACKAGE___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___PARAMETERABLE_ELEMENTS = PACKAGE___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Get Complete Operation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = PACKAGE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Get Complete Package</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = PACKAGE_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Get Complete Property</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = PACKAGE_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Get Complete Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = PACKAGE_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION = PACKAGE_OPERATION_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Complete Environment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_ENVIRONMENT_OPERATION_COUNT = PACKAGE_OPERATION_COUNT + 5;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl <em>Complete Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl
-	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteType()
-	 * @generated
-	 */
-	int COMPLETE_TYPE = 19;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__MONIKER = TYPED_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__NAME = TYPED_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
-
-	/**
-	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__MONIKER = TYPED_MULTIPLICITY_ELEMENT__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_RULE = TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_ORDERED = TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IS_UNIQUE = TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__LOWER = TYPED_MULTIPLICITY_ELEMENT__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__UPPER = TYPED_MULTIPLICITY_ELEMENT__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE__IMPLEMENTATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Feature</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___HAS_MONIKER = TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___LOWER_BOUND = TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___UPPER_BOUND = TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___IS_MULTIVALUED = TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The number of operations of the '<em>Feature</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__MONIKER = FEATURE__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__NAME = FEATURE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_RULE = FEATURE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_STATIC = FEATURE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_ANNOTATION = FEATURE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TYPE = FEATURE__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_ORDERED = FEATURE__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IS_UNIQUE = FEATURE__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__LOWER = FEATURE__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__UPPER = FEATURE__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__IMPLEMENTATION = FEATURE__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION__CLASS = FEATURE_FEATURE_COUNT + 7;
-
-	/**
-	 * The number of structural features of the '<em>Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___HAS_MONIKER = FEATURE___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___LOWER_BOUND = FEATURE___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___UPPER_BOUND = FEATURE___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_MULTIVALUED = FEATURE___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___INCLUDES_CARDINALITY__BIGINTEGER = FEATURE___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___PARAMETERABLE_ELEMENTS = FEATURE_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___IS_TEMPLATE = FEATURE_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNED_COMMENT = OPERATION__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__MONIKER = OPERATION__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__NAME = OPERATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNED_RULE = OPERATION__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__IS_STATIC = OPERATION__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNED_ANNOTATION = OPERATION__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__TYPE = OPERATION__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__IS_ORDERED = OPERATION__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__IS_UNIQUE = OPERATION__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__LOWER = OPERATION__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__UPPER = OPERATION__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__IMPLEMENTATION_CLASS = OPERATION__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__IMPLEMENTATION = OPERATION__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNING_TEMPLATE_PARAMETER = OPERATION__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__TEMPLATE_PARAMETER = OPERATION__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__TEMPLATE_BINDING = OPERATION__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNED_TEMPLATE_SIGNATURE = OPERATION__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__RAISED_EXCEPTION = OPERATION__RAISED_EXCEPTION;
-
-	/**
-	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__OWNED_PARAMETER = OPERATION__OWNED_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Precedence</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__PRECEDENCE = OPERATION__PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__CLASS = OPERATION__CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__MODEL = OPERATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__MODELS = OPERATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__COMPLETE_ENVIRONMENT = OPERATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Complete Parameter</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION__COMPLETE_PARAMETER = OPERATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Complete Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___HAS_MONIKER = OPERATION___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___LOWER_BOUND = OPERATION___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___UPPER_BOUND = OPERATION___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___IS_MULTIVALUED = OPERATION___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___INCLUDES_CARDINALITY__BIGINTEGER = OPERATION___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___IS_TEMPLATE_PARAMETER = OPERATION___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___PARAMETERABLE_ELEMENTS = OPERATION___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___IS_TEMPLATE = OPERATION___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Complete Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_OPERATION_OPERATION_COUNT = OPERATION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_COMMENT = PACKAGE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__MONIKER = PACKAGE__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__NAME = PACKAGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_RULE = PACKAGE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__IS_STATIC = PACKAGE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_ANNOTATION = PACKAGE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__TEMPLATE_BINDING = PACKAGE__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_TEMPLATE_SIGNATURE = PACKAGE__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__NESTED_PACKAGE = PACKAGE__NESTED_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__NESTING_PACKAGE = PACKAGE__NESTING_PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__NS_PREFIX = PACKAGE__NS_PREFIX;
-
-	/**
-	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__NS_URI = PACKAGE__NS_URI;
-
-	/**
-	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_PRECEDENCE = PACKAGE__OWNED_PRECEDENCE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__OWNED_TYPE = PACKAGE__OWNED_TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__MODEL = PACKAGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__MODELS = PACKAGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = PACKAGE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Complete Package</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__COMPLETE_PACKAGE = PACKAGE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Complete Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE__COMPLETE_TYPE = PACKAGE_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Complete Package</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE_FEATURE_COUNT = PACKAGE_FEATURE_COUNT + 5;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___HAS_MONIKER = PACKAGE___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___PARAMETERABLE_ELEMENTS = PACKAGE___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE___IS_TEMPLATE = PACKAGE___IS_TEMPLATE;
-
-	/**
-	 * The number of operations of the '<em>Complete Package</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PACKAGE_OPERATION_COUNT = PACKAGE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__MONIKER = FEATURE__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__NAME = FEATURE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OWNED_RULE = FEATURE__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_STATIC = FEATURE__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OWNED_ANNOTATION = FEATURE__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__TYPE = FEATURE__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_ORDERED = FEATURE__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_UNIQUE = FEATURE__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__LOWER = FEATURE__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__UPPER = FEATURE__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IMPLEMENTATION = FEATURE__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Default</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Opposite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__ASSOCIATION = FEATURE_FEATURE_COUNT + 7;
-
-	/**
-	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 8;
-
-	/**
-	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 9;
-
-	/**
-	 * The feature id for the '<em><b>Keys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 10;
-
-	/**
-	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 11;
-
-	/**
-	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 12;
-
-	/**
-	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 13;
-
-	/**
-	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 14;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY__CLASS = FEATURE_FEATURE_COUNT + 15;
-
-	/**
-	 * The number of structural features of the '<em>Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 16;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___HAS_MONIKER = FEATURE___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___LOWER_BOUND = FEATURE___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___UPPER_BOUND = FEATURE___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___IS_MULTIVALUED = FEATURE___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER = FEATURE___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
-
-	/**
-	 * The operation id for the '<em>Validate Binding To Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__OWNED_COMMENT = PROPERTY__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__MONIKER = PROPERTY__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__NAME = PROPERTY__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__OWNED_RULE = PROPERTY__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_STATIC = PROPERTY__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__OWNED_ANNOTATION = PROPERTY__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__TYPE = PROPERTY__TYPE;
-
-	/**
-	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_ORDERED = PROPERTY__IS_ORDERED;
-
-	/**
-	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_UNIQUE = PROPERTY__IS_UNIQUE;
-
-	/**
-	 * The feature id for the '<em><b>Lower</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__LOWER = PROPERTY__LOWER;
-
-	/**
-	 * The feature id for the '<em><b>Upper</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__UPPER = PROPERTY__UPPER;
-
-	/**
-	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IMPLEMENTATION_CLASS = PROPERTY__IMPLEMENTATION_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IMPLEMENTATION = PROPERTY__IMPLEMENTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__OWNING_TEMPLATE_PARAMETER = PROPERTY__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__TEMPLATE_PARAMETER = PROPERTY__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_READ_ONLY = PROPERTY__IS_READ_ONLY;
-
-	/**
-	 * The feature id for the '<em><b>Default</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__DEFAULT = PROPERTY__DEFAULT;
-
-	/**
-	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_COMPOSITE = PROPERTY__IS_COMPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_DERIVED = PROPERTY__IS_DERIVED;
-
-	/**
-	 * The feature id for the '<em><b>Opposite</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__OPPOSITE = PROPERTY__OPPOSITE;
-
-	/**
-	 * The feature id for the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__ASSOCIATION = PROPERTY__ASSOCIATION;
-
-	/**
-	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IMPLICIT = PROPERTY__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_ID = PROPERTY__IS_ID;
-
-	/**
-	 * The feature id for the '<em><b>Keys</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__KEYS = PROPERTY__KEYS;
-
-	/**
-	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_RESOLVE_PROXIES = PROPERTY__IS_RESOLVE_PROXIES;
-
-	/**
-	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_TRANSIENT = PROPERTY__IS_TRANSIENT;
-
-	/**
-	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_UNSETTABLE = PROPERTY__IS_UNSETTABLE;
-
-	/**
-	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__IS_VOLATILE = PROPERTY__IS_VOLATILE;
-
-	/**
-	 * The feature id for the '<em><b>Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__CLASS = PROPERTY__CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__MODEL = PROPERTY_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__MODELS = PROPERTY_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT = PROPERTY_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Complete Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___HAS_MONIKER = PROPERTY___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Lower Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___LOWER_BOUND = PROPERTY___LOWER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Upper Bound</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___UPPER_BOUND = PROPERTY___UPPER_BOUND;
-
-	/**
-	 * The operation id for the '<em>Is Multivalued</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___IS_MULTIVALUED = PROPERTY___IS_MULTIVALUED;
-
-	/**
-	 * The operation id for the '<em>Includes Cardinality</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER = PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER;
-
-	/**
-	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___IS_TEMPLATE_PARAMETER = PROPERTY___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Validate Binding To Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The number of operations of the '<em>Complete Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_PROPERTY_OPERATION_COUNT = PROPERTY_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
-
-	/**
-	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__MONIKER = CLASS__MONIKER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__NAME = CLASS__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
-
-	/**
-	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__IS_STATIC = CLASS__IS_STATIC;
-
-	/**
-	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
-
-	/**
-	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
-
-	/**
-	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
-
-	/**
-	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__PACKAGE = CLASS__PACKAGE;
-
-	/**
-	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
-
-	/**
-	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
-
-	/**
-	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
-
-	/**
-	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
-
-	/**
-	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
-
-	/**
-	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__SUB_CLASS = CLASS__SUB_CLASS;
-
-	/**
-	 * The feature id for the '<em><b>Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__MODEL = CLASS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Models</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__MODELS = CLASS_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Complete Environment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__COMPLETE_ENVIRONMENT = CLASS_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Complete Operation</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__COMPLETE_OPERATION = CLASS_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Complete Property</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__COMPLETE_PROPERTY = CLASS_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Complete Super Type</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE__COMPLETE_SUPER_TYPE = CLASS_FEATURE_COUNT + 5;
-
-	/**
-	 * The number of structural features of the '<em>Complete Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 6;
-
-	/**
-	 * The operation id for the '<em>Has Moniker</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___HAS_MONIKER = CLASS___HAS_MONIKER;
-
-	/**
-	 * The operation id for the '<em>Is Template Parameter</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
-
-	/**
-	 * The operation id for the '<em>Parameterable Elements</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
-
-	/**
-	 * The operation id for the '<em>Is Template</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
-
-	/**
-	 * The operation id for the '<em>Get Dynamic Operation</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = CLASS_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Complete Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLETE_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
 	int CONSTRAINT__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
 
 	/**
@@ -8532,6 +5657,402 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT = TYPED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__MONIKER = TYPED_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__NAME = TYPED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE = TYPED_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__IS_STATIC = TYPED_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION = TYPED_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__TYPE = TYPED_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED = TYPED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE = TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__LOWER = TYPED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT__UPPER = TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Typed Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT = TYPED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER = TYPED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_ELEMENT_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND = TYPED_ELEMENT_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED = TYPED_ELEMENT_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_ELEMENT_OPERATION_COUNT + 5;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_ELEMENT_OPERATION_COUNT + 6;
+
+	/**
+	 * The number of operations of the '<em>Typed Multiplicity Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT = TYPED_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_COMMENT = TYPED_MULTIPLICITY_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__MONIKER = TYPED_MULTIPLICITY_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__NAME = TYPED_MULTIPLICITY_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_RULE = TYPED_MULTIPLICITY_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_STATIC = TYPED_MULTIPLICITY_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__OWNED_ANNOTATION = TYPED_MULTIPLICITY_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__TYPE = TYPED_MULTIPLICITY_ELEMENT__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_ORDERED = TYPED_MULTIPLICITY_ELEMENT__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IS_UNIQUE = TYPED_MULTIPLICITY_ELEMENT__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__LOWER = TYPED_MULTIPLICITY_ELEMENT__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__UPPER = TYPED_MULTIPLICITY_ELEMENT__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IMPLEMENTATION_CLASS = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__IMPLEMENTATION = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_FEATURE_COUNT = TYPED_MULTIPLICITY_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___HAS_MONIKER = TYPED_MULTIPLICITY_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = TYPED_MULTIPLICITY_ELEMENT___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___LOWER_BOUND = TYPED_MULTIPLICITY_ELEMENT___LOWER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___UPPER_BOUND = TYPED_MULTIPLICITY_ELEMENT___UPPER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___IS_MULTIVALUED = TYPED_MULTIPLICITY_ELEMENT___IS_MULTIVALUED;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___INCLUDES_CARDINALITY__BIGINTEGER = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_CARDINALITY__BIGINTEGER;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = TYPED_MULTIPLICITY_ELEMENT___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+
+	/**
+	 * The number of operations of the '<em>Feature</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_OPERATION_COUNT = TYPED_MULTIPLICITY_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int IF_EXP__OWNED_COMMENT = OCL_EXPRESSION__OWNED_COMMENT;
 
 	/**
@@ -9219,15 +6740,6 @@ public interface PivotPackage
 	int LOOP_EXP__IMPLICIT = CALL_EXP__IMPLICIT;
 
 	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOP_EXP__REFERRED_FEATURE = CALL_EXP__REFERRED_FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9363,15 +6875,6 @@ public interface PivotPackage
 	int ITERATE_EXP__IMPLICIT = LOOP_EXP__IMPLICIT;
 
 	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATE_EXP__REFERRED_FEATURE = LOOP_EXP__REFERRED_FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9433,6 +6936,321 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int ITERATE_EXP_OPERATION_COUNT = LOOP_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__MONIKER = FEATURE__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__NAME = FEATURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_RULE = FEATURE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_STATIC = FEATURE__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_ANNOTATION = FEATURE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__TYPE = FEATURE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_ORDERED = FEATURE__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IS_UNIQUE = FEATURE__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__LOWER = FEATURE__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__UPPER = FEATURE__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__IMPLEMENTATION = FEATURE__IMPLEMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__TEMPLATE_BINDING = FEATURE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_TEMPLATE_SIGNATURE = FEATURE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Raised Exception</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__RAISED_EXCEPTION = FEATURE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Owned Parameter</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__OWNED_PARAMETER = FEATURE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Precedence</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__PRECEDENCE = FEATURE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION__CLASS = FEATURE_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___HAS_MONIKER = FEATURE___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___LOWER_BOUND = FEATURE___LOWER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___UPPER_BOUND = FEATURE___UPPER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___IS_MULTIVALUED = FEATURE___IS_MULTIVALUED;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___INCLUDES_CARDINALITY__BIGINTEGER = FEATURE___INCLUDES_CARDINALITY__BIGINTEGER;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___PARAMETERABLE_ELEMENTS = FEATURE_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___IS_TEMPLATE = FEATURE_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Validate Test Constraint</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION___VALIDATE_TEST_CONSTRAINT__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Operation</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -9849,15 +7667,6 @@ public interface PivotPackage
 	int ITERATOR_EXP__IMPLICIT = LOOP_EXP__IMPLICIT;
 
 	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__REFERRED_FEATURE = LOOP_EXP__REFERRED_FEATURE;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9919,7 +7728,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getLambdaType()
 	 * @generated
 	 */
-	int LAMBDA_TYPE = 37;
+	int LAMBDA_TYPE = 32;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -10289,6 +8098,258 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int LET_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__OWNED_COMMENT = NAMED_ELEMENT__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__MONIKER = NAMED_ELEMENT__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__NAME = NAMED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__OWNED_RULE = NAMED_ELEMENT__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__IS_STATIC = NAMED_ELEMENT__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE__OWNED_ANNOTATION = NAMED_ELEMENT__OWNED_ANNOTATION;
+
+	/**
+	 * The number of structural features of the '<em>Namespace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE___HAS_MONIKER = NAMED_ELEMENT___HAS_MONIKER;
+
+	/**
+	 * The number of operations of the '<em>Namespace</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMESPACE_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_COMMENT = NAMESPACE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__MONIKER = NAMESPACE__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__NAME = NAMESPACE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_RULE = NAMESPACE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__IS_STATIC = NAMESPACE__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_ANNOTATION = NAMESPACE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__TEMPLATE_BINDING = NAMESPACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_TEMPLATE_SIGNATURE = NAMESPACE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Nested Package</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__NESTED_PACKAGE = NAMESPACE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Nesting Package</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__NESTING_PACKAGE = NAMESPACE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Ns Prefix</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__NS_PREFIX = NAMESPACE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Ns URI</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__NS_URI = NAMESPACE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Owned Precedence</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_PRECEDENCE = NAMESPACE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Owned Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNED_TYPE = NAMESPACE_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_FEATURE_COUNT = NAMESPACE_FEATURE_COUNT + 8;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE___HAS_MONIKER = NAMESPACE___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Parameterable Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE___PARAMETERABLE_ELEMENTS = NAMESPACE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Is Template</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE___IS_TEMPLATE = NAMESPACE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Package</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_OPERATION_COUNT = NAMESPACE_OPERATION_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -11099,15 +9160,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int OPERATION_CALL_EXP__IMPLICIT = FEATURE_CALL_EXP__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPERATION_CALL_EXP__REFERRED_FEATURE = FEATURE_CALL_EXP__REFERRED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -12268,6 +10320,375 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
+	int PROPERTY__OWNED_COMMENT = FEATURE__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__MONIKER = FEATURE__MONIKER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__NAME = FEATURE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__OWNED_RULE = FEATURE__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_STATIC = FEATURE__IS_STATIC;
+
+	/**
+	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__OWNED_ANNOTATION = FEATURE__OWNED_ANNOTATION;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__TYPE = FEATURE__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Is Ordered</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_ORDERED = FEATURE__IS_ORDERED;
+
+	/**
+	 * The feature id for the '<em><b>Is Unique</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_UNIQUE = FEATURE__IS_UNIQUE;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__LOWER = FEATURE__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__UPPER = FEATURE__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Implementation Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IMPLEMENTATION_CLASS = FEATURE__IMPLEMENTATION_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Implementation</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IMPLEMENTATION = FEATURE__IMPLEMENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__OWNING_TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__TEMPLATE_PARAMETER = FEATURE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Is Read Only</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_READ_ONLY = FEATURE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__DEFAULT = FEATURE_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Is Composite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_COMPOSITE = FEATURE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Is Derived</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_DERIVED = FEATURE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Opposite</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__OPPOSITE = FEATURE_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Association</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__ASSOCIATION = FEATURE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>Implicit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IMPLICIT = FEATURE_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Is ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_ID = FEATURE_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Keys</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__KEYS = FEATURE_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Is Resolve Proxies</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_RESOLVE_PROXIES = FEATURE_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Is Transient</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_TRANSIENT = FEATURE_FEATURE_COUNT + 12;
+
+	/**
+	 * The feature id for the '<em><b>Is Unsettable</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_UNSETTABLE = FEATURE_FEATURE_COUNT + 13;
+
+	/**
+	 * The feature id for the '<em><b>Is Volatile</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__IS_VOLATILE = FEATURE_FEATURE_COUNT + 14;
+
+	/**
+	 * The feature id for the '<em><b>Class</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY__CLASS = FEATURE_FEATURE_COUNT + 15;
+
+	/**
+	 * The number of structural features of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_COUNT = FEATURE_FEATURE_COUNT + 16;
+
+	/**
+	 * The operation id for the '<em>Has Moniker</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___HAS_MONIKER = FEATURE___HAS_MONIKER;
+
+	/**
+	 * The operation id for the '<em>Validate Lower Ge0</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_LOWER_GE0__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Validate Upper Ge Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP = FEATURE___VALIDATE_UPPER_GE_LOWER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Lower Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___LOWER_BOUND = FEATURE___LOWER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Upper Bound</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___UPPER_BOUND = FEATURE___UPPER_BOUND;
+
+	/**
+	 * The operation id for the '<em>Is Multivalued</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___IS_MULTIVALUED = FEATURE___IS_MULTIVALUED;
+
+	/**
+	 * The operation id for the '<em>Includes Cardinality</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___INCLUDES_CARDINALITY__BIGINTEGER = FEATURE___INCLUDES_CARDINALITY__BIGINTEGER;
+
+	/**
+	 * The operation id for the '<em>Includes Multiplicity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT = FEATURE___INCLUDES_MULTIPLICITY__MULTIPLICITYELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Template Parameter</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___IS_TEMPLATE_PARAMETER = FEATURE_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Validate Binding To Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY___VALIDATE_BINDING_TO_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = FEATURE_OPERATION_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_OPERATION_COUNT = FEATURE_OPERATION_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
 	int PROPERTY_CALL_EXP__OWNED_COMMENT = NAVIGATION_CALL_EXP__OWNED_COMMENT;
 
 	/**
@@ -12341,15 +10762,6 @@ public interface PivotPackage
 	 * @ordered
 	 */
 	int PROPERTY_CALL_EXP__IMPLICIT = NAVIGATION_CALL_EXP__IMPLICIT;
-
-	/**
-	 * The feature id for the '<em><b>Referred Feature</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_CALL_EXP__REFERRED_FEATURE = NAVIGATION_CALL_EXP__REFERRED_FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Is Pre</b></em>' attribute.
@@ -14762,7 +13174,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnspecifiedType()
 	 * @generated
 	 */
-	int UNSPECIFIED_TYPE = 91;
+	int UNSPECIFIED_TYPE = 86;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -14771,7 +13183,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNED_COMMENT = TYPE__OWNED_COMMENT;
+	int UNSPECIFIED_TYPE__OWNED_COMMENT = CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Moniker</b></em>' attribute.
@@ -14780,7 +13192,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__MONIKER = TYPE__MONIKER;
+	int UNSPECIFIED_TYPE__MONIKER = CLASS__MONIKER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -14789,7 +13201,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__NAME = TYPE__NAME;
+	int UNSPECIFIED_TYPE__NAME = CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -14798,7 +13210,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNED_RULE = TYPE__OWNED_RULE;
+	int UNSPECIFIED_TYPE__OWNED_RULE = CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Is Static</b></em>' attribute.
@@ -14807,7 +13219,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__IS_STATIC = TYPE__IS_STATIC;
+	int UNSPECIFIED_TYPE__IS_STATIC = CLASS__IS_STATIC;
 
 	/**
 	 * The feature id for the '<em><b>Owned Annotation</b></em>' containment reference list.
@@ -14816,7 +13228,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNED_ANNOTATION = TYPE__OWNED_ANNOTATION;
+	int UNSPECIFIED_TYPE__OWNED_ANNOTATION = CLASS__OWNED_ANNOTATION;
 
 	/**
 	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
@@ -14825,7 +13237,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER = TYPE__OWNING_TEMPLATE_PARAMETER;
+	int UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER = CLASS__OWNING_TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
@@ -14834,7 +13246,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__TEMPLATE_PARAMETER = TYPE__TEMPLATE_PARAMETER;
+	int UNSPECIFIED_TYPE__TEMPLATE_PARAMETER = CLASS__TEMPLATE_PARAMETER;
 
 	/**
 	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
@@ -14843,7 +13255,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__TEMPLATE_BINDING = TYPE__TEMPLATE_BINDING;
+	int UNSPECIFIED_TYPE__TEMPLATE_BINDING = CLASS__TEMPLATE_BINDING;
 
 	/**
 	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
@@ -14852,7 +13264,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE = TYPE__OWNED_TEMPLATE_SIGNATURE;
+	int UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE = CLASS__OWNED_TEMPLATE_SIGNATURE;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' container reference.
@@ -14861,7 +13273,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__PACKAGE = TYPE__PACKAGE;
+	int UNSPECIFIED_TYPE__PACKAGE = CLASS__PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
@@ -14870,7 +13282,61 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME = TYPE__INSTANCE_CLASS_NAME;
+	int UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME = CLASS__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__IS_ABSTRACT = CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_ATTRIBUTE = CLASS__OWNED_ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__OWNED_OPERATION = CLASS__OWNED_OPERATION;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__SUPER_CLASS = CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Interface</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__IS_INTERFACE = CLASS__IS_INTERFACE;
+
+	/**
+	 * The feature id for the '<em><b>Sub Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSPECIFIED_TYPE__SUB_CLASS = CLASS__SUB_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' reference.
@@ -14879,7 +13345,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__LOWER_BOUND = TYPE_FEATURE_COUNT + 0;
+	int UNSPECIFIED_TYPE__LOWER_BOUND = CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' reference.
@@ -14888,7 +13354,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE__UPPER_BOUND = TYPE_FEATURE_COUNT + 1;
+	int UNSPECIFIED_TYPE__UPPER_BOUND = CLASS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Unspecified Type</em>' class.
@@ -14897,7 +13363,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int UNSPECIFIED_TYPE_FEATURE_COUNT = CLASS_FEATURE_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Has Moniker</em>' operation.
@@ -14906,7 +13372,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE___HAS_MONIKER = TYPE___HAS_MONIKER;
+	int UNSPECIFIED_TYPE___HAS_MONIKER = CLASS___HAS_MONIKER;
 
 	/**
 	 * The operation id for the '<em>Is Template Parameter</em>' operation.
@@ -14915,7 +13381,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = TYPE___IS_TEMPLATE_PARAMETER;
+	int UNSPECIFIED_TYPE___IS_TEMPLATE_PARAMETER = CLASS___IS_TEMPLATE_PARAMETER;
 
 	/**
 	 * The operation id for the '<em>Parameterable Elements</em>' operation.
@@ -14924,7 +13390,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE___PARAMETERABLE_ELEMENTS = TYPE___PARAMETERABLE_ELEMENTS;
+	int UNSPECIFIED_TYPE___PARAMETERABLE_ELEMENTS = CLASS___PARAMETERABLE_ELEMENTS;
 
 	/**
 	 * The operation id for the '<em>Is Template</em>' operation.
@@ -14933,7 +13399,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE___IS_TEMPLATE = TYPE___IS_TEMPLATE;
+	int UNSPECIFIED_TYPE___IS_TEMPLATE = CLASS___IS_TEMPLATE;
 
 	/**
 	 * The number of operations of the '<em>Unspecified Type</em>' class.
@@ -14942,7 +13408,7 @@ public interface PivotPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UNSPECIFIED_TYPE_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
+	int UNSPECIFIED_TYPE_OPERATION_COUNT = CLASS_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -15267,7 +13733,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getVisitor()
 	 * @generated
 	 */
-	int VISITOR = 98;
+	int VISITOR = 93;
 
 	/**
 	 * The number of structural features of the '<em>Visitor</em>' class.
@@ -15511,7 +13977,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getAssociativityKind()
 	 * @generated
 	 */
-	int ASSOCIATIVITY_KIND = 100;
+	int ASSOCIATIVITY_KIND = 95;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.examples.pivot.CollectionKind <em>Collection Kind</em>}' enum.
@@ -15521,7 +13987,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCollectionKind()
 	 * @generated
 	 */
-	int COLLECTION_KIND = 101;
+	int COLLECTION_KIND = 96;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -15530,7 +13996,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 102;
+	int BOOLEAN = 97;
 
 	/**
 	 * The meta object id for the '<em>Int</em>' data type.
@@ -15539,7 +14005,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInt()
 	 * @generated
 	 */
-	int INT = 104;
+	int INT = 99;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -15549,7 +14015,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 105;
+	int INTEGER = 100;
 
 	/**
 	 * The meta object id for the '<em>Object</em>' data type.
@@ -15559,7 +14025,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getObject()
 	 * @generated
 	 */
-	int OBJECT = 106;
+	int OBJECT = 101;
 
 	/**
 	 * The meta object id for the '<em>Real</em>' data type.
@@ -15569,7 +14035,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getReal()
 	 * @generated
 	 */
-	int REAL = 107;
+	int REAL = 102;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -15579,7 +14045,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 108;
+	int STRING = 103;
 
 	/**
 	 * The meta object id for the '<em>Throwable</em>' data type.
@@ -15589,7 +14055,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getThrowable()
 	 * @generated
 	 */
-	int THROWABLE = 109;
+	int THROWABLE = 104;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -15599,7 +14065,7 @@ public interface PivotPackage
 	 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 110;
+	int UNLIMITED_NATURAL = 105;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.Annotation <em>Annotation</em>}'.
@@ -15948,314 +14414,6 @@ public interface PivotPackage
 	 * @generated
 	 */
 	EReference getCollectionRange_Last();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment
-	 * @generated
-	 */
-	EClass getCompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation) <em>Get Complete Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Operation</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteOperation(org.eclipse.ocl.examples.pivot.Operation)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompleteOperation__Operation();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompletePackage(org.eclipse.ocl.examples.pivot.Package) <em>Get Complete Package</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Package</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompletePackage(org.eclipse.ocl.examples.pivot.Package)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompletePackage__Package();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteProperty(org.eclipse.ocl.examples.pivot.Property) <em>Get Complete Property</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Property</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteProperty(org.eclipse.ocl.examples.pivot.Property)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompleteProperty__Property();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type) <em>Get Complete Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Complete Type</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getCompleteType(org.eclipse.ocl.examples.pivot.Type)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetCompleteType__Type();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteEnvironment#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteType, org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Dynamic Operation</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteEnvironment#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteType, org.eclipse.ocl.examples.pivot.CompleteOperation)
-	 * @generated
-	 */
-	EOperation getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteOperation <em>Complete Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation
-	 * @generated
-	 */
-	EClass getCompleteOperation();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation#getModel()
-	 * @see #getCompleteOperation()
-	 * @generated
-	 */
-	EReference getCompleteOperation_Model();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getModels <em>Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Models</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation#getModels()
-	 * @see #getCompleteOperation()
-	 * @generated
-	 */
-	EReference getCompleteOperation_Models();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteEnvironment()
-	 * @see #getCompleteOperation()
-	 * @generated
-	 */
-	EReference getCompleteOperation_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteParameters <em>Complete Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Parameter</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteOperation#getCompleteParameters()
-	 * @see #getCompleteOperation()
-	 * @generated
-	 */
-	EReference getCompleteOperation_CompleteParameter();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompletePackage <em>Complete Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage
-	 * @generated
-	 */
-	EClass getCompletePackage();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getModel()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_Model();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getModels <em>Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Models</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getModels()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_Models();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteEnvironment()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages <em>Complete Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Package</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompletePackages()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_CompletePackage();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes <em>Complete Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompletePackage#getCompleteTypes()
-	 * @see #getCompletePackage()
-	 * @generated
-	 */
-	EReference getCompletePackage_CompleteType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteProperty <em>Complete Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Property</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteProperty
-	 * @generated
-	 */
-	EClass getCompleteProperty();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteProperty#getModel()
-	 * @see #getCompleteProperty()
-	 * @generated
-	 */
-	EReference getCompleteProperty_Model();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getModels <em>Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Models</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteProperty#getModels()
-	 * @see #getCompleteProperty()
-	 * @generated
-	 */
-	EReference getCompleteProperty_Models();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteProperty#getCompleteEnvironment()
-	 * @see #getCompleteProperty()
-	 * @generated
-	 */
-	EReference getCompleteProperty_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.CompleteType <em>Complete Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Complete Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType
-	 * @generated
-	 */
-	EClass getCompleteType();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModel <em>Model</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Model</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getModel()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_Model();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getModels <em>Models</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Models</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getModels()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_Models();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment <em>Complete Environment</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Complete Environment</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteEnvironment()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_CompleteEnvironment();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations <em>Complete Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Operation</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteOperations()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_CompleteOperation();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties <em>Complete Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Property</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteProperties()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_CompleteProperty();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.ocl.examples.pivot.CompleteType#getCompleteSuperTypes <em>Complete Super Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Complete Super Type</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getCompleteSuperTypes()
-	 * @see #getCompleteType()
-	 * @generated
-	 */
-	EReference getCompleteType_CompleteSuperType();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.ocl.examples.pivot.CompleteType#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation) <em>Get Dynamic Operation</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Get Dynamic Operation</em>' operation.
-	 * @see org.eclipse.ocl.examples.pivot.CompleteType#getDynamicOperation(org.eclipse.ocl.examples.pivot.CompleteOperation)
-	 * @generated
-	 */
-	EOperation getCompleteType__GetDynamicOperation__CompleteOperation();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.EnumLiteralExp <em>Enum Literal Exp</em>}'.
@@ -18783,17 +16941,6 @@ public interface PivotPackage
 	EAttribute getCallExp_Implicit();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.ocl.examples.pivot.CallExp#getReferredFeature <em>Referred Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Referred Feature</em>'.
-	 * @see org.eclipse.ocl.examples.pivot.CallExp#getReferredFeature()
-	 * @see #getCallExp()
-	 * @generated
-	 */
-	EReference getCallExp_ReferredFeature();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19227,248 +17374,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EReference COLLECTION_RANGE__LAST = eINSTANCE.getCollectionRange_Last();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl <em>Complete Environment</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteEnvironmentImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteEnvironment()
-		 * @generated
-		 */
-		EClass COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Operation</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_OPERATION__OPERATION = eINSTANCE.getCompleteEnvironment__GetCompleteOperation__Operation();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Package</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_PACKAGE__PACKAGE = eINSTANCE.getCompleteEnvironment__GetCompletePackage__Package();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Property</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_PROPERTY__PROPERTY = eINSTANCE.getCompleteEnvironment__GetCompleteProperty__Property();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Complete Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_COMPLETE_TYPE__TYPE = eINSTANCE.getCompleteEnvironment__GetCompleteType__Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_ENVIRONMENT___GET_DYNAMIC_OPERATION__COMPLETETYPE_COMPLETEOPERATION = eINSTANCE.getCompleteEnvironment__GetDynamicOperation__CompleteType_CompleteOperation();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl <em>Complete Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteOperationImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteOperation()
-		 * @generated
-		 */
-		EClass COMPLETE_OPERATION = eINSTANCE.getCompleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_OPERATION__MODEL = eINSTANCE.getCompleteOperation_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_OPERATION__MODELS = eINSTANCE.getCompleteOperation_Models();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_OPERATION__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteOperation_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Parameter</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_OPERATION__COMPLETE_PARAMETER = eINSTANCE.getCompleteOperation_CompleteParameter();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl <em>Complete Package</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompletePackageImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompletePackage()
-		 * @generated
-		 */
-		EClass COMPLETE_PACKAGE = eINSTANCE.getCompletePackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__MODEL = eINSTANCE.getCompletePackage_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__MODELS = eINSTANCE.getCompletePackage_Models();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__COMPLETE_ENVIRONMENT = eINSTANCE.getCompletePackage_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Package</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__COMPLETE_PACKAGE = eINSTANCE.getCompletePackage_CompletePackage();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Type</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PACKAGE__COMPLETE_TYPE = eINSTANCE.getCompletePackage_CompleteType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl <em>Complete Property</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompletePropertyImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteProperty()
-		 * @generated
-		 */
-		EClass COMPLETE_PROPERTY = eINSTANCE.getCompleteProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PROPERTY__MODEL = eINSTANCE.getCompleteProperty_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PROPERTY__MODELS = eINSTANCE.getCompleteProperty_Models();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_PROPERTY__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteProperty_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl <em>Complete Type</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.CompleteTypeImpl
-		 * @see org.eclipse.ocl.examples.pivot.internal.impl.PivotPackageImpl#getCompleteType()
-		 * @generated
-		 */
-		EClass COMPLETE_TYPE = eINSTANCE.getCompleteType();
-
-		/**
-		 * The meta object literal for the '<em><b>Model</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__MODEL = eINSTANCE.getCompleteType_Model();
-
-		/**
-		 * The meta object literal for the '<em><b>Models</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__MODELS = eINSTANCE.getCompleteType_Models();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Environment</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__COMPLETE_ENVIRONMENT = eINSTANCE.getCompleteType_CompleteEnvironment();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Operation</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__COMPLETE_OPERATION = eINSTANCE.getCompleteType_CompleteOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Property</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__COMPLETE_PROPERTY = eINSTANCE.getCompleteType_CompleteProperty();
-
-		/**
-		 * The meta object literal for the '<em><b>Complete Super Type</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPLETE_TYPE__COMPLETE_SUPER_TYPE = eINSTANCE.getCompleteType_CompleteSuperType();
-
-		/**
-		 * The meta object literal for the '<em><b>Get Dynamic Operation</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation COMPLETE_TYPE___GET_DYNAMIC_OPERATION__COMPLETEOPERATION = eINSTANCE.getCompleteType__GetDynamicOperation__CompleteOperation();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.internal.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
@@ -21541,14 +19446,6 @@ public interface PivotPackage
 		 * @generated
 		 */
 		EAttribute CALL_EXP__IMPLICIT = eINSTANCE.getCallExp_Implicit();
-
-		/**
-		 * The meta object literal for the '<em><b>Referred Feature</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CALL_EXP__REFERRED_FEATURE = eINSTANCE.getCallExp_ReferredFeature();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.examples.pivot.util.Visitor <em>Visitor</em>}' class.

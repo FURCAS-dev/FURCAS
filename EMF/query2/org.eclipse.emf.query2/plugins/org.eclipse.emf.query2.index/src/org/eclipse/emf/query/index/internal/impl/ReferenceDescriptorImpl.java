@@ -18,7 +18,7 @@ import org.eclipse.emf.query.index.internal.EReferenceDescriptorInternal;
  * @author Bernd Kolb - Initial API and implementation
  * 
  */
-public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal {
+public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal{
 
 	private final EObjectDescriptorImpl source;
 	public static final int SOURCE_FRAGMENT = 1;
@@ -82,4 +82,42 @@ public class ReferenceDescriptorImpl implements EReferenceDescriptorInternal {
 	public boolean isIntraLink() {
 		return this.source.getResourceURI() == this.targetResource;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((reference == null) ? 0 : reference.hashCode());
+		result = prime * result + ((source == null) ? 0 : source.hashCode());
+		result = prime * result + ((targetFragment == null) ? 0 : targetFragment.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ReferenceDescriptorImpl other = (ReferenceDescriptorImpl) obj;
+		if (reference == null) {
+			if (other.reference != null)
+				return false;
+		} else if (!reference.equals(other.reference))
+			return false;
+		if (source == null) {
+			if (other.source != null)
+				return false;
+		} else if (!source.equals(other.source))
+			return false;
+		if (targetFragment == null) {
+			if (other.targetFragment != null)
+				return false;
+		} else if (!targetFragment.equals(other.targetFragment))
+			return false;
+		return true;
+	}
+
 }

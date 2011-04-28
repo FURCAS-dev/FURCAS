@@ -22,9 +22,10 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.ocl.examples.eventmanager.EventFilter;
 import org.eclipse.ocl.examples.eventmanager.EventManager;
 import org.eclipse.ocl.examples.eventmanager.EventManagerFactory;
-import org.eclipse.ocl.examples.eventmanager.filters.EventFilter;
+import org.eclipse.ocl.examples.eventmanager.filters.AbstractEventFilter;
 
 
 /**
@@ -77,7 +78,7 @@ public class EventManagerTableBased implements EventManager {
 
 	/**
 	 * Registered with all {@link WeakReference}s created for {@link Adapter}s
-	 * during {@link #register(Adapter, EventFilter, ListenerTypeEnum)
+	 * during {@link #register(Adapter, AbstractEventFilter, ListenerTypeEnum)
 	 * registration}. If any of these adapters is no longer strongly referenced
 	 * and hence eligible for garbage collection, it may not have been properly
 	 * {@link #deregister(Adapter) deregistered} from this event manager. This
@@ -116,22 +117,22 @@ public class EventManagerTableBased implements EventManager {
      * @see EventRegistry#registerListener(ChangeListener, MoinEventFilter)
      */
     public void subscribe(
-            org.eclipse.ocl.examples.eventmanager.filters.EventFilter eventFilterTree, Adapter listener) {
-        register(listener, eventFilterTree, ListenerTypeEnum.postChange);
+            EventFilter eventFilterTree, Adapter listener) {
+        register(listener, (AbstractEventFilter) eventFilterTree, ListenerTypeEnum.postChange);
     }
 
     /*
      * @see EventRegistry#registerPreChangeListener(PreChangeListener, MoinEventFilter)
      */
-    public void registerPreChangeListener(Adapter listener, EventFilter eventFilterTree) {
+    public void registerPreChangeListener(Adapter listener, AbstractEventFilter eventFilterTree) {
         register(listener, eventFilterTree, ListenerTypeEnum.preChange);
     }
 
-    public void registerCommitListener(Adapter listener, EventFilter eventFilterTree) {
+    public void registerCommitListener(Adapter listener, AbstractEventFilter eventFilterTree) {
         register(listener, eventFilterTree, ListenerTypeEnum.postCommit);
     }
 
-    public void registerPreCommitListener(Adapter listener, EventFilter eventFilterTree) {
+    public void registerPreCommitListener(Adapter listener, AbstractEventFilter eventFilterTree) {
         register(listener, eventFilterTree, ListenerTypeEnum.preCommit);
     }
 
@@ -143,7 +144,7 @@ public class EventManagerTableBased implements EventManager {
     private static final ListenerTypeEnum listenersForDeferringNotifier = new ListenerTypeEnum(ListenerTypeEnum.postCommit,
             ListenerTypeEnum.preCommit);
 
-    private void register(Adapter listener, EventFilter eventFilterTree, ListenerTypeEnum listenerType) {
+    private void register(Adapter listener, AbstractEventFilter eventFilterTree, ListenerTypeEnum listenerType) {
         // Check preconditions for parameters
         if (listener == null) {
             throw new IllegalArgumentException("Event listener must not be null");

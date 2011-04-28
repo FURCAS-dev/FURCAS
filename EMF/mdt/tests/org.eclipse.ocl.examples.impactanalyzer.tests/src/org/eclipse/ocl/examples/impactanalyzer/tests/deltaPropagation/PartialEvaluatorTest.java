@@ -40,7 +40,6 @@ import org.eclipse.ocl.examples.impactanalyzer.ValueNotFoundException;
 import org.eclipse.ocl.examples.impactanalyzer.deltaPropagation.PartialEvaluatorImpl;
 import org.eclipse.ocl.examples.impactanalyzer.filterSynthesis.FilterSynthesisImpl;
 import org.eclipse.ocl.examples.impactanalyzer.util.OCLFactory;
-import org.eclipse.ocl.examples.impactanalyzer.util.impl.OCLFactoryImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,7 +65,7 @@ public class PartialEvaluatorTest extends TestCase {
     @Override
     @Before
     public void setUp() {
-        oclFactory = new OCLFactoryImpl();
+        oclFactory = OCLFactory.getInstance();
         evaluator = new PartialEvaluatorImpl(oclFactory);
     }
 

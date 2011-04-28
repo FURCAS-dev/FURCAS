@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.8 2011/03/03 20:09:21 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.10 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -58,6 +57,7 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private PrimitiveType booleanType = null;
 	private org.eclipse.ocl.examples.pivot.Class classifierType = null;
 	private CollectionType collectionType = null;
+	private org.eclipse.ocl.examples.pivot.Enumeration enumerationType = null;
 	private PrimitiveType integerType = null;
 	private AnyType oclAnyType = null;
 	private InvalidType oclInvalidType = null;
@@ -70,12 +70,11 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private Type tupleType = null;
 	private PrimitiveType unlimitedNaturalType = null;
 	
-	protected org.eclipse.ocl.examples.pivot.Package pivotPackage = null;
+	protected org.eclipse.ocl.examples.pivot.Package pivotMetaModel = null;
 	
 	private Map<String, Type> nameToLibraryTypeMap = null;
 
 	protected void defineLibraryType(Type pivotType) {
-		assert !(pivotType instanceof CompleteType);
 		if (nameToLibraryTypeMap == null) {
 			nameToLibraryTypeMap = new HashMap<String, Type>();
 		}
@@ -136,6 +135,19 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 			}		
 		}
 		return collectionType;
+	}
+
+	public org.eclipse.ocl.examples.pivot.Enumeration getEnumerationType() {
+		if (enumerationType == null) {
+			Type type = getRequiredLibraryType("Enumeration");
+			if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+				enumerationType = (org.eclipse.ocl.examples.pivot.Enumeration) type;
+			}
+			else if (type != null) {
+				throw new IllegalStateException("Enumeration is not an Enumeration");
+			}		
+		}
+		return enumerationType;
 	}
 
 	public PrimitiveType getIntegerType() {
@@ -215,18 +227,18 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return orderedSetType;
 	}
 	
-	public org.eclipse.ocl.examples.pivot.Package getPivotPackage() {
-		if (pivotPackage == null) {
-			pivotPackage = OclMetaModel.create(this);
+	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
+		if (pivotMetaModel == null) {
+			pivotMetaModel = OclMetaModel.create(this);
 		}
-		return pivotPackage;
+		return pivotMetaModel;
 	}
 
 	/**
 	 * Return the pivot model class for className with the Pivot Model.
 	 */
 	public Type getPivotType(String className) {
-		return PivotUtil.getNamedElement(getPivotPackage().getOwnedTypes(), className);
+		return PivotUtil.getNamedElement(getPivotMetaModel().getOwnedTypes(), className);
 	}	
 
 	public PrimitiveType getRealType() {

@@ -140,7 +140,7 @@ public class TestObservableParser {
         }
 
         @Override
-        public void notifyEnterSequenceElement(String mri) {
+        public void notifyEnterSequenceElement(String sequenceElementURI) {
             result = "3";
         }
 

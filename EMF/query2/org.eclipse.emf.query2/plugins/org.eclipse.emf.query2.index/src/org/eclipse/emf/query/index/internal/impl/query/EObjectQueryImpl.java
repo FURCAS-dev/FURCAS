@@ -123,6 +123,7 @@ public class EObjectQueryImpl<EODType> implements EObjectQuery<EODType>, QueryIn
 		});
 	}
 
+	@SuppressWarnings("unused")
 	public Iterable<URI> getResourceScope(final GlobalTables globalTables) {
 		Collection<URI> ret = null;
 		if (this.resQuery != null) {

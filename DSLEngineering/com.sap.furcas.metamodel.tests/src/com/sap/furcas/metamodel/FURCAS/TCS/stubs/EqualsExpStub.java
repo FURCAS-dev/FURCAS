@@ -3,8 +3,11 @@
  */
 package com.sap.furcas.metamodel.FURCAS.TCS.stubs;
 
+import org.eclipse.emf.ecore.EClass;
+
 import com.sap.furcas.metamodel.FURCAS.TCS.AndExp;
 import com.sap.furcas.metamodel.FURCAS.TCS.EqualsExp;
+import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.Value;
 
 /**
@@ -54,6 +57,11 @@ public class EqualsExpStub extends AtomExpStub implements EqualsExp {
     @Override
     public void setValue(Value value) {
 	this.value = value;
+    }
+
+    @Override
+    public EClass eClass() {
+        return TCSPackage.eINSTANCE.getEqualsExp();
     }
 
 }

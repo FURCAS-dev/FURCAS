@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2MonikerVisitor.java,v 1.7 2011/03/14 10:19:39 ewillink Exp $
+ * $Id: Pivot2MonikerVisitor.java,v 1.9 2011/04/20 19:02:46 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -26,10 +26,6 @@ import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
-import org.eclipse.ocl.examples.pivot.CompleteOperation;
-import org.eclipse.ocl.examples.pivot.CompletePackage;
-import org.eclipse.ocl.examples.pivot.CompleteProperty;
-import org.eclipse.ocl.examples.pivot.CompleteType;
 import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Detail;
 import org.eclipse.ocl.examples.pivot.EnumLiteralExp;
@@ -61,7 +57,6 @@ import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.UnlimitedNaturalLiteralExp;
-import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
@@ -176,13 +171,8 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 		if (owningTemplateParameter != null) {		
 			if (templateBindings != null) {
 				ParameterableElement parameterableElement = templateBindings.get(owningTemplateParameter);
-				if (parameterableElement != null) {
-					if (parameterableElement == object) {
-						context.append(OVERFLOW_MARKER);
-					}
-					else {
-						context.appendElement(parameterableElement);
-					}
+				if ((parameterableElement != null) && (parameterableElement != object) ){
+					context.appendElement(parameterableElement);
 					return true;
 				}
 			}
@@ -227,38 +217,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 	public Object visitCollectionLiteralPart(CollectionLiteralPart object) {
 		context.appendParent(object, MONIKER_PART_SEPARATOR);
 		context.appendIndex(object);
-		return true;
-	}
-
-	@Override
-	public Object visitCompleteOperation(CompleteOperation object) {
-		context.appendElement(object.getModel());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		context.append(0);
-		return true;
-	}
-
-	@Override
-	public Object visitCompletePackage(CompletePackage object) {
-		context.appendElement(object.getModel());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		context.append(0);
-		return true;
-	}
-
-	@Override
-	public Object visitCompleteProperty(CompleteProperty object) {
-		context.appendElement(object.getModel());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		context.append(0);
-		return true;
-	}
-
-	@Override
-	public Object visitCompleteType(CompleteType object) {
-		context.appendElement(object.getModel());
-		context.append(MONIKER_OPERATOR_SEPARATOR);
-		context.append(0);
 		return true;
 	}
 
@@ -536,12 +494,6 @@ public class Pivot2MonikerVisitor extends AbstractExtendingVisitor<Object, Abstr
 			context.append(unlimitedNaturalSymbol.toString());
 		}
 		return true;
-	}
-
-	@Override
-	public Object visitUnspecifiedType(UnspecifiedType object) {
-		// TODO Auto-generated method stub
-		return super.visitUnspecifiedType(object);
 	}
 
 	@Override
