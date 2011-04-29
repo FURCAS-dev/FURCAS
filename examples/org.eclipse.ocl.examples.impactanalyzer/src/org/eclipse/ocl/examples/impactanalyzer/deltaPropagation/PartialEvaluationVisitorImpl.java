@@ -164,7 +164,7 @@ public class PartialEvaluationVisitorImpl extends EvaluationVisitorImpl {
     }
 
     @Override
-	protected Object saveVisitExpression(OCLExpression<EClassifier> source) {
+	protected Object safeVisitExpression(OCLExpression<EClassifier> source) {
 		Object sourceVal;
 		try {
 			sourceVal = source.accept(getVisitor());

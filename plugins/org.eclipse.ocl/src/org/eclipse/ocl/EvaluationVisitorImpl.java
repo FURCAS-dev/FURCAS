@@ -170,7 +170,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		int numArgs = args.size();
 
 		// evaluate source
-		Object sourceVal = saveVisitExpression(source);
+		Object sourceVal = safeVisitExpression(source);
 		
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
@@ -182,7 +182,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			int i = 0;
 			for (Iterator<OCLExpression<C>> it = args.iterator(); it.hasNext(); i++) {
 				OCLExpression<C> arg = it.next();
-				evalArgs[i] = saveVisitExpression(arg);
+				evalArgs[i] = safeVisitExpression(arg);
 			}
 	
 			// ask the environment to evaluate
@@ -269,7 +269,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			}
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = saveVisitExpression(arg);
+			Object argVal = safeVisitExpression(arg);
 			if (argVal == getInvalid()) {
 				return argVal;
 			}
@@ -295,7 +295,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = saveVisitExpression(arg);
+			Object argVal = safeVisitExpression(arg);
 			if (argVal == getInvalid()) {
 				return argVal;
 			}
@@ -623,7 +623,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				// evaluate arg, unless we have a boolean operation
 				Object argVal = null;
 				if (!isBooleanOperation(opCode)) {
-					argVal = saveVisitExpression(arg);
+					argVal = safeVisitExpression(arg);
 					if (argVal == getInvalid()) {
 						return argVal; // an invalid argument leads to invalid operation call value
 					}                  // unless a boolean operation doesn't evaluate the arg
@@ -2105,7 +2105,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		if (initExp != null) {
 			// if an unpropagated runtime exception is thrown, assign invalid to
 			// variable, allowing an oclIsInvalid() to detect it later
-			initVal = saveVisitExpression(initExp);
+			initVal = safeVisitExpression(initExp);
         }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;
