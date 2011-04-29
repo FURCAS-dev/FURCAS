@@ -432,6 +432,9 @@ public class CollectionsTest
             assertFalse(check(helper, "",
                 "OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
                     " = Set{'b', 'c', 'a', 'd'}"));
+            assertTrue(check(helper, "",
+                "OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
+                    " = OrderedSet{'a', 'b', 'c', 'd'}"));
 
             assertTrue(check(helper, "",
                 "Sequence{'a', 'b', 'd', 'b', 'c', 'd'}->flatten()" +
