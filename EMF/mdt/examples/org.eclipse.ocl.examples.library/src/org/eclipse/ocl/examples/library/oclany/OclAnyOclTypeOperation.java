@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: OclAnyOclTypeOperation.java,v 1.4 2011/03/12 16:16:30 ewillink Exp $
+ * $Id: OclAnyOclTypeOperation.java,v 1.5 2011/04/25 09:48:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.oclany;
 
 import org.eclipse.ocl.examples.library.AbstractOperation;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
@@ -36,6 +37,7 @@ public class OclAnyOclTypeOperation extends AbstractOperation
 		TypeManager typeManager = evaluationVisitor.getTypeManager();
 		Type staticType = operationCall.getSource().getType();
 		Type sourceType = sourceVal.getType(typeManager, staticType);
-		return evaluationVisitor.getValueFactory().createElementValue(sourceType);
+		ClassifierType classifierType = typeManager.getClassifierType(sourceType);
+		return evaluationVisitor.getValueFactory().createTypeValue(classifierType);
 	}
 }

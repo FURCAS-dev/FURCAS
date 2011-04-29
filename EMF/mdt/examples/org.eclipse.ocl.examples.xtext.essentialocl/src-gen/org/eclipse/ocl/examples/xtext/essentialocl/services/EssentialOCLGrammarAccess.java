@@ -408,14 +408,30 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class EssentialOCLUnreservedNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EssentialOCLUnreservedName");
-		private final RuleCall cUnrestrictedNameParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cUnrestrictedNameParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCollectionTypeIdentifierParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cPrimitiveTypeIdentifierParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Keyword cTupleKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
 		
 		//EssentialOCLUnreservedName returns ecore::EString:
-		//	UnrestrictedName;
+		//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
 		public ParserRule getRule() { return rule; }
 
+		//UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//UnrestrictedName
-		public RuleCall getUnrestrictedNameParserRuleCall() { return cUnrestrictedNameParserRuleCall; }
+		public RuleCall getUnrestrictedNameParserRuleCall_0() { return cUnrestrictedNameParserRuleCall_0; }
+
+		//CollectionTypeIdentifier
+		public RuleCall getCollectionTypeIdentifierParserRuleCall_1() { return cCollectionTypeIdentifierParserRuleCall_1; }
+
+		//PrimitiveTypeIdentifier
+		public RuleCall getPrimitiveTypeIdentifierParserRuleCall_2() { return cPrimitiveTypeIdentifierParserRuleCall_2; }
+
+		//"Tuple"
+		public Keyword getTupleKeyword_3() { return cTupleKeyword_3; }
 	}
 
 	public class UnreservedNameElements extends AbstractParserRuleElementFinder {
@@ -2527,7 +2543,7 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//EssentialOCLUnreservedName returns ecore::EString:
-	//	UnrestrictedName;
+	//	UnrestrictedName | CollectionTypeIdentifier | PrimitiveTypeIdentifier | "Tuple";
 	public EssentialOCLUnreservedNameElements getEssentialOCLUnreservedNameAccess() {
 		return (pEssentialOCLUnreservedName != null) ? pEssentialOCLUnreservedName : (pEssentialOCLUnreservedName = new EssentialOCLUnreservedNameElements());
 	}
