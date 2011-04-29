@@ -557,7 +557,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * 
 	 * @since 3.1
 	 */
-	protected Object saveVisitExpression(OCLExpression<C> exp) {
+	protected Object safeVisitExpression(OCLExpression<C> exp) {
 		Object sourceVal;
 		try {
 			sourceVal = exp.accept(getVisitor());
