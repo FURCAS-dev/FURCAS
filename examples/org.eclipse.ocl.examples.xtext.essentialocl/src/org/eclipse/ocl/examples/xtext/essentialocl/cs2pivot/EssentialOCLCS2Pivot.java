@@ -12,18 +12,19 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.5 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.7 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -35,6 +36,7 @@ import org.eclipse.ocl.examples.xtext.base.scope.ScopeCSAdapter;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.EssentialOCLCSTPackage;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ExpCS;
+import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingArgCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.NavigatingExpCS;
 import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.OperatorCS;
 import org.eclipse.osgi.util.NLS;
@@ -81,10 +83,23 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 		@Override
 		public String getMessage(EObject context, String linkText) {
 			String messageTemplate;
+			String argumentText = null;
 			ExpCS navigationArgument = null;
 			if (context.eContainer() instanceof NavigatingExpCS) {
-				navigationArgument = (NavigatingExpCS)context.eContainer();
-				messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
+				NavigatingExpCS eContainer = (NavigatingExpCS)context.eContainer();
+				navigationArgument = eContainer;
+				List<NavigatingArgCS> arguments = eContainer.getArgument();
+				if (arguments.size() <= 0) {
+					messageTemplate = OCLMessages.UnresolvedOperation_ERROR_;
+				}
+				else {
+					StringBuffer s = new StringBuffer();
+					for (NavigatingArgCS csArgument : arguments) {
+						s.append(csArgument.toString());
+					}
+					argumentText = s.toString();
+					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;
+				}
 			}
 			else if (context instanceof ExpCS) {
 				navigationArgument = (ExpCS)context;
@@ -96,22 +111,28 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 			String typeText = PivotConstants.UNKNOWN_TYPE_TEXT;
 			OperatorCS csOperator = navigationArgument != null ? navigationArgument.getParent() : null;
 			if ((csOperator != null) && (csOperator.getSource() != navigationArgument)) {
-//				NavigationOperatorCS csNavigationOperator = (NavigationOperatorCS)csOperator;
 				OclExpression source = PivotUtil.getPivot(OclExpression.class, csOperator.getSource());
 				if (source != null) {
-					Type sourceType;
-					if (source instanceof TypeExp) {			// FIXME regularize this
-						sourceType = ((TypeExp)source).getReferredType();
+					Type sourceType = source.getType();
+					if (sourceType instanceof ClassifierType) {
+						sourceType = ((ClassifierType)sourceType).getInstanceType();
+						if (sourceType != null) {
+							typeText = sourceType.toString() + " type";
+						}
 					}
 					else {
-						sourceType = source.getType();
-					}
-					if (sourceType != null) {
-						typeText = sourceType.toString();
+						if (sourceType != null) {
+							typeText = sourceType.toString() + " value";
+						}
 					}
 				}
 			}
-			return NLS.bind(messageTemplate, linkText, typeText);
+			if (argumentText == null) {
+				return NLS.bind(messageTemplate, linkText, typeText);
+			}
+			else {
+				return NLS.bind(messageTemplate, new Object[]{linkText, typeText, argumentText});
+			}
 		}
 	}
 		
