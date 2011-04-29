@@ -1024,10 +1024,11 @@ public class EvaluationNumberOperationTest
 	}
 
 	public void testUnlimitedOclAsType() {
-		assertResult(UnlimitedNaturalLiteralExp.UNLIMITED,
-			"*.oclAsType(Integer)");
-		// FIXME UNLIMITED currently represented as -1; maybe this should be invalid since Real is supertype of Integer?
-		/// assertResult(UnlimitedNaturalLiteralExp.UNLIMITED, "*.oclAsType(Real)");
+		// As demanded by the specification, OCL 2.3 (OMG 10-11-42), Section 8.2.1,
+		// * when converted to Integer evaluates to invalid. As Integer conforms to
+		// Real, * also has to evaluate to invalid when converted to Real.
+		assertResultInvalid("*.oclAsType(Integer)");
+		assertResultInvalid("*.oclAsType(Real)");
 		assertResult(UnlimitedNaturalLiteralExp.UNLIMITED,
 			"*.oclAsType(UnlimitedNatural)");
 		assertResultInvalid("*.oclAsType(String)");

@@ -28,6 +28,7 @@ import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.EvaluationOptions;
+import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -441,8 +442,9 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// ask if not lax-null-handling
 		if (value == null) {
 			return isLaxNullHandling()
-			    // VoidType conforms to all other types (Section 8.2 of OCL specification)
-				? Boolean.TRUE
+			    // VoidType conforms to all other types except OclInvalid
+		        // See Section 8.2 of OCL 2.3 specification (10-11-42) 
+				? !Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;
 		}
 
@@ -481,7 +483,7 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// permitted, so return null to generate an OclInvalid down the line
 		if (isUndefined(value)) {
 			return isLaxNullHandling()
-				? Boolean.TRUE
+				? !Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;
 		}
 
