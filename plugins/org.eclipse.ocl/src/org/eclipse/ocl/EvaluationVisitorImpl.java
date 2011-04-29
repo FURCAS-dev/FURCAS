@@ -505,10 +505,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					case PredefinedType.FIRST:
 						// OrderedSet::first()
+						if (((Collection<?>) sourceVal).isEmpty()) {
+							return getInvalid();
+						}
 						return CollectionUtil.first((Collection<?>) sourceVal);
 
 					case PredefinedType.LAST:
 						// OrderedSet::last()
+						if (((Collection<?>) sourceVal).isEmpty()) {
+							return getInvalid();
+						}
 						return CollectionUtil.last((Collection<?>) sourceVal);
 
 				} // end of unary operation switch

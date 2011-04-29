@@ -550,8 +550,8 @@ public class EvaluationCollectionOperationTest
 	}
 
 	public void testCollectionFirst() {
-		assertResult(null, "Sequence{}->first()");
-		assertResult(null, "OrderedSet{}->first()");
+		assertResultInvalid("Sequence{}->first()");
+		assertResultInvalid("OrderedSet{}->first()");
 
 		assertResult(Integer.valueOf(1), "Sequence{1, 2.0, '3'}->first()");
 		assertResult(Integer.valueOf(1), "OrderedSet{1, 2.0, '3'}->first()");
@@ -1054,8 +1054,8 @@ public class EvaluationCollectionOperationTest
 	}
 
 	public void testCollectionLast() {
-		assertResult(null, "Sequence{}->last()");
-		assertResult(null, "OrderedSet{}->last()");
+		assertResultInvalid("Sequence{}->last()");
+		assertResultInvalid("OrderedSet{}->last()");
 
 		assertResult("3", "Sequence{1, 2.0, '3'}->last()"); //$NON-NLS-2$
 		assertResult("3", "OrderedSet{1, 2.0, '3'}->last()"); //$NON-NLS-2$
