@@ -28,7 +28,6 @@ import org.eclipse.ocl.internal.OCLStatusCodes;
 import org.eclipse.ocl.internal.evaluation.NumberUtil;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.options.EvaluationOptions;
-import org.eclipse.ocl.types.InvalidType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -442,8 +441,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// ask if not lax-null-handling
 		if (value == null) {
 			return isLaxNullHandling()
-			    // OclVoid conforms to all other types except OclInvalido
-				? !Boolean.valueOf(type instanceof InvalidType<?>)
+			    // VoidType conforms to all other types (Section 8.2 of OCL specification)
+				? Boolean.TRUE
 				: null;
 		}
 
