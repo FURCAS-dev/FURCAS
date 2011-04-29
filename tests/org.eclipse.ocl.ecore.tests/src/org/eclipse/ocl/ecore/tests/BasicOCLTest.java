@@ -595,6 +595,10 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
+            assertEquals(Boolean.TRUE,
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclInvalid)"));
+            assertEquals(Boolean.TRUE,
+                evaluate(helper, annotation, "null.oclIsKindOf(OclInvalid)"));
             assertNull(
                 evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertNull(
@@ -624,6 +628,10 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclInvalid)"));
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "null.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertEquals(getInvalid(),
