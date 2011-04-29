@@ -351,7 +351,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	}
 }
 
-type Classifier conformsTo OclAny {
+type Classifier<T> : ClassifierType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='UML');
 	static operation allInstances() : Set<Classifier>;
 }

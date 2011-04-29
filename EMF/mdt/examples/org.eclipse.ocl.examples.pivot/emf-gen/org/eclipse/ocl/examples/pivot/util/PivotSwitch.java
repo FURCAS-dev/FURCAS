@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.9 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -27,6 +27,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CallOperationAction;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
@@ -308,6 +309,24 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNameable(class_);
 				if (result == null) result = caseElement(class_);
 				if (result == null) result = caseVisitable(class_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PivotPackage.CLASSIFIER_TYPE:
+			{
+				ClassifierType classifierType = (ClassifierType)theEObject;
+				T result = caseClassifierType(classifierType);
+				if (result == null) result = caseDataType(classifierType);
+				if (result == null) result = caseClass(classifierType);
+				if (result == null) result = caseType(classifierType);
+				if (result == null) result = caseNamespace(classifierType);
+				if (result == null) result = caseNamedElement(classifierType);
+				if (result == null) result = caseParameterableElement(classifierType);
+				if (result == null) result = caseTemplateableElement(classifierType);
+				if (result == null) result = caseMonikeredElement(classifierType);
+				if (result == null) result = caseNameable(classifierType);
+				if (result == null) result = caseElement(classifierType);
+				if (result == null) result = caseVisitable(classifierType);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2432,6 +2451,22 @@ public class PivotSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseClass(org.eclipse.ocl.examples.pivot.Class object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Classifier Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Classifier Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseClassifierType(ClassifierType object)
+	{
 		return null;
 	}
 

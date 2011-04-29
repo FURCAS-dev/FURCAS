@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.14 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.15 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -42,6 +42,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.examples.common.utils.TracingOption;
 import org.eclipse.ocl.examples.pivot.Annotation;
+import org.eclipse.ocl.examples.pivot.AnyType;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Comment;
 import org.eclipse.ocl.examples.pivot.Element;
@@ -484,6 +486,35 @@ public class CS2PivotConversion extends AbstractConversion
 		}
 		logger.error("Failed to complete continuations" + s.toString());		// FIXME
 	}
+
+/*	private void enforceConformance(AnyType oclAny) {
+		Collection<? extends Resource> pivotResources = converter.getPivotResources();
+		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(pivotResources);
+		allPivotResources.add(typeManager.getOrphanPackage());
+		for (TreeIterator<Object> tit = EcoreUtil.getAllContents(allPivotResources); tit.hasNext(); ) {
+			Object object = tit.next();
+			if (object instanceof org.eclipse.ocl.examples.pivot.Package) {
+				for (Type type : ((org.eclipse.ocl.examples.pivot.Package)object).getOwnedTypes()) {
+					if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+						List<org.eclipse.ocl.examples.pivot.Class> superClasses = ((org.eclipse.ocl.examples.pivot.Class)type).getSuperClasses();
+						if (superClasses.isEmpty()) {
+							if (type != oclAny) {
+								if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+									superClasses.add(typeManager.getEnumerationType());
+								}
+								else {
+									superClasses.add(oclAny);
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
+				tit.prune();
+			}
+		}
+	} */
 
 /*	protected List<String> getDocumentationStrings1(CompositeNode node) {
 		List<LeafNode> documentationNodes = CS2Pivot.getDocumentationNodes(node);
@@ -1444,6 +1475,11 @@ public class CS2PivotConversion extends AbstractConversion
 			}
 			return typeManager.getTupleType(tupleType.getName(), resolvedProperties, null, null);
 		}
+		if (type instanceof ClassifierType) {
+			ClassifierType classifierType = (ClassifierType)type;
+			Type resolvedElementType = resolveUnderspecifiedType(classifierType.getInstanceType());
+			return typeManager.getClassifierType(resolvedElementType);
+		}
 		throw new UnsupportedOperationException();
 //		return null;
 	}
@@ -1673,6 +1709,10 @@ public class CS2PivotConversion extends AbstractConversion
 					Type elementType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
 					((CollectionType)pivotClass).setElementType(elementType);
 				}
+				else if (pivotClass instanceof ClassifierType) {
+					Type instanceType = PivotUtil.getPivot(Type.class, ownedTemplateBinding.getOwnedParameterSubstitution().get(0).getOwnedActualParameter());
+					((ClassifierType)pivotClass).setInstanceType(instanceType);
+				}
 			}
 			else {							// FIXME Non-Type TemplateParameters
 				logger.error("Missing support for non-type specialization " + moniker); //$NON-NLS-1$
@@ -1773,7 +1813,7 @@ public class CS2PivotConversion extends AbstractConversion
 		//
 		//	Load the library by loading external content or exploiting the pre-ordered content. 
 		//
-		Type oclAnyType = typeManager.getOclAnyType();
+		AnyType oclAnyType = typeManager.getOclAnyType();
 		if (oclAnyType == null) {
 			return false;				// FIXME throw ??
 		}

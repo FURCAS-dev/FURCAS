@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BinaryOperationFilter.java,v 1.2 2011/03/12 18:45:21 ewillink Exp $
+ * $Id: BinaryOperationFilter.java,v 1.3 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -39,7 +39,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 		this.argumentType = PivotUtil.getBehavioralType(argumentType);
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {		
 			return false;
 		}
@@ -56,7 +56,7 @@ public class BinaryOperationFilter extends AbstractOperationFilter
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getOperationBindings(candidateOperation);
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}

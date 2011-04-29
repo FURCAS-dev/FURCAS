@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationEnvironment.java,v 1.5 2011/02/21 08:37:53 ewillink Exp $
+ * $Id: AbstractEvaluationEnvironment.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.evaluation;
@@ -36,6 +36,7 @@ import org.eclipse.ocl.examples.pivot.options.Option;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NullValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * A partial implementation of the {@link EvaluationEnvironment} interface,
@@ -132,7 +133,7 @@ public abstract class AbstractEvaluationEnvironment
     		assert ((Variable)referredVariable).getRepresentedParameter() == null;
     	}
         if (variableValues.containsKey(referredVariable)) {
-            String message = OCLMessages.bind(
+            String message = NLS.bind(
             		OCLMessages.BindingExist_ERROR_,
             		referredVariable,
             		variableValues.get(referredVariable));
