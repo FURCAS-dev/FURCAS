@@ -986,7 +986,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Boolean) {
+				} else if (sourceVal instanceof Boolean || isBooleanOperation(opCode)) {
 					// the logic with an undefined value is basic 3-valued
 					// logic:
 					// null represents the undefined value
@@ -1269,6 +1269,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// just one ternary string operation
 					// String::substring(Integer, Integer)
 					// index orgin 1 for OCL
+					if (isUndefined(arg1) || isUndefined(arg2)) {
+						return getInvalid();
+					}
 					int lower = ((Integer) arg1).intValue();
 					int upper = ((Integer) arg2).intValue();
 					if (!(1 <= lower &&
@@ -1281,17 +1284,26 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 					if (opCode == PredefinedType.INSERT_AT) {
+						if (isUndefined(arg1)) {
+							return getInvalid();
+						}
 						// OrderedSet, Sequence::insertAt(Integer, T)
 						int index = ((Integer) arg1).intValue();
 						return CollectionUtil.insertAt(sourceColl, index,
 							arg2);
 					} else if (opCode == PredefinedType.SUB_ORDERED_SET) {
+						if (isUndefined(arg1) || isUndefined(arg2)) {
+							return getInvalid();
+						}
 						// OrderedSet, Sequence::subOrderedSet(Integer, Integer)
 						int lower = ((Integer) arg1).intValue();
 						int upper = ((Integer) arg2).intValue();
 						return CollectionUtil.subOrderedSet(sourceColl,
 							lower, upper);
 					} else if (opCode == PredefinedType.SUB_SEQUENCE) {
+						if (isUndefined(arg1) || isUndefined(arg2)) {
+							return getInvalid();
+						}
 						// Sequence::subSequence(Integer, Integer)
 						int lower = ((Integer) arg1).intValue();
 						int upper = ((Integer) arg2).intValue();
