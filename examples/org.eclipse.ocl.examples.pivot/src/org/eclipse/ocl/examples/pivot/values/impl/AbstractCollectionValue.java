@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractCollectionValue.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: AbstractCollectionValue.java,v 1.6 2011/04/25 09:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -212,6 +212,46 @@ public abstract class AbstractCollectionValue<C extends Collection<Value>>
         }
         return result;
     }
+
+/*	public CollectionValue selectAsType(Type elementType) throws InvalidValueException {
+		boolean changedContents = false;
+		Collection<Value> newElements = new ArrayList<Value>();
+        for (Value element : elements) {
+        	Value newElement = element.conformingTo(elementType);
+        	if (newElement.isInvalid()) {
+        		return (InvalidValue)newElement;
+        	}
+        	newElements.add(element);
+        	if (newElement != element) {
+        		changedContents = true;
+        	}
+        }
+        if (changedContents) {
+        	return valueFactory.createCollectionValue(getKind(), newElements);
+        }
+        else {
+        	return this;
+        }
+	}
+
+	public CollectionValue selectByKind(Type elementType) throws InvalidValueException {
+		boolean changedContents = false;
+		Collection<Value> newElements = new ArrayList<Value>();
+        for (Value element : elements) {
+        	if (element.conformsTo(elementType)) {
+        		newElements.add(element);
+        	}
+        	else {
+        		changedContents = true;
+        	}
+        }
+        if (changedContents) {
+        	return valueFactory.createCollectionValue(getKind(), newElements);
+        }
+        else {
+        	return this;
+        }
+	} */
 
 	public Value sum(BinaryOperation binaryOperation, Value zero) throws InvalidValueException {
 		Value result = zero;

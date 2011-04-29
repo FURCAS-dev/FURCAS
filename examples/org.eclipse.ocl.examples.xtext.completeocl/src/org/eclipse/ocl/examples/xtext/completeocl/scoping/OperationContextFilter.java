@@ -27,7 +27,7 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.VariableCS;
  *
  * </copyright>
  *
- * $Id: OperationContextFilter.java,v 1.1 2011/02/08 17:53:05 ewillink Exp $
+ * $Id: OperationContextFilter.java,v 1.2 2011/04/25 19:39:58 ewillink Exp $
  */
 public class OperationContextFilter implements EnvironmentView.Filter
 {
@@ -41,7 +41,7 @@ public class OperationContextFilter implements EnvironmentView.Filter
 		return 0;
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (!(eObject instanceof Operation)) {
 			return false;
 		}
