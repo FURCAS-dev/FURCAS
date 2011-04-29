@@ -476,8 +476,8 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         parseInputAndRefreshAnnotations(false);
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
-    @SuppressWarnings("unchecked")
     public Object getAdapter(Class required) {
         if (IContentOutlinePage.class.equals(required)) {
             if (outlinePage == null) {
@@ -1415,7 +1415,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
      * @return
      */
     protected Set<URI> getAdditionalLookupURIS() {
-        return Collections.EMPTY_SET;
+        return Collections.emptySet();
     }
 
     private Lexer createLexer() {
@@ -1431,6 +1431,7 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
      */
     protected AbstractGrammarBasedViewerConfiguration createSourceViewerConfig(
             IAnnotationModel annotationModel) {
+        @SuppressWarnings("unchecked")
         AbstractGrammarBasedViewerConfiguration svc = new AbstractGrammarBasedViewerConfiguration(
                 getEditingDomain().getResourceSet(), annotationModel, 
                 (AbstractParserFactory<ObservableInjectingParser, Lexer>) getParserFactory(),
