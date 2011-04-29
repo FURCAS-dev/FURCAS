@@ -575,7 +575,7 @@ public class CollectionUtil {
      * @return the source collection as a set
      */
     public static <E> Set<E> asSet(Collection<E> self) {
-        if (self instanceof Set<?>) {
+        if (self instanceof Set<?> && !(self instanceof LinkedHashSet<?>)) {
             return (Set<E>) self;
         }
         return createNewSet(self);

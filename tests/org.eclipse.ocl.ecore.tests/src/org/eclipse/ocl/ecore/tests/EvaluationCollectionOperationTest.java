@@ -582,9 +582,9 @@ public class EvaluationCollectionOperationTest
 			"Sequence{}->flatten()");
 		assertResult(CollectionUtil.createNewBag(), "Bag{}->flatten()");
 		assertResult(CollectionUtil.createNewSet(), "Set{}->flatten()");
-		// Our implementation chooses to flatten an OrderedSet into a Set because
+		// Our implementation chooses to flatten an OrderedSet into an OrderedSet because
 		// Section A.2.5.8 of OCL 2.3 (OMG 10-11-42) leaves it unspecified
-		assertResult(CollectionUtil.createNewSet(),
+		assertResult(CollectionUtil.createNewOrderedSet(),
 			"OrderedSet{}->flatten()");
 
 		String expression = "Sequence{Set{1,2,3}, Sequence{2.0, 3.0}, Bag{'test'}}->flatten()";

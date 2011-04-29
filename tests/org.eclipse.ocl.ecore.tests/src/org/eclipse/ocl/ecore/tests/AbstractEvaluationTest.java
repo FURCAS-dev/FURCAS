@@ -160,7 +160,7 @@ public abstract class AbstractEvaluationTest
 					.next());
 			}
 		} else if (expectedResult instanceof Set<?>) {
-			assertTrue(result instanceof Set<?>);
+			assertTrue(result instanceof Set<?> && !(result instanceof LinkedHashSet<?>));
 			assertEquals(expectedResult, result);
 		} else if (expectedResult instanceof Collection<?>) {
 			assertTrue(expectedResult.getClass().isInstance(result));
