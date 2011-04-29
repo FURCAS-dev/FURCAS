@@ -579,7 +579,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// if the source is undefined or the conversion to
 					// OclVoid so is the result
 					if (sourceVal == null || (argType instanceof VoidType<?>)) {
-                        return null;
+                        return sourceVal;
                     }
 					if (sourceVal == getInvalid() || (argType instanceof InvalidType<?>)) {
                         return getInvalid();
@@ -2135,12 +2135,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> condition = ie.getCondition();
 
 		// evaluate condition
-		Boolean condVal = (Boolean) condition.accept(getVisitor());
-		if (condVal == null) {
-            return getInvalid();
-        }
+		Object condVal = condition.accept(getVisitor());
+		if (isUndefined(condVal)) {
+			return getInvalid();
+		}
+		Boolean condValBool = (Boolean) condVal;
 
-		if (condVal.booleanValue()) {
+		if (condValBool.booleanValue()) {
             return ie.getThenExpression().accept(getVisitor());
         }
 		return ie.getElseExpression().accept(getVisitor());
@@ -2307,8 +2308,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (itemVal == getInvalid()) {
 						return getInvalid(); // can't have an invalid element in a collection
 					}
-					// add it to the result set, even if null, except it's the only item;
-					// See A.2.5.3 and 11.2.3 in OMG 10-11-42
+					// add it to the result set, even if null, except it's the only item in a Set
+					// literal; otherwise, the implicit set conversion of an undefined value
+					// would return false for isEmpty(). See also Section 7.5.3 in the OCL 2.3
+					// specification (10-11-42) on implicit set conversion by the -> operator
 					if (itemVal != null || parts.size() > 1 || kind != CollectionKind.SET_LITERAL) {
 						result.add(itemVal);
 					}
