@@ -731,6 +731,14 @@
       <ownedOperation xmi:id="_atscK6jQEdu4LJng8Rasow" name="size" isQuery="true">
         <ownedParameter xmi:id="_atscLKjQEdu4LJng8Rasow" type="_alYNtqjQEdu4LJng8Rasow" direction="return"/>
       </ownedOperation>
+      <ownedOperation xmi:id="_dtbxMHJGEeCzouijDEBkVg" name="=" isQuery="true">
+        <ownedParameter xmi:id="_dtbxMXJGEeCzouijDEBkVg" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_dtbxMnJGEeCzouijDEBkVg" name="set" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
+      <ownedOperation xmi:id="_eXPjMHJGEeCzouijDEBkVg" name="&lt;>" isQuery="true">
+        <ownedParameter xmi:id="_eXPjMXJGEeCzouijDEBkVg" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
+        <ownedParameter xmi:id="_eXPjMnJGEeCzouijDEBkVg" name="set" type="_as1gcqjQEdu4LJng8Rasow"/>
+      </ownedOperation>
       <ownedOperation xmi:id="_auE2kKjQEdu4LJng8Rasow" name="exists" isQuery="true">
         <eAnnotations xmi:id="_auE2kajQEdu4LJng8Rasow" source="http://www.eclipse.org/uml2/2.0.0/UML">
           <details xmi:id="_auE2kqjQEdu4LJng8Rasow" key="iterator"/>
@@ -779,14 +787,6 @@
         </eAnnotations>
         <ownedParameter xmi:id="_auE2sajQEdu4LJng8Rasow" type="_at-v8KjQEdu4LJng8Rasow" direction="return"/>
         <ownedParameter xmi:id="_auE2sqjQEdu4LJng8Rasow" name="expr" type="_as1gcajQEdu4LJng8Rasow"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_dtbxMHJGEeCzouijDEBkVg" name="=" isQuery="true">
-        <ownedParameter xmi:id="_dtbxMXJGEeCzouijDEBkVg" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-        <ownedParameter xmi:id="_dtbxMnJGEeCzouijDEBkVg" name="set" type="_as1gcqjQEdu4LJng8Rasow"/>
-      </ownedOperation>
-      <ownedOperation xmi:id="_eXPjMHJGEeCzouijDEBkVg" name="&lt;>" isQuery="true">
-        <ownedParameter xmi:id="_eXPjMXJGEeCzouijDEBkVg" type="_ak_zNKjQEdu4LJng8Rasow" direction="return"/>
-        <ownedParameter xmi:id="_eXPjMnJGEeCzouijDEBkVg" name="set" type="_as1gcqjQEdu4LJng8Rasow"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="ocl.uml:SetType" xmi:id="_auE2s6jQEdu4LJng8Rasow" elementType="_awji1ajQEdu4LJng8Rasow">
