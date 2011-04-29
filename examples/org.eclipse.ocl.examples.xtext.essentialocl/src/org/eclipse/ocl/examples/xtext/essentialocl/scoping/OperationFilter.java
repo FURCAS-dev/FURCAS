@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.7 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.9 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -25,7 +25,6 @@ import org.eclipse.ocl.examples.pivot.Class;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
@@ -33,9 +32,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.TypeExp;
 import org.eclipse.ocl.examples.pivot.Variable;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -132,42 +129,22 @@ public class OperationFilter extends AbstractOperationFilter
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
 		}			
 		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
-//		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
-//			PivotUtil.getAllTemplateParameterSubstitutions(bindings, candidateOperation);
 		TemplateSignature templateSignature = candidateOperation.getOwnedTemplateSignature();
 		if (templateSignature != null) {
 			for (TemplateParameter templateParameter : templateSignature.getOwnedParameters()) {
 				if (bindings == null) {
 					bindings = new HashMap<TemplateParameter, ParameterableElement>();
 				}
-				Type expressionType = null;
-				if ("oclAsType".equals(candidateOperation.getName())) {		// FIXME This should be modeled
-					NavigatingArgCS csExpression = csArguments.get(0);
-					TypeExp expression = PivotUtil.getPivot(TypeExp.class, csExpression);
-					if (expression != null) {
-						expressionType = expression.getReferredType();
-					}
-				}
-				bindings.put(templateParameter, expressionType);
+				bindings.put(templateParameter, null);
 			}
 		}
 		return bindings;
 	}
-	
+
 	@Override
-	protected void installBindings(EnvironmentView environmentView, EObject eObject,
+	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		for (TemplateParameter templateParameter : bindings.keySet()) {
-			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
-			if (parameteredElement instanceof NamedElement) {
-				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
-					if (bindings.get(templateParameter) == null) {
-						bindings.put(templateParameter, sourceType);
-						break;
-					}
-				}
-			}
-		}
+		installOclSelfBinding(forType, eObject, bindings);
 		List<Parameter> parameters = ((Operation)eObject).getOwnedParameters();
 		int iMax = parameters.size();
 		if (iMax > 0) {
@@ -182,10 +159,10 @@ public class OperationFilter extends AbstractOperationFilter
 				}
 			}
 		}
-		super.installBindings(environmentView, eObject, bindings);
+		super.installBindings(environmentView, forType, eObject, bindings);
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {
 			Iteration candidateIteration = (Iteration)eObject;
 			int iteratorCount = candidateIteration.getOwnedIterators().size();
@@ -198,7 +175,7 @@ public class OperationFilter extends AbstractOperationFilter
 			}
 			Map<TemplateParameter, ParameterableElement> bindings = getIterationBindings(candidateIteration);
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}
@@ -226,7 +203,7 @@ public class OperationFilter extends AbstractOperationFilter
 				}
 			}
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}

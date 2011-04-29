@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactory.java,v 1.8 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotFactory.java,v 1.9 2011/04/25 09:49:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -54,6 +54,15 @@ public interface PivotFactory
 	 * @generated
 	 */
 	Class createClass();
+
+	/**
+	 * Returns a new object of class '<em>Classifier Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Classifier Type</em>'.
+	 * @generated
+	 */
+	ClassifierType createClassifierType();
 
 	/**
 	 * Returns a new object of class '<em>Template Binding</em>'.
