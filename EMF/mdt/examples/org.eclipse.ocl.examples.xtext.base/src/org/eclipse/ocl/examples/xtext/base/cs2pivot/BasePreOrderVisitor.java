@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasePreOrderVisitor.java,v 1.9 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: BasePreOrderVisitor.java,v 1.10 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -148,7 +148,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 	public static class OperationContinuation<T extends OperationCS> extends SingleContinuation<T>
 	{
 		public OperationContinuation(CS2PivotConversion context, T csElement) {
-			super(context, null, null, csElement); //, context.getTypesHaveSignaturesInterDependency());
+			super(context, null, null, csElement, context.getTypesHaveSignaturesInterDependency());
 			context.getOperationsHaveTemplateParametersInterDependency().addDependency(this);
 		}
 
@@ -378,7 +378,7 @@ public class BasePreOrderVisitor extends AbstractExtendingBaseCSVisitor<Continua
 		private static Dependency[] computeDependencies(CS2PivotConversion context, TypedTypeRefCS csElement) {
 			Dependency typeDependency = /*ElementUtil.isInOperation(csElement)
 				? context.getOperationsHaveTemplateParametersInterDependency()
-				:*/ context.getPackagesHaveTypesInterDependency();
+				:*/ context.getTypesHaveSignaturesInterDependency();
 			TemplateBindingCS csTemplateBinding = csElement.getOwnedTemplateBinding();
 			if (csTemplateBinding == null) {
 				return new Dependency[] {typeDependency};
