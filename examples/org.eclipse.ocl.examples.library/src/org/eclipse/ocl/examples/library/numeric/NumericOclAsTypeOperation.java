@@ -12,21 +12,23 @@
  *
  * </copyright>
  *
- * $Id: NumericOclAsTypeOperation.java,v 1.4 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: NumericOclAsTypeOperation.java,v 1.5 2011/04/25 09:48:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.numeric;
 
 import org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation;
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
+import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.IntegerValue;
 import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 
 /**
- * NumericOclAsTypeOperation realises the Real::oclIsTypeOf() library operation.
+ * NumericOclAsTypeOperation realises the Real::oclAsType() library operation.
  * 
  * @since 3.1
  */
@@ -35,44 +37,52 @@ public class NumericOclAsTypeOperation extends OclAnyOclAsTypeOperation
 	public static final NumericOclAsTypeOperation INSTANCE = new NumericOclAsTypeOperation();
 
 	@Override
-	protected Value evaluateConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
-		TypeManager stdlib = evaluationVisitor.getTypeManager();
-		if (sourceVal.isUnlimited() && ((argType == stdlib.getIntegerType()) || (argType == stdlib.getRealType()))) {
-			return null;
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
+		TypeManager typeManager = evaluationVisitor.getTypeManager();
+		Type sourceType = sourceVal.getType(typeManager, operationCall.getSource().getType());
+		if (sourceType == null) {
+			return evaluationVisitor.throwInvalidEvaluation("Missing source type", null, operationCall, sourceType);
 		}
-		else if ((sourceVal instanceof IntegerValue) && (argType == stdlib.getRealType())) {
-			return ((IntegerValue)sourceVal).toRealValue();
+		Value argVal = evaluateArgument(evaluationVisitor, operationCall, 0);
+		TypeValue typeVal = argVal.asTypeValue();
+		Type argType = typeVal.getInstanceType();
+		if (typeManager.conformsTo(sourceType, argType, null)) {
+			if (sourceVal.isUnlimited() && ((argType == typeManager.getIntegerType()) || (argType == typeManager.getRealType()))) {
+				return evaluationVisitor.throwInvalidEvaluation("unlimited does not conform", null, operationCall, sourceVal);
+			}
+			else if ((sourceVal instanceof IntegerValue) && (argType == typeManager.getRealType())) {
+				return ((IntegerValue)sourceVal).toRealValue();
+			}
+			else {
+				return sourceVal;
+			}
 		}
 		else {
-			return sourceVal;
-		}
-	}
-
-	@Override
-	protected Value evaluateNonConforming(EvaluationVisitor evaluationVisitor, Value sourceVal, Type argType) throws InvalidValueException {
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		RealValue realValue = sourceVal.asRealValue();
-		if (realValue != null) {
-			if (argType == typeManager.getUnlimitedNaturalType()) {
-				if (realValue.signum() < 0) {
-					return evaluationVisitor.throwInvalidEvaluation("not positive", null, null, sourceVal);
+			RealValue realValue = sourceVal.asRealValue();
+			if (realValue != null) {
+				if (argType == typeManager.getUnlimitedNaturalType()) {
+					if (realValue.signum() < 0) {
+						return evaluationVisitor.throwInvalidEvaluation("not positive", null, operationCall, sourceVal);
+					}
+					return realValue.toIntegerValue();
 				}
-				return realValue.toIntegerValue();
-			}
-			else if (argType == typeManager.getIntegerType()) {
-				return realValue.toIntegerValue();
-			}
-			return null;
-		}
-		IntegerValue integerValue = sourceVal.asIntegerValue();
-		if (integerValue != null) {
-			if (argType == typeManager.getUnlimitedNaturalType()) {
-				if (integerValue.signum() < 0) {
-					return evaluationVisitor.throwInvalidEvaluation("not positive", null, null, sourceVal);
+				else if (argType == typeManager.getIntegerType()) {
+					return realValue.toIntegerValue();
 				}
-				return integerValue;
+				else {
+					return evaluationVisitor.throwInvalidEvaluation("incompatible argument type", null, operationCall, argType);
+				}
 			}
+			IntegerValue integerValue = sourceVal.asIntegerValue();
+			if (integerValue != null) {
+				if (argType == typeManager.getUnlimitedNaturalType()) {
+					if (integerValue.signum() < 0) {
+						return evaluationVisitor.throwInvalidEvaluation("not positive", null, operationCall, sourceVal);
+					}
+					return integerValue;
+				}
+			}
+			return evaluationVisitor.throwInvalidEvaluation("unknown source type", null, operationCall, sourceVal);
 		}
-		return null;
 	}
 }

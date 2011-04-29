@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: AbstractNullBaseCSVisitor.java,v 1.8 2011/03/11 20:23:57 ewillink Exp $
+ * $Id: AbstractNullBaseCSVisitor.java,v 1.9 2011/04/25 09:50:02 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -54,10 +54,6 @@ public abstract class AbstractNullBaseCSVisitor<R, C>
 	}
 
 	public R visitAttributeCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef object) {
-		return null;
-	}
-
-	public R visitBoundDocumentCS(org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS object) {
 		return null;
 	}
 

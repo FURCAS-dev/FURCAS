@@ -128,6 +128,7 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [iteration.getSymbolName()/].setPrecedence([iteration.precedence.getSymbolName()/]);
 [/if]
 [if (iteration.implementationClass->notEmpty())]
+[iteration.getSymbolName()/].setImplementationClass("[iteration.implementationClass/]");
 [iteration.getSymbolName()/].setImplementation([iteration.implementationClass/].INSTANCE);
 [/if]
 [iteration.eContainer().getSymbolName()/].getOwnedOperations().add([iteration.getSymbolName()/]);
@@ -153,6 +154,7 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [operation.getSymbolName()/].setPrecedence([operation.precedence.getSymbolName()/]);
 [/if]
 [if (operation.implementationClass->notEmpty())]
+[operation.getSymbolName()/].setImplementationClass("[operation.implementationClass/]");
 [operation.getSymbolName()/].setImplementation([operation.implementationClass/].INSTANCE);
 [/if]
 [operation.eContainer().getSymbolName()/].getOwnedOperations().add([operation.getSymbolName()/]);
@@ -229,6 +231,7 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [property.getSymbolName()/].setOpposite([property.opposite.getSymbolName()/]);
 [/if]
 [if (property.implementationClass->notEmpty())]
+[property.getSymbolName()/].setImplementationClass("[property.implementationClass/]");
 [property.getSymbolName()/].setImplementation([property.implementationClass/].INSTANCE);
 [/if]
 [property.eContainer().getSymbolName()/].getOwnedAttributes().add([property.getSymbolName()/]);
@@ -272,6 +275,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 //
 [type.getSymbolName()/].setName("[type.name/]");
 //[type.getSymbolName()/].setMoniker("[type.moniker/]");
+[if (type.oclIsKindOf(ClassifierType))]
+[type.getSymbolName()/].setInstanceType([type.oclAsType(ClassifierType).instanceType.getSymbolName()/]);
+[/if]
 [if (type.oclIsKindOf(CollectionType))]
 [type.getSymbolName()/].setElementType([type.oclAsType(CollectionType).elementType.getSymbolName()/]);
 [/if]

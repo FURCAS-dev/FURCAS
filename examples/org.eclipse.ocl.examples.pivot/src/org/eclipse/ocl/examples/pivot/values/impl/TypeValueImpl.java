@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: TypeValueImpl.java,v 1.4 2011/03/12 13:21:46 ewillink Exp $
+ * $Id: TypeValueImpl.java,v 1.5 2011/04/25 09:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.TypeValue;
@@ -23,7 +24,7 @@ import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
 public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 {
-	public TypeValueImpl(ValueFactory valueFactory, Type type) {
+	public TypeValueImpl(ValueFactory valueFactory, ClassifierType type) {
 		super(valueFactory, type);
 	}
 
@@ -32,12 +33,21 @@ public class TypeValueImpl extends ElementValueImpl<Type> implements TypeValue
 		return this;
 	}
 
-	public Type getType() {
-		return (Type) object;
+	public Type getInstanceType() {
+		return ((ClassifierType) object).getInstanceType();
+	}
+
+	public ClassifierType getType() {
+		return (ClassifierType) object;
 	}
 
 	@Override
-	public Type getType(TypeManager typeManager, Type staticType) {
-		return (Type) object;
+	public ClassifierType getType(TypeManager typeManager, Type staticType) {
+		return (ClassifierType) object;
+	}
+
+	@Override
+	public String toString() {
+		return object.toString();
 	}
 }
