@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2009, 2011 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 238050, 253252
  *   Radek Dvorak - Bugs 261128, 265066
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
@@ -427,6 +428,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true if the object is an instance of the type, false otherwise.
+	 * An error condition such as a <code>null</code> <code>typeArg</code> is
+	 * indicated by a <code>null</code> return value.
 	 */
 	protected Boolean oclIsTypeOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
@@ -466,6 +469,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true iff the value is of the type or one of its super types.
+	 * An error condition such as a <code>null</code> <code>typeArg</code> is
+	 * indicated by a <code>null</code> return value.
 	 */
 	protected Boolean oclIsKindOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
