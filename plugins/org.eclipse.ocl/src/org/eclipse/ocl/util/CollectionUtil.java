@@ -959,7 +959,7 @@ public class CollectionUtil {
             index++;
         }
         
-        return null; // undefined
+        return null; // invalid
     }
 
     /**
