@@ -549,8 +549,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					}
                     Object targetType = arg.accept(getVisitor());
                     // UnlimitedNatural is represented as Integer, so checking sourceVal's type
-                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here. It
-                    // has no subtypes, so static type == dynamic type.
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
 					if (sourceType == getUnlimitedNatural()) {
 						return targetType == getUnlimitedNatural();
 					}
@@ -563,8 +562,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     				}
                     Object targetType = arg.accept(getVisitor());
                     // UnlimitedNatural is represented as Integer, so checking sourceVal's type
-                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here. It
-                    // has no subtypes, so static type == dynamic type.
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
 					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
 						return true; // other combinations properly handled since checked with Integer
 					}
@@ -602,14 +600,19 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         if (sourceType == getUnlimitedNatural()) {
                             int sourceInt = (Integer) sourceVal;
                             
-                            // the unlimited value is positive infinity
+                            // the unlimited value is invalid as Real because there
+                            // is no positive infinity defined in the OCL Real type
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return Double.POSITIVE_INFINITY;
+                                return getInvalid();
                             }
                         }
                         
 						return new Double(((Integer) sourceVal).doubleValue());
-						// TODO handle sourceType==getUnlimitedNatural() with target type Integer and UNLIMITED which has to evaluate to invalid
+                    } else if (sourceType == getUnlimitedNatural() && sourceVal.equals(UNLIMITED)
+						&& (((TypeExp<C>) arg).getReferredType() == getInteger())) {
+                    	// According to OCL 2.3 (10-11-42) Section 8.2.1, UnlimitedNatural value
+                    	// * is an invalid Integer.
+                    	return getInvalid();
                     } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
                     	return sourceVal;
                     } else if ((sourceType == getUnlimitedNatural() && ((TypeExp<C>) arg).getReferredType() == getUnlimitedNatural()) ||
@@ -983,7 +986,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (isBooleanOperation(opCode)) {
+				} else if (sourceVal instanceof Boolean) {
 					// the logic with an undefined value is basic 3-valued
 					// logic:
 					// null represents the undefined value
