@@ -1106,7 +1106,7 @@ public class RegressionTest
 	public void test_oclInvalid() {
 		Object result = evaluate(parse(
 			"package ocltest context Fruit " +
-			"inv: invalid.oclIsTypeOf(OclInvalid).oclIsInvalid() " +
+			"inv: invalid.oclIsTypeOf(OclInvalid) " +
 			" endpackage"));
 		
 		assertEquals(Boolean.TRUE, result);
