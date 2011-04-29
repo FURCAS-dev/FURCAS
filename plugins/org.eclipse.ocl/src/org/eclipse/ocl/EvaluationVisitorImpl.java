@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
  *   Zeligsoft - Bug 253252
  *   Radek Dvorak - Bugs 261128, 265066
  *   E.D.Willink - Bug 297541
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
@@ -553,7 +554,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (sourceType == getUnlimitedNatural()) {
 						return targetType == getUnlimitedNatural();
 					}
-					return oclIsTypeOf(sourceVal, targetType);
+					Boolean result = oclIsTypeOf(sourceVal, targetType);
+					if (result == null) {
+						return getInvalid();
+					} else {
+						return result;
+					}
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
                 	// no special check for Integer representation of UnlimitedNatural necessary
                 	// because UnlimitedNatural is subtype of Integer
@@ -566,7 +572,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
 						return true; // other combinations properly handled since checked with Integer
 					}
-					return oclIsKindOf(sourceVal, targetType);
+					Boolean result = oclIsKindOf(sourceVal, targetType);
+					if (result == null) {
+						return getInvalid();
+					} else {
+						return result;
+					}
                 } else if (opCode == PredefinedType.OCL_AS_TYPE) {
 					// Type conversions for the built-in, non-collection
 					// types are completely checked in the parser. The only
@@ -1372,7 +1383,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					return sourceVal;
 				}
 				OCLExpression<C> arg = args.get(0);
-				return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+				Boolean result = oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+				if (result == null) {
+					return getInvalid();
+				} else {
+					return result;
+				}
 			}
 
 			// AnyType::oclIsKindOf(OclType)
@@ -1381,7 +1397,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					return sourceVal;
 				}
 				OCLExpression<C> arg = args.get(0);
-				return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+				Boolean result = oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+				if (result == null) {
+					return getInvalid();
+				} else {
+					return result;
+				}
 			}
 
 			// AnyType::oclAsType(OclType)
@@ -1464,7 +1485,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return getInvalid();
 		}
 
-		return null;
+		return getInvalid();
 	}
 	
 	/**

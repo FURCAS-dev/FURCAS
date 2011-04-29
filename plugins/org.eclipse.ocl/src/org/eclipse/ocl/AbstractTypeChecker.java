@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
+ * Copyright (c) 2008, 2009, 2011 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,6 +11,7 @@
  *     Zeligsoft - Bugs 244886, 245619, 233673, 179990
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
+ *     Axel Uhl (SAP AG) - Bug 342644
  *     
  * $Id: AbstractTypeChecker.java,v 1.8 2010/05/03 09:32:32 ewillink Exp $
  */
