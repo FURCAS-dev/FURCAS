@@ -486,12 +486,16 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// aren't actually useful as any type but their own.  So, in case of lax
 		// null handling, return TRUE.  Otherwise, oclIsKindOf isn't even
 		// permitted, so return null to generate an OclInvalid down the line
-		if (isUndefined(value)) {
+		if (value == null) {
 			return isLaxNullHandling()
 				? !Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;
 		}
-
+		if (value == stdlib.getInvalid()) {
+			return isLaxNullHandling()
+				? Boolean.TRUE // OclInvalid conforms to all other types
+				: null;
+		}
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
 	}
 	

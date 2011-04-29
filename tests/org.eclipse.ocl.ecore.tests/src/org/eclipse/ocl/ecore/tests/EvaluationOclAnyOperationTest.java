@@ -223,10 +223,12 @@ public class EvaluationOclAnyOperationTest
 		 * FIXME why is the evaluation of oclIsKindOf altered for invalid
 		 * with LAX_NULL_HANDLING off? That is no documented behavior.
 		 */
-		assertResultInvalid("invalid.oclIsKindOf(String)");
-		assertResultInvalid("invalid.oclIsKindOf(EClass)");
-		assertResultInvalid("invalid.oclIsKindOf(OclVoid)");
-		assertResultInvalid("invalid.oclIsKindOf(OclInvalid)");
+		assertResultTrue("invalid.oclIsKindOf(String)");
+		assertResultTrue("invalid.oclIsKindOf(EClass)");
+		assertResultTrue("invalid.oclIsKindOf(OclVoid)");
+		assertResultTrue("null.oclIsKindOf(OclVoid)");
+		assertResultTrue("invalid.oclIsKindOf(OclInvalid)");
+		assertResultFalse("null.oclIsKindOf(OclInvalid)");
 	}
 
 	public void testOclIsKindOfInvalidNoLaxHandling() {
@@ -285,10 +287,12 @@ public class EvaluationOclAnyOperationTest
 		 * FIXME why is the evaluation of oclIsTypeOf altered for invalid
 		 * with LAX_NULL_HANDLING off? That is no documented behavior.
 		 */
-		assertResultInvalid("invalid.oclIsTypeOf(String)");
-		assertResultInvalid("invalid.oclIsTypeOf(EClass)");
-		assertResultInvalid("invalid.oclIsTypeOf(OclVoid)");
-		assertResultInvalid("invalid.oclIsTypeOf(OclInvalid)");
+		assertResultTrue("invalid.oclIsTypeOf(String)");
+		assertResultTrue("invalid.oclIsTypeOf(EClass)");
+		assertResultTrue("invalid.oclIsTypeOf(OclVoid)");
+		assertResultTrue("invalid.oclIsTypeOf(OclInvalid)");
+		assertResultFalse("null.oclIsTypeOf(OclInvalid)");
+		assertResultTrue("null.oclIsTypeOf(OclVoid)");
 	}
 
 	public void testOclIsTypeOfInvalidNoLaxNullHandling() {

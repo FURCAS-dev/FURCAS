@@ -315,6 +315,8 @@ public class EvaluationCollectionOperationTest
 		assertResultTrue("Sequence{4, 5, 'test'} = Sequence{4, 5, 'test'}");
 		assertResultTrue("Sequence{4, 5, 'test', 5} = Sequence{4, 5, 'test', 5}");
 		assertResultTrue("OrderedSet{4, 5, 'test', 5} = OrderedSet{4, 5, 'test'}");
+		// OrderedSet comparison shall respect ordering
+		assertResultFalse("OrderedSet{4, 5, 6} = OrderedSet{6, 4, 5}");
 		// according to 11.7.1 two collections not of the same kind are not equal
 		// The following don't parse because:
 		// "Cannot find operation (=(OrderedSet(OclAny))) for the type (Sequence(OclAny))"
