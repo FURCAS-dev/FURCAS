@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateCollectionOperationsTest.java,v 1.6 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: EvaluateCollectionOperationsTest.java,v 1.7 2011/04/29 10:00:45 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -1283,6 +1283,11 @@ public void testCollectionNotEqualOrderedXUnordered() {
 		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
 		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
 		assertQueryResults(null, "let nu : UnlimitedNatural = null in Set{Tuple{first = nu, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
+
+		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Sequence{3})");
+		assertQueryResults(null, "let n : UnlimitedNatural = null in Set{Tuple{first = n, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
 	}
 
 	public void testCollectionReverse() {
