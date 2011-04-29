@@ -666,9 +666,9 @@ public class BasicOCLTest
         try {
             // lax null handling on for literal invalids (which are handled
             // separately from invalid values in non-OclInvalid expressions)
-            assertEquals(getInvalid(),
+            assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)"));
-            assertEquals(getInvalid(),
+            assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)"));
@@ -678,9 +678,9 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "invalid.oclAsType(String)"));
             
             // lax null handling on for invalid values in non-OclInvalid expressions)
-            assertEquals(getInvalid(),
+            assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)"));
-            assertEquals(getInvalid(),
+            assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)"));

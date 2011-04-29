@@ -91,10 +91,39 @@ public class ObjectUtil {
 			// two collections need to be of the same kind to be considered equal.
 			return false;
 		}
+		if (anObject instanceof LinkedHashSet<?>) {
+			// ...then so is anotherObject due to he above test.
+			// LinkedHashSet.equals doesn't consider ordering as it
+			// should for an OrderedSet implementation.
+			return orderedSetsEqual((LinkedHashSet<?>) anObject, (LinkedHashSet<?>) anotherObject);
+		}
 		return anObject.equals(anotherObject);
 	}
 	
-    /**
+    private static boolean orderedSetsEqual(LinkedHashSet<?> anObject,
+			LinkedHashSet<?> anotherObject) {
+		if (anObject == anotherObject) {
+			return true;
+		}
+		if (anObject.size() != anotherObject.size()) {
+			return false;
+		}
+		// inv: sizes are equal
+		if (anObject.isEmpty()) {
+			// then so is anotherObject because sizes are equal
+			return true;
+		}
+		Iterator<?> anObjectIter = anObject.iterator();
+		Iterator<?> anotherObjectIter = anotherObject.iterator();
+		while (anObjectIter.hasNext()) {
+			if (!equal(anObjectIter.next(), anotherObjectIter.next())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
      * Computes hash of an object, accounting for the similar
      * hashing of primitive numeric values that OCL considers equal but Java
      * does not.  It is also safe with <code>null</code> values.

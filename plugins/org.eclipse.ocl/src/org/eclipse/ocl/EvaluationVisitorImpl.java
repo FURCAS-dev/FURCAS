@@ -106,7 +106,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
-	private static final Integer UNLIMITED = Integer.valueOf(-1);
+	private static final Integer UNLIMITED = Integer.valueOf(UnlimitedNaturalLiteralExp.UNLIMITED);
 
 	private static int tempCounter = 0;
 
@@ -551,9 +551,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// AnyType::oclIsTypeOf(OclType)
 				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
-					if (sourceVal == getInvalid()) {
-						return sourceVal;
-					}
                     Object targetType = arg.accept(getVisitor());
                     // UnlimitedNatural is represented as Integer, so checking sourceVal's type
                     // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
@@ -569,9 +566,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
                 	// no special check for Integer representation of UnlimitedNatural necessary
                 	// because UnlimitedNatural is subtype of Integer
-    				if (sourceVal == getInvalid()) {
-    					return sourceVal;
-    				}
                     Object targetType = arg.accept(getVisitor());
                     // UnlimitedNatural is represented as Integer, so checking sourceVal's type
                     // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
@@ -1385,9 +1379,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			// AnyType::oclIsTypeOf(OclType)
 			if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
-				if (sourceVal == getInvalid()) {
-					return sourceVal;
-				}
 				OCLExpression<C> arg = args.get(0);
 				Boolean result = oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
 				if (result == null) {
@@ -1399,9 +1390,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 			// AnyType::oclIsKindOf(OclType)
 			else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
-				if (sourceVal == getInvalid()) {
-					return sourceVal;
-				}
 				OCLExpression<C> arg = args.get(0);
 				Boolean result = oclIsKindOf(sourceVal, arg.accept(getVisitor()));
 				if (result == null) {
