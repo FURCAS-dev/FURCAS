@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.16 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: TypeManager.java,v 1.18 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -47,8 +47,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Constraint;
 import org.eclipse.ocl.examples.pivot.Element;
+import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.Feature;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
 import org.eclipse.ocl.examples.pivot.InvalidType;
@@ -65,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
@@ -77,12 +81,21 @@ import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
+import org.eclipse.ocl.examples.pivot.UMLReflection;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
+import org.eclipse.ocl.examples.pivot.ValueSpecification;
 import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.evaluation.CallableImplementation;
 import org.eclipse.ocl.examples.pivot.internal.impl.TypedElementImpl;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedOperation;
+import org.eclipse.ocl.examples.pivot.library.ConstrainedProperty;
+import org.eclipse.ocl.examples.pivot.library.ExplicitNavigationProperty;
+import org.eclipse.ocl.examples.pivot.library.ImplicitCompositionProperty;
+import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
+import org.eclipse.ocl.examples.pivot.library.UnimplementedOperation;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -210,6 +223,18 @@ public class TypeManager extends TypeCaches implements Adapter
 		extensionToFactoryMap.put(PivotResource.FILE_EXTENSION, new PivotResourceFactoryImpl()); //$NON-NLS-1$
 		org.eclipse.emf.ecore.EPackage.Registry packageRegistry = pivotResourceSet.getPackageRegistry();
 		packageRegistry.put(PivotPackage.eNS_URI, PivotPackage.eINSTANCE);
+	}
+
+	public static boolean isLibraryType(Type type) {	// FIXME cf PivotSaver.isOrphanType
+		if (type instanceof LambdaType) {
+			return false;
+		}
+		else if (type instanceof TupleType) {
+			return ((TupleType)type).getOwnedAttributes().isEmpty();			
+		}
+		else {
+			return type.getTemplateBindings().isEmpty();			
+		}
 	}
 
 	/**
@@ -434,7 +459,7 @@ public class TypeManager extends TypeCaches implements Adapter
 			compilePrecedencePackage(nestedPackage);
 		}
 		for (Type type : pivotPackage.getOwnedTypes()) {
-			if (type.getTemplateBindings().isEmpty() && !(type instanceof LambdaType)) {	// FIXME cd PivotSaver.isOrphanType
+			if (isLibraryType(type)) {
 				compilePrecedenceType(type);
 			}
 		}
@@ -448,6 +473,27 @@ public class TypeManager extends TypeCaches implements Adapter
 				compilePrecedenceOperation(operation);
 			}
 		}
+	}
+
+	protected CallableImplementation computeOperationImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = operation.getImplementation();
+		String implementationClassName = operation.getImplementationClass();
+		if (implementationClassName != null) {
+			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
+				Class<?> theClass = Class.forName(implementationClassName);
+				Field field = theClass.getField("INSTANCE");
+				return (CallableImplementation) field.get(null);
+			}
+		}
+		for (Constraint constraint : getLocalConstraints(operation)) {
+			if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+				ValueSpecification specification = constraint.getSpecification();
+				if (specification instanceof ExpressionInOcl) {
+					return new ConstrainedOperation((ExpressionInOcl) specification);
+				}
+			}
+		}
+		return UnimplementedOperation.INSTANCE;
 	}
 
 	public Collection<org.eclipse.ocl.examples.pivot.Package> computePivotRootPackages() {
@@ -468,6 +514,41 @@ public class TypeManager extends TypeCaches implements Adapter
 			}
 		}
 		return rootPackages;
+	}
+
+	protected CallableImplementation computePropertyImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = property.getImplementation();
+		String implementationClassName = property.getImplementationClass();
+		if (implementationClassName != null) {
+			if ((implementation == null) || !implementation.getClass().getName().equals(implementationClassName)) {
+				Class<?> theClass = Class.forName(implementationClassName);
+				Field field = theClass.getField("INSTANCE");
+				return (CallableImplementation) field.get(null);
+			}
+		}
+		for (Constraint constraint : getLocalConstraints(property)) {
+			if (UMLReflection.BODY.equals(constraint.getStereotype())) {
+				ValueSpecification specification = constraint.getSpecification();
+				if (specification instanceof ExpressionInOcl) {
+					return new ConstrainedProperty((ExpressionInOcl) specification);
+				}
+			}
+		}
+		if (property.isImplicit()) {
+			Property opposite = property.getOpposite();
+			if (opposite.isComposite()) {
+				return ImplicitCompositionProperty.INSTANCE;
+			}
+			else {
+				return ImplicitNonCompositionProperty.INSTANCE;
+			}
+		}
+		else if (property.getClass_() instanceof TupleType){
+			return TuplePartProperty.INSTANCE;
+		}
+		else {
+			return ExplicitNavigationProperty.INSTANCE;
+		}
 	}
 
 	@Deprecated
@@ -527,6 +608,12 @@ public class TypeManager extends TypeCaches implements Adapter
 		else if (secondType instanceof VoidType) {
 			return false;
 		}
+		else if (firstType instanceof ClassifierType) {
+			if (secondType instanceof ClassifierType) {
+				return conformsToClassifierType((ClassifierType)firstType, (ClassifierType)secondType, bindings);
+			}
+			return false;
+		}
 		else if (firstType instanceof CollectionType) {
 			if (secondType instanceof CollectionType) {
 				return conformsToCollectionType((CollectionType)firstType, (CollectionType)secondType, bindings);
@@ -565,6 +652,60 @@ public class TypeManager extends TypeCaches implements Adapter
 		else {
 			return false;
 		}
+	}
+
+	protected boolean conformsToClassifierType(ClassifierType firstType, ClassifierType secondType,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		Type firstElementType = firstType.getInstanceType();
+		Type secondElementType = secondType.getInstanceType();
+		if (bindings != null) {
+			TemplateParameter firstTemplateParameter = firstElementType.getOwningTemplateParameter();
+			if (firstTemplateParameter != null) {
+				ParameterableElement parameterableElement = bindings.get(firstTemplateParameter);
+				if (parameterableElement instanceof Type) {
+					firstElementType = (Type) parameterableElement;
+				}
+			}
+			TemplateParameter secondTemplateParameter = secondElementType.getOwningTemplateParameter();
+			if (secondTemplateParameter != null) {
+				ParameterableElement parameterableElement = bindings.get(secondTemplateParameter);
+				if (parameterableElement instanceof Type) {
+					secondElementType = (Type) parameterableElement;
+				}
+				else if ((parameterableElement == null) && bindings.containsKey(secondTemplateParameter)) {
+					bindings.put(secondTemplateParameter, firstElementType);
+					return true;
+				}
+			}
+		}
+		if (firstElementType instanceof UnspecifiedType) {
+			Type lowerBound = ((UnspecifiedType)firstElementType).getLowerBound();
+			if (conformsTo(secondElementType, lowerBound, bindings)) {
+				((UnspecifiedType)firstElementType).setLowerBound(secondElementType);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else if (secondElementType instanceof UnspecifiedType) {
+			Type upperBound = ((UnspecifiedType)secondElementType).getUpperBound();
+			if (conformsTo(upperBound, firstElementType, bindings)) {
+				((UnspecifiedType)secondElementType).setUpperBound(firstElementType);
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return conformsTo(firstElementType, secondElementType, bindings);
+		}
+	}
+
+	protected boolean conformsToLambdaType(LambdaType firstType, LambdaType secondType,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		throw new UnsupportedOperationException();
 	}
 
 	protected boolean conformsToCollectionType(CollectionType firstType, CollectionType secondType,
@@ -721,6 +862,10 @@ public class TypeManager extends TypeCaches implements Adapter
 //		}
 	}
 
+	public ClassifierType getClassifierType(Type type) {
+		return getLibraryType(getClassifierType(), Collections.singletonList(type), true);
+	}
+
 	public CollectionType getCollectionType(boolean isOrdered, boolean isUnique) {
 		if (isOrdered) {
 			if (isUnique) {
@@ -770,11 +915,6 @@ public class TypeManager extends TypeCaches implements Adapter
 			}
 		}
 		return commonClasses;
-	}
-
-	protected boolean conformsToLambdaType(LambdaType firstType, LambdaType secondType,
-			Map<TemplateParameter, ParameterableElement> bindings) {
-		throw new UnsupportedOperationException();
 	}
 
     public Type getCommonTupleType(TupleType leftType, TupleType rightType,
@@ -937,6 +1077,22 @@ public class TypeManager extends TypeCaches implements Adapter
 		}
 		return implementation;
 	}
+	public CallableImplementation getImplementation(Operation operation) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = operation.getImplementation();
+		if (implementation == null) {
+			implementation = computeOperationImplementation(operation);
+			operation.setImplementation(implementation);
+		}
+		return implementation;
+	}
+	public CallableImplementation getImplementation(Property property) throws ClassNotFoundException, SecurityException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException {
+		CallableImplementation implementation = property.getImplementation();
+		if (implementation == null) {
+			implementation = computePropertyImplementation(property);
+			property.setImplementation(implementation);
+		}
+		return implementation;
+	}
 
 	public Precedence getInfixPrecedence(String operatorName) {
 		if (infixToPrecedenceNameMap == null) {
@@ -999,6 +1155,9 @@ public class TypeManager extends TypeCaches implements Adapter
 
 	public <T extends Type> T getLibraryType(T libraryType, List<? extends ParameterableElement> templateArguments, boolean resolveSuperClasses) {
 		assert libraryType == PivotUtil.getUnspecializedTemplateableElement(libraryType);
+		if ((libraryType == getClassifierType()) && (templateArguments.size() == 1) && (templateArguments.get(0) == libraryType)) {
+			return libraryType;
+		}
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
 		if (templateParameters.isEmpty()) {
@@ -1058,20 +1217,57 @@ public class TypeManager extends TypeCaches implements Adapter
 		if (specializedType instanceof CollectionType) {
 			((CollectionType)specializedType).setElementType((Type) templateArguments.get(0));
 		}
+		else if (specializedType instanceof TupleType) {
+			((TupleType)specializedType).getSuperClasses().add(getOclAnyType());
+		}
+		else if (specializedType instanceof ClassifierType) {		// FIXME make this algorithmic
+			ParameterableElement templateArgument = templateArguments.get(0);
+			ClassifierType specializedClassifierType = (ClassifierType)specializedType;
+			specializedClassifierType.setInstanceType((Type)templateArgument);
+			if (templateArgument instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
+				specializedClassifierType.getSuperClasses().add(getEnumerationType());
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("Enumeration"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else if (templateArgument instanceof InvalidType) {
+				specializedClassifierType.getSuperClasses().add(getOclInvalidType());
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("InvalidType"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else if (templateArgument instanceof VoidType) {
+				specializedClassifierType.getSuperClasses().add(getOclVoidType());
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("VoidType"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else if (templateArgument instanceof PrimitiveType) {
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("PrimitiveType"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else if (templateArgument instanceof CollectionType) {
+				specializedClassifierType.getSuperClasses().add(getCollectionType());
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("CollectionType"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else if (templateArgument instanceof AnyType) {	
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("Class"));
+			}
+			else if (templateArgument instanceof TupleType) {
+				specializedClassifierType.getSuperClasses().add(getTupleType());
+				specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("TupleType"));
+				specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+			}
+			else {
+				ClassifierType classifierType = getClassifierType(getClassifierType());
+				if (classifierType != specializedClassifierType) {
+					specializedClassifierType.getSuperClasses().add(classifierType);
+					specializedClassifierType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("Class"));
+					specializedClassifierType.getSuperClasses().remove(getOclAnyType());
+				}
+			}
+		}
 		specializedType.setMoniker(moniker);
 		addOrphanClass(specializedType);
 		return specializedType;
-	}
-
-	@Override
-	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
-		if (pivotMetaModel == null) {
-			super.getPivotMetaModel();
-			pivotMetaModel.setMoniker("pivot");		// FIXME temporary workaround
-			installPackageMoniker(pivotMetaModel);
-			installPackage(pivotMetaModel);
-		}
-		return pivotMetaModel;
 	}
 
 	public <T extends NamedElement> T getPivotOfEcore(Class<T> pivotClass, EObject eObject) {
@@ -1420,6 +1616,8 @@ public class TypeManager extends TypeCaches implements Adapter
 			tupleType.getOwnedAttributes().add(tuplePart);
 		}
 		tupleType.setMoniker(moniker);
+		tupleType.getSuperClasses().add(getTupleType());
+//		tupleType.getSuperClasses().add((org.eclipse.ocl.examples.pivot.Class)getPivotType("TupleType"));
 		addOrphanClass(tupleType);
 		return tupleType;
 	}
@@ -1555,7 +1753,7 @@ public class TypeManager extends TypeCaches implements Adapter
 			loadLibraryPackage(nestedPackage);
 		}
 		for (Type type : pivotPackage.getOwnedTypes()) {
-			if (type.getTemplateBindings().isEmpty() && !(type instanceof LambdaType)) {	// FIXME cf PivotSaver.isOrphanType
+			if (isLibraryType(type)) {
 				defineLibraryType(type);
 			}
 		}
@@ -1640,6 +1838,9 @@ public class TypeManager extends TypeCaches implements Adapter
 				if (orphanType instanceof CollectionType) {
 					((CollectionType)orphanType).setElementType((Type) orphanType.getTemplateBindings().get(0).getParameterSubstitutions().get(0).getActual());
 				}
+				else if (orphanType instanceof ClassifierType) {
+					((ClassifierType)orphanType).setInstanceType((Type) orphanType.getTemplateBindings().get(0).getParameterSubstitutions().get(0).getActual());
+				}
 			}
 		}
 	}
@@ -1651,27 +1852,31 @@ public class TypeManager extends TypeCaches implements Adapter
 	 * @param specializedClass to update superclasses of
 	 */
 	public void resolveSuperClasses(org.eclipse.ocl.examples.pivot.Class specializedClass) {
-		org.eclipse.ocl.examples.pivot.Class unboundType = PivotUtil.getUnspecializedTemplateableElement(specializedClass);
-		if (unboundType == null) {
+		List<org.eclipse.ocl.examples.pivot.Class> oldSuperClasses = specializedClass.getSuperClasses();
+		if (oldSuperClasses.size() > 0) {
+			return;
+		}
+		org.eclipse.ocl.examples.pivot.Class unspecializedType = PivotUtil.getUnspecializedTemplateableElement(specializedClass);
+		if (unspecializedType == null) {
 			return;							// LambdaType
 		}
 		Map<TemplateParameter, ParameterableElement> specializedBindings = PivotUtil.getAllTemplateParameterSubstitutions(null, specializedClass);
 		List<org.eclipse.ocl.examples.pivot.Class> newSuperClasses = new ArrayList<org.eclipse.ocl.examples.pivot.Class>();
-		for (org.eclipse.ocl.examples.pivot.Class unboundSuper : unboundType.getSuperClasses()) {
+		for (org.eclipse.ocl.examples.pivot.Class unspecializedSuper : unspecializedType.getSuperClasses()) {
 			List<ParameterableElement> templateArguments = null;
-			List<TemplateBinding> unboundSuperTemplateBindings = unboundSuper.getTemplateBindings();
+			List<TemplateBinding> unboundSuperTemplateBindings = unspecializedSuper.getTemplateBindings();
 			if (unboundSuperTemplateBindings.size() > 0) {					
-				Map<TemplateParameter, ParameterableElement> superBindings = PivotUtil.getAllTemplateParameterSubstitutions(null, unboundSuper);
+				Map<TemplateParameter, ParameterableElement> superBindings = PivotUtil.getAllTemplateParameterSubstitutions(null, unspecializedSuper);
 				List<TemplateParameter> unspecializedSuperTemplateParameters = PivotUtil.getAllTemplateParameters(unboundSuperTemplateBindings);
 				templateArguments = new ArrayList<ParameterableElement>(unspecializedSuperTemplateParameters.size());
 				for (TemplateParameter unspecializedSuperTemplateParameter : unspecializedSuperTemplateParameters) {
 					ParameterableElement templateArgument = null;
 					if (superBindings != null) {
-						ParameterableElement unboundActual = superBindings.get(unspecializedSuperTemplateParameter);
-						if (unboundActual != null) {
-							TemplateParameter unboundFormal = unboundActual.getOwningTemplateParameter();
-							if ((unboundFormal != null) && (specializedBindings != null)) {
-								templateArgument = specializedBindings.get(unboundFormal);
+						ParameterableElement unspecializedActual = superBindings.get(unspecializedSuperTemplateParameter);
+						if (unspecializedActual != null) {
+							TemplateParameter unspecializedFormal = unspecializedActual.getOwningTemplateParameter();
+							if ((unspecializedFormal != null) && (specializedBindings != null)) {
+								templateArgument = specializedBindings.get(unspecializedFormal);
 							}
 						}
 					}
@@ -1681,13 +1886,12 @@ public class TypeManager extends TypeCaches implements Adapter
 					templateArguments.add(templateArgument);
 				}								
 			}
-			org.eclipse.ocl.examples.pivot.Class unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(unboundSuper);
+			org.eclipse.ocl.examples.pivot.Class unspecializedSuperType = PivotUtil.getUnspecializedTemplateableElement(unspecializedSuper);
 			org.eclipse.ocl.examples.pivot.Class specializedSuperType = getLibraryType(unspecializedSuperType, templateArguments, false);	// FIXME This is sole false call
 			if ((specializedSuperType != null) && !newSuperClasses.contains(specializedSuperType)) {
 				newSuperClasses.add(specializedSuperType);
 			}
 		}
-		List<org.eclipse.ocl.examples.pivot.Class> oldSuperClasses = specializedClass.getSuperClasses();
 		PivotUtil.refreshList(oldSuperClasses, newSuperClasses);
 	}
 

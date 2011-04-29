@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.6 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Pivot2EcoreDeclarationVisitor.java,v 1.7 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -261,6 +261,9 @@ public class Pivot2EcoreDeclarationVisitor
 
 	@Override
 	public EObject visitProperty(Property pivotProperty) {
+		if (pivotProperty.isImplicit()) {
+			return null;
+		}
 		EStructuralFeature eStructuralFeature;
 		Type type = pivotProperty.getType();
 		if (type instanceof DataType) {
