@@ -24,7 +24,7 @@ Require-Bundle: org.antlr,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.ide.parserfactory,
  com.sap.furcas.runtime.unparser,
- org.eclipse.imp.runtime;visibility:=reexport
+ org.eclipse.imp.runtime;bundle-version="0.1.108";visibility:=reexport
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.ide.editor,
