@@ -35,6 +35,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -79,6 +81,7 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -2327,7 +2330,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// literal; otherwise, the implicit set conversion of an undefined value
 					// would return false for isEmpty(). See also Section 7.5.3 in the OCL 2.3
 					// specification (10-11-42) on implicit set conversion by the -> operator
-					if (itemVal != null || parts.size() > 1 || kind != CollectionKind.SET_LITERAL) {
+					if (itemVal != null || parts.size() > 1 || !isImplicitSetConversion(cl)) {
 						result.add(itemVal);
 					}
 				} else {
@@ -2356,6 +2359,23 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return result;
 	} // end of Set, OrderedSet, Bag Literals
+
+	private boolean isImplicitSetConversion(CollectionLiteralExp<C> cl) {
+		boolean result = false;
+		if (cl instanceof EModelElement) {
+			EAnnotation implicitSetConversionAnnotation = ((EModelElement) cl)
+				.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+			if (implicitSetConversionAnnotation != null) {
+				String implicitSetConversionDetail = implicitSetConversionAnnotation
+					.getDetails().get(AbstractOCLAnalyzer.IMPLICIT_SET_CONVERSION);
+				if (implicitSetConversionDetail != null &&
+						Boolean.valueOf(implicitSetConversionDetail)) {
+					result = true;
+				}
+			}
+		}
+		return result;
+	}
 
 	// private static inner class for lazy lists over an integer range
 	private static final class IntegerRangeList
