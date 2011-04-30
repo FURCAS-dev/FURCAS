@@ -74,8 +74,8 @@
     <module>editor.test.metamodel</module>
     <module>editor.test.metamodel.epi</module>
 	-->
-
     <module>org.antlr</module>
+    <module>org.eclipse.imp.runtime</module>
   </modules>
 
 </project>
