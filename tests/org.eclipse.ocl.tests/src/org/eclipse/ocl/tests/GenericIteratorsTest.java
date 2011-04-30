@@ -576,7 +576,8 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         assertTrue(result instanceof Collection<?>);
 
         Collection<?> collResult = (Collection<?>) result;
-        assertTrue(collResult.isEmpty());
+        assertEquals(1, collResult.size());
+        assertNull(collResult.iterator().next());
     }
 
 	/**

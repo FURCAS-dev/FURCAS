@@ -492,10 +492,7 @@ public class EvaluationCollectionOperationTest
 		assertResultFalse("Bag{3, 4.0, null, 'test'}->excludes(null)");
 		assertResultFalse("Bag{null}->excludes(null)");
 		assertResultFalse("Set{3, 4.0, null, 'test'}->excludes(null)");
-		// Set{null} has special semantics due to the implicit set conversion
-		// in x->... for the case where x==null. Therefore, Set{null} evaluates
-		// to an empty set which therefore excludes null.
-		assertResultTrue("Set{null}->excludes(null)");
+		assertResultFalse("Set{null}->excludes(null)");
 		assertResultFalse("OrderedSet{3, 4.0, null, 'test'}->excludes(null)");
 		assertResultFalse("OrderedSet{null}->excludes(null)");
 
@@ -776,9 +773,7 @@ public class EvaluationCollectionOperationTest
 		assertResultTrue("Bag{3, 4.0, null, 'test'}->includes(null)");
 		assertResultTrue("Bag{null}->includes(null)");
 		assertResultTrue("Set{3, 4.0, null, 'test'}->includes(null)");
-		// the following results in an empty set according to OCL spec 11.2.3,
-		// used by implicit Set conversion when -> is used on a null value
-		assertResultFalse("Set{null}->includes(null)");
+		assertResultTrue("Set{null}->includes(null)");
 		assertResultTrue("OrderedSet{3, 4.0, null, 'test'}->includes(null)");
 		assertResultTrue("OrderedSet{null}->includes(null)");
 
@@ -1047,8 +1042,7 @@ public class EvaluationCollectionOperationTest
 	public void testCollectionIsEmptyNullValue() {
 		assertResultFalse("Sequence{null}->isEmpty()");
 		assertResultFalse("Bag{null}->isEmpty()");
-		// Set{null} is the exceptional case used by implicit set conversion with ->
-		assertResultTrue("Set{null}->isEmpty()");
+		assertResultFalse("Set{null}->isEmpty()");
 		assertResultFalse("OrderedSet{null}->isEmpty()");
 
 		// 11.7.1 : clarification was added for this :
@@ -1156,8 +1150,7 @@ public class EvaluationCollectionOperationTest
 	public void testCollectionNotEmptyNullValue() {
 		assertResultTrue("Sequence{null}->notEmpty()");
 		assertResultTrue("Bag{null}->notEmpty()");
-		// Set{null} is the special case for an empty set because of implicit -> conversion
-		assertResultFalse("Set{null}->notEmpty()");
+		assertResultTrue("Set{null}->notEmpty()");
 		assertResultTrue("OrderedSet{null}->notEmpty()");
 
 		assertResultFalse("null->notEmpty()");
