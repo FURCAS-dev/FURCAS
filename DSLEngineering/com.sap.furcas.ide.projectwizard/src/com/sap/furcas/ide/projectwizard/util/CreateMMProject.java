@@ -87,7 +87,7 @@ public class CreateMMProject {
         nonSrcFolders.add("model");
         shell = wizard.getShell();
 
-        WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, shell, true);
+        WizardProjectHelper.createPlugInProject(pi, srcFolders, nonSrcFolders, null, progressMonitor, true);
 
         createNewModel();
 

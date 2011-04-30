@@ -188,8 +188,8 @@ public class SourceCodeFactory {
      * @return The content of the mapper class.
      * @throws CodeGenerationException
      */
-    public String createMapperCode(ProjectInfo pi) throws CodeGenerationException {
-    	String filename = "mapper.txt";
+    public String createColorerCode(ProjectInfo pi) throws CodeGenerationException {
+    	String filename = "tokencolorer.txt";
         return createFileContents(pi, filename);
     }
 

@@ -64,7 +64,7 @@ public class WizardProjectHelper {
      */
     public static IProject createPlugInProject(final ProjectInfo pi, final List<String> srcFolders,
             final List<String> nonSrcFolders, final List<String> exportedPackages, final IProgressMonitor progressMonitor,
-            final Shell theShell, final boolean metamodel) throws CodeGenerationException {
+            final boolean metamodel) throws CodeGenerationException {
         IProject project = null;
         final String projectName;
         // Check if this is the creation of the metamodel project or not.
@@ -81,7 +81,7 @@ public class WizardProjectHelper {
         project = workspace.getRoot().getProject(projectName);
 
         if (project.exists()) {
-            deleteOldProject(progressMonitor, theShell, project, projectName);
+            deleteOldProject(progressMonitor, project, projectName);
         }
 
         // Create the project
@@ -254,13 +254,13 @@ public class WizardProjectHelper {
      * @param projectName
      * @throws CoreException
      */
-    private static void deleteOldProject(final IProgressMonitor progressMonitor, final Shell theShell, IProject project,
+    private static void deleteOldProject(final IProgressMonitor progressMonitor, IProject project,
             final String projectName) throws CodeGenerationException {
         final boolean[] result = new boolean[1];
         PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
             @Override
             public void run() {
-                result[0] = MessageDialog.openQuestion(theShell, "Do you want to overwrite the project " + projectName,
+                result[0] = MessageDialog.openQuestion(null, "Do you want to overwrite the project " + projectName,
                         "Note that everything inside the project '" + projectName
                                 + "' will be deleted if you confirm this dialog.");
             }

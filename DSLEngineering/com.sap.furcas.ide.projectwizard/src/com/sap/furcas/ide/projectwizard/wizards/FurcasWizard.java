@@ -41,6 +41,7 @@ import com.sap.furcas.ide.dslproject.conf.ProjectMetaRefConfFactory;
 import com.sap.furcas.ide.projectwizard.util.CodeGenerationException;
 import com.sap.furcas.ide.projectwizard.util.CreateMMProject;
 import com.sap.furcas.ide.projectwizard.util.CreateProject;
+import com.sap.furcas.ide.projectwizard.util.CreateProjectOperation;
 import com.sap.furcas.ide.projectwizard.util.ProjectInfo;
 
 /**
@@ -375,9 +376,7 @@ public class FurcasWizard extends Wizard implements INewWizard {
 
 
     public void structuredProcess(final ProjectInfo pi, IProgressMonitor monitor) {
-        CreateProject cP = new CreateProject(pi, getShell(), getFurcasWizard());
-        // All in one try block, add comments
-        //
+        CreateProjectOperation cP = new CreateProjectOperation(pi, getShell(), getFurcasWizard());
         try {
             cP.run(monitor);
         } catch (InvocationTargetException e) {
