@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.imp.metatooling">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.imp.metatooling" id="index" name="IMP Index of shared artifacts"/>
+      </appInfo>
+      <documentation>
+         The org.eclipse.imp.indexContributor extension point allows contributors to define and share artifacts through a central index. What is kept in the index, and how to access it, is left up to the implementors of the programming language.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <documentation>
+            Provide an implementation of an index of shared artifact of programs written for a given language. The actual contents is diverse and depends on the lanuage used.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="indexContributor"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="indexContributor">
+      <annotation>
+         <documentation>
+            &lt;p&gt;
+Index -- an alphabetical listing of names and topics along with locations where they are discussed -- Wordnet Search
+&lt;br&gt;
+
+&lt;p&gt;
+Defines a shared index for a given programming language. Depending on the nature of the programming language, the index contains widely varying items, such as classes and interfaces (in the case of Java) and macros (in the case of C). 
+&lt;p&gt;
+Support for persistence is provided, but the information discovery for the index is very much language specific and is unsupported. 
+Furthermore, the actual contents specification is also left up to the language contributor.
+&lt;p&gt;
+The extension point serves mostly as a central registration location for language-specific indices.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the language to which this service applies. There must be a corresponding &quot;language description&quot; extension whose name matches this attribute&apos;s value.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified name of the class that will be generated to serve as the implementation of this extension.  This class will be assigned the given name and located in the given package in the currently selected project.  (The package will be created if it does not already exist.)
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.indexing.IndexContributorBase"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         1.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Contributor should implement the &lt;tt&gt;org.eclipse.imp.Index&lt;/tt&gt; class.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         org.eclipse.imp.Index
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

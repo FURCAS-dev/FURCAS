@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="annotationHover" name="Annotation Hover" schema="schema/annotationHover.exsd"/>
+   <extension-point id="autoEditStrategy" name="Auto-Edit Strategy" schema="schema/autoEditStrategy.exsd"/>
+   <extension-point id="contentProposer" name="IMP Content Proposer" schema="schema/contentProposer.exsd"/>
+   <extension-point id="contextHelper" name="Context Helper" schema="schema/contextHelper.exsd"/>
+   <extension-point id="documentationProvider" name="Documentation Provider" schema="schema/documentationProvider.exsd"/>
+   <extension-point id="editorActionContributions" name="Editor Action Contributions" schema="schema/editorActionContributions.exsd"/>
+   <extension-point id="editorService" name="IMP Editor Service" schema="schema/editorService.exsd"/>
+   <extension-point id="entityImageDecorator" name="Entity Image Decorator" schema="schema/entityImageDecorator.exsd"/>
+   <extension-point id="entityNameLocator" name="Entity Name Locator" schema="schema/entityNameLocator.exsd"/>
+   <extension-point id="foldingUpdater" name="IMP Source Folding Updater" schema="schema/foldingUpdater.exsd"/>
+   <extension-point id="formatter" name="IMP Source Code Formatter" schema="schema/formatter.exsd"/>
+   <extension-point id="hoverHelper" name="IMP Hover Helper" schema="schema/hoverHelper.exsd"/>
+   <extension-point id="hyperLink" name="IMP Hyperlink Detector" schema="schema/hyperLink.exsd"/>
+   <extension-point id="imageDecorator" name="Image Decorator" schema="schema/imageDecorator.exsd"/>
+   <extension-point id="indexContributor" name="Shared index of language-specific items, such as types" schema="schema/indexContributor.exsd"/>
+   <extension-point id="labelProvider" name="Label Provider" schema="schema/labelProvider.exsd"/>
+   <extension-point id="languageDescription" name="Description of a programming language" schema="schema/languageDescription.exsd"/>
+   <extension-point id="markOccurrences" name="Mark Occurrences" schema="schema/markOccurrences.exsd"/>
+   <extension-point id="modelListener" name="Listener for model changes" schema="schema/modelListener.exsd"/>
+   <extension-point id="modelTreeBuilder" name="Model Tree Builder" schema="schema/modelTreeBuilder.exsd"/>
+   <extension-point id="navigationTargetFinder" name="Navigation target finder" schema="schema/navigationTargetFinder.exsd"/>
+   <extension-point id="outlineContentProvider" name="Outline Content Provider" schema="schema/outlineContentProvider.exsd"/>
+   <extension-point id="outliner" name="IMP Outliner" schema="schema/outliner.exsd"/>
+   <extension-point id="parser" name="Language-specific parser" schema="schema/parser.exsd"/>
+   <extension-point id="refactoringContributions" name="Refactoring Contributions" schema="schema/refactoringContributions.exsd"/>
+   <extension-point id="referenceResolvers" name="IMP Reference Resolver" schema="schema/referenceResolvers.exsd"/>
+   <extension-point id="toggleBreakpointHandler" name="Toggle Breakpoint Handler" schema="schema/toggleBreakpointHandler.exsd"/>
+   <extension-point id="tokenColorer" name="IMP Token Colorer" schema="schema/tokenColorer.exsd"/>
+   <extension-point id="viewerFilter" name="Program Entity Viewer Filter" schema="schema/viewerFilter.exsd"/>
+   <extension-point id="compareNodeIdentifier" name="Compare Node Identifier" schema="schema/compareNodeIdentifier.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="IMP Editor"
+            icon="icons/IMP-editor.gif"
+            extensions="txt"
+            contributorClass="org.eclipse.imp.editor.internal.TextEditorActionContributor"
+            class="org.eclipse.imp.editor.UniversalEditor"
+            id="org.eclipse.imp.runtime.impEditor">
+      </editor>
+   </extension>
+   <extension
+         id="org.eclipse.imp.startup"
+         name="IMP Runtime Startup"
+         point="org.eclipse.ui.startup">
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+       	  targetID="org.eclipse.imp.runtime.impEditor"
+          id="imp.rulerActions">
+         <action
+             label="Not Used"
+             class="org.eclipse.debug.ui.actions.RulerToggleBreakpointActionDelegate"
+             style="push"
+             actionID="RulerDoubleClick"
+             id="imp.doubleClickBreakpointAction"/>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="1"
+            name="org.eclipse.imp.editor.parseAnnotation"
+            super="org.eclipse.ui.workbench.texteditor.error"/>
+      <type
+            markerSeverity="1"
+            name="org.eclipse.imp.runtime.occurrenceAnnotation"
+            super="org.eclipse.ui.workbench.texteditor.error"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="org.eclipse.imp.editor.parseAnnotation"
+            colorPreferenceKey="parseAnnotationColor"
+            colorPreferenceValue="255,128,147"
+            contributesToHeader="false"
+            highlightPreferenceKey="parseAnnotationHighlightKey"
+            highlightPreferenceValue="false"
+            includeOnPreferencePage="true"
+            isGoToNextNavigationTarget="true"
+            isGoToNextNavigationTargetKey="parseAnnotationIsGotoNextKey"
+            isGoToPreviousNavigationTarget="true"
+            isGoToPreviousNavigationTargetKey="parseAnnotationIsGotoPrevKey"
+            label="IMP Parser Annotation"
+            overviewRulerPreferenceKey="parseAnnotationOverviewKey"
+            overviewRulerPreferenceValue="true"
+            presentationLayer="2"
+            showInNextPrevDropdownToolbarAction="true"
+            symbolicIcon="error"
+            textPreferenceKey="parseAnnotationTextKey"
+            textPreferenceValue="true"
+            textStylePreferenceKey="parseAnnotationTextStyleKey"
+            textStylePreferenceValue="SQUIGGLES"
+            verticalRulerPreferenceKey="parseAnnotationVerticalKey"
+            verticalRulerPreferenceValue="true"/>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.imp.preferences.PreferencePage"
+            id="org.eclipse.imp.runtime.preferencePage"
+            name="IMP"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer class="org.eclipse.imp.preferences.PreferenceInitializer"/>
+   </extension>
+   -->
+   <extension
+         point="org.eclipse.ui.bindings">
+      <!--  win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-
+            carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL -->
+      <key
+            commandId="org.eclipse.imp.runtime.editor.showOutline"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+O"/>
+      <key
+            commandId="org.eclipse.imp.runtime.editor.toggleComment"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+/"/>
+      <key
+            commandId="org.eclipse.imp.runtime.editor.indentSelection"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+I"/>
+      <key
+            commandId="org.eclipse.imp.runtime.editor.formatSource"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+F"/>
+      <key
+            sequence="M1+M3+P"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.gotoMatchingFence"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="M1+M3+T"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.refactor.quickMenu"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="M2+M3+ARROW_UP"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.gotoPreviousTarget"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            platform="carbon"
+            sequence="M3+M4+ARROW_UP"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.gotoPreviousTarget"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="M2+M3+ARROW_DOWN"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.gotoNextTarget"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            platform="carbon"
+            sequence="M3+M4+ARROW_DOWN"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.gotoNextTarget"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            sequence="CTRL+SHIFT+ARROW_UP"
+            contextId="org.eclipse.ui.textEditorScope"
+            commandId="org.eclipse.imp.runtime.editor.selectEnclosing"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="org.eclipse.imp.runtime.source"
+            name="Source"/>
+      <category
+            id="org.eclipse.imp.runtime.refactor"
+            name="Refactor"/>
+      <command
+            name="Refactor"
+            description="Show Refactor Quick Menu"
+            categoryId="org.eclipse.imp.runtime.refactor"
+            id="org.eclipse.imp.runtime.editor.refactor.quickMenu">
+      </command>
+      <command
+            categoryId="org.eclipse.ui.category.navigate"
+            description="Show the quick outline for the editor input"
+            id="org.eclipse.imp.runtime.editor.showOutline"
+            name="Show Outline"/>
+      <command
+            name="Collapse Members"
+            description="Collapses all members in the current source file"
+            categoryId="org.eclipse.ui.category.textEditor"
+            id="org.eclipse.imp.runtime.editor.folding.collapseMembers">
+      </command>
+      <command
+            name="Collapse Comments"
+            description="Collapses all multi-line comments in the current source file"
+            categoryId="org.eclipse.ui.category.textEditor"
+            id="org.eclipse.jdt.ui.edit.text.java.folding.collapseComments">
+      </command>
+      <command
+            categoryId="org.eclipse.imp.runtime.source"
+            description="Comments/uncomments the current selection or the current source line"
+            id="org.eclipse.imp.runtime.editor.toggleComment"
+            name="Toggle Comment"/>
+      <command
+            categoryId="org.eclipse.imp.runtime.source"
+            description="Format the source code"
+            id="org.eclipse.imp.runtime.editor.formatSource"
+            name="Format"/>
+      <command
+            name="Go to Matching Fence"
+            description="Moves the cursor to the matching fence character, if any"
+            categoryId="org.eclipse.ui.category.navigate"
+            id="org.eclipse.imp.runtime.editor.gotoMatchingFence">
+      </command>
+      <command
+            name="Go to Previous Navigation Target"
+            description="Go to Previous Navigation Target"
+            categoryId="org.eclipse.imp.runtime.source"
+            id="org.eclipse.imp.runtime.editor.gotoPreviousTarget"/>
+      <command
+            name="Go to Next Navigation Target"
+            description="Go to Next Navigation Target"
+            categoryId="org.eclipse.imp.runtime.source"
+            id="org.eclipse.imp.runtime.editor.gotoNextTarget"/>
+      <command
+            categoryId="org.eclipse.imp.runtime.source"
+            description="Re-indent the selected text according to current formatting settings"
+            id="org.eclipse.imp.runtime.editor.indentSelection"
+            name="Correct Indentation">
+      </command>
+      <command
+            categoryId="org.eclipse.imp.runtime.source"
+            description="Select the innermost enclosing construct"
+            id="org.eclipse.imp.runtime.editor.selectEnclosing"
+            name="Select Enclosing">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.imp.runtime.refactoringActions"
+            label="IMP Refactoring Actions"
+            visible="true">
+         <menu
+               id="org.eclipse.imp.refactoring"
+               label="Refactor">
+            <separator name="org.eclipse.imp.refactoring"/>
+         </menu>
+      </actionSet>
+      <actionSet
+            id="org.eclipse.imp.runtime.analysisActions"
+            label="IMP Analysis Actions"
+            visible="true">
+         <action
+               class="org.eclipse.imp.editor.MarkOccurrencesAction"
+               icon="icons/mark_occurrences.gif"
+               id="org.eclipse.imp.runtime.actions.markOccurrencesAction"
+               label="&amp;Toggle Mark Occurrences"
+               state="false"
+               style="toggle"
+               toolbarPath="analysisGroup"
+               tooltip="Toggles marking occurrences of the given entity"/>
+      </actionSet>
+	  <actionSet
+	           label="IMP Coding"
+	           description="Action set containing coding related IMP actions"
+	           visible="false"
+	           id="org.eclipse.imp.runtime.codingActionSet">
+<!-- =========================================================================== -->
+<!-- Source Menu                                                                 -->
+<!-- =========================================================================== -->   
+   
+         <menu
+               label="Source"
+               path="edit"
+               id="org.eclipse.imp.source.menu">
+		    <separator
+                  name="commentGroup">
+            </separator>
+            <separator
+                  name="editGroup">
+            </separator>
+            <separator
+                  name="importGroup">
+            </separator>
+            <separator
+                  name="generateGroup">
+            </separator>
+            <separator
+                  name="codeGroup">
+            </separator>
+            <separator
+                  name="externalizeGroup">
+            </separator>
+            <separator
+                  name="convertGroup">
+            </separator>
+         </menu>
+                  
+<!-- Externalize Group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.find.broken.nls.keys"
+               label="%FindNLSProblems.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/externalizeGroup"
+               id="org.eclipse.jdt.ui.actions.FindNLSProblems">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.externalize.strings"
+               label="%ExternalizeStringsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/externalizeGroup"
+               id="org.eclipse.jdt.ui.actions.ExternalizeStrings">
+         </action>
+-->
+<!-- Code Group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.surround.with.quickMenu"
+               label="%SurroundWithTemplateAction.label"
+               style="pulldown"
+               class="org.eclipse.jdt.internal.ui.actions.SurroundWithTemplateMenuAction"
+               menubarPath="org.eclipse.jdt.ui.source.menu/codeGroup"
+               id="org.eclipse.jdt.internal.ui.actions.SurroundWithTemplateMenuAction">
+         </action>
+-->         
+<!-- Generate Group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.add.unimplemented.constructors"
+               label="%AddConstructorFromSuperclassAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.AddConstructorFromSuperclass">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.generate.constructor.using.fields"
+               label="%GenerateConstructorUsingFieldsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.GenerateConstructorUsingFields">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.generate.hashcode.equals"
+               label="%GenerateHashCodeEqualsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.GenerateHashCodeEquals">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.generate.tostring"
+               label="%GenerateToStringAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.GenerateToString">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.create.delegate.methods"
+               label="%GenerateDelegateMethodsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.GenerateDelegateMethods">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.create.getter.setter"
+               label="%GenerateGetterSetterAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.GenerateGetterSetter">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.override.methods"
+               label="%OverrideMethodsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/generateGroup"
+               id="org.eclipse.jdt.ui.actions.OverrideMethods">
+         </action>
+-->
+<!-- Import Group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.clean.up"
+               label="%CleanUpAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/importGroup"
+               id="org.eclipse.jdt.ui.actions.CleanUp">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.sort.members"
+               label="%SortMembersAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/importGroup"
+               id="org.eclipse.jdt.ui.actions.SortMembers">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.organize.imports"
+               label="%OrganizeImportsAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/importGroup"
+               id="org.eclipse.jdt.ui.actions.OrganizeImports">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.add.import"
+               label="%AddImportAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/importGroup"
+               id="org.eclipse.jdt.ui.actions.AddImport">
+         </action>
+-->
+<!-- edit group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.quick.format"
+               label="%FormatElementAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/editGroup"
+               id="org.eclipse.jdt.ui.actions.FormatElement">
+         </action>
+         <action
+               definitionId="org.eclipse.imp.runtime.editor.formatSource"
+               label="Format"
+               retarget="true"
+               menubarPath="org.eclipse.imp.source.menu/editGroup"
+               id="org.eclipse.imp.runtime.actions.Format">
+         </action>
+-->
+         <action
+               definitionId="org.eclipse.imp.runtime.editor.indentSelection"
+               label="Indent Selection"
+               retarget="true"
+               menubarPath="org.eclipse.imp.source.menu/editGroup"
+               id="org.eclipse.imp.runtime.actions.Indent">
+         </action>
+         <action
+               definitionId="org.eclipse.ui.edit.text.shiftLeft"
+               label="Shift Left"
+               retarget="true"
+               menubarPath="org.eclipse.imp.source.menu/editGroup"
+               id="org.eclipse.imp.runtime.actions.ShiftLeft">
+         </action>
+         <action
+               definitionId="org.eclipse.ui.edit.text.shiftRight"
+               label="Shift Right"
+               retarget="true"
+               menubarPath="org.eclipse.imp.source.menu/editGroup"
+               id="org.eclipse.imp.runtime.actions.ShiftRight">
+         </action>
+<!-- Comment Group -->
+<!--
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.add.javadoc.comment"
+               label="%AddJavaDocCommentAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/commentGroup"
+               id="org.eclipse.jdt.ui.actions.AddJavaDocComment">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.uncomment"
+               label="%UncommentAction.label"
+               retarget="true"
+               id="org.eclipse.jdt.ui.actions.Uncomment">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.comment"
+               label="%CommentAction.label"
+               retarget="true"
+               id="org.eclipse.jdt.ui.actions.Comment">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.remove.block.comment"
+               label="%RemoveBlockCommentAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/commentGroup"
+               id="org.eclipse.jdt.ui.actions.RemoveBlockComment">
+         </action>
+         <action
+               definitionId="org.eclipse.jdt.ui.edit.text.java.add.block.comment"
+               label="%AddBlockCommentAction.label"
+               retarget="true"
+               menubarPath="org.eclipse.jdt.ui.source.menu/commentGroup"
+               id="org.eclipse.jdt.ui.actions.AddBlockComment">
+         </action>
+-->
+         <action
+               definitionId="org.eclipse.imp.runtime.editor.toggleComment"
+               label="Toggle Comment"
+               retarget="true"
+               menubarPath="org.eclipse.imp.source.menu/commentGroup"
+               id="org.eclipse.imp.runtime.actions.ToggleComment">
+         </action>         
+      </actionSet>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="org.eclipse.imp.runtime.occurrenceAnnotation"
+            colorPreferenceKey="occurrenceColorPreference"
+            colorPreferenceValue="0,255,128"
+            contributesToHeader="false"
+            highlightPreferenceKey="occurrenceHighlightKey"
+            highlightPreferenceValue="true"
+            icon="icons/searchm_obj.gif"
+            includeOnPreferencePage="true"
+            isGoToNextNavigationTarget="true"
+            isGoToNextNavigationTargetKey="occurrenceAnnotationIsGotoNextKey"
+            isGoToPreviousNavigationTarget="true"
+            isGoToPreviousNavigationTargetKey="occurrenceAnnotationIsGotoPrevKey"
+            label="Occurrences"
+            overviewRulerPreferenceKey="occurrenceOverviewRulerPreference"
+            overviewRulerPreferenceValue="true"
+            presentationLayer="4"
+            showInNextPrevDropdownToolbarAction="true"
+            textPreferenceKey="occurrenceTextPreference"
+            textPreferenceValue="true"
+            textStylePreferenceKey="occurrenceAnnotationTextStyleKey"
+            textStylePreferenceValue="UNDERLINE"
+            verticalRulerPreferenceKey="occurrenceVerticalRulerPreference"
+            verticalRulerPreferenceValue="true"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <showInPart id="org.eclipse.imp.runtime.projectExplorerView"/>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.imp.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="IMP"
+            class="org.eclipse.imp.preferences.PreferencePage"
+            id="org.eclipse.imp.runtime.preferencePage">
+      </page>
+   </extension>
+</plugin>

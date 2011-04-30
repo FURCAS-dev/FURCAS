@@ -1,0 +1,75 @@
+@@ -108,22 +108,47 @@
+         IRegion bigRegion= fColorer.calculateDamageExtent(region, fParseCtlr);
+ 
+         if (bigRegion != null) {
+-            fWorkItems.push(bigRegion);
++            synchronized (fWorkItems) {
++                boolean redundant= false;
++                for(IRegion dr: fWorkItems) {
++                    if (dr.getOffset() <= bigRegion.getOffset() && dr.getOffset() + dr.getLength() >= bigRegion.getOffset() + bigRegion.getLength()) {
++                        redundant= true;
++                    }
++                }
++                if (!redundant) {
++                    System.out.println("damage(): got irredundant damage region: " + bigRegion.getOffset() + ":" + bigRegion.getLength());
++                    fWorkItems.push(bigRegion);
++                }
++            }
+         }
+     }
+ 
+     public void update(IParseController controller, IProgressMonitor monitor) {
++        try {
++            throw new Exception();
++        } catch (Exception e) {
++            System.out.println("Entered PresentationController.update()");
++            e.printStackTrace(System.out);
++        }
+         if (!monitor.isCanceled()) {
+-//            if (fWorkItems.size() == 0) {
+-//                ConsoleUtil.findConsoleStream(PresentationController.CONSOLE_NAME).println("PresentationController.update() called, but no damage in the work queue?");
+-//            }
++//          if (fWorkItems.size() == 0) {
++//              ConsoleUtil.findConsoleStream(PresentationController.CONSOLE_NAME).println("PresentationController.update() called, but no damage in the work queue?");
++//          }
+             synchronized (fWorkItems) {
++                if (fWorkItems.size() == 0) {
++                    System.out.println("PresentationController.update() called, but no work items; reprocessing entire document");
++                    fWorkItems.add(new Region(0, fSourceViewer.getDocument().getLength()));
++                }
++                fWorkItems.add(new Region(0, fSourceViewer.getDocument().getLength()));
+                 for(int n= fWorkItems.size() - 1; !monitor.isCanceled() && n >= 0; n--) {
+                     Region damage= (Region) fWorkItems.get(n);
++                    System.out.println(">>> Processing damage region: " + damage.getOffset() + ":" + damage.getLength());
+                     changeTextPresentationForRegion(controller, monitor, damage);
+                 }
+-                if (!monitor.isCanceled())
++                // TODO Remove the work items we actually processed, whether the monitor was canceled or not
++                if (!monitor.isCanceled()) {
+                     fWorkItems.removeAllElements();
++                }
+             }
+         }
+     }
+@@ -151,6 +180,11 @@
+             ISourcePositionLocator locator) {
+         int prevOffset= -1;
+         int prevEnd= -1;
++        int tokenCount= 0;
++        for(Iterator<Object> iter= parseController.getTokenIterator(damage); iter.hasNext(); tokenCount++) {
++            iter.next();
++        }
++        System.out.println("aggregateTextPresentation(): there seem to be " + tokenCount + " tokens.");
+         for(Iterator<Object> iter= parseController.getTokenIterator(damage); iter.hasNext() && !monitor.isCanceled(); ) {
+             Object token= iter.next();
+             int offset= locator.getStartOffset(token);
+@@ -176,7 +210,9 @@
+        // SMS 21 Jun 2007:  negative (possibly 0) length style ranges seem to cause problems;
+         // but if you have one it should lead to an IllegalArgumentException in changeTextPresentation(..)
+         if (styleRange.length <= 0 || styleRange.start + styleRange.length > this.fSourceViewer.getDocument().getLength()) {
++            System.err.println("Omitting token '" + token + "' w/ empty style range: " + styleRange.start + ":" + styleRange.length);
+         } else {
++//            System.out.println("Adding style range for token '" + token + "' w/ extent " + styleRange.start + ":" + styleRange.length);
+             presentation.addStyleRange(styleRange);
+         }
+     }

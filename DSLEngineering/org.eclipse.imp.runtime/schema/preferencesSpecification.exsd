@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.imp.runtime">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.imp.runtime" id="preferencesSpecification" name="Preferences Specification"/>
+      </appInfo>
+      <documentation>
+         An extension point for adding specifications for preferences for IMP-based IDEs.  Preferences specifications are written in the prefspecs language.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="preferencesSpecification"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Omitted
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Omitted
+
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="preferencesSpecification">
+      <complexType>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the language to which this service applies. There must be a corresponding &quot;language description&quot; extension whose name matches this attribute&apos;s value.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="template" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified name of the template file from which the skeleton preferences specification will be generated.  Predefined templates are provided org.eclipse.imp.preferences/templates.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.wizards.ExtensionPointWizardPage$FileBrowse"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="fileName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name to give to the preferences-specification file.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pagePackage" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The package in the IDE plugin project into which the preferences-specification file will be generated.	This will also be the package in which preferences-related classes that are based on the specification will be generated.
+
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.wizards.ExtensionPointWizardPage$PackageBrowse"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="pageClassNameBase" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name to be used as the basis for naming the preferences-related classes that will be generated.  For example, if the name base is &quot;MylangPreferences&quot;, then classes will be generated with names such as &quot;MylangPreferencesInitializer&quot;, &quot;MylangPreferencesConstants&quot;, etc.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pageName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A human-suitable name for the preferences page that will be generated.  This name will be the basis for the name of the preferences specification (as used in the specification file), the name that appears in the preferences menu, and the name on the preferences page.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pageId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An id for programmatic reference to the preference page that will be generated.  Ids of preference pages are used, for example, in organizing the hierarchy of items in the preferences menu.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  The category in the preferences menu under which the new preferences page will be listed, if any.  To nest the new page under an existing page, provide the id of the existing page; to have the new page listed at the top level, leave blank.  (If you provide a category that does not exist, you will receive a runtime error message.)
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="alternative" type="string">
+            <annotation>
+               <documentation>
+                  Use this to generate a simple page with a brief message entered here.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>
