@@ -114,11 +114,6 @@
 			<id>eclipse</id>
 			<url>http://download.eclipse.org/releases/helios/</url>
 		</repository>
-		<repository>
-			<layout>p2</layout>
-			<id>imp</id>
-			<url>http://download.eclipse.org/technology/imp/updates/</url>
-		</repository>	
 	</repositories>
 
 </project>
