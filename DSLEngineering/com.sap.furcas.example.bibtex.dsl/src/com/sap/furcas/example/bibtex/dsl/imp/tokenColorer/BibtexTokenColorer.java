@@ -2,16 +2,14 @@ package com.sap.furcas.example.bibtex.dsl.imp.tokenColorer;
 
 import generated.BibtexLexer;
 
-import org.eclipse.imp.parser.IParseController;
-import org.eclipse.imp.services.ITokenColorer;
-import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
+import com.sap.furcas.ide.editor.imp.services.FurcasTokenColorer;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 
-public class BibtexTokenColorer implements ITokenColorer {
+public class BibtexTokenColorer extends FurcasTokenColorer {
 
     protected final TextAttribute identifierAttribute, keywordAttribute, numberAttribute, commentAttribute, stringAttribute;
 
@@ -29,9 +27,7 @@ public class BibtexTokenColorer implements ITokenColorer {
     }
 
     @Override
-    public TextAttribute getColoring(IParseController controller, Object o) {
-        AbstractToken token = (AbstractToken) o;
-
+    public TextAttribute getColoring(AbstractToken token) {
         switch (token.getType()) {
         case BibtexLexer.EOF:
             return null;
@@ -46,10 +42,5 @@ public class BibtexTokenColorer implements ITokenColorer {
         default:
             return keywordAttribute;
         }
-    }
-    
-    @Override
-    public IRegion calculateDamageExtent(IRegion seed, IParseController ctlr) {
-        return seed;
     }
 }
