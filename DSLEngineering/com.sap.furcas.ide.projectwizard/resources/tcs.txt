@@ -1,17 +1,18 @@
 syntax $CapLangName$ {
 
 -- place templates here (at least one main template)
-
-        template $FirstClass$ main
-                 :"$FirstClass$"
-                 ;
                  
-  primitiveTemplate identifier for EString default using NAME:
-    value = "%token%";
+  primitiveTemplate identifier for EString default using NAME
+    : value = "%token%"
+    ;
         
-  primitiveTemplate integerSymbol for EInt default using INT:
-        value = "Integer.valueOf(%token%)";
-
+  primitiveTemplate integerSymbol for EInt default using INT
+    : value = "Integer.valueOf(%token%)"
+    ;
+       
+  template $FirstClass$ main
+    : "$FirstClass$"
+    ;
  
   -- place keywords here (optional, seldom used)
 
