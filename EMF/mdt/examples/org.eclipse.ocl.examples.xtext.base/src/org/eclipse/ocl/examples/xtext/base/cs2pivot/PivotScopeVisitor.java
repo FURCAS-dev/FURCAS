@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotScopeVisitor.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: PivotScopeVisitor.java,v 1.7 2011/04/25 19:39:48 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -21,6 +21,7 @@ import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.IfExp;
 import org.eclipse.ocl.examples.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.LetExp;
@@ -34,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.TypeTemplateParameter;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.Variable;
 import org.eclipse.ocl.examples.pivot.VariableExp;
+import org.eclipse.ocl.examples.pivot.VoidType;
 import org.eclipse.ocl.examples.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
@@ -51,6 +53,7 @@ import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationCallExpScopeAd
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.OperationScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.PackageScopeAdapter;
 import org.eclipse.ocl.examples.xtext.base.scoping.pivot.RootPackageScopeAdapter;
+import org.eclipse.ocl.examples.xtext.base.scoping.pivot.VoidTypeScopeAdapter;
 
 public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, TypeManager> implements PivotConstants
 {	
@@ -98,6 +101,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	@Override
 	public ScopeAdapter visitInvalidLiteralExp(InvalidLiteralExp pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);		// FIXME
+	}
+
+	@Override
+	public ScopeAdapter visitInvalidType(InvalidType pivotElement) {
+		return new VoidTypeScopeAdapter(context, pivotElement);
 	}
 
 	@Override
@@ -168,6 +176,11 @@ public class PivotScopeVisitor extends AbstractExtendingVisitor<ScopeAdapter, Ty
 	@Override
 	public ScopeAdapter visitVariableExp(VariableExp pivotElement) {
 		return new EmptyScopeAdapter(context, pivotElement);
+	}
+
+	@Override
+	public ScopeAdapter visitVoidType(VoidType pivotElement) {
+		return new VoidTypeScopeAdapter(context, pivotElement);
 	}
 
 	public ScopeAdapter visiting(Visitable visitable) {
