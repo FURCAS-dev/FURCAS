@@ -67,7 +67,7 @@ public class TCSBootstrap {
     public void phase1_step1_parseSyntaxDefintion() {
         SystemOutErrorHandler errorHandler = new SystemOutErrorHandler();
         try {
-            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), targetConfiguration);
+            syntaxBean = generator.parseSyntax(sourceConfiguration, new File(SYNTAXDEFINITION), new SystemOutErrorHandler());
             assertFalse("Must have completed without (critical) errors", errorHandler.hasFailedWithError());
             assertEquals(LANGUAGE_NAME, syntaxBean.getSyntax().getName());
         } catch (ParserInvokationException e) {

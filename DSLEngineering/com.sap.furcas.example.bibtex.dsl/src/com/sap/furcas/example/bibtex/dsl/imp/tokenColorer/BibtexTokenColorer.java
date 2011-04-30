@@ -1,4 +1,4 @@
-package bibtex.imp.tokenColorer;
+package com.sap.furcas.example.bibtex.dsl.imp.tokenColorer;
 
 import generated.BibtexLexer;
 

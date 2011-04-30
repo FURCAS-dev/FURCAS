@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package bibtex.imp.treeModelBuilder;
+package com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder;
 
 import com.sap.furcas.ide.editor.imp.services.FurcasLabelProvider;
 

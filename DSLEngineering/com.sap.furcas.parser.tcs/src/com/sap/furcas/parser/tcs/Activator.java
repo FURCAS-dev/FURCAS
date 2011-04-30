@@ -4,7 +4,6 @@ import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-import com.sap.furcas.parser.tcs.stable.TCSParserFactory;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProviderImpl;
 

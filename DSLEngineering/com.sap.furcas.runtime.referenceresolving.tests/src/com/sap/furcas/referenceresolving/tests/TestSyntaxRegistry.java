@@ -13,9 +13,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
 import org.junit.Test;
 
-import bibtex.dsl.editor.Activator;
 
 import com.sap.emf.ocl.trigger.TriggerManager;
+import com.sap.furcas.example.bibtex.dsl.editor.Activator;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 import com.sap.furcas.runtime.syntaxprovider.SyntaxProvider;

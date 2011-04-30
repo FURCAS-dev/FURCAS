@@ -23,7 +23,7 @@ import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
-import com.sap.furcas.parser.tcs.stable.TCSParserFactory;
+import com.sap.furcas.parser.tcs.TCSParserFactory;
 import com.sap.furcas.runtime.textblocks.model.TextBlocksModel;
 import com.sap.furcas.runtime.textblocks.testbase.TextblocksTestHelper;
 
