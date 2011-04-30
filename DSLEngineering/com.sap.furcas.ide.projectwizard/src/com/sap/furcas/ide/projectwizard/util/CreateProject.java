@@ -1,6 +1,5 @@
 package com.sap.furcas.ide.projectwizard.util;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +8,8 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
-
-import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
 
 /**
  * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary files etc with
@@ -24,61 +18,19 @@ import com.sap.furcas.ide.projectwizard.wizards.FurcasWizard;
  * @author Frederik Petersen (D054528)
  * 
  */
-public class CreateProject extends WorkspaceModifyOperation {
-    /**
-     * The source folder of the new project.
-     */
-    protected static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
-    /**
-     * Used to access the user input.
-     */
-    ProjectInfo pi;
-    /**
-     * Represents the wizards window.
-     */
-    Shell shell;
-    /**
-     * Used to access methods or variables of the wizard.
-     */
-    FurcasWizard wizard;
-    /**
-     * Reference to the generated project.
-     */
-    public IProject project;
-    /**
-     * Instance of the {@link}SourceCodeFactory used to built files from text templates.
-     */
-    static SourceCodeFactory codeFactory;
+public class CreateProject {
+
+    private static final String ORIGINAL_FILE_LOCATION_ROOT = "src";
+    
+    private final ProjectInfo projectInfo;
+    private final SourceCodeFactory codeFactory;
 
     /**
      * Give the user input to the instance.
-     * 
-     * @param pi
-     *            The user input.
-     * @param shell
-     *            The window containing the wizard.
      */
-    public CreateProject(ProjectInfo pi, Shell shell, FurcasWizard wizard) {
-        this.pi = pi;
-        this.shell = shell;
-        this.wizard = wizard;
-
-        codeFactory = new SourceCodeFactory();
-
-    }
-
-    /**
-     * Starts the process of project creation.
-     */
-    protected void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
-        monitor.beginTask("Creating project " + pi.getProjectName(), 2);
-        try {
-            project = createProject(monitor);
-        } catch (CodeGenerationException e) {
-            wizard.setHadError(true);
-            MessageDialog.openError(this.shell, "Error", e.getMessage());
-
-        }
+    public CreateProject(ProjectInfo pi) {
+        this.projectInfo = pi;
+        this.codeFactory = new SourceCodeFactory();
     }
 
     /**
@@ -90,23 +42,21 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @return The generated project.
      * @throws CodeGenerationException
      */
-    private IProject createProject(IProgressMonitor monitor) throws CodeGenerationException {
+    public IProject createProject(IProgressMonitor monitor) throws CodeGenerationException {
 
         List<String> srcfolders = new ArrayList<String>();
         srcfolders.add("src");
         srcfolders.add("generated");
 
         List<String> exportedPackages = new ArrayList<String>();
-        exportedPackages.add(pi.getProjectName() + ".editor");
-        exportedPackages.add(pi.getProjectName() + ".parser");
+        exportedPackages.add(projectInfo.getProjectName() + ".editor");
+        exportedPackages.add(projectInfo.getProjectName() + ".parser");
         // exportedPackages.add(pi.getBasePackage() + ".tree");
 
         List<String> nonSrcFolders = new ArrayList<String>();
-        nonSrcFolders.add("mappings");
+        nonSrcFolders.add("mapping");
 
-        IProject dslProject = WizardProjectHelper.createPlugInProject(pi, srcfolders, nonSrcFolders, exportedPackages, monitor,
-                this.shell, false);
-
+        IProject dslProject = WizardProjectHelper.createPlugInProject(projectInfo, srcfolders, nonSrcFolders, exportedPackages, monitor, false);
         if (dslProject == null) {
             return null;
         }
@@ -118,15 +68,15 @@ public class CreateProject extends WorkspaceModifyOperation {
         IFolder genRootFolder = dslProject.getFolder('/' + "generated");
         assert (genRootFolder.exists());
 
-        WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(pi), monitor);
+        WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(projectInfo), monitor);
 
         IFolder genSrcFolder = null;
         genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
 
-        createSource(pi, sourceTargetRootFolder, dslProject, monitor);
+        createSource(projectInfo, sourceTargetRootFolder, dslProject, monitor);
 
-        String templateString = codeFactory.createSampleTCS(pi);
-        IFile grammar = WizardProjectHelper.createFile(pi.getTCSFileName(), genSrcFolder, templateString, monitor);
+        String templateString = codeFactory.createSampleTCS(projectInfo);
+        IFile grammar = WizardProjectHelper.createFile(projectInfo.getTCSFileName(), genSrcFolder, templateString, monitor);
 
         // Opening the file for editing. Note that the wizard later on opens the .ecore file if the user
         // chose to build a new metamodel project, so you won't see the effect of this coding in that case.
@@ -153,7 +103,7 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @throws CoreException
      * @throws CodeGenerationException
      */
-    private static IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
+    private IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
             throws CodeGenerationException {
 
         String basePath = "";
@@ -190,7 +140,7 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @throws CodeGenerationException
      * @throws CoreException
      */
-    private static IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath)
+    private IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath)
             throws CodeGenerationException {
         String generatedFolderPath = basePath + "/generated";
         IFolder generatedFolder = srcDir.getFolder(generatedFolderPath);
@@ -219,7 +169,7 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @throws CodeGenerationException
      * @throws CoreException
      */
-    private static IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+    private IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CodeGenerationException {
         String treeFolderPath = basePath + "/tree";
         IFolder treeFolder = srcDir.getFolder(treeFolderPath);
@@ -248,7 +198,7 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @throws CoreException
      * @throws CodeGenerationException
      */
-    private static IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+    private IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CodeGenerationException {
         String parserFolderPath = basePath + "/parser";
         IFolder parserFolder = srcDir.getFolder(parserFolderPath);
@@ -281,7 +231,7 @@ public class CreateProject extends WorkspaceModifyOperation {
      * @throws CoreException
      * @throws CodeGenerationException
      */
-    private static IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
+    private IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CodeGenerationException {
         String editorFolderPath = basePath + "/editor";
         IFolder editorFolder = srcDir.getFolder(editorFolderPath);
@@ -295,8 +245,8 @@ public class CreateProject extends WorkspaceModifyOperation {
         WizardProjectHelper.createFile("Activator.java", editorFolder, codeFactory.createActivator(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "Editor.java", editorFolder,
                 codeFactory.createEditorCode(pi), monitor);
-        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "TokenMapper.java", editorFolder,
-                codeFactory.createMapperCode(pi), monitor);
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "TokenColorer.java", editorFolder,
+                codeFactory.createColorerCode(pi), monitor);
         return editorFolder;
     }
 
