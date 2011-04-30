@@ -2364,7 +2364,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		boolean result = false;
 		if (cl instanceof EModelElement) {
 			EAnnotation implicitSetConversionAnnotation = ((EModelElement) cl)
-				.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+				.getEAnnotation(AbstractOCLAnalyzer.OCL_ANNOTATIONS_URI);
 			if (implicitSetConversionAnnotation != null) {
 				String implicitSetConversionDetail = implicitSetConversionAnnotation
 					.getDetails().get(AbstractOCLAnalyzer.IMPLICIT_SET_CONVERSION);

@@ -170,6 +170,11 @@ import org.eclipse.ocl.utilities.UMLReflection;
 public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends AbstractAnalyzer {
 
+	/**
+	 * @since 3.1
+	 */
+	public static final String OCL_ANNOTATIONS_URI = Environment.OCL_NAMESPACE_URI+"/Annotations"; //$NON-NLS-1$
+
 	/** Prefix used by OCL to escape names that clash with keywords. */
 	private static final String OCL_ESCAPE_PREFIX = "_"; //$NON-NLS-1$
 
@@ -3518,7 +3523,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				if (implicitSetConversionAnnotation == null) {
 					implicitSetConversionAnnotation = EcoreFactory.eINSTANCE
 						.createEAnnotation();
-					implicitSetConversionAnnotation.setSource(Environment.OCL_NAMESPACE_URI);
+					implicitSetConversionAnnotation.setSource(OCL_ANNOTATIONS_URI);
 					((EModelElement) astNode1).getEAnnotations().add(implicitSetConversionAnnotation);
 				}
 				implicitSetConversionAnnotation.getDetails().put(IMPLICIT_SET_CONVERSION, "true"); //$NON-NLS-1$
