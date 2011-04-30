@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotFactoryImpl.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotFactoryImpl.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -33,6 +33,7 @@ import org.eclipse.ocl.examples.pivot.AssociativityKind;
 import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallOperationAction;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -157,6 +158,7 @@ public class PivotFactoryImpl
 			case PivotPackage.BOOLEAN_LITERAL_EXP: return (EObject)createBooleanLiteralExp();
 			case PivotPackage.CALL_OPERATION_ACTION: return (EObject)createCallOperationAction();
 			case PivotPackage.CLASS: return (EObject)createClass();
+			case PivotPackage.CLASSIFIER_TYPE: return (EObject)createClassifierType();
 			case PivotPackage.COLLECTION_ITEM: return (EObject)createCollectionItem();
 			case PivotPackage.COLLECTION_LITERAL_EXP: return (EObject)createCollectionLiteralExp();
 			case PivotPackage.COLLECTION_RANGE: return (EObject)createCollectionRange();
@@ -313,6 +315,17 @@ public class PivotFactoryImpl
 	public org.eclipse.ocl.examples.pivot.Class createClass() {
 		ClassImpl class_ = new ClassImpl();
 		return class_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ClassifierType createClassifierType()
+	{
+		ClassifierTypeImpl classifierType = new ClassifierTypeImpl();
+		return classifierType;
 	}
 
 	/**
