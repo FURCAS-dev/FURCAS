@@ -31,6 +31,7 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import com.sap.emf.bundlelistener.EcorePackageLoadListener;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
 import com.sap.furcas.modeladaptation.emf.adaptation.EMFModelAdapter;
+import com.sap.furcas.parsergenerator.TCSSyntaxContainerBean;
 import com.sap.furcas.runtime.common.exceptions.ParserGeneratorInvocationException;
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.IModelAdapter;
@@ -74,7 +75,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
         this.testConfig = testConfig;
     }
     
-    public void generateParserFactory() {
+    public void generateParserFactory(TCSSyntaxContainerBean syntaxBean) {
         try {
             File parserFactoryFile = new File(testConfig.getRelativePathToGeneratedParserFactoryClass());
             PrintStream out = new PrintStream(new FileOutputStream(parserFactoryFile));
@@ -87,6 +88,7 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("import com.sap.furcas.ide.parserfactory.AbstractParserFactory;");
             out.println("import org.eclipse.emf.ecore.resource.ResourceSet;");
             out.println("import org.eclipse.emf.ecore.EPackage;");
+            out.println("import org.eclipse.emf.common.util.URI;");
 
             out.println("public class " + testConfig.getParserFactoryName() + " extends AbstractParserFactory<"
                     + testConfig.getParserName() + ", " + testConfig.getLexerName() + "> { ");
@@ -94,19 +96,17 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("       private static final String CLASS_LANGUAGE_ID = \"" + testConfig.getLanguageName() + "\"; ");
 
             out.println("       @Override");
-            out.println("    public String[] getHiddenChannelTokenNames() {");
-            out.println("       return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
-            out.println("    }");
+            out.println("       public String[] getHiddenChannelTokenNames() {");
+            out.println("               return new String[] { \"WS\", \"NL\", \"COMMENT\" };");
+            out.println("       }");
 
             out.println("       @Override ");
-            out.println("       public Class<" + testConfig.getLexerName()
-                    + "> getLexerClass() { ");
+            out.println("       public Class<" + testConfig.getLexerName() + "> getLexerClass() { ");
             out.println("               return " + testConfig.getLexerName() + ".class;");
             out.println("       } ");
 
             out.println("       @Override ");
-            out.println("       public Class<" + testConfig.getParserName()
-                    + "> getParserClass() { ");
+            out.println("       public Class<" + testConfig.getParserName() + "> getParserClass() { ");
             out.println("               return " + testConfig.getParserName() + ".class;");
             out.println("       } ");
 
@@ -114,10 +114,14 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             out.println("       public String getLanguageId() { ");
             out.println("               return CLASS_LANGUAGE_ID;");
             out.println("       }");
+            
+            out.println("       @Override ");
+            out.println("       public URI getSyntaxUri() { ");
+            out.println("               return URI.createURI(\"" + syntaxBean.getSyntax().eResource().getURI() + "\");");
+            out.println("       }");
 
             out.println("       @Override");
-            out.println("       public EPackage"
-                    + " getMetamodelPackage(ResourceSet connection) {");
+            out.println("       public EPackage" + " getMetamodelPackage(ResourceSet connection) {");
             out.println("           EPackage pck = EPackage.Registry.INSTANCE.getEPackage(\""
                     + testConfig.getMetamodelPackageURI() + "\");");
             out.println("               return pck;");

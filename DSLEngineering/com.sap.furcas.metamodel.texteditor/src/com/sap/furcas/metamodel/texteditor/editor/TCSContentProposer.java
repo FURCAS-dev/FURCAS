@@ -11,7 +11,7 @@
 package com.sap.furcas.metamodel.texteditor.editor;
 
 import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
-import com.sap.furcas.parser.tcs.stable.TCSParserFactory;
+import com.sap.furcas.parser.tcs.TCSParserFactory;
 
 public class TCSContentProposer extends FurcasContentProposer {
     

@@ -8,17 +8,15 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package bibtex.dsl.editor; 
+package com.sap.furcas.example.bibtex.dsl.editor;
 
 
-import bibtex.dsl.parser.BibtexParserFactory;
+import com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory;
+import com.sap.furcas.ide.editor.imp.services.FurcasContentProposer;
 
-import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
-
-public class BibtexEditor extends AbstractFurcasEditor { 
-
-    public BibtexEditor() {
+public class BibtexContentProposer extends FurcasContentProposer {
+    
+    public BibtexContentProposer() {
         super(new BibtexParserFactory());
     }
-
 }

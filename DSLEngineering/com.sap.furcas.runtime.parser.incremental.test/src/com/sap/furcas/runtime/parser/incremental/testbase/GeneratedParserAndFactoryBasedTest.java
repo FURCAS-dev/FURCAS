@@ -31,7 +31,7 @@ public abstract class GeneratedParserAndFactoryBasedTest extends GeneratedParser
         try {
             generator.generateGrammar(syntaxBean);
             generator.generateParser();
-            generator.generateParserFactory();
+            generator.generateParserFactory(syntaxBean);
             generator.compileParser();
             generator.compileParserFactory();
 

@@ -8,7 +8,7 @@
  * Contributors:
  *     SAP AG - initial API and implementation
  ******************************************************************************/
-package bibtex.dsl.parser;
+package com.sap.furcas.example.bibtex.dsl.parser;
 
 import generated.BibtexLexer;
 import generated.BibtexParser;

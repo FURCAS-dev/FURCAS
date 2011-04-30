@@ -7,7 +7,7 @@
       <editor
             name="Bibtex Text Editor"
             extensions="bib"
-            class="bibtex.dsl.editor.BibtexEditor"
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexEditor"
             id="bibtex.dsl.editor.BibtexEditor">
       </editor>
    </extension>
@@ -15,7 +15,7 @@
          point="com.sap.ide.cts.parser.parserFactory">
       <configuration
             languageID="Bibtex"
-            dynamicParserFactoryClass="bibtex.dsl.parser.BibtexParserFactory">
+            dynamicParserFactoryClass="com.sap.furcas.example.bibtex.dsl.parser.BibtexParserFactory">
       </configuration>
    </extension>
    <extension
@@ -42,7 +42,7 @@
    <extension
          point="org.eclipse.imp.runtime.parser">
       <parser
-            class="bibtex.dsl.editor.BibtextParseController"
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtextParseController"
             language="Bibtex">
       </parser>
    </extension>
@@ -57,14 +57,14 @@
    <extension
          point="org.eclipse.imp.runtime.tokenColorer">
       <tokenColorer
-            class="bibtex.imp.tokenColorer.BibtexTokenColorer"
+            class="com.sap.furcas.example.bibtex.dsl.imp.tokenColorer.BibtexTokenColorer"
             language="Bibtex">
       </tokenColorer>
    </extension>
    <extension
          point="org.eclipse.imp.runtime.contentProposer">
       <proposer
-            class="bibtex.dsl.editor.BibtexContentProposer"
+            class="com.sap.furcas.example.bibtex.dsl.editor.BibtexContentProposer"
             language="Bibtex">
       </proposer>
    </extension>
@@ -78,9 +78,15 @@
    <extension
          point="org.eclipse.imp.runtime.labelProvider">
       <labelProvider
-            class="bibtex.imp.treeModelBuilder.BibtexLabelProvider"
+            class="com.sap.furcas.example.bibtex.dsl.imp.treeModelBuilder.BibtexLabelProvider"
             language="Bibtex">
       </labelProvider>
    </extension>
+   
+    <extension point="com.sap.furcas.runtime.referenceresolving.furcas_syntax">
+       <furcas_syntax provider_class="bibtex.dsl.editor.Activator">
+       	 <metamodel nsURI="http://www.sap.com/furcas/examples/bibtex" />
+       </furcas_syntax>
+ 	</extension> 
 
 </plugin>

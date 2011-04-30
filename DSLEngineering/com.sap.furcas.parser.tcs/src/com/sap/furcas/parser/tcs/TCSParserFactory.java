@@ -14,8 +14,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.ide.parserfactory.AbstractParserFactory;
+import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.parser.tcs.stable.TCSLexer;
 import com.sap.furcas.parser.tcs.stable.TCSParser;
 
@@ -50,7 +50,7 @@ public class TCSParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
         
     @Override
     public URI getSyntaxUri() {
-        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mappings/TCS.tcs", /* encode */ false);
+        return URI.createPlatformPluginURI("/com.sap.furcas.parser.tcs/mapping/TCS.tcs", /* encode */ false);
     }
 
 }
