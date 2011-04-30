@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.imp.runtime">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.imp.runtime" id="languageDescription" name="IMP Programming Language Description"/>
+      </appInfo>
+      <documentation>
+         The org.eclipse.imp.runtime.languageDescription extension points allows contributors to describe a programming language by providing attributes such as a name for the language, synonyms, a description, and a URL with more information on the programming language.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="language"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="language">
+      <annotation>
+         <documentation>
+            Defines a programming language name and associates with it a set of file-name extensions and other meta-data.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The case-insensitive canonical name for this programming language, used in part to identify language service implementations intended to support this language. Examples:
+&lt;ul&gt;
+&lt;li&gt;Java
+&lt;li&gt;FORTRAN
+&lt;li&gt;Lisp
+&lt;li&gt;C
+&lt;li&gt;C#
+&lt;li&gt;Oberon
+&lt;li&gt;...
+&lt;/ul&gt;
+&lt;p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The human-readable description of the language. Examples:
+&lt;ul&gt;
+&lt;li&gt;If the language is &quot;Python&quot;, the description might be &quot;The script language designed by Guido van Rossum&quot;
+&lt;li&gt;If the language is &quot;ActiveJava&quot;, the description might be &quot;An extension of Java with Actors&quot;
+&lt;/ul&gt;
+Descriptions are not directly used by the IMP IDE, but can be used by humans to resolve ambiguities for common programming language names.
+&lt;p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="extensions" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A comma-separated list identifying the file name extensions for source files in this language, excluding any leading &quot;.&quot;. For C++, the extensions could be &quot;hpp,cpp,hxx,cxx&quot;. For a parser generator, it could be &quot;g&quot;. For ant scripts, it would be &quot;xml&quot;.
+
+In the latter two cases, the input could be ambiguous; multiple languages use the extension &quot;g&quot; and &quot;xml&quot;. See the validator attribute to define a user-defined validation class to verify the contents of the file actually corresponds to the programming language being defined.
+&lt;p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="derivedFrom" type="string">
+            <annotation>
+               <documentation>
+                  The canonical name of the language from which this language is derived, if any. Examples:
+&lt;ul&gt;
+&lt;li&gt;&quot;XJ&quot; (Java with embedded XML syntax) would be derived from &quot;Java&quot;
+&lt;li&gt;&quot;LotusScript&quot; is derived from &quot;JavaScript&quot;
+&lt;li&gt;&quot;PHP&quot; is derived from &quot;HTML&quot;
+&lt;li&gt;&quot;HTML&quot; is derived from &quot;XML&quot;
+&lt;/ul&gt;
+&lt;p&gt;
+Derivation is used in determining inheritance relationships when locating language service implementations for a given language.
+For example, suppose a PHP source file is opened, but no PHP editor is available. Given the inheritance relationships above, IMP attempts to locate an HTML editor, and if none is found, an XML editor is located; failing that, a simple text editor is used.
+&lt;p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The file path to the icon that will appear in various views that display source file entities (e.g. the Package Explorer). The icon must reside in the plugin containing the language descriptor, and the path must be a valid resource location in that plugin.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="url" type="string">
+            <annotation>
+               <documentation>
+                  The url for a web site that contains more information about this language.
+&lt;p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="validatorClass" type="string">
+            <annotation>
+               <documentation>
+                  The fully-qualified name of a class that can determine whether a given input file actually contains text in the given programming language. Useful for languages such as XML that have many dialects (e.g. Ant build scripts, Eclipse plugin descriptors, or DTD&apos;s). Examples:
+&lt;ul&gt;
+&lt;li&gt;A validator for the Ant script dialect of &quot;.xml&quot; files
+&lt;li&gt;A validator for JikesPG &quot;.g&quot; grammar files (&quot;.g&quot; extensions are used for the grammar files of several parser generators, including JikesPG, Yacc and Antlr).
+&lt;/ul&gt;
+The class must extend the LanguageValidator class. The validate method will be called with a project and a file to check whether the file&apos;s content is indeed in the expected programming language. Some validators may simply check that the project has the corresponding nature. Others may read a portion of the file&apos;s contents to check for some well-specified unique signature.
+&lt;p&gt;
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.language.LanguageValidator"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="natureID" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Optionally, users can extend the LanguageValidator class. Its validate method will be called with a project and file
+before it is opened in an editor
+to verify compliance to the expected programming language. Some validators may want to check and see
+if the project has a given nature enabled. Others will want to open the file and the read the first line to 
+check for a given unique signature.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         org.eclipse.imp.code.LanguageValidator
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         
+      </documentation>
+   </annotation>
+
+</schema>

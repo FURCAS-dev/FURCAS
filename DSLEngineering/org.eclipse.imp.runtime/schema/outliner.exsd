@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.imp.metatooling">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.imp.metatooling" id="Outliner" name="IMP IDE Outliner"/>
+      </appInfo>
+      <documentation>
+         The org.eclips.imp.editor.outliner extension point allows providers to provide outline view contents. The provider specifies what languages it can provide an outline for. The provider has to implement the IOutliner interface. It will be presented with an IModel, and from this update the Outline view to show the appropriate outline.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="outliner"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="outliner">
+      <annotation>
+         <documentation>
+            Defines a &quot;source outliner&quot; language service for the given language, responsible for populating the &quot;Outline View&quot; with items taken from the source program&apos;s structure.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified name for the class that implements IOutliner.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.services.IOutliner"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The programming language for which this outliner can generate an outline. There must be a corresponding &quot;language description&quot; extension whose name matches this attribute&apos;s value.
+Examples: &quot;C&quot;, &quot;php&quot;, &quot;Java&quot;, &quot;Lisp&quot;, etc
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;extension
+         point=&quot;org.eclipse.imp.outliner&quot;&gt;
+      &lt;outliner
+            class=&quot;org.eclipse.imp.DefaultOutliner&quot;
+            language=&quot;*&quot;
+            name=&quot;Default Outliner&quot;
+            id=&quot;org.eclipse.imp.outliner.default&quot;/&gt;
+   &lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         See org.eclipse.imp.DefaultOutliner.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Licensed Materials - Property of IBM,
+ (c) Copyright IBM Corp. 1998, 2004  All Rights Reserved
+      </documentation>
+   </annotation>
+
+</schema>

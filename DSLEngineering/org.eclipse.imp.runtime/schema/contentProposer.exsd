@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.imp.metatooling">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.imp.metatooling" id="contentProposer" name="IMP IDE Content Proposer"/>
+      </appInfo>
+      <documentation>
+         The org.eclips.imp.editor.contentProposer extension point allows contributors to provide content assist proposals. The provider specifies what languages it can provide content proposals for. The provider has to implement the IContentProposer interface. The proposer will be presented with an IModel and a location, and from this combination returns a list of relevant content proposals.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="proposer"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="proposer">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The fully-qualified name of the class that will be generated to serve as the implementation of this extension.  This class will be assigned the given name and located in the given package in the currently selected project.  (The package will be created if it does not already exist.)
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.imp.services.IContentProposer"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="language" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the language to which this service applies. There must be a corresponding &quot;language description&quot; extension whose name matches this attribute&apos;s value.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         The following contribution adds a content proposer that can
+consume ASTs created for the Common Lisp language.
+&lt;pre&gt;
+ &lt;extension point=&quot;org.common.lisp.ContentProposer&quot;&gt;
+     &lt;proposer
+         class=&quot;org.common.lisp.ContentProposer&quot;
+            language=&quot;Common Lisp&quot;
+            name=&quot;Common Lisp Content Proposer&quot;
+            id=&quot;org.common.lisp.proposer&quot;&gt;
+     &lt;/proposer&gt;
+ &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         Contributor should implemnet IContentProposer.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         See org.eclipse.imp.DefaultContentProposer.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Licensed Materials - Property of IBM,
+ (c) Copyright IBM Corp. 1998, 2004  All Rights Reserved
+      </documentation>
+   </annotation>
+
+</schema>
