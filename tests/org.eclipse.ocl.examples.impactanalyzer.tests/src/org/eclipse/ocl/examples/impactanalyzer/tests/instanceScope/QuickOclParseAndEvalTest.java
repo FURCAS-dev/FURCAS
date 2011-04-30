@@ -410,10 +410,13 @@ public class QuickOclParseAndEvalTest extends TestCase
   @Test
   public void testParseAndEvaluateOclExpressionWithNullInSetLiteral() throws ParserException
   {
-    param.setOwnedTypeDefinition(null);
-    OCLExpression expression5 = oclHelper.createQuery("Set{null}->isEmpty()");
-    Object result5 = ocl.evaluate(param, expression5);
-    assertTrue((Boolean) result5);
+	    param.setOwnedTypeDefinition(null);
+	    OCLExpression expression5 = oclHelper.createQuery("Set{null}->isEmpty()");
+	    Object result5 = ocl.evaluate(param, expression5);
+	    assertFalse((Boolean) result5);
+	    OCLExpression expression6 = oclHelper.createQuery("null->isEmpty()");
+	    Object result6 = ocl.evaluate(param, expression6);
+	    assertTrue((Boolean) result6);
   }
 
   @Test
