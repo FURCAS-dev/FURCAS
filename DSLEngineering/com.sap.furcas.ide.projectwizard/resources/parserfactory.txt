@@ -16,33 +16,32 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
 
     @Override
     public Class<$CapLangName$Lexer> getLexerClass() {
-	return $CapLangName$Lexer.class;
+        return $CapLangName$Lexer.class;
     }
 
     @Override
     public Class<$CapLangName$Parser> getParserClass() {
-	return $CapLangName$Parser.class;
-	}
+        return $CapLangName$Parser.class;
+    }
 
     @Override
     public String getLanguageId() {
         return LANGUAGE_ID;
     }
 
-	@Override 
+    @Override 
     public EPackage getMetamodelPackage(ResourceSet connection) { 
         return EPackage.Registry.INSTANCE.getEPackage("$URI$"); 
     } 
 
-
-	@Override
-	public String[] getHiddenChannelTokenNames() {
+    @Override
+    public String[] getHiddenChannelTokenNames() {
         return new String[] { "WS", "NL", "COMMENT" };
-	}
+    }
 	
-	@Override 
-        public URI getSyntaxUri() { 
-            return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/mappings/$CapLangName$.tcs", true); 
-        } 
+    @Override 
+    public URI getSyntaxUri() { 
+        return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/mappings/$CapLangName$.tcs", true); 
+    } 
 	
 }

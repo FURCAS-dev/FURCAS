@@ -1,14 +1,14 @@
 package $ProjectName$.editor; 
 
 
-import com.sap.furcas.ide.editor.AbstractGrammarBasedEditor;
+import com.sap.furcas.ide.editor.imp.AbstractFurcasEditor;
 import $ProjectName$.parser.$CapLangName$ParserFactory;
 
-public class $CapLangName$Editor extends AbstractGrammarBasedEditor { 
+public class $CapLangName$Editor extends AbstractFurcasEditor { 
 
 	public $CapLangName$Editor() { 
 
-		super(new $CapLangName$ParserFactory(), new $CapLangName$TokenMapper()); 
+		super(new $CapLangName$ParserFactory()); 
 	} 
 
 }
