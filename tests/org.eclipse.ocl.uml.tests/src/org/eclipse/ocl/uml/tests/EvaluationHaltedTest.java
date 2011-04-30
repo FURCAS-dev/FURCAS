@@ -154,29 +154,20 @@ public class EvaluationHaltedTest
 	}
 
 	public void testHaltedQuery() {
-		org.eclipse.ocl.expressions.OCLExpression<Classifier> localQueryExp = null;
-		try {
-			localQueryExp = helper
-				.createQuery("Sequence {}->collect(i | i.halt(self))");
-		} catch (ParserException e) {
-			fail("Failed to parse: " + e.getLocalizedMessage());
-		}
-		assertNull(helper.getProblems());
-		Query localQuery = (Query) ocl.createQuery(localQueryExp);
-		assertNull(OCLUtil.getEvaluationProblems(localQuery));
+		assertNull(OCLUtil.getEvaluationProblems(query));
 
-		assertListResult(localQuery.evaluate(), Collections.emptyList());
-		assertNull(OCLUtil.getEvaluationProblems(localQuery));
+		assertListResult(query.evaluate(HALT_KIND_NONE), Collections.singletonList(HALT_KIND_NONE));
+		assertNull(OCLUtil.getEvaluationProblems(query));
 
 		envFactory.haltOnContextLessExecution = true;
-		assertInvalid(localQuery.evaluate());
-		assertNotNull(OCLUtil.getEvaluationProblems(localQuery));
-		assertNotNull(OCLUtil.getEvaluationProblems(localQuery).getMessage().equals(
+		assertInvalid(query.evaluate(HALT_KIND_NONE));
+		assertNotNull(OCLUtil.getEvaluationProblems(query));
+		assertNotNull(OCLUtil.getEvaluationProblems(query).getMessage().equals(
 			"Halt"));
 		envFactory.haltOnContextLessExecution = false;
 		// check we clear the problems on next evaluate
-		localQuery.evaluate();
-		assertNull(OCLUtil.getEvaluationProblems(localQuery));
+		query.evaluate(HALT_KIND_NONE);
+		assertNull(OCLUtil.getEvaluationProblems(query));
 	}
 
 	public void testEvaluateListHaltedQuery() {
