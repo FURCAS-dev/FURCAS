@@ -1424,7 +1424,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				
 				@SuppressWarnings("unchecked")
 				C type = (C) arg.accept(getVisitor());
-				if (sourceVal != getInvalid() && Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
+				if (Boolean.TRUE.equals(oclIsKindOf(sourceVal, type))) {
 					return sourceVal;
 				} else {
 					return getInvalid();

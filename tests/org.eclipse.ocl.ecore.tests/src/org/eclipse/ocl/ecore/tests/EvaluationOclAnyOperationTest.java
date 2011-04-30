@@ -263,6 +263,12 @@ public class EvaluationOclAnyOperationTest
 		// see OCL 2.3 specification (10-11-42) section 8.2
 		assertResultFalse("null.oclIsKindOf(OclInvalid)");
 	}
+	
+	public void testOclIsKindOfOclAny() {
+		assertResultTrue("null.oclIsKindOf(OclAny)");
+		assertResultTrue("'abc'.oclIsKindOf(OclAny)");
+		assertResultTrue("invalid.oclIsKindOf(OclAny)");
+	}
 
 	public void testOclIsKindOfNullNoLaxHandling() {
 		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
@@ -287,12 +293,21 @@ public class EvaluationOclAnyOperationTest
 		 * FIXME why is the evaluation of oclIsTypeOf altered for invalid
 		 * with LAX_NULL_HANDLING off? That is no documented behavior.
 		 */
-		assertResultTrue("invalid.oclIsTypeOf(String)");
-		assertResultTrue("invalid.oclIsTypeOf(EClass)");
-		assertResultTrue("invalid.oclIsTypeOf(OclVoid)");
+		// invalid is kind of but not type of String
+		// because OclInvalid "conforms" to but is not
+		// identical to all types
+		assertResultFalse("invalid.oclIsTypeOf(String)");
+		assertResultFalse("invalid.oclIsTypeOf(EClass)");
+		assertResultFalse("invalid.oclIsTypeOf(OclVoid)");
 		assertResultTrue("invalid.oclIsTypeOf(OclInvalid)");
 		assertResultFalse("null.oclIsTypeOf(OclInvalid)");
 		assertResultTrue("null.oclIsTypeOf(OclVoid)");
+	}
+
+	public void testOclIsTypeOfOclAny() {
+		assertResultFalse("null.oclIsTypeOf(OclAny)");
+		assertResultFalse("'abc'.oclIsTypeOf(OclAny)");
+		assertResultFalse("invalid.oclIsTypeOf(OclAny)");
 	}
 
 	public void testOclIsTypeOfInvalidNoLaxNullHandling() {
@@ -319,9 +334,13 @@ public class EvaluationOclAnyOperationTest
 		 * "true" is the expected result whatever the given type. We should
 		 * either fix the evaluation or the javadoc.
 		 */
-		assertResultTrue("null.oclIsTypeOf(String)");
-		assertResultTrue("null.oclIsTypeOf(Integer)");
-		assertResultTrue("null.oclIsTypeOf(EClass)");
+		// OclVoid "conforms" to but is not identical to all types
+		// except OclInvalid. Therefore, oclIsTypeOf (as opposed to
+		// oclIsKindOf) ha sto return false for the respective checks: 
+		assertResultFalse("null.oclIsTypeOf(String)");
+		assertResultFalse("null.oclIsTypeOf(Integer)");
+		assertResultFalse("null.oclIsTypeOf(EClass)");
+		// null's type is OclVoid
 		assertResultTrue("null.oclIsTypeOf(OclVoid)");
 		// OclVoid conforms to all other types except OclInvalid,
 		// see OCL 2.3 specification (10-11-42) section 8.2

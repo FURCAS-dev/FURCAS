@@ -3519,7 +3519,8 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				// this collection literal was created from an implicit
 				// -> conversion and therefore single null items shall
 				// not be added
-				EAnnotation implicitSetConversionAnnotation =((EModelElement) astNode1).getEAnnotation(Environment.OCL_NAMESPACE_URI);
+				EAnnotation implicitSetConversionAnnotation = ((EModelElement) astNode1)
+					.getEAnnotation(OCL_ANNOTATIONS_URI);
 				if (implicitSetConversionAnnotation == null) {
 					implicitSetConversionAnnotation = EcoreFactory.eINSTANCE
 						.createEAnnotation();
