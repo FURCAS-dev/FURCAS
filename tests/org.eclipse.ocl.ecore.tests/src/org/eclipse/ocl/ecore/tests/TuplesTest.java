@@ -67,6 +67,56 @@ public class TuplesTest
 	}
 	
 	/**
+	 * Tests that OclVoid and other tuple components with null values work as
+	 * expected
+	 */
+	public void test_typleLiteral_nullValues() {
+		// one part
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:OclVoid = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null}.a " +
+			"endpackage")));
+		
+		// multiple parts
+		assertEquals(1, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null, b=1}.b " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null, b=1}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null, b='abc'}.a " +
+			"endpackage")));
+		assertEquals("abc", evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null, b='abc'}.b " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null, b:String='abc'}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null, b:OclVoid=null}.b " +
+			"endpackage")));
+	}
+	
+	/**
 	 * Tests the parsing of tuple literals with a mixture of explicit and
 	 * implicit part types.
 	 */

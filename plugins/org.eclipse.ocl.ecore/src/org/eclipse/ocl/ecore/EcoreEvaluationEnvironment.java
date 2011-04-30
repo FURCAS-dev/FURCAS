@@ -245,6 +245,13 @@ public class EcoreEvaluationEnvironment
 			EObject etarget = (EObject) target;
 
 			if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
+				if (property.getEType() instanceof VoidType) {
+					// then the only instance is null; using eGet would
+					// cause a ClassCastException when the setting delegate
+					// tries to cast VoidTypeImpl to EClass when called on
+					// a tuple instance
+					return null;
+				}
 				return coerceValue(property, etarget.eGet(property), true);
 			}
 		}
