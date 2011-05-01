@@ -16,7 +16,13 @@
  */
 package org.eclipse.ocl.ecore.delegate;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
@@ -63,6 +69,10 @@ public class OCLDelegateDomain implements DelegateDomain
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
 
+	/**
+	 * key to identify EcoreEnviromentFactory implementation cls name in #EcorePackage.eNS_URI
+	 */
+	public static final String KEY_FOR_FACTORY_CLASS = "delegateFactory";
 	protected final String uri;
 	protected final EPackage ePackage;
 	protected final OCL ocl;
@@ -84,14 +94,48 @@ public class OCLDelegateDomain implements DelegateDomain
 		Resource res = ePackage.eResource();
 		ResourceSet resourceSet = res.getResourceSet();
 		EcoreEnvironmentFactory envFactory;
+		
+		// get cls-name for user-defined EcoreEnviromentFactory implementation
+		EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
+		String clsName = null;
+		if (eAnnotation != null) {
+			clsName = eAnnotation.getDetails().get(KEY_FOR_FACTORY_CLASS);
+		}
+		
 		if (res != null && resourceSet != null) {
 			// it's a dynamic package. Use the local package registry
 			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-			envFactory = new EcoreEnvironmentFactory(packageRegistry);
+			if(clsName!=null){
+				Class<? extends EcoreEnvironmentFactory> cls;
+				try {
+					cls = (Class<? extends EcoreEnvironmentFactory>) ePackage.getClass().getClassLoader().loadClass(clsName);
+					Constructor<? extends EcoreEnvironmentFactory> con = cls.getConstructor(EPackage.Registry.class);
+					envFactory = con.newInstance(packageRegistry);
+				} catch (Exception e) {
+					//default behavior
+					envFactory = new EcoreEnvironmentFactory(packageRegistry);
+				}
+			}else{
+				envFactory = new EcoreEnvironmentFactory(packageRegistry);
+
+			}
 			DelegateResourceAdapter.getAdapter(res);
 		} else {
 			// the shared instance uses the static package registry
-			envFactory = EcoreEnvironmentFactory.INSTANCE;
+			Class<? extends EcoreEnvironmentFactory> cls;
+			if(clsName!=null){
+				try {
+					cls = (Class<? extends EcoreEnvironmentFactory>) Class.forName(clsName);
+					Field instance = cls.getDeclaredField("INSTANCE");
+					envFactory = (EcoreEnvironmentFactory) instance.get(null);
+				} catch (Exception e) {
+					//default behavior
+					envFactory = EcoreEnvironmentFactory.INSTANCE;
+				}}
+			else{
+				envFactory = EcoreEnvironmentFactory.INSTANCE;
+
+			}
 		}
 		this.ocl = OCL.newInstance(envFactory);
 	}
