@@ -48,6 +48,16 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites
     public EcoreEnvironmentFactoryWithHiddenOpposites() {
         this(EPackage.Registry.INSTANCE);
     }
+    
+    /**
+     * Initializes me. Environments that I create will use the global package registry to look up packages.
+     * Configures the opposite end finderas a dedicated opposite end finder to be used
+     * by the OCL environment created by this factory
+     * @param oppositeEndFinder
+     */
+    public EcoreEnvironmentFactoryWithHiddenOpposites(OppositeEndFinder oppositeEndFinder) {
+        this(EPackage.Registry.INSTANCE, oppositeEndFinder);
+    }
 
     /**
      * Initializes me with an <code>EPackage.Registry</code> that the environments I create will use to look up
