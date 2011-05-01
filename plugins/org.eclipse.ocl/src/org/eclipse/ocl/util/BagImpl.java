@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2007, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: BagImpl.java,v 1.5 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -145,29 +146,34 @@ final class BagImpl<E> extends AbstractCollection<E> implements Bag<E> {
 			private Iterator<E> it;
 			private int offset;
 			private E curr;
+			private boolean currInitialized;
 			
 			public MyIterator() {
 				it = coll.keySet().iterator();
 				offset = 0;
 				curr = null;
+				currInitialized = false;
 			}
 
 			public boolean hasNext() {
 				if (it.hasNext())
 					return true;
 				MutableInteger count = coll.get(curr);
-				return curr != null && offset < count.i - 1;
+				return currInitialized && offset < count.i - 1;
 			}
 
 			public E next() {
 				if (!hasNext())
 					throw new NoSuchElementException();
-				MutableInteger count = coll.get(curr);
-				if (count != null && offset < count.i - 1) {
-					offset++;
-					return curr;
+				if (currInitialized) {
+					MutableInteger count = coll.get(curr);
+					if (count != null && offset < count.i - 1) {
+						offset++;
+						return curr;
+					}
 				}
 				curr = it.next();
+				currInitialized = true;
 				offset = 0;
 				return curr;
 			}

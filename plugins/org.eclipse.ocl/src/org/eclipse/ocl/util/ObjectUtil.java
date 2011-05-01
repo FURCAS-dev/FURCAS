@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2008, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +9,17 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: ObjectUtil.java,v 1.5 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: ObjectUtil.java,v 1.6 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -82,12 +84,46 @@ public class ObjectUtil {
 			return ((EEnumLiteral) anObject).getInstance() == anotherObject;
 		} else if ((anotherObject instanceof EEnumLiteral) && (anObject instanceof Enumerator)) {
 			return ((EEnumLiteral) anotherObject).getInstance() == anObject;
+		} else if ((anObject instanceof LinkedHashSet<?> && !(anotherObject instanceof LinkedHashSet<?>)) ||
+				(!(anObject instanceof LinkedHashSet<?>) && anotherObject instanceof LinkedHashSet<?>)) {
+			// a regular Java equals comparison would consider LinkedHashSets and Sets
+			// with equals contents equals. However, according to OCL 2.3 (OMG 10-11-42) section 11.7.1,
+			// two collections need to be of the same kind to be considered equal.
+			return false;
 		}
-		
+		if (anObject instanceof LinkedHashSet<?>) {
+			// ...then so is anotherObject due to he above test.
+			// LinkedHashSet.equals doesn't consider ordering as it
+			// should for an OrderedSet implementation.
+			return orderedSetsEqual((LinkedHashSet<?>) anObject, (LinkedHashSet<?>) anotherObject);
+		}
 		return anObject.equals(anotherObject);
 	}
 	
-    /**
+    private static boolean orderedSetsEqual(LinkedHashSet<?> anObject,
+			LinkedHashSet<?> anotherObject) {
+		if (anObject == anotherObject) {
+			return true;
+		}
+		if (anObject.size() != anotherObject.size()) {
+			return false;
+		}
+		// inv: sizes are equal
+		if (anObject.isEmpty()) {
+			// then so is anotherObject because sizes are equal
+			return true;
+		}
+		Iterator<?> anObjectIter = anObject.iterator();
+		Iterator<?> anotherObjectIter = anotherObject.iterator();
+		while (anObjectIter.hasNext()) {
+			if (!equal(anObjectIter.next(), anotherObjectIter.next())) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
      * Computes hash of an object, accounting for the similar
      * hashing of primitive numeric values that OCL considers equal but Java
      * does not.  It is also safe with <code>null</code> values.
