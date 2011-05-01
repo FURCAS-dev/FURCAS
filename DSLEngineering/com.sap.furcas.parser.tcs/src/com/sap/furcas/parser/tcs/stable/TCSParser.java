@@ -1,24 +1,22 @@
 // $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g 2011-04-11 17:36:07
 
 package com.sap.furcas.parser.tcs.stable;
-import com.sap.furcas.runtime.parser.ANTLR3LocationToken;
-import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
-import com.sap.furcas.runtime.parser.impl.PredicateSemantic;
-import com.sap.furcas.runtime.parser.impl.SemanticDisambRuleData;
-import com.sap.furcas.runtime.tcs.RuleNameFinder;
-import java.text.CharacterIterator;
-import java.text.StringCharacterIterator;
-import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import org.antlr.runtime.Token;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "SHARP", "LPAREN", "EQ", "RPAREN", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'instanceOf'", "'disambiguate'", "'rightSpace'", "'priority'", "'leftSpace'", "'never'", "'drop'", "'referenceOnly'", "'octal'", "'partial'", "'createAs'", "'addToContext'", "'startNbNL'", "'referenceBy'", "'importContext'", "'endNL'", "'lexer'", "'always'", "'auto'", "'false'", "'using'", "'when'", "'isDefined'", "'operatored'", "'for'", "'deep'", "'postfix'", "'part'", "'hex'", "'default'", "'start'", "'all'", "'right'", "'main'", "'prefix'", "'operators'", "'nbNL'", "'and'", "'source'", "'token'", "'refersTo'", "'rightNone'", "'function'", "'orKeyword'", "'storeOpTo'", "'left'", "'lookIn'", "'multiLine'", "'end'", "'mode'", "'disambiguateV3'", "'symbols'", "'esc'", "'semDisambiguate'", "'ifmissing'", "'k'", "'enumerationTemplate'", "'foreach'", "'storeRightTo'", "'word'", "'leftNone'", "'context'", "'lookupScope'", "'operatorTemplate'", "'template'", "'true'", "'primitiveTemplate'", "'abstract'", "'forcedLower'", "'separator'", "'multi'", "'forcedUpper'", "'omitted'", "'nonPrimary'", "'startNL'", "'as'", "'value'", "'autoCreate'", "'indentIncr'", "'syntax'", "'one'", "'endOfLine'", "'serializer'", "'createIn'", "'keywords'"
@@ -206,7 +204,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:105:3: (ast= NAME )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:105:4: ast= NAME
             {
-            ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) return ret2;
+            ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = unescapeString( ast.getText());
 
@@ -691,7 +691,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:115:4: ast= NAME
                     {
-                    ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifierOrKeyword100); if (state.failed) return ret2;
+                    ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifierOrKeyword100); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = unescapeString( ast.getText());
 
@@ -702,7 +704,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:117:5: 'instanceOf'
                     {
-                    match(input,49,FOLLOW_49_in_identifierOrKeyword108); if (state.failed) return ret2;
+                    match(input,49,FOLLOW_49_in_identifierOrKeyword108); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "instanceOf";
                     }
@@ -712,7 +716,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:118:5: 'disambiguate'
                     {
-                    match(input,50,FOLLOW_50_in_identifierOrKeyword116); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_identifierOrKeyword116); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "disambiguate";
                     }
@@ -722,7 +728,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:119:5: 'rightSpace'
                     {
-                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) return ret2;
+                    match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "rightSpace";
                     }
@@ -732,7 +740,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:120:5: 'priority'
                     {
-                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "priority";
                     }
@@ -742,7 +752,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:121:5: 'leftSpace'
                     {
-                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "leftSpace";
                     }
@@ -752,7 +764,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:122:5: 'never'
                     {
-                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "never";
                     }
@@ -762,7 +776,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:123:5: 'drop'
                     {
-                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "drop";
                     }
@@ -772,7 +788,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 9 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:124:5: 'referenceOnly'
                     {
-                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "referenceOnly";
                     }
@@ -782,7 +800,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 10 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:125:5: 'octal'
                     {
-                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) return ret2;
+                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "octal";
                     }
@@ -792,7 +812,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 11 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:126:5: 'partial'
                     {
-                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) return ret2;
+                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "partial";
                     }
@@ -802,7 +824,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 12 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:127:5: 'createAs'
                     {
-                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) return ret2;
+                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "createAs";
                     }
@@ -812,7 +836,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 13 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:128:5: 'addToContext'
                     {
-                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) return ret2;
+                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "addToContext";
                     }
@@ -822,7 +848,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 14 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:129:5: 'startNbNL'
                     {
-                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) return ret2;
+                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "startNbNL";
                     }
@@ -832,7 +860,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 15 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:130:5: 'referenceBy'
                     {
-                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) return ret2;
+                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "referenceBy";
                     }
@@ -842,7 +872,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 16 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:131:5: 'importContext'
                     {
-                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) return ret2;
+                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "importContext";
                     }
@@ -852,7 +884,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 17 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:132:5: 'endNL'
                     {
-                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) return ret2;
+                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "endNL";
                     }
@@ -862,7 +896,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 18 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:133:5: 'lexer'
                     {
-                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lexer";
                     }
@@ -872,7 +908,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 19 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:134:5: 'always'
                     {
-                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "always";
                     }
@@ -882,7 +920,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 20 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:135:5: 'auto'
                     {
-                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) return ret2;
+                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "auto";
                     }
@@ -892,7 +932,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 21 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:136:5: 'false'
                     {
-                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "false";
                     }
@@ -902,7 +944,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 22 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:137:5: 'using'
                     {
-                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) return ret2;
+                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "using";
                     }
@@ -912,7 +956,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 23 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:138:5: 'when'
                     {
-                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "when";
                     }
@@ -922,7 +968,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 24 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:139:5: 'isDefined'
                     {
-                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) return ret2;
+                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "isDefined";
                     }
@@ -932,7 +980,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 25 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:140:5: 'operatored'
                     {
-                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) return ret2;
+                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operatored";
                     }
@@ -942,7 +992,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 26 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:141:5: 'for'
                     {
-                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) return ret2;
+                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "for";
                     }
@@ -952,7 +1004,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 27 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:142:5: 'deep'
                     {
-                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) return ret2;
+                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "deep";
                     }
@@ -962,7 +1016,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 28 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:143:5: 'postfix'
                     {
-                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) return ret2;
+                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "postfix";
                     }
@@ -972,7 +1028,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 29 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:144:5: 'part'
                     {
-                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) return ret2;
+                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "part";
                     }
@@ -982,7 +1040,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 30 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:145:5: 'hex'
                     {
-                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) return ret2;
+                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "hex";
                     }
@@ -992,7 +1052,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 31 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:146:5: 'default'
                     {
-                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) return ret2;
+                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "default";
                     }
@@ -1002,7 +1064,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 32 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:147:5: 'start'
                     {
-                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) return ret2;
+                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "start";
                     }
@@ -1012,7 +1076,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 33 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:148:5: 'all'
                     {
-                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "all";
                     }
@@ -1022,7 +1088,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 34 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:149:5: 'right'
                     {
-                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) return ret2;
+                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "right";
                     }
@@ -1032,7 +1100,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 35 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:150:5: 'main'
                     {
-                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) return ret2;
+                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "main";
                     }
@@ -1042,7 +1112,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 36 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:151:5: 'prefix'
                     {
-                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) return ret2;
+                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "prefix";
                     }
@@ -1052,7 +1124,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 37 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:152:5: 'operators'
                     {
-                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) return ret2;
+                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operators";
                     }
@@ -1062,7 +1136,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 38 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:153:5: 'nbNL'
                     {
-                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) return ret2;
+                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "nbNL";
                     }
@@ -1072,7 +1148,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 39 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:154:5: 'and'
                     {
-                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) return ret2;
+                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "and";
                     }
@@ -1082,7 +1160,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 40 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:155:5: 'source'
                     {
-                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) return ret2;
+                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "source";
                     }
@@ -1092,7 +1172,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 41 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:156:5: 'token'
                     {
-                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) return ret2;
+                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "token";
                     }
@@ -1102,7 +1184,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 42 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:157:5: 'refersTo'
                     {
-                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) return ret2;
+                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "refersTo";
                     }
@@ -1112,7 +1196,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 43 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:158:5: 'rightNone'
                     {
-                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "rightNone";
                     }
@@ -1122,7 +1208,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 44 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:159:5: 'function'
                     {
-                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) return ret2;
+                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "function";
                     }
@@ -1132,7 +1220,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 45 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:160:5: 'orKeyword'
                     {
-                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) return ret2;
+                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "orKeyword";
                     }
@@ -1142,7 +1232,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 46 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:161:5: 'storeOpTo'
                     {
-                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) return ret2;
+                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "storeOpTo";
                     }
@@ -1152,7 +1244,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 47 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:162:5: 'left'
                     {
-                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) return ret2;
+                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "left";
                     }
@@ -1162,7 +1256,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 48 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:163:5: 'lookIn'
                     {
-                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) return ret2;
+                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lookIn";
                     }
@@ -1172,7 +1268,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 49 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:164:5: 'multiLine'
                     {
-                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) return ret2;
+                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "multiLine";
                     }
@@ -1182,7 +1280,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 50 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:165:5: 'end'
                     {
-                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) return ret2;
+                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "end";
                     }
@@ -1192,7 +1292,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 51 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:166:5: 'mode'
                     {
-                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) return ret2;
+                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "mode";
                     }
@@ -1202,7 +1304,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 52 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:167:5: 'disambiguateV3'
                     {
-                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) return ret2;
+                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "disambiguateV3";
                     }
@@ -1212,7 +1316,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 53 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:168:5: 'symbols'
                     {
-                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) return ret2;
+                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "symbols";
                     }
@@ -1222,7 +1328,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 54 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:169:5: 'esc'
                     {
-                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) return ret2;
+                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "esc";
                     }
@@ -1232,7 +1340,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 55 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:170:5: 'semDisambiguate'
                     {
-                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) return ret2;
+                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "semDisambiguate";
                     }
@@ -1242,7 +1352,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 56 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:171:5: 'ifmissing'
                     {
-                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) return ret2;
+                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "ifmissing";
                     }
@@ -1252,7 +1364,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 57 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:172:5: 'k'
                     {
-                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) return ret2;
+                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "k";
                     }
@@ -1262,7 +1376,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 58 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:173:5: 'enumerationTemplate'
                     {
-                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) return ret2;
+                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "enumerationTemplate";
                     }
@@ -1272,7 +1388,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 59 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:174:5: 'foreach'
                     {
-                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) return ret2;
+                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "foreach";
                     }
@@ -1282,7 +1400,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 60 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:175:5: 'storeRightTo'
                     {
-                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) return ret2;
+                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "storeRightTo";
                     }
@@ -1292,7 +1412,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 61 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:176:5: 'word'
                     {
-                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) return ret2;
+                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "word";
                     }
@@ -1302,7 +1424,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 62 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:177:5: 'leftNone'
                     {
-                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) return ret2;
+                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "leftNone";
                     }
@@ -1312,7 +1436,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 63 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:178:5: 'context'
                     {
-                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) return ret2;
+                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "context";
                     }
@@ -1322,7 +1448,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 64 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:179:5: 'lookupScope'
                     {
-                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) return ret2;
+                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lookupScope";
                     }
@@ -1332,7 +1460,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 65 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:180:5: 'operatorTemplate'
                     {
-                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) return ret2;
+                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operatorTemplate";
                     }
@@ -1342,7 +1472,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 66 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:181:5: 'template'
                     {
-                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) return ret2;
+                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "template";
                     }
@@ -1352,7 +1484,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 67 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:182:5: 'true'
                     {
-                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) return ret2;
+                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "true";
                     }
@@ -1362,7 +1496,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 68 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:183:5: 'primitiveTemplate'
                     {
-                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) return ret2;
+                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "primitiveTemplate";
                     }
@@ -1372,7 +1508,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 69 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:184:5: 'abstract'
                     {
-                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) return ret2;
+                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "abstract";
                     }
@@ -1382,7 +1520,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 70 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:185:5: 'forcedLower'
                     {
-                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) return ret2;
+                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "forcedLower";
                     }
@@ -1392,7 +1532,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 71 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:186:5: 'separator'
                     {
-                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) return ret2;
+                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "separator";
                     }
@@ -1402,7 +1544,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 72 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:187:5: 'multi'
                     {
-                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) return ret2;
+                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "multi";
                     }
@@ -1412,7 +1556,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 73 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:188:5: 'forcedUpper'
                     {
-                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) return ret2;
+                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "forcedUpper";
                     }
@@ -1422,7 +1568,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 74 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:189:5: 'omitted'
                     {
-                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) return ret2;
+                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "omitted";
                     }
@@ -1432,7 +1580,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 75 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:190:5: 'nonPrimary'
                     {
-                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) return ret2;
+                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "nonPrimary";
                     }
@@ -1442,7 +1592,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 76 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:191:5: 'startNL'
                     {
-                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) return ret2;
+                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "startNL";
                     }
@@ -1452,7 +1604,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 77 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:192:5: 'as'
                     {
-                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) return ret2;
+                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "as";
                     }
@@ -1462,7 +1616,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 78 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:193:5: 'value'
                     {
-                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) return ret2;
+                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "value";
                     }
@@ -1472,7 +1628,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 79 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:194:5: 'autoCreate'
                     {
-                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) return ret2;
+                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "autoCreate";
                     }
@@ -1482,7 +1640,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 80 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:195:5: 'indentIncr'
                     {
-                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) return ret2;
+                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "indentIncr";
                     }
@@ -1492,7 +1652,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 81 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:196:5: 'syntax'
                     {
-                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) return ret2;
+                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "syntax";
                     }
@@ -1502,7 +1664,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 82 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:197:5: 'one'
                     {
-                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) return ret2;
+                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "one";
                     }
@@ -1512,7 +1676,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 83 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:198:5: 'endOfLine'
                     {
-                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) return ret2;
+                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "endOfLine";
                     }
@@ -1522,7 +1688,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 84 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:199:5: 'serializer'
                     {
-                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "serializer";
                     }
@@ -1532,7 +1700,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 85 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:200:5: 'createIn'
                     {
-                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) return ret2;
+                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "createIn";
                     }
@@ -1542,7 +1712,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 86 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:201:5: 'keywords'
                     {
-                    match(input,133,FOLLOW_133_in_identifierOrKeyword780); if (state.failed) return ret2;
+                    match(input,133,FOLLOW_133_in_identifierOrKeyword780); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "keywords";
                     }
@@ -2029,7 +2201,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 1 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:210:4: ast= NAME
                     {
-                    ast=(Token)match(input,NAME,FOLLOW_NAME_in_escapedIdentifierOrKeyword811); if (state.failed) return ret2;
+                    ast=(Token)match(input,NAME,FOLLOW_NAME_in_escapedIdentifierOrKeyword811); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = unescapeString( ast.getText());
 
@@ -2040,7 +2214,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 2 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:212:5: 'instanceOf'
                     {
-                    match(input,49,FOLLOW_49_in_escapedIdentifierOrKeyword819); if (state.failed) return ret2;
+                    match(input,49,FOLLOW_49_in_escapedIdentifierOrKeyword819); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "instanceOf";
                     }
@@ -2050,7 +2226,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 3 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:213:5: 'disambiguate'
                     {
-                    match(input,50,FOLLOW_50_in_escapedIdentifierOrKeyword827); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_escapedIdentifierOrKeyword827); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "disambiguate";
                     }
@@ -2060,7 +2238,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 4 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:214:5: 'rightSpace'
                     {
-                    match(input,51,FOLLOW_51_in_escapedIdentifierOrKeyword835); if (state.failed) return ret2;
+                    match(input,51,FOLLOW_51_in_escapedIdentifierOrKeyword835); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "rightSpace";
                     }
@@ -2070,7 +2250,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 5 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:215:5: 'priority'
                     {
-                    match(input,52,FOLLOW_52_in_escapedIdentifierOrKeyword843); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_escapedIdentifierOrKeyword843); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "priority";
                     }
@@ -2080,7 +2262,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 6 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:216:5: 'leftSpace'
                     {
-                    match(input,53,FOLLOW_53_in_escapedIdentifierOrKeyword851); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_escapedIdentifierOrKeyword851); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "leftSpace";
                     }
@@ -2090,7 +2274,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 7 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:217:5: 'never'
                     {
-                    match(input,54,FOLLOW_54_in_escapedIdentifierOrKeyword859); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_escapedIdentifierOrKeyword859); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "never";
                     }
@@ -2100,7 +2286,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 8 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:218:5: 'drop'
                     {
-                    match(input,55,FOLLOW_55_in_escapedIdentifierOrKeyword867); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_escapedIdentifierOrKeyword867); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "drop";
                     }
@@ -2110,7 +2298,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 9 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:219:5: 'referenceOnly'
                     {
-                    match(input,56,FOLLOW_56_in_escapedIdentifierOrKeyword875); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_escapedIdentifierOrKeyword875); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "referenceOnly";
                     }
@@ -2120,7 +2310,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 10 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:220:5: 'octal'
                     {
-                    match(input,57,FOLLOW_57_in_escapedIdentifierOrKeyword883); if (state.failed) return ret2;
+                    match(input,57,FOLLOW_57_in_escapedIdentifierOrKeyword883); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "octal";
                     }
@@ -2130,7 +2322,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 11 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:221:5: 'partial'
                     {
-                    match(input,58,FOLLOW_58_in_escapedIdentifierOrKeyword891); if (state.failed) return ret2;
+                    match(input,58,FOLLOW_58_in_escapedIdentifierOrKeyword891); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "partial";
                     }
@@ -2140,7 +2334,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 12 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:222:5: 'createAs'
                     {
-                    match(input,59,FOLLOW_59_in_escapedIdentifierOrKeyword899); if (state.failed) return ret2;
+                    match(input,59,FOLLOW_59_in_escapedIdentifierOrKeyword899); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "createAs";
                     }
@@ -2150,7 +2346,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 13 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:223:5: 'addToContext'
                     {
-                    match(input,60,FOLLOW_60_in_escapedIdentifierOrKeyword907); if (state.failed) return ret2;
+                    match(input,60,FOLLOW_60_in_escapedIdentifierOrKeyword907); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "addToContext";
                     }
@@ -2160,7 +2358,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 14 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:224:5: 'startNbNL'
                     {
-                    match(input,61,FOLLOW_61_in_escapedIdentifierOrKeyword915); if (state.failed) return ret2;
+                    match(input,61,FOLLOW_61_in_escapedIdentifierOrKeyword915); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "startNbNL";
                     }
@@ -2170,7 +2370,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 15 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:225:5: 'referenceBy'
                     {
-                    match(input,62,FOLLOW_62_in_escapedIdentifierOrKeyword923); if (state.failed) return ret2;
+                    match(input,62,FOLLOW_62_in_escapedIdentifierOrKeyword923); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "referenceBy";
                     }
@@ -2180,7 +2382,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 16 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:226:5: 'importContext'
                     {
-                    match(input,63,FOLLOW_63_in_escapedIdentifierOrKeyword931); if (state.failed) return ret2;
+                    match(input,63,FOLLOW_63_in_escapedIdentifierOrKeyword931); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "importContext";
                     }
@@ -2190,7 +2394,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 17 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:227:5: 'endNL'
                     {
-                    match(input,64,FOLLOW_64_in_escapedIdentifierOrKeyword939); if (state.failed) return ret2;
+                    match(input,64,FOLLOW_64_in_escapedIdentifierOrKeyword939); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "endNL";
                     }
@@ -2200,7 +2406,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 18 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:228:5: 'lexer'
                     {
-                    match(input,65,FOLLOW_65_in_escapedIdentifierOrKeyword947); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_escapedIdentifierOrKeyword947); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lexer";
                     }
@@ -2210,7 +2418,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 19 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:229:5: 'always'
                     {
-                    match(input,66,FOLLOW_66_in_escapedIdentifierOrKeyword955); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_escapedIdentifierOrKeyword955); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "always";
                     }
@@ -2220,7 +2430,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 20 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:230:5: 'auto'
                     {
-                    match(input,67,FOLLOW_67_in_escapedIdentifierOrKeyword963); if (state.failed) return ret2;
+                    match(input,67,FOLLOW_67_in_escapedIdentifierOrKeyword963); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "auto";
                     }
@@ -2230,7 +2442,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 21 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:231:5: 'false'
                     {
-                    match(input,68,FOLLOW_68_in_escapedIdentifierOrKeyword971); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_escapedIdentifierOrKeyword971); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "false";
                     }
@@ -2240,7 +2454,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 22 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:232:5: 'using'
                     {
-                    match(input,69,FOLLOW_69_in_escapedIdentifierOrKeyword979); if (state.failed) return ret2;
+                    match(input,69,FOLLOW_69_in_escapedIdentifierOrKeyword979); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "using";
                     }
@@ -2250,7 +2466,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 23 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:233:5: 'when'
                     {
-                    match(input,70,FOLLOW_70_in_escapedIdentifierOrKeyword987); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_escapedIdentifierOrKeyword987); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "when";
                     }
@@ -2260,7 +2478,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 24 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:234:5: 'isDefined'
                     {
-                    match(input,71,FOLLOW_71_in_escapedIdentifierOrKeyword995); if (state.failed) return ret2;
+                    match(input,71,FOLLOW_71_in_escapedIdentifierOrKeyword995); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "isDefined";
                     }
@@ -2270,7 +2490,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 25 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:235:5: 'operatored'
                     {
-                    match(input,72,FOLLOW_72_in_escapedIdentifierOrKeyword1003); if (state.failed) return ret2;
+                    match(input,72,FOLLOW_72_in_escapedIdentifierOrKeyword1003); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operatored";
                     }
@@ -2280,7 +2502,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 26 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:236:5: 'for'
                     {
-                    match(input,73,FOLLOW_73_in_escapedIdentifierOrKeyword1011); if (state.failed) return ret2;
+                    match(input,73,FOLLOW_73_in_escapedIdentifierOrKeyword1011); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "for";
                     }
@@ -2290,7 +2514,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 27 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:237:5: 'deep'
                     {
-                    match(input,74,FOLLOW_74_in_escapedIdentifierOrKeyword1019); if (state.failed) return ret2;
+                    match(input,74,FOLLOW_74_in_escapedIdentifierOrKeyword1019); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "deep";
                     }
@@ -2300,7 +2526,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 28 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:238:5: 'postfix'
                     {
-                    match(input,75,FOLLOW_75_in_escapedIdentifierOrKeyword1027); if (state.failed) return ret2;
+                    match(input,75,FOLLOW_75_in_escapedIdentifierOrKeyword1027); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "postfix";
                     }
@@ -2310,7 +2538,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 29 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:239:5: 'part'
                     {
-                    match(input,76,FOLLOW_76_in_escapedIdentifierOrKeyword1035); if (state.failed) return ret2;
+                    match(input,76,FOLLOW_76_in_escapedIdentifierOrKeyword1035); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "part";
                     }
@@ -2320,7 +2550,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 30 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:240:5: 'hex'
                     {
-                    match(input,77,FOLLOW_77_in_escapedIdentifierOrKeyword1043); if (state.failed) return ret2;
+                    match(input,77,FOLLOW_77_in_escapedIdentifierOrKeyword1043); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "hex";
                     }
@@ -2330,7 +2562,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 31 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:241:5: 'default'
                     {
-                    match(input,78,FOLLOW_78_in_escapedIdentifierOrKeyword1051); if (state.failed) return ret2;
+                    match(input,78,FOLLOW_78_in_escapedIdentifierOrKeyword1051); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "default";
                     }
@@ -2340,7 +2574,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 32 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:242:5: 'start'
                     {
-                    match(input,79,FOLLOW_79_in_escapedIdentifierOrKeyword1059); if (state.failed) return ret2;
+                    match(input,79,FOLLOW_79_in_escapedIdentifierOrKeyword1059); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "start";
                     }
@@ -2350,7 +2586,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 33 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:243:5: 'all'
                     {
-                    match(input,80,FOLLOW_80_in_escapedIdentifierOrKeyword1067); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_escapedIdentifierOrKeyword1067); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "all";
                     }
@@ -2360,7 +2598,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 34 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:244:5: 'right'
                     {
-                    match(input,81,FOLLOW_81_in_escapedIdentifierOrKeyword1075); if (state.failed) return ret2;
+                    match(input,81,FOLLOW_81_in_escapedIdentifierOrKeyword1075); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "right";
                     }
@@ -2370,7 +2610,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 35 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:245:5: 'main'
                     {
-                    match(input,82,FOLLOW_82_in_escapedIdentifierOrKeyword1083); if (state.failed) return ret2;
+                    match(input,82,FOLLOW_82_in_escapedIdentifierOrKeyword1083); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "main";
                     }
@@ -2380,7 +2622,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 36 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:246:5: 'prefix'
                     {
-                    match(input,83,FOLLOW_83_in_escapedIdentifierOrKeyword1091); if (state.failed) return ret2;
+                    match(input,83,FOLLOW_83_in_escapedIdentifierOrKeyword1091); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "prefix";
                     }
@@ -2390,7 +2634,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 37 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:247:5: 'operators'
                     {
-                    match(input,84,FOLLOW_84_in_escapedIdentifierOrKeyword1099); if (state.failed) return ret2;
+                    match(input,84,FOLLOW_84_in_escapedIdentifierOrKeyword1099); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operators";
                     }
@@ -2400,7 +2646,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 38 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:248:5: 'nbNL'
                     {
-                    match(input,85,FOLLOW_85_in_escapedIdentifierOrKeyword1107); if (state.failed) return ret2;
+                    match(input,85,FOLLOW_85_in_escapedIdentifierOrKeyword1107); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "nbNL";
                     }
@@ -2410,7 +2658,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 39 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:249:5: 'and'
                     {
-                    match(input,86,FOLLOW_86_in_escapedIdentifierOrKeyword1115); if (state.failed) return ret2;
+                    match(input,86,FOLLOW_86_in_escapedIdentifierOrKeyword1115); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "and";
                     }
@@ -2420,7 +2670,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 40 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:250:5: 'source'
                     {
-                    match(input,87,FOLLOW_87_in_escapedIdentifierOrKeyword1123); if (state.failed) return ret2;
+                    match(input,87,FOLLOW_87_in_escapedIdentifierOrKeyword1123); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "source";
                     }
@@ -2430,7 +2682,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 41 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:251:5: 'token'
                     {
-                    match(input,88,FOLLOW_88_in_escapedIdentifierOrKeyword1131); if (state.failed) return ret2;
+                    match(input,88,FOLLOW_88_in_escapedIdentifierOrKeyword1131); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "token";
                     }
@@ -2440,7 +2694,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 42 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:252:5: 'refersTo'
                     {
-                    match(input,89,FOLLOW_89_in_escapedIdentifierOrKeyword1139); if (state.failed) return ret2;
+                    match(input,89,FOLLOW_89_in_escapedIdentifierOrKeyword1139); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "refersTo";
                     }
@@ -2450,7 +2706,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 43 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:253:5: 'rightNone'
                     {
-                    match(input,90,FOLLOW_90_in_escapedIdentifierOrKeyword1147); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_escapedIdentifierOrKeyword1147); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "rightNone";
                     }
@@ -2460,7 +2718,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 44 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:254:5: 'function'
                     {
-                    match(input,91,FOLLOW_91_in_escapedIdentifierOrKeyword1155); if (state.failed) return ret2;
+                    match(input,91,FOLLOW_91_in_escapedIdentifierOrKeyword1155); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "function";
                     }
@@ -2470,7 +2730,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 45 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:255:5: 'orKeyword'
                     {
-                    match(input,92,FOLLOW_92_in_escapedIdentifierOrKeyword1163); if (state.failed) return ret2;
+                    match(input,92,FOLLOW_92_in_escapedIdentifierOrKeyword1163); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "orKeyword";
                     }
@@ -2480,7 +2742,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 46 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:256:5: 'storeOpTo'
                     {
-                    match(input,93,FOLLOW_93_in_escapedIdentifierOrKeyword1171); if (state.failed) return ret2;
+                    match(input,93,FOLLOW_93_in_escapedIdentifierOrKeyword1171); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "storeOpTo";
                     }
@@ -2490,7 +2754,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 47 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:257:5: 'left'
                     {
-                    match(input,94,FOLLOW_94_in_escapedIdentifierOrKeyword1179); if (state.failed) return ret2;
+                    match(input,94,FOLLOW_94_in_escapedIdentifierOrKeyword1179); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "left";
                     }
@@ -2500,7 +2766,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 48 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:258:5: 'lookIn'
                     {
-                    match(input,95,FOLLOW_95_in_escapedIdentifierOrKeyword1187); if (state.failed) return ret2;
+                    match(input,95,FOLLOW_95_in_escapedIdentifierOrKeyword1187); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lookIn";
                     }
@@ -2510,7 +2778,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 49 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:259:5: 'multiLine'
                     {
-                    match(input,96,FOLLOW_96_in_escapedIdentifierOrKeyword1195); if (state.failed) return ret2;
+                    match(input,96,FOLLOW_96_in_escapedIdentifierOrKeyword1195); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "multiLine";
                     }
@@ -2520,7 +2790,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 50 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:260:5: 'end'
                     {
-                    match(input,97,FOLLOW_97_in_escapedIdentifierOrKeyword1203); if (state.failed) return ret2;
+                    match(input,97,FOLLOW_97_in_escapedIdentifierOrKeyword1203); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "end";
                     }
@@ -2530,7 +2802,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 51 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:261:5: 'mode'
                     {
-                    match(input,98,FOLLOW_98_in_escapedIdentifierOrKeyword1211); if (state.failed) return ret2;
+                    match(input,98,FOLLOW_98_in_escapedIdentifierOrKeyword1211); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "mode";
                     }
@@ -2540,7 +2814,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 52 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:262:5: 'disambiguateV3'
                     {
-                    match(input,99,FOLLOW_99_in_escapedIdentifierOrKeyword1219); if (state.failed) return ret2;
+                    match(input,99,FOLLOW_99_in_escapedIdentifierOrKeyword1219); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "disambiguateV3";
                     }
@@ -2550,7 +2826,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 53 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:263:5: 'symbols'
                     {
-                    match(input,100,FOLLOW_100_in_escapedIdentifierOrKeyword1227); if (state.failed) return ret2;
+                    match(input,100,FOLLOW_100_in_escapedIdentifierOrKeyword1227); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "symbols";
                     }
@@ -2560,7 +2838,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 54 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:264:5: 'esc'
                     {
-                    match(input,101,FOLLOW_101_in_escapedIdentifierOrKeyword1235); if (state.failed) return ret2;
+                    match(input,101,FOLLOW_101_in_escapedIdentifierOrKeyword1235); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "esc";
                     }
@@ -2570,7 +2850,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 55 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:265:5: 'semDisambiguate'
                     {
-                    match(input,102,FOLLOW_102_in_escapedIdentifierOrKeyword1243); if (state.failed) return ret2;
+                    match(input,102,FOLLOW_102_in_escapedIdentifierOrKeyword1243); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "semDisambiguate";
                     }
@@ -2580,7 +2862,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 56 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:266:5: 'ifmissing'
                     {
-                    match(input,103,FOLLOW_103_in_escapedIdentifierOrKeyword1251); if (state.failed) return ret2;
+                    match(input,103,FOLLOW_103_in_escapedIdentifierOrKeyword1251); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "ifmissing";
                     }
@@ -2590,7 +2874,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 57 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:267:5: 'k'
                     {
-                    match(input,104,FOLLOW_104_in_escapedIdentifierOrKeyword1259); if (state.failed) return ret2;
+                    match(input,104,FOLLOW_104_in_escapedIdentifierOrKeyword1259); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "k";
                     }
@@ -2600,7 +2886,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 58 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:268:5: 'enumerationTemplate'
                     {
-                    match(input,105,FOLLOW_105_in_escapedIdentifierOrKeyword1267); if (state.failed) return ret2;
+                    match(input,105,FOLLOW_105_in_escapedIdentifierOrKeyword1267); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "enumerationTemplate";
                     }
@@ -2610,7 +2898,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 59 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:269:5: 'foreach'
                     {
-                    match(input,106,FOLLOW_106_in_escapedIdentifierOrKeyword1275); if (state.failed) return ret2;
+                    match(input,106,FOLLOW_106_in_escapedIdentifierOrKeyword1275); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "foreach";
                     }
@@ -2620,7 +2910,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 60 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:270:5: 'storeRightTo'
                     {
-                    match(input,107,FOLLOW_107_in_escapedIdentifierOrKeyword1283); if (state.failed) return ret2;
+                    match(input,107,FOLLOW_107_in_escapedIdentifierOrKeyword1283); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "storeRightTo";
                     }
@@ -2630,7 +2922,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 61 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:271:5: 'word'
                     {
-                    match(input,108,FOLLOW_108_in_escapedIdentifierOrKeyword1291); if (state.failed) return ret2;
+                    match(input,108,FOLLOW_108_in_escapedIdentifierOrKeyword1291); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "word";
                     }
@@ -2640,7 +2934,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 62 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:272:5: 'leftNone'
                     {
-                    match(input,109,FOLLOW_109_in_escapedIdentifierOrKeyword1299); if (state.failed) return ret2;
+                    match(input,109,FOLLOW_109_in_escapedIdentifierOrKeyword1299); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "leftNone";
                     }
@@ -2650,7 +2946,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 63 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:273:5: 'context'
                     {
-                    match(input,110,FOLLOW_110_in_escapedIdentifierOrKeyword1307); if (state.failed) return ret2;
+                    match(input,110,FOLLOW_110_in_escapedIdentifierOrKeyword1307); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "context";
                     }
@@ -2660,7 +2958,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 64 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:274:5: 'lookupScope'
                     {
-                    match(input,111,FOLLOW_111_in_escapedIdentifierOrKeyword1315); if (state.failed) return ret2;
+                    match(input,111,FOLLOW_111_in_escapedIdentifierOrKeyword1315); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "lookupScope";
                     }
@@ -2670,7 +2970,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 65 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:275:5: 'operatorTemplate'
                     {
-                    match(input,112,FOLLOW_112_in_escapedIdentifierOrKeyword1323); if (state.failed) return ret2;
+                    match(input,112,FOLLOW_112_in_escapedIdentifierOrKeyword1323); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "operatorTemplate";
                     }
@@ -2680,7 +2982,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 66 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:276:5: 'template'
                     {
-                    match(input,113,FOLLOW_113_in_escapedIdentifierOrKeyword1331); if (state.failed) return ret2;
+                    match(input,113,FOLLOW_113_in_escapedIdentifierOrKeyword1331); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "template";
                     }
@@ -2690,7 +2994,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 67 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:277:5: 'true'
                     {
-                    match(input,114,FOLLOW_114_in_escapedIdentifierOrKeyword1339); if (state.failed) return ret2;
+                    match(input,114,FOLLOW_114_in_escapedIdentifierOrKeyword1339); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "true";
                     }
@@ -2700,7 +3006,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 68 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:278:5: 'primitiveTemplate'
                     {
-                    match(input,115,FOLLOW_115_in_escapedIdentifierOrKeyword1347); if (state.failed) return ret2;
+                    match(input,115,FOLLOW_115_in_escapedIdentifierOrKeyword1347); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "primitiveTemplate";
                     }
@@ -2710,7 +3018,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 69 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:279:5: 'abstract'
                     {
-                    match(input,116,FOLLOW_116_in_escapedIdentifierOrKeyword1355); if (state.failed) return ret2;
+                    match(input,116,FOLLOW_116_in_escapedIdentifierOrKeyword1355); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "abstract";
                     }
@@ -2720,7 +3030,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 70 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:280:5: 'forcedLower'
                     {
-                    match(input,117,FOLLOW_117_in_escapedIdentifierOrKeyword1363); if (state.failed) return ret2;
+                    match(input,117,FOLLOW_117_in_escapedIdentifierOrKeyword1363); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "forcedLower";
                     }
@@ -2730,7 +3042,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 71 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:281:5: 'separator'
                     {
-                    match(input,118,FOLLOW_118_in_escapedIdentifierOrKeyword1371); if (state.failed) return ret2;
+                    match(input,118,FOLLOW_118_in_escapedIdentifierOrKeyword1371); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "separator";
                     }
@@ -2740,7 +3054,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 72 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:282:5: 'multi'
                     {
-                    match(input,119,FOLLOW_119_in_escapedIdentifierOrKeyword1379); if (state.failed) return ret2;
+                    match(input,119,FOLLOW_119_in_escapedIdentifierOrKeyword1379); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "multi";
                     }
@@ -2750,7 +3066,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 73 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:283:5: 'forcedUpper'
                     {
-                    match(input,120,FOLLOW_120_in_escapedIdentifierOrKeyword1387); if (state.failed) return ret2;
+                    match(input,120,FOLLOW_120_in_escapedIdentifierOrKeyword1387); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "forcedUpper";
                     }
@@ -2760,7 +3078,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 74 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:284:5: 'omitted'
                     {
-                    match(input,121,FOLLOW_121_in_escapedIdentifierOrKeyword1395); if (state.failed) return ret2;
+                    match(input,121,FOLLOW_121_in_escapedIdentifierOrKeyword1395); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "omitted";
                     }
@@ -2770,7 +3090,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 75 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:285:5: 'nonPrimary'
                     {
-                    match(input,122,FOLLOW_122_in_escapedIdentifierOrKeyword1403); if (state.failed) return ret2;
+                    match(input,122,FOLLOW_122_in_escapedIdentifierOrKeyword1403); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "nonPrimary";
                     }
@@ -2780,7 +3102,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 76 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:286:5: 'startNL'
                     {
-                    match(input,123,FOLLOW_123_in_escapedIdentifierOrKeyword1411); if (state.failed) return ret2;
+                    match(input,123,FOLLOW_123_in_escapedIdentifierOrKeyword1411); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "startNL";
                     }
@@ -2790,7 +3114,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 77 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:287:5: 'as'
                     {
-                    match(input,124,FOLLOW_124_in_escapedIdentifierOrKeyword1419); if (state.failed) return ret2;
+                    match(input,124,FOLLOW_124_in_escapedIdentifierOrKeyword1419); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "as";
                     }
@@ -2800,7 +3126,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 78 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:288:5: 'value'
                     {
-                    match(input,125,FOLLOW_125_in_escapedIdentifierOrKeyword1427); if (state.failed) return ret2;
+                    match(input,125,FOLLOW_125_in_escapedIdentifierOrKeyword1427); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "value";
                     }
@@ -2810,7 +3138,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 79 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:289:5: 'autoCreate'
                     {
-                    match(input,126,FOLLOW_126_in_escapedIdentifierOrKeyword1435); if (state.failed) return ret2;
+                    match(input,126,FOLLOW_126_in_escapedIdentifierOrKeyword1435); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "autoCreate";
                     }
@@ -2820,7 +3150,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 80 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:290:5: 'indentIncr'
                     {
-                    match(input,127,FOLLOW_127_in_escapedIdentifierOrKeyword1443); if (state.failed) return ret2;
+                    match(input,127,FOLLOW_127_in_escapedIdentifierOrKeyword1443); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "indentIncr";
                     }
@@ -2830,7 +3162,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 81 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:291:5: 'syntax'
                     {
-                    match(input,128,FOLLOW_128_in_escapedIdentifierOrKeyword1451); if (state.failed) return ret2;
+                    match(input,128,FOLLOW_128_in_escapedIdentifierOrKeyword1451); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "syntax";
                     }
@@ -2840,7 +3174,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 82 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:292:5: 'one'
                     {
-                    match(input,129,FOLLOW_129_in_escapedIdentifierOrKeyword1459); if (state.failed) return ret2;
+                    match(input,129,FOLLOW_129_in_escapedIdentifierOrKeyword1459); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "one";
                     }
@@ -2850,7 +3186,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 83 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:293:5: 'endOfLine'
                     {
-                    match(input,130,FOLLOW_130_in_escapedIdentifierOrKeyword1467); if (state.failed) return ret2;
+                    match(input,130,FOLLOW_130_in_escapedIdentifierOrKeyword1467); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "endOfLine";
                     }
@@ -2860,7 +3198,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 84 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:294:5: 'serializer'
                     {
-                    match(input,131,FOLLOW_131_in_escapedIdentifierOrKeyword1475); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_escapedIdentifierOrKeyword1475); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "serializer";
                     }
@@ -2870,7 +3210,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 85 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:295:5: 'createIn'
                     {
-                    match(input,132,FOLLOW_132_in_escapedIdentifierOrKeyword1483); if (state.failed) return ret2;
+                    match(input,132,FOLLOW_132_in_escapedIdentifierOrKeyword1483); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "createIn";
                     }
@@ -2880,7 +3222,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case 86 :
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:296:5: 'keywords'
                     {
-                    match(input,133,FOLLOW_133_in_escapedIdentifierOrKeyword1491); if (state.failed) return ret2;
+                    match(input,133,FOLLOW_133_in_escapedIdentifierOrKeyword1491); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       ret = "keywords";
                     }
@@ -2925,7 +3269,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:305:3: (ast= STRING )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:305:4: ast= STRING
             {
-            ast=(Token)match(input,STRING,FOLLOW_STRING_in_stringSymbol1522); if (state.failed) return ret2;
+            ast=(Token)match(input,STRING,FOLLOW_STRING_in_stringSymbol1522); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = unescapeString( ast.getText());
 
@@ -2968,7 +3314,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:315:3: (ast= STRING )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:315:4: ast= STRING
             {
-            ast=(Token)match(input,STRING,FOLLOW_STRING_in_plainStringSymbol1553); if (state.failed) return ret2;
+            ast=(Token)match(input,STRING,FOLLOW_STRING_in_plainStringSymbol1553); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = unescapeString( ast.getText());
 
@@ -3011,7 +3359,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:325:3: (ast= STRING )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:325:4: ast= STRING
             {
-            ast=(Token)match(input,STRING,FOLLOW_STRING_in_uriSymbol1584); if (state.failed) return ret2;
+            ast=(Token)match(input,STRING,FOLLOW_STRING_in_uriSymbol1584); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = unescapeString( ast.getText());
 
@@ -3054,7 +3404,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:335:3: (ast= INT )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:335:4: ast= INT
             {
-            ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol1615); if (state.failed) return ret2;
+            ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol1615); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = Integer.valueOf( ast.getText());
 
@@ -3097,7 +3449,9 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:345:3: (ast= FLOAT )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:345:4: ast= FLOAT
             {
-            ast=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_floatSymbol1646); if (state.failed) return ret2;
+            ast=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_floatSymbol1646); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               ret = Double.valueOf( ast.getText());
 
@@ -3147,7 +3501,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:4: ( ( (temp= ecore_epackage ) ) | ) (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:128: ( ( (temp= ecore_epackage ) ) | )
             int alt3=2;
@@ -3163,7 +3517,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:146: (temp= ecore_epackage )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:295: (temp= ecore_epackage )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:297: temp= ecore_epackage
@@ -3173,7 +3527,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "ePackage", temp);
                       setParent(temp,ret,"ePackage");
@@ -3212,7 +3568,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:362:140: (temp= identifier )?
             int alt4=2;
@@ -3230,7 +3586,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "name", temp);
                       setParent(temp,ret,"name");
@@ -3290,7 +3648,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:4: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:127: ( ( ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt8=2;
@@ -3449,7 +3807,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:145: ( ( (temp= ecore_epackage_superPackage ) ) | ) (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:294: ( ( (temp= ecore_epackage_superPackage ) ) | )
                     int alt5=2;
@@ -3608,7 +3966,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:312: (temp= ecore_epackage_superPackage )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.0/@thenSequence/@elements.0");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:486: (temp= ecore_epackage_superPackage )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:378:488: temp= ecore_epackage_superPackage
@@ -3618,7 +3976,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "eSuperPackage", temp);
                               setParent(temp,ret,"eSuperPackage");
@@ -3657,7 +4017,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:380:165: (temp= identifier )?
                     int alt6=2;
@@ -3675,7 +4035,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "name", temp);
                               setParent(temp,ret,"name");
@@ -3690,9 +4052,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.0/@elements.2");
                     }
-                    match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage1801); if (state.failed) return ret2;
+                    match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage1801); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3715,7 +4079,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:382:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:382:169: (temp= uriSymbol )?
                     int alt7=2;
@@ -3733,7 +4097,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "nsURI", temp);
                               setParent(temp,ret,"nsURI");
@@ -3748,9 +4114,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.9/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
-                    match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage1828); if (state.failed) return ret2;
+                    match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage1828); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3815,7 +4183,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:398:4: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:398:128: ( ( (temp= identifier )? DLCOLON ) | ( (temp= uriSymbol )? SHARP ) )
             int alt11=2;
@@ -3845,7 +4213,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:398:146: (temp= identifier )? DLCOLON
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:398:295: (temp= identifier )?
                     int alt9=2;
@@ -3863,7 +4231,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "name", temp);
                               setParent(temp,ret,"name");
@@ -3878,9 +4248,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.0/@elements.1");
                     }
-                    match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage_superPackage1892); if (state.failed) return ret2;
+                    match(input,DLCOLON,FOLLOW_DLCOLON_in_ecore_epackage_superPackage1892); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3903,7 +4275,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:400:21: (temp= uriSymbol )? SHARP
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:400:170: (temp= uriSymbol )?
                     int alt10=2;
@@ -3921,7 +4293,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "nsURI", temp);
                               setParent(temp,ret,"nsURI");
@@ -3936,9 +4310,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.10/@templateSequence/@elements.0/@sequences.1/@elements.1");
                     }
-                    match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage_superPackage1919); if (state.failed) return ret2;
+                    match(input,SHARP,FOLLOW_SHARP_in_ecore_epackage_superPackage1919); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4045,11 +4421,15 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
 
             }
 
-            match(input,EOF,FOLLOW_EOF_in_main2003); if (state.failed) return ret2;
+            match(input,EOF,FOLLOW_EOF_in_main2003); if (state.failed) {
+                return ret2;
+            }
 
             }
 
@@ -4095,14 +4475,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:440:4: 'syntax' (temp= identifier ) ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | ) LCURLY ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.0");
             }
-            match(input,128,FOLLOW_128_in_furcas_tcs_concretesyntax2034); if (state.failed) return ret2;
+            match(input,128,FOLLOW_128_in_furcas_tcs_concretesyntax2034); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:440:276: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:440:278: temp= identifier
@@ -4112,7 +4494,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -4124,7 +4508,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:441:171: ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | )
             int alt12=2;
@@ -4154,28 +4538,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:441:189: LPAREN 'k' EQ (temp= integerSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_concretesyntax2054); if (state.failed) return ret2;
+                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_concretesyntax2054); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
-                    match(input,104,FOLLOW_104_in_furcas_tcs_concretesyntax2058); if (state.failed) return ret2;
+                    match(input,104,FOLLOW_104_in_furcas_tcs_concretesyntax2058); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2062); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2062); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:441:852: (temp= integerSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:441:854: temp= integerSymbol
@@ -4185,7 +4575,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "k", temp);
                       setParent(temp,ret,"k");
@@ -4197,9 +4589,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.2/@thenSequence/@elements.4");
                     }
-                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_concretesyntax2077); if (state.failed) return ret2;
+                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_concretesyntax2077); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4231,14 +4625,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.3");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2095); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2095); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:443:289: ( ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:443:290: ( (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) )
@@ -4247,7 +4643,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:443:291: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | ) (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )? (temp= furcas_tcs_token (temp= furcas_tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:443:442: (temp= furcas_tcs_template (temp= furcas_tcs_template )* )?
             int alt14=2;
@@ -4265,7 +4661,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "templates", temp);
                       setParent(temp,ret,"templates");
@@ -4290,7 +4688,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "templates", temp);
                     	      setParent(temp,ret,"templates");
@@ -4314,7 +4714,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:208: ( ( 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY ) | )
             int alt17=2;
@@ -4344,21 +4744,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:226: 'keywords' LCURLY ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,133,FOLLOW_133_in_furcas_tcs_concretesyntax2131); if (state.failed) return ret2;
+                    match(input,133,FOLLOW_133_in_furcas_tcs_concretesyntax2131); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.1");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2135); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2135); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:807: ( ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:808: ( (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )? )
@@ -4367,7 +4771,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:809: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:445:1013: (temp= furcas_tcs_keyword (temp= furcas_tcs_keyword )* )?
                     int alt16=2;
@@ -4385,7 +4789,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "keywords", temp);
                               setParent(temp,ret,"keywords");
@@ -4410,7 +4816,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "keywords", temp);
                             	      setParent(temp,ret,"keywords");
@@ -4443,9 +4851,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.1/@thenSequence/@elements.3");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2169); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2169); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4477,7 +4887,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:169: ( ( 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY ) | )
             int alt20=2;
@@ -4507,21 +4917,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:187: 'symbols' LCURLY ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,100,FOLLOW_100_in_furcas_tcs_concretesyntax2192); if (state.failed) return ret2;
+                    match(input,100,FOLLOW_100_in_furcas_tcs_concretesyntax2192); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.1");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2196); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_concretesyntax2196); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:767: ( ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:768: ( (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )? )
@@ -4530,7 +4944,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:769: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.2/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:448:973: (temp= furcas_tcs_symbol (temp= furcas_tcs_symbol )* )?
                     int alt19=2;
@@ -4548,7 +4962,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "symbols", temp);
                               setParent(temp,ret,"symbols");
@@ -4573,7 +4989,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "symbols", temp);
                             	      setParent(temp,ret,"symbols");
@@ -4606,9 +5024,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.2/@thenSequence/@elements.3");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2230); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2230); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4640,7 +5060,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:451:168: (temp= furcas_tcs_operatorlist (temp= furcas_tcs_operatorlist )* )?
             int alt22=2;
@@ -4658,7 +5078,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "operatorLists", temp);
                       setParent(temp,ret,"operatorLists");
@@ -4683,7 +5105,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "operatorLists", temp);
                     	      setParent(temp,ret,"operatorLists");
@@ -4707,7 +5131,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:453:211: (temp= furcas_tcs_token (temp= furcas_tcs_token )* )?
             int alt24=2;
@@ -4725,7 +5149,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "tokens", temp);
                       setParent(temp,ret,"tokens");
@@ -4750,7 +5176,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "tokens", temp);
                     	      setParent(temp,ret,"tokens");
@@ -4774,7 +5202,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:455:205: ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             int alt25=2;
@@ -4804,21 +5232,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:455:223: 'lexer' EQ (temp= stringSymbol ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.0");
                     }
-                    match(input,65,FOLLOW_65_in_furcas_tcs_concretesyntax2299); if (state.failed) return ret2;
+                    match(input,65,FOLLOW_65_in_furcas_tcs_concretesyntax2299); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.1");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2303); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_concretesyntax2303); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:455:797: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:455:799: temp= stringSymbol
@@ -4828,7 +5260,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lexer", temp);
                       setParent(temp,ret,"lexer");
@@ -4840,9 +5274,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.4/@blockSequence/@elements.5/@thenSequence/@elements.3");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_concretesyntax2318); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_concretesyntax2318); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4883,20 +5319,22 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.5");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2339); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_concretesyntax2339); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
               _enterInjectorAction();setOclRef(ret, "keywords", null, null, "OCL:LiteralRef.allInstances()->select("+
               "                                lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()"+
               "                                ->union(self.operatorLists.priorities.operators.literal->asSet())"+
-              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.12/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -4939,7 +5377,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:470:4: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.13/@functionSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.13/@functionSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:470:129: ( ( (temp= ecore_eclassifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* ) ) )
             int alt27=2;
@@ -4969,7 +5407,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:470:147: (temp= ecore_eclassifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:470:297: (temp= ecore_eclassifier )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:470:299: temp= ecore_eclassifier
@@ -4979,7 +5417,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ;
+                    if (state.failed) {
+                        return ;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "metaReference", temp);
                       setParent(temp,ret,"metaReference");
@@ -5009,14 +5449,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:471:90: RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.0");
                     }
-                    match(input,RARROW,FOLLOW_RARROW_in_reference2403); if (state.failed) return ;
+                    match(input,RARROW,FOLLOW_RARROW_in_reference2403); if (state.failed) {
+                        return ;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:471:414: (temp= identifier ( ( DLCOLON ) temp= identifier )* )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:471:416: temp= identifier ( ( DLCOLON ) temp= identifier )*
@@ -5026,7 +5468,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ;
+                    if (state.failed) {
+                        return ;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "names", temp);
                       setParent(temp,ret,"names");
@@ -5053,9 +5497,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:472:50: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.13/@functionSequence/@elements.0/@elseSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference2420); if (state.failed) return ;
+                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference2420); if (state.failed) {
+                                return ;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -5070,7 +5516,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ;
+                    	    if (state.failed) {
+                                return ;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "names", temp);
                     	      setParent(temp,ret,"names");
@@ -5180,7 +5628,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5192,7 +5642,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5204,7 +5656,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5216,7 +5670,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5281,7 +5737,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5293,7 +5751,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -5342,14 +5802,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:510:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI (temp= furcas_textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.0");
             }
-            match(input,115,FOLLOW_115_in_furcas_tcs_primitivetemplate2556); if (state.failed) return ret2;
+            match(input,115,FOLLOW_115_in_furcas_tcs_primitivetemplate2556); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:510:287: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:510:289: temp= identifier
@@ -5359,7 +5821,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "templateName", temp);
               setParent(temp,ret,"templateName");
@@ -5371,26 +5835,30 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.2");
             }
-            match(input,73,FOLLOW_73_in_furcas_tcs_primitivetemplate2569); if (state.failed) return ret2;
+            match(input,73,FOLLOW_73_in_furcas_tcs_primitivetemplate2569); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.3");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_primitivetemplate2572);
             reference(ret);
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:511:478: ( ( 'default' ) | )
             int alt30=2;
@@ -5420,9 +5888,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:511:496: 'default'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,78,FOLLOW_78_in_furcas_tcs_primitivetemplate2582); if (state.failed) return ret2;
+                    match(input,78,FOLLOW_78_in_furcas_tcs_primitivetemplate2582); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -5460,14 +5930,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.5");
             }
-            match(input,69,FOLLOW_69_in_furcas_tcs_primitivetemplate2600); if (state.failed) return ret2;
+            match(input,69,FOLLOW_69_in_furcas_tcs_primitivetemplate2600); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.6");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:512:288: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:512:290: temp= identifier
@@ -5477,7 +5949,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "tokenName", temp);
               setParent(temp,ret,"tokenName");
@@ -5489,7 +5963,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.7");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:513:176: ( ( 'orKeyword' ) | )
             int alt31=2;
@@ -5519,9 +5993,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:513:194: 'orKeyword'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.7/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.7/@thenSequence/@elements.0");
                     }
-                    match(input,92,FOLLOW_92_in_furcas_tcs_primitivetemplate2619); if (state.failed) return ret2;
+                    match(input,92,FOLLOW_92_in_furcas_tcs_primitivetemplate2619); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -5559,28 +6035,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.8");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_primitivetemplate2638); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_primitivetemplate2638); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.9");
             }
-            match(input,125,FOLLOW_125_in_furcas_tcs_primitivetemplate2642); if (state.failed) return ret2;
+            match(input,125,FOLLOW_125_in_furcas_tcs_primitivetemplate2642); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.10");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2646); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2646); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.11");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:514:581: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:514:583: temp= stringSymbol
@@ -5590,7 +6072,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -5602,7 +6086,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.12");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:515:173: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
             int alt32=2;
@@ -5632,28 +6116,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:515:191: COMA 'serializer' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_primitivetemplate2667); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_primitivetemplate2667); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.1");
                     }
-                    match(input,131,FOLLOW_131_in_furcas_tcs_primitivetemplate2671); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_furcas_tcs_primitivetemplate2671); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2675); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivetemplate2675); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.12/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:515:865: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:515:867: temp= stringSymbol
@@ -5663,7 +6153,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "serializer", temp);
                       setParent(temp,ret,"serializer");
@@ -5702,14 +6194,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.13");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.13");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2703); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_primitivetemplate2703); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.16/@templateSequence/@elements.14");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.16/@templateSequence/@elements.14");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:517:289: (temp= furcas_textblockdefinition_textblockdefinition )?
             int alt33=2;
@@ -5723,7 +6217,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "textBlockDefinition", temp);
                       setParent(temp,ret,"textBlockDefinition");
@@ -5783,26 +6279,30 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:533:4: 'enumerationTemplate' reference[ret] ( ( 'auto' ) | ) ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) ) (temp= furcas_textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.0");
             }
-            match(input,105,FOLLOW_105_in_furcas_tcs_enumerationtemplate2756); if (state.failed) return ret2;
+            match(input,105,FOLLOW_105_in_furcas_tcs_enumerationtemplate2756); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_enumerationtemplate2759);
             reference(ret);
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:533:444: ( ( 'auto' ) | )
             int alt34=2;
@@ -5832,9 +6332,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:533:462: 'auto'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,67,FOLLOW_67_in_furcas_tcs_enumerationtemplate2769); if (state.failed) return ret2;
+                    match(input,67,FOLLOW_67_in_furcas_tcs_enumerationtemplate2769); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -5872,7 +6374,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             int alt37=2;
@@ -5902,7 +6404,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:160: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:310: ( ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:311: ( COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI )
@@ -5911,14 +6413,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:312: COLON ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2797); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_enumerationtemplate2797); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:689: ( ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:690: ( (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )? )
@@ -5927,7 +6431,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:691: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:534:895: (temp= furcas_tcs_enumliteralmapping ( ( COMA ) temp= furcas_tcs_enumliteralmapping )* )?
                     int alt36=2;
@@ -5945,7 +6449,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "mappings", temp);
                               setParent(temp,ret,"mappings");
@@ -5972,9 +6478,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:535:53: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2817); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_enumerationtemplate2817); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -5989,7 +6497,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "mappings", temp);
                             	      setParent(temp,ret,"mappings");
@@ -6022,9 +6532,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2840); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2840); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6056,9 +6568,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:536:325: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2857); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_enumerationtemplate2857); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6078,7 +6592,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.17/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.17/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:537:141: (temp= furcas_textblockdefinition_textblockdefinition )?
             int alt38=2;
@@ -6092,7 +6606,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "textBlockDefinition", temp);
                       setParent(temp,ret,"textBlockDefinition");
@@ -6152,7 +6668,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:553:4: (temp= furcas_tcs_enumliteralval ) EQ (temp= furcas_tcs_sequenceelement )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:553:128: (temp= furcas_tcs_enumliteralval )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:553:130: temp= furcas_tcs_enumliteralval
@@ -6162,7 +6678,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "literal", temp);
               setParent(temp,ret,"literal");
@@ -6174,14 +6692,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2927); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_enumliteralmapping2927); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.18/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:554:317: (temp= furcas_tcs_sequenceelement )?
             int alt39=2;
@@ -6199,7 +6719,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "element", temp);
                       setParent(temp,ret,"element");
@@ -6259,26 +6781,30 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:4: 'template' reference[ret] ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= furcas_textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.0");
             }
-            match(input,113,FOLLOW_113_in_furcas_tcs_classtemplate2980); if (state.failed) return ret2;
+            match(input,113,FOLLOW_113_in_furcas_tcs_classtemplate2980); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_classtemplate2983);
             reference(ret);
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:433: ( ( 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | ) ) | ( ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ) )
             int alt55=2;
@@ -6308,14 +6834,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:451: 'referenceOnly' ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,56,FOLLOW_56_in_furcas_tcs_classtemplate2993); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_furcas_tcs_classtemplate2993); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:783: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt40=2;
@@ -6345,14 +6873,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:801: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.0");
                             }
-                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate3003); if (state.failed) return ret2;
+                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate3003); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@thenSequence/@elements.1/@thenSequence/@elements.1");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:1176: (temp= identifierOrKeyword )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:570:1178: temp= identifierOrKeyword
@@ -6362,7 +6892,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "mode", temp);
                               setParent(temp,ret,"mode");
@@ -6422,7 +6954,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:572:114: ( ( SHARP (temp= identifierOrKeyword ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:572:265: ( ( SHARP (temp= identifierOrKeyword ) ) | )
                     int alt41=2;
@@ -6452,14 +6984,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:572:283: SHARP (temp= identifierOrKeyword )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
-                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate3047); if (state.failed) return ret2;
+                            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_classtemplate3047); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:572:658: (temp= identifierOrKeyword )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:572:660: temp= identifierOrKeyword
@@ -6469,7 +7003,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "mode", temp);
                               setParent(temp,ret,"mode");
@@ -6508,7 +7044,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:574:168: ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt42=2;
@@ -6552,28 +7088,34 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:574:186: LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3081); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3081); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.1");
                             }
-                            match(input,50,FOLLOW_50_in_furcas_tcs_classtemplate3085); if (state.failed) return ret2;
+                            match(input,50,FOLLOW_50_in_furcas_tcs_classtemplate3085); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3089); if (state.failed) return ret2;
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3089); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.3");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:574:964: (temp= stringSymbol )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:574:966: temp= stringSymbol
@@ -6583,7 +7125,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "disambiguate", temp);
                               setParent(temp,ret,"disambiguate");
@@ -6595,9 +7139,11 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.1/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3104); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3104); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -6629,7 +7175,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:576:168: ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt43=2;
@@ -6673,28 +7219,34 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:576:186: LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3128); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3128); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.1");
                             }
-                            match(input,99,FOLLOW_99_in_furcas_tcs_classtemplate3132); if (state.failed) return ret2;
+                            match(input,99,FOLLOW_99_in_furcas_tcs_classtemplate3132); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3136); if (state.failed) return ret2;
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3136); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.3");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:576:966: (temp= stringSymbol )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:576:968: temp= stringSymbol
@@ -6704,7 +7256,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "disambiguateV3", temp);
                               setParent(temp,ret,"disambiguateV3");
@@ -6716,9 +7270,11 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.2/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3151); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3151); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -6750,7 +7306,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:578:168: ( ( LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt44=2;
@@ -6780,28 +7336,34 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:578:186: LPAREN 'semDisambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.0");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3175); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3175); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.1");
                             }
-                            match(input,102,FOLLOW_102_in_furcas_tcs_classtemplate3179); if (state.failed) return ret2;
+                            match(input,102,FOLLOW_102_in_furcas_tcs_classtemplate3179); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.2");
                             }
-                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3183); if (state.failed) return ret2;
+                            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_classtemplate3183); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.3");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:578:967: (temp= stringSymbol )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:578:969: temp= stringSymbol
@@ -6811,7 +7373,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "semDisambiguate", temp);
                               setParent(temp,ret,"semDisambiguate");
@@ -6823,9 +7387,11 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.3/@thenSequence/@elements.4");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3198); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3198); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -6857,7 +7423,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.4");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:580:168: ( ( 'multi' ) | )
                     int alt45=2;
@@ -6887,9 +7453,11 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:580:186: 'multi'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.4/@thenSequence/@elements.0");
                             }
-                            match(input,119,FOLLOW_119_in_furcas_tcs_classtemplate3221); if (state.failed) return ret2;
+                            match(input,119,FOLLOW_119_in_furcas_tcs_classtemplate3221); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -6927,7 +7495,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.5");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.5");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:581:168: ( ( 'main' ) | )
                     int alt46=2;
@@ -6957,9 +7525,11 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:581:186: 'main'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.5/@thenSequence/@elements.0");
                             }
-                            match(input,82,FOLLOW_82_in_furcas_tcs_classtemplate3245); if (state.failed) return ret2;
+                            match(input,82,FOLLOW_82_in_furcas_tcs_classtemplate3245); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -6997,7 +7567,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:582:168: ( ( ( ( 'deep' ) | ) 'abstract' ) | )
                     int alt48=2;
@@ -7027,7 +7597,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:582:186: ( ( 'deep' ) | ) 'abstract'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:582:363: ( ( 'deep' ) | )
                             int alt47=2;
@@ -7057,9 +7627,11 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:582:381: 'deep'
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.0/@thenSequence/@elements.0");
                                     }
-                                    match(input,74,FOLLOW_74_in_furcas_tcs_classtemplate3275); if (state.failed) return ret2;
+                                    match(input,74,FOLLOW_74_in_furcas_tcs_classtemplate3275); if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
@@ -7097,9 +7669,11 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.6/@thenSequence/@elements.1");
                             }
-                            match(input,116,FOLLOW_116_in_furcas_tcs_classtemplate3293); if (state.failed) return ret2;
+                            match(input,116,FOLLOW_116_in_furcas_tcs_classtemplate3293); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -7137,7 +7711,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:168: ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | )
                     int alt50=2;
@@ -7167,14 +7741,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:186: 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.0");
                             }
-                            match(input,72,FOLLOW_72_in_furcas_tcs_classtemplate3317); if (state.failed) return ret2;
+                            match(input,72,FOLLOW_72_in_furcas_tcs_classtemplate3317); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:567: ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             int alt49=2;
@@ -7204,14 +7780,16 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:585: LPAREN (temp= identifier ) RPAREN
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
-                                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3327); if (state.failed) return ret2;
+                                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_classtemplate3327); if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.1");
                                     }
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:1013: (temp= identifier )
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:584:1015: temp= identifier
@@ -7221,7 +7799,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                                     checkFollows();
                                     state._fsp--;
-                                    if (state.failed) return ret2;
+                                    if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       setRef(ret, "operatorList", list("FURCAS","TCS","OperatorList"), "name", temp, null, "never", null, false, null);
                                     }
@@ -7232,9 +7812,11 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.7/@thenSequence/@elements.1/@thenSequence/@elements.2");
                                     }
-                                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3342); if (state.failed) return ret2;
+                                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_classtemplate3342); if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
@@ -7299,7 +7881,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:168: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt52=2;
@@ -7329,14 +7911,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:186: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.0");
                             }
-                            match(input,110,FOLLOW_110_in_furcas_tcs_classtemplate3380); if (state.failed) return ret2;
+                            match(input,110,FOLLOW_110_in_furcas_tcs_classtemplate3380); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:564: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt51=2;
@@ -7366,7 +7950,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:582: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.8/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:784: (temp= furcas_tcs_contexttags )
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:586:786: temp= furcas_tcs_contexttags
@@ -7376,7 +7960,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                                     checkFollows();
                                     state._fsp--;
-                                    if (state.failed) return ret2;
+                                    if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       setProperty(ret, "contextTags", temp);
                                       setParent(temp,ret,"contextTags");
@@ -7448,7 +8034,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.9");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.9");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:589:168: ( ( 'addToContext' ) | )
                     int alt53=2;
@@ -7478,9 +8064,11 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:589:186: 'addToContext'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.9/@thenSequence/@elements.0");
                             }
-                            match(input,60,FOLLOW_60_in_furcas_tcs_classtemplate3433); if (state.failed) return ret2;
+                            match(input,60,FOLLOW_60_in_furcas_tcs_classtemplate3433); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -7518,7 +8106,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.10");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.10");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:590:169: ( ( 'nonPrimary' ) | )
                     int alt54=2;
@@ -7548,9 +8136,11 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:590:187: 'nonPrimary'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.2/@elseSequence/@elements.10/@thenSequence/@elements.0");
                             }
-                            match(input,122,FOLLOW_122_in_furcas_tcs_classtemplate3457); if (state.failed) return ret2;
+                            match(input,122,FOLLOW_122_in_furcas_tcs_classtemplate3457); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -7606,7 +8196,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:142: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt56=2;
@@ -7636,7 +8226,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:160: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:310: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:311: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -7645,14 +8235,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:312: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_classtemplate3492); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_classtemplate3492); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:689: ( ( (temp= furcas_tcs_sequence ) ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:690: ( (temp= furcas_tcs_sequence ) )
@@ -7661,7 +8253,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:691: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:895: (temp= furcas_tcs_sequence )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:592:897: temp= furcas_tcs_sequence
@@ -7671,7 +8263,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "templateSequence", temp);
                       setParent(temp,ret,"templateSequence");
@@ -7692,9 +8286,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3513); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3513); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -7726,9 +8322,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:593:328: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.3/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3530); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_classtemplate3530); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -7748,7 +8346,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.19/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:594:141: (temp= furcas_textblockdefinition_textblockdefinition )?
             int alt57=2;
@@ -7762,7 +8360,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "textBlockDefinition", temp);
                       setParent(temp,ret,"textBlockDefinition");
@@ -7822,47 +8422,57 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:610:4: 'operatorTemplate' reference[ret] LPAREN 'operators' EQ (temp= identifier (temp= identifier )* )? COMA 'source' EQ (temp= furcas_tcs_propertyreference )? ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | ) ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | ) RPAREN ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= furcas_textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.0");
             }
-            match(input,112,FOLLOW_112_in_furcas_tcs_operatortemplate3589); if (state.failed) return ret2;
+            match(input,112,FOLLOW_112_in_furcas_tcs_operatortemplate3589); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.1");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_operatortemplate3592);
             reference(ret);
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.2");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3597); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_operatortemplate3597); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.3");
             }
-            match(input,84,FOLLOW_84_in_furcas_tcs_operatortemplate3601); if (state.failed) return ret2;
+            match(input,84,FOLLOW_84_in_furcas_tcs_operatortemplate3601); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.4");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3605); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3605); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:610:883: (temp= identifier (temp= identifier )* )?
             int alt59=2;
@@ -7880,7 +8490,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setRef(ret, "operators", list("FURCAS","TCS","Operator"), "name", temp, null, "never", null, false, null);
                     }
@@ -7904,7 +8516,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setRef(ret, "operators", list("FURCAS","TCS","Operator"), "name", temp, null, "never", null, false, null);
                     	    }
@@ -7927,28 +8541,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.6");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3633); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3633); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.7");
             }
-            match(input,87,FOLLOW_87_in_furcas_tcs_operatortemplate3637); if (state.failed) return ret2;
+            match(input,87,FOLLOW_87_in_furcas_tcs_operatortemplate3637); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.8");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3641); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3641); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.9");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:610:1720: (temp= furcas_tcs_propertyreference )?
             int alt60=2;
@@ -7966,7 +8586,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "storeLeftSideTo", temp);
                       setParent(temp,ret,"storeLeftSideTo");
@@ -7981,7 +8603,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.10");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:611:185: ( ( COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt61=2;
@@ -8025,28 +8647,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:611:203: COMA 'storeOpTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3664); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3664); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.1");
                     }
-                    match(input,93,FOLLOW_93_in_furcas_tcs_operatortemplate3668); if (state.failed) return ret2;
+                    match(input,93,FOLLOW_93_in_furcas_tcs_operatortemplate3668); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3672); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3672); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.10/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:611:876: (temp= furcas_tcs_propertyreference )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:611:878: temp= furcas_tcs_propertyreference
@@ -8056,7 +8684,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "storeOperatorTo", temp);
                       setParent(temp,ret,"storeOperatorTo");
@@ -8095,7 +8725,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.11");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:613:143: ( ( COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference ) ) | )
             int alt62=2;
@@ -8139,28 +8769,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:613:161: COMA 'storeRightTo' EQ (temp= furcas_tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3706); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3706); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
-                    match(input,107,FOLLOW_107_in_furcas_tcs_operatortemplate3710); if (state.failed) return ret2;
+                    match(input,107,FOLLOW_107_in_furcas_tcs_operatortemplate3710); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3714); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3714); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:613:837: (temp= furcas_tcs_propertyreference )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:613:839: temp= furcas_tcs_propertyreference
@@ -8170,7 +8806,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "storeRightSideTo", temp);
                       setParent(temp,ret,"storeRightSideTo");
@@ -8209,7 +8847,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.12");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:615:143: ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | )
             int alt63=2;
@@ -8253,28 +8891,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:615:161: COMA 'disambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3748); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3748); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.1");
                     }
-                    match(input,50,FOLLOW_50_in_furcas_tcs_operatortemplate3752); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_furcas_tcs_operatortemplate3752); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3756); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3756); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.12/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:615:837: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:615:839: temp= stringSymbol
@@ -8284,7 +8928,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "disambiguate", temp);
                       setParent(temp,ret,"disambiguate");
@@ -8323,7 +8969,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.13");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.13");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:617:143: ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | )
             int alt64=2;
@@ -8367,28 +9013,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:617:161: COMA 'disambiguateV3' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3790); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3790); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.1");
                     }
-                    match(input,99,FOLLOW_99_in_furcas_tcs_operatortemplate3794); if (state.failed) return ret2;
+                    match(input,99,FOLLOW_99_in_furcas_tcs_operatortemplate3794); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3798); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3798); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.13/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:617:839: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:617:841: temp= stringSymbol
@@ -8398,7 +9050,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "disambiguateV3", temp);
                       setParent(temp,ret,"disambiguateV3");
@@ -8437,7 +9091,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.14");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.14");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:619:143: ( ( COMA 'semDisambiguate' EQ (temp= stringSymbol ) ) | )
             int alt65=2;
@@ -8467,28 +9121,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:619:161: COMA 'semDisambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3832); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operatortemplate3832); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.1");
                     }
-                    match(input,102,FOLLOW_102_in_furcas_tcs_operatortemplate3836); if (state.failed) return ret2;
+                    match(input,102,FOLLOW_102_in_furcas_tcs_operatortemplate3836); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3840); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operatortemplate3840); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.14/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:619:840: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:619:842: temp= stringSymbol
@@ -8498,7 +9158,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "semDisambiguate", temp);
                       setParent(temp,ret,"semDisambiguate");
@@ -8537,14 +9199,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.15");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.15");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3868); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_operatortemplate3868); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:292: ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | ) ) )
             int alt68=2;
@@ -8574,9 +9238,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:310: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@thenSequence/@elements.0");
                     }
-                    match(input,56,FOLLOW_56_in_furcas_tcs_operatortemplate3878); if (state.failed) return ret2;
+                    match(input,56,FOLLOW_56_in_furcas_tcs_operatortemplate3878); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -8602,7 +9268,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:589: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:741: ( ( 'context' ( ( (temp= furcas_tcs_contexttags ) ) | ) ) | )
                     int alt67=2;
@@ -8632,14 +9298,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:759: 'context' ( ( (temp= furcas_tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.0");
                             }
-                            match(input,110,FOLLOW_110_in_furcas_tcs_operatortemplate3897); if (state.failed) return ret2;
+                            match(input,110,FOLLOW_110_in_furcas_tcs_operatortemplate3897); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:1139: ( ( (temp= furcas_tcs_contexttags ) ) | )
                             int alt66=2;
@@ -8669,7 +9337,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:1157: (temp= furcas_tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
+                                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.16/@elseSequence/@elements.0/@thenSequence/@elements.1/@thenSequence/@elements.0");
                                     }
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:1360: (temp= furcas_tcs_contexttags )
                                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:621:1362: temp= furcas_tcs_contexttags
@@ -8679,7 +9347,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                                     checkFollows();
                                     state._fsp--;
-                                    if (state.failed) return ret2;
+                                    if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       setProperty(ret, "contextTags", temp);
                                       setParent(temp,ret,"contextTags");
@@ -8769,7 +9439,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:143: ( ( ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt69=2;
@@ -8799,7 +9469,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:161: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:312: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:313: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -8808,14 +9478,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:314: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_operatortemplate3961); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_operatortemplate3961); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:693: ( ( (temp= furcas_tcs_sequence ) ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:694: ( (temp= furcas_tcs_sequence ) )
@@ -8824,7 +9496,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:695: (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:900: (temp= furcas_tcs_sequence )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:625:902: temp= furcas_tcs_sequence
@@ -8834,7 +9506,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "templateSequence", temp);
                       setParent(temp,ret,"templateSequence");
@@ -8855,9 +9529,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@thenSequence/@elements.0/@blockSequence/@elements.2");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3982); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3982); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -8889,9 +9565,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:626:329: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.17/@elseSequence/@elements.0");
                     }
-                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3999); if (state.failed) return ret2;
+                    match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operatortemplate3999); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -8911,7 +9589,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.20/@templateSequence/@elements.18");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.20/@templateSequence/@elements.18");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:627:142: (temp= furcas_textblockdefinition_textblockdefinition )?
             int alt70=2;
@@ -8925,7 +9603,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "textBlockDefinition", temp);
                       setParent(temp,ret,"textBlockDefinition");
@@ -8985,14 +9665,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:643:4: 'function' (temp= identifier ) LPAREN reference[ret] RPAREN ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.0");
             }
-            match(input,91,FOLLOW_91_in_furcas_tcs_functiontemplate4058); if (state.failed) return ret2;
+            match(input,91,FOLLOW_91_in_furcas_tcs_functiontemplate4058); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:643:278: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:643:280: temp= identifier
@@ -9002,7 +9684,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "functionName", temp);
               setParent(temp,ret,"functionName");
@@ -9014,33 +9698,39 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.2");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_functiontemplate4072); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_functiontemplate4072); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.3");
             }
             pushFollow(FOLLOW_reference_in_furcas_tcs_functiontemplate4076);
             reference(ret);
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.4");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_functiontemplate4081); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_functiontemplate4081); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:628: ( ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:629: ( COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI )
@@ -9049,14 +9739,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:630: COLON ( ( (temp= furcas_tcs_sequence ) ) ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.0");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_functiontemplate4089); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_functiontemplate4089); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:955: ( ( (temp= furcas_tcs_sequence ) ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:956: ( (temp= furcas_tcs_sequence ) )
@@ -9065,7 +9757,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:957: (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.1/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:1135: (temp= furcas_tcs_sequence )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:644:1137: temp= furcas_tcs_sequence
@@ -9075,7 +9767,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "functionSequence", temp);
               setParent(temp,ret,"functionSequence");
@@ -9096,9 +9790,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.21/@templateSequence/@elements.5/@blockSequence/@elements.2");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_functiontemplate4110); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_functiontemplate4110); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -9157,14 +9853,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:660:4: LPAREN (temp= identifier ( ( COMA ) temp= identifier )* )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.0");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_contexttags4155); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_contexttags4155); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:660:276: (temp= identifier ( ( COMA ) temp= identifier )* )?
             int alt72=2;
@@ -9182,7 +9880,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "tags", temp);
                       setParent(temp,ret,"tags");
@@ -9209,9 +9909,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:661:49: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_contexttags4172); if (state.failed) return ret2;
+                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_contexttags4172); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -9226,7 +9928,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "tags", temp);
                     	      setParent(temp,ret,"tags");
@@ -9250,9 +9954,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.22/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.22/@templateSequence/@elements.2");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_contexttags4192); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_contexttags4192); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -9302,7 +10008,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:677:4: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.23/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.23/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:677:128: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:677:129: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -9311,7 +10017,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:677:130: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.23/@templateSequence/@elements.0/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.23/@templateSequence/@elements.0/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:677:281: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt74=2;
@@ -9329,7 +10035,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "elements", temp);
                       setParent(temp,ret,"elements");
@@ -9354,7 +10062,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "elements", temp);
                     	      setParent(temp,ret,"elements");
@@ -9434,7 +10144,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9449,7 +10161,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
 
@@ -9640,7 +10354,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9652,7 +10368,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9664,7 +10382,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9676,7 +10396,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9688,7 +10410,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9700,7 +10424,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9712,7 +10438,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9724,7 +10452,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -9773,7 +10503,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:719:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:719:128: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:719:130: temp= stringSymbol
@@ -9783,7 +10513,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setRef(ret, "referredLiteral", list("FURCAS","TCS","Literal"), "value", temp, "#all", "ifmissing", list("FURCAS","TCS","Keyword"), false, null);
             }
@@ -9794,10 +10526,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.1");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.25/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -9848,7 +10580,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:4: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:129: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword ) ) )
             int alt77=2;
@@ -9878,7 +10610,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:147: (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:297: (temp= identifierOrKeyword )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:299: temp= identifierOrKeyword
@@ -9888,9 +10620,11 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistry.getInstance());
+                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistry.getInstance());
                     }
 
                     }
@@ -9917,14 +10651,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:715: RARROW (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@elseSequence/@elements.0");
                     }
-                    match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_propertyreference4492); if (state.failed) return ret2;
+                    match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_propertyreference4492); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@elseSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:1039: (temp= identifierOrKeyword )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:734:1041: temp= identifierOrKeyword
@@ -9934,7 +10670,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "name", temp);
                       setParent(temp,ret,"name");
@@ -10006,7 +10744,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:751:4: (temp= furcas_tcs_propertyreference ) ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:751:128: (temp= furcas_tcs_propertyreference )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:751:130: temp= furcas_tcs_propertyreference
@@ -10016,7 +10754,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "propertyReference", temp);
               setParent(temp,ret,"propertyReference");
@@ -10028,7 +10768,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:752:184: ( ( LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY ) | )
             int alt80=2;
@@ -10058,14 +10798,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:752:202: LCURLY (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_property4566); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_property4566); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:752:526: (temp= furcas_tcs_propertyarg ( ( COMA ) temp= furcas_tcs_propertyarg )* )?
                     int alt79=2;
@@ -10083,7 +10825,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "propertyArgs", temp);
                               setParent(temp,ret,"propertyArgs");
@@ -10110,9 +10854,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:753:57: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_property4583); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_property4583); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -10127,7 +10873,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "propertyArgs", temp);
                             	      setParent(temp,ret,"propertyArgs");
@@ -10151,9 +10899,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_property4603); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_property4603); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10185,10 +10935,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.27/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10239,14 +10989,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:770:4: LT (temp= identifier ) GT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.0");
             }
-            match(input,LT,FOLLOW_LT_in_furcas_tcs_customseparator4661); if (state.failed) return ret2;
+            match(input,LT,FOLLOW_LT_in_furcas_tcs_customseparator4661); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:770:272: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:770:274: temp= identifier
@@ -10256,7 +11008,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -10268,17 +11022,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.2");
             }
-            match(input,GT,FOLLOW_GT_in_furcas_tcs_customseparator4676); if (state.failed) return ret2;
+            match(input,GT,FOLLOW_GT_in_furcas_tcs_customseparator4676); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10329,14 +11085,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:786:4: LSQUARE (temp= furcas_tcs_sequence ) RSQUARE ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.0");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_block4721); if (state.failed) return ret2;
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_block4721); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:786:277: (temp= furcas_tcs_sequence )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:786:279: temp= furcas_tcs_sequence
@@ -10346,7 +11104,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "blockSequence", temp);
               setParent(temp,ret,"blockSequence");
@@ -10358,14 +11118,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.2");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_block4736); if (state.failed) return ret2;
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_block4736); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:787:329: ( ( LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY ) | )
             int alt83=2;
@@ -10395,14 +11157,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:787:347: LCURLY (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_block4747); if (state.failed) return ret2;
+                    match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_block4747); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:787:671: (temp= furcas_tcs_blockarg ( ( COMA ) temp= furcas_tcs_blockarg )* )?
                     int alt82=2;
@@ -10420,7 +11184,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "blockArgs", temp);
                               setParent(temp,ret,"blockArgs");
@@ -10447,9 +11213,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:788:54: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_block4764); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_block4764); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -10464,7 +11232,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "blockArgs", temp);
                             	      setParent(temp,ret,"blockArgs");
@@ -10488,9 +11258,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.3/@thenSequence/@elements.2");
                     }
-                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_block4784); if (state.failed) return ret2;
+                    match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_block4784); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10522,10 +11294,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10576,14 +11348,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:805:4: LPAREN (temp= furcas_tcs_expression ) QMARK (temp= furcas_tcs_sequence ) ( ( COLON (temp= furcas_tcs_sequence ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.0");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4842); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_conditionalelement4842); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:805:276: (temp= furcas_tcs_expression )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:805:278: temp= furcas_tcs_expression
@@ -10593,7 +11367,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "condition", temp);
               setParent(temp,ret,"condition");
@@ -10605,14 +11381,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.2");
             }
-            match(input,QMARK,FOLLOW_QMARK_in_furcas_tcs_conditionalelement4857); if (state.failed) return ret2;
+            match(input,QMARK,FOLLOW_QMARK_in_furcas_tcs_conditionalelement4857); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:806:322: (temp= furcas_tcs_sequence )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:806:324: temp= furcas_tcs_sequence
@@ -10622,7 +11400,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "thenSequence", temp);
               setParent(temp,ret,"thenSequence");
@@ -10634,7 +11414,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:807:179: ( ( COLON (temp= furcas_tcs_sequence ) ) | )
             int alt84=2;
@@ -10664,14 +11444,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:807:197: COLON (temp= furcas_tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_conditionalelement4878); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_conditionalelement4878); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.4/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:807:520: (temp= furcas_tcs_sequence )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:807:522: temp= furcas_tcs_sequence
@@ -10681,7 +11463,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "elseSequence", temp);
                       setParent(temp,ret,"elseSequence");
@@ -10720,17 +11504,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.5");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4906); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_conditionalelement4906); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.30/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10781,14 +11567,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:4: DLSQUARE ( ( (temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+ ) ) ) DRSQUARE ( ( STAR ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.0");
             }
-            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_furcas_tcs_alternative4951); if (state.failed) return ret2;
+            match(input,DLSQUARE,FOLLOW_DLSQUARE_in_furcas_tcs_alternative4951); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:278: ( ( (temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+ ) ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:279: ( (temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+ ) )
@@ -10797,7 +11585,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:280: (temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+ )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:431: (temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+ )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:824:433: temp= furcas_tcs_sequenceinalternative ( ( PIPE ) temp= furcas_tcs_sequenceinalternative )+
@@ -10807,7 +11595,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "sequences", temp);
               setParent(temp,ret,"sequences");
@@ -10835,9 +11625,11 @@ public class TCSParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:825:54: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
             	    }
-            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_alternative4971); if (state.failed) return ret2;
+            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_alternative4971); if (state.failed) {
+                        return ret2;
+                    }
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -10852,7 +11644,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             	    checkFollows();
             	    state._fsp--;
-            	    if (state.failed) return ret2;
+            	    if (state.failed) {
+                        return ret2;
+                    }
             	    if ( state.backtracking==0 ) {
             	      setProperty(ret, "sequences", temp);
             	      setParent(temp,ret,"sequences");
@@ -10862,7 +11656,9 @@ public class TCSParser extends ObservableInjectingParser {
             	    break;
 
             	default :
-            	    if ( cnt85 >= 1 ) break loop85;
+            	    if ( cnt85 >= 1 ) {
+                        break loop85;
+                    }
             	    if (state.backtracking>0) {state.failed=true; return ret2;}
                         EarlyExitException eee =
                             new EarlyExitException(85, input);
@@ -10887,14 +11683,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.2");
             }
-            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_furcas_tcs_alternative4991); if (state.failed) return ret2;
+            match(input,DRSQUARE,FOLLOW_DRSQUARE_in_furcas_tcs_alternative4991); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:826:346: ( ( STAR ) | )
             int alt86=2;
@@ -10924,9 +11722,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:826:364: STAR
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,STAR,FOLLOW_STAR_in_furcas_tcs_alternative5002); if (state.failed) return ret2;
+                    match(input,STAR,FOLLOW_STAR_in_furcas_tcs_alternative5002); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -10964,10 +11764,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.31/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11018,7 +11818,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:842:4: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | ) ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:842:129: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | )
             int alt87=2;
@@ -11076,21 +11876,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:842:147: 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,50,FOLLOW_50_in_furcas_tcs_sequenceinalternative5067); if (state.failed) return ret2;
+                    match(input,50,FOLLOW_50_in_furcas_tcs_sequenceinalternative5067); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
-                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative5071); if (state.failed) return ret2;
+                    match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_sequenceinalternative5071); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:842:651: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:842:653: temp= stringSymbol
@@ -11100,7 +11904,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "disambiguate", temp);
                       setParent(temp,ret,"disambiguate");
@@ -11112,9 +11918,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
-                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative5086); if (state.failed) return ret2;
+                    match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_sequenceinalternative5086); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11146,7 +11954,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:844:141: ( ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:844:142: ( (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )? )
@@ -11155,7 +11963,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:844:143: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.32/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.32/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:844:294: (temp= furcas_tcs_sequenceelement (temp= furcas_tcs_sequenceelement )* )?
             int alt89=2;
@@ -11173,7 +11981,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "elements", temp);
                       setParent(temp,ret,"elements");
@@ -11198,7 +12008,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "elements", temp);
                     	      setParent(temp,ret,"elements");
@@ -11276,14 +12088,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:861:4: DOLLAR (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.0");
             }
-            match(input,DOLLAR,FOLLOW_DOLLAR_in_furcas_tcs_functioncall5170); if (state.failed) return ret2;
+            match(input,DOLLAR,FOLLOW_DOLLAR_in_furcas_tcs_functioncall5170); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:861:276: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:861:278: temp= identifier
@@ -11293,7 +12107,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setRef(ret, "calledFunction", list("FURCAS","TCS","FunctionTemplate"), "functionName", temp, null, "never", null, false, null);
             }
@@ -11304,10 +12120,10 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.33/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11358,14 +12174,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:876:4: DLCURLY ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) ) DRCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.0");
             }
-            match(input,DLCURLY,FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5225); if (state.failed) return ret2;
+            match(input,DLCURLY,FOLLOW_DLCURLY_in_furcas_tcs_injectoractionsblock5225); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:876:277: ( ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:876:278: ( (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )? )
@@ -11374,7 +12192,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:876:279: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.1/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.1/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:876:430: (temp= furcas_tcs_injectoraction ( ( COMA ) temp= furcas_tcs_injectoraction )* )?
             int alt91=2;
@@ -11392,7 +12210,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "injectorActions", temp);
                       setParent(temp,ret,"injectorActions");
@@ -11419,9 +12239,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:877:60: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5245); if (state.failed) return ret2;
+                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_injectoractionsblock5245); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -11436,7 +12258,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "injectorActions", temp);
                     	      setParent(temp,ret,"injectorActions");
@@ -11469,17 +12293,19 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.2");
             }
-            match(input,DRCURLY,FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5268); if (state.failed) return ret2;
+            match(input,DRCURLY,FOLLOW_DRCURLY_in_furcas_tcs_injectoractionsblock5268); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.34/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11528,7 +12354,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
 
             }
 
@@ -11576,7 +12404,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -11588,7 +12418,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -11600,7 +12432,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -11649,7 +12483,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:913:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) (temp= escapedIdentifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:913:128: (temp= furcas_tcs_propertyreference )?
             int alt93=2;
@@ -11667,7 +12501,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -11682,7 +12518,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:914:186: ( ( LARROW ) | ( EQ ) )
             int alt94=2;
@@ -11712,9 +12548,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:914:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5401); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_primitivepropertyinit5401); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11740,9 +12578,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:914:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5416); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_primitivepropertyinit5416); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11765,7 +12605,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.37/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:915:141: (temp= escapedIdentifierOrKeyword )?
             int alt95=2;
@@ -11783,7 +12623,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -11843,7 +12685,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:931:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'lookIn' LPAREN (temp= stringSymbol )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:931:128: (temp= furcas_tcs_propertyreference )?
             int alt96=2;
@@ -11861,7 +12703,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -11876,7 +12720,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:932:186: ( ( LARROW ) | ( EQ ) )
             int alt97=2;
@@ -11906,9 +12750,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:932:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5495); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_lookuppropertyinit5495); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11934,9 +12780,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:932:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5510); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookuppropertyinit5510); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11959,21 +12807,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.2");
             }
-            match(input,95,FOLLOW_95_in_furcas_tcs_lookuppropertyinit5521); if (state.failed) return ret2;
+            match(input,95,FOLLOW_95_in_furcas_tcs_lookuppropertyinit5521); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.3");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5525); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_lookuppropertyinit5525); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:933:437: (temp= stringSymbol )?
             int alt98=2;
@@ -11991,7 +12843,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -12006,9 +12860,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.38/@templateSequence/@elements.5");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5542); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_lookuppropertyinit5542); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12058,7 +12914,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:949:4: (temp= furcas_tcs_propertyreference )? ( ( LARROW ) | ( EQ ) ) 'foreach' LPAREN (temp= stringSymbol )? ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | ) ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:949:128: (temp= furcas_tcs_propertyreference )?
             int alt99=2;
@@ -12076,7 +12932,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -12091,7 +12949,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:950:186: ( ( LARROW ) | ( EQ ) )
             int alt100=2;
@@ -12121,9 +12979,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:950:204: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5602); if (state.failed) return ret2;
+                    match(input,LARROW,FOLLOW_LARROW_in_furcas_tcs_foreachpredicatepropertyinit5602); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12149,9 +13009,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:950:467: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.1/@elseSequence/@elements.0");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5617); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5617); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12174,21 +13036,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.2");
             }
-            match(input,106,FOLLOW_106_in_furcas_tcs_foreachpredicatepropertyinit5628); if (state.failed) return ret2;
+            match(input,106,FOLLOW_106_in_furcas_tcs_foreachpredicatepropertyinit5628); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.3");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5632); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_foreachpredicatepropertyinit5632); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:951:438: (temp= stringSymbol )?
             int alt101=2;
@@ -12206,7 +13072,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -12221,7 +13089,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:174: ( ( COMA 'mode' EQ (temp= identifierOrKeyword ) ) | )
             int alt102=2;
@@ -12237,28 +13105,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:192: COMA 'mode' EQ (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5655); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5655); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.1");
                     }
-                    match(input,98,FOLLOW_98_in_furcas_tcs_foreachpredicatepropertyinit5659); if (state.failed) return ret2;
+                    match(input,98,FOLLOW_98_in_furcas_tcs_foreachpredicatepropertyinit5659); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5663); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_foreachpredicatepropertyinit5663); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:856: (temp= identifierOrKeyword )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:858: temp= identifierOrKeyword
@@ -12268,7 +13142,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "mode", temp);
                       setParent(temp,ret,"mode");
@@ -12307,7 +13183,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.6");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:142: ( ( COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) ) ) | )
             int alt105=2;
@@ -12337,14 +13213,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:160: COMA ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5697); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5697); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:482: ( ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? ) )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:483: ( (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )? )
@@ -12353,7 +13231,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:484: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:954:661: (temp= furcas_tcs_predicatesemantic ( ( COMA ) temp= furcas_tcs_predicatesemantic )* )?
                     int alt104=2;
@@ -12371,7 +13249,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "predicateSemantic", temp);
                               setParent(temp,ret,"predicateSemantic");
@@ -12398,9 +13278,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:955:62: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.6/@thenSequence/@elements.1/@blockSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5717); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_foreachpredicatepropertyinit5717); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -12415,7 +13297,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "predicateSemantic", temp);
                             	      setParent(temp,ret,"predicateSemantic");
@@ -12475,9 +13359,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.7");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5753); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_foreachpredicatepropertyinit5753); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12527,7 +13413,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:972:4: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | ) ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | ) 'as' EQ (temp= identifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:972:129: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | )
             int alt106=2;
@@ -12557,21 +13443,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:972:147: 'when' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,70,FOLLOW_70_in_furcas_tcs_predicatesemantic5800); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_furcas_tcs_predicatesemantic5800); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.1");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5804); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5804); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:972:639: (temp= stringSymbol )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:972:641: temp= stringSymbol
@@ -12581,7 +13471,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "when", temp);
                       setParent(temp,ret,"when");
@@ -12593,9 +13485,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.0/@thenSequence/@elements.3");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5819); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5819); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12627,7 +13521,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:974:142: ( ( 'mode' EQ (temp= identifierOrKeyword ) COMA ) | )
             int alt107=2;
@@ -12657,21 +13551,25 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:974:160: 'mode' EQ (temp= identifierOrKeyword ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
-                    match(input,98,FOLLOW_98_in_furcas_tcs_predicatesemantic5842); if (state.failed) return ret2;
+                    match(input,98,FOLLOW_98_in_furcas_tcs_predicatesemantic5842); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.1");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5846); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5846); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.2");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:974:652: (temp= identifierOrKeyword )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:974:654: temp= identifierOrKeyword
@@ -12681,7 +13579,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "mode", temp);
                       setParent(temp,ret,"mode");
@@ -12693,9 +13593,11 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.1/@thenSequence/@elements.3");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5861); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_predicatesemantic5861); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12727,21 +13629,25 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.2");
             }
-            match(input,124,FOLLOW_124_in_furcas_tcs_predicatesemantic5878); if (state.failed) return ret2;
+            match(input,124,FOLLOW_124_in_furcas_tcs_predicatesemantic5878); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5882); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_predicatesemantic5882); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:976:429: (temp= identifierOrKeyword )?
             int alt108=2;
@@ -12759,7 +13665,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlock.parentTemplate.concreteSyntax.templates->select(t| "+
                       "                                            if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate)) then "+
@@ -12777,7 +13685,7 @@ public class TCSParser extends ObservableInjectingParser {
                       "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
                       "                                            else "+
                       "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.40/@templateSequence/@elements.4", SyntaxRegistry.getInstance());
+                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.4", SyntaxRegistry.getInstance());
                     }
 
                     }
@@ -12929,7 +13837,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -12941,7 +13851,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -12953,7 +13865,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -12965,7 +13879,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -12977,7 +13893,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -12989,7 +13907,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13001,7 +13921,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13013,7 +13935,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13025,7 +13949,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13037,7 +13963,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13049,7 +13977,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13061,7 +13991,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13073,7 +14005,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13085,7 +14019,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13097,7 +14033,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13109,7 +14047,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13121,7 +14061,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -13170,21 +14112,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1032:4: 'refersTo' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.0");
             }
-            match(input,89,FOLLOW_89_in_furcas_tcs_referstoparg6090); if (state.failed) return ret2;
+            match(input,89,FOLLOW_89_in_furcas_tcs_referstoparg6090); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referstoparg6094); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referstoparg6094); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.42/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1032:422: (temp= identifierOrKeyword )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1032:424: temp= identifierOrKeyword
@@ -13194,7 +14140,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "propertyName", temp);
               setParent(temp,ret,"propertyName");
@@ -13251,21 +14199,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1048:4: 'lookIn' EQ ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.0");
             }
-            match(input,95,FOLLOW_95_in_furcas_tcs_lookinparg6145); if (state.failed) return ret2;
+            match(input,95,FOLLOW_95_in_furcas_tcs_lookinparg6145); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookinparg6149); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookinparg6149); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1048:421: ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )? ) )
             int alt112=2;
@@ -13295,16 +14247,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1048:439: SHARP 'all'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_lookinparg6160); if (state.failed) return ret2;
+                    match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_lookinparg6160); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@thenSequence/@elements.1");
                     }
-                    match(input,80,FOLLOW_80_in_furcas_tcs_lookinparg6164); if (state.failed) return ret2;
+                    match(input,80,FOLLOW_80_in_furcas_tcs_lookinparg6164); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13330,7 +14286,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1048:873: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1048:1023: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
                     int alt111=2;
@@ -13348,7 +14304,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "propertyName", temp);
                               setParent(temp,ret,"propertyName");
@@ -13375,9 +14333,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1049:57: POINT
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.43/@templateSequence/@elements.2/@elseSequence/@elements.0/@propertyArgs.1/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_lookinparg6190); if (state.failed) return ret2;
+                            	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_lookinparg6190); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -13392,7 +14352,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "propertyName", temp);
                             	      setParent(temp,ret,"propertyName");
@@ -13478,21 +14440,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1066:4: 'createIn' EQ (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.0");
             }
-            match(input,132,FOLLOW_132_in_furcas_tcs_createinparg6253); if (state.failed) return ret2;
+            match(input,132,FOLLOW_132_in_furcas_tcs_createinparg6253); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createinparg6257); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createinparg6257); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1066:422: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )?
             int alt114=2;
@@ -13510,7 +14476,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyName", temp);
                       setParent(temp,ret,"propertyName");
@@ -13537,9 +14505,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1067:57: POINT
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.44/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.44/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_createinparg6274); if (state.failed) return ret2;
+                    	    match(input,POINT,FOLLOW_POINT_in_furcas_tcs_createinparg6274); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -13554,7 +14524,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "propertyName", temp);
                     	      setParent(temp,ret,"propertyName");
@@ -13623,21 +14595,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1083:4: 'as' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.0");
             }
-            match(input,124,FOLLOW_124_in_furcas_tcs_asparg6330); if (state.failed) return ret2;
+            match(input,124,FOLLOW_124_in_furcas_tcs_asparg6330); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_asparg6334); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_asparg6334); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1083:416: (temp= identifierOrKeyword )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1083:418: temp= identifierOrKeyword
@@ -13647,7 +14623,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "template", null, temp, "OCL:self.property.parentTemplate.concreteSyntax.templates->select(t| "+
               "                                            if(t.oclIsTypeOf(FURCAS::TCS::ClassTemplate) and ("+
@@ -13668,7 +14646,7 @@ public class TCSParser extends ObservableInjectingParser {
               "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
               "                                            else "+
               "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.45/@templateSequence/@elements.2", SyntaxRegistry.getInstance());
+              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2", SyntaxRegistry.getInstance());
             }
 
             }
@@ -13722,21 +14700,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1117:4: 'separator' EQ (temp= furcas_tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.0");
             }
-            match(input,118,FOLLOW_118_in_furcas_tcs_separatorparg6385); if (state.failed) return ret2;
+            match(input,118,FOLLOW_118_in_furcas_tcs_separatorparg6385); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_separatorparg6389); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_separatorparg6389); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.46/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1117:423: (temp= furcas_tcs_sequence )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1117:425: temp= furcas_tcs_sequence
@@ -13746,7 +14728,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "separatorSequence", temp);
               setParent(temp,ret,"separatorSequence");
@@ -13803,21 +14787,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1133:4: 'disambiguate' EQ (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.0");
             }
-            match(input,50,FOLLOW_50_in_furcas_tcs_disambiguateparg6440); if (state.failed) return ret2;
+            match(input,50,FOLLOW_50_in_furcas_tcs_disambiguateparg6440); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_disambiguateparg6444); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_disambiguateparg6444); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.47/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1133:426: (temp= stringSymbol )?
             int alt115=2;
@@ -13835,7 +14823,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "disambiguation", temp);
                       setParent(temp,ret,"disambiguation");
@@ -13895,21 +14885,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1149:4: 'autoCreate' EQ (temp= furcas_tcs_autocreatekind )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@templateSequence/@elements.0");
             }
-            match(input,126,FOLLOW_126_in_furcas_tcs_autocreateparg6497); if (state.failed) return ret2;
+            match(input,126,FOLLOW_126_in_furcas_tcs_autocreateparg6497); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_autocreateparg6501); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_autocreateparg6501); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.48/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.48/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1149:424: (temp= furcas_tcs_autocreatekind )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1149:426: temp= furcas_tcs_autocreatekind
@@ -13919,7 +14913,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -13998,9 +14994,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1160:5: 'always'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.49/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.49/@mappings.0/@element");
                     }
-                    match(input,66,FOLLOW_66_in_furcas_tcs_autocreatekind6553); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_furcas_tcs_autocreatekind6553); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14020,9 +15018,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1161:5: 'ifmissing'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.49/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.49/@mappings.1/@element");
                     }
-                    match(input,103,FOLLOW_103_in_furcas_tcs_autocreatekind6563); if (state.failed) return ret2;
+                    match(input,103,FOLLOW_103_in_furcas_tcs_autocreatekind6563); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14042,9 +15042,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1162:5: 'never'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.49/@mappings.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.49/@mappings.2/@element");
                     }
-                    match(input,54,FOLLOW_54_in_furcas_tcs_autocreatekind6573); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_furcas_tcs_autocreatekind6573); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14099,9 +15101,11 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1176:4: 'importContext'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.50/@templateSequence/@elements.0");
             }
-            match(input,63,FOLLOW_63_in_furcas_tcs_importcontextparg6604); if (state.failed) return ret2;
+            match(input,63,FOLLOW_63_in_furcas_tcs_importcontextparg6604); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -14148,9 +15152,11 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1191:4: 'partial'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.51/@templateSequence/@elements.0");
             }
-            match(input,58,FOLLOW_58_in_furcas_tcs_partialparg6644); if (state.failed) return ret2;
+            match(input,58,FOLLOW_58_in_furcas_tcs_partialparg6644); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -14200,21 +15206,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1206:4: 'forcedLower' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.0");
             }
-            match(input,117,FOLLOW_117_in_furcas_tcs_forcedlowerparg6684); if (state.failed) return ret2;
+            match(input,117,FOLLOW_117_in_furcas_tcs_forcedlowerparg6684); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6688); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedlowerparg6688); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.52/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1206:425: (temp= integerSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1206:427: temp= integerSymbol
@@ -14224,7 +15234,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -14281,21 +15293,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1222:4: 'forcedUpper' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.0");
             }
-            match(input,120,FOLLOW_120_in_furcas_tcs_forcedupperparg6739); if (state.failed) return ret2;
+            match(input,120,FOLLOW_120_in_furcas_tcs_forcedupperparg6739); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedupperparg6743); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_forcedupperparg6743); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.53/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1222:425: (temp= integerSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1222:427: temp= integerSymbol
@@ -14305,7 +15321,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -14362,21 +15380,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1238:4: 'createAs' EQ (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.0");
             }
-            match(input,59,FOLLOW_59_in_furcas_tcs_createasparg6794); if (state.failed) return ret2;
+            match(input,59,FOLLOW_59_in_furcas_tcs_createasparg6794); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createasparg6798); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_createasparg6798); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1238:422: (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )?
             int alt118=2;
@@ -14394,7 +15416,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "name", temp);
                       setParent(temp,ret,"name");
@@ -14421,9 +15445,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1239:49: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.54/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.54/@templateSequence/@elements.2/@propertyArgs.1/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_createasparg6815); if (state.failed) return ret2;
+                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_createasparg6815); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -14438,7 +15464,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "name", temp);
                     	      setParent(temp,ret,"name");
@@ -14507,21 +15535,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1255:4: 'lookupScope' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.0");
             }
-            match(input,111,FOLLOW_111_in_furcas_tcs_lookupscopeparg6871); if (state.failed) return ret2;
+            match(input,111,FOLLOW_111_in_furcas_tcs_lookupscopeparg6871); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6875); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_lookupscopeparg6875); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.55/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1255:425: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1255:427: temp= stringSymbol
@@ -14531,7 +15563,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "query", temp);
               setParent(temp,ret,"query");
@@ -14588,21 +15622,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1271:4: 'referenceBy' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.0");
             }
-            match(input,62,FOLLOW_62_in_furcas_tcs_referencebyparg6926); if (state.failed) return ret2;
+            match(input,62,FOLLOW_62_in_furcas_tcs_referencebyparg6926); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referencebyparg6930); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_referencebyparg6930); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.56/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1271:425: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1271:427: temp= stringSymbol
@@ -14612,7 +15650,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "referenceBy", temp);
               setParent(temp,ret,"referenceBy");
@@ -14669,21 +15709,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1287:4: 'prefix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.0");
             }
-            match(input,83,FOLLOW_83_in_furcas_tcs_prefixparg6981); if (state.failed) return ret2;
+            match(input,83,FOLLOW_83_in_furcas_tcs_prefixparg6981); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_prefixparg6985); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_prefixparg6985); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.57/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1287:420: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1287:422: temp= stringSymbol
@@ -14693,7 +15737,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "prefix", temp);
               setParent(temp,ret,"prefix");
@@ -14750,21 +15796,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1303:4: 'postfix' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.0");
             }
-            match(input,75,FOLLOW_75_in_furcas_tcs_postfixparg7036); if (state.failed) return ret2;
+            match(input,75,FOLLOW_75_in_furcas_tcs_postfixparg7036); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_postfixparg7040); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_postfixparg7040); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.58/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1303:421: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1303:423: temp= stringSymbol
@@ -14774,7 +15824,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "postfix", temp);
               setParent(temp,ret,"postfix");
@@ -14831,21 +15883,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1319:4: 'mode' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.59/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.59/@templateSequence/@elements.0");
             }
-            match(input,98,FOLLOW_98_in_furcas_tcs_modeparg7091); if (state.failed) return ret2;
+            match(input,98,FOLLOW_98_in_furcas_tcs_modeparg7091); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.59/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.59/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_modeparg7095); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_modeparg7095); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.59/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.59/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1319:418: (temp= identifierOrKeyword )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1319:420: temp= identifierOrKeyword
@@ -14855,7 +15911,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "mode", temp);
               setParent(temp,ret,"mode");
@@ -14947,7 +16005,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -14959,7 +16019,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -14971,7 +16033,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -14983,7 +16047,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -14995,7 +16061,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -15044,21 +16112,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1348:4: 'nbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.0");
             }
-            match(input,85,FOLLOW_85_in_furcas_tcs_nbnlbarg7205); if (state.failed) return ret2;
+            match(input,85,FOLLOW_85_in_furcas_tcs_nbnlbarg7205); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_nbnlbarg7209); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_nbnlbarg7209); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.61/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1348:418: (temp= integerSymbol )?
             int alt120=2;
@@ -15076,7 +16148,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -15136,21 +16210,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1364:4: 'indentIncr' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.0");
             }
-            match(input,127,FOLLOW_127_in_furcas_tcs_indentincrbarg7262); if (state.failed) return ret2;
+            match(input,127,FOLLOW_127_in_furcas_tcs_indentincrbarg7262); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_indentincrbarg7266); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_indentincrbarg7266); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.62/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1364:424: (temp= integerSymbol )?
             int alt121=2;
@@ -15168,7 +16246,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -15225,21 +16305,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1380:4: 'startNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.0");
             }
-            match(input,123,FOLLOW_123_in_furcas_tcs_startnlbarg7319); if (state.failed) return ret2;
+            match(input,123,FOLLOW_123_in_furcas_tcs_startnlbarg7319); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnlbarg7323); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnlbarg7323); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1380:422: ( ( 'true' ) | ( 'false' ) )
             int alt122=2;
@@ -15269,9 +16353,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1380:440: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,114,FOLLOW_114_in_furcas_tcs_startnlbarg7333); if (state.failed) return ret2;
+                    match(input,114,FOLLOW_114_in_furcas_tcs_startnlbarg7333); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15297,9 +16383,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1380:699: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.63/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.63/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,68,FOLLOW_68_in_furcas_tcs_startnlbarg7346); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_furcas_tcs_startnlbarg7346); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15367,21 +16455,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1396:4: 'startNbNL' EQ (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.0");
             }
-            match(input,61,FOLLOW_61_in_furcas_tcs_startnbnlbarg7393); if (state.failed) return ret2;
+            match(input,61,FOLLOW_61_in_furcas_tcs_startnbnlbarg7393); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7397); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_startnbnlbarg7397); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.64/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1396:423: (temp= integerSymbol )?
             int alt123=2;
@@ -15399,7 +16491,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -15456,21 +16550,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1412:4: 'endNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.0");
             }
-            match(input,64,FOLLOW_64_in_furcas_tcs_endnlbarg7450); if (state.failed) return ret2;
+            match(input,64,FOLLOW_64_in_furcas_tcs_endnlbarg7450); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endnlbarg7454); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endnlbarg7454); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1412:420: ( ( 'true' ) | ( 'false' ) )
             int alt124=2;
@@ -15500,9 +16598,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1412:438: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.2/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.2/@thenSequence/@elements.0");
                     }
-                    match(input,114,FOLLOW_114_in_furcas_tcs_endnlbarg7464); if (state.failed) return ret2;
+                    match(input,114,FOLLOW_114_in_furcas_tcs_endnlbarg7464); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15528,9 +16628,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1412:697: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.65/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.65/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,68,FOLLOW_68_in_furcas_tcs_endnlbarg7477); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_furcas_tcs_endnlbarg7477); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15598,7 +16700,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1428:4: (temp= identifier ) EQ (temp= stringSymbol ) ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1428:128: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1428:130: temp= identifier
@@ -15608,7 +16710,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -15620,14 +16724,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_symbol7535); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_symbol7535); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1429:314: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1429:316: temp= stringSymbol
@@ -15637,7 +16743,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -15649,7 +16757,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1430:172: ( ( COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )? ) | )
             int alt127=2;
@@ -15679,14 +16787,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1430:190: COLON (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
-                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_symbol7556); if (state.failed) return ret2;
+                    match(input,COLON,FOLLOW_COLON_in_furcas_tcs_symbol7556); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1430:513: (temp= furcas_tcs_spacekind ( ( COMA ) temp= furcas_tcs_spacekind )* )?
                     int alt126=2;
@@ -15704,7 +16814,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setProperty(ret, "spaces", temp);
                               setParent(temp,ret,"spaces");
@@ -15731,9 +16843,11 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1431:51: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
+                            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.3/@thenSequence/@elements.1/@propertyArgs.0/@separatorSequence/@elements.0");
                             	    }
-                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_symbol7573); if (state.failed) return ret2;
+                            	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_symbol7573); if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      _afterSeqEl();
                             	    }
@@ -15748,7 +16862,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             	    checkFollows();
                             	    state._fsp--;
-                            	    if (state.failed) return ret2;
+                            	    if (state.failed) {
+                                        return ret2;
+                                    }
                             	    if ( state.backtracking==0 ) {
                             	      setProperty(ret, "spaces", temp);
                             	      setParent(temp,ret,"spaces");
@@ -15799,9 +16915,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.66/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.66/@templateSequence/@elements.4");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_symbol7606); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_symbol7606); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -15878,9 +16996,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1443:5: 'leftSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@mappings.0/@element");
                     }
-                    match(input,53,FOLLOW_53_in_furcas_tcs_spacekind7648); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_furcas_tcs_spacekind7648); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15900,9 +17020,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1444:5: 'leftNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@mappings.1/@element");
                     }
-                    match(input,109,FOLLOW_109_in_furcas_tcs_spacekind7658); if (state.failed) return ret2;
+                    match(input,109,FOLLOW_109_in_furcas_tcs_spacekind7658); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15922,9 +17044,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1445:5: 'rightSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@mappings.2/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@mappings.2/@element");
                     }
-                    match(input,51,FOLLOW_51_in_furcas_tcs_spacekind7668); if (state.failed) return ret2;
+                    match(input,51,FOLLOW_51_in_furcas_tcs_spacekind7668); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -15944,9 +17068,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1446:5: 'rightNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.67/@mappings.3/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.67/@mappings.3/@element");
                     }
-                    match(input,90,FOLLOW_90_in_furcas_tcs_spacekind7678); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_furcas_tcs_spacekind7678); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -16004,7 +17130,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1460:4: (temp= identifier ) EQ (temp= stringSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1460:128: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1460:130: temp= identifier
@@ -16014,7 +17140,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -16026,14 +17154,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_keyword7720); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_keyword7720); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1461:314: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1461:316: temp= stringSymbol
@@ -16043,7 +17173,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -16055,9 +17187,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.68/@templateSequence/@elements.3");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_keyword7735); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_keyword7735); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16107,14 +17241,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1477:4: 'operators' ( ( (temp= identifier ) ) | ) LCURLY ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.0");
             }
-            match(input,84,FOLLOW_84_in_furcas_tcs_operatorlist7776); if (state.failed) return ret2;
+            match(input,84,FOLLOW_84_in_furcas_tcs_operatorlist7776); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1477:280: ( ( (temp= identifier ) ) | )
             int alt129=2;
@@ -16144,7 +17280,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1477:298: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.1/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.1/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1477:448: (temp= identifier )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1477:450: temp= identifier
@@ -16154,7 +17290,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "name", temp);
                       setParent(temp,ret,"name");
@@ -16193,14 +17331,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.2");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_operatorlist7809); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_operatorlist7809); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1479:289: ( ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1479:290: ( (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )? )
@@ -16209,7 +17349,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1479:291: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.3/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.3/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1479:442: (temp= furcas_tcs_priority (temp= furcas_tcs_priority )* )?
             int alt131=2;
@@ -16227,7 +17367,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "priorities", temp);
                       setParent(temp,ret,"priorities");
@@ -16252,7 +17394,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "priorities", temp);
                     	      setParent(temp,ret,"priorities");
@@ -16285,9 +17429,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.69/@templateSequence/@elements.4");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_operatorlist7843); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_operatorlist7843); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16337,14 +17483,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1496:4: 'priority' (temp= integerSymbol ) ( () | ( COMA (temp= furcas_tcs_associativity ) ) ) LCURLY ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.0");
             }
-            match(input,52,FOLLOW_52_in_furcas_tcs_priority7884); if (state.failed) return ret2;
+            match(input,52,FOLLOW_52_in_furcas_tcs_priority7884); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1496:278: (temp= integerSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1496:280: temp= integerSymbol
@@ -16354,7 +17502,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -16366,7 +17516,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1497:172: ( () | ( COMA (temp= furcas_tcs_associativity ) ) )
             int alt132=2;
@@ -16416,14 +17566,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1497:325: COMA (temp= furcas_tcs_associativity )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.2/@elseSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.2/@elseSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_priority7914); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_priority7914); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.2/@elseSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.2/@elseSequence/@elements.1");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1497:647: (temp= furcas_tcs_associativity )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1497:649: temp= furcas_tcs_associativity
@@ -16433,7 +17585,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "associativity", temp);
                       setParent(temp,ret,"associativity");
@@ -16463,14 +17617,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.3");
             }
-            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_priority7936); if (state.failed) return ret2;
+            match(input,LCURLY,FOLLOW_LCURLY_in_furcas_tcs_priority7936); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1499:289: ( ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? ) )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1499:290: ( (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )? )
@@ -16479,7 +17635,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1499:291: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.4/@blockSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.4/@blockSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1499:442: (temp= furcas_tcs_operator (temp= furcas_tcs_operator )* )?
             int alt134=2;
@@ -16497,7 +17653,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "operators", temp);
                       setParent(temp,ret,"operators");
@@ -16522,7 +17680,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "operators", temp);
                     	      setParent(temp,ret,"operators");
@@ -16555,9 +17715,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.70/@templateSequence/@elements.5");
             }
-            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_priority7970); if (state.failed) return ret2;
+            match(input,RCURLY,FOLLOW_RCURLY_in_furcas_tcs_priority7970); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16607,7 +17769,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1516:4: ( ( 'postfix' ) | ) (temp= identifier ) EQ ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | ) COMA (temp= integerSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1516:129: ( ( 'postfix' ) | )
             int alt135=2;
@@ -16637,9 +17799,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1516:147: 'postfix'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,75,FOLLOW_75_in_furcas_tcs_operator8017); if (state.failed) return ret2;
+                    match(input,75,FOLLOW_75_in_furcas_tcs_operator8017); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -16677,7 +17841,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1517:141: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1517:143: temp= identifier
@@ -16687,7 +17851,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -16699,14 +17865,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.2");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operator8046); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_operator8046); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.3");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:315: ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | )
             int alt137=2;
@@ -16736,7 +17904,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:333: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:483: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     int alt136=2;
@@ -16766,7 +17934,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:501: (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.0/@elements.0");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:676: (temp= identifier )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1518:678: temp= identifier
@@ -16776,7 +17944,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setRef(ret, "literal", list("FURCAS","TCS","Literal"), "name", temp, null, "never", null, false, null);
                             }
@@ -16805,7 +17975,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1519:21: (temp= stringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.3/@thenSequence/@elements.0/@sequences.1/@elements.0");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1519:196: (temp= stringSymbol )
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1519:198: temp= stringSymbol
@@ -16815,7 +17985,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                             checkFollows();
                             state._fsp--;
-                            if (state.failed) return ret2;
+                            if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               setRef(ret, "literal", list("FURCAS","TCS","Literal"), "value", temp, "#all", "ifmissing", list("FURCAS","TCS","Keyword"), false, null);
                             }
@@ -16868,14 +18040,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.4");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operator8110); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_operator8110); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1520:287: (temp= integerSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1520:289: temp= integerSymbol
@@ -16885,7 +18059,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "arity", temp);
               setParent(temp,ret,"arity");
@@ -16897,9 +18073,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.71/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.71/@templateSequence/@elements.6");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operator8125); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_operator8125); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -16962,9 +18140,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1531:5: 'left'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.72/@mappings.0/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.72/@mappings.0/@element");
                     }
-                    match(input,94,FOLLOW_94_in_furcas_tcs_associativity8167); if (state.failed) return ret2;
+                    match(input,94,FOLLOW_94_in_furcas_tcs_associativity8167); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -16984,9 +18164,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1532:5: 'right'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.72/@mappings.1/@element");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.72/@mappings.1/@element");
                     }
-                    match(input,81,FOLLOW_81_in_furcas_tcs_associativity8177); if (state.failed) return ret2;
+                    match(input,81,FOLLOW_81_in_furcas_tcs_associativity8177); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17042,7 +18224,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
 
             }
 
@@ -17088,7 +18272,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1555:4: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.74/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.74/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1555:128: (temp= furcas_tcs_atomexp ( ( 'and' ) temp= furcas_tcs_atomexp )* )?
             int alt140=2;
@@ -17113,7 +18297,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "expressions", temp);
                       setParent(temp,ret,"expressions");
@@ -17140,9 +18326,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1556:56: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.74/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.74/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,86,FOLLOW_86_in_furcas_tcs_andexp8247); if (state.failed) return ret2;
+                    	    match(input,86,FOLLOW_86_in_furcas_tcs_andexp8247); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -17157,7 +18345,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "expressions", temp);
                     	      setParent(temp,ret,"expressions");
@@ -17228,7 +18418,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17240,7 +18432,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17252,7 +18446,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17264,7 +18460,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17276,7 +18474,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17325,7 +18525,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1585:4: (temp= furcas_tcs_propertyreference )? EQ (temp= furcas_tcs_value )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.76/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1585:128: (temp= furcas_tcs_propertyreference )?
             int alt142=2;
@@ -17343,7 +18543,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -17358,14 +18560,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.76/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.76/@templateSequence/@elements.1");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_equalsexp8374); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_equalsexp8374); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.76/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.76/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1586:329: (temp= furcas_tcs_value )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1586:331: temp= furcas_tcs_value
@@ -17375,7 +18579,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "value", temp);
               setParent(temp,ret,"value");
@@ -17432,7 +18638,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1602:4: (temp= furcas_tcs_propertyreference )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.77/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1602:128: (temp= furcas_tcs_propertyreference )?
             int alt143=2;
@@ -17457,7 +18663,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -17517,21 +18725,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1618:4: 'isDefined' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.0");
             }
-            match(input,71,FOLLOW_71_in_furcas_tcs_isdefinedexp8474); if (state.failed) return ret2;
+            match(input,71,FOLLOW_71_in_furcas_tcs_isdefinedexp8474); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8478); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_isdefinedexp8478); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1618:427: (temp= furcas_tcs_propertyreference )?
             int alt144=2;
@@ -17549,7 +18761,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -17564,9 +18778,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.78/@templateSequence/@elements.3");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8495); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_isdefinedexp8495); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17616,21 +18832,25 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1634:4: 'one' LPAREN (temp= furcas_tcs_propertyreference )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.0");
             }
-            match(input,129,FOLLOW_129_in_furcas_tcs_oneexp8536); if (state.failed) return ret2;
+            match(input,129,FOLLOW_129_in_furcas_tcs_oneexp8536); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_oneexp8540); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_oneexp8540); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1634:421: (temp= furcas_tcs_propertyreference )?
             int alt145=2;
@@ -17648,7 +18868,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -17663,9 +18885,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.79/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.79/@templateSequence/@elements.3");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_oneexp8557); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_oneexp8557); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17715,7 +18939,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1650:4: (temp= furcas_tcs_propertyreference )? 'instanceOf' (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.80/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.80/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1650:128: (temp= furcas_tcs_propertyreference )?
             int alt146=2;
@@ -17740,7 +18964,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "propertyReference", temp);
                       setParent(temp,ret,"propertyReference");
@@ -17755,14 +18981,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.80/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.80/@templateSequence/@elements.1");
             }
-            match(input,49,FOLLOW_49_in_furcas_tcs_instanceofexp8610); if (state.failed) return ret2;
+            match(input,49,FOLLOW_49_in_furcas_tcs_instanceofexp8610); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.80/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.80/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1651:337: (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
             int alt148=2;
@@ -17780,7 +19008,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "supertype", temp);
                       setParent(temp,ret,"supertype");
@@ -17807,9 +19037,11 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1652:54: DLCOLON
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.80/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.80/@templateSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                     	    }
-                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8626); if (state.failed) return ret2;
+                    	    match(input,DLCOLON,FOLLOW_DLCOLON_in_furcas_tcs_instanceofexp8626); if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -17824,7 +19056,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     	    checkFollows();
                     	    state._fsp--;
-                    	    if (state.failed) return ret2;
+                    	    if (state.failed) {
+                                return ret2;
+                            }
                     	    if ( state.backtracking==0 ) {
                     	      setProperty(ret, "supertype", temp);
                     	      setParent(temp,ret,"supertype");
@@ -17980,7 +19214,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -17992,7 +19228,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18004,7 +19242,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18016,7 +19256,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18065,7 +19307,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1680:4: (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.82/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1680:128: (temp= stringSymbol )?
             int alt150=2;
@@ -18083,7 +19325,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "symbol", temp);
                       setParent(temp,ret,"symbol");
@@ -18143,7 +19387,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1696:4: (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.83/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1696:128: (temp= integerSymbol )?
             int alt151=2;
@@ -18161,7 +19405,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "symbol", temp);
                       setParent(temp,ret,"symbol");
@@ -18221,14 +19467,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1712:4: MINUS (temp= integerSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.0");
             }
-            match(input,MINUS,FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8832); if (state.failed) return ret2;
+            match(input,MINUS,FOLLOW_MINUS_in_furcas_tcs_negativeintegerval8832); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.84/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1712:275: (temp= integerSymbol )?
             int alt152=2;
@@ -18246,7 +19494,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "symbol", temp);
                       setParent(temp,ret,"symbol");
@@ -18306,14 +19556,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1728:4: SHARP (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.0");
             }
-            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_enumliteralval8886); if (state.failed) return ret2;
+            match(input,SHARP,FOLLOW_SHARP_in_furcas_tcs_enumliteralval8886); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.85/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1728:275: (temp= identifierOrKeyword )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1728:277: temp= identifierOrKeyword
@@ -18323,7 +19575,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -18380,7 +19634,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1744:4: ( ( 'omitted' ) | ) 'token' (temp= identifier ) COLON (temp= furcas_tcs_orpattern ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1744:129: ( ( 'omitted' ) | )
             int alt153=2;
@@ -18410,9 +19664,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1744:147: 'omitted'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.0/@thenSequence/@elements.0");
                     }
-                    match(input,121,FOLLOW_121_in_furcas_tcs_token8943); if (state.failed) return ret2;
+                    match(input,121,FOLLOW_121_in_furcas_tcs_token8943); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -18450,14 +19706,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.1");
             }
-            match(input,88,FOLLOW_88_in_furcas_tcs_token8961); if (state.failed) return ret2;
+            match(input,88,FOLLOW_88_in_furcas_tcs_token8961); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1745:288: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1745:290: temp= identifier
@@ -18467,7 +19725,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -18479,14 +19739,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.3");
             }
-            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_token8975); if (state.failed) return ret2;
+            match(input,COLON,FOLLOW_COLON_in_furcas_tcs_token8975); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1746:317: (temp= furcas_tcs_orpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1746:319: temp= furcas_tcs_orpattern
@@ -18496,7 +19758,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "pattern", temp);
               setParent(temp,ret,"pattern");
@@ -18508,9 +19772,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.86/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.86/@templateSequence/@elements.5");
             }
-            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_token8990); if (state.failed) return ret2;
+            match(input,SEMI,FOLLOW_SEMI_in_furcas_tcs_token8990); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -18560,7 +19826,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1762:4: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.87/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.87/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1762:128: (temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )* )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1762:130: temp= furcas_tcs_simplepattern ( ( PIPE ) temp= furcas_tcs_simplepattern )*
@@ -18570,7 +19836,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "simplePatterns", temp);
               setParent(temp,ret,"simplePatterns");
@@ -18597,9 +19865,11 @@ public class TCSParser extends ObservableInjectingParser {
             	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1763:59: PIPE
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.87/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+            	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.87/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
             	    }
-            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_orpattern9044); if (state.failed) return ret2;
+            	    match(input,PIPE,FOLLOW_PIPE_in_furcas_tcs_orpattern9044); if (state.failed) {
+                        return ret2;
+                    }
             	    if ( state.backtracking==0 ) {
             	      _afterSeqEl();
             	    }
@@ -18614,7 +19884,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             	    checkFollows();
             	    state._fsp--;
-            	    if (state.failed) return ret2;
+            	    if (state.failed) {
+                        return ret2;
+                    }
             	    if ( state.backtracking==0 ) {
             	      setProperty(ret, "simplePatterns", temp);
             	      setParent(temp,ret,"simplePatterns");
@@ -18707,7 +19979,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18719,7 +19993,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18731,7 +20007,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18780,7 +20058,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1790:4: (temp= furcas_tcs_rule )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.89/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.89/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1790:128: (temp= furcas_tcs_rule )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1790:130: temp= furcas_tcs_rule
@@ -18790,7 +20068,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "rule", temp);
               setParent(temp,ret,"rule");
@@ -18872,7 +20152,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18884,7 +20166,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18896,7 +20180,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -18945,35 +20231,43 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1817:4: 'word' LPAREN 'start' EQ (temp= furcas_tcs_orpattern ) COMA 'part' EQ (temp= furcas_tcs_orpattern ) ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.0");
             }
-            match(input,108,FOLLOW_108_in_furcas_tcs_wordrule9231); if (state.failed) return ret2;
+            match(input,108,FOLLOW_108_in_furcas_tcs_wordrule9231); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_wordrule9235); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_wordrule9235); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.2");
             }
-            match(input,79,FOLLOW_79_in_furcas_tcs_wordrule9239); if (state.failed) return ret2;
+            match(input,79,FOLLOW_79_in_furcas_tcs_wordrule9239); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9243); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9243); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1817:713: (temp= furcas_tcs_orpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1817:715: temp= furcas_tcs_orpattern
@@ -18983,7 +20277,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "start", temp);
               setParent(temp,ret,"start");
@@ -18995,28 +20291,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.5");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9258); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9258); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.6");
             }
-            match(input,76,FOLLOW_76_in_furcas_tcs_wordrule9262); if (state.failed) return ret2;
+            match(input,76,FOLLOW_76_in_furcas_tcs_wordrule9262); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.7");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9266); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9266); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.8");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1818:607: (temp= furcas_tcs_orpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1818:609: temp= furcas_tcs_orpattern
@@ -19026,7 +20328,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "part", temp);
               setParent(temp,ret,"part");
@@ -19038,7 +20342,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.9");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1819:171: ( ( COMA 'end' EQ (temp= furcas_tcs_orpattern ) ) | )
             int alt157=2;
@@ -19068,28 +20372,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1819:189: COMA 'end' EQ (temp= furcas_tcs_orpattern )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9287); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_wordrule9287); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.1");
                     }
-                    match(input,97,FOLLOW_97_in_furcas_tcs_wordrule9291); if (state.failed) return ret2;
+                    match(input,97,FOLLOW_97_in_furcas_tcs_wordrule9291); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9295); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_wordrule9295); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.9/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1819:852: (temp= furcas_tcs_orpattern )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1819:854: temp= furcas_tcs_orpattern
@@ -19099,7 +20409,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "end", temp);
                       setParent(temp,ret,"end");
@@ -19138,9 +20450,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.91/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.91/@templateSequence/@elements.10");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_wordrule9323); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_wordrule9323); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -19190,35 +20504,43 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1836:4: 'endOfLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.0");
             }
-            match(input,130,FOLLOW_130_in_furcas_tcs_endoflinerule9364); if (state.failed) return ret2;
+            match(input,130,FOLLOW_130_in_furcas_tcs_endoflinerule9364); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9368); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_endoflinerule9368); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.2");
             }
-            match(input,79,FOLLOW_79_in_furcas_tcs_endoflinerule9372); if (state.failed) return ret2;
+            match(input,79,FOLLOW_79_in_furcas_tcs_endoflinerule9372); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endoflinerule9376); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_endoflinerule9376); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1836:719: ( ( 'drop' ) | )
             int alt158=2;
@@ -19248,9 +20570,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1836:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,55,FOLLOW_55_in_furcas_tcs_endoflinerule9386); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_furcas_tcs_endoflinerule9386); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -19288,7 +20612,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1837:141: (temp= furcas_tcs_stringpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1837:143: temp= furcas_tcs_stringpattern
@@ -19298,7 +20622,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "start", temp);
               setParent(temp,ret,"start");
@@ -19310,9 +20636,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.92/@templateSequence/@elements.6");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9415); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_endoflinerule9415); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -19362,35 +20690,43 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1853:4: 'multiLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) COMA 'end' EQ ( ( 'drop' ) | ) (temp= furcas_tcs_stringpattern ) ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.0");
             }
-            match(input,96,FOLLOW_96_in_furcas_tcs_multilinerule9456); if (state.failed) return ret2;
+            match(input,96,FOLLOW_96_in_furcas_tcs_multilinerule9456); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.1");
             }
-            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9460); if (state.failed) return ret2;
+            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9460); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.2");
             }
-            match(input,79,FOLLOW_79_in_furcas_tcs_multilinerule9464); if (state.failed) return ret2;
+            match(input,79,FOLLOW_79_in_furcas_tcs_multilinerule9464); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.3");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.3");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9468); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9468); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.4");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.4");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1853:719: ( ( 'drop' ) | )
             int alt159=2;
@@ -19420,9 +20756,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1853:737: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.4/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.4/@thenSequence/@elements.0");
                     }
-                    match(input,55,FOLLOW_55_in_furcas_tcs_multilinerule9478); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_furcas_tcs_multilinerule9478); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -19460,7 +20798,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.5");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.5");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1854:141: (temp= furcas_tcs_stringpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1854:143: temp= furcas_tcs_stringpattern
@@ -19470,7 +20808,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "start", temp);
               setParent(temp,ret,"start");
@@ -19482,28 +20822,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.6");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.6");
             }
-            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9507); if (state.failed) return ret2;
+            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9507); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.7");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.7");
             }
-            match(input,97,FOLLOW_97_in_furcas_tcs_multilinerule9511); if (state.failed) return ret2;
+            match(input,97,FOLLOW_97_in_furcas_tcs_multilinerule9511); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.8");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.8");
             }
-            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9515); if (state.failed) return ret2;
+            match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9515); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.9");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.9");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1855:607: ( ( 'drop' ) | )
             int alt160=2;
@@ -19533,9 +20879,11 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1855:625: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.9/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.9/@thenSequence/@elements.0");
                     }
-                    match(input,55,FOLLOW_55_in_furcas_tcs_multilinerule9525); if (state.failed) return ret2;
+                    match(input,55,FOLLOW_55_in_furcas_tcs_multilinerule9525); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -19573,7 +20921,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.10");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.10");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1856:142: (temp= furcas_tcs_stringpattern )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1856:144: temp= furcas_tcs_stringpattern
@@ -19583,7 +20931,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "end", temp);
               setParent(temp,ret,"end");
@@ -19595,7 +20945,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1857:171: ( ( COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | ) ) | )
             int alt164=2;
@@ -19625,28 +20975,34 @@ public class TCSParser extends ObservableInjectingParser {
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1857:189: COMA 'esc' EQ (temp= furcas_tcs_stringpattern ) ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.0");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.0");
                     }
-                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9560); if (state.failed) return ret2;
+                    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9560); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.1");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.1");
                     }
-                    match(input,101,FOLLOW_101_in_furcas_tcs_multilinerule9564); if (state.failed) return ret2;
+                    match(input,101,FOLLOW_101_in_furcas_tcs_multilinerule9564); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.2");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.2");
                     }
-                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9568); if (state.failed) return ret2;
+                    match(input,EQ,FOLLOW_EQ_in_furcas_tcs_multilinerule9568); if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.3");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.3");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1857:856: (temp= furcas_tcs_stringpattern )
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1857:858: temp= furcas_tcs_stringpattern
@@ -19656,7 +21012,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "esc", temp);
                       setParent(temp,ret,"esc");
@@ -19668,7 +21026,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4");
+                      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4");
                     }
                     // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1858:197: ( ( COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN ) | )
                     int alt163=2;
@@ -19698,21 +21056,25 @@ public class TCSParser extends ObservableInjectingParser {
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1858:215: COMA LPAREN (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )? RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.0");
                             }
-                            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9589); if (state.failed) return ret2;
+                            match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9589); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.1");
                             }
-                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9594); if (state.failed) return ret2;
+                            match(input,LPAREN,FOLLOW_LPAREN_in_furcas_tcs_multilinerule9594); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2");
                             }
                             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1858:792: (temp= furcas_tcs_mapping ( ( COMA ) temp= furcas_tcs_mapping )* )?
                             int alt162=2;
@@ -19730,7 +21092,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                                     checkFollows();
                                     state._fsp--;
-                                    if (state.failed) return ret2;
+                                    if (state.failed) {
+                                        return ret2;
+                                    }
                                     if ( state.backtracking==0 ) {
                                       setProperty(ret, "escMappings", temp);
                                       setParent(temp,ret,"escMappings");
@@ -19757,9 +21121,11 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1859:56: COMA
                                     	    {
                                     	    if ( state.backtracking==0 ) {
-                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
+                                    	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.2/@propertyArgs.0/@separatorSequence/@elements.0");
                                     	    }
-                                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9611); if (state.failed) return ret2;
+                                    	    match(input,COMA,FOLLOW_COMA_in_furcas_tcs_multilinerule9611); if (state.failed) {
+                                                return ret2;
+                                            }
                                     	    if ( state.backtracking==0 ) {
                                     	      _afterSeqEl();
                                     	    }
@@ -19774,7 +21140,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                                     	    checkFollows();
                                     	    state._fsp--;
-                                    	    if (state.failed) return ret2;
+                                    	    if (state.failed) {
+                                                return ret2;
+                                            }
                                     	    if ( state.backtracking==0 ) {
                                     	      setProperty(ret, "escMappings", temp);
                                     	      setParent(temp,ret,"escMappings");
@@ -19798,9 +21166,11 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
+                              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.11/@thenSequence/@elements.4/@thenSequence/@elements.3");
                             }
-                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9631); if (state.failed) return ret2;
+                            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9631); if (state.failed) {
+                                return ret2;
+                            }
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -19859,9 +21229,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.93/@templateSequence/@elements.12");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.93/@templateSequence/@elements.12");
             }
-            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9662); if (state.failed) return ret2;
+            match(input,RPAREN,FOLLOW_RPAREN_in_furcas_tcs_multilinerule9662); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -19942,7 +21314,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -19954,7 +21328,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -19966,7 +21342,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -19978,7 +21356,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
 
                     }
                     break;
@@ -20027,7 +21407,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1889:4: (temp= identifier )? RARROW (temp= identifier )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1889:128: (temp= identifier )?
             int alt166=2;
@@ -20045,7 +21425,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "key", temp);
                       setParent(temp,ret,"key");
@@ -20060,14 +21442,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.1");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_simplemapping9767); if (state.failed) return ret2;
+            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_simplemapping9767); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.95/@templateSequence/@elements.2");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1890:319: (temp= identifier )?
             int alt167=2;
@@ -20085,7 +21469,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                     checkFollows();
                     state._fsp--;
-                    if (state.failed) return ret2;
+                    if (state.failed) {
+                        return ret2;
+                    }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "value", temp);
                       setParent(temp,ret,"value");
@@ -20142,23 +21528,29 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1906:4: POINT RARROW POINT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.96/@templateSequence/@elements.0");
             }
-            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9821); if (state.failed) return ret2;
+            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9821); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.96/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.96/@templateSequence/@elements.1");
             }
-            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9826); if (state.failed) return ret2;
+            match(input,RARROW,FOLLOW_RARROW_in_furcas_tcs_wildcardmapping9826); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.96/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.96/@templateSequence/@elements.2");
             }
-            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9831); if (state.failed) return ret2;
+            match(input,POINT,FOLLOW_POINT_in_furcas_tcs_wildcardmapping9831); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -20205,9 +21597,11 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1921:4: 'octal'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.97/@templateSequence/@elements.0");
             }
-            match(input,57,FOLLOW_57_in_furcas_tcs_octalmapping9872); if (state.failed) return ret2;
+            match(input,57,FOLLOW_57_in_furcas_tcs_octalmapping9872); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -20254,9 +21648,11 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1936:4: 'hex'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.98/@templateSequence/@elements.0");
             }
-            match(input,77,FOLLOW_77_in_furcas_tcs_hexadecimalmapping9912); if (state.failed) return ret2;
+            match(input,77,FOLLOW_77_in_furcas_tcs_hexadecimalmapping9912); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -20306,7 +21702,7 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1951:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.99/@templateSequence/@elements.0");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1951:128: (temp= stringSymbol )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1951:130: temp= stringSymbol
@@ -20316,7 +21712,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -20373,14 +21771,16 @@ public class TCSParser extends ObservableInjectingParser {
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1967:4: LSQUARE (temp= identifier ) RSQUARE
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.100/@templateSequence/@elements.0");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.100/@templateSequence/@elements.0");
             }
-            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_classpattern10000); if (state.failed) return ret2;
+            match(input,LSQUARE,FOLLOW_LSQUARE_in_furcas_tcs_classpattern10000); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.100/@templateSequence/@elements.1");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.100/@templateSequence/@elements.1");
             }
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1967:279: (temp= identifier )
             // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1967:281: temp= identifier
@@ -20390,7 +21790,9 @@ public class TCSParser extends ObservableInjectingParser {
 
             checkFollows();
             state._fsp--;
-            if (state.failed) return ret2;
+            if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               setProperty(ret, "name", temp);
               setParent(temp,ret,"name");
@@ -20402,9 +21804,11 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.100/@templateSequence/@elements.2");
+              _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.100/@templateSequence/@elements.2");
             }
-            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_classpattern10015); if (state.failed) return ret2;
+            match(input,RSQUARE,FOLLOW_RSQUARE_in_furcas_tcs_classpattern10015); if (state.failed) {
+                return ret2;
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -20446,7 +21850,7 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:146: (temp= ecore_epackage )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.8/@templateSequence/@elements.0/@thenSequence/@elements.0");
         }
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:295: (temp= ecore_epackage )
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:360:297: temp= ecore_epackage
@@ -20456,7 +21860,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
 
@@ -20481,7 +21887,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20500,7 +21908,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20519,7 +21929,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20538,7 +21950,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20557,7 +21971,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20578,11 +21994,17 @@ public class TCSParser extends ObservableInjectingParser {
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:192: COMA 'mode' EQ (temp= identifierOrKeyword )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.0");
+          _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.39/@templateSequence/@elements.5/@thenSequence/@elements.0");
         }
-        match(input,COMA,FOLLOW_COMA_in_synpred279_TCS5655); if (state.failed) return ;
-        match(input,98,FOLLOW_98_in_synpred279_TCS5659); if (state.failed) return ;
-        match(input,EQ,FOLLOW_EQ_in_synpred279_TCS5663); if (state.failed) return ;
+        match(input,COMA,FOLLOW_COMA_in_synpred279_TCS5655); if (state.failed) {
+            return ;
+        }
+        match(input,98,FOLLOW_98_in_synpred279_TCS5659); if (state.failed) {
+            return ;
+        }
+        match(input,EQ,FOLLOW_EQ_in_synpred279_TCS5663); if (state.failed) {
+            return ;
+        }
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:856: (temp= identifierOrKeyword )
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:952:858: temp= identifierOrKeyword
         {
@@ -20591,7 +22013,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
 
@@ -20616,7 +22040,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
         // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1556:37: ( ( 'and' ) temp= furcas_tcs_atomexp )*
         loop211:
         do {
@@ -20636,9 +22062,11 @@ public class TCSParser extends ObservableInjectingParser {
         	    // C:\\Documents and Settings\\D043530\\git\\DSLEngineering\\com.sap.furcas.parser.tcs\\.\\generationTemp\\generated\\TCS.g:1556:56: 'and'
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mappings/TCS.tcs#//@templates.74/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
+        	      _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.74/@templateSequence/@elements.0/@propertyArgs.0/@separatorSequence/@elements.0");
         	    }
-        	    match(input,86,FOLLOW_86_in_synpred338_TCS8247); if (state.failed) return ;
+        	    match(input,86,FOLLOW_86_in_synpred338_TCS8247); if (state.failed) {
+                    return ;
+                }
 
         	    }
 
@@ -20647,7 +22075,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         	    checkFollows();
         	    state._fsp--;
-        	    if (state.failed) return ;
+        	    if (state.failed) {
+                    return ;
+                }
 
         	    }
         	    break;
@@ -20675,7 +22105,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20694,7 +22126,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20713,7 +22147,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20732,7 +22168,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -20751,7 +22189,9 @@ public class TCSParser extends ObservableInjectingParser {
 
         checkFollows();
         state._fsp--;
-        if (state.failed) return ;
+        if (state.failed) {
+            return ;
+        }
 
         }
     }
@@ -21054,7 +22494,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_20);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA3_16 = input.LA(1);
@@ -21069,7 +22511,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_16);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA3_7 = input.LA(1);
@@ -21084,7 +22528,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA3_5 = input.LA(1);
@@ -21099,7 +22545,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA3_13 = input.LA(1);
@@ -21114,7 +22562,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA3_19 = input.LA(1);
@@ -21129,7 +22579,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_19);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA3_15 = input.LA(1);
@@ -21144,7 +22596,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_15);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA3_14 = input.LA(1);
@@ -21159,7 +22613,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_14);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA3_11 = input.LA(1);
@@ -21174,7 +22630,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA3_6 = input.LA(1);
@@ -21189,7 +22647,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA3_17 = input.LA(1);
@@ -21204,7 +22664,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_17);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA3_10 = input.LA(1);
@@ -21219,7 +22681,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index3_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -21312,7 +22776,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_12);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA33_13 = input.LA(1);
@@ -21327,7 +22793,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA33_8 = input.LA(1);
@@ -21342,7 +22810,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_8);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA33_9 = input.LA(1);
@@ -21357,7 +22827,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_9);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA33_1 = input.LA(1);
@@ -21372,7 +22844,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_1);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA33_10 = input.LA(1);
@@ -21387,7 +22861,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA33_7 = input.LA(1);
@@ -21402,7 +22878,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA33_5 = input.LA(1);
@@ -21417,7 +22895,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA33_3 = input.LA(1);
@@ -21432,7 +22912,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_3);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA33_11 = input.LA(1);
@@ -21447,7 +22929,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA33_2 = input.LA(1);
@@ -21462,7 +22946,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA33_6 = input.LA(1);
@@ -21477,7 +22963,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 12 : 
                         int LA33_4 = input.LA(1);
@@ -21492,7 +22980,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index33_4);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -21585,7 +23075,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_12);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA38_13 = input.LA(1);
@@ -21600,7 +23092,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA38_8 = input.LA(1);
@@ -21615,7 +23109,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_8);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA38_9 = input.LA(1);
@@ -21630,7 +23126,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_9);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA38_1 = input.LA(1);
@@ -21645,7 +23143,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_1);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA38_10 = input.LA(1);
@@ -21660,7 +23160,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA38_7 = input.LA(1);
@@ -21675,7 +23177,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA38_5 = input.LA(1);
@@ -21690,7 +23194,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA38_3 = input.LA(1);
@@ -21705,7 +23211,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_3);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA38_11 = input.LA(1);
@@ -21720,7 +23228,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA38_2 = input.LA(1);
@@ -21735,7 +23245,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA38_6 = input.LA(1);
@@ -21750,7 +23262,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 12 : 
                         int LA38_4 = input.LA(1);
@@ -21765,7 +23279,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index38_4);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -21858,7 +23374,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_12);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA57_8 = input.LA(1);
@@ -21873,7 +23391,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_8);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA57_9 = input.LA(1);
@@ -21888,7 +23408,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_9);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA57_1 = input.LA(1);
@@ -21903,7 +23425,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_1);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA57_10 = input.LA(1);
@@ -21918,7 +23442,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA57_7 = input.LA(1);
@@ -21933,7 +23459,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA57_5 = input.LA(1);
@@ -21948,7 +23476,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA57_3 = input.LA(1);
@@ -21963,7 +23493,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_3);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA57_11 = input.LA(1);
@@ -21978,7 +23510,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA57_2 = input.LA(1);
@@ -21993,7 +23527,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA57_13 = input.LA(1);
@@ -22008,7 +23544,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA57_6 = input.LA(1);
@@ -22023,7 +23561,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 12 : 
                         int LA57_4 = input.LA(1);
@@ -22038,7 +23578,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index57_4);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -22131,7 +23673,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_12);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA70_13 = input.LA(1);
@@ -22146,7 +23690,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA70_8 = input.LA(1);
@@ -22161,7 +23707,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_8);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA70_9 = input.LA(1);
@@ -22176,7 +23724,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_9);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA70_1 = input.LA(1);
@@ -22191,7 +23741,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_1);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA70_10 = input.LA(1);
@@ -22206,7 +23758,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA70_7 = input.LA(1);
@@ -22221,7 +23775,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA70_5 = input.LA(1);
@@ -22236,7 +23792,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA70_3 = input.LA(1);
@@ -22251,7 +23809,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_3);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA70_11 = input.LA(1);
@@ -22266,7 +23826,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA70_2 = input.LA(1);
@@ -22281,7 +23843,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA70_6 = input.LA(1);
@@ -22296,7 +23860,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 12 : 
                         int LA70_4 = input.LA(1);
@@ -22311,7 +23877,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index70_4);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -22506,7 +24074,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_1);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA75_2 = input.LA(1);
@@ -22521,7 +24091,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 2 : 
                         int LA75_3 = input.LA(1);
@@ -22536,7 +24108,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_3);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 3 : 
                         int LA75_4 = input.LA(1);
@@ -22551,7 +24125,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_4);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 4 : 
                         int LA75_5 = input.LA(1);
@@ -22566,7 +24142,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_5);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 5 : 
                         int LA75_6 = input.LA(1);
@@ -22581,7 +24159,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_6);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 6 : 
                         int LA75_7 = input.LA(1);
@@ -22596,7 +24176,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_7);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 7 : 
                         int LA75_8 = input.LA(1);
@@ -22611,7 +24193,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_8);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 8 : 
                         int LA75_9 = input.LA(1);
@@ -22626,7 +24210,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_9);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 9 : 
                         int LA75_10 = input.LA(1);
@@ -22641,7 +24227,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_10);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 10 : 
                         int LA75_11 = input.LA(1);
@@ -22656,7 +24244,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_11);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 11 : 
                         int LA75_12 = input.LA(1);
@@ -22671,7 +24261,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_12);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 12 : 
                         int LA75_13 = input.LA(1);
@@ -22686,7 +24278,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_13);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 13 : 
                         int LA75_14 = input.LA(1);
@@ -22701,7 +24295,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_14);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 14 : 
                         int LA75_15 = input.LA(1);
@@ -22716,7 +24312,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_15);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 15 : 
                         int LA75_16 = input.LA(1);
@@ -22731,7 +24329,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_16);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 16 : 
                         int LA75_17 = input.LA(1);
@@ -22746,7 +24346,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_17);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 17 : 
                         int LA75_18 = input.LA(1);
@@ -22761,7 +24363,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_18);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 18 : 
                         int LA75_19 = input.LA(1);
@@ -22776,7 +24380,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_19);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 19 : 
                         int LA75_20 = input.LA(1);
@@ -22791,7 +24397,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_20);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 20 : 
                         int LA75_21 = input.LA(1);
@@ -22806,7 +24414,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_21);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 21 : 
                         int LA75_22 = input.LA(1);
@@ -22821,7 +24431,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_22);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 22 : 
                         int LA75_23 = input.LA(1);
@@ -22836,7 +24448,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_23);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 23 : 
                         int LA75_24 = input.LA(1);
@@ -22851,7 +24465,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_24);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 24 : 
                         int LA75_25 = input.LA(1);
@@ -22866,7 +24482,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_25);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 25 : 
                         int LA75_26 = input.LA(1);
@@ -22881,7 +24499,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_26);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 26 : 
                         int LA75_27 = input.LA(1);
@@ -22896,7 +24516,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_27);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 27 : 
                         int LA75_28 = input.LA(1);
@@ -22911,7 +24533,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_28);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 28 : 
                         int LA75_29 = input.LA(1);
@@ -22926,7 +24550,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_29);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 29 : 
                         int LA75_30 = input.LA(1);
@@ -22941,7 +24567,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_30);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 30 : 
                         int LA75_31 = input.LA(1);
@@ -22956,7 +24584,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_31);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 31 : 
                         int LA75_32 = input.LA(1);
@@ -22971,7 +24601,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_32);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 32 : 
                         int LA75_33 = input.LA(1);
@@ -22986,7 +24618,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_33);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 33 : 
                         int LA75_34 = input.LA(1);
@@ -23001,7 +24635,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_34);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 34 : 
                         int LA75_35 = input.LA(1);
@@ -23016,7 +24652,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_35);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 35 : 
                         int LA75_36 = input.LA(1);
@@ -23031,7 +24669,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_36);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 36 : 
                         int LA75_37 = input.LA(1);
@@ -23046,7 +24686,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_37);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 37 : 
                         int LA75_38 = input.LA(1);
@@ -23061,7 +24703,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_38);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 38 : 
                         int LA75_39 = input.LA(1);
@@ -23076,7 +24720,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_39);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 39 : 
                         int LA75_40 = input.LA(1);
@@ -23091,7 +24737,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_40);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 40 : 
                         int LA75_41 = input.LA(1);
@@ -23106,7 +24754,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_41);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 41 : 
                         int LA75_42 = input.LA(1);
@@ -23121,7 +24771,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_42);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 42 : 
                         int LA75_43 = input.LA(1);
@@ -23136,7 +24788,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_43);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 43 : 
                         int LA75_44 = input.LA(1);
@@ -23151,7 +24805,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_44);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 44 : 
                         int LA75_45 = input.LA(1);
@@ -23166,7 +24822,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_45);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 45 : 
                         int LA75_46 = input.LA(1);
@@ -23181,7 +24839,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_46);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 46 : 
                         int LA75_47 = input.LA(1);
@@ -23196,7 +24856,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_47);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 47 : 
                         int LA75_48 = input.LA(1);
@@ -23211,7 +24873,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_48);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 48 : 
                         int LA75_49 = input.LA(1);
@@ -23226,7 +24890,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_49);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 49 : 
                         int LA75_50 = input.LA(1);
@@ -23241,7 +24907,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_50);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 50 : 
                         int LA75_51 = input.LA(1);
@@ -23256,7 +24924,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_51);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 51 : 
                         int LA75_52 = input.LA(1);
@@ -23271,7 +24941,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_52);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 52 : 
                         int LA75_53 = input.LA(1);
@@ -23286,7 +24958,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_53);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 53 : 
                         int LA75_54 = input.LA(1);
@@ -23301,7 +24975,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_54);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 54 : 
                         int LA75_55 = input.LA(1);
@@ -23316,7 +24992,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_55);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 55 : 
                         int LA75_56 = input.LA(1);
@@ -23331,7 +25009,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_56);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 56 : 
                         int LA75_57 = input.LA(1);
@@ -23346,7 +25026,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_57);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 57 : 
                         int LA75_58 = input.LA(1);
@@ -23361,7 +25043,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_58);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 58 : 
                         int LA75_59 = input.LA(1);
@@ -23376,7 +25060,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_59);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 59 : 
                         int LA75_60 = input.LA(1);
@@ -23391,7 +25077,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_60);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 60 : 
                         int LA75_61 = input.LA(1);
@@ -23406,7 +25094,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_61);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 61 : 
                         int LA75_62 = input.LA(1);
@@ -23421,7 +25111,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_62);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 62 : 
                         int LA75_63 = input.LA(1);
@@ -23436,7 +25128,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_63);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 63 : 
                         int LA75_64 = input.LA(1);
@@ -23451,7 +25145,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_64);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 64 : 
                         int LA75_65 = input.LA(1);
@@ -23466,7 +25162,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_65);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 65 : 
                         int LA75_66 = input.LA(1);
@@ -23481,7 +25179,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_66);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 66 : 
                         int LA75_67 = input.LA(1);
@@ -23496,7 +25196,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_67);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 67 : 
                         int LA75_68 = input.LA(1);
@@ -23511,7 +25213,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_68);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 68 : 
                         int LA75_69 = input.LA(1);
@@ -23526,7 +25230,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_69);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 69 : 
                         int LA75_70 = input.LA(1);
@@ -23541,7 +25247,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_70);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 70 : 
                         int LA75_71 = input.LA(1);
@@ -23556,7 +25264,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_71);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 71 : 
                         int LA75_72 = input.LA(1);
@@ -23571,7 +25281,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_72);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 72 : 
                         int LA75_73 = input.LA(1);
@@ -23586,7 +25298,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_73);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 73 : 
                         int LA75_74 = input.LA(1);
@@ -23601,7 +25315,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_74);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 74 : 
                         int LA75_75 = input.LA(1);
@@ -23616,7 +25332,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_75);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 75 : 
                         int LA75_76 = input.LA(1);
@@ -23631,7 +25349,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_76);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 76 : 
                         int LA75_77 = input.LA(1);
@@ -23646,7 +25366,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_77);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 77 : 
                         int LA75_78 = input.LA(1);
@@ -23661,7 +25383,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_78);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 78 : 
                         int LA75_79 = input.LA(1);
@@ -23676,7 +25400,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_79);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 79 : 
                         int LA75_80 = input.LA(1);
@@ -23691,7 +25417,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_80);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 80 : 
                         int LA75_81 = input.LA(1);
@@ -23706,7 +25434,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_81);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 81 : 
                         int LA75_82 = input.LA(1);
@@ -23721,7 +25451,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_82);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 82 : 
                         int LA75_83 = input.LA(1);
@@ -23736,7 +25468,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_83);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 83 : 
                         int LA75_84 = input.LA(1);
@@ -23751,7 +25485,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_84);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 84 : 
                         int LA75_85 = input.LA(1);
@@ -23766,7 +25502,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_85);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 85 : 
                         int LA75_86 = input.LA(1);
@@ -23781,7 +25519,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_86);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 86 : 
                         int LA75_87 = input.LA(1);
@@ -23796,7 +25536,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_87);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 87 : 
                         int LA75_88 = input.LA(1);
@@ -23811,7 +25553,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_88);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 88 : 
                         int LA75_89 = input.LA(1);
@@ -23826,7 +25570,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_89);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 89 : 
                         int LA75_90 = input.LA(1);
@@ -23841,7 +25587,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_90);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 90 : 
                         int LA75_91 = input.LA(1);
@@ -23856,7 +25604,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_91);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 91 : 
                         int LA75_92 = input.LA(1);
@@ -23871,7 +25621,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_92);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 92 : 
                         int LA75_93 = input.LA(1);
@@ -23886,7 +25638,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_93);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 93 : 
                         int LA75_94 = input.LA(1);
@@ -23901,7 +25655,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_94);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 94 : 
                         int LA75_95 = input.LA(1);
@@ -23916,7 +25672,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_95);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 95 : 
                         int LA75_96 = input.LA(1);
@@ -23931,7 +25689,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_96);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 96 : 
                         int LA75_97 = input.LA(1);
@@ -23946,7 +25706,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_97);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 97 : 
                         int LA75_98 = input.LA(1);
@@ -23961,7 +25723,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_98);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 98 : 
                         int LA75_99 = input.LA(1);
@@ -23976,7 +25740,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_99);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 99 : 
                         int LA75_100 = input.LA(1);
@@ -23991,7 +25757,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_100);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 100 : 
                         int LA75_101 = input.LA(1);
@@ -24006,7 +25774,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index75_101);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -24428,7 +26198,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index102_91);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
@@ -24701,7 +26473,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index141_2);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
                     case 1 : 
                         int LA141_39 = input.LA(1);
@@ -24718,7 +26492,9 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index141_39);
-                        if ( s>=0 ) return s;
+                        if ( s>=0 ) {
+                            return s;
+                        }
                         break;
             }
             if (state.backtracking>0) {state.failed=true; return -1;}
