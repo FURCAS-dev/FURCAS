@@ -388,7 +388,7 @@ public class XtextTestCase extends TestCase
 			return false;
 		}
 		if (pivotElement instanceof TupleType) {
-			return false;
+			return TypeManager.isLibraryType((TupleType)pivotElement);
 		}
 		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
 			return false;

@@ -33,7 +33,9 @@
 package	[javaPackage/];
 
 import java.math.BigInteger;
+import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.ocl.examples.pivot.*;
 import org.eclipse.ocl.examples.pivot.Class;
@@ -49,10 +51,15 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 public class [javaClass/] extends XMLResourceImpl
 {
 	/**
-	 *	The static package-of-types pivot model of the Pivot Model.
+	 *	The URI of this Standard Library.
 	 */
-	public static final [javaClass/] INSTANCE = new [javaClass/]();
+	public static final String PIVOT_URI = "[uri/]";
 
+	public [javaClass/](StandardLibrary standardLibrary) {
+		super(URI.createURI(PIVOT_URI));
+		getContents().add(create(standardLibrary));
+	}
+	
 	/**
 	 *	Create and return a pivot model of the Pivot Model.
 	 */
@@ -101,12 +108,22 @@ public class [javaClass/] extends XMLResourceImpl
 		[emitPackage(nestedPackage)/]
 	[/for]
 
-		Class elementClass = (Class) PivotUtil.getNamedElement(symbol_1.getOwnedTypes(), "Element");
+		Class elementClass = (Class) PivotUtil.getNamedElement([pkg.getSymbolName()/].getOwnedTypes(), "Element");
 		elementClass.getSuperClasses().clear();
-		elementClass.getSuperClasses().add(standardLibrary.getClassifierType());
-
-		[javaClass/] resource = new [javaClass/]();
-		resource.getContents().add([pkg.getSymbolName()/]);
+		for (Type pivotClass : [pkg.getSymbolName()/].getOwnedTypes()) {
+			if (pivotClass instanceof Enumeration) {
+				List<Class> superClasses = ((Enumeration) pivotClass).getSuperClasses();
+				if (superClasses.isEmpty()) {
+					superClasses.add(standardLibrary.getEnumerationType());
+				}
+			}
+			else if (pivotClass instanceof Class) {
+				List<Class> superClasses = ((Class) pivotClass).getSuperClasses();
+				if (superClasses.isEmpty()) {
+					superClasses.add(standardLibrary.getClassifierType());
+				}
+			}
+		}
 		
 		return [pkg.getSymbolName()/];
 	}
