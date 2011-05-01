@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.14 2011/01/25 10:43:34 auhl Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.15 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -413,12 +413,7 @@ public class EcoreEvaluationEnvironment
 						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
 					value = ((Number) value).doubleValue();
 				}
-				if (value != null || !(property.getEType() instanceof VoidType)) {
-					// don't try to set null on a VoidType property; it's already null; trying to
-					// set it will cause an exception in the EMF setting delegate infrastructure
-					// because VoidType does not conform to EClass.
-					tuple.eSet(property, value);
-				}
+				tuple.eSet(property, value);
 			}
 		}
 

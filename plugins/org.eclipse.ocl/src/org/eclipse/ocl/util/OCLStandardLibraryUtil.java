@@ -16,7 +16,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.15 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.16 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 

@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: BagImpl.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: BagImpl.java,v 1.5 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl.util;

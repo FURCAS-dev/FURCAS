@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.6 2009/11/28 18:01:12 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.7 2011/05/01 10:56:58 auhl Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;

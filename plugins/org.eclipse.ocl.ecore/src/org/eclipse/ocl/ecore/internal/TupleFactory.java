@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.3 2011/03/14 21:15:32 auhl Exp $
+ * $Id: TupleFactory.java,v 1.4 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

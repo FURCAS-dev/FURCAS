@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.3 2010/01/11 22:28:22 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.4 2011/05/01 10:57:02 auhl Exp $
  */
 
 package org.eclipse.ocl.tests;

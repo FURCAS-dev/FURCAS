@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.10 2009/12/18 06:34:09 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.11 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
