@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   Zeligsoft - Bug 253252
  *   Borland - Bug 242880
  *   E.D.Willink - Bug 295166
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.17 2011/03/09 13:07:05 auhl Exp $
+ * $Id: BasicOCLTest.java,v 1.18 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -596,6 +596,10 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(Boolean.TRUE,
                 evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
+            assertEquals(Boolean.FALSE,
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclInvalid)"));
+            assertEquals(Boolean.FALSE,
+                evaluate(helper, annotation, "null.oclIsKindOf(OclInvalid)"));
             assertNull(
                 evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertNull(
@@ -625,6 +629,10 @@ public class BasicOCLTest
                 evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclInvalid)"));
+            assertEquals(getInvalid(),
+                evaluate(helper, annotation, "null.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
                 evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertEquals(getInvalid(),
@@ -768,6 +776,28 @@ public class BasicOCLTest
     }
     
     /**
+     * oclAsType must result in invalid for source not conforming to target type and
+     * in the source object in case it conforms to the target type
+     */
+    public void test_oclAsTypeConformingAndNonConforming() {
+    	helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
+    	try {
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EAnnotation).oclIsInvalid()"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EClassifier) = self"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EClass) = self"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(EDataType).oclIsInvalid()"));
+			assertTrue(
+				check(helper, EcorePackage.eINSTANCE.getEOperation(), "self.oclAsType(ocl::ecore::TupleType).oclIsInvalid()"));
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+    }
+    
+    /**
      * Tests that the OclInvalid type conforms to all others, and supports
      * equality comparison with all other types.
      */
@@ -776,21 +806,21 @@ public class BasicOCLTest
         
         try {
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Set{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Set{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Set{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Sequence{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Sequence{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid = Set{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> OrderedSet{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = OrderedSet{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Sequence{'foo'}).oclIsInvalid()"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Bag{'foo'}"));
-            assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Bag{'foo'}"));
+                check(helper, EcorePackage.eNS_URI, "(invalid = Sequence{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid <> OrderedSet{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid = OrderedSet{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid <> Bag{'foo'}).oclIsInvalid()"));
+            assertTrue(
+                check(helper, EcorePackage.eNS_URI, "(invalid = Bag{'foo'}).oclIsInvalid()"));
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
