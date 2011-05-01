@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2009, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *       - Bug 259819
  *   Zeligsoft - Bug 244948
+ *   Axel Uhl (SAP AG) - Bug 342644
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.15 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.16 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -1568,6 +1569,11 @@ public final class OCLStandardLibraryUtil {
 		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
 		UMLReflection<PK, C, O, P, EL, PM, ?, COA, SSA, CT> uml = env
 			.getUMLReflection();
+
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			EQUAL_NAME, stdlib.getCollection(), "c"));//$NON-NLS-1$
+		result.add(createBinaryOperation(uml, stdlib.getBoolean(),
+			NOT_EQUAL_NAME, stdlib.getCollection(), "c"));//$NON-NLS-1$
 
 		result.add(createBinaryOperation(uml, stdlib.getInteger(), COUNT_NAME,
 			stdlib.getT(), "object")); //$NON-NLS-1$
