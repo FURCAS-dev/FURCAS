@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2010, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 252600
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10 2010/02/09 10:32:35 asanchez Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.11 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -323,6 +324,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
 		OCL_BOOLEAN.setInstanceClass(Boolean.class);
 		OCL_STRING.setInstanceClass(String.class);
 		OCL_INTEGER.setInstanceClass(Integer.class);
+		OCL_UNLIMITED_NATURAL.setInstanceClass(Integer.class);
 		OCL_REAL.setInstanceClass(Double.class);
 		
 		register(OCL_ANY).getEOperations().addAll(

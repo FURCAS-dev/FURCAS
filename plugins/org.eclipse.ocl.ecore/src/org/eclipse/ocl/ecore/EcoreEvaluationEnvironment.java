@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   C.Damus - 291365
  *   E.D.Willink - 322159
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 333032
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.14 2011/01/25 10:43:34 auhl Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.15 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -399,6 +400,12 @@ public class EcoreEvaluationEnvironment
 				tuple.eSet(property, CollectionUtil.createNewCollection(
 					collType.getKind(), (Collection<?>) value));
 			} else {
+				// do numeric coercion if necessary:
+				if (value instanceof Number && property.getEType().getInstanceClass() != null &&
+						!(value instanceof Double) &&
+						Double.class.isAssignableFrom(property.getEType().getInstanceClass())) {
+					value = ((Number) value).doubleValue();
+				}
 				tuple.eSet(property, value);
 			}
 		}
@@ -431,6 +438,8 @@ public class EcoreEvaluationEnvironment
 		// are not related types in java but are in OCL
 		if ((object.getClass() == Integer.class)
 			&& (classifier.getInstanceClass() == Double.class)) {
+			return Boolean.TRUE;
+		} else if (classifier instanceof AnyType) {
 			return Boolean.TRUE;
 		}
 
