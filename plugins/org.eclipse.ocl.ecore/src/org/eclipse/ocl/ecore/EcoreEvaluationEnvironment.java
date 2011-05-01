@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEvaluationEnvironment.java,v 1.16 2011/05/01 12:11:41 auhl Exp $
+ * $Id: EcoreEvaluationEnvironment.java,v 1.17 2011/05/01 20:31:24 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore;
@@ -247,9 +247,8 @@ public class EcoreEvaluationEnvironment
 			if (etarget.eClass().getEAllStructuralFeatures().contains(property)) {
 				if (property.getEType() instanceof VoidType) {
 					// then the only instance is null; using eGet would
-					// cause a ClassCastException when the setting delegate
-					// tries to cast VoidTypeImpl to EClass when called on
-					// a tuple instance. This is an EMF bug [344395].
+					// cause a ClassCastException because VoidTypeImpl
+					// is neither an EClass nor an EDataType.
 					return null;
 				}
 				return coerceValue(property, etarget.eGet(property), true);
@@ -416,7 +415,7 @@ public class EcoreEvaluationEnvironment
 				if (value != null || !(property.getEType() instanceof VoidType)) {
 					// don't try to set null on a VoidType property; it's already null; trying to
 					// set it will cause an exception in the EMF setting delegate infrastructure
-					// because VoidType does not conform to EClass. This is an EMF bug [344395].
+					// because VoidType is neither an EClass nor an EDataType.
 					tuple.eSet(property, value);
 				}
 			}
