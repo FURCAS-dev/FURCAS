@@ -1348,18 +1348,17 @@ public class EvaluationCollectionOperationTest
 		assertResultInvalid("let o : OrderedSet(Integer) = null in o->product(Sequence{3, 4})");
 	}
 
-	// Does't work because of bug 344391 (null in Tuples)
-//	public void testCollectionProductNullValue() {
-//		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Sequence{3, 4}->product(OrderedSet{null})");
-//		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Bag{3, 4}->product(let s:Set(OclVoid)=Set{} in s->including(null))");
-//		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Set{3, 4}->product(Bag{null})");
-//		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{3, 4}->product(Sequence{null})");
-//
-//		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
-//		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
-//		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
-//		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
-//	}
+	public void testCollectionProductNullValue() {
+		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Sequence{3, 4}->product(OrderedSet{null})");
+		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Bag{3, 4}->product(let s:Set(OclVoid)=Set{} in s->including(null))");
+		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "Set{3, 4}->product(Bag{null})");
+		assertExpressionResults("Set{Tuple{first = 3, second = null}, Tuple{first = 4, second = null}}", "OrderedSet{3, 4}->product(Sequence{null})");
+
+		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Sequence{null, 4}->product(Sequence{3})");
+		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Bag{null, 4}->product(Set{3})");
+		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "Set{null, 4}->product(Bag{3})");
+		assertExpressionResults("Set{Tuple{first = null, second = 3}, Tuple{first = 4, second = 3}}", "OrderedSet{null, 4}->product(Sequence{3})");
+	}
 
 	public void testCollectionSize() {
 		assertResult(Integer.valueOf(4), "Sequence{4, 4, 5, 'test'}->size()");
