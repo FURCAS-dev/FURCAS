@@ -16,7 +16,7 @@ import org.antlr.runtime.TokenStream;
 
 import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
 import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
-import com.sap.furcas.runtime.referenceresolving.SyntaxRegistry;
+import com.sap.furcas.runtime.referenceresolving.SyntaxRegistryFacade;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "SHARP", "LPAREN", "EQ", "RPAREN", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'instanceOf'", "'disambiguate'", "'rightSpace'", "'priority'", "'leftSpace'", "'never'", "'drop'", "'referenceOnly'", "'octal'", "'partial'", "'createAs'", "'addToContext'", "'startNbNL'", "'referenceBy'", "'importContext'", "'endNL'", "'lexer'", "'always'", "'auto'", "'false'", "'using'", "'when'", "'isDefined'", "'operatored'", "'for'", "'deep'", "'postfix'", "'part'", "'hex'", "'default'", "'start'", "'all'", "'right'", "'main'", "'prefix'", "'operators'", "'nbNL'", "'and'", "'source'", "'token'", "'refersTo'", "'rightNone'", "'function'", "'orKeyword'", "'storeOpTo'", "'left'", "'lookIn'", "'multiLine'", "'end'", "'mode'", "'disambiguateV3'", "'symbols'", "'esc'", "'semDisambiguate'", "'ifmissing'", "'k'", "'enumerationTemplate'", "'foreach'", "'storeRightTo'", "'word'", "'leftNone'", "'context'", "'lookupScope'", "'operatorTemplate'", "'template'", "'true'", "'primitiveTemplate'", "'abstract'", "'forcedLower'", "'separator'", "'multi'", "'forcedUpper'", "'omitted'", "'nonPrimary'", "'startNL'", "'as'", "'value'", "'autoCreate'", "'indentIncr'", "'syntax'", "'one'", "'endOfLine'", "'serializer'", "'createIn'", "'keywords'"
@@ -5334,7 +5334,7 @@ public class TCSParser extends ObservableInjectingParser {
               _enterInjectorAction();setOclRef(ret, "keywords", null, null, "OCL:LiteralRef.allInstances()->select("+
               "                                lr | self.templates->includes(lr.parentTemplate)).referredLiteral->asSet()"+
               "                                ->union(self.operatorLists.priorities.operators.literal->asSet())"+
-              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              "                                ->select(k | k.oclIsTypeOf(Keyword))", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.12/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10529,7 +10529,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.1");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.25/@templateSequence/@elements.1/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -10624,7 +10624,7 @@ public class TCSParser extends ObservableInjectingParser {
                         return ret2;
                     }
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistry.getInstance());
+                      setOclRef(ret, "strucfeature", null, temp, "OCL:#context.oclAsType(FURCAS::TCS::Template).metaReference.oclAsType(ecore::EClass).eAllStructuralFeatures->select(name = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.26/@templateSequence/@elements.0/@thenSequence/@elements.0", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -10938,7 +10938,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.27/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11034,7 +11034,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.28/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11297,7 +11297,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.29/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11516,7 +11516,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.6");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.30/@templateSequence/@elements.6/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -11767,7 +11767,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.4");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.31/@templateSequence/@elements.4/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -12123,7 +12123,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.33/@templateSequence/@elements.2/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -12305,7 +12305,7 @@ public class TCSParser extends ObservableInjectingParser {
               _beforeSeqEl("platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.3");
             }
             if ( state.backtracking==0 ) {
-              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistry.getInstance());_exitInjectorAction();
+              _enterInjectorAction();setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true, "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.34/@templateSequence/@elements.3/@injectorActions.0", SyntaxRegistryFacade.getModelUpdaterRegistry());_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -13685,7 +13685,7 @@ public class TCSParser extends ObservableInjectingParser {
                       "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
                       "                                            else "+
                       "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.4", SyntaxRegistry.getInstance());
+                      "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.40/@templateSequence/@elements.4", SyntaxRegistryFacade.getModelUpdaterRegistry());
                     }
 
                     }
@@ -14646,7 +14646,7 @@ public class TCSParser extends ObservableInjectingParser {
               "                                                candidate.oclAsType(FURCAS::TCS::ClassTemplate).metaReference.name"+
               "                                            else "+
               "                                                candidate.oclAsType(FURCAS::TCS::PrimitiveTemplate).templateName"+
-              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2", SyntaxRegistry.getInstance());
+              "                                            endif = ?)", "platform:/plugin/com.sap.furcas.parser.tcs/mapping/TCS.tcs#//@templates.45/@templateSequence/@elements.2", SyntaxRegistryFacade.getModelUpdaterRegistry());
             }
 
             }
