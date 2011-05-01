@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Pivot2EcoreReferenceVisitor.java,v 1.4 2011/03/01 08:47:19 ewillink Exp $
+ * $Id: Pivot2EcoreReferenceVisitor.java,v 1.5 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -167,15 +167,22 @@ public class Pivot2EcoreReferenceVisitor
 
 	@Override
 	public EObject visitProperty(Property pivotProperty) {
+		if (pivotProperty.isImplicit()) {
+			return null;
+		}
 		EStructuralFeature eStructuralFeature = context.getCreated(EStructuralFeature.class, pivotProperty);
 		if (eStructuralFeature instanceof EReference) {
 			EReference eReference = (EReference) eStructuralFeature;
 			Property pivotOpposite = pivotProperty.getOpposite();
 			if (pivotOpposite != null) {
-				// FIXME Use EAnnotations for non-navigable opposites as identified by an Association
-				EReference eOpposite = context.getCreated(EReference.class, pivotOpposite);
-				if (eOpposite != null) {
-					eReference.setEOpposite(eOpposite);
+				if (pivotOpposite.isImplicit()) {
+					// FIXME Use EAnnotations for non-navigable opposites as identified by an Association
+				}
+				else {
+					EReference eOpposite = context.getCreated(EReference.class, pivotOpposite);
+					if (eOpposite != null) {
+						eReference.setEOpposite(eOpposite);
+					}
 				}
 			}
 			for (Property pivotKey : pivotProperty.getKeys()) {

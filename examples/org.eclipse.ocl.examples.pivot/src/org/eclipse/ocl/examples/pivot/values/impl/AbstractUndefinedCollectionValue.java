@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedCollectionValue.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: AbstractUndefinedCollectionValue.java,v 1.5 2011/04/25 09:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -175,6 +175,14 @@ public abstract class AbstractUndefinedCollectionValue extends AbstractUndefined
 	public OrderedCollectionValue reverse() throws InvalidValueException {
 		return toInvalidValue();
 	}
+
+/*	public CollectionValue selectAsType(Type elementType) throws InvalidValueException {
+    	return toInvalidValue();
+	}
+
+	public CollectionValue selectByKind(Type elementType) throws InvalidValueException {
+    	return toInvalidValue();
+	} */
 
 	public IntegerValue size() throws InvalidValueException {
     	return toInvalidValue();

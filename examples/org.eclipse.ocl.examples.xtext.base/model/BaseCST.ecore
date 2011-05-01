@@ -23,7 +23,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="AttributeCSRef" eSuperTypes="#//ElementCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//AttributeCS"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BoundDocumentCS" eSuperTypes="#//PackageCS"/>
   <eClassifiers xsi:type="ecore:EClass" name="ClassCS" eSuperTypes="#//ClassifierCS #//NamespaceCS">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSuperType" upperBound="-1"
         eType="#//TypedRefCS" unsettable="true" containment="true"/>

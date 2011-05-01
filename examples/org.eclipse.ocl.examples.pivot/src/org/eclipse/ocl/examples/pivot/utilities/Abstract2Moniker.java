@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.7 2011/04/01 19:57:10 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -262,7 +262,7 @@ public abstract class Abstract2Moniker implements PivotConstants
 			s.append(TEMPLATE_BINDING_PREFIX);
 			String prefix = ""; //$NON-NLS-1$
 			for (TemplateBinding templateBinding : templateBindings) {
-				templateBinding.getSignature();
+//				templateBinding.getSignature();
 				List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
 				if (parameterSubstitutions.size() > 1) {
 					parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);

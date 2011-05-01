@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotInstaller.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotInstaller.java,v 1.3 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.delegate;
 
@@ -52,12 +52,12 @@ public class PivotInstaller
 //		Type modelType = completeType.getModel();
 //		if (modelType instanceof org.eclipse.ocl.examples.pivot.Class) {
 //			org.eclipse.ocl.examples.pivot.Class modelClass = (org.eclipse.ocl.examples.pivot.Class)modelType;
-			for (Operation anOperation : typeManager.getLocalOperations(pivotType)) {
+			for (Operation anOperation : typeManager.getLocalOperations(pivotType, null)) {
 				if (installDelegates(typeManager, anOperation)) {
 					hasDelegates = true;
 				}
 			}
-			for (Property aProperty : typeManager.getLocalProperties(pivotType)) {
+			for (Property aProperty : typeManager.getLocalProperties(pivotType, null)) {
 				if (installDelegates(typeManager, aProperty)) {
 					hasDelegates = true;
 				}
