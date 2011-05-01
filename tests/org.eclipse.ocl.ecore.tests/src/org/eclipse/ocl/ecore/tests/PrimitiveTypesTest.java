@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.7 2009/11/28 17:48:50 ewillink Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.8 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

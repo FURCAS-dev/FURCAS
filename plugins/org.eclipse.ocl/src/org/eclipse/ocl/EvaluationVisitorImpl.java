@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.7 2010/11/19 06:21:33 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.8 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;

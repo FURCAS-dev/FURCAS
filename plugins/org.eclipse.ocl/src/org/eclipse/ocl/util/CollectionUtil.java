@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.9 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.10 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 

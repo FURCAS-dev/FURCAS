@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.18 2009/12/18 06:36:36 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.19 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;

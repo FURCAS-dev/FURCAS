@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.19 2010/11/19 06:21:30 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.20 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1092,7 +1092,7 @@ public class CollectionsTest
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
-	
+
 	/**
 	 * Tests that in ordering of UnlimitedNatural::UNLIMITED is consider greatest element
 	 */

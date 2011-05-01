@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.10 2010/02/09 10:32:35 asanchez Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.11 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;

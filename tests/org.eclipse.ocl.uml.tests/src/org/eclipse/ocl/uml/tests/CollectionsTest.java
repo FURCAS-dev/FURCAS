@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.11 2010/11/19 06:21:35 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.12 2011/05/01 10:56:58 auhl Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
