@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassifierAllInstancesOperation.java,v 1.3 2011/02/21 08:37:47 ewillink Exp $
+ * $Id: ClassifierAllInstancesOperation.java,v 1.4 2011/04/25 09:48:56 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.classifier;
 
@@ -42,12 +42,12 @@ public class ClassifierAllInstancesOperation extends AbstractOperation
 		TypeValue typeVal = sourceVal.asTypeValue();
 		ModelManager modelManager = evaluationVisitor.getModelManager();
 		Set<Value> results = new HashSet<Value>();
-		Set<?> instances = modelManager.get(typeVal.getType());
+		Set<?> instances = modelManager.get(typeVal.getInstanceType());
 		if (instances == null) {
 			return valueFactory.getEmptySetValue();
 		}
 		for (Object instance : instances) {
-			results.add(valueFactory.createObjectValue(instance));
+			results.add(valueFactory.createObjectValue(instance));	// FIXME Move to model manager
 		}
 		return valueFactory.createSetValue(results);
 	}

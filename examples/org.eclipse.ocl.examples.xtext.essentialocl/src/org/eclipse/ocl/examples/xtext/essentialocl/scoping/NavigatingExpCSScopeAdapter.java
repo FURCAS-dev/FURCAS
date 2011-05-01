@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.8 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.9 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -105,21 +105,42 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 				}
 			}
 		}
-//		EObject csParent = getParent().getTarget();
-		TypeManager typeManager = environmentView.getTypeManager();
-		EObject csParent = target.eContainer();
-		if (csParent instanceof InfixExpCS) {
+		ExpCS explicitSource = null;
+		ScopeAdapter scopeAdapter = null;	// Note that parent is null during PreOrder namespace resolution
+		if (target.eContainer() instanceof InfixExpCS) {
 			OperatorCS csOperator = target.getParent();
 			if (csOperator != null) {
-				ScopeAdapter scopeAdapter = getScopeCSAdapter(csOperator);
 				ExpCS csSource = csOperator.getSource();
-				if (target == csSource) {									// Implicit source
-					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
-				} else {
-					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+				if (csSource != target) {
+					scopeAdapter = getScopeCSAdapter(csOperator);
+					explicitSource = csSource;
 				}
 			}
 		}
-		return getOuterScopeView(typeManager, null);
+		if (scopeAdapter == null) {
+			scopeAdapter = getParent();
+		}
+		if (fromArgument instanceof NavigatingArgCS) {
+			return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+		}
+		else {
+			Type type = null;
+			if (explicitSource != null) {
+				OclExpression source = PivotUtil.getPivot(OclExpression.class, explicitSource);
+				if (source != null) {
+					type = source.getType();
+				}
+			}
+			EnvironmentView.Filter filter = new OperationFilter(typeManager, type, target);
+			try {
+				environmentView.addFilter(filter);
+				BaseScopeView baseScopeView = new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
+				environmentView.computeLookups(baseScopeView);
+				return null;
+			}
+			finally {
+				environmentView.removeFilter(filter);
+			}
+		}
 	}
 }

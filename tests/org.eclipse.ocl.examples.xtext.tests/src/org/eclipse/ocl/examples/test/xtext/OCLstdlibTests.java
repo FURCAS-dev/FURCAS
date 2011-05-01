@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibTests.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: OCLstdlibTests.java,v 1.5 2011/04/25 09:49:25 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -278,7 +278,7 @@ public class OCLstdlibTests extends XtextTestCase
 			"           post a: elem;\n"+
 			"       }\n"+
 			"    }\n"+
-			"    type Classifier conformsTo OclAny {}\n"+
+			"    type Classifier<T> : ClassifierType conformsTo OclAny {}\n"+
 			"    type Boolean : PrimitiveType conformsTo OclAny {}\n"+
 			"    type Integer : PrimitiveType conformsTo Real {}\n"+
 			"    type Real : PrimitiveType conformsTo OclAny {}\n"+
@@ -304,7 +304,7 @@ public class OCLstdlibTests extends XtextTestCase
 		TypeManagerResourceSetAdapter adapter = TypeManagerResourceSetAdapter.findAdapter(resourceSet);
 		TypeManager typeManager = adapter.getTypeManager();
 		AnyType oclAnyType = typeManager.getOclAnyType();
-		Iterable<Operation> ownedOperations = typeManager.getLocalOperations(oclAnyType);
+		Iterable<Operation> ownedOperations = typeManager.getLocalOperations(oclAnyType, null);
 		assertEquals(1, Iterables.size(ownedOperations));
 		unloadPivot(typeManager);
 	}
