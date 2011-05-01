@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2008, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 248869
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.10 2009/12/18 06:34:09 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.11 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -69,7 +70,27 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"endpackage");
 	}
 	
-	/**
+    /**
+     * Now that body expressions can be specified as OCL intended, we can use
+     * them to evaluate operations at run-time. 
+     */
+    public void test_passingOclInvalidToOperation() {
+        parseConstraint(
+            "package ocltest context Fruit::ripen(color : Color) : Boolean " +
+            "body: color.oclIsInvalid() " +
+            "endpackage");
+        
+        OCLExpression<EClassifier> query = parse(
+            "package ocltest context Apple " +
+            "inv: self.ripen(if 1.3 / 0 > 1.3 then Color::black else Color::red endif) " +
+            "endpackage");
+        
+        EObject anApple = fruitFactory.create(apple);
+        anApple.eSet(fruit_color, color_black);
+        assertTrue((Boolean) evaluate(query, anApple));
+    }
+
+    /**
 	 * Tests a postcondition containing the "@ pre" construct.
 	 */
 	public void test_postcondition_atPre() {

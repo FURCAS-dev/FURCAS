@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionValue.java,v 1.5 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: CollectionValue.java,v 1.6 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -51,6 +51,8 @@ public interface CollectionValue extends Value, Iterable<Value>
 	Value maxMin(BinaryOperation binaryOperation) throws InvalidValueException;
 	BooleanValue notEmpty() throws InvalidValueException;
 	Set<TupleValue> product(CollectionValue c, TupleType tupleType) throws InvalidValueException;   	
+//	CollectionValue selectAsType(Type elementType) throws InvalidValueException;
+//	CollectionValue selectByKind(Type elementType) throws InvalidValueException;
 	IntegerValue size() throws InvalidValueException;
     OrderedCollectionValue sort(Comparator<Value> comparator) throws InvalidValueException;
 	Value sum(BinaryOperation binaryOperation, Value zero) throws InvalidValueException;

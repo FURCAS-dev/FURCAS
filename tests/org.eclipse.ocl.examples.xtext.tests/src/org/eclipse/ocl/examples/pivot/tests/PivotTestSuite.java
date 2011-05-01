@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: PivotTestSuite.java,v 1.4 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: PivotTestSuite.java,v 1.6 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -74,6 +75,7 @@ import org.eclipse.ocl.examples.pivot.SemanticException;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.Variable;
+import org.eclipse.ocl.examples.pivot.ecore.Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
 import org.eclipse.ocl.examples.pivot.util.Visitable;
 import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
@@ -255,23 +257,6 @@ public abstract class PivotTestSuite
     	 assertBadQuery(SemanticException.class, Diagnostic.ERROR,
     		 expression, messageTemplate, bindings);	   
 	}
-    	
-	/**
-	 * Asserts that the specified choice is to be found in the collection of
-	 * <code>choices</code>.
-	 * 
-	 * @param choices a collection of {@link Choice}s
-	 * @param kind the kind of choice to find
-	 * @param name the name of the choice to find
-	 *
-	protected void assertChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
-		assertNotNull("Choice not found: " + name + ", " + kind, //$NON-NLS-2$
-			findChoice(choices, kind, name));
-	} */
-	
-//	protected void assertInvalid(Value value) {
-//		assertTrue("Expected invalid", value.isInvalid());
-//	}
 	
 	/**
 	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
@@ -392,8 +377,15 @@ public abstract class PivotTestSuite
 	protected Object assertQueryEquals(Object context, Object expected, String expression) {
 		String denormalized = denormalize(expression);
 		try {
+			if (expected instanceof EEnumLiteral) {
+				Resource resource = ((EEnumLiteral)expected).eResource();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				expected = ecore2Pivot.getCreated(EnumerationLiteral.class, (EEnumLiteral)expected);
+			}
 			Value expectedValue = expected instanceof Value ? (Value)expected : valueFactory.valueOf(expected);
 			Value value = evaluate(helper, context, denormalized);
+//			String expectedAsString = String.valueOf(expected);
+//			String valueAsString = String.valueOf(value);
 			assertEquals(denormalized, expectedValue, value);
 			// FIXME Following is probably redundant
 			if (expectedValue instanceof OrderedSetValue) {
@@ -583,7 +575,7 @@ public abstract class PivotTestSuite
 	protected Object assertQueryResults(Object context, String expectedResultExpression, String expression) {
 		String denormalizedExpectedResultExpression = denormalize(expectedResultExpression);
 		try {
-			Object expectedResultQuery = evaluate(helper, null, denormalizedExpectedResultExpression);
+			Object expectedResultQuery = evaluate(helper, context, denormalizedExpectedResultExpression);
 			Object result = assertQueryEquals(context, expectedResultQuery, expression);
 			return result;
 		} catch (ParserException e) {
@@ -1036,10 +1028,19 @@ public abstract class PivotTestSuite
 
 	protected Value evaluate(OCLHelper aHelper, Object context,
             String expression) throws ParserException {
-//        typeManager.getPivotResourceSet().getResources().clear();
+		if (context instanceof EObject) {
+			EClass eClass = ((EObject)context).eClass();
+			Type pivotType = typeManager.getPivotType(eClass.getName());
+			if (pivotType == null) {
+				Resource resource = eClass.eResource();
+				Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(resource, typeManager);
+				pivotType = ecore2Pivot.getCreated(Type.class, eClass);
+			}
+			aHelper.setContext(pivotType);
+		}
 		ExpressionInOcl query = aHelper.createQuery(expression);
-        @SuppressWarnings("unused")
-		String s = query.toString();		// FIXME debugging
+//        @SuppressWarnings("unused")
+//		String s = query.toString();
         return ocl.evaluate(context, query);
     }
 	
@@ -1067,23 +1068,6 @@ public abstract class PivotTestSuite
 		return result;
 	}
 	
-/*	protected Choice findChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
-		Choice result = null;
-		
-		for (Choice c : choices) {
-			if (c.getKind() == kind && name.equals(c.getName())) {
-				result = c;
-				break;
-			}
-		}
-		
-		return result;
-	} */
-	
-//	protected ExpressionInOcl getBodyExpression(Constraint constraint) {
-//		return reflection.getBodyExpression(constraint);
-//	}
-	
 	/**
 	 * Retrieves the first {@link org.eclipse.uml2.uml.Property} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Attribute</b></em>' reference list.
 	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.Property} to retrieve, or <code>null</code>.
@@ -1109,34 +1093,7 @@ public abstract class PivotTestSuite
     protected Resource.Diagnostic getDiagnostic(Resource resource) {
     	org.eclipse.emf.ecore.resource.Resource.Diagnostic diagnostic = resource.getErrors().get(0);
 		return diagnostic;
-/*    	OCLProblemHandler handler = (OCLProblemHandler) OCLUtil.getAdapter(
-    		ocl.getEnvironment(), ProblemHandler.class);
-    	
-    	Diagnostic result = handler.getDiagnostic();
-    	if (result == null) {
-    		result = helper.getProblems();
-    	}
-    	
-    	assertNotNull("No diagnostic", result);
-    	
-    	return result; */
     }
-	
-//    protected Type getEcoreBigDecimal() {
-//    	return reflection.getEcoreBigDecimal();
-//    }
-	
-//    protected Type getEcoreBigInteger() {
-//    	return reflection.getEcoreBigInteger();
-//    }
-	
-//    protected Type getEcoreLong() {
-//    	return reflection.getEcoreLong();
-//    }
-	
-//	protected Object getInvalid() {
-//		return environment.getTypeManager().getInvalidValue();
-//	}
     
 	protected Type getMetaclass(String name) {
 		return typeManager.getRequiredLibraryType(name);

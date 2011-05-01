@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.7 2009/11/28 17:52:57 ewillink Exp $
+ * $Id: TuplesTest.java,v 1.8 2011/05/01 12:11:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -64,6 +64,56 @@ public class TuplesTest
 		parse("package ocltest context Fruit " +
 				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
 				"endpackage");
+	}
+	
+	/**
+	 * Tests that OclVoid and other tuple components with null values work as
+	 * expected
+	 */
+	public void test_tupleLiteral_nullValues() {
+		// one part
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:OclVoid = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null}.a " +
+			"endpackage")));
+		
+		// multiple parts
+		assertEquals(1, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null, b=1}.b " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a = null, b=1}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null, b='abc'}.a " +
+			"endpackage")));
+		assertEquals("abc", evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:String = null, b='abc'}.b " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null, b:String='abc'}.a " +
+			"endpackage")));
+		assertEquals(null, evaluate(parse(
+			"package ocltest context Fruit " +
+			"inv: Tuple{a:Fruit = null, b:OclVoid=null}.b " +
+			"endpackage")));
 	}
 	
 	/**

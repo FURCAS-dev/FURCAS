@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibPreOrderVisitor.java,v 1.7 2011/04/20 19:03:01 ewillink Exp $
+ * $Id: OCLstdlibPreOrderVisitor.java,v 1.8 2011/04/25 09:50:11 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.cs2pivot;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.pivot.AssociativityKind;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.Library;
@@ -45,6 +46,20 @@ import org.eclipse.ocl.examples.xtext.oclstdlib.util.AbstractExtendingDelegating
 public class OCLstdlibPreOrderVisitor
 	extends AbstractExtendingDelegatingOCLstdlibCSVisitor<Continuation<?>, CS2PivotConversion, EssentialOCLPreOrderVisitor>
 {
+	protected static class ClassifierInstanceTypeContinuation extends SingleContinuation<LibClassCS>
+	{
+		public ClassifierInstanceTypeContinuation(CS2PivotConversion context, LibClassCS csElement) {
+			super(context, null, null, csElement, context.getPackagesHaveTypesInterDependency());
+		}
+
+		@Override
+		public BasicContinuation<?> execute() {
+			ClassifierType type = PivotUtil.getPivot(ClassifierType.class, csElement);
+			type.setInstanceType((Type) type.getOwnedTemplateSignature().getParameters().get(0).getParameteredElement());
+			return null;
+		}
+	}
+	
 	protected static class CollectionElementTypeContinuation extends SingleContinuation<LibClassCS>
 	{
 		public CollectionElementTypeContinuation(CS2PivotConversion context, LibClassCS csElement) {
@@ -116,6 +131,10 @@ public class OCLstdlibPreOrderVisitor
 		if (type instanceof CollectionType) {
 			continuation = Continuations.combine(continuation,
 				new CollectionElementTypeContinuation(context, csLibClass));
+		}
+		else if (type instanceof ClassifierType) {
+			continuation = Continuations.combine(continuation,
+				new ClassifierInstanceTypeContinuation(context, csLibClass));
 		}
 		return continuation;
 	}

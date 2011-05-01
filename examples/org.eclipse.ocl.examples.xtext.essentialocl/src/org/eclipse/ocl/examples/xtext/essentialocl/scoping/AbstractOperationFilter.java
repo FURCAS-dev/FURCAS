@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOperationFilter.java,v 1.2 2011/03/12 18:45:21 ewillink Exp $
+ * $Id: AbstractOperationFilter.java,v 1.3 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -20,12 +20,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
+import org.eclipse.ocl.examples.pivot.Feature;
+import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -70,8 +74,31 @@ public abstract class AbstractOperationFilter implements EnvironmentView.Filter
 		return bindings;
 	}
 
-	protected void installBindings(EnvironmentView environmentView, EObject eObject,
+	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
 		environmentView.setBindings(eObject, bindings);
+	}
+
+	protected void installOclSelfBinding(Type forType, EObject eObject,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		if (forType == null) {
+			forType = sourceType;
+		}
+		for (TemplateParameter templateParameter : bindings.keySet()) {
+			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
+			if (parameteredElement instanceof NamedElement) {
+				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
+					if (bindings.get(templateParameter) == null) {
+						if ((forType instanceof ClassifierType) && (eObject instanceof Feature) && ((Feature)eObject).isStatic()) {
+							bindings.put(templateParameter, ((ClassifierType)forType).getInstanceType());
+						}
+						else {
+							bindings.put(templateParameter, forType);
+						}
+						break;
+					}
+				}
+			}
+		}
 	}
 }
