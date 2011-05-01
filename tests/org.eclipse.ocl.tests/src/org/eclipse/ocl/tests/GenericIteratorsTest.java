@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.3 2010/01/11 22:28:22 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.4 2011/05/01 10:57:02 auhl Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -352,6 +352,7 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
+	    @SuppressWarnings("unchecked")
         Collection<PK> expected4 = createCollection(nestingIsOrdered, true);
         assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
         // empty closure
@@ -575,7 +576,8 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
         assertTrue(result instanceof Collection<?>);
 
         Collection<?> collResult = (Collection<?>) result;
-        assertTrue(collResult.isEmpty());
+        assertEquals(1, collResult.size());
+        assertNull(collResult.iterator().next());
     }
 
 	/**

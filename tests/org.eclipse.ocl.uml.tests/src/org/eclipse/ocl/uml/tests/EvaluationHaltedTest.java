@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009 Borland Software Corporation and others.
+ * Copyright (c) 2009, 2011 Borland Software Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Radek Dvorak - initial API and implementation
+ *     Axel Uhl (SAP AG) - Bug 342644
  *******************************************************************************/
 package org.eclipse.ocl.uml.tests;
 
@@ -30,10 +31,10 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.EvaluationVisitorDecorator;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.uml.OCL;
+import org.eclipse.ocl.uml.OCL.Query;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
-import org.eclipse.ocl.uml.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
@@ -155,17 +156,17 @@ public class EvaluationHaltedTest
 	public void testHaltedQuery() {
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
-		assertListResult(query.evaluate(), Collections.emptyList());
+		assertListResult(query.evaluate(HALT_KIND_NONE), Collections.singletonList(HALT_KIND_NONE));
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
 		envFactory.haltOnContextLessExecution = true;
-		assertInvalid(query.evaluate());
+		assertInvalid(query.evaluate(HALT_KIND_NONE));
 		assertNotNull(OCLUtil.getEvaluationProblems(query));
 		assertNotNull(OCLUtil.getEvaluationProblems(query).getMessage().equals(
 			"Halt"));
 		envFactory.haltOnContextLessExecution = false;
 		// check we clear the problems on next evaluate
-		query.evaluate();
+		query.evaluate(HALT_KIND_NONE);
 		assertNull(OCLUtil.getEvaluationProblems(query));
 	}
 

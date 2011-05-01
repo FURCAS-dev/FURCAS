@@ -12,13 +12,14 @@
  *
  * </copyright>
  *
- * $Id: ClassCSScopeAdapter.java,v 1.6 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: ClassCSScopeAdapter.java,v 1.7 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -42,7 +43,7 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 		}
 		else {
 			Type libType = typeManager.getClassifierType();
-			addLibContents(environmentView, libType, scopeView);
+			environmentView.addLibContents(libType, scopeView);
 		}
 	}
 
@@ -65,8 +66,13 @@ public class ClassCSScopeAdapter extends BaseCSScopeAdapter<ClassCS, org.eclipse
 				//				environmentView.addElements(PivotPackage.Literals.TYPE, PivotUtil.getTypeTemplateParameterables(pivot));
 			}
 			else {
-				environmentView.addNamedElements(typeManager.getLocalOperations(pivot));
-				environmentView.addNamedElements(typeManager.getLocalProperties(pivot));
+				if (pivot instanceof ClassifierType) {
+					Type instanceType = ((ClassifierType)pivot).getInstanceType();
+					environmentView.addNamedElements(typeManager.getLocalOperations(instanceType, true));
+					environmentView.addNamedElements(typeManager.getLocalProperties(instanceType, true));
+				}
+				environmentView.addNamedElements(typeManager.getLocalOperations(pivot, false));
+				environmentView.addNamedElements(typeManager.getLocalProperties(pivot, false));
 				environmentView.addElements(PivotUtil.getTypeTemplateParameterables(pivot));
 				if (!environmentView.hasFinalResult()) {
 //					if (environmentView.getRequiredType() != BaseCSTPackage.Literals.TYPE_CS) { // Avoid creating bindings for nested type parameters

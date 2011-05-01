@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnumerationAllInstancesOperation.java,v 1.3 2011/02/08 17:47:35 ewillink Exp $
+ * $Id: EnumerationAllInstancesOperation.java,v 1.4 2011/04/25 09:48:57 ewillink Exp $
  */
 package org.eclipse.ocl.examples.library.enumeration;
 
@@ -22,10 +22,11 @@ import java.util.Set;
 import org.eclipse.ocl.examples.library.AbstractOperation;
 import org.eclipse.ocl.examples.pivot.Enumeration;
 import org.eclipse.ocl.examples.pivot.EnumerationLiteral;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
+import org.eclipse.ocl.examples.pivot.values.TypeValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -38,15 +39,10 @@ public class EnumerationAllInstancesOperation extends AbstractOperation
 {
 	public static final EnumerationAllInstancesOperation INSTANCE = new EnumerationAllInstancesOperation();
 
-	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) {
+	public Value evaluate(EvaluationVisitor evaluationVisitor, Value sourceVal, OperationCallExp operationCall) throws InvalidValueException {
 		ValueFactory valueFactory = evaluationVisitor.getValueFactory();
-		TypeManager typeManager = evaluationVisitor.getTypeManager();
-		Type sourceType = sourceVal.getType(typeManager, null);
-		// the instances are the literals
-//		for (EnumerationLiteral oclLiteral : ((Enumeration)sourceType).getOwnedLiterals()) {
-//			EObject metaModelElement = oclLiteral.getMetaModelElement();
-//			result.add(metaModelElement != null ? metaModelElement : oclLiteral);
-//		}
+		TypeValue sourceTypeValue = sourceVal.asTypeValue();
+		Type sourceType = sourceTypeValue.getInstanceType();
 		Set<Value> results = new HashSet<Value>();
 		for (EnumerationLiteral instance : ((Enumeration)sourceType).getOwnedLiterals()) {
 			results.add(valueFactory.createObjectValue(instance));

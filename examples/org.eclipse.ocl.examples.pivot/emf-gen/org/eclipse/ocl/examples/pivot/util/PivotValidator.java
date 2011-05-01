@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotValidator.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotValidator.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -34,6 +34,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CallOperationAction;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -317,6 +318,8 @@ public class PivotValidator
 				return validateCallOperationAction((CallOperationAction)value, diagnostics, context);
 			case PivotPackage.CLASS:
 				return validateClass((org.eclipse.ocl.examples.pivot.Class)value, diagnostics, context);
+			case PivotPackage.CLASSIFIER_TYPE:
+				return validateClassifierType((ClassifierType)value, diagnostics, context);
 			case PivotPackage.COLLECTION_ITEM:
 				return validateCollectionItem((CollectionItem)value, diagnostics, context);
 			case PivotPackage.COLLECTION_LITERAL_EXP:
@@ -584,6 +587,16 @@ public class PivotValidator
 	public boolean validateClass(org.eclipse.ocl.examples.pivot.Class class_,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint((EObject)class_, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateClassifierType(ClassifierType classifierType, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		return validate_EveryDefaultConstraint((EObject)classifierType, diagnostics, context);
 	}
 
 	/**

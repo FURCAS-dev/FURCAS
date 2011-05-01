@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2009, 2011 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 238050, 253252
  *   Radek Dvorak - Bugs 261128, 265066
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: AbstractEvaluationVisitor.java,v 1.11 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: AbstractEvaluationVisitor.java,v 1.12 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl;
 
@@ -428,6 +429,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true if the object is an instance of the type, false otherwise.
+	 * An error condition such as a <code>null</code> <code>typeArg</code> is
+	 * indicated by a <code>null</code> return value.
 	 */
 	protected Boolean oclIsTypeOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
@@ -443,6 +446,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// ask if not lax-null-handling
 		if (value == null) {
 			return isLaxNullHandling()
+			    // VoidType conforms to all other types except OclInvalid
+		        // See Section 8.2 of OCL 2.3 specification (10-11-42) 
 				? Boolean.valueOf(type instanceof VoidType<?>)
 				: null;
 		}
@@ -465,6 +470,8 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	 * @param value the value to check
 	 * @param typeArg the type to check
 	 * @return true iff the value is of the type or one of its super types.
+	 * An error condition such as a <code>null</code> <code>typeArg</code> is
+	 * indicated by a <code>null</code> return value.
 	 */
 	protected Boolean oclIsKindOf(Object value, Object typeArg) {
 		@SuppressWarnings("unchecked")
@@ -480,12 +487,16 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 		// aren't actually useful as any type but their own.  So, in case of lax
 		// null handling, return TRUE.  Otherwise, oclIsKindOf isn't even
 		// permitted, so return null to generate an OclInvalid down the line
-		if (isUndefined(value)) {
+		if (value == null) {
 			return isLaxNullHandling()
-				? Boolean.TRUE
+				? !Boolean.valueOf(type instanceof InvalidType<?>)
 				: null;
 		}
-
+		if (value == stdlib.getInvalid()) {
+			return isLaxNullHandling()
+				? Boolean.TRUE // OclInvalid conforms to all other types
+				: null;
+		}
 		return Boolean.valueOf(getEvaluationEnvironment().isKindOf(value, type));
 	}
 	
@@ -542,5 +553,31 @@ public abstract class AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA
 	protected boolean isLaxNullHandling() {
 	    return EvaluationOptions.getValue(getEvaluationEnvironment(),
 	        EvaluationOptions.LAX_NULL_HANDLING);
+	}
+
+	/**
+	 * Evaluates <code>exp</code>. If the evaluation terminates with an
+	 * exception that does not have special semantics for the OCL evaluator
+	 * itself, such as {@link EvaluationHaltedException}, the exception is
+	 * caught, and {@link #getInvalid() invalid} is returned as the result of
+	 * the evaluation. If the evaluation terminates normally, the evaluation
+	 * result is returned.<p>
+	 * 
+	 * Subclasses may override this method to add exceptions to the list of
+	 * exceptions that are not caught because they have special meaning to a
+	 * specialized OCL evaluator.
+	 * 
+	 * @since 3.1
+	 */
+	protected Object safeVisitExpression(OCLExpression<C> exp) {
+		Object sourceVal;
+		try {
+			sourceVal = exp.accept(getVisitor());
+		} catch (EvaluationHaltedException ehe) {
+			throw ehe;
+		} catch (RuntimeException e) {
+			sourceVal = getInvalid();
+		}
+		return sourceVal;
 	}
 } //EvaluationVisitorImpl
