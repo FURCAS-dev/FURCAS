@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2009 IBM Corporation and others.
+ * Copyright (c) 2006, 2009, 2011 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.11 2010/11/19 06:21:35 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.12 2011/05/01 10:56:58 auhl Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -425,9 +426,16 @@ public class CollectionsTest
                 "Set{'a', 'b', 'c', 'd'}->flatten()" +
                     " = Set{'b', 'c', 'a', 'd'}"));
 
-            assertTrue(check(helper, "",
+			// Collections of different kind are not equal. The behavior
+			// of the flatten() operation on OrderedSet is unspecified
+			// in OCL 2.3 (OMG 10-11-42) section A.2.5.8, and we choose
+			// to flatten an OrderedSet into an OrderedSet.
+            assertFalse(check(helper, "",
                 "OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
                     " = Set{'b', 'c', 'a', 'd'}"));
+            assertTrue(check(helper, "",
+                "OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
+                    " = OrderedSet{'a', 'b', 'c', 'd'}"));
 
             assertTrue(check(helper, "",
                 "Sequence{'a', 'b', 'd', 'b', 'c', 'd'}->flatten()" +

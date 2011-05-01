@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractScopeAdapter.java,v 1.4 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: AbstractScopeAdapter.java,v 1.5 2011/04/25 09:50:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.pivot;
 
@@ -26,9 +26,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.pivot.Element;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.cs2pivot.CS2Pivot;
@@ -124,18 +123,6 @@ public abstract class AbstractScopeAdapter<T extends EObject> implements ScopeAd
 		this.parent = parent;
 		this.target = target;
 		target.eAdapters().add(this);
-	}
-
-	protected void addLibContents(EnvironmentView environmentView, Type libType, ScopeView scopeView) {
-		if (libType == null) {
-			return;
-		}
-		environmentView.addElementsOfScope(libType, scopeView);
-		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
-			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
-				addLibContents(environmentView, superClass, scopeView);
-			}
-		}
 	}
 
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {

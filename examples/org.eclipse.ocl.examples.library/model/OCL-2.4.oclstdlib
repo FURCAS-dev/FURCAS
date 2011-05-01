@@ -24,10 +24,10 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	operation xor(b : Boolean) : Boolean precedence=XOR => 'org.eclipse.ocl.examples.library.logical.BooleanXorOperation';
 }
 
-type Classifier conformsTo OclAny {
+type Classifier<T> : ClassifierType conformsTo OclAny {
 	static operation allInstances<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.classifier.ClassifierAllInstancesOperation';
-	operation oclContainer() : Classifier => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
-	operation oclContents() : Set<Classifier> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
+	operation oclContainer<U>() : Classifier<U> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContainerOperation';
+	operation oclContents<U>() : Set<Classifier<U>> => 'org.eclipse.ocl.examples.library.classifier.ClassifierOclContentsOperation';
 }
 
 type Collection<T> : CollectionType conformsTo OclAny {
@@ -104,14 +104,14 @@ type OclAny : AnyType {
 	operation "="(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyEqualOperation';
 	operation "<>"(object2 : OclAny) : Boolean precedence=EQUALITY => 'org.eclipse.ocl.examples.library.oclany.OclAnyNotEqualOperation';
 	operation oclAsSet<OclSelf>() : Set<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsSetOperation';
-	operation oclAsType<T>(type : Classifier) : T => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
+	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclAsTypeOperation';
 	operation oclIsInState(statespec : OclState) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInStateOperation';
 	operation oclIsInvalid() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsInvalidOperation';
-	operation oclIsKindOf(type : Classifier) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
+	operation oclIsKindOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsKindOfOperation';
 	operation oclIsNew() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
-	operation oclIsTypeOf(type : Classifier) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
+	operation oclIsTypeOf<T>(type : Classifier<T>) : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsTypeOfOperation';
 	operation oclIsUndefined() : Boolean => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclIsUndefinedOperation';
-	operation oclType() : Classifier => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
+	operation oclType<OclSelf>() : Classifier<OclSelf> => 'org.eclipse.ocl.examples.library.oclany.OclAnyOclTypeOperation';
 --	operation "."<T>(object2 : OclAny) : T precedence=NAVIGATION => 'org.eclipse.ocl.examples.library.oclany.OclAnyUnsupportedOperation';
 }
 
@@ -196,7 +196,7 @@ type Real : PrimitiveType conformsTo OclAny {
 	operation floor() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericFloorOperation';
 	operation max(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMaxOperation';
 	operation min(r : Real) : Real => 'org.eclipse.ocl.examples.library.numeric.NumericMinOperation';
-	operation oclAsType<T extends Real>(type : Classifier) : T => 'org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation';
+	operation oclAsType<TT>(type : Classifier<TT>) : TT => 'org.eclipse.ocl.examples.library.numeric.NumericOclAsTypeOperation';
 	operation round() : Integer => 'org.eclipse.ocl.examples.library.numeric.NumericRoundOperation';
 	operation toString() : String => 'org.eclipse.ocl.examples.library.oclany.OclAnyToStringOperation';
 }
@@ -254,6 +254,8 @@ type String : PrimitiveType conformsTo OclAny {
 	operation "<="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringLessThanEqualOperation';
 	operation ">="(s : String) : Boolean precedence=RELATIONAL => 'org.eclipse.ocl.examples.library.string.StringGreaterThanEqualOperation';
 }
+
+type Tuple : TupleType conformsTo OclAny {}
 
 type UniqueCollection<T> : CollectionType conformsTo Collection<T> {
 	iteration sortedBy(i : T | body : Lambda T() : OclAny) : OrderedSet<T> => 'org.eclipse.ocl.examples.library.iterator.SortedByIteration';

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImplicitCollectFilter.java,v 1.1 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: ImplicitCollectFilter.java,v 1.2 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -42,7 +42,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		this.iteratorType = iteratorType;
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (!(eObject instanceof Iteration)) {
 			return false;
 		}
@@ -66,7 +66,7 @@ public class ImplicitCollectFilter extends AbstractOperationFilter
 		Map<TemplateParameter, ParameterableElement> bindings = PivotUtil.getAllTemplateParameterSubstitutions(null, sourceType);
 		TemplateParameter iteratorParameter = templateParameters.get(0);
 		bindings.put(iteratorParameter, iteratorType);
-		installBindings(environmentView, eObject, bindings);
+		installBindings(environmentView, forType, eObject, bindings);
 		return true;
 	}
 }
