@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.6 2009/11/28 18:01:12 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.7 2011/05/01 10:56:58 auhl Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
@@ -363,6 +363,24 @@ public class RegressionTest
 		assertChoice(choices, ChoiceKind.PROPERTY, "color");
 	}
 	
+    /**
+     * Tests the validation the number of iterator variables for iterators that
+     * do not support multiple variables.
+     */
+    public void test_oclIsInvalidOnInvalidLetVariable_342644() {
+    	helper.setContext(apple);
+    	assertQueryTrue(null, "let a:Integer = '123a'.toInteger() in a.oclIsInvalid()");
+    }
+    
+    /**
+     * Tests the validation the number of iterator variables for iterators that
+     * do not support multiple variables.
+     */
+    public void test_oclIsInvalidOnInvalidOperationCallResult_342561() {
+    	helper.setContext(apple);
+    	assertQueryTrue(null, "'123a'.toInteger().oclIsInvalid()");
+    }
+    
 	/**
 	 * Tests that the oclIsNew() operation is only suggested in postcondition
 	 * context.
