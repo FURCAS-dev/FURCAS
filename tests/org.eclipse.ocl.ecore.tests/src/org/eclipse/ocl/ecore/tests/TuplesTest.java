@@ -70,7 +70,7 @@ public class TuplesTest
 	 * Tests that OclVoid and other tuple components with null values work as
 	 * expected
 	 */
-	public void test_typleLiteral_nullValues() {
+	public void test_tupleLiteral_nullValues() {
 		// one part
 		assertEquals(null, evaluate(parse(
 			"package ocltest context Fruit " +
