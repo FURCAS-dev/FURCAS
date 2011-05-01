@@ -27,6 +27,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 /**
  * An implementation of a delegate domain for an OCL enhanced package. The domain
@@ -74,7 +77,16 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * 
 	 * @since 3.1
 	 */
-	public static final String KEY_FOR_FACTORY_CLASS = "delegateFactory";
+	public static final String KEY_FOR_OPPOSITE_END_FINDER_CLASS = "oppositeEndFinderClass";
+	/**
+	 * If the annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
+	 * value of "true", the {@link EcoreEnvironmentFactoryWithHiddenOpposites} is used instead of
+	 * the default {@link EcoreEnvironmentFactory}, making the OCL environment used by the delegates
+	 * support "hidden opposites" and the {@link OppositePropertyCallExp}.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites";
 	protected final String uri;
 	protected final EPackage ePackage;
 	protected final OCL ocl;
@@ -97,42 +109,35 @@ public class OCLDelegateDomain implements DelegateDomain
 		ResourceSet resourceSet = res.getResourceSet();
 		EcoreEnvironmentFactory envFactory;
 		
-		String clsName = getDefinedEcoreEnvironmentFactoryClassName(ePackage);
+		OppositeEndFinder finder = getDefinedOppositeEndFinder(ePackage);
 		
 		if (res != null && resourceSet != null) {
 			// it's a dynamic package. Use the local package registry
 			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-			if(clsName!=null){
-				Class<? extends EcoreEnvironmentFactory> cls;
-				try {
-					cls = (Class<? extends EcoreEnvironmentFactory>) ePackage.getClass().getClassLoader().loadClass(clsName);
-					Constructor<? extends EcoreEnvironmentFactory> con = cls.getConstructor(EPackage.Registry.class);
-					envFactory = con.newInstance(packageRegistry);
-				} catch (Exception e) {
-					//default behavior
-					envFactory = new EcoreEnvironmentFactory(packageRegistry);
-				}
-			}else{
-				envFactory = new EcoreEnvironmentFactory(packageRegistry);
-
+			if(finder != null){
+				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry,finder);
 			}
+			else if(useHiddenOpposites(ePackage)){
+				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry);
+			}
+			else{
+				envFactory = new EcoreEnvironmentFactory(packageRegistry);
+			}
+
+
 			DelegateResourceAdapter.getAdapter(res);
 		} else {
 			// the shared instance uses the static package registry
-			Class<? extends EcoreEnvironmentFactory> cls;
-			if(clsName!=null){
-				try {
-					cls = (Class<? extends EcoreEnvironmentFactory>) Class.forName(clsName);
-					Field instance = cls.getDeclaredField("INSTANCE");
-					envFactory = (EcoreEnvironmentFactory) instance.get(null);
-				} catch (Exception e) {
-					//default behavior
-					envFactory = EcoreEnvironmentFactory.INSTANCE;
-				}}
+			if(finder != null){
+				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(finder);
+			}
+			else if(useHiddenOpposites(ePackage)){
+				envFactory  = EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE;
+			}
 			else{
 				envFactory = EcoreEnvironmentFactory.INSTANCE;
-
 			}
+
 		}
 		this.ocl = OCL.newInstance(envFactory);
 	}
@@ -142,14 +147,36 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @param ePackage to read th {@link EAnnotation annotations} from
 	 * @return the defined {@link EcoreEnvironmentFactory} or null
 	 */
-	private String getDefinedEcoreEnvironmentFactoryClassName(EPackage ePackage) {
+	private OppositeEndFinder getDefinedOppositeEndFinder(EPackage ePackage) {
+		OppositeEndFinder finder = null;
 		// get cls-name for user-defined EcoreEnviromentFactory implementation
 		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
 		String clsName = null;
 		if (eAnnotation != null) {
-			clsName = eAnnotation.getDetails().get(KEY_FOR_FACTORY_CLASS);
+			clsName = eAnnotation.getDetails().get(KEY_FOR_OPPOSITE_END_FINDER_CLASS);
 		}
-		return clsName;
+		if(clsName == null){
+			return null;
+		}
+		Class<? extends OppositeEndFinder> cls;
+		try {
+			cls = (Class<? extends OppositeEndFinder>) ePackage.getClass().getClassLoader().loadClass(clsName);
+			finder = cls.newInstance();
+		} catch (Exception e) {
+			/*...*/
+		}
+		return finder;
+	}
+	
+	private boolean useHiddenOpposites(EPackage ePackage) {
+		EAnnotation ea = ePackage.getEAnnotation(OCL_DELEGATE_URI);
+		if (ea != null) {
+			String value = ea.getDetails().get(OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY);
+			if (value != null && Boolean.valueOf(value)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void dispose() {

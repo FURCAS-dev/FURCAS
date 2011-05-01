@@ -629,7 +629,7 @@ public class DelegatesTest extends AbstractTestSuite
 		}
 	}
 	
-	public void test_hiddenOppositeInOperation() throws InvocationTargetException {
+	public void test_hiddenOppositeInOperationDefault() throws InvocationTargetException {
 		URI uri = getTestModelURI("/model/HiddenOpposites.ecore");
 		Resource res = resourceSet.getResource(uri, true);
 		res.eAdapters().add(new ECrossReferenceAdapter());
@@ -653,7 +653,34 @@ public class DelegatesTest extends AbstractTestSuite
 		assertNotNull(getUnrelated);
 		Object o = sup2Obj.eInvoke(getUnrelated, null);
 		assertEquals(unrelatedObj, o);
-
+	}	
+	public void test_hiddenOppositeInOperationDefined() throws InvocationTargetException {
+		URI uri = getTestModelURI("/model/HiddenOpposites.ecore");
+		Resource res = resourceSet.getResource(uri, true);
+		res.eAdapters().add(new ECrossReferenceAdapter());
+		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
+		EAnnotation anno = hiddenOppositesPackage.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		anno.getDetails().remove(0);
+		anno.getDetails().put("oppositeEndFinderClass", "org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder");
+		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
+		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
+		EClass sup2 = (EClass) hiddenOppositesPackage.getEClassifier("Sup2");
+		EClass unrelated = (EClass) hiddenOppositesPackage.getEClassifier("Unrelated");
+		EObject unrelatedObj = hiddenOppositesFactory.create(unrelated);
+		EObject sup2Obj = hiddenOppositesFactory.create(sup2);
+		res.getContents().add(unrelatedObj);
+		res.getContents().add(sup2Obj);
+		unrelatedObj.eSet(unrelated.getEStructuralFeature("forward"), sup2Obj);
+		EOperation getUnrelated = null;
+		for (EOperation eo : sup2.getEOperations()) {
+			if (eo.getName().equals("getUnrelated")) {
+				getUnrelated = eo;
+				break;
+			}
+		}
+		assertNotNull(getUnrelated);
+		Object o = sup2Obj.eInvoke(getUnrelated, null);
+		assertEquals(unrelatedObj, o);
 	}
 
 	public void test_invariantCacheBeingUsed() throws ParserException {
