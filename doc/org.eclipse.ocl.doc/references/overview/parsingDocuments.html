@@ -26,7 +26,7 @@ As an example, consider the following document:
 <i>-- get all books with a title in a library and its branches (recursively)</i>
 <b>def</b>: getBooks(title : String) : Set(Book) =
     books-&gt;select(b | b.title = title)-&gt;asSet()-&gt;union(
-        branches.getBooks(title))
+        branches.getBooks(title)-&gt;asSet())
 
 <b>context</b> Book
 <i>-- the library containing a book</i>
@@ -34,7 +34,7 @@ As an example, consider the following document:
 
 <i>-- book titles are unique within their library branch (and its sub-branches)</i>
 <b>inv</b> unique_title: not library.oclIsUndefined() implies
-     library.getBooks(title) = Set{self})
+     library.getBooks(title) = Set{self}
  
 <b>endpackage</b>
 </pre>
@@ -56,21 +56,21 @@ Given an <em class="CodeName">OCLInput</em>, simply ask an <em class="CodeName">
 to parse it:
 </p>
 <pre class="Code">
-OCL&lt;?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject&gt; ocl;
-ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+EPackage.Registry registry = new EPackageRegistryImpl();
+registry.put(EXTLibraryPackage.eNS_URI, EXTLibraryPackage.eINSTANCE);
+EcoreEnvironmentFactory environmentFactory = new EcoreEnvironmentFactory(registry);
+OCL ocl = OCL.newInstance(environmentFactory);
 
 // get an OCL text file via some hypothetical API
-IFile file = getWorkspaceFile("/ocl/constraints.ocl");
-
-InputStream in = file.getContents();
+InputStream in = getInputStream("/model/parsingDocumentsExample.ocl");
 
 Map&lt;String, Constraint&gt; constraintMap = new HashMap&lt;String, Constraint&gt;();
 
 // parse the contents as an OCL document
 try {
-    OCLInput document = new <b>OCLInput</b>(in, file.getCharset());
+    OCLInput document = new OCLInput(in);
     
-    List&lt;Constraint&gt; constraints = ocl.<b>parse</b>(input);
+    List&lt;Constraint&gt; constraints = ocl.parse(document);
     for (Constraint next : constraints) {
         constraintMap.put(next.getName(), next);
         
@@ -111,13 +111,15 @@ System.out.printf("Got book: %s%n", book);
 
 // use the unique_title constraint to validate the book
 System.out.printf("Validate book: %b%n",
-    ocl.check(book, constraintMap.get("unique_title"));
+    ocl.check(book, constraintMap.get("unique_title")));	
 </pre>
 
 <hr/>
 
 <p>
-<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2007 IBM Corporation and others. All Rights Reserved.</a>
+The source for these examples may be found in the org.eclipse.ocl.ecore.tests plugin in model/parsingDocumentsExample.ocl and in src/src/org/eclipse/ocl/ecore/tests/DocumentationExamples.java.
+<p>
+<a href="http://www.eclipse.org/legal/epl-v10.html">Copyright (c) 2000, 2011 IBM Corporation and others. All Rights Reserved.</a>
 </p>
 </body>
 </html>
