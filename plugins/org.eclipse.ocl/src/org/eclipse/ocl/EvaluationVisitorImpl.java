@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2010 IBM Corporation and others.
+ * Copyright (c) 2005, 2010, 2011 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,10 +12,11 @@
  *   Zeligsoft - Bug 253252
  *   Radek Dvorak - Bugs 261128, 265066
  *   E.D.Willink - Bug 297541
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.7 2010/11/19 06:21:33 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.8 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;
@@ -34,6 +35,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CollectionItem;
@@ -78,6 +81,8 @@ import org.eclipse.ocl.internal.evaluation.IterationTemplateReject;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSelect;
 import org.eclipse.ocl.internal.evaluation.IterationTemplateSortedBy;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
+import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.InvalidType;
@@ -104,6 +109,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
+	private static final Integer UNLIMITED = Integer.valueOf(UnlimitedNaturalLiteralExp.UNLIMITED);
+
 	private static int tempCounter = 0;
 
 	private EvaluationEnvironment.Enumerations<EL> enumerations;
@@ -124,6 +131,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		super(env, evalEnv, extentMap);
 		
 		enumerations = OCLUtil.getAdapter(evalEnv, EvaluationEnvironment.Enumerations.class);
+	}
+
+	private boolean isBooleanOperation(int opCode) {
+		return opCode == PredefinedType.AND ||
+			opCode == PredefinedType.OR ||
+			opCode == PredefinedType.NOT ||
+			opCode == PredefinedType.XOR ||
+			opCode == PredefinedType.IMPLIES;
 	}
 
 	/**
@@ -159,7 +174,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		int numArgs = args.size();
 
 		// evaluate source
-		Object sourceVal = source.accept(getVisitor());
+		Object sourceVal = safeVisitExpression(source);
 		
 		OCLExpression<C> body = getOperationBody(oper);
 		if ((body != null) || opCode <= 0 /* not a pre-defined operation */
@@ -171,7 +186,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			int i = 0;
 			for (Iterator<OCLExpression<C>> it = args.iterator(); it.hasNext(); i++) {
 				OCLExpression<C> arg = it.next();
-				evalArgs[i] = arg.accept(getVisitor());
+				evalArgs[i] = safeVisitExpression(arg);
 			}
 	
 			// ask the environment to evaluate
@@ -253,9 +268,15 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// The semantics for inequality are dual.
 		// 
 		if (opCode == PredefinedType.EQUAL) {
+			if (sourceVal == getInvalid()) {
+				return getInvalid();
+			}
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
+			Object argVal = safeVisitExpression(arg);
+			if (argVal == getInvalid()) {
+				return argVal;
+			}
 	        
 	        if (sourceVal instanceof Number) {
 	            // coerce to Long or Double, if possible, for comparison
@@ -271,11 +292,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		}
 
 		else if (opCode == PredefinedType.NOT_EQUAL) {
+			if (sourceVal == getInvalid()) {
+				return getInvalid();
+			}
 			// notEquals
 
 			// evaluate argument
 			OCLExpression<C> arg = args.get(0);
-			Object argVal = arg.accept(getVisitor());
+			Object argVal = safeVisitExpression(arg);
+			if (argVal == getInvalid()) {
+				return argVal;
+			}
 		       
 	        if (sourceVal instanceof Number) {
 	            // coerce to Long or Double, if possible, for comparison
@@ -314,6 +341,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 						
 					case PredefinedType.MINUS:
 						// Integer::minus()
+						// -* doesn't exist, so evaluate to invalid
+						if (sourceType == getUnlimitedNatural() && UNLIMITED.equals(sourceVal)) {
+							return getInvalid();
+						}
 						if (sourceVal instanceof Integer) {
                             return - (Integer) sourceVal;
                         } else if (sourceVal instanceof Long) {
@@ -477,10 +508,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 					case PredefinedType.FIRST:
 						// OrderedSet::first()
+						if (((Collection<?>) sourceVal).isEmpty()) {
+							return getInvalid();
+						}
 						return CollectionUtil.first((Collection<?>) sourceVal);
 
 					case PredefinedType.LAST:
 						// OrderedSet::last()
+						if (((Collection<?>) sourceVal).isEmpty()) {
+							return getInvalid();
+						}
 						return CollectionUtil.last((Collection<?>) sourceVal);
 
 				} // end of unary operation switch
@@ -501,6 +538,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	                case PredefinedType.OCL_IS_TYPE_OF:
 	                case PredefinedType.OCL_IS_KIND_OF:
 	                case PredefinedType.OCL_AS_TYPE:
+	                case PredefinedType.AND:
+	                case PredefinedType.OR:
+	                case PredefinedType.XOR:
+	                case PredefinedType.IMPLIES:
 	                    if (isLaxNullHandling()) {
 	                        break;
 	                    } else {
@@ -513,9 +554,33 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				// AnyType::oclIsTypeOf(OclType)
 				if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
-                    return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+                    Object targetType = arg.accept(getVisitor());
+                    // UnlimitedNatural is represented as Integer, so checking sourceVal's type
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
+					if (sourceType == getUnlimitedNatural()) {
+						return targetType == getUnlimitedNatural();
+					}
+					Boolean result = oclIsTypeOf(sourceVal, targetType);
+					if (result == null) {
+						return getInvalid();
+					} else {
+						return result;
+					}
                 } else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
-                    return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+                	// no special check for Integer representation of UnlimitedNatural necessary
+                	// because UnlimitedNatural is subtype of Integer
+                    Object targetType = arg.accept(getVisitor());
+                    // UnlimitedNatural is represented as Integer, so checking sourceVal's type
+                    // doesn't work. Therefore, UnlimitedNatural needs to be handled here.
+					if (sourceType == getUnlimitedNatural() && targetType == getUnlimitedNatural()) {
+						return true; // other combinations properly handled since checked with Integer
+					}
+					Boolean result = oclIsKindOf(sourceVal, targetType);
+					if (result == null) {
+						return getInvalid();
+					} else {
+						return result;
+					}
                 } else if (opCode == PredefinedType.OCL_AS_TYPE) {
 					// Type conversions for the built-in, non-collection
 					// types are completely checked in the parser. The only
@@ -528,40 +593,64 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// if the source is undefined or the conversion to
 					// OclVoid so is the result
 					if (sourceVal == null || (argType instanceof VoidType<?>)) {
-                        return null;
+                        return sourceVal;
                     }
 					if (sourceVal == getInvalid() || (argType instanceof InvalidType<?>)) {
                         return getInvalid();
                     }
 
-					if (sourceVal instanceof Double
+					if (sourceVal instanceof String
+						&& ((TypeExp<C>) arg).getReferredType() == getString()) {
+						return sourceVal;
+					} else if (sourceVal instanceof Double
 						&& (argType == getInteger())) {
                         return new Integer(((Double) sourceVal).intValue());
+					} else if (sourceVal instanceof Boolean
+						&& ((TypeExp<C>) arg).getReferredType() == getBoolean()) {
+						return sourceVal;
                     } else if (sourceVal instanceof Integer
-						&& (argType == getReal())) {
+						&& (((TypeExp<C>) arg).getReferredType() == getReal())) {
                         
                         if (sourceType == getUnlimitedNatural()) {
                             int sourceInt = (Integer) sourceVal;
                             
-                            // the unlimited value is positive infinity
+                            // the unlimited value is invalid as Real because there
+                            // is no positive infinity defined in the OCL Real type
                             if (sourceInt == UnlimitedNaturalLiteralExp.UNLIMITED) {
-                                return Double.POSITIVE_INFINITY;
+                                return getInvalid();
                             }
                         }
                         
 						return new Double(((Integer) sourceVal).doubleValue());
+                    } else if (sourceType == getUnlimitedNatural() && sourceVal.equals(UNLIMITED)
+						&& (((TypeExp<C>) arg).getReferredType() == getInteger())) {
+                    	// According to OCL 2.3 (10-11-42) Section 8.2.1, UnlimitedNatural value
+                    	// * is an invalid Integer.
+                    	return getInvalid();
+                    } else if (((TypeExp<C>) arg).getReferredType() instanceof AnyType<?>) {
+                    	return sourceVal;
+                    } else if ((sourceType == getUnlimitedNatural() && ((TypeExp<C>) arg).getReferredType() == getUnlimitedNatural()) ||
+                    		oclIsKindOf(sourceVal, ((TypeExp<C>) arg).getReferredType())) {
+                    	return sourceVal;
+                    } else {
+                    	return getInvalid();
                     }
-                    
-					return sourceVal;
 				}
 				
 				// evaluate arg, unless we have a boolean operation
 				Object argVal = null;
-				if (!(sourceVal instanceof Boolean)) {
-					argVal = arg.accept(getVisitor());
+				if (!isBooleanOperation(opCode)) {
+					argVal = safeVisitExpression(arg);
+					if (argVal == getInvalid()) {
+						return argVal; // an invalid argument leads to invalid operation call value
+					}                  // unless a boolean operation doesn't evaluate the arg
 				}
 
 				if (sourceVal instanceof Number) {
+					if (argVal == null) {
+						// one-arg numeric operation is invalid for null / undefined arg
+						return getInvalid();
+					}
                     // we have a numeric operation.  Promote to high precision
                     sourceVal = higherPrecisionNumber((Number) sourceVal);
                     
@@ -588,13 +677,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                     if (sourceUnlimited && argUnlimited) {
                         switch (opCode) {
                             case PredefinedType.LESS_THAN:
-                            case PredefinedType.LESS_THAN_EQUAL:
                             case PredefinedType.GREATER_THAN:
-                            case PredefinedType.GREATER_THAN_EQUAL:
-                                // two inifinte values cannot be compared.  We
-                                //   allow = and <> only to test for unbounded
-                                //   multiplicities
+                            	// See section 11.5.5 of 10-11-42 in OCL 2.3
                                 return Boolean.FALSE;
+                            case PredefinedType.GREATER_THAN_EQUAL:
+                            case PredefinedType.LESS_THAN_EQUAL:
+                            	// See section 11.5.5 of 10-11-42 in OCL 2.3
+                            	return Boolean.TRUE;
                             default:
                                 // cannot do arithmetic on the unlimited value
                                 return getInvalid();
@@ -911,7 +1000,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							throw error;
 						}
 					}
-				} else if (sourceVal instanceof Boolean) {
+				} else if (sourceVal instanceof Boolean || isBooleanOperation(opCode)) {
 					// the logic with an undefined value is basic 3-valued
 					// logic:
 					// null represents the undefined value
@@ -923,16 +1012,23 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							if (Boolean.TRUE.equals(sourceVal)) {
                                 return Boolean.TRUE;
                             }
-							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
-							return argVal;
+							if (Boolean.TRUE.equals(argVal)) {
+								return Boolean.TRUE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
+							return Boolean.FALSE;
 
 						// Boolean::xor(Boolean)
 						case PredefinedType.XOR:
 							// XOR does not have a short-circuit
 							argVal = arg.accept(getVisitor());
-							
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
 							return (argVal == null) ? sourceVal
 								: (((Boolean) sourceVal).booleanValue()
 									^ ((Boolean) argVal).booleanValue() ? Boolean.TRUE
@@ -940,13 +1036,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						// Boolean::and(Boolean)
 						case PredefinedType.AND:
-							if (!Boolean.TRUE.equals(sourceVal)) {
+							if (Boolean.FALSE.equals(sourceVal)) {
                                 return Boolean.FALSE;
                             }
-							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
-							return argVal;
+							if (Boolean.FALSE.equals(argVal)) {
+								return Boolean.FALSE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
+							return Boolean.TRUE;
 
 						// Boolean::implies
 						case PredefinedType.IMPLIES:
@@ -956,6 +1057,12 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							
 							// must evaluate the argument now
 							argVal = arg.accept(getVisitor());
+							if (Boolean.TRUE.equals(argVal)) {
+								return Boolean.TRUE;
+							}
+							if (isUndefined(sourceVal) || isUndefined(argVal)) {
+								return getInvalid();
+							}
 							return argVal;
 
 						default: {
@@ -971,9 +1078,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 				}
 
-				else if (sourceVal instanceof String
-					&& argVal instanceof String) {
-
+				else if (sourceVal instanceof String) {
+					if (isUndefined(argVal)) {
+						return getInvalid();
+					}
 					switch (opCode) {
 						// String::concat(String)
 						case PredefinedType.CONCAT:
@@ -1107,8 +1215,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.INDEX_OF:
 							// OrderedSet, Sequence::indexOf(T)
-							return CollectionUtil.indexOf(sourceColl,
+							Object indexOf = CollectionUtil.indexOf(sourceColl,
 								argVal);
+							if (indexOf == null) {
+								// according to OCL spec, precondition is violated, resulting in invalid
+								indexOf = getInvalid();
+							}
+							return indexOf;
 					} // end of collection type switch
 				} else if (sourceVal instanceof Comparable<?>) {
 
@@ -1153,16 +1266,16 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				// evaluate arg1
 				Object arg1 = args.get(0).accept(getVisitor());
 
-				// check if undefined
-				if (isUndefined(arg1)) {
+				// check if invalid
+				if (arg1 == getInvalid()) {
                     return getInvalid();
                 }
 
 				// evaluate arg2
 				Object arg2 = args.get(1).accept(getVisitor());
 
-				// check if undefined
-				if (isUndefined(arg2)) {
+				// check if invalid
+				if (arg2 == getInvalid()) {
                     return getInvalid();
                 }
 
@@ -1170,24 +1283,41 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					// just one ternary string operation
 					// String::substring(Integer, Integer)
 					// index orgin 1 for OCL
-					int lower = ((Integer) arg1).intValue() - 1;
+					if (isUndefined(arg1) || isUndefined(arg2)) {
+						return getInvalid();
+					}
+					int lower = ((Integer) arg1).intValue();
 					int upper = ((Integer) arg2).intValue();
-					return ((String) sourceVal).substring(lower, upper);
+					if (!(1 <= lower &&
+							  lower <= upper &&
+							  upper <= ((String) sourceVal).length())) {
+						return getInvalid();
+					}
+					return ((String) sourceVal).substring(lower-1, upper);
 				} else if (sourceVal instanceof Collection<?>) {
 					@SuppressWarnings("unchecked")
 					Collection<Object> sourceColl = (Collection<Object>) sourceVal;
 					if (opCode == PredefinedType.INSERT_AT) {
+						if (isUndefined(arg1)) {
+							return getInvalid();
+						}
 						// OrderedSet, Sequence::insertAt(Integer, T)
 						int index = ((Integer) arg1).intValue();
 						return CollectionUtil.insertAt(sourceColl, index,
 							arg2);
 					} else if (opCode == PredefinedType.SUB_ORDERED_SET) {
+						if (isUndefined(arg1) || isUndefined(arg2)) {
+							return getInvalid();
+						}
 						// OrderedSet, Sequence::subOrderedSet(Integer, Integer)
 						int lower = ((Integer) arg1).intValue();
 						int upper = ((Integer) arg2).intValue();
 						return CollectionUtil.subOrderedSet(sourceColl,
 							lower, upper);
 					} else if (opCode == PredefinedType.SUB_SEQUENCE) {
+						if (isUndefined(arg1) || isUndefined(arg2)) {
+							return getInvalid();
+						}
 						// Sequence::subSequence(Integer, Integer)
 						int lower = ((Integer) arg1).intValue();
 						int upper = ((Integer) arg2).intValue();
@@ -1253,13 +1383,23 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			// AnyType::oclIsTypeOf(OclType)
 			if (opCode == PredefinedType.OCL_IS_TYPE_OF) {
 				OCLExpression<C> arg = args.get(0);
-				return oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+				Boolean result = oclIsTypeOf(sourceVal, arg.accept(getVisitor()));
+				if (result == null) {
+					return getInvalid();
+				} else {
+					return result;
+				}
 			}
 
 			// AnyType::oclIsKindOf(OclType)
 			else if (opCode == PredefinedType.OCL_IS_KIND_OF) {
 				OCLExpression<C> arg = args.get(0);
-				return oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+				Boolean result = oclIsKindOf(sourceVal, arg.accept(getVisitor()));
+				if (result == null) {
+					return getInvalid();
+				} else {
+					return result;
+				}
 			}
 
 			// AnyType::oclAsType(OclType)
@@ -1342,7 +1482,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			return getInvalid();
 		}
 
-		return null;
+		return getInvalid();
 	}
 	
 	/**
@@ -1776,14 +1916,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		// body expression evaluations
 		List<Object> result = new ArrayList<Object>(coll);
 
-		Collections.sort(result, new Comparator<Object>() {
-
-			public int compare(Object o1, Object o2) {
-				Comparable<Object> b1 = map.get(o1);
-				Comparable<Object> b2 = map.get(o2);
-				return (b1.compareTo(b2));
-			}
-		});
+		Collections.sort(result, getComparatorForSortedBy(map, ie));
 
 		// create result
 		// type is Sequence if source is a sequence or a Bag,
@@ -1794,6 +1927,36 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
         } else {
             return CollectionUtil.createNewSequence(result);
         }
+	}
+
+	private Comparator<Object> getComparatorForSortedBy(
+			final Map<Object, Comparable<Object>> map, IteratorExp<C, PM> ie) {
+		// special case: UnlimitedNatural::UNLIMITED is greater than
+		// everything except for itself
+		if (ie.getBody().getType() == getUnlimitedNatural()) {
+			return new Comparator<Object>() {
+				public int compare(Object o1, Object o2) {
+					Comparable<Object> b1 = map.get(o1);
+					Comparable<Object> b2 = map.get(o2);
+					return (b1.equals(UNLIMITED) ?
+						       b2.equals(UNLIMITED) ?
+						    	   0 : // both are UNLIMITED
+						           1 : // b1 is UNLIMITED, b2 not, so b1>b2
+						       b2.equals(UNLIMITED) ?
+						    	   -1 : // b2 is UNLIMITED, b1 not, so b1 < b2
+						    	   b1.compareTo(b2));
+				}
+			};
+		} else {
+			return new Comparator<Object>() {
+
+				public int compare(Object o1, Object o2) {
+					Comparable<Object> b1 = map.get(o1);
+					Comparable<Object> b2 = map.get(o2);
+					return (b1.compareTo(b2));
+				}
+			};
+		}
 	}
 
 	private Object evaluateIsUnique(IteratorExp<C, PM> ie, Collection<?> coll) {
@@ -1973,7 +2136,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> initExp = vd.getInitExpression();
 		Object initVal = null;
 		if (initExp != null) {
-            initVal = initExp.accept(getVisitor());
+			// if an unpropagated runtime exception is thrown, assign invalid to
+			// variable, allowing an oclIsInvalid() to detect it later
+			initVal = safeVisitExpression(initExp);
         }
 		getEvaluationEnvironment().add(varName, initVal);
 		return varName;
@@ -1988,12 +2153,13 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		OCLExpression<C> condition = ie.getCondition();
 
 		// evaluate condition
-		Boolean condVal = (Boolean) condition.accept(getVisitor());
-		if (condVal == null) {
-            return null;
-        }
+		Object condVal = condition.accept(getVisitor());
+		if (isUndefined(condVal)) {
+			return getInvalid();
+		}
+		Boolean condValBool = (Boolean) condVal;
 
-		if (condVal.booleanValue()) {
+		if (condValBool.booleanValue()) {
             return ie.getThenExpression().accept(getVisitor());
         }
 		return ie.getElseExpression().accept(getVisitor());
@@ -2157,8 +2323,14 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 					CollectionItem<C> item = (CollectionItem<C>) part;
 					OCLExpression<C> itemExp = item.getItem();
 					Object itemVal = itemExp.accept(getVisitor());
-					if (itemVal != null) {
-						// add it to the result set
+					if (itemVal == getInvalid()) {
+						return getInvalid(); // can't have an invalid element in a collection
+					}
+					// add it to the result set, even if null, except it's the only item in a Set
+					// literal; otherwise, the implicit set conversion of an undefined value
+					// would return false for isEmpty(). See also Section 7.5.3 in the OCL 2.3
+					// specification (10-11-42) on implicit set conversion by the -> operator
+					if (itemVal != null || parts.size() > 1 || !isImplicitSetConversion(cl)) {
 						result.add(itemVal);
 					}
 				} else {
@@ -2187,6 +2359,23 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		return result;
 	} // end of Set, OrderedSet, Bag Literals
+
+	private boolean isImplicitSetConversion(CollectionLiteralExp<C> cl) {
+		boolean result = false;
+		if (cl instanceof EModelElement) {
+			EAnnotation implicitSetConversionAnnotation = ((EModelElement) cl)
+				.getEAnnotation(AbstractOCLAnalyzer.OCL_ANNOTATIONS_URI);
+			if (implicitSetConversionAnnotation != null) {
+				String implicitSetConversionDetail = implicitSetConversionAnnotation
+					.getDetails().get(AbstractOCLAnalyzer.IMPLICIT_SET_CONVERSION);
+				if (implicitSetConversionDetail != null &&
+						Boolean.valueOf(implicitSetConversionDetail)) {
+					result = true;
+				}
+			}
+		}
+		return result;
+	}
 
 	// private static inner class for lazy lists over an integer range
 	private static final class IntegerRangeList
