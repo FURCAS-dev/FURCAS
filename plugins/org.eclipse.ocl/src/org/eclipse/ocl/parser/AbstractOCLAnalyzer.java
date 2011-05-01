@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.44 2010/12/15 17:33:43 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.45 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -35,7 +35,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.LookupException;
@@ -167,10 +170,27 @@ import org.eclipse.ocl.utilities.UMLReflection;
 public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends AbstractAnalyzer {
 
+	/**
+	 * @since 3.1
+	 */
+	public static final String OCL_ANNOTATIONS_URI = Environment.OCL_NAMESPACE_URI+"/Annotations"; //$NON-NLS-1$
+
 	/** Prefix used by OCL to escape names that clash with keywords. */
 	private static final String OCL_ESCAPE_PREFIX = "_"; //$NON-NLS-1$
 
 	private static final int OCL_ESCAPE_LENGTH = OCL_ESCAPE_PREFIX.length();
+
+	/**
+	 * When a detail with this key is in an annotation with URI
+	 * {@link Environment#OCL_NAMESPACE_URI} on a {@link CollectionLiteralExp},
+	 * this means that the collection literal was created by the analyzer
+	 * implicitly for a <code>-&gt;</code> set conversion. In this case,
+	 * if the single item evaluates to <code>null</code> it must not be
+	 * added to the resulting collection by an evaluator.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String IMPLICIT_SET_CONVERSION = "IMPLICIT_SET_CONVERSION"; //$NON-NLS-1$
 
 	/*
 	 * Factories for creating OCL AST nodes
@@ -3494,6 +3514,21 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				.createCollectionLiteralExp();
 			initASTMapping(env, astNode1, oclExpressionCS, null);
 			astNode1.setKind(CollectionKind.SET_LITERAL);
+			if (astNode1 instanceof EModelElement) {
+				// add an annotation indicating to the evaluator that
+				// this collection literal was created from an implicit
+				// -> conversion and therefore single null items shall
+				// not be added
+				EAnnotation implicitSetConversionAnnotation = ((EModelElement) astNode1)
+					.getEAnnotation(OCL_ANNOTATIONS_URI);
+				if (implicitSetConversionAnnotation == null) {
+					implicitSetConversionAnnotation = EcoreFactory.eINSTANCE
+						.createEAnnotation();
+					implicitSetConversionAnnotation.setSource(OCL_ANNOTATIONS_URI);
+					((EModelElement) astNode1).getEAnnotations().add(implicitSetConversionAnnotation);
+				}
+				implicitSetConversionAnnotation.getDetails().put(IMPLICIT_SET_CONVERSION, "true"); //$NON-NLS-1$
+			}
 			List<CollectionLiteralPart<C>> collectionParts = astNode1.getPart();
 			CollectionItem<C> collItem = oclFactory.createCollectionItem();
 			initASTMapping(env, collItem, oclExpressionCS, null);
