@@ -18,7 +18,6 @@ package org.eclipse.ocl.ecore.delegate;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
@@ -98,12 +97,7 @@ public class OCLDelegateDomain implements DelegateDomain
 		ResourceSet resourceSet = res.getResourceSet();
 		EcoreEnvironmentFactory envFactory;
 		
-		// get cls-name for user-defined EcoreEnviromentFactory implementation
-		EAnnotation eAnnotation = ePackage.getEAnnotation(EcorePackage.eNS_URI);
-		String clsName = null;
-		if (eAnnotation != null) {
-			clsName = eAnnotation.getDetails().get(KEY_FOR_FACTORY_CLASS);
-		}
+		String clsName = getDefinedEcoreEnvironmentFactoryClassName(ePackage);
 		
 		if (res != null && resourceSet != null) {
 			// it's a dynamic package. Use the local package registry
@@ -141,6 +135,21 @@ public class OCLDelegateDomain implements DelegateDomain
 			}
 		}
 		this.ocl = OCL.newInstance(envFactory);
+	}
+
+	/**
+	 * Reads the user/defined EcoreEnvironmentFactory from the annotation of the {@link EPackage}
+	 * @param ePackage to read th {@link EAnnotation annotations} from
+	 * @return the defined {@link EcoreEnvironmentFactory} or null
+	 */
+	private String getDefinedEcoreEnvironmentFactoryClassName(EPackage ePackage) {
+		// get cls-name for user-defined EcoreEnviromentFactory implementation
+		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
+		String clsName = null;
+		if (eAnnotation != null) {
+			clsName = eAnnotation.getDetails().get(KEY_FOR_FACTORY_CLASS);
+		}
+		return clsName;
 	}
 
 	public void dispose() {
