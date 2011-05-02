@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.9 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.10 2011/05/02 15:38:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -159,9 +159,9 @@ public abstract class Abstract2Moniker implements PivotConstants
 
 	public void appendName(MonikeredElement monikeredElement) {
 		if (monikeredElement instanceof TemplateableElement) {
-			List<TemplateBinding> templateBindings = ((TemplateableElement)monikeredElement).getTemplateBindings();
-			if (!templateBindings.isEmpty()) {
-				appendName(PivotUtil.getUnspecializedTemplateableElement((TemplateableElement)monikeredElement));
+			TemplateableElement unspecializedElement = ((TemplateableElement)monikeredElement).getUnspecializedElement();
+			if (unspecializedElement != null) {
+				appendName(unspecializedElement);
 				return;
 			}
 		}

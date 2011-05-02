@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.19 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: TypeManager.java,v 1.20 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -46,7 +46,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
 import org.eclipse.ocl.examples.pivot.AnyType;
-import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Constraint;
@@ -62,7 +61,6 @@ import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.Operation;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -70,8 +68,6 @@ import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.Property;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -711,35 +707,10 @@ public class TypeManager extends TypeCaches implements Adapter
 
 	protected boolean conformsToCollectionType(CollectionType firstType, CollectionType secondType,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		if (secondType instanceof BagType) {
-			if (!(firstType instanceof BagType)) {
-				return false;
-			}
-		}
-		else if (secondType instanceof OrderedSetType) {
-			if (!(firstType instanceof OrderedSetType)) {
-				return false;
-			}
-		}
-		else if (secondType instanceof SequenceType) {
-			if (!(firstType instanceof SequenceType)) {
-				return false;
-			}
-		}
-		else if (secondType instanceof SetType) {
-			if (!(firstType instanceof SetType)) {
-				return false;
-			}
-		}
-		else if (secondType instanceof CollectionType) {
-			Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);
-			if (!isSuperClassOf(unspecializedSecondType, firstType)) {
-				return false;
-			}
-//			if (!(firstType instanceof CollectionType)) {
-//				return false;
-//			}
-//			;	// requiredType == CollectionType
+		CollectionType unspecializedFirstType = PivotUtil.getUnspecializedTemplateableElement(firstType);
+		CollectionType unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);
+		if (!isSuperClassOf(unspecializedSecondType, unspecializedFirstType)) {
+			return false;
 		}
 		Type firstElementType = firstType.getElementType();
 		Type secondElementType = secondType.getElementType();
@@ -834,7 +805,7 @@ public class TypeManager extends TypeCaches implements Adapter
 		@SuppressWarnings("unchecked")
 		T pivotPackage = (T) PivotFactory.eINSTANCE.create(pivotEClass);
 		pivotPackage.setName(name);
-		installPackageMoniker(pivotPackage);
+		installPackageMoniker(pivotPackage, true);
 //		installPackage(pivotPackage);
 		return pivotPackage;
 	}
@@ -1269,6 +1240,7 @@ public class TypeManager extends TypeCaches implements Adapter
 				}
 			}
 		}
+		specializedType.setUnspecializedElement(libraryType);
 		specializedType.setMoniker(moniker);
 		addOrphanClass(specializedType);
 		return specializedType;
@@ -1333,7 +1305,7 @@ public class TypeManager extends TypeCaches implements Adapter
 		return uri;
 	}
 
-	public SetType getSetType(Type elementType) {
+	public CollectionType getSetType(Type elementType) {
 		return getLibraryType(getSetType(), Collections.singletonList(elementType), true);
 	}
 
@@ -1456,6 +1428,7 @@ public class TypeManager extends TypeCaches implements Adapter
 		specializedOperation.setImplementationClass(unspecializedOperation.getImplementationClass());
 		specializedOperation.setPrecedence(unspecializedOperation.getPrecedence());
 		specializedOperation.setIsStatic(unspecializedOperation.isStatic());
+		specializedOperation.setUnspecializedElement(unspecializedOperation);
 		addOrphanOperation(specializedOperation);
 		String specializedMoniker = specializedOperation.getMoniker();
 		if (!moniker.equals(specializedMoniker)) {				// FIXME Debugging
@@ -1663,12 +1636,13 @@ public class TypeManager extends TypeCaches implements Adapter
 		return type == TypeManager.class;
 	}
 
-	private boolean isSuperClassOf(Type unspecializedFirstType, org.eclipse.ocl.examples.pivot.Class secondType) {
+	public boolean isSuperClassOf(Type unspecializedFirstType, org.eclipse.ocl.examples.pivot.Class secondType) {
 		Type unspecializedSecondType = PivotUtil.getUnspecializedTemplateableElement(secondType);
 		if (unspecializedFirstType == unspecializedSecondType) {
 			return true;
 		}
-		for (org.eclipse.ocl.examples.pivot.Class superClass : secondType.getSuperClasses()) {
+		org.eclipse.ocl.examples.pivot.Class secondClass = (org.eclipse.ocl.examples.pivot.Class)secondType;
+		for (org.eclipse.ocl.examples.pivot.Class superClass : secondClass.getSuperClasses()) {
 			if (isSuperClassOf(unspecializedFirstType, superClass)) {
 				return true;
 			}
