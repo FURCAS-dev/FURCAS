@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.15 2011/04/25 09:50:02 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.16 2011/05/02 09:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -53,6 +53,7 @@ import org.eclipse.ocl.examples.pivot.Iteration;
 import org.eclipse.ocl.examples.pivot.LambdaType;
 import org.eclipse.ocl.examples.pivot.LoopExp;
 import org.eclipse.ocl.examples.pivot.MonikeredElement;
+import org.eclipse.ocl.examples.pivot.MultiplicityElement;
 import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Namespace;
 import org.eclipse.ocl.examples.pivot.OclExpression;
@@ -374,8 +375,8 @@ public class CS2PivotConversion extends AbstractConversion
 					Element element = ((Pivotable)eObject).getPivot();
 					if (element != null) {
 						Resource resource = element.eResource();
-						assert resource != null;			
-						if (resource != libraryResource) {
+//						assert resource != null;			
+						if ((resource != null) && (resource != libraryResource)) {
 							referencedElements.add(element);
 						}
 					}
@@ -455,14 +456,14 @@ public class CS2PivotConversion extends AbstractConversion
 		return oldElements;
 	}
 
-//	protected void debugObjectUsage(String prefix, EObject element) {
-//		if (element instanceof MonikeredElement) {
-//			System.out.println(prefix + element.eClass().getName() + "@" + Integer.toHexString(element.hashCode()) + " " + ((MonikeredElement) element).getMoniker());
-//		}
-//		else {
-//			System.out.println(prefix + element.eClass().getName() + "@" + Integer.toHexString(element.hashCode()));
-//		}
-//	}
+/*	protected void debugObjectUsage(String prefix, EObject element) {
+		if ((element instanceof MonikeredElement) && (((MonikeredElement)element).hasMoniker() || (element.eResource() != null))) {
+			System.out.println(prefix + element.eClass().getName() + "@" + Integer.toHexString(element.hashCode()) + " " + ((MonikeredElement) element).getMoniker());
+		}
+		else {
+			System.out.println(prefix + element.eClass().getName() + "@" + Integer.toHexString(element.hashCode()));
+		}
+	} */
 
 	protected void diagnoseContinuationFailure(List<BasicContinuation<?>> continuations) {
 		StringBuffer s = new StringBuffer();
@@ -1232,6 +1233,11 @@ public class CS2PivotConversion extends AbstractConversion
 	public <T extends TypedMultiplicityElement> T  refreshTypedMultiplicityElement(Class<T> pivotClass,
 			EClass pivotEClass, TypedElementCS csTypedElement) {
 		T pivotElement = refreshNamedElement(pivotClass, pivotEClass, csTypedElement);
+		refreshMultiplicity(pivotElement, csTypedElement);
+		return pivotElement;
+	}
+
+	public <T> void refreshMultiplicity(MultiplicityElement pivotElement, TypedElementCS csTypedElement) {
 		List<String> qualifiers = csTypedElement.getQualifier();
 		pivotElement.setIsOrdered(qualifiers.contains("ordered"));
 		pivotElement.setIsUnique(getQualifier(qualifiers, "unique", "!unique", true));
@@ -1252,7 +1258,6 @@ public class CS2PivotConversion extends AbstractConversion
 			pivotElement.setLower(BigInteger.valueOf(0));
 			pivotElement.setUpper(BigInteger.valueOf(1));
 		}
-		return pivotElement;
 	}
 
 	protected void resetPivotMappings(Collection<? extends Resource> csResources) {
