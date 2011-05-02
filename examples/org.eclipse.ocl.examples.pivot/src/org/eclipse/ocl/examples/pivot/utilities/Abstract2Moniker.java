@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Abstract2Moniker.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: Abstract2Moniker.java,v 1.9 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -259,22 +259,41 @@ public abstract class Abstract2Moniker implements PivotConstants
 	public void appendTemplateBindings(TemplateableElement templateableElement, Map<TemplateParameter, ParameterableElement> bindings) {
 		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
 		if (!templateBindings.isEmpty()) {
-			s.append(TEMPLATE_BINDING_PREFIX);
-			String prefix = ""; //$NON-NLS-1$
-			for (TemplateBinding templateBinding : templateBindings) {
-//				templateBinding.getSignature();
-				List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
-				if (parameterSubstitutions.size() > 1) {
-					parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
-					Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
+			boolean isSpecialized = isSpecialized(templateBindings, bindings);
+			if (!isSpecialized) {			
+				s.append(TEMPLATE_SIGNATURE_PREFIX);
+				String prefix = ""; //$NON-NLS-1$
+				for (TemplateBinding templateBinding : templateBindings) {
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
+					if (parameterSubstitutions.size() > 1) {
+						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
+						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
+					}
+					for (TemplateParameterSubstitution templateParameterSubstitution : parameterSubstitutions) {
+						s.append(prefix);
+						appendName(templateParameterSubstitution.getFormal().getParameteredElement());
+						prefix = TEMPLATE_SIGNATURE_SEPARATOR;
+					}
 				}
-				for (TemplateParameterSubstitution templateParameterSubstitution : parameterSubstitutions) {
-					s.append(prefix);
-					appendElement(templateParameterSubstitution.getActual(), bindings);
-					prefix = TEMPLATE_BINDING_SEPARATOR;
-				}
+				s.append(TEMPLATE_SIGNATURE_SUFFIX);
 			}
-			s.append(TEMPLATE_BINDING_SUFFIX);
+			else {
+				s.append(TEMPLATE_BINDING_PREFIX);
+				String prefix = ""; //$NON-NLS-1$
+				for (TemplateBinding templateBinding : templateBindings) {
+					List<TemplateParameterSubstitution> parameterSubstitutions = templateBinding.getParameterSubstitutions();
+					if (parameterSubstitutions.size() > 1) {
+						parameterSubstitutions = new ArrayList<TemplateParameterSubstitution>(parameterSubstitutions);
+						Collections.sort(parameterSubstitutions, PivotUtil.TemplateParameterSubstitutionComparator.INSTANCE);
+					}
+					for (TemplateParameterSubstitution templateParameterSubstitution : parameterSubstitutions) {
+						s.append(prefix);
+						appendElement(templateParameterSubstitution.getActual(), bindings);
+						prefix = TEMPLATE_BINDING_SEPARATOR;
+					}
+				}
+				s.append(TEMPLATE_BINDING_SUFFIX);
+			}
 		}
 	}
 
@@ -328,6 +347,26 @@ public abstract class Abstract2Moniker implements PivotConstants
 	
 	public boolean hasEmitted(TemplateParameter templateParameter) {
 		return (emittedParameters != null) && emittedParameters.contains(templateParameter);
+	}
+
+	protected boolean isSpecialized(List<TemplateBinding> templateBindings,
+			Map<TemplateParameter, ParameterableElement> bindings) {
+		if (bindings == null) {
+			return true;
+		}
+		for (TemplateBinding templateBinding : templateBindings) {
+			for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+				ParameterableElement actual = templateParameterSubstitution.getActual();
+				if (actual == null) {
+					return true;
+				}
+				ParameterableElement parameterableElement = bindings.get(actual.getOwningTemplateParameter());
+				if ((parameterableElement == null) || (parameterableElement.getOwningTemplateParameter() != templateParameterSubstitution.getFormal())) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**

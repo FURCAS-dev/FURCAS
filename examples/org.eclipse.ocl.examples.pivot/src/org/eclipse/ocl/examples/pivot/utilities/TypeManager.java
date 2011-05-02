@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeManager.java,v 1.18 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: TypeManager.java,v 1.19 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -96,6 +96,7 @@ import org.eclipse.ocl.examples.pivot.library.ImplicitNonCompositionProperty;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
 import org.eclipse.ocl.examples.pivot.library.TuplePartProperty;
 import org.eclipse.ocl.examples.pivot.library.UnimplementedOperation;
+import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 
@@ -270,7 +271,7 @@ public class TypeManager extends TypeCaches implements Adapter
 //	private CompleteEnvironmentManager completeEnvironmentManager = null; //new CompleteEnvironmentManager(this); // FIXME Use a lightweight when no Complete required
 
 
-	protected ResourceSet externalResourceSet = null;
+	protected ResourceSetImpl externalResourceSet = null;
 
 	/**
 	 * Map of precedence name to precedence objects. Multiple precedence objects
@@ -743,22 +744,26 @@ public class TypeManager extends TypeCaches implements Adapter
 		Type firstElementType = firstType.getElementType();
 		Type secondElementType = secondType.getElementType();
 		if (bindings != null) {
-			TemplateParameter firstTemplateParameter = firstElementType.getOwningTemplateParameter();
-			if (firstTemplateParameter != null) {
-				ParameterableElement parameterableElement = bindings.get(firstTemplateParameter);
-				if (parameterableElement instanceof Type) {
-					firstElementType = (Type) parameterableElement;
+			if (firstElementType != null) {
+				TemplateParameter firstTemplateParameter = firstElementType.getOwningTemplateParameter();
+				if (firstTemplateParameter != null) {
+					ParameterableElement parameterableElement = bindings.get(firstTemplateParameter);
+					if (parameterableElement instanceof Type) {
+						firstElementType = (Type) parameterableElement;
+					}
 				}
 			}
-			TemplateParameter secondTemplateParameter = secondElementType.getOwningTemplateParameter();
-			if (secondTemplateParameter != null) {
-				ParameterableElement parameterableElement = bindings.get(secondTemplateParameter);
-				if (parameterableElement instanceof Type) {
-					secondElementType = (Type) parameterableElement;
-				}
-				else if ((parameterableElement == null) && bindings.containsKey(secondTemplateParameter)) {
-					bindings.put(secondTemplateParameter, firstElementType);
-					return true;
+			if (secondElementType != null) {
+				TemplateParameter secondTemplateParameter = secondElementType.getOwningTemplateParameter();
+				if (secondTemplateParameter != null) {
+					ParameterableElement parameterableElement = bindings.get(secondTemplateParameter);
+					if (parameterableElement instanceof Type) {
+						secondElementType = (Type) parameterableElement;
+					}
+					else if ((parameterableElement == null) && bindings.containsKey(secondTemplateParameter)) {
+						bindings.put(secondTemplateParameter, firstElementType);
+						return true;
+					}
 				}
 			}
 		}
@@ -1161,16 +1166,15 @@ public class TypeManager extends TypeCaches implements Adapter
 		TemplateSignature templateSignature = libraryType.getOwnedTemplateSignature();
 		List<TemplateParameter> templateParameters = templateSignature != null ? templateSignature.getParameters() : Collections.<TemplateParameter>emptyList();
 		if (templateParameters.isEmpty()) {
-//			if ((templateArguments == null) || templateArguments.isEmpty()) {
-				return libraryType;
-//			}
-//			throw new IllegalArgumentException(
-//				"Template bindings for non-template type");
+			return libraryType;
 		}
-		int iMax = templateParameters.size();
-		if ((templateArguments == null) || (templateArguments.size() != iMax)) {
+		if ((templateArguments == null) || (templateArguments.size() != templateParameters.size())) {
 			throw new IllegalArgumentException(
 				"Incorrect template bindings for template type");
+		}
+		boolean isUnspecialized = isUnspecialized(templateParameters, templateArguments);
+		if (isUnspecialized) {
+			return libraryType;	
 		}
 		String moniker = getSpecializedMoniker(libraryType, templateArguments);
 		org.eclipse.ocl.examples.pivot.Class existingSpecializedType1 = getPrimaryClass(moniker);
@@ -1194,13 +1198,13 @@ public class TypeManager extends TypeCaches implements Adapter
 		TemplateBinding templateBinding = PivotFactory.eINSTANCE.createTemplateBinding();
 		templateBinding.setSignature(templateSignature);
 		Map<TemplateParameter, ParameterableElement> allBindings = new HashMap<TemplateParameter, ParameterableElement>();
-		for (int i = 0; i < iMax; i++) {
+		for (int i = 0; i < templateParameters.size(); i++) {
 			TemplateParameter formalParameter = templateParameters.get(i);
 			ParameterableElement actualType = templateArguments.get(i);
 			allBindings.put(formalParameter, templateArguments.get(i));
 			TemplateParameterSubstitution templateParameterSubstitution = PivotFactory.eINSTANCE.createTemplateParameterSubstitution();
 			templateParameterSubstitution.setFormal(formalParameter);
-			if (actualType.eContainer() == null) {
+			if ((actualType != null) && (actualType.eContainer() == null)) {
 				templateParameterSubstitution.setOwnedActual(actualType);
 			}
 			else {
@@ -1271,8 +1275,8 @@ public class TypeManager extends TypeCaches implements Adapter
 	}
 
 	public <T extends NamedElement> T getPivotOfEcore(Class<T> pivotClass, EObject eObject) {
-		Resource ecoreMetaModel = eObject.eResource();
-		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(ecoreMetaModel, this);
+		Resource metaModel = eObject.eResource();
+		Ecore2Pivot ecore2Pivot = Ecore2Pivot.getAdapter(metaModel, this);
 		return ecore2Pivot.getCreated(pivotClass, eObject);
 	}
 
@@ -1623,7 +1627,7 @@ public class TypeManager extends TypeCaches implements Adapter
 	}
 
 	public Type getTypeWithMultiplicity(TypedMultiplicityElement element) {
-		Type elementType = element.getType();
+		Type elementType = PivotUtil.getBehavioralType(element.getType());
 		int upperBound = element.getUpper().intValue();
 		boolean isMany = (upperBound < 0) || (1 < upperBound);
 		if (!isMany) {
@@ -1716,6 +1720,19 @@ public class TypeManager extends TypeCaches implements Adapter
 			}
 		}
 		return false;
+	}
+
+	protected boolean isUnspecialized(List<TemplateParameter> templateParameters,
+			List<? extends ParameterableElement> templateArguments) {
+		int iMax = templateParameters.size();
+		assert templateArguments.size() == iMax;
+		boolean isUnspecialized = true;
+		for (int i = 0; i < iMax; i++) {
+			if (templateArguments.get(i) != templateParameters.get(i).getParameteredElement()) {
+				isUnspecialized = false;
+			}
+		}
+		return isUnspecialized;
 	}
 
 	@Override
@@ -1811,8 +1828,12 @@ public class TypeManager extends TypeCaches implements Adapter
 		if (resource != null) {
 			String fragment = uri.fragment();
 			if (fragment == null) {
-				// return null;
-				return Ecore2Pivot.importFromEcore(this, alias, resource);
+				if (UML2Ecore2Pivot.isUML(resource)) {	// FIXME polymorphize this with an extension point
+					return UML2Ecore2Pivot.importFromUML(this, alias, resource);
+				}
+				else {
+					return Ecore2Pivot.importFromEcore(this, alias, resource);
+				}
 			} else {
 				EObject eObject = resource.getEObject(fragment);
 				if (eObject instanceof Element) {

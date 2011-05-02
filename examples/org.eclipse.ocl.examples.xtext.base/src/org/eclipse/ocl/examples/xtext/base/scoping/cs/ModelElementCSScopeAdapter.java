@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ModelElementCSScopeAdapter.java,v 1.6 2011/04/20 19:02:26 ewillink Exp $
+ * $Id: ModelElementCSScopeAdapter.java,v 1.7 2011/05/02 09:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scoping.cs;
 
@@ -82,7 +82,11 @@ public abstract class ModelElementCSScopeAdapter<CS extends ModelElementCS, P ex
 			ScopeView scopeView, List<Namespace> namespaces) {
 		int namespaceCount = namespaces.size();
 		if (namespaceCount > 0) {
-			ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
+			Namespace namespace = namespaces.get(namespaceCount-1);
+			if ((namespace == null) || namespace.eIsProxy()) {
+				return null;
+			}
+			ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespace);
 			if (scopeAdapter != null) {
 				return scopeAdapter.computeLookup(environmentView, scopeView);
 			}				

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.16 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.17 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -581,7 +581,8 @@ public class EssentialOCLLeft2RightVisitor
 				callExp = operationCallExp;
 				expression = resolveNavigationFeature(csNavigatingExp, source, operation, callExp);
 				resolveOperationArguments(csNavigatingExp, source, operation, operationCallExp);
-				context.setType(operationCallExp, operation.getType());
+				Type returnType = typeManager.getTypeWithMultiplicity(operation);
+				context.setType(operationCallExp, returnType);
 				if (expression instanceof LoopExp) {											// Genuine implicit collect
 					context.resolveIterationSpecialization((LoopExp)expression);
 				}
@@ -621,12 +622,15 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
+		List<Parameter> ownedParameters = operation.getOwnedParameters();
+		int parametersCount = ownedParameters.size();
 		int csArgumentCount = csArguments.size();
 		if (csArgumentCount > 0) {
 			if (csArguments.get(0).getRole() != NavigationRole.EXPRESSION) {
 				context.addDiagnostic(csNavigatingExp, "Operation calls can only specify expressions");			
 			}
-			for (NavigatingArgCS csArgument : csArguments) {
+			for (int argIndex = 0; argIndex < csArgumentCount; argIndex++) {
+				NavigatingArgCS csArgument = csArguments.get(argIndex);
 				if (csArgument.getInit() != null) {
 					context.addDiagnostic(csArgument, "Unexpected initializer for expression");
 				}
@@ -639,7 +643,6 @@ public class EssentialOCLLeft2RightVisitor
 				}
 			}
 		}
-		int parametersCount = operation.getOwnedParameters().size();
 		if ((csArgumentCount != parametersCount) && (operation != getBadOperation())) {
 			String boundMessage = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNavigatingExp, boundMessage);			
@@ -658,7 +661,8 @@ public class EssentialOCLLeft2RightVisitor
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getResolvedContent();
 			context.setReferredOperation(expression, operation);
-			context.setType(expression, operation.getType());
+			Type returnType = typeManager.getTypeWithMultiplicity(operation);
+			context.setType(expression, returnType);
 		}
 		else {
 			StringBuffer s = new StringBuffer();
@@ -667,7 +671,9 @@ public class EssentialOCLLeft2RightVisitor
 				if (s.length() > 0) {
 					s.append(",");
 				}
-				s.append(argumentType.toString());
+				if (argumentType != null) {
+					s.append(argumentType.toString());
+				}
 			}
 			String boundMessage;
 			if (s.length() > 0) {
