@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2Pivot.java,v 1.9 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: Ecore2Pivot.java,v 1.10 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -527,6 +527,7 @@ public class Ecore2Pivot extends AbstractConversion implements External2Pivot, P
 			}
 			templateBinding.getParameterSubstitutions().add(templateParameterSubstitution);
 		}
+		specializedPivotElement.setUnspecializedElement(unspecializedPivotType);
 		//
 		//	Cache the pivot specialization
 		//

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Type.java,v 1.2 2011/01/24 20:42:34 ewillink Exp $
+ * $Id: Type.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot;
 
@@ -39,7 +39,7 @@ package org.eclipse.ocl.examples.pivot;
  * @generated
  */
 public interface Type
-		extends NamedElement, ParameterableElement, TemplateableElement {
+		extends NamedElement, TemplateableElement, ParameterableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Package</b></em>' container reference.

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.16 2011/05/02 09:31:26 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.17 2011/05/02 15:38:44 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -1723,6 +1723,7 @@ public class CS2PivotConversion extends AbstractConversion
 				logger.error("Missing support for non-type specialization " + moniker); //$NON-NLS-1$
 				return null;
 			}
+			specializedPivotElement.setUnspecializedElement(unspecializedPivotElement);
 			typeManager.addOrphanClass((Type) specializedPivotElement);
 		}
 		installPivotElement(csElement, specializedPivotElement);
