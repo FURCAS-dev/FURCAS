@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.7 2011/04/01 06:33:58 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.8 2011/05/02 09:31:35 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -236,7 +236,7 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected void appendType(StringBuffer s, TypeRefCS type) {
 		Element pivot = type.getPivot();
 		if (pivot instanceof MonikeredElement) {
-			appendString(s, ((MonikeredElement)pivot).getMoniker());
+			appendString(s, safeGetMoniker((MonikeredElement)pivot));
 		}
 		else {
 			appendString(s, "null");
@@ -344,6 +344,18 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 			object = text.trim();
 		}
 		return object;
+	}
+
+	protected String safeGetMoniker(MonikeredElement element) {
+		if (element == null) {
+			return "<null-element>";
+		}
+		else if (element.eIsProxy()) {
+			return "<unresolved-proxy>";
+		}
+		else {
+			return element.getMoniker();
+		}
 	}
 
 	protected String text(Element ele) {

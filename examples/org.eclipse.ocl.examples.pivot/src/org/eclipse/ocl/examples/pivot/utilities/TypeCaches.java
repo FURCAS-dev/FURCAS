@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.4 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.5 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -48,7 +48,9 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
@@ -579,6 +581,14 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 	
 	public void addOrphanClass(Type pivotElement) {
+		List<TemplateBinding> templateBindings = pivotElement.getTemplateBindings();
+		if (templateBindings.size() == 1) {
+			List<TemplateParameterSubstitution> parameterSubstitutions = templateBindings.get(0).getParameterSubstitutions();
+			if (parameterSubstitutions.size() == 1) {
+				TemplateParameterSubstitution parameterSubstitution = parameterSubstitutions.get(0);
+				assert parameterSubstitution.getActual().eContainer() != parameterSubstitution.getFormal();
+			}
+		}
 		assert pivotElement.hasMoniker();
 		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
 		orphans.getOwnedTypes().add(pivotElement);
@@ -914,7 +924,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			return iterable;
 		}
 		else {
-			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
+//			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
 			return iterable;
 		}
 	}

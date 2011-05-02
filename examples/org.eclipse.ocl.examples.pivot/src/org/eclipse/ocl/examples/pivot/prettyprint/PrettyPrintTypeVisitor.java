@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PrettyPrintTypeVisitor.java,v 1.4 2011/04/01 19:56:08 ewillink Exp $
+ * $Id: PrettyPrintTypeVisitor.java,v 1.5 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.prettyprint;
 
@@ -96,31 +96,7 @@ public class PrettyPrintTypeVisitor extends AbstractExtendingVisitor<Object,Name
 	public void appendMultiplicity(MultiplicityElement object) {
 		int lower = object.getLower().intValue();
 		int upper = object.getUpper().intValue();
-		if (upper < 0) {
-			if (lower == 0) {
-				s.append("[*]");
-			}
-			else if (lower == 1) {
-				s.append("[+]");
-			}
-			else {
-				s.append("[" + lower + "..*]");
-			}
-		}
-		else if (upper == 1) {
-			if (lower == 0) {
-				s.append("[?]");
-			}
-			else {
-				//;
-			}
-		}
-		else if (upper == lower) {
-			s.append("[" + lower + "]");
-		}
-		else {
-			s.append("[" + lower + ".." + upper + "]");
-		}
+		PivotUtil.appendMultiplicity(s, lower, upper);
 	}
 
 	protected void appendName(NamedElement object) {
