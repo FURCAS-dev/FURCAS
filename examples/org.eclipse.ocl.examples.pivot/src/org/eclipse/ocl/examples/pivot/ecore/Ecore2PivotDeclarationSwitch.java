@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.10 2011/05/02 09:31:29 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.11 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -246,7 +246,7 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 		if (eObject.eIsSet(EcorePackage.Literals.EPACKAGE__NS_PREFIX)) {
 			pivotElement.setNsPrefix(eObject.getNsPrefix());
 		}
-		converter.getTypeManager().installPackageMoniker(pivotElement);
+		converter.getTypeManager().installPackageMoniker(pivotElement, true);
 		String moniker = pivotElement.getMoniker();
 		AliasAdapter adapter = AliasAdapter.getAdapter(eObject.eResource());
 		if (adapter != null) {

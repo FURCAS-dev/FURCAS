@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.7 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -1431,5 +1431,15 @@ public class PropertyImpl
 
 	public Iterator<Property> iterator() {
 		return Iterators.singletonIterator((Property)this);
+	}
+
+	@Override
+	public void setName(String newName) {
+		if ("Class".equals(newName)) {
+			super.setName(newName);
+		}
+		else {
+			super.setName(newName);
+		}
 	}
 } //PropertyImpl
