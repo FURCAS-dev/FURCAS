@@ -21,7 +21,7 @@
  *
  * Do not edit it.
  *
- * $Id: BaseCSVisitor.java,v 1.8 2011/03/11 20:23:57 ewillink Exp $
+ * $Id: BaseCSVisitor.java,v 1.9 2011/04/25 09:50:02 ewillink Exp $
  */
 package	org.eclipse.ocl.examples.xtext.base.util;
 
@@ -51,7 +51,6 @@ public interface BaseCSVisitor<R, C>
 	R visitAnnotationElementCS(org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS object);
 	R visitAttributeCS(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS object);
 	R visitAttributeCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef object);
-	R visitBoundDocumentCS(org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS object);
 	R visitClassCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS object);
 	R visitClassCSRef(org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef object);
 	R visitClassifierCS(org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS object);

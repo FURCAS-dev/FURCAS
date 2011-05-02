@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSaver.java,v 1.7 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotSaver.java,v 1.8 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -25,6 +25,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.Iteration;
@@ -239,6 +240,16 @@ public class PivotSaver
 				}
 			}
 			return null;
+		}
+
+		@Override
+		public Object visitClassifierType(ClassifierType object) {
+			Type referredType = object.getInstanceType();
+			Type resolvedType = resolveType(referredType);
+			if (resolvedType != null) {
+				object.setInstanceType(resolvedType);
+			}
+			return super.visitClassifierType(object);
 		}
 
 		@Override

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateClassifierOperationsTest.java,v 1.3 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: EvaluateClassifierOperationsTest.java,v 1.5 2011/04/25 19:40:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -35,18 +35,21 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 	 * Tests the allInstances() operator.
 	 */
 	public void test_allInstances() {
-// FIXME		assertQueryResults(pkg1, "Set{}", "pivot::CollectionKind.allInstances()");
+		assertQueryResults(null, "Set{CollectionKind::Bag,CollectionKind::Collection,CollectionKind::_'OrderedSet',CollectionKind::_'Sequence',CollectionKind::_'Set'}", "CollectionKind.allInstances()");
 		assertQueryResults(null, "Set{true,false}", "Boolean.allInstances()");
 		assertQueryResults(null, "Set{null}", "OclVoid.allInstances()");
-		assertQueryResults(null, "Set{}", "pivot::Package.allInstances()");
-		assertQueryEquals(pkg1, 8, "pivot::Package.allInstances()->size()");
-		helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
-		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Integer");
-		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "String");
-		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<Integer>");
-		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "OclAny");
+		assertQueryResults(null, "Set{}", "ocl::Package.allInstances()");
+		assertQueryEquals(pkg1, 8, "Package.allInstances()->size()");
+		assertSemanticErrorQuery("Integer.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Integer type");
+		assertSemanticErrorQuery("String.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "String type");
+		assertSemanticErrorQuery("Set(Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<Integer> type");
+		assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) type");
+		assertSemanticErrorQuery("OclAny.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "OclAny type");
+		assertSemanticErrorQuery("4.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "UnlimitedNatural value");
+		assertSemanticErrorQuery("true.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Boolean value");
+		assertSemanticErrorQuery("Set{1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Set<UnlimitedNatural> value");
+		assertSemanticErrorQuery("Tuple{a:Integer=1}.allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) value");
 		assertQueryInvalid(null, "OclInvalid.allInstances()");
-		// FIXME Subtest-not-implemented Enumeration
 	}
 	
 	/**
@@ -57,8 +60,7 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryInvalid(pkg2, "null.oclContainer()");
 		assertQueryResults(pkg1, "null", "oclContainer()");
 		assertQueryEquals(pkg2, pkg1, "oclContainer()");
-        helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
-		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural");
+		assertSemanticErrorQuery("1.oclContainer()", OCLMessages.UnresolvedOperation_ERROR_, "oclContainer", "UnlimitedNatural value");
 	}
 	
 	/**
@@ -70,7 +72,6 @@ public class EvaluateClassifierOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(pkg1, valueFactory.createSetOf(bob, pkg2, pkg3), "oclContents()");
 		assertQueryEquals(pkg2, valueFactory.createSetOf(jim), "oclContents()");
 		assertQueryEquals(george, valueFactory.createSetOf(), "oclContents()");
-        helper.setContext(getMetaclass("UnlimitedNatural"));	// FIXME this fudges NavigationOperatorCSScopeAdapter generosity
-		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural");
+		assertSemanticErrorQuery("1.oclContents()", OCLMessages.UnresolvedOperation_ERROR_, "oclContents", "UnlimitedNatural value");
 	}
 }

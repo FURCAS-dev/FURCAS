@@ -115,6 +115,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subClass" ordered="false"
         upperBound="-1" eType="#//Class" transient="true" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassifierType" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceType" ordered="false"
+        lowerBound="1" eType="#//Type"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionItem" eSuperTypes="#//CollectionLiteralPart">
     <eStructuralFeatures xsi:type="ecore:EReference" name="item" ordered="false" lowerBound="1"
         eType="#//OclExpression" containment="true"/>

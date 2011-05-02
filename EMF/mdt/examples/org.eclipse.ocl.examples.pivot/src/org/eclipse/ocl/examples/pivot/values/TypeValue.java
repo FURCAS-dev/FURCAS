@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeValue.java,v 1.3 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: TypeValue.java,v 1.4 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values;
 
@@ -22,5 +22,6 @@ import org.eclipse.ocl.examples.pivot.Type;
 public interface TypeValue extends ElementValue<Type>
 {
 	TypeValue asTypeValue() throws InvalidValueException;
+	Type getInstanceType();
 	Type getType();
 }

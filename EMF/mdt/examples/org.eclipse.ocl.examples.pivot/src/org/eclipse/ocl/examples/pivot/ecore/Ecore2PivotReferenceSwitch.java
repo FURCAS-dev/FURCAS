@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotReferenceSwitch.java,v 1.5 2011/02/08 17:51:47 ewillink Exp $
+ * $Id: Ecore2PivotReferenceSwitch.java,v 1.7 2011/04/27 06:19:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -73,6 +73,10 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 			org.eclipse.ocl.examples.pivot.Class classifierType = converter.getTypeManager().getClassifierType();
 			if (classifierType != null) {
 				pivotElement.getSuperClasses().add(classifierType);
+			}		// FIXME Why aren't these synonymous
+			org.eclipse.ocl.examples.pivot.Class classType = (org.eclipse.ocl.examples.pivot.Class)converter.getTypeManager().getPivotType("Class");
+			if (classType != null) {
+				pivotElement.getSuperClasses().add(classType);
 			}
 		}
 		return null;
@@ -128,7 +132,12 @@ public class Ecore2PivotReferenceSwitch extends EcoreSwitch<Object>
 				}
 			}
 		}
-		pivotElement.setOpposite(oppositeProperty);
+		if (oppositeProperty != null) {
+			pivotElement.setOpposite(oppositeProperty);
+		}
+		else {
+			converter.getTypeManager().installPropertyDeclaration(pivotElement);
+		}
 		return pivotElement;
 	}
 
