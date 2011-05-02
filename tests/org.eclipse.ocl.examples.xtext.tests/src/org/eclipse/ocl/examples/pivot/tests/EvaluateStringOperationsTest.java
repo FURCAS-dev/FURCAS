@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateStringOperationsTest.java,v 1.1 2011/02/19 12:03:51 ewillink Exp $
+ * $Id: EvaluateStringOperationsTest.java,v 1.2 2011/05/02 09:31:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -319,8 +319,8 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, "mixed", "'MiXeD'.toLowerCase()"); //$NON-NLS-2$
 		assertQueryEquals(null, "upper", "'UPPER'.toLowerCase()"); //$NON-NLS-2$
 		// Ensures word-final sigma and regular sigmas are converted as needed
-//		assertQueryEquals(null, 
-//			"Ã¡Â½â‚¬ÃŽÂ´Ã�â€¦Ã�Æ’Ã�Æ’ÃŽÂµÃ�ï¿½Ã�â€š", "'Ã¡Â½Ë†ÃŽâ€�ÃŽÂ¥ÃŽÂ£ÃŽÂ£ÃŽâ€¢ÃŽÅ½ÃŽÂ£'.toLowerCase()");
+		// TODO re-enable once the Unicode problems on Hudson have been resolved
+//		assertQueryEquals(null, "ὀδυσσεύς", "'ὈΔΥΣΣΕΎΣ'.toLowerCase()");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toLowerCase()");
 		// null
@@ -352,10 +352,12 @@ public class EvaluateStringOperationsTest extends PivotTestSuite
 		assertQueryEquals(null, "LOWER", "'lower'.toUpperCase()");
 		
 		// Ensures word-final sigma and regular sigmas are converted as needed
-//		assertQueryEquals(null, "Ã¡Â½Ë†ÃŽâ€�ÃŽÂ¥ÃŽÂ£ÃŽÂ£ÃŽâ€¢ÃŽÅ½ÃŽÂ£", "'Ã¡Â½â‚¬ÃŽÂ´Ã�â€¦Ã�Æ’Ã�Æ’ÃŽÂµÃ�ï¿½Ã�â€š'.toUpperCase()");
+		// TODO re-enable once the Unicode problems on Hudson have been resolved
+//		assertQueryEquals(null, "ὈΔΥΣΣΕΎΣ", "'ὀδυσσεύς'.toUpperCase()");
 		
 		// Sharp s should be mapped to a double S upper case
-//		assertQueryEquals(null, "SS", "'ÃƒÅ¸'.toUpperCase()");
+		// TODO re-enable once the Unicode problems on Hudson have been resolved
+//		assertQueryEquals(null, "SS", "'ß'.toUpperCase()");
 		// invalid
 		assertQueryInvalid(null, "let s : String = invalid in s.toUpperCase()");
 		// null
