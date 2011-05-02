@@ -660,7 +660,6 @@ public class DelegatesTest extends AbstractTestSuite
 		res.eAdapters().add(new ECrossReferenceAdapter());
 		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
 		EAnnotation anno = hiddenOppositesPackage.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
-		anno.getDetails().remove(0);
 		anno.getDetails().put("oppositeEndFinderClass", "org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder");
 		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
 		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
