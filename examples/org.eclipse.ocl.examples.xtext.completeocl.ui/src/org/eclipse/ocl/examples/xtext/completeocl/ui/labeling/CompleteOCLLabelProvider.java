@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLLabelProvider.java,v 1.8 2011/02/08 17:46:08 ewillink Exp $
+ * $Id: CompleteOCLLabelProvider.java,v 1.9 2011/05/02 09:31:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.ui.labeling;
 
@@ -157,7 +157,7 @@ public class CompleteOCLLabelProvider extends EssentialOCLLabelProvider
 	}
 
 	protected String text(PackageDeclarationCS ele) {
-		return ele.getPackage().getMoniker();
+		return safeGetMoniker(ele.getPackage());
 	}
 
 	protected String image(PostCS ele) {
