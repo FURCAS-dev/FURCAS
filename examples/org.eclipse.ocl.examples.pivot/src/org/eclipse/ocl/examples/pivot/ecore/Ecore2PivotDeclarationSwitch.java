@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2PivotDeclarationSwitch.java,v 1.9 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: Ecore2PivotDeclarationSwitch.java,v 1.10 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -425,6 +425,9 @@ public class Ecore2PivotDeclarationSwitch extends EcoreSwitch<Object>
 					}
 					else if (instanceClass == Short.class) {
 						pivotElement.setBehavioralType(converter.getTypeManager().getIntegerType());
+					}
+					else if (instanceClass == String.class) {
+						pivotElement.setBehavioralType(converter.getTypeManager().getStringType());
 					}
 					Method declaredMethod = instanceClass.getDeclaredMethod("compareTo", instanceClass);
 					List<Operation> ownedOperations = pivotElement.getOwnedOperations();

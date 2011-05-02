@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.12 2011/05/02 09:31:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -112,6 +112,34 @@ public class PivotUtil
 			int i1 = f1.getSignature().getParameters().indexOf(f1);
 			int i2 = f2.getSignature().getParameters().indexOf(f2);
 			return i1 - i2;
+		}
+	}
+
+	public static void appendMultiplicity(StringBuffer s, int lower, int upper) {
+		if (upper < 0) {
+			if (lower == 0) {
+				s.append("[*]");
+			}
+			else if (lower == 1) {
+				s.append("[+]");
+			}
+			else {
+				s.append("[" + lower + "..*]");
+			}
+		}
+		else if (upper == 1) {
+			if (lower == 0) {
+				s.append("[?]");
+			}
+			else {
+				//;
+			}
+		}
+		else if (upper == lower) {
+			s.append("[" + lower + "]");
+		}
+		else {
+			s.append("[" + lower + ".." + upper + "]");
 		}
 	}
 
@@ -485,7 +513,7 @@ public class PivotUtil
 	}
 
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> bindings,
-			Type argumentType, LambdaType lambdaType) {
+		Type argumentType, LambdaType lambdaType) {
 		Type resultType = lambdaType.getResultType();
 		TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
 		if (resultTemplateParameter != null) {
