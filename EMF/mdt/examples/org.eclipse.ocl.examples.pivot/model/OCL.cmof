@@ -273,6 +273,12 @@
       <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Class"/>
     </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_HcoloYgHEd-aGOJuUCcZBA" name="BagType" superClass="_Hcolo4gHEd-aGOJuUCcZBA"/>
+    <ownedMember xmi:type="cmof:Class" xmi:id="_dwZ4sGvPEeC4JdmQ7RJG7A" name="ClassifierType">
+      <ownedAttribute xmi:type="cmof:Property" xmi:id="_dwZ4smvPEeC4JdmQ7RJG7A" name="instanceType">
+        <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>
+      </ownedAttribute>
+      <superClass xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-DataType"/>
+    </ownedMember>
     <ownedMember xmi:type="cmof:Class" xmi:id="_Hcolo4gHEd-aGOJuUCcZBA" name="CollectionType">
       <ownedAttribute xmi:type="cmof:Property" xmi:id="_HcolpYgHEd-aGOJuUCcZBA" name="elementType">
         <type xmi:type="cmof:Class" href="Infrastructure.cmof#Core-Basic-Type"/>

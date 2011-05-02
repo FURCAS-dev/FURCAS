@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ImplicitCollectionFilter.java,v 1.1 2011/02/15 10:37:29 ewillink Exp $
+ * $Id: ImplicitCollectionFilter.java,v 1.3 2011/04/25 19:39:51 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -22,14 +22,12 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.Iteration;
-import org.eclipse.ocl.examples.pivot.NamedElement;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
 import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -41,23 +39,13 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 	}
 	
 	@Override
-	protected void installBindings(EnvironmentView environmentView, EObject eObject,
+	protected void installBindings(EnvironmentView environmentView, Type forType, EObject eObject,
 			Map<TemplateParameter, ParameterableElement> bindings) {
-		for (TemplateParameter templateParameter : bindings.keySet()) {
-			ParameterableElement parameteredElement = templateParameter.getParameteredElement();
-			if (parameteredElement instanceof NamedElement) {
-				if (PivotConstants.OCL_SELF_NAME.equals(((NamedElement)parameteredElement).getName())) {
-					if (bindings.get(templateParameter) == null) {
-						bindings.put(templateParameter, sourceType);
-						break;
-					}
-				}
-			}
-		}
-		super.installBindings(environmentView, eObject, bindings);
+		installOclSelfBinding(forType, eObject, bindings);
+		super.installBindings(environmentView, forType, eObject, bindings);
 	}
 
-	public boolean matches(EnvironmentView environmentView, EObject eObject) {
+	public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 		if (eObject instanceof Iteration) {		
 			return false;
 		}
@@ -78,7 +66,7 @@ public class ImplicitCollectionFilter extends AbstractOperationFilter
 				}
 			}
 			if (bindings != null) {
-				installBindings(environmentView, eObject, bindings);
+				installBindings(environmentView, forType, eObject, bindings);
 			}
 			return true;
 		}

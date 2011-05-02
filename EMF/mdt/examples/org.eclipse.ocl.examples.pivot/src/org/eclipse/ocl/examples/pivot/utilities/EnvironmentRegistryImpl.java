@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.1 2011/02/11 20:00:28 ewillink Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.2 2011/04/25 09:49:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -42,6 +42,7 @@ import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.TypedElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.util.PivotPlugin;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Implementation of the environment registry.
@@ -149,7 +150,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 					readEnvironmentFactory(element);
 				} else {
 				    PivotPlugin.log(Diagnostic.ERROR, 1,
-                        OCLMessages.bind(
+				    	NLS.bind(
                             OCLMessages.EnvRegistry_unknownElement_ERROR_,
                             getExtensionID(extension),
                             element.getName()),
@@ -181,7 +182,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 				}
             } else {
                 PivotPlugin.log(Diagnostic.ERROR, 1,
-                    OCLMessages.bind(
+                	NLS.bind(
                         OCLMessages.EnvRegistry_missingClass_ERROR_,
                         getExtensionID(element)),
                     null);
@@ -196,7 +197,7 @@ public class EnvironmentRegistryImpl implements Environment.Registry {
 				descriptor.addPackageURI(nsURI);
             } else {
                 PivotPlugin.log(Diagnostic.ERROR, 1,
-                    OCLMessages.bind(
+                	NLS.bind(
                         OCLMessages.EnvRegistry_missingNsURI_ERROR_,
                         getExtensionID(element)),
                     null);
