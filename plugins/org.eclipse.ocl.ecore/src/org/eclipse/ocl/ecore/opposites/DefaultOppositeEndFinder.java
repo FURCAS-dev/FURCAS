@@ -129,7 +129,7 @@ public class DefaultOppositeEndFinder
 		return result;
 	}
 	
-	protected DefaultOppositeEndFinder(Registry registry) {
+	public DefaultOppositeEndFinder(Registry registry) {
 		this.registry = registry;
 		this.packages = new HashSet<EPackage>();
 		this.oppositeCache = new HashMap<EClass, Map<String,Set<EReference>>>();

@@ -17,17 +17,15 @@
 package org.eclipse.ocl.ecore.delegate;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.impl.OppositePropertyCallExpImpl;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
@@ -77,7 +75,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * 
 	 * @since 3.1
 	 */
-	public static final String KEY_FOR_OPPOSITE_END_FINDER_CLASS = "oppositeEndFinderClass";
+	public static final String KEY_FOR_OPPOSITE_END_FINDER_CLASS = "oppositeEndFinderClass"; //$NON-NLS-1$
 	/**
 	 * If the annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
 	 * value of "true", the {@link EcoreEnvironmentFactoryWithHiddenOpposites} is used instead of
@@ -86,7 +84,7 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * 
 	 * @since 3.1
 	 */
-	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites";
+	public static final String OCL_DELEGATES_USE_HIDDEN_OPPOSITES_KEY = "hiddenOpposites"; //$NON-NLS-1$
 	protected final String uri;
 	protected final EPackage ePackage;
 	protected final OCL ocl;
@@ -109,13 +107,15 @@ public class OCLDelegateDomain implements DelegateDomain
 		ResourceSet resourceSet = res.getResourceSet();
 		EcoreEnvironmentFactory envFactory;
 		
-		OppositeEndFinder finder = getDefinedOppositeEndFinder(ePackage);
 		
 		if (res != null && resourceSet != null) {
 			// it's a dynamic package. Use the local package registry
 			EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+			
+			OppositeEndFinder finder = getDefinedOppositeEndFinder(ePackage, packageRegistry);
+
 			if(finder != null){
-				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry,finder);
+				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry, finder);
 			}
 			else if(useHiddenOpposites(ePackage)){
 				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry);
@@ -127,6 +127,8 @@ public class OCLDelegateDomain implements DelegateDomain
 
 			DelegateResourceAdapter.getAdapter(res);
 		} else {
+			OppositeEndFinder finder = getDefinedOppositeEndFinder(ePackage, EPackage.Registry.INSTANCE);
+
 			// the shared instance uses the static package registry
 			if(finder != null){
 				envFactory  = new EcoreEnvironmentFactoryWithHiddenOpposites(finder);
@@ -144,10 +146,12 @@ public class OCLDelegateDomain implements DelegateDomain
 
 	/**
 	 * Reads the user/defined EcoreEnvironmentFactory from the annotation of the {@link EPackage}
-	 * @param ePackage to read th {@link EAnnotation annotations} from
-	 * @return the defined {@link EcoreEnvironmentFactory} or null
+	 * @param ePackage to read the {@link EAnnotation annotations} from
+	 * @param registry to serve as param for the {@link OppositeEndFinder} constructor
+	 * @return the defined {@link OppositeEndFinder} or null
 	 */
-	private OppositeEndFinder getDefinedOppositeEndFinder(EPackage ePackage) {
+	@SuppressWarnings("unchecked")
+	private OppositeEndFinder getDefinedOppositeEndFinder(EPackage ePackage, EPackage.Registry registry) {
 		OppositeEndFinder finder = null;
 		// get cls-name for user-defined EcoreEnviromentFactory implementation
 		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
@@ -161,9 +165,11 @@ public class OCLDelegateDomain implements DelegateDomain
 		Class<? extends OppositeEndFinder> cls;
 		try {
 			cls = (Class<? extends OppositeEndFinder>) ePackage.getClass().getClassLoader().loadClass(clsName);
-			finder = cls.newInstance();
+			Constructor<? extends OppositeEndFinder> con = cls.getConstructor(EPackage.Registry.class);
+			finder = con.newInstance(registry);
 		} catch (Exception e) {
 			/*...*/
+			e.printStackTrace();
 		}
 		return finder;
 	}
