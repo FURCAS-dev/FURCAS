@@ -5,31 +5,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.runtime.ContributorFactoryOSGi;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IContributor;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Plugin;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.framework.BundleListener;
 
-public class EMFBundleListener implements BundleActivator, BundleListener {
-    private static String EXTENSION_POINT_ID = "emf_bundle_listener";
+public class EMFBundleListener extends Plugin implements BundleListener {
+    
+    private static final String PLUGIN_ID = "com.sap.emf.bundlelistener";
+    private static final String EXTENSION_POINT_ID = "emf_bundle_listener";
     private static final String EXTENSION_CLASS_PROPERTY_NAME = "classname";
     private static EMFBundleListener instance;
     private static BundleContext context;
     
-    private final Collection<EcorePackageLoadListener> listeners;
+    private Collection<EcorePackageLoadListener> listeners;
     
     static BundleContext getContext() {
         return context;
-    }
-
-    public EMFBundleListener() {
-        listeners = new HashSet<EcorePackageLoadListener>();
     }
     
     /*
@@ -37,17 +38,11 @@ public class EMFBundleListener implements BundleActivator, BundleListener {
      * 
      * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
      */
+    @Override
     public void start(BundleContext bundleContext) throws Exception {
         EMFBundleListener.context = bundleContext;
         instance = this;
         bundleContext.addBundleListener(this);
-        IExtensionRegistry registry = Platform.getExtensionRegistry();
-        for (IConfigurationElement listenerConfig : registry.getConfigurationElementsFor(
-                bundleContext.getBundle().getSymbolicName()+"."+EXTENSION_POINT_ID)) {
-            EcorePackageLoadListener listener = (EcorePackageLoadListener) listenerConfig
-                    .createExecutableExtension(EXTENSION_CLASS_PROPERTY_NAME);
-            listeners.add(listener);
-        }
     }
 
     /*
@@ -55,6 +50,7 @@ public class EMFBundleListener implements BundleActivator, BundleListener {
      * 
      * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
      */
+    @Override
     public void stop(BundleContext bundleContext) throws Exception {
         EMFBundleListener.context = null;
     }
@@ -73,6 +69,9 @@ public class EMFBundleListener implements BundleActivator, BundleListener {
     public void bundleChanged(BundleEvent event) {
         if (event.getType() == BundleEvent.STARTED) {
             Collection<String> contributedPackageURIs = getContributedEcorePackageURIs(event.getBundle());
+            if (listeners == null && !contributedPackageURIs.isEmpty()) {
+                listeners = loadListeners(context);
+            }
             for (String nsURI : contributedPackageURIs) {
                 for (EcorePackageLoadListener listener : listeners) {
                     listener.packageLoaded(nsURI);
@@ -80,6 +79,7 @@ public class EMFBundleListener implements BundleActivator, BundleListener {
             }
         }
     }
+    
 
     /**
      * @return a non-<code>null</code> collection
@@ -106,4 +106,24 @@ public class EMFBundleListener implements BundleActivator, BundleListener {
         }
     }
 
+    /**
+     * Retrieve all listeners (and as a side-effect, force their bundles to load) 
+     */
+    private static Collection<EcorePackageLoadListener> loadListeners(BundleContext bundleContext) {
+        Collection<EcorePackageLoadListener> listeners = new HashSet<EcorePackageLoadListener>();
+        IExtensionRegistry registry = Platform.getExtensionRegistry();
+        for (IConfigurationElement listenerConfig : registry.getConfigurationElementsFor(bundleContext.getBundle()
+                .getSymbolicName() + "." + EXTENSION_POINT_ID)) {
+            try {
+                EcorePackageLoadListener listener = (EcorePackageLoadListener) listenerConfig
+                        .createExecutableExtension(EXTENSION_CLASS_PROPERTY_NAME);
+                listeners.add(listener);
+            } catch (CoreException e) {
+                getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK,
+                        "Failed to load EcorePackageLoadListeners", e));
+            }
+        }
+        return listeners;
+    }
+    
 }
