@@ -170,8 +170,12 @@ and evaluation of OCL expressions, add an annotation with source
 with key <em class="CodeName">hiddenOpposites</em> and value
 <em class="CodeName">true</em>. This will have the delegates' OCL instance use the
 <em class="CodeName">EcoreEnvironmentFactoryWithHiddenOpposites</em> which then
-supports hidden opposites in parsing and evaluation.
-
+supports hidden opposites in parsing and evaluation. By default, the
+<em class="CodeName">DefaultOppositeEndFinder</em> class will be used for finding
+and navigating the hidden opposites. You can provide a dedicated class by adding
+another detail to the above-mentioned annotation with key "oppositeEndFinderClass"
+and a value specifying the fully-qualified class name. Note, that the class
+specified must be visible by your Ecore model's bundle.
 <hr/>
 
 <p>
