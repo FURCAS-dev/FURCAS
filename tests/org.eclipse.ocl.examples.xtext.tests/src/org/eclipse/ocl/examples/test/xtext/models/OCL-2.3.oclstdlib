@@ -1789,6 +1789,8 @@ type String : PrimitiveType conformsTo OclAny {
 	}
 }
 
+type Tuple : TupleType conformsTo OclAny {}
+
 /**
 The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.
 This includes a special unlimited value (*) that encodes the upper value of  a multiplicity specification.

@@ -1,0 +1,6 @@
+import 'Fruit.uml'
+
+package fruit
+context Fruit
+inv: true
+endpackage

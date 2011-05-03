@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OrderedSetValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: OrderedSetValueImpl.java,v 1.5 2011/05/02 09:42:04 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -150,9 +150,9 @@ public class OrderedSetValueImpl
 		}
 	}
 
-    public Value first() {
+    public Value first() throws InvalidValueException {
         if ((elements == null) || (elements.size() <= 0)) {
-            return null;
+			throw new InvalidValueException("'first' of empty OrderedSet");
         }
         return elements.iterator().next();
     }
@@ -229,9 +229,9 @@ public class OrderedSetValueImpl
         return new OrderedSetValueImpl(valueFactory, result);
     }
 
-    public Value last() {
+    public Value last() throws InvalidValueException {
         if ((elements == null) || (elements.size() <= 0)) {
-            return null;
+			throw new InvalidValueException("'last' of empty OrderedSet");
         }
         Value result = null;
         for (Value next : elements) {

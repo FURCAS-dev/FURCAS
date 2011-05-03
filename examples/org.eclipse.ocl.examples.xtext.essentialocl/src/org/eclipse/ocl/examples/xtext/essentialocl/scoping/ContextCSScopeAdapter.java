@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ContextCSScopeAdapter.java,v 1.10 2011/04/27 06:20:09 ewillink Exp $
+ * $Id: ContextCSScopeAdapter.java,v 1.11 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -38,8 +38,8 @@ import org.eclipse.ocl.examples.xtext.essentialocl.essentialOCLCST.ContextCS;
 
 public class ContextCSScopeAdapter extends AbstractRootCSScopeAdapter<ContextCS, ExpressionInOcl>
 {
-	private static final class NoImplicitProperties implements EnvironmentView.Filter
-	{
+	public static final class NoImplicitProperties implements EnvironmentView.Filter
+	{	// FIXME should gather both implicit property and type and then fix in resolveDuplicates
 		public static NoImplicitProperties INSTANCE = new NoImplicitProperties();
 		
 		public int compareMatches(EObject match1, Map<TemplateParameter, ParameterableElement> bindings1, EObject match2, Map<TemplateParameter, ParameterableElement> bindings2) {

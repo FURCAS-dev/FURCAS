@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.7 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.8 2011/05/02 09:31:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -275,7 +275,7 @@ public class IteratorsTest extends PivotTestSuite
     public void test_implicitCollect_unknownOperation_232669() {
     	assertBadInvariant(SemanticException.class, Diagnostic.ERROR,
     		"nestedPackage.unknownOperation(self)",
-        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package> value", "self");
+        	OCLMessages.UnresolvedOperationCall_ERROR_, "unknownOperation", "Set<Package> value", "Package");
    }
 
     /**
