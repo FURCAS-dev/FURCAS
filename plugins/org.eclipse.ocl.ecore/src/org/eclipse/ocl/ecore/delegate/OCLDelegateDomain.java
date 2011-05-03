@@ -18,6 +18,7 @@ package org.eclipse.ocl.ecore.delegate;
 
 import java.lang.reflect.Constructor;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -68,6 +69,15 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * See <tt>/org.eclipse.ocl.ecore.tests/model/Company.ecore</tt> or <tt>http://wiki.eclipse.org/MDT/OCLinEcore</tt> for an example.
 	 */
 	public static final String OCL_DELEGATE_URI = org.eclipse.emf.ecore.EcorePackage.eNS_URI + "/OCL"; //$NON-NLS-1$
+	
+	 /**
+	 * If the annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
+	 * class name the environment factory used to instantiate the OCL environment for this delegate
+	 * domain will be obtained from an instance of that class.
+	 * 
+	 * @since 3.1
+	 */
+	public static final String KEY_FOR_ENVIRONMENT_FACTORY_CLASS = "environmentFactoryClass"; //$NON-NLS-1$
 	
 	 /**
 	 * If the annotation with source {@link #OCL_DELEGATE_URI} has a detail using this key with a
@@ -130,16 +140,38 @@ public class OCLDelegateDomain implements DelegateDomain
 	private EcoreEnvironmentFactory createEnvironmentFactory(EPackage ePackage,
 			EPackage.Registry packageRegistry) {
 		EcoreEnvironmentFactory envFactory;
-		if (useHiddenOpposites(ePackage)) {
-			OppositeEndFinder finder = getDefinedOppositeEndFinder(ePackage, packageRegistry);
-			if (finder != null) {
-				envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry, finder);
-			} else {
-				envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(packageRegistry);
-			}
+		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
+		String clsName = null;
+		if (eAnnotation != null) {
+			clsName = eAnnotation.getDetails().get(KEY_FOR_ENVIRONMENT_FACTORY_CLASS);
 		}
-		else {
-			envFactory = new EcoreEnvironmentFactory(packageRegistry);
+		if (clsName != null) {
+			try {
+				@SuppressWarnings("unchecked")
+				Class<? extends EcoreEnvironmentFactory> cls = (Class<? extends EcoreEnvironmentFactory>) ePackage
+					.getClass().getClassLoader().loadClass(clsName);
+				Constructor<? extends EcoreEnvironmentFactory> con = cls
+					.getConstructor(EPackage.Registry.class);
+				envFactory = con.newInstance(packageRegistry);
+			} catch (Exception e) {
+				throw new WrappedException(
+					"Error instantiating OppositeEndFinder class " + clsName + //$NON-NLS-1$
+						": " + e.getMessage(), e); //$NON-NLS-1$
+			}
+		} else {
+			if (useHiddenOpposites(ePackage)) {
+				OppositeEndFinder finder = getDefinedOppositeEndFinder(eAnnotation,
+					ePackage, packageRegistry);
+				if (finder != null) {
+					envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(
+						packageRegistry, finder);
+				} else {
+					envFactory = new EcoreEnvironmentFactoryWithHiddenOpposites(
+						packageRegistry);
+				}
+			} else {
+				envFactory = new EcoreEnvironmentFactory(packageRegistry);
+			}
 		}
 		return envFactory;
 	}
@@ -150,15 +182,16 @@ public class OCLDelegateDomain implements DelegateDomain
 	 * @param registry to serve as parameter for the {@link OppositeEndFinder} constructor
 	 * @return the defined {@link OppositeEndFinder} or null
 	 */
-	private OppositeEndFinder getDefinedOppositeEndFinder(EPackage ePackage, EPackage.Registry registry) {
+	private OppositeEndFinder getDefinedOppositeEndFinder(
+			EAnnotation eAnnotation, EPackage ePackage,
+			EPackage.Registry registry) {
 		OppositeEndFinder finder = null;
 		// get class name for user-defined EcoreEnviromentFactory implementation
-		EAnnotation eAnnotation = ePackage.getEAnnotation(OCL_DELEGATE_URI);
 		String clsName = null;
 		if (eAnnotation != null) {
 			clsName = eAnnotation.getDetails().get(KEY_FOR_OPPOSITE_END_FINDER_CLASS);
 		}
-		if (clsName == null){
+		if (clsName == null) {
 			return null;
 		}
 		try {
@@ -168,7 +201,7 @@ public class OCLDelegateDomain implements DelegateDomain
 			Constructor<? extends OppositeEndFinder> con = cls.getConstructor(EPackage.Registry.class);
 			finder = con.newInstance(registry);
 		} catch (Exception e) {
-			throw new RuntimeException("Error instantiating OppositeEndFinder class "+clsName+ //$NON-NLS-1$
+			throw new WrappedException("Error instantiating OppositeEndFinder class "+clsName+ //$NON-NLS-1$
 				": "+e.getMessage(), e); //$NON-NLS-1$
 		}
 		return finder;

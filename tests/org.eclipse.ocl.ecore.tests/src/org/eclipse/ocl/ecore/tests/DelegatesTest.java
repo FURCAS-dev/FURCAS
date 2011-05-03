@@ -82,6 +82,7 @@ import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 import org.eclipse.ocl.ecore.opposites.DefaultOppositeEndFinder;
+import org.eclipse.ocl.ecore.opposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.osgi.util.NLS;
 
@@ -720,6 +721,44 @@ public class DelegatesTest extends AbstractTestSuite
 		assertEquals(unrelatedObj, o);
 		assertTrue("The configured local opposite end finder was not used",
 			LocalOppositeEndFinder.localOppositeEndFinderUsed);
+	}
+
+	public static class LocalEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
+		public static boolean localEnvironmentFactoryUsed = false;
+		public LocalEnvironmentFactory(Registry registry) {
+			super(registry);
+			localEnvironmentFactoryUsed = true;
+		}
+	}
+
+	public void test_hiddenOppositeInOperationDefinedToLocalEnvironmentFactory() throws InvocationTargetException {
+		URI uri = getTestModelURI("/model/HiddenOpposites.ecore");
+		Resource res = resourceSet.getResource(uri, true);
+		res.eAdapters().add(new ECrossReferenceAdapter());
+		EPackage hiddenOppositesPackage = (EPackage) res.getContents().get(0);
+		EAnnotation anno = hiddenOppositesPackage.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI);
+		anno.getDetails().put("environmentFactoryClass", getClass().getName()+"$LocalEnvironmentFactory");
+		resourceSet.getPackageRegistry().put(hiddenOppositesPackage.getNsURI(), hiddenOppositesPackage);
+		EFactory hiddenOppositesFactory = hiddenOppositesPackage.getEFactoryInstance();
+		EClass sup2 = (EClass) hiddenOppositesPackage.getEClassifier("Sup2");
+		EClass unrelated = (EClass) hiddenOppositesPackage.getEClassifier("Unrelated");
+		EObject unrelatedObj = hiddenOppositesFactory.create(unrelated);
+		EObject sup2Obj = hiddenOppositesFactory.create(sup2);
+		res.getContents().add(unrelatedObj);
+		res.getContents().add(sup2Obj);
+		unrelatedObj.eSet(unrelated.getEStructuralFeature("forward"), sup2Obj);
+		EOperation getUnrelated = null;
+		for (EOperation eo : sup2.getEOperations()) {
+			if (eo.getName().equals("getUnrelated")) {
+				getUnrelated = eo;
+				break;
+			}
+		}
+		assertNotNull(getUnrelated);
+		Object o = sup2Obj.eInvoke(getUnrelated, null);
+		assertEquals(unrelatedObj, o);
+		assertTrue("The configured local opposite end finder was not used",
+			LocalEnvironmentFactory.localEnvironmentFactoryUsed);
 	}
 
 	public void test_invariantCacheBeingUsed() throws ParserException {
