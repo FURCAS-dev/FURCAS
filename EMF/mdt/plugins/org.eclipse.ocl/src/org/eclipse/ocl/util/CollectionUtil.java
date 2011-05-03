@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2008, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 244946, 248869
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.9 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.10 2011/05/01 10:56:50 auhl Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -82,16 +83,15 @@ public class CollectionUtil {
      * @param object an object
      * @return the number of occurrences of the object in the collection
      */
-    public static int count(Collection<?> self, Object object) {
-        int count = 0;
-        for (Object next : self) {
-            if (ObjectUtil.equal(next, object)) {
-                count++;
-            }
-        }
-        
-        return count;
-    }
+	public static int count(Collection<?> self, Object object) {
+		int count = 0;
+		for (Object next : self) {
+			if (ObjectUtil.equal(next, object)) {
+				count++;
+			}
+		}
+		return count;
+	}
 
     /**
      * Implementation of the OCL
@@ -285,10 +285,12 @@ public class CollectionUtil {
         int size2 = c.size();
         
         // if either collection is empty, then so is the result
-        if (size1 == 0) {
-            return createNewCollection(self);
-        } else if (size2 == 0) {
-            return createNewCollection(c);
+        if (size1 == 0 || size2 == 0) {
+        	if (self instanceof Set<?> || c instanceof Set<?>) {
+        		return Collections.emptySet();
+        	} else {
+        		return BagImpl.emptyBag();
+        	}
         }
         
         Collection<E> result = null;
@@ -344,11 +346,21 @@ public class CollectionUtil {
     public static <E> Collection<E> union(
     		Collection<? extends E> self, Collection<? extends E> c) {
     	
-    	// if either argument is empty, then the union is the other
+    	// if either argument is empty, then the union is the other,
+    	// except the source is a set and the other is a bag in which
+    	// case the result has to be a bag
     	if (self.isEmpty()) {
-            return createNewCollection(c);
+    		if (self instanceof Bag || c instanceof Bag) {
+    			return createNewBag(c);
+    		} else {
+    			return createNewCollection(c);
+    		}
         } else if (c.isEmpty()) {
-            return createNewCollection(self);
+    		if (self instanceof Bag || c instanceof Bag) {
+    			return createNewBag(self);
+    		} else {
+    			return createNewCollection(self);
+    		}
         }
     	
         Collection<E> result = null;
@@ -378,6 +390,9 @@ public class CollectionUtil {
      * @return the flattened collection
      */
     public static Collection<?> flatten(Collection<?> self) {
+        // Note: As OCL 2.3 (OMG 10-11-42) section A.2.5.8 fails to specify how to
+        // flatten an OrderedSet, we choose to flatten it into an OrderedSet
+        // represented by a LinkedHashSet.
         Collection<?> result = self;
         
         for (;;) {
@@ -469,7 +484,9 @@ public class CollectionUtil {
      */
     public static <E> Collection<E> excluding(Collection<E> self, Object object) {
         Collection<E> result = null;
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+        	result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
@@ -480,7 +497,7 @@ public class CollectionUtil {
             }
             return resultSeq;
         } else {
-            result = createNewOrderedSet(self);
+        	throw new RuntimeException("Unsupported collection type "+self.getClass().getName()); //$NON-NLS-1$
         }
 
         // non-sequences (bags remove all occurrences internally)
@@ -530,7 +547,9 @@ public class CollectionUtil {
     public static <E> Collection<E> including(Collection<E> self, E object) {
         Collection<E> result;
         
-        if (self instanceof Set<?>) {
+        if (self instanceof LinkedHashSet<?>) {
+            result = createNewOrderedSet(self);
+        } else if (self instanceof Set<?>) {
             result = createNewSet(self);
         } else if (self instanceof Bag<?>) {
             result = createNewBag(self);
@@ -556,7 +575,7 @@ public class CollectionUtil {
      * @return the source collection as a set
      */
     public static <E> Set<E> asSet(Collection<E> self) {
-        if (self instanceof Set<?>) {
+        if (self instanceof Set<?> && !(self instanceof LinkedHashSet<?>)) {
             return (Set<E>) self;
         }
         return createNewSet(self);
@@ -935,13 +954,13 @@ public class CollectionUtil {
         int index = 1;
         
         for (E next : self) {
-            if (object.equals(next)) {
+            if (ObjectUtil.equal(object, next)) {
                 return index;
             }
             index++;
         }
         
-        return null; // undefined
+        return null; // invalid
     }
 
     /**
