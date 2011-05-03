@@ -1,29 +1,41 @@
+/**
+ * A very basic example TCS file. Please refer to the documentation at http://furcas.org/wiki/ 
+ *
+ */
 syntax $CapLangName$ {
 
 -- place templates here (at least one main template)
-                 
+
+  -- TODO Auto-generated primitive templates.
+  --      Adapt and enhance as needed.
   primitiveTemplate identifier for EString default using NAME
     : value = "%token%"
     ;
-        
+  primitiveTemplate stringSymbol for ecore::EString using STRING
+    : value = "unescapeString(%token%)",
+      serializer="\"%value%\""
+    ;
   primitiveTemplate integerSymbol for EInt default using INT
     : value = "Integer.valueOf(%token%)"
     ;
-       
+         
+  -- TODO Auto-generaed main template stub
+  --      Start defining your language from here on.
   template $FirstClass$ main
-    : "$FirstClass$"
+    : "class" "$FirstClass$"    	
     ;
+
  
-  -- place keywords here (optional, seldom used)
+-- place keywords here (optional, seldom used)
 
-  -- place symbols here (optional)
+-- place symbols here (optional)
 
-  -- place operatorLists here (optional)
+-- place operatorLists here (optional)
 
-  -- place tokens here (optional, except for COMMENT)
+-- place tokens here (optional, except for COMMENT)
 
   token COMMENT : endOfLine(start = "--");
 
-  -- place lexer here (optional)
+-- place lexer here (optional)
 
 }

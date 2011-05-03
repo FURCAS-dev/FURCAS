@@ -41,7 +41,7 @@ public class $CapLangName$ParserFactory extends AbstractParserFactory<$CapLangNa
 	
     @Override 
     public URI getSyntaxUri() { 
-        return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/mappings/$CapLangName$.tcs", true); 
+        return URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/mapping/$CapLangName$.tcs", true); 
     } 
 	
 }
