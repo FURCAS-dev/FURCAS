@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TemplateableElementImpl.java,v 1.2 2011/01/24 20:42:32 ewillink Exp $
+ * $Id: TemplateableElementImpl.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -45,6 +45,7 @@ import org.eclipse.ocl.examples.pivot.internal.operations.TemplateableElementOpe
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.TemplateableElementImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,6 +74,16 @@ public abstract class TemplateableElementImpl
 	 * @ordered
 	 */
 	protected TemplateSignature ownedTemplateSignature;
+
+	/**
+	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnspecializedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateableElement unspecializedElement;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -206,6 +217,29 @@ public abstract class TemplateableElementImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TemplateableElement getUnspecializedElement()
+	{
+		return unspecializedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
+	{
+		TemplateableElement oldUnspecializedElement = unspecializedElement;
+		unspecializedElement = newUnspecializedElement;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ParameterableElement> parameterableElements() {
 		return TemplateableElementOperations.parameterableElements(this);
 	}
@@ -278,6 +312,8 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
+			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
+				return getUnspecializedElement();
 		}
 		return eDynamicGet(featureID, resolve, coreType);
 	}
@@ -306,6 +342,9 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
 				return;
+			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)newValue);
+				return;
 		}
 		eDynamicSet(featureID, newValue);
 	}
@@ -331,6 +370,9 @@ public abstract class TemplateableElementImpl
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
+			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)null);
+				return;
 		}
 		eDynamicUnset(featureID);
 	}
@@ -352,6 +394,8 @@ public abstract class TemplateableElementImpl
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
+			case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT:
+				return unspecializedElement != null;
 		}
 		return eDynamicIsSet(featureID);
 	}

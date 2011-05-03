@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PackageImpl.java,v 1.3 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PackageImpl.java,v 1.4 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -55,6 +55,7 @@ import com.google.common.collect.Iterators;
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getTemplateBindings <em>Template Binding</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getOwnedTemplateSignature <em>Owned Template Signature</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getUnspecializedElement <em>Unspecialized Element</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestedPackages <em>Nested Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNestingPackage <em>Nesting Package</em>}</li>
  *   <li>{@link org.eclipse.ocl.examples.pivot.internal.impl.PackageImpl#getNsPrefix <em>Ns Prefix</em>}</li>
@@ -89,6 +90,16 @@ public class PackageImpl
 	 * @ordered
 	 */
 	protected TemplateSignature ownedTemplateSignature;
+
+	/**
+	 * The cached value of the '{@link #getUnspecializedElement() <em>Unspecialized Element</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUnspecializedElement()
+	 * @generated
+	 * @ordered
+	 */
+	protected TemplateableElement unspecializedElement;
 
 	/**
 	 * The cached value of the '{@link #getNestedPackages() <em>Nested Package</em>}' containment reference list.
@@ -285,6 +296,29 @@ public class PackageImpl
 		TemplateSignature newOwnedTemplateSignature = (TemplateSignature) create(PivotPackage.Literals.TEMPLATE_SIGNATURE);
 		setOwnedTemplateSignature(newOwnedTemplateSignature);
 		return newOwnedTemplateSignature;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateableElement getUnspecializedElement()
+	{
+		return unspecializedElement;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnspecializedElement(TemplateableElement newUnspecializedElement)
+	{
+		TemplateableElement oldUnspecializedElement = unspecializedElement;
+		unspecializedElement = newUnspecializedElement;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT, oldUnspecializedElement, unspecializedElement));
 	}
 
 	/**
@@ -597,6 +631,8 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				if (resolve) return getOwnedTemplateSignature();
 				return basicGetOwnedTemplateSignature();
+			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
+				return getUnspecializedElement();
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				return getNestedPackages();
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
@@ -651,6 +687,9 @@ public class PackageImpl
 				return;
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
+				return;
+			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)newValue);
 				return;
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				getNestedPackages().clear();
@@ -710,6 +749,9 @@ public class PackageImpl
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
 				return;
+			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)null);
+				return;
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				getNestedPackages().clear();
 				return;
@@ -757,6 +799,8 @@ public class PackageImpl
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
+			case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT:
+				return unspecializedElement != null;
 			case PivotPackage.PACKAGE__NESTED_PACKAGE:
 				return nestedPackages != null && !nestedPackages.isEmpty();
 			case PivotPackage.PACKAGE__NESTING_PACKAGE:
@@ -786,6 +830,7 @@ public class PackageImpl
 			{
 				case PivotPackage.PACKAGE__TEMPLATE_BINDING: return PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING;
 				case PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT: return PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
 		}
@@ -805,6 +850,7 @@ public class PackageImpl
 			{
 				case PivotPackage.TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING: return PivotPackage.PACKAGE__TEMPLATE_BINDING;
 				case PivotPackage.TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE: return PivotPackage.PACKAGE__OWNED_TEMPLATE_SIGNATURE;
+				case PivotPackage.TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT: return PivotPackage.PACKAGE__UNSPECIALIZED_ELEMENT;
 				default: return -1;
 			}
 		}
