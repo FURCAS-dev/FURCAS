@@ -100,7 +100,7 @@ public class WizardProjectHelper {
         //
         if (!metamodel) {
             projectDescription.setNatureIds(new String[] { "com.sap.furcas.ide.dslproject.syntaxGenerationNature",
-                    JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
+                    JavaCore.NATURE_ID, "org.eclipse.emf.query2.index.ui.queryIndexNature" ,"org.eclipse.pde.PluginNature" });
         } else {
             projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
         }
@@ -225,12 +225,15 @@ public class WizardProjectHelper {
 
         ICommand schema = projectDescription.newCommand();
         schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
+        
+        ICommand query2 = projectDescription.newCommand();
+        schema.setBuilderName("org.eclipse.emf.query2.index.ui.queryIndexBuilder");
 
         if (!metamodel) {
             ICommand furcas = projectDescription.newCommand();
             furcas.setBuilderName("com.sap.furcas.ide.dslproject.syntaxBuilder");
 
-            projectDescription.setBuildSpec(new ICommand[] { furcas, java, manifest, schema });
+            projectDescription.setBuildSpec(new ICommand[] { furcas, query2, java, manifest, schema });
         } else {
             projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
         }
