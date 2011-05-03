@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableCSScopeAdapter.java,v 1.4 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: VariableCSScopeAdapter.java,v 1.5 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -41,7 +41,9 @@ public class VariableCSScopeAdapter extends EssentialOCLCSScopeAdapter<VariableC
 		else {
 			TypeRefCS type = target.getOwnedType();
 			Type libType = getLibraryType(type);
-			environmentView.addElementsOfScope(libType, scopeView);
+			if ((libType != null) && !libType.eIsProxy()) {
+				environmentView.addElementsOfScope(libType, scopeView);
+			}
 			return scopeView.getOuterScope();
 		}
 	}

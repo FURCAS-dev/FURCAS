@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.8 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: EssentialOCLCS2MonikerVisitor.java,v 1.9 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.utilities;
 
@@ -108,6 +108,10 @@ public class EssentialOCLCS2MonikerVisitor
 		ElementCS pivotingChild = EssentialOCLUtils.getPivotingChildCS(pivotedChild);
 		MonikeredElementCS pivotingParent = EssentialOCLUtils.getPivotingParentCS(pivotingChild);
 		EReference pivotingFeature = EssentialOCLUtils.getPivotingFeature(pivotingChild, pivotingParent);
+		if (pivotingFeature == null) {
+			context.append(NULL_MARKER);
+			return;
+		}
 		assert pivotingFeature.getEContainingClass().isInstance(pivotingParent);
 		assert pivotingFeature.getEReferenceType().isInstance(pivotingChild);
 		context.append(EssentialOCLUtils.getPivotedCS(pivotingParent).getMoniker());
@@ -168,12 +172,13 @@ public class EssentialOCLCS2MonikerVisitor
 		}
 		context.append(MONIKER_OPERATOR_SEPARATOR);
 		if ((pivotingChild instanceof NavigatingArgCS)
-		 && (((NavigatingArgCS)pivotingChild).getRole() == NavigationRole.ACCUMULATOR)
-		 && (object == ((NavigatingArgCS)pivotingChild).getInit())) {
-			appendNameExpCSName((NameExpCS) ((NavigatingArgCS)pivotingChild).getName());
-			context.append(MONIKER_SCOPE_SEPARATOR);
-			context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
-			context.append(MONIKER_OPERATOR_SEPARATOR);
+		 && (((NavigatingArgCS)pivotingChild).getRole() == NavigationRole.ACCUMULATOR)) {
+			if ((object != pivotingChild) && (object != ((NavigatingArgCS)pivotingChild).getName())) {
+				appendNameExpCSName((NameExpCS) ((NavigatingArgCS)pivotingChild).getName());
+				context.append(MONIKER_SCOPE_SEPARATOR);
+				context.append(PivotPackage.Literals.VARIABLE__INIT_EXPRESSION.getName());
+				context.append(MONIKER_OPERATOR_SEPARATOR);
+			}
 		}
 	}
 
@@ -184,7 +189,12 @@ public class EssentialOCLCS2MonikerVisitor
 		}
 		else {
 			ICompositeNode node = NodeModelUtils.getNode(object);
-			context.append(node.getText().trim());
+			String text = node.getText().trim();
+			int length = text.length();
+			if (text.startsWith("_'") && text.endsWith("'") && (length >= 3)) {
+				text = text.substring(2, length-1);
+			}
+			context.append(text);
 		}
 	}
 

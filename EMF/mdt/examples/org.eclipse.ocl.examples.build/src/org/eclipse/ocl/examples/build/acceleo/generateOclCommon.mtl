@@ -111,6 +111,9 @@ Iteration [iteration.getSymbolName()/] = PivotFactory.eINSTANCE.createIteration(
 [emitTemplateSignature(iteration.ownedTemplateSignature)/]
 [iteration.getSymbolName()/].setOwnedTemplateSignature([iteration.ownedTemplateSignature.getSymbolName()/]);
 [/if]
+[if (iteration.unspecializedElement->notEmpty())]
+[iteration.getSymbolName()/].setUnspecializedElement([iteration.unspecializedElement.getSymbolName()/]);
+[/if]
 [iteration.getSymbolName()/].setName("[iteration.name/]");
 //[iteration.getSymbolName()/].setMoniker("[iteration.moniker/]");
 [iteration.getSymbolName()/].setType([iteration.type.getSymbolName()/]);  // [iteration.type.moniker/]
@@ -139,6 +142,9 @@ Operation [operation.getSymbolName()/] = PivotFactory.eINSTANCE.createOperation(
 [if (operation.ownedTemplateSignature->notEmpty())]
 [emitTemplateSignature(operation.ownedTemplateSignature)/]
 [operation.getSymbolName()/].setOwnedTemplateSignature([operation.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[if (operation.unspecializedElement->notEmpty())]
+[operation.getSymbolName()/].setUnspecializedElement([operation.unspecializedElement.getSymbolName()/]);
 [/if]
 [operation.getSymbolName()/].setName("[operation.name/]");
 //[operation.getSymbolName()/].setMoniker("[operation.moniker/]");
@@ -208,6 +214,9 @@ Parameter [parameter.getSymbolName()/] = PivotFactory.eINSTANCE.createParameter(
 [/if]
 [if (property.isID)]
 [property.getSymbolName()/].setIsID(true);
+[/if]
+[if (property.implicit)]
+[property.getSymbolName()/].setImplicit(true);
 [/if]
 [if (property.isReadOnly)]
 [property.getSymbolName()/].setIsReadOnly(true);
@@ -291,6 +300,9 @@ TemplateBinding [templateBinding.getSymbolName()/] = PivotFactory.eINSTANCE.crea
 [if (type.ownedTemplateSignature->notEmpty())]
 [emitTemplateSignature(type.ownedTemplateSignature)/]
 [type.getSymbolName()/].setOwnedTemplateSignature([type.ownedTemplateSignature.getSymbolName()/]);
+[/if]
+[if (type.unspecializedElement->notEmpty())]
+[type.getSymbolName()/].setUnspecializedElement([type.unspecializedElement.getSymbolName()/]);
 [/if]
 [if (type.templateBinding->notEmpty())]
 {

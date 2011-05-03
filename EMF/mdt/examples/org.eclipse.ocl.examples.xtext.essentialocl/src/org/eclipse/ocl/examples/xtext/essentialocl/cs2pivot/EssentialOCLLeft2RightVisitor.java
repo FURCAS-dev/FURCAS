@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLLeft2RightVisitor.java,v 1.16 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: EssentialOCLLeft2RightVisitor.java,v 1.18 2011/05/02 15:39:01 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
@@ -27,11 +27,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
-import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
 import org.eclipse.ocl.examples.pivot.CollectionRange;
@@ -57,15 +55,12 @@ import org.eclipse.ocl.examples.pivot.NullLiteralExp;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
-import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.RealLiteralExp;
-import org.eclipse.ocl.examples.pivot.SequenceType;
-import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralExp;
 import org.eclipse.ocl.examples.pivot.TupleLiteralPart;
@@ -581,7 +576,8 @@ public class EssentialOCLLeft2RightVisitor
 				callExp = operationCallExp;
 				expression = resolveNavigationFeature(csNavigatingExp, source, operation, callExp);
 				resolveOperationArguments(csNavigatingExp, source, operation, operationCallExp);
-				context.setType(operationCallExp, operation.getType());
+				Type returnType = typeManager.getTypeWithMultiplicity(operation);
+				context.setType(operationCallExp, returnType);
 				if (expression instanceof LoopExp) {											// Genuine implicit collect
 					context.resolveIterationSpecialization((LoopExp)expression);
 				}
@@ -621,12 +617,15 @@ public class EssentialOCLLeft2RightVisitor
 			OclExpression source, Operation operation, OperationCallExp expression) {
 		List<OclExpression> pivotArguments = new ArrayList<OclExpression>();
 		List<NavigatingArgCS> csArguments = csNavigatingExp.getArgument();
+		List<Parameter> ownedParameters = operation.getOwnedParameters();
+		int parametersCount = ownedParameters.size();
 		int csArgumentCount = csArguments.size();
 		if (csArgumentCount > 0) {
 			if (csArguments.get(0).getRole() != NavigationRole.EXPRESSION) {
 				context.addDiagnostic(csNavigatingExp, "Operation calls can only specify expressions");			
 			}
-			for (NavigatingArgCS csArgument : csArguments) {
+			for (int argIndex = 0; argIndex < csArgumentCount; argIndex++) {
+				NavigatingArgCS csArgument = csArguments.get(argIndex);
 				if (csArgument.getInit() != null) {
 					context.addDiagnostic(csArgument, "Unexpected initializer for expression");
 				}
@@ -639,7 +638,6 @@ public class EssentialOCLLeft2RightVisitor
 				}
 			}
 		}
-		int parametersCount = operation.getOwnedParameters().size();
 		if ((csArgumentCount != parametersCount) && (operation != getBadOperation())) {
 			String boundMessage = NLS.bind(OCLMessages.MismatchedArgumentCount_ERROR_, csArgumentCount, parametersCount);
 			context.addDiagnostic(csNavigatingExp, boundMessage);			
@@ -658,7 +656,8 @@ public class EssentialOCLLeft2RightVisitor
 		if (size == 1) {
 			Operation operation = (Operation)environmentView.getResolvedContent();
 			context.setReferredOperation(expression, operation);
-			context.setType(expression, operation.getType());
+			Type returnType = typeManager.getTypeWithMultiplicity(operation);
+			context.setType(expression, returnType);
 		}
 		else {
 			StringBuffer s = new StringBuffer();
@@ -667,7 +666,9 @@ public class EssentialOCLLeft2RightVisitor
 				if (s.length() > 0) {
 					s.append(",");
 				}
-				s.append(argumentType.toString());
+				if (argumentType != null) {
+					s.append(argumentType.toString());
+				}
 			}
 			String boundMessage;
 			if (s.length() > 0) {
@@ -782,21 +783,7 @@ public class EssentialOCLLeft2RightVisitor
 		}
 		Type type = typeManager.getLibraryType(collectionTypeName, Collections.singletonList(commonType));
 		context.setType(expression, type);
-		if (type instanceof BagType) {
-			expression.setKind(CollectionKind.BAG);
-		}
-		else if (type instanceof OrderedSetType) {
-			expression.setKind(CollectionKind.ORDERED_SET);
-		}
-		else if (type instanceof SequenceType) {
-			expression.setKind(CollectionKind.SEQUENCE);
-		}
-		else if (type instanceof SetType) {
-			expression.setKind(CollectionKind.SET);
-		}
-		else {
-			expression.setKind(CollectionKind.COLLECTION);
-		}
+		expression.setKind(PivotUtil.getCollectionKind((CollectionType) type));
 		return expression;
 	}
 
