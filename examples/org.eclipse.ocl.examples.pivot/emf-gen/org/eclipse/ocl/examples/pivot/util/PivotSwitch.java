@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotSwitch.java,v 1.9 2011/04/25 09:49:15 ewillink Exp $
+ * $Id: PivotSwitch.java,v 1.10 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.util;
 
@@ -192,8 +192,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(anyType);
 				if (result == null) result = caseNamespace(anyType);
 				if (result == null) result = caseNamedElement(anyType);
-				if (result == null) result = caseParameterableElement(anyType);
 				if (result == null) result = caseTemplateableElement(anyType);
+				if (result == null) result = caseParameterableElement(anyType);
 				if (result == null) result = caseMonikeredElement(anyType);
 				if (result == null) result = caseNameable(anyType);
 				if (result == null) result = caseElement(anyType);
@@ -209,8 +209,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(associationClass);
 				if (result == null) result = caseNamespace(associationClass);
 				if (result == null) result = caseNamedElement(associationClass);
-				if (result == null) result = caseParameterableElement(associationClass);
 				if (result == null) result = caseTemplateableElement(associationClass);
+				if (result == null) result = caseParameterableElement(associationClass);
 				if (result == null) result = caseMonikeredElement(associationClass);
 				if (result == null) result = caseNameable(associationClass);
 				if (result == null) result = caseElement(associationClass);
@@ -245,8 +245,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(bagType);
 				if (result == null) result = caseNamespace(bagType);
 				if (result == null) result = caseNamedElement(bagType);
-				if (result == null) result = caseParameterableElement(bagType);
 				if (result == null) result = caseTemplateableElement(bagType);
+				if (result == null) result = caseParameterableElement(bagType);
 				if (result == null) result = caseMonikeredElement(bagType);
 				if (result == null) result = caseNameable(bagType);
 				if (result == null) result = caseElement(bagType);
@@ -303,8 +303,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(class_);
 				if (result == null) result = caseNamespace(class_);
 				if (result == null) result = caseNamedElement(class_);
-				if (result == null) result = caseParameterableElement(class_);
 				if (result == null) result = caseTemplateableElement(class_);
+				if (result == null) result = caseParameterableElement(class_);
 				if (result == null) result = caseMonikeredElement(class_);
 				if (result == null) result = caseNameable(class_);
 				if (result == null) result = caseElement(class_);
@@ -321,8 +321,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(classifierType);
 				if (result == null) result = caseNamespace(classifierType);
 				if (result == null) result = caseNamedElement(classifierType);
-				if (result == null) result = caseParameterableElement(classifierType);
 				if (result == null) result = caseTemplateableElement(classifierType);
+				if (result == null) result = caseParameterableElement(classifierType);
 				if (result == null) result = caseMonikeredElement(classifierType);
 				if (result == null) result = caseNameable(classifierType);
 				if (result == null) result = caseElement(classifierType);
@@ -395,8 +395,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(collectionType);
 				if (result == null) result = caseNamespace(collectionType);
 				if (result == null) result = caseNamedElement(collectionType);
-				if (result == null) result = caseParameterableElement(collectionType);
 				if (result == null) result = caseTemplateableElement(collectionType);
+				if (result == null) result = caseParameterableElement(collectionType);
 				if (result == null) result = caseMonikeredElement(collectionType);
 				if (result == null) result = caseNameable(collectionType);
 				if (result == null) result = caseElement(collectionType);
@@ -433,8 +433,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(dataType);
 				if (result == null) result = caseNamespace(dataType);
 				if (result == null) result = caseNamedElement(dataType);
-				if (result == null) result = caseParameterableElement(dataType);
 				if (result == null) result = caseTemplateableElement(dataType);
+				if (result == null) result = caseParameterableElement(dataType);
 				if (result == null) result = caseMonikeredElement(dataType);
 				if (result == null) result = caseNameable(dataType);
 				if (result == null) result = caseElement(dataType);
@@ -486,8 +486,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(enumeration);
 				if (result == null) result = caseNamespace(enumeration);
 				if (result == null) result = caseNamedElement(enumeration);
-				if (result == null) result = caseParameterableElement(enumeration);
 				if (result == null) result = caseTemplateableElement(enumeration);
+				if (result == null) result = caseParameterableElement(enumeration);
 				if (result == null) result = caseMonikeredElement(enumeration);
 				if (result == null) result = caseNameable(enumeration);
 				if (result == null) result = caseElement(enumeration);
@@ -607,8 +607,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(invalidType);
 				if (result == null) result = caseNamespace(invalidType);
 				if (result == null) result = caseNamedElement(invalidType);
-				if (result == null) result = caseParameterableElement(invalidType);
 				if (result == null) result = caseTemplateableElement(invalidType);
+				if (result == null) result = caseParameterableElement(invalidType);
 				if (result == null) result = caseMonikeredElement(invalidType);
 				if (result == null) result = caseNameable(invalidType);
 				if (result == null) result = caseElement(invalidType);
@@ -639,8 +639,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseOperation(iteration);
 				if (result == null) result = caseFeature(iteration);
 				if (result == null) result = caseNamespace(iteration);
-				if (result == null) result = caseParameterableElement(iteration);
 				if (result == null) result = caseTemplateableElement(iteration);
+				if (result == null) result = caseParameterableElement(iteration);
 				if (result == null) result = caseTypedMultiplicityElement(iteration);
 				if (result == null) result = caseTypedElement(iteration);
 				if (result == null) result = caseMultiplicityElement(iteration);
@@ -677,8 +677,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(lambdaType);
 				if (result == null) result = caseNamespace(lambdaType);
 				if (result == null) result = caseNamedElement(lambdaType);
-				if (result == null) result = caseParameterableElement(lambdaType);
 				if (result == null) result = caseTemplateableElement(lambdaType);
+				if (result == null) result = caseParameterableElement(lambdaType);
 				if (result == null) result = caseMonikeredElement(lambdaType);
 				if (result == null) result = caseNameable(lambdaType);
 				if (result == null) result = caseElement(lambdaType);
@@ -764,8 +764,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseMessageType(messageType);
 				if (result == null) result = caseType(messageType);
 				if (result == null) result = caseNamedElement(messageType);
-				if (result == null) result = caseParameterableElement(messageType);
 				if (result == null) result = caseTemplateableElement(messageType);
+				if (result == null) result = caseParameterableElement(messageType);
 				if (result == null) result = caseMonikeredElement(messageType);
 				if (result == null) result = caseNameable(messageType);
 				if (result == null) result = caseElement(messageType);
@@ -897,8 +897,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseOperation(operation);
 				if (result == null) result = caseFeature(operation);
 				if (result == null) result = caseNamespace(operation);
-				if (result == null) result = caseParameterableElement(operation);
 				if (result == null) result = caseTemplateableElement(operation);
+				if (result == null) result = caseParameterableElement(operation);
 				if (result == null) result = caseTypedMultiplicityElement(operation);
 				if (result == null) result = caseTypedElement(operation);
 				if (result == null) result = caseMultiplicityElement(operation);
@@ -946,8 +946,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(orderedSetType);
 				if (result == null) result = caseNamespace(orderedSetType);
 				if (result == null) result = caseNamedElement(orderedSetType);
-				if (result == null) result = caseParameterableElement(orderedSetType);
 				if (result == null) result = caseTemplateableElement(orderedSetType);
+				if (result == null) result = caseParameterableElement(orderedSetType);
 				if (result == null) result = caseMonikeredElement(orderedSetType);
 				if (result == null) result = caseNameable(orderedSetType);
 				if (result == null) result = caseElement(orderedSetType);
@@ -1042,8 +1042,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(primitiveType);
 				if (result == null) result = caseNamespace(primitiveType);
 				if (result == null) result = caseNamedElement(primitiveType);
-				if (result == null) result = caseParameterableElement(primitiveType);
 				if (result == null) result = caseTemplateableElement(primitiveType);
+				if (result == null) result = caseParameterableElement(primitiveType);
 				if (result == null) result = caseMonikeredElement(primitiveType);
 				if (result == null) result = caseNameable(primitiveType);
 				if (result == null) result = caseElement(primitiveType);
@@ -1124,8 +1124,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(sequenceType);
 				if (result == null) result = caseNamespace(sequenceType);
 				if (result == null) result = caseNamedElement(sequenceType);
-				if (result == null) result = caseParameterableElement(sequenceType);
 				if (result == null) result = caseTemplateableElement(sequenceType);
+				if (result == null) result = caseParameterableElement(sequenceType);
 				if (result == null) result = caseMonikeredElement(sequenceType);
 				if (result == null) result = caseNameable(sequenceType);
 				if (result == null) result = caseElement(sequenceType);
@@ -1143,8 +1143,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(setType);
 				if (result == null) result = caseNamespace(setType);
 				if (result == null) result = caseNamedElement(setType);
-				if (result == null) result = caseParameterableElement(setType);
 				if (result == null) result = caseTemplateableElement(setType);
+				if (result == null) result = caseParameterableElement(setType);
 				if (result == null) result = caseMonikeredElement(setType);
 				if (result == null) result = caseNameable(setType);
 				if (result == null) result = caseElement(setType);
@@ -1239,8 +1239,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				T result = caseTemplateParameterType(templateParameterType);
 				if (result == null) result = caseType(templateParameterType);
 				if (result == null) result = caseNamedElement(templateParameterType);
-				if (result == null) result = caseParameterableElement(templateParameterType);
 				if (result == null) result = caseTemplateableElement(templateParameterType);
+				if (result == null) result = caseParameterableElement(templateParameterType);
 				if (result == null) result = caseMonikeredElement(templateParameterType);
 				if (result == null) result = caseNameable(templateParameterType);
 				if (result == null) result = caseElement(templateParameterType);
@@ -1306,8 +1306,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(tupleType);
 				if (result == null) result = caseNamespace(tupleType);
 				if (result == null) result = caseNamedElement(tupleType);
-				if (result == null) result = caseParameterableElement(tupleType);
 				if (result == null) result = caseTemplateableElement(tupleType);
+				if (result == null) result = caseParameterableElement(tupleType);
 				if (result == null) result = caseMonikeredElement(tupleType);
 				if (result == null) result = caseNameable(tupleType);
 				if (result == null) result = caseElement(tupleType);
@@ -1320,8 +1320,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				Type type = (Type)theEObject;
 				T result = caseType(type);
 				if (result == null) result = caseNamedElement(type);
-				if (result == null) result = caseParameterableElement(type);
 				if (result == null) result = caseTemplateableElement(type);
+				if (result == null) result = caseParameterableElement(type);
 				if (result == null) result = caseMonikeredElement(type);
 				if (result == null) result = caseNameable(type);
 				if (result == null) result = caseElement(type);
@@ -1404,8 +1404,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(unspecifiedType);
 				if (result == null) result = caseNamespace(unspecifiedType);
 				if (result == null) result = caseNamedElement(unspecifiedType);
-				if (result == null) result = caseParameterableElement(unspecifiedType);
 				if (result == null) result = caseTemplateableElement(unspecifiedType);
+				if (result == null) result = caseParameterableElement(unspecifiedType);
 				if (result == null) result = caseMonikeredElement(unspecifiedType);
 				if (result == null) result = caseNameable(unspecifiedType);
 				if (result == null) result = caseElement(unspecifiedType);
@@ -1490,8 +1490,8 @@ public class PivotSwitch<T> extends Switch<T> {
 				if (result == null) result = caseType(voidType);
 				if (result == null) result = caseNamespace(voidType);
 				if (result == null) result = caseNamedElement(voidType);
-				if (result == null) result = caseParameterableElement(voidType);
 				if (result == null) result = caseTemplateableElement(voidType);
+				if (result == null) result = caseParameterableElement(voidType);
 				if (result == null) result = caseMonikeredElement(voidType);
 				if (result == null) result = caseNameable(voidType);
 				if (result == null) result = caseElement(voidType);

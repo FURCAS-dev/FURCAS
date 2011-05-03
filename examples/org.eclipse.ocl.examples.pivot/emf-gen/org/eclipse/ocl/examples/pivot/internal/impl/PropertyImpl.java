@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PropertyImpl.java,v 1.6 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PropertyImpl.java,v 1.8 2011/05/02 17:52:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationFilter.java,v 1.9 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: OperationFilter.java,v 1.10 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -86,7 +86,10 @@ public class OperationFilter extends AbstractOperationFilter
 		Type sourceType = this.sourceType;
 		if (!(sourceType instanceof CollectionType) && (candidateIteration.getClass_() instanceof CollectionType)) {
 			sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
-		}			
+		}
+		if (!(sourceType instanceof CollectionType)) {			// May be InvalidType
+			return null;
+		}
 		HashMap<TemplateParameter, ParameterableElement> bindings = new HashMap<TemplateParameter, ParameterableElement>();
 		bindings.put(candidateIteration.getClass_().getOwnedTemplateSignature().getOwnedParameters().get(0), ((CollectionType)sourceType).getElementType());
 		PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
@@ -118,14 +121,14 @@ public class OperationFilter extends AbstractOperationFilter
 			if (!(sourceType instanceof CollectionType)) {
 				sourceType = typeManager.getCollectionType("Set", sourceType);		// Implicit oclAsSet()
 			}			
-			bindings = new HashMap<TemplateParameter, ParameterableElement>();
-			Type elementType = ((CollectionType)sourceType).getElementType();
+			Type elementType;
 			if (sourceType instanceof CollectionType) {
 				elementType = ((CollectionType)sourceType).getElementType();
 			}
 			else {
 				elementType = typeManager.getOclInvalidType();
 			}
+			bindings = new HashMap<TemplateParameter, ParameterableElement>();
 			bindings.put(containingType.getOwnedTemplateSignature().getOwnedParameters().get(0), elementType);
 		}			
 		bindings = PivotUtil.getAllTemplateParameterSubstitutions(bindings, sourceType);
@@ -196,8 +199,12 @@ public class OperationFilter extends AbstractOperationFilter
 				Parameter candidateParameter = candidateParameters.get(i);
 				NavigatingArgCS csExpression = csArguments.get(i);
 				OclExpression expression = PivotUtil.getPivot(OclExpression.class, csExpression);
-				Type candidateType = candidateParameter.getType();
+				if (expression == null) {
+					return false;
+				}
+				Type candidateType = typeManager.getTypeWithMultiplicity(candidateParameter);
 				Type expressionType = expression.getType();
+				expressionType = PivotUtil.getBehavioralType(expressionType);			// FIXME make this a general facility
 				if (!typeManager.conformsTo(expressionType, candidateType, bindings)) {
 					return false;
 				}

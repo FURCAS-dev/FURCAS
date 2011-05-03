@@ -12,10 +12,11 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLCS2Pivot.java,v 1.7 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: EssentialOCLCS2Pivot.java,v 1.8 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.cs2pivot;
 
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.TypedElement;
+import org.eclipse.ocl.examples.pivot.TypedMultiplicityElement;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
@@ -95,7 +98,40 @@ public class EssentialOCLCS2Pivot extends BaseCS2Pivot
 				else {
 					StringBuffer s = new StringBuffer();
 					for (NavigatingArgCS csArgument : arguments) {
-						s.append(csArgument.toString());
+						TypedElement pivot = PivotUtil.getPivot(TypedElement.class, csArgument);
+						if ((pivot != null) && !pivot.eIsProxy()) {
+							Type type = pivot.getType();
+							if (pivot instanceof TypedMultiplicityElement) {
+								TypedMultiplicityElement typedMultiplicityElement = (TypedMultiplicityElement)pivot;
+								if (typedMultiplicityElement.isOrdered()) {
+									if (typedMultiplicityElement.isUnique()) {
+										s.append("OrderedSet<");
+									}
+									else {
+										s.append("Sequence<");
+									}
+								}
+								else {
+									if (typedMultiplicityElement.isUnique()) {
+										s.append("Set<");
+									}
+									else {
+										s.append("Bag<");
+									}
+								}
+								s.append(String.valueOf(type));
+								s.append(">");
+								BigInteger lower = typedMultiplicityElement.getLower();
+								BigInteger upper = typedMultiplicityElement.getUpper();
+								PivotUtil.appendMultiplicity(s, lower.intValue(), upper.intValue());
+							}
+							else {
+								s.append(String.valueOf(type));
+							}
+						}
+						else {
+							s.append(csArgument.toString());
+						}
 					}
 					argumentText = s.toString();
 					messageTemplate = OCLMessages.UnresolvedOperationCall_ERROR_;

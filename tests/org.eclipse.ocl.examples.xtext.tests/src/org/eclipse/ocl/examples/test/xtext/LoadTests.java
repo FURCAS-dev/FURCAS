@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.20 2011/04/20 19:02:32 ewillink Exp $
+ * $Id: LoadTests.java,v 1.21 2011/05/02 09:31:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.examples.pivot.library.StandardLibraryContribution;
+import org.eclipse.ocl.examples.pivot.uml.UML2Ecore2Pivot;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
 import org.eclipse.ocl.examples.xtext.base.baseCST.MonikeredElementCS;
@@ -38,6 +39,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
 import org.eclipse.ocl.examples.xtext.base.utilities.BaseCSResource;
 import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.tests.XtextTestCase;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Tests that load a model and verify that there are no unresolved proxies as a result.
@@ -84,7 +86,9 @@ public class LoadTests extends XtextTestCase
 		URI inputURI = getProjectFileURI(inputName);
 		URI outputURI = getProjectFileURI(outputName);
 		URI output2URI = getProjectFileURI(output2Name);
-		TypeManager typeManager = new TypeManager();
+		if (typeManager == null) {
+			typeManager = new TypeManager();
+		}
 		TypeManagerResourceSetAdapter.getAdapter(resourceSet, typeManager);
 		Resource xtextResource = null;
 		try {
@@ -249,6 +253,14 @@ public class LoadTests extends XtextTestCase
 
 	public void testLoad_Bug321903_oclinecore() throws IOException, InterruptedException {
 		doLoad_Concrete("Bug321903", "oclinecore");
+	}	
+
+	public void testLoad_Fruit_ocl() throws IOException, InterruptedException {
+		typeManager = new TypeManager();
+		ResourceSet resourceSet = typeManager.getExternalResourceSet();
+		assertNull(UML2Ecore2Pivot.initialize(resourceSet));
+		UMLPackage.eINSTANCE.getClass();
+		doLoad("Fruit", "ocl");
 	}	
 
 	public void testLoad_Imports_ocl() throws IOException, InterruptedException {
