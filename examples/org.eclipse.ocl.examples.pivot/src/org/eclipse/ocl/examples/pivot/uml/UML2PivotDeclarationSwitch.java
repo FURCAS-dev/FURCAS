@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UML2PivotDeclarationSwitch.java,v 1.8 2011/04/20 19:02:47 ewillink Exp $
+ * $Id: UML2PivotDeclarationSwitch.java,v 1.9 2011/05/02 15:38:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.uml;
 
@@ -252,7 +252,7 @@ public class UML2PivotDeclarationSwitch extends UMLSwitch<Object>
 	@Override
 	public org.eclipse.ocl.examples.pivot.Package casePackage(org.eclipse.uml2.uml.Package umlPackage) {
 		org.eclipse.ocl.examples.pivot.Package pivotElement = converter.refreshNamedElement(org.eclipse.ocl.examples.pivot.Package.class, PivotPackage.Literals.PACKAGE, umlPackage);
-		converter.getTypeManager().installPackageMoniker(pivotElement);
+		converter.getTypeManager().installPackageMoniker(pivotElement, true);
 		EAnnotation eAnnotation = umlPackage.getEAnnotation(EcorePackage.eNS_URI);
 		List<EAnnotation> exclusions = eAnnotation == null ? Collections.<EAnnotation>emptyList() : Collections.singletonList(eAnnotation);
 		converter.copyNamedElement(pivotElement, umlPackage);

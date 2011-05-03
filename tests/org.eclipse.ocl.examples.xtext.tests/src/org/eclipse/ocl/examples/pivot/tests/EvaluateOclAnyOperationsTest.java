@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.9 2011/04/25 19:40:00 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.10 2011/05/02 09:31:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -22,7 +22,6 @@ import java.util.Collections;
 import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
-import org.eclipse.ocl.examples.pivot.options.EvaluationOptions;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 
@@ -188,226 +187,38 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
 		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
 	}
-
-	public void testOclAsTypeInvalidLaxNullHandlingInvalid() {
-		assertQueryInvalid(null, "invalid.oclAsType(String)");
-		assertQueryInvalid(null, "invalid.oclAsType(Classifier)");
-//		assertQueryInvalid(null, "invalid.oclAsType(Class)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
-	}
-
-/* FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclAsTypeLaxNullHandlingNull() {
-		/ *
-		 * EvaluationOptions.LAX_NULL_HANDLING is on, its javadoc tells us
-		 * "null" is the expected result whatever the given type. We should
-		 * either fix the evaluation or the javadoc.
-		 * /
-		assertQueryNull(null, "null.oclAsType(String)");
-		assertQueryNull(null, "null.oclAsType(Integer)");
-		assertQueryNull(null, "null.oclAsType(EClass)");
-		assertQueryNull(null, "null.oclAsType(OclVoid)");
-		assertQueryNull(null, "null.oclAsType(OclInvalid)");
-	} */
-
-	public void testOclAsTypeNoLaxNullHandlingInvalid() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "invalid.oclAsType(String)");
-		assertQueryInvalid(null, "invalid.oclAsType(Integer)");
-		assertQueryInvalid(null, "invalid.oclAsType(Classifier)");
-//		assertQueryInvalid(null, "invalid.oclAsType(EClass)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	}
-
-/* FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclAsTypeNoLaxNullHandlingNull() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "null.oclAsType(String)");
-		assertQueryInvalid(null, "null.oclAsType(Integer)");
-		assertQueryInvalid(null, "null.oclAsType(EClass)");
-		assertQueryInvalid(null, "null.oclAsType(OclVoid)");
-		assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	} */
-
-	public void testOclIsInvalidInvalid() {
-		assertQueryTrue(null, "invalid.oclIsInvalid()");
-		assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
-		assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
-	}
-
-	public void testOclIsInvalidNull() {
-		assertQueryFalse(null, "null.oclIsInvalid()");
-	}
-
-/* FIXME FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclIsKindOfInvalidLaxNullHandling() {
-		/ *
-		 * why is the evaluation of oclIsKindOf altered for invalid
-		 * with LAX_NULL_HANDLING off? That is no documented behavior.
-		 * /
-		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(EClass)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
-	} */
-
-/* FIXME FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclIsKindOfInvalidNoLaxHandling() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "invalid.oclIsKindOf(String)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(Integer)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(EClass)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclIsKindOf(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	} */
-
-	public void testOclIsKindOfNullLaxNullHandling() {
-		/*
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
-		 * is on, its javadoc tells us
-		 * "true" is the expected result whatever the given type. We should
-		 * either fix the evaluation or the javadoc.
-		 */
-		assertQueryTrue(null, "null.oclIsKindOf(String)");
-		assertQueryTrue(null, "null.oclIsKindOf(Integer)");
-		assertQueryTrue(null, "null.oclIsKindOf(OclVoid)");
-		assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
-		assertQueryTrue(null, "null.oclIsKindOf(Classifier)");
-//		assertQueryTrue(null, "null.oclIsKindOf(Class)");
-	}
-
-/* FIXME EvaluationOptions.LAX_NULL_HANDLING
- 	public void testOclIsKindOfNullNoLaxHandling() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "null.oclIsKindOf(String)");
-		assertQueryInvalid(null, "null.oclIsKindOf(Integer)");
-		assertQueryInvalid(null, "null.oclIsKindOf(EClass)");
-		assertQueryInvalid(null, "null.oclIsKindOf(OclVoid)");
-		assertQueryInvalid(null, "null.oclIsKindOf(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	} */
-
-	public void testOclIsTypeOfInvalidLaxNullHandling() {
-		/*
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
-		 * why is the evaluation of oclIsTypeOf altered for invalid
-		 * with LAX_NULL_HANDLING off? That is no documented behavior.
-		 */
-		assertQueryFalse(null, "invalid.oclIsTypeOf(String)");
-		assertQueryFalse(null, "invalid.oclIsTypeOf(Classifier)");
-//		assertQueryFalse(null, "invalid.oclIsTypeOf(EClass)");
-		assertQueryFalse(null, "invalid.oclIsTypeOf(OclVoid)");
-		assertQueryTrue(null, "invalid.oclIsTypeOf(OclInvalid)");
-	}
-
-/* FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclIsTypeOfInvalidNoLaxNullHandling() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(String)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(Integer)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(EClass)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(OclVoid)");
-		assertQueryInvalid(null, "invalid.oclIsTypeOf(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	} */
-
-	public void testOclIsTypeOfNullLaxNullHandling() {
-		/*
-		 * FIXME EvaluationOptions.LAX_NULL_HANDLING
-		 * is on, its javadoc tells us
-		 * "true" is the expected result whatever the given type. We should
-		 * either fix the evaluation or the javadoc.
-		 */
-		assertQueryFalse(null, "null.oclIsTypeOf(String)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
-		assertQueryFalse(null, "null.oclIsTypeOf(Classifier)");
-//		assertQueryFalse(null, "null.oclIsTypeOf(EClass)");
-		assertQueryTrue(null, "null.oclIsTypeOf(OclVoid)");
-		assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
-	}
-
-/* FIXME EvaluationOptions.LAX_NULL_HANDLING
-	public void testOclIsTypeOfNullNoLaxNullHandling() {
-		Boolean oldNullHandling = EvaluationOptions.getValue(ocl
-			.getEvaluationEnvironment(), EvaluationOptions.LAX_NULL_HANDLING);
-		// If this assert ever fails, LAX_NULL_HANDLING's default changed
-		assertEquals(Boolean.TRUE, oldNullHandling);
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.FALSE);
-
-		assertQueryInvalid(null, "null.oclIsTypeOf(String)");
-		assertQueryInvalid(null, "null.oclIsTypeOf(Integer)");
-		assertQueryInvalid(null, "null.oclIsTypeOf(EClass)");
-		assertQueryInvalid(null, "null.oclIsTypeOf(OclVoid)");
-		assertQueryInvalid(null, "null.oclIsTypeOf(OclInvalid)");
-
-		EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
-			EvaluationOptions.LAX_NULL_HANDLING, Boolean.TRUE);
-	} */
-
-	public void testOclIsUndefinedInvalid() {
-		assertQueryTrue(null, "invalid.oclIsUndefined()");
-	}
-
-	public void testOclIsUndefinedNull() {
-		assertQueryTrue(null, "null.oclIsUndefined()");
-	}
 	
     /**
      * Tests the oclAsType() operator.
      */
 	public void test_oclAsType() {
+		assertQueryInvalid(null, "invalid.oclAsType(String)");
+		assertQueryInvalid(null, "invalid.oclAsType(Integer)");
+		assertQueryInvalid(null, "invalid.oclAsType(Classifier)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclVoid)");
+		assertQueryInvalid(null, "invalid.oclAsType(OclInvalid)");
+		assertQueryInvalid(null, "invalid.oclAsType(Classifier)");
+		assertQueryInvalid(null, "invalid.oclAsType(Set<String>)");
+		assertQueryInvalid(null, "invalid.oclAsType(Tuple<a:String>)");
+		assertQueryInvalid(null, "invalid.oclAsType(ocl::Package)");
+		//
+		assertQueryNull(null, "null.oclAsType(String)");
+		assertQueryNull(null, "null.oclAsType(Integer)");
+		assertQueryNull(null, "null.oclAsType(Classifier)");
+		assertQueryNull(null, "null.oclAsType(OclVoid)");
+		assertQueryInvalid(null, "null.oclAsType(OclInvalid)");
+		assertQueryNull(null, "null.oclAsType(Classifier)");
+		assertQueryNull(null, "null.oclAsType(Set<String>)");
+		assertQueryNull(null, "null.oclAsType(Tuple<a:String>)");
+		assertQueryNull(null, "null.oclAsType(ocl::Package)");
+		//
 		assertQueryInvalid(null, "true.oclAsType(Integer)");
 		assertQueryInvalid(null, "true.oclAsType(String)");
 		assertQueryTrue(null, "true.oclAsType(Boolean)");
 		assertQueryTrue(null, "true.oclAsType(OclAny)");
 		assertQueryInvalid(null, "true.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "true.oclAsType(OclInvalid)");
+		//
 		assertQueryEquals(null, 3, "3.oclAsType(Integer)");
 		assertQueryEquals(null, 3.0, "3.oclAsType(Real)");
 		assertQueryEquals(null, 3, "3.0.oclAsType(Integer)");
@@ -416,14 +227,14 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryEquals(null, 3, "3.oclAsType(OclAny)");
 		assertQueryInvalid(null, "3.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "3.oclAsType(OclInvalid)");
-
+		//
 		assertQueryInvalid(null, "3.14.oclAsType(Integer)");
 		assertQueryEquals(null, 3.14, "3.14.oclAsType(Real)");
 		assertQueryInvalid(null, "3.14.oclAsType(String)");
 		assertQueryEquals(null, 3.14, "3.14.oclAsType(OclAny)");
 		assertQueryInvalid(null, "3.14.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "3.14.oclAsType(OclInvalid)");
-
+		//
 		assertQueryInvalid(null, "*.oclAsType(Integer)");
 		assertQueryInvalid(null, "*.oclAsType(Real)");
 		assertQueryUnlimited(null, "*.oclAsType(UnlimitedNatural)");
@@ -431,7 +242,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryUnlimited(null, "*.oclAsType(OclAny)");
 		assertQueryInvalid(null, "*.oclAsType(OclVoid)");
 		assertQueryInvalid(null, "*.oclAsType(OclInvalid)");
-		
+		//
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<UnlimitedNatural>)");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<Integer>)");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection<UnlimitedNatural>)");
@@ -446,7 +257,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryResults(null, "Set{Set{1,2},Set{3,4}}", "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Set<Integer>>)");
 		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Set<Sequence<UnlimitedNatural>>)");
 		assertQueryInvalid(null, "Set{Set{1,2},Set{3,4}}->oclAsType(Sequence<Set<UnlimitedNatural>>)");
-		
+		//
 		assertSemanticErrorQuery("3.oclAsType(OclAny).abs()", OCLMessages.UnresolvedOperation_ERROR_, "abs", "OclAny value");
 		assertSemanticErrorQuery("let v : OclAny = 3 in v.abs()", OCLMessages.UnresolvedOperation_ERROR_, "abs", "OclAny value");
 		assertQueryEquals(null, 3, "let v : OclAny = 3 in v.oclAsType(Integer).abs()");
@@ -457,74 +268,92 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclIsInvalid() operator.
      */
     public void test_oclIsInvalid() {
+        assertQueryTrue(null, "invalid.oclIsInvalid()");
+        assertQueryFalse(null, "null.oclIsInvalid()");
+        assertQueryFalse(null, "true.oclIsInvalid()");
+        assertQueryFalse(null, "false.oclIsInvalid()");
+        assertQueryFalse(null, "3.14.oclIsInvalid()");
+        assertQueryFalse(null, "1.oclIsInvalid()");
+        assertQueryFalse(null, "*.oclIsInvalid()");
+        assertQueryFalse(null, "'invalid'.oclIsInvalid()");
         assertQueryFalse(pkg1, "self.oclIsInvalid()");
-
-        assertQueryTrue(pkg1, "invalid.oclIsInvalid()");
-        assertQueryFalse(pkg1, "null.oclIsInvalid()");
-        assertQueryFalse(pkg1, "true.oclIsInvalid()");
-        assertQueryFalse(pkg1, "false.oclIsInvalid()");
-        assertQueryFalse(pkg1, "3.14.oclIsInvalid()");
-        assertQueryFalse(pkg1, "1.oclIsInvalid()");
-        assertQueryFalse(pkg1, "*.oclIsInvalid()");
-        assertQueryFalse(pkg1, "'invalid'.oclIsInvalid()");
-        assertQueryFalse(pkg1, "self.oclIsInvalid()");
+		assertQueryTrue(null, "invalid.oclIsInvalid()");
+		assertQueryTrue(null, "('123a'.toInteger()).oclIsInvalid()");	// Bug 342561 for old evaluator
+		assertQueryTrue(null, "let a:Integer='123a'.toInteger() in a.oclIsInvalid()");	// Bug 342561 for old evaluator
     }
 
     /**
      * Tests the oclIsKindOf() operator.
      */
     public void test_oclIsKindOf() {
-        assertQueryTrue(pkg1, "invalid.oclIsKindOf(OclInvalid)");
-        assertQueryTrue(pkg1, "invalid.oclIsKindOf(OclVoid)");
-        assertQueryTrue(pkg1, "invalid.oclIsKindOf(OclAny)");
-        assertQueryTrue(pkg1, "invalid.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "null.oclIsKindOf(OclInvalid)");
-        assertQueryTrue(pkg1, "null.oclIsKindOf(OclVoid)");
-        assertQueryTrue(pkg1, "null.oclIsKindOf(OclAny)");
-        assertQueryTrue(pkg1, "null.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "true.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "true.oclIsKindOf(OclVoid)");
-        assertQueryTrue(pkg1, "true.oclIsKindOf(Boolean)");
-        assertQueryFalse(pkg1, "true.oclIsKindOf(Integer)");
-        assertQueryFalse(pkg1, "true.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "true.oclIsKindOf(OclAny)");
-        assertQueryFalse(pkg1, "true.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(OclVoid)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(Boolean)");
-        assertQueryTrue(pkg1, "3.14.oclIsKindOf(Real)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(Integer)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "3.14.oclIsKindOf(OclAny)");
-        assertQueryFalse(pkg1, "3.14.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "1.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "1.oclIsKindOf(OclVoid)");
-        assertQueryFalse(pkg1, "1.oclIsKindOf(Boolean)");
-        assertQueryTrue(pkg1, "1.oclIsKindOf(Real)");
-        assertQueryTrue(pkg1, "1.oclIsKindOf(Integer)");
-        assertQueryTrue(pkg1, "(-1).oclIsKindOf(Integer)");
-        assertQueryTrue(pkg1, "1.oclIsKindOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "1.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "1.oclIsKindOf(OclAny)");
-        assertQueryFalse(pkg1, "1.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "*.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "*.oclIsKindOf(OclVoid)");
-        assertQueryFalse(pkg1, "*.oclIsKindOf(Boolean)");
-        assertQueryTrue(pkg1, "*.oclIsKindOf(Real)");
-        assertQueryTrue(pkg1, "*.oclIsKindOf(Integer)");
-        assertQueryTrue(pkg1, "*.oclIsKindOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "*.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "*.oclIsKindOf(OclAny)");
-        assertQueryFalse(pkg1, "*.oclIsKindOf(ocl::Package)");
-        assertQueryFalse(pkg1, "'invalid'.oclIsKindOf(OclInvalid)");
-        assertQueryFalse(pkg1, "'null'.oclIsKindOf(OclVoid)");
-        assertQueryFalse(pkg1, "'true'.oclIsKindOf(Boolean)");
-        assertQueryFalse(pkg1, "'3.14'.oclIsKindOf(Real)");
-        assertQueryFalse(pkg1, "'1'.oclIsKindOf(Integer)");
-        assertQueryFalse(pkg1, "'*'.oclIsKindOf(UnlimitedNatural)");
-        assertQueryTrue(pkg1, "'string'.oclIsKindOf(String)");
-        assertQueryTrue(pkg1, "'any'.oclIsKindOf(OclAny)");
+        assertQueryTrue(null, "invalid.oclIsKindOf(OclInvalid)");
+        assertQueryTrue(null, "invalid.oclIsKindOf(OclVoid)");
+        assertQueryTrue(null, "invalid.oclIsKindOf(OclAny)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(String)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(Integer)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(Classifier)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(Bag<Boolean>)");
+		assertQueryTrue(null, "invalid.oclIsKindOf(Tuple(a:Integer))");
+        assertQueryTrue(null, "invalid.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "null.oclIsKindOf(OclInvalid)");
+        assertQueryTrue(null, "null.oclIsKindOf(OclVoid)");
+        assertQueryTrue(null, "null.oclIsKindOf(OclAny)");
+		assertQueryTrue(null, "null.oclIsKindOf(String)");
+		assertQueryTrue(null, "null.oclIsKindOf(Integer)");
+		assertQueryTrue(null, "null.oclIsKindOf(Classifier)");
+		assertQueryTrue(null, "null.oclIsKindOf(Bag<Boolean>)");
+		assertQueryTrue(null, "null.oclIsKindOf(Tuple(a:Integer))");
+        assertQueryTrue(null, "null.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "true.oclIsKindOf(OclInvalid)");
+        assertQueryFalse(null, "true.oclIsKindOf(OclVoid)");
+        assertQueryTrue(null, "true.oclIsKindOf(Boolean)");
+        assertQueryFalse(null, "true.oclIsKindOf(Integer)");
+        assertQueryFalse(null, "true.oclIsKindOf(String)");
+        assertQueryTrue(null, "true.oclIsKindOf(OclAny)");
+        assertQueryFalse(null, "true.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "3.14.oclIsKindOf(OclInvalid)");
+        assertQueryFalse(null, "3.14.oclIsKindOf(OclVoid)");
+        assertQueryFalse(null, "3.14.oclIsKindOf(Boolean)");
+        assertQueryTrue(null, "3.14.oclIsKindOf(Real)");
+        assertQueryFalse(null, "3.14.oclIsKindOf(Integer)");
+        assertQueryFalse(null, "3.14.oclIsKindOf(String)");
+        assertQueryTrue(null, "3.14.oclIsKindOf(OclAny)");
+        assertQueryFalse(null, "3.14.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "1.oclIsKindOf(OclInvalid)");
+        assertQueryFalse(null, "1.oclIsKindOf(OclVoid)");
+        assertQueryFalse(null, "1.oclIsKindOf(Boolean)");
+        assertQueryTrue(null, "1.oclIsKindOf(Real)");
+        assertQueryTrue(null, "1.oclIsKindOf(Integer)");
+        assertQueryTrue(null, "(-1).oclIsKindOf(Integer)");
+        assertQueryTrue(null, "1.oclIsKindOf(UnlimitedNatural)");
+        assertQueryFalse(null, "1.oclIsKindOf(String)");
+        assertQueryTrue(null, "1.oclIsKindOf(OclAny)");
+        assertQueryFalse(null, "1.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "*.oclIsKindOf(OclInvalid)");
+        assertQueryFalse(null, "*.oclIsKindOf(OclVoid)");
+        assertQueryFalse(null, "*.oclIsKindOf(Boolean)");
+        assertQueryTrue(null, "*.oclIsKindOf(Real)");
+        assertQueryTrue(null, "*.oclIsKindOf(Integer)");
+        assertQueryTrue(null, "*.oclIsKindOf(UnlimitedNatural)");
+        assertQueryFalse(null, "*.oclIsKindOf(String)");
+        assertQueryTrue(null, "*.oclIsKindOf(OclAny)");
+        assertQueryFalse(null, "*.oclIsKindOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "'invalid'.oclIsKindOf(OclInvalid)");
+        assertQueryFalse(null, "'null'.oclIsKindOf(OclVoid)");
+        assertQueryFalse(null, "'true'.oclIsKindOf(Boolean)");
+        assertQueryFalse(null, "'3.14'.oclIsKindOf(Real)");
+        assertQueryFalse(null, "'1'.oclIsKindOf(Integer)");
+        assertQueryFalse(null, "'*'.oclIsKindOf(UnlimitedNatural)");
+        assertQueryTrue(null, "'string'.oclIsKindOf(String)");
+        assertQueryTrue(null, "'any'.oclIsKindOf(OclAny)");
         assertQueryFalse(pkg1, "'self'.oclIsKindOf(ocl::Package)");
+        //
         assertQueryFalse(pkg1, "self.oclIsKindOf(OclInvalid)");
         assertQueryFalse(pkg1, "self.oclIsKindOf(OclVoid)");
         assertQueryFalse(pkg1, "self.oclIsKindOf(Boolean)");
@@ -540,56 +369,71 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclIsTypeOf() operator.
      */
     public void test_oclIsTypeOf() {
-        assertQueryTrue(pkg1, "invalid.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "invalid.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "invalid.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "invalid.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "null.oclIsTypeOf(OclInvalid)");
-        assertQueryTrue(pkg1, "null.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "null.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "null.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "true.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "true.oclIsTypeOf(OclVoid)");
-        assertQueryTrue(pkg1, "true.oclIsTypeOf(Boolean)");
-        assertQueryFalse(pkg1, "true.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "true.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "true.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(Boolean)");
-        assertQueryTrue(pkg1, "3.14.oclIsTypeOf(Real)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(Integer)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "3.14.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(Boolean)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(Real)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(Integer)");
-        assertQueryTrue(pkg1, "(-1).oclIsTypeOf(Integer)");
-        assertQueryTrue(pkg1, "1.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "1.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(Boolean)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(Real)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(Integer)");
-        assertQueryTrue(pkg1, "*.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(OclAny)");
-        assertQueryFalse(pkg1, "*.oclIsTypeOf(ocl::Package)");
-        assertQueryFalse(pkg1, "'invalid'.oclIsTypeOf(OclInvalid)");
-        assertQueryFalse(pkg1, "'null'.oclIsTypeOf(OclVoid)");
-        assertQueryFalse(pkg1, "'true'.oclIsTypeOf(Boolean)");
-        assertQueryFalse(pkg1, "'3.14'.oclIsTypeOf(Real)");
-        assertQueryFalse(pkg1, "'1'.oclIsTypeOf(Integer)");
-        assertQueryFalse(pkg1, "'*'.oclIsTypeOf(UnlimitedNatural)");
-        assertQueryTrue(pkg1, "'string'.oclIsTypeOf(String)");
-        assertQueryFalse(pkg1, "'any'.oclIsTypeOf(OclAny)");
+        assertQueryTrue(null, "invalid.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "invalid.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "invalid.oclIsTypeOf(OclAny)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(Integer)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(String)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(Classifier)");
+		assertQueryFalse(null, "invalid.oclIsTypeOf(Set<String>)");
+        assertQueryFalse(null, "invalid.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "null.oclIsTypeOf(OclInvalid)");
+        assertQueryTrue(null, "null.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "null.oclIsTypeOf(OclAny)");
+		assertQueryFalse(null, "null.oclIsTypeOf(Integer)");
+		assertQueryFalse(null, "null.oclIsTypeOf(String)");
+		assertQueryFalse(null, "null.oclIsTypeOf(Classifier)");
+		assertQueryFalse(null, "null.oclIsTypeOf(Set<String>)");
+        assertQueryFalse(null, "null.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "true.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "true.oclIsTypeOf(OclVoid)");
+        assertQueryTrue(null, "true.oclIsTypeOf(Boolean)");
+        assertQueryFalse(null, "true.oclIsTypeOf(String)");
+        assertQueryFalse(null, "true.oclIsTypeOf(OclAny)");
+        assertQueryFalse(null, "true.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "3.14.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(Boolean)");
+        assertQueryTrue(null, "3.14.oclIsTypeOf(Real)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(Integer)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(String)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(OclAny)");
+        assertQueryFalse(null, "3.14.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "1.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "1.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "1.oclIsTypeOf(Boolean)");
+        assertQueryFalse(null, "1.oclIsTypeOf(Real)");
+        assertQueryFalse(null, "1.oclIsTypeOf(Integer)");
+        assertQueryTrue(null, "(-1).oclIsTypeOf(Integer)");
+        assertQueryTrue(null, "1.oclIsTypeOf(UnlimitedNatural)");
+        assertQueryFalse(null, "1.oclIsTypeOf(String)");
+        assertQueryFalse(null, "1.oclIsTypeOf(OclAny)");
+        assertQueryFalse(null, "1.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "*.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "*.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "*.oclIsTypeOf(Boolean)");
+        assertQueryFalse(null, "*.oclIsTypeOf(Real)");
+        assertQueryFalse(null, "*.oclIsTypeOf(Integer)");
+        assertQueryTrue(null, "*.oclIsTypeOf(UnlimitedNatural)");
+        assertQueryFalse(null, "*.oclIsTypeOf(String)");
+        assertQueryFalse(null, "*.oclIsTypeOf(OclAny)");
+        assertQueryFalse(null, "*.oclIsTypeOf(ocl::Package)");
+        //
+        assertQueryFalse(null, "'invalid'.oclIsTypeOf(OclInvalid)");
+        assertQueryFalse(null, "'null'.oclIsTypeOf(OclVoid)");
+        assertQueryFalse(null, "'true'.oclIsTypeOf(Boolean)");
+        assertQueryFalse(null, "'3.14'.oclIsTypeOf(Real)");
+        assertQueryFalse(null, "'1'.oclIsTypeOf(Integer)");
+        assertQueryFalse(null, "'*'.oclIsTypeOf(UnlimitedNatural)");
+        assertQueryTrue(null, "'string'.oclIsTypeOf(String)");
+        assertQueryFalse(null, "'any'.oclIsTypeOf(OclAny)");
         assertQueryFalse(pkg1, "'self'.oclIsTypeOf(ocl::Package)");
+        //
         assertQueryFalse(pkg1, "self.oclIsTypeOf(OclInvalid)");
         assertQueryFalse(pkg1, "self.oclIsTypeOf(OclVoid)");
         assertQueryFalse(pkg1, "self.oclIsTypeOf(Boolean)");
@@ -605,14 +449,14 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
      * Tests the oclIsUndefined() operator.
      */
     public void test_oclIsUndefined() {
-        assertQueryTrue(pkg1, "invalid.oclIsUndefined()");
-        assertQueryTrue(pkg1, "null.oclIsUndefined()");
-        assertQueryFalse(pkg1, "true.oclIsUndefined()");
-        assertQueryFalse(pkg1, "false.oclIsUndefined()");
-        assertQueryFalse(pkg1, "3.14.oclIsUndefined()");
-        assertQueryFalse(pkg1, "1.oclIsUndefined()");
-        assertQueryFalse(pkg1, "*.oclIsUndefined()");
-        assertQueryFalse(pkg1, "'null'.oclIsUndefined()");
+        assertQueryTrue(null, "invalid.oclIsUndefined()");
+        assertQueryTrue(null, "null.oclIsUndefined()");
+        assertQueryFalse(null, "true.oclIsUndefined()");
+        assertQueryFalse(null, "false.oclIsUndefined()");
+        assertQueryFalse(null, "3.14.oclIsUndefined()");
+        assertQueryFalse(null, "1.oclIsUndefined()");
+        assertQueryFalse(null, "*.oclIsUndefined()");
+        assertQueryFalse(null, "'null'.oclIsUndefined()");
         assertQueryFalse(pkg1, "self.oclIsUndefined()");
     }
 
@@ -652,7 +496,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     /**
      * Tests the oclType() operator for Collections.
      */
-    public void test_oclType_Collection() {
+    public void test_oclType_Collection() {   	
     	//FIXME fails because specialized type has no specialized operations    	assertQueryEquals(null, 1, "Set{1}->oclType().ownedOperation");
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getSetType(typeManager.getOclAnyType())), "Set{}->oclType()");
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getSetType(typeManager.getUnlimitedNaturalType())), "Set{1}->oclType()");
@@ -752,10 +596,10 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     public void test_oclType_Tuple() {
     	TypeManager.TuplePart part = new TypeManager.TuplePart("a", typeManager.getIntegerType());
     	TupleType tupleType = typeManager.getTupleType("Tuple", Collections.singletonList(part), null, null);
-    	ClassifierType classifierType = typeManager.getClassifierType(tupleType);
-		assertQueryEquals(null, classifierType, "Tuple{a:Integer=3}.oclType()");
-    	assertQueryEquals(null, classifierType, "Tuple(a:Integer)");
-		assertQueryEquals(null, typeManager.getClassifierType(classifierType), "Tuple(a:Integer).oclType()");
+    	ClassifierType tupleClassifierType = typeManager.getClassifierType(tupleType);
+		assertQueryEquals(null, tupleClassifierType, "Tuple{a:Integer=3}.oclType()");
+    	assertQueryEquals(null, tupleClassifierType, "Tuple(a:Integer)");
+		assertQueryEquals(null, typeManager.getClassifierType(tupleClassifierType), "Tuple(a:Integer).oclType()");
     	assertSemanticErrorQuery("Tuple(a:Integer).allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) type");
     	assertSemanticErrorQuery("Tuple{a:Integer=3}.oclType().allInstances()", OCLMessages.UnresolvedOperation_ERROR_, "allInstances", "Tuple(a:Integer) type");	// FIXME
     	assertQueryResults(null, "Set{}", "Tuple(a:Integer).oclType().allInstances()");
@@ -771,7 +615,7 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getUnlimitedNaturalType()))), "3.oclType().oclType().oclType()");
     	assertQueryEquals(null, typeManager.getClassifierType(typeManager.getClassifierType(typeManager.getBooleanType())), "Boolean.oclType()");
     	assertQueryEquals(null, "Classifier", "Boolean.oclType().name");
-    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural value", "OclAny");
+    	assertSemanticErrorQuery("3.oclType(OclAny)", OCLMessages.UnresolvedOperationCall_ERROR_, "oclType", "UnlimitedNatural value", "Classifier<OclAny>");
     }
 
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeCaches.java,v 1.4 2011/04/27 06:19:59 ewillink Exp $
+ * $Id: TypeCaches.java,v 1.6 2011/05/02 15:38:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -48,9 +48,13 @@ import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Property;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 
 import com.google.common.collect.Iterables;
@@ -579,6 +583,22 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 	
 	public void addOrphanClass(Type pivotElement) {
+		if (pivotElement.getUnspecializedElement() != null) {
+			assert pivotElement.getUnspecializedElement().getUnspecializedElement() == null;
+		}
+		else {
+			assert (pivotElement instanceof LambdaType)
+				|| (pivotElement instanceof TupleType)
+				|| (pivotElement instanceof UnspecifiedType);
+		}
+		List<TemplateBinding> templateBindings = pivotElement.getTemplateBindings();
+		if (templateBindings.size() == 1) {
+			List<TemplateParameterSubstitution> parameterSubstitutions = templateBindings.get(0).getParameterSubstitutions();
+			if (parameterSubstitutions.size() == 1) {
+				TemplateParameterSubstitution parameterSubstitution = parameterSubstitutions.get(0);
+				assert parameterSubstitution.getActual().eContainer() != parameterSubstitution.getFormal();
+			}
+		}
 		assert pivotElement.hasMoniker();
 		org.eclipse.ocl.examples.pivot.Package orphans = getOrphanPackage();
 		orphans.getOwnedTypes().add(pivotElement);
@@ -590,6 +610,8 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	}
 	
 	public void addOrphanOperation(Operation pivotElement) {
+		TemplateableElement unspecializedElement = pivotElement.getUnspecializedElement();
+		assert (unspecializedElement != null) && (unspecializedElement.getUnspecializedElement() == null);
 		org.eclipse.ocl.examples.pivot.Class orphanClass = getOrphanClass();
 		orphanClass.getOwnedOperations().add(pivotElement);
 //		addOperation(pivotElement);
@@ -601,7 +623,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 //		orphans.getNestedPackages().add(pivotElement);
 //	}
 
-	private void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+	public void addPackage(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
 		String moniker = pivotPackage.getMoniker();
 		String nsURI = pivotPackage.getNsURI();
 		if (nsURI != null) {
@@ -914,7 +936,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			return iterable;
 		}
 		else {
-			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
+//			assert PivotConstants.ORPHANAGE_NAME.equals(type.getName());
 			return iterable;
 		}
 	}
@@ -1066,9 +1088,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	private Iterable<Iteration> getLocalModelIterations(Type aType, String name) {
 		List<Iteration> iterations = new ArrayList<Iteration>();
 		org.eclipse.ocl.examples.pivot.Class type = getPrimaryClass(aType);
-		if (type.getTemplateBindings().size() > 0) {
+//		if (type.getTemplateBindings().size() > 0) {
 			type = PivotUtil.getUnspecializedTemplateableElement(type);
-		}
+//		}
 		for (Operation anOperation : getLocalOperations(type, null)) {
 			if ((anOperation instanceof Iteration) && name.equals(anOperation.getName())) {
 				Operation iteration = getPrimaryOperation(anOperation);
@@ -1083,9 +1105,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 	private Iterable<Operation> getLocalModelOperations(Type aType, String name) {	// FIXME return an iterator
 		List<Operation> operations = new ArrayList<Operation>();
 		org.eclipse.ocl.examples.pivot.Class type = getPrimaryClass(aType);
-		if (type.getTemplateBindings().size() > 0) {
+//		if (type.getTemplateBindings().size() > 0) {
 			type = PivotUtil.getUnspecializedTemplateableElement(type);
-		}
+//		}
 		for (Operation anOperation : getLocalOperations(type, null)) {
 			if (!(anOperation instanceof Iteration) && name.equals(anOperation.getName())) {
 				Operation operation = getPrimaryOperation(anOperation);
@@ -1102,9 +1124,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			return Collections.emptyList();
 		}
 		else {
-			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
+//			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
 				type = PivotUtil.getUnspecializedTemplateableElement(type);
-			}
+//			}
 			return new CompleteClassOperationsIterable(getAllClasses(type), selectStatic);
 		}
 	}
@@ -1118,9 +1140,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 			return Collections.emptyList();
 		}
 		else {
-			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
+//			if (type.getTemplateBindings().size() > 0) {		// FIXME need lazy specialization
 				type = PivotUtil.getUnspecializedTemplateableElement(type);
-			}
+//			}
 			return new CompleteClassPropertiesIterable(getAllClasses(type), selectStatic);
 		}
 	}
@@ -1317,7 +1339,7 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		addPackage(pivotPackage);
 	}
 
-	public void installPackageMoniker(org.eclipse.ocl.examples.pivot.Package pivotPackage) {
+	public void installPackageMoniker(org.eclipse.ocl.examples.pivot.Package pivotPackage, boolean installTrackers) {
 		String name = pivotPackage.getName();
 		if (name == null) {
 			name = PivotConstants.NULL_ROOT;
@@ -1325,7 +1347,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 		String packageMoniker = name;
 		if (pivotPackage instanceof Library) {
 			pivotPackage.setMoniker(packageMoniker);
-			addPackage(pivotPackage);
+			if (installTrackers) {
+				addPackage(pivotPackage);
+			}
 		}
 		else {
 			int suffix = 0;
@@ -1337,7 +1361,9 @@ public abstract class TypeCaches extends PivotStandardLibrary
 				packageMoniker = name + "_" + ++suffix;
 			}
 			pivotPackage.setMoniker(packageMoniker);
-			addPackage(pivotPackage);
+			if (installTrackers) {
+				addPackage(pivotPackage);
+			}
 			if ((suffix > 0) && (name != PivotConstants.NULL_ROOT)) {
 				logger.warn("Conflicting package " + pivotPackage);
 			}
