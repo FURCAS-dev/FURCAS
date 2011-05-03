@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseLabelProvider.java,v 1.8 2011/05/02 09:31:35 ewillink Exp $
+ * $Id: BaseLabelProvider.java,v 1.9 2011/05/03 06:42:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui.labeling;
 
@@ -68,6 +68,7 @@ import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.Parameter;
+import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.PrimitiveLiteralExp;
 import org.eclipse.ocl.examples.pivot.PrimitiveType;
@@ -78,6 +79,7 @@ import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StateExp;
 import org.eclipse.ocl.examples.pivot.StringLiteralExp;
+import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
 import org.eclipse.ocl.examples.pivot.TemplateParameterType;
@@ -100,8 +102,6 @@ import org.eclipse.ocl.examples.pivot.prettyprint.PrettyPrintTypeVisitor;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ImportCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.NamedElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterSubstitutionCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeRefCS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -233,64 +233,29 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 		}
 	}
 
-	protected void appendType(StringBuffer s, TypeRefCS type) {
-		Element pivot = type.getPivot();
-		if (pivot instanceof MonikeredElement) {
-			appendString(s, safeGetMoniker((MonikeredElement)pivot));
+	protected void appendTemplateBindings(StringBuffer s, TemplateableElement templateableElement) {
+		if (templateableElement != null) {
+			for (TemplateBinding templateBinding : templateableElement.getTemplateBindings()) {
+				s.append("<");
+				String prefix = "";
+				for (TemplateParameterSubstitution templateParameterSubstitution : templateBinding.getParameterSubstitutions()) {
+					s.append(prefix);
+					ParameterableElement actual = templateParameterSubstitution.getActual();
+					if (actual instanceof Type) {
+						appendType(s, (Type)actual);
+					}
+					prefix = ", ";
+				}
+				s.append(">");
+			}
 		}
-		else {
-			appendString(s, "null");
-		}
-/*		if (type instanceof PrimitiveTypeRefCS) {
-			appendName(s, (PrimitiveTypeRefCS)type);
-		}
-//		else if (type instanceof CollectionTypeRefCS) {
-//			appendName(s, (CollectionTypeRefCS)type);
-//			appendTemplateBinding(s, ((CollectionTypeRefCS)type).getOwnedTemplateBinding());
-//		}
-		else if (type instanceof QualifiedTypeRefCS) {
-			appendType(s, ((QualifiedTypeRefCS)type).getElement());
-		}
-		else if (type instanceof TypedTypeRefCS) {
-			appendType(s, ((TypedTypeRefCS)type).getType());
-			appendTemplateBinding(s, ((TypedTypeRefCS)type).getOwnedTemplateBinding());
-		}
-		else if (type instanceof WildcardTypeRefCS) {
-			s.append("?");
-		} */
-	}
-
-	protected void appendTemplateParameterSubstitution(StringBuffer s, TemplateParameterSubstitutionCS csTemplateParameterSubstitution) {
-		TemplateParameterSubstitution templateParameterSubstitution = (TemplateParameterSubstitution) csTemplateParameterSubstitution.getPivot();
-		appendName(s, (NamedElement) templateParameterSubstitution.getFormal().getParameteredElement()
-	);
-		s.append(" => ");
-		appendType(s, (TypeRefCS) csTemplateParameterSubstitution.getOwnedActualParameter());
-	}
-
-	protected void appendTemplateBinding(StringBuffer s, TemplateBindingCS templateBinding) {
-		if (templateBinding != null) {
-			Collection<TemplateParameterSubstitutionCS> templateParameterSubstitutions = templateBinding.getOwnedParameterSubstitution();
-			appendTemplateParameterSubstitutions(s, templateParameterSubstitutions);
-		}
-	}
-
-	protected void appendTemplateParameterSubstitutions(StringBuffer s, Collection<TemplateParameterSubstitutionCS> templateParameterSubstitutions) {
-		s.append("(");
-		String prefix = "";
-		for (TemplateParameterSubstitutionCS templateParameterSubstitution : templateParameterSubstitutions) {
-			s.append(prefix);
-			appendTemplateParameterSubstitution(s, templateParameterSubstitution);
-			prefix = ", ";
-		}
-		s.append(")");
 	}
 
 	protected void appendTemplateSignature(StringBuffer s, TemplateableElement templateableElement) {
 		if (templateableElement != null) {
 			TemplateSignature templateSignature = templateableElement.getOwnedTemplateSignature();
 			if (templateSignature != null) {
-				s.append("(");
+				s.append("<");
 				Collection<TemplateParameter> templateParameters = templateSignature.getParameters();
 				if (!templateParameters.isEmpty()) {
 					String prefix = "";
@@ -300,13 +265,24 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 						prefix = ", ";
 					}
 				}
-				s.append(")");
+				s.append(">");
 			}
 		}
 	}
 
 	protected void appendType(StringBuffer s, Type type) {
 		appendName(s, type);
+		appendTemplateBindings(s, type);
+	}
+
+	protected void appendType(StringBuffer s, TypeRefCS type) {
+		Element pivot = type.getPivot();
+		if (pivot instanceof MonikeredElement) {
+			appendString(s, safeGetMoniker((MonikeredElement)pivot));
+		}
+		else {
+			appendString(s, "null");
+		}
 	}
 	
 	@Override
@@ -484,17 +460,8 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected String text(DataType ele) {
 		StringBuffer s = new StringBuffer();
 		appendName(s, ele);
-/*		List<TemplateParameterCS> typeParameters = ElementUtil.getTemplateParameters(ele);
-		if (!typeParameters.isEmpty()) {
-			s.append("<");
-			String prefix = "";
-			for (TemplateParameterCS typeParameter : typeParameters) {
-				s.append(prefix);
-				appendTemplateParameter(s, typeParameter);
-				prefix = ", ";
-			}
-			s.append(">");
-		} */ // FIXME
+		appendTemplateSignature(s, ele);
+		appendSuperTypes(s, ele.getSuperClasses());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
@@ -511,17 +478,8 @@ public class BaseLabelProvider extends DefaultEObjectLabelProvider {
 	protected String text(org.eclipse.ocl.examples.pivot.Enumeration ele) {
 		StringBuffer s = new StringBuffer();
 		appendName(s, ele);
-/*		List<TemplateParameterCS> typeParameters = ElementUtil.getTemplateParameters(ele);
-		if (!typeParameters.isEmpty()) {
-			s.append("<");
-			String prefix = "";
-			for (TemplateParameterCS typeParameter : typeParameters) {
-				s.append(prefix);
-				appendTemplateParameter(s, typeParameter);
-				prefix = ", ";
-			}
-			s.append(">");
-		} */ // FIXME
+		appendTemplateSignature(s, ele);
+		appendSuperTypes(s, ele.getSuperClasses());
 		String instance = ele.getInstanceClassName();
 		if (instance != null) {
 			s.append(" [");
