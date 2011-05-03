@@ -13,7 +13,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 
 /**
  * This class is called by the doFinish() method of the Wizard. It creates the Language Project and the necessary files etc with
- * the help of the classes {@link}SourceCodeFactory and {@link}WizardProjectHelper.
+ * the help of the classes {@link SourceCodeFactory} and {@link WizardProjectHelper}.
  * 
  * @author Frederik Petersen (D054528)
  * 
@@ -34,7 +34,7 @@ public class CreateProject {
     }
 
     /**
-     * This class does all the needed steps to set the variables for the {@link}WizardProjectHelper and the calling of it's
+     * This class does all the needed steps to set the variables for the {@link WizardProjectHelper} and the calling of it's
      * methods. Afterwords all other furcas specific files are built.
      * 
      * @param monitor
@@ -51,32 +51,32 @@ public class CreateProject {
         List<String> exportedPackages = new ArrayList<String>();
         exportedPackages.add(projectInfo.getProjectName() + ".editor");
         exportedPackages.add(projectInfo.getProjectName() + ".parser");
-        // exportedPackages.add(pi.getBasePackage() + ".tree");
 
         List<String> nonSrcFolders = new ArrayList<String>();
         nonSrcFolders.add("mapping");
+        nonSrcFolders.add("syntaxdefinition");
 
         IProject dslProject = WizardProjectHelper.createPlugInProject(projectInfo, srcfolders, nonSrcFolders, exportedPackages, monitor, false);
         if (dslProject == null) {
             return null;
         }
         monitor.worked(1);
-
+        WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(projectInfo), monitor);
+        
         IFolder sourceTargetRootFolder = dslProject.getFolder(ORIGINAL_FILE_LOCATION_ROOT);
         assert (sourceTargetRootFolder.exists());
+        createSourceFolder(projectInfo, sourceTargetRootFolder, monitor);
 
         IFolder genRootFolder = dslProject.getFolder('/' + "generated");
         assert (genRootFolder.exists());
 
-        WizardProjectHelper.createFile("plugin.xml", dslProject, codeFactory.createPluginXML(projectInfo), monitor);
+        createGeneratedFolder(genRootFolder, monitor, "");
 
-        IFolder genSrcFolder = null;
-        genSrcFolder = createGeneratedFolder(genRootFolder, monitor, "");
-
-        createSource(projectInfo, sourceTargetRootFolder, dslProject, monitor);
-
+        IFolder syntaxDefFolder = dslProject.getFolder("syntaxdefinition");
+        assert (syntaxDefFolder.exists());
+        
         String templateString = codeFactory.createSampleTCS(projectInfo);
-        IFile grammar = WizardProjectHelper.createFile(projectInfo.getTCSFileName(), genSrcFolder, templateString, monitor);
+        IFile grammar = WizardProjectHelper.createFile(projectInfo.getTCSFileName(), syntaxDefFolder, templateString, monitor);
 
         // Opening the file for editing. Note that the wizard later on opens the .ecore file if the user
         // chose to build a new metamodel project, so you won't see the effect of this coding in that case.
@@ -84,28 +84,11 @@ public class CreateProject {
         monitor.setTaskName("Opening file for editing...");
         BasicNewResourceWizard.selectAndReveal(grammar, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
         monitor.worked(1);
-
+        
         return dslProject;
     }
 
-    /**
-     * Generates the source folder.
-     * 
-     * @param pi
-     *            The user input.
-     * @param srcDir
-     *            The folder where the source package is to be created.
-     * @param dslProject
-     *            The project where it's created.
-     * @param monitor
-     *            The progressmonitor for the process of creation.
-     * @return The source Folder.
-     * @throws CoreException
-     * @throws CodeGenerationException
-     */
-    private IFolder createSource(ProjectInfo pi, IFolder srcDir, IProject dslProject, IProgressMonitor monitor)
-            throws CodeGenerationException {
-
+    private IFolder createSourceFolder(ProjectInfo pi, IFolder srcDir, IProgressMonitor monitor) throws CodeGenerationException {
         String basePath = "";
         String[] split = pi.getProjectName().split("\\.");
         for (int i = 0; i < split.length; i++) {
@@ -119,31 +102,14 @@ public class CreateProject {
                 }
             }
         }
-
         createEditorFolder(srcDir, monitor, basePath, pi);
         createParserFolder(srcDir, monitor, basePath, pi);
-        createTreeFolder(srcDir, monitor, basePath, pi);
-
         return srcDir;
     }
 
-    /**
-     * Generates the "generated" folder.
-     * 
-     * @param srcDir
-     *            The folder in which to look for the generated folder.
-     * @param monitor
-     *            The progress monitor for generating the folder.
-     * @param basePath
-     *            The basePath of the project.
-     * @return The generated folder.
-     * @throws CodeGenerationException
-     * @throws CoreException
-     */
     private IFolder createGeneratedFolder(IFolder srcDir, IProgressMonitor monitor, String basePath)
             throws CodeGenerationException {
-        String generatedFolderPath = basePath + "/generated";
-        IFolder generatedFolder = srcDir.getFolder(generatedFolderPath);
+        IFolder generatedFolder = srcDir.getFolder(basePath + "/generated");
         if (!generatedFolder.exists()) {
             try {
                 generatedFolder.create(false, true, monitor);
@@ -154,54 +120,9 @@ public class CreateProject {
         return generatedFolder;
     }
 
-    /**
-     * Generates the tree folder
-     * 
-     * @param srcDir
-     *            Where to look for the folder.
-     * @param monitor
-     *            The progress monitor.
-     * @param basePath
-     *            The project's basepath
-     * @param pi
-     *            The user input
-     * @return The Tree Folder.
-     * @throws CodeGenerationException
-     * @throws CoreException
-     */
-    private IFolder createTreeFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
-            throws CodeGenerationException {
-        String treeFolderPath = basePath + "/tree";
-        IFolder treeFolder = srcDir.getFolder(treeFolderPath);
-        if (!treeFolder.exists()) {
-            try {
-                treeFolder.create(false, true, monitor);
-            } catch (CoreException e) {
-                throw new CodeGenerationException("Failed to create folder '/tree'", e.getCause());
-            }
-        }
-        return treeFolder;
-    }
-
-    /**
-     * Generates the Parserfolder and the ParserFactory.java file
-     * 
-     * @param srcDir
-     *            Where to look for the folder.
-     * @param monitor
-     *            The progress monitor.
-     * @param basePath
-     *            The project's basepath
-     * @param pi
-     *            The user input
-     * @return The Parser Folder.
-     * @throws CoreException
-     * @throws CodeGenerationException
-     */
     private IFolder createParserFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CodeGenerationException {
-        String parserFolderPath = basePath + "/parser";
-        IFolder parserFolder = srcDir.getFolder(parserFolderPath);
+        IFolder parserFolder = srcDir.getFolder(basePath + "/parser");
         if (!parserFolder.exists()) {
             try {
                 parserFolder.create(false, true, monitor);
@@ -209,28 +130,12 @@ public class CreateProject {
                 throw new CodeGenerationException("Failed to create folder '/parser'", e.getCause());
             }
         }
-
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParserFactory.java", parserFolder,
                 codeFactory.createParserFactory(pi), monitor);
 
         return parserFolder;
     }
 
-    /**
-     * Generates the Parserfolder and the Activator.java, Editor.java, Mapper.java files
-     * 
-     * @param srcDir
-     *            Where to look for the folder.
-     * @param monitor
-     *            The progress monitor.
-     * @param basePath
-     *            The project's basepath
-     * @param pi
-     *            The user input
-     * @return The Editor folder.
-     * @throws CoreException
-     * @throws CodeGenerationException
-     */
     private IFolder createEditorFolder(IFolder srcDir, IProgressMonitor monitor, String basePath, ProjectInfo pi)
             throws CodeGenerationException {
         String editorFolderPath = basePath + "/editor";
@@ -247,6 +152,10 @@ public class CreateProject {
                 codeFactory.createEditorCode(pi), monitor);
         WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "TokenColorer.java", editorFolder,
                 codeFactory.createColorerCode(pi), monitor);
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ParseController.java", editorFolder,
+                codeFactory.crateParseController(pi), monitor);
+        WizardProjectHelper.createFile(capitalizeFirstChar(pi.getLanguageName()) + "ContentProposer.java", editorFolder,
+                codeFactory.createContentProposer(pi), monitor);
         return editorFolder;
     }
 

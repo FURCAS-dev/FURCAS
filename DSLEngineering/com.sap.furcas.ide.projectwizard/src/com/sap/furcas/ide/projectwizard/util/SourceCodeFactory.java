@@ -181,7 +181,7 @@ public class SourceCodeFactory {
     }
 
     /**
-     * Creates a mapper class from the resources/mapper.txt file
+     * Creates a token color mapper class from the resources/tokencolorer.txt file
      * 
      * @param pi
      *            User input
@@ -190,6 +190,32 @@ public class SourceCodeFactory {
      */
     public String createColorerCode(ProjectInfo pi) throws CodeGenerationException {
     	String filename = "tokencolorer.txt";
+        return createFileContents(pi, filename);
+    }
+    
+    /**
+     * Creates a content assist from the resources/contentproposer.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the contenpropser class.
+     * @throws CodeGenerationException
+     */
+    public String createContentProposer(ProjectInfo pi) throws CodeGenerationException {
+        String filename = "contentproposer.txt";
+        return createFileContents(pi, filename);
+    }
+    
+    /**
+     * Creates a token color mapper class from the resources/parsecontroller.txt file
+     * 
+     * @param pi
+     *            User input
+     * @return The content of the parsecontroller class.
+     * @throws CodeGenerationException
+     */
+    public String crateParseController(ProjectInfo pi) throws CodeGenerationException {
+        String filename = "parsecontroller.txt";
         return createFileContents(pi, filename);
     }
 
@@ -271,7 +297,7 @@ public class SourceCodeFactory {
         template.setAttribute("URI", pi.getNsURI());
         template.setAttribute("Ext", pi.getFileExtension());
         template.setAttribute("Path", pi.getBasePath());
-        template.setAttribute("TCSPath", "generated/generated/" + pi.getLanguageName() + ".tcs");
+        template.setAttribute("TCSPath", "syntaxdefinition/" + pi.getLanguageName() + ".tcs");
     }
 
 }

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <?eclipse version="3.4"?> 
 <plugin> 
+	
 	<extension point="org.eclipse.ui.editors"> 
 		<editor 
 			class="$ProjectName$.editor.$CapLangName$Editor"
-			extensions="act" 
+			extensions="$Ext$" 
 			id="$ProjectName$.editor.$CapLangName$Editor" 
-			name="$CapLangName$ Editor"> 
+			name="$CapLangName$ Text Editor"> 
 		</editor> 
 	</extension> 
 
@@ -15,5 +16,43 @@
        	 <metamodel nsURI="$URI$" />
        </furcas_syntax>
     </extension> 
- 
+   
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            languageID="$CapLangName$"
+            dynamicParserFactoryClass="$ProjectName$.parser.$CapLangName$ParserFactory">
+      </configuration>
+   </extension>
+   
+   <extension
+         point="org.eclipse.imp.runtime.parser">
+      <parser
+            class="$ProjectName$.editor.$CapLangName$ParseController"
+            language="$CapLangName$">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.languageDescription">
+      <language
+            extensions="$Ext$"
+            description="$CapLangName$: a textual DSL for $URI$"
+            language="$CapLangName$">
+      </language>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.tokenColorer">
+      <tokenColorer
+            class="$ProjectName$.editor.$CapLangName$TokenColorer"
+            language="$CapLangName$">
+      </tokenColorer>
+   </extension>
+   <extension
+         point="org.eclipse.imp.runtime.contentProposer">
+      <proposer
+            class="$ProjectName$.editor.$CapLangName$ContentProposer"
+            language="$CapLangName$">
+      </proposer>
+   </extension>
+   
 </plugin> 
