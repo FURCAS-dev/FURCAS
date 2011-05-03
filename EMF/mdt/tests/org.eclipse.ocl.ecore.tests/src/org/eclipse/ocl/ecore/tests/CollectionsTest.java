@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L. and others.
+ * Copyright (c) 2006, 2009, 2011 IBM Corporation, Zeligsoft Inc., Open Canarias S.L. and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 244946
  *   Adolfo Sanchez-Barbudo Herrera - Bug 260403
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.19 2010/11/19 06:21:30 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.20 2011/05/01 10:56:37 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -434,9 +435,16 @@ public class CollectionsTest
 				"Set{'a', 'b', 'c', 'd'}->flatten()" +
 					" = Set{'b', 'c', 'a', 'd'}"));
 
-			assertTrue(check(helper, "",
+			// Collections of different kind are not equal. Our
+			// implementation chooses to flatten an OrderedSet into an OrderedSet
+			// as Section A.2.5.8 of OCL 2.3 (OMG 10-11-42) leaves it
+			// unclear.
+			assertFalse(check(helper, "",
 				"OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
 					" = Set{'b', 'c', 'a', 'd'}"));
+			assertTrue(check(helper, "",
+				"OrderedSet{'a', 'b', 'b', 'c', 'd'}->flatten()" +
+					" = OrderedSet{'a', 'b', 'c', 'd'}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{'a', 'b', 'd', 'b', 'c', 'd'}->flatten()" +
@@ -461,9 +469,16 @@ public class CollectionsTest
 				"Set{}->flatten()" +
 					" = Set{}"));
 
-			assertTrue(check(helper, "",
+			// Collections of different kind are not equal. The behavior
+			// of the flatten() operation on OrderedSet is unspecified
+			// in OCL 2.3 (OMG 10-11-42) section A.2.5.8, and we choose
+			// to flatten an OrderedSet into an OrderedSet.
+			assertFalse(check(helper, "",
 				"OrderedSet{}->flatten()" +
 					" = Set{}"));
+			assertTrue(check(helper, "",
+				"OrderedSet{}->flatten()" +
+					" = OrderedSet{}"));
 
 			assertTrue(check(helper, "",
 				"Sequence{}->flatten()" +
@@ -1073,6 +1088,21 @@ public class CollectionsTest
 
 			assertFalse(check(helper, "",
 				"Sequence{1, 2, 3} <> Sequence{1, 2, 3}"));
+		} catch (Exception e) {
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		}
+	}
+
+	/**
+	 * Tests that in ordering of UnlimitedNatural::UNLIMITED is consider greatest element
+	 */
+	public void test_sortedByOverUnlimitedNatural() {
+		helper.setContext(EcorePackage.Literals.ECLASS);
+
+		try {
+			assertTrue(check(helper, EcorePackage.Literals.ECLASS,
+				"self.eAllStructuralFeatures->sortedBy(upperBound)->first().upperBound = 1"+
+				" and self.eAllStructuralFeatures->sortedBy(upperBound)->last().upperBound = *"));
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}

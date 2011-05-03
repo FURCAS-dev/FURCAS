@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2008, 2011 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 182994
+ *   Axel Uhl (SAP AG) - Bug 342644
  *
  * </copyright>
  *
- * $Id: TupleFactory.java,v 1.3 2011/03/14 21:15:32 auhl Exp $
+ * $Id: TupleFactory.java,v 1.4 2011/05/01 10:56:43 auhl Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -75,15 +77,24 @@ public class TupleFactory extends EFactoryImpl {
 			while (result && iter.hasNext()) {
 				EStructuralFeature next = iter.next();
 				
-				Object myValue = eGet(next);
+				Object myValue = null;
+				if (!(next.getEType() instanceof VoidType)) {
+					// don't attempt to dynamically access a VoidType attribute; just leave null
+					// which is the only value of VoidType
+					myValue = eGet(next);
+				}
 				
 				EStructuralFeature otherNext = otherType.getEStructuralFeature(
 							next.getName());
 				if (otherNext == null) {
 					result = false;
 				} else {
-					Object otherValue = other.eGet(next);
-					
+					Object otherValue = null;
+					if (!(otherNext.getEType() instanceof VoidType)) {
+						// don't attempt to dynamically access a VoidType attribute; just leave null
+						// which is the only value of VoidType
+						otherValue = other.eGet(otherNext);
+					}
 					result = ObjectUtil.equal(myValue, otherValue);
 				}
 			}
@@ -99,8 +110,10 @@ public class TupleFactory extends EFactoryImpl {
 
 				for (EStructuralFeature next : eClass()
 					.getEStructuralFeatures()) {
-					Object myValue = eGet(next);
-
+					Object myValue = null;
+					if (!(next.getEType() instanceof VoidType)) {
+						myValue = eGet(next);
+					}
 					result = 31 * result + ObjectUtil.hashCode(myValue);
 				}
 				hashCode = result;
@@ -117,7 +130,11 @@ public class TupleFactory extends EFactoryImpl {
 		}
 
 		public Object getValue(EStructuralFeature part) {
-			return eGet(part);
+			if (part.getEType() instanceof VoidType) {
+				return null;
+			} else {
+				return eGet(part);
+			}
 		}
         
         @Override
