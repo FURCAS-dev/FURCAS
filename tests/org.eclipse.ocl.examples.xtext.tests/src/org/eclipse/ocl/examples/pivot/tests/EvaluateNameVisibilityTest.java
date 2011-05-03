@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateNameVisibilityTest.java,v 1.5 2011/04/27 06:20:03 ewillink Exp $
+ * $Id: EvaluateNameVisibilityTest.java,v 1.6 2011/05/02 09:31:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -104,6 +104,14 @@ public class EvaluateNameVisibilityTest extends PivotFruitTestSuite
 		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "fruits");
 		assertQueryEquals(redApple, aTree, "self.oclContainer()");
 		assertQueryEquals(redApple, aTree, "self.Tree");
+		//
+		//	type/property ambiguity is resolved to type.
+		//
 		assertQueryEquals(redApple, typeManager.getClassifierType(pivotTree), "Tree");
+		//
+		//	type/property ambiguity is resolved to type.
+		//
+		assertQueryInvalid(redApple, "self.oclAsType(Tree)");
+//		assertQueryEquals(aTree, valueFactory.createOrderedSetOf(redApple), "self.oclAsType(Tree).fruits");
 	}
 }

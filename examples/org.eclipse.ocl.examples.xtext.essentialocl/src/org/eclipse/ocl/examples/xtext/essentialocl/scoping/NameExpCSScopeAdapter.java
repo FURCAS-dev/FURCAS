@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.5 2011/04/25 19:39:51 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.6 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -77,7 +77,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			if (eContainer instanceof NavigatingExpCS) {
 //				environmentView.addFilter(operationsOnlyFilter);
 			}
-			else {	// FIXME IndexedExpCS fpor Associations
+			else {	// FIXME IndexedExpCS for Associations
 				environmentView.addFilter(noOperationsFilter);
 			}
 		}

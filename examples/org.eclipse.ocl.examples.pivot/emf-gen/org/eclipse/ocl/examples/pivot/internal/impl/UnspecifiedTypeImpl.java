@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnspecifiedTypeImpl.java,v 1.2 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: UnspecifiedTypeImpl.java,v 1.3 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -35,6 +35,7 @@ import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateSignature;
+import org.eclipse.ocl.examples.pivot.TemplateableElement;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.UnspecifiedType;
 import org.eclipse.ocl.examples.pivot.util.Visitor;
@@ -204,17 +205,19 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return isStatic();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ANNOTATION:
 				return getOwnedAnnotations();
+			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
+				return getTemplateBindings();
+			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
+				if (resolve) return getOwnedTemplateSignature();
+				return basicGetOwnedTemplateSignature();
+			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
+				return getUnspecializedElement();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
 				if (resolve) return getOwningTemplateParameter();
 				return basicGetOwningTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
 				if (resolve) return getTemplateParameter();
 				return basicGetTemplateParameter();
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
-				return getTemplateBindings();
-			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
-				if (resolve) return getOwnedTemplateSignature();
-				return basicGetOwnedTemplateSignature();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -274,18 +277,21 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				getOwnedAnnotations().clear();
 				getOwnedAnnotations().addAll((Collection<? extends Annotation>)newValue);
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)newValue);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)newValue);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
 				getTemplateBindings().addAll((Collection<? extends TemplateBinding>)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)newValue);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)newValue);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)newValue);
@@ -353,17 +359,20 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ANNOTATION:
 				getOwnedAnnotations().clear();
 				return;
-			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
-				setOwningTemplateParameter((TemplateParameter)null);
-				return;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
-				setTemplateParameter((TemplateParameter)null);
-				return;
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
 				getTemplateBindings().clear();
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				setOwnedTemplateSignature((TemplateSignature)null);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
+				setUnspecializedElement((TemplateableElement)null);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
+				setOwningTemplateParameter((TemplateParameter)null);
+				return;
+			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
+				setTemplateParameter((TemplateParameter)null);
 				return;
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				setPackage((org.eclipse.ocl.examples.pivot.Package)null);
@@ -421,14 +430,16 @@ public class UnspecifiedTypeImpl extends ClassImpl implements UnspecifiedType
 				return ((eFlags & IS_STATIC_EFLAG) != 0) != IS_STATIC_EDEFAULT;
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_ANNOTATION:
 				return ownedAnnotations != null && !ownedAnnotations.isEmpty();
-			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
-				return basicGetOwningTemplateParameter() != null;
-			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
-				return isSetTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_BINDING:
 				return templateBindings != null && !templateBindings.isEmpty();
 			case PivotPackage.UNSPECIFIED_TYPE__OWNED_TEMPLATE_SIGNATURE:
 				return ownedTemplateSignature != null;
+			case PivotPackage.UNSPECIFIED_TYPE__UNSPECIALIZED_ELEMENT:
+				return unspecializedElement != null;
+			case PivotPackage.UNSPECIFIED_TYPE__OWNING_TEMPLATE_PARAMETER:
+				return basicGetOwningTemplateParameter() != null;
+			case PivotPackage.UNSPECIFIED_TYPE__TEMPLATE_PARAMETER:
+				return isSetTemplateParameter();
 			case PivotPackage.UNSPECIFIED_TYPE__PACKAGE:
 				return basicGetPackage() != null;
 			case PivotPackage.UNSPECIFIED_TYPE__INSTANCE_CLASS_NAME:

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: PivotUtil.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotUtil.java,v 1.13 2011/05/02 15:38:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -42,7 +42,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.ocl.examples.common.utils.ClassUtils;
+import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.CallExp;
+import org.eclipse.ocl.examples.pivot.CollectionKind;
+import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.DataType;
 import org.eclipse.ocl.examples.pivot.Element;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
@@ -55,6 +58,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.OrderedSetType;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.PivotFactory;
@@ -62,6 +66,8 @@ import org.eclipse.ocl.examples.pivot.Precedence;
 import org.eclipse.ocl.examples.pivot.Property;
 import org.eclipse.ocl.examples.pivot.PropertyCallExp;
 import org.eclipse.ocl.examples.pivot.SemanticException;
+import org.eclipse.ocl.examples.pivot.SequenceType;
+import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.TemplateBinding;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
 import org.eclipse.ocl.examples.pivot.TemplateParameterSubstitution;
@@ -112,6 +118,34 @@ public class PivotUtil
 			int i1 = f1.getSignature().getParameters().indexOf(f1);
 			int i2 = f2.getSignature().getParameters().indexOf(f2);
 			return i1 - i2;
+		}
+	}
+
+	public static void appendMultiplicity(StringBuffer s, int lower, int upper) {
+		if (upper < 0) {
+			if (lower == 0) {
+				s.append("[*]");
+			}
+			else if (lower == 1) {
+				s.append("[+]");
+			}
+			else {
+				s.append("[" + lower + "..*]");
+			}
+		}
+		else if (upper == 1) {
+			if (lower == 0) {
+				s.append("[?]");
+			}
+			else {
+				//;
+			}
+		}
+		else if (upper == lower) {
+			s.append("[" + lower + "]");
+		}
+		else {
+			s.append("[" + lower + ".." + upper + "]");
 		}
 	}
 
@@ -485,7 +519,7 @@ public class PivotUtil
 	}
 
 	public static Map<TemplateParameter, ParameterableElement> getAllTemplateParameterSubstitutions(Map<TemplateParameter, ParameterableElement> bindings,
-			Type argumentType, LambdaType lambdaType) {
+		Type argumentType, LambdaType lambdaType) {
 		Type resultType = lambdaType.getResultType();
 		TemplateParameter resultTemplateParameter = resultType.getOwningTemplateParameter();
 		if (resultTemplateParameter != null) {
@@ -523,6 +557,24 @@ public class PivotUtil
 			}
 		}
 		return null;
+	}
+
+	public static CollectionKind getCollectionKind(CollectionType collectionType) {
+		if (collectionType instanceof OrderedSetType) {
+			return CollectionKind.ORDERED_SET;
+		}
+		else if (collectionType instanceof SequenceType) {
+			return CollectionKind.SEQUENCE;
+		}
+		else if (collectionType instanceof SetType) {
+			return CollectionKind.SET;
+		}
+		else if (collectionType instanceof BagType) {
+			return CollectionKind.BAG;
+		}
+		else {
+			return CollectionKind.COLLECTION;
+		}
 	}
 
 	public static org.eclipse.ocl.examples.pivot.Class getFeaturingClass(Feature feature) {
@@ -707,7 +759,7 @@ public class PivotUtil
 //		return (org.eclipse.ocl.examples.pivot.Class)unspecializedClass;
 //	}
 
-	public static Operation getUnspecializedOperation(org.eclipse.ocl.examples.pivot.Class unspecializedTemplate,
+/*	private static Operation getUnspecializedOperation(org.eclipse.ocl.examples.pivot.Class unspecializedTemplate,
 			Operation anOperation) {
 		for (Operation operation : unspecializedTemplate.getOwnedOperations()) {
 			if (operation.getName().equals(anOperation.getName())) {
@@ -715,17 +767,29 @@ public class PivotUtil
 			}	// this is only invoked when specializing an untemplated operation of a templated collection
 		}
 		return null;
-	}
+	} */
 
 	public static <T extends TemplateableElement> T getUnspecializedTemplateableElement(T templateableElement) {
-		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
+		if (templateableElement == null) {
+			return null;
+		}
+		TemplateableElement unspecializedElement = templateableElement.getUnspecializedElement();
+		if (unspecializedElement == null) {
+			return templateableElement;
+		}
+		@SuppressWarnings("unchecked")
+		T castUnspecializedElement = (T) unspecializedElement;
+		return (T) castUnspecializedElement;
+/*		List<TemplateBinding> templateBindings = templateableElement.getTemplateBindings();
 		if (templateBindings.size() <= 0) {
+			assert templateableElement.getUnspecializedElement() == null;
 			return templateableElement;			
 		}
 		TemplateBinding templateBinding = templateBindings.get(templateBindings.size()-1);		// FIXME ordering so that most derived is last
 		TemplateSignature templateSignature = templateBinding.getSignature();
 		if (templateSignature == null) {
-			return null;
+			assert templateableElement.getUnspecializedElement() == null;
+			return templateableElement;
 		}
 		TemplateableElement unspecializedTemplate = templateSignature.getTemplate();
 		if (!unspecializedTemplate.getClass().isAssignableFrom(templateableElement.getClass())) {
@@ -735,7 +799,9 @@ public class PivotUtil
 		}
 		@SuppressWarnings("unchecked")
 		T unspecializedTemplateableElement = (T) unspecializedTemplate;
-		return unspecializedTemplateableElement;
+//		assert templateableElement.getUnspecializedElement() == unspecializedTemplateableElement;
+//		return unspecializedTemplateableElement;
+		return (T) templateableElement.getUnspecializedElement(); */
 	}
 
 	public static <T> void refreshList(List<? super T> elements, List<? extends T> newElements) {
