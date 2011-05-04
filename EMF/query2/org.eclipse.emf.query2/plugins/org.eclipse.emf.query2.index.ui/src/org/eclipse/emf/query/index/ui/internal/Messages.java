@@ -40,6 +40,8 @@ public class Messages extends NLS {
 	public static String Query2IndexUI_IndexViewLegendManager_ResourceTypeGroup;
 	public static String Query2IndexUI_CopyQualifiedName_NullSelection;
 	public static String QueryIndexView_IndexViewTableLabelProvider_PropertyCategory;
+	public static String Query2IndexUI_IndexViewTreeLabelProvider_UserDataTable;
+	public static String Query2IndexUI_IndexViewLegendManager_userData;
 	
 
 	static {

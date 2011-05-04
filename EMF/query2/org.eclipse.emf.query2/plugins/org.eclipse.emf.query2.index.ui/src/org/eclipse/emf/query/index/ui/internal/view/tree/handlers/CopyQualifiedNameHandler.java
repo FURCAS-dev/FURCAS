@@ -12,6 +12,7 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.internal.Activator;
 import org.eclipse.emf.query.index.ui.internal.Messages;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.IndexView;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceType;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -94,7 +95,9 @@ public class CopyQualifiedNameHandler implements IHandler {
 			return true;
 		} else if (selectedElement instanceof URI) {
 			return true;
-		} else {
+		} else if(selectedElement instanceof IndexViewProperty){
+			return true;
+		}else {
 			return false;
 		}
 
@@ -124,6 +127,8 @@ public class CopyQualifiedNameHandler implements IHandler {
 			return elementType.toString();
 		} else if (element instanceof URI) {
 			return element.toString();
+		}else if(element instanceof IndexViewProperty){
+			return ((IndexViewProperty)element).getProperty();
 		}
 		return null;
 	}
