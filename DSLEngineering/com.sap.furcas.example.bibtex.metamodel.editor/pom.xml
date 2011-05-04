@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.sap.dsl</groupId>
-  <artifactId>bibtex.metamodel.editor</artifactId>
+  <artifactId>com.sap.furcas.example.bibtex.metamodel.editor</artifactId>
   <version>1.0.0</version>
   <packaging>eclipse-plugin</packaging>
 </project>
