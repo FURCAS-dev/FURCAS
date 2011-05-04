@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.query.descriptors;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -48,5 +50,7 @@ public interface EObjectDescriptor {
 	String getEClassURI();
 
 	String getUserData(String key);
+	
+	Map<String,String> getEObjectUserData();
 
 }

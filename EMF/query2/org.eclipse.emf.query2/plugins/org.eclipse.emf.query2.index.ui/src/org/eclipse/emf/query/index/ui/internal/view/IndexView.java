@@ -21,6 +21,7 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.internal.Activator;
 import org.eclipse.emf.query.index.ui.internal.Messages;
 import org.eclipse.emf.query.index.ui.internal.images.IndexUIImageRegistry;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.legends.DisplayLegendsAction;
 import org.eclipse.emf.query.index.ui.internal.view.legends.ILegendManager;
 import org.eclipse.emf.query.index.ui.internal.view.legends.impl.IndexViewLegendManager;
@@ -76,6 +77,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 	private static Action actionOutgoingLinks;
 	private Action actionDisplayLegends;
 	private TreeViewer viewer;
+	private static Action userDataTable;
 
 	public IndexView() {
 		setTitleToolTip(Messages.Query2IndexUI_IndexView_ToolTip);
@@ -223,7 +225,8 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 					selectedObj instanceof	EObjectDescriptor || 
 						selectedObj instanceof ResourceType || 
 						selectedObj instanceof IndexTypeURI || 
-						selectedObj instanceof ResourceDescriptor)
+						selectedObj instanceof ResourceDescriptor ||
+						selectedObj instanceof IndexViewProperty)
 				isValid = true;
 		}
 		return isValid;
@@ -263,6 +266,14 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 			};
 			actionOutgoingLinks.setChecked(true);
 		}
+		{
+			userDataTable = new Action(Messages.Query2IndexUI_IndexViewTreeLabelProvider_UserDataTable){
+				public void run(){
+					treeViewer.refresh();
+				}
+			};
+			userDataTable.setChecked(false);
+			}
 
 		{
 			actionDisplayLegends = new Action(Messages.Query2IndexUI_IndexView_ActionDisplayLegends_Text, IndexUIImageRegistry.getImageDescriptor(IndexUIImageRegistry.LEGEND_ICON)) {
@@ -289,6 +300,7 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 		tableFilters.add(actionEObjectTable);
 		tableFilters.add(actionInComingLinks);
 		tableFilters.add(actionOutgoingLinks);
+		tableFilters.add(userDataTable);
 		Separator separator = new Separator();
 		indexViewMenuManager.add(separator);
 		indexViewMenuManager.add(actionDisplayLegends);
@@ -298,15 +310,6 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 	public void setFocus() {
 		// Set the focus
 	}
-
-	@SuppressWarnings("rawtypes")
-	
-	public Object getAdapter(Class adapter) {
-		if (adapter == IPropertySheetPage.class)
-			return propertiesPage;
-		return super.getAdapter(adapter);
-	}
-
 
 	public static boolean isActionEObjectTableChecked() {
 		return actionEObjectTable.isChecked();
@@ -318,6 +321,10 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 
 	public static boolean isActionOutgoingLinksTableChecked() {
 		return actionOutgoingLinks.isChecked();
+	}
+	
+	public static boolean isUserDataTableChecked(){
+		return userDataTable.isChecked();
 	}
 
 	
@@ -343,10 +350,21 @@ public class IndexView extends ViewPart implements IDoubleClickListener, IndexCh
 			} else if (selectedElement instanceof IndexTypeURI) {
 				URI resourceURI = ((IndexTypeURI) selectedElement).getURI();
 				openEditorFromURI(resourceURI);
+			}else if(selectedElement instanceof IndexViewProperty){
+				Object parent = ((IndexViewProperty)selectedElement).getParent();
+				if(parent!=null){
+					if(parent instanceof EObjectDescriptor){
+						openEditorFromURI( ((EObjectDescriptor) parent).getResourceURI());
+					}
+					else if(parent instanceof ResourceDescriptor){
+						openEditorFromURI( ((ResourceDescriptor) parent).getURI());
+					}
+				}
 			}
 
 		}
 	}
+
 
 	public static void openEditorFromURI(URI resourceURI) {
 		IPath path;
