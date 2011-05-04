@@ -14,20 +14,16 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.imp.editor.UniversalEditor;
 import org.eclipse.imp.language.Language;
 import org.eclipse.imp.services.ITokenColorer;
@@ -39,7 +35,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.part.FileEditorInput;
 
 import com.sap.furcas.ide.editor.EditorUtil;
 import com.sap.furcas.ide.editor.document.CtsDocument;
@@ -220,21 +215,9 @@ public class AbstractFurcasEditor extends UniversalEditor {
      */
     @Override
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-        // FIXME part of the crude  hack.
-        IFile file = ((FileEditorInput) input).getFile();
-        Resource resource = new ResourceSetImpl().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true),true);
-
         // create a temporary opposite end finder that knows about the static resources in the workspace
+        // It is required to find all textblocks
         QueryContextProvider queryContext = EcoreHelper.createProjectDependencyQueryContextProvider(editingDomain.getResourceSet(), getAdditionalLookupURIs());
-        QueryContext context = queryContext.getBackwardScopeQueryContext(resource);
-        
-        // FIXME: Crude hack: Unable to find textblocks if we do not load all resources manually!
-        for (URI uri : context.getResourceScope()) {
-            if (uri.fileExtension().equals(DefaultPartitionAssignmentHandlerImpl.TEXTBLOCKS_PARTITION_EXTENSION)) {
-                editingDomain.getResourceSet().getResource(uri, true);
-            }
-        }
-        
         OppositeEndFinder temporaryOppositeEndFinder = new Query2OppositeEndFinder(queryContext);
         ModelEditorInputLoader loader = new ModelEditorInputLoader(syntax, editingDomain, temporaryOppositeEndFinder, parserFactory);
         ModelEditorInput modelEditorInput = loader.loadEditorInput(input);
