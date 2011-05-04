@@ -36,3 +36,5 @@ Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.furcas.example.bibtex.dsl.editor
 Bundle-Activator: com.sap.furcas.example.bibtex.dsl.editor.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ClassPath: generated/,
+ .
