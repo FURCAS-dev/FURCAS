@@ -5,20 +5,22 @@
 
     <extension point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="oclinecore"
-            id="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore"
-            name="%MF_OCLinEcoreEditor">
+              class="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="true"
+              extensions="oclinecore"
+              icon="icons/OCLModelFile.gif"
+              id="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore"
+              name="%MF_OCLinEcoreEditor">
         </editor>
         <editor
-            class="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="false"
-            extensions="ecore"
-            id="org.eclipse.ocl.examples.xtext.oclinecore.Ecore"
-            name="%MF_OCLinEcoreEcoreEditor">
+              class="org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="false"
+              extensions="ecore"
+              icon="icons/OCLModelFile.gif"
+              id="org.eclipse.ocl.examples.xtext.oclinecore.Ecore"
+              name="%MF_OCLinEcoreEcoreEditor">
         </editor>
     </extension>
     <extension
