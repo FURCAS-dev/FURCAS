@@ -667,7 +667,7 @@ public class CtsContentAssistUtil {
 		TextBlock curBlock = parentBlock;
 		while (curBlock != null
 				&& curBlock.getCorrespondingModelElements().size() > 0) {
-			Template t = curBlock.getType().getParseRule();
+			Template t = curBlock.getType();
 			if (t instanceof ClassTemplate) {
 				ClassTemplate ct = (ClassTemplate) t;
 				if (TcsUtil.matchesContext(ct, tag)) {

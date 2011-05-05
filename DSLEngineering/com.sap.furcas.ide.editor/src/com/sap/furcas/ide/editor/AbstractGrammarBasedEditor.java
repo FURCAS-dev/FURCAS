@@ -95,7 +95,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.FURCAS.TCS.provider.TCSItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.provider.FURCASItemProviderAdapterFactory;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.provider.TextblockdefinitionItemProviderAdapterFactory;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
@@ -524,8 +523,6 @@ public abstract class AbstractGrammarBasedEditor extends ModelBasedTextEditor
         adapterFactory.addAdapterFactory(new TCSItemProviderAdapterFactory());
         adapterFactory
                 .addAdapterFactory(new TextblocksItemProviderAdapterFactory());
-        adapterFactory
-                .addAdapterFactory(new TextblockdefinitionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
         adapterFactory

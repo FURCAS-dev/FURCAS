@@ -185,8 +185,7 @@ public class PrettyPrintAction extends Action {
                 // if template has no syntax contribution, pretty printing is
                 // currently not possible
                 if (oldTextBlock.getType() == null
-                        || !template.equals(oldTextBlock.getType()
-                                .getParseRule())) {
+                        || !template.equals(oldTextBlock.getType())) {
                     oldTextBlock = null;
                 } else {
                     break;

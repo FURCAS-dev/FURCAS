@@ -27,7 +27,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.SequenceElement;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Eostoken;
@@ -191,8 +190,7 @@ public class TextBlockTCSExtractorStream implements TCSExtractorStream {
     
     protected void setType(TextBlock block, Template template) {
 	if (template != null) {
-	    TextBlockDefinition tbDef = template.getTextBlockDefinition();
-	    block.setType(tbDef);
+	    block.setType(template);
 	}
     }
     
