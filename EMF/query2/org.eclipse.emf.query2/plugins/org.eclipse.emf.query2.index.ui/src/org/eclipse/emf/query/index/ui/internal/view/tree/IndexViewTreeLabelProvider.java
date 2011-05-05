@@ -6,6 +6,7 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.internal.Messages;
 import org.eclipse.emf.query.index.ui.internal.images.IndexUIImageRegistry;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.EObjectsGroup;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.IncomingLinksGroup;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.IndexTypeURI;
@@ -13,6 +14,7 @@ import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.OutgoingLinksGrou
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceIndexGroup;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.ResourceType;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.TypeIndexGroup;
+import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.UserData;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
@@ -44,7 +46,11 @@ public class IndexViewTreeLabelProvider extends LabelProvider {
 			return IndexUIImageRegistry.getImage(IndexUIImageRegistry.TYPE_ICON);
 		} else if (element instanceof IndexTypeURI) {
 			return IndexUIImageRegistry.getImage(IndexUIImageRegistry.RESOURCE_ICON);
-	}
+		} else if(element instanceof UserData){
+			return IndexUIImageRegistry.getImage(IndexUIImageRegistry.USERDATA_GROUPICON);
+		} else if(element instanceof IndexViewProperty){
+			return  IndexUIImageRegistry.getImage(IndexUIImageRegistry.USERDATA_SINGLEICON);
+		}
 		return super.getImage(element);
 	}
 
@@ -77,6 +83,13 @@ public class IndexViewTreeLabelProvider extends LabelProvider {
 		} else if(element instanceof IndexTypeURI){
 			URI indexTypeUri = ((IndexTypeURI)element).getURI();
 			return indexTypeUri.toString();
+		}else if(element instanceof UserData){
+			return Messages.Query2IndexUI_IndexViewTreeLabelProvider_UserDataTable;
+		} else if(element instanceof IndexViewProperty){
+			String userData = ((IndexViewProperty)element).getProperty() + "-->" + ((IndexViewProperty)element).getValue();//$NON-NLS-1$
+			if(userData.length() >20)
+				userData = userData.subSequence(0,20) + "..."; //$NON-NLS-1$
+		    return userData;	
 		}
 		return super.getText(element);
 	}

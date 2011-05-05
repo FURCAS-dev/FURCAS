@@ -37,6 +37,11 @@ public class ResourceIndexer {
 
 	//Static Instance of ResourceIndexer
 	public static final ResourceIndexer INSTANCE = new ResourceIndexer();
+	
+	//Customized resourceIndexer can be returned here by returning subclasses of ResourceIndexer
+	public ResourceIndexer getInstance(){
+		return this.INSTANCE;
+	}
 
 	public final void resourceChanged(IndexUpdater updater, final Resource... resources) {
 		Map<Object, String> typeCache = new IdentityHashMap<Object, String>();

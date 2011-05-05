@@ -34,8 +34,8 @@ public class DirtyResourceFactory extends EContentAdapter {
 			
 			
 			public void execute(IndexUpdater updater) {
-				final ResourceIndexer indexer = new ResourceIndexer();
-				
+				final ResourceIndexer resourceIndexer = new ResourceIndexer();
+				ResourceIndexer indexer = resourceIndexer.getInstance();
 				
 				Resource emfResource=((EObject)notification.getNotifier()).eResource();	
 				indexer.resourceChanged(updater, emfResource);
@@ -51,9 +51,8 @@ public class DirtyResourceFactory extends EContentAdapter {
 					
 					
 					public void execute(IndexUpdater updater) {
-						final ResourceIndexer indexer = new ResourceIndexer();
-						
-						
+						final ResourceIndexer resourceIndexer = new ResourceIndexer();
+						ResourceIndexer indexer = resourceIndexer.getInstance();
 						Resource emfResource=(Resource)notification.getNotifier();	
 						indexer.resourceChanged(updater, emfResource);
 						

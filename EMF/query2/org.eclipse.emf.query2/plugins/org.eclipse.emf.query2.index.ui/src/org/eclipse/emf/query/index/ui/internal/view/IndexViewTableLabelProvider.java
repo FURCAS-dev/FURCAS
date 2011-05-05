@@ -1,8 +1,7 @@
 package org.eclipse.emf.query.index.ui.internal.view;
 
-import java.util.Map;
-
 import org.eclipse.emf.query.index.ui.internal.Messages;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.PropertyCategory;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -35,11 +34,11 @@ public class IndexViewTableLabelProvider implements ITableLabelProvider {
 	@SuppressWarnings("unchecked")
 	
 	public String getColumnText(Object element, int columnIndex) {
-		if(element instanceof Map.Entry<?,?>){
+		if(element instanceof IndexViewProperty){
 			if(columnIndex == 0)
-				return ((Map.Entry<String,String>)element).getKey();
+				return ((IndexViewProperty)element).getProperty();
 			if(columnIndex==1)
-				return ((Map.Entry<String,String>)element).getValue();
+				return ((IndexViewProperty)element).getValue();
 		}else if(element instanceof PropertyCategory)
 			if(columnIndex==0)
 			return Messages.QueryIndexView_IndexViewTableLabelProvider_PropertyCategory;

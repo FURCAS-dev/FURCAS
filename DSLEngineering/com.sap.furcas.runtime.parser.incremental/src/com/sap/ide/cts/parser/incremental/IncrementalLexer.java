@@ -540,29 +540,22 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
                 if (!oldTokenInCurrentBlock.equals(getOtherVersion(
                         getConstructionLoc().getTok(), Version.CURRENT))) {
                     // if lexing proceeded to next previous-version token switch
-                    // to this
-                    // one in current version as well
-                    // and delete all CURRENT tokens that were read over during
-                    // lexing
+                    // to this one in current version as well
+                    // and delete all CURRENT tokens that were read over during lexing
                     Collection<AbstractToken> consumedTokens = removeAllOutdatedTokensFromCurrentVersion(oldTokenInCurrentBlock);
-                    for (Iterator<AbstractToken> it = consumedTokens.iterator(); it
-                            .hasNext();) {
+                    for (Iterator<AbstractToken> it = consumedTokens.iterator(); it.hasNext();) {
                         oldTokenInCurrentBlock = it.next();
                         // oldTokenInCurrentBlock = (AbstractToken)
                         // getOtherVersion(
                         // constructionLoc.getTok(), Version.CURRENT);
                         if (EcoreHelper.isAlive(oldTokenInCurrentBlock)
-                                && !oldTokenInCurrentBlock.getParent().equals(
-                                        currentTextBlock)) {
-                            if (TbNavigationUtil
-                                    .getSubNodesSize(currentTextBlock) == 0) {
+                                && !oldTokenInCurrentBlock.getParent().equals(currentTextBlock)) {
+                            if (TbNavigationUtil.getSubNodesSize(currentTextBlock) == 0) {
                                 EcoreUtil.delete(currentTextBlock);
                             }
-                            currentTextBlock = oldTokenInCurrentBlock
-                                    .getParent();
+                            currentTextBlock = oldTokenInCurrentBlock.getParent();
                             changedBlocks.add(currentTextBlock);
-                            index = currentTextBlock.getSubNodes().indexOf(
-                                    oldTokenInCurrentBlock);
+                            index = currentTextBlock.getSubNodes().indexOf(oldTokenInCurrentBlock);
                         }
                     }
                     // removeFromBlockConsistent(currentTextBlock,

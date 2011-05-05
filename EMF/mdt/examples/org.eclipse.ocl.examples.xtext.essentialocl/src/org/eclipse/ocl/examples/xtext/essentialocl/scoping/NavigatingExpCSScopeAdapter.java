@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigatingExpCSScopeAdapter.java,v 1.8 2011/04/20 19:02:15 ewillink Exp $
+ * $Id: NavigatingExpCSScopeAdapter.java,v 1.10 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -104,22 +104,50 @@ public class NavigatingExpCSScopeAdapter extends ExpCSScopeAdapter<NavigatingExp
 					environmentView.addNamedElement(((IterateExp)pivot).getResult());
 				}
 			}
-		}
-//		EObject csParent = getParent().getTarget();
-		TypeManager typeManager = environmentView.getTypeManager();
-		EObject csParent = target.eContainer();
-		if (csParent instanceof InfixExpCS) {
-			OperatorCS csOperator = target.getParent();
-			if (csOperator != null) {
-				ScopeAdapter scopeAdapter = getScopeCSAdapter(csOperator);
-				ExpCS csSource = csOperator.getSource();
-				if (target == csSource) {									// Implicit source
-					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.CALL_EXP__SOURCE, null);
-				} else {
-					return new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
-				}
+			EnvironmentView.Filter filter = ContextCSScopeAdapter.NoImplicitProperties.INSTANCE;
+			try {
+				environmentView.addFilter(filter);
+				BaseScopeView baseScopeView = new BaseScopeView(typeManager, getParent(), target, PivotPackage.Literals.OPERATION_CALL_EXP__ARGUMENT, null);
+				environmentView.computeLookups(baseScopeView);
+				return null;
+			}
+			finally {
+				environmentView.removeFilter(filter);
 			}
 		}
-		return getOuterScopeView(typeManager, null);
+		else {
+			ExpCS explicitSource = null;
+			ScopeAdapter scopeAdapter = null;	// Note that parent is null during PreOrder namespace resolution
+			if (target.eContainer() instanceof InfixExpCS) {
+				OperatorCS csOperator = target.getParent();
+				if (csOperator != null) {
+					ExpCS csSource = csOperator.getSource();
+					if (csSource != target) {
+						scopeAdapter = getScopeCSAdapter(csOperator);
+						explicitSource = csSource;
+					}
+				}
+			}
+			if (scopeAdapter == null) {
+				scopeAdapter = getParent();
+			}
+			Type type = null;
+			if (explicitSource != null) {
+				OclExpression source = PivotUtil.getPivot(OclExpression.class, explicitSource);
+				if (source != null) {
+					type = source.getType();
+				}
+			}
+			EnvironmentView.Filter filter = new OperationFilter(typeManager, type, target);
+			try {
+				environmentView.addFilter(filter);
+				BaseScopeView baseScopeView = new BaseScopeView(typeManager, scopeAdapter, target, PivotPackage.Literals.OPERATION_CALL_EXP__REFERRED_OPERATION, null);
+				environmentView.computeLookups(baseScopeView);
+				return null;
+			}
+			finally {
+				environmentView.removeFilter(filter);
+			}
+		}
 	}
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPreOrderVisitor.java,v 1.8 2011/04/20 19:02:23 ewillink Exp $
+ * $Id: CompleteOCLPreOrderVisitor.java,v 1.9 2011/05/02 09:31:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -120,8 +120,8 @@ public class CompleteOCLPreOrderVisitor
 				List<VariableCS> csParameters = csElement.getParameters();
 				List<Parameter> newPivotParameters = new ArrayList<Parameter>();
 				for (VariableCS csParameter : csParameters) {
-	//				Parameter pivotParameter = context.refreshTypedMultiplicityElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
 					Parameter pivotParameter = context.refreshNamedElement(Parameter.class, PivotPackage.Literals.PARAMETER, csParameter);
+//					context.refreshMultiplicity(pivotParameter, csParameter);
 					pivotParameter.setType(PivotUtil.getPivot(Type.class, csParameter.getOwnedType()));
 					newPivotParameters.add(pivotParameter);
 				}

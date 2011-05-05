@@ -7,6 +7,7 @@ import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.emf.query.index.query.descriptors.EObjectDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.internal.properties.IndexViewProperty;
 import org.eclipse.emf.query.index.ui.internal.view.IndexView;
 import org.eclipse.emf.query.index.ui.internal.view.tree.nodes.IndexTypeURI;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,7 +34,7 @@ public class OpenResourceinEditorHandler implements IHandler {
 
 	public boolean isEnabled() {
 		Object selectedElement = getSelectedElement();
-		if (selectedElement instanceof ResourceDescriptor || selectedElement instanceof EObjectDescriptor || selectedElement instanceof EReferenceDescriptor) {
+		if (selectedElement instanceof ResourceDescriptor || selectedElement instanceof EObjectDescriptor || selectedElement instanceof EReferenceDescriptor || selectedElement instanceof IndexViewProperty) {
 			return true;
 		} else if (selectedElement instanceof IndexTypeURI) {
 			return true;

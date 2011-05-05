@@ -33,7 +33,6 @@ import org.eclipse.emf.query2.internal.messages.ApiMessages;
 import org.eclipse.emf.query2.internal.messages.FQLTraceMessages;
 import org.eclipse.emf.query2.internal.moinql.ast.SelectEntry;
 
-
 /**
  * An MQL Result Set wraps the {@link SpiFqlQueryResultSet} structure. It does
  * some book-keeping to map user-defined aliases and attribute references to the
@@ -51,7 +50,7 @@ public class ResultSetImpl implements ResultSet {
 	private int resultSetSize;
 
 	// we keep a connection to resolve MRIs if asked for
-	//    private final CoreConnection conn;
+	// private final CoreConnection conn;
 
 	// keeps the format of each column in the result set
 	private final ColumnType[] columnTypes;
@@ -79,10 +78,10 @@ public class ResultSetImpl implements ResultSet {
 	 *            For each alias position, we have a map in this array at the
 	 *            position of the alias position
 	 */
-	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet,
-			Map<String, Integer> _aliasToPosition, List<Map<String, Integer>> _attrsToPosition) {
+	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet, Map<String, Integer> _aliasToPosition,
+			List<Map<String, Integer>> _attrsToPosition) {
 
-		//        this.conn = (CoreConnection) _conn;
+		// this.conn = (CoreConnection) _conn;
 		this.emfHelper = _emfHelper;
 		this.resultSet = _resultSet;
 		this.aliasToPosition = _aliasToPosition;
@@ -97,18 +96,19 @@ public class ResultSetImpl implements ResultSet {
 			this.columnTypes[j] = iter.next().getColumnType();
 		}
 
-		// because original aliases might have disappeared during query processing, 
+		// because original aliases might have disappeared during query
+		// processing,
 		// we add them here and give them the same value as the "new" alias
 		this.addOriginalAliases();
 
 		// put a lexicographical sort on the result set
 		this.lexicographicSort();
 	}
-	
-	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet,
-			Map<String, Integer> _aliasToPosition, List<Map<String, Integer>> _attrsToPosition,boolean sortingRequired) {
 
-		//        this.conn = (CoreConnection) _conn;
+	public ResultSetImpl(EmfHelper _emfHelper, List<SelectEntry> selectEntries, SpiFqlQueryResultSet _resultSet, Map<String, Integer> _aliasToPosition,
+			List<Map<String, Integer>> _attrsToPosition, boolean sortingRequired) {
+
+		// this.conn = (CoreConnection) _conn;
 		this.emfHelper = _emfHelper;
 		this.resultSet = _resultSet;
 		this.aliasToPosition = _aliasToPosition;
@@ -123,15 +123,15 @@ public class ResultSetImpl implements ResultSet {
 			this.columnTypes[j] = iter.next().getColumnType();
 		}
 
-		// because original aliases might have disappeared during query processing, 
+		// because original aliases might have disappeared during query
+		// processing,
 		// we add them here and give them the same value as the "new" alias
 		this.addOriginalAliases();
 
 		// put a lexicographical sort on the result set
-		if(sortingRequired)
+		if (sortingRequired)
 			this.lexicographicSort();
 	}
-
 
 	/**
 	 * this method makes sure that all originally used aliases are also given a
@@ -181,6 +181,7 @@ public class ResultSetImpl implements ResultSet {
 		}
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
+
 	/**
 	 * Returns an array of URIs for the given alias
 	 */
@@ -188,7 +189,8 @@ public class ResultSetImpl implements ResultSet {
 
 		URI[] resultMRI = new URI[this.resultSetSize];
 
-		// for empty sets, since there is no getAliasPosition for such result sets
+		// for empty sets, since there is no getAliasPosition for such result
+		// sets
 		if (resultMRI.length == 0) {
 			return resultMRI;
 		}
@@ -201,6 +203,7 @@ public class ResultSetImpl implements ResultSet {
 
 		return resultMRI;
 	}
+
 	/**
 	 * Returns the attribute by the given name from the given alias
 	 */
@@ -219,12 +222,14 @@ public class ResultSetImpl implements ResultSet {
 			if (attrPos != null) {
 				return this.getAttributeValueForPosition(position, aliasPos, attrPos);
 			}
-			// the attribute name was not defined for the particular alias of the result set
+			// the attribute name was not defined for the particular alias of
+			// the result set
 			throw new QueryResultException(ApiMessages.ATTRIBUTE_NOT_SELECTED, attrName, alias);
 		}
 		// index out of bounds
 		throw new QueryResultException(ApiMessages.QUERY_RESULT_OUT_OF_BOUNDS);
 	}
+
 	/**
 	 * Returns the attributes from the given alias
 	 */
@@ -405,6 +410,7 @@ public class ResultSetImpl implements ResultSet {
 	 * Flushes the resultset
 	 */
 	public void flushResultSet() {
-		resultSet.flushResultSet();
+		if(resultSet!=null)
+			resultSet.flushResultSet();
 	}
 }

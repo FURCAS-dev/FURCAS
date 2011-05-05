@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.6 2011/03/16 17:32:30 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.7 2011/04/25 09:49:15 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.messages;
@@ -270,17 +270,17 @@ public class OCLMessages {
 		
 	private static IMessages messagesImpl;
 	
-	public static String bind(String message, Object arg) {
-		return messagesImpl.bind(message, arg);
-	}
+//	public static String bind(String message, Object arg) {
+//		return messagesImpl.bind(message, arg);
+//	}
 	
-	public static String bind(String message, Object arg1, Object arg2) {
-		return messagesImpl.bind(message, arg1, arg2);
-	}
+//	public static String bind(String message, Object arg1, Object arg2) {
+//		return messagesImpl.bind(message, arg1, arg2);
+//	}
 	
-	public static String bind(String message, Object[] args) {
-		return messagesImpl.bind(message, args);
-	}
+//	public static String bind(String message, Object[] args) {
+//		return messagesImpl.bind(message, args);
+//	}
 
 	static {
 		try {

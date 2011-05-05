@@ -1,7 +1,7 @@
 library lib
 {
 	type OclAny : AnyType {}
-	type Classifier conformsTo OclAny {}
+	type Classifier<T> : ClassifierType conformsTo OclAny {}
 	type Boolean : PrimitiveType conformsTo OclAny {}
 	type Integer : PrimitiveType conformsTo Real {}
 	type Real : PrimitiveType conformsTo OclAny {}

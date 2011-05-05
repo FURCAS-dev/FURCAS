@@ -12,6 +12,7 @@
  
 package org.eclipse.emf.query2.test.mm.Company.impl;
 
+import java.math.BigInteger;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -30,6 +31,7 @@ import org.eclipse.emf.query2.test.mm.Company.Transport;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.test.mm.Company.impl.TransportImpl#getDistance <em>Distance</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +57,26 @@ public class TransportImpl extends EObjectImpl implements Transport {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDistance() <em>Distance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDistance()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final BigInteger DISTANCE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDistance() <em>Distance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDistance()
+	 * @generated
+	 * @ordered
+	 */
+	protected BigInteger distance = DISTANCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,11 +123,34 @@ public class TransportImpl extends EObjectImpl implements Transport {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public BigInteger getDistance() {
+		return distance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDistance(BigInteger newDistance) {
+		BigInteger oldDistance = distance;
+		distance = newDistance;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.TRANSPORT__DISTANCE, oldDistance, distance));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case CompanyPackage.TRANSPORT__NAME:
 				return getName();
+			case CompanyPackage.TRANSPORT__DISTANCE:
+				return getDistance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,6 +165,9 @@ public class TransportImpl extends EObjectImpl implements Transport {
 		switch (featureID) {
 			case CompanyPackage.TRANSPORT__NAME:
 				setName((String)newValue);
+				return;
+			case CompanyPackage.TRANSPORT__DISTANCE:
+				setDistance((BigInteger)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,6 +184,9 @@ public class TransportImpl extends EObjectImpl implements Transport {
 			case CompanyPackage.TRANSPORT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case CompanyPackage.TRANSPORT__DISTANCE:
+				setDistance(DISTANCE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,6 +201,8 @@ public class TransportImpl extends EObjectImpl implements Transport {
 		switch (featureID) {
 			case CompanyPackage.TRANSPORT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case CompanyPackage.TRANSPORT__DISTANCE:
+				return DISTANCE_EDEFAULT == null ? distance != null : !DISTANCE_EDEFAULT.equals(distance);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,6 +219,8 @@ public class TransportImpl extends EObjectImpl implements Transport {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
+		result.append(", distance: "); //$NON-NLS-1$
+		result.append(distance);
 		result.append(')');
 		return result.toString();
 	}

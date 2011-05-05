@@ -40,7 +40,7 @@ public class ModelInjector extends AbstractModelInjector implements IModelInject
 
     // Helper for lengthy methods. Package access to allow for easy stubbing in unit tests
     /** The helper. */
-    DelayedReferencesHelper helper = new DelayedReferencesHelper(this);
+    DelayedReferencesHelper helper = new DelayedReferencesHelper();
    
 
 

@@ -29,6 +29,7 @@ import org.eclipse.emf.query.index.internal.QueryExecutorInternal;
 import org.eclipse.emf.query.index.internal.impl.query.QueryExecutorImpl;
 import org.eclipse.emf.query.index.internal.impl.update.IndexUpdaterImpl;
 import org.eclipse.emf.query.index.internal.maps.LeanMap;
+import org.eclipse.emf.query.index.internal.maps.SerializationStrategy;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.update.UpdateCommand;
 
@@ -126,8 +127,12 @@ public class PageableIndexImpl implements PageableIndex {
 			File outputFile = this.chProv.getOutputFile(DUMP_FILE_ID);
 			FileOutputStream fos = new FileOutputStream(outputFile);
 			SerializationStrategyFactory factory = new SerializationStrategyFactory(fos);
-			this.globalTables.resourceIndex.serialize(factory.createResourceMapStrategy(this.globalTables.resourceIndex));
-			this.globalTables.elementTypeIndex.serialize(factory.createGlobalTypeMapStrategy(this.globalTables.resourceIndex.getUnderlyingMap()));
+			
+			SerializationStrategy<URI, PageableResourceDescriptorImpl> resourceMapStrategy = factory.createResourceMapStrategy(this.globalTables.resourceIndex);
+			SerializationStrategy<String, URI> globalTypeMapStrategy = factory.createGlobalTypeMapStrategy(this.globalTables.resourceIndex.getUnderlyingMap());
+
+			this.globalTables.resourceIndex.serialize(resourceMapStrategy);
+			this.globalTables.elementTypeIndex.serialize(globalTypeMapStrategy);
 			factory.finalizePaging();
 			this.closeStream(fos);
 		} catch (FileNotFoundException fnf) {
@@ -149,8 +154,12 @@ public class PageableIndexImpl implements PageableIndex {
 			if (inputFile.exists()) {
 				FileInputStream fis = new FileInputStream(inputFile);
 				SerializationStrategyFactory factory = new SerializationStrategyFactory(fis);
-				this.globalTables.resourceIndex.deserialize(factory.createResourceMapStrategy(this.globalTables.resourceIndex));
-				this.globalTables.elementTypeIndex.deserialize(factory.createGlobalTypeMapStrategy(this.globalTables.resourceIndex.getUnderlyingMap()));
+				SerializationStrategy<URI, PageableResourceDescriptorImpl> resourceMapStrategy = factory.createResourceMapStrategy(this.globalTables.resourceIndex);
+				SerializationStrategy<String, URI> globalTypeMapStrategy = factory.createGlobalTypeMapStrategy(this.globalTables.resourceIndex.getUnderlyingMap());
+
+				this.globalTables.resourceIndex.deserialize(resourceMapStrategy);
+				this.globalTables.elementTypeIndex.deserialize(globalTypeMapStrategy);
+				
 				factory.finalizePaging();
 				this.closeStream(fis);
 				inputFile.delete();

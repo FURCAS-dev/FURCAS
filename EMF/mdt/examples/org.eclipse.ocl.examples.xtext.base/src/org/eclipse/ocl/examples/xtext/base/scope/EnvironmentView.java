@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentView.java,v 1.13 2011/04/20 19:02:27 ewillink Exp $
+ * $Id: EnvironmentView.java,v 1.16 2011/05/02 09:31:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.scope;
 
@@ -59,7 +59,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
  */
 public class EnvironmentView
 {
-	private static final Logger logger = Logger.getLogger(TypeManager.class);
+	private static final Logger logger = Logger.getLogger(EnvironmentView.class);
 
 	public static interface Filter
 	{
@@ -75,7 +75,7 @@ public class EnvironmentView
 		 * 
 		 * @param eObject
 		 */
-		boolean matches(EnvironmentView environmentView, EObject eObject);
+		boolean matches(EnvironmentView environmentView, Type forType, EObject eObject);
 	}
 
 	protected final TypeManager typeManager;
@@ -113,6 +113,9 @@ public class EnvironmentView
 	 * @return the number of elements added; 1 if added, 0 if not
 	 */
 	public int addElement(String elementName, EObject element) {
+		return addElement(elementName, null, element);
+	}
+	public int addElement(String elementName, Type forType, EObject element) {
 		if (element == null) {
 			return 0;
 		}
@@ -122,7 +125,7 @@ public class EnvironmentView
 		}
 		if ((name != null) && (matchers != null)) {
 			for (Filter filter : matchers) {
-				if (!filter.matches(this, element)) {
+				if (!filter.matches(this, forType, element)) {
 					return 0;
 				}
 			}
@@ -166,13 +169,16 @@ public class EnvironmentView
 	}
 
 	public int addElements(Iterable<? extends EObject> elements) {
+		return addElements(null, elements);
+	}
+
+	public int addElements(Type forType, Iterable<? extends EObject> elements) {
 		int additions = 0;
 		if (elements != null) {
 			for (EObject element : elements) {
 				if (element instanceof Nameable) {
 					Nameable namedElement = (Nameable) element;
-					additions += addElement(namedElement.getName(),
-						namedElement);
+					additions += addElement(namedElement.getName(), forType, namedElement);
 				}
 			}
 		}
@@ -202,18 +208,38 @@ public class EnvironmentView
 		matchers.add(filter);
 	}
 
+	public void addLibContents(Type libType, ScopeView scopeView) {
+		if (libType == null) {
+			return;
+		}
+		addElementsOfScope(libType, scopeView);
+		if (libType instanceof org.eclipse.ocl.examples.pivot.Class) {
+			for (org.eclipse.ocl.examples.pivot.Class superClass : ((org.eclipse.ocl.examples.pivot.Class) libType).getSuperClasses()) {
+				addLibContents(superClass, scopeView);
+			}
+		}
+	}
+
 	public int addNamedElement(Nameable namedElement) {
+		return addNamedElement(null, namedElement);
+	}
+
+	public int addNamedElement(Type forType, Nameable namedElement) {
 		if (namedElement != null) {
-			return addElement(namedElement.getName(), namedElement);
+			return addElement(namedElement.getName(), forType, namedElement);
 		}
 		return 0;
 	}
 
 	public int addNamedElements(Iterable<? extends Nameable> namedElements) {
+		return addNamedElements(null, namedElements);
+	}
+
+	public int addNamedElements(Type forType, Iterable<? extends Nameable> namedElements) {
 		int additions = 0;
 		if (namedElements != null) {
 			for (Nameable namedElement : namedElements) {
-				additions += addElement(namedElement.getName(), namedElement);
+				additions += addElement(namedElement.getName(), forType, namedElement);
 			}
 		}
 		return additions;

@@ -230,7 +230,7 @@
         <eParameters name="i" eType="#/0/Integer"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="UnlimitedNatural"/>
+    <eClassifiers xsi:type="ocl.ecore:PrimitiveType" name="UnlimitedNatural" instanceClassName="java.lang.Integer"/>
     <eClassifiers xsi:type="ecore:EClass" name="UnlimitedNatural_Class">
       <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL" references="#/0/UnlimitedNatural"/>
       <eOperations name="=" eType="#/0/Boolean">
@@ -537,6 +537,12 @@
           <details key="keywords" value="iterator"/>
         </eAnnotations>
         <eParameters name="expr" eType="#/0/OclExpression"/>
+      </eOperations>
+      <eOperations name="=" eType="#/0/Boolean">
+        <eParameters name="c" eType="#/0/Collection(T)"/>
+      </eOperations>
+      <eOperations name="&lt;>" eType="#/0/Boolean">
+        <eParameters name="c" eType="#/0/Collection(T)"/>
       </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
