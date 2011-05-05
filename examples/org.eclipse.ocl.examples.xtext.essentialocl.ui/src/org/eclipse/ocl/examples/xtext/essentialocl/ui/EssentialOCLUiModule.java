@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLUiModule.java,v 1.4 2011/03/03 20:05:46 ewillink Exp $
+ * $Id: EssentialOCLUiModule.java,v 1.5 2011/05/05 20:34:55 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.ui;
 
@@ -20,6 +20,7 @@ import org.eclipse.ocl.examples.xtext.base.pivot2cs.BaseLocationInFileProvider;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseEObjectTextHover;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.NaturelessEditorCallback;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.BaseAntlrTokenToAttributeIdMapper;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
@@ -62,6 +63,11 @@ public class EssentialOCLUiModule extends org.eclipse.ocl.examples.xtext.essenti
 
 	public Class<? extends ITokenTypeToPartitionTypeMapper> bindITokenTypeToPartitionTypeMapper() {
 		return BaseTerminalsTokenTypeToPartitionMapper.class;
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
+		return NaturelessEditorCallback.class;
 	}
 
 	public Class<? extends XtextDocument> bindXtextDocument() {
