@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCS.java,v 1.2 2011/01/24 20:59:31 ewillink Exp $
+ * $Id: AnnotationCS.java,v 1.3 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,19 +54,19 @@ public interface AnnotationCS extends AnnotationElementCS {
 	EList<ModelElementCS> getOwnedContent();
 
 	/**
-	 * Returns the value of the '<em><b>Reference</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef}.
+	 * Returns the value of the '<em><b>Reference</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.MonikeredElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reference</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Reference</em>' containment reference list.
+	 * @return the value of the '<em>Reference</em>' reference list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getAnnotationCS_Reference()
-	 * @model containment="true"
+	 * @model resolveProxies="false"
 	 * @generated
 	 */
-	EList<ModelElementCSRef> getReference();
+	EList<MonikeredElement> getReference();
 
 } // AnnotationCS

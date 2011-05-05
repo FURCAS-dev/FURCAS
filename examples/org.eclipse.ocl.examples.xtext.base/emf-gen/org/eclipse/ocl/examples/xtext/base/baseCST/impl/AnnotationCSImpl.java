@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AnnotationCSImpl.java,v 1.2 2011/01/24 20:59:32 ewillink Exp $
+ * $Id: AnnotationCSImpl.java,v 1.3 2011/05/05 17:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
@@ -23,11 +23,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.examples.pivot.MonikeredElement;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCSRef;
 import org.eclipse.ocl.examples.xtext.base.util.BaseCSVisitor;
 
 /**
@@ -56,14 +57,14 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	protected EList<ModelElementCS> ownedContent;
 
 	/**
-	 * The cached value of the '{@link #getReference() <em>Reference</em>}' containment reference list.
+	 * The cached value of the '{@link #getReference() <em>Reference</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElementCSRef> reference;
+	protected EList<MonikeredElement> reference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,11 +104,11 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ModelElementCSRef> getReference()
+	public EList<MonikeredElement> getReference()
 	{
 		if (reference == null)
 		{
-			reference = new EObjectContainmentEList<ModelElementCSRef>(ModelElementCSRef.class, this, BaseCSTPackage.ANNOTATION_CS__REFERENCE);
+			reference = new EObjectEList<MonikeredElement>(MonikeredElement.class, this, BaseCSTPackage.ANNOTATION_CS__REFERENCE);
 		}
 		return reference;
 	}
@@ -123,8 +124,6 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 		{
 			case BaseCSTPackage.ANNOTATION_CS__OWNED_CONTENT:
 				return ((InternalEList<?>)getOwnedContent()).basicRemove(otherEnd, msgs);
-			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
-				return ((InternalEList<?>)getReference()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -162,7 +161,7 @@ public class AnnotationCSImpl extends AnnotationElementCSImpl implements Annotat
 				return;
 			case BaseCSTPackage.ANNOTATION_CS__REFERENCE:
 				getReference().clear();
-				getReference().addAll((Collection<? extends ModelElementCSRef>)newValue);
+				getReference().addAll((Collection<? extends MonikeredElement>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
