@@ -351,7 +351,7 @@ type Boolean : PrimitiveType conformsTo OclAny {
 	}
 }
 
-type Classifier conformsTo OclAny {
+type Classifier<T> : ClassifierType conformsTo OclAny {
 	annotation 'http://www.omg.org/ocl'(ClassGroup='UML');
 	static operation allInstances() : Set<Classifier>;
 }
@@ -1788,6 +1788,8 @@ type String : PrimitiveType conformsTo OclAny {
 		post: result = ((self = s) or (self > s));
 	}
 }
+
+type Tuple : TupleType conformsTo OclAny {}
 
 /**
 The standard type UnlimitedNatural is used to encode the non-negative values of a multiplicity specification.

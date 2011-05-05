@@ -196,9 +196,22 @@ public class XtextTestCase extends TestCase
 		for (TreeIterator<EObject> tit = reloadedPivotResource.getAllContents(); tit.hasNext(); ) {
 			EObject eObject = tit.next();
 			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
-				typeManager.installPackageMoniker((org.eclipse.ocl.examples.pivot.Package) eObject);
+				org.eclipse.ocl.examples.pivot.Package pkg = (org.eclipse.ocl.examples.pivot.Package) eObject;
+				typeManager.installPackageMoniker(pkg, false);
 			}
-			
+			else {
+				tit.prune();
+			}
+		}
+		for (TreeIterator<EObject> tit = reloadedPivotResource.getAllContents(); tit.hasNext(); ) {
+			EObject eObject = tit.next();
+			if (eObject instanceof org.eclipse.ocl.examples.pivot.Package) {
+				org.eclipse.ocl.examples.pivot.Package pkg = (org.eclipse.ocl.examples.pivot.Package) eObject;
+				typeManager.addPackage(pkg);
+			}
+			else {
+				tit.prune();
+			}
 		}
 		assertNoValidationErrors("Pivot reload validation problems", reloadedPivotResource);
 	}
@@ -388,7 +401,7 @@ public class XtextTestCase extends TestCase
 			return false;
 		}
 		if (pivotElement instanceof TupleType) {
-			return false;
+			return TypeManager.isLibraryType((TupleType)pivotElement);
 		}
 		if ((pivotElement instanceof Property) && (pivotElement.eContainer() instanceof TupleType)) {
 			return false;

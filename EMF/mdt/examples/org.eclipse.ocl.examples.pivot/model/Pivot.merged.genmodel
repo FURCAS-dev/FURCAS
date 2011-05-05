@@ -206,6 +206,9 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//TemplateableElement/ownedTemplateSignature"/>
       </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//TemplateableElement/unspecializedElement"/>
+      </genFeatures>
       <genOperations xsi:type="genmodel:GenOperation">
         <ecoreOperation href="pivot.ecore#//TemplateableElement/parameterableElements"/>
       </genOperations>
@@ -640,6 +643,12 @@
       <ecoreClass href="pivot.ecore#//CallOperationAction"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
         <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//CallOperationAction/operation"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass">
+      <ecoreClass href="pivot.ecore#//ClassifierType"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="pivot.ecore#//ClassifierType/instanceType"/>
       </genFeatures>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass">

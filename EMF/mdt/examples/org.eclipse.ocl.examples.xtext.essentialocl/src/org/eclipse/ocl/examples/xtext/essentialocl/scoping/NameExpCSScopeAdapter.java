@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NameExpCSScopeAdapter.java,v 1.4 2011/03/17 20:10:00 ewillink Exp $
+ * $Id: NameExpCSScopeAdapter.java,v 1.6 2011/05/02 09:31:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -26,6 +26,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.ParameterableElement;
 import org.eclipse.ocl.examples.pivot.TemplateParameter;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
@@ -41,7 +42,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			return 0;
 		}
 
-		public boolean matches(EnvironmentView environmentView, EObject eObject) {
+		public boolean matches(EnvironmentView environmentView, Type forType, EObject eObject) {
 			return !(eObject instanceof Operation);
 		}
 	}
@@ -76,7 +77,7 @@ public class NameExpCSScopeAdapter extends ExpCSScopeAdapter<NameExpCS, OclExpre
 			if (eContainer instanceof NavigatingExpCS) {
 //				environmentView.addFilter(operationsOnlyFilter);
 			}
-			else {	// FIXME IndexedExpCS fpor Associations
+			else {	// FIXME IndexedExpCS for Associations
 				environmentView.addFilter(noOperationsFilter);
 			}
 		}

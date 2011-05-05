@@ -18,4 +18,5 @@ Require-Bundle: org.eclipse.osgi,
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: SAP
-Export-Package: com.sap.furcas.parser.tcs
+Export-Package: com.sap.furcas.parser.tcs,
+ com.sap.furcas.parser.tcs.stable;x-friends:="com.sap.furcas.runtime.parser.incremental.test"

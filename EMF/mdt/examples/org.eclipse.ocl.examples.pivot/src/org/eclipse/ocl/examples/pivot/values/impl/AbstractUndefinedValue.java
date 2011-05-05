@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractUndefinedValue.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: AbstractUndefinedValue.java,v 1.5 2011/04/25 09:49:14 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -95,6 +95,10 @@ public abstract class AbstractUndefinedValue extends AbstractValue implements Nu
 	}
 
 	public Type getElement() {
+		return null;
+	}
+
+	public Type getInstanceType() {
 		return null;
 	}
 

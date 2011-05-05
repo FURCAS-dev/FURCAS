@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.11 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: ToStringVisitor.java,v 1.13 2011/05/02 09:31:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.utilities;
@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralPart;
@@ -54,6 +55,7 @@ import org.eclipse.ocl.examples.pivot.OclExpression;
 import org.eclipse.ocl.examples.pivot.OpaqueExpression;
 import org.eclipse.ocl.examples.pivot.Operation;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
+import org.eclipse.ocl.examples.pivot.Package;
 import org.eclipse.ocl.examples.pivot.Parameter;
 import org.eclipse.ocl.examples.pivot.PivotPackage;
 import org.eclipse.ocl.examples.pivot.Precedence;
@@ -345,10 +347,28 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 			appendName(cls);
 		}
 		else {
-			appendQualifiedName(cls.getPackage(), "::", cls);
+			Package pkg = cls.getPackage();
+			if (pkg == null) {
+				append("null::");
+				appendName(cls);
+			}
+			else if ((pkg.eContainer() != null) || !PivotConstants.OCL_NAME.equals(pkg.getName())) {
+				appendQualifiedName(pkg, "::", cls);
+			}
+			else {
+				appendName(cls);
+			}
 			appendTemplateBindings(cls.getTemplateBindings());
 			appendTemplateSignature(cls.getOwnedTemplateSignature());
 		}
+		return null;
+	}
+
+	@Override
+	public String visitClassifierType(ClassifierType object) {
+		appendName(object);
+		appendTemplateBindings(object.getTemplateBindings());
+		appendTemplateSignature(object.getOwnedTemplateSignature());
 		return null;
 	}
     
@@ -951,15 +971,17 @@ public class ToStringVisitor extends AbstractExtendingVisitor<String, String>
 
 	@Override
 	public String visitTupleType(TupleType object) {
-		super.visitTupleType(object);
-		append("{");
+		appendName(object);
+		append("(");
 		String prefix = "";
 		for (TypedElement part : object.getOwnedAttributes()) {
 			append(prefix);
 			appendName(part);
+			append(":");
+			appendName(part.getType());
 			prefix = ",";
 		}
-		append("}");
+		append(")");
 		return null;
 	}
 

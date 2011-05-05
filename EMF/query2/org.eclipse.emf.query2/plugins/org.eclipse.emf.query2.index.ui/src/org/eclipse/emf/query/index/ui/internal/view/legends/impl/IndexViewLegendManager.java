@@ -18,10 +18,12 @@ public class IndexViewLegendManager implements ILegendManager {
 		ILegend incomingLinkLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.INCOMINGLINKSGROUP_ICON), Messages.Query2IndexUI_IndexViewLegendManager_IncomingLinksGroup); 
 		ILegend outgoingLinkLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.OUTGOINGLINKSGROUP_ICON), Messages.Query2IndexUI_IndexViewLegendManager_OutgoingLinksGroup); 
 		ILegend typesLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.TYPES_ICON), Messages.Query2IndexUI_IndexViewLegendManager_ResourceTypeGroup); 
-		ILegend typeLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.TYPE_ICON), Messages.Query2IndexUI_IndexViewLegendManager_ResourceType); 
+		ILegend typeLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.TYPE_ICON), Messages.Query2IndexUI_IndexViewLegendManager_ResourceType);
+		ILegend userDataGroupLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.USERDATA_GROUPICON),Messages.Query2IndexUI_IndexViewTreeLabelProvider_UserDataTable);
+		ILegend userDataKeyLegend = new Legend(IndexUIImageRegistry.getImage(IndexUIImageRegistry.USERDATA_SINGLEICON),Messages.Query2IndexUI_IndexViewLegendManager_userData);
 
 		return new ILegend[] { headerlegend, resourceIndexGroupLegend, resourceDescLegend, eObjectGroupLegend, eObjectDescLegend, incomingLinkLegend, outgoingLinkLegend,
-				linkLegend, typesLegend, typeLegend };
+				linkLegend, typesLegend, typeLegend,userDataGroupLegend,userDataKeyLegend };
 	}
 
 }

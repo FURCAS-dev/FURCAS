@@ -1,6 +1,6 @@
 package org.eclipse.emf.query.index.ui.internal.properties;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.eclipse.emf.query.index.Messages;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
@@ -17,7 +17,8 @@ public class ReferenceDescriptorProperties {
 	private String sourceResource;
 	private String targetFragment;
 	private String targetResource;
-	private HashMap<String, String> propertiesMap = new HashMap<String,String>();
+	private ArrayList<IndexViewProperty> properties = new ArrayList<IndexViewProperty>();
+	
 
 	private String PROPERTY_REF_URI = Messages.Query2Index_ReferenceDescriptorProperties_ReferenceURI;
 	private String PROPERTY_SRC_FRAGMENT = Messages.Query2Index_ReferenceDescriptorProperties_SourceFragment;
@@ -52,13 +53,13 @@ public class ReferenceDescriptorProperties {
 			}else if(property.equals(PROPERTY_TAR_RESOURCE)){
 				value = RefDesc.getTargetResourceURI().toString();
 			}
-			propertiesMap.put(property,value);
+			properties.add(new IndexViewProperty(property, value));
 		}
 		return;
 	}
 	
-	public HashMap<String,String> getProperties() {
-		return propertiesMap;
+	public ArrayList<IndexViewProperty> getProperties() {
+		return properties;
 	}
 
 

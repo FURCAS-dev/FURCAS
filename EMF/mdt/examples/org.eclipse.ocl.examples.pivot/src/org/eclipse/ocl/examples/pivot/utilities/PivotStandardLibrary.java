@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotStandardLibrary.java,v 1.10 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotStandardLibrary.java,v 1.11 2011/04/25 09:49:15 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.utilities;
 
@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.examples.pivot.AnyType;
 import org.eclipse.ocl.examples.pivot.BagType;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionType;
 import org.eclipse.ocl.examples.pivot.InvalidType;
 import org.eclipse.ocl.examples.pivot.OrderedSetType;
@@ -30,9 +31,9 @@ import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.SequenceType;
 import org.eclipse.ocl.examples.pivot.SetType;
 import org.eclipse.ocl.examples.pivot.StandardLibrary;
+import org.eclipse.ocl.examples.pivot.TupleType;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.VoidType;
-import org.eclipse.ocl.examples.pivot.model.OclMetaModel;
 
 public abstract class PivotStandardLibrary implements StandardLibrary
 {
@@ -55,9 +56,9 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 
 	private BagType bagType = null;
 	private PrimitiveType booleanType = null;
-	private org.eclipse.ocl.examples.pivot.Class classifierType = null;
+	private ClassifierType classifierType = null;
 	private CollectionType collectionType = null;
-	private org.eclipse.ocl.examples.pivot.Enumeration enumerationType = null;
+	private org.eclipse.ocl.examples.pivot.Class enumerationType = null;
 	private PrimitiveType integerType = null;
 	private AnyType oclAnyType = null;
 	private InvalidType oclInvalidType = null;
@@ -67,10 +68,8 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 	private SequenceType sequenceType = null;
 	private SetType setType = null;
 	private PrimitiveType stringType = null;
-	private Type tupleType = null;
+	private TupleType tupleType = null;
 	private PrimitiveType unlimitedNaturalType = null;
-	
-	protected org.eclipse.ocl.examples.pivot.Package pivotMetaModel = null;
 	
 	private Map<String, Type> nameToLibraryTypeMap = null;
 
@@ -111,14 +110,20 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return booleanType;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Class getClassifierType() {
+	public ClassifierType getClassifierType() {
 		if (classifierType == null) {
 			Type type = getRequiredLibraryType("Classifier");
-			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
-				classifierType = (org.eclipse.ocl.examples.pivot.Class) type;
+			if (type instanceof ClassifierType) {
+				if (((ClassifierType) type).getOwnedTemplateSignature() == null) {
+					throw new IllegalStateException("Classifier is not a templated type");
+				}
+				else if (((ClassifierType) type).getOwnedTemplateSignature().getParameters().size() != 1) {
+					throw new IllegalStateException("Classifier is not a templated type with a single argument");
+				}
+				classifierType = (ClassifierType) type;
 			}
 			else if (type != null) {
-				throw new IllegalStateException("Classifier is not a Class");
+				throw new IllegalStateException("Classifier is not a ClassifierType");
 			}		
 		}
 		return classifierType;
@@ -137,14 +142,14 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return collectionType;
 	}
 
-	public org.eclipse.ocl.examples.pivot.Enumeration getEnumerationType() {
+	public org.eclipse.ocl.examples.pivot.Class getEnumerationType() {
 		if (enumerationType == null) {
 			Type type = getRequiredLibraryType("Enumeration");
-			if (type instanceof org.eclipse.ocl.examples.pivot.Enumeration) {
-				enumerationType = (org.eclipse.ocl.examples.pivot.Enumeration) type;
+			if (type instanceof org.eclipse.ocl.examples.pivot.Class) {
+				enumerationType = (org.eclipse.ocl.examples.pivot.Class) type;
 			}
 			else if (type != null) {
-				throw new IllegalStateException("Enumeration is not an Enumeration");
+				throw new IllegalStateException("Enumeration is not a Class");
 			}		
 		}
 		return enumerationType;
@@ -226,20 +231,6 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		}
 		return orderedSetType;
 	}
-	
-	public org.eclipse.ocl.examples.pivot.Package getPivotMetaModel() {
-		if (pivotMetaModel == null) {
-			pivotMetaModel = OclMetaModel.create(this);
-		}
-		return pivotMetaModel;
-	}
-
-	/**
-	 * Return the pivot model class for className with the Pivot Model.
-	 */
-	public Type getPivotType(String className) {
-		return PivotUtil.getNamedElement(getPivotMetaModel().getOwnedTypes(), className);
-	}	
 
 	public PrimitiveType getRealType() {
 		if (realType == null) {
@@ -308,9 +299,15 @@ public abstract class PivotStandardLibrary implements StandardLibrary
 		return stringType;
 	}
 
-	public Type getTupleType() {
+	public TupleType getTupleType() {
 		if (tupleType == null) {
-			tupleType = getRequiredLibraryType("Tuple");
+			Type type = getRequiredLibraryType("Tuple");
+			if (type instanceof TupleType) {
+				tupleType = (TupleType) type;
+			}
+			else if (type != null) {
+				throw new IllegalStateException("Tuple is not a TupleType");
+			}		
 		}
 		return tupleType;
 	}

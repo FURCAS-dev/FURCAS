@@ -14,5 +14,5 @@ package org.eclipse.emf.query2.internal.fql;
  * Simple attribute value types that are supported by queries.
  */
 public enum SpiFqlPrimitiveType {
-	STRING, BOOLEAN, INTEGER, LONG, DOUBLE, FLOAT
+	STRING, BOOLEAN, INTEGER, LONG, DOUBLE, FLOAT, DATE
 }

@@ -7,9 +7,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.junit.Ignore;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
@@ -25,11 +28,24 @@ import com.sap.furcas.runtime.textblocks.modifcation.TbVersionUtil;
 import com.sap.furcas.runtime.textblocks.testbase.TextBlockTest;
 import com.sap.furcas.runtime.textblocks.testutils.TestSourceTextBlockCreator;
 import com.sap.furcas.runtime.textblocks.validation.TbValidationUtil;
+import com.sap.furcas.test.testutils.ResourceTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 
 public class TestIncrementalLexer extends TextBlockTest {
 
+    private Resource transientParsingResource;
+    
+    @Before 
+    public void init() {
+        transientParsingResource = ResourceTestHelper.createTransientResource(new ResourceSetImpl());
+    }
+    
+    @After
+    public void cleanup() throws Exception {
+        transientParsingResource.getContents().clear();
+    }
+    
     @Test
     public void testWithInitialContentTokenNoChange() throws Exception {
         // should leave the textblock as it is.
@@ -42,9 +58,8 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         LexedToken contentToken = modelFactory.createToken("test");
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory,
-                        contentToken);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, contentToken);
+        transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
 
@@ -60,8 +75,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         incrementalLexer.lex(editedVersion);
 
-        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(
-                editedVersion, Version.CURRENT);
+        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(editedVersion, Version.CURRENT);
 
         assertEquals(3, newlyLexedVersion.getTokens().size());
         assertEquals("test", newlyLexedVersion.getTokens().get(1).getValue()); // (BOS,
@@ -70,7 +84,6 @@ public class TestIncrementalLexer extends TextBlockTest {
     }
 
     @Test
-    @Ignore("Failing because EcoreHelper.isAlive is not yet implemented")
     public void testWithInitialContentTokenValueOnlyChange() throws Exception {
         // should leave the textblock as it is.
 
@@ -82,9 +95,8 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         LexedToken contentToken = modelFactory.createToken("test");
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory,
-                        contentToken);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, contentToken);
+        transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
 
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
@@ -145,7 +157,6 @@ public class TestIncrementalLexer extends TextBlockTest {
     }
 
     @Test
-    @Ignore("Failing because EcoreHelper.isAlive is not yet implemented")
     public void testWithInitialContentTokenNewToken() throws Exception {
         // should leave the textblock as it is.
 
@@ -157,9 +168,8 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         LexedToken contentToken = modelFactory.createToken("test");
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory,
-                        contentToken);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, contentToken);
+        transientParsingResource.getContents().add(root);
         TbChangeUtil.makeVersion(root, Version.REFERENCE);
 
         TextBlocksModel tbModel = new TextBlocksModel(root, null);
@@ -202,7 +212,6 @@ public class TestIncrementalLexer extends TextBlockTest {
     }
 
     @Test
-    @Ignore("Failing because EcoreHelper.isAlive is not yet implemented")
     public void testWithTextBlocksAfterInitialToken() throws Exception {
         // should leave the textblock as it is.
 
@@ -222,8 +231,8 @@ public class TestIncrementalLexer extends TextBlockTest {
          * Structure afterwards: -root -tok1 -subBlock --tok2 --tok3 --x
          */
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        transientParsingResource.getContents().add(root);
         TextBlock subBlock = modelFactory.createTextBlock();
         subBlock.setVersion(Version.REFERENCE);
         subBlock.setOffset(4);
@@ -281,22 +290,17 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         incrementalLexer.lex(editedVersion);
 
-        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(
-                editedVersion, Version.CURRENT);
+        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(editedVersion, Version.CURRENT);
 
         assertEquals(3, newlyLexedVersion.getTokens().size());
         assertEquals("tok1", newlyLexedVersion.getTokens().get(1).getValue());
-        assertEquals(3, newlyLexedVersion.getSubBlocks().get(0).getTokens()
-                .size());
-        assertEquals("x", newlyLexedVersion.getSubBlocks().get(0).getTokens()
-                .get(2).getValue());
+        assertEquals(3, newlyLexedVersion.getSubBlocks().get(0).getTokens().size());
+        assertEquals("x", newlyLexedVersion.getSubBlocks().get(0).getTokens().get(2).getValue());
         TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion);
-        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion
-                .getSubBlocks().get(0));
+        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion.getSubBlocks().get(0));
     }
 
     @Test
-    @Ignore("Failing because EcoreHelper.isAlive is not yet implemented")
     public void testLookaheadFixingLA1() throws Exception {
         // should leave the textblock as it is.
 
@@ -317,8 +321,9 @@ public class TestIncrementalLexer extends TextBlockTest {
          * Structure afterwards: -root -tok1 -subBlock --tok2 --tok3 --x --y
          */
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        transientParsingResource.getContents().add(root);
+
         TextBlock subBlock = modelFactory.createTextBlock();
         subBlock.setVersion(Version.REFERENCE);
         subBlock.setOffset(4);
@@ -343,8 +348,7 @@ public class TestIncrementalLexer extends TextBlockTest {
         // Add "x" to end of tok3
         tbModel.replace(12, 0, "xy");
 
-        TextBlock editedVersion = TbVersionUtil.getOtherVersion(root,
-                Version.PREVIOUS);
+        TextBlock editedVersion = TbVersionUtil.getOtherVersion(root, Version.PREVIOUS);
 
         incrementalLexer.setSource(editedVersion.getTokens().iterator().next());
 
@@ -401,29 +405,23 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         incrementalLexer.lex(editedVersion);
 
-        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(
-                editedVersion, Version.CURRENT);
+        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(editedVersion, Version.CURRENT);
 
         assertEquals(3, newlyLexedVersion.getTokens().size());
         assertEquals("tok1", newlyLexedVersion.getTokens().get(1).getValue());
-        assertEquals(4, newlyLexedVersion.getSubBlocks().get(0).getTokens()
-                .size());
-        assertEquals(newTok4, newlyLexedVersion.getSubBlocks().get(0)
-                .getTokens().get(2));
-        assertEquals(newTok5, newlyLexedVersion.getSubBlocks().get(0)
-                .getTokens().get(3));
+        assertEquals(4, newlyLexedVersion.getSubBlocks().get(0).getTokens().size());
+        assertEquals(newTok4, newlyLexedVersion.getSubBlocks().get(0).getTokens().get(2));
+        assertEquals(newTok5, newlyLexedVersion.getSubBlocks().get(0).getTokens().get(3));
 
         assertEquals(1, newTok3.getLookback());
         assertEquals(1, newTok4.getLookback());
         assertEquals(1, newTok5.getLookback());
 
         TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion);
-        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion
-                .getSubBlocks().get(0));
+        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion.getSubBlocks().get(0));
     }
 
     @Test
-    @Ignore("Ignored to make Maven build work")
     public void testModifySubBlockAtBeginning() throws Exception {
         // should leave the textblock as it is.
 
@@ -453,8 +451,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         };
         ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
-                mockLexerAdapter, null,
-                new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
+                mockLexerAdapter, null,  new AdapterFactoryEditingDomain(new TextblocksAdapterFactory(),
                         new BasicCommandStack()));
 
         LexedToken tok1 = modelFactory.createToken("tok1");
@@ -467,13 +464,14 @@ public class TestIncrementalLexer extends TextBlockTest {
          * Structure afterwards: -root -tok1 -subBlock --x --tok2 --tok3
          */
 
-        TextBlock root = TestSourceTextBlockCreator
-                .initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        TextBlock root = TestSourceTextBlockCreator.initialiseTextBlocksWithContentToken(modelFactory, tok1);
+        transientParsingResource.getContents().add(root);
+
         TextBlock subBlock = modelFactory.createTextBlock();
         subBlock.setVersion(Version.REFERENCE);
         subBlock.setOffset(4);
         subBlock.setLength(8);
-        root.getSubNodes().add(subBlock);
+        root.getSubNodes().add(root.getSubNodes().size()-1, subBlock);
 
         LexedToken tok2 = modelFactory.createToken("tok2");
         tok2.setOffsetRelative(true);
@@ -494,12 +492,9 @@ public class TestIncrementalLexer extends TextBlockTest {
         // Add "x" to beginning of tok2
         tbModel.replace(4, 0, "x");
 
-        assertEquals("xtok2",
-                TbVersionUtil.getOtherVersion(tok2, Version.PREVIOUS)
-                        .getValue());
+        assertEquals("xtok2", TbVersionUtil.getOtherVersion(tok2, Version.PREVIOUS).getValue());
 
-        TextBlock editedVersion = TbVersionUtil.getOtherVersion(root,
-                Version.PREVIOUS);
+        TextBlock editedVersion = TbVersionUtil.getOtherVersion(root, Version.PREVIOUS);
 
         incrementalLexer.setSource(editedVersion.getTokens().iterator().next());
 
@@ -557,25 +552,20 @@ public class TestIncrementalLexer extends TextBlockTest {
 
         incrementalLexer.lex(editedVersion);
 
-        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(
-                editedVersion, Version.CURRENT);
+        TextBlock newlyLexedVersion = TbVersionUtil.getOtherVersion(editedVersion, Version.CURRENT);
 
         assertEquals(3, newlyLexedVersion.getTokens().size());
         assertEquals("tok1", newlyLexedVersion.getTokens().get(1).getValue());
 
-        assertEquals(3, newlyLexedVersion.getSubBlocks().get(0).getTokens()
-                .size());
-        assertEquals(x, newlyLexedVersion.getSubBlocks().get(0).getTokens()
-                .get(0));
-        assertEquals(newTok2, newlyLexedVersion.getSubBlocks().get(0)
-                .getTokens().get(1));
+        assertEquals(3, newlyLexedVersion.getSubBlocks().get(0).getTokens().size());
+        assertEquals(x, newlyLexedVersion.getSubBlocks().get(0).getTokens().get(0));
+        assertEquals(newTok2, newlyLexedVersion.getSubBlocks().get(0).getTokens().get(1));
 
         assertEquals(1, tok3.getLookback());
         assertEquals(1, x.getLookback());
         assertEquals(0, newTok2.getLookback());
 
         TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion);
-        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion
-                .getSubBlocks().get(0));
+        TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion.getSubBlocks().get(0));
     }
 }

@@ -13,5 +13,6 @@ import com.sap.furcas.metamodel.FURCAS.TCS.PropertyInit;
  *
  */
 public interface ModelUpdaterRegistry {
+    
     ModelUpdater getModelUpdater(URI propertyOrInjectorActionURI);
 }

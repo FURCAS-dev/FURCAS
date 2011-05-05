@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CompleteOCLPostOrderVisitor.java,v 1.6 2011/03/11 20:23:52 ewillink Exp $
+ * $Id: CompleteOCLPostOrderVisitor.java,v 1.7 2011/05/02 09:31:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.completeocl.cs2pivot;
 
@@ -114,6 +114,9 @@ public class CompleteOCLPostOrderVisitor
 	@Override
 	public Continuation<?> visitContextConstraintCS(ContextConstraintCS csNewConstraint) {
 		NamedElement constrainedPivot = PivotUtil.getPivot(NamedElement.class, csNewConstraint.getContextDecl());
+		if ((constrainedPivot == null) || constrainedPivot.eIsProxy()) {
+			return null;
+		}
 		String newStereotype = csNewConstraint.getStereotype();
 		String stereotype = CompleteOCLCS2MonikerVisitor.getStereotype(newStereotype);
 		String newName = csNewConstraint.getName();

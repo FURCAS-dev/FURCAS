@@ -119,7 +119,9 @@ public class EObjectDescriptorImpl implements EObjectDescriptor, MapEntry {
 			return false;
 		return true;
 	}
-
 	
+	public Map<String, String> getEObjectUserData() {
+		return this.userData;
+	}
 
 }

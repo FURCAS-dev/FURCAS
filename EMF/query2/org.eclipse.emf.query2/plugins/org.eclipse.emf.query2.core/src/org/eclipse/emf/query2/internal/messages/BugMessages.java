@@ -702,7 +702,11 @@ public enum BugMessages implements LocalizedString {
 	/**
 	 * Message: "VirtualAtomicAttrReference has to refer to a TypeAttrReference"
 	 */
-	VIRTUAL_ATTOMIC_ATTR_REF_SHOULD_REFER_TO_TYPE_ATTR_REF("VIRTUAL_ATTOMIC_ATTR_REF_SHOULD_REFER_TO_TYPE_ATTR_REF_XMSG"); //$NON-NLS-1$
+	VIRTUAL_ATTOMIC_ATTR_REF_SHOULD_REFER_TO_TYPE_ATTR_REF("VIRTUAL_ATTOMIC_ATTR_REF_SHOULD_REFER_TO_TYPE_ATTR_REF_XMSG"),  //$NON-NLS-1$
+	/**
+	 * Message: "VirtualAtomicAttrReference has to refer to a TypeAttrReference"
+	 */
+	INVALID_DATE_FORMAT("INVALID_DATE_FORMAT"); //$NON-NLS-1$
 
 	private final static LocalizedResourceBundleAccessor ACCESSOR = new LocalizedResourceBundleAccessor(BugMessages.class);
 

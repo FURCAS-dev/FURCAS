@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: PivotPackageImpl.java,v 1.10 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: PivotPackageImpl.java,v 1.12 2011/05/02 15:38:53 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.internal.impl;
 
@@ -39,6 +39,7 @@ import org.eclipse.ocl.examples.pivot.BagType;
 import org.eclipse.ocl.examples.pivot.BooleanLiteralExp;
 import org.eclipse.ocl.examples.pivot.CallExp;
 import org.eclipse.ocl.examples.pivot.CallOperationAction;
+import org.eclipse.ocl.examples.pivot.ClassifierType;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.CollectionKind;
 import org.eclipse.ocl.examples.pivot.CollectionLiteralExp;
@@ -580,6 +581,13 @@ public class PivotPackageImpl
 	 * @generated
 	 */
 	private EClass classEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass classifierTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2274,6 +2282,26 @@ public class PivotPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getClassifierType()
+	{
+		return classifierTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getClassifierType_InstanceType()
+	{
+		return (EReference)classifierTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getType() {
 		return typeEClass;
 	}
@@ -2322,6 +2350,16 @@ public class PivotPackageImpl
 	 */
 	public EReference getTemplateableElement_OwnedTemplateSignature() {
 		return (EReference)templateableElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateableElement_UnspecializedElement()
+	{
+		return (EReference)templateableElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -3601,6 +3639,9 @@ public class PivotPackageImpl
 		createEAttribute(classEClass, CLASS__IS_INTERFACE);
 		createEReference(classEClass, CLASS__SUB_CLASS);
 
+		classifierTypeEClass = createEClass(CLASSIFIER_TYPE);
+		createEReference(classifierTypeEClass, CLASSIFIER_TYPE__INSTANCE_TYPE);
+
 		collectionItemEClass = createEClass(COLLECTION_ITEM);
 		createEReference(collectionItemEClass, COLLECTION_ITEM__ITEM);
 
@@ -3873,6 +3914,7 @@ public class PivotPackageImpl
 		templateableElementEClass = createEClass(TEMPLATEABLE_ELEMENT);
 		createEReference(templateableElementEClass, TEMPLATEABLE_ELEMENT__TEMPLATE_BINDING);
 		createEReference(templateableElementEClass, TEMPLATEABLE_ELEMENT__OWNED_TEMPLATE_SIGNATURE);
+		createEReference(templateableElementEClass, TEMPLATEABLE_ELEMENT__UNSPECIALIZED_ELEMENT);
 		createEOperation(templateableElementEClass, TEMPLATEABLE_ELEMENT___PARAMETERABLE_ELEMENTS);
 		createEOperation(templateableElementEClass, TEMPLATEABLE_ELEMENT___IS_TEMPLATE);
 
@@ -3992,6 +4034,7 @@ public class PivotPackageImpl
 		callOperationActionEClass.getESuperTypes().add(this.getNamedElement());
 		classEClass.getESuperTypes().add(this.getType());
 		classEClass.getESuperTypes().add(this.getNamespace());
+		classifierTypeEClass.getESuperTypes().add(this.getDataType());
 		collectionItemEClass.getESuperTypes().add(this.getCollectionLiteralPart());
 		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		collectionLiteralPartEClass.getESuperTypes().add(this.getTypedElement());
@@ -4034,8 +4077,8 @@ public class PivotPackageImpl
 		opaqueExpressionEClass.getESuperTypes().add(this.getValueSpecification());
 		operationEClass.getESuperTypes().add(this.getFeature());
 		operationEClass.getESuperTypes().add(this.getNamespace());
-		operationEClass.getESuperTypes().add(this.getParameterableElement());
 		operationEClass.getESuperTypes().add(this.getTemplateableElement());
+		operationEClass.getESuperTypes().add(this.getParameterableElement());
 		operationCallExpEClass.getESuperTypes().add(this.getFeatureCallExp());
 		operationTemplateParameterEClass.getESuperTypes().add(this.getTemplateParameter());
 		orderedSetTypeEClass.getESuperTypes().add(this.getCollectionType());
@@ -4069,8 +4112,8 @@ public class PivotPackageImpl
 		tupleLiteralPartEClass.getESuperTypes().add(this.getVariableDeclaration());
 		tupleTypeEClass.getESuperTypes().add(this.getDataType());
 		typeEClass.getESuperTypes().add(this.getNamedElement());
-		typeEClass.getESuperTypes().add(this.getParameterableElement());
 		typeEClass.getESuperTypes().add(this.getTemplateableElement());
+		typeEClass.getESuperTypes().add(this.getParameterableElement());
 		typeExpEClass.getESuperTypes().add(this.getOclExpression());
 		typeTemplateParameterEClass.getESuperTypes().add(this.getTemplateParameter());
 		typedElementEClass.getESuperTypes().add(this.getNamedElement());
@@ -4119,6 +4162,9 @@ public class PivotPackageImpl
 		initEReference(getClass_SuperClass(), this.getClass_(), null, "superClass", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getClass_IsInterface(), this.getBoolean(), "isInterface", "false", 1, 1, org.eclipse.ocl.examples.pivot.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEReference(getClass_SubClass(), this.getClass_(), null, "subClass", null, 0, -1, org.eclipse.ocl.examples.pivot.Class.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(classifierTypeEClass, ClassifierType.class, "ClassifierType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getClassifierType_InstanceType(), this.getType(), null, "instanceType", null, 1, 1, ClassifierType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(collectionItemEClass, CollectionItem.class, "CollectionItem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getCollectionItem_Item(), this.getOclExpression(), null, "item", null, 1, 1, CollectionItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -4497,6 +4543,7 @@ public class PivotPackageImpl
 		initEClass(templateableElementEClass, TemplateableElement.class, "TemplateableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTemplateableElement_TemplateBinding(), this.getTemplateBinding(), this.getTemplateBinding_BoundElement(), "templateBinding", null, 0, -1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEReference(getTemplateableElement_OwnedTemplateSignature(), this.getTemplateSignature(), this.getTemplateSignature_Template(), "ownedTemplateSignature", null, 0, 1, TemplateableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTemplateableElement_UnspecializedElement(), this.getTemplateableElement(), null, "unspecializedElement", null, 0, 1, TemplateableElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getTemplateableElement__ParameterableElements(), this.getParameterableElement(), "parameterableElements", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 

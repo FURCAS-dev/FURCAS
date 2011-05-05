@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTSwitch.java,v 1.7 2011/03/01 08:47:46 ewillink Exp $
+ * $Id: BaseCSTSwitch.java,v 1.8 2011/04/25 09:50:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.util;
@@ -22,13 +22,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.ocl.examples.pivot.util.Nameable;
 import org.eclipse.ocl.examples.pivot.util.Pivotable;
-import org.eclipse.ocl.examples.xtext.base.baseCST.*;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.BoundDocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
@@ -59,6 +57,7 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.SpecificationCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.StructuralFeatureCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateBindingCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TemplateParameterCS;
@@ -188,22 +187,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 				T result = caseAttributeCSRef(attributeCSRef);
 				if (result == null) result = caseElementCS(attributeCSRef);
 				if (result == null) result = caseVisitableCS(attributeCSRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case BaseCSTPackage.BOUND_DOCUMENT_CS:
-			{
-				BoundDocumentCS boundDocumentCS = (BoundDocumentCS)theEObject;
-				T result = caseBoundDocumentCS(boundDocumentCS);
-				if (result == null) result = casePackageCS(boundDocumentCS);
-				if (result == null) result = caseNamespaceCS(boundDocumentCS);
-				if (result == null) result = caseNamedElementCS(boundDocumentCS);
-				if (result == null) result = caseMonikeredElementCS(boundDocumentCS);
-				if (result == null) result = caseNameable(boundDocumentCS);
-				if (result == null) result = caseModelElementCS(boundDocumentCS);
-				if (result == null) result = caseElementCS(boundDocumentCS);
-				if (result == null) result = casePivotable(boundDocumentCS);
-				if (result == null) result = caseVisitableCS(boundDocumentCS);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -910,21 +893,6 @@ public class BaseCSTSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAttributeCSRef(AttributeCSRef object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bound Document CS</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bound Document CS</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBoundDocumentCS(BoundDocumentCS object) {
 		return null;
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2008, 2009 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
+ * Copyright (c) 2008, 2009, 2011 IBM Corporation, Zeligsoft Inc., Open Canarias S.L., and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,9 @@
  *     Zeligsoft - Bugs 244886, 245619, 233673, 179990
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
+ *     Axel Uhl (SAP AG) - Bug 342644
  *     
- * $Id: AbstractTypeChecker.java,v 1.8 2010/05/03 09:32:32 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.9 2011/05/01 10:56:50 auhl Exp $
  */
 
 package org.eclipse.ocl;
@@ -40,10 +41,14 @@ import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.types.AnyType;
+import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.MessageType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
+import org.eclipse.ocl.types.SequenceType;
+import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
@@ -173,30 +178,31 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		}
 
 		// and so does OclAny, also
-		if (type1 == stdlib.getOclAny()) {
-			return (type2 instanceof CollectionType<?, ?>)
+		if (type1 instanceof AnyType) {
+			return type2 instanceof AnyType
+				? SAME_TYPE :
+				(type2 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUPERTYPE;
-		} else if (type2 == stdlib.getOclAny()) {
+		} else if (type2 instanceof AnyType) {
 			return (type1 instanceof CollectionType<?, ?>)
 				? UNRELATED_TYPE
 				: STRICT_SUBTYPE;
 		}
 
 		// handle primitive types
+		// From OCL 2.3 (11.5.1): "Note that UnlimitedNatural is a subclass
+		// of Integer and that Integer is a subclass of Real"
 		if (type1 instanceof PrimitiveType<?>) {
-			if ((type1 == stdlib.getInteger())
-				|| (type1 == stdlib.getUnlimitedNatural())) {
-				if (type2 == stdlib.getReal()) {
+			int type1Order = (type1==stdlib.getUnlimitedNatural()?0:type1==stdlib.getInteger()?1:type1==stdlib.getReal()?2:-1);
+			int type2Order = (type2==stdlib.getUnlimitedNatural()?0:type2==stdlib.getInteger()?1:type2==stdlib.getReal()?2:-1);
+			if (type1Order >= 0 && type2Order >= 0) {
+				if (type1Order < type2Order) {
 					return STRICT_SUBTYPE;
-				}
-			} else if (type1 == stdlib.getReal()) {
-				if ((type2 == stdlib.getInteger())
-					|| (type2 == stdlib.getUnlimitedNatural())) {
+				} else if (type1Order > type2Order) {
 					return STRICT_SUPERTYPE;
 				}
 			}
-
 			return UNRELATED_TYPE;
 		} else if (type2 instanceof PrimitiveType<?>) {
 			// tested all possible primitive type conformances in the other case
@@ -1090,6 +1096,18 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 		OCLStandardLibrary<C> lib = env.getOCLStandardLibrary();
 		if ((owner == lib.getOclVoid()) || (owner == lib.getOclInvalid())) {
 			return findOperationForVoidOrInvalid(owner, name, args);
+		}
+		// special case for UnlimitedNatural < Integer because otherwise *.div(1)
+		// and similar can't be resolved
+		if (owner == lib.getUnlimitedNatural()) {
+			return findOperationMatching(lib.getInteger(), name, args);
+		} else if (owner instanceof SequenceType<?, ?> ||
+				owner instanceof SetType<?, ?> ||
+				owner instanceof BagType<?, ?> ||
+				owner instanceof OrderedSetType<?, ?>) {
+			// nothing found in the specific collection class; perform
+			// lookup in Collection(T)
+			return findOperationMatching(lib.getCollection(), name, args);
 		}
 
 		return null;
