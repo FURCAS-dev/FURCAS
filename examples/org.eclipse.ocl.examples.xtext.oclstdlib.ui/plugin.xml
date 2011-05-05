@@ -6,12 +6,13 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="oclstdlib"
-            id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
-            name="%MF_OCLstdlibEditor">
+              class="org.eclipse.ocl.examples.xtext.oclstdlib.ui.OCLstdlibExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="true"
+              extensions="oclstdlib"
+              icon="icons/OCLModelFile.gif"
+              id="org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlib"
+              name="%MF_OCLstdlibEditor">
         </editor>
     </extension>
     <extension
