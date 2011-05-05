@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.13 2011/02/19 18:50:03 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.14 2011/05/05 17:56:29 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -101,7 +101,11 @@ public class SerializeTests extends XtextTestCase
 		assertEquals("One import", 1, imports.size());
 	}
 
-//	public void testMarkupSerialize() throws Exception {
+	public void testKeysSerialize() throws Exception {
+		doSerialize("Keys");
+	}
+
+	//	public void testMarkupSerialize() throws Exception {
 //		doSerialize("Markup");
 //	}
 

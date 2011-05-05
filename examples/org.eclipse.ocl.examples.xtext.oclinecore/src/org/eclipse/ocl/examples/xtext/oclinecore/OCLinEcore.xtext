@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2010 E.D.Willink and others.
+ * Copyright (c) 2010,2011 E.D.Willink and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore.xtext,v 1.10 2011/03/01 08:46:34 ewillink Exp $
+ * $Id: OCLinEcore.xtext,v 1.11 2011/05/05 17:53:16 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore with org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL
 
@@ -66,6 +66,7 @@ UnrestrictedName returns ecore::EString:
 |	'initial'
 |	'interface'
 |	'invariant'
+|	'key'
 |	'library'
 |	'module'
 |	'operation'
@@ -116,7 +117,7 @@ AnnotationCS returns base::AnnotationCS:
 	('(' ownedDetail+=DetailCS (',' ownedDetail+=DetailCS)* ')')?
 	(('{' (ownedAnnotation+=AnnotationElementCS
 	     | ownedContent+=ModelElementCS
-	     | reference+=ModelElementCSRef)+
+	     | reference+=[pivot::MonikeredElement|UnrestrictedName])+
 	  '}')
 	|';'
 	)
@@ -167,11 +168,6 @@ ClassCS returns base::ClassCS:
 ClassifierCS returns base::ClassifierCS:
 	ClassCS | DataTypeCS | EnumerationCS 
 ;
-
-//CollectionTypeRefCS returns base::CollectionTypeRefCS:
-//	name=CollectionTypeIdentifier
-//	('(' (typeArguments=TypeRefCS)? ')')?	
-//;
 
 DataTypeCS returns base::DataTypeCS:
 	'datatype' name=UnrestrictedName
@@ -225,10 +221,6 @@ ModelElementCS returns base::ModelElementCS:
 	ClassifierCS | EnumerationLiteralCS | OperationCS | PackageCS | StructuralFeatureCS
 ;
 
-ModelElementCSRef returns base::ModelElementCSRef:
-	ref=[base::ModelElementCS|UnrestrictedName]
-; 
-
 OperationCS returns base::OperationCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'operation' name=UnrestrictedName
@@ -276,7 +268,7 @@ PrimitiveTypeRefCS returns base::PrimitiveTypeRefCS:
 ReferenceCS returns base::ReferenceCS:
 	(qualifier+='static' | qualifier+='definition')*
 	'property' name=UnrestrictedName
-	('#' opposite=ReferenceCSRef)?	
+	('#' opposite=[pivot::Property|UnrestrictedName])?	
 	(':' ownedType=TypedRefCS
 		('[' ((lower=LOWER ('..' upper=UPPER)?) | (multiplicity=('*'|'+'|'?'))) ']' )?)?
 	('=' default=SINGLE_QUOTED_STRING)?
@@ -292,14 +284,11 @@ ReferenceCS returns base::ReferenceCS:
 		) ','? )+
 	'}')?
 	(	('{' (ownedAnnotation+=AnnotationElementCS
+			| ('key' keys+=[pivot::Property|UnrestrictedName] (',' keys+=[pivot::Property|UnrestrictedName])* ';')
 	        | ownedConstraint+=(InitialConstraintCS|DerivedConstraintCS))* '}')
 	|	';'
 	)
 ;
-
-ReferenceCSRef returns base::ReferenceCSRef:
-	ref=[pivot::Property|UnrestrictedName] 
-; 
 
 SpecificationCS returns OCLinEcoreSpecificationCS:
 	{OCLinEcoreSpecificationCS} (ownedExpression=ExpCS | exprString=UNQUOTED_STRING)?
@@ -342,7 +331,6 @@ TypedRefCS returns base::TypedRefCS:
 ;
 
 TypedTypeRefCS returns base::TypedTypeRefCS:
-//	(namespace+=NamespaceRefCS '::')*
 	(namespace+=[pivot::Namespace|UnrestrictedName] '::')*
 	type=[pivot::Type|UnrestrictedName]
 	(ownedTemplateBinding=TemplateBindingCS)?

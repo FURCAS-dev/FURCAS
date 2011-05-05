@@ -12,10 +12,13 @@
  *
  * </copyright>
  *
- * $Id: ReferenceCS.java,v 1.1 2010/05/03 05:24:48 ewillink Exp $
+ * $Id: ReferenceCS.java,v 1.3 2011/05/05 17:53:02 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.examples.pivot.Property;
 
 
 /**
@@ -27,38 +30,55 @@ package org.eclipse.ocl.examples.xtext.base.baseCST;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getOpposite <em>Opposite</em>}</li>
+ *   <li>{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getKeys <em>Keys</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCS()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface ReferenceCS extends StructuralFeatureCS {
 	/**
-	 * Returns the value of the '<em><b>Opposite</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Opposite</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Opposite</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Opposite</em>' containment reference.
-	 * @see #setOpposite(ReferenceCSRef)
+	 * @return the value of the '<em>Opposite</em>' reference.
+	 * @see #setOpposite(Property)
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCS_Opposite()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
-	ReferenceCSRef getOpposite();
+	Property getOpposite();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getOpposite <em>Opposite</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.ReferenceCS#getOpposite <em>Opposite</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Opposite</em>' containment reference.
+	 * @param value the new value of the '<em>Opposite</em>' reference.
 	 * @see #getOpposite()
 	 * @generated
 	 */
-	void setOpposite(ReferenceCSRef value);
+	void setOpposite(Property value);
+
+	/**
+	 * Returns the value of the '<em><b>Keys</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.ocl.examples.pivot.Property}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Keys</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Keys</em>' reference list.
+	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getReferenceCS_Keys()
+	 * @model
+	 * @generated
+	 */
+	EList<Property> getKeys();
 
 } // ReferenceCS
