@@ -448,7 +448,7 @@ public class ForeachPropertyInitUpdater extends AbstractFurcasOCLBasedModelUpdat
      * <code>textBlock</code>.
      */
     private boolean foreachWasExecutedFor(TextBlock textBlock) {
-        return TcsUtil.wasExecuted((ContextTemplate) textBlock.getType().getParseRule(),
+        return TcsUtil.wasExecuted((ContextTemplate) textBlock.getType(),
                 textBlock.getParentAltChoices(), getSequenceElement());
     }
 

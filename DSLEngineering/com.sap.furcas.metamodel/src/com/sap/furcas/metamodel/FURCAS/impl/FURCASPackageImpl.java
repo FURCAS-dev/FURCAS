@@ -16,8 +16,6 @@ import com.sap.furcas.metamodel.FURCAS.FURCASFactory;
 import com.sap.furcas.metamodel.FURCAS.FURCASPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.TCSPackage;
 import com.sap.furcas.metamodel.FURCAS.TCS.impl.TCSPackageImpl;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.impl.TextblockdefinitionPackageImpl;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.impl.TextblocksPackageImpl;
 
@@ -111,6 +109,7 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public EClass getEmptyDummyClassToWorkaroundGeneratorBug() {
         return emptyDummyClassToWorkaroundGeneratorBugEClass;
     }
@@ -120,6 +119,7 @@ public class FURCASPackageImpl extends EPackageImpl implements FURCASPackage {
          * <!-- end-user-doc -->
      * @generated
      */
+        @Override
         public FURCASFactory getFURCASFactory() {
         return (FURCASFactory)getEFactoryInstance();
     }

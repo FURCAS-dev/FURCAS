@@ -1,7 +1,5 @@
 package com.sap.furcas.runtime.parser.textblocks;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.observer.TextBlockProxy;
 
@@ -26,13 +24,4 @@ public interface TextBlockFactory {
 	 */
 	TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent);
 
-	/**
-	 * Retrieves the corresponding {@link TextBlockDefinition} for a given {@link Template}.
-	 * A new {@link TextBlockDefinition} should be created if none exists. This should furthermore be 
-	 * the same for each template.
-	 * 
-	 * @param template The template for which to search the {@link TextBlockDefinition}
-	 * @return the found {@link TextBlockDefinition} or a new one if none exists.
-	 */
-	TextBlockDefinition getTbDef(Template template);
 }

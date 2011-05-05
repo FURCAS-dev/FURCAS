@@ -96,11 +96,11 @@ public class IncrementalParsingUtil {
 	 */
 	static boolean isTBEqual(TextBlock oldVersion, TextBlockProxy newVersion) {
 		if (oldVersion != null && oldVersion.getType() != null
-			&& oldVersion.getType().getParseRule() != null) {
+			&& oldVersion.getType() != null) {
 			if (newVersion.getTemplate() != null) {
 				// ensure templates were the same
 				if (newVersion.getTemplate().equals(
-					oldVersion.getType().getParseRule())) {
+					oldVersion.getType())) {
 					// // if there is a difference in token size the tb has
 					// // changed!
 					// if (TbNavigationUtil.getSubNodesSize(oldVersion) !=
