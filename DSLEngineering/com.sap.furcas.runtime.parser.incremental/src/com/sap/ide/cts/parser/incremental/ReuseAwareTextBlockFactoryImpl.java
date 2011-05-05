@@ -2,20 +2,10 @@ package com.sap.ide.cts.parser.incremental;
 
 import static com.sap.furcas.runtime.textblocks.modifcation.TbChangeUtil.addToBlockAt;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionFactory;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksFactory;
@@ -34,13 +24,9 @@ import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.TbBean;
 public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 
 	private final TextblocksFactory textblocksFactory;
-	private final Map<Template, TextBlockDefinition> tbDefsMap = new HashMap<Template, TextBlockDefinition>();
 	private TextBlockReuseStrategy reuseStrategy;
 	private final ModelElementFromTextBlocksFactory modelElementFactory;
 	private ReferenceHandler referenceHandler;
-	private final OppositeEndFinder oppositeEndFinder;
-	private final EStructuralFeature templateTypeRef;
-
 	
 
 	public ReuseAwareTextBlockFactoryImpl(TextblocksFactory textblocksPackage, 
@@ -50,8 +36,6 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		this.textblocksFactory = textblocksPackage;
 		reuseStrategy = tbReuseStrategy;
 		this.modelElementFactory = modelElementFactory;
-		this.oppositeEndFinder = oppositeEndFinder;
-		this.templateTypeRef = TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule();
 	}
 
 	@Override
@@ -90,9 +74,8 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 	 */
 	private TextBlock instantiateBlockAndMoveTokens(TextBlockProxy newVersion,
 			TextBlock parent) {
-		TextBlock tb = this.createBlock();
-		TextBlockDefinition tbDef = getTbDef(newVersion.getTemplate());
-		tb.setType(tbDef);
+		TextBlock tb = this.createBlock();;
+		tb.setType(newVersion.getTemplate());
 		tb.setSequenceElement(newVersion.getSequenceElement());
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
 		tb.getAdditionalTemplates().addAll(newVersion.getAdditionalTemplates());
@@ -157,7 +140,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 				// property set
 				TextBlock loopParent = parent;
 				while (loopParent != null) {
-					if (TcsUtil.isContext(loopParent.getType().getParseRule())) {
+					if (TcsUtil.isContext(loopParent.getType())) {
 						loopParent.getElementsInContext().addAll(
 								tb.getCorrespondingModelElements());
 						break;
@@ -167,51 +150,6 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 			}
 		}
 		return tb;
-	}
-
-	/**
-	 * Get the {@link TextBlockDefinition} for the given template.
-	 * 
-	 * @param template
-	 * @return
-	 */
-	@Override
-	public TextBlockDefinition getTbDef(Template template) {
-		TextBlockDefinition tbDef = tbDefsMap.get(template);
-		if (tbDef == null && template != null) {
-			// check if there was already a corresponding tbdef within the
-			// mapping definition
-			Collection<EObject> tbDefs = oppositeEndFinder.
-				navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, template);
-			if (tbDefs != null && !tbDefs.isEmpty()) {
-				if (tbDefs.size() == 1) {
-					tbDef = (TextBlockDefinition) tbDefs.iterator().next();
-				} else {
-					// TODO What to do if there is more than one?
-					// for now this case seems strange, so throw an exception
-					throw new IncrementalParsingException(
-							"Cannot handle more than one TextBlocksDefinition per Template!");
-				}
-			} else {
-				tbDef = initializeTextBlockDefinition(template);
-			}
-			tbDefsMap.put(template, tbDef);
-		}
-		return tbDef;
-	}
-
-	/**
-	 * Initializes a new {@link TextBlockDefinition} for the given template TODO
-	 * this should actually be done during creation of the mapping model.
-	 * 
-	 * @param template
-	 * @return
-	 */
-	private TextBlockDefinition initializeTextBlockDefinition(Template template) {
-		TextBlockDefinition tbDef = TextblockdefinitionFactory.eINSTANCE.createTextBlockDefinition();
-		tbDef.setParseRule(template);
-		((EObject) template).eResource().getContents().add(tbDef);
-		return tbDef;
 	}
 	
 

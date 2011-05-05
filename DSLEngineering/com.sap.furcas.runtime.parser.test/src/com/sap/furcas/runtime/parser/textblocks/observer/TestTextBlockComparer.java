@@ -9,8 +9,6 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
 import com.sap.furcas.metamodel.FURCAS.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
 import com.sap.furcas.runtime.parser.textblocks.TextBlockFactory;
@@ -216,11 +214,6 @@ public class TestTextBlockComparer extends TextBlockTest {
 			@Override
 			public TextBlock createNewTextBlock(TextBlockProxy proxy, TextBlock parent) {
 				return modelFactory.createTextBlock();
-			}
-
-			@Override
-			public TextBlockDefinition getTbDef(Template template) {
-				return null;
 			}
 		};
 	}

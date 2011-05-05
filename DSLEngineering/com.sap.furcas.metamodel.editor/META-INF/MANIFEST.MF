@@ -10,7 +10,6 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.metamodel.FURCAS.TCS.presentation,
  com.sap.furcas.metamodel.FURCAS.presentation,
- com.sap.furcas.metamodel.FURCAS.textblockdefinition.presentation,
  com.sap.furcas.metamodel.FURCAS.textblocks.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,

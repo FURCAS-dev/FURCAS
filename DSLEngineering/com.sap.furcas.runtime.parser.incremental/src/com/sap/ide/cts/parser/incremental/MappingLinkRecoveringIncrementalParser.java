@@ -10,7 +10,6 @@ import java.util.Set;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
@@ -18,13 +17,12 @@ import org.eclipse.ocl.ecore.opposites.OppositeEndFinder;
 import com.sap.furcas.metamodel.FURCAS.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.FURCAS.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.FURCAS.TCS.Template;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextBlockDefinition;
-import com.sap.furcas.metamodel.FURCAS.textblockdefinition.TextblockdefinitionPackage;
 import com.sap.furcas.metamodel.FURCAS.textblocks.Bostoken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.FURCAS.textblocks.ForEachExecution;
 import com.sap.furcas.metamodel.FURCAS.textblocks.LexedToken;
 import com.sap.furcas.metamodel.FURCAS.textblocks.TextBlock;
+import com.sap.furcas.metamodel.FURCAS.textblocks.TextblocksPackage;
 import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.furcas.runtime.parser.impl.DelayedReferencesHelper;
@@ -78,7 +76,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         prepareForParsing(existingRoot, parserTextBlocksHandler);
         batchParser.setResolveProxies(false);
         try {
-            existingRoot.setType(tbFactory.getTbDef(rootTemplate));
+            existingRoot.setType(rootTemplate);
             RecoverMappingLinkComand rmlc = new RecoverMappingLinkComand(
                     existingRoot, parserTextBlocksHandler, getOppositeEndFinder());
             getEditingDomain().getCommandStack().execute(rmlc);
@@ -116,7 +114,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             this.existingRoot = existingRoot;
             this.parserTextBlocksHandler = parserTextBlocksHandler;
 			this.oppositeEndFinder = oppositeEndFinder;
-            templateTypeRef = TextblockdefinitionPackage.eINSTANCE.getTextBlockDefinition_ParseRule();
+            templateTypeRef = TextblocksPackage.eINSTANCE.getTextBlock_Type();
         }
 
         @Override
@@ -171,12 +169,12 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                 }
             }
             textBlock.setSequenceElement(proxy.getSequenceElement());
-            TextBlockDefinition tbDef = getTbDef(proxy.getTemplate());
-            if (tbDef == null) {
+            Template t = proxy.getTemplate();
+            if (t == null) {
                 failed = true;
                 return;
             }
-            textBlock.setType(tbDef);
+            textBlock.setType(t);
             textBlock.getAdditionalTemplates().addAll(
                     proxy.getAdditionalTemplates());
             if (textBlock.getForEachExecutions().size() > 0) {
@@ -223,21 +221,6 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
                     }
                 }
             }
-        }
-
-        private TextBlockDefinition getTbDef(Template t) {
-            Collection<EObject> tbDefs = oppositeEndFinder.
-            	navigateOppositePropertyWithBackwardScope((EReference) templateTypeRef, t);
-            if (tbDefs != null && !tbDefs.isEmpty()) {
-                if (tbDefs.size() == 1) {
-                    return (TextBlockDefinition) tbDefs.iterator().next();
-                } else {
-                    // TODO What to do if there is more than one?
-                    // for now this case seems strange, so throw an exception
-                	throw new RuntimeException("Found more than one TextBlockDefinition for template: " + t);
-                }
-            }
-            return null;
         }
 
        

@@ -173,8 +173,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 								.setNewFeature(
 									newFeatureBean,
 									!TcsUtil.isReferenceOnly(subNodeResult.textBlock
-											.getType()
-											.getParseRule()));
+											.getType()));
 						}
 					}
 				} else if (subNode instanceof AbstractToken) {
@@ -309,8 +308,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	private boolean isFromReferenceOnlyTemplate(TextBlock textBlock) {
-		if (textBlock.getType() != null && textBlock.getType().getParseRule() != null) {
-			Template parseRule = textBlock.getType().getParseRule();
+		if (textBlock.getType() != null && textBlock.getType() != null) {
+			Template parseRule = textBlock.getType();
 			return TcsUtil.isReferenceOnly(parseRule);
 		}
 		return false;
@@ -447,11 +446,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 */
 	private boolean isTBEqual(TextBlock oldVersion, TextBlockProxy newVersion) {
 		if (oldVersion != null && oldVersion.getType() != null
-			&& oldVersion.getType().getParseRule() != null) {
+			&& oldVersion.getType() != null) {
 			if (newVersion.getTemplate() != null) {
 				// ensure templates were the same
 				if (newVersion.getTemplate().equals(
-					oldVersion.getType().getParseRule())) {
+					oldVersion.getType())) {
 //					if (newVersion.getTemplate().getMetaReference() instanceof StructureType) {
 //						// a structure type has no identity so we have to
 //						// re-create it every time
@@ -806,9 +805,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                         if (TbVersionUtil.getOtherVersion(tb, Version.CURRENT) == null) {
                             deleteElementsForRemovedSubBlocks(tb);
                             if (tb.getType() != null
-                                    && tb.getType().getParseRule() != null) {
-                                if (!TcsUtil.isReferenceOnly(tb.getType()
-                                        .getParseRule())) {
+                                    && tb.getType() != null) {
+                                if (!TcsUtil.isReferenceOnly(tb.getType())) {
                                     // FIXME: Delete only the first element as
                                     // this is
                                     // the one the tb is responsible for
@@ -829,7 +827,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                     // Only unset features that are at the
                                     // boundary to referenceOnly elements
                                     if (!TcsUtil.isReferenceOnly(reference
-                                            .getType().getParseRule())) {
+                                            .getType())) {
     
                                     }
                                 }
