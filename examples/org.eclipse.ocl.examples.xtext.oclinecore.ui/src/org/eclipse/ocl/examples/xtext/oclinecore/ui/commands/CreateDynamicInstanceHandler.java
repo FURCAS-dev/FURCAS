@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.4 2011/01/24 21:56:21 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.5 2011/05/06 10:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -134,6 +134,9 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 				IXtextDocument document = xtextEditor.getDocument();
 				selectedClass = document.readOnly(new IUnitOfWork<EClass, XtextResource>() {
 					public EClass exec(XtextResource xtextResource) {
+						if (xtextResource == null) {
+							return null;
+						}
 						IParseResult parseResult = xtextResource.getParseResult();
 						if (parseResult == null)
 							throw new NullPointerException("parseResult is null");
