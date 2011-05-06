@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.10 2011/05/02 09:31:37 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.11 2011/05/06 06:35:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -20,7 +20,9 @@ package org.eclipse.ocl.examples.pivot.tests;
 import java.util.Collections;
 
 import org.eclipse.ocl.examples.pivot.ClassifierType;
+import org.eclipse.ocl.examples.pivot.PrimitiveType;
 import org.eclipse.ocl.examples.pivot.TupleType;
+import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.messages.OCLMessages;
 import org.eclipse.ocl.examples.pivot.utilities.PivotConstants;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
@@ -186,6 +188,43 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 	public void testNotEqualEnumeration() {
 		assertQueryFalse(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Collection'");
 		assertQueryTrue(null, "ocl::CollectionKind::_'Collection' <> ocl::CollectionKind::_'Set'");
+	}
+	
+    /**
+     * Tests the explicit oclAsSet() operator.
+     */
+	public void test_oclAsSet_explicit() {
+		assertQueryResults(null, "Set{true}", "true.oclAsSet()");
+		assertQueryResults(null, "Set{}", "null.oclAsSet()");
+		assertQueryInvalid(null, "invalid.oclAsSet()");
+		assertQueryResults(null, "Set{Set{1..4}}", "Set{1..4}->oclAsSet()");
+	}
+	
+    /**
+     * Tests the implicit oclAsSet() operator.
+     */
+	public void test_oclAsSet_implicit() {
+		assertQueryResults(null, "Set{true}", "true->select(true)");
+		assertQueryResults(null, "Set{true}", "Set{true}->select(true)");
+		assertQueryResults(null, "Set{}", "null->select(true)");
+		assertQueryResults(null, "Set{}", "Set{}->select(true)");
+		assertQueryResults(null, "Set{null}", "Set{null}->select(true)");
+		assertQueryInvalid(null, "invalid->select(true)");
+		//
+		assertQueryResults(null, "false", "true.oclIsUndefined()");
+		assertQueryResults(null, "false", "true->oclIsUndefined()");	// Set{true}
+		assertQueryResults(null, "true", "null.oclIsUndefined()");
+		assertQueryResults(null, "false", "null->oclIsUndefined()");	// Set{}
+		assertQueryResults(null, "true", "invalid.oclIsUndefined()");
+		assertQueryResults(null, "true", "invalid->oclIsUndefined()");	// invalid
+		//
+		assertQueryEquals(null, 4, "'1234'.size()");
+		assertQueryEquals(null, 1, "'1234'->size()");
+		//
+		PrimitiveType booleanType = typeManager.getBooleanType();
+		assertQueryEquals(null, typeManager.getClassifierType(booleanType), "true.oclType()");
+		Type collectionType = typeManager.getCollectionType("Set", booleanType);
+		assertQueryEquals(null, typeManager.getClassifierType(collectionType), "true->oclType()");		// Set{true}
 	}
 	
     /**
