@@ -18,8 +18,9 @@ Bootstrap Howto:
        the test is green.
        
    	   Copy the TCSParser.java and  TCSLexer.java from "generationTemp/generated"
-   	   to "src/com.sap.furcas.parser.tcs.stable". The bootstrapped parser will now
-   	   be used per-default.
+   	   to "src/com.sap.furcas.parser.tcs.stable". Additionally copy TCS.tcs from 
+   	   "generationTemp" to "mappings2".
+   	   The bootstrapped parser will nowbe used per-default.
 
    	   Enjoy! You're done now.
    	   
