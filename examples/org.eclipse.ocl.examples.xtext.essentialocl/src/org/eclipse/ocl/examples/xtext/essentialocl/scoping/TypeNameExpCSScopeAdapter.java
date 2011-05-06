@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypeNameExpCSScopeAdapter.java,v 1.2 2011/01/24 21:31:46 ewillink Exp $
+ * $Id: TypeNameExpCSScopeAdapter.java,v 1.3 2011/05/06 09:05:12 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -42,11 +42,15 @@ public class TypeNameExpCSScopeAdapter extends ModelElementCSScopeAdapter<TypeNa
 			List<Namespace> namespaces = target.getNamespace();
 			int namespaceCount = namespaces.size();
 			if (namespaceCount > 0) {
-				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, namespaces.get(namespaceCount-1));
-				if (scopeAdapter != null) {
-					return scopeAdapter.computeLookup(environmentView, scopeView);
+				Namespace eObject = namespaces.get(namespaceCount-1);
+				if ((eObject == null) || eObject.eIsProxy()) {
+					return null;
+				}
+				ScopeAdapter scopeAdapter = getScopeAdapter(typeManager, eObject);
+				if (scopeAdapter == null) {
+					return null;
 				}				
-				return null;
+				return scopeAdapter.computeLookup(environmentView, scopeView);
 			}
 		}
 		return scopeView.getOuterScope();
