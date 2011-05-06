@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluateOclAnyOperationsTest.java,v 1.11 2011/05/06 06:35:47 ewillink Exp $
+ * $Id: EvaluateOclAnyOperationsTest.java,v 1.12 2011/05/06 09:05:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.pivot.tests;
@@ -285,6 +285,8 @@ public class EvaluateOclAnyOperationsTest extends PivotSimpleTestSuite
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<UnlimitedNatural>)");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Set<Integer>)");
 		assertQueryResults(null, "Set{1,2}", "Set{1,2}->oclAsType(Collection<UnlimitedNatural>)");
+//BUG 344931		assertQueryResults(null, "Set{1,2}", "Set{1.0,2}->oclAsType(Collection<UnlimitedNatural>)");
+//BUG 344931		assertQueryResults(null, "Set{1,2}", "Set{1.0,2.0}->oclAsType(Collection<UnlimitedNatural>)");
 		assertQueryInvalid(null, "Set{1,2}->oclAsType(Sequence<UnlimitedNatural>)");
 		assertQueryInvalid(null, "Set{1,2}.oclAsType(Set<UnlimitedNatural>)");
 		assertQueryResults(null, "Bag{1,2}", "Set{1,2}.oclAsType(UnlimitedNatural)");
