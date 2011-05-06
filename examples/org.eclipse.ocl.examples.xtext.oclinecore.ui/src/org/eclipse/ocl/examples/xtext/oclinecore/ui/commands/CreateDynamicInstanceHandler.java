@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.5 2011/05/06 10:41:16 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.6 2011/05/06 11:17:23 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -25,22 +25,13 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.presentation.DynamicModelWizard;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.ocl.examples.common.utils.EcoreUtils;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.RootPackageCS;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.PlatformUI;
@@ -88,7 +79,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		return null;
 	} 
 
-	private EClassifier findClassifier(Resource resource, ClassifierCS csClass) {
+/*	private EClassifier findClassifier(Resource resource, ClassifierCS csClass) {
 		EPackage ePackage = findPackage(resource, (PackageCS)csClass.eContainer());
 		return ePackage != null? ePackage.getEClassifier(csClass.getName()) : null;
 	}
@@ -116,7 +107,7 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 			return EcoreUtils.getNamedElement(ePackage.getESubpackages(), name);
 		}
 		return null;
-	}
+	} */
 
 	@Override
 	public boolean isEnabled() {
@@ -151,7 +142,13 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 						if (!(currentModel instanceof ClassCS)) {
 							return null; 
 						}		
-						ClassCS oclInEcoreClass = (ClassCS) currentModel;
+/*						ClassCS oclInEcoreClass = (ClassCS) currentModel;
+						TypeManagerResourceAdapter adapter = TypeManagerResourceAdapter.findAdapter(xtextResource);
+						if (adapter == null) {
+							return null;
+						}
+						TypeManager typeManager = adapter.getTypeManager();
+//						typeManager.getEcore();
 						URI resourceURI = oclInEcoreClass.eResource().getURI().trimFragment();
 						ResourceSet localResourceSet = new ResourceSetImpl();
 						Resource ecoreResource = localResourceSet.getResource(resourceURI, true);
@@ -159,7 +156,8 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 						if (!(eClassifier instanceof EClass)) {
 							return null;
 						}
-						return (EClass) eClassifier;
+						return (EClass) eClassifier; */
+						return null; 		// BUG 344948 need Class to EClass conversion
 					}					
 				});
 			}
