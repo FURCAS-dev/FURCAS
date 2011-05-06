@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CS2PivotConversion.java,v 1.18 2011/05/05 17:53:02 ewillink Exp $
+ * $Id: CS2PivotConversion.java,v 1.19 2011/05/06 09:04:47 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.base.cs2pivot;
 
@@ -530,9 +530,8 @@ public class CS2PivotConversion extends AbstractConversion
 		return documentationStrings;
 	} */
 
-	public void garbageCollect() {
+	public void garbageCollect(Collection<? extends Resource> pivotResources) {
 		Resource libraryResource = typeManager.getLibraryResource();
-		Collection<? extends Resource> pivotResources = converter.getPivotResources();
 		Collection<Notifier> allPivotResources = new ArrayList<Notifier>(pivotResources);
 		allPivotResources.add(typeManager.getOrphanPackage());
 		Map<EObject, Collection<EStructuralFeature.Setting>> pivotCrossUsages = computeCrossUsages(allPivotResources);		
