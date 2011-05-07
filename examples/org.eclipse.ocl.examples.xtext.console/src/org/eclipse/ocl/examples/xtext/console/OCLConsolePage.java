@@ -15,11 +15,13 @@
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.8 2011/05/07 16:42:13 ewillink Exp $
+ * $Id: OCLConsolePage.java,v 1.9 2011/05/07 17:18:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,9 +50,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ocl.examples.pivot.AssociationClassCallExp;
 import org.eclipse.ocl.examples.pivot.CollectionItem;
 import org.eclipse.ocl.examples.pivot.Environment;
+import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.EvaluationHaltedException;
 import org.eclipse.ocl.examples.pivot.ExpressionInOcl;
 import org.eclipse.ocl.examples.pivot.InvalidEvaluationException;
+import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.IterateExp;
 import org.eclipse.ocl.examples.pivot.IteratorExp;
 import org.eclipse.ocl.examples.pivot.OperationCallExp;
@@ -68,9 +72,14 @@ import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManagerResourceSetAdapter;
+import org.eclipse.ocl.examples.pivot.values.BooleanValue;
+import org.eclipse.ocl.examples.pivot.values.IntegerValue;
+import org.eclipse.ocl.examples.pivot.values.RealValue;
+import org.eclipse.ocl.examples.pivot.values.StringValue;
 import org.eclipse.ocl.examples.pivot.values.Value;
 import org.eclipse.ocl.examples.pivot.values.ValueFactory;
 import org.eclipse.ocl.examples.pivot.values.impl.InvalidValueImpl;
+import org.eclipse.ocl.examples.pivot.values.impl.ValueFactoryImpl;
 import org.eclipse.ocl.examples.xtext.console.actions.CloseAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadExpressionAction;
 import org.eclipse.ocl.examples.xtext.console.actions.LoadResourceAction;
@@ -214,6 +223,13 @@ public class OCLConsolePage extends Page
 		}
 		
 		@Override
+		public EvaluationVisitor createNestedVisitor() {
+			EnvironmentFactory factory = environment.getFactory();
+	    	EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
+			return new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
+		}
+
+		@Override
 		public Value visitAssociationClassCallExp(AssociationClassCallExp ae) {
 			checkMonitor();
 			return super.visitAssociationClassCallExp(ae);
@@ -255,6 +271,86 @@ public class OCLConsolePage extends Page
 			return super.visitTupleLiteralPart(tp);
 		}
 	}
+    
+    protected static class CancelableTypeManager extends TypeManager
+    {       
+		private IProgressMonitor monitor = null;
+		private final ValueFactory valueFactory;
+
+		public CancelableTypeManager() {
+			this.valueFactory = new ValueFactoryImpl(ConsoleMessages.ValueFactory_Cancelable)
+			{		      	
+	        	@Override
+				public BooleanValue booleanValueOf(boolean value) {
+	        		checkMonitor();
+					return super.booleanValueOf(value);
+				}
+
+				@Override
+				public IntegerValue integerValueOf(BigInteger value) {
+	        		checkMonitor();
+					return super.integerValueOf(value);
+				}
+
+				@Override
+	    		public IntegerValue integerValueOf(long value) {
+	        		checkMonitor();
+	    			return super.integerValueOf(value);
+	    		}
+
+				@Override
+				public IntegerValue integerValueOf(String aValue) throws InvalidValueException {
+	        		checkMonitor();
+					return super.integerValueOf(aValue);
+				}
+
+				@Override
+				public RealValue realValueOf(double value) {
+	        		checkMonitor();
+					return super.realValueOf(value);
+				}
+
+				@Override
+				public RealValue realValueOf(BigDecimal value) {
+	        		checkMonitor();
+					return super.realValueOf(value);
+				}
+
+				@Override
+				public RealValue realValueOf(IntegerValue integerValue) {
+	        		checkMonitor();
+					return super.realValueOf(integerValue);
+				}
+
+				@Override
+				public RealValue realValueOf(String aValue) throws InvalidValueException {
+	        		checkMonitor();
+					return super.realValueOf(aValue);
+				}
+
+				@Override
+				public StringValue stringValueOf(String value) {
+	        		checkMonitor();
+					return super.stringValueOf(value);
+				}
+			};
+		}
+
+		protected void checkMonitor() {
+			if ((monitor != null) && monitor.isCanceled()) {
+				throw new EvaluationHaltedException(ConsoleMessages.Result_EvaluationTerminated);
+			}
+		}
+
+		@Override
+		public ValueFactory getValueFactory() {
+			return valueFactory;
+		}
+
+		public void setMonitor(IProgressMonitor monitor) {
+    		this.monitor = monitor;
+		}
+    }
 
     protected static class ExceptionValue extends InvalidValueImpl
 	{
@@ -338,12 +434,15 @@ public class OCLConsolePage extends Page
 			monitor.worked(2);
 			monitor.subTask(ConsoleMessages.Progress_Evaluating);
 			try {
+				typeManager.setMonitor(monitor);
 				EvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager);
 		        value = evaluationVisitor.visitExpressionInOcl(expressionInOcl);
 			} catch (EvaluationHaltedException e) {
 				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationTerminated, null);
 			} catch (InvalidEvaluationException e) {
 				value = new ExceptionValue(valueFactory, ConsoleMessages.Result_EvaluationFailure, e);
+			} finally {
+				typeManager.setMonitor(null);
 			}
 			monitor.worked(4);
 		}
@@ -442,9 +541,7 @@ public class OCLConsolePage extends Page
 	private EObject contextObject;
 	private EClassifier contextClassifier;
 	
-//	private IOCLFactory oclFactory = new PivotFactory();
-//	private final OCL ocl;
-	private final TypeManager typeManager;
+	private final CancelableTypeManager typeManager;
 	private ModelManager modelManager = null;
 	
 //	private Map<TargetMetamodel, IAction> metamodelActions =
@@ -495,8 +592,7 @@ public class OCLConsolePage extends Page
 	 */
 	OCLConsolePage(OCLConsole console) {
 		super();
-		typeManager = new TypeManager();
-//		ocl = OCL.newInstance(envFactory);
+		this.typeManager = new CancelableTypeManager();
 		this.console = console;
 	}
 
