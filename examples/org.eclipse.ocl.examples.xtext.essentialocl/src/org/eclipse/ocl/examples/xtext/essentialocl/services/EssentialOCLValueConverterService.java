@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCLValueConverterService.java,v 1.11 2011/05/05 17:52:54 ewillink Exp $
+ * $Id: EssentialOCLValueConverterService.java,v 1.12 2011/05/07 16:39:54 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.services;
 
@@ -124,6 +124,33 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 		}
 	}
 
+	protected static class NameConverter extends AbstractIDConverter
+	{
+		private final Set<String> nameKeywords;
+
+		protected static Set<String> computeKeywords(Grammar grammar) {
+			Set<String> keywords = new HashSet<String>(GrammarUtil.getAllKeywords(grammar));
+			keywords.removeAll(getAllKeywords(grammar, "UnrestrictedName"));
+			keywords.removeAll(getAllKeywords(grammar, "EssentialOCLReservedKeyword"));
+			keywords.removeAll(getAllKeywords(grammar, "RestrictedKeywords"));
+			keywords.removeAll(getAllKeywords(grammar, "CollectionTypeIdentifier"));
+			keywords.removeAll(getAllKeywords(grammar, "PrimitiveTypeIdentifier"));
+			return keywords;
+		}
+
+		public NameConverter(Grammar grammar) {
+			nameKeywords = computeKeywords(grammar);
+		}
+		
+		@Override
+		protected String internalToString(String value) {
+			if (nameKeywords.contains(value) || !ElementUtil.isValidIdentifier(value)) {
+				return "_'" + value + "'";
+			}
+			return value;
+		}
+	}
+
 	protected static class NumberConverter implements IValueConverter<Number>
 	{	
 		public Number toValue(String string, INode node) {
@@ -217,6 +244,7 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	private static EscapedIDConverter escapedIDConverter = null;
 	private IDConverter idConverter = null; 				// not static - grammar-dependent
 	private static MultiLineSingleQuotedStringConverter multiLineSingleQuotedStringConverter = null;
+	private NameConverter nameConverter = null; 				// not static - grammar-dependent
 	private static NumberConverter numberConverter = null;
 	private static SimpleIDConverter simpleIDConverter = null;
 	private static SingleQuotedStringConverter singleQuotedStringConverter = null;
@@ -261,7 +289,11 @@ public class EssentialOCLValueConverterService extends AbstractDeclarativeValueC
 	
 	@ValueConverter(rule = "Name")
 	public IValueConverter<String> Name() {
-		return ID();
+//		return ID();
+		if (nameConverter == null) {
+			nameConverter = new NameConverter(getGrammar());
+		}
+		return nameConverter;
 	}
 
 	@ValueConverter(rule = "NUMBER_LITERAL")
