@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ConsoleMessages.java,v 1.1 2011/05/07 16:41:05 ewillink Exp $
+ * $Id: ConsoleMessages.java,v 1.2 2011/05/07 17:18:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.console.messages;
@@ -61,6 +61,7 @@ public class ConsoleMessages
 	public static String SaveActionError_Title;
 	public static String SaveActionWarning_Title;
 	public static String SaveActionWarning_NoExpression;
+	public static String ValueFactory_Cancelable;
 
 	/*	
 	public static String console_noContext;
