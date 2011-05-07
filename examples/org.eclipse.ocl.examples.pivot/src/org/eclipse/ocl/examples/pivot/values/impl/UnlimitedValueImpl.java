@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.5 2011/05/07 16:41:16 ewillink Exp $
  */
 /**
  * <copyright>
@@ -28,7 +28,7 @@
  *
  * </copyright>
  *
- * $Id: UnlimitedValueImpl.java,v 1.4 2011/02/21 08:37:52 ewillink Exp $
+ * $Id: UnlimitedValueImpl.java,v 1.5 2011/05/07 16:41:16 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.values.impl;
 
@@ -36,6 +36,7 @@ import java.math.BigDecimal;
 
 import org.eclipse.ocl.examples.pivot.InvalidValueException;
 import org.eclipse.ocl.examples.pivot.Type;
+import org.eclipse.ocl.examples.pivot.messages.EvaluatorMessages;
 import org.eclipse.ocl.examples.pivot.utilities.TypeManager;
 import org.eclipse.ocl.examples.pivot.values.NumericValue;
 import org.eclipse.ocl.examples.pivot.values.UnlimitedValue;
@@ -89,7 +90,8 @@ public class UnlimitedValueImpl extends AbstractValue implements UnlimitedValue
 	}
 
 	public UnlimitedValue negate() throws InvalidValueException {
-		throw new InvalidValueException("negated UnlimitedValue");
+		valueFactory.throwInvalidValueException(EvaluatorMessages.InvalidOperation, "negate", "UnlimitedValue");
+		return null;
 	}
 
 	public int signum() {

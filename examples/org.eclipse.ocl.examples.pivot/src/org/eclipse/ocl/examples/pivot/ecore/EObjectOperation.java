@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EObjectOperation.java,v 1.5 2011/04/20 19:02:46 ewillink Exp $
+ * $Id: EObjectOperation.java,v 1.6 2011/05/07 16:41:22 ewillink Exp $
  */
 package org.eclipse.ocl.examples.pivot.ecore;
 
@@ -63,7 +63,7 @@ public class EObjectOperation implements CallableImplementation
 				URI uri = typeManager.getResourceIdentifier(operation, null);
 				specification = PivotUtil.resolveSpecification(typeManager, uri, operation, string);
 			} catch (ParserException e) {
-				return evaluationVisitor.throwInvalidEvaluation("parse failure", e, callExp, sourceValue);
+				return evaluationVisitor.throwInvalidEvaluation(e, callExp, sourceValue, "parse failure");
 			}
 		}
 		if (specification instanceof ExpressionInOcl) {
@@ -96,7 +96,7 @@ public class EObjectOperation implements CallableImplementation
 						}
 					} */
 			Operation operation = PivotUtil.getReferredOperation(callExp);
-			return evaluationVisitor.throwInvalidEvaluation("No specification for '" + operation + "'", null, callExp, sourceValue);
+			return evaluationVisitor.throwInvalidEvaluation(null, callExp, sourceValue, "No specification for '" + operation + "'");
 		}
 	}
 
