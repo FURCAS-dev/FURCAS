@@ -942,7 +942,7 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
-        compareInstances(instances, new EObject[] {/*this.div*/});
+        compareInstances(instances, new EObject[] {this.div});
 
     }
     
@@ -968,9 +968,41 @@ public class RevPathComputationTest extends BaseDepartmentTestWithOCL {
         // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
         noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
         instances = computeAffectedInstances(this.getNestedDerivationAST(), noti);
-        compareInstances(instances, new EObject[] {/*this.div*/});       
+        compareInstances(instances, new EObject[] {this.div});       
     }
 
+    @Test
+    public void testNonLinearDerivationPositive() {
+        Notification noti;
+        Collection<EObject> instances;
+        
+        //Use a derived property with a derivation expression that contains a branch (Department.biggestNumberOfStudentsOrFreelancers)
+        //and see if a change in the unused branch causes an impact.
+        //After the instance creation dep2 has 1 freelance.
+        //We add another one which will influence the biggestNumberOfStudentsOrFreelancers attribute of dep2 since it has only 1 student.
+        noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.e2);
+        instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {this.dep2});
+    }
+    
+    @Test
+    public void testNonLinearDerivationNegative() {
+        Notification noti;
+        Collection<EObject> instances;
+        
+        //Use a derived property with a derivation expression that contains a branch (Department.biggestNumberOfStudentsOrFreelancers)
+        //and see if a change in the unused branch causes an impact.
+        //After the instance creation dep2 has 1 freelance.
+        //We add two more and afterwards we add 1 student which will not influence the biggestNumberOfStudentsOrFreelancers
+        //attribute of dep2 since it has more freelancers than students.
+        e2.setEmployer(dep2);
+        boss1.setEmployer(dep2);
+        
+        noti = NotificationHelper.createReferenceAddNotification(this.dep2, this.employeeRef, this.stud1);
+        instances = computeAffectedInstances(this.getNonLinearDerivationAST(), noti);
+        compareInstances(instances, new EObject[] {/*this.dep2 should not be in the impact since the derived property didn't and couldn't change*/});
+    }
+    
     // @Test
     // public void testDepartmentAlwaysInDivision(){
     //        
