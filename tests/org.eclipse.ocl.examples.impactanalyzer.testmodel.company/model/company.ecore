@@ -79,6 +79,13 @@
         resolveProxies="false" eOpposite="#//Department/subDepartment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employeeOfTheMonth" unique="false"
         upperBound="-1" eType="#//Employee" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="biggestNumberOfStudentsOrFreelancers"
+        ordered="false" eType="ecore:EDataType primitivetypes.ecore#//Integer" changeable="false"
+        volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
+        <details key="derivation" value="let numFreelance : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Freelance))->size() in let numStudent : Integer = self.employee->select(e : Employee | e.oclIsKindOf(Student))->size() in if numFreelance &lt; numStudent then numStudent else numFreelance endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">

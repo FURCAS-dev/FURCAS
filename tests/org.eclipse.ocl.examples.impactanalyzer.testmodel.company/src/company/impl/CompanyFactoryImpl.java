@@ -24,131 +24,131 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class CompanyFactoryImpl extends EFactoryImpl implements CompanyFactory {
     /**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static CompanyFactory init() {
-		try {
-			CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///company.ecore"); 
-			if (theCompanyFactory != null) {
-				return theCompanyFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new CompanyFactoryImpl();
-	}
+        try {
+            CompanyFactory theCompanyFactory = (CompanyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///company.ecore"); 
+            if (theCompanyFactory != null) {
+                return theCompanyFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new CompanyFactoryImpl();
+    }
 
     /**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public CompanyFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     @Override
     public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case CompanyPackage.EMPLOYEE: return createEmployee();
-			case CompanyPackage.DEPARTMENT: return createDepartment();
-			case CompanyPackage.FREELANCE: return createFreelance();
-			case CompanyPackage.DIVISION: return createDivision();
-			case CompanyPackage.STUDENT: return createStudent();
-			case CompanyPackage.COMPANY: return createCompany();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case CompanyPackage.EMPLOYEE: return createEmployee();
+            case CompanyPackage.DEPARTMENT: return createDepartment();
+            case CompanyPackage.FREELANCE: return createFreelance();
+            case CompanyPackage.DIVISION: return createDivision();
+            case CompanyPackage.STUDENT: return createStudent();
+            case CompanyPackage.COMPANY: return createCompany();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Employee createEmployee() {
-		EmployeeImpl employee = new EmployeeImpl();
-		return employee;
-	}
+        EmployeeImpl employee = new EmployeeImpl();
+        return employee;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Department createDepartment() {
-		DepartmentImpl department = new DepartmentImpl();
-		return department;
-	}
+        DepartmentImpl department = new DepartmentImpl();
+        return department;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Freelance createFreelance() {
-		FreelanceImpl freelance = new FreelanceImpl();
-		return freelance;
-	}
+        FreelanceImpl freelance = new FreelanceImpl();
+        return freelance;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Division createDivision() {
-		DivisionImpl division = new DivisionImpl();
-		return division;
-	}
+        DivisionImpl division = new DivisionImpl();
+        return division;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Student createStudent() {
-		StudentImpl student = new StudentImpl();
-		return student;
-	}
+        StudentImpl student = new StudentImpl();
+        return student;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public Company createCompany() {
-		CompanyImpl company = new CompanyImpl();
-		return company;
-	}
+        CompanyImpl company = new CompanyImpl();
+        return company;
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public CompanyPackage getCompanyPackage() {
-		return (CompanyPackage)getEPackage();
-	}
+        return (CompanyPackage)getEPackage();
+    }
 
     /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
     @Deprecated
     public static CompanyPackage getPackage() {
-		return CompanyPackage.eINSTANCE;
-	}
+        return CompanyPackage.eINSTANCE;
+    }
 
 } //CompanyFactoryImpl
