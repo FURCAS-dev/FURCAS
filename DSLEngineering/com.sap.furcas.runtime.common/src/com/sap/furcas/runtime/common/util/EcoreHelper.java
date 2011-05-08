@@ -144,7 +144,7 @@ public class EcoreHelper {
         Notifier[] result = new Notifier[referenceScope.size()+1];
         int i=0;
         for (URI uri : referenceScope) {
-            result[i++] = resourceSet.getResource(uri, /* loadOnDemand */ false);
+            result[i++] = resourceSet.getResource(uri, /* loadOnDemand */ true);
         }
         result[i] = resourceSet;
         return result;
