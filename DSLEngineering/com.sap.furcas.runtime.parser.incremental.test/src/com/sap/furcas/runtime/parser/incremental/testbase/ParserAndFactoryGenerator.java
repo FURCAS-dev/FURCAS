@@ -10,15 +10,14 @@
  ******************************************************************************/
 package com.sap.furcas.runtime.parser.incremental.testbase;
 
+import static com.sap.furcas.test.util.CompilationHelper.getSourceRoot;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URLDecoder;
 import java.util.Set;
 
 import org.antlr.runtime.Lexer;
@@ -158,21 +157,6 @@ public class ParserAndFactoryGenerator extends ParserGenerator {
             }
         } finally {
             restoreOldSystemErr(systemErrOld);
-        }
-    }
-    
-    private static String getSourceRoot(Class<?> c) {
-        try {
-            String classContainerPath = URLDecoder.decode(c
-                    .getProtectionDomain().getCodeSource().getLocation()
-                    .getPath(), "UTF-8");
-            if (!classContainerPath.endsWith(".jar")) {
-                classContainerPath += "bin/";
-            }
-
-            return new File(classContainerPath).getCanonicalPath();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 
