@@ -19,7 +19,7 @@ Bootstrap Howto:
        
    	   Copy the TCSParser.java and  TCSLexer.java from "generationTemp/generated"
    	   to "src/com.sap.furcas.parser.tcs.stable". Additionally copy TCS.tcs from 
-   	   "generationTemp" to "mappings2".
+   	   "generationTemp" to "mappings".
    	   The bootstrapped parser will nowbe used per-default.
 
    	   Enjoy! You're done now.
